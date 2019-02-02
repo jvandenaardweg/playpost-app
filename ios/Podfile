@@ -9,10 +9,12 @@ target 'Readto' do
   # use_frameworks!
 
   # Pods for Readto
-
-  
+  pod 'React', :path => '../node_modules/react-native'
+  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga' 
 
   platform :ios, '9.0'
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+
   target 'ReadtoTests' do
     inherit! :search_paths
     # Pods for testing

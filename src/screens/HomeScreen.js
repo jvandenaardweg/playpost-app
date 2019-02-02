@@ -6,9 +6,13 @@ import {
   StyleSheet,
   Text,
   View,
+  WebView,
+  TextInput
 } from 'react-native';
 
-import { ProjectCard } from '../components/ProjectCard'
+// injecting js does not work
+// import { WebView } from "react-native-webview";
+
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -16,11 +20,9 @@ export default class HomeScreen extends React.Component {
   };
 
   state = {
-    linkedInAccessToken: null,
-    linkedInAccessTokenExpiresIn: null,
-    isLoggedIn: false,
+    webviewUrl: "https://medium.com/me/list/queue",
+    text: null,
     isLoading: false,
-    user: {}
   }
 
   componentDidMount () {
@@ -37,10 +39,6 @@ export default class HomeScreen extends React.Component {
     // this.props.navigation.navigate(userToken ? 'App' : 'Auth');
   };
 
-  handleOnPressContinue = (event) => {
-    console.log('continue')
-  }
-
   async getLinkedInUserProfile (accessToken) {
     const bearer = `Bearer ${accessToken}`
     const result = await fetch('https://api.linkedin.com/v1/people/~?format=json', {
@@ -53,43 +51,80 @@ export default class HomeScreen extends React.Component {
         'Content-Type': 'application/json'
       }
     }).then(response => response.json())
+  }
 
-    this.setState({
-      user: {
-        id: result.id,
-        firstName: result.firstName,
-        headline: result.headline,
-        url: result.siteStandardProfileRequest.url
-      },
-      isLoggedIn: true,
-      isLoading: false
-    })
-}
+  handleOnLoadEnd = (event) => {
+    console.log('on load end', event)
+    // this.webview.injectJavaScript('window.testMessage = "hello world"; void(0);');
+  }
+
+  handleOnMessage = (event) => {
+    console.log('onmessage', event)
+  }
+
+  handleOnButtonPress = (event) => {
+    this.setState({webviewUrl: this.state.text})
+    // this.webview.source = { uri: this.state.text }
+  }
 
   render() {
-    const { user: { firstName, headline, id, lastName, url }, isLoggedIn, isLoading } = this.state
+    const { webviewUrl } = this.state;
+// window.postMessage(document.getElementByTagName("body"));
+    // const jsCode = `window.postMessage(document.querySelector('body')); void(0);`;
+    const jsCode = `
+    (function() {
+      var originalPostMessage = window.postMessage;
+    
+      var patchedPostMessage = function(message, targetOrigin, transfer) { 
+        originalPostMessage(message, targetOrigin, transfer);
+      };
+    
+      patchedPostMessage.toString = function() { 
+        return String(Object.hasOwnProperty).replace('hasOwnProperty', 'postMessage'); 
+      };
+    
+      window.postMessage = patchedPostMessage;
+    })();
+    `;
 
+    console.log('render', this.state.text)
     return (
       <View style={styles.container}>
-
-        <View style={styles.getStartedContainer}>
-
-          <Text>Projects from organizations i follow</Text>
-          <Text>How many new projects for my skills? (since i was gone?)</Text>
-          <Text>Set availability</Text>
-
-          {isLoading && (
-            <ActivityIndicator size="large" color="#0000ff" />
-          )}
-
-        </View>
-
+        <Text style={styles.status}>Hoi!</Text>
+        <Button onPress={(this.handleOnButtonPress)} title="Test" />
+        <TextInput
+          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          onChangeText={(text) => this.setState({text})}
+          value={this.state.text}
+        />
+        <WebView
+        ref={ref => (this.webview = ref)}
+        useWebkit={true}
+          javaScriptEnabled={true}
+          source={{ uri: webviewUrl }}
+          // onLoadProgress={e => console.log(e.nativeEvent.progress)}
+          onLoadEnd={this.handleOnLoadEnd}
+          onMessage={(event) => this.handleOnMessage(event.nativeEvent.data)}
+          injectedJavaScript={jsCode}
+          style={styles.webview}
+        />
       </View>
+
     );
   }
 }
 
 const styles = StyleSheet.create({
+  status: {
+    marginTop: 50,
+    textAlign: 'center'
+  },
+  webview: {
+    marginTop: 100,
+    marginLeft: 15,
+    marginRight: 15,
+    borderRadius: 10
+  },
   greeting: {
     fontSize: 18,
     fontWeight: 'bold',
@@ -102,8 +137,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
+    // alignItems: 'center',
+    // justifyContent: 'center'
   },
   developmentModeText: {
     marginBottom: 20,

@@ -6,21 +6,42 @@ PODS:
     - AppCenter/Core
   - AppCenterReactNativeShared (1.12.0):
     - AppCenter/Core (= 1.13.0)
+  - React (0.58.3):
+    - React/Core (= 0.58.3)
+  - react-native-webview (5.0.1):
+    - React
+  - React/Core (0.58.3):
+    - yoga (= 0.58.3.React)
+  - yoga (0.58.3.React)
 
 DEPENDENCIES:
   - AppCenter/Analytics (~> 1.13.0)
   - AppCenter/Crashes (~> 1.13.0)
   - AppCenterReactNativeShared (~> 1.12.0)
+  - React (from `../node_modules/react-native`)
+  - react-native-webview (from `../node_modules/react-native-webview`)
+  - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AppCenter
     - AppCenterReactNativeShared
 
+EXTERNAL SOURCES:
+  React:
+    :path: "../node_modules/react-native"
+  react-native-webview:
+    :path: "../node_modules/react-native-webview"
+  yoga:
+    :path: "../node_modules/react-native/ReactCommon/yoga"
+
 SPEC CHECKSUMS:
   AppCenter: a70408f15de23f925001bfc7b7473094a009a4eb
   AppCenterReactNativeShared: 542de3c68bcec89fba964213048287592a443976
+  React: 9b873b38b92ed8012d7cdf3b965477095ed364c4
+  react-native-webview: a42108b827082f8f0333529b0772102031d5960d
+  yoga: 0885622311729a02c2bc02dca97167787a51488b
 
-PODFILE CHECKSUM: a00947bae816f67517eb721298ee3075d91cf016
+PODFILE CHECKSUM: 91ddbb757dc19524885288f76d154def6ce6508b
 
 COCOAPODS: 1.5.3
