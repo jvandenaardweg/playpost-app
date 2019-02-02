@@ -10,9 +10,6 @@ import {
   TextInput
 } from 'react-native';
 
-// injecting js does not work
-// import { WebView } from "react-native-webview";
-
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
