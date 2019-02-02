@@ -5,6 +5,10 @@
 # Xcode
 #
 build/
+
+# Added Pods folder manually, got too big for version control
+Pods/
+
 *.pbxuser
 !default.pbxuser
 *.mode1v3
