@@ -7,7 +7,7 @@
 build/
 
 # Added Pods folder manually, got too big for version control
-Pods/
+#Pods/
 
 *.pbxuser
 !default.pbxuser
