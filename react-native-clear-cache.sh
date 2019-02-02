@@ -1,0 +1,1 @@
+rm -rf $TMPDIR/react-* && rm -rf $TMPDIR/metro-* && rm -rf $TMPDIR/haste-* && watchman watch-del-all && npm cache clean --force && npm cache verify && rm -rf ios/build && rm -rf node_modules/ && npm i
