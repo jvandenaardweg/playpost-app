@@ -62,7 +62,7 @@ MessagesStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={'comments'}
+      name={'headphones'}
     />
   ),
 }
@@ -76,7 +76,7 @@ SettingsStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={'user-plus'}
+      name={'list-ol'}
     />
   ),
 }

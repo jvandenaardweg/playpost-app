@@ -5,7 +5,7 @@ import { Article } from '../components/Article';
 
 export default class MessagesScreen extends React.Component {
   static navigationOptions = {
-    title: 'Messages',
+    title: 'Articles',
   };
 
   render() {

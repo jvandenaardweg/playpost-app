@@ -20,6 +20,7 @@ export default class HomeScreen extends React.Component {
     webviewUrl: "https://medium.com/me/list/queue",
     text: null,
     isLoading: false,
+    bookmarks: []
   }
 
   componentDidMount () {
@@ -27,13 +28,9 @@ export default class HomeScreen extends React.Component {
   }
 
   _bootstrapAsync = async () => {
-    const userToken = await AsyncStorage.getItem('userToken');
+    // const userToken = await AsyncStorage.getItem('userToken');
 
-    console.log('userToken', userToken)
-
-    // This will switch to the App screen or Auth screen and this loading
-    // screen will be unmounted and thrown away.
-    // this.props.navigation.navigate(userToken ? 'App' : 'Auth');
+    // console.log('userToken', userToken)
   };
 
   async getLinkedInUserProfile (accessToken) {
@@ -52,35 +49,66 @@ export default class HomeScreen extends React.Component {
 
   handleOnLoadEnd = (event) => {
     console.log('on load end', event)
-    // this.webview.injectJavaScript('window.testMessage = "hello world"; void(0);');
   }
 
-  handleOnMessage = (event) => {
-    console.log('onmessage', event)
+  handleOnMessage = (data) => {
+    console.log('onmessage', data)
+
+    const bookmarks = data.split('|||').map((bookmark) => JSON.parse(bookmark))
+
+    if (bookmarks && bookmarks.length) {
+      this.setState({bookmarks})
+    }
+
   }
 
   handleOnButtonPress = (event) => {
     this.setState({webviewUrl: this.state.text})
-    // this.webview.source = { uri: this.state.text }
   }
 
   render() {
     const { webviewUrl } = this.state;
-// window.postMessage(document.getElementByTagName("body"));
-    // const jsCode = `window.postMessage(document.querySelector('body')); void(0);`;
+
     const jsCode = `
     (function() {
       var originalPostMessage = window.postMessage;
     
-      var patchedPostMessage = function(message, targetOrigin, transfer) { 
+      var patchedPostMessage = function(message, targetOrigin, transfer) {
         originalPostMessage(message, targetOrigin, transfer);
       };
     
       patchedPostMessage.toString = function() { 
-        return String(Object.hasOwnProperty).replace('hasOwnProperty', 'postMessage'); 
+        return String(Object.hasOwnProperty).replace('hasOwnProperty', 'postMessage');
       };
     
       window.postMessage = patchedPostMessage;
+
+        var bookmarks = [];
+        const bookmarkNodes = document.querySelectorAll('.js-streamItem');
+
+        bookmarkNodes.forEach((node) => {
+          const description = node.querySelector('p');
+          const authorName = node.querySelector('[data-user-id]');
+          const publicationName = node.querySelector('[data-action="show-collection-card"]');
+
+          const bookmark = {
+            link: node.querySelector('section > div > div > a').getAttribute('href'),
+            title: node.querySelector('h3').textContent,
+            description: (description) ? description.textContent : null,
+            authorName: (authorName) ? authorName.textContent : null,
+            publicationName: (publicationName) ? publicationName.textContent : null
+          };
+
+          // Make it a string so we can use it in our postMessage
+          const stringifiedBookmark = JSON.stringify(bookmark);
+
+          bookmarks.push(stringifiedBookmark);
+        });
+
+        const stringifiedBookmarks = bookmarks.join('|||');
+
+        window.postMessage(stringifiedBookmarks)
+
     })();
     `;
 
@@ -88,6 +116,9 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.status}>Hoi!</Text>
+        {this.state.bookmarks && this.state.bookmarks.map((bookmark) => (
+          <Text>{bookmark.title}</Text>
+        ))}
         <Button onPress={(this.handleOnButtonPress)} title="Test" />
         <TextInput
           style={{height: 40, borderColor: 'gray', borderWidth: 1}}

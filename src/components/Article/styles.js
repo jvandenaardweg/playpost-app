@@ -2,12 +2,19 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
     container: {
-      flex: 1,
+      // flex: 1,
       backgroundColor: '#fff',
-      flexDirection: 'row',
+      // flexDirection: 'column',
       padding: 14,
       borderBottomColor: '#EEF0F4',
       borderBottomWidth: 1,
+    },
+    header: {
+
+    },
+    body: {
+      flex: 1,
+      flexDirection: 'row'
     },
     meta: {
       flex: 1,
@@ -19,7 +26,6 @@ export default StyleSheet.create({
     control: {
       width: 50,
       justifyContent: 'center',
-      // backgroundColor: 'red',
       marginLeft: 24
     },
     title: {
@@ -33,12 +39,26 @@ export default StyleSheet.create({
       fontSize: 13,
       color: '#aaa',
       lineHeight: 19,
-      marginBottom: 14
+      marginBottom: 4
     },
     author: {
       fontSize: 13,
       color: '#aaa',
-      lineHeight: 19,
+      lineHeight: 19
+    },
+    source: {
+      flex: 1,
+      flexDirection: 'row',
+      alignItems: 'baseline'
+    },
+    sourceIcon: {
+      color: '#555'
+    },
+    sourceName: {
+      fontSize: 13,
+      color: '#555',
+      marginBottom: 8,
+      marginLeft: 6
     },
     authorName: {
       color: '#555'
@@ -46,13 +66,16 @@ export default StyleSheet.create({
     publicationName: {
       color: '#555'
     },
-    button: {
+    controlButton: {
       backgroundColor: 'green',
       width: 50,
       height: 50,
       borderRadius: 50,
       alignItems: 'center',
       justifyContent: 'center'
+    },
+    controlIcon: {
+      marginLeft: 2
     },
     duration: {
       color: 'green',
