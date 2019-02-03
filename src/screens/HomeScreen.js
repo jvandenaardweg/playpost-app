@@ -111,7 +111,7 @@ export default class HomeScreen extends React.Component {
       window.postMessage = patchedPostMessage;
 
         var bookmarks = [];
-        const bookmarkNodes = document.querySelectorAll('.js-streamItem');
+        const bookmarkNodes = document.querySelectorAll('.streamItem--readingListPostItem.js-streamItem');
 
         if (bookmarkNodes && bookmarkNodes.length) {
           bookmarkNodes.forEach((node) => {
