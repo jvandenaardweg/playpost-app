@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text } from 'react-native';
 
-import { Article } from '../components/Article';
+import { ArticlesContainer } from '../containers/ArticlesContainer';
 
 export default class MessagesScreen extends React.Component {
   static navigationOptions = {
@@ -10,20 +10,7 @@ export default class MessagesScreen extends React.Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
-        <Article />
-        <Article />
-        <Article />
-        <Article />
-      </ScrollView>
+      <ArticlesContainer />
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 15,
-    backgroundColor: '#fff',
-  },
-});
