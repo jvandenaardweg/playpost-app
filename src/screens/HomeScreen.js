@@ -7,24 +7,43 @@ import {
   Text,
   View,
   WebView,
-  TextInput
+  TextInput,
+  Modal,
+  TouchableOpacity
 } from 'react-native';
+
+import Icon from 'react-native-vector-icons/FontAwesome5'
 
 
 export default class HomeScreen extends React.Component {
-  static navigationOptions = {
-    header: null,
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'Home',
+      headerRight: (
+        <TouchableOpacity
+          onPress={navigation.getParam('showModal')}
+          style={{width: 40, height: 40, marginRight: 6, alignItems: 'center', justifyContent: 'center'}}
+        >
+          <Icon
+            name='cog'
+            size={22}
+          />
+        </TouchableOpacity>
+      )
+    }
   };
 
   state = {
     webviewUrl: "https://medium.com/me/list/queue",
+    showModal: false,
     text: null,
     isLoading: false,
     bookmarks: []
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this._bootstrapAsync()
+    this.props.navigation.setParams({ showModal: this.handleOnModalShowPress });
   }
 
   _bootstrapAsync = async () => {
@@ -66,8 +85,16 @@ export default class HomeScreen extends React.Component {
     this.setState({webviewUrl: this.state.text})
   }
 
+  handleOnModalShowPress = (event) => {
+    this.setState({showModal: true})
+  }
+
+  handleOnModalClosePress = (event) => {
+    this.setState({showModal: false})
+  }
+
   render() {
-    const { webviewUrl } = this.state;
+    const { webviewUrl, showModal } = this.state;
 
     const jsCode = `
     (function() {
@@ -113,12 +140,12 @@ export default class HomeScreen extends React.Component {
     })();
     `;
 
-    console.log('render', this.state.text)
+    console.log('render', this.state)
     return (
       <View style={styles.container}>
         <Text style={styles.status}>Hoi!</Text>
-        {this.state.bookmarks && this.state.bookmarks.map((bookmark) => (
-          <Text>{bookmark.title}</Text>
+        {this.state.bookmarks && this.state.bookmarks.map((bookmark, index) => (
+          <Text key={index}>{bookmark.title}</Text>
         ))}
         <Button onPress={(this.handleOnButtonPress)} title="Test" />
         <TextInput
@@ -126,18 +153,29 @@ export default class HomeScreen extends React.Component {
           onChangeText={(text) => this.setState({text})}
           value={this.state.text}
         />
-        <WebView
-          style={{overflow: 'hidden'}}
-          ref={ref => (this.webview = ref)}
-          useWebkit={true}
-          javaScriptEnabled={true}
-          source={{ uri: webviewUrl }}
-          // onLoadProgress={e => console.log(e.nativeEvent.progress)}
-          onLoadEnd={this.handleOnLoadEnd}
-          onMessage={(event) => this.handleOnMessage(event.nativeEvent.data)}
-          injectedJavaScript={jsCode}
-          style={styles.webview}
-        />
+
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={showModal}
+          onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+          }}>
+          <View style={{marginTop: 40, flex: 1}}>
+          <Button onPress={(this.handleOnModalClosePress)} title="Close Webview" />
+            <WebView
+              // style={{overflow: 'hidden'}}
+              ref={ref => (this.webview = ref)}
+              useWebkit={true}
+              javaScriptEnabled={true}
+              source={{ uri: webviewUrl }}
+              // onLoadProgress={e => console.log(e.nativeEvent.progress)}
+              onLoadEnd={this.handleOnLoadEnd}
+              onMessage={(event) => this.handleOnMessage(event.nativeEvent.data)}
+              injectedJavaScript={jsCode}
+            />
+          </View>
+        </Modal>
       </View>
 
     );
@@ -149,12 +187,12 @@ const styles = StyleSheet.create({
     marginTop: 50,
     textAlign: 'center'
   },
-  webview: {
-    marginTop: 100,
-    marginLeft: 15,
-    marginRight: 15,
-    borderRadius: 10
-  },
+  // webview: {
+  //   marginTop: 100,
+  //   marginLeft: 15,
+  //   marginRight: 15,
+  //   borderRadius: 10
+  // },
   greeting: {
     fontSize: 18,
     fontWeight: 'bold',
@@ -165,8 +203,8 @@ const styles = StyleSheet.create({
     marginBottom: 24
   },
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
+    // flex: 1,
+    // backgroundColor: '#fff',
     // alignItems: 'center',
     // justifyContent: 'center'
   },
