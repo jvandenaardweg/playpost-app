@@ -54,7 +54,7 @@ export default class HomeScreen extends React.Component {
   handleOnMessage = (data) => {
     console.log('onmessage', data)
 
-    const bookmarks = data.split('|||').map((bookmark) => JSON.parse(bookmark))
+    const bookmarks = data.split('[SPLIT]').map((bookmark) => JSON.parse(bookmark))
 
     if (bookmarks && bookmarks.length) {
       this.setState({bookmarks})
@@ -80,7 +80,7 @@ export default class HomeScreen extends React.Component {
       patchedPostMessage.toString = function() { 
         return String(Object.hasOwnProperty).replace('hasOwnProperty', 'postMessage');
       };
-    
+
       window.postMessage = patchedPostMessage;
 
         var bookmarks = [];
@@ -106,7 +106,7 @@ export default class HomeScreen extends React.Component {
             bookmarks.push(stringifiedBookmark);
           });
   
-          const stringifiedBookmarks = bookmarks.join('|||');
+          const stringifiedBookmarks = bookmarks.join('[SPLIT]');
   
           window.postMessage(stringifiedBookmarks)
         }
