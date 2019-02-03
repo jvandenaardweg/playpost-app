@@ -86,29 +86,30 @@ export default class HomeScreen extends React.Component {
         var bookmarks = [];
         const bookmarkNodes = document.querySelectorAll('.js-streamItem');
 
-        bookmarkNodes.forEach((node) => {
-          const description = node.querySelector('p');
-          const authorName = node.querySelector('[data-user-id]');
-          const publicationName = node.querySelector('[data-action="show-collection-card"]');
-
-          const bookmark = {
-            link: node.querySelector('section > div > div > a').getAttribute('href'),
-            title: node.querySelector('h3').textContent,
-            description: (description) ? description.textContent : null,
-            authorName: (authorName) ? authorName.textContent : null,
-            publicationName: (publicationName) ? publicationName.textContent : null
-          };
-
-          // Make it a string so we can use it in our postMessage
-          const stringifiedBookmark = JSON.stringify(bookmark);
-
-          bookmarks.push(stringifiedBookmark);
-        });
-
-        const stringifiedBookmarks = bookmarks.join('|||');
-
-        window.postMessage(stringifiedBookmarks)
-
+        if (bookmarkNodes && bookmarkNodes.length) {
+          bookmarkNodes.forEach((node) => {
+            const description = node.querySelector('p');
+            const authorName = node.querySelector('[data-user-id]');
+            const publicationName = node.querySelector('[data-action="show-collection-card"]');
+  
+            const bookmark = {
+              link: node.querySelector('section > div > div > a').getAttribute('href'),
+              title: node.querySelector('h3').textContent,
+              description: (description) ? description.textContent : null,
+              authorName: (authorName) ? authorName.textContent : null,
+              publicationName: (publicationName) ? publicationName.textContent : null
+            };
+  
+            // Make it a string so we can use it in our postMessage
+            const stringifiedBookmark = JSON.stringify(bookmark);
+  
+            bookmarks.push(stringifiedBookmark);
+          });
+  
+          const stringifiedBookmarks = bookmarks.join('|||');
+  
+          window.postMessage(stringifiedBookmarks)
+        }
     })();
     `;
 
