@@ -73,6 +73,8 @@ export default class HomeScreen extends React.Component {
   handleOnMessage = (data) => {
     console.log('onmessage', data)
 
+    if (!data) return;
+
     const bookmarks = data.split('[SPLIT]').map((bookmark) => JSON.parse(bookmark))
 
     if (bookmarks && bookmarks.length) {
@@ -170,7 +172,7 @@ export default class HomeScreen extends React.Component {
               javaScriptEnabled={true}
               source={{ uri: webviewUrl }}
               // onLoadProgress={e => console.log(e.nativeEvent.progress)}
-              onLoadEnd={this.handleOnLoadEnd}
+              // onLoadEnd={this.handleOnLoadEnd}
               onMessage={(event) => this.handleOnMessage(event.nativeEvent.data)}
               injectedJavaScript={jsCode}
             />
