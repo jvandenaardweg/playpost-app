@@ -127,8 +127,9 @@ export default class HomeScreen extends React.Component {
           value={this.state.text}
         />
         <WebView
-        ref={ref => (this.webview = ref)}
-        useWebkit={true}
+          style={{overflow: 'hidden'}}
+          ref={ref => (this.webview = ref)}
+          useWebkit={true}
           javaScriptEnabled={true}
           source={{ uri: webviewUrl }}
           // onLoadProgress={e => console.log(e.nativeEvent.progress)}
