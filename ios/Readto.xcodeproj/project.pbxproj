@@ -54,6 +54,8 @@
 		7D13AEF2C35370F24614A204 /* libPods-Readto-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8FE01DAAFAE7A3E4FFCB018 /* libPods-Readto-tvOS.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8AC92B55EE1A4901AFA213FE /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEC11A77002D4D729CD3412A /* SimpleLineIcons.ttf */; };
+		8C437591220813CD000A15FE /* libRNTrackPlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C43758E220813C4000A15FE /* libRNTrackPlayer.a */; };
+		8C43759422081410000A15FE /* dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43759322081410000A15FE /* dummy.swift */; };
 		8C6F73FE22080DC9002CDB07 /* libReactNativeAudioToolkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6F73FD22080D71002CDB07 /* libReactNativeAudioToolkit.a */; };
 		99D4C970290A4F928DF35E6F /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA8692927B564C5AAF0BC603 /* Entypo.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
@@ -308,6 +310,13 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		8C43758D220813C4000A15FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C43755F220813C4000A15FE /* RNTrackPlayer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9B0E28291F07D76F00B71D2A;
+			remoteInfo = RNTrackPlayer;
+		};
 		8C6F73FC22080D71002CDB07 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8C6F73F822080D71002CDB07 /* ReactNativeAudioToolkit.xcodeproj */;
@@ -440,6 +449,9 @@
 		798363327FED4F4FEB0DAF2F /* Pods-Readto-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Readto-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Readto-tvOS/Pods-Readto-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		83BDA12E82754BE4AFD0FC8D /* AppCenterReactNative.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNative.xcodeproj; path = ../node_modules/appcenter/ios/AppCenterReactNative.xcodeproj; sourceTree = "<group>"; };
+		8C43755F220813C4000A15FE /* RNTrackPlayer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNTrackPlayer.xcodeproj; path = "../node_modules/react-native-track-player/ios/RNTrackPlayer.xcodeproj"; sourceTree = "<group>"; };
+		8C43759222081410000A15FE /* Readto-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Readto-Bridging-Header.h"; sourceTree = "<group>"; };
+		8C43759322081410000A15FE /* dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dummy.swift; sourceTree = "<group>"; };
 		8C6F73F822080D71002CDB07 /* ReactNativeAudioToolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeAudioToolkit.xcodeproj; path = "../node_modules/react-native-audio-toolkit/ios/ReactNativeAudioToolkit/ReactNativeAudioToolkit.xcodeproj"; sourceTree = "<group>"; };
 		8CE153E601D849F1A72C8047 /* AppCenter-Config.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; name = "AppCenter-Config.plist"; path = "Readto/AppCenter-Config.plist"; sourceTree = "<group>"; };
 		8DC5133D459F41CFBD1D4CE5 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
@@ -479,6 +491,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C437591220813CD000A15FE /* libRNTrackPlayer.a in Frameworks */,
 				8C6F73FE22080DC9002CDB07 /* libReactNativeAudioToolkit.a in Frameworks */,
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
@@ -705,6 +718,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				8C43755F220813C4000A15FE /* RNTrackPlayer.xcodeproj */,
 				8C6F73F822080D71002CDB07 /* ReactNativeAudioToolkit.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -739,6 +753,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				8C43759322081410000A15FE /* dummy.swift */,
 				13B07FAE1A68108700A75B9A /* Readto */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* ReadtoTests */,
@@ -748,6 +763,7 @@
 				32749CB2CB9340C9BCC73F46 /* Resources */,
 				8CAAAAC322061A1E00E67A62 /* Recovered References */,
 				DE351A728FD2C05C30DFA63B /* Pods */,
+				8C43759222081410000A15FE /* Readto-Bridging-Header.h */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -761,6 +777,14 @@
 				00E356EE1AD99517003FC87E /* ReadtoTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* Readto-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* Readto-tvOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8C437560220813C4000A15FE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8C43758E220813C4000A15FE /* libRNTrackPlayer.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -943,6 +967,9 @@
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
+					13B07F861A680F5B00A75B9A = {
+						LastSwiftMigration = 1010;
+					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
@@ -1033,6 +1060,10 @@
 				{
 					ProductGroup = 8CAAAAF122061A2100E67A62 /* Products */;
 					ProjectRef = 4DC9D75E4E7E46AC85D4F7E7 /* RNGestureHandler.xcodeproj */;
+				},
+				{
+					ProductGroup = 8C437560220813C4000A15FE /* Products */;
+					ProjectRef = 8C43755F220813C4000A15FE /* RNTrackPlayer.xcodeproj */;
 				},
 				{
 					ProductGroup = 8CAAAAF722061A2100E67A62 /* Products */;
@@ -1272,6 +1303,13 @@
 			fileType = archive.ar;
 			path = libRCTText.a;
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8C43758E220813C4000A15FE /* libRNTrackPlayer.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNTrackPlayer.a;
+			remoteRef = 8C43758D220813C4000A15FE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		8C6F73FD22080D71002CDB07 /* libReactNativeAudioToolkit.a */ = {
@@ -1543,6 +1581,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				8C43759422081410000A15FE /* dummy.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1596,6 +1635,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FCC6FB9E5C4E2544D7D36957 /* Pods-ReadtoTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1627,6 +1667,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF76707E5DD14253D50F18F2 /* Pods-ReadtoTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				HEADER_SEARCH_PATHS = (
@@ -1656,6 +1697,7 @@
 			baseConfigurationReference = 9AA2EA891EBFDEFA79E02712 /* Pods-Readto.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				HEADER_SEARCH_PATHS = (
@@ -1675,6 +1717,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Readto;
+				SWIFT_OBJC_BRIDGING_HEADER = "Readto-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1684,6 +1729,7 @@
 			baseConfigurationReference = 54BD4F0B82A3F87AB30B2025 /* Pods-Readto.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1702,6 +1748,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Readto;
+				SWIFT_OBJC_BRIDGING_HEADER = "Readto-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

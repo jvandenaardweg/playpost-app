@@ -8,6 +8,8 @@ import {
   MediaStates
 } from 'react-native-audio-toolkit';
 
+import TrackPlayer from 'react-native-track-player';
+
 export class AudioPlayer extends React.PureComponent {
   state = {
     isDisabled: false,
@@ -17,18 +19,46 @@ export class AudioPlayer extends React.PureComponent {
   player = null
 
   componentDidMount () {
-    console.log('mount', 'listen player')
+    console.log('mount', 'listen player');
+    // Adds an event handler for the playback-track-changed event
+    this.onTrackChange = TrackPlayer.addEventListener('playback-track-changed', async (data) => {
+            
+      const track = await TrackPlayer.getTrack(data.nextTrack);
+      this.setState({trackTitle: track.title});
+      
+  });
   }
+  componentWillUnmount() {
+    // Removes the event handler
+    this.onTrackChange.remove();
+}
 
   handleOnPressPlay = (event) => {
     this.setState({isDisabled: true});
 
-    this.player = new Player('https://storage.googleapis.com/synthesized-audio-files/medium.com/13eda868daeb.mp3');
+    // this.player = new Player('https://storage.googleapis.com/synthesized-audio-files/medium.com/13eda868daeb.mp3');
 
-    this.player.play();
+    TrackPlayer.setupPlayer().then(async () => {
 
-    this.player.on('error', () => this.setState({ isDisabled: false, isPlaying: false}))
-    this.player.on('ended', () => this.setState({ isDisabled: false, isPlaying: false}))
+      // Adds a track to the queue
+      await TrackPlayer.add({
+          id: 'trackId',
+          // url: require('track.mp3'),
+          url: 'https://storage.googleapis.com/synthesized-audio-files/medium.com/13eda868daeb.mp3',
+          title: 'Track Title',
+          artist: 'Track Artist',
+          // artwork: require('track.png')
+      });
+  
+      // Starts playing it
+      TrackPlayer.play();
+  
+  });
+
+    // this.player.play();
+
+    // this.player.on('error', () => this.setState({ isDisabled: false, isPlaying: false}))
+    // this.player.on('ended', () => this.setState({ isDisabled: false, isPlaying: false}))
   }
 
   handleOnPressStop = (event) => {
