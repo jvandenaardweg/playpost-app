@@ -48,7 +48,7 @@ OrganizationsStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={'user-tie'}
+      name={'stopwatch'}
     />
   ),
 }
