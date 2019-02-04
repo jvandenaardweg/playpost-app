@@ -5,9 +5,7 @@ export default StyleSheet.create({
       // flex: 1,
       backgroundColor: 'green',
       // flexDirection: 'column',
-      padding: 14,
-      borderBottomColor: '#EEF0F4',
-      borderBottomWidth: 1,
+      padding: 14
     },
     progress: {
       flexDirection: 'row',

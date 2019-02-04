@@ -51,25 +51,46 @@ export class AudioPlayer extends React.PureComponent {
     const { isDisabled, isPlaying } = this.state;
 
     return (
-      <View style={styles.container}>
-        <View style={styles.progress}>
-          <View><Text>00:10</Text></View>
-          <View><Text>progress</Text></View>
-          <View><Text>-01:10</Text></View>
-        </View>
-        <View style={styles.controls}>
-          <View><Icon name="step-backward" color="white" size={20} /></View>
-          <View style={styles.controlPlay}>
-            <TouchableHighlight disabled={isDisabled} onPress={this.handleOnPressPlay}>
-              <PlayPauseIcon isPlaying={isPlaying} />
-            </TouchableHighlight>
-          </View>
-          <View><Icon name="step-forward" color="white" size={20} /></View>
-        </View>
-      </View>
+      <LargeAudioPlayer isDisabled={isDisabled} isPlaying={isPlaying} onPress={this.handleOnPressPlay} />
+      // <SmallAudioPlayer isDisabled={isDisabled} isPlaying={isPlaying} onPress={this.handleOnPressPlay} />
     );
   }
 }
+
+const LargeAudioPlayer = (props) => {
+  return (
+    <View style={styles.container}>
+      <View style={styles.progress}>
+        <View><Text>00:10</Text></View>
+        <View><Text>progress</Text></View>
+        <View><Text>-01:10</Text></View>
+      </View>
+      <View style={styles.controls}>
+        <View><Icon name="step-backward" color="white" size={20} /></View>
+        <View style={styles.controlPlay}>
+          <TouchableHighlight disabled={props.isDisabled} onPress={props.onPress}>
+            <PlayPauseIcon isPlaying={props.isPlaying} />
+          </TouchableHighlight>
+        </View>
+        <View><Icon name="step-forward" color="white" size={20} /></View>
+      </View>
+    </View>
+  )
+}
+
+const SmallAudioPlayer = (props) => {
+  return (
+    <View style={styles.container}>
+      <View style={styles.controls}>
+        <View style={styles.controlPlay}>
+          <TouchableHighlight disabled={props.isDisabled} onPress={props.onPress}>
+            <PlayPauseIcon isPlaying={props.isPlaying} />
+          </TouchableHighlight>
+        </View>
+      </View>
+    </View>
+  )
+};
 
 const PlayPauseIcon = ({ isPlaying }) => {
   if (isPlaying) return <Icon name="pause" color="white" size={32} />

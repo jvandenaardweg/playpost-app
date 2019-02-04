@@ -1,6 +1,7 @@
 import React from 'react'
-import { Platform } from 'react-native'
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation'
+import { Platform, View, Text } from 'react-native'
+import { createStackNavigator, createBottomTabNavigator, BottomTabBar } from 'react-navigation'
+import { AudioPlayer } from '../components/AudioPlayer';
 
 import TabBarIcon from '../components/TabBarIcon'
 import HomeScreen from '../screens/HomeScreen'
@@ -81,14 +82,32 @@ SettingsStack.navigationOptions = {
   ),
 }
 
+const TabBarComponent = (props) => (<View><AudioPlayer /><BottomTabBar {...props} /></View>);
+
 export default createBottomTabNavigator({
-  HomeStack,
-  ProjectsStack,
-  OrganizationsStack,
-  MessagesStack,
-  SettingsStack,
-}, {
-  tabBarOptions: {
-    showLabel: false
+    HomeStack,
+    ProjectsStack,
+    OrganizationsStack,
+    MessagesStack,
+    SettingsStack,
+  },
+  {
+    tabBarComponent: props => <TabBarComponent {...props} style={{ borderTopColor: '#605F60' }} />,
+    tabBarOptions: {
+      showLabel: false
+    }
   }
-})
+)
+
+
+// export default createBottomTabNavigator({
+//   HomeStack,
+//   ProjectsStack,
+//   OrganizationsStack,
+//   MessagesStack,
+//   SettingsStack,
+// }, {
+//   tabBarOptions: {
+//     showLabel: false
+//   }
+// })
