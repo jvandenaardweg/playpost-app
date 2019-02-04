@@ -2,63 +2,45 @@ import React from 'react';
 import { View, Text, Button, TouchableHighlight } from 'react-native';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {
-  Player,
-  Recorder,
-  MediaStates
-} from 'react-native-audio-toolkit';
-
 import TrackPlayer from 'react-native-track-player';
 
 export class AudioPlayer extends React.PureComponent {
   state = {
     isDisabled: false,
-    isPlaying: false
+    isPlaying: false,
+    track: {}
   }
 
-  player = null
-
   componentDidMount () {
-    console.log('mount', 'listen player');
     // Adds an event handler for the playback-track-changed event
     this.onTrackChange = TrackPlayer.addEventListener('playback-track-changed', async (data) => {
-            
-      const track = await TrackPlayer.getTrack(data.nextTrack);
-      this.setState({trackTitle: track.title});
-      
-  });
+      const track = await TrackPlayer.getTrack(data.nextTrack)
+      this.setState({ track, isDisabled: false, isPlaying: true })
+
+    })
   }
   componentWillUnmount() {
     // Removes the event handler
-    this.onTrackChange.remove();
+    this.onTrackChange.remove()
 }
 
   handleOnPressPlay = (event) => {
-    this.setState({isDisabled: true});
-
-    // this.player = new Player('https://storage.googleapis.com/synthesized-audio-files/medium.com/13eda868daeb.mp3');
+    this.setState({ isDisabled: true })
 
     TrackPlayer.setupPlayer().then(async () => {
 
       // Adds a track to the queue
       await TrackPlayer.add({
-          id: 'trackId',
-          // url: require('track.mp3'),
-          url: 'https://storage.googleapis.com/synthesized-audio-files/medium.com/13eda868daeb.mp3',
-          title: 'Track Title',
-          artist: 'Track Artist',
-          // artwork: require('track.png')
-      });
-  
-      // Starts playing it
-      TrackPlayer.play();
-  
-  });
+        id: '13eda868daeb',
+        // url: require('track.mp3'),
+        url: 'https://storage.googleapis.com/synthesized-audio-files/medium.com/13eda868daeb.mp3',
+        title: 'Learn TypeScript in 5 minutes',
+        artist: 'Per Harald Borgen',
+        // artwork: require('track.png')
+      })
 
-    // this.player.play();
-
-    // this.player.on('error', () => this.setState({ isDisabled: false, isPlaying: false}))
-    // this.player.on('ended', () => this.setState({ isDisabled: false, isPlaying: false}))
+      TrackPlayer.play()
+    })
   }
 
   handleOnPressStop = (event) => {
@@ -66,7 +48,7 @@ export class AudioPlayer extends React.PureComponent {
   }
 
   render() {
-    const { isDisabled } = this.state;
+    const { isDisabled, isPlaying } = this.state;
 
     return (
       <View style={styles.container}>
@@ -77,16 +59,9 @@ export class AudioPlayer extends React.PureComponent {
         </View>
         <View style={styles.controls}>
           <View><Icon name="step-backward" color="white" size={20} /></View>
-          <View>
-            <TouchableHighlight disabled={isDisabled} onPress={this.handleOnPressPlay}>
-              <Text>
-                Press me!
-              </Text>
-            </TouchableHighlight>
-          </View>
           <View style={styles.controlPlay}>
-            <TouchableHighlight disabled={isDisabled} onPress={this.handleOnPressStop}>
-              <Icon name="play" color="white" size={32} />
+            <TouchableHighlight disabled={isDisabled} onPress={this.handleOnPressPlay}>
+              <PlayPauseIcon isPlaying={isPlaying} />
             </TouchableHighlight>
           </View>
           <View><Icon name="step-forward" color="white" size={20} /></View>
@@ -94,4 +69,9 @@ export class AudioPlayer extends React.PureComponent {
       </View>
     );
   }
+}
+
+const PlayPauseIcon = ({ isPlaying }) => {
+  if (isPlaying) return <Icon name="pause" color="white" size={32} />
+  return <Icon name="play" color="white" size={32} />
 }

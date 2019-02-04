@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Platform, StyleSheet, Text, View } from 'react-native'
 import AppNavigator from './src/navigation/AppNavigator'
 
-type Props = {};
+type Props = {}
 
 export default class App extends Component<Props> {
   render() {
@@ -10,7 +10,7 @@ export default class App extends Component<Props> {
       <View style={styles.container}>
         <AppNavigator />
       </View>
-    );
+    )
   }
 }
 
@@ -19,6 +19,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F5FCFF'
   }
-});
+})
 
 
