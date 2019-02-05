@@ -28,12 +28,15 @@ class ProgressBar extends ProgressComponent {
         {/* <Text>{this.formatTime(position)} - </Text> */}
         {/* <Text>{this.formatTime(duration)} - </Text> */}
         {/* <Text>{this.formatTime(bufferedPosition)}</Text> */}
-        <View style={styles.position}><Text>{position.toFixed(0)}</Text></View>
+
         <View style={styles.progressBar}>
           <View style={{...styles.progressCurrent, flex: this.getProgress()}} />
           <View style={{...styles.progressTotal, flex: 1 - this.getProgress()}} />
         </View>
-        <View style={styles.duration}><Text>{(position - duration).toFixed(2)}</Text></View>
+        <View style={styles.progressMeta}>
+          <View><Text style={styles.position}>{position.toFixed(0)}</Text></View>
+          <View><Text style={styles.duration}>{(position - duration).toFixed(2)}</Text></View>
+        </View>
       </View>
     );
   }
@@ -106,11 +109,6 @@ const LargeAudioPlayer = (props) => {
   return (
     <View style={styles.container}>
       <ProgressBar />
-      {/* <View style={styles.progress}>
-        <View><Text>00:10</Text></View>
-        <View><Text>progress</Text></View>
-        <View><Text>-01:10</Text></View>
-      </View> */}
       <View style={styles.controls}>
         <View><Icon name="step-backward" color="white" size={20} /></View>
         <View style={styles.controlPlay}>

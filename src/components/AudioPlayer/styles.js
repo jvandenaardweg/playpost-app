@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     container: {
       // flex: 1,
-      backgroundColor: 'green',
+      backgroundColor: '#3B8062',
       // flexDirection: 'column',
       padding: 14
     },
@@ -22,17 +22,19 @@ export default StyleSheet.create({
       marginRight: 32
     },
     progressContainer: {
-      flexDirection: 'row'
+      // flexDirection: 'row'
     },
     progressBar: {
       height: 5,
-      width: '75%',
-      // marginLeft: 'auto',
-      // marginRight: 'auto',
       marginTop: 7,
-      // flexDirection: 'row',
       borderRadius: 10,
-      overflow: 'hidden'
+      overflow: 'hidden',
+      flexDirection: 'row'
+    },
+    progressMeta: {
+      marginTop: 8,
+      flexDirection: 'row',
+      justifyContent: 'space-between'
     },
     progressTotal: {
       backgroundColor: '#000000',
@@ -42,9 +44,11 @@ export default StyleSheet.create({
       backgroundColor: 'white'
     },
     position: {
-      marginRight: 'auto'
+      fontSize: 12,
+      color: '#fff'
     },
     duration: {
-      marginLeft: 'auto'
+      fontSize: 12,
+      color: '#fff'
     }
 });

@@ -67,7 +67,7 @@ export default StyleSheet.create({
       color: '#555'
     },
     controlButton: {
-      backgroundColor: 'green',
+      backgroundColor: '#3B8062',
       width: 50,
       height: 50,
       borderRadius: 50,
@@ -78,7 +78,7 @@ export default StyleSheet.create({
       marginLeft: 2
     },
     duration: {
-      color: 'green',
+      color: '#3B8062',
       textAlign: 'center',
       marginTop: 14,
       fontSize: 13
