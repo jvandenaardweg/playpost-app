@@ -7,10 +7,10 @@ export default StyleSheet.create({
       // flexDirection: 'column',
       padding: 14
     },
-    progress: {
-      flexDirection: 'row',
-      justifyContent: 'space-between'
-    },
+    // progress: {
+    //   flexDirection: 'row',
+    //   justifyContent: 'space-between'
+    // },
     controls: {
       marginTop: 20,
       flexDirection: 'row',
@@ -20,5 +20,31 @@ export default StyleSheet.create({
     controlPlay: {
       marginLeft: 32,
       marginRight: 32
+    },
+    progressContainer: {
+      flexDirection: 'row'
+    },
+    progressBar: {
+      height: 5,
+      width: '75%',
+      // marginLeft: 'auto',
+      // marginRight: 'auto',
+      marginTop: 7,
+      // flexDirection: 'row',
+      borderRadius: 10,
+      overflow: 'hidden'
+    },
+    progressTotal: {
+      backgroundColor: '#000000',
+      opacity: 0.25
+    },
+    progressCurrent: {
+      backgroundColor: 'white'
+    },
+    position: {
+      marginRight: 'auto'
+    },
+    duration: {
+      marginLeft: 'auto'
     }
 });

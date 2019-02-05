@@ -40,6 +40,11 @@ export class Article extends React.PureComponent {
                   size={12}
                   style={styles.sourceIcon}
                 />
+                {/* <Icon
+                  name='arrow-circle-down'
+                  size={12}
+                  style={styles.sourceIcon}
+                /> */}
                 <Text style={styles.sourceName}>medium.com</Text>
               </View>
               <Text style={styles.description} ellipsizeMode='tail' numberOfLines={2}>Can we describe as digital transformation all those projects that include digital technologies? Are we making a transformation if we do not</Text>
