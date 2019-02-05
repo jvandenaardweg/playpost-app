@@ -13,7 +13,7 @@ target 'Readto' do
   
 
   platform :ios, '9.0'
-  pod 'react-native-track-player', :path => '../node_modules/react-native-track-player'
+  # pod 'react-native-track-player', :path => '../node_modules/react-native-track-player'
 
   target 'ReadtoTests' do
     inherit! :search_paths

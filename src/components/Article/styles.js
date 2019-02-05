@@ -29,11 +29,12 @@ export default StyleSheet.create({
       marginLeft: 24
     },
     title: {
+      fontFamily: 'Merriweather-Regular',
       fontSize: 16,
-      fontWeight: '600',
+      fontWeight: '400',
       color: '#000000',
-      lineHeight: 22,
-      marginBottom: 4
+      lineHeight: 24,
+      marginBottom: 6
     },
     description: {
       fontSize: 13,
