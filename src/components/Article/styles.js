@@ -1,26 +1,26 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-    container: {
+    article: {
       backgroundColor: '#fff',
       padding: 14,
       borderBottomColor: '#EEF0F4',
       borderBottomWidth: 1
     },
-    header: {
+    sectionHeader: {
 
     },
-    body: {
+    sectionBody: {
       flex: 1,
       flexDirection: 'row'
     },
-    meta: {
+    sectionMeta: {
       flex: 1,
       flexDirection: 'column',
       alignItems: 'stretch',
       justifyContent: 'space-between',
     },
-    control: {
+    sectionControl: {
       width: 50,
       justifyContent: 'center',
       marginLeft: 24
@@ -73,7 +73,7 @@ export default StyleSheet.create({
       justifyContent: 'center'
     },
     controlIcon: {
-      marginLeft: 2
+      // marginLeft: 2
     },
     duration: {
       color: '#3B8062',

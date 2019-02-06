@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, Button, TouchableHighlight, ActivityIndicator } from 'react-native';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import PropTypes from 'prop-types';
@@ -7,13 +7,14 @@ import PropTypes from 'prop-types';
 export class Article extends React.PureComponent {
   state = {
     isLoading: false,
+    isPlaying: false,
     audiofileUrl: null
   };
 
   getAudiofile = async (url) => {
     try {
-      this.setState({ isLoading: true })
-      const audiofile = await fetch(`http://medium-audio.herokuapp.com/audiofile?url=${url}`).then((response) => response.json())
+      this.setState({isPlaying: false, isLoading: true})
+      const audiofile = await fetch(`https://medium-audio.herokuapp.com/audiofile?url=${url}`).then((response) => response.json())
       this.setState({
         audiofileUrl: audiofile.publicFileUrl,
         isLoading: false
@@ -25,12 +26,29 @@ export class Article extends React.PureComponent {
     }
   };
 
-  handleOnPress = async (event) => {
-    const { url } = this.props.article
+  handleOnArticlePlayPress = async (event) => {
+    const { isLoading, isPlaying } = this.state
+    const { url, id, title, authorName, sourceName, categoryName } = this.props.article
+
+    if (isLoading) return alert('Wait, we are loading an audiofile...')
+
+    if (isPlaying) return this.setState({isPlaying: false})
 
     const audiofile = await this.getAudiofile(url)
 
-    alert(`Got audiofile ${audiofile.publicFileUrl}`)
+    const trackPlayload = {
+      id: id,
+      url: audiofile.publicFileUrl,
+      title: title,
+      artist: authorName,
+      album: `${categoryName} on ${sourceName}`,
+      // duration: 352
+    }
+
+    this.setState({isPlaying: true})
+
+    alert(`Got audiofile, should add track to audioplayer: ${trackPlayload.url}`)
+
 
     // TODO: check if we got the correct audiofile on storage
     // TODO: if not, get audiofile from api
@@ -38,16 +56,16 @@ export class Article extends React.PureComponent {
   };
 
   render() {
-    const { isLoading } = this.state;
+    const { isLoading, isPlaying } = this.state;
     const { title, description, sourceName, authorName, categoryName, listenTimeInMinutes } = this.props.article;
 
     return (
-      <View style={styles.container}>
-        <View style={styles.header}>
+      <View style={styles.article}>
+        <View style={styles.sectionHeader}>
           <Text style={styles.title} ellipsizeMode='tail' numberOfLines={2}>{title}</Text>
         </View>
-        <View style={styles.body}>
-          <View style={styles.meta}>
+        <View style={styles.sectionBody}>
+          <View style={styles.sectionMeta}>
             <View style={styles.source}>
               <Icon
                 name='bookmark'
@@ -66,16 +84,8 @@ export class Article extends React.PureComponent {
               <Text style={styles.authorName}>{authorName}</Text> in <Text style={styles.publicationName}>{categoryName}</Text>
             </Text>
           </View>
-          <View style={styles.control}>
-            <TouchableOpacity style={styles.controlButton} onPress={this.handleOnPress}>
-              {isLoading && <ActivityIndicator size="small" color="#fff" />}
-              {!isLoading && <Icon
-                name="play"
-                size={14}
-                color={'white'}
-                style={styles.controlIcon}
-              />}
-            </TouchableOpacity>
+          <View style={styles.sectionControl}>
+            <PlayButton isLoading={isLoading} isPlaying={isPlaying} onPress={this.handleOnArticlePlayPress} listenTimeInMinutes={listenTimeInMinutes} />
             <Text style={styles.duration}>{(listenTimeInMinutes).toFixed(0)} min</Text>
           </View>
         </View>
@@ -83,6 +93,18 @@ export class Article extends React.PureComponent {
     );
   }
 }
+
+export const PlayButton = (props) => {
+  return (
+    <TouchableHighlight style={styles.controlButton} onPress={props.onPress} underlayColor={'red'}>
+      <View>
+        {props.isLoading && <ActivityIndicator size="small" color="#fff" />}
+        {!props.isLoading && !props.isPlaying && <Icon name="play" size={14} color={'white'} style={styles.controlIcon}/>}
+        {!props.isLoading && props.isPlaying && <Icon name="pause" size={14} color={'white'} style={styles.controlIcon}/>}
+      </View>
+    </TouchableHighlight>
+  )
+};
 
 Article.propTypes = {
   article: PropTypes.object.isRequired

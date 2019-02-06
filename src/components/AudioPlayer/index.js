@@ -81,7 +81,7 @@ export class AudioPlayer extends React.PureComponent {
         title: 'Learn TypeScript in 5 minutes',
         artist: 'Per Harald Borgen',
         album: 'Medium.com',
-        duration: 352
+        // duration: 352
         // artwork: require('track.png')
       })
 
