@@ -34,20 +34,22 @@ export class Article extends React.PureComponent {
 
     if (isPlaying) return this.setState({isPlaying: false})
 
-    const audiofile = await this.getAudiofile(url)
+    this.props.getTrackByArticleUrl(url)
 
-    const trackPlayload = {
-      id: id,
-      url: audiofile.publicFileUrl,
-      title: title,
-      artist: authorName,
-      album: `${categoryName} on ${sourceName}`,
-      // duration: 352
-    }
+    // const audiofile = await this.getAudiofile(url)
+
+    // const trackPlayload = {
+    //   id: id,
+    //   url: audiofile.publicFileUrl,
+    //   title: title,
+    //   artist: authorName,
+    //   album: `${categoryName} on ${sourceName}`,
+    //   // duration: 352
+    // }
 
     this.setState({isPlaying: true})
 
-    alert(`Got audiofile, should add track to audioplayer: ${trackPlayload.url}`)
+    // alert(`Got audiofile, should add track to audioplayer: ${trackPlayload.url}`)
 
 
     // TODO: check if we got the correct audiofile on storage
@@ -96,7 +98,7 @@ export class Article extends React.PureComponent {
 
 export const PlayButton = (props) => {
   return (
-    <TouchableHighlight style={styles.controlButton} onPress={props.onPress} underlayColor={'red'}>
+    <TouchableHighlight style={styles.controlButton} onPress={props.onPress} activeOpacity={0.9}>
       <View>
         {props.isLoading && <ActivityIndicator size="small" color="#fff" />}
         {!props.isLoading && !props.isPlaying && <Icon name="play" size={14} color={'white'} style={styles.controlIcon}/>}
@@ -107,5 +109,6 @@ export const PlayButton = (props) => {
 };
 
 Article.propTypes = {
-  article: PropTypes.object.isRequired
+  article: PropTypes.object.isRequired,
+  getTrackByArticleUrl: PropTypes.func.isRequired
 };

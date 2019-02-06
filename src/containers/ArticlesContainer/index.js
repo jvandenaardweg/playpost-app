@@ -1,6 +1,9 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+// import { listArticles } from '../../reducers/articles';
+import { getTrackByArticleUrl } from '../../reducers/tracks';
 
 import styles from './styles';
 
@@ -98,14 +101,34 @@ const articles = [
     imageUrl: 'https://cdn-images-1.medium.com/focal/160/160/70/47/0*qwohYdwnhpBRetPz'
   }
 ];
-export class ArticlesContainer extends React.PureComponent {
+
+class ArticlesContainerComponent extends React.PureComponent {
+  componentDidMount () {
+    // this.props.listArticles('relferreira');
+  }
+
   render() {
+    const { getTrackByArticleUrl } = this.props;
 
     return (
       <FlatList
         data={articles}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({item}) => <Article article={item} />} />
+        renderItem={({item}) => <Article article={item} getTrackByArticleUrl={getTrackByArticleUrl} />} />
     );
   }
 }
+
+const mapStateToProps = ({ articles }) => {
+  let storedRepositories = articles.articles.map(repo => ({ key: repo.id, ...repo }));
+  return {
+    repos: storedRepositories
+  };
+};
+
+const mapDispatchToProps = {
+  // listArticles,
+  getTrackByArticleUrl
+};
+
+export const ArticlesContainer = connect(mapStateToProps, mapDispatchToProps)(ArticlesContainerComponent);

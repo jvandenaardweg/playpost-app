@@ -49,35 +49,68 @@ export class AudioPlayer extends React.PureComponent {
     track: {}
   }
 
-  componentDidMount () {
+  async componentDidMount () {
+    await TrackPlayer.setupPlayer();
+
+    await TrackPlayer.updateOptions({
+      stopWithApp: false,
+      capabilities: [
+        TrackPlayer.CAPABILITY_PLAY,
+        TrackPlayer.CAPABILITY_PAUSE,
+        TrackPlayer.CAPABILITY_STOP,
+        TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
+        TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
+        TrackPlayer.CAPABILITY_SEEK_TO
+      ],
+      compactCapabilities: [
+        TrackPlayer.CAPABILITY_PLAY,
+        TrackPlayer.CAPABILITY_PAUSE,
+        TrackPlayer.CAPABILITY_STOP,
+        TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
+        TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
+        TrackPlayer.CAPABILITY_SEEK_TO
+      ]
+    });
+
+    await TrackPlayer.reset();
+
     // Adds an event handler for the playback-track-changed event
     this.onTrackChange = TrackPlayer.addEventListener('playback-track-changed', async (data) => {
-      const track = await TrackPlayer.getTrack(data.nextTrack)
-      this.setState({ track, isDisabled: false, isPlaying: true })
 
-    })
-  }
-  componentWillUnmount() {
-    // Removes the event handler
-    this.onTrackChange.remove()
-}
+      if (data.nextTrack) {
+        const track = await TrackPlayer.getTrack(data.nextTrack)
+        console.log('onTrackChange', 'update local state?', track)
 
-  handleOnPressPlay = (event) => {
-    const { isPlaying } = this.state;
-    // this.setState({ isDisabled: true })
+        /*
 
-    TrackPlayer.setupPlayer().then(async () => {
-
-      if (isPlaying) {
-        TrackPlayer.stop()
-        this.setState({ isPlaying: false })
+        TrackStore.title = track.title;
+          TrackStore.artist = track.artist;
+          TrackStore.artwork = track.artwork;
+          */
+        // this.setState({ track, isDisabled: false, isPlaying: true })
       }
 
-      // Adds a track to the queue
+    })
+
+    this.onStateChanged = TrackPlayer.addEventListener('playback-state', (data) => {
+      console.log('playback-state', data.state)
+      const isPlaying = data.state === 'playing'
+      this.setState({ isPlaying })
+    })
+  }
+
+  async componentDidUpdate(prevProps) {
+    const { trackUrl } = this.props;
+
+    if (prevProps.trackUrl !== this.props.trackUrl) {
+      console.log('Audioplayer got a new Track URL. We play it.')
+
+      await TrackPlayer.reset();
+
       await TrackPlayer.add({
         id: '13eda868daeb',
         // url: require('track.mp3'),
-        url: 'https://storage.googleapis.com/synthesized-audio-files/medium.com/13eda868daeb.mp3',
+        url: trackUrl,
         title: 'Learn TypeScript in 5 minutes',
         artist: 'Per Harald Borgen',
         album: 'Medium.com',
@@ -85,14 +118,53 @@ export class AudioPlayer extends React.PureComponent {
         // artwork: require('track.png')
       })
 
-      TrackPlayer.play()
-      this.setState({ isPlaying: true })
-    })
+      await TrackPlayer.play()
+    }
   }
 
-  handleOnPressPause = (event) => {
-    TrackPlayer.pause()
-    this.setState({ isPlaying: false })
+  componentWillUnmount() {
+    // Removes the event handler
+    this.onTrackChange.remove()
+    this.onStateChanged.remove()
+  }
+
+  skipToNext = async () => {
+    try {
+      await TrackPlayer.skipToNext()
+    } catch (_) {}
+  }
+
+  skipToPrevious = async () => {
+    try {
+      await TrackPlayer.skipToPrevious()
+    } catch (_) {}
+  }
+
+  getStateName(state) {
+    switch (state) {
+      case TrackPlayer.STATE_NONE: return 'None'
+      case TrackPlayer.STATE_PLAYING: return 'Playing'
+      case TrackPlayer.STATE_PAUSED: return 'Paused'
+      case TrackPlayer.STATE_STOPPED: return 'Stopped'
+      case TrackPlayer.STATE_BUFFERING: return 'Buffering'
+    }
+  }
+
+  handleOnPressPlay = async (event) => {
+    const { isPlaying } = this.state;
+
+    if (isPlaying) {
+      await TrackPlayer.stop()
+      // this.setState({ isPlaying: false })
+    }
+
+    await TrackPlayer.play()
+    // this.setState({ isPlaying: true })
+  }
+
+  handleOnPressPause = async (event) => {
+    await TrackPlayer.pause()
+    // this.setState({ isPlaying: false })
   }
 
   render() {

@@ -9,7 +9,7 @@
 
 import TrackPlayer from 'react-native-track-player';
 
-module.exports = async () => {
+module.exports = async function() {
   // More info: https://github.com/react-native-kit/react-native-track-player/wiki/Documentation#events
 
   TrackPlayer.addEventListener('remote-play', () => {
