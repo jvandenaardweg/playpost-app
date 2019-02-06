@@ -2,12 +2,10 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
     container: {
-      // flex: 1,
       backgroundColor: '#fff',
-      // flexDirection: 'column',
       padding: 14,
       borderBottomColor: '#EEF0F4',
-      borderBottomWidth: 1,
+      borderBottomWidth: 1
     },
     header: {
 
@@ -21,7 +19,6 @@ export default StyleSheet.create({
       flexDirection: 'column',
       alignItems: 'stretch',
       justifyContent: 'space-between',
-      // backgroundColor: 'yellow'
     },
     control: {
       width: 50,
@@ -31,7 +28,7 @@ export default StyleSheet.create({
     title: {
       fontFamily: 'Merriweather-Regular',
       fontSize: 16,
-      fontWeight: '400',
+      fontWeight: '500',
       color: '#000000',
       lineHeight: 24,
       marginBottom: 6
@@ -82,6 +79,6 @@ export default StyleSheet.create({
       color: '#3B8062',
       textAlign: 'center',
       marginTop: 14,
-      fontSize: 13
+      fontSize: 12
     }
 });
