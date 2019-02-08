@@ -4,13 +4,22 @@ import styles from './styles';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import TrackPlayer, { ProgressComponent } from 'react-native-track-player';
 
-export class AudioPlayer extends React.PureComponent {
+export class AudioPlayerLarge extends React.PureComponent {
+
 
   render() {
     const { handleOnPressPlay, handleOnPressPause, isPlaying, isDisabled, track: { title, artist, album } } = this.props;
 
     return (
-      <LargeAudioPlayer
+      // <LargeAudioPlayer
+      //   title={title}
+      //   artist={artist}
+      //   album={album}
+      //   isDisabled={isDisabled}
+      //   isPlaying={isPlaying}
+      //   onPressPlay={handleOnPressPlay}
+      //   onPressPause={handleOnPressPause} />
+      <SmallAudioPlayer
         title={title}
         artist={artist}
         album={album}
@@ -18,40 +27,48 @@ export class AudioPlayer extends React.PureComponent {
         isPlaying={isPlaying}
         onPressPlay={handleOnPressPlay}
         onPressPause={handleOnPressPause} />
-      // <SmallAudioPlayer isDisabled={isDisabled} isPlaying={isPlaying} onPress={this.handleOnPressPlay} />
     );
   }
 }
 
-const LargeAudioPlayer = (props) => {
-  return (
-    <View style={styles.container}>
-      <View>
-        <Text ellipsizeMode='tail' numberOfLines={1}>{props.title}</Text>
-      </View>
-      <View>
-        <Text ellipsizeMode='tail' numberOfLines={1}>{props.artist} - {props.album}</Text>
-      </View>
-      <ProgressBar />
-      <View style={styles.controls}>
-        <View><Icon name="step-backward" color="white" size={20} /></View>
-        <View style={styles.controlPlay}>
-          <PlayPauseButton {...props} />
-        </View>
-        <View><Icon name="step-forward" color="white" size={20} /></View>
-      </View>
-    </View>
-  )
-}
+// const LargeAudioPlayer = (props) => {
+//   return (
+//     <View style={styles.container}>
+//       <View>
+//         <Text ellipsizeMode='tail' numberOfLines={1}>{props.title}</Text>
+//       </View>
+//       <View>
+//         <Text ellipsizeMode='tail' numberOfLines={1}>{props.artist} - {props.album}</Text>
+//       </View>
+//       <ProgressBar />
+//       <View style={styles.controls}>
+//         <View><Icon name="step-backward" color="white" size={20} /></View>
+//         <View style={styles.controlPlay}>
+//           <PlayPauseButton {...props} size={32} />
+//         </View>
+//         <View><Icon name="step-forward" color="white" size={20} /></View>
+//       </View>
+//     </View>
+//   )
+// }
 
 const SmallAudioPlayer = (props) => {
   return (
     <View style={styles.container}>
-      <View style={styles.controls}>
+      <View style={styles.sideIcon}>
+        <Text>icon</Text>
+      </View>
+      <View style={styles.trackInfo}>
+        <View>
+          <Text style={styles.trackInfoTitle} ellipsizeMode='tail' numberOfLines={1}>{props.title}</Text>
+        </View>
+        <View>
+          <Text style={styles.trackInfoArtist}  ellipsizeMode='tail' numberOfLines={1}>{props.artist} - {props.album}</Text>
+        </View>
+      </View>
+      <View style={styles.sideIcon}>
         <View style={styles.controlPlay}>
-          <TouchableHighlight disabled={props.isDisabled} onPress={props.onPress}>
-            <PlayPauseIcon isPlaying={props.isPlaying} />
-          </TouchableHighlight>
+          <PlayPauseButton {...props} size={12} />
         </View>
       </View>
     </View>
@@ -67,8 +84,8 @@ const PlayPauseButton = (props) => {
 }
 
 const PlayPauseIcon = (props) => {
-  if (props.isPlaying) return <Icon name="pause" color="white" size={32} />
-  return <Icon name="play" color="white" size={32} />
+  if (props.isPlaying) return <Icon name="pause" color="white" size={props.size} />
+  return <Icon name="play" color="white" size={props.size} />
 }
 
 class ProgressBar extends ProgressComponent {

@@ -1,14 +1,12 @@
 import React from 'react'
 import { Platform, View, Text } from 'react-native'
 import { createStackNavigator, createBottomTabNavigator, BottomTabBar } from 'react-navigation'
-import { AudioPlayerContainer } from '../containers/AudioPlayerContainer';
 
+import { AudioPlayerContainer } from '../containers/AudioPlayerContainer';
 import TabBarIcon from '../components/TabBarIcon'
+
 import HomeScreen from '../screens/HomeScreen'
-import ProjectsIndexScreen from '../screens/projects/ProjectsIndexScreen'
-import ProjectsDetailScreen from '../screens/projects/ProjectsDetailScreen'
-import OrganizationsScreen from '../screens/OrganizationsScreen'
-import MessagesScreen from '../screens/MessagesScreen'
+import SummariesScreen from '../screens/SummariesScreen'
 import SettingsScreen from '../screens/SettingsScreen'
 
 const HomeStack = createStackNavigator({
@@ -20,50 +18,21 @@ HomeStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={'home'}
+      name={'headphones'}
     />
   ),
 }
 
-const ProjectsStack = createStackNavigator({
-  ProjectsIndex: ProjectsIndexScreen,
-  ProjectsDetail: ProjectsDetailScreen
+const SummariesStack = createStackNavigator({
+  Summaries: SummariesScreen,
 })
 
-ProjectsStack.navigationOptions = {
-  tabBarLabel: 'Projects',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={'clipboard-list'}
-    />
-  ),
-}
-
-const OrganizationsStack = createStackNavigator({
-  Organizations: OrganizationsScreen,
-})
-
-OrganizationsStack.navigationOptions = {
-  tabBarLabel: 'Organizations',
+SummariesStack.navigationOptions = {
+  tabBarLabel: 'Summaries',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={'stopwatch'}
-    />
-  ),
-}
-
-const MessagesStack = createStackNavigator({
-  Messages: MessagesScreen,
-})
-
-MessagesStack.navigationOptions = {
-  tabBarLabel: 'Messages',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={'headphones'}
     />
   ),
 }
@@ -77,7 +46,7 @@ SettingsStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={'list-ol'}
+      name={'cog'}
     />
   ),
 }
@@ -86,28 +55,13 @@ const TabBarComponent = (props) => (<View><AudioPlayerContainer /><BottomTabBar 
 
 export default createBottomTabNavigator({
     HomeStack,
-    ProjectsStack,
-    OrganizationsStack,
-    MessagesStack,
+    SummariesStack,
     SettingsStack,
   },
   {
-    tabBarComponent: props => <TabBarComponent {...props} style={{ borderTopColor: '#605F60' }} />,
+    tabBarComponent: props => <TabBarComponent {...props} style={{ borderTopColor: '#666', backgroundColor: '#000' }} />,
     tabBarOptions: {
       showLabel: false
     }
   }
 )
-
-
-// export default createBottomTabNavigator({
-//   HomeStack,
-//   ProjectsStack,
-//   OrganizationsStack,
-//   MessagesStack,
-//   SettingsStack,
-// }, {
-//   tabBarOptions: {
-//     showLabel: false
-//   }
-// })

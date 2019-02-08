@@ -49,6 +49,7 @@ export class Article extends React.PureComponent {
 
   render() {
     const { isLoading, isPlaying } = this.state;
+    const { playbackStatus } = this.props;
     const { title, description, sourceName, authorName, categoryName, listenTimeInMinutes } = this.props.article;
 
     return (

@@ -1,20 +1,18 @@
 import React from 'react';
-import { FlatList } from 'react-native';
-import PropTypes from 'prop-types';
+import { View, Modal, Button, Text } from 'react-native';
 import { connect } from 'react-redux';
 import TrackPlayer, { ProgressComponent } from 'react-native-track-player';
 
 import { setPlaybackStatus } from '../../reducers/player';
 
-// import styles from './styles';
-
-import { AudioPlayer } from '../../components/AudioPlayer';
+import { AudioPlayerSmall } from '../../components/AudioPlayerSmall';
 
 
 class AudioPlayerContainerComponent extends React.PureComponent {
   state = {
     isDisabled: false,
-    track: {}
+    track: {},
+    showModal: false
   }
 
   async componentDidMount () {
@@ -135,19 +133,45 @@ class AudioPlayerContainerComponent extends React.PureComponent {
     } catch (_) {}
   }
 
+  handleOnModalClosePress = () => {
+    this.setState({showModal: false})
+  }
+
+  handleOnShowModal = () => {
+    this.setState({showModal: true})
+  }
+
   render() {
     const { trackUrl, playbackStatus } = this.props
-    const { isDisabled, track } = this.state
+    const { isDisabled, track, showModal } = this.state
 
     return (
-      <AudioPlayer
-        track={track}
-        trackUrl={trackUrl}
-        isPlaying={playbackStatus === 'playing'}
-        isDisabled={isDisabled}
-        handleOnPressPlay={this.handleOnPressPlay}
-        handleOnPressPause={this.handleOnPressPause}
-      />
+      <View>
+        <Modal animationType="slide" presentationStyle="formSheet" transparent={false} visible={showModal}>
+          <View style={{paddingTop: 40, flex: 1, backgroundColor: '#000'}}>
+            <Button onPress={this.handleOnModalClosePress} title="Close Full Player" />
+            <AudioPlayerSmall
+              track={track}
+              trackUrl={trackUrl}
+              isPlaying={playbackStatus === 'playing'}
+              isDisabled={isDisabled}
+              handleOnPressPlay={this.handleOnPressPlay}
+              handleOnPressPause={this.handleOnPressPause}
+              handleOnShowModal={this.handleOnShowModal}
+            />
+          </View>
+        </Modal>
+        <AudioPlayerSmall
+          track={track}
+          trackUrl={trackUrl}
+          isPlaying={playbackStatus === 'playing'}
+          isDisabled={isDisabled}
+          handleOnPressPlay={this.handleOnPressPlay}
+          handleOnPressPause={this.handleOnPressPause}
+          handleOnShowModal={this.handleOnShowModal}
+        />
+      </View>
+
     )
   }
 }
