@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, NativeModules } from 'react-native'
+import { Platform, StyleSheet, View, NativeModules } from 'react-native'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { Provider, connect } from 'react-redux'
 import axios from 'axios'
@@ -8,7 +8,7 @@ import axiosMiddleware from 'redux-axios-middleware'
 import AppNavigator from './navigation/AppNavigator'
 import rootReducer from './reducers'
 
-if (__DEV__) {
+if (Platform.OS === 'ios' && __DEV__) {
   NativeModules.DevSettings.setIsDebuggingRemotely(true)
 }
 

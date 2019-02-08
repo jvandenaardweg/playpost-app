@@ -131,6 +131,13 @@ android {
             }
         }
     }
+
+    // Jordy: Added below options because Android wouldn't build
+    // Got fix from here: https://github.com/react-native-community/react-native-video/issues/1365#issuecomment-444143180
+    // Fixes error: "Can't compile Android App with ExoPlayer ':app:transformClassesWithDexBuilderForDebug FAILED'"
+    compileOptions {
+      targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
