@@ -1,9 +1,9 @@
 import { articlesReducer } from './articles';
-import { tracksReducer } from './tracks';
+import { playerReducer } from './player';
 
 const rootReducer = {
   articles: articlesReducer,
-  tracks: tracksReducer
+  player: playerReducer
 };
 
 export default rootReducer;

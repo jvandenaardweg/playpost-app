@@ -1,20 +1,16 @@
 import React, { Component } from 'react'
-import { Platform, StyleSheet, Text, View, NativeModules } from 'react-native'
+import { StyleSheet, View, NativeModules } from 'react-native'
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
+import { Provider, connect } from 'react-redux'
+import axios from 'axios'
+import axiosMiddleware from 'redux-axios-middleware'
+
+import AppNavigator from './navigation/AppNavigator'
+import rootReducer from './reducers'
 
 if (__DEV__) {
   NativeModules.DevSettings.setIsDebuggingRemotely(true)
 }
-
-import AppNavigator from './navigation/AppNavigator'
-
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { Provider, connect } from 'react-redux';
-import axios from 'axios';
-import axiosMiddleware from 'redux-axios-middleware';
-
-import rootReducer from './reducers';
-
-
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

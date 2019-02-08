@@ -3,7 +3,7 @@ import { FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // import { listArticles } from '../../reducers/articles';
-import { getTrackByArticleUrl } from '../../reducers/tracks';
+import { getAudioByArticleUrl, setTrack } from '../../reducers/player';
 
 import styles from './styles';
 
@@ -108,27 +108,28 @@ class ArticlesContainerComponent extends React.PureComponent {
   }
 
   render() {
-    const { getTrackByArticleUrl } = this.props;
+    const { getAudioByArticleUrl, setTrack, track, playbackStatus } = this.props;
 
     return (
       <FlatList
         data={articles}
+        extraData={playbackStatus}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({item}) => <Article article={item} getTrackByArticleUrl={getTrackByArticleUrl} />} />
+        renderItem={({item}) => <Article article={item} getAudioByArticleUrl={getAudioByArticleUrl} setTrack={setTrack} playingTrack={track} playbackStatus={playbackStatus} />} />
     );
   }
 }
 
-const mapStateToProps = ({ articles }) => {
-  let storedRepositories = articles.articles.map(repo => ({ key: repo.id, ...repo }));
+const mapStateToProps = ({ articles, player }) => {
   return {
-    repos: storedRepositories
+    track: player.track,
+    playbackStatus: player.playbackStatus
   };
 };
 
 const mapDispatchToProps = {
-  // listArticles,
-  getTrackByArticleUrl
+  getAudioByArticleUrl,
+  setTrack
 };
 
 export const ArticlesContainer = connect(mapStateToProps, mapDispatchToProps)(ArticlesContainerComponent);
