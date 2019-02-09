@@ -3,6 +3,11 @@ When your eyes are too busy to read, but your ears are free to listen. Listen to
 
 [![Build status](https://build.appcenter.ms/v0.1/apps/be2d00ac-bfc6-43ce-ab5f-3c7c7a674048/branches/master/badge)](https://appcenter.ms)
 
+# Installing
+1. Run `npm install`
+2. Make sure you have accepted all Android SDK licenses, run: `sdkmanager --licenses`
+3. Run `react-native run-ios` or `react-native run-android`
+
 # Upgrading to new React Native version?
 Use `react-native-git-upgrade`.
 
