@@ -37,7 +37,7 @@ export default class Share extends Component {
   render() {
     return (
       <Modal animationType="slide" presentationStyle="formSheet" transparent={false} visible={this.state.isOpen}>
-        <View style={{ alignItems: 'center', justifyContent:'center', flex: 1 }}>
+        <View style={{ backgroundColor:'deeppink', alignItems: 'center', justifyContent:'center', flex: 1 }}>
           <View style={{ borderColor: 'green', borderWidth: 1, backgroundColor: 'white', height: 200, width: 300 }}>
             <TouchableOpacity onPress={this.closing}>
               <Text>Close</Text>

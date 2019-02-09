@@ -49,14 +49,6 @@
 		8C5A7DC9220F224A00ECCC65 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C5A7DC7220F224A00ECCC65 /* MainInterface.storyboard */; };
 		8C5A7DCD220F224A00ECCC65 /* ReadtoShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8C5A7DC2220F224A00ECCC65 /* ReadtoShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8C5A7DD3220F22A700ECCC65 /* ReadtoShareExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5A7DD2220F22A700ECCC65 /* ReadtoShareExtension.m */; };
-		8C5A7DDB220F23EC00ECCC65 /* libPods-Readto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5A7DDA220F23EC00ECCC65 /* libPods-Readto.a */; };
-		8C5A7DDD220F23EC00ECCC65 /* libPods-ReadtoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5A7DDC220F23EC00ECCC65 /* libPods-ReadtoTests.a */; };
-		8C5A7DE1220F23EC00ECCC65 /* libcxxreact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA91DF850E9000B6D8A /* libcxxreact.a */; };
-		8C5A7DE2220F23EC00ECCC65 /* libdouble-conversion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF0FFE72056DD460020B375 /* libdouble-conversion.a */; };
-		8C5A7DE3220F23EC00ECCC65 /* libfishhook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D16E6841FA4F8DC00B85C8A /* libfishhook.a */; };
-		8C5A7DE4220F23EC00ECCC65 /* libjsi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAAAAEA22061A2100E67A62 /* libjsi.a */; };
-		8C5A7DE5220F23EC00ECCC65 /* libjsiexecutor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAAAAEC22061A2100E67A62 /* libjsiexecutor.a */; };
-		8C5A7DE6220F23EC00ECCC65 /* libjsinspector.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF0FFDF2056DD460020B375 /* libjsinspector.a */; };
 		8C5A7DE7220F23EC00ECCC65 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		8C5A7DE8220F23EC00ECCC65 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		8C5A7DE9220F23EC00ECCC65 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
@@ -69,16 +61,15 @@
 		8C5A7DF0220F23EC00ECCC65 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		8C5A7DF1220F23EC00ECCC65 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
 		8C5A7DF2220F23EC00ECCC65 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
-		8C5A7DF3220F23EC00ECCC65 /* libReactNativeShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5A7DD9220F230600ECCC65 /* libReactNativeShareExtension.a */; };
 		8C5A7DF4220F23EC00ECCC65 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAAAB0622061A2200E67A62 /* libRNGestureHandler.a */; };
 		8C5A7DF6220F23EC00ECCC65 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAAAB0A22061A2200E67A62 /* libRNVectorIcons.a */; };
-		8C5A7DF7220F23EC00ECCC65 /* libthird-party.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF0FFE32056DD460020B375 /* libthird-party.a */; };
-		8C5A7DF8220F23EC00ECCC65 /* libyoga.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA51DF850E9000B6D8A /* libyoga.a */; };
 		8CAA1197220F2CCE002741D6 /* libPods-Readto-ReadtoShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAA1196220F2CCE002741D6 /* libPods-Readto-ReadtoShareExtension.a */; };
 		8CAA1198220F2FC3002741D6 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		8CD3D194220F69A50030C131 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		8CD3D197220F6C870030C131 /* libPods-Readto-ReadtoShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD3D196220F6C870030C131 /* libPods-Readto-ReadtoShareExtension.a */; };
 		8CD3D198220F6CF50030C131 /* libReactNativeShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5A7DD9220F230600ECCC65 /* libReactNativeShareExtension.a */; };
+		8CD3D19A220F786A0030C131 /* libReactNativeShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5A7DD9220F230600ECCC65 /* libReactNativeShareExtension.a */; };
+		8CD3D19B220F7B090030C131 /* libRNTrackPlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C43758E220813C4000A15FE /* libRNTrackPlayer.a */; };
+		8CD3D19E220F7B5B0030C131 /* dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3D19D220F7B5B0030C131 /* dummy.swift */; };
 		8CF6C612220F27E300A07384 /* libAppCenterReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAAAAFD22061A2200E67A62 /* libAppCenterReactNative.a */; };
 		8CF6C613220F27E300A07384 /* libAppCenterReactNativeAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAAAB0022061A2200E67A62 /* libAppCenterReactNativeAnalytics.a */; };
 		8CF6C614220F27E300A07384 /* libAppCenterReactNativeCrashes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAAAB0322061A2200E67A62 /* libAppCenterReactNativeCrashes.a */; };
@@ -523,6 +514,8 @@
 		8C5A7DDC220F23EC00ECCC65 /* libPods-ReadtoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-ReadtoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CAA1196220F2CCE002741D6 /* libPods-Readto-ReadtoShareExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-Readto-ReadtoShareExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD3D196220F6C870030C131 /* libPods-Readto-ReadtoShareExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-Readto-ReadtoShareExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CD3D19C220F7B5B0030C131 /* ReadtoShareExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReadtoShareExtension-Bridging-Header.h"; sourceTree = "<group>"; };
+		8CD3D19D220F7B5B0030C131 /* dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dummy.swift; sourceTree = "<group>"; };
 		8CE153E601D849F1A72C8047 /* AppCenter-Config.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; name = "AppCenter-Config.plist"; path = "Readto/AppCenter-Config.plist"; sourceTree = "<group>"; };
 		8CF6C610220F27B800A07384 /* ReadtoShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReadtoShareExtension.entitlements; sourceTree = "<group>"; };
 		8CF6C611220F27C100A07384 /* Readto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Readto.entitlements; path = Readto/Readto.entitlements; sourceTree = "<group>"; };
@@ -608,14 +601,6 @@
 				8CF6C612220F27E300A07384 /* libAppCenterReactNative.a in Frameworks */,
 				8CF6C613220F27E300A07384 /* libAppCenterReactNativeAnalytics.a in Frameworks */,
 				8CF6C614220F27E300A07384 /* libAppCenterReactNativeCrashes.a in Frameworks */,
-				8C5A7DE1220F23EC00ECCC65 /* libcxxreact.a in Frameworks */,
-				8C5A7DE2220F23EC00ECCC65 /* libdouble-conversion.a in Frameworks */,
-				8C5A7DE3220F23EC00ECCC65 /* libfishhook.a in Frameworks */,
-				8C5A7DE4220F23EC00ECCC65 /* libjsi.a in Frameworks */,
-				8C5A7DE5220F23EC00ECCC65 /* libjsiexecutor.a in Frameworks */,
-				8C5A7DE6220F23EC00ECCC65 /* libjsinspector.a in Frameworks */,
-				8C5A7DDB220F23EC00ECCC65 /* libPods-Readto.a in Frameworks */,
-				8C5A7DDD220F23EC00ECCC65 /* libPods-ReadtoTests.a in Frameworks */,
 				8C5A7DE7220F23EC00ECCC65 /* libRCTActionSheet.a in Frameworks */,
 				8C5A7DE8220F23EC00ECCC65 /* libRCTAnimation.a in Frameworks */,
 				8C5A7DE9220F23EC00ECCC65 /* libRCTBlob.a in Frameworks */,
@@ -628,10 +613,8 @@
 				8C5A7DF0220F23EC00ECCC65 /* libRCTVibration.a in Frameworks */,
 				8C5A7DF4220F23EC00ECCC65 /* libRNGestureHandler.a in Frameworks */,
 				8C5A7DF6220F23EC00ECCC65 /* libRNVectorIcons.a in Frameworks */,
-				8C5A7DF7220F23EC00ECCC65 /* libthird-party.a in Frameworks */,
-				8C5A7DF8220F23EC00ECCC65 /* libyoga.a in Frameworks */,
-				8C5A7DF3220F23EC00ECCC65 /* libReactNativeShareExtension.a in Frameworks */,
-				8CD3D197220F6C870030C131 /* libPods-Readto-ReadtoShareExtension.a in Frameworks */,
+				8CD3D19A220F786A0030C131 /* libReactNativeShareExtension.a in Frameworks */,
+				8CD3D19B220F7B090030C131 /* libRNTrackPlayer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -905,6 +888,8 @@
 				8C5A7DC7220F224A00ECCC65 /* MainInterface.storyboard */,
 				8C5A7DCA220F224A00ECCC65 /* Info.plist */,
 				8C5A7DD2220F22A700ECCC65 /* ReadtoShareExtension.m */,
+				8CD3D19D220F7B5B0030C131 /* dummy.swift */,
+				8CD3D19C220F7B5B0030C131 /* ReadtoShareExtension-Bridging-Header.h */,
 			);
 			path = ReadtoShareExtension;
 			sourceTree = "<group>";
@@ -1091,6 +1076,7 @@
 					8C5A7DC1220F224A00ECCC65 = {
 						CreatedOnToolsVersion = 10.1;
 						DevelopmentTeam = 8GH8GLAMTU;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -1692,6 +1678,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CD3D19E220F7B5B0030C131 /* dummy.swift in Sources */,
 				8C5A7DD3220F22A700ECCC65 /* ReadtoShareExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1807,6 +1794,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9AA2EA891EBFDEFA79E02712 /* Pods-Readto.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1842,6 +1830,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 54BD4F0B82A3F87AB30B2025 /* Pods-Readto.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1979,6 +1968,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
@@ -2010,6 +2000,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.aardwegmedia.readtoapp.shareextension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ReadtoShareExtension/ReadtoShareExtension-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2023,6 +2016,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
@@ -2054,6 +2048,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.aardwegmedia.readtoapp.shareextension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ReadtoShareExtension/ReadtoShareExtension-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
