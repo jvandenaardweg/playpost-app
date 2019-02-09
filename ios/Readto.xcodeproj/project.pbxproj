@@ -77,6 +77,8 @@
 		8CAA1197220F2CCE002741D6 /* libPods-Readto-ReadtoShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAA1196220F2CCE002741D6 /* libPods-Readto-ReadtoShareExtension.a */; };
 		8CAA1198220F2FC3002741D6 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		8CD3D194220F69A50030C131 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		8CD3D197220F6C870030C131 /* libPods-Readto-ReadtoShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD3D196220F6C870030C131 /* libPods-Readto-ReadtoShareExtension.a */; };
+		8CD3D198220F6CF50030C131 /* libReactNativeShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5A7DD9220F230600ECCC65 /* libReactNativeShareExtension.a */; };
 		8CF6C612220F27E300A07384 /* libAppCenterReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAAAAFD22061A2200E67A62 /* libAppCenterReactNative.a */; };
 		8CF6C613220F27E300A07384 /* libAppCenterReactNativeAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAAAB0022061A2200E67A62 /* libAppCenterReactNativeAnalytics.a */; };
 		8CF6C614220F27E300A07384 /* libAppCenterReactNativeCrashes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAAAB0322061A2200E67A62 /* libAppCenterReactNativeCrashes.a */; };
@@ -520,6 +522,7 @@
 		8C5A7DDA220F23EC00ECCC65 /* libPods-Readto.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-Readto.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C5A7DDC220F23EC00ECCC65 /* libPods-ReadtoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-ReadtoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CAA1196220F2CCE002741D6 /* libPods-Readto-ReadtoShareExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-Readto-ReadtoShareExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CD3D196220F6C870030C131 /* libPods-Readto-ReadtoShareExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-Readto-ReadtoShareExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CE153E601D849F1A72C8047 /* AppCenter-Config.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; name = "AppCenter-Config.plist"; path = "Readto/AppCenter-Config.plist"; sourceTree = "<group>"; };
 		8CF6C610220F27B800A07384 /* ReadtoShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReadtoShareExtension.entitlements; sourceTree = "<group>"; };
 		8CF6C611220F27C100A07384 /* Readto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Readto.entitlements; path = Readto/Readto.entitlements; sourceTree = "<group>"; };
@@ -569,6 +572,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CD3D198220F6CF50030C131 /* libReactNativeShareExtension.a in Frameworks */,
 				8CAA1197220F2CCE002741D6 /* libPods-Readto-ReadtoShareExtension.a in Frameworks */,
 				8C437591220813CD000A15FE /* libRNTrackPlayer.a in Frameworks */,
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
@@ -622,11 +626,12 @@
 				8C5A7DEE220F23EC00ECCC65 /* libRCTSettings.a in Frameworks */,
 				8C5A7DEF220F23EC00ECCC65 /* libRCTText.a in Frameworks */,
 				8C5A7DF0220F23EC00ECCC65 /* libRCTVibration.a in Frameworks */,
-				8C5A7DF3220F23EC00ECCC65 /* libReactNativeShareExtension.a in Frameworks */,
 				8C5A7DF4220F23EC00ECCC65 /* libRNGestureHandler.a in Frameworks */,
 				8C5A7DF6220F23EC00ECCC65 /* libRNVectorIcons.a in Frameworks */,
 				8C5A7DF7220F23EC00ECCC65 /* libthird-party.a in Frameworks */,
 				8C5A7DF8220F23EC00ECCC65 /* libyoga.a in Frameworks */,
+				8C5A7DF3220F23EC00ECCC65 /* libReactNativeShareExtension.a in Frameworks */,
+				8CD3D197220F6C870030C131 /* libPods-Readto-ReadtoShareExtension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -753,6 +758,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8CD3D196220F6C870030C131 /* libPods-Readto-ReadtoShareExtension.a */,
 				8CAA1196220F2CCE002741D6 /* libPods-Readto-ReadtoShareExtension.a */,
 				8C5A7DDA220F23EC00ECCC65 /* libPods-Readto.a */,
 				8C5A7DDC220F23EC00ECCC65 /* libPods-ReadtoTests.a */,
@@ -1045,6 +1051,7 @@
 				8C5A7DBE220F224A00ECCC65 /* Sources */,
 				8C5A7DBF220F224A00ECCC65 /* Frameworks */,
 				8C5A7DC0220F224A00ECCC65 /* Resources */,
+				8CD3D195220F6ADD0030C131 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1620,6 +1627,23 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		8CD3D195220F6ADD0030C131 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		E3039AEF23BEA5094F014FAF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
