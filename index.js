@@ -1,7 +1,11 @@
 import { AppRegistry} from 'react-native'
 import App from './src/App'
-import { name as appName } from './app.json'
+import Share from './src/Share'
+import PlaybackService from './src/PlaybackService'
+import { name as appName, shareExtensionName } from './app.json'
 import TrackPlayer from 'react-native-track-player'
 
 AppRegistry.registerComponent(appName, () => App)
-TrackPlayer.registerPlaybackService(() => require('./src/playback-service.js'))
+AppRegistry.registerComponent(shareExtensionName, () => Share)
+
+TrackPlayer.registerPlaybackService(() => PlaybackService)
