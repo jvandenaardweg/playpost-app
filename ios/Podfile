@@ -1,7 +1,8 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '11.0'
 
 target 'Readto' do
+  inherit! :search_paths
   pod 'AppCenter/Crashes', '~> 1.13.0'
   pod 'AppCenter/Analytics', '~> 1.13.0'
   pod 'AppCenterReactNativeShared', '~> 1.12.0'
@@ -10,25 +11,11 @@ target 'Readto' do
 
   # Pods for Readto
 
-  
-
-  platform :ios, '9.0'
-  # pod 'react-native-track-player', :path => '../node_modules/react-native-track-player'
-
-  target 'ReadtoTests' do
-    inherit! :search_paths
-    # Pods for testing
+  target 'ReadtoShareExtension' do
+    inherit! :complete
   end
 
-end
-
-target 'Readto-tvOS' do
-  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
-  # use_frameworks!
-
-  # Pods for Readto-tvOS
-
-  target 'Readto-tvOSTests' do
+  target 'ReadtoTests' do
     inherit! :search_paths
     # Pods for testing
   end

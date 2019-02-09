@@ -3,6 +3,7 @@ package com.readto;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.alinz.parkerdan.shareextension.SharePackage;
 import com.guichaguri.trackplayer.TrackPlayer;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.microsoft.appcenter.reactnative.crashes.AppCenterReactNativeCrashesPackage;
@@ -29,6 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new SharePackage(),
             new TrackPlayer(),
             new VectorIconsPackage(),
             new AppCenterReactNativeCrashesPackage(MainApplication.this, getResources().getString(R.string.appCenterCrashes_whenToSendCrashes)),
