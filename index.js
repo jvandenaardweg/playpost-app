@@ -7,7 +7,7 @@ import TrackPlayer from 'react-native-track-player'
 
 // Using require instead of the import here so the share extension workds
 // Fix from: https://github.com/alinz/react-native-share-extension/issues/94#issuecomment-387488191
-AppRegistry.registerComponent(name, () => require('./src/App').default)
+AppRegistry.registerComponent(appName, () => require('./src/App').default)
 AppRegistry.registerComponent(shareExtensionName, () => require('./src/Share').default)
 
 TrackPlayer.registerPlaybackService(() => PlaybackService)
