@@ -32,11 +32,11 @@ export default class Share extends Component {
 
   onClose = () => ShareExtension.close()
 
-  closing = () => this.setState({ isOpen: false });
+  closing = () => this.setState({ isOpen: false }, () => ShareExtension.close());
 
   render() {
     return (
-      <Modal animationType="slide" presentationStyle="formSheet" transparent={false} visible={this.state.isOpen}>
+      <Modal animationType="slide" presentationStyle="fullScreen" transparent={false} visible={this.state.isOpen} onRequestClose={this.closing}>
         <View style={{ backgroundColor:'deeppink', alignItems: 'center', justifyContent:'center', flex: 1 }}>
           <View style={{ borderColor: 'green', borderWidth: 1, backgroundColor: 'white', height: 200, width: 300 }}>
             <TouchableOpacity onPress={this.closing}>
