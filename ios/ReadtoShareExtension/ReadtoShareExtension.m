@@ -28,7 +28,8 @@ RCT_EXPORT_MODULE();
                                                       moduleName:@"ReadtoShareExtension"
                                                initialProperties:nil
                                                    launchOptions:nil];
-  rootView.backgroundColor = nil;
+  
+  rootView.backgroundColor = [UIColor colorWithRed:0.00 green:0.00 blue:0.00 alpha:0.0];
   
   // Uncomment for console output in Xcode console for release mode on device:
   // RCTSetLogThreshold(RCTLogLevelInfo - 1);

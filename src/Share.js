@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ShareExtension from 'react-native-share-extension'
 
 import {
+  Animated,
   Text,
   View,
   TouchableOpacity,
@@ -14,13 +15,23 @@ export default class Share extends Component {
     this.state = {
       isOpen: true,
       type: '',
-      value: ''
+      value: '',
+      opacityAnim: new Animated.Value(0)
     }
   }
 
   async componentDidMount() {
     try {
       const { type, value } = await ShareExtension.data()
+
+      Animated.timing(
+        this.state.opacityAnim,
+        {
+          toValue: 1,
+          duration: 300,
+        }
+      ).start();
+
       this.setState({
         type,
         value
@@ -32,21 +43,41 @@ export default class Share extends Component {
 
   onClose = () => ShareExtension.close()
 
-  closing = () => this.setState({ isOpen: false }, () => ShareExtension.close());
+  closing = () => {
+    this.setState({ isOpen: false });
+    Animated.timing(
+      this.state.opacityAnim,
+      {
+        toValue: 0,
+        duration: 200,
+      }
+    ).start();
+  }
 
   render() {
+    let { opacityAnim } = this.state;
+
     return (
-      <Modal animationType="slide" presentationStyle="fullScreen" transparent={false} visible={this.state.isOpen} onRequestClose={this.closing}>
-        <View style={{ backgroundColor:'deeppink', alignItems: 'center', justifyContent:'center', flex: 1 }}>
-          <View style={{ borderColor: 'green', borderWidth: 1, backgroundColor: 'white', height: 200, width: 300 }}>
-            <TouchableOpacity onPress={this.closing}>
-              <Text>Close</Text>
-              <Text>type: { this.state.type }</Text>
-              <Text>value: { this.state.value }</Text>
-            </TouchableOpacity>
+      <Animated.View style={{flex: 1, opacity: opacityAnim, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.7)'}}>
+        <Modal animationType="slide" presentationStyle="overFullScreen" transparent={true} visible={this.state.isOpen} onDismiss={this.onClose}>
+          <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24}}>
+            <View style={{ backgroundColor: 'white', width: '100%', height: 200, padding: 14, borderRadius: 10 }}>
+              <TouchableOpacity onPress={this.closing}>
+                <Text>type: { this.state.type }</Text>
+                <Text>value: { this.state.value }</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={this.closing}>
+                <Text>Save</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={this.closing}>
+                <Text>Cancel</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-      </Modal>
+        </Modal>
+      </Animated.View>
     );
   }
 }
