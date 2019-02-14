@@ -94,6 +94,11 @@ export default class SettingsScreen extends React.Component {
             </Text>
           ),
           onPress: this.handleOnPressRow
+        },
+        {
+          title: 'Auto play next article',
+          renderAccessory: () => <Switch value onValueChange={() => {}} />,
+          onPress: this.handleOnPressRow
         }
       ],
     },
