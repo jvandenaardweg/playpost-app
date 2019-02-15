@@ -2,7 +2,7 @@ import React from 'react'
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation'
 
 import { TabBar } from '../components/TabBar'
-import TabBarIcon from '../components/TabBarIcon'
+import { TabBarIcon } from '../components/TabBarIcon'
 
 import HomeScreen from '../screens/HomeScreen'
 import ArchiveScreen from '../screens/ArchiveScreen'

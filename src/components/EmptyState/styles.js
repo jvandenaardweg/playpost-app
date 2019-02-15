@@ -11,11 +11,11 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Colors.appBackground,
+    paddingRight: 24,
+    paddingLeft: 24
   },
   centered: {
-    textAlign: 'center',
-    paddingRight: 24,
-    paddingLeft: 24,
+    textAlign: 'center'
   },
   title: {
     textAlign: 'center',

@@ -1,24 +1,17 @@
-import React from 'react';
-// import { Icon } from 'expo';
-import { Text, View } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
+import React from 'react'
+import Icon from 'react-native-vector-icons/Feather'
 
 import Colors from '../constants/Colors';
 
-export default class TabBarIcon extends React.PureComponent {
-  render() {
-    const { focused, name } = this.props
+export const TabBarIcon = (props) => {
+  const color = props.focused ? Colors.tabIconSelected : Colors.tabIconDefault
 
-    const color = focused ? Colors.tabIconSelected : Colors.tabIconDefault
-    // const size = focused ? 24 : 22
-
-    return (
-      <Icon
-        name={name}
-        size={24}
-        style={{ marginBottom: -3 }}
-        color={color}
-      />
-    );
-  }
+  return (
+    <Icon
+      name={props.name}
+      size={24}
+      style={{ marginBottom: -3 }}
+      color={color}
+    />
+  )
 }
