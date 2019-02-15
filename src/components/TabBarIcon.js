@@ -1,7 +1,7 @@
 import React from 'react';
 // import { Icon } from 'expo';
 import { Text, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/Feather';
 
 import Colors from '../constants/Colors';
 

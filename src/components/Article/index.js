@@ -62,7 +62,7 @@ export class Article extends React.PureComponent {
             <View style={styles.source}>
               <Icon
                 name='bookmark'
-                size={12}
+                size={10}
                 style={styles.sourceIcon}
               />
               {/* <Icon
@@ -70,12 +70,12 @@ export class Article extends React.PureComponent {
                 size={12}
                 style={styles.sourceIcon}
               /> */}
-              <Text style={styles.sourceName}>{sourceName}</Text>
+              <Text style={styles.sourceName}>{authorName} on {sourceName}</Text>
             </View>
-            <Text style={styles.description} ellipsizeMode='tail' numberOfLines={2}>{description}</Text>
-            <Text style={styles.author}>
+            <Text style={styles.description} ellipsizeMode='tail' numberOfLines={3}>{description}</Text>
+            {/* <Text style={styles.author}>
               <Text style={styles.authorName}>{authorName}</Text> in <Text style={styles.publicationName}>{categoryName}</Text>
-            </Text>
+            </Text> */}
           </View>
           <View style={styles.sectionControl}>
             <PlayButton isLoading={isLoading} isPlaying={isPlaying} onPress={this.handleOnArticlePlayPress} listenTimeInMinutes={listenTimeInMinutes} />
@@ -88,8 +88,9 @@ export class Article extends React.PureComponent {
 }
 
 export const PlayButton = (props) => {
+
   return (
-    <TouchableHighlight style={styles.controlButton} onPress={props.onPress} activeOpacity={0.9}>
+    <TouchableHighlight style={[styles.controlButton, props.isPlaying ? styles.controlButtonActive : null]} onPress={props.onPress} activeOpacity={0.9}>
       <View>
         {props.isLoading && <ActivityIndicator size="small" color="#fff" />}
         {!props.isLoading && !props.isPlaying && <Icon name="play" size={14} color={'white'} style={styles.controlIcon}/>}

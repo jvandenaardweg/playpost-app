@@ -1,12 +1,12 @@
 import React from 'react'
-import { Platform, View, Text } from 'react-native'
-import { createStackNavigator, createBottomTabNavigator, BottomTabBar } from 'react-navigation'
+import { createStackNavigator, createBottomTabNavigator } from 'react-navigation'
 
-import { AudioPlayerContainer } from '../containers/AudioPlayerContainer';
+import { TabBar } from '../components/TabBar'
 import TabBarIcon from '../components/TabBarIcon'
 
 import HomeScreen from '../screens/HomeScreen'
-import SummariesScreen from '../screens/SummariesScreen'
+import ArchiveScreen from '../screens/ArchiveScreen'
+import FavoritesScreen from '../screens/FavoritesScreen'
 import SettingsScreen from '../screens/SettingsScreen'
 
 const HomeStack = createStackNavigator({
@@ -23,16 +23,31 @@ HomeStack.navigationOptions = {
   ),
 }
 
-const SummariesStack = createStackNavigator({
-  Summaries: SummariesScreen,
+const ArchiveStack = createStackNavigator({
+  Archive: ArchiveScreen,
 })
 
-SummariesStack.navigationOptions = {
-  tabBarLabel: 'Summaries',
+ArchiveStack.navigationOptions = {
+  tabBarLabel: 'Archive',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={'stopwatch'}
+      name={'archive'}
+    />
+  ),
+}
+
+
+const FavoritesStack = createStackNavigator({
+  Favorites: FavoritesScreen,
+})
+
+FavoritesStack.navigationOptions = {
+  tabBarLabel: 'Favorites',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={'heart'}
     />
   ),
 }
@@ -46,20 +61,21 @@ SettingsStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={'cog'}
+      name={'settings'}
     />
   ),
 }
 
-const TabBarComponent = (props) => (<View><AudioPlayerContainer /><BottomTabBar {...props} /></View>);
-
 export default createBottomTabNavigator({
     HomeStack,
-    SummariesStack,
+    ArchiveStack,
+    FavoritesStack,
     SettingsStack,
   },
   {
-    tabBarComponent: props => <TabBarComponent {...props} style={{ borderTopColor: '#666', backgroundColor: '#000' }} />,
+    tabBarComponent: props => {
+      return <TabBar {...props} />
+    },
     tabBarOptions: {
       showLabel: false
     }

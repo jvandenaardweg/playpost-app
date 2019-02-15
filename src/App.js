@@ -4,6 +4,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { Provider, connect } from 'react-redux'
 import axios from 'axios'
 import axiosMiddleware from 'redux-axios-middleware'
+import Colors from './constants/Colors';
 
 import AppNavigator from './navigation/AppNavigator'
 import rootReducer from './reducers'
@@ -46,8 +47,7 @@ export default class App extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#F5FCFF'
+    flex: 1
   }
 })
 

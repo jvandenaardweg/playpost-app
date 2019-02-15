@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
+import Colors from '../../constants/Colors';
 
 export default StyleSheet.create({
     article: {
-      backgroundColor: '#fff',
+      backgroundColor: Colors.articleBackground,
       padding: 14,
-      borderBottomColor: '#EEF0F4',
+      borderBottomColor: Colors.borderDefault,
       borderBottomWidth: 1
     },
     sectionHeader: {
@@ -28,20 +29,19 @@ export default StyleSheet.create({
     title: {
       fontFamily: 'Merriweather-Regular',
       fontSize: 16,
-      fontWeight: '500',
-      color: '#000000',
+      fontWeight: '400',
+      color: Colors.titleDefault,
       lineHeight: 24,
       marginBottom: 6
     },
     description: {
-      fontSize: 13,
-      color: '#aaa',
-      lineHeight: 19,
-      marginBottom: 4
+      fontSize: 14,
+      color: Colors.paragraphGrayed,
+      lineHeight: 21
     },
     author: {
       fontSize: 13,
-      color: '#aaa',
+      color: Colors.paragraphGrayed,
       lineHeight: 19
     },
     source: {
@@ -50,33 +50,36 @@ export default StyleSheet.create({
       alignItems: 'baseline'
     },
     sourceIcon: {
-      color: '#555'
+      color: Colors.paragraphGrayed
     },
     sourceName: {
-      fontSize: 13,
-      color: '#555',
+      fontSize: 12,
+      color: Colors.paragraphGrayed,
       marginBottom: 8,
       marginLeft: 6
     },
     authorName: {
-      color: '#555'
+      color: Colors.paragraphGrayed
     },
     publicationName: {
-      color: '#555'
+      color: Colors.paragraphGrayed
     },
     controlButton: {
-      backgroundColor: '#3B8062',
+      backgroundColor: Colors.controlButtonDefault,
       width: 50,
       height: 50,
       borderRadius: 50,
       alignItems: 'center',
       justifyContent: 'center'
     },
+    controlButtonActive: {
+      backgroundColor: Colors.controlButtonActive
+    },
     controlIcon: {
       // marginLeft: 2
     },
     duration: {
-      color: '#3B8062',
+      color: Colors.controlButtonDefault,
       textAlign: 'center',
       marginTop: 14,
       fontSize: 12
