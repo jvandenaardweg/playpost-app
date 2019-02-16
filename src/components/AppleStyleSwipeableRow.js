@@ -24,13 +24,13 @@ export class AppleStyleSwipeableRow extends Component {
         <AnimatedIcon
             name="archive"
             size={20}
-            color="#fff"
+            color="#10A641"
             style={[styles.actionIcon, { transform: [{ scale }, { translateX }] }]}
           />
       </RectButton>
     );
   };
-  renderRightAction = (action, icon, color, x, progress, dragX) => {
+  renderRightAction = (action, icon, color, fill, x, progress, dragX) => {
     const trans = progress.interpolate({
       inputRange: [0, 1],
       outputRange: [x, 0],
@@ -52,7 +52,7 @@ export class AppleStyleSwipeableRow extends Component {
             <AnimatedIcon
               name={icon}
               size={20}
-              color="#fff"
+              color={fill}
               style={[styles.actionIcon, { transform: [{ scale }] }]}
             />
         </RectButton>
@@ -62,8 +62,8 @@ export class AppleStyleSwipeableRow extends Component {
   renderRightActions = (progress, dragX) => {
     return (
       <View style={{ width: 192, flexDirection: 'row' }}>
-        {this.renderRightAction('download', 'download', 'blue', 128, progress, dragX)}
-        {this.renderRightAction('delete', 'trash-2', 'red', 64, progress, dragX)}
+        {this.renderRightAction('download', 'download', '#CDE7F0', '#1566AA', 128, progress, dragX)}
+        {this.renderRightAction('delete', 'trash-2', '#FBD6D6', '#E7383D', 64, progress, dragX)}
       </View>
     );
   };
@@ -98,7 +98,7 @@ export class AppleStyleSwipeableRow extends Component {
 const styles = StyleSheet.create({
   leftAction: {
     flex: 1,
-    backgroundColor: 'green',
+    backgroundColor: '#CDF0D8',
     justifyContent: 'center',
   },
   actionText: {
