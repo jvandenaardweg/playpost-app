@@ -30,7 +30,7 @@ export class AppleStyleSwipeableRow extends Component {
       </RectButton>
     );
   };
-  renderRightAction = (icon, color, x, progress, dragX) => {
+  renderRightAction = (action, icon, color, x, progress, dragX) => {
     const trans = progress.interpolate({
       inputRange: [0, 1],
       outputRange: [x, 0],
@@ -40,15 +40,15 @@ export class AppleStyleSwipeableRow extends Component {
       outputRange: [1, 0],
       extrapolate: 'clamp',
     });
-    const pressHandler = () => {
+    const pressHandler = (action) => {
       this.close();
-      alert('press');
+      alert(`Should ${action} this article.`);
     };
     return (
       <Animated.View style={{ flex: 1, transform: [{ translateX: trans }] }}>
         <RectButton
           style={[styles.rightAction, { backgroundColor: color }]}
-          onPress={pressHandler}>
+          onPress={() => pressHandler(action)}>
             <AnimatedIcon
               name={icon}
               size={20}
@@ -62,11 +62,16 @@ export class AppleStyleSwipeableRow extends Component {
   renderRightActions = (progress, dragX) => {
     return (
       <View style={{ width: 192, flexDirection: 'row' }}>
-        {this.renderRightAction('download', 'blue', 128, progress, dragX)}
-        {this.renderRightAction('trash-2', 'red', 64, progress, dragX)}
+        {this.renderRightAction('download', 'download', 'blue', 128, progress, dragX)}
+        {this.renderRightAction('delete', 'trash-2', 'red', 64, progress, dragX)}
       </View>
     );
   };
+
+  onSwipeableLeftWillOpen = () => {
+    alert('Should archive this article');
+  };
+
   updateRef = ref => {
     this._swipeableRow = ref;
   };
@@ -81,6 +86,7 @@ export class AppleStyleSwipeableRow extends Component {
         friction={2}
         leftThreshold={80}
         rightThreshold={40}
+        onSwipeableLeftWillOpen={this.onSwipeableLeftWillOpen}
         renderLeftActions={this.renderLeftActions}
         renderRightActions={this.renderRightActions}>
         {children}
