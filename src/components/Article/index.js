@@ -3,6 +3,8 @@ import { View, Text, Button, TouchableHighlight, ActivityIndicator } from 'react
 import styles from './styles';
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import PropTypes from 'prop-types';
+import { Badge } from 'react-native-elements';
+
 
 export class Article extends React.PureComponent {
   state = {
@@ -60,6 +62,7 @@ export class Article extends React.PureComponent {
         <View style={styles.sectionBody}>
           <View style={styles.sectionMeta}>
             <View style={styles.source}>
+              {/* <Badge status="primary" badgeStyle={styles.sourceIcon} /> */}
               <Icon
                 name='bookmark'
                 size={10}

@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // import { listArticles } from '../../reducers/articles';
 import { getAudioByArticleUrl, setTrack } from '../../reducers/player';
+import { AppleStyleSwipeableRow } from '../../components/AppleStyleSwipeableRow';
+import { GmailStyleSwipeableRow } from '../../components/GmailStyleSwipeableRow';
 
 import styles from './styles';
 
@@ -115,7 +117,7 @@ class ArticlesContainerComponent extends React.PureComponent {
         data={articles}
         extraData={playbackStatus}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({item}) => <Article article={item} getAudioByArticleUrl={getAudioByArticleUrl} setTrack={setTrack} playingTrack={track} playbackStatus={playbackStatus} />} />
+        renderItem={({item}) => <AppleStyleSwipeableRow><Article article={item} getAudioByArticleUrl={getAudioByArticleUrl} setTrack={setTrack} playingTrack={track} playbackStatus={playbackStatus} /></AppleStyleSwipeableRow>} />
     );
   }
 }

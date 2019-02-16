@@ -5,7 +5,7 @@ import { ArticlesContainer } from '../containers/ArticlesContainer';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    title: 'Articles',
+    title: 'Playlist',
   };
 
   render() {

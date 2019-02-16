@@ -119,6 +119,15 @@ export default class SettingsScreen extends React.Component {
         'Changing the advanced settings becomes available in later versions.',
       rows: [
         {
+          title: 'Default browser',
+          renderAccessory: () => (
+            <Text style={{ color: '#999', marginRight: 6, fontSize: 18 }}>
+              Safari
+            </Text>
+          ),
+          onPress: this.handleOnPressRow
+        },
+        {
           title: 'Clear cache',
           renderAccessory: () => (
             <Text style={{ color: '#999', marginRight: 6, fontSize: 18 }}>
