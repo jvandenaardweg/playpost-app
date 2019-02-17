@@ -1,23 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { Animated, Text, View, TouchableOpacity, Modal } from 'react-native'
 import ShareExtension from 'react-native-share-extension'
 
-import {
-  Animated,
-  Text,
-  View,
-  TouchableOpacity,
-  Modal
-} from 'react-native'
-
-export default class Share extends Component {
-  constructor(props, context) {
-    super(props, context)
-    this.state = {
-      isOpen: true,
-      type: '',
-      value: '',
-      opacityAnim: new Animated.Value(0)
-    }
+export default class Share extends React.Component {
+  state = {
+    isOpen: true,
+    type: '',
+    value: '',
+    opacityAnim: new Animated.Value(0)
   }
 
   async componentDidMount() {
@@ -30,13 +20,15 @@ export default class Share extends Component {
           toValue: 1,
           duration: 300,
         }
-      ).start();
+      ).start()
 
       this.setState({
         type,
         value
       })
+
     } catch(e) {
+      alert('An error occurred. Please try again.')
       console.log('errrr', e)
     }
   }
@@ -62,6 +54,9 @@ export default class Share extends Component {
         <Modal animationType="slide" presentationStyle="overFullScreen" transparent={true} visible={this.state.isOpen} onDismiss={this.onClose}>
           <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24}}>
             <View style={{ backgroundColor: 'white', width: '100%', height: 200, padding: 14, borderRadius: 10 }}>
+
+              <View>Article sh</View>
+
               <TouchableOpacity onPress={this.closing}>
                 <Text>type: { this.state.type }</Text>
                 <Text>value: { this.state.value }</Text>

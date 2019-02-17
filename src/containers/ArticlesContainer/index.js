@@ -9,7 +9,7 @@ import { GmailStyleSwipeableRow } from '../../components/GmailStyleSwipeableRow'
 
 import styles from './styles';
 
-import { Article } from '../../components/Article';
+import { ArticleContainer } from '../../components/Article/ArticleContainer';
 
 const articles = [
   {
@@ -117,7 +117,20 @@ class ArticlesContainerComponent extends React.PureComponent {
         data={articles}
         extraData={playbackStatus}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({item}) => <AppleStyleSwipeableRow><Article article={item} getAudioByArticleUrl={getAudioByArticleUrl} setTrack={setTrack} playingTrack={track} playbackStatus={playbackStatus} /></AppleStyleSwipeableRow>} />
+        renderItem={({item}) => {
+          return (
+            <AppleStyleSwipeableRow>
+              <ArticleContainer
+                article={item}
+                getAudioByArticleUrl={getAudioByArticleUrl}
+                setTrack={setTrack}
+                playingTrack={track}
+                playbackStatus={playbackStatus}
+              />
+            </AppleStyleSwipeableRow>
+          )
+        }}
+      />
     );
   }
 }
