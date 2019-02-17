@@ -10,10 +10,10 @@ import {
   Switch,
   TouchableHighlight,
   Picker
-} from 'react-native'
-import { SettingsScreen as SettingsScreenComponent } from 'react-native-settings-screen'
+} from 'react-native';
+import { SettingsScreen as SettingsScreenComponent } from 'react-native-settings-screen';
 
-{/* <Picker
+{ /* <Picker
           selectedValue={this.state.language}
           style={{alignSelf: 'flex-end'}}
           onValueChange={(itemValue, itemIndex) =>
@@ -21,7 +21,7 @@ import { SettingsScreen as SettingsScreenComponent } from 'react-native-settings
           }>
           <Picker.Item label="English (US)" value="en-US" />
           <Picker.Item label="English (UK)" value="en-UK" />
-        </Picker> */}
+        </Picker> */ }
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
     title: 'Settings'
@@ -32,7 +32,7 @@ export default class SettingsScreen extends React.Component {
   }
 
   handleOnPressRow = (event) => {
-    alert('Changing this setting becomes available in later versions.')
+    alert('Changing this setting becomes available in later versions.');
   }
 
   settingsData = [
@@ -158,7 +158,7 @@ export default class SettingsScreen extends React.Component {
 
   render() {
     return (
-      <SettingsScreenComponent data={this.settingsData} style={{paddingTop: 14}} />
+      <SettingsScreenComponent data={this.settingsData} style={{ paddingTop: 14 }} />
     );
   }
 }

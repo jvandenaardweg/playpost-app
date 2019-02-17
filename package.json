@@ -6,7 +6,8 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "storybook": "storybook start",
-    "lint": "eslint ./src/*.js ./src/**/*.js"
+    "lint": "eslint ./src/*.js ./src/**/*.js",
+    "lint:fix": "eslint ./src/*.js ./src/**/*.js --fix"
   },
   "rnpm": {
     "assets": [

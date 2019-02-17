@@ -8,7 +8,7 @@ export default class FavoritesScreen extends React.Component {
 
   render() {
     return (
-      <EmptyState title='Your favorite articles' description='Articles you really liked can be added to your favorites' />
+      <EmptyState title="Your favorite articles" description="Articles you really liked can be added to your favorites" />
     );
   }
 }

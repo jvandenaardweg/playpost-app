@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import HeaderButton from './HeaderButton';
 
 storiesOf('Button', module)
-  .add('with text', () => <HeaderButton onClick={action('clicked')}></HeaderButton>)
+  .add('with text', () => <HeaderButton onClick={action('clicked')} />)
   .add('with some emoji', () => (
-    <HeaderButton onClick={action('clicked')}></HeaderButton>
+    <HeaderButton onClick={action('clicked')} />
   ));

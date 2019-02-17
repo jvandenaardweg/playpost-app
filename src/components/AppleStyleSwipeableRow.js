@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Animated, StyleSheet, Text, View } from 'react-native';
+import {
+  Animated, StyleSheet, Text, View
+} from 'react-native';
 
 import { RectButton } from 'react-native-gesture-handler';
 
@@ -22,14 +24,15 @@ export class AppleStyleSwipeableRow extends Component {
     return (
       <RectButton style={styles.leftAction} onPress={this.close}>
         <AnimatedIcon
-            name="archive"
-            size={20}
-            color="#10A641"
-            style={[styles.actionIcon, { transform: [{ scale }, { translateX }] }]}
-          />
+          name="archive"
+          size={20}
+          color="#10A641"
+          style={[styles.actionIcon, { transform: [{ scale }, { translateX }] }]}
+        />
       </RectButton>
     );
   };
+
   renderRightAction = (action, icon, color, fill, x, progress, dragX) => {
     const trans = progress.interpolate({
       inputRange: [0, 1],
@@ -48,36 +51,38 @@ export class AppleStyleSwipeableRow extends Component {
       <Animated.View style={{ flex: 1, transform: [{ translateX: trans }] }}>
         <RectButton
           style={[styles.rightAction, { backgroundColor: color }]}
-          onPress={() => pressHandler(action)}>
-            <AnimatedIcon
-              name={icon}
-              size={20}
-              color={fill}
-              style={[styles.actionIcon, { transform: [{ scale }] }]}
-            />
+          onPress={() => pressHandler(action)}
+        >
+          <AnimatedIcon
+            name={icon}
+            size={20}
+            color={fill}
+            style={[styles.actionIcon, { transform: [{ scale }] }]}
+          />
         </RectButton>
       </Animated.View>
     );
   };
-  renderRightActions = (progress, dragX) => {
-    return (
-      <View style={{ width: 192, flexDirection: 'row' }}>
-        {this.renderRightAction('download', 'download', '#CDE7F0', '#1566AA', 128, progress, dragX)}
-        {this.renderRightAction('delete', 'trash-2', '#FBD6D6', '#E7383D', 64, progress, dragX)}
-      </View>
-    );
-  };
+
+  renderRightActions = (progress, dragX) => (
+    <View style={{ width: 192, flexDirection: 'row' }}>
+      {this.renderRightAction('download', 'download', '#CDE7F0', '#1566AA', 128, progress, dragX)}
+      {this.renderRightAction('delete', 'trash-2', '#FBD6D6', '#E7383D', 64, progress, dragX)}
+    </View>
+  );
 
   onSwipeableLeftWillOpen = () => {
     alert('Should archive this article');
   };
 
-  updateRef = ref => {
+  updateRef = (ref) => {
     this._swipeableRow = ref;
   };
+
   close = () => {
     this._swipeableRow.close();
   };
+
   render() {
     const { children } = this.props;
     return (
@@ -88,7 +93,8 @@ export class AppleStyleSwipeableRow extends Component {
         rightThreshold={40}
         onSwipeableLeftWillOpen={this.onSwipeableLeftWillOpen}
         renderLeftActions={this.renderLeftActions}
-        renderRightActions={this.renderRightActions}>
+        renderRightActions={this.renderRightActions}
+      >
         {children}
       </Swipeable>
     );

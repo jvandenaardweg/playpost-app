@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Animated, StyleSheet, Text, View } from 'react-native';
+import {
+  Animated, StyleSheet, Text, View
+} from 'react-native';
 
 import { RectButton } from 'react-native-gesture-handler';
 
@@ -26,6 +28,7 @@ export class GmailStyleSwipeableRow extends Component {
       </RectButton>
     );
   };
+
   renderRightActions = (progress, dragX) => {
     const scale = dragX.interpolate({
       inputRange: [-80, 0],
@@ -43,12 +46,15 @@ export class GmailStyleSwipeableRow extends Component {
       </RectButton>
     );
   };
-  updateRef = ref => {
+
+  updateRef = (ref) => {
     this._swipeableRow = ref;
   };
+
   close = () => {
     this._swipeableRow.close();
   };
+
   render() {
     const { children } = this.props;
     return (
@@ -58,7 +64,8 @@ export class GmailStyleSwipeableRow extends Component {
         leftThreshold={80}
         rightThreshold={40}
         renderLeftActions={this.renderLeftActions}
-        renderRightActions={this.renderRightActions}>
+        renderRightActions={this.renderRightActions}
+      >
         {children}
       </Swipeable>
     );

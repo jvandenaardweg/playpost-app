@@ -12,29 +12,29 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-import Icon from 'react-native-vector-icons/FontAwesome5'
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 
 export default class HomeScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => {
-    return {
-      title: 'Home',
-      headerRight: (
-        <TouchableOpacity
-          onPress={navigation.getParam('showModal')}
-          style={{width: 40, height: 40, marginRight: 6, alignItems: 'center', justifyContent: 'center'}}
-        >
-          <Icon
-            name='cog'
-            size={22}
-          />
-        </TouchableOpacity>
-      )
-    }
-  };
+  static navigationOptions = ({ navigation }) => ({
+    title: 'Home',
+    headerRight: (
+      <TouchableOpacity
+        onPress={navigation.getParam('showModal')}
+        style={{
+          width: 40, height: 40, marginRight: 6, alignItems: 'center', justifyContent: 'center'
+        }}
+      >
+        <Icon
+          name="cog"
+          size={22}
+        />
+      </TouchableOpacity>
+    )
+  });
 
   state = {
-    webviewUrl: "https://medium.com/me/list/queue",
+    webviewUrl: 'https://medium.com/me/list/queue',
     showModal: false,
     text: null,
     isLoading: false,
@@ -42,7 +42,7 @@ export default class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
-    this._bootstrapAsync()
+    this._bootstrapAsync();
     this.props.navigation.setParams({ showModal: this.handleOnModalShowPress });
   }
 
@@ -52,47 +52,46 @@ export default class HomeScreen extends React.Component {
     // console.log('userToken', userToken)
   };
 
-  async getLinkedInUserProfile (accessToken) {
-    const bearer = `Bearer ${accessToken}`
+  async getLinkedInUserProfile(accessToken) {
+    const bearer = `Bearer ${accessToken}`;
     const result = await fetch('https://api.linkedin.com/v1/people/~?format=json', {
       method: 'GET',
       withCredentials: true,
       credentials: 'include',
       headers: {
-        'Authorization': bearer,
+        Authorization: bearer,
         'x-li-format': 'json',
         'Content-Type': 'application/json'
       }
-    }).then(response => response.json())
+    }).then(response => response.json());
   }
 
   handleOnLoadEnd = (event) => {
-    console.log('on load end', event)
+    console.log('on load end', event);
   }
 
   handleOnMessage = (data) => {
-    console.log('onmessage', data)
+    console.log('onmessage', data);
 
     if (!data) return;
 
-    const bookmarks = data.split('[SPLIT]').map((bookmark) => JSON.parse(bookmark))
+    const bookmarks = data.split('[SPLIT]').map(bookmark => JSON.parse(bookmark));
 
     if (bookmarks && bookmarks.length) {
-      this.setState({bookmarks})
+      this.setState({ bookmarks });
     }
-
   }
 
   handleOnButtonPress = (event) => {
-    this.setState({webviewUrl: this.state.text})
+    this.setState({ webviewUrl: this.state.text });
   }
 
   handleOnModalShowPress = (event) => {
-    this.setState({showModal: true})
+    this.setState({ showModal: true });
   }
 
   handleOnModalClosePress = (event) => {
-    this.setState({showModal: false})
+    this.setState({ showModal: false });
   }
 
   render() {
@@ -150,8 +149,8 @@ export default class HomeScreen extends React.Component {
         ))}
         <Button onPress={(this.handleOnButtonPress)} title="Test" />
         <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(text) => this.setState({text})}
+          style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+          onChangeText={text => this.setState({ text })}
           value={this.state.text}
         />
 
@@ -161,18 +160,19 @@ export default class HomeScreen extends React.Component {
           visible={showModal}
           onRequestClose={() => {
             Alert.alert('Modal has been closed.');
-          }}>
-          <View style={{marginTop: 40, flex: 1}}>
-          <Button onPress={(this.handleOnModalClosePress)} title="Close Webview" />
+          }}
+        >
+          <View style={{ marginTop: 40, flex: 1 }}>
+            <Button onPress={(this.handleOnModalClosePress)} title="Close Webview" />
             <WebView
               // style={{overflow: 'hidden'}}
               ref={ref => (this.webview = ref)}
-              useWebkit={true}
-              javaScriptEnabled={true}
+              useWebkit
+              javaScriptEnabled
               source={{ uri: webviewUrl }}
               // onLoadProgress={e => console.log(e.nativeEvent.progress)}
               // onLoadEnd={this.handleOnLoadEnd}
-              onMessage={(event) => this.handleOnMessage(event.nativeEvent.data)}
+              onMessage={event => this.handleOnMessage(event.nativeEvent.data)}
               injectedJavaScript={jsCode}
             />
           </View>
