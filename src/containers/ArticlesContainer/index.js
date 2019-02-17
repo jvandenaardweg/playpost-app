@@ -2,12 +2,9 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { listArticles } from '../../reducers/articles';
 import { getAudioByArticleUrl, setTrack } from '../../reducers/player';
 import { AppleStyleSwipeableRow } from '../../components/AppleStyleSwipeableRow';
-import { GmailStyleSwipeableRow } from '../../components/GmailStyleSwipeableRow';
-
-import styles from './styles';
+// import { GmailStyleSwipeableRow } from '../../components/GmailStyleSwipeableRow';
 
 import { ArticleContainer } from '../../components/Article/ArticleContainer';
 
@@ -105,46 +102,60 @@ const articles = [
 ];
 
 class ArticlesContainerComponent extends React.PureComponent {
-  componentDidMount () {
-    // this.props.listArticles('relferreira');
-  }
-
   render() {
-    const { getAudioByArticleUrl, setTrack, track, playbackStatus } = this.props;
+    const {
+      getAudioByArticleUrl, setTrack, track, playbackStatus
+    } = this.props;
 
     return (
       <FlatList
         data={articles}
         extraData={playbackStatus}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({item}) => {
-          return (
-            <AppleStyleSwipeableRow>
-              <ArticleContainer
-                article={item}
-                getAudioByArticleUrl={getAudioByArticleUrl}
-                setTrack={setTrack}
-                playingTrack={track}
-                playbackStatus={playbackStatus}
-              />
-            </AppleStyleSwipeableRow>
-          )
-        }}
+        renderItem={({ item }) => (
+          <AppleStyleSwipeableRow>
+            <ArticleContainer
+              article={item}
+              getAudioByArticleUrl={getAudioByArticleUrl}
+              setTrack={setTrack}
+              playingTrack={track}
+              playbackStatus={playbackStatus}
+            />
+          </AppleStyleSwipeableRow>
+        )}
       />
     );
   }
 }
 
-const mapStateToProps = ({ articles, player }) => {
-  return {
-    track: player.track,
-    playbackStatus: player.playbackStatus
-  };
-};
+const mapStateToProps = ({ player }) => ({
+  track: player.track,
+  playbackStatus: player.playbackStatus
+});
 
 const mapDispatchToProps = {
   getAudioByArticleUrl,
   setTrack
 };
 
-export const ArticlesContainer = connect(mapStateToProps, mapDispatchToProps)(ArticlesContainerComponent);
+ArticlesContainerComponent.defaultProps = {
+  track: {},
+  playbackStatus: null
+};
+
+ArticlesContainerComponent.propTypes = {
+  getAudioByArticleUrl: PropTypes.func.isRequired,
+  setTrack: PropTypes.func.isRequired,
+  track: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    artist: PropTypes.string,
+    album: PropTypes.string
+  }),
+  playbackStatus: PropTypes.string
+};
+
+export const ArticlesContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ArticlesContainerComponent);
