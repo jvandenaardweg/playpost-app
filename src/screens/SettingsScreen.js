@@ -1,39 +1,15 @@
 import React from 'react';
 import {
-  StyleSheet,
   Text,
-  View,
-  StatusBar,
-  Image,
-  Platform,
-  RefreshControl,
   Switch,
-  TouchableHighlight,
-  Picker
+  Alert
 } from 'react-native';
 import { SettingsScreen as SettingsScreenComponent } from 'react-native-settings-screen';
 
-{ /* <Picker
-          selectedValue={this.state.language}
-          style={{alignSelf: 'flex-end'}}
-          onValueChange={(itemValue, itemIndex) =>
-            this.setState({language: itemValue})
-          }>
-          <Picker.Item label="English (US)" value="en-US" />
-          <Picker.Item label="English (UK)" value="en-UK" />
-        </Picker> */ }
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
     title: 'Settings'
   };
-
-  state = {
-    language: 'en-US'
-  }
-
-  handleOnPressRow = (event) => {
-    alert('Changing this setting becomes available in later versions.');
-  }
 
   settingsData = [
     {
@@ -155,6 +131,10 @@ export default class SettingsScreen extends React.Component {
       ),
     },
   ]
+
+  handleOnPressRow = () => {
+    Alert.alert('Changing this setting becomes available in later versions.');
+  }
 
   render() {
     return (

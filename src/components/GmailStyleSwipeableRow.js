@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Animated, StyleSheet, Text, View
+  Animated, StyleSheet
 } from 'react-native';
 
 import { RectButton } from 'react-native-gesture-handler';
@@ -48,11 +48,11 @@ export class GmailStyleSwipeableRow extends Component {
   };
 
   updateRef = (ref) => {
-    this._swipeableRow = ref;
+    this.swipeableRow = ref;
   };
 
   close = () => {
-    this._swipeableRow.close();
+    this.swipeableRow.close();
   };
 
   render() {

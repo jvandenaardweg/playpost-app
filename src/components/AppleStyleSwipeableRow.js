@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Animated, StyleSheet, Text, View
+  Animated, StyleSheet, View, Alert
 } from 'react-native';
 
 import { RectButton } from 'react-native-gesture-handler';
@@ -43,9 +43,9 @@ export class AppleStyleSwipeableRow extends Component {
       outputRange: [1, 0],
       extrapolate: 'clamp',
     });
-    const pressHandler = (action) => {
+    const pressHandler = (actionName) => {
       this.close();
-      alert(`Should ${action} this article.`);
+      Alert.alert(`Should ${actionName} this article.`);
     };
     return (
       <Animated.View style={{ flex: 1, transform: [{ translateX: trans }] }}>
@@ -72,15 +72,15 @@ export class AppleStyleSwipeableRow extends Component {
   );
 
   onSwipeableLeftWillOpen = () => {
-    alert('Should archive this article');
+    Alert.alert('Should archive this article');
   };
 
   updateRef = (ref) => {
-    this._swipeableRow = ref;
+    this.swipeableRow = ref;
   };
 
   close = () => {
-    this._swipeableRow.close();
+    this.swipeableRow.close();
   };
 
   render() {

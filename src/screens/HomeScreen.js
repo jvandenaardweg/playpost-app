@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  ScrollView, StyleSheet, Text, View
-} from 'react-native';
+import { View } from 'react-native';
 
 import { ArticlesContainer } from '../containers/ArticlesContainer';
 

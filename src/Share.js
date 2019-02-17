@@ -14,10 +14,11 @@ export default class Share extends React.Component {
 
   async componentDidMount() {
     try {
+      const { opacityAnim } = this.state;
       const { type, value } = await ShareExtension.data();
 
       Animated.timing(
-        this.state.opacityAnim,
+        opacityAnim,
         {
           toValue: 1,
           duration: 300,
@@ -29,7 +30,9 @@ export default class Share extends React.Component {
         value
       });
     } catch (e) {
-      alert('An error occurred. Please try again.');
+      /* eslint-disable no-alert */
+      // alert('An error occurred. Please try again.');
+      /* eslint-disable no-console */
       console.log('errrr', e);
     }
   }
@@ -37,9 +40,12 @@ export default class Share extends React.Component {
   onClose = () => ShareExtension.close()
 
   closing = () => {
+    const { opacityAnim } = this.state;
+
     this.setState({ isOpen: false });
+
     Animated.timing(
-      this.state.opacityAnim,
+      opacityAnim,
       {
         toValue: 0,
         duration: 200,
@@ -48,14 +54,16 @@ export default class Share extends React.Component {
   }
 
   render() {
-    const { opacityAnim } = this.state;
+    const {
+      opacityAnim, isOpen, type, value
+    } = this.state;
 
     return (
       <Animated.View style={{
         flex: 1, opacity: opacityAnim, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.7)'
       }}
       >
-        <Modal animationType="slide" presentationStyle="overFullScreen" transparent visible={this.state.isOpen} onDismiss={this.onClose}>
+        <Modal animationType="slide" presentationStyle="overFullScreen" transparent visible={isOpen} onDismiss={this.onClose}>
           <View style={{
             flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24
           }}
@@ -69,12 +77,12 @@ export default class Share extends React.Component {
 
               <TouchableOpacity onPress={this.closing}>
                 <Text>
-type:
-                  { this.state.type }
+                  type:
+                  { type }
                 </Text>
                 <Text>
-value:
-                  { this.state.value }
+                  value:
+                  { value }
                 </Text>
               </TouchableOpacity>
 

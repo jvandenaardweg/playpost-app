@@ -1,7 +1,6 @@
+/* eslint-disable */
 import React from 'react';
 import {
-  ActivityIndicator,
-  AsyncStorage,
   Button,
   StyleSheet,
   Text,
@@ -9,7 +8,8 @@ import {
   WebView,
   TextInput,
   Modal,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -37,34 +37,19 @@ export default class HomeScreen extends React.Component {
     webviewUrl: 'https://medium.com/me/list/queue',
     showModal: false,
     text: null,
-    isLoading: false,
     bookmarks: []
   }
 
-  componentDidMount() {
-    this._bootstrapAsync();
-    this.props.navigation.setParams({ showModal: this.handleOnModalShowPress });
-  }
+  // componentDidMount() {
+  //   this._bootstrapAsync();
+  //   this.props.navigation.setParams({ showModal: this.handleOnModalShowPress });
+  // }
 
-  _bootstrapAsync = async () => {
-    // const userToken = await AsyncStorage.getItem('userToken');
+  // _bootstrapAsync = async () => {
+  //   // const userToken = await AsyncStorage.getItem('userToken');
 
-    // console.log('userToken', userToken)
-  };
-
-  async getLinkedInUserProfile(accessToken) {
-    const bearer = `Bearer ${accessToken}`;
-    const result = await fetch('https://api.linkedin.com/v1/people/~?format=json', {
-      method: 'GET',
-      withCredentials: true,
-      credentials: 'include',
-      headers: {
-        Authorization: bearer,
-        'x-li-format': 'json',
-        'Content-Type': 'application/json'
-      }
-    }).then(response => response.json());
-  }
+  //   // console.log('userToken', userToken)
+  // };
 
   handleOnLoadEnd = (event) => {
     console.log('on load end', event);
@@ -82,15 +67,16 @@ export default class HomeScreen extends React.Component {
     }
   }
 
-  handleOnButtonPress = (event) => {
-    this.setState({ webviewUrl: this.state.text });
+  handleOnButtonPress = () => {
+    const { text } = this.state;
+    this.setState({ webviewUrl: text });
   }
 
-  handleOnModalShowPress = (event) => {
+  handleOnModalShowPress = () => {
     this.setState({ showModal: true });
   }
 
-  handleOnModalClosePress = (event) => {
+  handleOnModalClosePress = () => {
     this.setState({ showModal: false });
   }
 
@@ -141,17 +127,19 @@ export default class HomeScreen extends React.Component {
     })();
     `;
 
+    const { bookmarks, text } = this.state;
+
     return (
       <View style={styles.container}>
         <Text style={styles.status}>Hoi!</Text>
-        {this.state.bookmarks && this.state.bookmarks.map((bookmark, index) => (
+        {bookmarks && bookmarks.map((bookmark, index) => (
           <Text key={index}>{bookmark.title}</Text>
         ))}
         <Button onPress={(this.handleOnButtonPress)} title="Test" />
         <TextInput
           style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-          onChangeText={text => this.setState({ text })}
-          value={this.state.text}
+          onChangeText={changedText => this.setState({ text: changedText })}
+          value={text}
         />
 
         <Modal
