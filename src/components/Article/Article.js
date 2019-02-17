@@ -9,6 +9,7 @@ import styles from './styles';
 export const Article = ({
   isLoading,
   isPlaying,
+  seperated,
   title,
   description,
   sourceName,
@@ -16,7 +17,7 @@ export const Article = ({
   listenTimeInMinutes,
   onPlayPress
 }) => (
-  <View style={styles.article}>
+  <View style={[styles.container, seperated ? styles.seperated : null]}>
     <View style={styles.sectionHeader}>
       <Text style={styles.title} ellipsizeMode="tail" numberOfLines={2}>{title}</Text>
     </View>
@@ -29,8 +30,7 @@ export const Article = ({
             style={styles.sourceIcon}
           />
           <Text style={styles.sourceName}>
-            {authorName}
-            on
+            {authorName && `${authorName} on `}
             {sourceName}
           </Text>
         </View>
@@ -71,6 +71,7 @@ export const PlayButton = ({ isPlaying, onPress, isLoading }) => (
 Article.defaultProps = {
   isLoading: false,
   isPlaying: false,
+  seperated: false,
   authorName: null,
   listenTimeInMinutes: 0,
   onPlayPress: null
@@ -79,6 +80,7 @@ Article.defaultProps = {
 Article.propTypes = {
   isLoading: PropTypes.bool,
   isPlaying: PropTypes.bool,
+  seperated: PropTypes.bool,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   sourceName: PropTypes.string.isRequired,

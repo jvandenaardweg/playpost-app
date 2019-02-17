@@ -7,6 +7,7 @@ import { AppleStyleSwipeableRow } from '@/components/AppleStyleSwipeableRow';
 // import { GmailStyleSwipeableRow } from '@/components/GmailStyleSwipeableRow';
 
 import { ArticleContainer } from '@/components/Article/ArticleContainer';
+import Colors from '@/constants/Colors';
 
 const articles = [
   {
@@ -120,6 +121,7 @@ class ArticlesContainerComponent extends React.PureComponent {
               setTrack={setTrack}
               playingTrack={track}
               playbackStatus={playbackStatus}
+              seperated
             />
           </AppleStyleSwipeableRow>
         )}

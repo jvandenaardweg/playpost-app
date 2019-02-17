@@ -1,22 +1,24 @@
 import React from 'react';
-import {
-  Animated, Text, View, TouchableOpacity, Modal
-} from 'react-native';
+import { Animated, View, Modal } from 'react-native';
 import ShareExtension from 'react-native-share-extension';
+import { ShareModal } from '@/components/ShareModal';
 
 export default class Share extends React.Component {
   state = {
     isOpen: true,
-    type: '',
-    value: '',
+    type: null,
+    value: null,
     opacityAnim: new Animated.Value(0)
   }
 
   async componentDidMount() {
     try {
       const { opacityAnim } = this.state;
+
+      // Wait for the extension data
       const { type, value } = await ShareExtension.data();
 
+      // Start fade in animation
       Animated.timing(
         opacityAnim,
         {
@@ -25,10 +27,7 @@ export default class Share extends React.Component {
         }
       ).start();
 
-      this.setState({
-        type,
-        value
-      });
+      this.setState({ type, value });
     } catch (e) {
       /* eslint-disable no-alert */
       // alert('An error occurred. Please try again.');
@@ -55,45 +54,40 @@ export default class Share extends React.Component {
 
   render() {
     const {
-      opacityAnim, isOpen, type, value
+      opacityAnim, isOpen, value, type
     } = this.state;
 
     return (
       <Animated.View style={{
-        flex: 1, opacity: opacityAnim, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.7)'
+        flex: 1,
+        opacity: opacityAnim,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(0,0,0,0.7)'
       }}
       >
-        <Modal animationType="slide" presentationStyle="overFullScreen" transparent visible={isOpen} onDismiss={this.onClose}>
+        <Modal
+          animationType="slide"
+          presentationStyle="overFullScreen"
+          transparent
+          visible={isOpen}
+          onDismiss={this.onClose}
+        >
           <View style={{
-            flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 24
           }}
           >
-            <View style={{
-              backgroundColor: 'white', width: '100%', height: 200, padding: 14, borderRadius: 10
-            }}
-            >
-
-              <View>Article sh</View>
-
-              <TouchableOpacity onPress={this.closing}>
-                <Text>
-                  type:
-                  { type }
-                </Text>
-                <Text>
-                  value:
-                  { value }
-                </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={this.closing}>
-                <Text>Save</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={this.closing}>
-                <Text>Cancel</Text>
-              </TouchableOpacity>
-            </View>
+            {type && value && (
+              <ShareModal
+                type={type}
+                url={value}
+                onPressSave={this.closing}
+                onPressCancel={this.closing}
+              />
+            )}
           </View>
         </Modal>
       </Animated.View>

@@ -2,11 +2,15 @@ import { StyleSheet } from 'react-native';
 import Colors from '@/constants/Colors';
 
 export default StyleSheet.create({
-  article: {
+  container: {
+    flex: 1,
     backgroundColor: Colors.articleBackground,
     padding: 14,
+    width: '100%'
+  },
+  seperated: {
     borderBottomColor: Colors.borderDefault,
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
   },
   sectionHeader: {
 

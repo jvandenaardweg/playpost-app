@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert } from 'react-native';
+import { Alert, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { Article } from './Article';
 
@@ -47,12 +47,13 @@ export class ArticleContainer extends React.PureComponent {
 
   render() {
     const { isLoading, isPlaying } = this.state;
-    const { article } = this.props;
+    const { article, seperated } = this.props;
 
     return (
       <Article
         isLoading={isLoading}
         isPlaying={isPlaying}
+        seperated={seperated}
         title={article.title}
         description={article.description}
         sourceName={article.sourceName}
@@ -66,7 +67,8 @@ export class ArticleContainer extends React.PureComponent {
 
 ArticleContainer.defaultProps = {
   playingTrack: {},
-  article: {}
+  article: {},
+  seperated: false
 };
 
 ArticleContainer.propTypes = {
@@ -85,6 +87,7 @@ ArticleContainer.propTypes = {
     authorName: PropTypes.string,
     listenTimeInMinutes: PropTypes.number
   }),
+  seperated: PropTypes.bool,
   getAudioByArticleUrl: PropTypes.func.isRequired,
   setTrack: PropTypes.func.isRequired
 };
