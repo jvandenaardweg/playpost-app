@@ -12,6 +12,16 @@
     "import/prefer-default-export": "off",
     "arrow-parens": "off"
   },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["@", "./src"]
+        ],
+        "extensions": [".ts", ".js", ".jsx", ".json"]
+      }
+    }
+  },
   "globals": {
     "fetch": false,
     "alert": false

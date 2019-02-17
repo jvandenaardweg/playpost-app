@@ -1,5 +1,5 @@
 import React from 'react';
-import { EmptyState } from '../components/EmptyState';
+import { EmptyState } from '@/components/EmptyState';
 
 export default class FavoritesScreen extends React.Component {
   static navigationOptions = {

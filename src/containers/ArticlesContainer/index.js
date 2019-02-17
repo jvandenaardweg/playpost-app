@@ -2,11 +2,11 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getAudioByArticleUrl, setTrack } from '../../reducers/player';
-import { AppleStyleSwipeableRow } from '../../components/AppleStyleSwipeableRow';
-// import { GmailStyleSwipeableRow } from '../../components/GmailStyleSwipeableRow';
+import { getAudioByArticleUrl, setTrack } from '@/reducers/player';
+import { AppleStyleSwipeableRow } from '@/components/AppleStyleSwipeableRow';
+// import { GmailStyleSwipeableRow } from '@/components/GmailStyleSwipeableRow';
 
-import { ArticleContainer } from '../../components/Article/ArticleContainer';
+import { ArticleContainer } from '@/components/Article/ArticleContainer';
 
 const articles = [
   {

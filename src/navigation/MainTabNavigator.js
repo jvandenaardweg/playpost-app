@@ -1,13 +1,12 @@
 import React from 'react';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
-import { TabBar } from '../components/TabBar';
-import { TabBarIcon } from '../components/TabBarIcon';
+import { TabBar, TabBarIcon } from '@/components/TabBar';
 
-import HomeScreen from '../screens/HomeScreen';
-import ArchiveScreen from '../screens/ArchiveScreen';
-import FavoritesScreen from '../screens/FavoritesScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import HomeScreen from '@/screens/HomeScreen';
+import ArchiveScreen from '@/screens/ArchiveScreen';
+import FavoritesScreen from '@/screens/FavoritesScreen';
+import SettingsScreen from '@/screens/SettingsScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,

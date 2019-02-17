@@ -5,9 +5,9 @@ import {
 import { connect } from 'react-redux';
 import TrackPlayer from 'react-native-track-player';
 
-import { setPlaybackStatus } from '../../reducers/player';
+import { setPlaybackStatus } from '@/reducers/player';
 
-import { AudioPlayerSmall } from '../../components/AudioPlayerSmall';
+import { AudioPlayerSmall } from '@/components/AudioPlayer';
 
 
 class AudioPlayerContainerComponent extends React.PureComponent {

@@ -36,18 +36,20 @@ export const Article = ({
         </View>
         <Text style={styles.description} ellipsizeMode="tail" numberOfLines={3}>{description}</Text>
       </View>
-      <View style={styles.sectionControl}>
-        <PlayButton
-          isLoading={isLoading}
-          isPlaying={isPlaying}
-          onPress={onPlayPress}
-          listenTimeInMinutes={listenTimeInMinutes}
-        />
-        <Text style={styles.duration}>
-          {(listenTimeInMinutes).toFixed(0)}
-          min
-        </Text>
-      </View>
+      {onPlayPress && (
+        <View style={styles.sectionControl}>
+          <PlayButton
+            isLoading={isLoading}
+            isPlaying={isPlaying}
+            onPress={onPlayPress}
+            listenTimeInMinutes={listenTimeInMinutes}
+          />
+          <Text style={styles.duration}>
+            {(listenTimeInMinutes).toFixed(0)}
+            min
+          </Text>
+        </View>
+      )}
     </View>
   </View>
 );
