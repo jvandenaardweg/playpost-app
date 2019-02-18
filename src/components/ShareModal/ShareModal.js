@@ -57,7 +57,7 @@ export class ShareModal extends React.PureComponent {
 
   render() {
     const {
-      value,
+      url,
       type,
       onPressCancel,
       onPressSave
@@ -71,6 +71,7 @@ export class ShareModal extends React.PureComponent {
             {this.renderArticle()}
           </View>
           <View style={styles.footer}>
+            <View><Text>{type} / {url}</Text></View>
             <View style={styles.footerRow}>
               <View style={styles.footerCancel}>
                 <Button title="Cancel" onPress={onPressCancel} type="outline" />
