@@ -2,12 +2,14 @@ import {
   StyleSheet
 } from 'react-native';
 
+import Colors from '@/constants/Colors';
+
 export default StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: '#000',
+    backgroundColor: Colors.black,
     paddingLeft: 14,
     paddingRight: 14,
     paddingTop: 8,
@@ -19,11 +21,10 @@ export default StyleSheet.create({
     height: 34,
     flexShrink: 0,
     alignItems: 'center',
-    justifyContent: 'center',
-    // borderRadius: 40
+    justifyContent: 'center'
   },
   emptyText: {
-    color: '#fff'
+    color: Colors.white
   },
   trackInfoButton: {
     flex: 1,
@@ -35,11 +36,11 @@ export default StyleSheet.create({
   },
   trackInfoTitle: {
     fontSize: 12,
-    color: '#fff',
+    color: Colors.white,
   },
   trackInfoArtist: {
     fontSize: 12,
-    color: '#fff',
+    color: Colors.white,
     opacity: 0.7
   },
   controls: {
@@ -49,7 +50,6 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   playButton: {
-    // backgroundColor: 'red',
     width: 40,
     height: 40,
     alignItems: 'center',
@@ -60,7 +60,7 @@ export default StyleSheet.create({
     height: 28,
     borderRadius: 28,
     borderWidth: 2,
-    borderColor: '#fff',
+    borderColor: Colors.white,
     alignItems: 'center',
     justifyContent: 'center'
   }
