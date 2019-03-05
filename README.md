@@ -8,6 +8,12 @@ When your eyes are too busy to read, but your ears are free to listen. Listen to
 2. Make sure you have accepted all Android SDK licenses, run: `sdkmanager --licenses`
 3. Run `react-native run-ios` or `react-native run-android`
 
+# Installing Detox (E2E Testing)
+1. Run `brew update`
+2. Run `brew tap wix/brew`
+3. Run `brew install applesimutils`
+4. Then you can run `npm run test:e2e`
+
 # Upgrading to new React Native version?
 Use `react-native-git-upgrade`.
 
