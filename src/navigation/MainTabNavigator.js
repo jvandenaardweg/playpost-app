@@ -65,7 +65,7 @@ SettingsStack.navigationOptions = {
   ),
 };
 
-export default createBottomTabNavigator({
+export const MainTabNavigator = createBottomTabNavigator({
   HomeStack,
   ArchiveStack,
   FavoritesStack,

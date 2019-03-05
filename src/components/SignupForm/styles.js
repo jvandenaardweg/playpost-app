@@ -6,8 +6,6 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.appBackground,
-    // justifyContent: 'center',
-    // alignItems: 'center',
     padding: 14,
     paddingTop: 124
   },
@@ -31,7 +29,4 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16
   }
-  // formFooter: {
-
-  // }
 });
