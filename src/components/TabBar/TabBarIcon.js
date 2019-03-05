@@ -1,7 +1,7 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/Feather';
 
-import Colors from '@/constants/Colors';
+import Colors from '@/constants/colors';
 
 export const TabBarIcon = (props) => {
   const { focused, name } = props;

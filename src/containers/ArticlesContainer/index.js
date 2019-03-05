@@ -7,7 +7,7 @@ import { AppleStyleSwipeableRow } from '@/components/AppleStyleSwipeableRow';
 // import { GmailStyleSwipeableRow } from '@/components/GmailStyleSwipeableRow';
 
 import { ArticleContainer } from '@/components/Article/ArticleContainer';
-import Colors from '@/constants/Colors';
+import Colors from '@/constants/colors';
 
 const articles = [
   {

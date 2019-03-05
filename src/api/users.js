@@ -1,4 +1,4 @@
-import { DEVELOPMENT_API_URL } from '../constants/Api';
+import { DEVELOPMENT_API_URL } from '../constants/api';
 
 export const API_CREATE_USER_URL = `${DEVELOPMENT_API_URL}/v1/users`;
 

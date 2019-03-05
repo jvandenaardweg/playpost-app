@@ -1,4 +1,4 @@
-import { PRODUCTION_API_URL } from '../constants/Api';
+import { PRODUCTION_API_URL } from '../constants/api';
 
 const headers = {
   'Content-Type': 'application/json',
