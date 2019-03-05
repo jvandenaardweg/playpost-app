@@ -6,9 +6,10 @@ import { connect } from 'react-redux';
 import { createUser } from '@/reducers/users';
 import { postAuth } from '@/reducers/auth';
 
-class SignupScreenContainer extends React.Component {
+class SignupScreenContainer extends React.PureComponent {
   static navigationOptions = {
-    title: 'Signup'
+    title: 'Signup',
+    header: null
   };
 
   state = {

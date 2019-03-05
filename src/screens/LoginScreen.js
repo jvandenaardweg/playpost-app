@@ -4,10 +4,14 @@ import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 
 import { postAuth } from '@/reducers/auth';
+import { getMe } from '@/reducers/me';
 
-class LoginScreenContainer extends React.Component {
+import { LoginForm } from '@/components/LoginForm';
+
+class LoginScreenContainer extends React.PureComponent {
   static navigationOptions = {
-    title: 'Login'
+    title: 'Login',
+    header: null
   };
 
   state = {
@@ -17,69 +21,59 @@ class LoginScreenContainer extends React.Component {
 
   async componentDidUpdate() {
     const { token } = this.props.auth;
+    const { user } = this.props.me;
 
-    if (token) {
+    if (this.props.auth.isLoading || this.props.me.isLoading) {
+      return;
+    }
+
+    // If we have a token, but no user yet, get the account details
+    if (token && !user.id) {
       await AsyncStorage.setItem('userToken', token);
+      this.props.getMe(token);
+    }
+
+    // If we got a user, we can redirect it to our app screen
+    if (user.id) {
       this.props.navigation.navigate('App');
     }
   }
 
-  handleLoginPress = () => {
+  handleOnPressLogin = () => {
     const { email, password } = this.state;
-
     this.props.postAuth(email, password);
   }
 
-  loginButtonTitle = () => {
-    const { isLoading } = this.props.auth;
+  handleOnPressSignup = () => this.props.navigation.navigate('Signup');
 
-    if (isLoading) return 'Loading...';
-
-    return 'Login';
-  }
+  handleOnChangeText = (field, value) => this.setState({ [field]: value });
 
   render() {
     const { email, password } = this.state;
-    const { token, error, isLoading } = this.props.auth;
+    const { error, isLoading } = this.props.auth;
 
     return (
-      <View>
-        <View>
-          <TextInput
-            placeholder="E-mail address"
-            autoCapitalize="none"
-            value={email}
-            onChangeText={(text) => this.setState({ email: text })}
-            style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-          />
-
-          <TextInput
-            placeholder="Password"
-            autoCapitalize="none"
-            secureTextEntry
-            value={password}
-            onChangeText={(text) => this.setState({ password: text })}
-            style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-          />
-          <Text>{error}</Text>
-          <Button title={this.loginButtonTitle()} onPress={this.handleLoginPress} disabled={isLoading} />
-          <Text>
-            Token:
-            {token}
-          </Text>
-          <Button title="Signup" onPress={() => this.props.navigation.navigate('Signup')} />
-        </View>
-      </View>
+      <LoginForm
+        email={email}
+        password={password}
+        error={error}
+        isLoading={isLoading}
+        onChangeText={this.handleOnChangeText}
+        onPressLogin={this.handleOnPressLogin}
+        onPressSignup={this.handleOnPressSignup}
+      />
     );
   }
 }
 
-const mapStateToProps = ({ auth }) => ({
-  auth
+const mapStateToProps = ({ auth, me }) => ({
+  auth,
+  me
 });
 
 const mapDispatchToProps = {
-  postAuth
+  postAuth,
+  getMe
 };
 
 export const LoginScreen = connect(

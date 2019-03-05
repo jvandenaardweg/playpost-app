@@ -6,8 +6,11 @@ import {
   AsyncStorage
 } from 'react-native';
 import { SettingsScreen as SettingsScreenComponent } from 'react-native-settings-screen';
+import { connect } from 'react-redux';
 
-export default class SettingsScreen extends React.Component {
+import { removeAuth } from '@/reducers/auth';
+
+class SettingsScreenContainer extends React.Component {
   static navigationOptions = {
     title: 'Settings'
   };
@@ -18,6 +21,7 @@ export default class SettingsScreen extends React.Component {
 
   handleOnPressLogout = async () => {
     await AsyncStorage.removeItem('userToken');
+    this.props.removeAuth();
     this.props.navigation.navigate('Login');
   }
 
@@ -130,6 +134,14 @@ export default class SettingsScreen extends React.Component {
       footer:
         'Changing the account settings becomes available in later versions.',
       rows: [
+        // {
+        //   title: 'E-mail address',
+        //   renderAccessory: () => (
+        //     <Text style={{ color: '#999', marginRight: 6, fontSize: 18 }}>
+        //       {this.props.me.user.email}
+        //     </Text>
+        //   )
+        // },
         {
           title: 'Logout',
           onPress: this.handleOnPressLogout
@@ -160,3 +172,16 @@ export default class SettingsScreen extends React.Component {
     );
   }
 }
+
+const mapStateToProps = ({ me }) => ({
+  me
+});
+
+const mapDispatchToProps = {
+  removeAuth
+};
+
+export const SettingsScreen = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SettingsScreenContainer);

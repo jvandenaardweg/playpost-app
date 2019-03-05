@@ -1,6 +1,6 @@
-import { DEVELOPMENT_API_URL } from '../constants/api';
+import { API_URL } from '../constants/api';
 
-export const API_AUTH_URL = `${DEVELOPMENT_API_URL}/v1/auth`;
+export const API_AUTH_URL = `${API_URL}/v1/auth`;
 
 // const headers = {
 //   'Content-Type': 'application/json',

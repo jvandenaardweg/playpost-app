@@ -1,6 +1,6 @@
-import { DEVELOPMENT_API_URL } from '../constants/api';
+import { API_URL } from '../constants/api';
 
-export const API_CREATE_USER_URL = `${DEVELOPMENT_API_URL}/v1/users`;
+export const API_CREATE_USER_URL = `${API_URL}/v1/users`;
 
 // const headers = {
 //   'Content-Type': 'application/json',

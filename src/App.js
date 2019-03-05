@@ -38,17 +38,15 @@ const store = createStore(
 
 export default App = () => (
   <Provider store={store}>
-    <View style={styles.container}>
-      <AppNavigator />
-    </View>
+    <AppNavigator />
   </Provider>
 );
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1
+//   }
+// });
 
 
 // export default from '../storybook';
