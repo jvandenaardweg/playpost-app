@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { createUser } from '@/reducers/users';
 import { postAuth } from '@/reducers/auth';
 
+import { SignupForm } from '@/components/SignupForm';
+
 class SignupScreenContainer extends React.PureComponent {
   static navigationOptions = {
     title: 'Signup',
@@ -14,7 +16,9 @@ class SignupScreenContainer extends React.PureComponent {
 
   state = {
     email: null,
-    password: null
+    password: null,
+    passwordValidation: null,
+    validationError: null
   }
 
   async componentDidUpdate() {
@@ -33,59 +37,78 @@ class SignupScreenContainer extends React.PureComponent {
     }
   }
 
-  handleSignupPress = () => {
-    const { email, password } = this.state;
+  handleOnPressSignup = () => {
+    const { email, password, passwordValidation } = this.state;
 
-    this.props.createUser(email, password);
+    if (password !== passwordValidation) {
+      return this.setState({ validationError: 'The given passwords do not match. Please make sure you typed your passwords correctly.' });
+    }
+
+    return this.props.createUser(email, password);
   }
 
-  signupButtonTitle = () => {
-    const isLoading = this.props.users.isLoading || this.props.auth.isLoading;
+  handleOnPressLogin = () => this.props.navigation.navigate('Login');
 
-    if (isLoading) return 'Loading...';
-
-    return 'Signup';
-  }
+  handleOnChangeText = (field, value) => this.setState({ [field]: value });
 
   render() {
-    const { email, password } = this.state;
-    const { user, error, isLoading } = this.props.users;
-    const { token } = this.props.auth;
+    const { email, password, passwordValidation, validationError } = this.state;
+    const { error, isLoading } = this.props.auth;
 
     return (
-      <View>
-        <View>
-          <TextInput
-            placeholder="E-mail address"
-            autoCapitalize="none"
-            value={email}
-            onChangeText={(text) => this.setState({ email: text })}
-            style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-          />
-
-          <TextInput
-            placeholder="Password"
-            autoCapitalize="none"
-            secureTextEntry
-            value={password}
-            onChangeText={(text) => this.setState({ password: text })}
-            style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-          />
-          <Text>{error}</Text>
-          <Button title={this.signupButtonTitle()} onPress={this.handleSignupPress} disabled={isLoading} />
-          <Text>
-            User:
-            {user.id}
-          </Text>
-          <Text>
-            Token:
-            {token}
-          </Text>
-          <Button title="Login" onPress={() => this.props.navigation.navigate('Login')} />
-        </View>
-      </View>
+      <SignupForm
+        email={email}
+        password={password}
+        passwordValidation={passwordValidation}
+        error={error}
+        validationError={validationError}
+        isLoading={isLoading}
+        onChangeText={this.handleOnChangeText}
+        onPressLogin={this.handleOnPressLogin}
+        onPressSignup={this.handleOnPressSignup}
+      />
     );
   }
+
+  // render() {
+  //   const { email, password } = this.state;
+  //   const { user, error, isLoading } = this.props.users;
+  //   const { token } = this.props.auth;
+
+  //   return (
+  //     <View>
+  //       <View>
+  //         <TextInput
+  //           placeholder="E-mail address"
+  //           autoCapitalize="none"
+  //           value={email}
+  //           onChangeText={(text) => this.setState({ email: text })}
+  //           style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+  //         />
+
+  //         <TextInput
+  //           placeholder="Password"
+  //           autoCapitalize="none"
+  //           secureTextEntry
+  //           value={password}
+  //           onChangeText={(text) => this.setState({ password: text })}
+  //           style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+  //         />
+  //         <Text>{error}</Text>
+  //         <Button title={this.signupButtonTitle()} onPress={this.handleSignupPress} disabled={isLoading} />
+  //         <Text>
+  //           User:
+  //           {user.id}
+  //         </Text>
+  //         <Text>
+  //           Token:
+  //           {token}
+  //         </Text>
+  //         <Button title="Login" onPress={() => this.props.navigation.navigate('Login')} />
+  //       </View>
+  //     </View>
+  //   );
+  // }
 }
 
 const mapStateToProps = ({ users, auth }) => ({
