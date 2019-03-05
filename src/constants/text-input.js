@@ -5,8 +5,8 @@ export default {
   backgroundColor: colors.grayLightest,
   borderWidth: 0,
   borderRadius: 4,
-  paddingLeft: 12,
-  paddingRight: 12,
+  paddingLeft: 16,
+  paddingRight: 16,
   marginBottom: 12,
   fontSize: 17,
   // backgroundColor: 'white'
