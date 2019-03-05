@@ -24,12 +24,24 @@ export default StyleSheet.create({
   },
   buttonStyle: {
     backgroundColor: Colors.black,
-    height: 45
+    height: 50,
+    marginBottom: 14
   },
   buttonTitleStyle: {
     color: Colors.white,
     fontWeight: 'bold',
     fontSize: 16
+  },
+  title: {
+    fontSize: 34,
+    lineHeight: 40,
+    color: Colors.grayDark,
+    fontWeight: '800'
+  },
+  subtitle: {
+    fontSize: 18,
+    lineHeight: 26,
+    color: Colors.grayLight,
   }
   // formFooter: {
 

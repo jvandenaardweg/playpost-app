@@ -53,8 +53,8 @@ export const SignupForm = ({
       </View>
 
       <View>
-        <Button title={isLoading ? 'Loading...' : 'Signup'} onPress={onPressSignup} disabled={isLoading} buttonStyle={styles.buttonStyle} titleStyle={styles.buttonTitleStyle} />
-        <Button title="Login" type="clear" onPress={onPressLogin} />
+        <Button title={isLoading ? 'Loading...' : 'Create account'} onPress={onPressSignup} disabled={isLoading} buttonStyle={styles.buttonStyle} titleStyle={styles.buttonTitleStyle} />
+        <Button title="I already have an account" type="clear" onPress={onPressLogin} titleStyle={{ color: 'gray', fontSize: 16 }} />
       </View>
 
     </View>

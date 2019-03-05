@@ -22,7 +22,8 @@ export default StyleSheet.create({
   },
   buttonStyle: {
     backgroundColor: Colors.black,
-    height: 45
+    height: 50,
+    marginBottom: 14
   },
   buttonTitleStyle: {
     color: Colors.white,

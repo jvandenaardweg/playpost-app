@@ -17,6 +17,9 @@ if (Platform.OS === 'ios' && __DEV__) {
   NativeModules.DevSettings.setIsDebuggingRemotely(true);
 }
 
+/* eslint-disable no-console */
+console.disableYellowBox = true;
+
 /* eslint-disable no-underscore-dangle */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

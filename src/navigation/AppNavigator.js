@@ -7,16 +7,16 @@ import { SignupScreen } from '@/screens/SignupScreen';
 import { AuthLoadingScreen } from '@/screens/AuthLoadingScreen';
 import { OnboardingScreen } from '@/screens/OnboardingScreen';
 
-const LoginStack = createStackNavigator({ Login: LoginScreen });
-const SignupStack = createStackNavigator({ Signup: SignupScreen });
-const OnboardingStack = createStackNavigator({ Onboarding: OnboardingScreen });
+// const LoginStack = createStackNavigator({ Login: LoginScreen });
+// const SignupStack = createStackNavigator({ Signup: SignupScreen });
+const OnboardingStack = createStackNavigator({ Onboarding: OnboardingScreen, Login: LoginScreen, Signup: SignupScreen });
 
 const AppNavigator = createSwitchNavigator(
   {
     AuthLoading: AuthLoadingScreen,
     App: MainTabNavigator,
-    Login: LoginStack, // https://reactnavigation.org/docs/en/auth-flow.html
-    Signup: SignupStack,
+    // Login: LoginStack, // https://reactnavigation.org/docs/en/auth-flow.html
+    // Signup: SignupStack,
     Onboarding: OnboardingStack
   },
   {

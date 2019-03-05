@@ -17,6 +17,8 @@ export const LoginForm = ({
 }) => (
   <View style={styles.container}>
     <View style={styles.form}>
+      {/* <Text style={styles.title}>Welcome back!</Text> */}
+      {/* <Text style={styles.subtitle}>Test</Text> */}
 
       <TextInput
         placeholder="E-mail address"
@@ -42,7 +44,7 @@ export const LoginForm = ({
 
       <View>
         <Button title={isLoading ? 'Loading...' : 'Login'} onPress={onPressLogin} disabled={isLoading} buttonStyle={styles.buttonStyle} titleStyle={styles.buttonTitleStyle} />
-        <Button title="Signup" type="clear" onPress={onPressSignup} />
+        <Button title="I don't have an account" type="clear" onPress={onPressSignup} titleStyle={{ color: 'gray', fontSize: 16 }} />
       </View>
 
     </View>

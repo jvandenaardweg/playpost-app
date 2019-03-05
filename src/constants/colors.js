@@ -1,6 +1,6 @@
 const tintColor = '#037DE2';
 const black = '#000000';
-const grayDark = '#888888';
+const grayDark = '#333C46';
 const grayLight = '#cccccc';
 const grayLightest = '#EEF0F4';
 const appBackground = '#EBEBEB';
@@ -23,7 +23,7 @@ export default {
   appBackground,
 
   tabIconDefault: grayLight,
-  tabIconSelected: black,
+  tabIconSelected: tintColor,
   tabBar: white,
 
   articleBackground: white,

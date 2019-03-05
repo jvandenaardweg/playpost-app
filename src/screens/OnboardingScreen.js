@@ -11,7 +11,6 @@ const slides = [
       'Listen to articles when you got no time to read, but do got time to listen. Let the app read the articles to you.',
     icon: 'ios-images',
     colors: ['#63E2FF', '#B066FE'],
-    showButtons: false
   },
   {
     key: 'somethun1',
@@ -20,7 +19,6 @@ const slides = [
       'Choose between a variaty of High Quality life-like voices with different accents like American English, British English or Australian English.',
     icon: 'ios-options',
     colors: ['#A3A1FF', '#3A3897'],
-    showButtons: false
   },
   {
     key: 'somethun2',
@@ -28,7 +26,6 @@ const slides = [
     text: 'A share icon is added in every app on your phone so you can easily add new articles. Just click the Share icon and add [App name].',
     icon: 'ios-beer',
     colors: ['#29ABE2', '#4F00BC'],
-    showButtons: true
   },
 ];
 
@@ -38,7 +35,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     backgroundColor: '#037DE2',
-    padding: 14
+    padding: 14,
+    paddingTop: 0
   },
   image: {
     width: 320,
@@ -50,22 +48,23 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingHorizontal: 16,
     fontSize: 16,
-    lineHeight: 24
+    lineHeight: 24,
   },
   title: {
     fontSize: 28,
-    lineHeight: 28,
+    lineHeight: 34,
     color: 'white',
     backgroundColor: 'transparent',
     textAlign: 'center',
-    marginBottom: 16,
-    fontWeight: '600'
+    marginBottom: 24,
+    fontWeight: '500',
+    fontFamily: 'Merriweather-Regular'
   },
 });
 
 export class OnboardingScreen extends React.PureComponent {
   static navigationOptions = {
-    title: 'Onboarding',
+    title: 'Introduction',
     header: null
   };
 
@@ -73,14 +72,21 @@ export class OnboardingScreen extends React.PureComponent {
 
   render() {
     return (
-      <AppIntroSlider
-        slides={slides}
-        renderItem={this.renderItem}
-        showPrevButton
-        hideSkipButton
-        showNextButton
-        hideDoneButton
-      />
+      <View style={{ flex: 1, backgroundColor: '#037DE2' }}>
+        <AppIntroSlider
+          testID="OnboardingScreen-slider"
+          slides={slides}
+          renderItem={this.renderItem}
+          hidePrevButton
+          hideSkipButton
+          hideNextButton
+          hideDoneButton
+        />
+        <View style={{ marginBottom: 42, paddingLeft: 14, paddingRight: 14 }}>
+          <Button title="Create account" onPress={() => this.props.navigation.navigate('Signup')} buttonStyle={{ backgroundColor: 'white', height: 50, marginBottom: 14 }} titleStyle={{ color: 'black', fontWeight: '600', fontSize: 16 }} />
+          <Button title="I already have an account" type="clear" onPress={() => this.props.navigation.navigate('Login')} titleStyle={{ color: 'white', fontSize: 16 }} />
+        </View>
+      </View>
     );
   }
 }
@@ -104,15 +110,8 @@ const OnboardingSlide = (props) => (
       color="white"
     /> */}
     <View>
-      <Text style={styles.title}>{props.title}</Text>
-      <Text style={styles.text}>{props.text}</Text>
-
-      {props.showButtons && (
-        <View>
-          <Button title="Signup" onPress={() => props.navigation.navigate('Signup')} />
-          <Button title="Login" onPress={() => props.navigation.navigate('Login')} />
-        </View>
-      )}
+      <Text testID="OnboardingScreen-title" style={styles.title}>{props.title}</Text>
+      <Text testID="OnboardingScreen-text" style={styles.text}>{props.text}</Text>
     </View>
   </View>
 );

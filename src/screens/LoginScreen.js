@@ -11,7 +11,7 @@ import { LoginForm } from '@/components/LoginForm';
 class LoginScreenContainer extends React.PureComponent {
   static navigationOptions = {
     title: 'Login',
-    header: null
+    // header: null
   };
 
   state = {

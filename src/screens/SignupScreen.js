@@ -11,7 +11,7 @@ import { SignupForm } from '@/components/SignupForm';
 class SignupScreenContainer extends React.PureComponent {
   static navigationOptions = {
     title: 'Signup',
-    header: null
+    // header: null
   };
 
   state = {
