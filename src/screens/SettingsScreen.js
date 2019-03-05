@@ -2,7 +2,8 @@ import React from 'react';
 import {
   Text,
   Switch,
-  Alert
+  Alert,
+  AsyncStorage
 } from 'react-native';
 import { SettingsScreen as SettingsScreenComponent } from 'react-native-settings-screen';
 
@@ -10,6 +11,15 @@ export default class SettingsScreen extends React.Component {
   static navigationOptions = {
     title: 'Settings'
   };
+
+  handleOnPressRow = () => {
+    Alert.alert('Changing this setting becomes available in later versions.');
+  }
+
+  handleOnPressLogout = async () => {
+    await AsyncStorage.removeItem('userToken');
+    this.props.navigation.navigate('Login');
+  }
 
   settingsData = [
     {
@@ -115,6 +125,18 @@ export default class SettingsScreen extends React.Component {
       ],
     },
     {
+      type: 'SECTION',
+      header: 'Account'.toUpperCase(),
+      footer:
+        'Changing the account settings becomes available in later versions.',
+      rows: [
+        {
+          title: 'Logout',
+          onPress: this.handleOnPressLogout
+        }
+      ],
+    },
+    {
       type: 'CUSTOM_VIEW',
       render: () => (
         <Text
@@ -130,11 +152,7 @@ export default class SettingsScreen extends React.Component {
         </Text>
       ),
     },
-  ]
-
-  handleOnPressRow = () => {
-    Alert.alert('Changing this setting becomes available in later versions.');
-  }
+  ];
 
   render() {
     return (

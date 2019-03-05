@@ -21,7 +21,7 @@ if (Platform.OS === 'ios' && __DEV__) {
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const client = axios.create({
-  baseURL: 'https://readto-api.herokuapp.com',
+  baseURL: 'https://readto-api-production.herokuapp.com',
   responseType: 'json'
 });
 
