@@ -36,7 +36,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     backgroundColor: '#037DE2',
     padding: 14,
-    paddingTop: 0
+    paddingTop: 0,
+    paddingBottom: '27%'
   },
   image: {
     width: 320,
@@ -82,8 +83,8 @@ export class OnboardingScreen extends React.PureComponent {
           hideNextButton
           hideDoneButton
         />
-        <View style={{ marginBottom: 42, paddingLeft: 14, paddingRight: 14 }}>
-          <Button title="Create account" onPress={() => this.props.navigation.navigate('Signup')} buttonStyle={{ backgroundColor: 'white', marginBottom: 14 }} titleStyle={{ color: 'black' }} />
+        <View style={{ marginBottom: 22, paddingLeft: 14, paddingRight: 14 }}>
+          <Button title="Create account" onPress={() => this.props.navigation.navigate('Signup')} buttonStyle={{ backgroundColor: 'white', marginBottom: 4 }} titleStyle={{ color: 'black' }} />
           <Button title="I already have an account" type="clear" onPress={() => this.props.navigation.navigate('Login')} titleStyle={{ color: 'white', fontWeight: 'normal' }} />
         </View>
       </View>
@@ -97,7 +98,7 @@ const OnboardingSlide = (props) => (
       styles.mainContent,
       {
         paddingTop: props.topSpacer,
-        paddingBottom: props.bottomSpacer,
+        // paddingBottom: props.bottomSpacer,
         width: props.width,
         height: props.height,
       },
