@@ -35,15 +35,16 @@
     "react-navigation": "^3.1.2",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
-    "redux-axios-middleware": "^4.0.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.3.3",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^10.0.1",
-    "babel-jest": "24.0.0",
+    "redux-axios-middleware": "^4.0.0",
+    "metro-react-native-babel-preset": "0.51.1",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "core-js": "^2.6.5",
+    "@babel/core": "^7.3.3",
+    "babel-core": "^7.0.0-bridge.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "24.0.0",
     "eslint": "^5.14.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-import-resolver-alias": "^1.1.2",
@@ -53,7 +54,6 @@
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-native": "^3.6.0",
     "jest": "24.0.0",
-    "metro-react-native-babel-preset": "0.51.1",
     "react-test-renderer": "16.6.3"
   },
   "jest": {
