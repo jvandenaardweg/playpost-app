@@ -5,9 +5,10 @@ import textInputStyle from '@/constants/text-input';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.appBackground,
-    padding: 14,
-    paddingTop: 124
+    // backgroundColor: Colors.appBackground,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 14
   },
   form: {
     width: '100%'
@@ -22,12 +23,7 @@ export default StyleSheet.create({
   },
   buttonStyle: {
     backgroundColor: Colors.black,
-    height: 50,
-    marginBottom: 14
-  },
-  buttonTitleStyle: {
-    color: Colors.white,
-    fontWeight: 'bold',
-    fontSize: 16
+    marginBottom: 14,
+    opacity: 1
   }
 });

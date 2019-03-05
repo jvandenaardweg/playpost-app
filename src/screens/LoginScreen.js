@@ -50,7 +50,18 @@ class LoginScreenContainer extends React.PureComponent {
 
   render() {
     const { email, password } = this.state;
-    const { error, isLoading } = this.props.auth;
+    const { error } = this.props.auth;
+
+    // A way to keep showing loading untill we navigate
+    // Or when an error happens
+    let isLoading = this.props.auth.isLoading || this.props.me.isLoading;
+
+    // TODO: loading goes away if the user has an error, so this might not be a good way
+
+
+    if (error) {
+      isLoading = false;
+    }
 
     return (
       <LoginForm

@@ -83,8 +83,8 @@ export class OnboardingScreen extends React.PureComponent {
           hideDoneButton
         />
         <View style={{ marginBottom: 42, paddingLeft: 14, paddingRight: 14 }}>
-          <Button title="Create account" onPress={() => this.props.navigation.navigate('Signup')} buttonStyle={{ backgroundColor: 'white', height: 50, marginBottom: 14 }} titleStyle={{ color: 'black', fontWeight: '600', fontSize: 16 }} />
-          <Button title="I already have an account" type="clear" onPress={() => this.props.navigation.navigate('Login')} titleStyle={{ color: 'white', fontSize: 16 }} />
+          <Button title="Create account" onPress={() => this.props.navigation.navigate('Signup')} buttonStyle={{ backgroundColor: 'white', marginBottom: 14 }} titleStyle={{ color: 'black' }} />
+          <Button title="I already have an account" type="clear" onPress={() => this.props.navigation.navigate('Login')} titleStyle={{ color: 'white', fontWeight: 'normal' }} />
         </View>
       </View>
     );

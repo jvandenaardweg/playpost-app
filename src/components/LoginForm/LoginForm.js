@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  View, Text, TextInput
+  View, Text, TextInput, ScrollView, KeyboardAvoidingView, ActivityIndicator
 } from 'react-native';
 import { Button } from 'react-native-elements';
 // import PropTypes from 'prop-types';
@@ -15,7 +15,7 @@ export const LoginForm = ({
   error,
   isLoading
 }) => (
-  <View style={styles.container}>
+  <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
     <View style={styles.form}>
       {/* <Text style={styles.title}>Welcome back!</Text> */}
       {/* <Text style={styles.subtitle}>Test</Text> */}
@@ -26,6 +26,10 @@ export const LoginForm = ({
         value={email}
         onChangeText={(text) => onChangeText('email', text)}
         style={styles.textField}
+        keyboardType="email-address"
+        returnKeyType="done"
+        clearButtonMode="always"
+        // onSubmitEditing={() => focusNextField()}
       />
 
       <TextInput
@@ -36,6 +40,9 @@ export const LoginForm = ({
         onChangeText={(text) => onChangeText('password', text)}
         textContentType="password"
         style={styles.textField}
+        returnKeyType="done"
+        clearButtonMode="always"
+        // onSubmitEditing={() => focusNextField()}
       />
 
       <View style={styles.errorContainer}>
@@ -43,10 +50,10 @@ export const LoginForm = ({
       </View>
 
       <View>
-        <Button title={isLoading ? 'Loading...' : 'Login'} onPress={onPressLogin} disabled={isLoading} buttonStyle={styles.buttonStyle} titleStyle={styles.buttonTitleStyle} />
-        <Button title="I don't have an account" type="clear" onPress={onPressSignup} titleStyle={{ color: 'gray', fontSize: 16 }} />
+        <Button title="Login" loading={isLoading} onPress={onPressLogin} disabled={isLoading} buttonStyle={styles.buttonStyle} disabledStyle={styles.buttonStyle} activeOpacity={1} titleStyle={styles.buttonTitleStyle} />
+        <Button title="I don't have an account" type="clear" onPress={onPressSignup} titleStyle={{ color: 'gray', fontWeight: 'normal' }} />
       </View>
 
     </View>
-  </View>
+  </KeyboardAvoidingView>
 );

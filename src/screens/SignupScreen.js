@@ -53,7 +53,17 @@ class SignupScreenContainer extends React.PureComponent {
 
   render() {
     const { email, password, passwordValidation, validationError } = this.state;
-    const { error, isLoading } = this.props.auth;
+    const error = this.props.auth.error || this.props.users.error || validationError;
+
+    // A way to keep showing loading untill we navigate
+    // Or when an error happens
+    let isLoading = this.props.auth.isLoading || this.props.users.isLoading;
+
+    // TODO: loading goes away if the user has an error, so this might not be a good way
+
+    if (error) {
+      isLoading = false;
+    }
 
     return (
       <SignupForm

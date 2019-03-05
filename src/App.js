@@ -1,10 +1,7 @@
 import React from 'react';
-import {
-  Platform, StyleSheet, View, NativeModules
-} from 'react-native';
-import {
-  createStore, combineReducers, applyMiddleware, compose
-} from 'redux';
+import { Platform, NativeModules } from 'react-native';
+import { ThemeProvider } from 'react-native-elements';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
@@ -28,6 +25,19 @@ const client = axios.create({
   responseType: 'json'
 });
 
+const theme = {
+  Button: {
+    buttonStyle: {
+      height: 55
+    },
+    titleStyle: {
+      fontWeight: '600',
+      fontSize: 17
+    },
+  },
+};
+
+
 const store = createStore(
   combineReducers({
     ...rootReducer,
@@ -41,7 +51,9 @@ const store = createStore(
 
 export default App = () => (
   <Provider store={store}>
-    <AppNavigator />
+    <ThemeProvider theme={theme}>
+      <AppNavigator />
+    </ThemeProvider>
   </Provider>
 );
 

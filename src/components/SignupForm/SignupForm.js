@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  View, Text, TextInput
-} from 'react-native';
+import { View, Text, TextInput, KeyboardAvoidingView } from 'react-native';
 import { Button } from 'react-native-elements';
 // import PropTypes from 'prop-types';
 import styles from './styles';
@@ -17,7 +15,7 @@ export const SignupForm = ({
   validationError,
   isLoading
 }) => (
-  <View style={styles.container}>
+  <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
     <View style={styles.form}>
 
       <TextInput
@@ -26,6 +24,9 @@ export const SignupForm = ({
         value={email}
         onChangeText={(text) => onChangeText('email', text)}
         style={styles.textField}
+        keyboardType="email-address"
+        returnKeyType="done"
+        clearButtonMode="always"
       />
 
       <TextInput
@@ -36,6 +37,8 @@ export const SignupForm = ({
         onChangeText={(text) => onChangeText('password', text)}
         textContentType="password"
         style={styles.textField}
+        returnKeyType="done"
+        clearButtonMode="always"
       />
 
       <TextInput
@@ -46,6 +49,8 @@ export const SignupForm = ({
         onChangeText={(text) => onChangeText('passwordValidation', text)}
         textContentType="password"
         style={styles.textField}
+        returnKeyType="done"
+        clearButtonMode="always"
       />
 
       <View style={styles.errorContainer}>
@@ -53,10 +58,10 @@ export const SignupForm = ({
       </View>
 
       <View>
-        <Button title={isLoading ? 'Loading...' : 'Create account'} onPress={onPressSignup} disabled={isLoading} buttonStyle={styles.buttonStyle} titleStyle={styles.buttonTitleStyle} />
-        <Button title="I already have an account" type="clear" onPress={onPressLogin} titleStyle={{ color: 'gray', fontSize: 16 }} />
+        <Button title="Create account" loading={isLoading} onPress={onPressSignup} disabled={isLoading} buttonStyle={styles.buttonStyle} activeOpacity={1} disabledStyle={styles.buttonStyle} titleStyle={styles.buttonTitleStyle} />
+        <Button title="I already have an account" type="clear" onPress={onPressLogin} titleStyle={{ color: 'gray', fontWeight: 'normal' }} />
       </View>
 
     </View>
-  </View>
+  </KeyboardAvoidingView>
 );
