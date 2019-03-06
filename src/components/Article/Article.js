@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  View, Text, TouchableHighlight, ActivityIndicator
+  View, Text, TouchableHighlight, ActivityIndicator, TouchableOpacity, Alert
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import PropTypes from 'prop-types';
@@ -18,9 +18,9 @@ export const Article = ({
   onPlayPress
 }) => (
   <View style={[styles.container, seperated ? styles.seperated : null]}>
-    <View style={styles.sectionHeader}>
+    <TouchableOpacity style={styles.sectionHeader} activeOpacity={1} onPress={() => Alert.alert('Should go to the browser...')}>
       <Text style={styles.title} ellipsizeMode="tail" numberOfLines={2}>{title}</Text>
-    </View>
+    </TouchableOpacity>
     <View style={styles.sectionBody}>
       <View style={styles.sectionMeta}>
         <View style={styles.source}>
