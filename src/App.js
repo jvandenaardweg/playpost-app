@@ -23,7 +23,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const client = axios.create({
   baseURL: 'https://readto-api-production.herokuapp.com',
-  responseType: 'json'
+  responseType: 'json',
+  timeout: 10000 // 10 seconds timeout
 });
 
 const theme = {
