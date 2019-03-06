@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, NativeModules, Alert } from 'react-native';
+import { Platform, NativeModules, Alert, AppState } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
@@ -52,6 +52,25 @@ const store = createStore(
 );
 
 export default class App extends React.PureComponent {
+  state = {
+    appState: AppState.currentState
+  }
+
+  componentDidMount() {
+    AppState.addEventListener('change', this.handleAppStateChange);
+  }
+
+  componentWillUnmount() {
+    AppState.removeEventListener('change', this.handleAppStateChange);
+  }
+
+  handleAppStateChange = (nextAppState) => {
+    if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
+      console.log('App has come to the foreground! We should check for new playlist items.');
+    }
+    this.setState({ appState: nextAppState });
+  };
+
   componentDidCatch(error, info) {
     // to prevent this alert blocking your view of a red screen while developing
     if (__DEV__) {

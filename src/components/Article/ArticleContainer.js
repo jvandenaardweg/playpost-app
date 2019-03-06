@@ -80,7 +80,7 @@ ArticleContainer.propTypes = {
     album: PropTypes.string
   }),
   article: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
     sourceName: PropTypes.string,

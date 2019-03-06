@@ -3,17 +3,17 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import { TabBar, TabBarIcon } from '@/components/TabBar';
 
-import HomeScreen from '@/screens/HomeScreen';
+import PlaylistScreen from '@/screens/PlaylistScreen';
 import ArchiveScreen from '@/screens/ArchiveScreen';
 import FavoritesScreen from '@/screens/FavoritesScreen';
 import { SettingsScreen } from '@/screens/SettingsScreen';
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
+const PlaylistStack = createStackNavigator({
+  Playlist: PlaylistScreen,
 });
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+PlaylistStack.navigationOptions = {
+  tabBarLabel: 'Playlist',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -66,7 +66,7 @@ SettingsStack.navigationOptions = {
 };
 
 export const MainTabNavigator = createBottomTabNavigator({
-  HomeStack,
+  PlaylistStack,
   ArchiveStack,
   FavoritesStack,
   SettingsStack,

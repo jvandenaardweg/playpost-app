@@ -30,6 +30,7 @@
     "metro-react-native-babel-preset": "0.51.1",
     "prop-types": "^15.6.2",
     "react": "16.6.3",
+    "react-fast-compare": "^2.0.4",
     "react-native": "^0.58.6",
     "react-native-app-intro-slider": "^1.0.1",
     "react-native-elements": "^1.0.0",

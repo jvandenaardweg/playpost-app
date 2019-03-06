@@ -6,7 +6,11 @@ import {
   View,
 } from 'react-native';
 
-export class AuthLoadingScreen extends React.Component {
+import { connect } from 'react-redux';
+
+import { setAuthToken } from '@/reducers/auth';
+
+export class AuthLoadingScreenContainer extends React.Component {
   componentDidMount() {
     this.bootstrapAsync();
   }
@@ -20,6 +24,8 @@ export class AuthLoadingScreen extends React.Component {
 
     // Important: Only rely on this token, so the user can use the app offline
     const userToken = await AsyncStorage.getItem('userToken');
+
+    this.props.setAuthToken(userToken);
 
     // This will switch to the App screen or Auth screen and this loading
     // screen will be unmounted and thrown away.
@@ -35,4 +41,17 @@ export class AuthLoadingScreen extends React.Component {
       </View>
     );
   }
+}
+
+const mapStateToProps = ({ auth }) => ({
+  auth
+});
+
+const mapDispatchToProps = {
+  setAuthToken
 };
+
+export const AuthLoadingScreen = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AuthLoadingScreenContainer);
