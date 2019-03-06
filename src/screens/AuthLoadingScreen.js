@@ -1,4 +1,5 @@
 import React from 'react';
+import Analytics from 'appcenter-analytics';
 import {
   ActivityIndicator,
   AsyncStorage,
@@ -12,6 +13,11 @@ export class AuthLoadingScreen extends React.Component {
 
   // Fetch the token from storage then navigate to our appropriate place
   bootstrapAsync = async () => {
+    if (process.env.NODE_ENV === 'production') {
+      // Enable Analytics, so we can track errors
+      await Analytics.setEnabled(true);
+    }
+
     // Important: Only rely on this token, so the user can use the app offline
     const userToken = await AsyncStorage.getItem('userToken');
 
