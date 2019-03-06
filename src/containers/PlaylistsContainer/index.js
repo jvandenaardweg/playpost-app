@@ -107,8 +107,7 @@ import { getMePlaylists } from '@/reducers/me';
 class ArticlesContainerComponent extends React.PureComponent {
   state = {
     isLoading: true,
-    isRefreshing: false,
-    articles: []
+    isRefreshing: false
   };
 
   async componentWillMount() {
@@ -116,37 +115,16 @@ class ArticlesContainerComponent extends React.PureComponent {
     this.fetchPlaylists();
   }
 
-  componentDidUpdate() {
-    const { isLoading, isRefreshing, articles } = this.state;
-
-    if (isLoading || isRefreshing) {
-      return console.log('Loading...');
-    }
-
-    if (articles.length) {
-      return articles;
-    }
-
-    if (!isLoading && !isRefreshing && this.props.me.playlists.length) {
-      // TODO: check if there are new playlist items
-      return this.setPlaylistArticles();
-      // return console.log('got playlists', this.props.me.playlists);
-    }
-
-    return console.log('Loading finished, but got not playlist. Show empty state.');
-  }
-
-  setPlaylistArticles() {
-    console.log('setPlaylistArticles');
-    // TODO: handle error when we could not get the playlists (network unavailable?)
-
+  getPlaylistArticles() {
     const { playlists } = this.props.me;
+
     if (!playlists || !playlists.length) return [];
 
-    const defaultPlaylist = playlists[0];
-    const playlistArticles = defaultPlaylist.playlistItems.map((playlistItem) => playlistItem.article);
-    return this.setState({ articles: playlistArticles });
-    // return playlistArticles;
+    const { playlistItems } = playlists[0];
+
+    if (!playlistItems || !playlistItems.length) return [];
+
+    return playlistItems.map((playlistItem) => playlistItem.article);
   }
 
   async fetchPlaylists() {
@@ -164,7 +142,9 @@ class ArticlesContainerComponent extends React.PureComponent {
       getAudioByArticleUrl, setTrack, track, playbackStatus
     } = this.props;
 
-    const { isLoading, isRefreshing, articles } = this.state;
+    const { isLoading, isRefreshing } = this.state;
+
+    const articles = this.getPlaylistArticles();
 
     // Initial loading indicator
     if (isLoading) return <View style={{ flex: 1 }}><ActivityIndicator /></View>;
