@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, ActivityIndicator, View } from 'react-native';
+import { FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getAudioByArticleUrl, setTrack } from '@/reducers/player';
@@ -7,6 +7,7 @@ import { AppleStyleSwipeableRow } from '@/components/AppleStyleSwipeableRow';
 // import { GmailStyleSwipeableRow } from '@/components/GmailStyleSwipeableRow';
 // import reactFastCompare from 'react-fast-compare'
 
+import { CenterLoadingIndicator } from '@/components/CenterLoadingIndicator';
 import { EmptyState } from '@/components/EmptyState';
 import { ArticleContainer } from '@/components/Article/ArticleContainer';
 import { getMePlaylists } from '@/reducers/me';
@@ -147,7 +148,7 @@ class ArticlesContainerComponent extends React.PureComponent {
     const articles = this.getPlaylistArticles();
 
     // Initial loading indicator
-    if (isLoading) return <View style={{ flex: 1 }}><ActivityIndicator /></View>;
+    if (isLoading) return <CenterLoadingIndicator />;
 
     // Empty state
     // TODO: should hide empty state automatically when a playlist is filled with items externally

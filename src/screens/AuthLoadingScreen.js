@@ -3,12 +3,15 @@ import Analytics from 'appcenter-analytics';
 import {
   ActivityIndicator,
   AsyncStorage,
-  View,
+  View
 } from 'react-native';
 
 import { connect } from 'react-redux';
 
+import { CenterLoadingIndicator } from '@/components/CenterLoadingIndicator';
+
 import { setAuthToken } from '@/reducers/auth';
+import colors from '@/constants/colors';
 
 export class AuthLoadingScreenContainer extends React.Component {
   componentDidMount() {
@@ -34,12 +37,7 @@ export class AuthLoadingScreenContainer extends React.Component {
 
   // Render any loading content that you like here
   render() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'white' }}>
-        <ActivityIndicator />
-        {/* <StatusBar barStyle="default" /> */}
-      </View>
-    );
+    return <CenterLoadingIndicator />;
   }
 }
 
