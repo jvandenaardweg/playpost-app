@@ -1,3 +1,4 @@
+import Analytics from 'appcenter-analytics';
 import { API_ME_URL } from '../api/me';
 
 export const GET_ME = 'me/GET_ME';
@@ -12,6 +13,8 @@ export function meReducer(state = { user: {} }, action) {
         isLoading: true
       };
     case GET_ME_SUCCESS:
+      Analytics.trackEvent('Get account success');
+
       return {
         ...state,
         isLoading: false,
@@ -19,11 +22,19 @@ export function meReducer(state = { user: {} }, action) {
         error: null
       };
     case GET_ME_FAIL:
+      const genericMessage = 'An unknown error happened while getting your account. Please contact us when this happens all the time.';
+
+      if (action.error.response && action.error.response.data && action.error.response.data.message) {
+        Analytics.trackEvent('Error get account', { message: action.error.response.data.message });
+      } else {
+        Analytics.trackEvent('Error get account', { message: genericMessage });
+      }
+
       return {
         ...state,
         isLoading: false,
         user: {},
-        error: action.error.response.data.message || 'An unknown error happened while getting your account. Please contact us when this happens all the time.'
+        error: (action.error.response) ? action.error.response.data.message : genericMessage
       };
     default:
       return state;

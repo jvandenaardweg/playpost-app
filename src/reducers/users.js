@@ -1,3 +1,4 @@
+import Analytics from 'appcenter-analytics';
 import { API_CREATE_USER_URL } from '../api/users';
 
 export const CREATE_USER = 'users/CREATE_USER';
@@ -12,6 +13,8 @@ export function usersReducer(state = { user: {} }, action) {
         isLoading: true
       };
     case CREATE_USER_SUCCESS:
+      Analytics.trackEvent('Create user success');
+
       return {
         ...state,
         isLoading: false,
@@ -19,11 +22,19 @@ export function usersReducer(state = { user: {} }, action) {
         error: null
       };
     case CREATE_USER_FAIL:
+      const genericMessage = 'An unknown error happened while creating your account. Please contact us when this happens all the time.';
+
+      if (action.error.response && action.error.response.data && action.error.response.data.message) {
+        Analytics.trackEvent('Error create user', { message: action.error.response.data.message });
+      } else {
+        Analytics.trackEvent('Error create user', { message: genericMessage });
+      }
+
       return {
         ...state,
         isLoading: false,
         user: {},
-        error: action.error.response.data.message || 'An unknown error happened while creating your account. Please contact us when this happens all the time.'
+        error: (action.error.response) ? action.error.response.data.message : genericMessage
       };
     default:
       return state;

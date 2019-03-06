@@ -1,5 +1,4 @@
-import { AsyncStorage } from 'react-native';
-
+import Analytics from 'appcenter-analytics';
 import { API_AUTH_URL } from '../api/auth';
 
 export const POST_AUTH = 'auth/POST_AUTH';
@@ -21,6 +20,8 @@ export function authReducer(state = initialState, action) {
         isLoading: true
       };
     case POST_AUTH_SUCCESS:
+      Analytics.trackEvent('Auth success');
+
       return {
         ...state,
         isLoading: false,
@@ -28,11 +29,19 @@ export function authReducer(state = initialState, action) {
         error: null
       };
     case POST_AUTH_FAIL:
+      const genericMessage = 'An unknown error happened while loggin you in. Please contact us when this happens all the time.';
+
+      if (action.error.response && action.error.response.data && action.error.response.data.message) {
+        Analytics.trackEvent('Error auth', { message: action.error.response.data.message });
+      } else {
+        Analytics.trackEvent('Error auth', { message: genericMessage });
+      }
+
       return {
         ...state,
         isLoading: false,
         token: null,
-        error: action.error.response.data.message || 'An unknown error happened while loggin you in. Please contact us when this happens all the time.'
+        error: (action.error.response) ? action.error.response.data.message : genericMessage
       };
     case REMOVE_AUTH:
       return {
