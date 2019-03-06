@@ -1,10 +1,11 @@
 import React from 'react';
-import { Platform, NativeModules } from 'react-native';
+import { Platform, NativeModules, Alert } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
+import RNRestart from 'react-native-restart';
 
 import AppNavigator from './navigation/AppNavigator';
 import rootReducer from './reducers';
@@ -49,19 +50,40 @@ const store = createStore(
   )
 );
 
-export default App = () => (
-  <Provider store={store}>
-    <ThemeProvider theme={theme}>
-      <AppNavigator />
-    </ThemeProvider>
-  </Provider>
-);
+export default class App extends React.PureComponent {
+  componentDidCatch(error, info) {
+    // to prevent this alert blocking your view of a red screen while developing
+    if (__DEV__) {
+      return;
+    }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1
-//   }
-// });
+    // to prevent multiple alerts shown to your users
+    if (this.errorShown) {
+      return;
+    }
 
+    this.errorShown = true;
 
-// export default from '../storybook';
+    Alert.alert(
+      null,
+      'Oops! Something went wrong. Please restart the app to continue.',
+      [
+        {
+          text: 'Restart app',
+          onPress: RNRestart.Restart,
+        },
+      ],
+      { cancelable: false }
+    );
+  }
+
+  render() {
+    return (
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <AppNavigator />
+        </ThemeProvider>
+      </Provider>
+    );
+  }
+}

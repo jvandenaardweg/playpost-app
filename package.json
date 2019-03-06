@@ -34,6 +34,7 @@
     "react-native-app-intro-slider": "^1.0.1",
     "react-native-elements": "^1.0.0",
     "react-native-gesture-handler": "^1.0.15",
+    "react-native-restart": "0.0.9",
     "react-native-settings-screen": "^2.1.2",
     "react-native-share-extension": "^1.2.1",
     "react-native-track-player": "^1.1.2",
