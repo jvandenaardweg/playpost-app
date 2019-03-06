@@ -109,7 +109,6 @@
 		DD6BBD1A43F44BC8A477438A /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CE153E601D849F1A72C8047 /* AppCenter-Config.plist */; };
 		E37AB72DE5E246B78375F07E /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CA2C114AF24416C8B59526F /* Zocial.ttf */; };
 		E670C17210AE4BC89AFBDC83 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 740368AC306045B2AC5A575C /* MaterialCommunityIcons.ttf */; };
-		E9C1A8EE098592EA90159173 /* libPods-Readto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5A7DDA220F23EC00ECCC65 /* libPods-Readto.a */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED75251423134820A02E38D2 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7172C5072020474BA598FF33 /* EvilIcons.ttf */; };
 		EFA00F99313549C38DC09A55 /* Merriweather-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4737CA2073746B38C3D16F0 /* Merriweather-Regular.ttf */; };
@@ -613,7 +612,6 @@
 				686893D645554C13996D9CCD /* libAppCenterReactNativeCrashes.a in Frameworks */,
 				05070F8112484BF891C52C39 /* libRNVectorIcons.a in Frameworks */,
 				D3028119ADE3B1EDE1E2DDA6 /* libPods-Readto.a in Frameworks */,
-				E9C1A8EE098592EA90159173 /* libPods-Readto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1082,7 +1080,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1010;
-				ORGANIZATIONNAME = Facebook;
+				ORGANIZATIONNAME = "Aardweg Media";
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
