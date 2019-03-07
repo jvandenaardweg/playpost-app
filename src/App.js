@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, NativeModules, AppState, Linking } from 'react-native';
+import { Platform, NativeModules, AppState } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
 import { Provider } from 'react-redux';
 
@@ -25,18 +25,18 @@ export default class App extends React.PureComponent {
   componentDidMount() {
     AppState.addEventListener('change', this.handleAppStateChange);
 
-    if (Platform.OS === 'android') {
-      Linking.getInitialURL().then(url => {
-        this.navigate(url);
-      });
-    } else {
-      Linking.addEventListener('url', this.handleOpenURL);
-    }
+    // if (Platform.OS === 'android') {
+    //   Linking.getInitialURL().then(url => {
+    //     this.navigate(url);
+    //   });
+    // } else {
+    //   Linking.addEventListener('url', this.handleOpenURL);
+    // }
   }
 
   componentWillUnmount() {
     AppState.removeEventListener('change', this.handleAppStateChange);
-    Linking.removeEventListener('url', this.handleOpenURL);
+    // Linking.removeEventListener('url', this.handleOpenURL);
   }
 
   handleAppStateChange = (nextAppState) => {
@@ -46,9 +46,9 @@ export default class App extends React.PureComponent {
     this.setState({ appState: nextAppState });
   };
 
-  handleOpenURL = (event) => {
-    this.navigate(event.url);
-  }
+  // handleOpenURL = (event) => {
+  //   this.navigate(event.url);
+  // }
 
   navigate = (url) => {
     // TODO: make navigation work, app should be wrapped in react navigation
