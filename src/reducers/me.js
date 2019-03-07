@@ -1,5 +1,4 @@
 import Analytics from 'appcenter-analytics';
-import { API_ME_URL, API_ME_PLAYLISTS_URL } from '../api/me';
 
 export const GET_ME = 'me/GET_ME';
 export const GET_ME_SUCCESS = 'me/GET_ME_SUCCESS';
@@ -80,7 +79,7 @@ export function getMe(token) {
     payload: {
       request: {
         method: 'get',
-        url: API_ME_URL,
+        url: '/v1/me',
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -95,7 +94,7 @@ export function getMePlaylists(token) {
     payload: {
       request: {
         method: 'get',
-        url: API_ME_PLAYLISTS_URL,
+        url: '/v1/me/playlists',
         headers: {
           Authorization: `Bearer ${token}`
         }

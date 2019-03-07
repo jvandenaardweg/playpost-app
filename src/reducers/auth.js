@@ -1,5 +1,4 @@
 import Analytics from 'appcenter-analytics';
-import { API_AUTH_URL } from '../api/auth';
 
 export const POST_AUTH = 'auth/POST_AUTH';
 export const POST_AUTH_SUCCESS = 'auth/POST_AUTH_SUCCESS';
@@ -22,6 +21,7 @@ export function authReducer(state = initialState, action) {
         ...state,
         isLoading: true
       };
+
     case POST_AUTH_SUCCESS:
       Analytics.trackEvent('Auth success');
 
@@ -31,6 +31,7 @@ export function authReducer(state = initialState, action) {
         token: action.payload.data.token,
         error: null
       };
+
     case POST_AUTH_FAIL:
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
         Analytics.trackEvent('Error auth', { message: action.error.response.data.message });
@@ -44,15 +45,18 @@ export function authReducer(state = initialState, action) {
         token: null,
         error: (action.error.response) ? action.error.response.data.message : POST_AUTH_FAIL_MESSAGE
       };
+
     case REMOVE_AUTH:
       return {
         ...initialState
       };
+
     case SET_AUTH_TOKEN:
       return {
         ...state,
         token: action.payload.token
       };
+
     default:
       return state;
   }
@@ -79,7 +83,7 @@ export function postAuth(email, password) {
     payload: {
       request: {
         method: 'post',
-        url: API_AUTH_URL,
+        url: '/v1/auth',
         data: {
           email,
           password

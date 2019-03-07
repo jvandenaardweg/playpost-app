@@ -1,5 +1,4 @@
 import Analytics from 'appcenter-analytics';
-import { API_PLAYLISTS_URL } from '../api/playlists';
 
 export const POST_PLAYLISTS_ARTICLES = 'auth/POST_PLAYLISTS_ARTICLES';
 export const POST_PLAYLISTS_ARTICLES_SUCCESS = 'auth/POST_PLAYLISTS_ARTICLES_SUCCESS';
@@ -52,7 +51,7 @@ export function postAddArticleToPlaylist(articleId, playlistId) {
     payload: {
       request: {
         method: 'post',
-        url: `${API_PLAYLISTS_URL}/${playlistId}/articles/${articleId}`
+        url: `v1/playlists/${playlistId}/articles/${articleId}`
       }
     }
   };

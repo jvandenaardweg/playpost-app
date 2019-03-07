@@ -1,14 +1,12 @@
 import React from 'react';
 import { Platform, NativeModules, Alert, AppState, Linking } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-import axios from 'axios';
-import axiosMiddleware from 'redux-axios-middleware';
 import RNRestart from 'react-native-restart';
 
+import { store } from '@/store';
+
 import AppNavigator from './navigation/AppNavigator';
-import rootReducer from './reducers';
 
 /* eslint-disable no-undef */
 if (Platform.OS === 'ios' && __DEV__) {
@@ -17,15 +15,6 @@ if (Platform.OS === 'ios' && __DEV__) {
 
 /* eslint-disable no-console */
 console.disableYellowBox = true;
-
-/* eslint-disable no-underscore-dangle */
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const client = axios.create({
-  baseURL: 'https://readto-api-production.herokuapp.com',
-  responseType: 'json',
-  timeout: 10000 // 10 seconds timeout
-});
 
 const theme = {
   Button: {
@@ -38,18 +27,6 @@ const theme = {
     },
   },
 };
-
-
-const store = createStore(
-  combineReducers({
-    ...rootReducer,
-  }),
-  composeEnhancers(
-    applyMiddleware(
-      axiosMiddleware(client)
-    )
-  )
-);
 
 export default class App extends React.PureComponent {
   state = {
@@ -84,7 +61,8 @@ export default class App extends React.PureComponent {
     this.navigate(event.url);
   }
 
-  navigate = (url) => { // E
+  navigate = (url) => {
+    // TODO: make navigation work, app should be wrapped in react navigation
     const { navigate } = this.props.navigation;
     const route = url.replace(/.*?:\/\//g, '');
     // const id = route.match(/\/([^\/]+)\/?$/)[1];

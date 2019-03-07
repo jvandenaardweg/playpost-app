@@ -1,5 +1,4 @@
 import Analytics from 'appcenter-analytics';
-import { API_CREATE_USER_URL } from '../api/users';
 
 export const CREATE_USER = 'users/CREATE_USER';
 export const CREATE_USER_SUCCESS = 'users/CREATE_USER_SUCCESS';
@@ -47,7 +46,7 @@ export function createUser(email, password) {
     payload: {
       request: {
         method: 'post',
-        url: API_CREATE_USER_URL,
+        url: '/v1/users',
         data: {
           email,
           password
