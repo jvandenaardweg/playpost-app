@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, View, Text } from 'react-native';
+import { Alert } from 'react-native';
 import RNRestart from 'react-native-restart';
 import Analytics from 'appcenter-analytics';
 
@@ -23,6 +23,7 @@ export class ErrorBoundary extends React.PureComponent<Props, State> {
   }
 
   componentDidCatch(error: any, info: any) {
+    console.log(error, info)
     // to prevent this alert blocking your view of a red screen while developing
     if (__DEV__) {
       return;
@@ -51,10 +52,10 @@ export class ErrorBoundary extends React.PureComponent<Props, State> {
   }
 
   render() {
-    if (this.state.hasError) {
-      // Render any custom fallback UI
-      return <View style={{ flex: 1 }}><Text>Something went wrong.</Text></View>;
-    }
+    // if (this.state.hasError) {
+    //   // Render any custom fallback UI
+    //   return <View style={{ flex: 1 }}><Text>Something went wrong.</Text></View>;
+    // }
 
     return this.props.children;
   }

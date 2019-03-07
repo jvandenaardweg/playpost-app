@@ -49,7 +49,7 @@ export class ShareModal extends React.PureComponent<Props, State> {
   renderArticle = () => {
     const { isLoading, title, description, sourceName } = this.state;
 
-    if (isLoading || (!title && !description)) return null;
+    if (isLoading || (!title && !description)) return;
 
     return (
       <Article
@@ -63,7 +63,7 @@ export class ShareModal extends React.PureComponent<Props, State> {
   renderActivityIndicator = () => {
     const { isLoading } = this.state;
 
-    if (!isLoading) return null;
+    if (!isLoading) return;
 
     return (
       <ActivityIndicator />

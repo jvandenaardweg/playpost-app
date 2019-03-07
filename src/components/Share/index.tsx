@@ -118,10 +118,22 @@ export default class ShareContainer extends React.Component<Props, State> {
     }
   }
 
+  renderErrorMessage() {
+    const { errorMessage, errorAction } = this.state;
+    if (!errorMessage) return;
+
+    return (<ErrorModal message={errorMessage} action={errorAction} onPressAction={this.openUrl} />);
+  }
+
+  renderShareModal() {
+    const { type, value, errorMessage } = this.state;
+    if (errorMessage) return;
+
+    return (<ShareModal type={type} url={value} onPressSave={this.closing} onPressCancel={this.closing} />);
+  }
+
   render() {
-    const {
-      opacityAnim, isOpen, value, type, errorMessage, errorAction
-    } = this.state;
+    const { opacityAnim, isOpen } = this.state;
 
     return (
       <Animated.View style={{
@@ -147,16 +159,8 @@ export default class ShareContainer extends React.Component<Props, State> {
             padding: 24
           }}
           >
-            {errorMessage && <ErrorModal message={errorMessage} action={errorAction} onPressAction={this.openUrl} />}
-
-            {!errorMessage && type && value && (
-              <ShareModal
-                type={type}
-                url={value}
-                onPressSave={this.closing}
-                onPressCancel={this.closing}
-              />
-            )}
+            {this.renderErrorMessage()}
+            {this.renderShareModal()}
           </View>
         </Modal>
       </Animated.View>
