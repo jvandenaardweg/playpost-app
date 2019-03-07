@@ -5,10 +5,10 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "storybook": "storybook start",
     "lint": "eslint --ext=.js src",
     "lint:fix": "eslint --ext=.js src --fix",
-    "lint:debug": "eslint --ext=.js src --debug"
+    "lint:debug": "eslint --ext=.js src --debug",
+    "postinstall": "./postinstall.sh"
   },
   "rnpm": {
     "assets": [
@@ -17,8 +17,6 @@
   },
   "dependencies": {
     "@babel/core": "^7.3.3",
-    "@storybook/addon-actions": "^4.1.11",
-    "@storybook/react-native": "^4.1.11",
     "appcenter": "1.12.0",
     "appcenter-analytics": "1.12.0",
     "appcenter-crashes": "1.12.0",
