@@ -4,7 +4,7 @@ import { Button } from 'react-native-elements';
 import styles from './styles';
 
 interface Props {
-  onChangeText: (field: string, text: string) => {}
+  onChangeText(field: string, text: string): void
   onPressLogin(): void
   onPressSignup(): void
   email: string

@@ -13,19 +13,16 @@ const GET_ME_PLAYLISTS_FAIL_MESSAGE = 'An unknown error happened while getting y
 
 export interface MeState {
   isLoading: boolean
-  user: ApiUser
+  user: ApiUser | null
   playlists: ApiPlaylist[]
-  error: string
+  error: string | null
 }
 
 const initialState: MeState = {
   isLoading: false,
-  user: {
-    id: '',
-    email: ''
-  },
+  user: null,
   playlists: [],
-  error: ''
+  error: null
 }
 export function meReducer(state = initialState, action: any) {
   switch (action.type) {
@@ -53,7 +50,7 @@ export function meReducer(state = initialState, action: any) {
       return {
         ...state,
         isLoading: false,
-        user: {},
+        user: null,
         error: (action.error.response) ? action.error.response.data.message : GET_ME_FAIL_MESSAGE
       };
 

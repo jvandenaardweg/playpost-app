@@ -1,15 +1,11 @@
 import React from 'react';
-import {
-  Text,
-  Switch,
-  Alert,
-  AsyncStorage
-} from 'react-native';
-import { SettingsScreen as SettingsScreenComponent } from 'react-native-settings-screen';
+import { Text, Switch, Alert, AsyncStorage } from 'react-native';
+import { SettingsScreen as SettingsScreenComponent, SettingsData } from 'react-native-settings-screen';
 import { connect } from 'react-redux';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 
 import { removeAuth } from '../reducers/auth';
+import { MeState } from '../reducers/me';
 
 interface Props {
   removeAuth(): void,
@@ -31,7 +27,7 @@ class SettingsScreenContainer extends React.Component<Props> {
     this.props.navigation.navigate('Login');
   }
 
-  settingsData = [
+  settingsData: SettingsData = [
     {
       type: 'SECTION',
       header: 'Voice'.toUpperCase(),
@@ -140,14 +136,6 @@ class SettingsScreenContainer extends React.Component<Props> {
       footer:
         'Changing the account settings becomes available in later versions.',
       rows: [
-        // {
-        //   title: 'E-mail address',
-        //   renderAccessory: () => (
-        //     <Text style={{ color: '#999', marginRight: 6, fontSize: 18 }}>
-        //       {this.props.me.user.email}
-        //     </Text>
-        //   )
-        // },
         {
           title: 'Logout',
           onPress: this.handleOnPressLogout
@@ -179,8 +167,8 @@ class SettingsScreenContainer extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({ me }) => ({
-  me
+const mapStateToProps = (state: { me: MeState }) => ({
+  me: state.me
 });
 
 const mapDispatchToProps = {

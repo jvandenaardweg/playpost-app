@@ -6,15 +6,14 @@ export const CREATE_USER_FAIL = 'users/CREATE_USER_FAIL';
 
 export interface UsersState {
   isLoading: boolean
-  user: ApiUser
+  user: ApiUser | null
+  error: string | null
 }
 
 const initialState: UsersState = {
   isLoading: false,
-  user: {
-    id: '',
-    email: ''
-  }
+  user: null,
+  error: null
 }
 
 export function usersReducer(state = initialState, action: any) {
@@ -45,7 +44,7 @@ export function usersReducer(state = initialState, action: any) {
       return {
         ...state,
         isLoading: false,
-        user: {},
+        user: null,
         error: (action.error.response) ? action.error.response.data.message : genericMessage
       };
     default:

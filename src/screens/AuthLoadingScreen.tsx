@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import { CenterLoadingIndicator } from '../components/CenterLoadingIndicator';
 
-import { setAuthToken } from '../reducers/auth';
+import { setAuthToken, AuthState } from '../reducers/auth';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 
 interface Props {
@@ -42,8 +42,8 @@ export class AuthLoadingScreenContainer extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({ auth }) => ({
-  auth
+const mapStateToProps = (state: { auth: AuthState }) => ({
+  auth: state.auth
 });
 
 const mapDispatchToProps = {

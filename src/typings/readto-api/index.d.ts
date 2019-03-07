@@ -6,13 +6,18 @@ interface ApiPlaylist {
 
 interface ApiPlaylistItem {
   id: string
-  article: Article
+  article: ApiArticle
 }
 
-interface Article {
+interface ApiArticle {
   id: string
   title: string
   description: string
+  url: string
+  categoryName: string
+  sourceName: string
+  authorName: string
+  listenTimeInMinutes: number
 }
 
 interface ApiUser {

@@ -3,8 +3,8 @@ import { AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 
-import { createUser } from '../reducers/users';
-import { postAuth } from '../reducers/auth';
+import { createUser, UsersState } from '../reducers/users';
+import { postAuth, AuthState } from '../reducers/auth';
 
 import { SignupForm } from '../components/SignupForm';
 
@@ -95,9 +95,9 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
   }
 }
 
-const mapStateToProps = ({ users, auth }) => ({
-  users,
-  auth
+const mapStateToProps = (state: { users: UsersState, auth: AuthState }) => ({
+  users: state.users,
+  auth: state.auth
 });
 
 const mapDispatchToProps = {

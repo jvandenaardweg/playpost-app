@@ -9,7 +9,9 @@ import Icon from 'react-native-vector-icons/Feather';
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
 export class GmailStyleSwipeableRow extends Component {
-  renderLeftActions = (progress, dragX) => {
+  swipeableRow: any = React.createRef()
+
+  renderLeftActions = (progress: Animated.Value, dragX: Animated.Value) => {
     const scale = dragX.interpolate({
       inputRange: [0, 80],
       outputRange: [0, 1],
@@ -27,7 +29,7 @@ export class GmailStyleSwipeableRow extends Component {
     );
   };
 
-  renderRightActions = (progress, dragX) => {
+  renderRightActions = (progress: Animated.Value, dragX: Animated.Value) => {
     const scale = dragX.interpolate({
       inputRange: [-80, 0],
       outputRange: [1, 0],
@@ -45,7 +47,7 @@ export class GmailStyleSwipeableRow extends Component {
     );
   };
 
-  updateRef = (ref) => {
+  updateRef = (ref: any) => {
     this.swipeableRow = ref;
   };
 

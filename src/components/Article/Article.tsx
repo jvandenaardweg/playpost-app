@@ -4,15 +4,15 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import styles from './styles';
 
 interface Props {
-  isLoading: boolean
-  isPlaying: boolean
-  seperated: boolean
+  isLoading?: boolean
+  isPlaying?: boolean
+  seperated?: boolean
   title: string
   description: string
   sourceName: string
-  authorName: string
-  listenTimeInMinutes: number
-  onPlayPress(): void
+  authorName?: string
+  listenTimeInMinutes?: number
+  onPlayPress?(): void
 }
 
 export const Article = ({
@@ -51,7 +51,6 @@ export const Article = ({
             isLoading={isLoading}
             isPlaying={isPlaying}
             onPress={onPlayPress}
-            listenTimeInMinutes={listenTimeInMinutes}
           />
           <Text style={styles.duration}>
             {listenTimeInMinutes && listenTimeInMinutes.toFixed(0)}
@@ -63,7 +62,7 @@ export const Article = ({
   </View>
 );
 
-export const PlayButton = (props: { isPlaying: boolean, onPress(): void, isLoading: boolean, listenTimeInMinutes: number }) => (
+export const PlayButton = (props: { isPlaying?: boolean, onPress(): void, isLoading?: boolean }) => (
   <TouchableHighlight
     style={[styles.controlButton, props.isPlaying ? styles.controlButtonActive : null]}
     onPress={props.onPress}

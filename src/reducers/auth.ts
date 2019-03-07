@@ -10,14 +10,14 @@ const POST_AUTH_FAIL_MESSAGE = 'An unknown error happened while loggin you in. P
 
 export interface AuthState {
   isLoading: boolean,
-  token: string,
-  error: string
+  token: string | null
+  error: string | null
 }
 
 const initialState: AuthState = {
   isLoading: false,
-  token: '',
-  error: ''
+  token: null,
+  error: null
 };
 
 export function authReducer(state = initialState, action: any) {

@@ -1,10 +1,9 @@
 import React from 'react';
 import { FlatList } from 'react-native';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { getMePlaylists, MeState } from '../../reducers/me';
-import { getAudioByArticleUrl, setTrack } from '../../reducers/player';
+import { getAudioByArticleUrl, setTrack, PlayerState } from '../../reducers/player';
 
 import { AppleStyleSwipeableRow } from '../../components/AppleStyleSwipeableRow';
 import { CenterLoadingIndicator } from '../../components/CenterLoadingIndicator';
@@ -24,12 +23,12 @@ interface State {
 interface Props {
   auth: AuthState
   me: MeState
-  articles: any
+  articles: ApiArticle[]
   playbackStatus: any
   getAudioByArticleUrl: any
   setTrack: any
   track: any
-  getMePlaylists: (token: string) => {}
+  getMePlaylists(token: string): void
 }
 
 class ArticlesContainerComponent extends React.PureComponent<Props, State> {
@@ -45,8 +44,10 @@ class ArticlesContainerComponent extends React.PureComponent<Props, State> {
 
   async fetchPlaylists() {
     const { token } = this.props.auth;
-    await this.props.getMePlaylists(token);
-    this.setState({ isLoading: false, isRefreshing: false });
+    if (token) {
+      await this.props.getMePlaylists(token);
+      this.setState({ isLoading: false, isRefreshing: false });
+    }
   }
 
   handleOnRefresh() {
@@ -94,7 +95,7 @@ class ArticlesContainerComponent extends React.PureComponent<Props, State> {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: { player: PlayerState, auth: AuthState, me: MeState}) => ({
   track: state.player.track,
   playbackStatus: state.player.playbackStatus,
   auth: state.auth,

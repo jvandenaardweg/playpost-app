@@ -3,7 +3,7 @@ import { View, Modal, Button } from 'react-native';
 import { connect } from 'react-redux';
 import TrackPlayer from 'react-native-track-player';
 
-import { setPlaybackStatus } from '../../reducers/player';
+import { setPlaybackStatus, PlayerState } from '../../reducers/player';
 
 import { AudioPlayerSmall } from '../../components/AudioPlayer';
 
@@ -15,8 +15,8 @@ interface State {
 
 interface Props {
   changePlaybackStatus: any
-  trackUrl: any
-  playbackStatus: any
+  trackUrl: string | null
+  playbackStatus: string | null
   track: any
 }
 
@@ -26,6 +26,9 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     track: {},
     showModal: false
   }
+
+  onTrackChange: any = {}
+  onStateChanged: any = {}
 
   async componentDidMount() {
     const { changePlaybackStatus } = this.props;
@@ -210,10 +213,10 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
 }
 
 // let storedRepositories = articles.articles.map(repo => ({ key: repo.id, ...repo }));
-const mapStateToProps = ({ player }) => ({
-  trackUrl: player.trackUrl,
-  track: player.track,
-  playbackStatus: player.playbackStatus
+const mapStateToProps = (state: { player: PlayerState }) => ({
+  trackUrl: state.player.trackUrl,
+  track: state.player.track,
+  playbackStatus: state.player.playbackStatus
 });
 const mapDispatchToProps = {
   changePlaybackStatus: setPlaybackStatus

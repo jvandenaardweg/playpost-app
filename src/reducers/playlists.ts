@@ -8,14 +8,14 @@ const POST_PLAYLISTS_ARTICLES_FAIL_MESSAGE = 'An unknown error happened while lo
 
 export interface PlaylistsState {
   isLoading: boolean,
-  token: string,
-  error: string
+  token: string | null,
+  error: string | null
 }
 
 const initialState: PlaylistsState = {
   isLoading: false,
-  token: '',
-  error: ''
+  token: null,
+  error: null
 };
 
 export function authReducer(state = initialState, action: any) {

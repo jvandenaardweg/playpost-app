@@ -9,6 +9,8 @@ interface Props {
   handleOnPressPause(): void
   isPlaying: boolean
   track: any
+  trackUrl: string | null
+  isDisabled: boolean
 }
 export const AudioPlayerSmall = ({
   handleOnShowModal,

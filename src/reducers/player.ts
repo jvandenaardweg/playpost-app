@@ -5,13 +5,15 @@ export const SET_PLAYBACK_STATUS = 'player/SET_PLAYBACK_STATUS';
 export const SET_TRACK = 'player/SET_TRACK';
 
 export interface PlayerState {
-  trackUrl: string
-  track: any
+  trackUrl: string | null
+  track: any // TODO: use type
+  playbackStatus: string | null
 }
 
 const initialState: PlayerState = {
-  trackUrl: '',
-  track: {}
+  trackUrl: null,
+  track: {},
+  playbackStatus: null
 }
 
 export function playerReducer(state = initialState, action: any) {
