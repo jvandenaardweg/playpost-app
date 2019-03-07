@@ -1,16 +1,26 @@
 import React from 'react';
-import {
-  View, Modal, Button
-} from 'react-native';
+import { View, Modal, Button } from 'react-native';
 import { connect } from 'react-redux';
 import TrackPlayer from 'react-native-track-player';
 
-import { setPlaybackStatus } from '@/reducers/player';
+import { setPlaybackStatus } from '../../reducers/player';
 
-import { AudioPlayerSmall } from '@/components/AudioPlayer';
+import { AudioPlayerSmall } from '../../components/AudioPlayer';
 
+interface State {
+  isDisabled: boolean
+  track: any
+  showModal: boolean
+}
 
-class AudioPlayerContainerComponent extends React.PureComponent {
+interface Props {
+  changePlaybackStatus: any
+  trackUrl: any
+  playbackStatus: any
+  track: any
+}
+
+class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   state = {
     isDisabled: false,
     track: {},
@@ -33,6 +43,14 @@ class AudioPlayerContainerComponent extends React.PureComponent {
         TrackPlayer.CAPABILITY_SEEK_TO
       ],
       compactCapabilities: [
+        TrackPlayer.CAPABILITY_PLAY,
+        TrackPlayer.CAPABILITY_PAUSE,
+        TrackPlayer.CAPABILITY_STOP,
+        TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
+        TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
+        TrackPlayer.CAPABILITY_SEEK_TO
+      ],
+      notificationCapabilities: [
         TrackPlayer.CAPABILITY_PLAY,
         TrackPlayer.CAPABILITY_PAUSE,
         TrackPlayer.CAPABILITY_STOP,
@@ -69,7 +87,7 @@ class AudioPlayerContainerComponent extends React.PureComponent {
     });
   }
 
-  async componentDidUpdate(prevProps) {
+  async componentDidUpdate(prevProps: Props) {
     const { trackUrl, playbackStatus, track } = this.props;
 
     if (prevProps.playbackStatus === playbackStatus) {

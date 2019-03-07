@@ -2,7 +2,12 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-export class HeaderButton extends React.PureComponent {
+interface Props {
+  icon: string
+  onPress: () => {}
+}
+
+export class HeaderButton extends React.PureComponent<Props> {
   render() {
     const { icon, onPress } = this.props;
 

@@ -3,20 +3,36 @@ import { FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getMePlaylists } from '@/reducers/me';
-import { getAudioByArticleUrl, setTrack } from '@/reducers/player';
+import { getMePlaylists, MeState } from '../../reducers/me';
+import { getAudioByArticleUrl, setTrack } from '../../reducers/player';
 
-import { AppleStyleSwipeableRow } from '@/components/AppleStyleSwipeableRow';
-import { CenterLoadingIndicator } from '@/components/CenterLoadingIndicator';
-import { EmptyState } from '@/components/EmptyState';
-import { ArticleContainer } from '@/components/Article/ArticleContainer';
+import { AppleStyleSwipeableRow } from '../../components/AppleStyleSwipeableRow';
+import { CenterLoadingIndicator } from '../../components/CenterLoadingIndicator';
+import { EmptyState } from '../../components/EmptyState';
+import { ArticleContainer } from '../../components/Article/ArticleContainer';
 
-import { getDefaultPlaylistArticles } from '@/selectors/me';
+import { getDefaultPlaylistArticles } from '../../selectors/me';
+import { AuthState } from '../../reducers/auth';
 
 // import { GmailStyleSwipeableRow } from '@/components/GmailStyleSwipeableRow';
 
+interface State {
+  isLoading: boolean
+  isRefreshing: boolean
+}
 
-class ArticlesContainerComponent extends React.PureComponent {
+interface Props {
+  auth: AuthState
+  me: MeState
+  articles: any
+  playbackStatus: any
+  getAudioByArticleUrl: any
+  setTrack: any
+  track: any
+  getMePlaylists: (token: string) => {}
+}
+
+class ArticlesContainerComponent extends React.PureComponent<Props, State> {
   state = {
     isLoading: true,
     isRefreshing: false
@@ -90,23 +106,6 @@ const mapDispatchToProps = {
   getAudioByArticleUrl,
   setTrack,
   getMePlaylists
-};
-
-ArticlesContainerComponent.defaultProps = {
-  track: {},
-  playbackStatus: null
-};
-
-ArticlesContainerComponent.propTypes = {
-  getAudioByArticleUrl: PropTypes.func.isRequired,
-  setTrack: PropTypes.func.isRequired,
-  track: PropTypes.shape({
-    id: PropTypes.string,
-    title: PropTypes.string,
-    artist: PropTypes.string,
-    album: PropTypes.string
-  }),
-  playbackStatus: PropTypes.string
 };
 
 export const PlaylistsContainer = connect(

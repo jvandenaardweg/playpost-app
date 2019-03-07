@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import {
-  Animated, StyleSheet, View, Alert
-} from 'react-native';
+import React, { Component, Ref } from 'react';
+import { Animated, StyleSheet, View, Alert } from 'react-native';
 
 import { RectButton } from 'react-native-gesture-handler';
-
 import Swipeable from 'react-native-gesture-handler/Swipeable';
+
 import Icon from 'react-native-vector-icons/Feather';
 
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
 export class AppleStyleSwipeableRow extends Component {
-  renderLeftActions = (progress, dragX) => {
+  swipeableRow: any = React.createRef()
+
+  renderLeftActions = (progress: Animated.Value, dragX: Animated.Value) => {
     const translateX = dragX.interpolate({
       inputRange: [0, 50, 80, 81],
       outputRange: [-20, 0, 0, 1],
@@ -33,7 +33,7 @@ export class AppleStyleSwipeableRow extends Component {
     );
   };
 
-  renderRightAction = (action, icon, color, fill, x, progress, dragX) => {
+  renderRightAction = (action: string, icon: string, color: string, fill: string, x: number, progress: Animated.Value, dragX: Animated.Value) => {
     const trans = progress.interpolate({
       inputRange: [0, 1],
       outputRange: [x, 0],
@@ -43,7 +43,7 @@ export class AppleStyleSwipeableRow extends Component {
       outputRange: [1, 0],
       extrapolate: 'clamp',
     });
-    const pressHandler = (actionName) => {
+    const pressHandler = (actionName: string) => {
       this.close();
       Alert.alert(`Should ${actionName} this article.`);
     };
@@ -64,7 +64,7 @@ export class AppleStyleSwipeableRow extends Component {
     );
   };
 
-  renderRightActions = (progress, dragX) => (
+  renderRightActions = (progress: Animated.Value, dragX: Animated.Value) => (
     <View style={{ width: 192, flexDirection: 'row' }}>
       {this.renderRightAction('download', 'download', '#CDE7F0', '#1566AA', 128, progress, dragX)}
       {this.renderRightAction('delete', 'trash-2', '#FBD6D6', '#E7383D', 64, progress, dragX)}
@@ -75,12 +75,12 @@ export class AppleStyleSwipeableRow extends Component {
     Alert.alert('Should archive this article');
   };
 
-  updateRef = (ref) => {
+  updateRef = (ref: any) => {
     this.swipeableRow = ref;
   };
 
   close = () => {
-    this.swipeableRow.close();
+    this.swipeableRow && this.swipeableRow.close();
   };
 
   render() {

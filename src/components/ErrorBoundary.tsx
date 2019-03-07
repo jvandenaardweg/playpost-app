@@ -3,18 +3,26 @@ import { Alert, View, Text } from 'react-native';
 import RNRestart from 'react-native-restart';
 import Analytics from 'appcenter-analytics';
 
-export class ErrorBoundary extends React.PureComponent {
+interface State {
+  hasError: boolean
+}
+
+interface Props {
+  children: any
+}
+
+export class ErrorBoundary extends React.PureComponent<Props, State> {
 
   state = {
     hasError: false
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError(error: any) {
     // Update state so the next render will show the fallback UI.
     return { hasError: true };
   }
 
-  componentDidCatch(error, info) {
+  componentDidCatch(error: any, info: any) {
     // to prevent this alert blocking your view of a red screen while developing
     if (__DEV__) {
       return;
@@ -30,8 +38,8 @@ export class ErrorBoundary extends React.PureComponent {
     }
 
     Alert.alert(
-      null,
-      'Oops! Something went wrong. Please restart the app to continue.',
+      'Oops! Something went wrong...',
+      'Please restart the app to continue.',
       [
         {
           text: 'Restart app',
