@@ -1,11 +1,13 @@
 import React from 'react';
-import { Platform, NativeModules, Alert, AppState, Linking } from 'react-native';
+import { Platform, NativeModules, Alert, AppState } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
 import RNRestart from 'react-native-restart';
+
+import { Share } from '@/components/Share';
 
 import AppNavigator from './navigation/AppNavigator';
 import rootReducer from './reducers';
@@ -51,50 +53,25 @@ const store = createStore(
   )
 );
 
-export default class App extends React.PureComponent {
+export default class ShareApp extends React.PureComponent {
   state = {
     appState: AppState.currentState
   }
 
   componentDidMount() {
     AppState.addEventListener('change', this.handleAppStateChange);
-
-    if (Platform.OS === 'android') {
-      Linking.getInitialURL().then(url => {
-        this.navigate(url);
-      });
-    } else {
-      Linking.addEventListener('url', this.handleOpenURL);
-    }
   }
 
   componentWillUnmount() {
     AppState.removeEventListener('change', this.handleAppStateChange);
-    Linking.removeEventListener('url', this.handleOpenURL);
   }
 
   handleAppStateChange = (nextAppState) => {
     if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
-      console.log('App has come to the foreground! We should check for new playlist items.');
+      console.log('App has come to the foreground!');
     }
     this.setState({ appState: nextAppState });
   };
-
-  handleOpenURL = (event) => { // D
-    console.log(this)
-    this.navigate(event.url);
-  }
-
-  navigate = (url) => { // E
-    const { navigate } = this.props.navigation;
-    const route = url.replace(/.*?:\/\//g, '');
-    const id = route.match(/\/([^\/]+)\/?$/)[1];
-    const routeName = route.split('/')[0];
-
-    if (routeName === 'onboarding') {
-      navigate('Onboarding')
-    };
-  }
 
   componentDidCatch(error, info) {
     // to prevent this alert blocking your view of a red screen while developing
@@ -126,7 +103,7 @@ export default class App extends React.PureComponent {
     return (
       <Provider store={store}>
         <ThemeProvider theme={theme}>
-          <AppNavigator />
+          <Share />
         </ThemeProvider>
       </Provider>
     );

@@ -8,6 +8,6 @@ import { name as appName, shareExtensionName } from './app.json';
 // Using require instead of the import here so the share extension workds
 // Fix from: https://github.com/alinz/react-native-share-extension/issues/94#issuecomment-387488191
 AppRegistry.registerComponent(appName, () => require('./src/App').default);
-AppRegistry.registerComponent(shareExtensionName, () => require('./src/Share').default);
+AppRegistry.registerComponent(shareExtensionName, () => require('./src/ShareApp').default);
 
 TrackPlayer.registerPlaybackService(() => PlaybackService);

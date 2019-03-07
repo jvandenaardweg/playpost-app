@@ -13,7 +13,19 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
+// iOS 9.x or newer
+// https://facebook.github.io/react-native/docs/linking
+#import <React/RCTLinkingManager.h>
+
 @implementation AppDelegate
+
+// https://facebook.github.io/react-native/docs/linking
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+  return [RCTLinkingManager application:application openURL:url options:options];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
