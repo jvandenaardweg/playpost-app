@@ -10,7 +10,7 @@ interface Props {
   title: string
   description: string
   sourceName: string
-  authorName?: string
+  authorName?: string | null
   listenTimeInMinutes?: number
   onPlayPress?(): void
 }
