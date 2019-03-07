@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, AsyncStorage } from 'react-native';
-import { Button } from 'react-native-elements';
+import { AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 
 import { postAuth } from '@/reducers/auth';
@@ -10,8 +9,7 @@ import { LoginForm } from '@/components/LoginForm';
 
 class LoginScreenContainer extends React.PureComponent {
   static navigationOptions = {
-    title: 'Login',
-    // header: null
+    title: 'Login'
   };
 
   state = {

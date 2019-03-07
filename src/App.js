@@ -1,12 +1,13 @@
 import React from 'react';
-import { Platform, NativeModules, Alert, AppState, Linking } from 'react-native';
+import { Platform, NativeModules, AppState, Linking } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
 import { Provider } from 'react-redux';
-import RNRestart from 'react-native-restart';
 
 import { store } from '@/store';
+import { reactNativeElementsTheme } from '@/theme';
 
-import AppNavigator from './navigation/AppNavigator';
+import { AppNavigator } from '@/navigation/AppNavigator';
+import { ErrorBoundary } from '@/error-boundary';
 
 /* eslint-disable no-undef */
 if (Platform.OS === 'ios' && __DEV__) {
@@ -15,18 +16,6 @@ if (Platform.OS === 'ios' && __DEV__) {
 
 /* eslint-disable no-console */
 console.disableYellowBox = true;
-
-const theme = {
-  Button: {
-    buttonStyle: {
-      height: 55
-    },
-    titleStyle: {
-      fontWeight: '600',
-      fontSize: 17
-    },
-  },
-};
 
 export default class App extends React.PureComponent {
   state = {
@@ -65,47 +54,18 @@ export default class App extends React.PureComponent {
     // TODO: make navigation work, app should be wrapped in react navigation
     const { navigate } = this.props.navigation;
     const route = url.replace(/.*?:\/\//g, '');
-    // const id = route.match(/\/([^\/]+)\/?$/)[1];
-    // const routeName = route.split('/')[0];
-
-    // if (routeName === 'onboarding') {
     navigate(route);
-    // }
-  }
-
-  componentDidCatch(error, info) {
-    // to prevent this alert blocking your view of a red screen while developing
-    if (__DEV__) {
-      return;
-    }
-
-    // to prevent multiple alerts shown to your users
-    if (this.errorShown) {
-      return;
-    }
-
-    this.errorShown = true;
-
-    Alert.alert(
-      null,
-      'Oops! Something went wrong. Please restart the app to continue.',
-      [
-        {
-          text: 'Restart app',
-          onPress: RNRestart.Restart,
-        },
-      ],
-      { cancelable: false }
-    );
   }
 
   render() {
     return (
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <AppNavigator />
-        </ThemeProvider>
-      </Provider>
+      <ErrorBoundary>
+        <Provider store={store}>
+          <ThemeProvider theme={reactNativeElementsTheme}>
+            <AppNavigator />
+          </ThemeProvider>
+        </Provider>
+      </ErrorBoundary>
     );
   }
 }

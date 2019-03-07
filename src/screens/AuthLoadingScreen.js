@@ -1,11 +1,6 @@
 import React from 'react';
 import Analytics from 'appcenter-analytics';
-import {
-  AsyncStorage,
-  Linking,
-  Platform
-} from 'react-native';
-
+import { AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 
 import { CenterLoadingIndicator } from '@/components/CenterLoadingIndicator';
@@ -27,6 +22,7 @@ export class AuthLoadingScreenContainer extends React.Component {
     // Important: Only rely on this token, so the user can use the app offline
     const userToken = await AsyncStorage.getItem('userToken');
 
+    // Save the auth token in Redux, so it's available for our whole app to use
     this.props.setAuthToken(userToken);
 
     // This will switch to the App screen or Auth screen and this loading
