@@ -9,13 +9,13 @@ import { getMe, MeState } from '../reducers/me';
 import { LoginForm } from '../components/LoginForm';
 
 interface State {
-  email?: string,
-  password?: string
+  email?: string | null,
+  password?: string | null
 }
 
 interface Props {
-  auth: any,
-  me: any,
+  auth: AuthState,
+  me: MeState,
   getMe: (token: string) => {},
   postAuth: (email: string, password: string) => {},
   navigation: NavigationScreenProp<NavigationRoute>
@@ -40,13 +40,13 @@ class LoginScreenContainer extends React.PureComponent<Props, State> {
     }
 
     // If we have a token, but no user yet, get the account details
-    if (token && !user.id) {
+    if (token && !user) {
       await AsyncStorage.setItem('userToken', token);
       this.props.getMe(token);
     }
 
     // If we got a user, we can redirect it to our app screen
-    if (user.id) {
+    if (user && user.id) {
       this.props.navigation.navigate('App');
     }
   }

@@ -16,8 +16,8 @@ interface State {
 }
 
 interface Props {
-  auth: any
-  users: any
+  auth: AuthState
+  users: UsersState
   postAuth: (email: string, password: string) => {}
   createUser: (email: string, password: string) => {}
   navigation: NavigationScreenProp<NavigationRoute>
@@ -41,7 +41,7 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
     const { user } = this.props.users;
 
     // Automatically log the user in on a successful signup
-    if (!isLoading && !token && user.id) {
+    if (!isLoading && !token && (user && user.id)) {
       this.props.postAuth(email, password);
     }
 
