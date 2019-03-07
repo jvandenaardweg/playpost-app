@@ -1,13 +1,13 @@
 import React from 'react';
-import { Platform, NativeModules, AppState } from 'react-native';
+import { Platform, NativeModules, AppState, AppStateStatus } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
 import { Provider } from 'react-redux';
 
-import { store } from '@/store';
-import { reactNativeElementsTheme } from '@/theme';
+import { store } from './store';
+import { reactNativeElementsTheme } from './theme';
 
-import { ErrorBoundary } from '@/error-boundary';
-import { Share } from '@/components/Share';
+import { ErrorBoundary } from './components/ErrorBoundary';
+import { Share } from './components/Share';
 
 /* eslint-disable no-undef */
 if (Platform.OS === 'ios' && __DEV__) {
@@ -17,7 +17,11 @@ if (Platform.OS === 'ios' && __DEV__) {
 /* eslint-disable no-console */
 console.disableYellowBox = true;
 
-export default class ShareApp extends React.PureComponent {
+interface State {
+  appState: AppStateStatus
+}
+
+export default class ShareApp extends React.PureComponent<State> {
   state = {
     appState: AppState.currentState
   }
@@ -30,7 +34,7 @@ export default class ShareApp extends React.PureComponent {
     AppState.removeEventListener('change', this.handleAppStateChange);
   }
 
-  handleAppStateChange = (nextAppState) => {
+  handleAppStateChange = (nextAppState: AppStateStatus) => {
     if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
       console.log('App has come to the foreground!');
     }

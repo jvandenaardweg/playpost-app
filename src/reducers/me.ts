@@ -11,7 +11,23 @@ export const GET_ME_PLAYLISTS_FAIL = 'me/GET_ME_PLAYLISTS_FAIL';
 const GET_ME_FAIL_MESSAGE = 'An unknown error happened while getting your account. Please contact us when this happens all the time.';
 const GET_ME_PLAYLISTS_FAIL_MESSAGE = 'An unknown error happened while getting your playlist. Please contact us when this happens all the time.';
 
-export function meReducer(state = { user: {}, playlists: [] }, action) {
+export interface MeState {
+  isLoading: boolean
+  user: ApiUser
+  playlists: ApiPlaylist[]
+  error: string
+}
+
+const initialState: MeState = {
+  isLoading: false,
+  user: {
+    id: '',
+    email: ''
+  },
+  playlists: [],
+  error: ''
+}
+export function meReducer(state = initialState, action: any) {
   switch (action.type) {
     case GET_ME:
       return {
@@ -73,7 +89,7 @@ export function meReducer(state = { user: {}, playlists: [] }, action) {
   }
 }
 
-export function getMe(token) {
+export function getMe(token: string) {
   return {
     type: GET_ME,
     payload: {
@@ -88,7 +104,7 @@ export function getMe(token) {
   };
 }
 
-export function getMePlaylists(token) {
+export function getMePlaylists(token: string) {
   return {
     type: GET_ME_PLAYLISTS,
     payload: {

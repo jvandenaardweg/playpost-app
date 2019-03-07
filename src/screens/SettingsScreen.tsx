@@ -7,10 +7,16 @@ import {
 } from 'react-native';
 import { SettingsScreen as SettingsScreenComponent } from 'react-native-settings-screen';
 import { connect } from 'react-redux';
+import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 
-import { removeAuth } from '@/reducers/auth';
+import { removeAuth } from '../reducers/auth';
 
-class SettingsScreenContainer extends React.Component {
+interface Props {
+  removeAuth: () => {},
+  navigation: NavigationScreenProp<NavigationRoute>
+}
+
+class SettingsScreenContainer extends React.Component<Props> {
   static navigationOptions = {
     title: 'Settings'
   };

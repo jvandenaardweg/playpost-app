@@ -1,5 +1,5 @@
 import React from 'react';
-import { EmptyState } from '@/components/EmptyState';
+import { EmptyState } from '../components/EmptyState';
 
 export class ArchiveScreen extends React.Component {
   static navigationOptions = {

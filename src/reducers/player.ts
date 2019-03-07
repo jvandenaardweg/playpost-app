@@ -4,7 +4,17 @@ export const GET_AUDIO_FAIL = 'player/LOAD_FAIL';
 export const SET_PLAYBACK_STATUS = 'player/SET_PLAYBACK_STATUS';
 export const SET_TRACK = 'player/SET_TRACK';
 
-export function playerReducer(state = { trackUrl: null, track: {} }, action) {
+export interface PlayerState {
+  trackUrl: string
+  track: any
+}
+
+const initialState: PlayerState = {
+  trackUrl: '',
+  track: {}
+}
+
+export function playerReducer(state = initialState, action: any) {
   switch (action.type) {
     case GET_AUDIO:
       return {
@@ -38,7 +48,7 @@ export function playerReducer(state = { trackUrl: null, track: {} }, action) {
   }
 }
 
-export function getAudioByArticleUrl(articleUrl) {
+export function getAudioByArticleUrl(articleUrl: string) {
   return {
     type: GET_AUDIO,
     payload: {
@@ -49,14 +59,14 @@ export function getAudioByArticleUrl(articleUrl) {
   };
 }
 
-export function setPlaybackStatus(playbackStatus) {
+export function setPlaybackStatus(playbackStatus: any) {
   return {
     type: SET_PLAYBACK_STATUS,
     payload: playbackStatus
   };
 }
 
-export function setTrack(track) {
+export function setTrack(track: any) {
   return {
     type: SET_TRACK,
     payload: track

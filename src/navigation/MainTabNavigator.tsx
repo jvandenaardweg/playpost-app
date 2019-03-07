@@ -1,14 +1,14 @@
 import React from 'react';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import { createStackNavigator, createBottomTabNavigator, StackNavigatorConfig, BottomTabNavigatorConfig } from 'react-navigation';
 
-import { TabBar, TabBarIcon } from '@/components/TabBar';
+import { TabBar, TabBarIcon } from '../components/TabBar';
 
-import { PlaylistScreen } from '@/screens/PlaylistScreen';
-import { ArchiveScreen } from '@/screens/ArchiveScreen';
-import { FavoritesScreen } from '@/screens/FavoritesScreen';
-import { SettingsScreen } from '@/screens/SettingsScreen';
+import { PlaylistScreen } from '../screens/PlaylistScreen';
+import { ArchiveScreen } from '../screens/ArchiveScreen';
+import { FavoritesScreen } from '../screens/FavoritesScreen';
+import { SettingsScreen } from '../screens/SettingsScreen';
 
-const PlaylistStack = createStackNavigator(
+const PlaylistStack: StackNavigatorConfig = createStackNavigator(
   {
     Playlist: PlaylistScreen,
   },
@@ -25,7 +25,7 @@ const PlaylistStack = createStackNavigator(
   }
 );
 
-const ArchiveStack = createStackNavigator(
+const ArchiveStack: StackNavigatorConfig = createStackNavigator(
   {
     Archive: ArchiveScreen
   },
@@ -43,7 +43,7 @@ const ArchiveStack = createStackNavigator(
 );
 
 
-const FavoritesStack = createStackNavigator(
+const FavoritesStack: StackNavigatorConfig = createStackNavigator(
   {
     Favorites: FavoritesScreen
   },
@@ -60,7 +60,7 @@ const FavoritesStack = createStackNavigator(
   }
 );
 
-const SettingsStack = createStackNavigator(
+const SettingsStack: StackNavigatorConfig = createStackNavigator(
   {
     Settings: SettingsScreen
   },
@@ -77,7 +77,7 @@ const SettingsStack = createStackNavigator(
   }
 );
 
-export const MainTabNavigator = createBottomTabNavigator({
+export const MainTabNavigator: BottomTabNavigatorConfig = createBottomTabNavigator({
   PlaylistStack,
   ArchiveStack,
   FavoritesStack,

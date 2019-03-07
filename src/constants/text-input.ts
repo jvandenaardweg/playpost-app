@@ -1,4 +1,4 @@
-import colors from '@/constants/colors';
+import colors from '../constants/colors';
 
 export default {
   height: 55,
@@ -8,6 +8,5 @@ export default {
   paddingLeft: 16,
   paddingRight: 16,
   marginBottom: 12,
-  fontSize: 17,
-  // backgroundColor: 'white'
+  fontSize: 17
 };

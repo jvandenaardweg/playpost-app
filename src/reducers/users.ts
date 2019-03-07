@@ -4,7 +4,20 @@ export const CREATE_USER = 'users/CREATE_USER';
 export const CREATE_USER_SUCCESS = 'users/CREATE_USER_SUCCESS';
 export const CREATE_USER_FAIL = 'users/CREATE_USER_FAIL';
 
-export function usersReducer(state = { user: {} }, action) {
+export interface UsersState {
+  isLoading: boolean
+  user: ApiUser
+}
+
+const initialState: UsersState = {
+  isLoading: false,
+  user: {
+    id: '',
+    email: ''
+  }
+}
+
+export function usersReducer(state = initialState, action: any) {
   switch (action.type) {
     case CREATE_USER:
       return {
@@ -40,7 +53,7 @@ export function usersReducer(state = { user: {} }, action) {
   }
 }
 
-export function createUser(email, password) {
+export function createUser(email: string, password: string) {
   return {
     type: CREATE_USER,
     payload: {

@@ -1,12 +1,11 @@
 import { createSelector } from 'reselect';
+import { MeState } from '../reducers/me';
 
-const meSelector = state => state.me;
+const meSelector = (state: any): MeState => state.me;
 
 export const getDefaultPlaylist = createSelector(
   meSelector,
   me => {
-    if (!me.playlists || !me.playlists.length) return [];
-
     // For now, we just show one playlist, the default one
     return me.playlists[0];
   }
@@ -15,11 +14,9 @@ export const getDefaultPlaylist = createSelector(
 export const getDefaultPlaylistArticles = createSelector(
   getDefaultPlaylist,
   playlist => {
-    const { playlistItems } = playlist;
+    if (!playlist || !playlist.playlistItems || !playlist.playlistItems.length) return [];
 
-    if (!playlistItems || !playlistItems.length) return [];
-
-    const articles = playlistItems.map((playlistItem) => playlistItem.article);
+    const articles = playlist.playlistItems.map((playlistItem: ApiPlaylistItem) => playlistItem.article);
 
     return articles;
   }

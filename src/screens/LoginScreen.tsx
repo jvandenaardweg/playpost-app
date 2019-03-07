@@ -1,20 +1,34 @@
 import React from 'react';
 import { AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
+import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 
-import { postAuth } from '@/reducers/auth';
-import { getMe } from '@/reducers/me';
+import { postAuth } from '../reducers/auth';
+import { getMe } from '../reducers/me';
 
-import { LoginForm } from '@/components/LoginForm';
+import { LoginForm } from '../components/LoginForm';
 
-class LoginScreenContainer extends React.PureComponent {
+interface State {
+  email?: string,
+  password?: string
+}
+
+interface Props {
+  auth: any,
+  me: any,
+  getMe: (token: string) => {},
+  postAuth: (email: string, password: string) => {},
+  navigation: NavigationScreenProp<NavigationRoute>
+}
+
+class LoginScreenContainer extends React.PureComponent<Props, State> {
   static navigationOptions = {
     title: 'Login'
   };
 
   state = {
-    email: null,
-    password: null
+    email: '',
+    password: ''
   }
 
   async componentDidUpdate() {
@@ -44,7 +58,7 @@ class LoginScreenContainer extends React.PureComponent {
 
   handleOnPressSignup = () => this.props.navigation.navigate('Signup');
 
-  handleOnChangeText = (field, value) => this.setState({ [field]: value });
+  handleOnChangeText = (field: string, value: string) => this.setState({ [field]: value });
 
   render() {
     const { email, password } = this.state;

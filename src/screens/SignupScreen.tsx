@@ -1,24 +1,38 @@
 import React from 'react';
-import { View, Text, TextInput, AsyncStorage } from 'react-native';
-import { Button } from 'react-native-elements';
+import { AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
+import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 
-import { createUser } from '@/reducers/users';
-import { postAuth } from '@/reducers/auth';
+import { createUser } from '../reducers/users';
+import { postAuth } from '../reducers/auth';
 
-import { SignupForm } from '@/components/SignupForm';
+import { SignupForm } from '../components/SignupForm';
 
-class SignupScreenContainer extends React.PureComponent {
+interface State {
+  email?: string,
+  password?: string,
+  passwordValidation?: string,
+  validationError?: string
+}
+
+interface Props {
+  auth: any,
+  users: any,
+  postAuth: (email: string, password: string) => {},
+  createUser: (email: string, password: string) => {},
+  navigation: NavigationScreenProp<NavigationRoute>
+}
+
+class SignupScreenContainer extends React.PureComponent<Props, State> {
   static navigationOptions = {
-    title: 'Signup',
-    // header: null
+    title: 'Signup'
   };
 
   state = {
-    email: null,
-    password: null,
-    passwordValidation: null,
-    validationError: null
+    email: '',
+    password: '',
+    passwordValidation: '',
+    validationError: ''
   }
 
   async componentDidUpdate() {
@@ -49,7 +63,7 @@ class SignupScreenContainer extends React.PureComponent {
 
   handleOnPressLogin = () => this.props.navigation.navigate('Login');
 
-  handleOnChangeText = (field, value) => this.setState({ [field]: value });
+  handleOnChangeText = (field: string, value: string) => this.setState({ [field]: value });
 
   render() {
     const { email, password, passwordValidation, validationError } = this.state;
@@ -79,46 +93,6 @@ class SignupScreenContainer extends React.PureComponent {
       />
     );
   }
-
-  // render() {
-  //   const { email, password } = this.state;
-  //   const { user, error, isLoading } = this.props.users;
-  //   const { token } = this.props.auth;
-
-  //   return (
-  //     <View>
-  //       <View>
-  //         <TextInput
-  //           placeholder="E-mail address"
-  //           autoCapitalize="none"
-  //           value={email}
-  //           onChangeText={(text) => this.setState({ email: text })}
-  //           style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-  //         />
-
-  //         <TextInput
-  //           placeholder="Password"
-  //           autoCapitalize="none"
-  //           secureTextEntry
-  //           value={password}
-  //           onChangeText={(text) => this.setState({ password: text })}
-  //           style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-  //         />
-  //         <Text>{error}</Text>
-  //         <Button title={this.signupButtonTitle()} onPress={this.handleSignupPress} disabled={isLoading} />
-  //         <Text>
-  //           User:
-  //           {user.id}
-  //         </Text>
-  //         <Text>
-  //           Token:
-  //           {token}
-  //         </Text>
-  //         <Button title="Login" onPress={() => this.props.navigation.navigate('Login')} />
-  //       </View>
-  //     </View>
-  //   );
-  // }
 }
 
 const mapStateToProps = ({ users, auth }) => ({

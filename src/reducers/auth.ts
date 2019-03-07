@@ -8,13 +8,19 @@ export const SET_AUTH_TOKEN = 'auth/SET_AUTH_TOKEN';
 
 const POST_AUTH_FAIL_MESSAGE = 'An unknown error happened while loggin you in. Please contact us when this happens all the time.';
 
-const initialState = {
+export interface AuthState {
+  isLoading: boolean,
+  token: string,
+  error: string
+}
+
+const initialState: AuthState = {
   isLoading: false,
-  token: null,
-  error: null
+  token: '',
+  error: ''
 };
 
-export function authReducer(state = initialState, action) {
+export function authReducer(state = initialState, action: any) {
   switch (action.type) {
     case POST_AUTH:
       return {
@@ -62,7 +68,7 @@ export function authReducer(state = initialState, action) {
   }
 }
 
-export function setAuthToken(token) {
+export function setAuthToken(token: string) {
   return {
     type: SET_AUTH_TOKEN,
     payload: {
@@ -77,7 +83,7 @@ export function removeAuth() {
   };
 }
 
-export function postAuth(email, password) {
+export function postAuth(email: string, password: string) {
   return {
     type: POST_AUTH,
     payload: {

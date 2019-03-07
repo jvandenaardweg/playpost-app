@@ -3,7 +3,7 @@ import axiosMiddleware from 'redux-axios-middleware';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import rootReducer from '../reducers';
 
-import { API_URL } from '@/constants/api';
+import { API_URL } from '../constants/api';
 
 const client = axios.create({
   baseURL: API_URL,

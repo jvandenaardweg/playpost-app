@@ -6,13 +6,19 @@ export const POST_PLAYLISTS_ARTICLES_FAIL = 'auth/POST_PLAYLISTS_ARTICLES_FAIL';
 
 const POST_PLAYLISTS_ARTICLES_FAIL_MESSAGE = 'An unknown error happened while loggin you in. Please contact us when this happens all the time.';
 
-const initialState = {
+export interface PlaylistsState {
+  isLoading: boolean,
+  token: string,
+  error: string
+}
+
+const initialState: PlaylistsState = {
   isLoading: false,
-  token: null,
-  error: null
+  token: '',
+  error: ''
 };
 
-export function authReducer(state = initialState, action) {
+export function authReducer(state = initialState, action: any) {
   switch (action.type) {
     case POST_PLAYLISTS_ARTICLES:
       return {
@@ -45,7 +51,7 @@ export function authReducer(state = initialState, action) {
   }
 }
 
-export function postAddArticleToPlaylist(articleId, playlistId) {
+export function postAddArticleToPlaylist(articleId: string, playlistId: string) {
   return {
     type: POST_PLAYLISTS_ARTICLES,
     payload: {

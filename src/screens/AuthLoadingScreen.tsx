@@ -3,11 +3,17 @@ import Analytics from 'appcenter-analytics';
 import { AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 
-import { CenterLoadingIndicator } from '@/components/CenterLoadingIndicator';
+import { CenterLoadingIndicator } from '../components/CenterLoadingIndicator';
 
-import { setAuthToken } from '@/reducers/auth';
+import { setAuthToken } from '../reducers/auth';
+import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 
-export class AuthLoadingScreenContainer extends React.Component {
+interface Props {
+  setAuthToken: any,
+  navigation: NavigationScreenProp<NavigationRoute>
+}
+
+export class AuthLoadingScreenContainer extends React.Component<Props> {
   componentDidMount() {
     this.bootstrapAsync();
   }
