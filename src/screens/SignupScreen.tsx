@@ -9,17 +9,17 @@ import { postAuth } from '../reducers/auth';
 import { SignupForm } from '../components/SignupForm';
 
 interface State {
-  email?: string,
-  password?: string,
-  passwordValidation?: string,
+  email?: string
+  password?: string
+  passwordValidation?: string
   validationError?: string
 }
 
 interface Props {
-  auth: any,
-  users: any,
-  postAuth: (email: string, password: string) => {},
-  createUser: (email: string, password: string) => {},
+  auth: any
+  users: any
+  postAuth: (email: string, password: string) => {}
+  createUser: (email: string, password: string) => {}
   navigation: NavigationScreenProp<NavigationRoute>
 }
 

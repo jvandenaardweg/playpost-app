@@ -1,9 +1,22 @@
 import React from 'react';
-import { Alert, View } from 'react-native';
-import PropTypes from 'prop-types';
+import { Alert } from 'react-native';
 import { Article } from './Article';
 
-export class ArticleContainer extends React.PureComponent {
+interface State {
+  isLoading: boolean
+  isPlaying: boolean
+}
+
+interface Props {
+  playbackStatus: string
+  playingTrack: any // TODO: use type
+  article: any // TODO: use type
+  getAudioByArticleUrl(articleUrl: string): void
+  setTrack(track: any): void // TODO: use type
+  seperated: boolean
+}
+
+export class ArticleContainer extends React.PureComponent<Props, State> {
   state = {
     isLoading: false,
     isPlaying: false
@@ -64,30 +77,3 @@ export class ArticleContainer extends React.PureComponent {
     );
   }
 }
-
-ArticleContainer.defaultProps = {
-  playingTrack: {},
-  article: {},
-  seperated: false
-};
-
-ArticleContainer.propTypes = {
-  playingTrack: PropTypes.shape({
-    id: PropTypes.string,
-    url: PropTypes.string,
-    title: PropTypes.string,
-    artist: PropTypes.string,
-    album: PropTypes.string
-  }),
-  article: PropTypes.shape({
-    id: PropTypes.string,
-    title: PropTypes.string,
-    description: PropTypes.string,
-    sourceName: PropTypes.string,
-    authorName: PropTypes.string,
-    listenTimeInMinutes: PropTypes.number
-  }),
-  seperated: PropTypes.bool,
-  getAudioByArticleUrl: PropTypes.func.isRequired,
-  setTrack: PropTypes.func.isRequired
-};

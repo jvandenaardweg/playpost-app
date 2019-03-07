@@ -12,7 +12,7 @@ import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 import { removeAuth } from '../reducers/auth';
 
 interface Props {
-  removeAuth: () => {},
+  removeAuth(): void,
   navigation: NavigationScreenProp<NavigationRoute>
 }
 

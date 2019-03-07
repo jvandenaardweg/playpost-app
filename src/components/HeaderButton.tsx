@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 interface Props {
   icon: string
-  onPress: () => {}
+  onPress(): void
 }
 
 export class HeaderButton extends React.PureComponent<Props> {

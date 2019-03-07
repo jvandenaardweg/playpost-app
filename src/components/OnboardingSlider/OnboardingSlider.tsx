@@ -2,39 +2,50 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import AppIntroSlider from 'react-native-app-intro-slider';
-import { withNavigation } from 'react-navigation';
+import { withNavigation, NavigationScreenProp, NavigationRoute } from 'react-navigation';
 
 import styles from './styles';
 
-const slides = [
-  {
-    key: 'slide1',
-    title: 'Listen to articles',
-    text: 'Listen to articles when you got no time to read, but do got time to listen. Let the app read the articles to you.',
-  },
-  {
-    key: 'slide2',
-    title: 'Make the listening experience your own',
-    text: 'Choose between a variaty of High Quality life-like voices with different accents like American English, British English or Australian English.',
-  },
-  {
-    key: 'slide3',
-    title: 'Easily save from every app',
-    text: 'A share icon is added in every app on your phone so you can easily add new articles. Just click the Share icon and add [App name].',
-  },
-];
+interface Props {
+  navigation: NavigationScreenProp<NavigationRoute>
+}
 
-class OnboardingSliderComponent extends React.PureComponent {
-  static displayName = 'OnboardingSlider'
+interface OnboardingSlideProps {
+  topSpacer: number
+  width: number
+  height: number
+  title: string
+  text: string
+}
 
-  renderItem = props => <OnboardingSlide {...props} navigation={this.props.navigation} />;
+class OnboardingSliderComponent extends React.PureComponent<Props> {
+
+  slides = [
+    {
+      key: 'slide1',
+      title: 'Listen to articles',
+      text: 'Listen to articles when you got no time to read, but do got time to listen. Let the app read the articles to you.',
+    },
+    {
+      key: 'slide2',
+      title: 'Make the listening experience your own',
+      text: 'Choose between a variaty of High Quality life-like voices with different accents like American English, British English or Australian English.',
+    },
+    {
+      key: 'slide3',
+      title: 'Easily save from every app',
+      text: 'A share icon is added in every app on your phone so you can easily add new articles. Just click the Share icon and add [App name].',
+    },
+  ];
+
+  renderItem = (props: OnboardingSlideProps) => <OnboardingSlide {...props} />;
 
   render() {
     return (
       <View style={styles.container}>
         <AppIntroSlider
           testID="OnboardingScreen-slider"
-          slides={slides}
+          slides={this.slides}
           renderItem={this.renderItem}
           hidePrevButton
           hideSkipButton
@@ -50,7 +61,7 @@ class OnboardingSliderComponent extends React.PureComponent {
   }
 }
 
-const OnboardingSlide = (props) => (
+const OnboardingSlide = (props: OnboardingSlideProps) => (
   <View
     style={[
       styles.mainContent,

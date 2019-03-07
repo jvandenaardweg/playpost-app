@@ -1,22 +1,31 @@
 import React from 'react';
 import { View, Text, TextInput, KeyboardAvoidingView } from 'react-native';
 import { Button } from 'react-native-elements';
-// import PropTypes from 'prop-types';
 import styles from './styles';
 
-export const SignupForm = ({
+interface Props {
+  onChangeText(field: string, text: string): void
+  onPressLogin(): void
+  onPressSignup(): void
+  email: string
+  password: string
+  error: string
+  isLoading: boolean
+}
+
+export const LoginForm = ({
   onChangeText,
   onPressLogin,
   onPressSignup,
   email,
   password,
-  passwordValidation,
   error,
-  validationError,
   isLoading
-}) => (
+}: Props) => (
   <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
     <View style={styles.form}>
+      {/* <Text style={styles.title}>Welcome back!</Text> */}
+      {/* <Text style={styles.subtitle}>Test</Text> */}
 
       <TextInput
         placeholder="E-mail address"
@@ -27,6 +36,7 @@ export const SignupForm = ({
         keyboardType="email-address"
         returnKeyType="done"
         clearButtonMode="always"
+        // onSubmitEditing={() => focusNextField()}
       />
 
       <TextInput
@@ -39,27 +49,16 @@ export const SignupForm = ({
         style={styles.textField}
         returnKeyType="done"
         clearButtonMode="always"
-      />
-
-      <TextInput
-        placeholder="Password validation"
-        autoCapitalize="none"
-        secureTextEntry
-        value={passwordValidation}
-        onChangeText={(text) => onChangeText('passwordValidation', text)}
-        textContentType="password"
-        style={styles.textField}
-        returnKeyType="done"
-        clearButtonMode="always"
+        // onSubmitEditing={() => focusNextField()}
       />
 
       <View style={styles.errorContainer}>
-        <Text style={styles.errorText}>{validationError || error}</Text>
+        <Text style={styles.errorText}>{error}</Text>
       </View>
 
       <View>
-        <Button title="Create account" loading={isLoading} onPress={onPressSignup} disabled={isLoading} buttonStyle={styles.buttonStyle} activeOpacity={1} disabledStyle={styles.buttonStyle} titleStyle={styles.buttonTitleStyle} />
-        <Button title="I already have an account" type="clear" onPress={onPressLogin} titleStyle={{ color: 'gray', fontWeight: 'normal' }} />
+        <Button title="Login" loading={isLoading} onPress={onPressLogin} disabled={isLoading} buttonStyle={styles.buttonStyle} disabledStyle={styles.buttonStyle} activeOpacity={1} titleStyle={styles.buttonTitleStyle} />
+        <Button title="I don't have an account" type="clear" onPress={onPressSignup} titleStyle={{ color: 'gray', fontWeight: 'normal' }} />
       </View>
 
     </View>

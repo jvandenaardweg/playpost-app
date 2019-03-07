@@ -1,10 +1,16 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+
 import styles from './styles';
 
-export const EmptyState = ({ title, description }) => (
+interface Props {
+  title: string
+  description: string
+}
+
+export const EmptyState = ({ title, description }: Props) => (
   <View style={styles.container}>
-    <View style={styles.centered}>
+    <View>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.description}>{description}</Text>
     </View>

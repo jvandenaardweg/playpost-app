@@ -1,18 +1,14 @@
 import React from 'react';
-import {
-  View, Text, TouchableHighlight
-} from 'react-native';
+import { View, Text, TouchableHighlight } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-// import { ProgressComponent } from 'react-native-track-player';
+
 import styles from './styles';
 
-export const AudioPlayerLarge = ({
-  handleOnPressPlay,
-  handleOnPressPause,
-  isPlaying,
-  isDisabled,
-  track: { title, artist, album }
-}) => (
+interface Props {
+
+}
+
+export const AudioPlayerLarge = (props: Props) => (
   <View>
     <View>
       <TouchableHighlight>

@@ -1,15 +1,30 @@
 import React from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
 import { Button } from 'react-native-elements';
-import PropTypes from 'prop-types';
-import { Article } from '@/components/Article';
+
+import { Article } from '../../components/Article';
 import styles from './styles';
 
-export class ShareModal extends React.PureComponent {
+interface State {
+  isLoading: boolean
+  title: string
+  description: string
+  sourceName: string
+}
+
+interface Props {
+  url: string
+  type: string
+  onPressCancel(): void
+  onPressSave(): void
+}
+
+export class ShareModal extends React.PureComponent<Props, State> {
   state = {
     isLoading: true,
-    title: null,
-    description: null
+    title: '',
+    description: '',
+    sourceName: ''
   }
 
   async componentDidMount() {
@@ -17,7 +32,7 @@ export class ShareModal extends React.PureComponent {
     await this.fetchArticle(url);
   }
 
-  fetchArticle = async (url) => {
+  fetchArticle = async (url: string) => {
     /* eslint-disable no-console */
     console.log('fetch article using url: ', url);
 
@@ -86,10 +101,3 @@ export class ShareModal extends React.PureComponent {
     );
   }
 }
-
-ShareModal.propTypes = {
-  type: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
-  onPressCancel: PropTypes.func.isRequired,
-  onPressSave: PropTypes.func.isRequired
-};

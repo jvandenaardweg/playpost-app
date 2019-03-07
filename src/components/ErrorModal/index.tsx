@@ -2,7 +2,13 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 
-export const ErrorModal = (props) => (
+interface Props {
+  onPressAction(url: string): void
+  message: string
+  action: string
+}
+
+export const ErrorModal = (props: Props) => (
   <View style={{
     backgroundColor: 'white',
     padding: 14,

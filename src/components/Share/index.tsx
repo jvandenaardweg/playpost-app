@@ -3,19 +3,35 @@ import { Animated, View, Modal, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import ShareExtension from 'react-native-share-extension';
 
-import { ShareModal } from '@/components/ShareModal';
-import { ErrorModal } from '@/components/ErrorModal';
+import { ShareModal } from '../../components/ShareModal';
+import { ErrorModal } from '../../components/ErrorModal';
 
-import { getDefaultPlaylist } from '@/selectors/me';
+import { getDefaultPlaylist } from '../../selectors/me';
+import { AuthState } from '../../reducers/auth';
+import { MeState } from '../../reducers/me';
 
-export default class ShareContainer extends React.Component {
+interface State {
+  isOpen: boolean
+  type: string
+  value: string
+  opacityAnim: Animated.Value
+  errorMessage: string
+  errorAction: string
+}
+
+interface Props {
+  auth: AuthState
+  defaultPlaylist: ApiPlaylist
+}
+
+export default class ShareContainer extends React.Component<Props, State> {
   state = {
     isOpen: true,
-    type: null,
-    value: null,
+    type: '',
+    value: '',
     opacityAnim: new Animated.Value(0),
-    errorMessage: null,
-    errorAction: null
+    errorMessage: '',
+    errorAction: ''
   }
 
   async componentDidMount() {
@@ -90,7 +106,7 @@ export default class ShareContainer extends React.Component {
     ).start();
   }
 
-  openUrl = async (url) => {
+  openUrl = async (url: string) => {
     try {
       // const supported = await Linking.canOpenURL(url);
 
@@ -148,7 +164,7 @@ export default class ShareContainer extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: { auth: AuthState, me: MeState}) => ({
   auth: state.auth,
   me: state.me,
   defaultPlaylist: getDefaultPlaylist(state)

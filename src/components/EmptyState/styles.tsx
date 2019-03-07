@@ -14,9 +14,6 @@ export default StyleSheet.create({
     paddingRight: 24,
     paddingLeft: 24
   },
-  centered: {
-    textAlign: 'center'
-  },
   title: {
     textAlign: 'center',
     fontFamily: 'Merriweather-Regular',

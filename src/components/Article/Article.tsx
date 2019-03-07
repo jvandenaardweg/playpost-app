@@ -1,10 +1,19 @@
 import React from 'react';
-import {
-  View, Text, TouchableHighlight, ActivityIndicator, TouchableOpacity, Alert
-} from 'react-native';
+import { View, Text, TouchableHighlight, ActivityIndicator, TouchableOpacity, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import PropTypes from 'prop-types';
 import styles from './styles';
+
+interface Props {
+  isLoading: boolean
+  isPlaying: boolean
+  seperated: boolean
+  title: string
+  description: string
+  sourceName: string
+  authorName: string
+  listenTimeInMinutes: number
+  onPlayPress(): void
+}
 
 export const Article = ({
   isLoading,
@@ -16,7 +25,7 @@ export const Article = ({
   authorName,
   listenTimeInMinutes,
   onPlayPress
-}) => (
+}: Props) => (
   <View style={[styles.container, seperated ? styles.seperated : null]}>
     <TouchableOpacity style={styles.sectionHeader} activeOpacity={1} onPress={() => Alert.alert('Should go to the browser...')}>
       <Text style={styles.title} ellipsizeMode="tail" numberOfLines={2}>{title}</Text>
@@ -45,7 +54,7 @@ export const Article = ({
             listenTimeInMinutes={listenTimeInMinutes}
           />
           <Text style={styles.duration}>
-            {(listenTimeInMinutes).toFixed(0)}
+            {listenTimeInMinutes && listenTimeInMinutes.toFixed(0)}
             min
           </Text>
         </View>
@@ -54,37 +63,16 @@ export const Article = ({
   </View>
 );
 
-export const PlayButton = ({ isPlaying, onPress, isLoading }) => (
+export const PlayButton = (props: { isPlaying: boolean, onPress(): void, isLoading: boolean, listenTimeInMinutes: number }) => (
   <TouchableHighlight
-    style={[styles.controlButton, isPlaying ? styles.controlButtonActive : null]}
-    onPress={onPress}
+    style={[styles.controlButton, props.isPlaying ? styles.controlButtonActive : null]}
+    onPress={props.onPress}
     activeOpacity={0.9}
   >
     <View>
-      {isLoading && <ActivityIndicator size="small" color="#fff" />}
-      {!isLoading && !isPlaying && <Icon name="play" size={14} color="white" style={styles.controlIcon} />}
-      {!isLoading && isPlaying && <Icon name="pause" size={14} color="white" style={styles.controlIcon} />}
+      {props.isLoading && <ActivityIndicator size="small" color="#fff" />}
+      {!props.isLoading && !props.isPlaying && <Icon name="play" size={14} color="white" style={styles.controlIcon} />}
+      {!props.isLoading && props.isPlaying && <Icon name="pause" size={14} color="white" style={styles.controlIcon} />}
     </View>
   </TouchableHighlight>
 );
-
-Article.defaultProps = {
-  isLoading: false,
-  isPlaying: false,
-  seperated: false,
-  authorName: null,
-  listenTimeInMinutes: 0,
-  onPlayPress: null
-};
-
-Article.propTypes = {
-  isLoading: PropTypes.bool,
-  isPlaying: PropTypes.bool,
-  seperated: PropTypes.bool,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  sourceName: PropTypes.string.isRequired,
-  authorName: PropTypes.string,
-  listenTimeInMinutes: PropTypes.number,
-  onPlayPress: PropTypes.func
-};
