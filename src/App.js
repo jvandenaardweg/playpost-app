@@ -80,20 +80,19 @@ export default class App extends React.PureComponent {
     this.setState({ appState: nextAppState });
   };
 
-  handleOpenURL = (event) => { // D
-    console.log(this)
+  handleOpenURL = (event) => {
     this.navigate(event.url);
   }
 
   navigate = (url) => { // E
     const { navigate } = this.props.navigation;
     const route = url.replace(/.*?:\/\//g, '');
-    const id = route.match(/\/([^\/]+)\/?$/)[1];
-    const routeName = route.split('/')[0];
+    // const id = route.match(/\/([^\/]+)\/?$/)[1];
+    // const routeName = route.split('/')[0];
 
-    if (routeName === 'onboarding') {
-      navigate('Onboarding')
-    };
+    // if (routeName === 'onboarding') {
+    navigate(route);
+    // }
   }
 
   componentDidCatch(error, info) {
