@@ -5,10 +5,10 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "storybook": "storybook start",
     "lint": "eslint --ext=.js src",
     "lint:fix": "eslint --ext=.js src --fix",
-    "lint:debug": "eslint --ext=.js src --debug"
+    "lint:debug": "eslint --ext=.js src --debug",
+    "postinstall": "./postinstall.sh"
   },
   "rnpm": {
     "assets": [
@@ -17,8 +17,6 @@
   },
   "dependencies": {
     "@babel/core": "^7.3.3",
-    "@storybook/addon-actions": "^4.1.11",
-    "@storybook/react-native": "^4.1.11",
     "appcenter": "1.12.0",
     "appcenter-analytics": "1.12.0",
     "appcenter-crashes": "1.12.0",
@@ -35,18 +33,30 @@
     "react-native-app-intro-slider": "^1.0.1",
     "react-native-elements": "^1.0.0",
     "react-native-gesture-handler": "^1.0.15",
+    "react-native-reanimated": "^1.0.0-alpha.12",
     "react-native-restart": "0.0.9",
     "react-native-settings-screen": "^2.1.2",
     "react-native-share-extension": "git+https://github.com/alinz/react-native-share-extension.git#3db5320135c154c367d72c44688a29ce41b210e7",
     "react-native-track-player": "^1.1.2",
     "react-native-vector-icons": "^6.3.0",
     "react-navigation": "^3.1.2",
+    "react-navigation-tabs": "^2.0.0-alpha.0",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
     "redux-axios-middleware": "^4.0.0",
+    "redux-devtools-extension": "^2.13.8",
     "reselect": "^4.0.0"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.9",
+    "@types/node": "^11.10.5",
+    "@types/react": "^16.8.7",
+    "@types/react-native": "^0.57.38",
+    "@types/react-native-restart": "0.0.0",
+    "@types/react-native-vector-icons": "^4.6.4",
+    "@types/react-navigation": "^3.0.4",
+    "@types/react-redux": "^7.0.2",
+    "@types/react-test-renderer": "^16.8.1",
     "babel-eslint": "^10.0.1",
     "babel-jest": "24.0.0",
     "detox": "^10.0.12",
@@ -60,7 +70,9 @@
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-native": "^3.6.0",
     "jest": "24.0.0",
-    "react-test-renderer": "16.6.3"
+    "react-native-typescript-transformer": "^1.2.12",
+    "react-test-renderer": "16.6.3",
+    "typescript": "^3.3.3333"
   },
   "jest": {
     "preset": "react-native"

@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": false, // was: true
+    "jsx": "react",
+    "lib": ["es6"],
+    "moduleResolution": "node",
+    "noEmit": true,
+    "strict": true,
+    "target": "esnext",
+    "skipLibCheck": true // Fix conflict with node types: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/16825
+  },
+  "exclude": ["node_modules", "babel.config.js"]
+}
