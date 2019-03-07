@@ -1,27 +1,35 @@
-interface ApiPlaylist {
-  id: string
-  name: string
-  playlistItems: ApiPlaylistItem[]
-}
+namespace Api {
+  export interface Playlist {
+    id: string
+    name: string
+    playlistItems: PlaylistItem[]
+  }
 
-interface ApiPlaylistItem {
-  id: string
-  article: ApiArticle
-}
+  export interface PlaylistItem {
+    id: string
+    article: Article
+  }
 
-interface ApiArticle {
-  id: string
-  title: string
-  description: string
-  url: string
-  categoryName: string
-  sourceName: string
-  authorName: string
-  listenTimeInMinutes: number
-}
+  export interface Article {
+    id: string
+    title: string
+    description: string
+    url: string
+    categoryName: string
+    sourceName: string
+    authorName: string
+    listenTimeInMinutes: number
+  }
 
-interface ApiUser {
-  id: string
-  email: string
-  playlists?: ApiPlaylist[]
+  export interface User {
+    id: string
+    email: string
+    onboardAt: Date | null
+    activatedAt: Date | null
+    authenticatedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    playlists?: Playlist[]
+  }
+
 }

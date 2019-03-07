@@ -21,7 +21,7 @@ interface State {
 
 interface Props {
   auth: AuthState
-  defaultPlaylist: ApiPlaylist
+  defaultPlaylist: Api.Playlist
 }
 
 export default class ShareContainer extends React.Component<Props, State> {

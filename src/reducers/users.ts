@@ -6,7 +6,7 @@ export const CREATE_USER_FAIL = 'users/CREATE_USER_FAIL';
 
 export interface UsersState {
   isLoading: boolean
-  user: ApiUser | null
+  user: Api.User | null
   error: string | null
 }
 

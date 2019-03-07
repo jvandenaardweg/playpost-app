@@ -23,7 +23,7 @@ interface State {
 interface Props {
   auth: AuthState
   me: MeState
-  articles: ApiArticle[]
+  articles: Api.Article[]
   playbackStatus: any
   getAudioByArticleUrl: any
   setTrack: any

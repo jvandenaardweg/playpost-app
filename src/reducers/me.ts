@@ -13,8 +13,8 @@ const GET_ME_PLAYLISTS_FAIL_MESSAGE = 'An unknown error happened while getting y
 
 export interface MeState {
   isLoading: boolean
-  user: ApiUser | null
-  playlists: ApiPlaylist[]
+  user: Api.User | null
+  playlists: Api.Playlist[]
   error: string | null
 }
 

@@ -16,7 +16,7 @@ export const getDefaultPlaylistArticles = createSelector(
   playlist => {
     if (!playlist || !playlist.playlistItems || !playlist.playlistItems.length) return [];
 
-    const articles = playlist.playlistItems.map((playlistItem: ApiPlaylistItem) => playlistItem.article);
+    const articles = playlist.playlistItems.map((playlistItem: Api.PlaylistItem) => playlistItem.article);
 
     return articles;
   }

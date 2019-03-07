@@ -10,7 +10,7 @@ interface State {
 interface Props {
   playbackStatus: string
   playingTrack: any // TODO: use type
-  article: ApiArticle
+  article: Api.Article
   getAudioByArticleUrl(articleUrl: string): void
   setTrack(track: any): void // TODO: use type
   seperated: boolean

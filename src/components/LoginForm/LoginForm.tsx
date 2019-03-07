@@ -9,7 +9,7 @@ interface Props {
   onPressSignup(): void
   email: string
   password: string
-  error: string
+  error: string | null
   isLoading: boolean
 }
 
