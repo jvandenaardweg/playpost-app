@@ -9,7 +9,7 @@ import { setAuthToken, AuthState } from '../reducers/auth';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 
 interface Props {
-  setAuthToken: any;
+  setAuthToken(usertoken: string): void;
   navigation: NavigationScreenProp<NavigationRoute>;
 }
 
@@ -28,8 +28,10 @@ export class AuthLoadingScreenContainer extends React.PureComponent<Props> {
     // Important: Only rely on this token, so the user can use the app offline
     const userToken = await AsyncStorage.getItem('userToken');
 
-    // Save the auth token in Redux, so it's available for our whole app to use
-    this.props.setAuthToken(userToken);
+    if (userToken) {
+      // Save the auth token in Redux, so it's available for our whole app to use
+      this.props.setAuthToken(userToken);
+    }
 
     // This will switch to the App screen or Auth screen and this loading
     // screen will be unmounted and thrown away.

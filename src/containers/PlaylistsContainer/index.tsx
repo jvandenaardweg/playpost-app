@@ -1,5 +1,5 @@
 import * as React from 'React';
-import { FlatList } from 'react-native';
+import { FlatList, Alert } from 'react-native';
 import { connect } from 'react-redux';
 
 import { getUserPlaylists, UserState } from '../../reducers/user';
@@ -47,6 +47,8 @@ class ArticlesContainerComponent extends React.PureComponent<Props, State> {
     if (token) {
       await this.props.getUserPlaylists(token);
       this.setState({ isLoading: false, isRefreshing: false });
+    } else {
+      Alert.alert('You are not logged in!');
     }
   }
 
