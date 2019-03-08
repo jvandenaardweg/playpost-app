@@ -1,4 +1,4 @@
-import appcenterAnalytics from 'appcenter-analytics';
+import Analytics from 'appcenter-analytics';
 
 export const POST_AUTH = 'auth/POST_AUTH';
 export const POST_AUTH_SUCCESS = 'auth/POST_AUTH_SUCCESS';
@@ -29,7 +29,7 @@ export function authReducer(state = initialState, action: any) {
       };
 
     case POST_AUTH_SUCCESS:
-      appcenterAnalytics.trackEvent('Auth success');
+      Analytics.trackEvent('Auth success');
 
       return {
         ...state,
@@ -40,9 +40,9 @@ export function authReducer(state = initialState, action: any) {
 
     case POST_AUTH_FAIL:
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        appcenterAnalytics.trackEvent('Error auth', { message: action.error.response.data.message });
+        Analytics.trackEvent('Error auth', { message: action.error.response.data.message });
       } else {
-        appcenterAnalytics.trackEvent('Error auth', { message: POST_AUTH_FAIL_MESSAGE });
+        Analytics.trackEvent('Error auth', { message: POST_AUTH_FAIL_MESSAGE });
       }
 
       return {

@@ -1,7 +1,7 @@
 import * as React from 'React';
 import { Alert } from 'react-native';
 import reactNativeRestart from 'react-native-restart';
-import appcenterAnalytics from 'appcenter-analytics';
+import Analytics from 'appcenter-analytics';
 
 interface State {
   hasError: boolean;
@@ -15,7 +15,7 @@ export class ErrorBoundary extends React.PureComponent<Props, State> {
 
   state = {
     hasError: false
-  }
+  };
 
   static getDerivedStateFromError(error: any) {
     // Update state so the next render will show the fallback UI.
@@ -31,11 +31,11 @@ export class ErrorBoundary extends React.PureComponent<Props, State> {
 
     // You can also log the error to an error reporting service
     if (error) {
-      appcenterAnalytics.trackEvent('App error', { error });
+      Analytics.trackEvent('App error', { error });
     }
 
     if (info) {
-      appcenterAnalytics.trackEvent('App info', { info });
+      Analytics.trackEvent('App info', { info });
     }
 
     Alert.alert(

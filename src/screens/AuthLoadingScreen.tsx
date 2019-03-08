@@ -1,5 +1,5 @@
 import * as React from 'react';
-import appcenterAnalytics from 'appcenter-analytics';
+import Analytics from 'appcenter-analytics';
 import { AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 
@@ -22,7 +22,7 @@ export class AuthLoadingScreenContainer extends React.PureComponent<Props> {
   bootstrapAsync = async () => {
     if (process.env.NODE_ENV === 'production') {
       // Enable Analytics, so we can track errors
-      await appcenterAnalytics.setEnabled(true);
+      await Analytics.setEnabled(true);
     }
 
     // Important: Only rely on this token, so the user can use the app offline
@@ -34,7 +34,7 @@ export class AuthLoadingScreenContainer extends React.PureComponent<Props> {
     // This will switch to the App screen or Auth screen and this loading
     // screen will be unmounted and thrown away.
     this.props.navigation.navigate(userToken ? 'App' : 'Onboarding');
-  };
+  }
 
   // Render any loading content that you like here
   render() {

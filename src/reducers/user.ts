@@ -1,4 +1,4 @@
-import appcenterAnalytics from 'appcenter-analytics';
+import Analytics from 'appcenter-analytics';
 
 export const GET_USER = 'user/GET_USER';
 export const GET_USER_SUCCESS = 'user/GET_USER_SUCCESS';
@@ -45,7 +45,7 @@ export function userReducer(state = initialState, action: any) {
       };
 
     case GET_USER_SUCCESS:
-      appcenterAnalytics.trackEvent('Get account success');
+      Analytics.trackEvent('Get account success');
 
       return {
         ...state,
@@ -56,9 +56,9 @@ export function userReducer(state = initialState, action: any) {
 
     case GET_USER_FAIL:
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        appcenterAnalytics.trackEvent('Error get account', { message: action.error.response.data.message });
+        Analytics.trackEvent('Error get account', { message: action.error.response.data.message });
       } else {
-        appcenterAnalytics.trackEvent('Error get account', { message: GET_USER_FAIL_MESSAGE });
+        Analytics.trackEvent('Error get account', { message: GET_USER_FAIL_MESSAGE });
       }
 
       return {
@@ -75,7 +75,7 @@ export function userReducer(state = initialState, action: any) {
       };
 
     case GET_USER_PLAYLISTS_SUCCESS:
-      appcenterAnalytics.trackEvent('Get playlist success');
+      Analytics.trackEvent('Get playlist success');
 
       return {
         ...state,
@@ -86,9 +86,9 @@ export function userReducer(state = initialState, action: any) {
 
     case GET_USER_PLAYLISTS_FAIL:
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        appcenterAnalytics.trackEvent('Error get playlist', { message: action.error.response.data.message });
+        Analytics.trackEvent('Error get playlist', { message: action.error.response.data.message });
       } else {
-        appcenterAnalytics.trackEvent('Error get playlist', { message: GET_USER_PLAYLISTS_FAIL_MESSAGE });
+        Analytics.trackEvent('Error get playlist', { message: GET_USER_PLAYLISTS_FAIL_MESSAGE });
       }
 
       return {
@@ -105,7 +105,7 @@ export function userReducer(state = initialState, action: any) {
       };
 
     case CREATE_USER_SUCCESS:
-      appcenterAnalytics.trackEvent('Create user success');
+      Analytics.trackEvent('Create user success');
 
       return {
         ...state,
@@ -118,9 +118,9 @@ export function userReducer(state = initialState, action: any) {
       const genericMessage = 'An unknown error happened while creating your account. Please contact us when this happens all the time.';
 
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        appcenterAnalytics.trackEvent('Error create user', { message: action.error.response.data.message });
+        Analytics.trackEvent('Error create user', { message: action.error.response.data.message });
       } else {
-        appcenterAnalytics.trackEvent('Error create user', { message: genericMessage });
+        Analytics.trackEvent('Error create user', { message: genericMessage });
       }
 
       return {
