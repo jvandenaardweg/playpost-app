@@ -6,7 +6,7 @@ const grayLightest = '#EEF0F4';
 const appBackground = '#EBEBEB';
 const white = '#ffffff';
 const blue = tintColor;
-const red = 'red';
+const red = '#FF1017';
 const orange = '#EAEB5E';
 const orangeDark = '#666804';
 

@@ -1,21 +1,22 @@
 import Analytics from 'appcenter-analytics';
 
-export const GET_ME = 'me/GET_ME';
-export const GET_ME_SUCCESS = 'me/GET_ME_SUCCESS';
-export const GET_ME_FAIL = 'me/GET_ME_FAIL';
+export const GET_USER = 'user/GET_USER';
+export const GET_USER_SUCCESS = 'user/GET_USER_SUCCESS';
+export const GET_USER_FAIL = 'user/GET_USER_FAIL';
 
-export const GET_ME_PLAYLISTS = 'me/GET_ME_PLAYLISTS';
-export const GET_ME_PLAYLISTS_SUCCESS = 'me/GET_ME_PLAYLISTS_SUCCESS';
-export const GET_ME_PLAYLISTS_FAIL = 'me/GET_ME_PLAYLISTS_FAIL';
+export const GET_USER_PLAYLISTS = 'user/GET_USER_PLAYLISTS';
+export const GET_USER_PLAYLISTS_SUCCESS = 'user/GET_USER_PLAYLISTS_SUCCESS';
+export const GET_USER_PLAYLISTS_FAIL = 'user/GET_USER_PLAYLISTS_FAIL';
 
-export const REMOVE_ME = 'me/REMOVE_ME';
+export const REMOVE_ME = 'user/REMOVE_ME';
 
-const GET_ME_FAIL_MESSAGE = 'An unknown error happened while getting your account. Please contact us when this happens all the time.';
-const GET_ME_PLAYLISTS_FAIL_MESSAGE = 'An unknown error happened while getting your playlist. Please contact us when this happens all the time.';
+const GET_USER_FAIL_MESSAGE = 'An unknown error happened while getting your account. Please contact us when this happens all the time.';
+const GET_USER_PLAYLISTS_FAIL_MESSAGE = 'An unknown error happened while getting your playlist. Please contact us when this happens all the time.';
 
 export interface MeState {
   isLoading: boolean
   user: Api.User | null
+  token: string | null
   playlists: Api.Playlist[]
   error: string | null
 }
@@ -23,17 +24,18 @@ export interface MeState {
 const initialState: MeState = {
   isLoading: false,
   user: null,
+  token: null,
   playlists: [],
   error: null
 }
 export function meReducer(state = initialState, action: any) {
   switch (action.type) {
-    case GET_ME:
+    case GET_USER:
       return {
         ...state,
         isLoading: true
       };
-    case GET_ME_SUCCESS:
+    case GET_USER_SUCCESS:
       Analytics.trackEvent('Get account success');
 
       return {
@@ -42,26 +44,26 @@ export function meReducer(state = initialState, action: any) {
         user: action.payload.data,
         error: null
       };
-    case GET_ME_FAIL:
+    case GET_USER_FAIL:
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
         Analytics.trackEvent('Error get account', { message: action.error.response.data.message });
       } else {
-        Analytics.trackEvent('Error get account', { message: GET_ME_FAIL_MESSAGE });
+        Analytics.trackEvent('Error get account', { message: GET_USER_FAIL_MESSAGE });
       }
 
       return {
         ...state,
         isLoading: false,
         user: null,
-        error: (action.error.response) ? action.error.response.data.message : GET_ME_FAIL_MESSAGE
+        error: (action.error.response) ? action.error.response.data.message : GET_USER_FAIL_MESSAGE
       };
 
-    case GET_ME_PLAYLISTS:
+    case GET_USER_PLAYLISTS:
       return {
         ...state,
         isLoading: true
       };
-    case GET_ME_PLAYLISTS_SUCCESS:
+    case GET_USER_PLAYLISTS_SUCCESS:
       Analytics.trackEvent('Get playlist success');
 
       return {
@@ -70,18 +72,18 @@ export function meReducer(state = initialState, action: any) {
         playlists: action.payload.data,
         error: null
       };
-    case GET_ME_PLAYLISTS_FAIL:
+    case GET_USER_PLAYLISTS_FAIL:
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
         Analytics.trackEvent('Error get playlist', { message: action.error.response.data.message });
       } else {
-        Analytics.trackEvent('Error get playlist', { message: GET_ME_PLAYLISTS_FAIL_MESSAGE });
+        Analytics.trackEvent('Error get playlist', { message: GET_USER_PLAYLISTS_FAIL_MESSAGE });
       }
 
       return {
         ...state,
         isLoading: false,
         playlists: [],
-        error: (action.error.response) ? action.error.response.data.message : GET_ME_PLAYLISTS_FAIL_MESSAGE
+        error: (action.error.response) ? action.error.response.data.message : GET_USER_PLAYLISTS_FAIL_MESSAGE
       };
 
     case REMOVE_ME:
@@ -101,7 +103,7 @@ export function removeMe() {
 
 export function getMe(token: string) {
   return {
-    type: GET_ME,
+    type: GET_USER,
     payload: {
       request: {
         method: 'get',
@@ -116,11 +118,11 @@ export function getMe(token: string) {
 
 export function getMePlaylists(token: string) {
   return {
-    type: GET_ME_PLAYLISTS,
+    type: GET_USER_PLAYLISTS,
     payload: {
       request: {
         method: 'get',
-        url: '/v1/me/playlists',
+        url: '/v1/user/playlists',
         headers: {
           Authorization: `Bearer ${token}`
         }
