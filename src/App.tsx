@@ -29,7 +29,7 @@ export default class App extends React.PureComponent<State> {
   };
 
   async componentWillMount() {
-    if (process.env.NODE_ENV === 'production') {
+    if (!__DEV__) {
       // Enable Analytics, so we can track errors
       await Analytics.setEnabled(true);
       await Crashes.setEnabled(true);

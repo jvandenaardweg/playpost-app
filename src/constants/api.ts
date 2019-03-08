@@ -9,7 +9,7 @@ interface ApiEnvironments {
 const environments: ApiEnvironments = {
   production: PRODUCTION_API_URL,
   staging: STAGING_API_URL,
-  development: PRODUCTION_API_URL
+  development: DEVELOPMENT_API_URL
 };
 
 export const API_URL = environments[process.env.NODE_ENV || 'production'];

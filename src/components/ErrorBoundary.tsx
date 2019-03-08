@@ -6,7 +6,7 @@ import Analytics from 'appcenter-analytics';
 interface State {
   error: any;
   errorInfo: any;
-  hasError: boolean
+  hasError: boolean;
 }
 
 interface Props {
@@ -69,16 +69,11 @@ export class ErrorBoundary extends React.Component<Props, State> {
     //   Analytics.trackEvent('App errorInfo', { errorInfo });
     // }
 
-
-
-
   }
 
   render() {
     if (this.errorShown) {
       // Render any custom fallback UI
-
-
       return <View style={{ flex: 1 }}><Text>Something went wrong.</Text></View>;
     }
 
