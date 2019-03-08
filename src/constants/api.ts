@@ -3,7 +3,7 @@ const STAGING_API_URL = 'https://readto-api-staging.herokuapp.com';
 const DEVELOPMENT_API_URL = 'http://localhost:3000';
 
 interface ApiEnvironments {
-  [key: string]: string
+  [key: string]: string;
 }
 
 const environments: ApiEnvironments = {

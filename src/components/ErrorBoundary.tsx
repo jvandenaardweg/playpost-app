@@ -1,17 +1,17 @@
-import React from 'react';
+import react from 'react';
 import { Alert } from 'react-native';
-import RNRestart from 'react-native-restart';
-import Analytics from 'appcenter-analytics';
+import reactNativeRestart from 'react-native-restart';
+import appcenterAnalytics from 'appcenter-analytics';
 
 interface State {
-  hasError: boolean
+  hasError: boolean;
 }
 
 interface Props {
-  children: any
+  children: any;
 }
 
-export class ErrorBoundary extends React.PureComponent<Props, State> {
+export class ErrorBoundary extends react.PureComponent<Props, State> {
 
   state = {
     hasError: false
@@ -23,7 +23,7 @@ export class ErrorBoundary extends React.PureComponent<Props, State> {
   }
 
   componentDidCatch(error: any, info: any) {
-    console.log(error, info)
+    console.log(error, info);
     // to prevent this alert blocking your view of a red screen while developing
     if (__DEV__) {
       return;
@@ -31,11 +31,11 @@ export class ErrorBoundary extends React.PureComponent<Props, State> {
 
     // You can also log the error to an error reporting service
     if (error) {
-      Analytics.trackEvent('App error', { error });
+      appcenterAnalytics.trackEvent('App error', { error });
     }
 
     if (info) {
-      Analytics.trackEvent('App info', { info });
+      appcenterAnalytics.trackEvent('App info', { info });
     }
 
     Alert.alert(
@@ -44,7 +44,7 @@ export class ErrorBoundary extends React.PureComponent<Props, State> {
       [
         {
           text: 'Restart app',
-          onPress: RNRestart.Restart,
+          onPress: reactNativeRestart.Restart,
         },
       ],
       { cancelable: false }

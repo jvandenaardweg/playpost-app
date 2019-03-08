@@ -10,7 +10,7 @@ export const getAuthenticationToken = createSelector(
 
 export const getAuthenticationStatus = createSelector(
   getAuthenticationToken,
-  token => {
+  (token) => {
     if (token) return 'LOGGED_IN';
     return 'LOGGED_OUT';
   }

@@ -7,16 +7,16 @@ export const SET_TRACK = 'player/SET_TRACK';
 export const RESET_PLAYER_STATE = 'player/RESET_PLAYER_STATE';
 
 export interface PlayerState {
-  trackUrl: string | null
-  track: any // TODO: use type
-  playbackStatus: string | null
+  trackUrl: string | null;
+  track: any; // TODO: use type
+  playbackStatus: string | null;
 }
 
 const initialState: PlayerState = {
   trackUrl: null,
   track: {},
   playbackStatus: null
-}
+};
 
 export function playerReducer(state = initialState, action: any) {
   switch (action.type) {

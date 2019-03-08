@@ -5,9 +5,10 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "lint": "eslint --ext=.js src",
-    "lint:fix": "eslint --ext=.js src --fix",
-    "lint:debug": "eslint --ext=.js src --debug"
+    "lint": "tslint -c tslint.json 'src/**/*.ts' --project tsconfig.json",
+    "lint:fix": "tslint -c tslint.json 'src/**/*.ts' --fix --project tsconfig.json",
+    "lint:debug": "tslint -c tslint.json 'src/**/*.ts' --debug --project tsconfig.json",
+    "typescript": "tsc"
   },
   "rnpm": {
     "assets": [
@@ -43,7 +44,9 @@
     "redux": "^4.0.1",
     "redux-axios-middleware": "^4.0.0",
     "redux-devtools-extension": "^2.13.8",
-    "reselect": "^4.0.0"
+    "reselect": "^4.0.0",
+    "tslint": "^5.13.1",
+    "typescript-tslint-plugin": "^0.3.1"
   },
   "devDependencies": {
     "@types/jest": "^24.0.9",
@@ -68,6 +71,8 @@
     "jest": "24.0.0",
     "react-native-typescript-transformer": "^1.2.12",
     "react-test-renderer": "16.6.3",
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-react": "^3.6.0",
     "typescript": "^3.3.3333"
   },
   "jest": {

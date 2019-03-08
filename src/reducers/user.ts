@@ -1,4 +1,4 @@
-import Analytics from 'appcenter-analytics';
+import appcenterAnalytics from 'appcenter-analytics';
 
 export const GET_USER = 'user/GET_USER';
 export const GET_USER_SUCCESS = 'user/GET_USER_SUCCESS';
@@ -22,11 +22,11 @@ const GET_USER_FAIL_MESSAGE = 'An unknown error happened while getting your acco
 const GET_USER_PLAYLISTS_FAIL_MESSAGE = 'An unknown error happened while getting your playlist. Please contact us when this happens all the time.';
 
 export interface UserState {
-  isLoading: boolean
-  user: Api.User | null
-  token: string | null
-  playlists: Api.Playlist[]
-  error: string | null
+  isLoading: boolean;
+  user: Api.User | null;
+  token: string | null;
+  playlists: Api.Playlist[];
+  error: string | null;
 }
 
 const initialState: UserState = {
@@ -35,7 +35,7 @@ const initialState: UserState = {
   token: null,
   playlists: [],
   error: null
-}
+};
 export function userReducer(state = initialState, action: any) {
   switch (action.type) {
     case GET_USER:
@@ -45,7 +45,7 @@ export function userReducer(state = initialState, action: any) {
       };
 
     case GET_USER_SUCCESS:
-      Analytics.trackEvent('Get account success');
+      appcenterAnalytics.trackEvent('Get account success');
 
       return {
         ...state,
@@ -56,9 +56,9 @@ export function userReducer(state = initialState, action: any) {
 
     case GET_USER_FAIL:
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error get account', { message: action.error.response.data.message });
+        appcenterAnalytics.trackEvent('Error get account', { message: action.error.response.data.message });
       } else {
-        Analytics.trackEvent('Error get account', { message: GET_USER_FAIL_MESSAGE });
+        appcenterAnalytics.trackEvent('Error get account', { message: GET_USER_FAIL_MESSAGE });
       }
 
       return {
@@ -75,7 +75,7 @@ export function userReducer(state = initialState, action: any) {
       };
 
     case GET_USER_PLAYLISTS_SUCCESS:
-      Analytics.trackEvent('Get playlist success');
+      appcenterAnalytics.trackEvent('Get playlist success');
 
       return {
         ...state,
@@ -86,9 +86,9 @@ export function userReducer(state = initialState, action: any) {
 
     case GET_USER_PLAYLISTS_FAIL:
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error get playlist', { message: action.error.response.data.message });
+        appcenterAnalytics.trackEvent('Error get playlist', { message: action.error.response.data.message });
       } else {
-        Analytics.trackEvent('Error get playlist', { message: GET_USER_PLAYLISTS_FAIL_MESSAGE });
+        appcenterAnalytics.trackEvent('Error get playlist', { message: GET_USER_PLAYLISTS_FAIL_MESSAGE });
       }
 
       return {
@@ -105,7 +105,7 @@ export function userReducer(state = initialState, action: any) {
       };
 
     case CREATE_USER_SUCCESS:
-      Analytics.trackEvent('Create user success');
+      appcenterAnalytics.trackEvent('Create user success');
 
       return {
         ...state,
@@ -118,9 +118,9 @@ export function userReducer(state = initialState, action: any) {
       const genericMessage = 'An unknown error happened while creating your account. Please contact us when this happens all the time.';
 
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error create user', { message: action.error.response.data.message });
+        appcenterAnalytics.trackEvent('Error create user', { message: action.error.response.data.message });
       } else {
-        Analytics.trackEvent('Error create user', { message: genericMessage });
+        appcenterAnalytics.trackEvent('Error create user', { message: genericMessage });
       }
 
       return {

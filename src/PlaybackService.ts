@@ -7,28 +7,28 @@
  * such as processing media buttons or analytics
  */
 
-import TrackPlayer from 'react-native-track-player';
+import reactNativeTrackPlayer from 'react-native-track-player';
 
 module.exports = async function PlaybackService() {
   // More info: https://github.com/react-native-kit/react-native-track-player/wiki/Documentation#events
 
-  TrackPlayer.addEventListener('remote-play', () => {
-    TrackPlayer.play();
+  reactNativeTrackPlayer.addEventListener('remote-play', () => {
+    reactNativeTrackPlayer.play();
   });
 
-  TrackPlayer.addEventListener('remote-pause', () => {
-    TrackPlayer.pause();
+  reactNativeTrackPlayer.addEventListener('remote-pause', () => {
+    reactNativeTrackPlayer.pause();
   });
 
-  TrackPlayer.addEventListener('remote-next', () => {
-    TrackPlayer.skipToNext();
+  reactNativeTrackPlayer.addEventListener('remote-next', () => {
+    reactNativeTrackPlayer.skipToNext();
   });
 
-  TrackPlayer.addEventListener('remote-previous', () => {
-    TrackPlayer.skipToPrevious();
+  reactNativeTrackPlayer.addEventListener('remote-previous', () => {
+    reactNativeTrackPlayer.skipToPrevious();
   });
 
-  TrackPlayer.addEventListener('remote-stop', () => {
-    TrackPlayer.destroy();
+  reactNativeTrackPlayer.addEventListener('remote-stop', () => {
+    reactNativeTrackPlayer.destroy();
   });
 };

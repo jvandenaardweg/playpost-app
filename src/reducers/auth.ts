@@ -1,4 +1,4 @@
-import Analytics from 'appcenter-analytics';
+import appcenterAnalytics from 'appcenter-analytics';
 
 export const POST_AUTH = 'auth/POST_AUTH';
 export const POST_AUTH_SUCCESS = 'auth/POST_AUTH_SUCCESS';
@@ -9,9 +9,9 @@ export const SET_AUTH_TOKEN = 'auth/SET_AUTH_TOKEN';
 const POST_AUTH_FAIL_MESSAGE = 'An unknown error happened while loggin you in. Please contact us when this happens all the time.';
 
 export interface AuthState {
-  isLoading: boolean,
-  token: string | null
-  error: string | null
+  isLoading: boolean;
+  token: string | null;
+  error: string | null;
 }
 
 const initialState: AuthState = {
@@ -29,7 +29,7 @@ export function authReducer(state = initialState, action: any) {
       };
 
     case POST_AUTH_SUCCESS:
-      Analytics.trackEvent('Auth success');
+      appcenterAnalytics.trackEvent('Auth success');
 
       return {
         ...state,
@@ -40,9 +40,9 @@ export function authReducer(state = initialState, action: any) {
 
     case POST_AUTH_FAIL:
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error auth', { message: action.error.response.data.message });
+        appcenterAnalytics.trackEvent('Error auth', { message: action.error.response.data.message });
       } else {
-        Analytics.trackEvent('Error auth', { message: POST_AUTH_FAIL_MESSAGE });
+        appcenterAnalytics.trackEvent('Error auth', { message: POST_AUTH_FAIL_MESSAGE });
       }
 
       return {

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "allowJs": true,
+    "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "isolatedModules": false, // was: true
@@ -10,7 +10,13 @@
     "noEmit": true,
     "strict": true,
     "target": "esnext",
-    "skipLibCheck": true // Fix conflict with node types: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/16825
+    "skipLibCheck": true, // Fix conflict with node types: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/16825
+    "plugins": [
+      { "name": "typescript-tslint-plugin" }
+    ]
   },
+  "include": [
+    "src/**/*",
+  ],
   "exclude": ["node_modules", "babel.config.js"]
 }

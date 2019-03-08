@@ -1,5 +1,5 @@
-import React from 'react';
-import Analytics from 'appcenter-analytics';
+import * as React from 'react';
+import appcenterAnalytics from 'appcenter-analytics';
 import { AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 
@@ -9,8 +9,8 @@ import { setAuthToken, AuthState } from '../reducers/auth';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 
 interface Props {
-  setAuthToken: any,
-  navigation: NavigationScreenProp<NavigationRoute>
+  setAuthToken: any;
+  navigation: NavigationScreenProp<NavigationRoute>;
 }
 
 export class AuthLoadingScreenContainer extends React.PureComponent<Props> {
@@ -22,7 +22,7 @@ export class AuthLoadingScreenContainer extends React.PureComponent<Props> {
   bootstrapAsync = async () => {
     if (process.env.NODE_ENV === 'production') {
       // Enable Analytics, so we can track errors
-      await Analytics.setEnabled(true);
+      await appcenterAnalytics.setEnabled(true);
     }
 
     // Important: Only rely on this token, so the user can use the app offline

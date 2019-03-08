@@ -112,4 +112,4 @@ const mapDispatchToProps = {
 export const PlaylistsContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(ArticlesContainerComponent);
+)(ArticlesContainerComponent)

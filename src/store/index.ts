@@ -1,9 +1,9 @@
 import axios from 'axios';
-import axiosMiddleware from 'redux-axios-middleware';
+import reduxAxiosMiddleware from 'redux-axios-middleware';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 
-import rootReducer from '../reducers';
+import reducers from '../reducers';
 
 import { API_URL } from '../constants/api';
 
@@ -15,11 +15,11 @@ const client = axios.create({
 
 export const store = createStore(
   combineReducers({
-    ...rootReducer,
+    ...reducers,
   }),
   composeWithDevTools(
     applyMiddleware(
-      axiosMiddleware(client)
+      reduxAxiosMiddleware(client)
     )
   )
 );
