@@ -2,7 +2,7 @@
   "extends": "airbnb",
   "parser": "babel-eslint",
   "env": {
-    "jest": true,
+    "jest": true
   },
   "rules": {
     "no-use-before-define": "off",
@@ -13,16 +13,6 @@
     "import/prefer-default-export": "off",
     "arrow-parens": "off",
     "object-curly-newline": "off"
-  },
-  "settings": {
-    "import/resolver": {
-      "alias": {
-        "map": [
-          ["@", "./src"]
-        ],
-        "extensions": [".ts", ".js", ".jsx", ".json"]
-      }
-    }
   },
   "globals": {
     "fetch": false,
