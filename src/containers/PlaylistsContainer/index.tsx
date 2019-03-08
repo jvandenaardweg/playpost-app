@@ -39,12 +39,14 @@ class ArticlesContainerComponent extends React.PureComponent<Props, State> {
 
   async componentWillMount() {
     console.log('Fetching playlists for the first time...');
+    Alert.alert('Fetching playlist...');
     this.fetchPlaylists();
   }
 
   async fetchPlaylists() {
     const { token } = this.props.auth;
     if (token) {
+      Alert.alert('Got a token, get user playlists...');
       await this.props.getUserPlaylists(token);
       this.setState({ isLoading: false, isRefreshing: false });
     } else {
