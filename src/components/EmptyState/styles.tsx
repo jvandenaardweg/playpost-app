@@ -29,5 +29,8 @@ export default StyleSheet.create({
     color: Colors.paragraphGrayed,
     paddingRight: 36,
     paddingLeft: 36
+  },
+  button: {
+    marginTop: 24
   }
 });

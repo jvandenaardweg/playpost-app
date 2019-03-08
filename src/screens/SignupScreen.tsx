@@ -3,7 +3,7 @@ import { AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 
-import { createUser, UsersState } from '../reducers/users';
+import { createUser, UserState } from '../reducers/user';
 import { postAuth, AuthState } from '../reducers/auth';
 
 import { SignupForm } from '../components/SignupForm';
@@ -17,7 +17,7 @@ interface State {
 
 interface Props {
   auth: AuthState
-  users: UsersState
+  user: UserState
   postAuth: (email: string, password: string) => {}
   createUser: (email: string, password: string) => {}
   navigation: NavigationScreenProp<NavigationRoute>
@@ -38,7 +38,7 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
   async componentDidUpdate() {
     const { email, password } = this.state;
     const { token, isLoading } = this.props.auth;
-    const { user } = this.props.users;
+    const { user } = this.props.user;
 
     // Automatically log the user in on a successful signup
     if (!isLoading && !token && (user && user.id)) {
@@ -47,7 +47,7 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
 
     if (token) {
       await AsyncStorage.setItem('userToken', token);
-      this.props.navigation.navigate('App');
+      this.props.navigation.navigate('SignupSuccess');
     }
   }
 
@@ -67,11 +67,11 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
 
   render() {
     const { email, password, passwordValidation, validationError } = this.state;
-    const error = this.props.auth.error || this.props.users.error || validationError;
+    const error = this.props.auth.error || this.props.user.error || validationError;
 
     // A way to keep showing loading untill we navigate
     // Or when an error happens
-    let isLoading = this.props.auth.isLoading || this.props.users.isLoading;
+    let isLoading = this.props.auth.isLoading || this.props.user.isLoading;
 
     // TODO: loading goes away if the user has an error, so this might not be a good way
 
@@ -95,8 +95,8 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
   }
 }
 
-const mapStateToProps = (state: { users: UsersState, auth: AuthState }) => ({
-  users: state.users,
+const mapStateToProps = (state: { user: UserState, auth: AuthState }) => ({
+  user: state.user,
   auth: state.auth
 });
 

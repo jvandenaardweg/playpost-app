@@ -6,13 +6,11 @@ import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 
 import { resetAuthState } from '../reducers/auth';
 import { UserState, resetUserState } from '../reducers/user';
-import { resetUsersState } from '../reducers/users';
 import { resetPlayerState } from '../reducers/player';
 
 interface Props {
   resetAuthState(): void
   resetUserState(): void
-  resetUsersState(): void
   resetPlayerState(): void
   navigation: NavigationScreenProp<NavigationRoute>
 }
@@ -32,7 +30,6 @@ class SettingsScreenContainer extends React.PureComponent<Props> {
     // Reset all the stores to it's original state
     this.props.resetAuthState();
     this.props.resetUserState();
-    this.props.resetUsersState();
     this.props.resetPlayerState();
 
     this.props.navigation.navigate('Login');
@@ -185,7 +182,6 @@ const mapStateToProps = (state: { user: UserState }) => ({
 const mapDispatchToProps = {
   resetAuthState,
   resetUserState,
-  resetUsersState,
   resetPlayerState
 };
 

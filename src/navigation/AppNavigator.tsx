@@ -4,6 +4,7 @@ import { MainTabNavigator } from './MainTabNavigator';
 
 import { LoginScreen } from '../screens/LoginScreen';
 import { SignupScreen } from '../screens/SignupScreen';
+import { SignupSuccessScreen } from '../screens/SignupSuccessScreen';
 import { AuthLoadingScreen } from '../screens/AuthLoadingScreen';
 import { OnboardingScreen } from '../screens/OnboardingScreen';
 
@@ -16,7 +17,8 @@ export const AppNavigator: NavigationContainer = createAppContainer(
         {
           Onboarding: OnboardingScreen,
           Login: LoginScreen,
-          Signup: SignupScreen
+          Signup: SignupScreen,
+          SignupSuccess: SignupSuccessScreen
         }
       )
     },

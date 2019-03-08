@@ -5,7 +5,6 @@ import { UserState } from '../../reducers/user';
 import Icon from 'react-native-vector-icons/Feather';
 
 import styles from './styles';
-import { UsersState } from '../../reducers/users';
 import { AuthState } from '../../reducers/auth';
 
 interface State {
@@ -15,7 +14,6 @@ interface State {
 
 interface Props {
   user: UserState
-  users: UsersState
   auth: AuthState
 }
 
@@ -28,13 +26,11 @@ class ErrorMessageContainer extends React.PureComponent<Props, State> {
   errorMessages() {
     const userError = this.props.user.error;
     const authError = this.props.auth.error;
-    const usersError = this.props.users.error
 
     let errors = [];
 
     if (userError) errors.push(userError);
     if (authError) errors.push(authError);
-    if (usersError) errors.push(usersError);
 
     return errors.join(',');
   }
@@ -61,9 +57,8 @@ class ErrorMessageContainer extends React.PureComponent<Props, State> {
   }
 }
 
-const mapStateToProps = (state: { user: UserState, users: UsersState, auth: AuthState}) => ({
+const mapStateToProps = (state: { user: UserState, auth: AuthState}) => ({
   user: state.user,
-  users: state.users,
   auth: state.auth
 });
 
