@@ -4,6 +4,8 @@ export const CREATE_USER = 'users/CREATE_USER';
 export const CREATE_USER_SUCCESS = 'users/CREATE_USER_SUCCESS';
 export const CREATE_USER_FAIL = 'users/CREATE_USER_FAIL';
 
+export const REMOVE_USER = 'users/REMOVE_USER';
+
 export interface UsersState {
   isLoading: boolean
   user: Api.User | null
@@ -47,9 +49,19 @@ export function usersReducer(state = initialState, action: any) {
         user: null,
         error: (action.error.response) ? action.error.response.data.message : genericMessage
       };
+    case REMOVE_USER:
+      return {
+        ...initialState
+      };
     default:
       return state;
   }
+}
+
+export function removeUser() {
+  return {
+    type: REMOVE_USER
+  };
 }
 
 export function createUser(email: string, password: string) {

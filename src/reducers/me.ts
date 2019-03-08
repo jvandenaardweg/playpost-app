@@ -8,6 +8,8 @@ export const GET_ME_PLAYLISTS = 'me/GET_ME_PLAYLISTS';
 export const GET_ME_PLAYLISTS_SUCCESS = 'me/GET_ME_PLAYLISTS_SUCCESS';
 export const GET_ME_PLAYLISTS_FAIL = 'me/GET_ME_PLAYLISTS_FAIL';
 
+export const REMOVE_ME = 'me/REMOVE_ME';
+
 const GET_ME_FAIL_MESSAGE = 'An unknown error happened while getting your account. Please contact us when this happens all the time.';
 const GET_ME_PLAYLISTS_FAIL_MESSAGE = 'An unknown error happened while getting your playlist. Please contact us when this happens all the time.';
 
@@ -81,9 +83,20 @@ export function meReducer(state = initialState, action: any) {
         playlists: [],
         error: (action.error.response) ? action.error.response.data.message : GET_ME_PLAYLISTS_FAIL_MESSAGE
       };
+
+    case REMOVE_ME:
+      return {
+        ...initialState
+      };
     default:
       return state;
   }
+}
+
+export function removeMe() {
+  return {
+    type: REMOVE_ME
+  };
 }
 
 export function getMe(token: string) {

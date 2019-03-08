@@ -5,14 +5,19 @@ import { connect } from 'react-redux';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 
 import { removeAuth } from '../reducers/auth';
-import { MeState } from '../reducers/me';
+import { MeState, removeMe } from '../reducers/me';
+import { removeUser } from '../reducers/users';
+import { removePlayer } from '../reducers/player';
 
 interface Props {
-  removeAuth(): void,
+  removeAuth(): void
+  removeMe(): void
+  removeUser(): void
+  removePlayer(): void
   navigation: NavigationScreenProp<NavigationRoute>
 }
 
-class SettingsScreenContainer extends React.Component<Props> {
+class SettingsScreenContainer extends React.PureComponent<Props> {
   static navigationOptions = {
     title: 'Settings'
   };
@@ -23,7 +28,13 @@ class SettingsScreenContainer extends React.Component<Props> {
 
   handleOnPressLogout = async () => {
     await AsyncStorage.removeItem('userToken');
+
+    // Reset all the stores to it's original state
     this.props.removeAuth();
+    this.props.removeMe();
+    this.props.removeUser();
+    this.props.removePlayer();
+
     this.props.navigation.navigate('Login');
   }
 
@@ -172,7 +183,10 @@ const mapStateToProps = (state: { me: MeState }) => ({
 });
 
 const mapDispatchToProps = {
-  removeAuth
+  removeAuth,
+  removeMe,
+  removeUser,
+  removePlayer
 };
 
 export const SettingsScreen = connect(

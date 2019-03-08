@@ -4,6 +4,8 @@ export const GET_AUDIO_FAIL = 'player/LOAD_FAIL';
 export const SET_PLAYBACK_STATUS = 'player/SET_PLAYBACK_STATUS';
 export const SET_TRACK = 'player/SET_TRACK';
 
+export const REMOVE_PLAYER = 'player/REMOVE_PLAYER';
+
 export interface PlayerState {
   trackUrl: string | null
   track: any // TODO: use type
@@ -45,9 +47,19 @@ export function playerReducer(state = initialState, action: any) {
         ...state,
         track: action.payload
       };
+    case REMOVE_PLAYER:
+      return {
+        ...initialState
+      };
     default:
       return state;
   }
+}
+
+export function removePlayer() {
+  return {
+    type: REMOVE_PLAYER
+  };
 }
 
 export function getAudioByArticleUrl(articleUrl: string) {
