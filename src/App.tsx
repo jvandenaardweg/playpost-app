@@ -2,6 +2,8 @@ import * as React from 'react';
 import { Platform, NativeModules, AppState, AppStateStatus } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
 import { Provider } from 'react-redux';
+import Analytics from 'appcenter-analytics';
+import Crashes from 'appcenter-crashes';
 
 import { store } from './store';
 import { reactNativeElementsTheme } from './theme';
@@ -26,21 +28,20 @@ export default class App extends React.PureComponent<State> {
     appState: AppState.currentState
   }
 
+  async componentWillMount() {
+    if (process.env.NODE_ENV === 'production') {
+      // Enable Analytics, so we can track errors
+      await Analytics.setEnabled(true);
+      await Crashes.setEnabled(true);
+    }
+  }
+
   componentDidMount() {
     AppState.addEventListener('change', this.handleAppStateChange);
-
-    // if (Platform.OS === 'android') {
-    //   Linking.getInitialURL().then(url => {
-    //     this.navigate(url);
-    //   });
-    // } else {
-    //   Linking.addEventListener('url', this.handleOpenURL);
-    // }
   }
 
   componentWillUnmount() {
     AppState.removeEventListener('change', this.handleAppStateChange);
-    // Linking.removeEventListener('url', this.handleOpenURL);
   }
 
   handleAppStateChange = (nextAppState: AppStateStatus) => {
@@ -49,17 +50,6 @@ export default class App extends React.PureComponent<State> {
     }
     this.setState({ appState: nextAppState });
   }
-
-  // handleOpenURL = (event) => {
-  //   this.navigate(event.url);
-  // }
-
-  // navigate = (url: string) => {
-  //   // TODO: make navigation work, app should be wrapped in react navigation
-  //   const { navigate } = this.props.navigation;
-  //   const route = url.replace(/.*?:\/\//g, '');
-  //   navigate(route);
-  // }
 
   render() {
     return (

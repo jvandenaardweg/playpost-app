@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -114,6 +113,7 @@
 		ED75251423134820A02E38D2 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7172C5072020474BA598FF33 /* EvilIcons.ttf */; };
 		EFA00F99313549C38DC09A55 /* Merriweather-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4737CA2073746B38C3D16F0 /* Merriweather-Regular.ttf */; };
 		F3D7C7106DCF4E8CA6FE4D45 /* Merriweather-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B9779BB4A0A4F7CBDD605DB /* Merriweather-LightItalic.ttf */; };
+		F5680A8E41400812FCED278D /* libPods-Readto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5A7DDA220F23EC00ECCC65 /* libPods-Readto.a */; };
 		FA85A9F1BD0EB71EA9371CB3 /* libPods-ReadtoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C6C3D0B637499127C6109E /* libPods-ReadtoTests.a */; };
 /* End PBXBuildFile section */
 
@@ -623,6 +623,7 @@
 				05070F8112484BF891C52C39 /* libRNVectorIcons.a in Frameworks */,
 				D3028119ADE3B1EDE1E2DDA6 /* libPods-Readto.a in Frameworks */,
 				C34921D69F9B45D2B5F6E9A3 /* libRCTRestart.a in Frameworks */,
+				F5680A8E41400812FCED278D /* libPods-Readto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

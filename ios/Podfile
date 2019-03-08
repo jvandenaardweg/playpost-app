@@ -11,6 +11,8 @@ target 'Readto' do
 
   # Pods for Readto
 
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+
   target 'ReadtoShareExtension' do
     inherit! :complete
   end
