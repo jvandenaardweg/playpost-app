@@ -192,15 +192,33 @@ export function createUser(email: string, password: string) {
   };
 }
 
-export function createUserPlaylistArticle(articleId: string, playlistId: string, token: string) {
+// export function addArticleToPlaylist(articleId: string, playlistId: string, token: string) {
+//   return {
+//     type: CREATE_USER_PLAYLIST_ARTICLE,
+//     payload: {
+//       request: {
+//         method: 'post',
+//         url: `v1/playlists/${playlistId}/articles/${articleId}`,
+//         headers: {
+//           Authorization: `Bearer ${token}`
+//         }
+//       }
+//     }
+//   };
+// }
+
+export function addArticleToPlaylistByUrl(articleUrl: string, playlistId: string, token: string) {
   return {
     type: CREATE_USER_PLAYLIST_ARTICLE,
     payload: {
       request: {
         method: 'post',
-        url: `v1/playlists/${playlistId}/articles/${articleId}`,
+        url: `v1/playlists/${playlistId}/articles`,
         headers: {
           Authorization: `Bearer ${token}`
+        },
+        data: {
+          articleUrl
         }
       }
     }
