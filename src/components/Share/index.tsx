@@ -1,4 +1,4 @@
-import * as React from 'React';
+import React from 'react';
 import { Animated, View, Modal } from 'react-native';
 import { connect } from 'react-redux';
 import ShareExtension from 'react-native-share-extension';

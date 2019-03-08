@@ -1,4 +1,4 @@
-import * as React from 'React';
+import React from 'react';
 import { EmptyState } from '../components/EmptyState';
 
 export class ArchiveScreen extends React.PureComponent {

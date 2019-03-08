@@ -1,4 +1,4 @@
-import * as React from 'React';
+import React from 'react';
 import { Alert, View, Text } from 'react-native';
 import RNRestart from 'react-native-restart';
 import Analytics from 'appcenter-analytics';

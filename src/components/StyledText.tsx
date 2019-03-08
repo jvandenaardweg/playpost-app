@@ -1,4 +1,4 @@
-import * as React from 'React';
+import React from 'react';
 import { Text } from 'react-native';
 
 export const MonoText = (props: any) => {

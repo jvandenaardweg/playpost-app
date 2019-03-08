@@ -1,4 +1,4 @@
-import * as React from 'React';
+import React from 'react';
 import { Alert } from 'react-native';
 import { Article } from './Article';
 

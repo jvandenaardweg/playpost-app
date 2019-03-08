@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Platform, NativeModules, AppState, AppStateStatus } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
 import { Provider } from 'react-redux';

@@ -1,7 +1,7 @@
 
-import * as React from 'React';
+import React from 'react';
 import { View } from 'react-native';
-import { BottomTabBar } from 'react-navigation-tabs';
+import { BottomTabBar } from 'react-navigation';
 
 import { AudioPlayerContainer } from '../../containers/AudioPlayerContainer';
 

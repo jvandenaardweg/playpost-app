@@ -1,4 +1,4 @@
-import * as React from 'React';
+import React from 'react';
 import { AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';

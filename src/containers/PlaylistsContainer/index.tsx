@@ -1,4 +1,4 @@
-import * as React from 'React';
+import React from 'react';
 import { FlatList, Alert } from 'react-native';
 import { connect } from 'react-redux';
 

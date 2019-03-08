@@ -1,4 +1,4 @@
-import * as React from 'React';
+import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { UserState } from '../../reducers/user';

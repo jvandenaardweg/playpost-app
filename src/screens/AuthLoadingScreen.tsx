@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { AsyncStorage, Alert } from 'react-native';
 import { connect } from 'react-redux';
 

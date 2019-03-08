@@ -1,4 +1,4 @@
-import * as React from 'React';
+import React from 'react';
 import { View, Modal, Button } from 'react-native';
 import { connect } from 'react-redux';
 import TrackPlayer from 'react-native-track-player';
