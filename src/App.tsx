@@ -26,7 +26,7 @@ interface State {
 export default class App extends React.PureComponent<State> {
   state = {
     appState: AppState.currentState
-  }
+  };
 
   async componentWillMount() {
     if (process.env.NODE_ENV === 'production') {
