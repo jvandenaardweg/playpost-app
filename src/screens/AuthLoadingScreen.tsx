@@ -14,22 +14,17 @@ interface Props {
 
 export class AuthLoadingScreenContainer extends React.PureComponent<Props> {
   componentDidMount() {
-    Alert.alert('Authloading mount');
     this.bootstrapAsync();
   }
 
   // Fetch the token from storage then navigate to our appropriate place
   bootstrapAsync = async () => {
-    // Alert.alert(`Getting user token...`);
     // Important: Only rely on this token, so the user can use the app offline
     const userToken = await AsyncStorage.getItem('userToken');
 
     if (userToken) {
-      Alert.alert(`Should set token ${userToken}`);
       // Save the auth token in Redux, so it's available for our whole app to use
       this.props.setAuthToken(userToken);
-    } else {
-      Alert.alert('Does not have a token');
     }
 
     // This will switch to the App screen or Auth screen and this loading

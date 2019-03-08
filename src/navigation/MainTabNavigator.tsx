@@ -84,7 +84,7 @@ export const MainTabNavigator: BottomTabNavigatorConfig = createBottomTabNavigat
     SettingsStack,
   },
   {
-    tabBarComponent: props => <TabBar {...props} />,
+    tabBarComponent: (props: any) => <TabBar {...props} />,
     tabBarOptions: {
       showLabel: false
     }
