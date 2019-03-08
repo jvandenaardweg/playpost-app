@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'React';
 import Icon from 'react-native-vector-icons/Feather';
 
 import Colors from '../../constants/colors';

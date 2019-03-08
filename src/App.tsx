@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Platform, NativeModules, AppState, AppStateStatus } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
 import { Provider } from 'react-redux';
@@ -18,7 +18,7 @@ if (Platform.OS === 'ios' && __DEV__) {
 console.disableYellowBox = true;
 
 interface State {
-  appState: AppStateStatus
+  appState: AppStateStatus;
 }
 
 export default class App extends React.PureComponent<State> {

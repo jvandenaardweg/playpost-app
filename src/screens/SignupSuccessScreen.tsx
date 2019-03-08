@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'React';
 import {NavigationScreenProp, NavigationRoute } from 'react-navigation';
 
 import { EmptyState } from '../components/EmptyState';

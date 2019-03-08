@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'React';
 import { Animated, StyleSheet } from 'react-native';
 
 import { RectButton } from 'react-native-gesture-handler';

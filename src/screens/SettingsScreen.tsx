@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'React';
 import { Text, Switch, Alert, AsyncStorage } from 'react-native';
 import { SettingsScreen as SettingsScreenComponent, SettingsData } from 'react-native-settings-screen';
 import { connect } from 'react-redux';

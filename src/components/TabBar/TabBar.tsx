@@ -1,5 +1,5 @@
 
-import React from 'react';
+import * as React from 'React';
 import { View } from 'react-native';
 import { BottomTabBar } from 'react-navigation-tabs';
 

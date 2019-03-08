@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'React';
 import { View, Text, TextInput, KeyboardAvoidingView } from 'react-native';
 import { Button } from 'react-native-elements';
 import styles from './styles';

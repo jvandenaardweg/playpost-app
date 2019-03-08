@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'React';
 import { PlaylistsContainer } from '../containers/PlaylistsContainer';
 
 import { AppBackground } from '../components/AppBackground';

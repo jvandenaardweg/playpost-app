@@ -1,4 +1,4 @@
-import react from 'react';
+import * as React from 'React';
 import { Alert } from 'react-native';
 import reactNativeRestart from 'react-native-restart';
 import appcenterAnalytics from 'appcenter-analytics';
@@ -11,7 +11,7 @@ interface Props {
   children: any;
 }
 
-export class ErrorBoundary extends react.PureComponent<Props, State> {
+export class ErrorBoundary extends React.PureComponent<Props, State> {
 
   state = {
     hasError: false

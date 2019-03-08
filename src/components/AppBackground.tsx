@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'React';
 import { View } from 'react-native';
 
 import colors from '../constants/colors';

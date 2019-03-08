@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'React';
 import { EmptyState } from '../components/EmptyState';
 
 export class FavoritesScreen extends React.PureComponent {

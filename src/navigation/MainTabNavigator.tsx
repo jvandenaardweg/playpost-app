@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'React';
 import { createStackNavigator, createBottomTabNavigator, StackNavigatorConfig, BottomTabNavigatorConfig } from 'react-navigation';
 
 import { TabBar, TabBarIcon } from '../components/TabBar';
