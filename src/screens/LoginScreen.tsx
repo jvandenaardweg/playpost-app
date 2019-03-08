@@ -9,16 +9,16 @@ import { getUser, UserState } from '../reducers/user';
 import { LoginForm } from '../components/LoginForm';
 
 interface State {
-  email?: string | null,
-  password?: string | null
+  email?: string | null;
+  password?: string | null;
 }
 
 interface Props {
-  auth: AuthState,
-  user: UserState,
-  getUser: (token: string) => {},
-  postAuth: (email: string, password: string) => {},
-  navigation: NavigationScreenProp<NavigationRoute>
+  auth: AuthState;
+  user: UserState;
+  getUser: (token: string) => {};
+  postAuth: (email: string, password: string) => {};
+  navigation: NavigationScreenProp<NavigationRoute>;
 }
 
 class LoginScreenContainer extends React.PureComponent<Props, State> {
@@ -29,7 +29,7 @@ class LoginScreenContainer extends React.PureComponent<Props, State> {
   state = {
     email: '',
     password: ''
-  }
+  };
 
   async componentDidUpdate() {
     const { token } = this.props.auth;
@@ -69,7 +69,6 @@ class LoginScreenContainer extends React.PureComponent<Props, State> {
     let isLoading = this.props.auth.isLoading || this.props.user.isLoading;
 
     // TODO: loading goes away if the user has an error, so this might not be a good way
-
 
     if (error) {
       isLoading = false;

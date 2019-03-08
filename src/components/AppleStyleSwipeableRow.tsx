@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/Feather';
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
 export class AppleStyleSwipeableRow extends React.PureComponent {
-  swipeableRow: any = React.createRef()
+  swipeableRow: any = React.createRef();
 
   renderLeftActions = (progress: Animated.Value, dragX: Animated.Value) => {
     const translateX = dragX.interpolate({
@@ -31,7 +31,7 @@ export class AppleStyleSwipeableRow extends React.PureComponent {
         />
       </RectButton>
     );
-  };
+  }
 
   renderRightAction = (action: string, icon: string, color: string, fill: string, x: number, progress: Animated.Value, dragX: Animated.Value) => {
     const trans = progress.interpolate({
@@ -62,26 +62,26 @@ export class AppleStyleSwipeableRow extends React.PureComponent {
         </RectButton>
       </Animated.View>
     );
-  };
+  }
 
   renderRightActions = (progress: Animated.Value, dragX: Animated.Value) => (
     <View style={{ width: 192, flexDirection: 'row' }}>
       {this.renderRightAction('download', 'download', '#CDE7F0', '#1566AA', 128, progress, dragX)}
       {this.renderRightAction('delete', 'trash-2', '#FBD6D6', '#E7383D', 64, progress, dragX)}
     </View>
-  );
+  )
 
   onSwipeableLeftWillOpen = () => {
     Alert.alert('Should archive this article');
-  };
+  }
 
   updateRef = (ref: any) => {
     this.swipeableRow = ref;
-  };
+  }
 
   close = () => {
     this.swipeableRow && this.swipeableRow.close();
-  };
+  }
 
   render() {
     const { children } = this.props;
@@ -113,11 +113,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     padding: 10,
   },
-  // rightAction: {
-  //   alignItems: 'center',
-  //   flex: 1,
-  //   justifyContent: 'center',
-  // },
   actionIcon: {
     width: 30,
     marginHorizontal: 20,

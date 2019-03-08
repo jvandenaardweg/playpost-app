@@ -3,8 +3,8 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 interface Props {
-  icon: string
-  onPress(): void
+  icon: string;
+  onPress(): void;
 }
 
 export class HeaderButton extends React.PureComponent<Props> {

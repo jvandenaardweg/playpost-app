@@ -7,15 +7,15 @@ import { withNavigation, NavigationScreenProp, NavigationRoute } from 'react-nav
 import styles from './styles';
 
 interface Props {
-  navigation: NavigationScreenProp<NavigationRoute>
+  navigation: NavigationScreenProp<NavigationRoute>;
 }
 
 interface OnboardingSlideProps {
-  topSpacer: number
-  width: number
-  height: number
-  title: string
-  text: string
+  topSpacer: number;
+  width: number;
+  height: number;
+  title: string;
+  text: string;
 }
 
 class OnboardingSliderComponent extends React.PureComponent<Props> {

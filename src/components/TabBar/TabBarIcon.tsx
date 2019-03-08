@@ -1,17 +1,17 @@
 import * as React from 'React';
 import Icon from 'react-native-vector-icons/Feather';
 
-import Colors from '../../constants/colors';
+import colors from '../../constants/colors';
 
 interface Props {
-  focused: boolean
-  name: string
+  focused: boolean;
+  name: string;
 }
 
 export const TabBarIcon = (props: Props) => {
   const { focused, name } = props;
 
-  const color = focused ? Colors.tabIconSelected : Colors.tabIconDefault;
+  const color = focused ? colors.tabIconSelected : colors.tabIconDefault;
 
   return (
     <Icon

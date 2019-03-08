@@ -3,9 +3,9 @@ import { View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 
 interface Props {
-  onPressAction(url: string): void
-  message: string
-  action: string
+  onPressAction(url: string): void;
+  message: string;
+  action: string;
 }
 
 export const ErrorModal = (props: Props) => (

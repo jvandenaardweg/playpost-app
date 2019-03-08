@@ -5,10 +5,10 @@ import styles from './styles';
 import { Button } from 'react-native-elements';
 
 interface Props {
-  title: string
-  description: string
-  actionButtonLabel?: string
-  actionButtonOnPress?(): void
+  title: string;
+  description: string;
+  actionButtonLabel?: string;
+  actionButtonOnPress?(): void;
 }
 
 export const EmptyState = ({ title, description, actionButtonLabel, actionButtonOnPress }: Props) => (

@@ -3,17 +3,17 @@ import { Alert } from 'react-native';
 import { Article } from './Article';
 
 interface State {
-  isLoading: boolean
-  isPlaying: boolean
+  isLoading: boolean;
+  isPlaying: boolean;
 }
 
 interface Props {
-  playbackStatus: string
-  playingTrack: any // TODO: use type
-  article: Api.Article
-  getAudioByArticleUrl(articleUrl: string): void
-  setTrack(track: any): void // TODO: use type
-  seperated: boolean
+  playbackStatus: string;
+  playingTrack: any; // TODO: use type
+  article: Api.Article;
+  getAudioByArticleUrl(articleUrl: string): void;
+  setTrack(track: any): void; // TODO: use type
+  seperated: boolean;
 }
 
 export class ArticleContainer extends React.PureComponent<Props, State> {
@@ -56,7 +56,7 @@ export class ArticleContainer extends React.PureComponent<Props, State> {
       artist: article.authorName,
       album: `${article.categoryName} on ${article.sourceName}`
     });
-  };
+  }
 
   render() {
     const { isLoading, isPlaying } = this.state;

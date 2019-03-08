@@ -9,18 +9,18 @@ import { postAuth, AuthState } from '../reducers/auth';
 import { SignupForm } from '../components/SignupForm';
 
 interface State {
-  email?: string
-  password?: string
-  passwordValidation?: string
-  validationError?: string
+  email?: string;
+  password?: string;
+  passwordValidation?: string;
+  validationError?: string;
 }
 
 interface Props {
-  auth: AuthState
-  user: UserState
-  postAuth: (email: string, password: string) => {}
-  createUser: (email: string, password: string) => {}
-  navigation: NavigationScreenProp<NavigationRoute>
+  auth: AuthState;
+  user: UserState;
+  postAuth: (email: string, password: string) => {};
+  createUser: (email: string, password: string) => {};
+  navigation: NavigationScreenProp<NavigationRoute>;
 }
 
 class SignupScreenContainer extends React.PureComponent<Props, State> {
@@ -33,7 +33,7 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
     password: '',
     passwordValidation: '',
     validationError: ''
-  }
+  };
 
   async componentDidUpdate() {
     const { email, password } = this.state;

@@ -4,15 +4,15 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import styles from './styles';
 
 interface Props {
-  isLoading?: boolean
-  isPlaying?: boolean
-  seperated?: boolean
-  title: string
-  description: string
-  sourceName: string
-  authorName?: string | null
-  listenTimeInMinutes?: number
-  onPlayPress?(): void
+  isLoading?: boolean;
+  isPlaying?: boolean;
+  seperated?: boolean;
+  title: string;
+  description: string;
+  sourceName: string;
+  authorName?: string | null;
+  listenTimeInMinutes?: number;
+  onPlayPress?(): void;
 }
 
 export const Article = ({

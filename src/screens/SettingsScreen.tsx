@@ -9,10 +9,10 @@ import { UserState, resetUserState } from '../reducers/user';
 import { resetPlayerState } from '../reducers/player';
 
 interface Props {
-  resetAuthState(): void
-  resetUserState(): void
-  resetPlayerState(): void
-  navigation: NavigationScreenProp<NavigationRoute>
+  resetAuthState(): void;
+  resetUserState(): void;
+  resetPlayerState(): void;
+  navigation: NavigationScreenProp<NavigationRoute>;
 }
 
 class SettingsScreenContainer extends React.PureComponent<Props> {

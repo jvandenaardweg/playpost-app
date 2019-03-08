@@ -8,16 +8,16 @@ import { setPlaybackStatus, PlayerState } from '../../reducers/player';
 import { AudioPlayerSmall } from '../../components/AudioPlayer';
 
 interface State {
-  isDisabled: boolean
-  track: any
-  showModal: boolean
+  isDisabled: boolean;
+  track: any;
+  showModal: boolean;
 }
 
 interface Props {
-  changePlaybackStatus: any
-  trackUrl: string | null
-  playbackStatus: string | null
-  track: any
+  changePlaybackStatus: any;
+  trackUrl: string | null;
+  playbackStatus: string | null;
+  track: any;
 }
 
 class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
@@ -25,10 +25,10 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     isDisabled: false,
     track: {},
     showModal: false
-  }
+  };
 
-  onTrackChange: any = {}
-  onStateChanged: any = {}
+  onTrackChange: any = {};
+  onStateChanged: any = {};
 
   async componentDidMount() {
     const { changePlaybackStatus } = this.props;

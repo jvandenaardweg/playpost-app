@@ -4,15 +4,15 @@ import { Button } from 'react-native-elements';
 import styles from './styles';
 
 interface Props {
-  onChangeText(field: string, text: string): void
-  onPressLogin(): void
-  onPressSignup(): void
-  email: string
-  password: string
-  passwordValidation: string
-  error: string
-  validationError: string
-  isLoading: boolean
+  onChangeText(field: string, text: string): void;
+  onPressLogin(): void;
+  onPressSignup(): void;
+  email: string;
+  password: string;
+  passwordValidation: string;
+  error: string;
+  validationError: string;
+  isLoading: boolean;
 }
 
 export const SignupForm = ({
@@ -33,7 +33,7 @@ export const SignupForm = ({
         placeholder="E-mail address"
         autoCapitalize="none"
         value={email}
-        onChangeText={(text) => onChangeText('email', text)}
+        onChangeText={text => onChangeText('email', text)}
         style={styles.textField}
         keyboardType="email-address"
         returnKeyType="done"
@@ -45,7 +45,7 @@ export const SignupForm = ({
         autoCapitalize="none"
         secureTextEntry
         value={password}
-        onChangeText={(text) => onChangeText('password', text)}
+        onChangeText={text => onChangeText('password', text)}
         textContentType="password"
         style={styles.textField}
         returnKeyType="done"
@@ -57,7 +57,7 @@ export const SignupForm = ({
         autoCapitalize="none"
         secureTextEntry
         value={passwordValidation}
-        onChangeText={(text) => onChangeText('passwordValidation', text)}
+        onChangeText={text => onChangeText('passwordValidation', text)}
         textContentType="password"
         style={styles.textField}
         returnKeyType="done"

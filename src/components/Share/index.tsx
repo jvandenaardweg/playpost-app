@@ -11,17 +11,17 @@ import { AuthState } from '../../reducers/auth';
 import { UserState } from '../../reducers/user';
 
 interface State {
-  isOpen: boolean
-  type: string
-  value: string
-  opacityAnim: Animated.Value
-  errorMessage: string
-  errorAction: string
+  isOpen: boolean;
+  type: string;
+  value: string;
+  opacityAnim: Animated.Value;
+  errorMessage: string;
+  errorAction: string;
 }
 
 interface Props {
-  auth: AuthState
-  defaultPlaylist: Api.Playlist
+  auth: AuthState;
+  defaultPlaylist: Api.Playlist;
 }
 
 export default class ShareContainer extends React.PureComponent<Props, State> {
@@ -32,7 +32,7 @@ export default class ShareContainer extends React.PureComponent<Props, State> {
     opacityAnim: new Animated.Value(0),
     errorMessage: '',
     errorAction: ''
-  }
+  };
 
   async componentDidMount() {
     try {
@@ -67,7 +67,6 @@ export default class ShareContainer extends React.PureComponent<Props, State> {
       // Wait for the extension data
       const { type, value } = await ShareExtension.data();
 
-
       const articleUrl = value;
 
       console.log(`Should add URL "${articleUrl}" to playlist ID "${playlistId}".`);
@@ -78,9 +77,6 @@ export default class ShareContainer extends React.PureComponent<Props, State> {
 
       // TODO: show success or fail message
 
-
-
-
       return this.setState({ type, value });
     } catch (e) {
       /* eslint-disable no-alert */
@@ -90,7 +86,7 @@ export default class ShareContainer extends React.PureComponent<Props, State> {
     }
   }
 
-  onClose = () => ShareExtension.close()
+  onClose = () => ShareExtension.close();
 
   closing = () => {
     const { opacityAnim } = this.state;

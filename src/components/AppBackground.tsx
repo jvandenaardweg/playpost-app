@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import colors from '../constants/colors';
 
 interface Props {
-  children: any
+  children: any;
 }
 
 export const AppBackground = (props: Props) => (

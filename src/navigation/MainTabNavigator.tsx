@@ -42,7 +42,6 @@ const ArchiveStack: StackNavigatorConfig = createStackNavigator(
   }
 );
 
-
 const FavoritesStack: StackNavigatorConfig = createStackNavigator(
   {
     Favorites: FavoritesScreen
@@ -77,15 +76,17 @@ const SettingsStack: StackNavigatorConfig = createStackNavigator(
   }
 );
 
-export const MainTabNavigator: BottomTabNavigatorConfig = createBottomTabNavigator({
-  PlaylistStack,
-  ArchiveStack,
-  FavoritesStack,
-  SettingsStack,
-},
-{
-  tabBarComponent: props => <TabBar {...props} />,
-  tabBarOptions: {
-    showLabel: false
+export const MainTabNavigator: BottomTabNavigatorConfig = createBottomTabNavigator(
+  {
+    PlaylistStack,
+    ArchiveStack,
+    FavoritesStack,
+    SettingsStack,
+  },
+  {
+    tabBarComponent: props => <TabBar {...props} />,
+    tabBarOptions: {
+      showLabel: false
+    }
   }
-});
+);

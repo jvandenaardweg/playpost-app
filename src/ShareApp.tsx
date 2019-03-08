@@ -18,13 +18,13 @@ if (Platform.OS === 'ios' && __DEV__) {
 console.disableYellowBox = true;
 
 interface State {
-  appState: AppStateStatus
+  appState: AppStateStatus;
 }
 
 export default class ShareApp extends React.PureComponent<State> {
   state = {
     appState: AppState.currentState
-  }
+  };
 
   componentDidMount() {
     AppState.addEventListener('change', this.handleAppStateChange);
@@ -39,7 +39,7 @@ export default class ShareApp extends React.PureComponent<State> {
       console.log('App has come to the foreground!');
     }
     this.setState({ appState: nextAppState });
-  };
+  }
 
   render() {
     return (

@@ -8,26 +8,26 @@ import styles from './styles';
 import { AuthState } from '../../reducers/auth';
 
 interface State {
-  errorMessage: string | null
-  forceClose: boolean
+  errorMessage: string | null;
+  forceClose: boolean;
 }
 
 interface Props {
-  user: UserState
-  auth: AuthState
+  user: UserState;
+  auth: AuthState;
 }
 
 class ErrorMessageContainer extends React.PureComponent<Props, State> {
   state = {
     errorMessage: null,
     forceClose: false
-  }
+  };
 
   errorMessages() {
     const userError = this.props.user.error;
     const authError = this.props.auth.error;
 
-    let errors = [];
+    const errors = [];
 
     if (userError) errors.push(userError);
     if (authError) errors.push(authError);
@@ -48,12 +48,12 @@ class ErrorMessageContainer extends React.PureComponent<Props, State> {
     return (
       <TouchableOpacity style={styles.container} activeOpacity={1} onPress={this.handleOnPressClose}>
         <View style={styles.content}>
-          <Text style={{ color: '#fff', fontWeight: '700', marginBottom: 6}}>Oh no! An error happened...</Text>
-          <Text style={{ color: '#fff'}}>{this.errorMessages()}</Text>
+          <Text style={{ color: '#fff', fontWeight: '700', marginBottom: 6 }}>Oh no! An error happened...</Text>
+          <Text style={{ color: '#fff' }}>{this.errorMessages()}</Text>
         </View>
         <View style={styles.button}><Icon name="x-circle" size={24} color="#fff" /></View>
       </TouchableOpacity>
-    )
+    );
   }
 }
 

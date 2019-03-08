@@ -4,13 +4,13 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import styles from './styles';
 
 interface Props {
-  handleOnShowModal(): void
-  handleOnPressPlay(): void
-  handleOnPressPause(): void
-  isPlaying: boolean
-  track: any
-  trackUrl: string | null
-  isDisabled: boolean
+  handleOnShowModal(): void;
+  handleOnPressPlay(): void;
+  handleOnPressPause(): void;
+  isPlaying: boolean;
+  track: any;
+  trackUrl: string | null;
+  isDisabled: boolean;
 }
 export const AudioPlayerSmall = ({
   handleOnShowModal,

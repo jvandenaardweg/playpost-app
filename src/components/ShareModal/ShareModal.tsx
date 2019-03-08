@@ -6,17 +6,17 @@ import { Article } from '../../components/Article';
 import styles from './styles';
 
 interface State {
-  isLoading: boolean
-  title: string
-  description: string
-  sourceName: string
+  isLoading: boolean;
+  title: string;
+  description: string;
+  sourceName: string;
 }
 
 interface Props {
-  url: string
-  type: string
-  onPressCancel(): void
-  onPressSave(): void
+  url: string;
+  type: string;
+  onPressCancel(): void;
+  onPressSave(): void;
 }
 
 export class ShareModal extends React.PureComponent<Props, State> {
@@ -25,7 +25,7 @@ export class ShareModal extends React.PureComponent<Props, State> {
     title: '',
     description: '',
     sourceName: ''
-  }
+  };
 
   async componentDidMount() {
     const { url } = this.props;
@@ -36,14 +36,17 @@ export class ShareModal extends React.PureComponent<Props, State> {
     /* eslint-disable no-console */
     console.log('fetch article using url: ', url);
 
-    setTimeout(() => {
-      this.setState({
-        title: 'Lorem ipsum dolor sit amet consectetur adipiscing elit',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum odio in dignissim venenatis. Ut viverra sit amet ex vel hendrerit. Curabitur sed felis justo.',
-        sourceName: 'medium.com',
-        isLoading: false
-      });
-    }, 2000);
+    setTimeout(
+      () => {
+        this.setState({
+          title: 'Lorem ipsum dolor sit amet consectetur adipiscing elit',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum odio in dignissim venenatis. Ut viverra sit amet ex vel hendrerit. Curabitur sed felis justo.',
+          sourceName: 'medium.com',
+          isLoading: false
+        });
+      },
+      2000
+    );
   }
 
   renderArticle = () => {
