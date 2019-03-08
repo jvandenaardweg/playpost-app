@@ -3,7 +3,7 @@ import Analytics from 'appcenter-analytics';
 export const POST_AUTH = 'auth/POST_AUTH';
 export const POST_AUTH_SUCCESS = 'auth/POST_AUTH_SUCCESS';
 export const POST_AUTH_FAIL = 'auth/POST_AUTH_FAIL';
-export const REMOVE_AUTH = 'auth/REMOVE_AUTH';
+export const RESET_AUTH_STATE = 'auth/RESET_AUTH_STATE';
 export const SET_AUTH_TOKEN = 'auth/SET_AUTH_TOKEN';
 
 const POST_AUTH_FAIL_MESSAGE = 'An unknown error happened while loggin you in. Please contact us when this happens all the time.';
@@ -52,7 +52,7 @@ export function authReducer(state = initialState, action: any) {
         error: (action.error.response) ? action.error.response.data.message : POST_AUTH_FAIL_MESSAGE
       };
 
-    case REMOVE_AUTH:
+    case RESET_AUTH_STATE:
       return {
         ...initialState
       };
@@ -77,9 +77,9 @@ export function setAuthToken(token: string) {
   };
 }
 
-export function removeAuth() {
+export function resetAuthState() {
   return {
-    type: REMOVE_AUTH
+    type: RESET_AUTH_STATE
   };
 }
 

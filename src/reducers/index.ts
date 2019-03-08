@@ -1,13 +1,13 @@
 import { playerReducer } from './player';
 import { authReducer } from './auth';
 import { usersReducer } from './users';
-import { meReducer } from './me';
+import { userReducer } from './user';
 
 const rootReducer = {
   player: playerReducer,
   auth: authReducer,
   users: usersReducer,
-  me: meReducer
+  user: userReducer
 };
 
 export default rootReducer;

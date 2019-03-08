@@ -4,16 +4,16 @@ import { SettingsScreen as SettingsScreenComponent, SettingsData } from 'react-n
 import { connect } from 'react-redux';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 
-import { removeAuth } from '../reducers/auth';
-import { MeState, removeMe } from '../reducers/me';
-import { removeUser } from '../reducers/users';
-import { removePlayer } from '../reducers/player';
+import { resetAuthState } from '../reducers/auth';
+import { UserState, resetUserState } from '../reducers/user';
+import { resetUsersState } from '../reducers/users';
+import { resetPlayerState } from '../reducers/player';
 
 interface Props {
-  removeAuth(): void
-  removeMe(): void
-  removeUser(): void
-  removePlayer(): void
+  resetAuthState(): void
+  resetUserState(): void
+  resetUsersState(): void
+  resetPlayerState(): void
   navigation: NavigationScreenProp<NavigationRoute>
 }
 
@@ -30,10 +30,10 @@ class SettingsScreenContainer extends React.PureComponent<Props> {
     await AsyncStorage.removeItem('userToken');
 
     // Reset all the stores to it's original state
-    this.props.removeAuth();
-    this.props.removeMe();
-    this.props.removeUser();
-    this.props.removePlayer();
+    this.props.resetAuthState();
+    this.props.resetUserState();
+    this.props.resetUsersState();
+    this.props.resetPlayerState();
 
     this.props.navigation.navigate('Login');
   }
@@ -178,15 +178,15 @@ class SettingsScreenContainer extends React.PureComponent<Props> {
   }
 }
 
-const mapStateToProps = (state: { me: MeState }) => ({
-  me: state.me
+const mapStateToProps = (state: { user: UserState }) => ({
+  user: state.user
 });
 
 const mapDispatchToProps = {
-  removeAuth,
-  removeMe,
-  removeUser,
-  removePlayer
+  resetAuthState,
+  resetUserState,
+  resetUsersState,
+  resetPlayerState
 };
 
 export const SettingsScreen = connect(

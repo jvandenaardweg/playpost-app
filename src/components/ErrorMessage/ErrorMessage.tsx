@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { MeState } from '../../reducers/me';
+import { UserState } from '../../reducers/user';
 import Icon from 'react-native-vector-icons/Feather';
 
 import styles from './styles';
@@ -14,7 +14,7 @@ interface State {
 }
 
 interface Props {
-  me: MeState
+  user: UserState
   users: UsersState
   auth: AuthState
 }
@@ -26,13 +26,13 @@ class ErrorMessageContainer extends React.PureComponent<Props, State> {
   }
 
   errorMessages() {
-    const meError = this.props.me.error;
+    const userError = this.props.user.error;
     const authError = this.props.auth.error;
     const usersError = this.props.users.error
 
     let errors = [];
 
-    if (meError) errors.push(meError);
+    if (userError) errors.push(userError);
     if (authError) errors.push(authError);
     if (usersError) errors.push(usersError);
 
@@ -61,8 +61,8 @@ class ErrorMessageContainer extends React.PureComponent<Props, State> {
   }
 }
 
-const mapStateToProps = (state: { me: MeState, users: UsersState, auth: AuthState}) => ({
-  me: state.me,
+const mapStateToProps = (state: { user: UserState, users: UsersState, auth: AuthState}) => ({
+  user: state.user,
   users: state.users,
   auth: state.auth
 });

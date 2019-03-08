@@ -2,7 +2,7 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import { connect } from 'react-redux';
 
-import { getMePlaylists, MeState } from '../../reducers/me';
+import { getUserPlaylists, UserState } from '../../reducers/user';
 import { getAudioByArticleUrl, setTrack, PlayerState } from '../../reducers/player';
 
 import { AppleStyleSwipeableRow } from '../../components/AppleStyleSwipeableRow';
@@ -10,7 +10,7 @@ import { CenterLoadingIndicator } from '../../components/CenterLoadingIndicator'
 import { EmptyState } from '../../components/EmptyState';
 import { ArticleContainer } from '../../components/Article/ArticleContainer';
 
-import { getDefaultPlaylistArticles } from '../../selectors/me';
+import { getDefaultPlaylistArticles } from '../../selectors/user';
 import { AuthState } from '../../reducers/auth';
 
 // import { GmailStyleSwipeableRow } from '@/components/GmailStyleSwipeableRow';
@@ -22,13 +22,13 @@ interface State {
 
 interface Props {
   auth: AuthState
-  me: MeState
+  user: UserState
   articles: Api.Article[]
   playbackStatus: any
   getAudioByArticleUrl: any
   setTrack: any
   track: any
-  getMePlaylists(token: string): void
+  getUserPlaylists(token: string): void
 }
 
 class ArticlesContainerComponent extends React.PureComponent<Props, State> {
@@ -45,7 +45,7 @@ class ArticlesContainerComponent extends React.PureComponent<Props, State> {
   async fetchPlaylists() {
     const { token } = this.props.auth;
     if (token) {
-      await this.props.getMePlaylists(token);
+      await this.props.getUserPlaylists(token);
       this.setState({ isLoading: false, isRefreshing: false });
     }
   }
@@ -95,18 +95,18 @@ class ArticlesContainerComponent extends React.PureComponent<Props, State> {
   }
 }
 
-const mapStateToProps = (state: { player: PlayerState, auth: AuthState, me: MeState}) => ({
+const mapStateToProps = (state: { player: PlayerState, auth: AuthState, user: UserState}) => ({
   track: state.player.track,
   playbackStatus: state.player.playbackStatus,
   auth: state.auth,
-  me: state.me,
+  user: state.user,
   articles: getDefaultPlaylistArticles(state)
 });
 
 const mapDispatchToProps = {
   getAudioByArticleUrl,
   setTrack,
-  getMePlaylists
+  getUserPlaylists
 };
 
 export const PlaylistsContainer = connect(

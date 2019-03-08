@@ -1,13 +1,13 @@
 import { createSelector } from 'reselect';
-import { MeState } from '../reducers/me';
+import { UserState } from '../reducers/user';
 
-const meSelector = (state: any): MeState => state.me;
+const userSelector = (state: any): UserState => state.user;
 
 export const getDefaultPlaylist = createSelector(
-  meSelector,
-  me => {
+  userSelector,
+  user => {
     // For now, we just show one playlist, the default one
-    return me.playlists[0];
+    return user.playlists[0];
   }
 );
 

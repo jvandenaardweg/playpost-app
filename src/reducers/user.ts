@@ -8,12 +8,12 @@ export const GET_USER_PLAYLISTS = 'user/GET_USER_PLAYLISTS';
 export const GET_USER_PLAYLISTS_SUCCESS = 'user/GET_USER_PLAYLISTS_SUCCESS';
 export const GET_USER_PLAYLISTS_FAIL = 'user/GET_USER_PLAYLISTS_FAIL';
 
-export const REMOVE_ME = 'user/REMOVE_ME';
+export const RESET_USER_STATE = 'user/RESET_USER_STATE';
 
 const GET_USER_FAIL_MESSAGE = 'An unknown error happened while getting your account. Please contact us when this happens all the time.';
 const GET_USER_PLAYLISTS_FAIL_MESSAGE = 'An unknown error happened while getting your playlist. Please contact us when this happens all the time.';
 
-export interface MeState {
+export interface UserState {
   isLoading: boolean
   user: Api.User | null
   token: string | null
@@ -21,14 +21,14 @@ export interface MeState {
   error: string | null
 }
 
-const initialState: MeState = {
+const initialState: UserState = {
   isLoading: false,
   user: null,
   token: null,
   playlists: [],
   error: null
 }
-export function meReducer(state = initialState, action: any) {
+export function userReducer(state = initialState, action: any) {
   switch (action.type) {
     case GET_USER:
       return {
@@ -86,7 +86,7 @@ export function meReducer(state = initialState, action: any) {
         error: (action.error.response) ? action.error.response.data.message : GET_USER_PLAYLISTS_FAIL_MESSAGE
       };
 
-    case REMOVE_ME:
+    case RESET_USER_STATE:
       return {
         ...initialState
       };
@@ -95,13 +95,13 @@ export function meReducer(state = initialState, action: any) {
   }
 }
 
-export function removeMe() {
+export function resetUserState() {
   return {
-    type: REMOVE_ME
+    type: RESET_USER_STATE
   };
 }
 
-export function getMe(token: string) {
+export function getUser(token: string) {
   return {
     type: GET_USER,
     payload: {
@@ -116,13 +116,13 @@ export function getMe(token: string) {
   };
 }
 
-export function getMePlaylists(token: string) {
+export function getUserPlaylists(token: string) {
   return {
     type: GET_USER_PLAYLISTS,
     payload: {
       request: {
         method: 'get',
-        url: '/v1/user/playlists',
+        url: '/v1/me/playlists',
         headers: {
           Authorization: `Bearer ${token}`
         }

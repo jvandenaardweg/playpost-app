@@ -6,9 +6,9 @@ import ShareExtension from 'react-native-share-extension';
 import { ShareModal } from '../../components/ShareModal';
 import { ErrorModal } from '../../components/ErrorModal';
 
-import { getDefaultPlaylist } from '../../selectors/me';
+import { getDefaultPlaylist } from '../../selectors/user';
 import { AuthState } from '../../reducers/auth';
-import { MeState } from '../../reducers/me';
+import { UserState } from '../../reducers/user';
 
 interface State {
   isOpen: boolean
@@ -168,9 +168,9 @@ export default class ShareContainer extends React.PureComponent<Props, State> {
   }
 }
 
-const mapStateToProps = (state: { auth: AuthState, me: MeState}) => ({
+const mapStateToProps = (state: { auth: AuthState, user: UserState}) => ({
   auth: state.auth,
-  me: state.me,
+  user: state.user,
   defaultPlaylist: getDefaultPlaylist(state)
 });
 

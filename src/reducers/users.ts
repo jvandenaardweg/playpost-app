@@ -4,7 +4,7 @@ export const CREATE_USER = 'users/CREATE_USER';
 export const CREATE_USER_SUCCESS = 'users/CREATE_USER_SUCCESS';
 export const CREATE_USER_FAIL = 'users/CREATE_USER_FAIL';
 
-export const REMOVE_USER = 'users/REMOVE_USER';
+export const RESET_USERS_STATE = 'users/RESET_USERS_STATE';
 
 export interface UsersState {
   isLoading: boolean
@@ -49,7 +49,7 @@ export function usersReducer(state = initialState, action: any) {
         user: null,
         error: (action.error.response) ? action.error.response.data.message : genericMessage
       };
-    case REMOVE_USER:
+    case RESET_USERS_STATE:
       return {
         ...initialState
       };
@@ -58,9 +58,9 @@ export function usersReducer(state = initialState, action: any) {
   }
 }
 
-export function removeUser() {
+export function resetUsersState() {
   return {
-    type: REMOVE_USER
+    type: RESET_USERS_STATE
   };
 }
 
