@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Animated, StyleSheet } from 'react-native';
 
 import { RectButton } from 'react-native-gesture-handler';
@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/Feather';
 
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
-export class GmailStyleSwipeableRow extends Component {
+export class GmailStyleSwipeableRow extends React.PureComponent {
   swipeableRow: any = React.createRef()
 
   renderLeftActions = (progress: Animated.Value, dragX: Animated.Value) => {

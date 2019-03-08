@@ -1,7 +1,7 @@
 import React from 'react';
 import { EmptyState } from '../components/EmptyState';
 
-export class FavoritesScreen extends React.Component {
+export class FavoritesScreen extends React.PureComponent {
   static navigationOptions = {
     title: 'Favorites'
   };

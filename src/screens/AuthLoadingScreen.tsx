@@ -13,7 +13,7 @@ interface Props {
   navigation: NavigationScreenProp<NavigationRoute>
 }
 
-export class AuthLoadingScreenContainer extends React.Component<Props> {
+export class AuthLoadingScreenContainer extends React.PureComponent<Props> {
   componentDidMount() {
     this.bootstrapAsync();
   }

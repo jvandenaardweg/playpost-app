@@ -3,7 +3,7 @@ import { PlaylistsContainer } from '../containers/PlaylistsContainer';
 
 import { AppBackground } from '../components/AppBackground';
 
-export class PlaylistScreen extends React.Component {
+export class PlaylistScreen extends React.PureComponent {
   static navigationOptions = {
     title: 'Playlist',
   };

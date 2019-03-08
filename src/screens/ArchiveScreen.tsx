@@ -1,7 +1,7 @@
 import React from 'react';
 import { EmptyState } from '../components/EmptyState';
 
-export class ArchiveScreen extends React.Component {
+export class ArchiveScreen extends React.PureComponent {
   static navigationOptions = {
     title: 'Archive'
   };

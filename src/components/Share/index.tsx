@@ -1,5 +1,5 @@
 import React from 'react';
-import { Animated, View, Modal, Alert } from 'react-native';
+import { Animated, View, Modal } from 'react-native';
 import { connect } from 'react-redux';
 import ShareExtension from 'react-native-share-extension';
 
@@ -24,7 +24,7 @@ interface Props {
   defaultPlaylist: Api.Playlist
 }
 
-export default class ShareContainer extends React.Component<Props, State> {
+export default class ShareContainer extends React.PureComponent<Props, State> {
   state = {
     isOpen: true,
     type: '',
