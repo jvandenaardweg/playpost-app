@@ -48,7 +48,7 @@ export default class App extends React.PureComponent<State> {
       console.log('App has come to the foreground! We should check for new playlist items.');
     }
     this.setState({ appState: nextAppState });
-  };
+  }
 
   // handleOpenURL = (event) => {
   //   this.navigate(event.url);

@@ -15,6 +15,8 @@ interface Props {
 
 export class AuthLoadingScreenContainer extends React.PureComponent<Props> {
   componentDidMount() {
+    throw new Error('Error in auth loading!');
+
     this.bootstrapAsync();
   }
 
