@@ -1,41 +1,27 @@
 import { StyleSheet } from 'react-native';
 
-import Colors from '../../constants/colors';
+import colors from '../../constants/colors';
 
 export default StyleSheet.create({
   container: {
-    backgroundColor: Colors.white,
-    height: 260,
+    backgroundColor: colors.white,
+    height: 160,
     padding: 14,
-    borderRadius: 10
-  },
-  wrapper: {
-    flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'stretch',
-    alignContent: 'stretch'
+    borderRadius: 10,
+    width: '100%'
   },
   articleContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: 170,
+    height: 70,
     borderRadius: 6,
     borderWidth: 1,
-    borderColor: Colors.grayLightest
+    borderColor: colors.grayLightest
   },
   footer: {
-    flex: 1,
-    justifyContent: 'flex-end',
+    marginTop: 12
   },
   footerRow: {
     flexDirection: 'row'
   },
-  footerSave: {
-    width: '50%',
-    paddingLeft: 8,
-  },
-  footerCancel: {
-    width: '50%',
-    paddingRight: 8
-  }
 });

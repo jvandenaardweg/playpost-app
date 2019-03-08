@@ -1,17 +1,13 @@
 import React from 'react';
 import { Animated, View, Modal } from 'react-native';
-import { connect } from 'react-redux';
 import ShareExtension from 'react-native-share-extension';
 
 import { ShareModal } from '../../components/ShareModal';
 import { ErrorModal } from '../../components/ErrorModal';
 
-import { getDefaultPlaylist } from '../../selectors/user';
-import { AuthState } from '../../reducers/auth';
-import { UserState } from '../../reducers/user';
-
 interface State {
   isOpen: boolean;
+  isLoading: boolean;
   type: string;
   value: string;
   opacityAnim: Animated.Value;
@@ -19,14 +15,10 @@ interface State {
   errorAction: string;
 }
 
-interface Props {
-  auth: AuthState;
-  defaultPlaylist: Api.Playlist;
-}
-
-export default class ShareContainer extends React.PureComponent<Props, State> {
+export class Share extends React.PureComponent<State> {
   state = {
     isOpen: true,
+    isLoading: true,
     type: '',
     value: '',
     opacityAnim: new Animated.Value(0),
@@ -36,14 +28,7 @@ export default class ShareContainer extends React.PureComponent<Props, State> {
 
   async componentDidMount() {
     try {
-      // 1. Get the token from storage from the main app
-      // 2. Get the default playlist
-      // 3. Create an article if it does not exist yet. Get the article if it already exists
-      // 4. Use the article ID to add it to the user's playlist
-
       const { opacityAnim } = this.state;
-      const { defaultPlaylist, auth: { token } } = this.props;
-      const playlistId = (defaultPlaylist && defaultPlaylist.id) ? defaultPlaylist.id : null;
 
       // Start fade in animation
       Animated.timing(
@@ -54,34 +39,16 @@ export default class ShareContainer extends React.PureComponent<Props, State> {
         }
       ).start();
 
-      if (!token) {
-        return this.setState({ errorAction: 'login', errorMessage: 'You need to login first. Go to the app and login.' });
-      }
-
-      // // TODO: get playlist
-
-      if (!playlistId) {
-        return this.setState({ errorAction: 'playlist', errorMessage: 'We could not find your default playlist. Please make sure your account is still active. If this problem keeps coming back, contact us!' });
-      }
-
       // Wait for the extension data
       const { type, value } = await ShareExtension.data();
 
-      const articleUrl = value;
+      return this.setState({ type, value, isLoading: false });
 
-      console.log(`Should add URL "${articleUrl}" to playlist ID "${playlistId}".`);
-
-      // TODO: create/return an articleId
-
-      // TODO: connect that article id to the default playlist of the user
-
-      // TODO: show success or fail message
-
-      return this.setState({ type, value });
     } catch (e) {
       /* eslint-disable no-alert */
       // alert('An error occurred. Please try again.');
       /* eslint-disable no-console */
+      this.setState({ isLoading: false });
       return console.log('errrr', e);
     }
   }
@@ -90,16 +57,23 @@ export default class ShareContainer extends React.PureComponent<Props, State> {
 
   closing = () => {
     const { opacityAnim } = this.state;
+    const animationDuration = 200;
 
     this.setState({ isOpen: false });
 
-    Animated.timing(
-      opacityAnim,
-      {
-        toValue: 0,
-        duration: 200,
-      }
-    ).start();
+    // Use a simple timeout so the animation is done nicely
+    setTimeout(
+      () => {
+        Animated.timing(
+          opacityAnim,
+          {
+            toValue: 0,
+            duration: animationDuration,
+          }
+        ).start();
+      },
+      animationDuration
+    );
   }
 
   openUrl = async (url: string) => {
@@ -125,21 +99,14 @@ export default class ShareContainer extends React.PureComponent<Props, State> {
     const { type, value, errorMessage } = this.state;
     if (errorMessage) return;
 
-    return (<ShareModal type={type} url={value} onPressSave={this.closing} onPressCancel={this.closing} />);
+    return (<ShareModal type={type} url={value} onPressSave={this.closing} onPressClose={this.closing} />);
   }
 
-  render() {
-    const { opacityAnim, isOpen } = this.state;
+  renderModal() {
+    const { isLoading, isOpen } = this.state;
 
-    return (
-      <Animated.View style={{
-        flex: 1,
-        opacity: opacityAnim,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'rgba(0,0,0,0.7)'
-      }}
-      >
+    if (!isLoading) {
+      return (
         <Modal
           animationType="slide"
           presentationStyle="overFullScreen"
@@ -159,20 +126,24 @@ export default class ShareContainer extends React.PureComponent<Props, State> {
             {this.renderShareModal()}
           </View>
         </Modal>
+      );
+    }
+  }
+
+  render() {
+    const { opacityAnim } = this.state;
+
+    return (
+      <Animated.View style={{
+        flex: 1,
+        opacity: opacityAnim,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(0,0,0,0.7)'
+      }}
+      >
+        {this.renderModal()}
       </Animated.View>
     );
   }
 }
-
-const mapStateToProps = (state: { auth: AuthState, user: UserState}) => ({
-  auth: state.auth,
-  user: state.user,
-  defaultPlaylist: getDefaultPlaylist(state)
-});
-
-const mapDispatchToProps = {};
-
-export const Share = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ShareContainer);
