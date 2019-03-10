@@ -11,7 +11,7 @@ interface Props {
   actionButtonOnPress?(): void;
 }
 
-export const EmptyState = ({ title, description, actionButtonLabel, actionButtonOnPress }: Props) => (
+export const EmptyState: React.FC<Props> = ({ title, description, actionButtonLabel, actionButtonOnPress }) => (
   <View style={styles.container}>
     <View>
       <Text style={styles.title}>{title}</Text>

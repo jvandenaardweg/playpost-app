@@ -12,6 +12,7 @@ import styles from './styles';
 
 interface State {
   isLoading: boolean;
+  errorMessage: string | null;
 }
 
 interface Props {
@@ -19,6 +20,7 @@ interface Props {
   type: string;
   user: UserState;
   auth: AuthState;
+  closeDelay?: number;
   onPressClose(): void;
   onPressSave(): void;
   addArticleToPlaylistByUrl(articleUrl: string, playlistId: string, token: string): void;
@@ -27,6 +29,11 @@ interface Props {
 export class ShareModalContainer extends React.PureComponent<Props, State> {
   state = {
     isLoading: true,
+    errorMessage: null
+  };
+
+  static defaultProps = {
+    closeDelay: 2500
   };
 
   async componentDidMount() {
@@ -34,7 +41,17 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
     await this.addArticleToPlaylist(url);
   }
 
+  componentDidUpdate(prevProps: Props) {
+    const { error } = this.props.user;
+    // NEw error
+    if (prevProps.user.error !== error) {
+      this.setState({ errorMessage: error });
+    }
+  }
+
   addArticleToPlaylist = async (articleUrl: string) => {
+    const { closeDelay } = this.props;
+    const { error } = this.props.user;
 
     // const { token } = this.props.auth;
     // const playlistId = this.props.defaultPlaylist.id;
@@ -53,25 +70,40 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
     //   return this.setState({ errorAction: 'playlist', errorMessage: 'We could not find your default playlist. Please make sure your account is still active. If this problem keeps coming back, contact us!' });
     // }
 
-    await this.props.addArticleToPlaylistByUrl(articleUrl, playlistId, token);
+    try {
+      await this.props.addArticleToPlaylistByUrl(articleUrl, playlistId, token);
 
-    this.setState({ isLoading: false }, () => {
-      // Automatically close the modal
-      setTimeout(() => this.props.onPressClose(), 2500);
-    });
+      // Automatically close the modal after X seconds
+      setTimeout(() => this.props.onPressClose(), closeDelay);
+    } catch (err) {
+      console.log('Error happned');
+      // let errorMessage = 'We could not add this article to your playlist. Please try again.';
+      // if (err.error.response && err.error.response.data && err.error.response.data.message) {
+      //   errorMessage = err.error.response.data.message;
+      // }
+      // return this.setState({ errorMessage });
+    } finally {
+      return this.setState({ isLoading: false });
+    }
   }
 
   renderMessage = () => {
-    const { isLoading } = this.state;
+    const { isLoading, errorMessage } = this.state;
 
     // TODO: handle error messages
     // scenario: article already in playlist
     // scenario: article could not be added (for example wrong language)
     // scenario: no internet
     // scenario: timeout
+    if (!isLoading && errorMessage) {
+      return (
+        <Text style={{ color: 'red' }}>{errorMessage}</Text>
+      );
+    }
+
     if (!isLoading) {
       return (
-        <Text>Article is added to your playlist!</Text>
+        <Text>Article is added to your default playlist!</Text>
       );
     }
   }
