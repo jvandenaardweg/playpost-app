@@ -46,18 +46,12 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
     let token = '';
 
     if (credentials) {
-      console.log('Got credentials', credentials);
       token = credentials.password;
-    } else {
-      console.log('No credentials found in keychain.');
+      this.setState({ token }, async () => {
+        // First, get the playlist, so we get an playlistId
+        await this.props.getUserPlaylists(token);
+      });
     }
-
-    this.setState({ token });
-
-    console.log('Token', token);
-
-    // First, get the playlist, so we get an playlistId
-    await this.props.getUserPlaylists(token);
   }
 
   async componentDidUpdate(prevProps: Props) {
