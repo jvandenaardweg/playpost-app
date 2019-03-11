@@ -16,19 +16,19 @@ import { AuthState } from '../../reducers/auth';
 // import { GmailStyleSwipeableRow } from '@/components/GmailStyleSwipeableRow';
 
 interface State {
-  isLoading: boolean
-  isRefreshing: boolean
+  isLoading: boolean;
+  isRefreshing: boolean;
 }
 
 interface Props {
-  auth: AuthState
-  user: UserState
-  articles: Api.Article[]
-  playbackStatus: any
-  getAudioByArticleUrl: any
-  setTrack: any
-  track: any
-  getUserPlaylists(token: string): void
+  auth: AuthState;
+  user: UserState;
+  articles: Api.Article[];
+  playbackStatus: any; // TODO: change any
+  getAudioByArticleUrl: any; // TODO: change any
+  setTrack: any; // TODO: change any
+  track: any; // TODO: change any
+  getUserPlaylists(token: string): void;
 }
 
 class ArticlesContainerComponent extends React.PureComponent<Props, State> {
