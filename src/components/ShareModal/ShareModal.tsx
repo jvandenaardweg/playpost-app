@@ -43,7 +43,8 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
 
   componentDidUpdate(prevProps: Props) {
     const { error } = this.props.user;
-    // NEw error
+
+    // When a new API error happens
     if (prevProps.user.error !== error) {
       this.setState({ errorMessage: error });
     }
@@ -91,7 +92,6 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
     const { isLoading, errorMessage } = this.state;
 
     // TODO: handle error messages
-    // scenario: article already in playlist
     // scenario: article could not be added (for example wrong language)
     // scenario: no internet
     // scenario: timeout

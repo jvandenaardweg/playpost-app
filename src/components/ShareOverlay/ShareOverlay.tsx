@@ -88,9 +88,9 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
     });
   }
 
-  openUrl = async (url: string) => {
+  openUrlInMainApp = async (url: string) => {
     try {
-      // const supported = await Linking.canOpenURL(url);
+      // const supported = await Linking.canOpenUrl(url);
 
       // if (!supported) return console.log(`Can't handle url: ${url}`);
 
@@ -107,7 +107,7 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
 
   handleOnModalDissmiss = () => this.closeOverlay();
 
-  handleOnPressAction = (url: string) => this.openUrl(url);
+  handleOnPressAction = (url: string) => this.openUrlInMainApp(url);
 
   renderErrorMessageModal() {
     const { errorMessage, errorAction } = this.state;
