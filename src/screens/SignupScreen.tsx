@@ -42,7 +42,7 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
 
     // Automatically log the user in on a successful signup
     if (!isLoading && !token && (user && user.id)) {
-      this.props.postAuth(email, password);
+      await this.props.postAuth(email, password);
     }
 
     if (token) {
