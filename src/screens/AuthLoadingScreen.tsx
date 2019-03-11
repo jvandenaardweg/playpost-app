@@ -1,7 +1,7 @@
 import React from 'react';
-import { AsyncStorage, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
+import * as Keychain from 'react-native-keychain';
 
 import { CenterLoadingIndicator } from '../components/CenterLoadingIndicator';
 
@@ -21,16 +21,20 @@ export class AuthLoadingScreenContainer extends React.PureComponent<Props> {
   // Fetch the token from storage then navigate to our appropriate place
   bootstrapAsync = async () => {
     // Important: Only rely on this token, so the user can use the app offline
-    const userToken = await AsyncStorage.getItem('userToken');
+    const credentials = await Keychain.getGenericPassword({ accessGroup: 'group.readto', service: 'com.aardwegmedia.readtoapp' });
+    let token = null;
 
-    if (userToken) {
-      // Save the auth token in Redux, so it's available for our whole app to use
-      this.props.setAuthToken(userToken);
+    if (credentials) {
+      token = credentials.password;
+
+      if (token) {
+        this.props.setAuthToken(token);
+      }
     }
 
     // This will switch to the App screen or Auth screen and this loading
     // screen will be unmounted and thrown away.
-    this.props.navigation.navigate(userToken ? 'App' : 'Onboarding');
+    this.props.navigation.navigate(token ? 'App' : 'Onboarding');
     SplashScreen.hide();
   }
 

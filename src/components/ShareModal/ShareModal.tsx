@@ -2,8 +2,9 @@ import React from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
 import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
+import * as Keychain from 'react-native-keychain';
 
-import { UserState, addArticleToPlaylistByUrl } from '../../reducers/user';
+import { UserState, addArticleToPlaylistByUrl, getUserPlaylists } from '../../reducers/user';
 import { AuthState } from '../../reducers/auth';
 
 import { getDefaultPlaylist } from '../../selectors/user';
@@ -13,6 +14,7 @@ import styles from './styles';
 interface State {
   isLoading: boolean;
   errorMessage: string | null;
+  token: string | null;
 }
 
 interface Props {
@@ -21,15 +23,18 @@ interface Props {
   user: UserState;
   auth: AuthState;
   closeDelay?: number;
+  defaultPlaylist: Api.Playlist;
   onPressClose(): void;
   onPressSave(): void;
   addArticleToPlaylistByUrl(articleUrl: string, playlistId: string, token: string): void;
+  getUserPlaylists(token: string): void;
 }
 
 export class ShareModalContainer extends React.PureComponent<Props, State> {
   state = {
     isLoading: true,
-    errorMessage: null
+    errorMessage: null,
+    token: null
   };
 
   static defaultProps = {
@@ -37,12 +42,34 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
   };
 
   async componentDidMount() {
-    const { url } = this.props;
-    await this.addArticleToPlaylist(url);
+    const credentials = await Keychain.getGenericPassword({ accessGroup: 'group.readto', service: 'com.aardwegmedia.readtoapp' });
+    let token = '';
+
+    if (credentials) {
+      console.log('Got credentials', credentials);
+      token = credentials.password;
+    } else {
+      console.log('No credentials found in keychain.');
+    }
+
+    this.setState({ token });
+
+    console.log('Token', token);
+
+    // First, get the playlist, so we get an playlistId
+    await this.props.getUserPlaylists(token);
   }
 
-  componentDidUpdate(prevProps: Props) {
+  async componentDidUpdate(prevProps: Props) {
     const { error } = this.props.user;
+    const { url, defaultPlaylist } = this.props;
+    const { token } = this.state;
+
+    // If we have a default playlist, add the article
+    if (!prevProps.defaultPlaylist && defaultPlaylist && token) {
+      const playlistId = defaultPlaylist.id;
+      await this.addArticleToPlaylist(url, playlistId, token);
+    }
 
     // When a new API error happens
     if (prevProps.user.error !== error) {
@@ -50,26 +77,9 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
     }
   }
 
-  addArticleToPlaylist = async (articleUrl: string) => {
+  addArticleToPlaylist = async (articleUrl: string, playlistId: string, token: string) => {
     const { closeDelay } = this.props;
     const { error } = this.props.user;
-
-    // const { token } = this.props.auth;
-    // const playlistId = this.props.defaultPlaylist.id;
-
-    // TODO: remove, Use test token for now
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBhZTdhZjNmLTk0ODItNDM0YS1hZjdhLWNmZGFmODM2NmJlYyIsImVtYWlsIjoiaW5mb0BhYXJkd2VnbWVkaWEubmwiLCJpYXQiOjE1NTIwNjA5MDV9.om_RGH1blkzet63xHTwldqbCgqxzNGiMBFrRKLvNY8c';
-    const playlistId = '5287979b-ed50-45c9-bf66-104e524bf495';
-
-    // if (!token) {
-    //   return this.setState({ errorAction: 'login', errorMessage: 'You need to login first. Go to the app and login.' });
-    // }
-
-    // // TODO: get playlist
-
-    // if (!playlistId) {
-    //   return this.setState({ errorAction: 'playlist', errorMessage: 'We could not find your default playlist. Please make sure your account is still active. If this problem keeps coming back, contact us!' });
-    // }
 
     try {
       await this.props.addArticleToPlaylistByUrl(articleUrl, playlistId, token);
@@ -141,7 +151,8 @@ const mapStateToProps = (state: { auth: AuthState, user: UserState }) => ({
 });
 
 const mapDispatchToProps = {
-  addArticleToPlaylistByUrl
+  addArticleToPlaylistByUrl,
+  getUserPlaylists
 };
 
 export const ShareModal = connect(

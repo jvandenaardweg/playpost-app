@@ -5,7 +5,7 @@ const userSelector = (state: any): UserState => state.user;
 
 export const getDefaultPlaylist = createSelector(
   userSelector,
-  (user) => {
+  (user): Api.Playlist => {
     // For now, we just show one playlist, the default one
     return user.playlists[0];
   }

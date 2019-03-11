@@ -1,7 +1,7 @@
 import React from 'react';
-import { AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
+import * as Keychain from 'react-native-keychain';
 
 import { postAuth, AuthState } from '../reducers/auth';
 import { getUser, UserState } from '../reducers/user';
@@ -41,7 +41,7 @@ class LoginScreenContainer extends React.PureComponent<Props, State> {
 
     // If we have a token, but no user yet, get the account details
     if (token && !user) {
-      await AsyncStorage.setItem('userToken', token);
+      await Keychain.setGenericPassword('token', token, { accessGroup: 'group.readto', service: 'com.aardwegmedia.readtoapp' });
       this.props.getUser(token);
     }
 

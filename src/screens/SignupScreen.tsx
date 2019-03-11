@@ -1,7 +1,7 @@
 import React from 'react';
-import { AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
+import * as Keychain from 'react-native-keychain';
 
 import { createUser, UserState } from '../reducers/user';
 import { postAuth, AuthState } from '../reducers/auth';
@@ -46,7 +46,7 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
     }
 
     if (token) {
-      await AsyncStorage.setItem('userToken', token);
+      await Keychain.setGenericPassword('token', token, { accessGroup: 'group.readto', service: 'com.aardwegmedia.readtoapp' });
       this.props.navigation.navigate('SignupSuccess');
     }
   }

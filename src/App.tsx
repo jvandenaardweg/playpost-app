@@ -1,9 +1,10 @@
 import React from 'react';
-import { Platform, NativeModules, AppState, AppStateStatus, AsyncStorage } from 'react-native';
+import { Platform, NativeModules, AppState, AppStateStatus } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
 import { Provider } from 'react-redux';
 import Analytics from 'appcenter-analytics';
 import Crashes from 'appcenter-crashes';
+import * as Keychain from 'react-native-keychain';
 
 import { store } from './store';
 import { reactNativeElementsTheme } from './theme';
@@ -57,10 +58,14 @@ export default class App extends React.PureComponent<State> {
 
   async fetchPlaylist() {
     console.log('Fetching the user his playlist...');
-    const userToken = await AsyncStorage.getItem('userToken');
+    const credentials = await Keychain.getGenericPassword({ accessGroup: 'group.readto', service: 'com.aardwegmedia.readtoapp' });
 
-    if (userToken) {
-      store.dispatch(getUserPlaylists(userToken));
+    if (credentials) {
+      const token = credentials.password;
+
+      if (token) {
+        store.dispatch(getUserPlaylists(token));
+      }
     }
   }
 
