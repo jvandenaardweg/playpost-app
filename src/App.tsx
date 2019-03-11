@@ -12,6 +12,7 @@ import { getUserPlaylists } from './reducers/user';
 
 import { AppNavigator } from './navigation/AppNavigator';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { OfflineNotice } from './components/OfflineNotice/OfflineNotice';
 
 /* eslint-disable no-undef */
 if (Platform.OS === 'ios' && __DEV__) {
@@ -68,7 +69,9 @@ export default class App extends React.PureComponent<State> {
       <ErrorBoundary>
         <Provider store={store}>
           <ThemeProvider theme={reactNativeElementsTheme}>
-            <AppNavigator />
+            <React.Fragment>
+              <AppNavigator />
+            </React.Fragment>
           </ThemeProvider>
         </Provider>
       </ErrorBoundary>
