@@ -4,7 +4,7 @@ import colors from '../../../constants/colors';
 
 export default StyleSheet.create({
   wrapper: {
-    height: 55,
+    height: 65,
   },
   container: {
     flexDirection: 'row',
@@ -15,7 +15,7 @@ export default StyleSheet.create({
     paddingRight: 14,
     paddingTop: 8,
     paddingBottom: 8,
-    height: 50
+    height: 60
   },
   sideIcon: {
     width: 34,
@@ -36,8 +36,9 @@ export default StyleSheet.create({
     // marginRight: 14
   },
   trackInfoTitle: {
-    fontSize: 12,
+    fontSize: 14,
     color: colors.white,
+    fontWeight: '600'
   },
   trackInfoArtist: {
     fontSize: 12,
@@ -57,11 +58,8 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   controlPlay: {
-    width: 28,
-    height: 28,
-    borderRadius: 28,
-    borderWidth: 2,
-    borderColor: colors.white,
+    width: 40,
+    height: 40,
     alignItems: 'center',
     justifyContent: 'center'
   },

@@ -52,8 +52,8 @@ export const AudioPlayerSmall = ({
 );
 
 const PlayPauseIcon = (props: { isPlaying: boolean }) => {
-  if (props.isPlaying) return <Icon name="pause" color="white" size={10} />;
-  return <Icon name="play" color="white" size={10} />;
+  if (props.isPlaying) return <Icon name="pause" color="white" size={16} />;
+  return <Icon name="play" color="white" size={16} />;
 };
 
 class ProgressBar extends ProgressComponent {
