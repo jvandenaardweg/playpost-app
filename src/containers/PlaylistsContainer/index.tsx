@@ -3,7 +3,7 @@ import { FlatList, Alert } from 'react-native';
 import { connect } from 'react-redux';
 
 import { getUserPlaylists, UserState } from '../../reducers/user';
-import { setTrack, PlayerState, PlaybackStatus } from '../../reducers/player';
+import { setTrack, PlayerState, PlaybackStatus, createAudiofile } from '../../reducers/player';
 
 import { AppleStyleSwipeableRow } from '../../components/AppleStyleSwipeableRow';
 import { CenterLoadingIndicator } from '../../components/CenterLoadingIndicator';
@@ -29,6 +29,7 @@ interface Props {
   setTrack: any; // TODO: change any
   track: Track;
   getUserPlaylists(): void;
+  createAudiofile(articleId: string): void;
 }
 
 class ArticlesContainerComponent extends React.PureComponent<Props, State> {
@@ -52,7 +53,7 @@ class ArticlesContainerComponent extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { setTrack, track, playbackStatus } = this.props;
+    const { setTrack, track, playbackStatus, createAudiofile } = this.props;
 
     const { isLoading, isRefreshing } = this.state;
     const { articles } = this.props;
@@ -78,6 +79,7 @@ class ArticlesContainerComponent extends React.PureComponent<Props, State> {
             <ArticleContainer
               article={item}
               setTrack={setTrack}
+              createAudiofile={createAudiofile}
               track={track}
               playbackStatus={playbackStatus}
               seperated
@@ -99,7 +101,8 @@ const mapStateToProps = (state: { player: PlayerState, auth: AuthState, user: Us
 
 const mapDispatchToProps = {
   setTrack,
-  getUserPlaylists
+  getUserPlaylists,
+  createAudiofile
 };
 
 export const PlaylistsContainer = connect(

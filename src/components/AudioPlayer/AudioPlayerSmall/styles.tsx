@@ -1,13 +1,16 @@
 import { StyleSheet } from 'react-native';
 
-import Colors from '../../../constants/colors';
+import colors from '../../../constants/colors';
 
 export default StyleSheet.create({
+  wrapper: {
+    height: 55,
+  },
   container: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: Colors.black,
+    backgroundColor: colors.black,
     paddingLeft: 14,
     paddingRight: 14,
     paddingTop: 8,
@@ -22,7 +25,7 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   emptyText: {
-    color: Colors.white
+    color: colors.white
   },
   trackInfoButton: {
     flex: 1,
@@ -34,11 +37,11 @@ export default StyleSheet.create({
   },
   trackInfoTitle: {
     fontSize: 12,
-    color: Colors.white,
+    color: colors.white,
   },
   trackInfoArtist: {
     fontSize: 12,
-    color: Colors.white,
+    color: colors.white,
     opacity: 0.7
   },
   controls: {
@@ -58,8 +61,21 @@ export default StyleSheet.create({
     height: 28,
     borderRadius: 28,
     borderWidth: 2,
-    borderColor: Colors.white,
+    borderColor: colors.white,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  progressBarWrapper: {
+    height: 5,
+    backgroundColor: colors.white
+  },
+  progressBarContainer: {
+    height: 5,
+    width: '100%',
+    flexDirection: 'row',
+    backgroundColor: colors.white
+  },
+  progressBarProgress: {
+    backgroundColor: colors.tintColor
   }
 });

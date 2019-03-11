@@ -16,6 +16,7 @@ interface Props {
   track: Track;
   article: Api.Article;
   setTrack(track: Track, audiofile: Api.Audiofile): void;
+  createAudiofile(articleId: string): void;
   seperated: boolean;
 }
 
@@ -55,6 +56,12 @@ export class ArticleContainer extends React.PureComponent<Props, State> {
     }
   }
 
+  /**
+   * When a user tabs on the play button we:
+   * 1. Play the audiofile if it's present
+   * 2. Create an audiofile when there's none present
+   * 3. Toggle play/pause
+   */
   handleOnArticlePlayPress = async () => {
     const { isLoading, isPlaying } = this.state;
     const { article, setTrack, track } = this.props;
@@ -67,7 +74,7 @@ export class ArticleContainer extends React.PureComponent<Props, State> {
     }
 
     if (!article.audiofiles || !article.audiofiles.length) {
-      return Alert.alert('No audiofile yet, first need to be generated.');
+      return this.props.createAudiofile(article.id);
     }
 
     const audiofile = article.audiofiles[0];
