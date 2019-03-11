@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -47,6 +48,7 @@
 		8C272C72220F91F200DEF4DB /* dummy2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3D19D220F7B5B0030C131 /* dummy2.swift */; };
 		8C437591220813CD000A15FE /* libRNTrackPlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C43758E220813C4000A15FE /* libRNTrackPlayer.a */; };
 		8C43759422081410000A15FE /* dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43759322081410000A15FE /* dummy.swift */; };
+		8C543255223641EE00AA0681 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C543254223641D600AA0681 /* libSplashScreen.a */; };
 		8C5A7DC9220F224A00ECCC65 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C5A7DC7220F224A00ECCC65 /* MainInterface.storyboard */; };
 		8C5A7DCD220F224A00ECCC65 /* ReadtoShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8C5A7DC2220F224A00ECCC65 /* ReadtoShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8C5A7DD3220F22A700ECCC65 /* ReadtoShareExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5A7DD2220F22A700ECCC65 /* ReadtoShareExtension.m */; };
@@ -355,6 +357,13 @@
 			remoteGlobalIDString = 9B0E28291F07D76F00B71D2A;
 			remoteInfo = RNTrackPlayer;
 		};
+		8C543253223641D600AA0681 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C543222223641D600AA0681 /* SplashScreen.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D7682761D8E76B80014119E;
+			remoteInfo = SplashScreen;
+		};
 		8C5A7DCB220F224A00ECCC65 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
@@ -538,6 +547,7 @@
 		8C43755F220813C4000A15FE /* RNTrackPlayer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNTrackPlayer.xcodeproj; path = "../node_modules/react-native-track-player/ios/RNTrackPlayer.xcodeproj"; sourceTree = "<group>"; };
 		8C43759222081410000A15FE /* Readto-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Readto-Bridging-Header.h"; sourceTree = "<group>"; };
 		8C43759322081410000A15FE /* dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dummy.swift; sourceTree = "<group>"; };
+		8C543222223641D600AA0681 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		8C5A7DC2220F224A00ECCC65 /* ReadtoShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ReadtoShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C5A7DC8220F224A00ECCC65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		8C5A7DCA220F224A00ECCC65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -603,6 +613,7 @@
 				8CAA1197220F2CCE002741D6 /* libPods-Readto-ReadtoShareExtension.a in Frameworks */,
 				8C437591220813CD000A15FE /* libRNTrackPlayer.a in Frameworks */,
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
+				8C543255223641EE00AA0681 /* libSplashScreen.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -845,6 +856,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				8C543222223641D600AA0681 /* SplashScreen.xcodeproj */,
 				8C5A7DD4220F230600ECCC65 /* ReactNativeShareExtension.xcodeproj */,
 				8C43755F220813C4000A15FE /* RNTrackPlayer.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
@@ -913,6 +925,14 @@
 			isa = PBXGroup;
 			children = (
 				8C43758E220813C4000A15FE /* libRNTrackPlayer.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8C543223223641D600AA0681 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8C543254223641D600AA0681 /* libSplashScreen.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1223,6 +1243,10 @@
 					ProductGroup = 8CAAAAF722061A2100E67A62 /* Products */;
 					ProjectRef = 8E2303C7C8C549689F8CFD7A /* RNVectorIcons.xcodeproj */;
 				},
+				{
+					ProductGroup = 8C543223223641D600AA0681 /* Products */;
+					ProjectRef = 8C543222223641D600AA0681 /* SplashScreen.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1463,6 +1487,13 @@
 			fileType = archive.ar;
 			path = libRNTrackPlayer.a;
 			remoteRef = 8C43758D220813C4000A15FE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8C543254223641D600AA0681 /* libSplashScreen.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSplashScreen.a;
+			remoteRef = 8C543253223641D600AA0681 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		8C5A7DD9220F230600ECCC65 /* libReactNativeShareExtension.a */ = {
@@ -1898,6 +1929,7 @@
 					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
 				INFOPLIST_FILE = Readto/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -1934,6 +1966,7 @@
 					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
 				INFOPLIST_FILE = Readto/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;

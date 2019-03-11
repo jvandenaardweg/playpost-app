@@ -12,6 +12,7 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import "RNSplashScreen.h"
 
 // iOS 9.x or newer
 // https://facebook.github.io/react-native/docs/linking
@@ -50,6 +51,9 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+
+  [RNSplashScreen show];
+
   return YES;
 }
 

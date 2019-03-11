@@ -35,6 +35,7 @@
     "react-native-restart": "0.0.9",
     "react-native-settings-screen": "^2.1.2",
     "react-native-share-extension": "git+https://github.com/alinz/react-native-share-extension.git#3db5320135c154c367d72c44688a29ce41b210e7",
+    "react-native-splash-screen": "^3.2.0",
     "react-native-track-player": "^1.1.2",
     "react-native-vector-icons": "^6.3.0",
     "react-navigation": "^3.1.2",

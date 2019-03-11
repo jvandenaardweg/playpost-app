@@ -1,6 +1,7 @@
 import React from 'react';
 import { AsyncStorage, Alert } from 'react-native';
 import { connect } from 'react-redux';
+import SplashScreen from 'react-native-splash-screen';
 
 import { CenterLoadingIndicator } from '../components/CenterLoadingIndicator';
 
@@ -30,6 +31,7 @@ export class AuthLoadingScreenContainer extends React.PureComponent<Props> {
     // This will switch to the App screen or Auth screen and this loading
     // screen will be unmounted and thrown away.
     this.props.navigation.navigate(userToken ? 'App' : 'Onboarding');
+    SplashScreen.hide();
   }
 
   // Render any loading content that you like here
