@@ -36,6 +36,7 @@ export const LoginForm = ({
         keyboardType="email-address"
         returnKeyType="done"
         clearButtonMode="always"
+        autoFocus
         // onSubmitEditing={() => focusNextField()}
       />
 

@@ -38,6 +38,7 @@ export const SignupForm = ({
         keyboardType="email-address"
         returnKeyType="done"
         clearButtonMode="always"
+        autoFocus
       />
 
       <TextInput
