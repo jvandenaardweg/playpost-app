@@ -3,7 +3,11 @@ import { View, Text, NetInfo } from 'react-native';
 
 import styles from './styles';
 
-export class OfflineNotice extends React.PureComponent {
+interface State {
+  isConnected?: boolean;
+}
+
+export class OfflineNotice extends React.PureComponent<State> {
   state = {
     isConnected: true
   };
@@ -17,7 +21,6 @@ export class OfflineNotice extends React.PureComponent {
   }
 
   handleConnectivityChange = (isConnected: boolean) => {
-    console.log('change', isConnected);
     if (isConnected) {
       this.setState({ isConnected });
     } else {
@@ -29,7 +32,6 @@ export class OfflineNotice extends React.PureComponent {
     const { isConnected } = this.state;
 
     if (!isConnected) {
-      console.log('render message')
       return (
         <View style={styles.container}>
           <Text style={styles.text}>No Internet Connection</Text>
