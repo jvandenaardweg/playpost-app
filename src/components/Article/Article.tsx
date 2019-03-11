@@ -6,6 +6,7 @@ import styles from './styles';
 interface Props {
   isLoading?: boolean;
   isPlaying?: boolean;
+  isActive?: boolean;
   seperated?: boolean;
   title: string;
   description: string;
@@ -18,6 +19,7 @@ interface Props {
 export const Article = ({
   isLoading,
   isPlaying,
+  isActive,
   seperated,
   title,
   description,
@@ -43,13 +45,16 @@ export const Article = ({
             {sourceName}
           </Text>
         </View>
-        <Text style={styles.description} ellipsizeMode="tail" numberOfLines={3}>{description}</Text>
+        <View style={styles.description}>
+          <Text style={styles.descriptionText} ellipsizeMode="tail" numberOfLines={3}>{description}</Text>
+        </View>
       </View>
       {onPlayPress && (
         <View style={styles.sectionControl}>
           <PlayButton
             isLoading={isLoading}
             isPlaying={isPlaying}
+            isActive={isActive}
             onPress={onPlayPress}
           />
           <Text style={styles.duration}>
@@ -62,9 +67,9 @@ export const Article = ({
   </View>
 );
 
-export const PlayButton = (props: { isPlaying?: boolean, onPress(): void, isLoading?: boolean }) => (
+export const PlayButton = (props: { isPlaying?: boolean, onPress(): void, isLoading?: boolean, isActive?: boolean }) => (
   <TouchableHighlight
-    style={[styles.controlButton, props.isPlaying ? styles.controlButtonActive : null]}
+    style={[styles.controlButton, (props.isPlaying || props.isActive) ? styles.controlButtonActive : null]}
     onPress={props.onPress}
     activeOpacity={0.9}
   >

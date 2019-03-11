@@ -1,29 +1,24 @@
 import React from 'react';
 import { View, Modal, Button } from 'react-native';
 import { connect } from 'react-redux';
-import TrackPlayer from 'react-native-track-player';
+import TrackPlayer, { Track } from 'react-native-track-player';
 
 import { setPlaybackStatus, PlayerState } from '../../reducers/player';
-
-import { AudioPlayerSmall } from '../../components/AudioPlayer';
+import { AudioPlayerSmall, EmptyPlayer } from '../../components/AudioPlayer';
 
 interface State {
   isDisabled: boolean;
-  track: any;
   showModal: boolean;
 }
 
 interface Props {
-  changePlaybackStatus: any;
-  trackUrl: string | null;
-  playbackStatus: string | null;
-  track: any;
+  setPlaybackStatus: any;
+  player: PlayerState;
 }
 
 class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   state = {
     isDisabled: false,
-    track: {},
     showModal: false
   };
 
@@ -31,8 +26,6 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   onStateChanged: any = {};
 
   async componentDidMount() {
-    const { changePlaybackStatus } = this.props;
-
     await TrackPlayer.setupPlayer();
 
     await TrackPlayer.updateOptions({
@@ -67,105 +60,61 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
 
     // Adds an event handler for the playback-track-changed event
     this.onTrackChange = TrackPlayer.addEventListener('playback-track-changed', async (data) => {
-      /* eslint-disable no-console */
-      console.log('playback-track-changed', data);
+      console.log('Event', 'playback-track-changed', data);
 
       if (data.nextTrack) {
-        const track = await TrackPlayer.getTrack(data.nextTrack);
-        console.log('onTrackChange', 'update local state?', track);
-
-        /*
-
-        TrackStore.title = track.title;
-          TrackStore.artist = track.artist;
-          TrackStore.artwork = track.artwork;
-          */
-        this.setState({ track });
+        console.log('Event', 'playback-track-changed', 'Changed track!', data.nextTrack);
+        await TrackPlayer.getTrack(data.nextTrack);
       }
     });
 
-    this.onStateChanged = TrackPlayer.addEventListener('playback-state', (data) => {
-      console.log('playback-state', data);
-      changePlaybackStatus(data.state);
+    this.onStateChanged = TrackPlayer.addEventListener('playback-state', ({ state }) => {
+      console.log('Event', 'playback-state', state);
+      this.props.setPlaybackStatus(state);
     });
   }
 
   async componentDidUpdate(prevProps: Props) {
-    const { trackUrl, playbackStatus, track } = this.props;
+    const { track } = this.props.player;
 
-    if (prevProps.playbackStatus === playbackStatus) {
-      console.log('Playback status changed to ', playbackStatus);
-    }
-
-    if (prevProps.track !== track) {
-      console.log('Track updated', track);
-    }
-
-    if (prevProps.trackUrl !== trackUrl) {
-      console.log('Audioplayer got a new Track URL. We play it.');
-
-      await TrackPlayer.reset();
-
-      await TrackPlayer.add({
-        id: track.id,
-        // url: require('track.mp3'),
-        url: trackUrl,
-        title: track.title,
-        artist: track.artist,
-        album: track.album,
-        // duration: 352
-        // artwork: require('track.png')
-      });
-
-      await TrackPlayer.play();
+    // Detect if track changed
+    if (prevProps.player.track.id !== track.id) {
+      this.handleTrackUpdate(track);
     }
   }
 
+  async handleTrackUpdate(track: Track) {
+    console.log('Track updated', track);
+
+    await TrackPlayer.reset();
+
+    await TrackPlayer.add(track);
+
+    await TrackPlayer.play();
+  }
+
   componentWillUnmount() {
-    // Removes the event handler
     this.onTrackChange.remove();
     this.onStateChanged.remove();
   }
 
   handleOnPressPlay = async () => {
-    const { playbackStatus } = this.props;
+    const { playbackStatus } = this.props.player;
 
-    try {
-      if (playbackStatus === 'playing') {
-        await TrackPlayer.stop();
-      }
-
-      await TrackPlayer.play();
-    } catch (err) {
-      /* eslint-disable no-console */
-      console.log('Error', err);
+    // Toggle play/pause/stop
+    if (playbackStatus === 'playing') {
+      await TrackPlayer.pause();
+      return;
     }
+
+    await TrackPlayer.play();
   }
 
   handleOnPressPause = async () => {
     try {
       await TrackPlayer.pause();
     } catch (err) {
-      /* eslint-disable no-console */
-      console.log('Error', err);
-    }
-  }
-
-  skipToNext = async () => {
-    try {
-      await TrackPlayer.skipToNext();
-    } catch (err) {
-      /* eslint-disable no-console */
-      console.log('Error', err);
-    }
-  }
-
-  skipToPrevious = async () => {
-    try {
-      await TrackPlayer.skipToPrevious();
-    } catch (err) {
-      /* eslint-disable no-console */
-      console.log('Error', err);
+      console.log('Error handleOnPressPause', err);
     }
   }
 
@@ -177,35 +126,39 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     this.setState({ showModal: true });
   }
 
+  renderAudioPlayerSmall() {
+    const { track, playbackStatus } = this.props.player;
+    const { isDisabled } = this.state;
+
+    if (!track.id) {
+      return (<EmptyPlayer />);
+    }
+
+    return (
+      <AudioPlayerSmall
+        track={track}
+        trackUrl={track.url}
+        isPlaying={playbackStatus === 'playing'}
+        isDisabled={isDisabled}
+        handleOnPressPlay={this.handleOnPressPlay}
+        handleOnPressPause={this.handleOnPressPause}
+        handleOnShowModal={this.handleOnShowModal}
+      />
+    );
+  }
+
   render() {
-    const { trackUrl, playbackStatus } = this.props;
-    const { isDisabled, track, showModal } = this.state;
+    const { showModal } = this.state;
 
     return (
       <View>
         <Modal animationType="slide" presentationStyle="formSheet" transparent={false} visible={showModal}>
           <View style={{ paddingTop: 40, flex: 1, backgroundColor: '#000' }}>
             <Button onPress={this.handleOnModalClosePress} title="Close Full Player" />
-            <AudioPlayerSmall
-              track={track}
-              trackUrl={trackUrl}
-              isPlaying={playbackStatus === 'playing'}
-              isDisabled={isDisabled}
-              handleOnPressPlay={this.handleOnPressPlay}
-              handleOnPressPause={this.handleOnPressPause}
-              handleOnShowModal={this.handleOnShowModal}
-            />
+            {this.renderAudioPlayerSmall()}
           </View>
         </Modal>
-        <AudioPlayerSmall
-          track={track}
-          trackUrl={trackUrl}
-          isPlaying={playbackStatus === 'playing'}
-          isDisabled={isDisabled}
-          handleOnPressPlay={this.handleOnPressPlay}
-          handleOnPressPause={this.handleOnPressPause}
-          handleOnShowModal={this.handleOnShowModal}
-        />
+        {this.renderAudioPlayerSmall()}
       </View>
 
     );
@@ -214,12 +167,10 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
 
 // let storedRepositories = articles.articles.map(repo => ({ key: repo.id, ...repo }));
 const mapStateToProps = (state: { player: PlayerState }) => ({
-  trackUrl: state.player.trackUrl,
-  track: state.player.track,
-  playbackStatus: state.player.playbackStatus
+  player: state.player,
 });
 const mapDispatchToProps = {
-  changePlaybackStatus: setPlaybackStatus
+  setPlaybackStatus
 };
 
 export const AudioPlayerContainer = connect(

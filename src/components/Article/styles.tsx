@@ -21,28 +21,32 @@ export default StyleSheet.create({
     flexDirection: 'row'
   },
   sectionMeta: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'stretch',
-    justifyContent: 'space-between',
+    flex: 1
   },
   sectionControl: {
     width: 50,
     justifyContent: 'center',
-    marginLeft: 24
+    marginLeft: 24,
+    paddingTop: 6
   },
   title: {
-    fontFamily: 'Merriweather-Regular',
-    fontSize: 16,
-    fontWeight: '400',
+    // fontFamily: 'Merriweather-Regular',
+    fontSize: 17,
+    fontWeight: '600',
     color: Colors.titleDefault,
-    lineHeight: 24,
-    marginBottom: 6
+    lineHeight: 21,
+    marginBottom: 10
   },
   description: {
+    alignSelf: 'flex-start',
+    width: '100%',
+    height: '100%'
+  },
+  descriptionText: {
     fontSize: 14,
     color: Colors.paragraphGrayed,
-    lineHeight: 21
+    lineHeight: 21,
+    opacity: 0.8,
   },
   author: {
     fontSize: 13,
@@ -52,7 +56,8 @@ export default StyleSheet.create({
   source: {
     flex: 1,
     flexDirection: 'row',
-    alignItems: 'baseline'
+    alignItems: 'baseline',
+    opacity: 0.8
   },
   sourceIcon: {
     color: Colors.paragraphGrayed
@@ -84,9 +89,9 @@ export default StyleSheet.create({
     // marginLeft: 2
   },
   duration: {
-    color: Colors.controlButtonDefault,
+    color: Colors.paragraphGrayed,
     textAlign: 'center',
-    marginTop: 14,
+    marginTop: 6,
     fontSize: 12
   }
 });

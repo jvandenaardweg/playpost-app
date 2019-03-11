@@ -3,7 +3,7 @@ import { FlatList, Alert } from 'react-native';
 import { connect } from 'react-redux';
 
 import { getUserPlaylists, UserState } from '../../reducers/user';
-import { getAudioByArticleUrl, setTrack, PlayerState } from '../../reducers/player';
+import { setTrack, PlayerState, PlaybackStatus } from '../../reducers/player';
 
 import { AppleStyleSwipeableRow } from '../../components/AppleStyleSwipeableRow';
 import { CenterLoadingIndicator } from '../../components/CenterLoadingIndicator';
@@ -12,6 +12,7 @@ import { ArticleContainer } from '../../components/Article/ArticleContainer';
 
 import { getDefaultPlaylistArticles } from '../../selectors/user';
 import { AuthState } from '../../reducers/auth';
+import { Track } from 'react-native-track-player';
 
 // import { GmailStyleSwipeableRow } from '@/components/GmailStyleSwipeableRow';
 
@@ -24,10 +25,9 @@ interface Props {
   auth: AuthState;
   user: UserState;
   articles: Api.Article[];
-  playbackStatus: any; // TODO: change any
-  getAudioByArticleUrl: any; // TODO: change any
+  playbackStatus: PlaybackStatus;
   setTrack: any; // TODO: change any
-  track: any; // TODO: change any
+  track: Track;
   getUserPlaylists(token: string): void;
 }
 
@@ -58,9 +58,7 @@ class ArticlesContainerComponent extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const {
-      getAudioByArticleUrl, setTrack, track, playbackStatus
-    } = this.props;
+    const { setTrack, track, playbackStatus } = this.props;
 
     const { isLoading, isRefreshing } = this.state;
     const { articles } = this.props;
@@ -80,14 +78,13 @@ class ArticlesContainerComponent extends React.PureComponent<Props, State> {
         onRefresh={() => this.handleOnRefresh()}
         data={articles}
         extraData={playbackStatus}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => (
           <AppleStyleSwipeableRow>
             <ArticleContainer
               article={item}
-              getAudioByArticleUrl={getAudioByArticleUrl}
               setTrack={setTrack}
-              playingTrack={track}
+              track={track}
               playbackStatus={playbackStatus}
               seperated
             />
@@ -107,7 +104,6 @@ const mapStateToProps = (state: { player: PlayerState, auth: AuthState, user: Us
 });
 
 const mapDispatchToProps = {
-  getAudioByArticleUrl,
   setTrack,
   getUserPlaylists
 };

@@ -1,3 +1,5 @@
+import { Track, EventType } from 'react-native-track-player';
+
 export const GET_AUDIO = 'player/LOAD';
 export const GET_AUDIO_SUCCESS = 'player/LOAD_SUCCESS';
 export const GET_AUDIO_FAIL = 'player/LOAD_FAIL';
@@ -6,15 +8,22 @@ export const SET_TRACK = 'player/SET_TRACK';
 
 export const RESET_PLAYER_STATE = 'player/RESET_PLAYER_STATE';
 
+export type PlaybackStatus = 'ready' | 'loading' | 'playing' | 'paused' | 'stopped' | 'buffering' | 'none' | null;
+
 export interface PlayerState {
-  trackUrl: string | null;
-  track: any; // TODO: use type
-  playbackStatus: string | null;
+  track: Track;
+  audiofile: Api.Audiofile | {};
+  playbackStatus: PlaybackStatus;
 }
 
 const initialState: PlayerState = {
-  trackUrl: null,
-  track: {},
+  track: {
+    id: '',
+    url: '',
+    title: '',
+    artist: ''
+  },
+  audiofile: {},
   playbackStatus: null
 };
 
@@ -29,7 +38,7 @@ export function playerReducer(state = initialState, action: any) {
       return {
         ...state,
         isLoading: false,
-        trackUrl: action.payload.data.publicFileUrl,
+        audiofile: action.payload.data,
       };
     case GET_AUDIO_FAIL:
       return {
@@ -45,7 +54,8 @@ export function playerReducer(state = initialState, action: any) {
     case SET_TRACK:
       return {
         ...state,
-        track: action.payload
+        track: action.payload.track,
+        audiofile: action.payload.audiofile
       };
     case RESET_PLAYER_STATE:
       return {
@@ -62,27 +72,19 @@ export function resetPlayerState() {
   };
 }
 
-export function getAudioByArticleUrl(articleUrl: string) {
-  return {
-    type: GET_AUDIO,
-    payload: {
-      request: {
-        url: `/audiofile?url=${articleUrl}`
-      }
-    }
-  };
-}
-
-export function setPlaybackStatus(playbackStatus: any) {
+export function setPlaybackStatus(playbackStatus: EventType) {
   return {
     type: SET_PLAYBACK_STATUS,
     payload: playbackStatus
   };
 }
 
-export function setTrack(track: any) {
+export function setTrack(track: Track, audiofile: Api.Audiofile) {
   return {
     type: SET_TRACK,
-    payload: track
+    payload: {
+      track,
+      audiofile
+    }
   };
 }
