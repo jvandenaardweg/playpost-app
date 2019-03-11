@@ -3,6 +3,8 @@ package com.readto;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.oblador.keychain.KeychainPackage;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.avishayil.rnrestart.ReactNativeRestartPackage;
 import com.alinz.parkerdan.shareextension.SharePackage;
 import com.guichaguri.trackplayer.TrackPlayer;
@@ -31,6 +33,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new KeychainPackage(),
+            new SplashScreenReactPackage(),
             new ReactNativeRestartPackage(),
             new SharePackage(),
             new TrackPlayer(),

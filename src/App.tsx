@@ -4,12 +4,16 @@ import { ThemeProvider } from 'react-native-elements';
 import { Provider } from 'react-redux';
 import Analytics from 'appcenter-analytics';
 import Crashes from 'appcenter-crashes';
+import * as Keychain from 'react-native-keychain';
 
 import { store } from './store';
 import { reactNativeElementsTheme } from './theme';
 
+import { getUserPlaylists } from './reducers/user';
+
 import { AppNavigator } from './navigation/AppNavigator';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { OfflineNotice } from './components/OfflineNotice/OfflineNotice';
 
 /* eslint-disable no-undef */
 if (Platform.OS === 'ios' && __DEV__) {
@@ -47,8 +51,22 @@ export default class App extends React.PureComponent<State> {
   handleAppStateChange = (nextAppState: AppStateStatus) => {
     if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
       console.log('App has come to the foreground! We should check for new playlist items.');
+      this.fetchPlaylist();
     }
     this.setState({ appState: nextAppState });
+  }
+
+  async fetchPlaylist() {
+    console.log('Fetching the user his playlist...');
+    const credentials = await Keychain.getGenericPassword({ accessGroup: 'group.readto', service: 'com.aardwegmedia.readtoapp' });
+
+    if (credentials) {
+      const token = credentials.password;
+
+      if (token) {
+        store.dispatch(getUserPlaylists(token));
+      }
+    }
   }
 
   render() {
@@ -56,7 +74,9 @@ export default class App extends React.PureComponent<State> {
       <ErrorBoundary>
         <Provider store={store}>
           <ThemeProvider theme={reactNativeElementsTheme}>
-            <AppNavigator />
+            <React.Fragment>
+              <AppNavigator />
+            </React.Fragment>
           </ThemeProvider>
         </Provider>
       </ErrorBoundary>

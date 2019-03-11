@@ -7,7 +7,7 @@ import { store } from './store';
 import { reactNativeElementsTheme } from './theme';
 
 import { ErrorBoundary } from './components/ErrorBoundary';
-import { Share } from './components/Share';
+import { ShareOverlay } from './components/ShareOverlay';
 
 /* eslint-disable no-undef */
 if (Platform.OS === 'ios' && __DEV__) {
@@ -46,7 +46,7 @@ export default class ShareApp extends React.PureComponent<State> {
       <ErrorBoundary>
         <Provider store={store}>
           <ThemeProvider theme={reactNativeElementsTheme}>
-            <Share />
+            <ShareOverlay />
           </ThemeProvider>
         </Provider>
       </ErrorBoundary>

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Text, Switch, Alert, AsyncStorage } from 'react-native';
+import { Text, Switch, Alert } from 'react-native';
 import { SettingsScreen as SettingsScreenComponent, SettingsData } from 'react-native-settings-screen';
 import { connect } from 'react-redux';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
+import * as Keychain from 'react-native-keychain';
 
 import { resetAuthState } from '../reducers/auth';
 import { UserState, resetUserState } from '../reducers/user';
@@ -25,7 +26,8 @@ class SettingsScreenContainer extends React.PureComponent<Props> {
   }
 
   handleOnPressLogout = async () => {
-    await AsyncStorage.removeItem('userToken');
+    // Remove the token from secure store
+    await Keychain.resetGenericPassword();
 
     // Reset all the stores to it's original state
     this.props.resetAuthState();

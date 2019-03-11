@@ -19,7 +19,7 @@ export const store = createStore(
   }),
   composeWithDevTools(
     applyMiddleware(
-      reduxAxiosMiddleware(client)
+      reduxAxiosMiddleware(client, { returnRejectedPromiseOnError: true })
     )
   )
 );

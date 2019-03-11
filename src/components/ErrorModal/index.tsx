@@ -4,8 +4,8 @@ import { Button } from 'react-native-elements';
 
 interface Props {
   onPressAction(url: string): void;
-  message: string;
-  action: string;
+  message: string | null;
+  action: string | null;
 }
 
 export const ErrorModal = (props: Props) => (

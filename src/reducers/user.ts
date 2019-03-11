@@ -20,6 +20,7 @@ export const RESET_USER_STATE = 'user/RESET_USER_STATE';
 
 const GET_USER_FAIL_MESSAGE = 'An unknown error happened while getting your account. Please contact us when this happens all the time.';
 const GET_USER_PLAYLISTS_FAIL_MESSAGE = 'An unknown error happened while getting your playlist. Please contact us when this happens all the time.';
+const CREATE_USER_PLAYLIST_ARTICLE_FAIL_MESSAGE = 'An unknown error happened while adding this article to your playlist. Please contact us when this happens all the time.';
 
 export interface UserState {
   isLoading: boolean;
@@ -135,6 +136,20 @@ export function userReducer(state = initialState, action: any) {
         ...initialState
       };
 
+    case CREATE_USER_PLAYLIST_ARTICLE_FAIL:
+      if (action.error.response && action.error.response.data && action.error.response.data.message) {
+        Analytics.trackEvent('Error add article to playlist', { message: action.error.response.data.message });
+      } else {
+        Analytics.trackEvent('Error add article to playlist', { message: CREATE_USER_PLAYLIST_ARTICLE_FAIL_MESSAGE });
+      }
+
+      return {
+        ...state,
+        isLoading: false,
+        user: null,
+        error: (action.error.response) ? action.error.response.data.message : CREATE_USER_PLAYLIST_ARTICLE_FAIL_MESSAGE
+      };
+
     default:
       return state;
   }
@@ -192,15 +207,33 @@ export function createUser(email: string, password: string) {
   };
 }
 
-export function createUserPlaylistArticle(articleId: string, playlistId: string, token: string) {
+// export function addArticleToPlaylist(articleId: string, playlistId: string, token: string) {
+//   return {
+//     type: CREATE_USER_PLAYLIST_ARTICLE,
+//     payload: {
+//       request: {
+//         method: 'post',
+//         url: `v1/playlists/${playlistId}/articles/${articleId}`,
+//         headers: {
+//           Authorization: `Bearer ${token}`
+//         }
+//       }
+//     }
+//   };
+// }
+
+export function addArticleToPlaylistByUrl(articleUrl: string, playlistId: string, token: string) {
   return {
     type: CREATE_USER_PLAYLIST_ARTICLE,
     payload: {
       request: {
         method: 'post',
-        url: `v1/playlists/${playlistId}/articles/${articleId}`,
+        url: `v1/playlists/${playlistId}/articles`,
         headers: {
           Authorization: `Bearer ${token}`
+        },
+        data: {
+          articleUrl
         }
       }
     }

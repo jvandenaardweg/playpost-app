@@ -13,9 +13,11 @@ import { AudioPlayerContainer } from '../../containers/AudioPlayerContainer';
 
 import styles from './styles';
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
+import { OfflineNotice } from '../OfflineNotice/OfflineNotice';
 
 export const TabBar = (props: any) => (
   <View style={styles.container}>
+    <OfflineNotice />
     <ErrorMessage />
     <AudioPlayerContainer />
     <BottomTabBar {...props} />

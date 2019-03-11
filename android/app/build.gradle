@@ -141,6 +141,8 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-keychain')
+    implementation project(':react-native-splash-screen')
     implementation project(':react-native-restart')
     implementation project(':react-native-share-extension')
     implementation project(':react-native-track-player')
