@@ -28,7 +28,7 @@ interface Props {
   playbackStatus: PlaybackStatus;
   setTrack: any; // TODO: change any
   track: Track;
-  getUserPlaylists(token: string): void;
+  getUserPlaylists(): void;
 }
 
 class ArticlesContainerComponent extends React.PureComponent<Props, State> {
@@ -43,14 +43,8 @@ class ArticlesContainerComponent extends React.PureComponent<Props, State> {
   }
 
   async fetchPlaylists() {
-    const { token } = this.props.auth;
-
-    if (token) {
-      await this.props.getUserPlaylists(token);
-      this.setState({ isLoading: false, isRefreshing: false });
-    } else {
-      Alert.alert('You are not logged in!');
-    }
+    await this.props.getUserPlaylists();
+    this.setState({ isLoading: false, isRefreshing: false });
   }
 
   handleOnRefresh() {

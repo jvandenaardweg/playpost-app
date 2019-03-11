@@ -5,11 +5,10 @@ import * as Keychain from 'react-native-keychain';
 
 import { CenterLoadingIndicator } from '../components/CenterLoadingIndicator';
 
-import { setAuthToken, AuthState } from '../reducers/auth';
+import { AuthState } from '../reducers/auth';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 
 interface Props {
-  setAuthToken(usertoken: string): void;
   navigation: NavigationScreenProp<NavigationRoute>;
 }
 
@@ -26,10 +25,6 @@ export class AuthLoadingScreenContainer extends React.PureComponent<Props> {
 
     if (credentials) {
       token = credentials.password;
-
-      if (token) {
-        this.props.setAuthToken(token);
-      }
     }
 
     // This will switch to the App screen or Auth screen and this loading
@@ -48,9 +43,7 @@ const mapStateToProps = (state: { auth: AuthState }) => ({
   auth: state.auth
 });
 
-const mapDispatchToProps = {
-  setAuthToken
-};
+const mapDispatchToProps = {};
 
 export const AuthLoadingScreen = connect(
   mapStateToProps,

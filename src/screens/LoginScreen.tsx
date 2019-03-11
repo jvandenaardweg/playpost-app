@@ -16,7 +16,7 @@ interface State {
 interface Props {
   auth: AuthState;
   user: UserState;
-  getUser: (token: string) => {};
+  getUser(): void;
   postAuth: (email: string, password: string) => {};
   navigation: NavigationScreenProp<NavigationRoute>;
 }
@@ -33,27 +33,26 @@ class LoginScreenContainer extends React.PureComponent<Props, State> {
 
   async componentDidUpdate() {
     const { token } = this.props.auth;
-    const { user } = this.props.user;
-
-    if (this.props.auth.isLoading || this.props.user.isLoading) {
-      return;
-    }
+    const { user, isLoading } = this.props.user;
 
     // If we have a token, but no user yet, get the account details
-    if (token && !user) {
-      await Keychain.setGenericPassword('token', token, { accessGroup: 'group.readto', service: 'com.aardwegmedia.readtoapp' });
-      this.props.getUser(token);
+    if (token && !user && !isLoading) {
+      const credentials = await Keychain.setGenericPassword('token', token, { accessGroup: 'group.readto', service: 'com.aardwegmedia.readtoapp' });
+
+      if (credentials) {
+        await this.props.getUser();
+      }
     }
 
     // If we got a user, we can redirect it to our app screen
-    if (user && user.id) {
+    if (token && user && user.id && !isLoading) {
       this.props.navigation.navigate('App');
     }
   }
 
-  handleOnPressLogin = () => {
+  handleOnPressLogin = async () => {
     const { email, password } = this.state;
-    this.props.postAuth(email, password);
+    await this.props.postAuth(email, password);
   }
 
   handleOnPressSignup = () => this.props.navigation.navigate('Signup');

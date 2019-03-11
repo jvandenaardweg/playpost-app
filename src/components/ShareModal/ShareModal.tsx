@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
 import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
-import * as Keychain from 'react-native-keychain';
 
 import { UserState, addArticleToPlaylistByUrl, getUserPlaylists } from '../../reducers/user';
 import { AuthState } from '../../reducers/auth';
@@ -14,7 +13,6 @@ import styles from './styles';
 interface State {
   isLoading: boolean;
   errorMessage: string | null;
-  token: string | null;
 }
 
 interface Props {
@@ -26,15 +24,14 @@ interface Props {
   defaultPlaylist: Api.Playlist;
   onPressClose(): void;
   onPressSave(): void;
-  addArticleToPlaylistByUrl(articleUrl: string, playlistId: string, token: string): void;
-  getUserPlaylists(token: string): void;
+  addArticleToPlaylistByUrl(articleUrl: string, playlistId: string): void;
+  getUserPlaylists(): void;
 }
 
 export class ShareModalContainer extends React.PureComponent<Props, State> {
   state = {
     isLoading: true,
-    errorMessage: null,
-    token: null
+    errorMessage: null
   };
 
   static defaultProps = {
@@ -42,27 +39,17 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
   };
 
   async componentDidMount() {
-    const credentials = await Keychain.getGenericPassword({ accessGroup: 'group.readto', service: 'com.aardwegmedia.readtoapp' });
-    let token = '';
-
-    if (credentials) {
-      token = credentials.password;
-      this.setState({ token }, async () => {
-        // First, get the playlist, so we get an playlistId
-        await this.props.getUserPlaylists(token);
-      });
-    }
+    await this.props.getUserPlaylists();
   }
 
   async componentDidUpdate(prevProps: Props) {
     const { error } = this.props.user;
     const { url, defaultPlaylist } = this.props;
-    const { token } = this.state;
 
     // If we have a default playlist, add the article
-    if (!prevProps.defaultPlaylist && defaultPlaylist && token) {
+    if (!prevProps.defaultPlaylist && defaultPlaylist) {
       const playlistId = defaultPlaylist.id;
-      await this.addArticleToPlaylist(url, playlistId, token);
+      await this.addArticleToPlaylist(url, playlistId);
     }
 
     // When a new API error happens
@@ -71,12 +58,12 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
     }
   }
 
-  addArticleToPlaylist = async (articleUrl: string, playlistId: string, token: string) => {
+  addArticleToPlaylist = async (articleUrl: string, playlistId: string) => {
     const { closeDelay } = this.props;
     const { error } = this.props.user;
 
     try {
-      await this.props.addArticleToPlaylistByUrl(articleUrl, playlistId, token);
+      await this.props.addArticleToPlaylistByUrl(articleUrl, playlistId);
 
       // Automatically close the modal after X seconds
       setTimeout(() => this.props.onPressClose(), closeDelay);

@@ -25,7 +25,6 @@ const CREATE_USER_PLAYLIST_ARTICLE_FAIL_MESSAGE = 'An unknown error happened whi
 export interface UserState {
   isLoading: boolean;
   user: Api.User | null;
-  token: string | null;
   playlists: Api.Playlist[];
   error: string | null;
 }
@@ -33,7 +32,6 @@ export interface UserState {
 const initialState: UserState = {
   isLoading: false,
   user: null,
-  token: null,
   playlists: [],
   error: null
 };
@@ -161,31 +159,25 @@ export function resetUserState() {
   };
 }
 
-export function getUser(token: string) {
+export function getUser() {
   return {
     type: GET_USER,
     payload: {
       request: {
         method: 'get',
-        url: '/v1/me',
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
+        url: '/v1/me'
       }
     }
   };
 }
 
-export function getUserPlaylists(token: string) {
+export function getUserPlaylists() {
   return {
     type: GET_USER_PLAYLISTS,
     payload: {
       request: {
         method: 'get',
-        url: '/v1/me/playlists',
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
+        url: '/v1/me/playlists'
       }
     }
   };
@@ -207,31 +199,13 @@ export function createUser(email: string, password: string) {
   };
 }
 
-// export function addArticleToPlaylist(articleId: string, playlistId: string, token: string) {
-//   return {
-//     type: CREATE_USER_PLAYLIST_ARTICLE,
-//     payload: {
-//       request: {
-//         method: 'post',
-//         url: `v1/playlists/${playlistId}/articles/${articleId}`,
-//         headers: {
-//           Authorization: `Bearer ${token}`
-//         }
-//       }
-//     }
-//   };
-// }
-
-export function addArticleToPlaylistByUrl(articleUrl: string, playlistId: string, token: string) {
+export function addArticleToPlaylistByUrl(articleUrl: string, playlistId: string) {
   return {
     type: CREATE_USER_PLAYLIST_ARTICLE,
     payload: {
       request: {
         method: 'post',
         url: `v1/playlists/${playlistId}/articles`,
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
         data: {
           articleUrl
         }

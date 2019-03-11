@@ -58,15 +58,7 @@ export default class App extends React.PureComponent<State> {
 
   async fetchPlaylist() {
     console.log('Fetching the user his playlist...');
-    const credentials = await Keychain.getGenericPassword({ accessGroup: 'group.readto', service: 'com.aardwegmedia.readtoapp' });
-
-    if (credentials) {
-      const token = credentials.password;
-
-      if (token) {
-        store.dispatch(getUserPlaylists(token));
-      }
-    }
+    store.dispatch(getUserPlaylists());
   }
 
   render() {

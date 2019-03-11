@@ -6,6 +6,10 @@ export const GET_AUDIO_FAIL = 'player/LOAD_FAIL';
 export const SET_PLAYBACK_STATUS = 'player/SET_PLAYBACK_STATUS';
 export const SET_TRACK = 'player/SET_TRACK';
 
+export const CREATE_AUDIOFILE = 'player/CREATE_AUDIOFILE';
+export const CREATE_AUDIOFILE_SUCCESS = 'player/CREATE_AUDIOFILE_SUCCESS';
+export const CREATE_AUDIOFILE_FAIL = 'player/CREATE_AUDIOFILE_FAIL';
+
 export const RESET_PLAYER_STATE = 'player/RESET_PLAYER_STATE';
 
 export type PlaybackStatus = 'ready' | 'loading' | 'playing' | 'paused' | 'stopped' | 'buffering' | 'none' | null;
@@ -61,6 +65,24 @@ export function playerReducer(state = initialState, action: any) {
       return {
         ...initialState
       };
+
+    case CREATE_AUDIOFILE:
+      return {
+        ...state,
+        isLoading: true
+      };
+    case CREATE_AUDIOFILE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        audiofile: action.payload.data,
+      };
+    case CREATE_AUDIOFILE_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        error: 'Error while creating an audiofile'
+      };
     default:
       return state;
   }
@@ -85,6 +107,18 @@ export function setTrack(track: Track, audiofile: Api.Audiofile) {
     payload: {
       track,
       audiofile
+    }
+  };
+}
+
+export function createAudiofile(articleId: string) {
+  return {
+    type: CREATE_AUDIOFILE,
+    payload: {
+      request: {
+        method: 'post',
+        url: `/v1/articles/${articleId}/audiofiles`,
+      }
     }
   };
 }
