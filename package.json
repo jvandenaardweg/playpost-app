@@ -1,5 +1,5 @@
 {
-  "name": "readto-app",
+  "name": "readto",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -49,7 +49,7 @@
     "prop-types": "^15.6.2",
     "react": "16.6.3",
     "react-fast-compare": "^2.0.4",
-    "react-native": "^0.58.6",
+    "react-native": "^0.59.0",
     "react-native-app-intro-slider": "^1.0.1",
     "react-native-elements": "^1.0.0",
     "react-native-gesture-handler": "^1.0.15",
