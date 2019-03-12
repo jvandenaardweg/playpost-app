@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert } from 'react-native';
+import { Alert, NetInfo } from 'react-native';
 import { Article } from './Article';
 import TrackPlayer, { Track } from 'react-native-track-player';
 
@@ -74,10 +74,15 @@ export class ArticleContainer extends React.PureComponent<Props, State> {
 
     if (isLoading) return Alert.alert('Wait, we are loading an audiofile...');
 
+    const isConnected = await NetInfo.isConnected.fetch();
+
+    if (!isConnected) return Alert.alert('You need are not connected to the internet. You need an active internet connection to listen to articles.');
+
     if (isPlaying) {
       return TrackPlayer.pause();
     }
 
+    // If we don't have an audiofile yet, we create it first
     if (!article.audiofiles || !article.audiofiles.length) {
       return this.props.createAudiofile(article.id);
     }
