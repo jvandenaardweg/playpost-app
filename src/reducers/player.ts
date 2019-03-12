@@ -1,8 +1,8 @@
 import { Track, EventType } from 'react-native-track-player';
 
-export const GET_AUDIO = 'player/LOAD';
-export const GET_AUDIO_SUCCESS = 'player/LOAD_SUCCESS';
-export const GET_AUDIO_FAIL = 'player/LOAD_FAIL';
+export const GET_AUDIOFILE = 'player/LOAD';
+export const GET_AUDIOFILE_SUCCESS = 'player/LOAD_SUCCESS';
+export const GET_AUDIOFILE_FAIL = 'player/LOAD_FAIL';
 export const SET_PLAYBACK_STATUS = 'player/SET_PLAYBACK_STATUS';
 export const SET_TRACK = 'player/SET_TRACK';
 
@@ -33,22 +33,22 @@ const initialState: PlayerState = {
 
 export function playerReducer(state = initialState, action: any) {
   switch (action.type) {
-    case GET_AUDIO:
+    case GET_AUDIOFILE:
       return {
         ...state,
         isLoading: true
       };
-    case GET_AUDIO_SUCCESS:
+    case GET_AUDIOFILE_SUCCESS:
       return {
         ...state,
         isLoading: false,
         audiofile: action.payload.data,
       };
-    case GET_AUDIO_FAIL:
+    case GET_AUDIOFILE_FAIL:
       return {
         ...state,
         isLoading: false,
-        error: 'Error while fetching a track'
+        error: 'Error while fetching a audiofile.'
       };
     case SET_PLAYBACK_STATUS:
       return {
@@ -81,7 +81,7 @@ export function playerReducer(state = initialState, action: any) {
       return {
         ...state,
         isLoading: false,
-        error: 'Error while creating an audiofile'
+        error: 'Error while creating an audiofile.'
       };
     default:
       return state;
