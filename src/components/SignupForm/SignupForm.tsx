@@ -15,7 +15,7 @@ interface Props {
   isLoading: boolean;
 }
 
-export const SignupForm = ({
+export const SignupForm: React.FC<Props> = ({
   onChangeText,
   onPressLogin,
   onPressSignup,
@@ -25,7 +25,7 @@ export const SignupForm = ({
   error,
   validationError,
   isLoading
-}: Props) => (
+}) => (
   <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
     <View style={styles.form}>
 

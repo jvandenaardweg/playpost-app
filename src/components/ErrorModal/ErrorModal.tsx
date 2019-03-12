@@ -8,25 +8,25 @@ interface Props {
   action: string | null;
 }
 
-export const ErrorModal = (props: Props) => (
+export const ErrorModal: React.FC<Props> = ({ message, action, onPressAction }) => (
   <View style={{
     backgroundColor: 'white',
     padding: 14,
     borderRadius: 10
   }}>
-    <Text>{props.message}</Text>
+    <Text>{message}</Text>
 
-    {props.action === 'login' && (
+    {action === 'login' && (
       <View>
-        <Button title="Close" type="outline" onPress={() => props.onPressAction('readto://Onboarding')} />
-        <Button title="Login" onPress={() => props.onPressAction('readto://Onboarding')} />
+        <Button title="Close" type="outline" onPress={() => onPressAction('readto://Onboarding')} />
+        <Button title="Login" onPress={() => onPressAction('readto://Onboarding')} />
       </View>
     )}
 
-    {props.action === 'playlist' && (
+    {action === 'playlist' && (
       <View>
-        <Button title="Close" type="outline" onPress={() => props.onPressAction('readto://Onboarding')} />
-        <Button title="Login" onPress={() => props.onPressAction('readto://Onboarding')} />
+        <Button title="Close" type="outline" onPress={() => onPressAction('readto://Onboarding')} />
+        <Button title="Login" onPress={() => onPressAction('readto://Onboarding')} />
       </View>
     )}
 

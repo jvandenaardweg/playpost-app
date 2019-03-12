@@ -8,9 +8,7 @@ interface Props {
   name: string;
 }
 
-export const TabBarIcon = (props: Props) => {
-  const { focused, name } = props;
-
+export const TabBarIcon: React.FC<Props> = ({ focused, name }) => {
   const color = focused ? colors.tabIconSelected : colors.tabIconDefault;
 
   return (

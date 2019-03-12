@@ -17,7 +17,7 @@ interface Props {
   onPlayPress?(): void;
 }
 
-export const Article = ({
+export const Article: React.FC<Props> = ({
   isLoading,
   isPlaying,
   isActive,
@@ -28,7 +28,7 @@ export const Article = ({
   authorName,
   listenTimeInSeconds,
   onPlayPress
-}: Props) => (
+}) => (
   <View style={[styles.container, seperated ? styles.seperated : null]}>
     <TouchableOpacity style={styles.sectionHeader} activeOpacity={1} onPress={() => Alert.alert('Should go to the browser...')}>
       <Text style={styles.title} ellipsizeMode="tail" numberOfLines={2}>{title}</Text>

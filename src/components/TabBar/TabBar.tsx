@@ -15,7 +15,7 @@ import styles from './styles';
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
 import { OfflineNotice } from '../OfflineNotice/OfflineNotice';
 
-export const TabBar = (props: any) => (
+export const TabBar: React.FC = (props: any) => (
   <View style={styles.container}>
     <OfflineNotice />
     <ErrorMessage />
