@@ -111,6 +111,8 @@ export class ArticleContainer extends React.PureComponent<Props, State> {
     const { isLoading, isPlaying, isActive } = this.state;
     const { article, seperated } = this.props;
 
+    const listenTimeInSeconds = (article.audiofiles && article.audiofiles.length && article.audiofiles[0].length) ? article.audiofiles[0].length : 0;
+
     return (
       <Article
         isLoading={isLoading}
@@ -121,7 +123,7 @@ export class ArticleContainer extends React.PureComponent<Props, State> {
         description={article.description}
         sourceName={article.sourceName}
         authorName={article.authorName}
-        listenTimeInMinutes={article.listenTimeInMinutes}
+        listenTimeInSeconds={listenTimeInSeconds}
         onPlayPress={this.handleOnArticlePlayPress}
       />
     );

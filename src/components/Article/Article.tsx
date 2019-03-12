@@ -12,7 +12,7 @@ interface Props {
   description: string;
   sourceName: string;
   authorName?: string | null;
-  listenTimeInMinutes?: number;
+  listenTimeInSeconds?: number;
   onPlayPress?(): void;
 }
 
@@ -25,7 +25,7 @@ export const Article = ({
   description,
   sourceName,
   authorName,
-  listenTimeInMinutes,
+  listenTimeInSeconds,
   onPlayPress
 }: Props) => (
   <View style={[styles.container, seperated ? styles.seperated : null]}>
@@ -58,8 +58,9 @@ export const Article = ({
             onPress={onPlayPress}
           />
           <Text style={styles.duration}>
-            {listenTimeInMinutes && listenTimeInMinutes.toFixed(0)}
-            min
+            {listenTimeInSeconds !== 0 && listenTimeInSeconds && Math.ceil(listenTimeInSeconds / 60)}
+            {listenTimeInSeconds === 0 && '1'}
+            {''} min
           </Text>
         </View>
       )}

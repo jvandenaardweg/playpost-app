@@ -39,7 +39,6 @@ namespace Api {
     createdAt: Date;
     updatedAt: Date;
     audiofiles?: Audiofile[];
-    listenTimeInMinutes: number;
   }
 
   export interface User {
@@ -58,6 +57,7 @@ namespace Api {
     url: string;
     bucket: string;
     filename: string;
+    length: number | null;
     languageCode: string;
     encoding: string;
     voice: string;
