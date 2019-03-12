@@ -8,13 +8,12 @@ import { reactNativeElementsTheme } from './theme';
 
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { ShareOverlay } from './components/ShareOverlay';
+import { NetworkProvider } from './components/NetworkProvider';
 
-/* eslint-disable no-undef */
 if (Platform.OS === 'ios' && __DEV__) {
   NativeModules.DevSettings.setIsDebuggingRemotely(true);
 }
 
-/* eslint-disable no-console */
 console.disableYellowBox = true;
 
 interface State {
@@ -46,7 +45,9 @@ export default class ShareApp extends React.PureComponent<State> {
       <ErrorBoundary>
         <Provider store={store}>
           <ThemeProvider theme={reactNativeElementsTheme}>
-            <ShareOverlay />
+            <NetworkProvider>
+              <ShareOverlay />
+            </NetworkProvider>
           </ThemeProvider>
         </Provider>
       </ErrorBoundary>

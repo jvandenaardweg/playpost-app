@@ -13,9 +13,11 @@ target 'Readto' do
 
 
 
-  pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+  # pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
 
-  pod 'RNKeychain', :path => '../node_modules/react-native-keychain'
+  # pod 'RNKeychain', :path => '../node_modules/react-native-keychain'
+
+  # pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
 
   target 'ReadtoShareExtension' do
     inherit! :complete

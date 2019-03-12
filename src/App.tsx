@@ -1,5 +1,6 @@
 import React from 'react';
-import { Platform, NativeModules, AppState, AppStateStatus, NetInfo } from 'react-native';
+import { Platform, NativeModules, AppState, AppStateStatus } from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
 import { ThemeProvider } from 'react-native-elements';
 import { Provider } from 'react-redux';
 import Analytics from 'appcenter-analytics';
@@ -12,13 +13,16 @@ import { getPlaylists } from './reducers/playlists';
 
 import { AppNavigator } from './navigation/AppNavigator';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { NetworkProvider } from './components/NetworkProvider';
 
-/* eslint-disable no-undef */
+// import { whyDidYouUpdate } from 'why-did-you-update';
+
+// whyDidYouUpdate(React, { exclude: /^YellowBox/ });
+
 if (Platform.OS === 'ios' && __DEV__) {
   NativeModules.DevSettings.setIsDebuggingRemotely(true);
 }
 
-/* eslint-disable no-console */
 console.disableYellowBox = true;
 
 interface State {
@@ -71,9 +75,9 @@ export default class App extends React.PureComponent<State> {
       <ErrorBoundary>
         <Provider store={store}>
           <ThemeProvider theme={reactNativeElementsTheme}>
-            <React.Fragment>
+            <NetworkProvider>
               <AppNavigator />
-            </React.Fragment>
+            </NetworkProvider>
           </ThemeProvider>
         </Provider>
       </ErrorBoundary>
