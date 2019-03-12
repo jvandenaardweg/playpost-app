@@ -54,7 +54,7 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
       const url = value;
 
       // Update the state so our modal can pick up the URL
-      return this.setState({ type, url });
+      return this.setState({ type, url, errorMessage: null });
 
     } catch (err) {
       const errorMessage = (err.message) ? err.message : 'An unknown error happened. Please try again.';
