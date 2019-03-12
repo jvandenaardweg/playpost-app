@@ -16,16 +16,15 @@ const CREATE_USER_FAIL_MESSAGE = 'An unknown error happened while creating your 
 export interface UserState {
   isLoading: boolean;
   user: Api.User | null;
-  playlists: Api.Playlist[];
   error: string | null;
 }
 
 const initialState: UserState = {
   isLoading: false,
   user: null,
-  playlists: [],
   error: null
 };
+
 export function userReducer(state = initialState, action: any) {
   switch (action.type) {
     case GET_USER:
