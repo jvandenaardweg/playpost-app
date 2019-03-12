@@ -34,6 +34,6 @@
         </view>
     </objects>
     <resources>
-        <image name="SplashScreenIcon" width="1024" height="1024"/>
+        <image name="SplashScreenIcon" width="512" height="512"/>
     </resources>
 </document>
