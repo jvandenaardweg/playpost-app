@@ -34,7 +34,7 @@ export class OfflineNotice extends React.PureComponent<State> {
     if (!isConnected) {
       return (
         <View style={styles.container}>
-          <Text style={styles.text}>No Internet Connection</Text>
+          <Text style={styles.text}>No internet connection, playing is limited</Text>
         </View>
       );
     }
