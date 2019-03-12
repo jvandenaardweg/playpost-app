@@ -13,7 +13,8 @@
     "skipLibCheck": true, // Fix conflict with node types: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/16825
     "plugins": [
       { "name": "typescript-tslint-plugin" }
-    ]
+    ],
+    "types": ["node"]
   },
   "include": [
     "src/**/*",
