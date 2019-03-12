@@ -40,8 +40,8 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
     try {
       await this.props.getPlaylists();
     } catch (err) {
-      this.setState({ isLoading: false });
-      return console.log('Error during mount of ShareModal.', err);
+      console.log('Error during mount of ShareModal.', err);
+      return this.setState({ isLoading: false });
     }
   }
 
@@ -71,12 +71,7 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
       // Automatically close the modal after X seconds
       setTimeout(() => this.props.onPressClose(), closeDelay);
     } catch (err) {
-      console.log('Error happned');
-      // let errorMessage = 'We could not add this article to your playlist. Please try again.';
-      // if (err.error.response && err.error.response.data && err.error.response.data.message) {
-      //   errorMessage = err.error.response.data.message;
-      // }
-      // return this.setState({ errorMessage });
+      return console.log('Error during addArticleToPlaylist.', err);
     } finally {
       return this.setState({ isLoading: false });
     }
