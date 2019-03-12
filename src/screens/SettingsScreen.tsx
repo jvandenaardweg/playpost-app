@@ -8,11 +8,13 @@ import * as Keychain from 'react-native-keychain';
 import { resetAuthState } from '../reducers/auth';
 import { UserState, resetUserState } from '../reducers/user';
 import { resetPlayerState } from '../reducers/player';
+import { resetPlaylistsState } from '../reducers/playlists';
 
 interface Props {
   resetAuthState(): void;
   resetUserState(): void;
   resetPlayerState(): void;
+  resetPlaylistsState(): void;
   navigation: NavigationScreenProp<NavigationRoute>;
 }
 
@@ -33,6 +35,7 @@ class SettingsScreenContainer extends React.PureComponent<Props> {
     this.props.resetAuthState();
     this.props.resetUserState();
     this.props.resetPlayerState();
+    this.props.resetPlaylistsState();
 
     this.props.navigation.navigate('Login');
   }
@@ -184,7 +187,8 @@ const mapStateToProps = (state: { user: UserState }) => ({
 const mapDispatchToProps = {
   resetAuthState,
   resetUserState,
-  resetPlayerState
+  resetPlayerState,
+  resetPlaylistsState
 };
 
 export const SettingsScreen = connect(

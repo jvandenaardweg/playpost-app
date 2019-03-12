@@ -60,6 +60,21 @@ export function playlistsReducer(state = initialState, action: any) {
         ...initialState
       };
 
+    case CREATE_PLAYLIST_ARTICLE:
+      return {
+        ...state,
+        isLoading: true
+      };
+
+    case CREATE_PLAYLIST_ARTICLE_SUCCESS:
+      Analytics.trackEvent('Create playlist article');
+
+      return {
+        ...state,
+        isLoading: false,
+        error: null
+      };
+
     case CREATE_PLAYLIST_ARTICLE_FAIL:
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
         Analytics.trackEvent('Error add article to playlist', { message: action.error.response.data.message });
