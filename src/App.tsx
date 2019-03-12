@@ -19,12 +19,10 @@ import { NetworkProvider } from './components/NetworkProvider';
 
 // whyDidYouUpdate(React, { exclude: /^YellowBox/ });
 
-/* eslint-disable no-undef */
 if (Platform.OS === 'ios' && __DEV__) {
   NativeModules.DevSettings.setIsDebuggingRemotely(true);
 }
 
-/* eslint-disable no-console */
 console.disableYellowBox = true;
 
 interface State {
