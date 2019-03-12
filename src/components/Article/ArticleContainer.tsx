@@ -1,9 +1,10 @@
 import React from 'react';
-import { Alert, NetInfo } from 'react-native';
+import { Alert } from 'react-native';
 import { Article } from './Article';
 import TrackPlayer, { Track } from 'react-native-track-player';
 
 import { PlaybackStatus } from '../../reducers/player';
+import { NetworkContext } from '../NetworkProvider';
 
 interface State {
   isLoading: boolean;
@@ -26,6 +27,8 @@ export class ArticleContainer extends React.PureComponent<Props, State> {
     isPlaying: false,
     isActive: false
   };
+
+  static contextType = NetworkContext;
 
   componentDidUpdate(prevProps: Props) {
     const { playbackState, article } = this.props;
@@ -71,10 +74,9 @@ export class ArticleContainer extends React.PureComponent<Props, State> {
   handleOnArticlePlayPress = async () => {
     const { isLoading, isPlaying } = this.state;
     const { article, setTrack, track } = this.props;
+    const { isConnected } = this.context;
 
     if (isLoading) return Alert.alert('Wait, we are loading an audiofile...');
-
-    const isConnected = await NetInfo.isConnected.fetch();
 
     if (!isConnected) return Alert.alert('You need are not connected to the internet. You need an active internet connection to listen to articles.');
 

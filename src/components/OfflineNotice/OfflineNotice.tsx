@@ -1,35 +1,14 @@
 import React from 'react';
-import { View, Text, NetInfo } from 'react-native';
+import { View, Text } from 'react-native';
 
 import styles from './styles';
+import { NetworkContext } from '../NetworkProvider';
 
-interface State {
-  isConnected?: boolean;
-}
-
-export class OfflineNotice extends React.PureComponent<State> {
-  state = {
-    isConnected: true
-  };
-
-  componentDidMount() {
-    NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
-  }
-
-  componentWillUnmount() {
-    NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
-  }
-
-  handleConnectivityChange = (isConnected: boolean) => {
-    if (isConnected) {
-      this.setState({ isConnected });
-    } else {
-      this.setState({ isConnected });
-    }
-  }
+export class OfflineNotice extends React.PureComponent{
+  static contextType = NetworkContext;
 
   render() {
-    const { isConnected } = this.state;
+    const { isConnected } = this.context;
 
     if (!isConnected) {
       return (
