@@ -3,9 +3,7 @@ import { View, Text, ActivityIndicator } from 'react-native';
 import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 
-import { UserState } from '../../reducers/user';
-import { getPlaylists, addArticleToPlaylistByUrl } from '../../reducers/playlists';
-import { AuthState } from '../../reducers/auth';
+import { getPlaylists, addArticleToPlaylistByUrl, PlaylistsState } from '../../reducers/playlists';
 
 import { getDefaultPlaylist } from '../../selectors/playlists';
 
@@ -19,8 +17,7 @@ interface State {
 interface Props {
   url: string;
   type: string;
-  user: UserState;
-  auth: AuthState;
+  playlists: PlaylistsState;
   closeDelay?: number;
   defaultPlaylist: Api.Playlist;
   onPressClose(): void;
@@ -40,11 +37,16 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
   };
 
   async componentDidMount() {
-    await this.props.getPlaylists();
+    try {
+      await this.props.getPlaylists();
+    } catch (err) {
+      this.setState({ isLoading: false });
+      return console.log('Error during mount of ShareModal.', err);
+    }
   }
 
   async componentDidUpdate(prevProps: Props) {
-    const { error } = this.props.user;
+    const { error } = this.props.playlists;
     const { url, defaultPlaylist } = this.props;
 
     // If we have a default playlist, add the article
@@ -54,14 +56,14 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
     }
 
     // When a new API error happens
-    if (prevProps.user.error !== error) {
-      this.setState({ errorMessage: error });
+    if (prevProps.playlists.error !== error) {
+      this.setState({ errorMessage: error, isLoading: false });
     }
   }
 
   addArticleToPlaylist = async (articleUrl: string, playlistId: string) => {
     const { closeDelay } = this.props;
-    const { error } = this.props.user;
+    const { error } = this.props.playlists;
 
     try {
       await this.props.addArticleToPlaylistByUrl(articleUrl, playlistId);
@@ -126,9 +128,8 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
   }
 }
 
-const mapStateToProps = (state: { auth: AuthState, user: UserState }) => ({
-  auth: state.auth,
-  user: state.user,
+const mapStateToProps = (state: { playlists: PlaylistsState }) => ({
+  playlists: state.playlists,
   defaultPlaylist: getDefaultPlaylist(state)
 });
 
