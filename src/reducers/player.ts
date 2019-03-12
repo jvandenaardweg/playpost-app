@@ -17,7 +17,7 @@ export type PlaybackStatus = 'ready' | 'loading' | 'playing' | 'paused' | 'stopp
 export interface PlayerState {
   track: Track;
   audiofile: Api.Audiofile | {};
-  playbackStatus: PlaybackStatus;
+  playbackState: PlaybackStatus;
 }
 
 const initialState: PlayerState = {
@@ -28,7 +28,7 @@ const initialState: PlayerState = {
     artist: ''
   },
   audiofile: {},
-  playbackStatus: null
+  playbackState: null
 };
 
 export function playerReducer(state = initialState, action: any) {
@@ -53,7 +53,7 @@ export function playerReducer(state = initialState, action: any) {
     case SET_PLAYBACK_STATUS:
       return {
         ...state,
-        playbackStatus: action.payload
+        playbackState: action.payload
       };
     case SET_TRACK:
       return {
@@ -94,10 +94,10 @@ export function resetPlayerState() {
   };
 }
 
-export function setPlaybackStatus(playbackStatus: EventType) {
+export function setPlaybackStatus(playbackState: EventType) {
   return {
     type: SET_PLAYBACK_STATUS,
-    payload: playbackStatus
+    payload: playbackState
   };
 }
 

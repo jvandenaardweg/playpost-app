@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert } from 'react-native';
 import { Article } from './Article';
-import { Track } from 'react-native-track-player';
+import TrackPlayer, { Track } from 'react-native-track-player';
 
 import { PlaybackStatus } from '../../reducers/player';
 
@@ -12,7 +12,7 @@ interface State {
 }
 
 interface Props {
-  playbackStatus: PlaybackStatus;
+  playbackState: PlaybackStatus;
   track: Track;
   article: Api.Article;
   setTrack(track: Track, audiofile: Api.Audiofile): void;
@@ -28,31 +28,37 @@ export class ArticleContainer extends React.PureComponent<Props, State> {
   };
 
   componentDidUpdate(prevProps: Props) {
-    const { playbackStatus, article } = this.props;
-    const { isActive, isPlaying } = this.state;
+    const { playbackState, article } = this.props;
+    const { isPlaying, isLoading, isActive } = this.state;
 
     // Get the first audiofile id
     const audiofileId = (article.audiofiles && article.audiofiles.length) ? article.audiofiles[0].id : null;
 
     // Updates for the current track
     if (prevProps.track.id === audiofileId) {
-
-      // When a user clicks on the play button of an article, we want to set it active
-      if (!isActive) {
-        this.setState({ isActive: true });
+      // When a track is loaded into the player (downloading)
+      if (playbackState && [TrackPlayer.STATE_BUFFERING].includes(playbackState) && !isLoading) {
+        this.setState({ isActive: true, isLoading: true });
       }
 
       // When a track is playing, update the state so we can show it as playing
-      if (playbackStatus && ['playing', 'loading', 'ready'].includes(playbackStatus) && !isPlaying) {
-        this.setState({ isPlaying: true });
+      if (playbackState && [TrackPlayer.STATE_PLAYING].includes(playbackState) && !isPlaying) {
+        this.setState({ isActive: true, isPlaying: true });
       }
 
-      // If a track is not playing anymore, show it as not-playing
-      if (playbackStatus && ['paused', 'stopped'].includes(playbackStatus) && isPlaying) {
-        this.setState({ isPlaying: false });
+      // When a track is loaded and ready to be played
+      if (playbackState && ['ready', TrackPlayer.STATE_NONE, TrackPlayer.STATE_STOPPED, TrackPlayer.STATE_PAUSED].includes(playbackState) && (isLoading || isPlaying)) {
+        this.setState({ isActive: true, isLoading: false, isPlaying: false });
       }
     } else {
-      // When it's not the current track
+      // When it's not the current track, reset the state if any is changed
+      if (isPlaying || isLoading || isActive) {
+        this.setState({
+          isPlaying: false,
+          isLoading: false,
+          isActive: false
+        });
+      }
     }
   }
 
@@ -69,8 +75,7 @@ export class ArticleContainer extends React.PureComponent<Props, State> {
     if (isLoading) return Alert.alert('Wait, we are loading an audiofile...');
 
     if (isPlaying) {
-      // TODO: should trigger to stop the audio player
-      return this.setState({ isPlaying: false });
+      return TrackPlayer.pause();
     }
 
     if (!article.audiofiles || !article.audiofiles.length) {
@@ -91,9 +96,10 @@ export class ArticleContainer extends React.PureComponent<Props, State> {
         },
         audiofile
       );
-    } else {
-      // TODO: just toggle play/pause
     }
+
+    // Just play the track when we end up here
+    return TrackPlayer.play();
   }
 
   render() {

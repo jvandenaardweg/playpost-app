@@ -68,15 +68,15 @@ export const Article = ({
 );
 
 export const PlayButton = (props: { isPlaying?: boolean, onPress(): void, isLoading?: boolean, isActive?: boolean }) => (
-  <TouchableHighlight
+  <TouchableOpacity
     style={[styles.controlButton, (props.isPlaying || props.isActive) ? styles.controlButtonActive : null]}
     onPress={props.onPress}
-    activeOpacity={0.9}
+    activeOpacity={0.7}
   >
     <View>
       {props.isLoading && <ActivityIndicator size="small" color="#fff" />}
       {!props.isLoading && !props.isPlaying && <Icon name="play" size={14} color="white" style={styles.controlIcon} />}
       {!props.isLoading && props.isPlaying && <Icon name="pause" size={14} color="white" style={styles.controlIcon} />}
     </View>
-  </TouchableHighlight>
+  </TouchableOpacity>
 );

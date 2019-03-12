@@ -26,7 +26,7 @@ interface Props {
   auth: AuthState;
   user: UserState;
   articles: Api.Article[];
-  playbackStatus: PlaybackStatus;
+  playbackState: PlaybackStatus;
   setTrack: any; // TODO: change any
   track: Track;
   getPlaylists(): void;
@@ -54,7 +54,7 @@ class ArticlesContainerComponent extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { setTrack, track, playbackStatus, createAudiofile } = this.props;
+    const { setTrack, track, playbackState, createAudiofile } = this.props;
 
     const { isLoading, isRefreshing } = this.state;
     const { articles } = this.props;
@@ -73,7 +73,7 @@ class ArticlesContainerComponent extends React.PureComponent<Props, State> {
         refreshing={isRefreshing}
         onRefresh={() => this.handleOnRefresh()}
         data={articles}
-        extraData={playbackStatus}
+        extraData={playbackState}
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => (
           <AppleStyleSwipeableRow>
@@ -82,7 +82,7 @@ class ArticlesContainerComponent extends React.PureComponent<Props, State> {
               setTrack={setTrack}
               createAudiofile={createAudiofile}
               track={track}
-              playbackStatus={playbackStatus}
+              playbackState={playbackState}
               seperated
             />
           </AppleStyleSwipeableRow>
@@ -94,7 +94,7 @@ class ArticlesContainerComponent extends React.PureComponent<Props, State> {
 
 const mapStateToProps = (state: { player: PlayerState, auth: AuthState, user: UserState}) => ({
   track: state.player.track,
-  playbackStatus: state.player.playbackStatus,
+  playbackState: state.player.playbackState,
   auth: state.auth,
   user: state.user,
   articles: getDefaultPlaylistArticles(state)

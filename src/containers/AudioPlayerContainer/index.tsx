@@ -7,7 +7,8 @@ import { setPlaybackStatus, PlayerState } from '../../reducers/player';
 import { AudioPlayerSmall, EmptyPlayer } from '../../components/AudioPlayer';
 
 interface State {
-  isDisabled: boolean;
+  isLoading: boolean;
+  isPlaying: boolean;
   showModal: boolean;
 }
 
@@ -18,7 +19,8 @@ interface Props {
 
 class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   state = {
-    isDisabled: false,
+    isLoading: false,
+    isPlaying: false,
     showModal: false
   };
 
@@ -59,12 +61,12 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     await TrackPlayer.reset();
 
     // Adds an event handler for the playback-track-changed event
-    this.onTrackChange = TrackPlayer.addEventListener('playback-track-changed', async (data) => {
-      console.log('Event', 'playback-track-changed', data);
+    this.onTrackChange = TrackPlayer.addEventListener('playback-track-changed', async ({ nextTrack, track }) => {
+      console.log('Event', 'playback-track-changed', nextTrack, track);
 
-      if (data.nextTrack) {
-        console.log('Event', 'playback-track-changed', 'Changed track!', data.nextTrack);
-        await TrackPlayer.getTrack(data.nextTrack);
+      if (nextTrack && track) {
+        console.log('Event', 'playback-track-changed', 'Changed track!', nextTrack);
+        await TrackPlayer.getTrack(nextTrack);
       }
     });
 
@@ -75,11 +77,26 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   }
 
   async componentDidUpdate(prevProps: Props) {
-    const { track } = this.props.player;
+    const { track, playbackState } = this.props.player;
+    const { isLoading, isPlaying } = this.state;
 
     // Detect if track changed
     if (prevProps.player.track.id !== track.id) {
       this.handleTrackUpdate(track);
+    }
+
+    if (playbackState && [TrackPlayer.STATE_BUFFERING].includes(playbackState) && !isLoading) {
+      this.setState({ isLoading: true });
+    }
+
+    // When a track is playing, update the state so we can show it as playing
+    if (playbackState && [TrackPlayer.STATE_PLAYING].includes(playbackState) && !isPlaying) {
+      this.setState({ isPlaying: true });
+    }
+
+    // When a track is loaded and ready to be played
+    if (playbackState && ['ready', TrackPlayer.STATE_NONE, TrackPlayer.STATE_STOPPED, TrackPlayer.STATE_PAUSED].includes(playbackState) && (isLoading || isPlaying)) {
+      this.setState({ isLoading: false, isPlaying: false });
     }
   }
 
@@ -99,10 +116,10 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   }
 
   handleOnPressPlay = async () => {
-    const { playbackStatus } = this.props.player;
+    const { playbackState } = this.props.player;
 
     // Toggle play/pause/stop
-    if (playbackStatus === 'playing') {
+    if (playbackState === 'playing') {
       await TrackPlayer.pause();
       return;
     }
@@ -110,25 +127,13 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     await TrackPlayer.play();
   }
 
-  handleOnPressPause = async () => {
-    try {
-      await TrackPlayer.pause();
-    } catch (err) {
-      console.log('Error handleOnPressPause', err);
-    }
-  }
+  handleOnModalClosePress = () => this.setState({ showModal: false });
 
-  handleOnModalClosePress = () => {
-    this.setState({ showModal: false });
-  }
-
-  handleOnShowModal = () => {
-    this.setState({ showModal: true });
-  }
+  handleOnShowModal = () => this.setState({ showModal: true });
 
   renderAudioPlayerSmall() {
-    const { track, playbackStatus } = this.props.player;
-    const { isDisabled } = this.state;
+    const { track } = this.props.player;
+    const { isLoading, isPlaying } = this.state;
 
     if (!track.id) {
       return (<EmptyPlayer />);
@@ -137,11 +142,9 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     return (
       <AudioPlayerSmall
         track={track}
-        trackUrl={track.url}
-        isPlaying={playbackStatus === 'playing'}
-        isDisabled={isDisabled}
+        isLoading={isLoading}
+        isPlaying={isPlaying}
         handleOnPressPlay={this.handleOnPressPlay}
-        handleOnPressPause={this.handleOnPressPause}
         handleOnShowModal={this.handleOnShowModal}
       />
     );

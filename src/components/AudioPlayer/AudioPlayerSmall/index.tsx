@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableHighlight } from 'react-native';
+import { View, Text, TouchableHighlight, ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import styles from './styles';
 import { Track, ProgressComponent } from 'react-native-track-player';
@@ -7,17 +7,15 @@ import { Track, ProgressComponent } from 'react-native-track-player';
 interface Props {
   handleOnShowModal(): void;
   handleOnPressPlay(): void;
-  handleOnPressPause(): void;
   isPlaying: boolean;
+  isLoading: boolean;
   track: Track;
-  trackUrl: string | null;
-  isDisabled: boolean;
 }
 export const AudioPlayerSmall = ({
   handleOnShowModal,
   handleOnPressPlay,
-  handleOnPressPause,
   isPlaying,
+  isLoading,
   track: { title, artist, album }
 }: Props) => (
   <View style={styles.wrapper}>
@@ -41,9 +39,9 @@ export const AudioPlayerSmall = ({
         </View>
       </TouchableHighlight>
       <View style={styles.sideIcon}>
-        <TouchableHighlight style={styles.playButton} onPress={(isPlaying) ? handleOnPressPause : handleOnPressPlay}>
+        <TouchableHighlight style={styles.playButton} onPress={handleOnPressPlay}>
           <View style={styles.controlPlay}>
-            <PlayPauseIcon isPlaying={isPlaying} />
+            <PlayPauseIcon isLoading={isLoading} isPlaying={isPlaying} />
           </View>
         </TouchableHighlight>
       </View>
@@ -51,7 +49,8 @@ export const AudioPlayerSmall = ({
   </View>
 );
 
-const PlayPauseIcon = (props: { isPlaying: boolean }) => {
+const PlayPauseIcon = (props: { isPlaying: boolean, isLoading: boolean }) => {
+  if (props.isLoading) return <ActivityIndicator />;
   if (props.isPlaying) return <Icon name="pause" color="white" size={16} />;
   return <Icon name="play" color="white" size={16} />;
 };
