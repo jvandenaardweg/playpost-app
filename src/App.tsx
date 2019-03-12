@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, NativeModules, AppState, AppStateStatus } from 'react-native';
+import { Platform, NativeModules, AppState, AppStateStatus, NetInfo } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
 import { Provider } from 'react-redux';
 import Analytics from 'appcenter-analytics';
@@ -46,11 +46,18 @@ export default class App extends React.PureComponent<State> {
     AppState.removeEventListener('change', this.handleAppStateChange);
   }
 
-  handleAppStateChange = (nextAppState: AppStateStatus) => {
+  handleAppStateChange = async (nextAppState: AppStateStatus) => {
     if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
       console.log('App has come to the foreground! We should check for new playlist items.');
-      this.fetchPlaylist();
+
+      // Only fetch the playlist when there's an active internet connection
+      const isConnected = await NetInfo.isConnected.fetch();
+
+      if (isConnected) {
+        this.fetchPlaylist();
+      }
     }
+
     this.setState({ appState: nextAppState });
   }
 

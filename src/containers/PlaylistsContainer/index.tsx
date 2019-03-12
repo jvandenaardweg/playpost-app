@@ -1,6 +1,7 @@
 import React from 'react';
-import { FlatList, Alert } from 'react-native';
+import { FlatList, NetInfo } from 'react-native';
 import { connect } from 'react-redux';
+import RNRestart from 'react-native-restart';
 
 import { UserState } from '../../reducers/user';
 import { getPlaylists } from '../../reducers/playlists';
@@ -20,6 +21,7 @@ import { Track } from 'react-native-track-player';
 interface State {
   isLoading: boolean;
   isRefreshing: boolean;
+  isConnected: boolean;
 }
 
 interface Props {
@@ -36,12 +38,22 @@ interface Props {
 class ArticlesContainerComponent extends React.PureComponent<Props, State> {
   state = {
     isLoading: true,
-    isRefreshing: false
+    isRefreshing: false,
+    isConnected: true
   };
 
   async componentWillMount() {
-    console.log('Fetching playlists for the first time...');
-    this.fetchPlaylists();
+    const { isLoading } = this.state;
+
+    const isConnected = await NetInfo.isConnected.fetch();
+
+    if (isConnected) {
+      console.log('Fetching playlists for the first time...');
+      this.fetchPlaylists();
+    } else {
+      console.log('There is not active internet connection, so we cannot get the playlist.');
+      if (isLoading) return this.setState({ isLoading: false, isConnected: false });
+    }
   }
 
   async fetchPlaylists() {
@@ -56,17 +68,23 @@ class ArticlesContainerComponent extends React.PureComponent<Props, State> {
   render() {
     const { setTrack, track, playbackState, createAudiofile } = this.props;
 
-    const { isLoading, isRefreshing } = this.state;
+    const { isLoading, isRefreshing, isConnected } = this.state;
     const { articles } = this.props;
 
     // Initial loading indicator
     if (isLoading) return <CenterLoadingIndicator />;
+
+    if (!isConnected) {
+      return <EmptyState title="No internet" description="There's no active internet connection, so we cannot display your playlist." actionButtonLabel="Try again" actionButtonOnPress={() => RNRestart.Restart()} />;
+    }
 
     // Empty state
     // TODO: should hide empty state automatically when a playlist is filled with items externally
     if (!isLoading && !isRefreshing && !articles.length) {
       return <EmptyState title="Nothing in your playlist, yet" description="You can add articles by using the share icon in every app on your phone." />;
     }
+
+
 
     return (
       <FlatList
