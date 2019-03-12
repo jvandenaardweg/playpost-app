@@ -1,4 +1,2 @@
-import { TabBar } from './TabBar';
-import { TabBarIcon } from './TabBarIcon';
-
-export { TabBar, TabBarIcon };
+export * from './TabBar';
+export *  from './TabBarIcon';

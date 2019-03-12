@@ -1,3 +1,1 @@
-import { ShareOverlay } from './ShareOverlay';
-
-export { ShareOverlay };
+export * from './ShareOverlay';

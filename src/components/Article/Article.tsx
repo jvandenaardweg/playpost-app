@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, TouchableHighlight, ActivityIndicator, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, ActivityIndicator, TouchableOpacity, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+
 import styles from './styles';
 
 interface Props {

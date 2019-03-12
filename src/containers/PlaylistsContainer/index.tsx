@@ -7,7 +7,7 @@ import { UserState } from '../../reducers/user';
 import { getPlaylists } from '../../reducers/playlists';
 import { setTrack, PlayerState, PlaybackStatus, createAudiofile } from '../../reducers/player';
 
-import { AppleStyleSwipeableRow } from '../../components/AppleStyleSwipeableRow';
+import { AppleStyleSwipeableRow } from '../../components/SwipeableRow/AppleStyleSwipeableRow';
 import { CenterLoadingIndicator } from '../../components/CenterLoadingIndicator';
 import { EmptyState } from '../../components/EmptyState';
 import { ArticleContainer } from '../../components/Article/ArticleContainer';
@@ -16,7 +16,7 @@ import { getDefaultPlaylistArticles } from '../../selectors/playlists';
 import { AuthState } from '../../reducers/auth';
 import { Track } from 'react-native-track-player';
 
-// import { GmailStyleSwipeableRow } from '@/components/GmailStyleSwipeableRow';
+// import { GmailStyleSwipeableRow } from '../../components/SwipeableRow/GmailStyleSwipeableRow';
 
 interface State {
   isLoading: boolean;

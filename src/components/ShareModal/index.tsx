@@ -1,3 +1,1 @@
-import { ShareModal } from './ShareModal';
-
-export { ShareModal };
+export * from './ShareModal';
