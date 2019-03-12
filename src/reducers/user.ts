@@ -4,23 +4,14 @@ export const GET_USER = 'user/GET_USER';
 export const GET_USER_SUCCESS = 'user/GET_USER_SUCCESS';
 export const GET_USER_FAIL = 'user/GET_USER_FAIL';
 
-export const GET_USER_PLAYLISTS = 'user/GET_USER_PLAYLISTS';
-export const GET_USER_PLAYLISTS_SUCCESS = 'user/GET_USER_PLAYLISTS_SUCCESS';
-export const GET_USER_PLAYLISTS_FAIL = 'user/GET_USER_PLAYLISTS_FAIL';
-
 export const CREATE_USER = 'user/CREATE_USER';
 export const CREATE_USER_SUCCESS = 'user/CREATE_USER_SUCCESS';
 export const CREATE_USER_FAIL = 'user/CREATE_USER_FAIL';
 
-export const CREATE_USER_PLAYLIST_ARTICLE = 'user/CREATE_USER_PLAYLIST_ARTICLE';
-export const CREATE_USER_PLAYLIST_ARTICLE_SUCCESS = 'user/CREATE_USER_PLAYLIST_ARTICLE_SUCCESS';
-export const CREATE_USER_PLAYLIST_ARTICLE_FAIL = 'user/CREATE_USER_PLAYLIST_ARTICLE_FAIL';
-
 export const RESET_USER_STATE = 'user/RESET_USER_STATE';
 
 const GET_USER_FAIL_MESSAGE = 'An unknown error happened while getting your account. Please contact us when this happens all the time.';
-const GET_USER_PLAYLISTS_FAIL_MESSAGE = 'An unknown error happened while getting your playlist. Please contact us when this happens all the time.';
-const CREATE_USER_PLAYLIST_ARTICLE_FAIL_MESSAGE = 'An unknown error happened while adding this article to your playlist. Please contact us when this happens all the time.';
+const CREATE_USER_FAIL_MESSAGE = 'An unknown error happened while creating your account. Please contact us when this happens all the time.';
 
 export interface UserState {
   isLoading: boolean;
@@ -67,36 +58,6 @@ export function userReducer(state = initialState, action: any) {
         error: (action.error.response) ? action.error.response.data.message : GET_USER_FAIL_MESSAGE
       };
 
-    case GET_USER_PLAYLISTS:
-      return {
-        ...state,
-        isLoading: true
-      };
-
-    case GET_USER_PLAYLISTS_SUCCESS:
-      Analytics.trackEvent('Get playlist success');
-
-      return {
-        ...state,
-        isLoading: false,
-        playlists: action.payload.data,
-        error: null
-      };
-
-    case GET_USER_PLAYLISTS_FAIL:
-      if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error get playlist', { message: action.error.response.data.message });
-      } else {
-        Analytics.trackEvent('Error get playlist', { message: GET_USER_PLAYLISTS_FAIL_MESSAGE });
-      }
-
-      return {
-        ...state,
-        isLoading: false,
-        playlists: [],
-        error: (action.error.response) ? action.error.response.data.message : GET_USER_PLAYLISTS_FAIL_MESSAGE
-      };
-
     case CREATE_USER:
       return {
         ...state,
@@ -114,38 +75,22 @@ export function userReducer(state = initialState, action: any) {
       };
 
     case CREATE_USER_FAIL:
-      const genericMessage = 'An unknown error happened while creating your account. Please contact us when this happens all the time.';
-
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
         Analytics.trackEvent('Error create user', { message: action.error.response.data.message });
       } else {
-        Analytics.trackEvent('Error create user', { message: genericMessage });
+        Analytics.trackEvent('Error create user', { message: CREATE_USER_FAIL_MESSAGE });
       }
 
       return {
         ...state,
         isLoading: false,
         user: null,
-        error: (action.error.response) ? action.error.response.data.message : genericMessage
+        error: (action.error.response) ? action.error.response.data.message : CREATE_USER_FAIL_MESSAGE
       };
 
     case RESET_USER_STATE:
       return {
         ...initialState
-      };
-
-    case CREATE_USER_PLAYLIST_ARTICLE_FAIL:
-      if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error add article to playlist', { message: action.error.response.data.message });
-      } else {
-        Analytics.trackEvent('Error add article to playlist', { message: CREATE_USER_PLAYLIST_ARTICLE_FAIL_MESSAGE });
-      }
-
-      return {
-        ...state,
-        isLoading: false,
-        user: null,
-        error: (action.error.response) ? action.error.response.data.message : CREATE_USER_PLAYLIST_ARTICLE_FAIL_MESSAGE
       };
 
     default:
@@ -171,18 +116,6 @@ export function getUser() {
   };
 }
 
-export function getUserPlaylists() {
-  return {
-    type: GET_USER_PLAYLISTS,
-    payload: {
-      request: {
-        method: 'get',
-        url: '/v1/me/playlists'
-      }
-    }
-  };
-}
-
 export function createUser(email: string, password: string) {
   return {
     type: CREATE_USER,
@@ -193,21 +126,6 @@ export function createUser(email: string, password: string) {
         data: {
           email,
           password
-        }
-      }
-    }
-  };
-}
-
-export function addArticleToPlaylistByUrl(articleUrl: string, playlistId: string) {
-  return {
-    type: CREATE_USER_PLAYLIST_ARTICLE,
-    payload: {
-      request: {
-        method: 'post',
-        url: `v1/playlists/${playlistId}/articles`,
-        data: {
-          articleUrl
         }
       }
     }

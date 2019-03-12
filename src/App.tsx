@@ -4,16 +4,14 @@ import { ThemeProvider } from 'react-native-elements';
 import { Provider } from 'react-redux';
 import Analytics from 'appcenter-analytics';
 import Crashes from 'appcenter-crashes';
-import * as Keychain from 'react-native-keychain';
 
 import { store } from './store';
 import { reactNativeElementsTheme } from './theme';
 
-import { getUserPlaylists } from './reducers/user';
+import { getPlaylists } from './reducers/playlists';
 
 import { AppNavigator } from './navigation/AppNavigator';
 import { ErrorBoundary } from './components/ErrorBoundary';
-import { OfflineNotice } from './components/OfflineNotice/OfflineNotice';
 
 /* eslint-disable no-undef */
 if (Platform.OS === 'ios' && __DEV__) {
@@ -57,8 +55,8 @@ export default class App extends React.PureComponent<State> {
   }
 
   async fetchPlaylist() {
-    console.log('Fetching the user his playlist...');
-    store.dispatch(getUserPlaylists());
+    console.log('Fetching the user his playlists...');
+    store.dispatch(getPlaylists());
   }
 
   render() {

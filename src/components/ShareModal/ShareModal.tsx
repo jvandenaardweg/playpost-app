@@ -3,10 +3,11 @@ import { View, Text, ActivityIndicator } from 'react-native';
 import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 
-import { UserState, addArticleToPlaylistByUrl, getUserPlaylists } from '../../reducers/user';
+import { UserState } from '../../reducers/user';
+import { getPlaylists, addArticleToPlaylistByUrl } from '../../reducers/playlists';
 import { AuthState } from '../../reducers/auth';
 
-import { getDefaultPlaylist } from '../../selectors/user';
+import { getDefaultPlaylist } from '../../selectors/playlists';
 
 import styles from './styles';
 
@@ -25,7 +26,7 @@ interface Props {
   onPressClose(): void;
   onPressSave(): void;
   addArticleToPlaylistByUrl(articleUrl: string, playlistId: string): void;
-  getUserPlaylists(): void;
+  getPlaylists(): void;
 }
 
 export class ShareModalContainer extends React.PureComponent<Props, State> {
@@ -39,7 +40,7 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
   };
 
   async componentDidMount() {
-    await this.props.getUserPlaylists();
+    await this.props.getPlaylists();
   }
 
   async componentDidUpdate(prevProps: Props) {
@@ -133,7 +134,7 @@ const mapStateToProps = (state: { auth: AuthState, user: UserState }) => ({
 
 const mapDispatchToProps = {
   addArticleToPlaylistByUrl,
-  getUserPlaylists
+  getPlaylists
 };
 
 export const ShareModal = connect(

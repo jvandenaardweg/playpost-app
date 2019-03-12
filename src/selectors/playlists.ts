@@ -1,13 +1,13 @@
 import { createSelector } from 'reselect';
-import { UserState } from '../reducers/user';
+import { PlaylistsState } from '../reducers/playlists';
 
-const userSelector = (state: any): UserState => state.user;
+const playlistsSelector = (state: any): PlaylistsState => state.playlists;
 
 export const getDefaultPlaylist = createSelector(
-  userSelector,
-  (user): Api.Playlist => {
+  playlistsSelector,
+  (playlists): Api.Playlist => {
     // For now, we just show one playlist, the default one
-    return user.playlists[0];
+    return playlists.playlists[0];
   }
 );
 

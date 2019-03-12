@@ -2,7 +2,8 @@ import React from 'react';
 import { FlatList, Alert } from 'react-native';
 import { connect } from 'react-redux';
 
-import { getUserPlaylists, UserState } from '../../reducers/user';
+import { UserState } from '../../reducers/user';
+import { getPlaylists } from '../../reducers/playlists';
 import { setTrack, PlayerState, PlaybackStatus, createAudiofile } from '../../reducers/player';
 
 import { AppleStyleSwipeableRow } from '../../components/AppleStyleSwipeableRow';
@@ -10,7 +11,7 @@ import { CenterLoadingIndicator } from '../../components/CenterLoadingIndicator'
 import { EmptyState } from '../../components/EmptyState';
 import { ArticleContainer } from '../../components/Article/ArticleContainer';
 
-import { getDefaultPlaylistArticles } from '../../selectors/user';
+import { getDefaultPlaylistArticles } from '../../selectors/playlists';
 import { AuthState } from '../../reducers/auth';
 import { Track } from 'react-native-track-player';
 
@@ -28,7 +29,7 @@ interface Props {
   playbackStatus: PlaybackStatus;
   setTrack: any; // TODO: change any
   track: Track;
-  getUserPlaylists(): void;
+  getPlaylists(): void;
   createAudiofile(articleId: string): void;
 }
 
@@ -44,7 +45,7 @@ class ArticlesContainerComponent extends React.PureComponent<Props, State> {
   }
 
   async fetchPlaylists() {
-    await this.props.getUserPlaylists();
+    await this.props.getPlaylists();
     this.setState({ isLoading: false, isRefreshing: false });
   }
 
@@ -101,7 +102,7 @@ const mapStateToProps = (state: { player: PlayerState, auth: AuthState, user: Us
 
 const mapDispatchToProps = {
   setTrack,
-  getUserPlaylists,
+  getPlaylists,
   createAudiofile
 };
 
