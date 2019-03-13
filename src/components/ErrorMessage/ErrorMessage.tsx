@@ -7,25 +7,25 @@ import Icon from 'react-native-vector-icons/Feather';
 import styles from './styles';
 import { AuthState } from '../../reducers/auth';
 
+import { getUserError } from '../../selectors/user';
+import { getAuthError } from '../../selectors/auth';
+
 interface State {
-  errorMessage: string | null;
   forceClose: boolean;
 }
 
 interface Props {
-  user: UserState;
-  auth: AuthState;
+  userError: string | null;
+  authError: string | null;
 }
 
 class ErrorMessageContainer extends React.PureComponent<Props, State> {
   state = {
-    errorMessage: null,
     forceClose: false
   };
 
   errorMessages() {
-    const userError = this.props.user.error;
-    const authError = this.props.auth.error;
+    const { userError, authError } = this.props;
 
     const errors = [];
 
@@ -58,8 +58,8 @@ class ErrorMessageContainer extends React.PureComponent<Props, State> {
 }
 
 const mapStateToProps = (state: { user: UserState, auth: AuthState}) => ({
-  user: state.user,
-  auth: state.auth
+  userError: getUserError(state),
+  authError: getAuthError(state)
 });
 
 const mapDispatchToProps = {};

@@ -12,8 +12,8 @@ import { BottomTabBar } from 'react-navigation';
 import { AudioPlayerContainer } from '../../containers/AudioPlayerContainer';
 
 import styles from './styles';
-import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
-import { OfflineNotice } from '../OfflineNotice/OfflineNotice';
+import { ErrorMessage } from '../ErrorMessage';
+import { OfflineNotice } from '../OfflineNotice';
 
 export const TabBar: React.FC = (props: any) => (
   <View style={styles.container}>

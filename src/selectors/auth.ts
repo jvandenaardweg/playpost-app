@@ -15,3 +15,9 @@ export const getAuthenticationStatus = createSelector(
     return 'LOGGED_OUT';
   }
 );
+
+export const getAuthError = createSelector(
+  authSelector,
+  auth => auth.error
+);
+

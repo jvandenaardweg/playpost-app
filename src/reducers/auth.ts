@@ -1,4 +1,6 @@
 import Analytics from 'appcenter-analytics';
+import { AxiosResponse, AxiosRequestConfig } from 'axios';
+import { Action } from 'redux';
 
 export const POST_AUTH = 'auth/POST_AUTH';
 export const POST_AUTH_SUCCESS = 'auth/POST_AUTH_SUCCESS';
@@ -83,7 +85,7 @@ export function resetAuthState() {
   };
 }
 
-export function postAuth(email: string, password: string) {
+export function postAuth(email: string, password: string): AxiosAction {
   return {
     type: POST_AUTH,
     payload: {
@@ -96,5 +98,11 @@ export function postAuth(email: string, password: string) {
         }
       }
     }
+  };
+}
+
+export interface AxiosAction extends Action {
+  payload: {
+    request: AxiosRequestConfig
   };
 }

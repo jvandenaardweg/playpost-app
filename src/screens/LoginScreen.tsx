@@ -2,22 +2,27 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 import * as Keychain from 'react-native-keychain';
+import { Alert } from 'react-native';
+
+import { LoginForm } from '../components/LoginForm';
 
 import { postAuth, AuthState } from '../reducers/auth';
 import { getUser, UserState } from '../reducers/user';
 
-import { LoginForm } from '../components/LoginForm';
+import { getAuthError } from '../selectors/auth';
+import { getUserError } from '../selectors/user';
 
 interface State {
-  email?: string | null;
-  password?: string | null;
+  isLoading: boolean;
+  email: string | null;
+  password: string | null;
 }
 
 interface Props {
-  auth: AuthState;
-  user: UserState;
+  authError: string | null;
+  userError: string | null;
   getUser(): void;
-  postAuth: (email: string, password: string) => {};
+  postAuth(email: string, password: string): void;
   navigation: NavigationScreenProp<NavigationRoute>;
 }
 
@@ -27,51 +32,45 @@ class LoginScreenContainer extends React.PureComponent<Props, State> {
   };
 
   state = {
+    isLoading: false,
     email: '',
     password: ''
   };
 
-  async componentDidUpdate() {
-    const { token } = this.props.auth;
-    const { user, isLoading } = this.props.user;
-
-    // If we have a token, but no user yet, get the account details
-    if (token && !user && !isLoading) {
-      const credentials = await Keychain.setGenericPassword('token', token, { accessGroup: 'group.readto', service: 'com.aardwegmedia.readtoapp' });
-
-      if (credentials) {
-        await this.props.getUser();
-      }
-    }
-
-    // If we got a user, we can redirect it to our app screen
-    if (token && user && user.id && !isLoading) {
+  saveToken = async (token: string) => {
+    try {
+      await Keychain.setGenericPassword('token', token, { accessGroup: 'group.readto', service: 'com.aardwegmedia.readtoapp' });
       this.props.navigation.navigate('App');
+    } catch (err) {
+      this.setState({ isLoading: false });
+      Alert.alert('Oops!', 'We could not set you as logged in. Please try again.');
     }
   }
 
   handleOnPressLogin = async () => {
     const { email, password } = this.state;
-    await this.props.postAuth(email, password);
+
+    this.setState({ isLoading: true });
+
+    try {
+      const response: any = await this.props.postAuth(email, password);
+      this.saveToken(response.payload.data.token);
+    } catch (err) {
+      this.setState({ isLoading: false });
+      const errorMessage = (err.error.response) ? err.error.response.data.message : 'An unknown error happend. Please try again.';
+      Alert.alert('Oops!', errorMessage);
+    }
   }
 
   handleOnPressSignup = () => this.props.navigation.navigate('Signup');
 
-  handleOnChangeText = (field: string, value: string) => this.setState({ [field]: value });
+  handleOnChangeText = (field: string, value: string) => this.setState<any>({ [field]: value });
 
   render() {
-    const { email, password } = this.state;
-    const { error } = this.props.auth;
+    const { email, password, isLoading } = this.state;
+    const { userError, authError } = this.props;
 
-    // A way to keep showing loading untill we navigate
-    // Or when an error happens
-    let isLoading = this.props.auth.isLoading || this.props.user.isLoading;
-
-    // TODO: loading goes away if the user has an error, so this might not be a good way
-
-    if (error) {
-      isLoading = false;
-    }
+    const error = userError || authError;
 
     return (
       <LoginForm
@@ -88,8 +87,8 @@ class LoginScreenContainer extends React.PureComponent<Props, State> {
 }
 
 const mapStateToProps = (state: { auth: AuthState, user: UserState }) => ({
-  auth: state.auth,
-  user: state.user
+  authError: getAuthError(state),
+  userError: getUserError(state)
 });
 
 const mapDispatchToProps = {
