@@ -10,7 +10,7 @@ import { getPlaylists, PlaylistsState } from '../../reducers/playlists';
 import { setTrack, PlayerState, PlaybackStatus, createAudiofile } from '../../reducers/player';
 
 import { getPlayerTrack, getPlayerPlaybackState } from '../../selectors/player';
-import isEqual from 'react-fast-compare';
+import { getAudiofileByArticleId } from '../../selectors/playlists';
 
 interface State {
   isLoading: boolean;
@@ -20,6 +20,7 @@ interface State {
 
 interface Props {
   article: Api.Article;
+  audiofile: Api.Audiofile | null;
   playbackState: PlaybackStatus;
   track: Track;
   setTrack(track: Track, audiofile: Api.Audiofile): void;
@@ -66,45 +67,46 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
    * But for now, just return the first audiofile
    */
   get audiofileId() {
-    const { article } = this.props;
-    return (article.audiofiles.length) ? article.audiofiles[0].id : null;
+    const { audiofile } = this.props;
+    return (audiofile) ? audiofile.id : null;
   }
 
-  componentDidUpdate(prevProps: Props) {
-    console.log('ArticleContainer update', prevProps.article.id);
+  get isActiveInPlayer() {
+    const { track } = this.props;
+    return track.id === this.audiofileId;
+  }
 
+  componentDidUpdate() {
     const { playbackState } = this.props;
     const { isPlaying, isLoading, isActive } = this.state;
 
-    // Updates for the current track
-    if (prevProps.track.id === this.audiofileId) {
-      // When a track is loaded into the player (downloading)
-      if (playbackState && [TrackPlayer.STATE_BUFFERING].includes(playbackState) && !isLoading) {
-        console.log('Set state buffering');
-        this.setState({ isActive: true, isLoading: true });
-      }
+    // When a track is loaded into the player (downloading)
+    if (playbackState && [TrackPlayer.STATE_BUFFERING].includes(playbackState) && !isLoading) {
+      // console.log('ArticleContainer', 'componentDidUpdate', Set state buffering');
+      this.setState({ isActive: true, isLoading: true });
+    }
 
-      // When a track is playing, update the state so we can show it as playing
-      if (playbackState && [TrackPlayer.STATE_PLAYING].includes(playbackState) && !isPlaying) {
-        console.log('Set state playing');
-        this.setState({ isActive: true, isPlaying: true });
-      }
+    // When a track is playing, update the state so we can show it as playing
+    if (playbackState && [TrackPlayer.STATE_PLAYING].includes(playbackState) && !isPlaying) {
+      // console.log('ArticleContainer', 'componentDidUpdate', 'Set state playing');
+      this.setState({ isActive: true, isPlaying: true });
+    }
 
-      // When a track is loaded and ready to be played
-      if (playbackState && ['ready', TrackPlayer.STATE_NONE, TrackPlayer.STATE_STOPPED, TrackPlayer.STATE_PAUSED].includes(playbackState) && (isLoading || isPlaying)) {
-        console.log('Set state ready');
-        this.setState({ isActive: true, isLoading: false, isPlaying: false });
-      }
-    } else {
-      // When it's not the current track, reset the state if any is changed
-      if (isPlaying || isLoading || isActive) {
-        console.log('reset state');
-        this.setState({
-          isPlaying: false,
-          isLoading: false,
-          isActive: false
-        });
-      }
+    // When a track is loaded and ready to be played
+    if (playbackState && ['ready', TrackPlayer.STATE_NONE, TrackPlayer.STATE_STOPPED, TrackPlayer.STATE_PAUSED].includes(playbackState) && (isLoading || isPlaying)) {
+      // console.log('ArticleContainer', 'componentDidUpdate', 'Set state ready');
+      this.setState({ isActive: true, isLoading: false, isPlaying: false });
+    }
+
+    // When it's not the current track, reset the state if any is changed
+    // So our play button returns to not-active
+    if (!this.isActiveInPlayer && (isPlaying || isLoading || isActive)) {
+      // console.log('ArticleContainer', 'componentDidUpdate', 'Reset local state');
+      this.setState({
+        isPlaying: false,
+        isLoading: false,
+        isActive: false
+      });
     }
   }
 
@@ -143,7 +145,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
    */
   handleOnArticlePlayPress = async () => {
     const { isLoading, isPlaying } = this.state;
-    const { article, setTrack, track } = this.props;
+    const { article, setTrack, track, audiofile } = this.props;
     const { isConnected } = this.context;
 
     if (isLoading) return Alert.alert('Wait, we are loading an audiofile...');
@@ -155,14 +157,12 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     }
 
     // If we don't have an audiofile yet, we create it first
-    if (!article.audiofiles || !article.audiofiles.length) {
+    if (!audiofile) {
       return this.createAudiofile();
     }
 
-    const audiofile = article.audiofiles[0];
-
     // Only set a new track when it's a different one
-    if (track.id !== audiofile.id) {
+    if (!this.isActiveInPlayer) {
       return setTrack(
         {
           id: audiofile.id,
@@ -180,8 +180,8 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
   }
 
   get listenTimeInSeconds() {
-    const { article } = this.props;
-    return (article.audiofiles && article.audiofiles.length && article.audiofiles[0].length) ? article.audiofiles[0].length : 0;
+    const { audiofile } = this.props;
+    return (audiofile && audiofile.length) ? audiofile.length : 0;
   }
 
   render() {
@@ -205,9 +205,10 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
   }
 }
 
-const mapStateToProps = (state: { player: PlayerState, playlists: PlaylistsState }) => ({
+const mapStateToProps = (state: { player: PlayerState, playlists: PlaylistsState }, props: Props) => ({
   track: getPlayerTrack(state),
-  playbackState: getPlayerPlaybackState(state)
+  playbackState: getPlayerPlaybackState(state),
+  audiofile: getAudiofileByArticleId(state, props.article.id)
 });
 
 const mapDispatchToProps = {

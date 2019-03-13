@@ -72,7 +72,7 @@ class ArticlesContainerComponent extends React.PureComponent<Props, State> {
     } catch (err) {
       const customErrorMessage = 'There was an error while getting your playlist.';
 
-      // If we don't have articles we show an empty state
+      // If we don't have articles we show an empty error state
       if (!articles || !articles.length) {
         return this.setState({ errorMessage: customErrorMessage });
       }
@@ -135,8 +135,6 @@ class ArticlesContainerComponent extends React.PureComponent<Props, State> {
     if (!isLoading && !isRefreshing && !this.hasArticles) {
       return <EmptyState title="Nothing in your playlist, yet" description="You can add articles by using the share icon in every app on your phone." />;
     }
-
-    console.log('Render PlaylistsContainer');
 
     return (
       <FlatList

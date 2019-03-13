@@ -20,4 +20,3 @@ export const getAuthError = createSelector(
   authSelector,
   auth => auth.error
 );
-
