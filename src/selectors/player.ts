@@ -6,59 +6,64 @@ import TrackPlayer from 'react-native-track-player';
 const playerSelector = (state: any): PlayerState => state.player;
 
 export const getPlayerTrack = createSelector(
-  playerSelector,
+  [playerSelector],
   player => player.track
 );
 
+export const getPlayerAudiofile = createSelector(
+  [playerSelector],
+  player => player.audiofile
+);
+
 export const getPlayerPlaybackState = createSelector(
-  playerSelector,
+  [playerSelector],
   player => player.playbackState
 );
 
 export const isLoading = createSelector(
-  getPlayerPlaybackState,
+  [getPlayerPlaybackState],
   (playbackState) => {
     return playbackState && playbackState === TrackPlayer.STATE_BUFFERING;
   }
 );
 
 export const isPlaying = createSelector(
-  getPlayerPlaybackState,
+  [getPlayerPlaybackState],
   (playbackState) => {
     return playbackState && playbackState === TrackPlayer.STATE_PLAYING;
   }
 );
 
 export const isStopped = createSelector(
-  getPlayerPlaybackState,
+  [getPlayerPlaybackState],
   (playbackState) => {
     return playbackState && playbackState === TrackPlayer.STATE_STOPPED;
   }
 );
 
 export const isPaused = createSelector(
-  getPlayerPlaybackState,
+  [getPlayerPlaybackState],
   (playbackState) => {
     return playbackState && playbackState === TrackPlayer.STATE_PAUSED;
   }
 );
 
 export const isIdle = createSelector(
-  getPlayerPlaybackState,
+  [getPlayerPlaybackState],
   (playbackState) => {
     return playbackState && playbackState === TrackPlayer.STATE_NONE;
   }
 );
 
 export const isReady = createSelector(
-  getPlayerPlaybackState,
+  [getPlayerPlaybackState],
   (playbackState) => {
     return playbackState && playbackState === 'ready';
   }
 );
 
 export const isNotPlaying = createSelector(
-  isReady, isIdle, isPaused, isStopped,
+  [isReady, isIdle, isPaused, isStopped],
   (isReady, isIdle, isPaused, isStopped) => {
     return isReady || isIdle || isPaused || isStopped;
   }

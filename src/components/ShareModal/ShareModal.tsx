@@ -19,7 +19,7 @@ interface Props {
   type: string;
   playlists: PlaylistsState;
   closeDelay?: number;
-  defaultPlaylist: Api.Playlist;
+  defaultPlaylist: Api.Playlist | null;
   onPressClose(): void;
   onPressSave(): void;
   addArticleToPlaylistByUrl(articleUrl: string, playlistId: string): void;
