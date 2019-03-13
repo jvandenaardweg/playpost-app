@@ -61,14 +61,14 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     await TrackPlayer.reset();
 
     // Adds an event handler for the playback-track-changed event
-    this.onTrackChange = TrackPlayer.addEventListener('playback-track-changed', async ({ nextTrack, track }) => {
-      console.log('Event', 'playback-track-changed', nextTrack, track);
+    // this.onTrackChange = TrackPlayer.addEventListener('playback-track-changed', async ({ nextTrack, track }) => {
+    //   console.log('Event', 'playback-track-changed', nextTrack, track);
 
-      if (nextTrack && track) {
-        console.log('Event', 'playback-track-changed', 'Changed track!', nextTrack);
-        await TrackPlayer.getTrack(nextTrack);
-      }
-    });
+    //   if (nextTrack && track) {
+    //     console.log('Event', 'playback-track-changed', 'Changed track!', nextTrack);
+    //     await TrackPlayer.getTrack(nextTrack);
+    //   }
+    // });
 
     this.onStateChanged = TrackPlayer.addEventListener('playback-state', ({ state }) => {
       console.log('Event', 'playback-state', state);

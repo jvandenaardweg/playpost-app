@@ -3,19 +3,17 @@ import { FlatList, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import RNRestart from 'react-native-restart';
 
-import { UserState } from '../../reducers/user';
-import { getPlaylists } from '../../reducers/playlists';
-import { setTrack, PlayerState, PlaybackStatus, createAudiofile } from '../../reducers/player';
-
 import { AppleStyleSwipeableRow } from '../../components/SwipeableRow/AppleStyleSwipeableRow';
 import { CenterLoadingIndicator } from '../../components/CenterLoadingIndicator';
 import { EmptyState } from '../../components/EmptyState';
 import { ArticleContainer } from '../../components/Article/ArticleContainer';
+import { NetworkContext } from '../../components/NetworkProvider';
+
+import { getPlaylists, PlaylistsState } from '../../reducers/playlists';
 
 import { getDefaultPlaylistArticles } from '../../selectors/playlists';
-import { AuthState } from '../../reducers/auth';
-import { Track } from 'react-native-track-player';
-import { NetworkContext } from '../../components/NetworkProvider';
+
+import isEqual from 'react-fast-compare';
 
 // import { GmailStyleSwipeableRow } from '../../components/SwipeableRow/GmailStyleSwipeableRow';
 
@@ -26,14 +24,8 @@ interface State {
 }
 
 interface Props {
-  auth: AuthState;
-  user: UserState;
   articles: Api.Article[];
-  playbackState: PlaybackStatus;
-  setTrack: any; // TODO: change any
-  track: Track;
   getPlaylists(): void;
-  createAudiofile(articleId: string): void;
 }
 
 class ArticlesContainerComponent extends React.PureComponent<Props, State> {
@@ -44,6 +36,20 @@ class ArticlesContainerComponent extends React.PureComponent<Props, State> {
   };
 
   static contextType = NetworkContext;
+
+  shouldComponentUpdate(nextProps: Props, nextState: State) {
+    // If there's a state change inside the component, always update it
+    if (!isEqual(this.state, nextState)) {
+      return true;
+    }
+
+    // Only update this component when we have new playlist items
+    if (!isEqual(this.props, nextProps)) {
+      return true;
+    }
+
+    return false;
+  }
 
   componentDidMount() {
     const { isConnected } = this.context;
@@ -109,7 +115,8 @@ class ArticlesContainerComponent extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { setTrack, track, playbackState, createAudiofile, articles } = this.props;
+    // const { setTrack, track, playbackState, createAudiofile, articles } = this.props;
+    const { articles } = this.props;
     const { isLoading, isRefreshing, errorMessage } = this.state;
     const { isConnected } = this.context;
 
@@ -129,21 +136,18 @@ class ArticlesContainerComponent extends React.PureComponent<Props, State> {
       return <EmptyState title="Nothing in your playlist, yet" description="You can add articles by using the share icon in every app on your phone." />;
     }
 
+    console.log('Render PlaylistsContainer');
+
     return (
       <FlatList
         refreshing={isRefreshing}
         onRefresh={() => this.handleOnRefresh()}
         data={articles}
-        extraData={playbackState}
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => (
           <AppleStyleSwipeableRow>
             <ArticleContainer
               article={item}
-              setTrack={setTrack}
-              createAudiofile={createAudiofile}
-              track={track}
-              playbackState={playbackState}
               seperated
             />
           </AppleStyleSwipeableRow>
@@ -153,21 +157,15 @@ class ArticlesContainerComponent extends React.PureComponent<Props, State> {
   }
 }
 
-const mapStateToProps = (state: { player: PlayerState, auth: AuthState, user: UserState}) => ({
-  track: state.player.track,
-  playbackState: state.player.playbackState,
-  auth: state.auth,
-  user: state.user,
+const mapStateToProps = (state: { playlists: PlaylistsState }) => ({
   articles: getDefaultPlaylistArticles(state)
 });
 
 const mapDispatchToProps = {
-  setTrack,
-  getPlaylists,
-  createAudiofile
+  getPlaylists
 };
 
 export const PlaylistsContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(ArticlesContainerComponent)
+)(ArticlesContainerComponent);

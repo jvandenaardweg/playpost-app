@@ -1,4 +1,5 @@
 import { Track, EventType } from 'react-native-track-player';
+import Analytics from 'appcenter-analytics';
 
 export const GET_AUDIOFILE = 'player/LOAD';
 export const GET_AUDIOFILE_SUCCESS = 'player/LOAD_SUCCESS';
@@ -14,13 +15,17 @@ export const RESET_PLAYER_STATE = 'player/RESET_PLAYER_STATE';
 
 export type PlaybackStatus = 'ready' | 'loading' | 'playing' | 'paused' | 'stopped' | 'buffering' | 'none' | null;
 
+const CREATE_AUDIOFILE_FAIL_MESSAGE = 'An unknown error happened while creating creating an audiofile. Please contact us when this happens all the time.';
+
 export interface PlayerState {
   track: Track;
   audiofile: Api.Audiofile | {};
   playbackState: PlaybackStatus;
+  isLoading: boolean;
 }
 
 const initialState: PlayerState = {
+  isLoading: false,
   track: {
     id: '',
     url: '',
@@ -78,10 +83,19 @@ export function playerReducer(state = initialState, action: any) {
         audiofile: action.payload.data,
       };
     case CREATE_AUDIOFILE_FAIL:
+      let error = CREATE_AUDIOFILE_FAIL_MESSAGE;
+
+      if (action.error.response && action.error.response.data && action.error.response.data.message) {
+        error = action.error.response.data.message;
+        Analytics.trackEvent('Error create audiofile', { message: action.error.response.data.message });
+      } else {
+        Analytics.trackEvent('Error create audiofile', { message: CREATE_AUDIOFILE_FAIL_MESSAGE });
+      }
+
       return {
         ...state,
-        isLoading: false,
-        error: 'Error while creating an audiofile.'
+        error,
+        isLoading: false
       };
     default:
       return state;

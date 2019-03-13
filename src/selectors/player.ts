@@ -5,48 +5,53 @@ import TrackPlayer from 'react-native-track-player';
 
 const playerSelector = (state: any): PlayerState => state.player;
 
-export const getPlaybackState = createSelector(
+export const getPlayerTrack = createSelector(
+  playerSelector,
+  player => player.track
+);
+
+export const getPlayerPlaybackState = createSelector(
   playerSelector,
   player => player.playbackState
 );
 
 export const isLoading = createSelector(
-  getPlaybackState,
+  getPlayerPlaybackState,
   (playbackState) => {
     return playbackState && playbackState === TrackPlayer.STATE_BUFFERING;
   }
 );
 
 export const isPlaying = createSelector(
-  getPlaybackState,
+  getPlayerPlaybackState,
   (playbackState) => {
     return playbackState && playbackState === TrackPlayer.STATE_PLAYING;
   }
 );
 
 export const isStopped = createSelector(
-  getPlaybackState,
+  getPlayerPlaybackState,
   (playbackState) => {
     return playbackState && playbackState === TrackPlayer.STATE_STOPPED;
   }
 );
 
 export const isPaused = createSelector(
-  getPlaybackState,
+  getPlayerPlaybackState,
   (playbackState) => {
     return playbackState && playbackState === TrackPlayer.STATE_PAUSED;
   }
 );
 
 export const isIdle = createSelector(
-  getPlaybackState,
+  getPlayerPlaybackState,
   (playbackState) => {
     return playbackState && playbackState === TrackPlayer.STATE_NONE;
   }
 );
 
 export const isReady = createSelector(
-  getPlaybackState,
+  getPlayerPlaybackState,
   (playbackState) => {
     return playbackState && playbackState === 'ready';
   }

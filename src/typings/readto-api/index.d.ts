@@ -38,7 +38,7 @@ namespace Api {
     text?: string | null;
     createdAt: Date;
     updatedAt: Date;
-    audiofiles?: Audiofile[];
+    audiofiles: Audiofile[];
   }
 
   export interface User {
