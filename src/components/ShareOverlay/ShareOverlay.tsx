@@ -12,7 +12,6 @@ interface State {
   isLoading: boolean;
   type: string | null;
   url: string | null;
-  opacityAnim: Animated.Value;
   errorMessage: string | null;
   errorAction: string | null;
 }
@@ -27,7 +26,6 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
     isLoading: true,
     type: null,
     url: null,
-    opacityAnim: new Animated.Value(0),
     errorMessage: null,
     errorAction: null
   };
@@ -36,16 +34,17 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
     animationDuration: 200
   };
 
+  opacityAnim = new Animated.Value(0);
+
   async componentDidMount() {
     try {
-      const { opacityAnim } = this.state;
-
       // Start fade in animation of the overlay
       Animated.timing(
-        opacityAnim,
+        this.opacityAnim,
         {
           toValue: 1,
           duration: 300,
+          useNativeDriver: true
         }
       ).start();
 
@@ -65,7 +64,6 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
   }
 
   closeOverlay = () => {
-    const { opacityAnim } = this.state;
     const { animationDuration } = this.props;
 
     this.setState({ isOpen: false }, () => {
@@ -73,10 +71,11 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
       setTimeout(
         () => {
           Animated.timing(
-            opacityAnim,
+            this.opacityAnim,
             {
               toValue: 0,
               duration: animationDuration,
+              useNativeDriver: true
             }
           ).start(() => {
             // Close the share extension after our animation
@@ -146,10 +145,9 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { opacityAnim } = this.state;
 
     return (
-      <Animated.View style={[styles.container, { opacity: opacityAnim }]}>
+      <Animated.View style={[styles.container, { opacity: this.opacityAnim }]}>
         {this.renderModal()}
       </Animated.View>
     );
