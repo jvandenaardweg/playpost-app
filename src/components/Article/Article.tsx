@@ -10,11 +10,13 @@ interface Props {
   isActive?: boolean;
   seperated?: boolean;
   title: string;
+  url: string;
   description: string;
   sourceName: string;
   authorName?: string | null;
   listenTimeInSeconds?: number;
   onPlayPress?(): void;
+  onOpenUrl(url: string): void;
 }
 
 export const Article: React.FC<Props> = ({
@@ -23,14 +25,16 @@ export const Article: React.FC<Props> = ({
   isActive,
   seperated,
   title,
+  url,
   description,
   sourceName,
   authorName,
   listenTimeInSeconds,
-  onPlayPress
+  onPlayPress,
+  onOpenUrl
 }) => (
   <View style={[styles.container, seperated ? styles.seperated : null]}>
-    <TouchableOpacity style={styles.sectionHeader} activeOpacity={1} onPress={() => Alert.alert('Should go to the browser...')}>
+    <TouchableOpacity style={styles.sectionHeader} activeOpacity={1} onPress={() => onOpenUrl(url)}>
       <Text style={styles.title} ellipsizeMode="tail" numberOfLines={2}>{title}</Text>
     </TouchableOpacity>
     <View style={styles.sectionBody}>
