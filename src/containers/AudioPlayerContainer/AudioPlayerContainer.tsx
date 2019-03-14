@@ -8,6 +8,7 @@ import { AudioPlayerSmall, EmptyPlayer } from '../../components/AudioPlayer';
 import { getPlayerPlaybackState, getPlayerTrack } from '../../selectors/player';
 import { RootState } from '../../reducers';
 
+
 interface State {
   isLoading: boolean;
   isPlaying: boolean;
@@ -36,24 +37,24 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
         TrackPlayer.CAPABILITY_PLAY,
         TrackPlayer.CAPABILITY_PAUSE,
         TrackPlayer.CAPABILITY_STOP,
-        TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
-        TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
+        // TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
+        // TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
         TrackPlayer.CAPABILITY_SEEK_TO
       ],
       compactCapabilities: [
         TrackPlayer.CAPABILITY_PLAY,
         TrackPlayer.CAPABILITY_PAUSE,
         TrackPlayer.CAPABILITY_STOP,
-        TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
-        TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
+        // TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
+        // TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
         TrackPlayer.CAPABILITY_SEEK_TO
       ],
       notificationCapabilities: [
         TrackPlayer.CAPABILITY_PLAY,
         TrackPlayer.CAPABILITY_PAUSE,
         TrackPlayer.CAPABILITY_STOP,
-        TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
-        TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
+        // TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
+        // TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
         TrackPlayer.CAPABILITY_SEEK_TO
       ]
     });
@@ -74,6 +75,8 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
       console.log('Event', 'playback-state', state);
 
       this.props.setPlaybackStatus(state);
+
+      console.log('Buffered position', await TrackPlayer.getBufferedPosition());
 
       // Little trick to make sure autoplay works
       // From: https://github.com/react-native-kit/react-native-track-player/issues/479
