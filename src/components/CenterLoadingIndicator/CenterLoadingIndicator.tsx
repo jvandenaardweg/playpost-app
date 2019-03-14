@@ -9,8 +9,8 @@ interface Props {
   backgroundColor?: string;
 }
 
-export const CenterLoadingIndicator: React.FC<Props> = ({ backgroundColor }) => (
+export const CenterLoadingIndicator: React.FC<Props>  = React.memo(({ backgroundColor }: Props) => (
   <View style={[styles.container, { backgroundColor: (backgroundColor) ? backgroundColor : colors.appBackground }]}>
     <ActivityIndicator />
   </View>
-);
+));
