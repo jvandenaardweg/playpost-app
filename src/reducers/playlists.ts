@@ -24,7 +24,7 @@ const initialState: PlaylistsState = {
   playlists: [],
   error: null
 };
-export function playlistsReducer(state = initialState, action: any) {
+export function playlistsReducer(state = initialState, action: any): PlaylistsState {
   switch (action.type) {
     case GET_PLAYLISTS:
       return {

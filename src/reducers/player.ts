@@ -1,4 +1,4 @@
-import { Track, EventType } from 'react-native-track-player';
+import { Track } from 'react-native-track-player';
 import Analytics from 'appcenter-analytics';
 
 export const GET_AUDIOFILE = 'player/LOAD';
@@ -13,7 +13,7 @@ export const CREATE_AUDIOFILE_FAIL = 'player/CREATE_AUDIOFILE_FAIL';
 
 export const RESET_PLAYER_STATE = 'player/RESET_PLAYER_STATE';
 
-export type PlaybackStatus = 'ready' | 'loading' | 'playing' | 'paused' | 'stopped' | 'buffering' | 'none' | null;
+export type PlaybackStatus = 'ready' | 'loading' | 'playing' | 'paused' | 'stopped' | 'buffering' | 'none';
 
 const CREATE_AUDIOFILE_FAIL_MESSAGE = 'An unknown error happened while creating creating an audiofile. Please contact us when this happens all the time.';
 
@@ -22,6 +22,7 @@ export interface PlayerState {
   audiofile: Api.Audiofile | {};
   playbackState: PlaybackStatus;
   isLoading: boolean;
+  error: string | null;
 }
 
 const initialState: PlayerState = {
@@ -30,13 +31,17 @@ const initialState: PlayerState = {
     id: '',
     url: '',
     title: '',
-    artist: ''
+    artist: '',
+    contentType: '',
+    description: '',
+    duration: 0
   },
   audiofile: {},
-  playbackState: null
+  playbackState: 'none',
+  error: null
 };
 
-export function playerReducer(state = initialState, action: any) {
+export function playerReducer(state = initialState, action: any): PlayerState {
   switch (action.type) {
     case GET_AUDIOFILE:
       return {
@@ -108,7 +113,7 @@ export function resetPlayerState() {
   };
 }
 
-export function setPlaybackStatus(playbackState: EventType) {
+export function setPlaybackStatus(playbackState: PlaybackStatus) {
   return {
     type: SET_PLAYBACK_STATUS,
     payload: playbackState

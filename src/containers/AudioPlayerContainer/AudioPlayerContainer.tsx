@@ -3,8 +3,10 @@ import { View, Modal, Button } from 'react-native';
 import { connect } from 'react-redux';
 import TrackPlayer, { Track } from 'react-native-track-player';
 
-import { setPlaybackStatus, PlayerState } from '../../reducers/player';
+import { setPlaybackStatus, PlaybackStatus } from '../../reducers/player';
 import { AudioPlayerSmall, EmptyPlayer } from '../../components/AudioPlayer';
+import { getPlayerPlaybackState, getPlayerTrack } from '../../selectors/player';
+import { RootState } from '../../reducers';
 
 interface State {
   isLoading: boolean;
@@ -12,10 +14,7 @@ interface State {
   showModal: boolean;
 }
 
-interface Props {
-  setPlaybackStatus: any;
-  player: PlayerState;
-}
+type Props = StateProps & DispatchProps;
 
 class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   state = {
@@ -26,6 +25,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
 
   onTrackChange: any = {};
   onStateChanged: any = {};
+  onStateError: any = {};
 
   async componentDidMount() {
     await TrackPlayer.setupPlayer();
@@ -61,27 +61,31 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     await TrackPlayer.reset();
 
     // Adds an event handler for the playback-track-changed event
-    // this.onTrackChange = TrackPlayer.addEventListener('playback-track-changed', async ({ nextTrack, track }) => {
-    //   console.log('Event', 'playback-track-changed', nextTrack, track);
+    this.onTrackChange = TrackPlayer.addEventListener('playback-track-changed', async ({ track, position, nextTrack }) => {
+      console.log('Event', 'playback-track-changed', track, position, nextTrack);
 
-    //   if (nextTrack && track) {
-    //     console.log('Event', 'playback-track-changed', 'Changed track!', nextTrack);
-    //     await TrackPlayer.getTrack(nextTrack);
-    //   }
-    // });
+      if (nextTrack) {
+        await TrackPlayer.getTrack(nextTrack);
+        await TrackPlayer.play();
+      }
+    });
 
     this.onStateChanged = TrackPlayer.addEventListener('playback-state', ({ state }) => {
       console.log('Event', 'playback-state', state);
       this.props.setPlaybackStatus(state);
     });
+
+    this.onStateError = TrackPlayer.addEventListener('playback-error', ({ code, message }) => {
+      console.log('Event', 'playback-error', code, message);
+    });
   }
 
   async componentDidUpdate(prevProps: Props) {
-    const { track, playbackState } = this.props.player;
+    const { playbackState, track } = this.props;
     const { isLoading, isPlaying } = this.state;
 
     // Detect if track changed
-    if (prevProps.player.track.id !== track.id) {
+    if (prevProps.track.id !== track.id) {
       this.handleTrackUpdate(track);
     }
 
@@ -100,23 +104,22 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     }
   }
 
-  async handleTrackUpdate(track: Track) {
-    console.log('Track updated', track);
+  handleTrackUpdate = async (track: Track) => {
+    console.log('Track updated');
 
     await TrackPlayer.reset();
 
     await TrackPlayer.add(track);
-
-    await TrackPlayer.play();
   }
 
   componentWillUnmount() {
-    // this.onTrackChange.remove();
+    this.onTrackChange.remove();
     this.onStateChanged.remove();
+    this.onStateError.remove();
   }
 
   handleOnPressPlay = async () => {
-    const { playbackState } = this.props.player;
+    const { playbackState } = this.props;
 
     // Toggle play/pause/stop
     if (playbackState === 'playing') {
@@ -132,7 +135,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   handleOnShowModal = () => this.setState({ showModal: true });
 
   renderAudioPlayerSmall() {
-    const { track } = this.props.player;
+    const { track } = this.props;
     const { isLoading, isPlaying } = this.state;
 
     if (!track.id) {
@@ -168,11 +171,21 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   }
 }
 
-// let storedRepositories = articles.articles.map(repo => ({ key: repo.id, ...repo }));
-const mapStateToProps = (state: { player: PlayerState }) => ({
-  player: state.player,
+interface StateProps {
+  track: Track;
+  playbackState: PlaybackStatus;
+}
+
+interface DispatchProps {
+  setPlaybackStatus: (status: PlaybackStatus) => void;
+}
+
+const mapStateToProps = (state: RootState): StateProps => ({
+  track: getPlayerTrack(state),
+  playbackState: getPlayerPlaybackState(state)
 });
-const mapDispatchToProps = {
+
+const mapDispatchToProps: DispatchProps = {
   setPlaybackStatus
 };
 

@@ -1,4 +1,5 @@
 import Analytics from 'appcenter-analytics';
+import { AxiosError, AxiosResponse } from 'axios';
 
 export const GET_USER = 'user/GET_USER';
 export const GET_USER_SUCCESS = 'user/GET_USER_SUCCESS';
@@ -25,7 +26,13 @@ const initialState: UserState = {
   error: null
 };
 
-export function userReducer(state = initialState, action: any) {
+interface UserActionTypes {
+  type: any;
+  payload: AxiosResponse;
+  error: AxiosError;
+}
+
+export function userReducer(state = initialState, action: UserActionTypes): UserState {
   switch (action.type) {
     case GET_USER:
       return {

@@ -1,10 +1,10 @@
 import axios from 'axios';
 import reduxAxiosMiddleware from 'redux-axios-middleware';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import * as Keychain from 'react-native-keychain';
 
-import reducers from '../reducers';
+import { rootReducer } from '../reducers';
 
 import { API_URL } from '../constants/api';
 
@@ -26,9 +26,7 @@ client.interceptors.request.use(async (config) => {
 });
 
 export const store = createStore(
-  combineReducers({
-    ...reducers,
-  }),
+  rootReducer,
   composeWithDevTools(
     applyMiddleware(
       reduxAxiosMiddleware(client, { returnRejectedPromiseOnError: true })

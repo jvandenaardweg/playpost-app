@@ -22,7 +22,7 @@ const initialState: AuthState = {
   error: null
 };
 
-export function authReducer(state = initialState, action: any) {
+export function authReducer(state = initialState, action: any): AuthState {
   switch (action.type) {
     case POST_AUTH:
       return {
