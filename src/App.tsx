@@ -34,15 +34,13 @@ export default class App extends React.PureComponent<State> {
     appState: AppState.currentState
   };
 
-  async componentWillMount() {
+  async componentDidMount() {
     if (!__DEV__) {
       // Enable Analytics, so we can track errors
       await Analytics.setEnabled(true);
       await Crashes.setEnabled(true);
     }
-  }
 
-  componentDidMount() {
     AppState.addEventListener('change', this.handleAppStateChange);
   }
 
