@@ -3,7 +3,6 @@ import { FlatList, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import RNRestart from 'react-native-restart';
 
-import { AppleStyleSwipeableRow } from '../../components/SwipeableRow/AppleStyleSwipeableRow';
 import { CenterLoadingIndicator } from '../../components/CenterLoadingIndicator';
 import { EmptyState } from '../../components/EmptyState';
 import { ArticleContainer } from '../../components/Article/ArticleContainer';
@@ -143,12 +142,10 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
         data={articles}
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => (
-          <AppleStyleSwipeableRow>
-            <ArticleContainer
-              article={item}
-              seperated
-            />
-          </AppleStyleSwipeableRow>
+          <ArticleContainer
+            article={item}
+            seperated
+          />
         )}
       />
     );

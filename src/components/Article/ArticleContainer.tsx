@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import { NetworkContext } from '../NetworkProvider';
 import { Article } from './Article';
+import { AppleStyleSwipeableRow } from '../../components/SwipeableRow/AppleStyleSwipeableRow';
 
 import { getPlaylists, PlaylistsState } from '../../reducers/playlists';
 import { setTrack, PlayerState, PlaybackStatus, createAudiofile } from '../../reducers/player';
@@ -110,31 +111,35 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     }
   }
 
-  async createAudiofile() {
+  async handleCreateAudiofile() {
     const { article } = this.props;
 
-    try {
-      await this.props.createAudiofile(article.id);
-      await this.props.getPlaylists();
+    this.setState({ isLoading: true, isActive: true }, async () => {
+      try {
+        await this.props.createAudiofile(article.id);
+        // await this.props.getPlaylists();
 
-      // TODO: play it
-    } catch (err) {
-      Alert.alert(
-        'Oops!',
-        'There was a problem while getting the audio for this article.',
-        [
-          {
-            text: 'Cancel',
-            style: 'cancel'
-          },
-          {
-            text: 'Try again',
-            onPress: () => this.createAudiofile(),
-          },
-        ],
-        { cancelable: true }
-      );
-    }
+        // TODO: play it
+      } catch (err) {
+        Alert.alert(
+          'Oops!',
+          'There was a problem while getting the audio for this article.',
+          [
+            {
+              text: 'Cancel',
+              style: 'cancel'
+            },
+            {
+              text: 'Try again',
+              onPress: () => this.handleCreateAudiofile(),
+            },
+          ],
+          { cancelable: true }
+        );
+      }
+    });
+
+
   }
 
   /**
@@ -158,7 +163,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
     // If we don't have an audiofile yet, we create it first
     if (!audiofile) {
-      return this.createAudiofile();
+      return this.handleCreateAudiofile();
     }
 
     // Only set a new track when it's a different one
@@ -189,18 +194,20 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     const { article, seperated } = this.props;
 
     return (
-      <Article
-        isLoading={isLoading}
-        isPlaying={isPlaying}
-        isActive={isActive}
-        seperated={seperated}
-        title={article.title}
-        description={article.description}
-        sourceName={article.sourceName}
-        authorName={article.authorName}
-        listenTimeInSeconds={this.listenTimeInSeconds}
-        onPlayPress={this.handleOnArticlePlayPress}
-      />
+      <AppleStyleSwipeableRow>
+        <Article
+          isLoading={isLoading}
+          isPlaying={isPlaying}
+          isActive={isActive}
+          seperated={seperated}
+          title={article.title}
+          description={article.description}
+          sourceName={article.sourceName}
+          authorName={article.authorName}
+          listenTimeInSeconds={this.listenTimeInSeconds}
+          onPlayPress={this.handleOnArticlePlayPress}
+        />
+      </AppleStyleSwipeableRow>
     );
   }
 }
