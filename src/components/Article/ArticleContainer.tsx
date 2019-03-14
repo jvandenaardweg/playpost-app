@@ -2,7 +2,7 @@ import React from 'react';
 import { Alert } from 'react-native';
 import TrackPlayer, { Track } from 'react-native-track-player';
 import { connect } from 'react-redux';
-import { withNavigation, NavigationScreenProp, NavigationRoute } from 'react-navigation';
+import { withNavigation, NavigationInjectedProps } from 'react-navigation';
 
 import { NetworkContext } from '../NetworkProvider';
 import { Article } from './Article';
@@ -22,10 +22,9 @@ interface State {
   isActive: boolean;
 }
 
-interface IProps {
+interface IProps extends NavigationInjectedProps {
   article: Api.Article;
   seperated: boolean;
-  navigation: NavigationScreenProp<NavigationRoute>;
 }
 
 type Props = IProps & StateProps & DispatchProps;
@@ -157,8 +156,6 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         );
       }
     });
-
-
   }
 
   /**
@@ -167,7 +164,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
    * 2. Create an audiofile when there's none present
    * 3. Toggle play/pause
    */
-  handleOnArticlePlayPress = async () => {
+  handleOnPlayPress = async () => {
     const { isLoading, isPlaying } = this.state;
     const { audiofile } = this.props;
     const { isConnected } = this.context;
@@ -242,7 +239,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
           sourceName={article.sourceName}
           authorName={article.authorName}
           listenTimeInSeconds={this.listenTimeInSeconds}
-          onPlayPress={this.handleOnArticlePlayPress}
+          onPlayPress={this.handleOnPlayPress}
           onOpenUrl={this.handleOnOpenUrl}
         />
       </AppleStyleSwipeableRow>
@@ -274,7 +271,7 @@ const mapDispatchToProps: DispatchProps = {
   createAudiofile
 };
 
-export const ArticleContainer = withNavigation(connect(
+export const ArticleContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(ArticleContainerComponent));
+)(withNavigation(ArticleContainerComponent));
