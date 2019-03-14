@@ -8,10 +8,15 @@ export const CREATE_PLAYLIST_ARTICLE = 'playlists/CREATE_PLAYLIST_ARTICLE';
 export const CREATE_PLAYLIST_ARTICLE_SUCCESS = 'playlists/CREATE_PLAYLIST_ARTICLE_SUCCESS';
 export const CREATE_PLAYLIST_ARTICLE_FAIL = 'playlists/CREATE_PLAYLIST_ARTICLE_FAIL';
 
+export const REMOVE_PLAYLIST_ARTICLE = 'playlists/REMOVE_PLAYLIST_ARTICLE';
+export const REMOVE_PLAYLIST_ARTICLE_SUCCESS = 'playlists/REMOVE_PLAYLIST_ARTICLE_SUCCESS';
+export const REMOVE_PLAYLIST_ARTICLE_FAIL = 'playlists/REMOVE_PLAYLIST_ARTICLE_FAIL';
+
 export const RESET_STATE = 'playlists/RESET_STATE';
 
 const GET_PLAYLISTS_FAIL_MESSAGE = 'An unknown error happened while getting your playlist. Please contact us when this happens all the time.';
 const CREATE_PLAYLIST_ARTICLE_FAIL_MESSAGE = 'An unknown error happened while adding this article to your playlist. Please contact us when this happens all the time.';
+const REMOVE_PLAYLIST_ARTICLE_FAIL_MESSAGE = 'An unknown error happened while removing this article from your playlist. Please contact us when this happens all the time.';
 
 export interface PlaylistsState {
   isLoading: boolean;
@@ -88,6 +93,34 @@ export function playlistsReducer(state = initialState, action: any): PlaylistsSt
         error: (action.error.response) ? action.error.response.data.message : CREATE_PLAYLIST_ARTICLE_FAIL_MESSAGE
       };
 
+    case REMOVE_PLAYLIST_ARTICLE:
+      return {
+        ...state,
+        isLoading: true
+      };
+
+    case REMOVE_PLAYLIST_ARTICLE_SUCCESS:
+      Analytics.trackEvent('Remove playlist article');
+
+      return {
+        ...state,
+        isLoading: false,
+        error: null
+      };
+
+    case REMOVE_PLAYLIST_ARTICLE_FAIL:
+      if (action.error.response && action.error.response.data && action.error.response.data.message) {
+        Analytics.trackEvent('Error remove article from playlist', { message: action.error.response.data.message });
+      } else {
+        Analytics.trackEvent('Error remove article from playlist', { message: REMOVE_PLAYLIST_ARTICLE_FAIL_MESSAGE });
+      }
+
+      return {
+        ...state,
+        isLoading: false,
+        error: (action.error.response) ? action.error.response.data.message : REMOVE_PLAYLIST_ARTICLE_FAIL_MESSAGE
+      };
+
     default:
       return state;
   }
@@ -121,6 +154,18 @@ export function addArticleToPlaylistByUrl(articleUrl: string, playlistId: string
         data: {
           articleUrl
         }
+      }
+    }
+  };
+}
+
+export function removeArticleFromPlaylist(articleId: string, playlistId: string) {
+  return {
+    type: REMOVE_PLAYLIST_ARTICLE,
+    payload: {
+      request: {
+        method: 'delete',
+        url: `v1/playlists/${playlistId}/articles/${articleId}`
       }
     }
   };
