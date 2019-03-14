@@ -58,21 +58,28 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
       ]
     });
 
-    await TrackPlayer.reset();
+    // await TrackPlayer.reset();
 
     // Adds an event handler for the playback-track-changed event
     this.onTrackChange = TrackPlayer.addEventListener('playback-track-changed', async ({ track, position, nextTrack }) => {
       console.log('Event', 'playback-track-changed', track, position, nextTrack);
 
-      if (nextTrack) {
-        await TrackPlayer.getTrack(nextTrack);
-        await TrackPlayer.play();
-      }
+      // if (nextTrack) {
+      //   await TrackPlayer.getTrack(nextTrack);
+      //   // await TrackPlayer.play();
+      // }
     });
 
-    this.onStateChanged = TrackPlayer.addEventListener('playback-state', ({ state }) => {
+    this.onStateChanged = TrackPlayer.addEventListener('playback-state', async ({ state }) => {
       console.log('Event', 'playback-state', state);
+
       this.props.setPlaybackStatus(state);
+
+      // Little trick to make sure autoplay works
+      // From: https://github.com/react-native-kit/react-native-track-player/issues/479
+      if (state === 'ready') {
+        await TrackPlayer.play();
+      }
     });
 
     this.onStateError = TrackPlayer.addEventListener('playback-error', ({ code, message }) => {
@@ -110,6 +117,9 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     await TrackPlayer.reset();
 
     await TrackPlayer.add(track);
+
+    await TrackPlayer.play();
+    // await TrackPlayer.play(); // Second play to make sure it starts. Seems to  be a bug in the package, https://github.com/react-native-kit/react-native-track-player/issues/479
   }
 
   componentWillUnmount() {
