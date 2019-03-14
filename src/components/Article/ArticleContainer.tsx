@@ -8,7 +8,7 @@ import { NetworkContext } from '../NetworkProvider';
 import { Article } from './Article';
 import { AppleStyleSwipeableRow } from '../../components/SwipeableRow/AppleStyleSwipeableRow';
 
-import { getPlaylists } from '../../reducers/playlists';
+import { getPlaylists, removeArticleFromPlaylist } from '../../reducers/playlists';
 import { setTrack, PlaybackStatus, createAudiofile } from '../../reducers/player';
 
 import { getPlayerTrack, getPlayerPlaybackState } from '../../selectors/player';
@@ -24,6 +24,7 @@ interface State {
 
 interface IProps extends NavigationInjectedProps {
   article: Api.Article;
+  playlistId: string;
   seperated: boolean;
 }
 
@@ -215,6 +216,55 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     );
   }
 
+  fetchPlaylists = async () => {
+    try {
+      await this.props.getPlaylists();
+    } catch (err) {
+      Alert.alert(
+        'Oops!',
+        'We could get your up-to-date playlist.',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel'
+          },
+          {
+            text: 'Try again',
+            onPress: () => this.fetchPlaylists(),
+          },
+        ],
+        { cancelable: true }
+      );
+    }
+
+  }
+
+  handleRemoveArticle = async () => {
+    const articleId = this.props.article.id;
+    const { playlistId } = this.props;
+
+    try {
+      await this.props.removeArticleFromPlaylist(articleId, playlistId);
+      this.fetchPlaylists();
+    } catch (err) {
+      Alert.alert(
+        'Oops!',
+        'We could not remove this article from your playlist.',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel'
+          },
+          {
+            text: 'Try again',
+            onPress: () => this.handleRemoveArticle(),
+          },
+        ],
+        { cancelable: true }
+      );
+    }
+  }
+
   get listenTimeInSeconds() {
     const { audiofile } = this.props;
     return (audiofile && audiofile.length) ? audiofile.length : 0;
@@ -227,7 +277,9 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     const { article, seperated } = this.props;
 
     return (
-      <AppleStyleSwipeableRow>
+      <AppleStyleSwipeableRow
+        removeArticle={this.handleRemoveArticle}
+      >
         <Article
           isLoading={isLoading}
           isPlaying={isPlaying}
@@ -257,6 +309,7 @@ interface DispatchProps {
   setTrack(track: Track, audiofile: Api.Audiofile): void;
   createAudiofile(articleId: string): void;
   getPlaylists(): void;
+  removeArticleFromPlaylist(articleId: string, playlistId: string): void;
 }
 
 const mapStateToProps = (state: RootState, props: Props): StateProps => ({
@@ -268,7 +321,8 @@ const mapStateToProps = (state: RootState, props: Props): StateProps => ({
 const mapDispatchToProps: DispatchProps = {
   setTrack,
   getPlaylists,
-  createAudiofile
+  createAudiofile,
+  removeArticleFromPlaylist
 };
 
 export const ArticleContainer = connect(

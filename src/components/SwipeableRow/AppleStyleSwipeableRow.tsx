@@ -1,26 +1,33 @@
 import React from 'react';
 import { Animated, StyleSheet, View, Alert } from 'react-native';
-
 import { RectButton } from 'react-native-gesture-handler';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
-
 import Icon from 'react-native-vector-icons/Feather';
+
+import { NetworkContext } from '../NetworkProvider';
 
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
-export class AppleStyleSwipeableRow extends React.PureComponent {
+interface Props {
+  removeArticle(): void;
+}
+export class AppleStyleSwipeableRow extends React.PureComponent<Props> {
   swipeableRow: any = React.createRef();
+
+  static contextType = NetworkContext;
 
   renderLeftActions = (progress: Animated.Value, dragX: Animated.Value) => {
     const translateX = dragX.interpolate({
       inputRange: [0, 50, 80, 81],
       outputRange: [-20, 0, 0, 1],
     });
+
     const scale = dragX.interpolate({
       inputRange: [0, 80],
       outputRange: [0, 1],
       extrapolate: 'clamp',
     });
+
     return (
       <RectButton style={styles.leftAction} onPress={this.close}>
         <AnimatedIcon
@@ -33,25 +40,41 @@ export class AppleStyleSwipeableRow extends React.PureComponent {
     );
   }
 
+  handleOnPressRightAction = (actionName: string) => {
+    const { isConnected } = this.context;
+
+    if (!isConnected) {
+      this.close();
+      return Alert.alert(`You need are not connected to the internet. You need an active internet connection to ${actionName} this article.`);
+    }
+
+    if (actionName === 'delete') {
+      console.log('Should show delete animation.');
+      // return this.props.removeArticle();
+    }
+
+    Alert.alert(`Should ${actionName} this article.`);
+
+    return this.close();
+  }
+
   renderRightAction = (action: string, icon: string, color: string, fill: string, x: number, progress: Animated.Value, dragX: Animated.Value) => {
     const trans = progress.interpolate({
       inputRange: [0, 1],
       outputRange: [x, 0],
     });
+
     const scale = dragX.interpolate({
       inputRange: [-80, 0],
       outputRange: [1, 0],
       extrapolate: 'clamp',
     });
-    const pressHandler = (actionName: string) => {
-      this.close();
-      Alert.alert(`Should ${actionName} this article.`);
-    };
+
     return (
       <Animated.View style={{ flex: 1, transform: [{ translateX: trans }] }}>
         <RectButton
           style={[styles.rightAction, { backgroundColor: color }]}
-          onPress={() => pressHandler(action)}
+          onPress={() => this.handleOnPressRightAction(action)}
         >
           <AnimatedIcon
             name={icon}
@@ -72,7 +95,14 @@ export class AppleStyleSwipeableRow extends React.PureComponent {
   )
 
   onSwipeableLeftWillOpen = () => {
-    Alert.alert('Should archive this article');
+    const { isConnected } = this.context;
+
+    if (!isConnected) {
+      this.close();
+      return Alert.alert('You need are not connected to the internet. You need an active internet connection to archive this article.');
+    }
+
+    return Alert.alert('Should archive this article');
   }
 
   updateRef = (ref: any) => {
@@ -84,7 +114,6 @@ export class AppleStyleSwipeableRow extends React.PureComponent {
   }
 
   render() {
-    const { children } = this.props;
     return (
       <Swipeable
         ref={this.updateRef}
@@ -95,7 +124,7 @@ export class AppleStyleSwipeableRow extends React.PureComponent {
         renderLeftActions={this.renderLeftActions}
         renderRightActions={this.renderRightActions}
       >
-        {children}
+        {this.props.children}
       </Swipeable>
     );
   }

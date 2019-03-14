@@ -7,7 +7,8 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.articleBackground,
     padding: 14,
-    width: '100%'
+    width: '100%',
+    // height: '100%'
   },
   seperated: {
     borderBottomColor: Colors.borderDefault,

@@ -10,7 +10,7 @@ import { NetworkContext } from '../../components/NetworkProvider';
 
 import { getPlaylists, PlaylistsState } from '../../reducers/playlists';
 
-import { getDefaultPlaylistArticles } from '../../selectors/playlists';
+import { getDefaultPlaylistArticles, getDefaultPlaylist } from '../../selectors/playlists';
 
 import isEqual from 'react-fast-compare';
 
@@ -24,6 +24,7 @@ interface State {
 
 interface Props {
   articles: Api.Article[];
+  defaultPlaylist: Api.Playlist | null;
   getPlaylists(): void;
 }
 
@@ -115,7 +116,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
 
   render() {
     // const { setTrack, track, playbackState, createAudiofile, articles } = this.props;
-    const { articles } = this.props;
+    const { articles, defaultPlaylist } = this.props;
     const { isLoading, isRefreshing, errorMessage } = this.state;
     const { isConnected } = this.context;
 
@@ -144,6 +145,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
         renderItem={({ item }) => (
           <ArticleContainer
             article={item}
+            playlistId={defaultPlaylist && defaultPlaylist.id}
             seperated
           />
         )}
@@ -153,6 +155,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
 }
 
 const mapStateToProps = (state: { playlists: PlaylistsState }) => ({
+  defaultPlaylist: getDefaultPlaylist(state),
   articles: getDefaultPlaylistArticles(state)
 });
 
