@@ -126,23 +126,23 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
   renderModal() {
     const { isLoading, isOpen } = this.state;
 
-    if (!isLoading) {
-      return (
-        <Modal
-          animationType="slide"
-          presentationStyle="overFullScreen"
-          supportedOrientations={['portrait', 'landscape']}
-          transparent
-          visible={isOpen}
-          onDismiss={this.handleOnModalDissmiss}
-        >
-          <View style={styles.modalContainer}>
-            {this.renderErrorMessageModal()}
-            {this.renderShareModal()}
-          </View>
-        </Modal>
-      );
-    }
+    if (isLoading) return null;
+
+    return (
+      <Modal
+        animationType="slide"
+        presentationStyle="overFullScreen"
+        supportedOrientations={['portrait', 'landscape']}
+        transparent
+        visible={isOpen}
+        onDismiss={this.handleOnModalDissmiss}
+      >
+        <View style={styles.modalContainer}>
+          {this.renderErrorMessageModal()}
+          {this.renderShareModal()}
+        </View>
+      </Modal>
+    );
   }
 
   render() {

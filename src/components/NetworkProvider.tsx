@@ -1,5 +1,5 @@
 import React from 'react';
-import NetInfo, { ConnectionInfo, ConnectionType, EffectiveConnectionType } from '@react-native-community/netinfo';
+import NetInfo from '@react-native-community/netinfo';
 
 export const NetworkContext = React.createContext({ isConnected: true });
 

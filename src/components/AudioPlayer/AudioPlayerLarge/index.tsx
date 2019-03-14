@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-import styles from './styles';
+// import styles from './styles';
 
 interface Props {
 

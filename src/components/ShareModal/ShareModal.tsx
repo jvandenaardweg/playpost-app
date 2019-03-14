@@ -63,7 +63,6 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
 
   addArticleToPlaylist = async (articleUrl: string, playlistId: string) => {
     const { closeDelay } = this.props;
-    const { error } = this.props.playlists;
 
     try {
       await this.props.addArticleToPlaylistByUrl(articleUrl, playlistId);
@@ -80,27 +79,29 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
   renderMessage = () => {
     const { isLoading, errorMessage } = this.state;
 
+    if (isLoading) return null;
+
     // TODO: handle error messages
     // scenario: article could not be added (for example wrong language)
     // scenario: no internet
     // scenario: timeout
-    if (!isLoading && errorMessage) {
+    if (errorMessage) {
       return (
         <Text style={{ color: 'red' }}>{errorMessage}</Text>
       );
     }
 
-    if (!isLoading) {
-      return (
-        <Text>Article is added to your default playlist!</Text>
-      );
-    }
+    return (
+      <Text>Article is added to your default playlist!</Text>
+    );
   }
 
   renderActivityIndicator = () => {
     const { isLoading } = this.state;
 
-    if (isLoading) return <ActivityIndicator />;
+    if (!isLoading) return null;
+
+    return <ActivityIndicator />;
   }
 
   render() {

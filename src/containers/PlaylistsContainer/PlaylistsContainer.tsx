@@ -55,7 +55,7 @@ class ArticlesContainerComponent extends React.PureComponent<Props, State> {
     const { isConnected } = this.context;
 
     if (isConnected) {
-      return this.fetchPlaylists();
+      this.fetchPlaylists();
     }
   }
 

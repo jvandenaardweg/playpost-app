@@ -1,5 +1,5 @@
 import Analytics from 'appcenter-analytics';
-import { AxiosResponse, AxiosRequestConfig } from 'axios';
+import { AxiosRequestConfig } from 'axios';
 import { Action } from 'redux';
 
 export const POST_AUTH = 'auth/POST_AUTH';

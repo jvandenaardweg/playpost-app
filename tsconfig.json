@@ -1,9 +1,16 @@
 {
   "compilerOptions": {
+    "rootDir": "src",
+    "baseUrl": "src",
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "isolatedModules": false, // was: true
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true,
+    "declaration": true,
     "jsx": "react",
     "lib": ["es6"],
     "moduleResolution": "node",

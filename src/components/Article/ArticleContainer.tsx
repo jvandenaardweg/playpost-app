@@ -145,7 +145,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
    */
   handleOnArticlePlayPress = async () => {
     const { isLoading, isPlaying } = this.state;
-    const { article, setTrack, track, audiofile } = this.props;
+    const { article, setTrack, audiofile } = this.props;
     const { isConnected } = this.context;
 
     if (isLoading) return Alert.alert('Wait, we are loading an audiofile...');
