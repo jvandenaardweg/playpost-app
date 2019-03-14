@@ -29,7 +29,7 @@ interface Props {
   seperated: boolean;
 }
 
-export class ArticleContainerComponent extends React.PureComponent<Props, State> {
+export class ArticleContainerComponent extends React.Component<Props, State> {
   state = {
     isLoading: false,
     isPlaying: false,
