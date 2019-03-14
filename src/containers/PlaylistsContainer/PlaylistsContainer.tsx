@@ -28,7 +28,7 @@ interface Props {
   getPlaylists(): void;
 }
 
-class ArticlesContainerComponent extends React.PureComponent<Props, State> {
+class ArticlesContainerComponent extends React.Component<Props, State> {
   state = {
     isLoading: true, // Show loading upon mount, because we fetch the playlists of the user
     isRefreshing: false,
