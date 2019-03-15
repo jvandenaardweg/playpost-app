@@ -16,8 +16,7 @@ import { ErrorBoundary } from './components/ErrorBoundary';
 import { NetworkProvider } from './contexts/NetworkProvider';
 
 // import { whyDidYouUpdate } from 'why-did-you-update';
-
-// whyDidYouUpdate(React, { exclude: /^YellowBox/ });
+// whyDidYouUpdate(React, { exclude: /^YellowBox|Icon|Swipeable/ });
 
 if (Platform.OS === 'ios' && __DEV__) {
   NativeModules.DevSettings.setIsDebuggingRemotely(true);

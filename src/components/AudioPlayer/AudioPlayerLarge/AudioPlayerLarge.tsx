@@ -12,14 +12,14 @@ interface Props {
   isPlaying: boolean;
   isLoading: boolean;
   track: Track;
-  article: Api.Article | null;
+  articleText: string | null | undefined;
   onPressPlay(): void;
   onPressNext(): void;
   onPressPrevious(): void;
   onPressClose(): void;
 }
 
-export const AudioPlayerLarge = ({
+export const AudioPlayerLarge: React.FC<Props> = React.memo(({
   isPlaying,
   isLoading,
   onPressPlay,
@@ -27,7 +27,7 @@ export const AudioPlayerLarge = ({
   onPressPrevious,
   onPressClose,
   track: { title, artist, album },
-  article
+  articleText
 }: Props) => (
   <View style={styles.wrapper}>
     <TouchableOpacity activeOpacity={1} onPress={onPressClose} style={styles.openCloseControl}>
@@ -41,7 +41,7 @@ export const AudioPlayerLarge = ({
       <View style={styles.scrollableContainer}>
         <ScrollView indicatorStyle="white">
           <View style={styles.scrollableContent}>
-            <Text style={styles.contentText}>{article && article.text}</Text>
+            <Text style={styles.contentText}>{articleText}</Text>
           </View>
         </ScrollView>
       </View>
@@ -57,4 +57,4 @@ export const AudioPlayerLarge = ({
       </View>
     </View>
   </View>
-);
+));
