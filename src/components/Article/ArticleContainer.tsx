@@ -3,23 +3,24 @@ import { Alert } from 'react-native';
 import TrackPlayer, { Track } from 'react-native-track-player';
 import { connect } from 'react-redux';
 import { withNavigation, NavigationInjectedProps } from 'react-navigation';
+import isEqual from 'react-fast-compare';
 
 import { NetworkContext } from '../../contexts/NetworkProvider';
+
 import { Article } from './Article';
 import { AppleStyleSwipeableRow } from '../../components/SwipeableRow/AppleStyleSwipeableRow';
 
+import { RootState } from '../../reducers';
 import { getPlaylists, removeArticleFromPlaylist } from '../../reducers/playlists';
 import { setTrack, PlaybackStatus, createAudiofile } from '../../reducers/player';
 
-import { getPlayerTrack, getPlayerPlaybackState } from '../../selectors/player';
-import { getAudiofileByArticleId } from '../../selectors/playlists';
-import isEqual from 'react-fast-compare';
-import { RootState } from '../../reducers';
+import { getPlayerTrack, getPlayerPlaybackState, getPlayerAudiofile } from '../../selectors/player';
 
 interface State {
   isLoading: boolean;
   isPlaying: boolean;
   isActive: boolean;
+  isCreatingAudiofile: boolean;
 }
 
 interface IProps extends NavigationInjectedProps {
@@ -34,7 +35,8 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   state = {
     isLoading: false,
     isPlaying: false,
-    isActive: false
+    isActive: false,
+    isCreatingAudiofile: false
   };
 
   static contextType = NetworkContext;
@@ -45,101 +47,83 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
    * ...as this impacts performance.
    */
   shouldComponentUpdate(nextProps: Props, nextState: State) {
-    const { isActive, isPlaying, isLoading } = this.state;
+    const { isActive, isPlaying, isLoading, isCreatingAudiofile } = this.state;
+
+    // Only update if playbackState changes for the audiofileId of this article
+    if (this.props.playbackState !== nextProps.playbackState) {
+      if (nextProps.track.id === (this.articleAudiofiles.length && this.articleAudiofiles[0].id)) {
+        return true;
+      }
+    }
 
     // If there's a state change inside the component, always update it
     // So the active, playing or loading state is correctly updated on an external change
-    if (!isEqual(this.state, nextState) || isActive || isPlaying || isLoading) {
+    if (!isEqual(this.state, nextState) || isActive || isPlaying || isLoading || isCreatingAudiofile) {
       return true;
     }
-
-    // if (nextState.isActive || nextState.isPlaying || nextState.isLoading) {
-    //   return true;
-    // }
-
-    if ((nextProps.track.id !== this.audiofileId) && (isActive || isPlaying || isLoading)) {
-      return true;
-    }
-
-    if (nextProps.track.id === this.audiofileId && !isEqual(this.props, nextProps)) {
-      return true;
-    }
-
-    // Only update the component if the currently playing track ID is equal to our article audiofile ID
-    // In other words: when there's the current article is playing
-    // if (nextProps.track.id === this.audiofileId) {
-    //   return true;
-    // }
 
     return false;
   }
 
   componentDidUpdate() {
-    const { playbackState, audiofile } = this.props;
-    const { isPlaying, isLoading } = this.state;
+    const { playbackState } = this.props;
+    const { isPlaying, isLoading, isCreatingAudiofile } = this.state;
     // console.log('Update ArticleContainerComponent', this.props.article.id);
 
     // When a track is loaded into the player (downloading)
     if (playbackState && [TrackPlayer.STATE_BUFFERING].includes(playbackState) && !isLoading) {
-      console.log('ArticleContainer', 'componentDidUpdate', 'Set state buffering');
-      this.setState({ isActive: true, isLoading: true });
+      // console.log('ArticleContainer', 'componentDidUpdate', 'Set state buffering');
+      this.setState({ isActive: true, isLoading: true, isCreatingAudiofile: false });
     }
 
     // When a track is playing, update the state so we can show it as playing
     if (playbackState && [TrackPlayer.STATE_PLAYING].includes(playbackState) && !isPlaying) {
-      console.log('ArticleContainer', 'componentDidUpdate', 'Set state playing');
-      this.setState({ isActive: true, isPlaying: true });
+      // console.log('ArticleContainer', 'componentDidUpdate', 'Set state playing');
+      this.setState({ isActive: true, isPlaying: true, isCreatingAudiofile: false });
     }
 
     // When a track is loaded and ready to be played
     if (playbackState && ['ready', TrackPlayer.STATE_NONE, TrackPlayer.STATE_STOPPED, TrackPlayer.STATE_PAUSED].includes(playbackState) && (isLoading || isPlaying)) {
-      console.log('ArticleContainer', 'componentDidUpdate', 'Set state ready');
-      this.setState({ isActive: true, isLoading: false, isPlaying: false });
+      // console.log('ArticleContainer', 'componentDidUpdate', 'Set state ready');
+      this.setState({ isActive: true, isLoading: false, isPlaying: false, isCreatingAudiofile: false });
     }
-
-    // When a new audiofile is created for this article, load it into the player
-    // if (!this.isActiveInPlayer && audiofile) {
-    //   this.handleSetTrack();
-    // }
 
     // When it's not the current track, reset the state if any is changed
     // So our play button returns to not-active
-    // Only do this when there's an audiofile
-    if (!this.isActiveInPlayer && audiofile) {
-      console.log('ArticleContainer', 'componentDidUpdate', 'Reset local state');
+    if (!this.isActiveInPlayer && !isCreatingAudiofile) {
+      // console.log('ArticleContainer', 'componentDidUpdate', 'Reset local state');
       this.setState({
         isPlaying: false,
         isLoading: false,
-        isActive: false
+        isActive: false,
+        isCreatingAudiofile: false
       });
     }
   }
 
-  /**
-   * A getter to get the audiofile ID of the article
-   * In the future we allow multiple audiofiles (multiple voices)
-   * But for now, just return the first audiofile
-   */
-  get audiofileId() {
-    const { audiofile } = this.props;
-    return (audiofile) ? audiofile.id : null;
+  get articleAudiofiles() {
+    const { article } = this.props;
+    return article.audiofiles;
   }
 
   get isActiveInPlayer() {
     const { track } = this.props;
-    return track.id === this.audiofileId;
+
+    if (!this.articleAudiofiles.length) return false;
+
+    return track.id === this.articleAudiofiles[0].id;
   }
 
   async handleCreateAudiofile() {
     const { article } = this.props;
 
-    this.setState({ isLoading: true, isActive: true }, async () => {
+    this.setState({ isLoading: true, isActive: true, isCreatingAudiofile: true }, async () => {
       try {
         await this.props.createAudiofile(article.id);
         await this.props.getPlaylists(); // Get the playlist, it contains the article with the newly created audiofile
         this.handleSetTrack(); // Set the track. Upon track change, the track with automatically play.
       } catch (err) {
-        this.setState({ isLoading: false, isActive: false });
+        this.setState({ isLoading: false, isActive: false, isCreatingAudiofile: false });
         Alert.alert(
           'Oops!',
           'There was a problem while creating the audio for this article.',
@@ -167,7 +151,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
    */
   handleOnPlayPress = async () => {
     const { isLoading, isPlaying } = this.state;
-    const { audiofile } = this.props;
+    const { article } = this.props;
     const { isConnected } = this.context;
 
     if (isLoading) return Alert.alert('Wait, we are loading an audiofile...');
@@ -179,7 +163,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     }
 
     // If we don't have an audiofile yet, we create it first
-    if (!audiofile) {
+    if (!article.audiofiles.length) {
       return this.handleCreateAudiofile();
     }
 
@@ -193,9 +177,9 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   handleSetTrack() {
-    const { article, audiofile } = this.props;
+    const { article } = this.props;
 
-    if (!article || !audiofile) return Alert.alert('Oops!', 'Could not play the article. Please try again.');
+    if (!article || !this.articleAudiofiles.length) return Alert.alert('Oops!', 'Could not play the article. Please try again.');
 
     const artist = (article.authorName) ? article.authorName : article.sourceName;
     const album = (article.categoryName && article.sourceName) ? `${article.categoryName} on ${article.sourceName}` : '';
@@ -206,13 +190,13 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         artist,
         album,
         description,
-        id: audiofile.id,
+        id: this.articleAudiofiles[0].id,
         title: article.title,
-        url: audiofile.url,
-        duration: audiofile.length,
+        url: this.articleAudiofiles[0].url,
+        duration: this.articleAudiofiles[0].length,
         contentType: 'audio/mpeg'
       },
-      audiofile
+      this.articleAudiofiles[0]
     );
   }
 
@@ -266,8 +250,9 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   get listenTimeInSeconds() {
-    const { audiofile } = this.props;
-    return (audiofile && audiofile.length) ? audiofile.length : 0;
+    // const { article } = this.props;
+
+    return (this.articleAudiofiles[0] && this.articleAudiofiles[0].length) ? this.articleAudiofiles[0].length : 0;
   }
 
   handleOnOpenUrl = (url: string) => this.props.navigation.navigate('Browser', { url });
@@ -312,10 +297,10 @@ interface DispatchProps {
   removeArticleFromPlaylist(articleId: string, playlistId: string): void;
 }
 
-const mapStateToProps = (state: RootState, props: Props): StateProps => ({
+const mapStateToProps = (state: RootState): StateProps => ({
   track: getPlayerTrack(state),
   playbackState: getPlayerPlaybackState(state),
-  audiofile: getAudiofileByArticleId(state, props.article.id)
+  audiofile: getPlayerAudiofile(state)
 });
 
 const mapDispatchToProps: DispatchProps = {

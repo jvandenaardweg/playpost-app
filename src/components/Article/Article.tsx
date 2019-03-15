@@ -14,7 +14,7 @@ interface Props {
   description: string;
   sourceName: string;
   authorName?: string | null;
-  listenTimeInSeconds?: number;
+  listenTimeInSeconds: number;
   onPlayPress?(): void;
   onOpenUrl(url: string): void;
 }
@@ -62,16 +62,20 @@ export const Article: React.FC<Props> = ({
             isActive={isActive}
             onPress={onPlayPress}
           />
-          <Text style={styles.duration}>
-            {listenTimeInSeconds !== 0 && listenTimeInSeconds && Math.ceil(listenTimeInSeconds / 60)}
-            {listenTimeInSeconds === 0 && '1'}
-            {''} min
-          </Text>
+          <Duration listenTimeInSeconds={listenTimeInSeconds} />
         </View>
       )}
     </View>
   </View>
 );
+
+export const Duration = ({ listenTimeInSeconds }: {listenTimeInSeconds: number}) => {
+  if (!listenTimeInSeconds) {
+    return <Text style={styles.duration}>? min</Text>;
+  }
+
+  return <Text style={styles.duration}>{`${Math.ceil(listenTimeInSeconds / 60)} min`}</Text>;
+};
 
 export const PlayButton = (props: { isPlaying?: boolean, onPress(): void, isLoading?: boolean, isActive?: boolean }) => (
   <TouchableOpacity

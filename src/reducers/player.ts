@@ -19,7 +19,7 @@ const CREATE_AUDIOFILE_FAIL_MESSAGE = 'An unknown error happened while creating 
 
 export interface PlayerState {
   track: Track;
-  audiofile: Api.Audiofile | {};
+  audiofile: Api.Audiofile | null;
   playbackState: PlaybackStatus;
   isLoading: boolean;
   error: string | null;
@@ -36,7 +36,7 @@ const initialState: PlayerState = {
     description: '',
     duration: 0
   },
-  audiofile: {},
+  audiofile: null,
   playbackState: 'none',
   error: null
 };
