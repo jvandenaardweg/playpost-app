@@ -1,5 +1,9 @@
 namespace Api {
 
+  export interface ResponseError {
+    message: string
+  }
+
   export interface Auth {
     token: string;
   }

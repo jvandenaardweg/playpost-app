@@ -8,7 +8,7 @@ import { reactNativeElementsTheme } from './theme';
 
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { ShareOverlay } from './components/ShareOverlay';
-import { NetworkProvider } from './components/NetworkProvider';
+import { NetworkProvider } from './contexts/NetworkProvider';
 
 if (Platform.OS === 'ios' && __DEV__) {
   NativeModules.DevSettings.setIsDebuggingRemotely(true);

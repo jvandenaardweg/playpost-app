@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import TrackPlayer, { Track } from 'react-native-track-player';
 
 import { setPlaybackStatus, PlaybackStatus } from '../../reducers/player';
-import { AudioPlayerSmall, EmptyPlayer } from '../../components/AudioPlayer';
+import { AudioPlayerSmall, EmptyPlayer } from '.';
 import { getPlayerPlaybackState, getPlayerTrack } from '../../selectors/player';
 import { RootState } from '../../reducers';
 

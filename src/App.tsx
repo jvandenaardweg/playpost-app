@@ -13,7 +13,7 @@ import { getPlaylists } from './reducers/playlists';
 
 import { AppNavigator } from './navigation/AppNavigator';
 import { ErrorBoundary } from './components/ErrorBoundary';
-import { NetworkProvider } from './components/NetworkProvider';
+import { NetworkProvider } from './contexts/NetworkProvider';
 
 // import { whyDidYouUpdate } from 'why-did-you-update';
 

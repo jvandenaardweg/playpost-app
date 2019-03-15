@@ -6,7 +6,7 @@ import RNRestart from 'react-native-restart';
 import { CenterLoadingIndicator } from '../../components/CenterLoadingIndicator';
 import { EmptyState } from '../../components/EmptyState';
 import { ArticleContainer } from '../../components/Article/ArticleContainer';
-import { NetworkContext } from '../../components/NetworkProvider';
+import { NetworkContext } from '../../contexts/NetworkProvider';
 
 import { getPlaylists, PlaylistsState } from '../../reducers/playlists';
 

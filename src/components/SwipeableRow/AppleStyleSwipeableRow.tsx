@@ -4,7 +4,7 @@ import { RectButton } from 'react-native-gesture-handler';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import Icon from 'react-native-vector-icons/Feather';
 
-import { NetworkContext } from '../NetworkProvider';
+import { NetworkContext } from '../../contexts/NetworkProvider';
 
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 

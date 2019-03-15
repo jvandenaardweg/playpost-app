@@ -4,7 +4,7 @@ import TrackPlayer, { Track } from 'react-native-track-player';
 import { connect } from 'react-redux';
 import { withNavigation, NavigationInjectedProps } from 'react-navigation';
 
-import { NetworkContext } from '../NetworkProvider';
+import { NetworkContext } from '../../contexts/NetworkProvider';
 import { Article } from './Article';
 import { AppleStyleSwipeableRow } from '../../components/SwipeableRow/AppleStyleSwipeableRow';
 

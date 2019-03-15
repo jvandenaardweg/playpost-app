@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 
 import styles from './styles';
-import { NetworkContext } from '../NetworkProvider';
+import { NetworkContext } from '../../contexts/NetworkProvider';
 
 export class OfflineNotice extends React.PureComponent{
   static contextType = NetworkContext;

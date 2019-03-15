@@ -1,5 +1,5 @@
 import React from 'react';
-import { PlaylistsContainer } from '../containers/PlaylistsContainer';
+import { PlaylistsContainer } from '../components/Playlists';
 
 import { AppBackground } from '../components/AppBackground';
 
