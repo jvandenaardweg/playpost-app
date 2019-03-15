@@ -1,7 +1,7 @@
 namespace Api {
 
   export interface ResponseError {
-    message: string
+    message: string;
   }
 
   export interface Auth {
