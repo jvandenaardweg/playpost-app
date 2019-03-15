@@ -68,7 +68,6 @@ export function playerReducer(state = initialState, action: any): PlayerState {
         playbackState: action.payload
       };
     case SET_TRACK:
-    console.log('SET TRACK');
       return {
         ...state,
         track: action.payload.track

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Modal, Alert } from 'react-native';
+import { View, Modal, Alert, NativeScrollEvent } from 'react-native';
 import { connect } from 'react-redux';
 import TrackPlayer, { Track } from 'react-native-track-player';
 
@@ -15,6 +15,7 @@ interface State {
   isLoading: boolean;
   isPlaying: boolean;
   showModal: boolean;
+  scrolled: number;
 }
 
 type Props = StateProps & DispatchProps;
@@ -23,12 +24,14 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   state = {
     isLoading: false,
     isPlaying: false,
-    showModal: false
+    showModal: false,
+    scrolled: 0,
   };
 
   onTrackChange: any = {};
   onStateChanged: any = {};
   onStateError: any = {};
+  scrollView = React.createRef();
 
   async componentDidMount() {
     await TrackPlayer.setupPlayer();
@@ -117,6 +120,9 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   handleTrackUpdate = async (track: Track) => {
     console.log('Track updated');
 
+    // Reset the scrolled position for the Large Audio Player
+    this.setState({ scrolled: 0 });
+
     await TrackPlayer.reset();
 
     await TrackPlayer.add(track);
@@ -151,6 +157,10 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
 
   handleOnPressPrevious = () => Alert.alert('Should play previous article.');
 
+  handleOnScroll = (event: { nativeEvent: NativeScrollEvent }) => {
+    this.setState({ scrolled: event.nativeEvent.contentOffset.y });
+  }
+
   renderAudioPlayerSmall() {
     const { track } = this.props;
     const { isLoading, isPlaying } = this.state;
@@ -172,7 +182,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
 
   renderAudioPlayerLarge() {
     const { track, articles } = this.props;
-    const { isLoading, isPlaying } = this.state;
+    const { isLoading, isPlaying, scrolled } = this.state;
 
     const article = articles.find((article) => {
       return article.audiofiles && article.audiofiles[0].id === track.id;
@@ -180,16 +190,19 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
 
     const articleText = article && article.text;
 
+    // TODO: make sure "scrolled" is changed when we change tracks
     return (
       <AudioPlayerLarge
         track={track}
         articleText={articleText}
         isLoading={isLoading}
         isPlaying={isPlaying}
+        scrolled={scrolled}
         onPressPlay={this.handleOnPressPlay}
         onPressNext={this.handleOnPressNext}
         onPressPrevious={this.handleOnPressPrevious}
         onPressClose={this.handleOnPressClose}
+        onScroll={this.handleOnScroll}
       />
     );
   }

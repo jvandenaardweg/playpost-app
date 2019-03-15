@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   wrapper: {
     flex: 1,
-    paddingTop: 52,
+    paddingTop: 42,
     backgroundColor: '#000'
   },
   container: {
@@ -15,9 +15,7 @@ export default StyleSheet.create({
     alignItems: 'flex-end',
     marginBottom: 16,
     paddingRight: 24,
-    paddingLeft: 24,
-    // padding: 16,
-    // height: 50
+    paddingLeft: 24
   },
   controlsContainer: {
     paddingLeft: 24,
@@ -61,7 +59,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    paddingBottom: 52
+    paddingBottom: 42
   },
   progressBarRow: {
     borderRadius: 6,
