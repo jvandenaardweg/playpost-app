@@ -1,18 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 import * as Keychain from 'react-native-keychain';
+import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 
 import { CenterLoadingIndicator } from '../components/CenterLoadingIndicator';
-
-import { AuthState } from '../reducers/auth';
-import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 
 interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;
 }
 
-export class AuthLoadingScreenContainer extends React.PureComponent<Props> {
+export class AuthLoadingScreen extends React.PureComponent<Props> {
   componentDidMount() {
     this.bootstrapAsync();
   }
@@ -38,14 +35,3 @@ export class AuthLoadingScreenContainer extends React.PureComponent<Props> {
     return <CenterLoadingIndicator />;
   }
 }
-
-const mapStateToProps = (state: { auth: AuthState }) => ({
-  auth: state.auth
-});
-
-const mapDispatchToProps = {};
-
-export const AuthLoadingScreen = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AuthLoadingScreenContainer);
