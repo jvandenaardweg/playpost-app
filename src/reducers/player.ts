@@ -20,6 +20,7 @@ const CREATE_AUDIOFILE_FAIL_MESSAGE = 'An unknown error happened while creating 
 export interface PlayerState {
   track: Track;
   audiofile: Api.Audiofile | null;
+  article: Api.Article | null;
   playbackState: PlaybackStatus;
   isLoading: boolean;
   error: string | null;
@@ -37,6 +38,7 @@ const initialState: PlayerState = {
     duration: 0
   },
   audiofile: null,
+  article: null,
   playbackState: 'none',
   error: null
 };
@@ -69,7 +71,8 @@ export function playerReducer(state = initialState, action: any): PlayerState {
       return {
         ...state,
         track: action.payload.track,
-        audiofile: action.payload.audiofile
+        audiofile: action.payload.audiofile,
+        article: action.payload.article
       };
     case RESET_PLAYER_STATE:
       return {
@@ -120,12 +123,13 @@ export function setPlaybackStatus(playbackState: PlaybackStatus) {
   };
 }
 
-export function setTrack(track: Track, audiofile: Api.Audiofile) {
+export function setTrack(track: Track, audiofile: Api.Audiofile, article: Api.Article) {
   return {
     type: SET_TRACK,
     payload: {
       track,
-      audiofile
+      audiofile,
+      article
     }
   };
 }

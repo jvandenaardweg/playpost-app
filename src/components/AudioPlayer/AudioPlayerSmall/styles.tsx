@@ -64,17 +64,8 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  progressBarWrapper: {
-    height: 5,
-    backgroundColor: colors.white
-  },
   progressBarContainer: {
     height: 5,
-    width: '100%',
-    flexDirection: 'row',
     backgroundColor: colors.white
-  },
-  progressBarProgress: {
-    backgroundColor: colors.tintColor
   }
 });

@@ -1,11 +1,13 @@
 import React from 'react';
-import { View, Modal, Button } from 'react-native';
+import { View, Modal, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import TrackPlayer, { Track } from 'react-native-track-player';
 
 import { setPlaybackStatus, PlaybackStatus } from '../../reducers/player';
-import { AudioPlayerSmall, EmptyPlayer } from '.';
-import { getPlayerPlaybackState, getPlayerTrack } from '../../selectors/player';
+import { AudioPlayerSmall, EmptyPlayer } from './AudioPlayerSmall';
+import { AudioPlayerLarge } from './AudioPlayerLarge';
+
+import { getPlayerPlaybackState, getPlayerTrack, getPlayerArticle } from '../../selectors/player';
 import { RootState } from '../../reducers';
 
 interface State {
@@ -75,8 +77,6 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
 
       this.props.setPlaybackStatus(state);
 
-      console.log('Buffered position', await TrackPlayer.getBufferedPosition());
-
       // Little trick to make sure autoplay works
       // From: https://github.com/react-native-kit/react-native-track-player/issues/479
       if (state === 'ready') {
@@ -121,7 +121,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     await TrackPlayer.add(track);
 
     await TrackPlayer.play();
-    // await TrackPlayer.play(); // Second play to make sure it starts. Seems to  be a bug in the package, https://github.com/react-native-kit/react-native-track-player/issues/479
+    await TrackPlayer.play(); // Second play to make sure it starts. Seems to  be a bug in the package, https://github.com/react-native-kit/react-native-track-player/issues/479
   }
 
   componentWillUnmount() {
@@ -142,9 +142,12 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     await TrackPlayer.play();
   }
 
-  handleOnModalClosePress = () => this.setState({ showModal: false });
+  handleOnPressClose = () => this.setState({ showModal: false });
 
   handleOnShowModal = () => this.setState({ showModal: true });
+
+  handleOnPressNext = () => Alert.alert('Should play next article.');
+  handleOnPressPrevious = () => Alert.alert('Should play previous article.');
 
   renderAudioPlayerSmall() {
     const { track } = this.props;
@@ -159,8 +162,26 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
         track={track}
         isLoading={isLoading}
         isPlaying={isPlaying}
-        handleOnPressPlay={this.handleOnPressPlay}
-        handleOnShowModal={this.handleOnShowModal}
+        onPressPlay={this.handleOnPressPlay}
+        onPressShowModal={this.handleOnShowModal}
+      />
+    );
+  }
+
+  renderAudioPlayerLarge() {
+    const { track, article } = this.props;
+    const { isLoading, isPlaying } = this.state;
+
+    return (
+      <AudioPlayerLarge
+        track={track}
+        article={article}
+        isLoading={isLoading}
+        isPlaying={isPlaying}
+        onPressPlay={this.handleOnPressPlay}
+        onPressNext={this.handleOnPressNext}
+        onPressPrevious={this.handleOnPressPrevious}
+        onPressClose={this.handleOnPressClose}
       />
     );
   }
@@ -171,10 +192,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     return (
       <View>
         <Modal animationType="slide" presentationStyle="formSheet" transparent={false} visible={showModal}>
-          <View style={{ paddingTop: 40, flex: 1, backgroundColor: '#000' }}>
-            <Button onPress={this.handleOnModalClosePress} title="Close Full Player" />
-            {this.renderAudioPlayerSmall()}
-          </View>
+          {this.renderAudioPlayerLarge()}
         </Modal>
         {this.renderAudioPlayerSmall()}
       </View>
@@ -186,15 +204,17 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
 interface StateProps {
   track: Track;
   playbackState: PlaybackStatus;
+  article: Api.Article | null;
 }
 
 interface DispatchProps {
   setPlaybackStatus: (status: PlaybackStatus) => void;
 }
 
-const mapStateToProps = (state: RootState): StateProps => ({
+const mapStateToProps = (state: RootState, props: Props): StateProps => ({
   track: getPlayerTrack(state),
-  playbackState: getPlayerPlaybackState(state)
+  playbackState: getPlayerPlaybackState(state),
+  article: getPlayerArticle(state)
 });
 
 const mapDispatchToProps: DispatchProps = {

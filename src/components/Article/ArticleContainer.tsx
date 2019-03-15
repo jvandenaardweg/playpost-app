@@ -196,7 +196,8 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         duration: this.articleAudiofiles[0].length,
         contentType: 'audio/mpeg'
       },
-      this.articleAudiofiles[0]
+      this.articleAudiofiles[0],
+      article
     );
   }
 
@@ -291,7 +292,7 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  setTrack(track: Track, audiofile: Api.Audiofile): void;
+  setTrack(track: Track, audiofile: Api.Audiofile, article: Api.Article): void;
   createAudiofile(articleId: string): void;
   getPlaylists(): void;
   removeArticleFromPlaylist(articleId: string, playlistId: string): void;
