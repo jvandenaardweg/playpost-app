@@ -169,6 +169,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
     // Only set a new track when it's a different one
     if (!this.isActiveInPlayer) {
+      console.log('set track');
       return this.handleSetTrack();
     }
 
@@ -184,6 +185,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     const artist = (article.authorName) ? article.authorName : article.sourceName;
     const album = (article.categoryName && article.sourceName) ? `${article.categoryName} on ${article.sourceName}` : '';
 
+    console.log('handle set track');
     return this.props.setTrack(
       {
         artist,

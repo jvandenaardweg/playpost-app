@@ -32,7 +32,7 @@ export const PlayPauseControl: React.FC<Props> = React.memo(({
   );
 });
 
-const PlayPauseIcon: React.FC<PlayPauseIconProps>  = React.memo(({
+export const PlayPauseIcon: React.FC<PlayPauseIconProps>  = React.memo(({
   isPlaying,
   isLoading,
   size

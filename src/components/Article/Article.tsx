@@ -19,7 +19,7 @@ interface Props {
   onOpenUrl(url: string): void;
 }
 
-export const Article: React.FC<Props> = ({
+export const Article: React.FC<Props> = React.memo(({
   isLoading,
   isPlaying,
   isActive,
@@ -67,7 +67,7 @@ export const Article: React.FC<Props> = ({
       )}
     </View>
   </View>
-);
+));
 
 export const Duration = ({ listenTimeInSeconds }: {listenTimeInSeconds: number}) => {
   if (!listenTimeInSeconds) {

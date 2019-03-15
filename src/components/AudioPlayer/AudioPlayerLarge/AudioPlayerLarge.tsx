@@ -19,7 +19,7 @@ interface Props {
   onPressClose(): void;
 }
 
-export const AudioPlayerLarge = ({
+export const AudioPlayerLarge: React.FC<Props> = React.memo(({
   isPlaying,
   isLoading,
   onPressPlay,
@@ -57,4 +57,4 @@ export const AudioPlayerLarge = ({
       </View>
     </View>
   </View>
-);
+));

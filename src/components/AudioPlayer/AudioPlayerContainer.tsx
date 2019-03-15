@@ -148,6 +148,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   handleOnShowModal = () => this.setState({ showModal: true });
 
   handleOnPressNext = () => Alert.alert('Should play next article.');
+
   handleOnPressPrevious = () => Alert.alert('Should play previous article.');
 
   renderAudioPlayerSmall() {

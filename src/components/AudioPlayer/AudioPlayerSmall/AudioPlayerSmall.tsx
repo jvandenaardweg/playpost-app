@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Text, TouchableHighlight, ActivityIndicator } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import { View, Text, TouchableHighlight } from 'react-native';
 import styles from './styles';
 
 import { ProgressBar } from '../../AudioPlayer';
+
+import { PlayPauseControl } from '../PlayPauseControl';
 
 import { Track } from 'react-native-track-player';
 
@@ -14,13 +15,14 @@ interface Props {
   isLoading: boolean;
   track: Track;
 }
-export const AudioPlayerSmall = ({
+
+export const AudioPlayerSmall: React.FC<Props> = React.memo(({
   onPressShowModal,
   onPressPlay,
   isPlaying,
   isLoading,
   track: { title, artist, album }
-}: Props) => (
+}) => (
   <View style={styles.wrapper}>
     <View style={styles.progressBarContainer}>
       <ProgressBar />
@@ -42,18 +44,8 @@ export const AudioPlayerSmall = ({
         </View>
       </TouchableHighlight>
       <View style={styles.sideIcon}>
-        <TouchableHighlight style={styles.playButton} onPress={onPressPlay}>
-          <View style={styles.controlPlay}>
-            <PlayPauseIcon isLoading={isLoading} isPlaying={isPlaying} />
-          </View>
-        </TouchableHighlight>
+        <PlayPauseControl size={16} isLoading={isLoading} isPlaying={isPlaying} onPressPlay={onPressPlay} />
       </View>
     </View>
   </View>
-);
-
-const PlayPauseIcon = (props: { isPlaying: boolean, isLoading: boolean }) => {
-  if (props.isLoading) return <ActivityIndicator />;
-  if (props.isPlaying) return <Icon name="pause" color="white" size={16} />;
-  return <Icon name="play" color="white" size={16} />;
-};
+));
