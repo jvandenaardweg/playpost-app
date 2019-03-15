@@ -15,11 +15,11 @@ import styles from './styles';
 import { ErrorMessage } from '../ErrorMessage';
 import { OfflineNotice } from '../OfflineNotice';
 
-export const TabBar: React.FC = (props: any) => (
+export const TabBar: React.FC = React.memo((props: any) => (
   <View style={styles.container}>
     <OfflineNotice />
     <ErrorMessage />
     <AudioPlayerContainer />
     <BottomTabBar {...props} />
   </View>
-);
+));
