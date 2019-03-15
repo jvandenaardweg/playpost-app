@@ -185,7 +185,9 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     const { isLoading, isPlaying, scrolled } = this.state;
 
     const article = articles.find((article) => {
-      return article.audiofiles && article.audiofiles[0].id === track.id;
+      if (!article.audiofiles.length) return false;
+
+      return article.audiofiles[0].id === track.id;
     });
 
     const articleText = article && article.text;
