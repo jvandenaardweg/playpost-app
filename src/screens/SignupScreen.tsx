@@ -6,11 +6,12 @@ import * as Keychain from 'react-native-keychain';
 
 import { SignupForm } from '../components/SignupForm';
 
-import { createUser, UserState } from '../reducers/user';
-import { postAuth, AuthState } from '../reducers/auth';
+import { createUser } from '../reducers/user';
+import { postAuth } from '../reducers/auth';
 
 import { getAuthError } from '../selectors/auth';
 import { getUserError } from '../selectors/user';
+import { RootState } from '../reducers';
 
 interface State {
   isLoading: boolean;
@@ -20,13 +21,21 @@ interface State {
   validationError: string | null;
 }
 
-interface Props {
-  authError: string | null;
-  userError: string | null;
-  postAuth: (email: string, password: string) => {};
-  createUser: (email: string, password: string) => {};
+interface IProps {
   navigation: NavigationScreenProp<NavigationRoute>;
 }
+
+interface StateProps {
+  authError: string | null;
+  userError: string | null;
+}
+
+interface DispatchProps {
+  postAuth(email: string, password: string): void;
+  createUser(email: string, password: string): void;
+}
+
+type Props = IProps & StateProps & DispatchProps;
 
 class SignupScreenContainer extends React.PureComponent<Props, State> {
   static navigationOptions = {
@@ -116,12 +125,12 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
   }
 }
 
-const mapStateToProps = (state: { user: UserState, auth: AuthState }) => ({
+const mapStateToProps = (state: RootState): StateProps => ({
   authError: getAuthError(state),
   userError: getUserError(state)
 });
 
-const mapDispatchToProps = {
+const mapDispatchToProps: DispatchProps = {
   createUser,
   postAuth
 };
