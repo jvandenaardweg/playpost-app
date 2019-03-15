@@ -8,7 +8,6 @@ import { AudioPlayerSmall, EmptyPlayer } from '.';
 import { getPlayerPlaybackState, getPlayerTrack } from '../../selectors/player';
 import { RootState } from '../../reducers';
 
-
 interface State {
   isLoading: boolean;
   isPlaying: boolean;
