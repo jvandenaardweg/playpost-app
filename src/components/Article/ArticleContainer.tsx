@@ -14,7 +14,7 @@ import { RootState } from '../../reducers';
 import { getPlaylists, removeArticleFromPlaylist } from '../../reducers/playlists';
 import { setTrack, PlaybackStatus, createAudiofile } from '../../reducers/player';
 
-import { getPlayerTrack, getPlayerPlaybackState, getPlayerAudiofile } from '../../selectors/player';
+import { getPlayerTrack, getPlayerPlaybackState } from '../../selectors/player';
 
 interface State {
   isLoading: boolean;
@@ -183,21 +183,17 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
     const artist = (article.authorName) ? article.authorName : article.sourceName;
     const album = (article.categoryName && article.sourceName) ? `${article.categoryName} on ${article.sourceName}` : '';
-    const description = (album) ? album : '';
 
     return this.props.setTrack(
       {
         artist,
         album,
-        description,
         id: this.articleAudiofiles[0].id,
         title: article.title,
         url: this.articleAudiofiles[0].url,
         duration: this.articleAudiofiles[0].length,
         contentType: 'audio/mpeg'
-      },
-      this.articleAudiofiles[0],
-      article
+      }
     );
   }
 
@@ -288,11 +284,10 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 interface StateProps {
   track: Track;
   playbackState: PlaybackStatus;
-  audiofile: Api.Audiofile | null;
 }
 
 interface DispatchProps {
-  setTrack(track: Track, audiofile: Api.Audiofile, article: Api.Article): void;
+  setTrack(track: Track): void;
   createAudiofile(articleId: string): void;
   getPlaylists(): void;
   removeArticleFromPlaylist(articleId: string, playlistId: string): void;
@@ -300,8 +295,7 @@ interface DispatchProps {
 
 const mapStateToProps = (state: RootState): StateProps => ({
   track: getPlayerTrack(state),
-  playbackState: getPlayerPlaybackState(state),
-  audiofile: getPlayerAudiofile(state)
+  playbackState: getPlayerPlaybackState(state)
 });
 
 const mapDispatchToProps: DispatchProps = {

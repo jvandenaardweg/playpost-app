@@ -7,7 +7,8 @@ import { setPlaybackStatus, PlaybackStatus } from '../../reducers/player';
 import { AudioPlayerSmall, EmptyPlayer } from './AudioPlayerSmall';
 import { AudioPlayerLarge } from './AudioPlayerLarge';
 
-import { getPlayerPlaybackState, getPlayerTrack, getPlayerArticle } from '../../selectors/player';
+import { getPlayerPlaybackState, getPlayerTrack } from '../../selectors/player';
+import { getDefaultPlaylistArticles } from '../../selectors/playlists';
 import { RootState } from '../../reducers';
 
 interface State {
@@ -169,13 +170,19 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   }
 
   renderAudioPlayerLarge() {
-    const { track, article } = this.props;
+    const { track, articles } = this.props;
     const { isLoading, isPlaying } = this.state;
+
+    const article = articles.find((article) => {
+      return article.audiofiles && article.audiofiles[0].id === track.id;
+    });
+
+    const articleText = article && article.text;
 
     return (
       <AudioPlayerLarge
         track={track}
-        article={article}
+        articleText={articleText}
         isLoading={isLoading}
         isPlaying={isPlaying}
         onPressPlay={this.handleOnPressPlay}
@@ -204,17 +211,17 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
 interface StateProps {
   track: Track;
   playbackState: PlaybackStatus;
-  article: Api.Article | null;
+  articles: Api.Article[];
 }
 
 interface DispatchProps {
   setPlaybackStatus: (status: PlaybackStatus) => void;
 }
 
-const mapStateToProps = (state: RootState, props: Props): StateProps => ({
+const mapStateToProps = (state: RootState): StateProps => ({
   track: getPlayerTrack(state),
   playbackState: getPlayerPlaybackState(state),
-  article: getPlayerArticle(state)
+  articles: getDefaultPlaylistArticles(state)
 });
 
 const mapDispatchToProps: DispatchProps = {

@@ -15,11 +15,6 @@ export const getPlayerAudiofile = createSelector(
   player => player.audiofile
 );
 
-export const getPlayerArticle = createSelector(
-  [playerSelector],
-  player => player.article
-);
-
 export const getPlayerPlaybackState = createSelector(
   [playerSelector],
   player => player.playbackState
