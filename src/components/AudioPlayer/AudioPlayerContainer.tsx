@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Modal, Alert, NativeScrollEvent } from 'react-native';
 import { connect } from 'react-redux';
-import TrackPlayer, { Track } from 'react-native-track-player';
+import TrackPlayer from 'react-native-track-player';
 
 import { setPlaybackStatus, PlaybackStatus } from '../../reducers/player';
 import { AudioPlayerSmall, EmptyPlayer } from './AudioPlayerSmall';
@@ -28,9 +28,9 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     scrolled: 0,
   };
 
-  onTrackChange: any = {};
-  onStateChanged: any = {};
-  onStateError: any = {};
+  onTrackChange: TrackPlayer.EmitterSubscription | null = null;
+  onStateChanged: TrackPlayer.EmitterSubscription | null = null;
+  onStateError: TrackPlayer.EmitterSubscription | null = null;
   scrollView = React.createRef();
 
   async componentDidMount() {
@@ -117,7 +117,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     }
   }
 
-  handleTrackUpdate = async (track: Track) => {
+  handleTrackUpdate = async (track: TrackPlayer.Track) => {
     console.log('Track updated');
 
     // Reset the scrolled position for the Large Audio Player
@@ -132,9 +132,9 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   }
 
   componentWillUnmount() {
-    this.onTrackChange.remove();
-    this.onStateChanged.remove();
-    this.onStateError.remove();
+    this.onTrackChange && this.onTrackChange.remove();
+    this.onStateChanged && this.onStateChanged.remove();
+    this.onStateError && this.onStateError.remove();
   }
 
   handleOnPressPlay = async () => {
@@ -225,7 +225,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
 }
 
 interface StateProps {
-  track: Track;
+  track: TrackPlayer.Track;
   playbackState: PlaybackStatus;
   articles: Api.Article[];
 }

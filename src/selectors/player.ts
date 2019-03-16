@@ -1,9 +1,10 @@
 import { createSelector } from 'reselect';
-import { PlayerState } from '../reducers/player';
-
 import TrackPlayer from 'react-native-track-player';
 
-const playerSelector = (state: any): PlayerState => state.player;
+import { PlayerState } from '../reducers/player';
+import { RootState } from '../reducers';
+
+const playerSelector = (state: RootState): PlayerState => state.player;
 
 export const getPlayerTrack = createSelector(
   [playerSelector],

@@ -70,22 +70,24 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     const { isPlaying, isLoading, isCreatingAudiofile } = this.state;
     // console.log('Update ArticleContainerComponent', this.props.article.id);
 
-    // When a track is loaded into the player (downloading)
-    if (playbackState && [TrackPlayer.STATE_BUFFERING].includes(playbackState) && !isLoading) {
-      // console.log('ArticleContainer', 'componentDidUpdate', 'Set state buffering');
-      this.setState({ isActive: true, isLoading: true, isCreatingAudiofile: false });
-    }
+    if (!isCreatingAudiofile) {
+      // When a track is loaded into the player (downloading)
+      if (playbackState && [TrackPlayer.STATE_BUFFERING].includes(playbackState) && !isLoading) {
+        // console.log('ArticleContainer', 'componentDidUpdate', 'Set state buffering');
+        this.setState({ isActive: true, isLoading: true, isCreatingAudiofile: false });
+      }
 
-    // When a track is playing, update the state so we can show it as playing
-    if (playbackState && [TrackPlayer.STATE_PLAYING].includes(playbackState) && !isPlaying) {
-      // console.log('ArticleContainer', 'componentDidUpdate', 'Set state playing');
-      this.setState({ isActive: true, isPlaying: true, isCreatingAudiofile: false });
-    }
+      // When a track is playing, update the state so we can show it as playing
+      if (playbackState && [TrackPlayer.STATE_PLAYING].includes(playbackState) && !isPlaying) {
+        // console.log('ArticleContainer', 'componentDidUpdate', 'Set state playing');
+        this.setState({ isActive: true, isPlaying: true, isCreatingAudiofile: false });
+      }
 
-    // When a track is loaded and ready to be played
-    if (playbackState && ['ready', TrackPlayer.STATE_NONE, TrackPlayer.STATE_STOPPED, TrackPlayer.STATE_PAUSED].includes(playbackState) && (isLoading || isPlaying)) {
-      // console.log('ArticleContainer', 'componentDidUpdate', 'Set state ready');
-      this.setState({ isActive: true, isLoading: false, isPlaying: false, isCreatingAudiofile: false });
+      // When a track is loaded and ready to be played
+      if (playbackState && ['ready', TrackPlayer.STATE_NONE, TrackPlayer.STATE_STOPPED, TrackPlayer.STATE_PAUSED].includes(playbackState) && (isLoading || isPlaying)) {
+        // console.log('ArticleContainer', 'componentDidUpdate', 'Set state ready');
+        this.setState({ isActive: true, isLoading: false, isPlaying: false, isCreatingAudiofile: false });
+      }
     }
 
     // When it's not the current track, reset the state if any is changed

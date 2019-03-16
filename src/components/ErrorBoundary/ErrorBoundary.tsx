@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Alert, View, Text } from 'react-native';
 import RNRestart from 'react-native-restart';
 
 interface State {
-  error: any;
-  errorInfo: any;
+  error: Error | null;
+  errorInfo: React.ErrorInfo | null;
   hasError: boolean;
 }
 
 interface Props {
-  children: any;
+  children: ReactNode;
 }
 
 export class ErrorBoundary extends React.Component<Props, State> {
@@ -32,7 +32,7 @@ export class ErrorBoundary extends React.Component<Props, State> {
   //   return { hasError: true };
   // }
 
-  componentDidCatch(error: any, errorInfo: any) {
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     console.log('ERORROR!', error, errorInfo);
     // to prevent this alert blocking your view of a red screen while developing
     if (__DEV__) {

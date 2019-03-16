@@ -71,6 +71,7 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
     const { email, password } = this.state;
 
     try {
+      /* tslint:disable no-any */
       const response: any = await this.props.postAuth(email, password);
       this.saveToken(response.payload.data.token);
     } catch (err) {
@@ -101,7 +102,11 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
 
   handleOnPressLogin = () => this.props.navigation.navigate('Login');
 
-  handleOnChangeText = (field: 'email' | 'password', value: string) => this.setState<any>({ [field]: value });
+  handleOnChangeText = (field: 'email' | 'password' | 'passwordValidation', value: string) => {
+    if (field === 'email') this.setState({ email: value });
+    if (field === 'password') this.setState({ password: value });
+    if (field === 'passwordValidation') this.setState({ passwordValidation: value });
+  }
 
   render() {
     const { email, password, passwordValidation, validationError, isLoading } = this.state;

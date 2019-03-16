@@ -1,14 +1,13 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { UserState } from '../../reducers/user';
 import Icon from 'react-native-vector-icons/Feather';
 
 import styles from './styles';
-import { AuthState } from '../../reducers/auth';
 
 import { getUserError } from '../../selectors/user';
 import { getAuthError } from '../../selectors/auth';
+import { RootState } from '../../reducers';
 
 interface State {
   forceClose: boolean;
@@ -57,7 +56,7 @@ class ErrorMessageContainer extends React.PureComponent<Props, State> {
   }
 }
 
-const mapStateToProps = (state: { user: UserState, auth: AuthState}) => ({
+const mapStateToProps = (state: RootState) => ({
   userError: getUserError(state),
   authError: getAuthError(state)
 });

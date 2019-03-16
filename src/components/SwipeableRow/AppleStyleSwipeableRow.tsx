@@ -12,7 +12,7 @@ interface Props {
   removeArticle(): void;
 }
 export class AppleStyleSwipeableRow extends React.PureComponent<Props> {
-  swipeableRow: any = React.createRef();
+  private swipeableRef: React.RefObject<Swipeable> = React.createRef();
 
   static contextType = NetworkContext;
 
@@ -105,18 +105,14 @@ export class AppleStyleSwipeableRow extends React.PureComponent<Props> {
     return Alert.alert('Should archive this article');
   }
 
-  updateRef = (ref: any) => {
-    this.swipeableRow = ref;
-  }
-
   close = () => {
-    this.swipeableRow && this.swipeableRow.close();
+    this.swipeableRef.current && this.swipeableRef.current.close();
   }
 
   render() {
     return (
       <Swipeable
-        ref={this.updateRef}
+        ref={this.swipeableRef}
         friction={2}
         leftThreshold={80}
         rightThreshold={40}

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { View } from 'react-native';
 
 import styles from './styles';
 
 interface Props {
-  children: any;
+  children: ReactNode;
 }
 
 export const AppBackground: React.FC<Props> = ({ children }) => (

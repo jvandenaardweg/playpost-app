@@ -1,7 +1,8 @@
 import { createSelector } from 'reselect';
 import { UserState } from '../reducers/user';
+import { RootState } from '../reducers';
 
-const userSelector = (state: any): UserState => state.user;
+const userSelector = (state: RootState): UserState => state.user;
 
 export const getUserError = createSelector(
   [userSelector],

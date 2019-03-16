@@ -23,15 +23,12 @@ interface Props {
 
 export class AudioPlayerLarge extends React.PureComponent<Props> {
 
-  scrollViewRef: any = React.createRef();
-
-  setScrollviewRef = (ref: any) => {
-    this.scrollViewRef = ref;
-  }
+  private scrollViewRef: React.RefObject<ScrollView> = React.createRef();
 
   componentDidMount() {
     const { scrolled } = this.props;
-    this.scrollViewRef.scrollTo({ x: 0, y: scrolled });
+    console.log('set scrolled', scrolled);
+    this.scrollViewRef.current && this.scrollViewRef.current.scrollTo({ x: 0, y: scrolled });
   }
 
   componentDidUpdate() {
@@ -62,7 +59,7 @@ export class AudioPlayerLarge extends React.PureComponent<Props> {
             <Text style={styles.album}>{artist}</Text>
           </View>
           <View style={styles.scrollableContainer}>
-            <ScrollView indicatorStyle="white" onScroll={onScroll} scrollEventThrottle={1000} ref={this.setScrollviewRef}>
+            <ScrollView indicatorStyle="white" onScroll={onScroll} scrollEventThrottle={500} ref={this.scrollViewRef}>
               <View style={styles.scrollableContent}>
                 <Text style={styles.contentText}>{articleText}</Text>
               </View>

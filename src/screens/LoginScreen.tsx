@@ -6,11 +6,12 @@ import { Alert } from 'react-native';
 
 import { LoginForm } from '../components/LoginForm';
 
-import { postAuth, AuthState } from '../reducers/auth';
-import { getUser, UserState } from '../reducers/user';
+import { postAuth } from '../reducers/auth';
+import { getUser } from '../reducers/user';
 
 import { getAuthError } from '../selectors/auth';
 import { getUserError } from '../selectors/user';
+import { RootState } from '../reducers';
 
 interface State {
   isLoading: boolean;
@@ -53,6 +54,7 @@ class LoginScreenContainer extends React.PureComponent<Props, State> {
     this.setState({ isLoading: true });
 
     try {
+      /* tslint:disable no-any */
       const response: any = await this.props.postAuth(email, password);
       this.saveToken(response.payload.data.token);
     } catch (err) {
@@ -64,7 +66,10 @@ class LoginScreenContainer extends React.PureComponent<Props, State> {
 
   handleOnPressSignup = () => this.props.navigation.navigate('Signup');
 
-  handleOnChangeText = (field: string, value: string) => this.setState<any>({ [field]: value });
+  handleOnChangeText = (field: 'email' | 'password', value: string) => {
+    if (field === 'email') this.setState({ email: value });
+    if (field === 'password') this.setState({ password: value });
+  }
 
   render() {
     const { email, password, isLoading } = this.state;
@@ -86,7 +91,7 @@ class LoginScreenContainer extends React.PureComponent<Props, State> {
   }
 }
 
-const mapStateToProps = (state: { auth: AuthState, user: UserState }) => ({
+const mapStateToProps = (state: RootState) => ({
   authError: getAuthError(state),
   userError: getUserError(state)
 });

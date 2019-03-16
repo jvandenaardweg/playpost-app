@@ -8,6 +8,7 @@ import { getPlaylists, addArticleToPlaylistByUrl, PlaylistsState } from '../../r
 import { getDefaultPlaylist } from '../../selectors/playlists';
 
 import styles from './styles';
+import { RootState } from '../../reducers';
 
 interface State {
   isLoading: boolean;
@@ -124,7 +125,7 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
   }
 }
 
-const mapStateToProps = (state: { playlists: PlaylistsState }) => ({
+const mapStateToProps = (state: RootState) => ({
   playlists: state.playlists,
   defaultPlaylist: getDefaultPlaylist(state)
 });

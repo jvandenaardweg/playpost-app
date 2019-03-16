@@ -1,4 +1,5 @@
 import Analytics from 'appcenter-analytics';
+import { AxiosResponse, AxiosError } from 'axios';
 
 export const GET_PLAYLISTS = 'playlists/GET_PLAYLISTS';
 export const GET_PLAYLISTS_SUCCESS = 'playlists/GET_PLAYLISTS_SUCCESS';
@@ -29,7 +30,14 @@ const initialState: PlaylistsState = {
   playlists: [],
   error: null
 };
-export function playlistsReducer(state = initialState, action: any): PlaylistsState {
+
+interface PlaylistActionTypes {
+  type: string;
+  payload: AxiosResponse;
+  error: AxiosError;
+}
+
+export function playlistsReducer(state = initialState, action: PlaylistActionTypes): PlaylistsState {
   switch (action.type) {
     case GET_PLAYLISTS:
       return {

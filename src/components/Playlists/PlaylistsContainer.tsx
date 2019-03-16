@@ -8,11 +8,12 @@ import { EmptyState } from '../../components/EmptyState';
 import { ArticleContainer } from '../../components/Article/ArticleContainer';
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
-import { getPlaylists, PlaylistsState } from '../../reducers/playlists';
+import { getPlaylists } from '../../reducers/playlists';
 
 import { getDefaultPlaylistArticles, getDefaultPlaylist } from '../../selectors/playlists';
 
 import isEqual from 'react-fast-compare';
+import { RootState } from '../../reducers';
 
 // import { GmailStyleSwipeableRow } from '../../components/SwipeableRow/GmailStyleSwipeableRow';
 
@@ -154,7 +155,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: { playlists: PlaylistsState }) => ({
+const mapStateToProps = (state: RootState) => ({
   defaultPlaylist: getDefaultPlaylist(state),
   articles: getDefaultPlaylistArticles(state)
 });

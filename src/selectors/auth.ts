@@ -1,7 +1,8 @@
 import { createSelector } from 'reselect';
 import { AuthState } from '../reducers/auth';
+import { RootState } from '../reducers';
 
-const authSelector = (state: any): AuthState => state.auth;
+const authSelector = (state: RootState): AuthState => state.auth;
 
 export const getAuthenticationToken = createSelector(
   [authSelector],

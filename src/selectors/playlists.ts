@@ -1,7 +1,8 @@
 import { createSelector } from 'reselect';
 import { PlaylistsState } from '../reducers/playlists';
+import { RootState } from '../reducers';
 
-const playlistsSelector = (state: any): PlaylistsState => state.playlists;
+const playlistsSelector = (state: RootState): PlaylistsState => state.playlists;
 
 export const getPlaylistsError = createSelector(
   [playlistsSelector],
@@ -55,7 +56,7 @@ export const getDefaultPlaylistArticles = createSelector(
  *
  * Returns `Api.Audiofile` when there's a match.
  */
-export const getAudiofileByArticleId = (state: any, articleId: string) => createSelector(
+export const getAudiofileByArticleId = (state: RootState, articleId: string) => createSelector(
   getDefaultPlaylistArticles,
   (articles): Api.Audiofile | null => {
     const article = articles.find(article => article.id === articleId);

@@ -1,10 +1,12 @@
 import { Track } from 'react-native-track-player';
 import Analytics from 'appcenter-analytics';
+import { AxiosError } from 'axios';
 
 export const GET_AUDIOFILE = 'player/LOAD';
 export const GET_AUDIOFILE_SUCCESS = 'player/LOAD_SUCCESS';
 export const GET_AUDIOFILE_FAIL = 'player/LOAD_FAIL';
 export const SET_PLAYBACK_STATUS = 'player/SET_PLAYBACK_STATUS';
+export const RESET_PLAYBACK_STATUS = 'player/RESET_PLAYBACK_STATUS';
 export const SET_TRACK = 'player/SET_TRACK';
 
 export const CREATE_AUDIOFILE = 'player/CREATE_AUDIOFILE';
@@ -43,7 +45,14 @@ const initialState: PlayerState = {
   error: null
 };
 
-export function playerReducer(state = initialState, action: any): PlayerState {
+/* tslint:disable no-any */
+interface PlayerActionTypes {
+  type: string;
+  payload: any;
+  error: AxiosError;
+}
+
+export function playerReducer(state = initialState, action: PlayerActionTypes): PlayerState {
   switch (action.type) {
     case GET_AUDIOFILE:
       return {
@@ -66,6 +75,11 @@ export function playerReducer(state = initialState, action: any): PlayerState {
       return {
         ...state,
         playbackState: action.payload
+      };
+    case RESET_PLAYBACK_STATUS:
+      return {
+        ...state,
+        playbackState: initialState.playbackState
       };
     case SET_TRACK:
       return {
@@ -118,6 +132,12 @@ export function setPlaybackStatus(playbackState: PlaybackStatus) {
   return {
     type: SET_PLAYBACK_STATUS,
     payload: playbackState
+  };
+}
+
+export function resetPlaybackStatus() {
+  return {
+    type: RESET_PLAYBACK_STATUS,
   };
 }
 

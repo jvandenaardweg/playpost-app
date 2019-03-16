@@ -1,6 +1,5 @@
 import Analytics from 'appcenter-analytics';
-import { AxiosRequestConfig } from 'axios';
-import { Action } from 'redux';
+import { AxiosError } from 'axios';
 
 export const POST_AUTH = 'auth/POST_AUTH';
 export const POST_AUTH_SUCCESS = 'auth/POST_AUTH_SUCCESS';
@@ -22,7 +21,14 @@ const initialState: AuthState = {
   error: null
 };
 
-export function authReducer(state = initialState, action: any): AuthState {
+/* tslint:disable no-any */
+interface AuthActionTypes {
+  type: string;
+  payload: any;
+  error: AxiosError;
+}
+
+export function authReducer(state = initialState, action: AuthActionTypes): AuthState {
   switch (action.type) {
     case POST_AUTH:
       return {
@@ -85,7 +91,7 @@ export function resetAuthState() {
   };
 }
 
-export function postAuth(email: string, password: string): AxiosAction {
+export function postAuth(email: string, password: string) {
   return {
     type: POST_AUTH,
     payload: {
@@ -98,11 +104,5 @@ export function postAuth(email: string, password: string): AxiosAction {
         }
       }
     }
-  };
-}
-
-export interface AxiosAction extends Action {
-  payload: {
-    request: AxiosRequestConfig
   };
 }

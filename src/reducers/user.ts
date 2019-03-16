@@ -27,7 +27,7 @@ const initialState: UserState = {
 };
 
 interface UserActionTypes {
-  type: any;
+  type: string;
   payload: AxiosResponse;
   error: AxiosError;
 }
