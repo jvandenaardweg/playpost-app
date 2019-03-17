@@ -4,6 +4,9 @@ import TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
 import { withNavigation, NavigationInjectedProps } from 'react-navigation';
 import isEqual from 'react-fast-compare';
+import RNFS, { DownloadFileOptions } from 'react-native-fs';
+
+import { LOCAL_STORAGE_PATH } from '../../constants/files';
 
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
@@ -21,6 +24,7 @@ interface State {
   isPlaying: boolean;
   isActive: boolean;
   isCreatingAudiofile: boolean;
+  downloadJobId: number;
 }
 
 interface IProps extends NavigationInjectedProps {
@@ -36,7 +40,8 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     isLoading: false,
     isPlaying: false,
     isActive: false,
-    isCreatingAudiofile: false
+    isCreatingAudiofile: false,
+    downloadJobId: 0
   };
 
   static contextType = NetworkContext;
@@ -159,20 +164,18 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
     if (isLoading) return Alert.alert('Wait, we are loading an audiofile...');
 
-    if (!isConnected) return Alert.alert('You need are not connected to the internet. You need an active internet connection to listen to articles.');
-
     if (isPlaying) {
       return TrackPlayer.pause();
     }
 
     // If we don't have an audiofile yet, we create it first
     if (!article.audiofiles.length) {
+      if (!isConnected) return Alert.alert('You need are not connected to the internet. You need an active internet connection to listen to this article.');
       return this.handleCreateAudiofile();
     }
 
     // Only set a new track when it's a different one
     if (!this.isActiveInPlayer) {
-      console.log('set track');
       return this.handleSetTrack();
     }
 
@@ -180,7 +183,46 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     return TrackPlayer.play();
   }
 
-  handleSetTrack() {
+  downloadAudiofile = async (url: string, articleId: string, audiofileId: string): Promise<string | void> => {
+    console.log('Downloading audiofile...');
+
+    try {
+      // Make sure the /audiofile path exists
+      await RNFS.mkdir(LOCAL_STORAGE_PATH);
+
+      const localFilePath = `${LOCAL_STORAGE_PATH}/${audiofileId}.mp3`;
+
+      const downloadFileOptions: DownloadFileOptions = {
+        fromUrl: url,
+        background: true,
+        toFile: localFilePath
+      };
+
+      await RNFS.downloadFile(downloadFileOptions).promise;
+
+      return `file://${localFilePath}`;
+
+    } catch (err) {
+      Alert.alert(
+        'Oops!',
+        'There was a problem while downloading the audio for this article.',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel'
+          },
+          {
+            text: 'Try again',
+            onPress: () => this.downloadAudiofile(url, articleId, audiofileId),
+          },
+        ],
+        { cancelable: true }
+      );
+    }
+  }
+
+  handleSetTrack = async () => {
+    const { isConnected } = this.context;
     const { article } = this.props;
 
     if (!article || !this.articleAudiofiles.length) return Alert.alert('Oops!', 'Could not play the article. Please try again.');
@@ -188,18 +230,35 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     const artist = (article.authorName) ? article.authorName : article.sourceName;
     const album = (article.categoryName && article.sourceName) ? `${article.categoryName} on ${article.sourceName}` : '';
 
-    console.log('handle set track');
-    return this.props.setTrack(
-      {
-        artist,
-        album,
-        id: this.articleAudiofiles[0].id,
-        title: article.title,
-        url: this.articleAudiofiles[0].url,
-        duration: this.articleAudiofiles[0].length,
-        contentType: 'audio/mpeg'
+    const audiofile = this.articleAudiofiles[0];
+
+    let localAudiofilePath = `file://${LOCAL_STORAGE_PATH}/${audiofile.id}.mp3`;
+
+    const localAudiofileExists = await RNFS.exists(localAudiofilePath);
+
+    if (!localAudiofileExists) {
+      if (!isConnected) return Alert.alert('You need are not connected to the internet. You need an active internet connection to download the audio of this article.');
+
+      const downloadedLocalAudiofilePath = await this.downloadAudiofile(audiofile.url, article.id, audiofile.id);
+
+      if (downloadedLocalAudiofilePath) {
+        localAudiofilePath = downloadedLocalAudiofilePath;
       }
-    );
+    }
+
+    if (localAudiofilePath) {
+      return this.props.setTrack(
+        {
+          artist,
+          album,
+          id: audiofile.id,
+          title: article.title,
+          url: localAudiofilePath,
+          duration: audiofile.length,
+          contentType: 'audio/mpeg'
+        }
+      );
+    }
   }
 
   fetchPlaylists = async () => {

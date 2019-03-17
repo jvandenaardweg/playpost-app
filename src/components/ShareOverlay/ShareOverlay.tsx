@@ -36,7 +36,11 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
 
   opacityAnim = new Animated.Value(0);
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.setup();
+  }
+
+  setup = async () => {
     try {
       // Start fade in animation of the overlay
       Animated.timing(

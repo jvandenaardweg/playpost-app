@@ -19,6 +19,7 @@ interface Props {
   onPressPrevious(): void;
   onPressClose(): void;
   onScroll(event: { nativeEvent: NativeScrollEvent }): void;
+  onProgressChange(value: number): void;
 }
 
 export class AudioPlayerLarge extends React.PureComponent<Props> {
@@ -45,7 +46,8 @@ export class AudioPlayerLarge extends React.PureComponent<Props> {
       onPressNext,
       onPressPrevious,
       onPressClose,
-      onScroll
+      onScroll,
+      onProgressChange
     } = this.props;
 
     return (
@@ -67,7 +69,17 @@ export class AudioPlayerLarge extends React.PureComponent<Props> {
           </View>
           <View style={styles.controlsContainer}>
             <View style={styles.progressBarRow}>
-              <ProgressBar />
+              <ProgressBar onProgressChange={onProgressChange} />
+              {/* <Slider
+                minimumValue={0}
+                maximumValue={1}
+                minimumTrackTintColor={colors.tintColor}
+                maximumTrackTintColor={colors.grayDark}
+                thumbTintColor={colors.white}
+                thumbStyle={{ width: 16, height: 16 }}
+                trackStyle={{ height: 3, borderRadius: 3 }}
+                onSlidingComplete={onProgressChange}
+              /> */}
             </View>
             <View style={styles.controlsRow}>
               <View><TouchableHighlight onPress={onPressPrevious}><Icon name="step-backward" size={22} color="#fff" /></TouchableHighlight></View>

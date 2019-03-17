@@ -62,8 +62,9 @@ export default StyleSheet.create({
     paddingBottom: 42
   },
   progressBarRow: {
-    borderRadius: 6,
-    overflow: 'hidden',
+    flex: 1,
+    alignItems: 'stretch',
+    justifyContent: 'center',
     marginBottom: 34
   }
 });

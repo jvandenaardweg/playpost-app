@@ -37,7 +37,11 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
     closeDelay: 2500
   };
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.fetchPlaylists();
+  }
+
+  fetchPlaylists = async () => {
     try {
       await this.props.getPlaylists();
     } catch (err) {
