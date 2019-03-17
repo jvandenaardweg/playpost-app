@@ -4,6 +4,9 @@ import { SettingsScreen as SettingsScreenComponent, SettingsData } from 'react-n
 import { connect } from 'react-redux';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 import * as Keychain from 'react-native-keychain';
+import RNFS from 'react-native-fs';
+
+import { LOCAL_STORAGE_PATH } from '../constants/files';
 
 import { resetAuthState } from '../reducers/auth';
 import { UserState, resetUserState } from '../reducers/user';
@@ -18,13 +21,52 @@ interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;
 }
 
-class SettingsScreenContainer extends React.PureComponent<Props> {
+interface State {
+  cacheSize: string;
+}
+
+class SettingsScreenContainer extends React.PureComponent<Props, State> {
   static navigationOptions = {
     title: 'Settings'
   };
 
+  state = {
+    cacheSize: '0'
+  };
+
+  componentDidMount() {
+    this.setCacheSize();
+  }
+
+  setCacheSize = async () => {
+    try {
+      await RNFS.mkdir(LOCAL_STORAGE_PATH);
+      const files = await RNFS.readDir(LOCAL_STORAGE_PATH);
+
+      const size = files.reduce((prev, curr) => {
+        /* tslint:disable-next-line no-parameter-reassignment */
+        prev = prev + parseFloat(curr.size);
+        return prev;
+      }, 0);
+
+      const sizeInMb = (size / 1000000).toFixed(2);
+      this.setState({ cacheSize: sizeInMb });
+    } catch (err) {
+      Alert.alert('Oops!', 'We could not set the cache size.');
+    }
+  }
+
   handleOnPressRow = () => {
     Alert.alert('Changing this setting becomes available in later versions.');
+  }
+
+  handleOnPressClearCache = async () => {
+    try {
+      await RNFS.unlink(LOCAL_STORAGE_PATH);
+      this.setCacheSize();
+    } catch (err) {
+      Alert.alert('Oops!', 'We could not delete the cache. Please try again.');
+    }
   }
 
   handleOnPressLogout = async () => {
@@ -136,10 +178,10 @@ class SettingsScreenContainer extends React.PureComponent<Props> {
           title: 'Clear cache',
           renderAccessory: () => (
             <Text style={{ color: '#999', marginRight: 6, fontSize: 18 }}>
-              50.5MB
+              {this.state.cacheSize} mb
             </Text>
           ),
-          onPress: this.handleOnPressRow
+          onPress: this.handleOnPressClearCache
         },
       ],
     },

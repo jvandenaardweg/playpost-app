@@ -6,6 +6,8 @@ import { withNavigation, NavigationInjectedProps } from 'react-navigation';
 import isEqual from 'react-fast-compare';
 import RNFS, { DownloadFileOptions } from 'react-native-fs';
 
+import { LOCAL_STORAGE_PATH } from '../../constants/files';
+
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
 import { Article } from './Article';
@@ -185,8 +187,10 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     console.log('Downloading audiofile...');
 
     try {
+      // Make sure the /audiofile path exists
+      await RNFS.mkdir(LOCAL_STORAGE_PATH);
 
-      const localFilePath = `${RNFS.DocumentDirectoryPath}/${audiofileId}.mp3`;
+      const localFilePath = `${LOCAL_STORAGE_PATH}/${audiofileId}.mp3`;
 
       const downloadFileOptions: DownloadFileOptions = {
         fromUrl: url,
@@ -228,7 +232,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
     const audiofile = this.articleAudiofiles[0];
 
-    let localAudiofilePath = `file://${RNFS.DocumentDirectoryPath}/${audiofile.id}.mp3`;
+    let localAudiofilePath = `file://${LOCAL_STORAGE_PATH}/${audiofile.id}.mp3`;
 
     const localAudiofileExists = await RNFS.exists(localAudiofilePath);
 
