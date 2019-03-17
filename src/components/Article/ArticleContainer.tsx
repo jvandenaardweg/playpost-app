@@ -4,7 +4,7 @@ import TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
 import { withNavigation, NavigationInjectedProps } from 'react-navigation';
 import isEqual from 'react-fast-compare';
-import RNFS, { DownloadFileOptions } from 'react-native-fs';
+import RNFS from 'react-native-fs';
 import RNFetchBlob from 'rn-fetch-blob';
 
 import { LOCAL_STORAGE_PATH } from '../../constants/files';

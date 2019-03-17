@@ -43,11 +43,14 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
       await RNFS.mkdir(LOCAL_STORAGE_PATH);
       const files = await RNFS.readDir(LOCAL_STORAGE_PATH);
 
-      const size = files.reduce((prev, curr) => {
-        /* tslint:disable-next-line no-parameter-reassignment */
-        prev = prev + parseFloat(curr.size);
-        return prev;
-      }, 0);
+      const size = files.reduce(
+        (prev, curr) => {
+          /* tslint:disable-next-line no-parameter-reassignment */
+          prev = prev + parseFloat(curr.size);
+          return prev;
+        },
+        0
+      );
 
       const sizeInMb = (size / 1000000).toFixed(2);
       this.setState({ cacheSize: sizeInMb });
