@@ -45,6 +45,8 @@
 		7511265BB44A44218ED118E7 /* Merriweather-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD2F913E2FA64E8CB3D747F3 /* Merriweather-Bold.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8AC92B55EE1A4901AFA213FE /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEC11A77002D4D729CD3412A /* SimpleLineIcons.ttf */; };
+		8C15B035223EB67E001058F0 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C15B02A223EB671001058F0 /* libRNFetchBlob.a */; };
+		8C15B036223EB688001058F0 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C15B02A223EB671001058F0 /* libRNFetchBlob.a */; };
 		8C272C72220F91F200DEF4DB /* dummy2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3D19D220F7B5B0030C131 /* dummy2.swift */; };
 		8C4182FE223653FC002F5B00 /* libRNKeychain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4182F7223653E3002F5B00 /* libRNKeychain.a */; };
 		8C4182FF22365409002F5B00 /* libRNKeychain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4182F7223653E3002F5B00 /* libRNKeychain.a */; };
@@ -356,6 +358,13 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		8C15B029223EB671001058F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C15AFFB223EB671001058F0 /* RNFetchBlob.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A15C300E1CD25C330074CB35;
+			remoteInfo = RNFetchBlob;
+		};
 		8C4182F6223653E3002F5B00 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8C4182C7223653E3002F5B00 /* RNKeychain.xcodeproj */;
@@ -592,6 +601,7 @@
 		81C16AB491BC4E7CBB0D3A20 /* libRCTRestart.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTRestart.a; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		83BDA12E82754BE4AFD0FC8D /* AppCenterReactNative.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNative.xcodeproj; path = ../node_modules/appcenter/ios/AppCenterReactNative.xcodeproj; sourceTree = "<group>"; };
+		8C15AFFB223EB671001058F0 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/rn-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		8C4182C7223653E3002F5B00 /* RNKeychain.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNKeychain.xcodeproj; path = "../node_modules/react-native-keychain/RNKeychain.xcodeproj"; sourceTree = "<group>"; };
 		8C43755F220813C4000A15FE /* RNTrackPlayer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNTrackPlayer.xcodeproj; path = "../node_modules/react-native-track-player/ios/RNTrackPlayer.xcodeproj"; sourceTree = "<group>"; };
 		8C43759222081410000A15FE /* Readto-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Readto-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -664,6 +674,7 @@
 				8CAA1197220F2CCE002741D6 /* libPods-Readto-ReadtoShareExtension.a in Frameworks */,
 				8C437591220813CD000A15FE /* libRNTrackPlayer.a in Frameworks */,
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
+				8C15B036223EB688001058F0 /* libRNFetchBlob.a in Frameworks */,
 				8CD2ED58223E70BC00A054E6 /* libRNFS.a in Frameworks */,
 				8CE6CA882237F3E1006512BB /* libRNCNetInfo.a in Frameworks */,
 				8C4182FE223653FC002F5B00 /* libRNKeychain.a in Frameworks */,
@@ -698,6 +709,7 @@
 				8C5A7DF1220F23EC00ECCC65 /* libRCTWebSocket.a in Frameworks */,
 				8C5A7DF2220F23EC00ECCC65 /* libReact.a in Frameworks */,
 				8C4182FF22365409002F5B00 /* libRNKeychain.a in Frameworks */,
+				8C15B035223EB67E001058F0 /* libRNFetchBlob.a in Frameworks */,
 				8CD2ED59223E70C800A054E6 /* libRNFS.a in Frameworks */,
 				8CE6CA892237F3EC006512BB /* libRNCNetInfo.a in Frameworks */,
 				8CF6C612220F27E300A07384 /* libAppCenterReactNative.a in Frameworks */,
@@ -913,6 +925,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				8C15AFFB223EB671001058F0 /* RNFetchBlob.xcodeproj */,
 				8CD2ED1B223E70AA00A054E6 /* RNFS.xcodeproj */,
 				8CE6CA522237F3D5006512BB /* RNCNetInfo.xcodeproj */,
 				8C4182C7223653E3002F5B00 /* RNKeychain.xcodeproj */,
@@ -977,6 +990,14 @@
 				13B07F961A680F5B00A75B9A /* Readto.app */,
 				00E356EE1AD99517003FC87E /* ReadtoTests.xctest */,
 				8C5A7DC2220F224A00ECCC65 /* ReadtoShareExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8C15AFFC223EB671001058F0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8C15B02A223EB671001058F0 /* libRNFetchBlob.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1329,6 +1350,10 @@
 					ProjectRef = 8CE6CA522237F3D5006512BB /* RNCNetInfo.xcodeproj */;
 				},
 				{
+					ProductGroup = 8C15AFFC223EB671001058F0 /* Products */;
+					ProjectRef = 8C15AFFB223EB671001058F0 /* RNFetchBlob.xcodeproj */;
+				},
+				{
 					ProductGroup = 8CD2ED1C223E70AA00A054E6 /* Products */;
 					ProjectRef = 8CD2ED1B223E70AA00A054E6 /* RNFS.xcodeproj */;
 				},
@@ -1585,6 +1610,13 @@
 			fileType = archive.ar;
 			path = libRCTText.a;
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8C15B02A223EB671001058F0 /* libRNFetchBlob.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFetchBlob.a;
+			remoteRef = 8C15B029223EB671001058F0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		8C4182F7223653E3002F5B00 /* libRNKeychain.a */ = {

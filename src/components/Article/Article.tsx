@@ -82,6 +82,7 @@ export const PlayButton = (props: { isPlaying?: boolean, onPress(): void, isLoad
     style={[styles.controlButton, (props.isPlaying || props.isActive) ? styles.controlButtonActive : null]}
     onPress={props.onPress}
     activeOpacity={0.7}
+    disabled={props.isLoading}
   >
     <View>
       {props.isLoading && <ActivityIndicator size="small" color="#fff" />}

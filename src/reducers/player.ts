@@ -85,7 +85,8 @@ export function playerReducer(state = initialState, action: PlayerActionTypes): 
     case SET_TRACK:
       return {
         ...state,
-        track: action.payload.track
+        track: action.payload.track,
+        playbackState: initialState.playbackState
       };
     case RESET_PLAYER_STATE:
       return {
