@@ -182,6 +182,25 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
   downloadAudiofile = async (url) => {
     //
+    try {
+
+    } catch (err) {
+      Alert.alert(
+        'Oops!',
+        'There was a problem while downloading the audio for this article.',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel'
+          },
+          {
+            text: 'Try again',
+            onPress: () => this.downloadAudiofile(url),
+          },
+        ],
+        { cancelable: true }
+      );
+    }
   }
 
   handleSetTrack() {
