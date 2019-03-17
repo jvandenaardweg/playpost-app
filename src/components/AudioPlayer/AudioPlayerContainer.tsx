@@ -33,7 +33,37 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   onStateError: TrackPlayer.EmitterSubscription | null = null;
   scrollView = React.createRef();
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.setupTrackPlayer();
+
+    // Adds an event handler for the playback-track-changed event
+    this.onTrackChange = TrackPlayer.addEventListener('playback-track-changed', async ({ track, position, nextTrack }) => {
+      console.log('Event', 'playback-track-changed', track, position, nextTrack);
+
+      // if (nextTrack) {
+      //   await TrackPlayer.getTrack(nextTrack);
+      //   // await TrackPlayer.play();
+      // }
+    });
+
+    this.onStateChanged = TrackPlayer.addEventListener('playback-state', async ({ state }) => {
+      console.log('Event', 'playback-state', state);
+
+      this.props.setPlaybackStatus(state);
+
+      // Little trick to make sure autoplay works
+      // From: https://github.com/react-native-kit/react-native-track-player/issues/479
+      if (state === 'ready') {
+        await TrackPlayer.play();
+      }
+    });
+
+    this.onStateError = TrackPlayer.addEventListener('playback-error', ({ code, message }) => {
+      console.log('Event', 'playback-error', code, message);
+    });
+  }
+
+  setupTrackPlayer = async () => {
     await TrackPlayer.setupPlayer();
 
     await TrackPlayer.updateOptions({
@@ -62,34 +92,6 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
         // TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
         TrackPlayer.CAPABILITY_SEEK_TO
       ]
-    });
-
-    // await TrackPlayer.reset();
-
-    // Adds an event handler for the playback-track-changed event
-    this.onTrackChange = TrackPlayer.addEventListener('playback-track-changed', async ({ track, position, nextTrack }) => {
-      console.log('Event', 'playback-track-changed', track, position, nextTrack);
-
-      // if (nextTrack) {
-      //   await TrackPlayer.getTrack(nextTrack);
-      //   // await TrackPlayer.play();
-      // }
-    });
-
-    this.onStateChanged = TrackPlayer.addEventListener('playback-state', async ({ state }) => {
-      console.log('Event', 'playback-state', state);
-
-      this.props.setPlaybackStatus(state);
-
-      // Little trick to make sure autoplay works
-      // From: https://github.com/react-native-kit/react-native-track-player/issues/479
-      if (state === 'ready') {
-        await TrackPlayer.play();
-      }
-    });
-
-    this.onStateError = TrackPlayer.addEventListener('playback-error', ({ code, message }) => {
-      console.log('Event', 'playback-error', code, message);
     });
   }
 
@@ -160,24 +162,10 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   handleOnProgressChange = async (percentage: number) => {
     const trackId = await TrackPlayer.getCurrentTrack();
     const track = await TrackPlayer.getTrack(trackId);
-    // const duration = await TrackPlayer.getDuration();
     if (track && track.duration) {
       const seekToSeconds = track.duration * percentage;
       await TrackPlayer.seekTo(seekToSeconds);
-      console.log(`Change progress to: ${seekToSeconds}`);
     }
-
-    // const { playbackState } = this.props;
-    // console.log('Change', `${percentage.toFixed(2)}%`, track.duration, duration);
-    // Don't try to change the progress when a track is loading or buffering
-    // const notInPlaybackState = ['loading', 'buffering'];
-    // if (notInPlaybackState.includes(playbackState)) {
-    //   return;
-    // }
-
-    // await TrackPlayer.seekTo(seekToSeconds);
-
-    // console.log(`Change progress to: ${seekToSeconds}`);
   }
 
   handleOnScroll = (event: { nativeEvent: NativeScrollEvent }) => {

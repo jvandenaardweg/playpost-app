@@ -33,18 +33,28 @@ export default class App extends React.PureComponent<State> {
     appState: AppState.currentState
   };
 
-  async componentDidMount() {
-    if (!__DEV__) {
-      // Enable Analytics, so we can track errors
-      await Analytics.setEnabled(true);
-      await Crashes.setEnabled(true);
-    }
+  componentDidMount() {
+    this.setAnalytics();
+    this.setCrashes();
 
     AppState.addEventListener('change', this.handleAppStateChange);
   }
 
   componentWillUnmount() {
     AppState.removeEventListener('change', this.handleAppStateChange);
+  }
+
+  setAnalytics = async () => {
+    if (!__DEV__) {
+      // Enable Analytics, so we can track errors
+      await Analytics.setEnabled(true);
+    }
+  }
+
+  setCrashes = async () => {
+    if (!__DEV__) {
+      await Crashes.setEnabled(true);
+    }
   }
 
   handleAppStateChange = async (nextAppState: AppStateStatus) => {
