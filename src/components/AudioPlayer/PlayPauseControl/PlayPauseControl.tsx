@@ -24,7 +24,7 @@ export const PlayPauseControl: React.FC<Props> = React.memo(({
   onPressPlay
 }) => {
   return (
-    <TouchableHighlight style={styles.playButton} onPress={() => onPressPlay()}>
+    <TouchableHighlight style={styles.playButton} onPress={() => onPressPlay()} hitSlop={{ top: 20, left: 20, right: 20, bottom: 20 }}>
       <View style={styles.controlPlay}>
         <PlayPauseIcon isLoading={isLoading} isPlaying={isPlaying} size={size} />
       </View>
