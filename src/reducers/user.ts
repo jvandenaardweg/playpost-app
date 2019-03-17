@@ -17,13 +17,13 @@ const CREATE_USER_FAIL_MESSAGE = 'An unknown error happened while creating your 
 export interface UserState {
   isLoading: boolean;
   user: Api.User | null;
-  error: string | null;
+  error: string;
 }
 
 const initialState: UserState = {
   isLoading: false,
   user: null,
-  error: null
+  error: ''
 };
 
 interface UserActionTypes {
@@ -47,7 +47,7 @@ export function userReducer(state = initialState, action: UserActionTypes): User
         ...state,
         isLoading: false,
         user: action.payload.data,
-        error: null
+        error: ''
       };
 
     case GET_USER_FAIL:
@@ -77,7 +77,7 @@ export function userReducer(state = initialState, action: UserActionTypes): User
         ...state,
         isLoading: false,
         user: action.payload.data,
-        error: null
+        error: ''
       };
 
     case CREATE_USER_FAIL:

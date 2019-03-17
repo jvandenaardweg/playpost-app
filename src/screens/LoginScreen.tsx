@@ -15,13 +15,13 @@ import { RootState } from '../reducers';
 
 interface State {
   isLoading: boolean;
-  email: string | null;
-  password: string | null;
+  email: string;
+  password: string;
 }
 
 interface Props {
-  authError: string | null;
-  userError: string | null;
+  authError: string;
+  userError: string;
   getUser(): void;
   postAuth(email: string, password: string): void;
   navigation: NavigationScreenProp<NavigationRoute>;

@@ -14,8 +14,8 @@ interface State {
 }
 
 interface Props {
-  userError: string | null;
-  authError: string | null;
+  userError: string;
+  authError: string;
 }
 
 class ErrorMessageContainer extends React.PureComponent<Props, State> {

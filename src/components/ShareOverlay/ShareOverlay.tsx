@@ -12,8 +12,8 @@ interface State {
   isLoading: boolean;
   type: string | null;
   url: string | null;
-  errorMessage: string | null;
-  errorAction: string | null;
+  errorMessage: string;
+  errorAction: string;
 }
 
 interface Props {
@@ -26,8 +26,8 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
     isLoading: true,
     type: null,
     url: null,
-    errorMessage: null,
-    errorAction: null
+    errorMessage: '',
+    errorAction: ''
   };
 
   static defaultProps = {
@@ -53,7 +53,7 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
       const url = value;
 
       // Update the state so our modal can pick up the URL
-      return this.setState({ type, url, errorMessage: null });
+      return this.setState({ type, url, errorMessage: '' });
 
     } catch (err) {
       const errorMessage = (err.message) ? err.message : 'An unknown error happened. Please try again.';

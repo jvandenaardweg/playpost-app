@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableHighlight, TouchableOpacity, ScrollView, NativeScrollEvent } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { Track } from 'react-native-track-player';
+import TrackPlayer from 'react-native-track-player';
 
 import { ProgressBar } from '../ProgressBar';
 import { PlayPauseControl } from '../PlayPauseControl';
@@ -11,7 +11,7 @@ import styles from './styles';
 interface Props {
   isPlaying: boolean;
   isLoading: boolean;
-  track: Track;
+  track: TrackPlayer.Track;
   articleText: string | null | undefined;
   scrolled: number;
   onPressPlay(): void;

@@ -6,14 +6,14 @@ import { ProgressBar } from '../../AudioPlayer';
 
 import { PlayPauseControl } from '../PlayPauseControl';
 
-import { Track } from 'react-native-track-player';
+import TrackPlayer from 'react-native-track-player';
 
 interface Props {
   onPressShowModal(): void;
   onPressPlay(): void;
   isPlaying: boolean;
   isLoading: boolean;
-  track: Track;
+  track: TrackPlayer.Track;
 }
 
 export const AudioPlayerSmall: React.FC<Props> = React.memo(({

@@ -1,4 +1,4 @@
-import { Track } from 'react-native-track-player';
+import TrackPlayer from 'react-native-track-player';
 import Analytics from 'appcenter-analytics';
 import { AxiosError } from 'axios';
 
@@ -20,12 +20,12 @@ export type PlaybackStatus = 'ready' | 'loading' | 'playing' | 'paused' | 'stopp
 const CREATE_AUDIOFILE_FAIL_MESSAGE = 'An unknown error happened while creating creating an audiofile. Please contact us when this happens all the time.';
 
 export interface PlayerState {
-  track: Track;
+  track: TrackPlayer.Track;
   audiofile: Api.Audiofile | null;
-  articleId: string | null;
+  articleId: string;
   playbackState: PlaybackStatus;
   isLoading: boolean;
-  error: string | null;
+  error: string;
 }
 
 const initialState: PlayerState = {
@@ -40,9 +40,9 @@ const initialState: PlayerState = {
     duration: 0
   },
   audiofile: null,
-  articleId: null,
+  articleId: '',
   playbackState: 'none',
-  error: null
+  error: ''
 };
 
 /* tslint:disable no-any */
@@ -64,6 +64,7 @@ export function playerReducer(state = initialState, action: PlayerActionTypes): 
         ...state,
         isLoading: false,
         audiofile: action.payload.data,
+        error: ''
       };
     case GET_AUDIOFILE_FAIL:
       return {
@@ -141,7 +142,7 @@ export function resetPlaybackStatus() {
   };
 }
 
-export function setTrack(track: Track) {
+export function setTrack(track: TrackPlayer.Track) {
   return {
     type: SET_TRACK,
     payload: {

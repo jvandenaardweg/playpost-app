@@ -22,13 +22,13 @@ const REMOVE_PLAYLIST_ARTICLE_FAIL_MESSAGE = 'An unknown error happened while re
 export interface PlaylistsState {
   isLoading: boolean;
   playlists: Api.Playlist[];
-  error: string | null;
+  error: string;
 }
 
 const initialState: PlaylistsState = {
   isLoading: false,
   playlists: [],
-  error: null
+  error: ''
 };
 
 interface PlaylistActionTypes {
@@ -52,7 +52,7 @@ export function playlistsReducer(state = initialState, action: PlaylistActionTyp
         ...state,
         isLoading: false,
         playlists: action.payload.data,
-        error: null
+        error: ''
       };
 
     case GET_PLAYLISTS_FAIL:
@@ -85,7 +85,7 @@ export function playlistsReducer(state = initialState, action: PlaylistActionTyp
       return {
         ...state,
         isLoading: false,
-        error: null
+        error: ''
       };
 
     case CREATE_PLAYLIST_ARTICLE_FAIL:
@@ -113,7 +113,7 @@ export function playlistsReducer(state = initialState, action: PlaylistActionTyp
       return {
         ...state,
         isLoading: false,
-        error: null
+        error: ''
       };
 
     case REMOVE_PLAYLIST_ARTICLE_FAIL:

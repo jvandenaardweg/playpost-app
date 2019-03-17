@@ -1,6 +1,6 @@
 import React from 'react';
 import { Alert } from 'react-native';
-import TrackPlayer, { Track } from 'react-native-track-player';
+import TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
 import { withNavigation, NavigationInjectedProps } from 'react-navigation';
 import isEqual from 'react-fast-compare';
@@ -286,12 +286,12 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 }
 
 interface StateProps {
-  track: Track;
+  track: TrackPlayer.Track;
   playbackState: PlaybackStatus;
 }
 
 interface DispatchProps {
-  setTrack(track: Track): void;
+  setTrack(track: TrackPlayer.Track): void;
   createAudiofile(articleId: string): void;
   getPlaylists(): void;
   removeArticleFromPlaylist(articleId: string, playlistId: string): void;

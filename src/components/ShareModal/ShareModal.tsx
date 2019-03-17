@@ -12,7 +12,7 @@ import { RootState } from '../../reducers';
 
 interface State {
   isLoading: boolean;
-  errorMessage: string | null;
+  errorMessage: string;
 }
 
 interface Props {
@@ -30,7 +30,7 @@ interface Props {
 export class ShareModalContainer extends React.PureComponent<Props, State> {
   state = {
     isLoading: true,
-    errorMessage: null
+    errorMessage: ''
   };
 
   static defaultProps = {

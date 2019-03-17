@@ -11,14 +11,14 @@ const POST_AUTH_FAIL_MESSAGE = 'An unknown error happened while loggin you in. P
 
 export interface AuthState {
   isLoading: boolean;
-  token: string | null;
-  error: string | null;
+  token: string;
+  error: string;
 }
 
 const initialState: AuthState = {
   isLoading: false,
-  token: null,
-  error: null
+  token: '',
+  error: ''
 };
 
 /* tslint:disable no-any */
@@ -43,7 +43,7 @@ export function authReducer(state = initialState, action: AuthActionTypes): Auth
         ...state,
         isLoading: false,
         token: action.payload.data.token,
-        error: null
+        error: ''
       };
 
     case POST_AUTH_FAIL:
@@ -56,7 +56,7 @@ export function authReducer(state = initialState, action: AuthActionTypes): Auth
       return {
         ...state,
         isLoading: false,
-        token: null,
+        token: '',
         error: (action.error.response) ? action.error.response.data.message : POST_AUTH_FAIL_MESSAGE
       };
 

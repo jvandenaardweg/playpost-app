@@ -15,10 +15,10 @@ import { RootState } from '../reducers';
 
 interface State {
   isLoading: boolean;
-  email: string | null;
-  password: string | null;
-  passwordValidation: string | null;
-  validationError: string | null;
+  email: string;
+  password: string;
+  passwordValidation: string;
+  validationError: string;
 }
 
 interface IProps {
@@ -26,8 +26,8 @@ interface IProps {
 }
 
 interface StateProps {
-  authError: string | null;
-  userError: string | null;
+  authError: string;
+  userError: string;
 }
 
 interface DispatchProps {

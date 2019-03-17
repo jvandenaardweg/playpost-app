@@ -20,7 +20,7 @@ import { RootState } from '../../reducers';
 interface State {
   isLoading: boolean;
   isRefreshing: boolean;
-  errorMessage: string | null;
+  errorMessage: string;
 }
 
 interface Props {
@@ -33,7 +33,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
   state = {
     isLoading: true, // Show loading upon mount, because we fetch the playlists of the user
     isRefreshing: false,
-    errorMessage: null
+    errorMessage: ''
   };
 
   static contextType = NetworkContext;
@@ -69,7 +69,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
       await this.props.getPlaylists();
 
       // Cleanup the error message if it's there
-      if (errorMessage) return this.setState({ errorMessage: null });
+      if (errorMessage) return this.setState({ errorMessage: '' });
     } catch (err) {
       const customErrorMessage = 'There was an error while getting your playlist.';
 

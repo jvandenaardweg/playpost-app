@@ -6,7 +6,7 @@ const playlistsSelector = (state: RootState): PlaylistsState => state.playlists;
 
 export const getPlaylistsError = createSelector(
   [playlistsSelector],
-  (playlists): string | null => playlists.error
+  (playlists): string => playlists.error
 );
 
 export const getIsLoading = createSelector(

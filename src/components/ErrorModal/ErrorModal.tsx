@@ -4,8 +4,8 @@ import { Button } from 'react-native-elements';
 
 interface Props {
   onPressAction(url: string): void;
-  message: string | null;
-  action: string | null;
+  message: string;
+  action: string;
 }
 
 export const ErrorModal: React.FC<Props> = ({ message, action, onPressAction }) => (
