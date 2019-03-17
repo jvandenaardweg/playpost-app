@@ -2,11 +2,9 @@ import React from 'react';
 import { View, Text, TouchableHighlight, TouchableOpacity, ScrollView, NativeScrollEvent } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import TrackPlayer from 'react-native-track-player';
-import { Slider } from 'react-native-elements';
 
 import { ProgressBar } from '../ProgressBar';
 import { PlayPauseControl } from '../PlayPauseControl';
-import colors from '../../../constants/colors';
 
 import styles from './styles';
 
