@@ -157,6 +157,29 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
 
   handleOnPressPrevious = () => Alert.alert('Should play previous article.');
 
+  handleOnProgressChange = async (percentage: number) => {
+    const trackId = await TrackPlayer.getCurrentTrack();
+    const track = await TrackPlayer.getTrack(trackId);
+    // const duration = await TrackPlayer.getDuration();
+    if (track && track.duration) {
+      const seekToSeconds = track.duration * percentage;
+      await TrackPlayer.seekTo(seekToSeconds);
+      console.log(`Change progress to: ${seekToSeconds}`);
+    }
+
+    // const { playbackState } = this.props;
+    // console.log('Change', `${percentage.toFixed(2)}%`, track.duration, duration);
+    // Don't try to change the progress when a track is loading or buffering
+    // const notInPlaybackState = ['loading', 'buffering'];
+    // if (notInPlaybackState.includes(playbackState)) {
+    //   return;
+    // }
+
+    // await TrackPlayer.seekTo(seekToSeconds);
+
+    // console.log(`Change progress to: ${seekToSeconds}`);
+  }
+
   handleOnScroll = (event: { nativeEvent: NativeScrollEvent }) => {
     this.setState({ scrolled: event.nativeEvent.contentOffset.y });
   }
@@ -205,6 +228,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
         onPressPrevious={this.handleOnPressPrevious}
         onPressClose={this.handleOnPressClose}
         onScroll={this.handleOnScroll}
+        onProgressChange={this.handleOnProgressChange}
       />
     );
   }

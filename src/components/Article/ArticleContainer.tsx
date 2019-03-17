@@ -180,6 +180,10 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     return TrackPlayer.play();
   }
 
+  downloadAudiofile = async (url) => {
+    //
+  }
+
   handleSetTrack() {
     const { article } = this.props;
 
@@ -189,12 +193,16 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     const album = (article.categoryName && article.sourceName) ? `${article.categoryName} on ${article.sourceName}` : '';
 
     console.log('handle set track');
+
+    // TODO: do we already have the file locally? Just use that
+    // TODO: file not locally, download it, after that, set it
     return this.props.setTrack(
       {
         artist,
         album,
         id: this.articleAudiofiles[0].id,
         title: article.title,
+        // url: require('../../example-mp3/015cc485-c83b-4fb2-96cd-db6543af516e.mp3'),
         url: this.articleAudiofiles[0].url,
         duration: this.articleAudiofiles[0].length,
         contentType: 'audio/mpeg'
