@@ -125,7 +125,6 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         await this.props.getPlaylists(); // Get the playlist, it contains the article with the newly created audiofile
         this.handleSetTrack(); // Set the track. Upon track change, the track with automatically play.
       } catch (err) {
-        this.setState({ isLoading: false, isActive: false, isCreatingAudiofile: false });
         Alert.alert(
           'Oops!',
           'There was a problem while creating the audio for this article.',
@@ -141,6 +140,8 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
           ],
           { cancelable: true }
         );
+      } finally {
+        this.setState({ isLoading: false, isActive: false, isCreatingAudiofile: false });
       }
     });
   }
