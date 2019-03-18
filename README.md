@@ -37,3 +37,33 @@ Fix from: https://stackoverflow.com/a/54542903/3194288
 ## Several errors relating to React imports
 When you get build errors about missing imports with React related files with the `.h` extension. Make sure `Parallelize Builds` is off for both schemes. In `Product` > `Scheme` > `Manage schemes` > Open the `Build` tab > Uncheck `Parallelize Builds`. Do this for both the `Readto` and `ReadtoShareExtension`.
 This will make sure React get's build first.
+
+## iOS Deployment Target 10.0
+The Deployment Target is locked at `10.0` because of the Share Extension. Any version lower than `10.0` makes the Share Extension not work in Safari in iOS. Pretty important.
+
+## Share Extension iOS Target Properties
+Make sure the Share Extension has the properties below. This makes sure the Share Extension is visible in; Safari, other browsers like Chrome ánd other apps that share URL's from within the App. So our Share Extension shows in those apps.
+
+```
+<key>NSExtension</key>
+<dict>
+  <key>NSExtensionAttributes</key>
+  <dict>
+    <key>NSExtensionActivationRule</key>
+    <dict>
+      <key>NSExtensionActivationDictionaryVersion</key>
+      <integer>2</integer>
+      <key>NSExtensionActivationSupportsText</key>
+      <true/>
+      <key>NSExtensionActivationSupportsWebPageWithMaxCount</key>
+      <integer>1</integer>
+      <key>NSExtensionActivationSupportsWebURLWithMaxCount</key>
+      <integer>1</integer>
+    </dict>
+  </dict>
+  <key>NSExtensionMainStoryboard</key>
+  <string>MainInterface</string>
+  <key>NSExtensionPointIdentifier</key>
+  <string>com.apple.share-services</string>
+</dict>
+  ```
