@@ -3,6 +3,7 @@ import {
 } from 'react-native';
 
 import Colors from '../../constants/colors';
+import colors from '../../constants/colors';
 
 export default StyleSheet.create({
   container: {
@@ -11,8 +12,12 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Colors.appBackground,
-    paddingRight: 24,
-    paddingLeft: 24
+    paddingRight: 12,
+    paddingLeft: 12,
+  },
+  content: {
+    alignItems: 'center',
+    // backgroundColor: 'green'
   },
   title: {
     textAlign: 'center',
@@ -27,10 +32,25 @@ export default StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     color: Colors.paragraphGrayed,
-    paddingRight: 36,
-    paddingLeft: 36
+    paddingRight: 18,
+    paddingLeft: 18,
+    marginBottom: 14
   },
   button: {
-    marginTop: 24
+    marginTop: 24,
+    paddingLeft: 24,
+    paddingRight: 24
+  },
+  icon: {
+    marginTop: 12,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: colors.grayLight,
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 3,
+    opacity: 0.8
   }
 });

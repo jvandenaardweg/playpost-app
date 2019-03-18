@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, Alert } from 'react-native';
+import { FlatList, Alert, Linking } from 'react-native';
 import { connect } from 'react-redux';
 import RNRestart from 'react-native-restart';
 
@@ -134,7 +134,16 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
 
     // Empty state
     if (!isLoading && !isRefreshing && !this.hasArticles) {
-      return <EmptyState title="Nothing in your playlist, yet" description="You can add articles by using the share icon in every app on your phone." />;
+      return (
+        <EmptyState
+          title="Nothing in your playlist, yet"
+          icon="share"
+          subtitle="Easily add articles to your playlist by using the share icon in every app on your phone:"
+          description="Try it out by opening your browser, browse to an article, tap on the share icon and select the Readto App icon to add the article to your playlist."
+          actionButtonLabel="Open webrowser"
+          actionButtonOnPress={() => Linking.openURL('https://www.google.nl')}
+        />
+      );
     }
 
     return (
