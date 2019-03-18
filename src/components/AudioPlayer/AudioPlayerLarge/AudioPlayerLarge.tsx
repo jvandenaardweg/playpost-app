@@ -68,19 +68,7 @@ export class AudioPlayerLarge extends React.PureComponent<Props> {
             </ScrollView>
           </View>
           <View style={styles.controlsContainer}>
-            <View style={styles.progressBarRow}>
-              <ProgressBar onProgressChange={onProgressChange} />
-              {/* <Slider
-                minimumValue={0}
-                maximumValue={1}
-                minimumTrackTintColor={colors.tintColor}
-                maximumTrackTintColor={colors.grayDark}
-                thumbTintColor={colors.white}
-                thumbStyle={{ width: 16, height: 16 }}
-                trackStyle={{ height: 3, borderRadius: 3 }}
-                onSlidingComplete={onProgressChange}
-              /> */}
-            </View>
+            <ProgressBar onProgressChange={onProgressChange} />
             <View style={styles.controlsRow}>
               <View><TouchableHighlight onPress={onPressPrevious}><Icon name="step-backward" size={22} color="#fff" /></TouchableHighlight></View>
               <View><PlayPauseControl size={42} isLoading={isLoading} isPlaying={isPlaying} onPressPlay={onPressPlay} /></View>
