@@ -20,9 +20,9 @@ export default StyleSheet.create({
   },
   title: {
     textAlign: 'center',
-    fontFamily: 'Merriweather-Regular',
+    // fontFamily: 'Merriweather-Regular',
     fontSize: 22,
-    fontWeight: '400',
+    fontWeight: '600',
     color: colors.titleDefault,
     marginBottom: 20
   },

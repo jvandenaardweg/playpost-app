@@ -10,7 +10,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     backgroundColor: '#037DE2',
-    padding: 14,
+    padding: 16,
     paddingTop: 0,
     paddingBottom: '27%'
   },
@@ -33,7 +33,7 @@ export default StyleSheet.create({
     backgroundColor: 'transparent',
     textAlign: 'center',
     marginBottom: 24,
-    fontWeight: '500',
-    fontFamily: 'Merriweather-Regular'
+    fontWeight: '700',
+    // fontFamily: 'Merriweather-Regular'
   }
 });
