@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
 import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
+import joi from 'joi';
 
 import { getPlaylists, addArticleToPlaylistByUrl, PlaylistsState } from '../../reducers/playlists';
 
@@ -38,7 +39,24 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
   };
 
   componentDidMount() {
+    const { url } = this.props;
+
+    if (!this.isValidUrl(url)) {
+      return this.setState({ errorMessage: `Could not share this URL: ${url}`, isLoading: false });
+    }
+
     this.fetchPlaylists();
+
+  }
+
+  isValidUrl(url: string) {
+    const schema = joi.object().keys({
+      url: joi.string().uri().required()
+    });
+
+    const { error } = joi.validate({ url }, schema);
+
+    return error === null;
   }
 
   fetchPlaylists = async () => {
