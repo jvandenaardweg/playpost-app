@@ -34,7 +34,7 @@ class OnboardingSliderComponent extends React.PureComponent<Props> {
     {
       key: 'slide3',
       title: 'Easily save from every app',
-      text: 'A share icon is added in every app on your phone so you can easily add new articles. Just click the Share icon and add [App name].',
+      text: 'A share icon is added in every app on your phone so you can easily add new articles. Just click the share icon to add an article to your playlist.',
     },
   ];
 
