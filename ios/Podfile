@@ -23,6 +23,8 @@ target 'Readto' do
 
   # pod 'rn-fetch-blob', :path => '../node_modules/rn-fetch-blob'
 
+  # pod 'react-native-video', :path => '../node_modules/react-native-video'
+
   target 'ReadtoShareExtension' do
     inherit! :complete
   end

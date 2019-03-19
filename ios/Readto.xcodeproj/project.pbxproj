@@ -103,6 +103,8 @@
 		8CD3D19A220F786A0030C131 /* libReactNativeShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5A7DD9220F230600ECCC65 /* libReactNativeShareExtension.a */; };
 		8CD3D19B220F7B090030C131 /* libRNTrackPlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C43758E220813C4000A15FE /* libRNTrackPlayer.a */; };
 		8CD3D19E220F7B5B0030C131 /* dummy2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3D19D220F7B5B0030C131 /* dummy2.swift */; };
+		8CD47C372240D0A900D95B46 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD47C142240D09E00D95B46 /* libRCTVideo.a */; };
+		8CD47C382240D0BA00D95B46 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD47C142240D09E00D95B46 /* libRCTVideo.a */; };
 		8CE6CA882237F3E1006512BB /* libRNCNetInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE6CA802237F3D5006512BB /* libRNCNetInfo.a */; };
 		8CE6CA892237F3EC006512BB /* libRNCNetInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE6CA802237F3D5006512BB /* libRNCNetInfo.a */; };
 		8CF6C612220F27E300A07384 /* libAppCenterReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAAAAFD22061A2200E67A62 /* libAppCenterReactNative.a */; };
@@ -512,6 +514,20 @@
 			remoteGlobalIDString = B5C32A36220C603B000FFB8D;
 			remoteInfo = "RNGestureHandler-tvOS";
 		};
+		8CD47C132240D09E00D95B46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CD47BF92240D09E00D95B46 /* RCTVideo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RCTVideo;
+		};
+		8CD47C152240D09E00D95B46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CD47BF92240D09E00D95B46 /* RCTVideo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 641E28441F0EEC8500443AF6;
+			remoteInfo = "RCTVideo-tvOS";
+		};
 		8CE6CA7F2237F3D5006512BB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8CE6CA522237F3D5006512BB /* RNCNetInfo.xcodeproj */;
@@ -619,6 +635,7 @@
 		8CD3D196220F6C870030C131 /* libPods-Readto-ReadtoShareExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-Readto-ReadtoShareExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD3D19C220F7B5B0030C131 /* ReadtoShareExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReadtoShareExtension-Bridging-Header.h"; sourceTree = "<group>"; };
 		8CD3D19D220F7B5B0030C131 /* dummy2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dummy2.swift; sourceTree = "<group>"; };
+		8CD47BF92240D09E00D95B46 /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
 		8CE153E601D849F1A72C8047 /* AppCenter-Config.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; name = "AppCenter-Config.plist"; path = "Readto/AppCenter-Config.plist"; sourceTree = "<group>"; };
 		8CE6CA522237F3D5006512BB /* RNCNetInfo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCNetInfo.xcodeproj; path = "../node_modules/@react-native-community/netinfo/ios/RNCNetInfo.xcodeproj"; sourceTree = "<group>"; };
 		8CF6C610220F27B800A07384 /* ReadtoShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReadtoShareExtension.entitlements; sourceTree = "<group>"; };
@@ -674,6 +691,7 @@
 				8CAA1197220F2CCE002741D6 /* libPods-Readto-ReadtoShareExtension.a in Frameworks */,
 				8C437591220813CD000A15FE /* libRNTrackPlayer.a in Frameworks */,
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
+				8CD47C382240D0BA00D95B46 /* libRCTVideo.a in Frameworks */,
 				8C15B036223EB688001058F0 /* libRNFetchBlob.a in Frameworks */,
 				8CD2ED58223E70BC00A054E6 /* libRNFS.a in Frameworks */,
 				8CE6CA882237F3E1006512BB /* libRNCNetInfo.a in Frameworks */,
@@ -708,6 +726,7 @@
 				8CAA1198220F2FC3002741D6 /* JavaScriptCore.framework in Frameworks */,
 				8C5A7DF1220F23EC00ECCC65 /* libRCTWebSocket.a in Frameworks */,
 				8C5A7DF2220F23EC00ECCC65 /* libReact.a in Frameworks */,
+				8CD47C372240D0A900D95B46 /* libRCTVideo.a in Frameworks */,
 				8C4182FF22365409002F5B00 /* libRNKeychain.a in Frameworks */,
 				8C15B035223EB67E001058F0 /* libRNFetchBlob.a in Frameworks */,
 				8CD2ED59223E70C800A054E6 /* libRNFS.a in Frameworks */,
@@ -925,6 +944,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				8CD47BF92240D09E00D95B46 /* RCTVideo.xcodeproj */,
 				8C15AFFB223EB671001058F0 /* RNFetchBlob.xcodeproj */,
 				8CD2ED1B223E70AA00A054E6 /* RNFS.xcodeproj */,
 				8CE6CA522237F3D5006512BB /* RNCNetInfo.xcodeproj */,
@@ -1109,6 +1129,15 @@
 			children = (
 				8CD2ED4B223E70AB00A054E6 /* libRNFS.a */,
 				8CD2ED4D223E70AB00A054E6 /* libRNFS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8CD47BFA2240D09E00D95B46 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8CD47C142240D09E00D95B46 /* libRCTVideo.a */,
+				8CD47C162240D09E00D95B46 /* libRCTVideo.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1332,6 +1361,10 @@
 				{
 					ProductGroup = 00C302E01ABCB9EE00DB3ED1 /* Products */;
 					ProjectRef = 00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */;
+				},
+				{
+					ProductGroup = 8CD47BFA2240D09E00D95B46 /* Products */;
+					ProjectRef = 8CD47BF92240D09E00D95B46 /* RCTVideo.xcodeproj */;
 				},
 				{
 					ProductGroup = 139FDEE71B06529A00C62182 /* Products */;
@@ -1743,6 +1776,20 @@
 			fileType = archive.ar;
 			path = "libRNGestureHandler-tvOS.a";
 			remoteRef = 8CD2ED50223E70AB00A054E6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8CD47C142240D09E00D95B46 /* libRCTVideo.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTVideo.a;
+			remoteRef = 8CD47C132240D09E00D95B46 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8CD47C162240D09E00D95B46 /* libRCTVideo.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTVideo.a;
+			remoteRef = 8CD47C152240D09E00D95B46 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		8CE6CA802237F3D5006512BB /* libRNCNetInfo.a */ = {
