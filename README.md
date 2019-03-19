@@ -39,7 +39,7 @@ When you get build errors about missing imports with React related files with th
 This will make sure React get's build first.
 
 ## iOS Deployment Target 10.0
-The Deployment Target is locked at `10.0` because of the Share Extension. Any version lower than `10.0` makes the Share Extension not work in Safari in iOS. Pretty important.
+The Deployment Target is locked at `10.0` because of the Share Extension. Any version higher than `10.0` makes the Share Extension not work in Safari in iOS. Pretty important.
 
 ## Share Extension iOS Target Properties
 Make sure the Share Extension has the properties below. This makes sure the Share Extension is visible in; Safari, other browsers like Chrome ánd other apps that share URL's from within the App. So our Share Extension shows in those apps.
