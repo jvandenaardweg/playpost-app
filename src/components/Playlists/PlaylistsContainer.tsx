@@ -137,11 +137,8 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
       return (
         <EmptyState
           title="Nothing in your playlist, yet"
-          icon="share"
-          subtitle="Easily add articles to your playlist by using the share icon in every app on your phone:"
-          description="Try it out by opening your browser, browse to an article, tap on the share icon and select the Readto App icon to add the article to your playlist."
-          actionButtonLabel="Open webrowser"
-          actionButtonOnPress={() => Linking.openURL('https://www.google.nl')}
+          description="Easily add articles to your playlist by using the share icon in every app on your phone:"
+          localVideo={require('../../assets/video/help/enabling-sharing/enable-sharing-square.m4v')}
         />
       );
     }

@@ -5,7 +5,7 @@ import styles from './styles';
 
 interface Props {
   url?: string;
-  source?: any;
+  localVideo?: any;
 }
 export class VideoPlayer extends React.PureComponent<Props> {
 
@@ -16,13 +16,15 @@ export class VideoPlayer extends React.PureComponent<Props> {
   handleOnError = () => {};
 
   render() {
-    const { url, source } = this.props;
+    const { url, localVideo } = this.props;
+
+    const source = (localVideo) ? localVideo : { uri: url };
 
     return (
-      <Video source={(source) ? source : { uri: url }}   // Can be a URL or a local file.
+      <Video source={source}
         controls
         repeat
-        // fullscreen
+        playInBackground={false}
         ref={this.videoPlayerRef}
         onBuffer={this.handleOnBuffer} // Callback when remote video is buffering
         onError={this.handleOnError} // Callback when video cannot be loaded
