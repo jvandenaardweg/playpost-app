@@ -24,6 +24,7 @@
     "@types/react-native": "^0.57.39",
     "@types/react-native-restart": "0.0.0",
     "@types/react-native-vector-icons": "^4.6.4",
+    "@types/react-native-video": "^3.1.2",
     "@types/react-navigation": "^3.0.5",
     "@types/react-redux": "^7.0.3",
     "@types/react-test-renderer": "^16.8.1",
@@ -94,7 +95,5 @@
     },
     "test-runner": "jest"
   },
-  "devDependencies": {
-    "@types/react-native-video": "^3.1.2"
-  }
+  "devDependencies": {}
 }
