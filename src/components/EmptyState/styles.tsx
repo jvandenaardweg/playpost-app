@@ -2,7 +2,6 @@ import {
   StyleSheet
 } from 'react-native';
 
-import Colors from '../../constants/colors';
 import colors from '../../constants/colors';
 
 export default StyleSheet.create({
@@ -11,7 +10,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: Colors.appBackground,
+    backgroundColor: colors.appBackground,
     paddingRight: 12,
     paddingLeft: 12,
   },
@@ -24,14 +23,14 @@ export default StyleSheet.create({
     fontFamily: 'Merriweather-Regular',
     fontSize: 22,
     fontWeight: '400',
-    color: Colors.titleDefault,
+    color: colors.titleDefault,
     marginBottom: 20
   },
   description: {
     textAlign: 'center',
     fontSize: 16,
     lineHeight: 24,
-    color: Colors.paragraphGrayed,
+    color: colors.paragraphGrayed,
     paddingRight: 18,
     paddingLeft: 18,
     marginBottom: 14

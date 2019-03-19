@@ -3,6 +3,7 @@ import Video from 'react-native-video';
 
 import styles from './styles';
 
+/* tslint:disable no-any */
 interface Props {
   url?: string;
   localVideo?: any;

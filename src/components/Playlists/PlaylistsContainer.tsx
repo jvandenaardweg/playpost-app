@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, Alert, Linking } from 'react-native';
+import { FlatList, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import RNRestart from 'react-native-restart';
 

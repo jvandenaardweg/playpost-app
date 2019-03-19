@@ -5,6 +5,7 @@ import styles from './styles';
 import { Button } from 'react-native-elements';
 import { VideoPlayer } from '../VideoPlayer';
 
+/* tslint:disable no-any */
 interface Props {
   title: string;
   description: string;
