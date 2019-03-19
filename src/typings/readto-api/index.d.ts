@@ -34,7 +34,7 @@ namespace Api {
     languageCode: string;
     sourceName: string;
     imageUrl: string | null;
-    readingTime: string | null;
+    readingTime: number | null;
     authorName: string | null;
     authorUrl: string | null;
     categoryName: string | null;
