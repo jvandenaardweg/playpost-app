@@ -28,6 +28,7 @@
     "@types/react-navigation": "^3.0.5",
     "@types/react-redux": "^7.0.3",
     "@types/react-test-renderer": "^16.8.1",
+    "@types/valid-url": "^1.0.2",
     "appcenter": "1.12.2",
     "appcenter-analytics": "1.12.2",
     "appcenter-crashes": "1.12.2",
@@ -79,6 +80,7 @@
     "tslint-react": "^3.6.0",
     "typescript": "^3.3.3333",
     "typescript-tslint-plugin": "^0.3.1",
+    "valid-url": "^1.0.9",
     "why-did-you-update": "^1.0.6"
   },
   "jest": {
