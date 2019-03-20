@@ -32,8 +32,8 @@ module.exports = async function PlaybackService() {
     TrackPlayer.stop();
   });
 
-  TrackPlayer.addEventListener('remote-seek', (position: number) => {
-    TrackPlayer.seekTo(position);
+  TrackPlayer.addEventListener('remote-seek', (data: { position: number }) => {
+    TrackPlayer.seekTo(data.position);
   });
 
   // TrackPlayer.addEventListener('remote-duck', (data: { paused: boolean, permanent: boolean, ducking: boolean}) => {
