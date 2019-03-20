@@ -262,6 +262,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
             title: article.title,
             url: localAudiofilePath,
             duration: audiofile.length,
+            artwork: require('../../assets/images/logo-1024.png'),
             contentType: 'audio/mpeg'
           }
         );
