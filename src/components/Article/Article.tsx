@@ -40,7 +40,7 @@ export const Article: React.FC<Props> = React.memo(({
       <Text style={styles.title} ellipsizeMode="tail" numberOfLines={2}>{title}</Text>
     </TouchableOpacity>
     <View style={styles.sectionBody}>
-      <View style={styles.sectionMeta}>
+      <TouchableOpacity style={styles.sectionMeta} activeOpacity={1} onPress={() => onOpenUrl(url)}>
         <View style={styles.source}>
           <Icon
             name="bookmark"
@@ -55,7 +55,7 @@ export const Article: React.FC<Props> = React.memo(({
         <View style={styles.description}>
           <Text style={styles.descriptionText} ellipsizeMode="tail" numberOfLines={3}>{description}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
       {onPlayPress && (
         <View style={styles.sectionControl}>
           <PlayButton
