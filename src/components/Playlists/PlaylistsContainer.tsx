@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, Alert } from 'react-native';
+import { FlatList, Alert, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import RNRestart from 'react-native-restart';
 
@@ -21,6 +21,7 @@ interface State {
   isLoading: boolean;
   isRefreshing: boolean;
   errorMessage: string;
+  hideHelpVideo: boolean;
 }
 
 interface Props {
@@ -33,7 +34,8 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
   state = {
     isLoading: true, // Show loading upon mount, because we fetch the playlists of the user
     isRefreshing: false,
-    errorMessage: ''
+    errorMessage: '',
+    hideHelpVideo: false
   };
 
   static contextType = NetworkContext;
@@ -52,8 +54,12 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
     return false;
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { isConnected } = this.context;
+
+    const hideHelpVideo = await AsyncStorage.getItem('hideHelpVideo');
+
+    if (hideHelpVideo) this.setState({ hideHelpVideo: true });
 
     if (isConnected) {
       this.fetchPlaylists();
@@ -115,10 +121,20 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
     this.setState({ isLoading, isRefreshing: true }, () => this.fetchPlaylists());
   }
 
+  handleOnHideVideo = async () => {
+    await AsyncStorage.setItem('hideHelpVideo', 'true');
+    this.setState({ hideHelpVideo: true });
+  }
+
+  handleOnShowVideo = async () => {
+    await AsyncStorage.removeItem('hideHelpVideo');
+    this.setState({ hideHelpVideo: false });
+  }
+
   render() {
     // const { setTrack, track, playbackState, createAudiofile, articles } = this.props;
     const { articles, defaultPlaylist } = this.props;
-    const { isLoading, isRefreshing, errorMessage } = this.state;
+    const { isLoading, isRefreshing, errorMessage, hideHelpVideo } = this.state;
     const { isConnected } = this.context;
 
     // Initial loading indicator
@@ -134,13 +150,27 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
 
     // Empty state
     if (!isLoading && !isRefreshing && !this.hasArticles) {
+      if (!hideHelpVideo) {
+        return (
+          <EmptyState
+            title="Nothing in your playlist, yet"
+            description="Easily add articles to your playlist by using the share icon in every app on your phone:"
+            localVideo={require('../../assets/video/help/enabling-sharing/enable-sharing-square.m4v')}
+            actionButtonLabel="Hide instructions"
+            actionButtonOnPress={() => this.handleOnHideVideo()}
+          />
+        );
+      }
+
       return (
         <EmptyState
           title="Nothing in your playlist, yet"
-          description="Easily add articles to your playlist by using the share icon in every app on your phone:"
-          localVideo={require('../../assets/video/help/enabling-sharing/enable-sharing-square.m4v')}
+          description="Easily add articles to your playlist by using the share icon in every app on your phone."
+          actionButtonLabel="Show instructions"
+            actionButtonOnPress={() => this.handleOnShowVideo()}
         />
       );
+
     }
 
     return (

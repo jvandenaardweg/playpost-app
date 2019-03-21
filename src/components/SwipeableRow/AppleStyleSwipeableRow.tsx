@@ -49,8 +49,8 @@ export class AppleStyleSwipeableRow extends React.PureComponent<Props> {
     }
 
     if (actionName === 'delete') {
-      console.log('Should show delete animation.');
-      // return this.props.removeArticle();
+      // console.log('Should show delete animation.');
+      return this.props.removeArticle();
     }
 
     Alert.alert(`Should ${actionName} this article.`);
