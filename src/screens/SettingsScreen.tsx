@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 import * as Keychain from 'react-native-keychain';
 import RNFS from 'react-native-fs';
+import VersionNumber from 'react-native-version-number';
+
 
 import { LOCAL_STORAGE_PATH } from '../constants/files';
 
@@ -60,7 +62,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
   }
 
   handleOnPressRow = () => {
-    Alert.alert('Changing this setting becomes available in later versions.');
+    Alert.alert('Not available', 'Changing this setting is not available yet. It will be available in later versions.');
   }
 
   handleOnPressClearCache = async () => {
@@ -89,23 +91,12 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
     {
       type: 'SECTION',
       header: 'Voice'.toUpperCase(),
-      footer:
-        'Changing the voice settings becomes available in later versions.',
       rows: [
         {
           title: 'Language',
           renderAccessory: () => (
             <Text style={{ color: '#999', marginRight: 6, fontSize: 18 }}>
-              English
-            </Text>
-          ),
-          onPress: this.handleOnPressRow
-        },
-        {
-          title: 'Accent',
-          renderAccessory: () => (
-            <Text style={{ color: '#999', marginRight: 6, fontSize: 18 }}>
-              American
+              English (US)
             </Text>
           ),
           onPress: this.handleOnPressRow
@@ -133,8 +124,6 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
     {
       type: 'SECTION',
       header: 'Audio'.toUpperCase(),
-      footer:
-        'Changing the audio settings becomes available in later versions.',
       rows: [
         {
           title: 'Quality',
@@ -147,17 +136,12 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
         },
         {
           title: 'Auto play next article',
-          renderAccessory: () => <Switch value onValueChange={() => {}} />,
+          renderAccessory: () => <Switch value={false} onValueChange={() => this.handleOnPressRow()} />,
           onPress: this.handleOnPressRow
         },
         {
           title: 'Auto archive played articles',
-          renderAccessory: () => <Switch value onValueChange={() => {}} />,
-          onPress: this.handleOnPressRow
-        },
-        {
-          title: 'Auto scroll text',
-          renderAccessory: () => <Switch value onValueChange={() => {}} />,
+          renderAccessory: () => <Switch value={false} onValueChange={() => this.handleOnPressRow()} />,
           onPress: this.handleOnPressRow
         }
       ],
@@ -165,18 +149,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
     {
       type: 'SECTION',
       header: 'Advanced'.toUpperCase(),
-      footer:
-        'Changing the advanced settings becomes available in later versions.',
       rows: [
-        {
-          title: 'Default browser',
-          renderAccessory: () => (
-            <Text style={{ color: '#999', marginRight: 6, fontSize: 18 }}>
-              Safari
-            </Text>
-          ),
-          onPress: this.handleOnPressRow
-        },
         {
           title: 'Clear cache',
           renderAccessory: () => (
@@ -191,8 +164,6 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
     {
       type: 'SECTION',
       header: 'Account'.toUpperCase(),
-      footer:
-        'Changing the account settings becomes available in later versions.',
       rows: [
         {
           title: 'Logout',
@@ -206,13 +177,12 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
         <Text
           style={{
             alignSelf: 'center',
-            fontSize: 18,
+            fontSize: 16,
             color: '#999',
-            marginBottom: 40,
-            marginTop: -30,
+            marginBottom: 40
           }}
         >
-          v1.2.3
+          Version: {VersionNumber.appVersion}, Build: {VersionNumber.buildVersion}
         </Text>
       ),
     },
