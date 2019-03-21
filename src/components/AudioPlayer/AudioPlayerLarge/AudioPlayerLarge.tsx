@@ -70,9 +70,9 @@ export class AudioPlayerLarge extends React.PureComponent<Props> {
           <View style={styles.controlsContainer}>
             <ProgressBar onProgressChange={onProgressChange} />
             <View style={styles.controlsRow}>
-              <View><TouchableHighlight onPress={onPressPrevious}><Icon name="step-backward" size={22} color="#fff" /></TouchableHighlight></View>
+              {/* <View><TouchableHighlight onPress={onPressPrevious}><Icon name="step-backward" size={22} color="#fff" /></TouchableHighlight></View> */}
               <View><PlayPauseControl size={42} isLoading={isLoading} isPlaying={isPlaying} onPressPlay={onPressPlay} /></View>
-              <View><TouchableHighlight onPress={onPressNext}><Icon name="step-forward" size={22} color="#fff" /></TouchableHighlight></View>
+              {/* <View><TouchableHighlight onPress={onPressNext}><Icon name="step-forward" size={22} color="#fff" /></TouchableHighlight></View> */}
             </View>
           </View>
         </View>
