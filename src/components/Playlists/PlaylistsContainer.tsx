@@ -157,8 +157,6 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
       if (showHelpVideo) {
         return (
           <EmptyState
-            title="Nothing in your playlist, yet"
-            description="Easily add articles to your playlist by using the share icon in every app on your phone:"
             localVideo={require('../../assets/video/help/enabling-sharing/enable-sharing-square.m4v')}
             actionButtonLabel="Hide instructions"
             actionButtonOnPress={() => this.handleOnHideVideo()}
@@ -171,7 +169,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
           title="Nothing in your playlist, yet"
           description="Easily add articles to your playlist by using the share icon in every app on your phone."
           actionButtonLabel="Show instructions"
-            actionButtonOnPress={() => this.handleOnShowVideo()}
+          actionButtonOnPress={() => this.handleOnShowVideo()}
         />
       );
 

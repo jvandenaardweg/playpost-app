@@ -8,7 +8,7 @@ export class ArchiveScreen extends React.PureComponent {
 
   render() {
     return (
-      <EmptyState title="Nothing in your archive, yet" description="Articles you’ve already listened will be shown in your archive" />
+      <EmptyState title="Your archived articles" description="Articles you’ve already listened will be shown in your archive. Not available yet in this version." />
     );
   }
 }

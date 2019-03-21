@@ -7,8 +7,8 @@ import { VideoPlayer } from '../VideoPlayer';
 
 /* tslint:disable no-any */
 interface Props {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   localVideo?: any;
   actionButtonLabel?: string;
   actionButtonOnPress?(): void;
@@ -17,9 +17,8 @@ interface Props {
 export const EmptyState: React.FC<Props> = ({ title, description, actionButtonLabel, localVideo, actionButtonOnPress }) => (
   <View style={styles.container}>
     <View style={styles.content}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.description}>{description}</Text>
-
+      {title && <Text style={styles.title}>{title}</Text>}
+      {description && <Text style={styles.description}>{description}</Text>}
       {localVideo && <VideoPlayer localVideo={localVideo} />}
       {actionButtonLabel && <Button buttonStyle={styles.button} title={actionButtonLabel} onPress={actionButtonOnPress} />}
     </View>

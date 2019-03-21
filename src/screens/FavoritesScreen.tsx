@@ -8,7 +8,7 @@ export class FavoritesScreen extends React.PureComponent {
 
   render() {
     return (
-      <EmptyState title="Your favorite articles" description="Articles you really liked can be added to your favorites" />
+      <EmptyState title="Your favorite articles" description="Articles you really liked can be added to your favorites. Not available yet in this version." />
     );
   }
 }
