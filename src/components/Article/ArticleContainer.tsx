@@ -330,7 +330,11 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     return (this.articleAudiofiles[0] && this.articleAudiofiles[0].length) ? this.articleAudiofiles[0].length : 0;
   }
 
-  handleOnOpenUrl = (url: string) => this.props.navigation.navigate('Browser', { url });
+  handleOnOpenUrl = (url: string) => {
+    const { article } = this.props;
+
+    return this.props.navigation.navigate('Browser', { url, title: article.title });
+  }
 
   render() {
     const { isCreatingAudiofile, isLoading, isPlaying, isActive } = this.state;

@@ -1,20 +1,44 @@
+// @ts-ignore
 import React from 'react';
-import { EmptyState } from '../components/EmptyState';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
+import { WebView } from 'react-native-webview';
+
+import { ButtonReload } from '../components/Header';
 
 interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;
 }
 
 export class BrowserScreen extends React.PureComponent<Props> {
-  static navigationOptions = {
-    title: 'Browser'
-  };
+
+  /* tslint:disable-next-line no-any */
+  private webviewRef = React.createRef<any>();
+
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }) => {
+    return {
+      title: navigation.getParam('title', null),
+      headerRight: <ButtonReload onPress={navigation.getParam('handleOnReload')} />
+    };
+  }
+
+  componentDidMount() {
+    this.props.navigation.setParams({ handleOnReload: this.handleOnReload });
+  }
+
+  handleOnReload = () => {
+    this.webviewRef.current && this.webviewRef.current.reload();
+  }
 
   render() {
     const url = this.props.navigation.getParam('url', null);
+
     return (
-      <EmptyState title="Should show browser" description={url} />
+      <WebView
+        ref={this.webviewRef}
+        source={{ uri: url }}
+        startInLoadingState={true}
+        useWebKit={true}
+       />
     );
   }
 }
