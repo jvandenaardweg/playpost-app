@@ -1,5 +1,6 @@
 import React from 'react';
-import { FlatList, Alert, AsyncStorage } from 'react-native';
+import { FlatList, Alert } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import { connect } from 'react-redux';
 import RNRestart from 'react-native-restart';
 
@@ -65,7 +66,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
   }
 
   async showOrHideHelpVideo() {
-    const showHelpVideo = await AsyncStorage.getItem('showHelpVideo');
+    const showHelpVideo = await AsyncStorage.getItem('@showHelpVideo');
 
     if (showHelpVideo) this.setState({ showHelpVideo: true });
   }
@@ -126,12 +127,12 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
   }
 
   handleOnHideVideo = async () => {
-    await AsyncStorage.removeItem('showHelpVideo');
+    await AsyncStorage.removeItem('@showHelpVideo');
     this.setState({ showHelpVideo: false });
   }
 
   handleOnShowVideo = async () => {
-    await AsyncStorage.setItem('showHelpVideo', 'true');
+    await AsyncStorage.setItem('@showHelpVideo', 'true');
     this.setState({ showHelpVideo: true });
   }
 
