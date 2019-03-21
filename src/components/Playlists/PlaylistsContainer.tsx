@@ -57,13 +57,17 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
   async componentDidMount() {
     const { isConnected } = this.context;
 
-    const showHelpVideo = await AsyncStorage.getItem('showHelpVideo');
-
-    if (showHelpVideo) this.setState({ showHelpVideo: true });
+    this.showOrHideHelpVideo();
 
     if (isConnected) {
       this.fetchPlaylists();
     }
+  }
+
+  async showOrHideHelpVideo() {
+    const showHelpVideo = await AsyncStorage.getItem('showHelpVideo');
+
+    if (showHelpVideo) this.setState({ showHelpVideo: true });
   }
 
   async fetchPlaylists() {
