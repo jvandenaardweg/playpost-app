@@ -160,8 +160,10 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   }
 
   renderAudioPlayerSmall() {
-    const { track } = this.props;
+    const { track, articles } = this.props;
     const { isLoading, isPlaying } = this.state;
+
+    if (!articles.length) return null;
 
     if (!track.id) {
       return (<EmptyPlayer />);
