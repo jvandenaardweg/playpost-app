@@ -226,7 +226,10 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     const { isConnected } = this.context;
     const { article } = this.props;
 
-    if (!article || !this.articleAudiofiles.length) return Alert.alert('Oops!', 'Could not play the article. Please try again.');
+    if (!article || !this.articleAudiofiles.length) {
+      this.setState({ isActive: false, isLoading: false });
+      return Alert.alert('Oops!', 'Could not play the article. Please try again.');
+    }
 
     this.props.resetPlaybackStatus();
 
