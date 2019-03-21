@@ -21,7 +21,7 @@ interface State {
   isLoading: boolean;
   isRefreshing: boolean;
   errorMessage: string;
-  hideHelpVideo: boolean;
+  showHelpVideo: boolean;
 }
 
 interface Props {
@@ -35,7 +35,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
     isLoading: true, // Show loading upon mount, because we fetch the playlists of the user
     isRefreshing: false,
     errorMessage: '',
-    hideHelpVideo: false
+    showHelpVideo: false
   };
 
   static contextType = NetworkContext;
@@ -57,9 +57,9 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
   async componentDidMount() {
     const { isConnected } = this.context;
 
-    const hideHelpVideo = await AsyncStorage.getItem('hideHelpVideo');
+    const showHelpVideo = await AsyncStorage.getItem('showHelpVideo');
 
-    if (hideHelpVideo) this.setState({ hideHelpVideo: true });
+    if (showHelpVideo) this.setState({ showHelpVideo: true });
 
     if (isConnected) {
       this.fetchPlaylists();
@@ -122,19 +122,19 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
   }
 
   handleOnHideVideo = async () => {
-    await AsyncStorage.setItem('hideHelpVideo', 'true');
-    this.setState({ hideHelpVideo: true });
+    await AsyncStorage.removeItem('showHelpVideo');
+    this.setState({ showHelpVideo: false });
   }
 
   handleOnShowVideo = async () => {
-    await AsyncStorage.removeItem('hideHelpVideo');
-    this.setState({ hideHelpVideo: false });
+    await AsyncStorage.setItem('showHelpVideo', 'true');
+    this.setState({ showHelpVideo: true });
   }
 
   render() {
     // const { setTrack, track, playbackState, createAudiofile, articles } = this.props;
     const { articles, defaultPlaylist } = this.props;
-    const { isLoading, isRefreshing, errorMessage, hideHelpVideo } = this.state;
+    const { isLoading, isRefreshing, errorMessage, showHelpVideo } = this.state;
     const { isConnected } = this.context;
 
     // Initial loading indicator
@@ -150,7 +150,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
 
     // Empty state
     if (!isLoading && !isRefreshing && !this.hasArticles) {
-      if (!hideHelpVideo) {
+      if (showHelpVideo) {
         return (
           <EmptyState
             title="Nothing in your playlist, yet"

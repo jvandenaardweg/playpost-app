@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableHighlight, TouchableOpacity, ScrollView, NativeScrollEvent } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, NativeScrollEvent } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import TrackPlayer from 'react-native-track-player';
 
@@ -43,8 +43,8 @@ export class AudioPlayerLarge extends React.PureComponent<Props> {
       track: { title, artist },
       articleText,
       onPressPlay,
-      onPressNext,
-      onPressPrevious,
+      // onPressNext,
+      // onPressPrevious,
       onPressClose,
       onScroll,
       onProgressChange
