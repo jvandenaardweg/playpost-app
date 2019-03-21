@@ -348,6 +348,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
           sourceName={article.sourceName}
           authorName={article.authorName}
           listenTimeInSeconds={this.listenTimeInSeconds}
+          readingTime={article.readingTime}
           onPlayPress={this.handleOnPlayPress}
           onOpenUrl={this.handleOnOpenUrl}
         />

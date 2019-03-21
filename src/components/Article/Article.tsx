@@ -15,6 +15,7 @@ interface Props {
   sourceName: string;
   authorName?: string | null;
   listenTimeInSeconds: number;
+  readingTime: number | null;
   onPlayPress?(): void;
   onOpenUrl(url: string): void;
 }
@@ -30,6 +31,7 @@ export const Article: React.FC<Props> = React.memo(({
   sourceName,
   authorName,
   listenTimeInSeconds,
+  readingTime,
   onPlayPress,
   onOpenUrl
 }) => (
@@ -62,19 +64,23 @@ export const Article: React.FC<Props> = React.memo(({
             isActive={isActive}
             onPress={onPlayPress}
           />
-          <Duration listenTimeInSeconds={listenTimeInSeconds} />
+          <Duration listenTimeInSeconds={listenTimeInSeconds} readingTime={readingTime} />
         </View>
       )}
     </View>
   </View>
 ));
 
-export const Duration = ({ listenTimeInSeconds }: {listenTimeInSeconds: number}) => {
-  if (!listenTimeInSeconds) {
-    return <Text style={styles.duration}>? min</Text>;
+export const Duration = (props: { listenTimeInSeconds: number, readingTime: number | null }) => {
+  if (props.listenTimeInSeconds) {
+    return <Text style={styles.duration}>{`${Math.ceil(props.listenTimeInSeconds / 60)} min`}</Text>;
   }
 
-  return <Text style={styles.duration}>{`${Math.ceil(listenTimeInSeconds / 60)} min`}</Text>;
+  if (props.readingTime) {
+    return <Text style={styles.duration}>{`${Math.ceil(props.readingTime / 60)} min`}</Text>;
+  }
+
+  return <Text style={styles.duration}>? min</Text>;
 };
 
 export const PlayButton = (props: { isPlaying?: boolean, onPress(): void, isLoading?: boolean, isActive?: boolean }) => (
