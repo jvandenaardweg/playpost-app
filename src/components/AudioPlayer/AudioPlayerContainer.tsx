@@ -22,7 +22,7 @@ type Props = StateProps & DispatchProps;
 
 class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   state = {
-    isLoading: false,
+    isLoading: true,
     isPlaying: false,
     showModal: false,
     scrolled: 0,
@@ -85,25 +85,21 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
 
   async componentDidUpdate(prevProps: Props) {
     const { playbackState, track } = this.props;
-    const { isLoading, isPlaying } = this.state;
+    const { isPlaying } = this.state;
 
     // Detect if track changed
     if (prevProps.track.id !== track.id) {
       this.handleTrackUpdate(track);
     }
 
-    if (playbackState && [TrackPlayer.STATE_BUFFERING].includes(playbackState) && !isLoading) {
-      this.setState({ isLoading: true });
-    }
-
-    // When a track is playing, update the state so we can show it as playing
+    // When a track is playing
     if (playbackState && [TrackPlayer.STATE_PLAYING].includes(playbackState) && !isPlaying) {
-      this.setState({ isPlaying: true });
+      this.setState({ isPlaying: true, isLoading: false });
     }
 
-    // When a track is loaded and ready to be played
-    if (playbackState && ['ready', TrackPlayer.STATE_NONE, TrackPlayer.STATE_STOPPED, TrackPlayer.STATE_PAUSED].includes(playbackState) && (isLoading || isPlaying)) {
-      this.setState({ isLoading: false, isPlaying: false });
+    // When a track is stopped or paused
+    if (playbackState && [TrackPlayer.STATE_STOPPED, TrackPlayer.STATE_PAUSED].includes(playbackState) && isPlaying) {
+      this.setState({ isPlaying: false });
     }
   }
 
