@@ -24,8 +24,6 @@ export const LoginForm: React.FC<Props> = ({
 }) => (
   <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
     <View style={styles.form}>
-      {/* <Text style={styles.title}>Welcome back!</Text> */}
-      {/* <Text style={styles.subtitle}>Test</Text> */}
 
       <TextInput
         placeholder="E-mail address"
