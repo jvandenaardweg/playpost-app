@@ -55,7 +55,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
     return false;
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     const { isConnected } = this.context;
 
     this.showOrHideHelpVideo();
