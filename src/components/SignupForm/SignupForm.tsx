@@ -43,7 +43,7 @@ export const SignupForm: React.FC<Props> = ({
       />
 
       <TextInput
-        placeholder="Password"
+        placeholder="Your password"
         autoCapitalize="none"
         secureTextEntry
         value={password}
@@ -56,7 +56,7 @@ export const SignupForm: React.FC<Props> = ({
       />
 
       <TextInput
-        placeholder="Password validation"
+        placeholder="Your password again to validate"
         autoCapitalize="none"
         secureTextEntry
         value={passwordValidation}
