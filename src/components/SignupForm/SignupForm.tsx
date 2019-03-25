@@ -38,6 +38,7 @@ export const SignupForm: React.FC<Props> = ({
         keyboardType="email-address"
         returnKeyType="done"
         clearButtonMode="always"
+        blurOnSubmit={false}
         autoFocus
       />
 
@@ -51,6 +52,7 @@ export const SignupForm: React.FC<Props> = ({
         style={styles.textField}
         returnKeyType="done"
         clearButtonMode="always"
+        blurOnSubmit={false}
       />
 
       <TextInput
@@ -63,6 +65,7 @@ export const SignupForm: React.FC<Props> = ({
         style={styles.textField}
         returnKeyType="done"
         clearButtonMode="always"
+        blurOnSubmit={false}
       />
 
       <View style={styles.errorContainer}>

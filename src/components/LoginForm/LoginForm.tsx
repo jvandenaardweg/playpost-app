@@ -37,6 +37,7 @@ export const LoginForm: React.FC<Props> = ({
         returnKeyType="done"
         clearButtonMode="always"
         autoFocus
+        blurOnSubmit={false}
         // onSubmitEditing={() => focusNextField()}
       />
 
@@ -50,6 +51,7 @@ export const LoginForm: React.FC<Props> = ({
         style={styles.textField}
         returnKeyType="done"
         clearButtonMode="always"
+        blurOnSubmit={false}
         // onSubmitEditing={() => focusNextField()}
       />
 
