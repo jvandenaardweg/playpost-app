@@ -69,6 +69,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
     try {
       await RNFS.unlink(LOCAL_STORAGE_PATH);
       this.setCacheSize();
+      Alert.alert('Cache is cleared!', 'You should now have more space available.');
     } catch (err) {
       Alert.alert('Oops!', 'We could not delete the cache. Please try again.');
     }
