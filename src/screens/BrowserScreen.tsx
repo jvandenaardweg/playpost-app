@@ -28,7 +28,12 @@ export class BrowserScreen extends React.PureComponent<Props, State> {
     };
   }
 
-  widthAnimation = new Animated.Value(0);
+  animatedWidth = new Animated.Value(0);
+
+  interpolatedWidth = this.animatedWidth.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0%', '100%']
+  });
 
   state = {
     loadProgress: ''
@@ -39,17 +44,19 @@ export class BrowserScreen extends React.PureComponent<Props, State> {
   }
 
   handleOnReload = () => {
-    this.widthAnimation = new Animated.Value(0);
     this.webviewRef.current && this.webviewRef.current.reload();
   }
 
+  handleOnLoadEnd = () => {
+    this.animatedWidth.setValue(0);
+  }
+
   handleOnLoadProgress = (event: any) => {
-    console.log(event.nativeEvent.progress);
     Animated.timing(
-      this.widthAnimation,
+      this.animatedWidth,
       {
         toValue: event.nativeEvent.progress,
-        duration: 200
+        duration: 300
       }
     ).start();
   }
@@ -57,20 +64,15 @@ export class BrowserScreen extends React.PureComponent<Props, State> {
   render() {
     const url = this.props.navigation.getParam('url', null);
 
-    const animatedWidth = this.widthAnimation.interpolate({
-      inputRange: [0, 1],
-      outputRange: ['0%', '100%'],
-    });
-
     return (
-      <View style={{ flex: 1 }}>
-        <Animated.View style={{ position: 'absolute', top: 0, left: 0, width: animatedWidth, backgroundColor: colors.tintColor, height: 5 }}></Animated.View>
+      <View style={{ flex: 1, backgroundColor: colors.appBackground }}>
+        <Animated.View style={{ position: 'absolute', top: 0, left: 0, width: this.interpolatedWidth, backgroundColor: colors.tintColor, height: 5 }}></Animated.View>
         <WebView
           ref={this.webviewRef}
           source={{ uri: url }}
-          // startInLoadingState={false}
-          // onLoadProgress={this.handleOnLoadProgress}
-          // useWebKit={true}
+          startInLoadingState={true}
+          onLoadProgress={this.handleOnLoadProgress}
+          onLoadEnd={this.handleOnLoadEnd}
         />
       </View>
 
