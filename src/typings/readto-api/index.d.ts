@@ -1,4 +1,4 @@
-namespace Api {
+declare namespace Api {
 
   export interface ResponseError {
     message: string;
