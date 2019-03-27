@@ -43,6 +43,7 @@ declare namespace Api {
     createdAt: Date;
     updatedAt: Date;
     audiofiles: Audiofile[];
+    status: ArticleStatus;
   }
 
   export interface User {
@@ -71,6 +72,13 @@ declare namespace Api {
     lastPlayedAt: Date | null;
     createdAt: Date;
     updatedAt: Date;
+  }
+
+  export enum ArticleStatus {
+    CRAWLING = 'crawling',
+    NEW = 'new',
+    FINISHED = 'finished',
+    FAILED = 'failed'
   }
 
 }
