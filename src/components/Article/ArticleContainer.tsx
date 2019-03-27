@@ -119,6 +119,10 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   async handleCreateAudiofile() {
     const { article } = this.props;
 
+    if (article.languageCode !== 'en') {
+      return Alert.alert('Language not supported', `In this version we only allow English articles. This article seems to have the language: ${article.languageCode}.`);
+    }
+
     this.setState({ isPlaying: false, isLoading: true, isActive: true, isCreatingAudiofile: true }, async () => {
       try {
         await this.props.createAudiofile(article.id);
