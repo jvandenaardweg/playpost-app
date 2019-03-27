@@ -31,6 +31,7 @@ declare namespace Api {
     title: string;
     description: string;
     url: string;
+    canonicalUrl: string;
     languageCode: string;
     sourceName: string;
     imageUrl: string | null;

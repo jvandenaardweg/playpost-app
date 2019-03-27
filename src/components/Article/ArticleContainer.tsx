@@ -340,6 +340,9 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     const { isCreatingAudiofile, isLoading, isPlaying, isActive } = this.state;
     const { article, seperated } = this.props;
 
+    // Use the canonicalUrl if we have it, else fall back to the normal url
+    const articleUrl = (article.canonicalUrl) ? article.canonicalUrl : article.url;
+
     return (
       <AppleStyleSwipeableRow
         removeArticle={this.handleRemoveArticle}
@@ -350,7 +353,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
           isActive={isActive}
           seperated={seperated}
           title={article.title}
-          url={article.url}
+          url={articleUrl}
           description={article.description}
           sourceName={article.sourceName}
           authorName={article.authorName}
