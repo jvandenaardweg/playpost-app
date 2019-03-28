@@ -45,7 +45,7 @@ export class AppleStyleSwipeableRow extends React.PureComponent<Props> {
 
     if (!isConnected) {
       this.close();
-      return Alert.alert(`You need are not connected to the internet. You need an active internet connection to ${actionName} this article.`);
+      return Alert.alert('No internet', `You need an active internet connection to listen to ${actionName} this article.`);
     }
 
     if (actionName === 'delete') {
@@ -99,7 +99,7 @@ export class AppleStyleSwipeableRow extends React.PureComponent<Props> {
 
     if (!isConnected) {
       this.close();
-      return Alert.alert('You need are not connected to the internet. You need an active internet connection to archive this article.');
+      return Alert.alert('No internet', 'You need an active internet connection to listen to archive this article.');
     }
 
     return Alert.alert('Should archive this article');
