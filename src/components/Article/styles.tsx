@@ -10,9 +10,9 @@ export default StyleSheet.create({
     width: '100%',
     // height: '100%'
   },
-  seperated: {
-    borderBottomColor: Colors.borderDefault,
-    borderBottomWidth: 1,
+  seperator: {
+    height: 1,
+    backgroundColor: Colors.borderDefault
   },
   sectionHeader: {
 

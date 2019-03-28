@@ -11,7 +11,6 @@ interface Props {
   isPlaying?: boolean;
   isActive?: boolean;
   isDownloaded?: boolean;
-  seperated?: boolean;
   title?: string;
   url: string;
   description?: string;
@@ -28,7 +27,6 @@ export const Article: React.FC<Props> = React.memo(({
   isPlaying,
   isActive,
   isDownloaded,
-  seperated,
   title,
   url,
   description,
@@ -39,7 +37,7 @@ export const Article: React.FC<Props> = React.memo(({
   onPlayPress,
   onOpenUrl
 }) => (
-  <View style={[styles.container, seperated ? styles.seperated : null]}>
+  <View style={styles.container}>
     <TouchableOpacity style={styles.sectionHeader} activeOpacity={1} onPress={() => onOpenUrl(url)}>
       <Text style={styles.title} ellipsizeMode="tail" numberOfLines={2} testID="article-title">{title}</Text>
     </TouchableOpacity>

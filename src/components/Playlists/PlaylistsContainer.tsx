@@ -18,6 +18,7 @@ import isEqual from 'react-fast-compare';
 import { RootState } from '../../reducers';
 
 import { getDownloadedAudiofiles } from '../../selectors/audiofiles';
+import { ArticleSeperator } from '../Article/ArticleSeperator';
 
 // import { GmailStyleSwipeableRow } from '../../components/SwipeableRow/GmailStyleSwipeableRow';
 
@@ -206,6 +207,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
         onRefresh={() => this.handleOnRefresh()}
         data={articles}
         keyExtractor={item => item.id.toString()}
+        ItemSeparatorComponent={() => <ArticleSeperator />}
         renderItem={({ item }) => (
           <ArticleContainer
             article={item}
