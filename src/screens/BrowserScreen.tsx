@@ -51,6 +51,8 @@ export class BrowserScreen extends React.PureComponent<Props, State> {
     this.animatedWidth.setValue(0);
   }
 
+  // TODO: fix no any
+  /* tslint:disable no-any */
   handleOnLoadProgress = (event: any) => {
     Animated.timing(
       this.animatedWidth,

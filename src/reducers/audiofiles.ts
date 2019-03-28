@@ -13,6 +13,8 @@ const initialState: AudiofilesState = {
   error: ''
 };
 
+// TODO: fix no any
+/* tslint:disable no-any */
 export function audiofilesReducer(state = initialState, action: any): AudiofilesState {
   switch (action.type) {
     case SET_DOWNLOADED_AUDIOFILE:

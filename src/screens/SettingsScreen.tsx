@@ -7,7 +7,6 @@ import * as Keychain from 'react-native-keychain';
 import RNFS from 'react-native-fs';
 import VersionNumber from 'react-native-version-number';
 
-
 import { LOCAL_STORAGE_PATH } from '../constants/files';
 
 import { resetAuthState } from '../reducers/auth';

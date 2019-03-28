@@ -15,5 +15,5 @@ export const ButtonReload: React.FC<Props> = React.memo(({ onPress }) => {
     <TouchableOpacity onPress={onPress} style={styles.container}>
       <Icon name="refresh-ccw" size={20} color={colors.tintColor} />
     </TouchableOpacity>
-  )
+  );
 });
