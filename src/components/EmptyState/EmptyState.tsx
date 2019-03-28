@@ -17,10 +17,10 @@ interface Props {
 export const EmptyState: React.FC<Props> = ({ title, description, actionButtonLabel, localVideo, actionButtonOnPress }) => (
   <View style={styles.container}>
     <View style={styles.content}>
-      {title && <Text style={styles.title}>{title}</Text>}
-      {description && <Text style={styles.description}>{description}</Text>}
+      {title && <Text style={styles.title} testID="empty-state-title">{title}</Text>}
+      {description && <Text style={styles.description} testID="empty-state-description">{description}</Text>}
       {localVideo && <VideoPlayer localVideo={localVideo} />}
-      {actionButtonLabel && <Button buttonStyle={styles.button} title={actionButtonLabel} onPress={actionButtonOnPress} />}
+      {actionButtonLabel && <Button buttonStyle={styles.button} title={actionButtonLabel} onPress={actionButtonOnPress} testID="empty-state-button" />}
     </View>
   </View>
 );

@@ -1,0 +1,167 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EmptyState basic rendering should render correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#EBEBEB",
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "paddingLeft": 12,
+      "paddingRight": 12,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#111111",
+          "fontSize": 22,
+          "fontWeight": "600",
+          "marginBottom": 20,
+          "textAlign": "center",
+        }
+      }
+      testID="empty-state-title"
+    >
+      Test empty state
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "#888888",
+          "fontSize": 16,
+          "lineHeight": 24,
+          "marginBottom": 14,
+          "paddingLeft": 18,
+          "paddingRight": 18,
+          "textAlign": "center",
+        }
+      }
+      testID="empty-state-description"
+    >
+      Test description
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`EmptyState full rendering should render correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#EBEBEB",
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "paddingLeft": 12,
+      "paddingRight": 12,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#111111",
+          "fontSize": 22,
+          "fontWeight": "600",
+          "marginBottom": 20,
+          "textAlign": "center",
+        }
+      }
+      testID="empty-state-title"
+    >
+      Test empty state
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "#888888",
+          "fontSize": 16,
+          "lineHeight": 24,
+          "marginBottom": 14,
+          "paddingLeft": 18,
+          "paddingRight": 18,
+          "textAlign": "center",
+        }
+      }
+      testID="empty-state-description"
+    >
+      Test description
+    </Text>
+    <View
+      style={
+        Object {
+          "borderRadius": 3,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+        testID="empty-state-button"
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#2089dc",
+              "borderColor": "#2089dc",
+              "borderRadius": 3,
+              "borderWidth": 0,
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "marginTop": 24,
+              "padding": 8,
+              "paddingLeft": 24,
+              "paddingRight": 24,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 18,
+                "paddingBottom": 1,
+                "paddingTop": 2,
+                "textAlign": "center",
+              }
+            }
+          >
+            Test button
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
