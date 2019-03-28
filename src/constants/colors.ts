@@ -1,5 +1,5 @@
 const tintColor = '#037DE2';
-const black = '#000000';
+const black = '#111111';
 const grayDark = '#383838';
 const grayLight = '#cccccc';
 const grayLightest = '#EEF0F4';
