@@ -15,6 +15,7 @@ import { API_URL } from '../constants/api';
 const persistConfig = {
   storage: AsyncStorage,
   key: 'root',
+  blacklist: ['player']
   // stateReconciler: hardSet
 };
 
