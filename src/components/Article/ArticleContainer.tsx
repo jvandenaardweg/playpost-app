@@ -24,6 +24,7 @@ interface State {
   isLoading: boolean;
   isPlaying: boolean;
   isActive: boolean;
+  isDownloaded: boolean;
   isCreatingAudiofile: boolean;
   isDownloadingAudiofile: boolean;
 }
@@ -41,6 +42,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     isLoading: false,
     isPlaying: false,
     isActive: false,
+    isDownloaded: false,
     isCreatingAudiofile: false,
     isDownloadingAudiofile: false
   };
@@ -101,6 +103,18 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         isCreatingAudiofile: false
       });
     }
+  }
+
+  componentDidMount() {
+    this.setDownloadedState();
+  }
+
+  setDownloadedState = async () => {
+    if (!this.articleAudiofiles.length) return;
+
+    const isDownloaded = await this.isAudiofileDownloaded(this.articleAudiofiles[0].id);
+
+    if (isDownloaded) this.setState({ isDownloaded: true });
   }
 
   get articleAudiofiles() {
@@ -226,6 +240,16 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     });
   }
 
+  isAudiofileDownloaded = async (audiofileId: string) => {
+    const localAudiofilePath = this.getLocalAudiofilePath(audiofileId);
+    const localAudiofileExists = await RNFS.exists(localAudiofilePath);
+    return localAudiofileExists;
+  }
+
+  getLocalAudiofilePath = (audiofileId: string) => {
+    return `file://${LOCAL_STORAGE_PATH}/${audiofileId}.mp3`;
+  }
+
   handleSetTrack = async () => {
     const { isConnected } = this.context;
     const { article } = this.props;
@@ -243,9 +267,8 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
       const audiofile = this.articleAudiofiles[0];
 
-      let localAudiofilePath = `file://${LOCAL_STORAGE_PATH}/${audiofile.id}.mp3`;
-
-      const localAudiofileExists = await RNFS.exists(localAudiofilePath);
+      let localAudiofilePath = this.getLocalAudiofilePath(audiofile.id);
+      const localAudiofileExists = await this.isAudiofileDownloaded(audiofile.id);
 
       if (!localAudiofileExists) {
         if (!isConnected) return Alert.alert('No internet', 'You need an active internet connection to listen to this article.');
@@ -254,6 +277,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
         if (downloadedLocalAudiofilePath) {
           localAudiofilePath = downloadedLocalAudiofilePath;
+          this.setState({ isDownloaded: true });
         } else {
           this.setState({ isLoading: false });
           return Alert.alert('Oops!', 'We could not download this article. Please try again.');
@@ -341,7 +365,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   render() {
-    const { isCreatingAudiofile, isLoading, isPlaying, isActive } = this.state;
+    const { isCreatingAudiofile, isLoading, isPlaying, isActive, isDownloaded } = this.state;
     const { article, seperated } = this.props;
 
     // Use the canonicalUrl if we have it, else fall back to the normal url
@@ -355,6 +379,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
           isLoading={isLoading || isCreatingAudiofile}
           isPlaying={isPlaying}
           isActive={isActive}
+          isDownloaded={isDownloaded}
           seperated={seperated}
           title={article.title}
           url={articleUrl}

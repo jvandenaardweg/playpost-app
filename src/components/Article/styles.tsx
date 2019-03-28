@@ -59,7 +59,11 @@ export default StyleSheet.create({
     alignItems: 'baseline',
   },
   sourceIcon: {
-    color: Colors.paragraphGrayed,
+    color: Colors.grayLight,
+    position: 'relative',
+    top: 1
+  },
+  downloadIcon: {
     position: 'relative',
     top: 1
   },

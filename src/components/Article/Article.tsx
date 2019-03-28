@@ -4,10 +4,13 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import styles from './styles';
 
+import colors from '../../constants/colors';
+
 interface Props {
   isLoading?: boolean;
   isPlaying?: boolean;
   isActive?: boolean;
+  isDownloaded?: boolean;
   seperated?: boolean;
   title: string;
   url: string;
@@ -24,6 +27,7 @@ export const Article: React.FC<Props> = React.memo(({
   isLoading,
   isPlaying,
   isActive,
+  isDownloaded,
   seperated,
   title,
   url,
@@ -43,10 +47,18 @@ export const Article: React.FC<Props> = React.memo(({
       <TouchableOpacity style={styles.sectionMeta} activeOpacity={1} onPress={() => onOpenUrl(url)}>
         <View style={styles.source}>
           <Icon
+            name="arrow-alt-circle-down"
+            size={12}
+            solid
+            style={styles.downloadIcon}
+            color={isDownloaded ? colors.tintColor : colors.grayLight}
+          />
+          {/* <Icon
             name="bookmark"
             size={10}
+            solid
             style={styles.sourceIcon}
-          />
+          /> */}
           <Text style={styles.sourceName}>
             {authorName && `${authorName} on `}
             {sourceName}
