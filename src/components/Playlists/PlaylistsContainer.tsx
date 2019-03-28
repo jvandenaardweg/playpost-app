@@ -161,13 +161,10 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
     return downloadedAudiofileIds.includes(article.audiofiles[0].id);
   }
 
-  render() {
-    // const { setTrack, track, playbackState, createAudiofile, articles } = this.props;
-    const { articles, defaultPlaylist } = this.props;
-    const { isLoading, isRefreshing, errorMessage, showHelpVideo } = this.state;
+  renderEmptyState = () => {
+    const { isLoading, isRefreshing, showHelpVideo, errorMessage } = this.state;
     const { isConnected } = this.context;
 
-    // Initial loading indicator
     if (isLoading) return <CenterLoadingIndicator />;
 
     // If there's an error, and we don't have playlist items yet
@@ -178,7 +175,6 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
       return <EmptyState title="No internet" description="There's no active internet connection, so we cannot display your playlist." actionButtonLabel="Try again" actionButtonOnPress={() => RNRestart.Restart()} />;
     }
 
-    // Empty state
     if (!isLoading && !isRefreshing && !this.hasArticles) {
       if (showHelpVideo) {
         return (
@@ -201,19 +197,28 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
 
     }
 
+    return null;
+  }
+
+  render() {
+    const { articles, defaultPlaylist } = this.props;
+    const { isRefreshing } = this.state;
+
     return (
       <FlatList
+        scrollEnabled={!!this.hasArticles}
+        contentContainerStyle={{ flexGrow: 1 }}
         refreshing={isRefreshing}
         onRefresh={() => this.handleOnRefresh()}
         data={articles}
         keyExtractor={item => item.id.toString()}
         ItemSeparatorComponent={() => <ArticleSeperator />}
+        ListEmptyComponent={() => this.renderEmptyState()}
         renderItem={({ item }) => (
           <ArticleContainer
             article={item}
             isDownloaded={this.isDownloaded(item)}
             playlistId={defaultPlaylist && defaultPlaylist.id}
-            seperated
           />
         )}
       />
