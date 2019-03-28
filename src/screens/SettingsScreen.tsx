@@ -14,6 +14,7 @@ import { resetAuthState } from '../reducers/auth';
 import { UserState, resetUserState } from '../reducers/user';
 import { resetPlayerState } from '../reducers/player';
 import { resetPlaylistsState } from '../reducers/playlists';
+import { persistor } from '../store';
 
 interface Props {
   resetAuthState(): void;
@@ -84,6 +85,9 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
     this.props.resetUserState();
     this.props.resetPlayerState();
     this.props.resetPlaylistsState();
+
+    // Remove the persisted state
+    await persistor.purge();
 
     this.props.navigation.navigate('Login');
   }
