@@ -167,7 +167,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     }
 
     if (!article.audiofiles.length && !isConnected) {
-      return Alert.alert('You need are not connected to the internet. You need an active internet connection to listen to this article.');
+      return Alert.alert('No internet', 'You need an active internet connection to listen to this article.');
     }
 
     // If we don't have an audiofile yet, we create it first
@@ -248,7 +248,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       const localAudiofileExists = await RNFS.exists(localAudiofilePath);
 
       if (!localAudiofileExists) {
-        if (!isConnected) return Alert.alert('You need are not connected to the internet. You need an active internet connection to download the audio of this article.');
+        if (!isConnected) return Alert.alert('No internet', 'You need an active internet connection to listen to this article.');
 
         const downloadedLocalAudiofilePath = await this.downloadAudiofile(audiofile.url, article.id, audiofile.id);
 
