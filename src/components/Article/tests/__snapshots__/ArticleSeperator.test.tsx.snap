@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArticleSeperator rendering should render correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#EEF0F4",
+      "height": 1,
+    }
+  }
+/>
+`;
