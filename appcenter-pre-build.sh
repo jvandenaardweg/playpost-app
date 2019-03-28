@@ -7,4 +7,4 @@ npm run lint
 npm run typescript
 
 # Run the tests
-npm test
+npx jest
