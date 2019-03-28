@@ -17,6 +17,8 @@ import { getDefaultPlaylistArticles, getDefaultPlaylist } from '../../selectors/
 import isEqual from 'react-fast-compare';
 import { RootState } from '../../reducers';
 
+import { getDownloadedAudiofiles } from '../../selectors/audiofiles';
+
 // import { GmailStyleSwipeableRow } from '../../components/SwipeableRow/GmailStyleSwipeableRow';
 
 interface State {
@@ -29,6 +31,7 @@ interface State {
 interface Props {
   articles: Api.Article[];
   defaultPlaylist: Api.Playlist | null;
+  downloadedAudiofiles: Api.Audiofile[];
   getPlaylists(): void;
 }
 
@@ -145,6 +148,16 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
     this.setState({ showHelpVideo: true });
   }
 
+  isDownloaded(article: Api.Article) {
+    const { downloadedAudiofiles } = this.props;
+
+    if (!article.audiofiles.length) return false;
+
+    const downloadedAudiofileIds = downloadedAudiofiles.map(audiofile => audiofile.id);
+
+    return downloadedAudiofileIds.includes(article.audiofiles[0].id);
+  }
+
   render() {
     // const { setTrack, track, playbackState, createAudiofile, articles } = this.props;
     const { articles, defaultPlaylist } = this.props;
@@ -185,6 +198,8 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
 
     }
 
+    console.log('render playlists container');
+
     return (
       <FlatList
         refreshing={isRefreshing}
@@ -194,6 +209,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
         renderItem={({ item }) => (
           <ArticleContainer
             article={item}
+            isDownloaded={this.isDownloaded(item)}
             playlistId={defaultPlaylist && defaultPlaylist.id}
             seperated
           />
@@ -205,7 +221,8 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
 
 const mapStateToProps = (state: RootState) => ({
   defaultPlaylist: getDefaultPlaylist(state),
-  articles: getDefaultPlaylistArticles(state)
+  articles: getDefaultPlaylistArticles(state),
+  downloadedAudiofiles: getDownloadedAudiofiles(state)
 });
 
 const mapDispatchToProps = {

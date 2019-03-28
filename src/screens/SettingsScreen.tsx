@@ -14,6 +14,7 @@ import { resetAuthState } from '../reducers/auth';
 import { UserState, resetUserState } from '../reducers/user';
 import { resetPlayerState } from '../reducers/player';
 import { resetPlaylistsState } from '../reducers/playlists';
+import { resetAudiofilesState } from '../reducers/audiofiles';
 import { persistor } from '../store';
 
 interface Props {
@@ -21,6 +22,7 @@ interface Props {
   resetUserState(): void;
   resetPlayerState(): void;
   resetPlaylistsState(): void;
+  resetAudiofilesState(): void;
   navigation: NavigationScreenProp<NavigationRoute>;
 }
 
@@ -68,6 +70,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
 
   handleOnPressClearCache = async () => {
     try {
+      this.props.resetAudiofilesState();
       await RNFS.unlink(LOCAL_STORAGE_PATH);
       this.setCacheSize();
       Alert.alert('Cache is cleared!', 'You should now have more space available.');
@@ -85,6 +88,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
     this.props.resetUserState();
     this.props.resetPlayerState();
     this.props.resetPlaylistsState();
+    this.props.resetAudiofilesState();
 
     // Remove the persisted state
     await persistor.purge();
@@ -208,7 +212,8 @@ const mapDispatchToProps = {
   resetAuthState,
   resetUserState,
   resetPlayerState,
-  resetPlaylistsState
+  resetPlaylistsState,
+  resetAudiofilesState
 };
 
 export const SettingsScreen = connect(

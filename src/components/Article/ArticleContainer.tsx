@@ -17,6 +17,7 @@ import { AppleStyleSwipeableRow } from '../../components/SwipeableRow/AppleStyle
 import { RootState } from '../../reducers';
 import { getPlaylists, removeArticleFromPlaylist } from '../../reducers/playlists';
 import { setTrack, PlaybackStatus, createAudiofile, resetPlaybackStatus } from '../../reducers/player';
+import { setDownloadedAudiofile } from '../../reducers/audiofiles';
 
 import { getPlayerTrack, getPlayerPlaybackState } from '../../selectors/player';
 
@@ -24,7 +25,6 @@ interface State {
   isLoading: boolean;
   isPlaying: boolean;
   isActive: boolean;
-  isDownloaded: boolean;
   isCreatingAudiofile: boolean;
   isDownloadingAudiofile: boolean;
 }
@@ -33,6 +33,7 @@ interface IProps extends NavigationInjectedProps {
   article: Api.Article;
   playlistId: string;
   seperated: boolean;
+  isDownloaded: boolean;
 }
 
 type Props = IProps & StateProps & DispatchProps;
@@ -42,7 +43,6 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     isLoading: false,
     isPlaying: false,
     isActive: false,
-    isDownloaded: false,
     isCreatingAudiofile: false,
     isDownloadingAudiofile: false
   };
@@ -62,6 +62,11 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       if (nextProps.track.id === (this.articleAudiofiles.length && this.articleAudiofiles[0].id)) {
         return true;
       }
+    }
+
+    // Rerender when the user empties the cache
+    if (this.props.isDownloaded !== nextProps.isDownloaded) {
+      return true;
     }
 
     // If there's a state change inside the component, always update it
@@ -95,7 +100,6 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     // When it's not the current track, reset the state if any is changed
     // So our play button returns to not-active
     if (this.isActiveInPlayer && playbackState === 'none' && !isLoading) {
-      console.log('reset state');
       this.setState({
         isPlaying: false,
         isLoading: false,
@@ -103,18 +107,6 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         isCreatingAudiofile: false
       });
     }
-  }
-
-  componentDidMount() {
-    this.setDownloadedState();
-  }
-
-  setDownloadedState = async () => {
-    if (!this.articleAudiofiles.length) return;
-
-    const isDownloaded = await this.isAudiofileDownloaded(this.articleAudiofiles[0].id);
-
-    if (isDownloaded) this.setState({ isDownloaded: true });
   }
 
   get articleAudiofiles() {
@@ -199,7 +191,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   downloadAudiofile = async (url: string, articleId: string, audiofileId: string): Promise<string | void> => {
-    console.log('Downloading audiofile...');
+    // console.log('Downloading audiofile...');
 
     return new Promise((resolve, reject) => {
       return this.setState({ isActive: true, isLoading: true, isDownloadingAudiofile: true }, async () => {
@@ -252,7 +244,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
   handleSetTrack = async () => {
     const { isConnected } = this.context;
-    const { article } = this.props;
+    const { article, isDownloaded } = this.props;
 
     if (!article || !this.articleAudiofiles.length) {
       this.setState({ isActive: false, isLoading: false });
@@ -268,16 +260,18 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       const audiofile = this.articleAudiofiles[0];
 
       let localAudiofilePath = this.getLocalAudiofilePath(audiofile.id);
-      const localAudiofileExists = await this.isAudiofileDownloaded(audiofile.id);
+      // const localAudiofileExists = await this.isAudiofileDownloaded(audiofile.id);
 
-      if (!localAudiofileExists) {
+      if (!isDownloaded) {
         if (!isConnected) return Alert.alert('No internet', 'You need an active internet connection to listen to this article.');
 
         const downloadedLocalAudiofilePath = await this.downloadAudiofile(audiofile.url, article.id, audiofile.id);
 
+        // Save the audiofile in store, so we can track which article has downloaded articles
+        this.props.setDownloadedAudiofile(audiofile);
+
         if (downloadedLocalAudiofilePath) {
           localAudiofilePath = downloadedLocalAudiofilePath;
-          this.setState({ isDownloaded: true });
         } else {
           this.setState({ isLoading: false });
           return Alert.alert('Oops!', 'We could not download this article. Please try again.');
@@ -365,8 +359,8 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   render() {
-    const { isCreatingAudiofile, isLoading, isPlaying, isActive, isDownloaded } = this.state;
-    const { article, seperated } = this.props;
+    const { isCreatingAudiofile, isLoading, isPlaying, isActive } = this.state;
+    const { article, seperated, isDownloaded } = this.props;
 
     // Use the canonicalUrl if we have it, else fall back to the normal url
     const articleUrl = (article.canonicalUrl) ? article.canonicalUrl : article.url;
@@ -407,6 +401,7 @@ interface DispatchProps {
   getPlaylists(): void;
   removeArticleFromPlaylist(articleId: string, playlistId: string): void;
   resetPlaybackStatus(): void;
+  setDownloadedAudiofile(audiofile: Api.Audiofile): void;
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
@@ -419,7 +414,8 @@ const mapDispatchToProps: DispatchProps = {
   getPlaylists,
   createAudiofile,
   removeArticleFromPlaylist,
-  resetPlaybackStatus
+  resetPlaybackStatus,
+  setDownloadedAudiofile
 };
 
 export const ArticleContainer = connect(
