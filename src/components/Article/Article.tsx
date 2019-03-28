@@ -12,13 +12,13 @@ interface Props {
   isActive?: boolean;
   isDownloaded?: boolean;
   seperated?: boolean;
-  title: string;
+  title?: string;
   url: string;
-  description: string;
-  sourceName: string;
+  description?: string;
+  sourceName?: string;
   authorName?: string | null;
-  listenTimeInSeconds: number;
-  readingTime: number | null;
+  listenTimeInSeconds?: number;
+  readingTime?: number | null;
   onPlayPress?(): void;
   onOpenUrl(url: string): void;
 }
@@ -41,7 +41,7 @@ export const Article: React.FC<Props> = React.memo(({
 }) => (
   <View style={[styles.container, seperated ? styles.seperated : null]}>
     <TouchableOpacity style={styles.sectionHeader} activeOpacity={1} onPress={() => onOpenUrl(url)}>
-      <Text style={styles.title} ellipsizeMode="tail" numberOfLines={2}>{title}</Text>
+      <Text style={styles.title} ellipsizeMode="tail" numberOfLines={2} testID="article-title">{title}</Text>
     </TouchableOpacity>
     <View style={styles.sectionBody}>
       <TouchableOpacity style={styles.sectionMeta} activeOpacity={1} onPress={() => onOpenUrl(url)}>
@@ -52,6 +52,7 @@ export const Article: React.FC<Props> = React.memo(({
             solid
             style={styles.downloadIcon}
             color={isDownloaded ? colors.tintColor : colors.grayLight}
+            testID="article-icon-downloaded"
           />
           {/* <Icon
             name="bookmark"
@@ -59,13 +60,13 @@ export const Article: React.FC<Props> = React.memo(({
             solid
             style={styles.sourceIcon}
           /> */}
-          <Text style={styles.sourceName}>
+          <Text style={styles.sourceName} testID="article-source-name">
             {authorName && `${authorName} on `}
             {sourceName}
           </Text>
         </View>
         <View style={styles.description}>
-          <Text style={styles.descriptionText} ellipsizeMode="tail" numberOfLines={3}>{description}</Text>
+          <Text style={styles.descriptionText} ellipsizeMode="tail" numberOfLines={3} testID="article-description">{description}</Text>
         </View>
       </TouchableOpacity>
       {onPlayPress && (
@@ -83,16 +84,16 @@ export const Article: React.FC<Props> = React.memo(({
   </View>
 ));
 
-export const Duration = (props: { listenTimeInSeconds: number, readingTime: number | null }) => {
+export const Duration = (props: { listenTimeInSeconds?: number, readingTime?: number | null }) => {
   if (props.listenTimeInSeconds) {
-    return <Text style={styles.duration}>{`${Math.ceil(props.listenTimeInSeconds / 60)} min`}</Text>;
+    return <Text style={styles.duration} testID="article-duration">{`${Math.ceil(props.listenTimeInSeconds / 60)} min`}</Text>;
   }
 
   if (props.readingTime) {
-    return <Text style={styles.duration}>{`${Math.ceil(props.readingTime / 60)} min`}</Text>;
+    return <Text style={styles.duration} testID="article-duration">{`${Math.ceil(props.readingTime / 60)} min`}</Text>;
   }
 
-  return <Text style={styles.duration}>? min</Text>;
+  return <Text style={styles.duration} testID="article-duration">? min</Text>;
 };
 
 export const PlayButton = (props: { isPlaying?: boolean, onPress(): void, isLoading?: boolean, isActive?: boolean }) => (
@@ -101,11 +102,12 @@ export const PlayButton = (props: { isPlaying?: boolean, onPress(): void, isLoad
     onPress={props.onPress}
     activeOpacity={0.7}
     disabled={props.isLoading}
+    testID="article-play-button"
   >
     <View>
-      {props.isLoading && <ActivityIndicator size="small" color="#fff" />}
-      {!props.isLoading && !props.isPlaying && <Icon name="play" size={14} color="white" style={styles.controlIcon} />}
-      {!props.isLoading && props.isPlaying && <Icon name="pause" size={14} color="white" style={styles.controlIcon} />}
+      {props.isLoading && <ActivityIndicator testID="article-activity-indicator" size="small" color="#fff" />}
+      {!props.isLoading && !props.isPlaying && <Icon name="play" size={14} color="white" testID="article-icon-play" style={styles.controlIcon} />}
+      {!props.isLoading && props.isPlaying && <Icon name="pause" size={14} color="white" testID="article-icon-pause" style={styles.controlIcon} />}
     </View>
   </TouchableOpacity>
 );
