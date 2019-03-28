@@ -161,5 +161,10 @@ describe('Article', () => {
     it('should render a duration', () => {
       expect(wrapper.getByTestId('article-duration').props.children).toBe('2 min');
     });
+
+    it('should render a play button with a play icon', () => {
+      expect(wrapper.getByTestId('article-play-button')).toBeTruthy();
+      expect(wrapper.getByTestId('article-icon-play')).toBeTruthy();
+    });
   });
 });
