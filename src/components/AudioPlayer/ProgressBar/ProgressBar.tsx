@@ -9,12 +9,19 @@ import colors from '../../../constants/colors';
 import styles from './styles';
 
 interface Props {
+  color?: string;
+  backgroundColor?: string;
   onProgressChange?(percentage: number): void;
 }
 
 type State = TrackPlayer.ProgressComponentState;
 
 export class ProgressBar extends ProgressComponent<Props, State> {
+
+  static defaultProps = {
+    color: colors.tintColor,
+    backgroundColor: colors.white
+  };
 
   shouldComponentUpdate(nextProps: Props, nextState: State) {
     return !isEqual(nextProps, this.props) || !isEqual(nextState, this.state);
@@ -73,8 +80,8 @@ export class ProgressBar extends ProgressComponent<Props, State> {
     }
 
     return (
-      <View style={styles.container}>
-        <View style={[styles.progress, { width: `${percentage * 100}%` }]} />
+      <View style={[styles.container, { backgroundColor: this.props.backgroundColor }]}>
+        <View style={[styles.progress, { width: `${percentage * 100}%`, backgroundColor: this.props.color }]} />
       </View>
     );
   }

@@ -4,13 +4,12 @@ import colors from '../../../constants/colors';
 
 export default StyleSheet.create({
   container: {
-    height: 5,
+    height: '100%',
     width: '100%',
-    flexDirection: 'row',
-    backgroundColor: colors.white
+    flexDirection: 'row'
   },
   progress: {
-    backgroundColor: colors.tintColor
+    height: '100%'
   },
   containerInteractive: {
     marginBottom: 34

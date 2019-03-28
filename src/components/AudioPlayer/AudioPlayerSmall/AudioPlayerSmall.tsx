@@ -24,9 +24,6 @@ export const AudioPlayerSmall: React.FC<Props> = React.memo(({
   track: { title, artist, album }
 }) => (
   <View style={styles.wrapper}>
-    <View style={styles.progressBarContainer}>
-      <ProgressBar />
-    </View>
     <View style={styles.container}>
       <TouchableHighlight style={styles.trackInfoButton} onPress={onPressShowModal}>
         <View style={styles.trackInfo}>
@@ -46,6 +43,9 @@ export const AudioPlayerSmall: React.FC<Props> = React.memo(({
       <View style={styles.sideIcon}>
         <PlayPauseControl size={16} isLoading={isLoading} isPlaying={isPlaying} onPressPlay={onPressPlay} />
       </View>
+    </View>
+    <View style={styles.progressBarContainer} pointerEvents="none">
+      <ProgressBar color="rgba(255, 255, 255, 0.15)" backgroundColor="transparent" />
     </View>
   </View>
 ));

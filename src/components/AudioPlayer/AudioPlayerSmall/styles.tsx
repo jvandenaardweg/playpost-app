@@ -4,7 +4,7 @@ import colors from '../../../constants/colors';
 
 export default StyleSheet.create({
   wrapper: {
-    height: 65,
+    height: 55,
   },
   container: {
     flexDirection: 'row',
@@ -15,7 +15,7 @@ export default StyleSheet.create({
     paddingRight: 14,
     paddingTop: 8,
     paddingBottom: 8,
-    height: 60
+    height: 55
   },
   sideIcon: {
     width: 34,
@@ -65,7 +65,8 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   progressBarContainer: {
-    height: 5,
-    backgroundColor: colors.white
+    height: '100%',
+    width: '100%',
+    position: 'absolute'
   }
 });
