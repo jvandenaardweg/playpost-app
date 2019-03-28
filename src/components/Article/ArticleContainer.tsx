@@ -32,7 +32,6 @@ interface State {
 interface IProps extends NavigationInjectedProps {
   article: Api.Article;
   playlistId: string;
-  seperated: boolean;
   isDownloaded: boolean;
 }
 
@@ -360,7 +359,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
   render() {
     const { isCreatingAudiofile, isLoading, isPlaying, isActive } = this.state;
-    const { article, seperated, isDownloaded } = this.props;
+    const { article, isDownloaded } = this.props;
 
     // Use the canonicalUrl if we have it, else fall back to the normal url
     const articleUrl = (article.canonicalUrl) ? article.canonicalUrl : article.url;
@@ -374,7 +373,6 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
           isPlaying={isPlaying}
           isActive={isActive}
           isDownloaded={isDownloaded}
-          seperated={seperated}
           title={article.title}
           url={articleUrl}
           description={article.description}
