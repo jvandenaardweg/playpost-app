@@ -28,12 +28,7 @@ export class AudioPlayerLarge extends React.PureComponent<Props> {
 
   componentDidMount() {
     const { scrolled } = this.props;
-    console.log('set scrolled', scrolled);
     this.scrollViewRef.current && this.scrollViewRef.current.scrollTo({ x: 0, y: scrolled });
-  }
-
-  componentDidUpdate() {
-    console.log('Update');
   }
 
   render() {

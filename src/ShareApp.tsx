@@ -35,7 +35,7 @@ export default class ShareApp extends React.PureComponent<State> {
 
   handleAppStateChange = (nextAppState: AppStateStatus) => {
     if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
-      console.log('App has come to the foreground!');
+      // console.log('App has come to the foreground!');
     }
     this.setState({ appState: nextAppState });
   }

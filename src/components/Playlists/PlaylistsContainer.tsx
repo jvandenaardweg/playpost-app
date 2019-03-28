@@ -198,8 +198,6 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
 
     }
 
-    console.log('render playlists container');
-
     return (
       <FlatList
         refreshing={isRefreshing}
