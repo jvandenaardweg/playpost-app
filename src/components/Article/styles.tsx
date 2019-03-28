@@ -65,7 +65,7 @@ export default StyleSheet.create({
   },
   downloadIcon: {
     position: 'relative',
-    top: 1
+    top: 2
   },
   sourceName: {
     fontSize: 12,
