@@ -24,17 +24,17 @@ class OnboardingSliderComponent extends React.PureComponent<Props> {
     {
       key: 'slide1',
       title: 'Listen to articles',
-      text: 'Listen to articles when you got no time to read, but do got time to listen. Let the app read the articles to you.',
+      text: 'Just listen to articles when you got no time to read. Let the app read the articles to you.\n\nArticles from the web are converted to spoken words using a pleasant voice.',
     },
     {
       key: 'slide2',
       title: 'Make the listening experience your own',
-      text: 'Choose between a variaty of High Quality life-like voices with different accents like American English, British English or Australian English.',
+      text: 'Choose between a variaty of High Quality life-like voices with different accents like American English, British English or Australian English.\n\nAvailable using a subscription.',
     },
     {
       key: 'slide3',
       title: 'Easily save from every app',
-      text: 'A share icon is added in every app on your phone so you can easily add new articles. Just click the share icon to add an article to your playlist.',
+      text: 'A share icon is added in every app on your phone so you can easily add new articles.\n\nJust click the share icon to add an article to your playlist.',
     },
   ];
 
