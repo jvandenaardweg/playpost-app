@@ -71,7 +71,9 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
       this.fetchPlaylists();
     }
 
-    SplashScreen.hide();
+    // Wait a little longer, then hide the splash screen.
+    // So we don't have a "black" flash.
+    setTimeout(() => SplashScreen.hide(), 100);
   }
 
   async showOrHideHelpVideo() {
