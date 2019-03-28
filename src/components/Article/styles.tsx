@@ -35,8 +35,8 @@ export default StyleSheet.create({
     fontSize: 17,
     fontWeight: '600',
     color: Colors.titleDefault,
-    lineHeight: 21,
-    marginBottom: 10
+    lineHeight: 22,
+    marginBottom: 8
   },
   description: {
     alignSelf: 'flex-start',
@@ -46,22 +46,22 @@ export default StyleSheet.create({
   descriptionText: {
     fontSize: 14,
     color: Colors.paragraphGrayed,
-    lineHeight: 21,
-    opacity: 0.8,
+    lineHeight: 21
   },
   author: {
-    fontSize: 13,
+    fontSize: 12,
     color: Colors.paragraphGrayed,
-    lineHeight: 19
+    lineHeight: 18
   },
   source: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'baseline',
-    opacity: 0.8
   },
   sourceIcon: {
-    color: Colors.paragraphGrayed
+    color: Colors.paragraphGrayed,
+    position: 'relative',
+    top: 1
   },
   sourceName: {
     fontSize: 12,
