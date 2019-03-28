@@ -52,6 +52,7 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
   fetchPlaylists = async () => {
     try {
       await this.props.getPlaylists();
+      await this.addArticleToPlaylist();
     } catch (err) {
       console.log('Error during mount of ShareModal.', err);
       return this.setState({ isLoading: false });
@@ -60,13 +61,6 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
 
   async componentDidUpdate(prevProps: Props) {
     const { error } = this.props.playlists;
-    const { url, defaultPlaylist } = this.props;
-
-    // If we have a default playlist, add the article
-    if (!prevProps.defaultPlaylist && defaultPlaylist) {
-      const playlistId = defaultPlaylist.id;
-      await this.addArticleToPlaylist(url, playlistId);
-    }
 
     // When a new API error happens
     if (prevProps.playlists.error !== error) {
@@ -74,11 +68,13 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
     }
   }
 
-  addArticleToPlaylist = async (articleUrl: string, playlistId: string) => {
-    const { closeDelay } = this.props;
+  addArticleToPlaylist = async () => {
+    const { closeDelay, url, defaultPlaylist } = this.props;
+
+    if (!defaultPlaylist) return;
 
     try {
-      await this.props.addArticleToPlaylistByUrl(articleUrl, playlistId);
+      await this.props.addArticleToPlaylistByUrl(url, defaultPlaylist.id);
 
       // Automatically close the modal after X seconds
       setTimeout(() => this.props.onPressClose(), closeDelay);
