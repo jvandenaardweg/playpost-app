@@ -5,8 +5,10 @@ import { ThemeProvider } from 'react-native-elements';
 import { Provider } from 'react-redux';
 import Analytics from 'appcenter-analytics';
 import Crashes from 'appcenter-crashes';
+import { PersistGate } from 'redux-persist/integration/react';
+import { CenterLoadingIndicator } from './components/CenterLoadingIndicator';
 
-import { store } from './store';
+import { store, persistor } from './store';
 import { reactNativeElementsTheme } from './theme';
 
 import { getPlaylists } from './reducers/playlists';
@@ -81,11 +83,13 @@ export default class App extends React.PureComponent<State> {
     return (
       <ErrorBoundary>
         <Provider store={store}>
+        <PersistGate loading={<CenterLoadingIndicator />} persistor={persistor}>
           <ThemeProvider theme={reactNativeElementsTheme}>
             <NetworkProvider>
               <AppNavigator />
             </NetworkProvider>
           </ThemeProvider>
+        </PersistGate>
         </Provider>
       </ErrorBoundary>
     );

@@ -33,7 +33,7 @@ interface Props {
 
 class ArticlesContainerComponent extends React.Component<Props, State> {
   state = {
-    isLoading: true, // Show loading upon mount, because we fetch the playlists of the user
+    isLoading: false, // Show loading upon mount, because we fetch the playlists of the user
     isRefreshing: false,
     errorMessage: '',
     showHelpVideo: false
@@ -60,7 +60,10 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
 
     this.showOrHideHelpVideo();
 
-    if (isConnected) {
+    if (isConnected && !this.hasArticles) {
+      this.setState({ isLoading: true }, () => this.fetchPlaylists());
+    } else {
+      // Just fetch the playlists in the background, so we always get an up-to-date playlist upon launch
       this.fetchPlaylists();
     }
   }
