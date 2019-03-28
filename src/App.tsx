@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import Analytics from 'appcenter-analytics';
 import Crashes from 'appcenter-crashes';
 import { PersistGate } from 'redux-persist/integration/react';
-import { CenterLoadingIndicator } from './components/CenterLoadingIndicator';
+// import { CenterLoadingIndicator } from './components/CenterLoadingIndicator';
 
 import { store, persistor } from './store';
 import { reactNativeElementsTheme } from './theme';
@@ -83,7 +83,7 @@ export default class App extends React.PureComponent<State> {
     return (
       <ErrorBoundary>
         <Provider store={store}>
-        <PersistGate loading={<CenterLoadingIndicator />} persistor={persistor}>
+        <PersistGate loading={null} persistor={persistor}>
           <ThemeProvider theme={reactNativeElementsTheme}>
             <NetworkProvider>
               <AppNavigator />

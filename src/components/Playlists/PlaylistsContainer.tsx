@@ -3,6 +3,7 @@ import { FlatList, Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { connect } from 'react-redux';
 import RNRestart from 'react-native-restart';
+import SplashScreen from 'react-native-splash-screen';
 
 import { CenterLoadingIndicator } from '../../components/CenterLoadingIndicator';
 import { EmptyState } from '../../components/EmptyState';
@@ -66,6 +67,8 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
       // Just fetch the playlists in the background, so we always get an up-to-date playlist upon launch
       this.fetchPlaylists();
     }
+
+    SplashScreen.hide();
   }
 
   async showOrHideHelpVideo() {
@@ -77,6 +80,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
   async fetchPlaylists() {
     const { articles } = this.props;
     const { errorMessage } = this.state;
+    const { isConnected } = this.context;
 
     try {
       // Get the user's playlist
@@ -85,6 +89,8 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
       // Cleanup the error message if it's there
       if (errorMessage) return this.setState({ errorMessage: '' });
     } catch (err) {
+      if (!isConnected) return; // Don't show an error when there's no internet connection.
+
       const customErrorMessage = 'There was an error while getting your playlist.';
 
       // If we don't have articles we show an empty error state

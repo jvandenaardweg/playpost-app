@@ -1,9 +1,10 @@
 import React from 'react';
-import SplashScreen from 'react-native-splash-screen';
+
 import * as Keychain from 'react-native-keychain';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
+import NetInfo from '@react-native-community/netinfo';
 
-import { CenterLoadingIndicator } from '../components/CenterLoadingIndicator';
+// import { CenterLoadingIndicator } from '../components/CenterLoadingIndicator';
 
 interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;
@@ -24,14 +25,15 @@ export class AuthLoadingScreen extends React.PureComponent<Props> {
       token = credentials.password;
     }
 
+    await NetInfo.isConnected.fetch();
+
     // This will switch to the App screen or Auth screen and this loading
     // screen will be unmounted and thrown away.
     this.props.navigation.navigate(token ? 'App' : 'Onboarding');
-    SplashScreen.hide();
   }
 
   // Render any loading content that you like here
   render() {
-    return <CenterLoadingIndicator />;
+    return null;
   }
 }

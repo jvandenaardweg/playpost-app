@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { withNavigation, NavigationScreenProp, NavigationRoute } from 'react-navigation';
+import SplashScreen from 'react-native-splash-screen';
 
 import styles from './styles';
 
@@ -37,6 +38,10 @@ class OnboardingSliderComponent extends React.PureComponent<Props> {
       text: 'A share icon is added in every app on your phone so you can easily add new articles.\n\nJust click the share icon to add an article to your playlist.',
     },
   ];
+
+  componentDidMount() {
+    SplashScreen.hide();
+  }
 
   renderItem = (props: OnboardingSlideProps) => <OnboardingSlide {...props} />;
 
