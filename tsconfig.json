@@ -22,7 +22,7 @@
     "plugins": [
       { "name": "typescript-tslint-plugin" }
     ],
-    "types": ["node"]
+    "types": ["node", "jest"]
   },
   "include": [
     "src/**/*",

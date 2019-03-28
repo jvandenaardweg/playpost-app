@@ -6,6 +6,8 @@
 #
 build/
 
+.jest/
+
 # Added Pods folder manually, got too big for version control
 #Pods/
 
