@@ -9,9 +9,14 @@ export const getPlaylistsError = createSelector(
   (playlists): string => playlists.error
 );
 
-export const getIsLoading = createSelector(
+export const getPlaylistsIsLoading = createSelector(
   [playlistsSelector],
   (playlists): boolean => playlists.isLoading
+);
+
+export const getPlaylistsIsLoadingCreateItem = createSelector(
+  [playlistsSelector],
+  (playlists): boolean => playlists.isLoadingCreateItem
 );
 
 export const getPlaylists = createSelector(

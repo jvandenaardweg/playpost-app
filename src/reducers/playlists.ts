@@ -9,29 +9,31 @@ export const GET_ARTICLE = 'playlists/GET_ARTICLE';
 export const GET_ARTICLE_SUCCESS = 'playlists/GET_ARTICLE_SUCCESS';
 export const GET_ARTICLE_FAIL = 'playlists/GET_ARTICLE_FAIL';
 
-export const CREATE_PLAYLIST_ARTICLE = 'playlists/CREATE_PLAYLIST_ARTICLE';
-export const CREATE_PLAYLIST_ARTICLE_SUCCESS = 'playlists/CREATE_PLAYLIST_ARTICLE_SUCCESS';
-export const CREATE_PLAYLIST_ARTICLE_FAIL = 'playlists/CREATE_PLAYLIST_ARTICLE_FAIL';
+export const CREATE_PLAYLIST_ITEM = 'playlists/CREATE_PLAYLIST_ITEM';
+export const CREATE_PLAYLIST_ITEM_SUCCESS = 'playlists/CREATE_PLAYLIST_ITEM_SUCCESS';
+export const CREATE_PLAYLIST_ITEM_FAIL = 'playlists/CREATE_PLAYLIST_ITEM_FAIL';
 
-export const REMOVE_PLAYLIST_ARTICLE = 'playlists/REMOVE_PLAYLIST_ARTICLE';
-export const REMOVE_PLAYLIST_ARTICLE_SUCCESS = 'playlists/REMOVE_PLAYLIST_ARTICLE_SUCCESS';
-export const REMOVE_PLAYLIST_ARTICLE_FAIL = 'playlists/REMOVE_PLAYLIST_ARTICLE_FAIL';
+export const REMOVE_PLAYLIST_ITEM = 'playlists/REMOVE_PLAYLIST_ITEM';
+export const REMOVE_PLAYLIST_ITEM_SUCCESS = 'playlists/REMOVE_PLAYLIST_ITEM_SUCCESS';
+export const REMOVE_PLAYLIST_ITEM_FAIL = 'playlists/REMOVE_PLAYLIST_ITEM_FAIL';
 
 export const RESET_STATE = 'playlists/RESET_STATE';
 
 const GET_PLAYLISTS_FAIL_MESSAGE = 'An unknown error happened while getting your playlist. Please contact us when this happens all the time.';
-const CREATE_PLAYLIST_ARTICLE_FAIL_MESSAGE = 'An unknown error happened while adding this article to your playlist. Please contact us when this happens all the time.';
-const REMOVE_PLAYLIST_ARTICLE_FAIL_MESSAGE = 'An unknown error happened while removing this article from your playlist. Please contact us when this happens all the time.';
+const CREATE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while adding this article to your playlist. Please contact us when this happens all the time.';
+const REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while removing this article from your playlist. Please contact us when this happens all the time.';
 const GET_ARTICLE_FAIL_MESSAGE = 'An unknown error happened while fetching an article. Please contact us when this happens all the time.';
 
 export interface PlaylistsState {
   isLoading: boolean;
+  isLoadingCreateItem: boolean;
   playlists: Api.Playlist[];
   error: string;
 }
 
 const initialState: PlaylistsState = {
   isLoading: false,
+  isLoadingCreateItem: false,
   playlists: [],
   error: ''
 };
@@ -123,41 +125,41 @@ export function playlistsReducer(state = initialState, action: PlaylistActionTyp
         ...initialState
       };
 
-    case CREATE_PLAYLIST_ARTICLE:
+    case CREATE_PLAYLIST_ITEM:
       return {
         ...state,
-        isLoading: true
+        isLoadingCreateItem: true
       };
 
-    case CREATE_PLAYLIST_ARTICLE_SUCCESS:
+    case CREATE_PLAYLIST_ITEM_SUCCESS:
       Analytics.trackEvent('Create playlist article');
 
       return {
         ...state,
-        isLoading: false,
+        isLoadingCreateItem: false,
         error: ''
       };
 
-    case CREATE_PLAYLIST_ARTICLE_FAIL:
+    case CREATE_PLAYLIST_ITEM_FAIL:
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
         Analytics.trackEvent('Error add article to playlist', { message: action.error.response.data.message });
       } else {
-        Analytics.trackEvent('Error add article to playlist', { message: CREATE_PLAYLIST_ARTICLE_FAIL_MESSAGE });
+        Analytics.trackEvent('Error add article to playlist', { message: CREATE_PLAYLIST_ITEM_FAIL_MESSAGE });
       }
 
       return {
         ...state,
-        isLoading: false,
-        error: (action.error.response) ? action.error.response.data.message : CREATE_PLAYLIST_ARTICLE_FAIL_MESSAGE
+        isLoadingCreateItem: false,
+        error: (action.error.response) ? action.error.response.data.message : CREATE_PLAYLIST_ITEM_FAIL_MESSAGE
       };
 
-    case REMOVE_PLAYLIST_ARTICLE:
+    case REMOVE_PLAYLIST_ITEM:
       return {
         ...state,
         isLoading: true
       };
 
-    case REMOVE_PLAYLIST_ARTICLE_SUCCESS:
+    case REMOVE_PLAYLIST_ITEM_SUCCESS:
       Analytics.trackEvent('Remove playlist article');
 
       return {
@@ -166,17 +168,17 @@ export function playlistsReducer(state = initialState, action: PlaylistActionTyp
         error: ''
       };
 
-    case REMOVE_PLAYLIST_ARTICLE_FAIL:
+    case REMOVE_PLAYLIST_ITEM_FAIL:
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
         Analytics.trackEvent('Error remove article from playlist', { message: action.error.response.data.message });
       } else {
-        Analytics.trackEvent('Error remove article from playlist', { message: REMOVE_PLAYLIST_ARTICLE_FAIL_MESSAGE });
+        Analytics.trackEvent('Error remove article from playlist', { message: REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE });
       }
 
       return {
         ...state,
         isLoading: false,
-        error: (action.error.response) ? action.error.response.data.message : REMOVE_PLAYLIST_ARTICLE_FAIL_MESSAGE
+        error: (action.error.response) ? action.error.response.data.message : REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE
       };
 
     default:
@@ -216,7 +218,7 @@ export function getArticle(articleId: string) {
 
 export function addArticleToPlaylistByUrl(articleUrl: string, playlistId: string) {
   return {
-    type: CREATE_PLAYLIST_ARTICLE,
+    type: CREATE_PLAYLIST_ITEM,
     payload: {
       request: {
         method: 'post',
@@ -231,7 +233,7 @@ export function addArticleToPlaylistByUrl(articleUrl: string, playlistId: string
 
 export function removeArticleFromPlaylist(articleId: string, playlistId: string) {
   return {
-    type: REMOVE_PLAYLIST_ARTICLE,
+    type: REMOVE_PLAYLIST_ITEM,
     payload: {
       request: {
         method: 'delete',
