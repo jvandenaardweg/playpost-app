@@ -364,6 +364,8 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     // Use the canonicalUrl if we have it, else fall back to the normal url
     const articleUrl = (article.canonicalUrl) ? article.canonicalUrl : article.url;
 
+    const hasAudiofile = article.audiofiles.length > 0;
+
     return (
       <AppleStyleSwipeableRow
         removeArticle={this.handleRemoveArticle}
@@ -373,6 +375,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
           isPlaying={isPlaying}
           isActive={isActive}
           isDownloaded={isDownloaded}
+          hasAudiofile={hasAudiofile}
           title={article.title}
           url={articleUrl}
           description={article.description}

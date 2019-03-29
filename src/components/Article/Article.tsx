@@ -11,6 +11,7 @@ interface Props {
   isPlaying?: boolean;
   isActive?: boolean;
   isDownloaded?: boolean;
+  hasAudiofile?: boolean;
   title?: string;
   url: string;
   description?: string;
@@ -27,6 +28,7 @@ export const Article: React.FC<Props> = React.memo(({
   isPlaying,
   isActive,
   isDownloaded,
+  hasAudiofile,
   title,
   url,
   description,
@@ -44,12 +46,22 @@ export const Article: React.FC<Props> = React.memo(({
     <View style={styles.sectionBody}>
       <TouchableOpacity style={styles.sectionMeta} activeOpacity={1} onPress={() => onOpenUrl(url)}>
         <View style={styles.source}>
+          {hasAudiofile &&
+              <Icon
+                name="check-circle"
+                size={12}
+                solid
+                style={styles.downloadIcon}
+                color={hasAudiofile ? colors.green : colors.grayLight}
+                testID="article-icon-playable"
+              />
+            }
           <Icon
             name="arrow-alt-circle-down"
             size={12}
             solid
             style={styles.downloadIcon}
-            color={isDownloaded ? colors.tintColor : colors.grayLight}
+            color={isDownloaded ? colors.green : colors.grayLight}
             testID="article-icon-downloaded"
           />
           {/* <Icon

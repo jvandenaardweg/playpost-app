@@ -65,13 +65,14 @@ export default StyleSheet.create({
   },
   downloadIcon: {
     position: 'relative',
-    top: 2
+    top: 2,
+    marginRight: 4
   },
   sourceName: {
     fontSize: 12,
     color: Colors.paragraphGrayed,
     marginBottom: 8,
-    marginLeft: 6
+    marginLeft: 2
   },
   authorName: {
     color: Colors.paragraphGrayed

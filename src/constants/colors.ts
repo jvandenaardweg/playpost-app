@@ -9,6 +9,7 @@ const blue = tintColor;
 const red = '#FF1017';
 const orange = '#EAEB5E';
 const orangeDark = '#666804';
+const green = '#03A87C';
 
 export default {
   tintColor,
@@ -20,6 +21,7 @@ export default {
   blue,
   red,
   orange,
+  green,
   appBackground,
 
   tabIconDefault: grayLight,
