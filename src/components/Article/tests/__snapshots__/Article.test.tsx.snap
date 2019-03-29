@@ -80,9 +80,37 @@ exports[`Article active rendering should render active correctly 1`] = `
             Array [
               Object {
                 "color": "#cccccc",
-                "fontSize": 12,
+                "fontSize": 11,
               },
               Object {
+                "marginRight": 4,
+                "position": "relative",
+                "top": 2,
+              },
+              Object {
+                "fontFamily": "FontAwesome5Free-Solid",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+              Object {
+                "fontWeight": "700",
+              },
+            ]
+          }
+          testID="article-icon-playable"
+        >
+          
+        </Text>
+        <Text
+          allowFontScaling={false}
+          style={
+            Array [
+              Object {
+                "color": "#cccccc",
+                "fontSize": 11,
+              },
+              Object {
+                "marginRight": 4,
                 "position": "relative",
                 "top": 2,
               },
@@ -106,7 +134,7 @@ exports[`Article active rendering should render active correctly 1`] = `
               "color": "#888888",
               "fontSize": 12,
               "marginBottom": 8,
-              "marginLeft": 6,
+              "marginLeft": 2,
             }
           }
           testID="article-source-name"
@@ -290,10 +318,38 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#037DE2",
-                "fontSize": 12,
+                "color": "#cccccc",
+                "fontSize": 11,
               },
               Object {
+                "marginRight": 4,
+                "position": "relative",
+                "top": 2,
+              },
+              Object {
+                "fontFamily": "FontAwesome5Free-Solid",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+              Object {
+                "fontWeight": "700",
+              },
+            ]
+          }
+          testID="article-icon-playable"
+        >
+          
+        </Text>
+        <Text
+          allowFontScaling={false}
+          style={
+            Array [
+              Object {
+                "color": "#03A87C",
+                "fontSize": 11,
+              },
+              Object {
+                "marginRight": 4,
                 "position": "relative",
                 "top": 2,
               },
@@ -317,7 +373,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
               "color": "#888888",
               "fontSize": 12,
               "marginBottom": 8,
-              "marginLeft": 6,
+              "marginLeft": 2,
             }
           }
           testID="article-source-name"
@@ -504,9 +560,37 @@ exports[`Article full rendering should render full correctly 1`] = `
             Array [
               Object {
                 "color": "#cccccc",
-                "fontSize": 12,
+                "fontSize": 11,
               },
               Object {
+                "marginRight": 4,
+                "position": "relative",
+                "top": 2,
+              },
+              Object {
+                "fontFamily": "FontAwesome5Free-Solid",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+              Object {
+                "fontWeight": "700",
+              },
+            ]
+          }
+          testID="article-icon-playable"
+        >
+          
+        </Text>
+        <Text
+          allowFontScaling={false}
+          style={
+            Array [
+              Object {
+                "color": "#cccccc",
+                "fontSize": 11,
+              },
+              Object {
+                "marginRight": 4,
                 "position": "relative",
                 "top": 2,
               },
@@ -530,7 +614,7 @@ exports[`Article full rendering should render full correctly 1`] = `
               "color": "#888888",
               "fontSize": 12,
               "marginBottom": 8,
-              "marginLeft": 6,
+              "marginLeft": 2,
             }
           }
           testID="article-source-name"
@@ -720,9 +804,37 @@ exports[`Article loading rendering should render loading correctly 1`] = `
             Array [
               Object {
                 "color": "#cccccc",
-                "fontSize": 12,
+                "fontSize": 11,
               },
               Object {
+                "marginRight": 4,
+                "position": "relative",
+                "top": 2,
+              },
+              Object {
+                "fontFamily": "FontAwesome5Free-Solid",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+              Object {
+                "fontWeight": "700",
+              },
+            ]
+          }
+          testID="article-icon-playable"
+        >
+          
+        </Text>
+        <Text
+          allowFontScaling={false}
+          style={
+            Array [
+              Object {
+                "color": "#cccccc",
+                "fontSize": 11,
+              },
+              Object {
+                "marginRight": 4,
                 "position": "relative",
                 "top": 2,
               },
@@ -746,7 +858,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
               "color": "#888888",
               "fontSize": 12,
               "marginBottom": 8,
-              "marginLeft": 6,
+              "marginLeft": 2,
             }
           }
           testID="article-source-name"
@@ -915,9 +1027,37 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
             Array [
               Object {
                 "color": "#cccccc",
-                "fontSize": 12,
+                "fontSize": 11,
               },
               Object {
+                "marginRight": 4,
+                "position": "relative",
+                "top": 2,
+              },
+              Object {
+                "fontFamily": "FontAwesome5Free-Solid",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+              Object {
+                "fontWeight": "700",
+              },
+            ]
+          }
+          testID="article-icon-playable"
+        >
+          
+        </Text>
+        <Text
+          allowFontScaling={false}
+          style={
+            Array [
+              Object {
+                "color": "#cccccc",
+                "fontSize": 11,
+              },
+              Object {
+                "marginRight": 4,
                 "position": "relative",
                 "top": 2,
               },
@@ -941,7 +1081,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
               "color": "#888888",
               "fontSize": 12,
               "marginBottom": 8,
-              "marginLeft": 6,
+              "marginLeft": 2,
             }
           }
           testID="article-source-name"
@@ -1126,9 +1266,37 @@ exports[`Article playing rendering should render playing correctly 1`] = `
             Array [
               Object {
                 "color": "#cccccc",
-                "fontSize": 12,
+                "fontSize": 11,
               },
               Object {
+                "marginRight": 4,
+                "position": "relative",
+                "top": 2,
+              },
+              Object {
+                "fontFamily": "FontAwesome5Free-Solid",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+              Object {
+                "fontWeight": "700",
+              },
+            ]
+          }
+          testID="article-icon-playable"
+        >
+          
+        </Text>
+        <Text
+          allowFontScaling={false}
+          style={
+            Array [
+              Object {
+                "color": "#cccccc",
+                "fontSize": 11,
+              },
+              Object {
+                "marginRight": 4,
                 "position": "relative",
                 "top": 2,
               },
@@ -1152,7 +1320,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
               "color": "#888888",
               "fontSize": 12,
               "marginBottom": 8,
-              "marginLeft": 6,
+              "marginLeft": 2,
             }
           }
           testID="article-source-name"
