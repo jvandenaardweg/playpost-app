@@ -46,19 +46,17 @@ export const Article: React.FC<Props> = React.memo(({
     <View style={styles.sectionBody}>
       <TouchableOpacity style={styles.sectionMeta} activeOpacity={1} onPress={() => onOpenUrl(url)}>
         <View style={styles.source}>
-          {hasAudiofile &&
-              <Icon
-                name="check-circle"
-                size={12}
-                solid
-                style={styles.downloadIcon}
-                color={hasAudiofile ? colors.green : colors.grayLight}
-                testID="article-icon-playable"
-              />
-            }
+          <Icon
+            name="circle"
+            size={11}
+            solid
+            style={styles.downloadIcon}
+            color={hasAudiofile ? colors.green : colors.grayLight}
+            testID="article-icon-playable"
+          />
           <Icon
             name="arrow-alt-circle-down"
-            size={12}
+            size={11}
             solid
             style={styles.downloadIcon}
             color={isDownloaded ? colors.green : colors.grayLight}
