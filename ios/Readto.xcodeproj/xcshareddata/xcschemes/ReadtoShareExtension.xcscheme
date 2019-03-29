@@ -15,9 +15,51 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D35B023EAEFECEF154EC3C566DCA659E"
+               BuildableName = "libPods-Readto.a"
+               BlueprintName = "Pods-Readto"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "83CBBA2D1A601D0E00E9B192"
+               BuildableName = "libReact.a"
+               BlueprintName = "React"
+               ReferencedContainer = "container:../node_modules/react-native/React/React.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "8C5A7DC1220F224A00ECCC65"
                BuildableName = "ReadtoShareExtension.appex"
                BlueprintName = "ReadtoShareExtension"
+               ReferencedContainer = "container:Readto.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+               BuildableName = "Readto.app"
+               BlueprintName = "Readto"
                ReferencedContainer = "container:Readto.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -30,6 +72,15 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+            BuildableName = "Readto.app"
+            BlueprintName = "Readto"
+            ReferencedContainer = "container:Readto.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -45,16 +96,16 @@
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "2">
       <RemoteRunnable
-         runnableDebuggingMode = "0"
+         runnableDebuggingMode = "1"
          BundleIdentifier = "com.apple.mobilesafari"
          RemotePath = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/Applications/MobileSafari.app">
       </RemoteRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8C5A7DC1220F224A00ECCC65"
-            BuildableName = "ReadtoShareExtension.appex"
-            BlueprintName = "ReadtoShareExtension"
+            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+            BuildableName = "Readto.app"
+            BlueprintName = "Readto"
             ReferencedContainer = "container:Readto.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -68,15 +119,16 @@
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES"
       launchAutomaticallySubstyle = "2">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8C5A7DC1220F224A00ECCC65"
-            BuildableName = "ReadtoShareExtension.appex"
-            BlueprintName = "ReadtoShareExtension"
+            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+            BuildableName = "Readto.app"
+            BlueprintName = "Readto"
             ReferencedContainer = "container:Readto.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
