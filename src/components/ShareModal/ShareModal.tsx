@@ -106,7 +106,7 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
   renderActivityIndicator = () => {
     const { isLoading, isLoadingCreateItem } = this.props;
 
-    if (!isLoading || !isLoadingCreateItem) return null;
+    if (!isLoading && !isLoadingCreateItem) return null;
 
     return <ActivityIndicator />;
   }
