@@ -189,7 +189,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     return TrackPlayer.play();
   }
 
-  downloadAudiofile = async (url: string, articleId: string, audiofileId: string): Promise<string | void> => {
+  downloadAudiofile = async (url: string, articleId: string, audiofileId: string, encoding: Api.Audiofile['encoding']): Promise<string | void> => {
     // console.log('Downloading audiofile...');
 
     return new Promise((resolve, reject) => {
@@ -198,7 +198,13 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
           // Make sure the /audiofile path exists
           await RNFS.mkdir(LOCAL_STORAGE_PATH);
 
-          const localFilePath = `${LOCAL_STORAGE_PATH}/${audiofileId}.mp3`;
+          let extension = 'mp3';
+
+          if (encoding === 'OGG_OPUS') {
+            extension = 'opus';
+          }
+
+          const localFilePath = `${LOCAL_STORAGE_PATH}/${audiofileId}.${extension}`;
 
           const result = await RNFetchBlob.config({ path: localFilePath }).fetch('GET', url);
 
@@ -219,7 +225,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
               },
               {
                 text: 'Try again',
-                onPress: () => this.downloadAudiofile(url, articleId, audiofileId),
+                onPress: () => this.downloadAudiofile(url, articleId, audiofileId, encoding),
               },
             ],
             { cancelable: true }
@@ -231,14 +237,14 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     });
   }
 
-  isAudiofileDownloaded = async (audiofileId: string) => {
-    const localAudiofilePath = this.getLocalAudiofilePath(audiofileId);
-    const localAudiofileExists = await RNFS.exists(localAudiofilePath);
-    return localAudiofileExists;
-  }
+  getLocalAudiofilePath = (audiofileId: string, encoding: Api.Audiofile['encoding']) => {
+    let extension = 'mp3';
 
-  getLocalAudiofilePath = (audiofileId: string) => {
-    return `file://${LOCAL_STORAGE_PATH}/${audiofileId}.mp3`;
+    if (encoding === 'OGG_OPUS') {
+      extension = 'opus';
+    }
+
+    return `file://${LOCAL_STORAGE_PATH}/${audiofileId}.${extension}`;
   }
 
   handleSetTrack = async () => {
@@ -258,13 +264,12 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
       const audiofile = this.articleAudiofiles[0];
 
-      let localAudiofilePath = this.getLocalAudiofilePath(audiofile.id);
-      // const localAudiofileExists = await this.isAudiofileDownloaded(audiofile.id);
+      let localAudiofilePath = this.getLocalAudiofilePath(audiofile.id, audiofile.encoding);
 
       if (!isDownloaded) {
         if (!isConnected) return Alert.alert('No internet', 'You need an active internet connection to listen to this article.');
 
-        const downloadedLocalAudiofilePath = await this.downloadAudiofile(audiofile.url, article.id, audiofile.id);
+        const downloadedLocalAudiofilePath = await this.downloadAudiofile(audiofile.url, article.id, audiofile.id, audiofile.encoding);
 
         // Save the audiofile in store, so we can track which article has downloaded articles
         this.props.setDownloadedAudiofile(audiofile);
@@ -287,6 +292,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
             url: localAudiofilePath,
             duration: audiofile.length,
             artwork: require('../../assets/images/logo-1024.png'),
+            // contentType
             contentType: 'audio/mpeg'
           }
         );

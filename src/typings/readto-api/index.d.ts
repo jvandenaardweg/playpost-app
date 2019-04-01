@@ -65,7 +65,7 @@ declare namespace Api {
     filename: string;
     length: number;
     languageCode: string;
-    encoding: string;
+    encoding: 'MP3' | 'OGG_OPUS';
     voice: string;
     synthesizer: string;
     partialPlays: number;

@@ -159,6 +159,9 @@ export function createAudiofile(articleId: string) {
       request: {
         method: 'post',
         url: `/v1/articles/${articleId}/audiofiles`,
+        data: {
+          encoding: 'MP3'
+        }
       }
     }
   };
