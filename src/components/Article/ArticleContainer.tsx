@@ -20,6 +20,7 @@ import { setTrack, PlaybackStatus, createAudiofile, resetPlaybackStatus } from '
 import { setDownloadedAudiofile } from '../../reducers/audiofiles';
 
 import { getPlayerTrack, getPlayerPlaybackState } from '../../selectors/player';
+import { ArticleEmptyProcessing, ArticleEmptyFailed } from './ArticleEmpty';
 
 interface State {
   isLoading: boolean;
@@ -61,6 +62,13 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       if (nextProps.track.id === (this.articleAudiofiles.length && this.articleAudiofiles[0].id)) {
         return true;
       }
+    }
+
+    // If an article has updated information
+    // For example: when the article status turns from "new" into "finished", so the article is crawled and
+    // has information like; title, description etc...
+    if (!isEqual(this.props.article, nextProps.article)) {
+      return true;
     }
 
     // Rerender when the user empties the cache
@@ -357,6 +365,16 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     return (this.articleAudiofiles[0] && this.articleAudiofiles[0].length) ? this.articleAudiofiles[0].length : 0;
   }
 
+  get isProcessing() {
+    const { article } = this.props;
+    return article.status === 'crawling' || article.status === 'new';
+  }
+
+  get isFailed() {
+    const { article } = this.props;
+    return article.status === 'failed';
+  }
+
   handleOnOpenUrl = (url: string) => {
     const { article } = this.props;
 
@@ -372,26 +390,39 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
     const hasAudiofile = article.audiofiles.length > 0;
 
+    // If the article is not yet done processing, for example, when we are still crawling it
+    // We show it as loading
+    if (this.isProcessing) {
+      return <ArticleEmptyProcessing onPressUpdate={() => this.fetchPlaylists()} url={articleUrl} />;
+    }
+
     return (
       <AppleStyleSwipeableRow
         removeArticle={this.handleRemoveArticle}
       >
-        <Article
-          isLoading={isLoading || isCreatingAudiofile}
-          isPlaying={isPlaying}
-          isActive={isActive}
-          isDownloaded={isDownloaded}
-          hasAudiofile={hasAudiofile}
-          title={article.title}
-          url={articleUrl}
-          description={article.description}
-          sourceName={article.sourceName}
-          authorName={article.authorName}
-          listenTimeInSeconds={this.listenTimeInSeconds}
-          readingTime={article.readingTime}
-          onPlayPress={this.handleOnPlayPress}
-          onOpenUrl={this.handleOnOpenUrl}
+        {this.isFailed &&
+          <ArticleEmptyFailed url={articleUrl} />
+        }
+
+        {!this.isFailed &&
+          <Article
+            isLoading={isLoading || isCreatingAudiofile}
+            isPlaying={isPlaying}
+            isActive={isActive}
+            isDownloaded={isDownloaded}
+            hasAudiofile={hasAudiofile}
+            title={article.title}
+            url={articleUrl}
+            description={article.description}
+            sourceName={article.sourceName}
+            authorName={article.authorName}
+            listenTimeInSeconds={this.listenTimeInSeconds}
+            readingTime={article.readingTime}
+            onPlayPress={this.handleOnPlayPress}
+            onOpenUrl={this.handleOnOpenUrl}
         />
+        }
+
       </AppleStyleSwipeableRow>
     );
   }

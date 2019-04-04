@@ -99,5 +99,19 @@ export default StyleSheet.create({
     textAlign: 'center',
     marginTop: 6,
     fontSize: 12
+  },
+  articleEmptyActivityIndicator: {
+    marginBottom: 12
+  },
+  articleEmpty: {
+    flex: 1,
+    backgroundColor: Colors.articleBackground,
+    padding: 14,
+    width: '100%',
+    justifyContent: 'center'
+  },
+  articleEmptyText: {
+    color: Colors.grayLight,
+    alignSelf: 'center'
   }
 });
