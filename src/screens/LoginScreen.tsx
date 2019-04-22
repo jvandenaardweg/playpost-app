@@ -40,7 +40,7 @@ class LoginScreenContainer extends React.PureComponent<Props, State> {
 
   saveToken = async (token: string) => {
     try {
-      await Keychain.setGenericPassword('token', token, { accessGroup: 'group.readto', service: 'com.aardwegmedia.readtoapp' });
+      await Keychain.setGenericPassword('token', token, { accessGroup: 'group.postplay', service: 'com.aardwegmedia.readtoapp' });
       this.props.navigation.navigate('App');
     } catch (err) {
       this.setState({ isLoading: false });

@@ -1,5 +1,5 @@
 {
-  "name": "readto",
+  "name": "postplay",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -114,8 +114,8 @@
   "detox": {
     "configurations": {
       "ios.sim.debug": {
-        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/Readto.app",
-        "build": "xcodebuild -UseModernBuildSystem=NO -workspace ios/Readto.xcworkspace -scheme Readto -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/Postplay.app",
+        "build": "xcodebuild -UseModernBuildSystem=NO -workspace ios/Postplay.xcworkspace -scheme Postplay -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "name": "iPhone 7"
       }

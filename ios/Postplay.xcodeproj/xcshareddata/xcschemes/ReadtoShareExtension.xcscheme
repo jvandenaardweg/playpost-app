@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D35B023EAEFECEF154EC3C566DCA659E"
-               BuildableName = "libPods-Readto.a"
-               BlueprintName = "Pods-Readto"
+               BuildableName = "libPods-Postplay.a"
+               BlueprintName = "Pods-Postplay"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,9 +44,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8C5A7DC1220F224A00ECCC65"
-               BuildableName = "ReadtoShareExtension.appex"
-               BlueprintName = "ReadtoShareExtension"
-               ReferencedContainer = "container:Readto.xcodeproj">
+               BuildableName = "PostplayShareExtension.appex"
+               BlueprintName = "PostplayShareExtension"
+               ReferencedContainer = "container:Postplay.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -58,9 +58,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "Readto.app"
-               BlueprintName = "Readto"
-               ReferencedContainer = "container:Readto.xcodeproj">
+               BuildableName = "Postplay.app"
+               BlueprintName = "Postplay"
+               ReferencedContainer = "container:Postplay.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Readto.app"
-            BlueprintName = "Readto"
-            ReferencedContainer = "container:Readto.xcodeproj">
+            BuildableName = "Postplay.app"
+            BlueprintName = "Postplay"
+            ReferencedContainer = "container:Postplay.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -104,9 +104,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Readto.app"
-            BlueprintName = "Readto"
-            ReferencedContainer = "container:Readto.xcodeproj">
+            BuildableName = "Postplay.app"
+            BlueprintName = "Postplay"
+            ReferencedContainer = "container:Postplay.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -124,9 +124,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Readto.app"
-            BlueprintName = "Readto"
-            ReferencedContainer = "container:Readto.xcodeproj">
+            BuildableName = "Postplay.app"
+            BlueprintName = "Postplay"
+            ReferencedContainer = "container:Postplay.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -1,7 +1,7 @@
 // your package you defined in ShareActivity
-package com.readto.share;
+package com.postplay.share;
 // import build config
-import com.readto.BuildConfig;
+import com.postplay.BuildConfig;
 
 import com.alinz.parkerdan.shareextension.SharePackage;
 

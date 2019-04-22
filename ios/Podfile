@@ -1,7 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '10.0'
 
-target 'Readto' do
+target 'Postplay' do
   inherit! :search_paths
   pod 'AppCenter/Crashes', '~> 1.13.0'
   pod 'AppCenter/Analytics', '~> 1.13.0'
@@ -9,7 +9,7 @@ target 'Readto' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
   # use_frameworks!
 
-  # Pods for Readto
+  # Pods for Postplay
 
 
 
@@ -31,11 +31,11 @@ target 'Readto' do
 
   # pod 'react-native-webview', :path => '../node_modules/react-native-webview'
 
-  target 'ReadtoShareExtension' do
+  target 'PostplayShareExtension' do
     inherit! :complete
   end
 
-  target 'ReadtoTests' do
+  target 'PostplayTests' do
     inherit! :search_paths
     # Pods for testing
   end

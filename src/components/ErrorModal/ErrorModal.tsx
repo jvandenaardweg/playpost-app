@@ -18,15 +18,15 @@ export const ErrorModal: React.FC<Props> = ({ message, action, onPressAction }) 
 
     {action === 'login' && (
       <View>
-        <Button title="Close" type="outline" onPress={() => onPressAction('readto://Onboarding')} />
-        <Button title="Login" onPress={() => onPressAction('readto://Onboarding')} />
+        <Button title="Close" type="outline" onPress={() => onPressAction('postplay://Onboarding')} />
+        <Button title="Login" onPress={() => onPressAction('postplay://Onboarding')} />
       </View>
     )}
 
     {action === 'playlist' && (
       <View>
-        <Button title="Close" type="outline" onPress={() => onPressAction('readto://Onboarding')} />
-        <Button title="Login" onPress={() => onPressAction('readto://Onboarding')} />
+        <Button title="Close" type="outline" onPress={() => onPressAction('postplay://Onboarding')} />
+        <Button title="Login" onPress={() => onPressAction('postplay://Onboarding')} />
       </View>
     )}
 

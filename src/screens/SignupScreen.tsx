@@ -55,7 +55,7 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
    */
   saveToken = async (token: string) => {
     try {
-      await Keychain.setGenericPassword('token', token, { accessGroup: 'group.readto', service: 'com.aardwegmedia.readtoapp' });
+      await Keychain.setGenericPassword('token', token, { accessGroup: 'group.postplay', service: 'com.aardwegmedia.readtoapp' });
       this.props.navigation.navigate('SignupSuccess');
     } catch (err) {
       Alert.alert('Oops!', 'We have successfully created your account, but could not log you in. Please try logging in manually.');
