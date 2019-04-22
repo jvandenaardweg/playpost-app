@@ -21,7 +21,7 @@ export class AuthLoadingScreen extends React.PureComponent<Props> {
     const credentials = await Keychain.getGenericPassword({ accessGroup: 'group.postplay', service: 'com.aardwegmedia.postplay' });
     let token = null;
 
-    if (credentials) {
+    if (credentials && credentials.password) {
       token = credentials.password;
     }
 
