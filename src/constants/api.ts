@@ -1,5 +1,5 @@
-const PRODUCTION_API_URL = 'https://readto-api-production.herokuapp.com';
-const STAGING_API_URL = 'https://readto-api-staging.herokuapp.com';
+const PRODUCTION_API_URL = 'https://api.postplay.app';
+const STAGING_API_URL = 'https://api-staging.postplay.app';
 const DEVELOPMENT_API_URL = 'http://localhost:3000';
 
 interface ApiEnvironments {
