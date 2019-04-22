@@ -15,7 +15,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D35B023EAEFECEF154EC3C566DCA659E"
+               BlueprintIdentifier = "93F05792E29A2F0BFD6ED94A04A89851"
                BuildableName = "libPods-Postplay.a"
                BlueprintName = "Pods-Postplay"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
