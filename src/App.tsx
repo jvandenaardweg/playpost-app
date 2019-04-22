@@ -4,7 +4,7 @@ import NetInfo from '@react-native-community/netinfo';
 import { ThemeProvider } from 'react-native-elements';
 import { Provider } from 'react-redux';
 import Analytics from 'appcenter-analytics';
-import Crashes from 'appcenter-crashes';
+// import Crashes from 'appcenter-crashes';
 import { PersistGate } from 'redux-persist/integration/react';
 // import { CenterLoadingIndicator } from './components/CenterLoadingIndicator';
 
@@ -14,7 +14,7 @@ import { reactNativeElementsTheme } from './theme';
 import { getPlaylists } from './reducers/playlists';
 
 import { AppNavigator } from './navigation/AppNavigator';
-import { ErrorBoundary } from './components/ErrorBoundary';
+// import { ErrorBoundary } from './components/ErrorBoundary';
 import { NetworkProvider } from './contexts/NetworkProvider';
 
 // import { whyDidYouUpdate } from 'why-did-you-update';
@@ -37,7 +37,7 @@ export default class App extends React.PureComponent<State> {
 
   componentDidMount() {
     this.setAnalytics();
-    this.setCrashes();
+    // this.setCrashes();
 
     AppState.addEventListener('change', this.handleAppStateChange);
   }
@@ -53,11 +53,11 @@ export default class App extends React.PureComponent<State> {
     }
   }
 
-  setCrashes = async () => {
-    if (!__DEV__) {
-      await Crashes.setEnabled(true);
-    }
-  }
+  // setCrashes = async () => {
+  //   if (!__DEV__) {
+  //     await Crashes.setEnabled(true);
+  //   }
+  // }
 
   handleAppStateChange = async (nextAppState: AppStateStatus) => {
     if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
@@ -81,7 +81,7 @@ export default class App extends React.PureComponent<State> {
 
   render() {
     return (
-      <ErrorBoundary>
+      // <ErrorBoundary>
         <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <ThemeProvider theme={reactNativeElementsTheme}>
@@ -91,7 +91,7 @@ export default class App extends React.PureComponent<State> {
           </ThemeProvider>
         </PersistGate>
         </Provider>
-      </ErrorBoundary>
+      // </ErrorBoundary>
     );
   }
 }
