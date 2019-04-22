@@ -40,8 +40,6 @@
     "babel-jest": "24.5.0",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "core-js": "^2.6.5",
-    "detox": "^10.0.13",
-    "detox-cli": "^10.0.7",
     "eslint": "^5.15.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
@@ -110,17 +108,6 @@
       "<rootDir>/node_modules/"
     ],
     "cacheDirectory": ".jest/cache"
-  },
-  "detox": {
-    "configurations": {
-      "ios.sim.debug": {
-        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/Postplay.app",
-        "build": "xcodebuild -UseModernBuildSystem=NO -workspace ios/Postplay.xcworkspace -scheme Postplay -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
-        "type": "ios.simulator",
-        "name": "iPhone 7"
-      }
-    },
-    "test-runner": "jest"
   },
   "devDependencies": {}
 }
