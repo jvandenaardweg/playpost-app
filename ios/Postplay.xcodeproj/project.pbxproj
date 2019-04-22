@@ -2279,7 +2279,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aardwegmedia.readtoapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aardwegmedia.postplay;
 				PRODUCT_NAME = Postplay;
 				SWIFT_OBJC_BRIDGING_HEADER = "Postplay-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2318,7 +2318,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aardwegmedia.readtoapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aardwegmedia.postplay;
 				PRODUCT_NAME = Postplay;
 				SWIFT_OBJC_BRIDGING_HEADER = "Postplay-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
@@ -2478,7 +2478,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aardwegmedia.readtoapp.shareextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aardwegmedia.postplay.shareextension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "PostplayShareExtension/PostplayShareExtension-Bridging-Header.h";
@@ -2532,7 +2532,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aardwegmedia.readtoapp.shareextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aardwegmedia.postplay.shareextension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "PostplayShareExtension/PostplayShareExtension-Bridging-Header.h";
