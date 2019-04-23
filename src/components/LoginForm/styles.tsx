@@ -8,7 +8,8 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 14
+    padding: 14,
+    backgroundColor: Colors.white
   },
   form: {
     width: '100%'

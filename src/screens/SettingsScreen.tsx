@@ -92,7 +92,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
     // Remove the persisted state
     await persistor.purge();
 
-    this.props.navigation.navigate('Login');
+    this.props.navigation.navigate('Onboarding');
   }
 
   settingsData: SettingsData = [

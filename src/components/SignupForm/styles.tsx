@@ -25,5 +25,26 @@ export default StyleSheet.create({
     backgroundColor: Colors.black,
     marginBottom: 14,
     opacity: 1
+  },
+  footerContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  footer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    textAlign: 'center',
+    paddingTop: 6,
+    maxWidth: 300,
+  },
+  footerText: {
+    fontSize: 16,
+    lineHeight: 24,
+    color: Colors.paragraphGrayed,
+    textAlign: 'center'
+  },
+  footerTextHighlight: {
+    color: Colors.black
   }
 });

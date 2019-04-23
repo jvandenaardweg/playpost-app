@@ -7,6 +7,7 @@ import { SignupScreen } from '../screens/SignupScreen';
 import { SignupSuccessScreen } from '../screens/SignupSuccessScreen';
 import { AuthLoadingScreen } from '../screens/AuthLoadingScreen';
 import { OnboardingScreen } from '../screens/OnboardingScreen';
+import { ModalBrowserScreen } from '../screens/ModalBrowserScreen';
 
 export const AppNavigator: NavigationContainer = createAppContainer(
   createSwitchNavigator(
@@ -18,7 +19,13 @@ export const AppNavigator: NavigationContainer = createAppContainer(
           Onboarding: OnboardingScreen,
           Login: LoginScreen,
           Signup: SignupScreen,
-          SignupSuccess: SignupSuccessScreen
+          SignupSuccess: SignupSuccessScreen,
+          ModalBrowser: ModalBrowserScreen,
+        },
+        {
+          initialRouteName: 'Onboarding',
+          mode: 'modal',
+          headerMode: 'screen'
         }
       )
     },

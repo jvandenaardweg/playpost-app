@@ -53,13 +53,13 @@ export const LoginForm: React.FC<Props> = ({
         // onSubmitEditing={() => focusNextField()}
       />
 
-      <View style={styles.errorContainer}>
+      {/* <View style={styles.errorContainer}>
         <Text style={styles.errorText}>{error}</Text>
-      </View>
+      </View> */}
 
       <View>
         <Button title="Login" loading={isLoading} onPress={onPressLogin} disabled={isLoading} buttonStyle={styles.buttonStyle} disabledStyle={styles.buttonStyle} activeOpacity={1} titleStyle={styles.buttonTitleStyle} />
-        <Button title="I don't have an account" type="clear" onPress={onPressSignup} titleStyle={{ color: 'gray', fontWeight: 'normal' }} />
+        {/* <Button title="I don't have an account" type="clear" onPress={onPressSignup} titleStyle={{ color: 'gray', fontWeight: 'normal' }} /> */}
       </View>
 
     </View>

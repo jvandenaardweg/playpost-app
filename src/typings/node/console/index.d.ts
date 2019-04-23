@@ -1,1 +1,3 @@
-declare module 'console';
+declare module 'console' {
+  export = typeof import("console");
+}

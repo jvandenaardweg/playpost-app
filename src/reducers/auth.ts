@@ -1,13 +1,13 @@
 import Analytics from 'appcenter-analytics';
-import { AxiosError } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
+
+import { GENERIC_NETWORK_ERROR, POST_AUTH_FAIL_MESSAGE } from '../constants/messages';
 
 export const POST_AUTH = 'auth/POST_AUTH';
 export const POST_AUTH_SUCCESS = 'auth/POST_AUTH_SUCCESS';
 export const POST_AUTH_FAIL = 'auth/POST_AUTH_FAIL';
 export const RESET_AUTH_STATE = 'auth/RESET_AUTH_STATE';
 export const SET_AUTH_TOKEN = 'auth/SET_AUTH_TOKEN';
-
-const POST_AUTH_FAIL_MESSAGE = 'An unknown error happened while loggin you in. Please contact us when this happens all the time.';
 
 export interface AuthState {
   isLoading: boolean;
@@ -25,7 +25,7 @@ const initialState: AuthState = {
 interface AuthActionTypes {
   type: string;
   payload: any;
-  error: AxiosError;
+  error: AxiosError & AxiosResponse;
 }
 
 export function authReducer(state = initialState, action: AuthActionTypes): AuthState {
@@ -33,7 +33,8 @@ export function authReducer(state = initialState, action: AuthActionTypes): Auth
     case POST_AUTH:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        error: ''
       };
 
     case POST_AUTH_SUCCESS:
@@ -47,17 +48,28 @@ export function authReducer(state = initialState, action: AuthActionTypes): Auth
       };
 
     case POST_AUTH_FAIL:
-      if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error auth', { message: action.error.response.data.message });
+
+      let postAuthFailMessage = '';
+
+      // Network error
+      if (action.error.status === 0) {
+        postAuthFailMessage = GENERIC_NETWORK_ERROR;
       } else {
-        Analytics.trackEvent('Error auth', { message: POST_AUTH_FAIL_MESSAGE });
+        // Error, from the API
+        if (action.error.response && action.error.response.data && action.error.response.data.message) {
+          Analytics.trackEvent('Error auth', { message: action.error.response.data.message });
+          postAuthFailMessage = action.error.response.data.message;
+        } else {
+          Analytics.trackEvent('Error auth', { message: POST_AUTH_FAIL_MESSAGE });
+          postAuthFailMessage = POST_AUTH_FAIL_MESSAGE;
+        }
       }
 
       return {
         ...state,
         isLoading: false,
         token: '',
-        error: (action.error.response) ? action.error.response.data.message : POST_AUTH_FAIL_MESSAGE
+        error: postAuthFailMessage
       };
 
     case RESET_AUTH_STATE:

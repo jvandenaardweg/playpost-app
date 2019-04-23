@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Alert } from 'react-native';
-import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
+import { Alert, View, Text, TouchableOpacity } from 'react-native';
+import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
 import * as Keychain from 'react-native-keychain';
+import { WebView } from 'react-native-webview';
+import Icon from 'react-native-vector-icons/Feather';
 
 import { SignupForm } from '../components/SignupForm';
 
@@ -12,13 +14,18 @@ import { postAuth } from '../reducers/auth';
 import { getAuthError } from '../selectors/auth';
 import { getUserError } from '../selectors/user';
 import { RootState } from '../reducers';
+import colors from '../constants/colors';
+import { ButtonClose } from '../components/Header/ButtonClose';
 
+/* tslint:disable no-any */
 interface State {
   isLoading: boolean;
   email: string;
   password: string;
   passwordValidation: string;
   validationError: string;
+  showModal: boolean;
+  error: any;
 }
 
 interface IProps {
@@ -38,16 +45,22 @@ interface DispatchProps {
 type Props = IProps & StateProps & DispatchProps;
 
 class SignupScreenContainer extends React.PureComponent<Props, State> {
-  static navigationOptions = {
-    title: 'Signup'
-  };
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+    return {
+      title: 'Signup',
+      headerLeft: null,
+      headerRight: <ButtonClose onPress={navigation.getParam('handleOnClose')} />
+    };
+  }
 
   state = {
     isLoading: false,
     email: '',
     password: '',
     passwordValidation: '',
-    validationError: ''
+    validationError: '',
+    showModal: false,
+    error: null
   };
 
   /**
@@ -63,6 +76,26 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
     }
   }
 
+  componentDidMount() {
+    this.props.navigation.setParams({ handleOnClose: this.handleOnClose });
+  }
+
+  handleOnClose = () => {
+    this.props.navigation.goBack();
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    const { userError, authError } = this.props;
+
+    if (authError && prevProps.authError !== authError) {
+      return Alert.alert('Oops!', authError);
+    }
+
+    if (userError && prevProps.userError !== userError) {
+      return Alert.alert('Oops!', userError);
+    }
+  }
+
   /**
    * Automatically logs the user in by using their given email and password
    * Providing some ease of use
@@ -71,13 +104,10 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
     const { email, password } = this.state;
 
     try {
-      /* tslint:disable no-any */
       const response: any = await this.props.postAuth(email, password);
       this.saveToken(response.payload.data.token);
     } catch (err) {
-      const errorMessage = (err.error.response) ? err.error.response.data.message : 'An error happened while creating your account. Please try again.';
-      Alert.alert('Oops!', errorMessage);
-      this.setState({ isLoading: false });
+      this.setState({ error: err, isLoading: false });
     }
   }
 
@@ -85,19 +115,17 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
     const { email, password, passwordValidation } = this.state;
 
     if (password !== passwordValidation) {
-      return this.setState({ validationError: 'The given passwords do not match. Please make sure you typed your passwords correctly.' });
+      return Alert.alert('Oops!', 'The given passwords do not match. Please make sure you typed your passwords correctly.');
     }
 
-    this.setState({ isLoading: true });
-
-    try {
-      await this.props.createUser(email, password);
-      this.autoLogin();
-    } catch (err) {
-      const errorMessage = (err.error.response) ? err.error.response.data.message : 'An unknown error happend. Please try again.';
-      Alert.alert('Oops!', errorMessage);
-      this.setState({ isLoading: false });
-    }
+    this.setState({ isLoading: true }, async () => {
+      try {
+        await this.props.createUser(email, password);
+        this.autoLogin();
+      } catch (err) {
+        this.setState({ error: err, isLoading: false });
+      }
+    });
   }
 
   handleOnPressLogin = () => this.props.navigation.navigate('Login');
@@ -108,19 +136,16 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
     if (field === 'passwordValidation') this.setState({ passwordValidation: value });
   }
 
-  render() {
-    const { email, password, passwordValidation, validationError, isLoading } = this.state;
-    const { userError, authError } = this.props;
+  handleOnPressOpenModal = (title: string, url: string) => this.props.navigation.navigate('ModalBrowser', { title, url });
 
-    const error = userError || authError || validationError;
+  render() {
+    const { email, password, passwordValidation, isLoading } = this.state;
 
     return (
       <SignupForm
         email={email}
         password={password}
         passwordValidation={passwordValidation}
-        error={error}
-        validationError={validationError}
         isLoading={isLoading}
         onChangeText={this.handleOnChangeText}
         onPressLogin={this.handleOnPressLogin}

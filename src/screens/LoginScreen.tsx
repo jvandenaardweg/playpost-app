@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
+import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
 import * as Keychain from 'react-native-keychain';
 import { Alert } from 'react-native';
 
@@ -12,11 +12,14 @@ import { getUser } from '../reducers/user';
 import { getAuthError } from '../selectors/auth';
 import { getUserError } from '../selectors/user';
 import { RootState } from '../reducers';
+import { ButtonClose } from '../components/Header/ButtonClose';
 
+/* tslint:disable no-any */
 interface State {
   isLoading: boolean;
   email: string;
   password: string;
+  error: any;
 }
 
 interface Props {
@@ -28,40 +31,61 @@ interface Props {
 }
 
 class LoginScreenContainer extends React.PureComponent<Props, State> {
-  static navigationOptions = {
-    title: 'Login'
-  };
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+    return {
+      title: 'Login',
+      headerLeft: null,
+      headerRight: <ButtonClose onPress={navigation.getParam('handleOnClose')} />
+    };
+  }
 
   state = {
     isLoading: false,
     email: '',
-    password: ''
+    password: '',
+    error: null
   };
+
+  componentDidMount() {
+    this.props.navigation.setParams({ handleOnClose: this.handleOnClose });
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    const { userError, authError } = this.props;
+
+    if (authError && prevProps.authError !== authError) {
+      return Alert.alert('Oops!', authError);
+    }
+
+    if (userError && prevProps.userError !== userError) {
+      return Alert.alert('Oops!', userError);
+    }
+  }
+
+  handleOnClose = () => {
+    this.props.navigation.goBack();
+  }
 
   saveToken = async (token: string) => {
     try {
       await Keychain.setGenericPassword('token', token, { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' });
       this.props.navigation.navigate('App');
     } catch (err) {
-      this.setState({ isLoading: false });
-      Alert.alert('Oops!', 'We could not set you as logged in. Please try again.');
+      this.setState({ isLoading: false, error: err  });
     }
   }
 
   handleOnPressLogin = async () => {
     const { email, password } = this.state;
 
-    this.setState({ isLoading: true });
-
-    try {
-      /* tslint:disable no-any */
-      const response: any = await this.props.postAuth(email, password);
-      this.saveToken(response.payload.data.token);
-    } catch (err) {
-      this.setState({ isLoading: false });
-      const errorMessage = (err.error.response) ? err.error.response.data.message : 'An unknown error happend. Please try again.';
-      Alert.alert('Oops!', errorMessage);
-    }
+    this.setState({ isLoading: true }, async () => {
+      try {
+        const response: any = await this.props.postAuth(email, password);
+        this.saveToken(response.payload.data.token);
+      } catch (err) {
+        this.setState({ isLoading: false, error: err });
+      }
+    });
   }
 
   handleOnPressSignup = () => this.props.navigation.navigate('Signup');

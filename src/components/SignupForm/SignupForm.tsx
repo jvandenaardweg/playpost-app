@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, KeyboardAvoidingView } from 'react-native';
+import { View, Text, TextInput, KeyboardAvoidingView, Linking } from 'react-native';
 import { Button } from 'react-native-elements';
 import styles from './styles';
 
@@ -10,8 +10,6 @@ interface Props {
   email: string;
   password: string;
   passwordValidation: string;
-  error: string;
-  validationError: string;
   isLoading: boolean;
 }
 
@@ -22,8 +20,6 @@ export const SignupForm: React.FC<Props> = ({
   email,
   password,
   passwordValidation,
-  error,
-  validationError,
   isLoading
 }) => (
   <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
@@ -68,13 +64,18 @@ export const SignupForm: React.FC<Props> = ({
         blurOnSubmit={false}
       />
 
-      <View style={styles.errorContainer}>
-        <Text style={styles.errorText}>{validationError || error}</Text>
-      </View>
-
       <View>
         <Button title="Create account" loading={isLoading} onPress={onPressSignup} disabled={isLoading} buttonStyle={styles.buttonStyle} activeOpacity={1} disabledStyle={styles.buttonStyle} />
-        <Button title="I already have an account" type="clear" onPress={onPressLogin} titleStyle={{ color: 'gray', fontWeight: 'normal' }} />
+        {/* <Button title="I already have an account" type="clear" onPress={onPressLogin} titleStyle={{ color: 'gray', fontWeight: 'normal' }} /> */}
+      </View>
+
+      <View style={styles.footerContainer}>
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>By signing up you agree to our </Text>
+          <Text style={[styles.footerText, styles.footerTextHighlight]} onPress={() => Linking.openURL('https://playpost.app/privacy-policy?ref=playpost://signup')}>Privacy Policy</Text>
+          <Text style={styles.footerText}> and </Text>
+          <Text style={[styles.footerText, styles.footerTextHighlight]} onPress={() => Linking.openURL('https://playpost.app/terms-of-use?ref=playpost://signup')}>Terms of Use</Text>
+        </View>
       </View>
 
     </View>

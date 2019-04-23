@@ -1,6 +1,8 @@
 import Analytics from 'appcenter-analytics';
 import { AxiosError, AxiosResponse } from 'axios';
 
+import { GENERIC_NETWORK_ERROR, GET_USER_FAIL_MESSAGE, CREATE_USER_FAIL_MESSAGE } from '../constants/messages';
+
 export const GET_USER = 'user/GET_USER';
 export const GET_USER_SUCCESS = 'user/GET_USER_SUCCESS';
 export const GET_USER_FAIL = 'user/GET_USER_FAIL';
@@ -10,9 +12,6 @@ export const CREATE_USER_SUCCESS = 'user/CREATE_USER_SUCCESS';
 export const CREATE_USER_FAIL = 'user/CREATE_USER_FAIL';
 
 export const RESET_USER_STATE = 'user/RESET_USER_STATE';
-
-const GET_USER_FAIL_MESSAGE = 'An unknown error happened while getting your account. Please contact us when this happens all the time.';
-const CREATE_USER_FAIL_MESSAGE = 'An unknown error happened while creating your account. Please contact us when this happens all the time.';
 
 export interface UserState {
   isLoading: boolean;
@@ -29,7 +28,7 @@ const initialState: UserState = {
 interface UserActionTypes {
   type: string;
   payload: AxiosResponse;
-  error: AxiosError;
+  error: AxiosError & AxiosResponse;
 }
 
 export function userReducer(state = initialState, action: UserActionTypes): UserState {
@@ -37,7 +36,8 @@ export function userReducer(state = initialState, action: UserActionTypes): User
     case GET_USER:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        error: ''
       };
 
     case GET_USER_SUCCESS:
@@ -51,23 +51,34 @@ export function userReducer(state = initialState, action: UserActionTypes): User
       };
 
     case GET_USER_FAIL:
-      if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error get account', { message: action.error.response.data.message });
+      let getUserFailMessage = '';
+
+      // Network error
+      if (action.error.status === 0) {
+        getUserFailMessage = GENERIC_NETWORK_ERROR;
       } else {
-        Analytics.trackEvent('Error get account', { message: GET_USER_FAIL_MESSAGE });
+        // Error, from the API
+        if (action.error.response && action.error.response.data && action.error.response.data.message) {
+          Analytics.trackEvent('Error get account', { message: action.error.response.data.message });
+          getUserFailMessage = action.error.response.data.message;
+        } else {
+          Analytics.trackEvent('Error get account', { message: GET_USER_FAIL_MESSAGE });
+          getUserFailMessage = GET_USER_FAIL_MESSAGE;
+        }
       }
 
       return {
         ...state,
         isLoading: false,
         user: null,
-        error: (action.error.response) ? action.error.response.data.message : GET_USER_FAIL_MESSAGE
+        error: getUserFailMessage
       };
 
     case CREATE_USER:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        error: ''
       };
 
     case CREATE_USER_SUCCESS:
@@ -81,17 +92,28 @@ export function userReducer(state = initialState, action: UserActionTypes): User
       };
 
     case CREATE_USER_FAIL:
-      if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error create user', { message: action.error.response.data.message });
+      let createUserFailMessage = '';
+      console.log(action);
+
+      // Network error
+      if (action.error.status === 0) {
+        createUserFailMessage = GENERIC_NETWORK_ERROR;
       } else {
-        Analytics.trackEvent('Error create user', { message: CREATE_USER_FAIL_MESSAGE });
+        // Error, from the API
+        if (action.error.response && action.error.response.data && action.error.response.data.message) {
+          Analytics.trackEvent('Error create user', { message: action.error.response.data.message });
+          createUserFailMessage = action.error.response.data.message;
+        } else {
+          Analytics.trackEvent('Error create user', { message: CREATE_USER_FAIL_MESSAGE });
+          createUserFailMessage = CREATE_USER_FAIL_MESSAGE;
+        }
       }
 
       return {
         ...state,
         isLoading: false,
         user: null,
-        error: (action.error.response) ? action.error.response.data.message : CREATE_USER_FAIL_MESSAGE
+        error: createUserFailMessage
       };
 
     case RESET_USER_STATE:
