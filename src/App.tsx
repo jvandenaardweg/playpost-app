@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, NativeModules, AppState, AppStateStatus, View, Text } from 'react-native';
+import { Platform, NativeModules, AppState, AppStateStatus } from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
 import { ThemeProvider } from 'react-native-elements';
 import { Provider } from 'react-redux';
@@ -16,7 +16,6 @@ import { getPlaylists } from './reducers/playlists';
 import { AppNavigator } from './navigation/AppNavigator';
 // import { ErrorBoundary } from './components/ErrorBoundary';
 import { NetworkProvider } from './contexts/NetworkProvider';
-import SplashScreen from 'react-native-splash-screen';
 
 // import { whyDidYouUpdate } from 'why-did-you-update';
 // whyDidYouUpdate(React, { exclude: /^YellowBox|Icon|Swipeable/ });
@@ -36,60 +35,63 @@ export default class App extends React.PureComponent<State> {
     appState: AppState.currentState
   };
 
-  // componentDidMount() {
-  //   this.setAnalytics();
-  //   // this.setCrashes();
-
-  //   AppState.addEventListener('change', this.handleAppStateChange);
-  // }
-
-  // componentWillUnmount() {
-  //   AppState.removeEventListener('change', this.handleAppStateChange);
-  // }
-
-  // setAnalytics = async () => {
-  //   if (!__DEV__) {
-  //     // Enable Analytics, so we can track errors
-  //     await Analytics.setEnabled(true);
-  //   }
-  // }
-
-  // // setCrashes = async () => {
-  // //   if (!__DEV__) {
-  // //     await Crashes.setEnabled(true);
-  // //   }
-  // // }
-
-  // handleAppStateChange = async (nextAppState: AppStateStatus) => {
-  //   if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
-  //     // console.log('App has come to the foreground! We should check for new playlist items.');
-
-  //     // Only fetch the playlist when there's an active internet connection
-  //     const isConnected = await NetInfo.isConnected.fetch();
-
-  //     if (isConnected) {
-  //       this.fetchPlaylist();
-  //     }
-  //   }
-
-  //   this.setState({ appState: nextAppState });
-  // }
-
-  // async fetchPlaylist() {
-  //   // console.log('Fetching the user his playlists...');
-  //   store.dispatch(getPlaylists());
-  // }
-
   componentDidMount() {
-    SplashScreen.hide();
+    this.setAnalytics();
+    // this.setCrashes();
+
+    AppState.addEventListener('change', this.handleAppStateChange);
+  }
+
+  componentWillUnmount() {
+    AppState.removeEventListener('change', this.handleAppStateChange);
+  }
+
+  setAnalytics = async () => {
+    if (!__DEV__) {
+      // Enable Analytics, so we can track errors
+      await Analytics.setEnabled(true);
+    }
+  }
+
+  // setCrashes = async () => {
+  //   if (!__DEV__) {
+  //     await Crashes.setEnabled(true);
+  //   }
+  // }
+
+  handleAppStateChange = async (nextAppState: AppStateStatus) => {
+    if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
+      // console.log('App has come to the foreground! We should check for new playlist items.');
+
+      // Only fetch the playlist when there's an active internet connection
+      const isConnected = await NetInfo.isConnected.fetch();
+
+      if (isConnected) {
+        this.fetchPlaylist();
+      }
+    }
+
+    this.setState({ appState: nextAppState });
+  }
+
+  async fetchPlaylist() {
+    // console.log('Fetching the user his playlists...');
+    store.dispatch(getPlaylists());
   }
 
   render() {
     return (
-
-              <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                <Text style={{color: 'white'}}>It works!</Text>
-              </View>
+      // <ErrorBoundary>
+        <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <ThemeProvider theme={reactNativeElementsTheme}>
+            <NetworkProvider>
+              <AppNavigator />
+            </NetworkProvider>
+          </ThemeProvider>
+        </PersistGate>
+        </Provider>
+      // </ErrorBoundary>
     );
   }
 }
