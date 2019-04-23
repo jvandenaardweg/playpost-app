@@ -1,4 +1,4 @@
-package com.postplay;
+package com.aardwegmedia.playpost;
 
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
@@ -22,7 +22,7 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "Postplay";
+        return "Playpost";
     }
 
     @Override

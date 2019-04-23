@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "Postplay.app"
-               BlueprintName = "Postplay"
-               ReferencedContainer = "container:Postplay.xcodeproj">
+               BuildableName = "Playpost.app"
+               BlueprintName = "Playpost"
+               ReferencedContainer = "container:Playpost.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "PostplayTests.xctest"
-               BlueprintName = "PostplayTests"
-               ReferencedContainer = "container:Postplay.xcodeproj">
+               BuildableName = "PlaypostTests.xctest"
+               BlueprintName = "PlaypostTests"
+               ReferencedContainer = "container:Playpost.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -61,9 +61,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "PostplayTests.xctest"
-               BlueprintName = "PostplayTests"
-               ReferencedContainer = "container:Postplay.xcodeproj">
+               BuildableName = "PlaypostTests.xctest"
+               BlueprintName = "PlaypostTests"
+               ReferencedContainer = "container:Playpost.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Postplay.app"
-            BlueprintName = "Postplay"
-            ReferencedContainer = "container:Postplay.xcodeproj">
+            BuildableName = "Playpost.app"
+            BlueprintName = "Playpost"
+            ReferencedContainer = "container:Playpost.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Postplay.app"
-            BlueprintName = "Postplay"
-            ReferencedContainer = "container:Postplay.xcodeproj">
+            BuildableName = "Playpost.app"
+            BlueprintName = "Playpost"
+            ReferencedContainer = "container:Playpost.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -113,9 +113,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Postplay.app"
-            BlueprintName = "Postplay"
-            ReferencedContainer = "container:Postplay.xcodeproj">
+            BuildableName = "Playpost.app"
+            BlueprintName = "Playpost"
+            ReferencedContainer = "container:Playpost.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

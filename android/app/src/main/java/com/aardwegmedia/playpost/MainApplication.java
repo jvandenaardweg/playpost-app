@@ -1,4 +1,4 @@
-package com.postplay;
+package com.aardwegmedia.playpost;
 
 import android.app.Application;
 
