@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-elements';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { withNavigation, NavigationScreenProp, NavigationRoute } from 'react-navigation';
 import SplashScreen from 'react-native-splash-screen';
 
 import styles from './styles';
+import Icon from 'react-native-vector-icons/Feather';
 
 interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;
@@ -23,19 +24,30 @@ class OnboardingSliderComponent extends React.PureComponent<Props> {
 
   slides = [
     {
+      key: 'slide0',
+      title: 'Instant podcasts of every article',
+      text: 'Turn every article on the web into audio using industry leading high quality voices. So you can listen to it just like Podcasts and Audiobooks.',
+      image: require('../../assets/images/logo-1024.png'),
+    },
+    {
       key: 'slide1',
-      title: 'Listen to articles',
-      text: 'Just listen to articles when you got no time to read. Let the app read the articles to you.\n\nArticles from the web are converted to spoken words using a pleasant voice.',
+      title: 'Listen on the go',
+      text: 'Listen to articles during your daily commute to work, or when doing other tasks. Just put in your earphones and press play.',
     },
     {
       key: 'slide2',
-      title: 'Make the listening experience your own',
-      text: 'Choose between a variaty of High Quality life-like voices with different accents like American English, British English or Australian English.\n\nAvailable using a subscription.',
+      title: 'High quality voices',
+      text: 'Industry leading high quality voices are used to automatically transform text into speech.\n\nChoose between a variety of high quality male and female voices with accents like American, British or Australian English.',
     },
     {
       key: 'slide3',
-      title: 'Easily save from every app',
-      text: 'A share icon is added in every app on your phone so you can easily add new articles.\n\nJust click the share icon to add an article to your playlist.',
+      title: 'Create your own playlist',
+      text: 'A share button is added in every app on your phone to share articles to your playlist.\n\nJust open your article and press share.',
+    },
+    {
+      key: 'slide4',
+      title: 'Advanced speech optimization',
+      text: 'The article’s text is optimized to be spoken to you. Correct pauses and emphasis are added for easy listening.',
     },
   ];
 
@@ -52,9 +64,9 @@ class OnboardingSliderComponent extends React.PureComponent<Props> {
           testID="OnboardingScreen-slider"
           slides={this.slides}
           renderItem={this.renderItem}
-          hidePrevButton
-          hideSkipButton
-          hideNextButton
+          showPrevButton
+          renderNextButton={() => <Icon name="arrow-right" color="white" size={24} />}
+          renderPrevButton={() => <Icon name="arrow-left" color="white" size={24} />}
           hideDoneButton
         />
         <View style={{ marginBottom: 22, paddingLeft: 14, paddingRight: 14 }}>
