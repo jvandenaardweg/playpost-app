@@ -1,5 +1,5 @@
-const PRODUCTION_API_URL = 'https://api.postplay.app';
-const STAGING_API_URL = 'https://api-staging.postplay.app';
+const PRODUCTION_API_URL = 'https://api.playpost.app';
+const STAGING_API_URL = 'https://api-staging.playpost.app';
 const DEVELOPMENT_API_URL = 'http://localhost:3000';
 
 interface ApiEnvironments {

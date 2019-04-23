@@ -18,7 +18,7 @@ export class AuthLoadingScreen extends React.PureComponent<Props> {
   // Fetch the token from storage then navigate to our appropriate place
   bootstrapAsync = async () => {
     // Important: Only rely on this token, so the user can use the app offline
-    const credentials = await Keychain.getGenericPassword({ accessGroup: 'group.postplay', service: 'com.aardwegmedia.postplay' });
+    const credentials = await Keychain.getGenericPassword({ accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' });
     let token = null;
 
     if (credentials && credentials.password) {

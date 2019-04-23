@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -2278,7 +2279,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aardwegmedia.postplay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aardwegmedia.playpost;
 				PRODUCT_NAME = Playpost;
 				SWIFT_OBJC_BRIDGING_HEADER = "Playpost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2317,7 +2318,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aardwegmedia.postplay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aardwegmedia.playpost;
 				PRODUCT_NAME = Playpost;
 				SWIFT_OBJC_BRIDGING_HEADER = "Playpost-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
@@ -2477,7 +2478,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aardwegmedia.postplay.shareextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aardwegmedia.playpost.shareextension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "PlaypostShareExtension/PlaypostShareExtension-Bridging-Header.h";
@@ -2531,7 +2532,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aardwegmedia.postplay.shareextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aardwegmedia.playpost.shareextension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "PlaypostShareExtension/PlaypostShareExtension-Bridging-Header.h";
