@@ -1,4 +1,4 @@
-# Postplay App
+# Playpost App
 When your eyes are too busy to read, but your ears are free to listen. Listen to any article from the web. Make the experience you enjoy by using different voices.
 
 [![Build status](https://build.appcenter.ms/v0.1/apps/be2d00ac-bfc6-43ce-ab5f-3c7c7a674048/branches/master/badge)](https://appcenter.ms)
@@ -25,17 +25,17 @@ Below packages where added manually using the installation instructions. This re
 
 
 # Troubleshooting
-First, try to build from XCode. Open the `Postplay.xcworkspace` file (not the `'.xcodeproject`).
+First, try to build from XCode. Open the `Playpost.xcworkspace` file (not the `'.xcodeproject`).
 
 Clean the cache: `cmd + shift + k`
 Start a build: `cmd + b`
 
 ## Undefined symbols for architecture arm64
-When you get errors related to "Undefined symbols for architecture arm64 - JSClassCreate". Add the `JavaScriptCore.framework` on top of the `Linked Frameworks and Libraries` in the `PostplayShareExtension` target.
+When you get errors related to "Undefined symbols for architecture arm64 - JSClassCreate". Add the `JavaScriptCore.framework` on top of the `Linked Frameworks and Libraries` in the `PlaypostShareExtension` target.
 Fix from: https://stackoverflow.com/a/54542903/3194288
 
 ## Several errors relating to React imports
-When you get build errors about missing imports with React related files with the `.h` extension. Make sure `Parallelize Builds` is off for both schemes. In `Product` > `Scheme` > `Manage schemes` > Open the `Build` tab > Uncheck `Parallelize Builds`. Do this for both the `Postplay` and `PostplayShareExtension`.
+When you get build errors about missing imports with React related files with the `.h` extension. Make sure `Parallelize Builds` is off for both schemes. In `Product` > `Scheme` > `Manage schemes` > Open the `Build` tab > Uncheck `Parallelize Builds`. Do this for both the `Playpost` and `PlaypostShareExtension`.
 This will make sure React get's build first.
 
 ## iOS Deployment Target 10.0

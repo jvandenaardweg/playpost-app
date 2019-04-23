@@ -1,5 +1,5 @@
 // define your share project, if your main project is com.sample1, then com.sample1.share makes sense....
-package com.postplay.share;
+package com.playpost.share;
 
 
 // import ReactActivity
@@ -10,7 +10,7 @@ public class ShareActivity extends ReactActivity {
     @Override
     protected String getMainComponentName() {
       // this is the name AppRegistry will use to launch the Share View
-        return "PostplayShareExtension";
+        return "PlaypostShareExtension";
     }
 
 }

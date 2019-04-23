@@ -1,6 +1,6 @@
 //
-//  PostplayShareExtension.m
-//  PostplayShareExtension
+//  PlaypostShareExtension.m
+//  PlaypostShareExtension
 //
 //  Created by Jordy van den Aardweg on 09/02/2019.
 //  Copyright © 2019 Facebook. All rights reserved.
@@ -12,10 +12,10 @@
 #import <React/RCTRootView.h>
 #import <React/RCTLog.h>
 
-@interface PostplayShareExtension : ReactNativeShareExtension
+@interface PlaypostShareExtension : ReactNativeShareExtension
 @end
 
-@implementation PostplayShareExtension
+@implementation PlaypostShareExtension
 
 RCT_EXPORT_MODULE();
 
@@ -25,7 +25,7 @@ RCT_EXPORT_MODULE();
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
   
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
-                                                      moduleName:@"PostplayShareExtension"
+                                                      moduleName:@"PlaypostShareExtension"
                                                initialProperties:nil
                                                    launchOptions:nil];
   

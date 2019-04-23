@@ -29,7 +29,7 @@ const client = axios.create({
 
 // Set the AUTH token for any request
 client.interceptors.request.use(async (config) => {
-  const credentials = await Keychain.getGenericPassword({ accessGroup: 'group.postplay', service: 'com.aardwegmedia.postplay' });
+  const credentials = await Keychain.getGenericPassword({ accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' });
 
   if (credentials) {
     const token = credentials.password;
