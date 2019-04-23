@@ -1,7 +1,8 @@
 // your package you defined in ShareActivity
 package com.playpost.share;
 // import build config
-import com.playpost.BuildConfig;
+// import com.playpost.BuildConfig;
+import com.facebook.react.BuildConfig;
 
 import com.alinz.parkerdan.shareextension.SharePackage;
 
