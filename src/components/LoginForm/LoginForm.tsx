@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, KeyboardAvoidingView } from 'react-native';
+import { View, TextInput, KeyboardAvoidingView } from 'react-native';
 import { Button } from 'react-native-elements';
 import styles from './styles';
 
@@ -36,7 +36,6 @@ export const LoginForm: React.FC<Props> = ({
         clearButtonMode="always"
         autoFocus
         blurOnSubmit={false}
-        // onSubmitEditing={() => focusNextField()}
       />
 
       <TextInput
@@ -50,16 +49,10 @@ export const LoginForm: React.FC<Props> = ({
         returnKeyType="done"
         clearButtonMode="always"
         blurOnSubmit={false}
-        // onSubmitEditing={() => focusNextField()}
       />
-
-      {/* <View style={styles.errorContainer}>
-        <Text style={styles.errorText}>{error}</Text>
-      </View> */}
 
       <View>
         <Button title="Login" loading={isLoading} onPress={onPressLogin} disabled={isLoading} buttonStyle={styles.buttonStyle} disabledStyle={styles.buttonStyle} activeOpacity={1} titleStyle={styles.buttonTitleStyle} />
-        {/* <Button title="I don't have an account" type="clear" onPress={onPressSignup} titleStyle={{ color: 'gray', fontWeight: 'normal' }} /> */}
       </View>
 
     </View>

@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Alert, View, Text, TouchableOpacity } from 'react-native';
+import { Alert} from 'react-native';
 import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
 import * as Keychain from 'react-native-keychain';
-import { WebView } from 'react-native-webview';
-import Icon from 'react-native-vector-icons/Feather';
 
 import { SignupForm } from '../components/SignupForm';
+import { ButtonClose } from '../components/Header/ButtonClose';
 
 import { createUser } from '../reducers/user';
 import { postAuth } from '../reducers/auth';
@@ -14,8 +13,6 @@ import { postAuth } from '../reducers/auth';
 import { getAuthError } from '../selectors/auth';
 import { getUserError } from '../selectors/user';
 import { RootState } from '../reducers';
-import colors from '../constants/colors';
-import { ButtonClose } from '../components/Header/ButtonClose';
 
 /* tslint:disable no-any */
 interface State {
