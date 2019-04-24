@@ -57,6 +57,6 @@ export class UpgradeFeatures extends React.PureComponent {
           </View>
         </View>
       </View>
-    )
+    );
   }
 }

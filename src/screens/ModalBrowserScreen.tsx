@@ -3,7 +3,6 @@ import React from 'react';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 import { WebView } from 'react-native-webview';
 
-
 interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;
 }
@@ -19,7 +18,6 @@ export class ModalBrowserScreen extends React.PureComponent<Props> {
     };
   }
 
-
   render() {
     const url = this.props.navigation.getParam('url', null);
 
@@ -28,7 +26,6 @@ export class ModalBrowserScreen extends React.PureComponent<Props> {
         ref={this.webviewRef}
         source={{ uri: url }}
       />
-
     );
   }
 }

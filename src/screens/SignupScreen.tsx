@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Alert} from 'react-native';
+import { Alert } from 'react-native';
 import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
 import * as Keychain from 'react-native-keychain';
 
