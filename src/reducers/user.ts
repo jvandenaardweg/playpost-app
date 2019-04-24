@@ -93,7 +93,6 @@ export function userReducer(state = initialState, action: UserActionTypes): User
 
     case CREATE_USER_FAIL:
       let createUserFailMessage = '';
-      console.log(action);
 
       // Network error
       if (action.error.status === 0) {

@@ -11,6 +11,7 @@ interface Props {
   isPlaying?: boolean;
   isActive?: boolean;
   isDownloaded?: boolean;
+  isFavorited?: boolean;
   hasAudiofile?: boolean;
   title?: string;
   url: string;
@@ -28,6 +29,7 @@ export const Article: React.FC<Props> = React.memo(({
   isPlaying,
   isActive,
   isDownloaded,
+  isFavorited,
   hasAudiofile,
   title,
   url,
@@ -63,10 +65,12 @@ export const Article: React.FC<Props> = React.memo(({
             testID="article-icon-downloaded"
           />
           {/* <Icon
-            name="bookmark"
-            size={10}
+            name="heart"
+            size={11}
             solid
-            style={styles.sourceIcon}
+            style={styles.downloadIcon}
+            color={isDownloaded ? colors.green : colors.grayLight}
+            testID="article-icon-downloaded"
           /> */}
           <Text style={styles.sourceName} testID="article-source-name">
             {authorName && `${authorName} on `}

@@ -95,6 +95,8 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
     this.props.navigation.navigate('Onboarding');
   }
 
+  handleOnPressUpgrade = () => this.props.navigation.navigate('Upgrade');
+
   settingsData: SettingsData = [
     {
       type: 'SECTION',
@@ -103,7 +105,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
         {
           title: 'Language',
           renderAccessory: () => (
-            <Text style={{ color: '#999', marginRight: 6, fontSize: 18 }}>
+            <Text style={{ color: '#999', marginRight: 6, fontSize: 17 }}>
               English (US)
             </Text>
           ),
@@ -112,7 +114,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
         {
           title: 'Gender',
           renderAccessory: () => (
-            <Text style={{ color: '#999', marginRight: 6, fontSize: 18 }}>
+            <Text style={{ color: '#999', marginRight: 6, fontSize: 17 }}>
               Male
             </Text>
           ),
@@ -121,7 +123,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
         {
           title: 'Speed',
           renderAccessory: () => (
-            <Text style={{ color: '#999', marginRight: 6, fontSize: 18 }}>
+            <Text style={{ color: '#999', marginRight: 6, fontSize: 17 }}>
               Normal
             </Text>
           ),
@@ -136,7 +138,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
         {
           title: 'Quality',
           renderAccessory: () => (
-            <Text style={{ color: '#999', marginRight: 6, fontSize: 18 }}>
+            <Text style={{ color: '#999', marginRight: 6, fontSize: 17 }}>
               Normal
             </Text>
           ),
@@ -161,7 +163,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
         {
           title: 'Clear cache',
           renderAccessory: () => (
-            <Text style={{ color: '#999', marginRight: 6, fontSize: 18 }}>
+            <Text style={{ color: '#999', marginRight: 6, fontSize: 17 }}>
               {this.state.cacheSize} mb
             </Text>
           ),
@@ -173,6 +175,10 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
       type: 'SECTION',
       header: 'Account'.toUpperCase(),
       rows: [
+        {
+          title: 'Upgrade',
+          onPress: this.handleOnPressUpgrade
+        },
         {
           title: 'Logout',
           onPress: this.handleOnPressLogout

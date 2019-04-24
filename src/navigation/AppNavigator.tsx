@@ -8,12 +8,30 @@ import { SignupSuccessScreen } from '../screens/SignupSuccessScreen';
 import { AuthLoadingScreen } from '../screens/AuthLoadingScreen';
 import { OnboardingScreen } from '../screens/OnboardingScreen';
 import { ModalBrowserScreen } from '../screens/ModalBrowserScreen';
+import { UpgradeScreen } from '../screens/UpgradeScreen';
 
 export const AppNavigator: NavigationContainer = createAppContainer(
   createSwitchNavigator(
     {
       AuthLoading: AuthLoadingScreen,
-      App: MainTabNavigator,
+      Root: createStackNavigator(
+        {
+          App: MainTabNavigator,
+          Modals: createStackNavigator(
+            {
+              Upgrade: UpgradeScreen
+            },
+            {
+              headerMode: 'screen'
+            }
+          )
+        },
+        {
+          mode: 'modal',
+          initialRouteName: 'App',
+          headerMode: 'none'
+        }
+      ),
       Onboarding: createStackNavigator(
         {
           Onboarding: OnboardingScreen,
@@ -30,7 +48,7 @@ export const AppNavigator: NavigationContainer = createAppContainer(
       )
     },
     {
-      initialRouteName: 'AuthLoading'
+      initialRouteName: 'AuthLoading',
     }
   )
 );

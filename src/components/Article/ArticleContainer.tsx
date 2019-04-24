@@ -410,6 +410,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
             isPlaying={isPlaying}
             isActive={isActive}
             isDownloaded={isDownloaded}
+            isFavorited={false}
             hasAudiofile={hasAudiofile}
             title={article.title}
             url={articleUrl}
