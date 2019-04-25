@@ -7,16 +7,19 @@ export const GET_VOICES = 'voices/GET_VOICES';
 export const GET_VOICES_SUCCESS = 'voices/GET_VOICES_SUCCESS';
 export const GET_VOICES_FAIL = 'voices/GET_VOICES_FAIL';
 export const RESET_VOICES_STATE = 'voices/RESET_VOICES_STATE';
+export const SET_SELECTED_VOICE = 'voices/SET_SELECTED_VOICE';
 
 export interface VoicesState {
   isLoading: boolean;
   voices: Api.Voice[];
+  selectedVoiceId: string;
   error: string;
 }
 
 const initialState: VoicesState = {
   isLoading: false,
   voices: [],
+  selectedVoiceId: '',
   error: ''
 };
 
@@ -29,6 +32,11 @@ interface AuthActionTypes {
 
 export function voicesReducer(state = initialState, action: AuthActionTypes): VoicesState {
   switch (action.type) {
+    case SET_SELECTED_VOICE:
+      return {
+        ...state,
+        selectedVoiceId: action.payload
+      };
     case GET_VOICES:
       return {
         ...state,
@@ -39,10 +47,19 @@ export function voicesReducer(state = initialState, action: AuthActionTypes): Vo
     case GET_VOICES_SUCCESS:
       Analytics.trackEvent('Get voices success');
 
+      let defaultSelectedVoice;
+
+      if (!state.selectedVoiceId) {
+        defaultSelectedVoice = action.payload.data.find((voice: Api.Voice) => voice.name === 'Joanna' && voice.synthesizer === 'AWS');
+      }
+
+      const defaultSelectedVoiceId = (defaultSelectedVoice) ? defaultSelectedVoice.id : state.selectedVoiceId;
+
       return {
         ...state,
         isLoading: false,
         voices: action.payload.data,
+        selectedVoiceId: defaultSelectedVoiceId,
         error: ''
       };
 
@@ -93,8 +110,15 @@ export function getVoices() {
     payload: {
       request: {
         method: 'get',
-        url: '/v1/voices'
+        url: '/v1/voices/active'
       }
     }
+  };
+}
+
+export function setSelectedVoice(voiceId: string) {
+  return {
+    type: SET_SELECTED_VOICE,
+    payload: voiceId
   };
 }

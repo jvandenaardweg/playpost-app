@@ -9,6 +9,11 @@ export const getVoices = createSelector(
   voices => voices.voices
 );
 
+export const getSelectedVoiceId = createSelector(
+  [voicesSelector],
+  voices => voices.selectedVoiceId
+);
+
 export const getAvailableVoices = createSelector(
   [getVoices],
   voices => voices.filter(voice => voice.isActive)
@@ -26,10 +31,17 @@ export const getAvailablePremiumVoices = createSelector(
 
 export const getDefaultFreeVoice = createSelector(
   [getAvailableFreeVoices],
-  voices => voices.find(voice => voice.name === 'en-US-Standard-D')
+  voices => voices.find(voice => voice.name === 'Joanna' && voice.synthesizer === 'AWS')
 );
 
 export const getDefaultPremiumVoice = createSelector(
   [getAvailablePremiumVoices],
-  voices => voices.find(voice => voice.name === 'en-US-Wavenet-D')
+  voices => voices.find(voice => voice.name === 'en-US-Wavenet-D' && voice.synthesizer === 'Google')
+);
+
+export const getSelectedVoice = createSelector(
+  [getSelectedVoiceId, getAvailableVoices],
+  (selectedVoiceId, availableVoices) => {
+    return availableVoices.find(voice => voice.id === selectedVoiceId);
+  }
 );

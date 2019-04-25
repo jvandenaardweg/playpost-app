@@ -4,14 +4,16 @@ import { ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-import { getVoices, getAvailableVoices } from '../../selectors/voices';
+import { getAvailableVoices, getSelectedVoice } from '../../selectors/voices';
+import { setSelectedVoice } from '../../reducers/voices';
 
 import styles from './styles';
 import { RootState } from '../../reducers';
 
 interface Props {
-  allVoices: Api.Voice[];
   allAvailableVoices: Api.Voice[];
+  setSelectedVoice(voiceId: string): void;
+  selectedVoice: Api.Voice | undefined;
 }
 
 export class VoicesSelectComponent extends React.PureComponent<Props> {
@@ -27,6 +29,8 @@ export class VoicesSelectComponent extends React.PureComponent<Props> {
   }
 
   handleOnListItemPress = (item: Api.Voice) => {
+    const { selectedVoice } = this.props;
+
     if (item.isPremium) {
       Alert.alert(
         'Upgrade to Premium',
@@ -44,15 +48,19 @@ export class VoicesSelectComponent extends React.PureComponent<Props> {
         { cancelable: true }
         );
     } else {
-      // Alert.alert('Standard voice', 'This premium voice is only available for Premium users.');
+      if (selectedVoice && selectedVoice.id !== item.id) {
+        this.props.setSelectedVoice(item.id);
+      }
     }
-
   }
 
   renderItem = ({ item }: { item: Api.Voice}) => {
+    const { selectedVoice } = this.props;
     const badgeValue = (item.isPremium) ? 'premium' : 'free';
     const label = (item.label) ? item.label : 'Unknown';
     const gender = (item.gender === 'MALE') ? 'Male' : 'Female';
+
+    const isSelected = (selectedVoice && selectedVoice.id && selectedVoice.id === item.id) ? true : false;
 
     return (
       <ListItem
@@ -60,10 +68,10 @@ export class VoicesSelectComponent extends React.PureComponent<Props> {
         title={`${item.languageName} (${item.countryCode})`}
         subtitle={`${label}, ${gender}`}
         subtitleStyle={{ opacity: 0.7 }}
-        // leftAvatar={{ source: { uri: item.avatar_url } }}
         badge={{ value: badgeValue, textStyle: { color: 'white' }, badgeStyle: { paddingLeft: 4, paddingRight: 4 } }}
         rightElement={this.renderPreviewButton()}
         bottomDivider
+        checkmark={isSelected}
       />
     );
   }
@@ -74,18 +82,20 @@ export class VoicesSelectComponent extends React.PureComponent<Props> {
         keyExtractor={this.keyExtractor}
         data={this.props.allAvailableVoices}
         renderItem={this.renderItem}
-        // style={styles.container}
+        extraData={this.props} // So it re-renders when our props change
       />
     );
   }
 }
 
 const mapStateToProps = (state: RootState) => ({
-  allVoices: getVoices(state),
-  allAvailableVoices: getAvailableVoices(state)
+  allAvailableVoices: getAvailableVoices(state),
+  selectedVoice: getSelectedVoice(state)
 });
 
-const mapDispatchToProps = { };
+const mapDispatchToProps = {
+  setSelectedVoice
+};
 
 export const VoicesSelect = connect(
   mapStateToProps,

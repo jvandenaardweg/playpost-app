@@ -20,7 +20,7 @@ import { setTrack, PlaybackStatus, createAudiofile, resetPlaybackStatus } from '
 import { setDownloadedAudiofile } from '../../reducers/audiofiles';
 
 import { getPlayerTrack, getPlayerPlaybackState } from '../../selectors/player';
-import { getDefaultFreeVoice, getDefaultPremiumVoice } from '../../selectors/voices';
+import { getDefaultFreeVoice, getDefaultPremiumVoice, getSelectedVoice } from '../../selectors/voices';
 import { ArticleEmptyProcessing, ArticleEmptyFailed } from './ArticleEmpty';
 
 interface State {
@@ -131,19 +131,19 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   async handleCreateAudiofile() {
-    const { article, defaultPremiumVoice } = this.props;
+    const { article, selectedVoice } = this.props;
 
     if (article.languageCode !== 'en') {
       return Alert.alert('Language not supported', `In this version we only allow English articles. This article seems to have the language: ${article.languageCode}.`);
     }
 
-    if (!defaultPremiumVoice || !defaultPremiumVoice.id) {
+    if (!selectedVoice || !selectedVoice.id) {
       return Alert.alert('Voice not ready', 'Audiofile could not be generated at this point. Please try again later.');
     }
 
     this.setState({ isPlaying: false, isLoading: true, isActive: true, isCreatingAudiofile: true }, async () => {
       try {
-        await this.props.createAudiofile(article.id, defaultPremiumVoice.id);
+        await this.props.createAudiofile(article.id, selectedVoice.id);
         await this.props.getPlaylists(); // Get the playlist, it contains the article with the newly created audiofile
         this.handleSetTrack(); // Set the track. Upon track change, the track with automatically play.
       } catch (err) {
@@ -439,6 +439,7 @@ interface StateProps {
   playbackState: PlaybackStatus;
   defaultPremiumVoice: Api.Voice | undefined;
   defaultFreeVoice: Api.Voice | undefined;
+  selectedVoice: Api.Voice | undefined;
 }
 
 interface DispatchProps {
@@ -455,6 +456,7 @@ const mapStateToProps = (state: RootState): StateProps => ({
   playbackState: getPlayerPlaybackState(state),
   defaultPremiumVoice: getDefaultPremiumVoice(state),
   defaultFreeVoice: getDefaultFreeVoice(state),
+  selectedVoice: getSelectedVoice(state)
 });
 
 const mapDispatchToProps: DispatchProps = {
