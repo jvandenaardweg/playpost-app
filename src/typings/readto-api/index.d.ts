@@ -75,11 +75,55 @@ declare namespace Api {
     updatedAt: Date;
   }
 
+  export interface Voice {
+    id: string;
+    languageCode: string;
+    countryCode: string;
+    languageName: string;
+    name: string;
+    label: string | null;
+    gender: Gender;
+    synthesizer: Synthesizer;
+    audioProfile: AudioProfile;
+    speakingRate: number;
+    pitch: number;
+    naturalSampleRateHertz: number | null;
+    isActive: boolean;
+    isPremium: boolean;
+    exampleAudioUrl: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+  }
+
   export enum ArticleStatus {
     CRAWLING = 'crawling',
     NEW = 'new',
     FINISHED = 'finished',
     FAILED = 'failed'
+  }
+
+  export enum Gender {
+    MALE = 'MALE',
+    FEMALE = 'FEMALE',
+    NEUTRAL = 'NEUTRAL',
+    SSML_VOICE_GENDER_UNSPECIFIED = 'SSML_VOICE_GENDER_UNSPECIFIED'
+  }
+
+  export enum Synthesizer {
+    GOOGLE = 'Google',
+    AWS = 'AWS'
+  }
+
+  export enum AudioProfile {
+    DEFAULT = 'default',
+    HEADPHONE = 'headphone-class-device',
+    SMARTPHONE = 'handset-class-device',
+    SMART_WATCH = 'wearable-class-device',
+    SMALL_HOME_SPEAKER = 'small-bluetooth-speaker-class-device',
+    SMART_HOME_SPEAKER = 'medium-bluetooth-speaker-class-device',
+    LARGE_HOME_ENTERTAINMENT_SYSTEM = 'large-home-entertainment-class-device',
+    CAR_SPEAKER = 'large-automotive-class-device',
+    INTERACTIVE_VOICE_RESPONSE_SYSTEM = 'telephony-class-application'
   }
 
 }

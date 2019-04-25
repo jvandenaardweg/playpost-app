@@ -8,6 +8,7 @@ import { ArchiveScreen } from '../screens/ArchiveScreen';
 import { FavoritesScreen } from '../screens/FavoritesScreen';
 import { SettingsScreen } from '../screens/SettingsScreen';
 import { BrowserScreen } from '../screens/BrowserScreen';
+import { SettingsVoicesScreen } from '../screens/SettingsVoicesScreen';
 
 const PlaylistStack: StackNavigatorConfig = createStackNavigator(
   {
@@ -63,7 +64,8 @@ const FavoritesStack: StackNavigatorConfig = createStackNavigator(
 
 const SettingsStack: StackNavigatorConfig = createStackNavigator(
   {
-    Settings: SettingsScreen
+    Settings: SettingsScreen,
+    SettingsVoices: SettingsVoicesScreen
   },
   {
     navigationOptions: {

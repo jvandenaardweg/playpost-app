@@ -10,11 +10,20 @@ import VersionNumber from 'react-native-version-number';
 import { LOCAL_STORAGE_PATH } from '../constants/files';
 
 import { resetAuthState } from '../reducers/auth';
-import { UserState, resetUserState } from '../reducers/user';
+import { resetUserState } from '../reducers/user';
 import { resetPlayerState } from '../reducers/player';
 import { resetPlaylistsState } from '../reducers/playlists';
 import { resetAudiofilesState } from '../reducers/audiofiles';
+import { resetVoicesState } from '../reducers/voices';
+
+
+import { getVoices } from '../reducers/voices';
+
+import { getAvailableVoices } from '../selectors/voices';
+import { getUser } from '../selectors/user';
+
 import { persistor } from '../store';
+import { RootState } from '../reducers';
 
 interface Props {
   resetAuthState(): void;
@@ -22,6 +31,8 @@ interface Props {
   resetPlayerState(): void;
   resetPlaylistsState(): void;
   resetAudiofilesState(): void;
+  resetVoicesState(): void;
+  getVoices(): void;
   navigation: NavigationScreenProp<NavigationRoute>;
 }
 
@@ -40,6 +51,11 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
 
   componentDidMount() {
     this.setCacheSize();
+    this.fetchVoices();
+  }
+
+  fetchVoices = async () => {
+    await this.props.getVoices();
   }
 
   setCacheSize = async () => {
@@ -88,6 +104,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
     this.props.resetPlayerState();
     this.props.resetPlaylistsState();
     this.props.resetAudiofilesState();
+    this.props.resetVoicesState();
 
     // Remove the persisted state
     await persistor.purge();
@@ -96,6 +113,8 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
   }
 
   handleOnPressUpgrade = () => this.props.navigation.navigate('Upgrade');
+
+  handleOnPressLanguage = () => this.props.navigation.navigate('SettingsVoices');
 
   settingsData: SettingsData = [
     {
@@ -109,7 +128,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
               English (US)
             </Text>
           ),
-          onPress: this.handleOnPressRow
+          onPress: this.handleOnPressLanguage
         },
         {
           title: 'Gender',
@@ -209,8 +228,9 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
   }
 }
 
-const mapStateToProps = (state: { user: UserState }) => ({
-  user: state.user
+const mapStateToProps = (state: RootState) => ({
+  user: getUser(state),
+  availableVoices: getAvailableVoices(state)
 });
 
 const mapDispatchToProps = {
@@ -218,7 +238,9 @@ const mapDispatchToProps = {
   resetUserState,
   resetPlayerState,
   resetPlaylistsState,
-  resetAudiofilesState
+  resetAudiofilesState,
+  resetVoicesState,
+  getVoices
 };
 
 export const SettingsScreen = connect(

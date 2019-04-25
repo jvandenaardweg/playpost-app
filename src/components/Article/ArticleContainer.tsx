@@ -20,6 +20,7 @@ import { setTrack, PlaybackStatus, createAudiofile, resetPlaybackStatus } from '
 import { setDownloadedAudiofile } from '../../reducers/audiofiles';
 
 import { getPlayerTrack, getPlayerPlaybackState } from '../../selectors/player';
+import { getDefaultFreeVoice, getDefaultPremiumVoice } from '../../selectors/voices';
 import { ArticleEmptyProcessing, ArticleEmptyFailed } from './ArticleEmpty';
 
 interface State {
@@ -130,15 +131,19 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   async handleCreateAudiofile() {
-    const { article } = this.props;
+    const { article, defaultPremiumVoice } = this.props;
 
     if (article.languageCode !== 'en') {
       return Alert.alert('Language not supported', `In this version we only allow English articles. This article seems to have the language: ${article.languageCode}.`);
     }
 
+    if (!defaultPremiumVoice || !defaultPremiumVoice.id) {
+      return Alert.alert('Voice not ready', 'Audiofile could not be generated at this point. Please try again later.');
+    }
+
     this.setState({ isPlaying: false, isLoading: true, isActive: true, isCreatingAudiofile: true }, async () => {
       try {
-        await this.props.createAudiofile(article.id);
+        await this.props.createAudiofile(article.id, defaultPremiumVoice.id);
         await this.props.getPlaylists(); // Get the playlist, it contains the article with the newly created audiofile
         this.handleSetTrack(); // Set the track. Upon track change, the track with automatically play.
       } catch (err) {
@@ -432,11 +437,13 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 interface StateProps {
   track: TrackPlayer.Track;
   playbackState: PlaybackStatus;
+  defaultPremiumVoice: Api.Voice | undefined;
+  defaultFreeVoice: Api.Voice | undefined;
 }
 
 interface DispatchProps {
   setTrack(track: TrackPlayer.Track): void;
-  createAudiofile(articleId: string): void;
+  createAudiofile(articleId: string, voiceId: string): void;
   getPlaylists(): void;
   removeArticleFromPlaylist(articleId: string, playlistId: string): void;
   resetPlaybackStatus(): void;
@@ -445,7 +452,9 @@ interface DispatchProps {
 
 const mapStateToProps = (state: RootState): StateProps => ({
   track: getPlayerTrack(state),
-  playbackState: getPlayerPlaybackState(state)
+  playbackState: getPlayerPlaybackState(state),
+  defaultPremiumVoice: getDefaultPremiumVoice(state),
+  defaultFreeVoice: getDefaultFreeVoice(state),
 });
 
 const mapDispatchToProps: DispatchProps = {

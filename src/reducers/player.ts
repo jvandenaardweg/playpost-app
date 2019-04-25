@@ -152,7 +152,7 @@ export function setTrack(track: TrackPlayer.Track) {
   };
 }
 
-export function createAudiofile(articleId: string) {
+export function createAudiofile(articleId: string, voiceId: string) {
   return {
     type: CREATE_AUDIOFILE,
     payload: {
@@ -160,6 +160,7 @@ export function createAudiofile(articleId: string) {
         method: 'post',
         url: `/v1/articles/${articleId}/audiofiles`,
         data: {
+          voiceId,
           encoding: 'MP3'
         }
       }

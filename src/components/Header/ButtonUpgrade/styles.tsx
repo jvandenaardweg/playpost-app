@@ -4,10 +4,8 @@ import colors from '../../../constants/colors';
 export default StyleSheet.create({
   container: {
     marginRight: 12,
-    // width: 40,
     height: 40,
     alignItems: 'center',
-    // justifyContent: 'center',
     flex: 1,
     flexDirection: 'row'
   },

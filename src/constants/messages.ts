@@ -4,3 +4,5 @@ export const GET_USER_FAIL_MESSAGE = 'An unknown error happened while getting yo
 export const CREATE_USER_FAIL_MESSAGE = 'An unknown error happened while creating your account. Please contact us when this happens all the time.';
 
 export const POST_AUTH_FAIL_MESSAGE = 'An unknown error happened while loggin you in. Please contact us when this happens all the time.';
+
+export const GET_VOICES_FAIL_MESSAGE = 'An unknown error happened while getting the available voices. Please contact us when this happens all the time.';

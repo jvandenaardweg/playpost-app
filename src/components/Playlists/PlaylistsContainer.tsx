@@ -11,6 +11,7 @@ import { ArticleContainer } from '../../components/Article/ArticleContainer';
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
 import { getPlaylists } from '../../reducers/playlists';
+import { getVoices } from '../../reducers/voices';
 
 import { getDefaultPlaylistArticles, getDefaultPlaylist } from '../../selectors/playlists';
 
@@ -34,6 +35,7 @@ interface Props {
   defaultPlaylist: Api.Playlist | null;
   downloadedAudiofiles: Api.Audiofile[];
   getPlaylists(): void;
+  getVoices(): void;
 }
 
 class ArticlesContainerComponent extends React.Component<Props, State> {
@@ -70,6 +72,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
     } else {
       // Just fetch the playlists in the background, so we always get an up-to-date playlist upon launch
       this.fetchPlaylists();
+      this.fetchVoices();
     }
 
     // Wait a little longer, then hide the splash screen.
@@ -81,6 +84,10 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
     const showHelpVideo = await AsyncStorage.getItem('@showHelpVideo');
 
     if (showHelpVideo) this.setState({ showHelpVideo: true });
+  }
+
+  async fetchVoices() {
+    await this.props.getVoices();
   }
 
   async fetchPlaylists() {
@@ -233,7 +240,8 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = {
-  getPlaylists
+  getPlaylists,
+  getVoices
 };
 
 export const PlaylistsContainer = connect(
