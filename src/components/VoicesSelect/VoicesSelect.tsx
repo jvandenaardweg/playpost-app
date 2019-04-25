@@ -1,6 +1,6 @@
 import React from 'react';
-import { FlatList, Text, TouchableOpacity, Alert } from 'react-native';
-import { ListItem, CheckBox } from 'react-native-elements';
+import { FlatList, TouchableOpacity, Alert } from 'react-native';
+import { ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
@@ -16,7 +16,7 @@ interface Props {
 
 export class VoicesSelectComponent extends React.PureComponent<Props> {
 
-  keyExtractor = (item, index) => index.toString();
+  keyExtractor = (item: Api.Voice, index: number) => index.toString();
 
   renderPreviewButton = () => {
     return (
