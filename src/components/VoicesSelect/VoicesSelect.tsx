@@ -1,16 +1,16 @@
 import React from 'react';
-import { FlatList, TouchableOpacity, Alert } from 'react-native';
+import { FlatList, Alert } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import TrackPlayer from 'react-native-track-player';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import { setTrack, PlaybackStatus, createAudiofile, resetPlaybackStatus } from '../../reducers/player';
+import { setTrack, PlaybackStatus } from '../../reducers/player';
 import { getPlayerPlaybackState } from '../../selectors/player';
+import { downloadVoicePreview } from '../../storage';
 
 import { getAvailableVoices, getSelectedVoice } from '../../selectors/voices';
 import { setSelectedVoice } from '../../reducers/voices';
 
-import styles from './styles';
+// import styles from './styles';
 import { RootState } from '../../reducers';
 import { VoicePreviewButton } from '../VoicePreviewButton';
 
@@ -52,13 +52,15 @@ export class VoicesSelectComponent extends React.PureComponent<Props> {
     }
   }
 
-  handleOnPreviewPress = (title: string, label: string, url: string | null, id: string) => {
+  handleOnPreviewPress = async (title: string, label: string, url: string | null, id: string) => {
     if (!url) return Alert.alert('No voice preview available, yet.');
+
+    const localFilePath = await downloadVoicePreview(url);
 
     return this.props.setTrack({
       id,
       title,
-      url,
+      url: localFilePath,
       artist: label,
       album: 'Voice previews'
     });

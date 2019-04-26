@@ -4,10 +4,8 @@ import TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
 import { withNavigation, NavigationInjectedProps } from 'react-navigation';
 import isEqual from 'react-fast-compare';
-import RNFS from 'react-native-fs';
-import RNFetchBlob from 'rn-fetch-blob';
 
-import { LOCAL_STORAGE_PATH } from '../../constants/files';
+import { LOCAL_CACHE_AUDIOFILES_PATH } from '../../constants/files';
 
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
@@ -22,6 +20,7 @@ import { setDownloadedAudiofile } from '../../reducers/audiofiles';
 import { getPlayerTrack, getPlayerPlaybackState } from '../../selectors/player';
 import { getDefaultFreeVoice, getDefaultPremiumVoice, getSelectedVoice } from '../../selectors/voices';
 import { ArticleEmptyProcessing, ArticleEmptyFailed } from './ArticleEmpty';
+import { downloadArticleAudiofile, getLocalFilePath } from '../../storage';
 
 interface State {
   isLoading: boolean;
@@ -202,29 +201,14 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     return TrackPlayer.play();
   }
 
-  downloadAudiofile = async (url: string, articleId: string, audiofileId: string, encoding: Api.Audiofile['encoding']): Promise<string | void> => {
+  downloadAudiofile = async (url: string, audiofileId: string, filename: string): Promise<string | void> => {
     // console.log('Downloading audiofile...');
 
     return new Promise((resolve, reject) => {
       return this.setState({ isActive: true, isLoading: true, isDownloadingAudiofile: true }, async () => {
         try {
-          // Make sure the /audiofile path exists
-          await RNFS.mkdir(LOCAL_STORAGE_PATH);
-
-          let extension = 'mp3';
-
-          if (encoding === 'OGG_OPUS') {
-            extension = 'opus';
-          }
-
-          const localFilePath = `${LOCAL_STORAGE_PATH}/${audiofileId}.${extension}`;
-
-          const result = await RNFetchBlob.config({ path: localFilePath }).fetch('GET', url);
-
-          if (!result) return reject(new Error('File does not exist.'));
-
-          resolve(`file://${localFilePath}`);
-
+          const localFilePath = await downloadArticleAudiofile(url, filename);
+          resolve(localFilePath);
         } catch (err) {
           this.setState({ isLoading: false });
 
@@ -238,7 +222,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
               },
               {
                 text: 'Try again',
-                onPress: () => this.downloadAudiofile(url, articleId, audiofileId, encoding),
+                onPress: () => this.downloadAudiofile(url, audiofileId, filename),
               },
             ],
             { cancelable: true }
@@ -248,16 +232,6 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         }
       });
     });
-  }
-
-  getLocalAudiofilePath = (audiofileId: string, encoding: Api.Audiofile['encoding']) => {
-    let extension = 'mp3';
-
-    if (encoding === 'OGG_OPUS') {
-      extension = 'opus';
-    }
-
-    return `file://${LOCAL_STORAGE_PATH}/${audiofileId}.${extension}`;
   }
 
   handleSetTrack = async () => {
@@ -277,12 +251,12 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
       const audiofile = this.articleAudiofiles[0];
 
-      let localAudiofilePath = this.getLocalAudiofilePath(audiofile.id, audiofile.encoding);
+      let localAudiofilePath = getLocalFilePath(audiofile.filename, LOCAL_CACHE_AUDIOFILES_PATH);
 
       if (!isDownloaded) {
         if (!isConnected) return Alert.alert('No internet', 'You need an active internet connection to listen to this article.');
 
-        const downloadedLocalAudiofilePath = await this.downloadAudiofile(audiofile.url, article.id, audiofile.id, audiofile.encoding);
+        const downloadedLocalAudiofilePath = await this.downloadAudiofile(audiofile.url, audiofile.id, audiofile.filename);
 
         // Save the audiofile in store, so we can track which article has downloaded articles
         this.props.setDownloadedAudiofile(audiofile);
