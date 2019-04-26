@@ -161,7 +161,7 @@ export function createAudiofile(articleId: string, voiceId: string) {
         url: `/v1/articles/${articleId}/audiofiles`,
         data: {
           voiceId,
-          encoding: 'MP3'
+          mimeType: 'audio/mpeg'
         }
       }
     }
