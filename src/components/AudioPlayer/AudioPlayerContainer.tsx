@@ -161,7 +161,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
 
     if (!articles.length) return null;
 
-    if (!track.id) {
+    if (!track.id || track.album === 'Voice previews') {
       return (<EmptyPlayer />);
     }
 

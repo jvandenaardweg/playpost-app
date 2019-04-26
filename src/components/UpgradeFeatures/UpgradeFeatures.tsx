@@ -8,7 +8,7 @@ import styles from './styles';
 export class UpgradeFeatures extends React.PureComponent {
 
   handleOnPressUpgrade = () => {
-    Alert.alert('Upgrade to Pro', 'This is currently not working in this version of the App. Upgrading to Pro becomes available in later versions.');
+    Alert.alert('Upgrade to Premium', 'This is currently not working in this version of the App. Upgrading to Premium becomes available in later versions.');
   }
 
   handleOnPressRestore = () => {
@@ -19,13 +19,13 @@ export class UpgradeFeatures extends React.PureComponent {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>Upgrade for premium features</Text>
+          <Text style={styles.headerTitle}>Upgrade for Premium features</Text>
 
           <View style={styles.feature}>
             <Icon name="gem" size={32} style={styles.featureIcon} />
             <View style={styles.featureContent}>
               <Text style={styles.title}>Higher quality voices</Text>
-              <Text style={styles.paragraph}>For our pro users we have even higher quality voices that sound more life-like.</Text>
+              <Text style={styles.paragraph}>The highest quality artificially generated voices. You can preview these Premium voices in the settings screen.</Text>
             </View>
           </View>
           <View style={styles.feature}>

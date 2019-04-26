@@ -11,7 +11,7 @@ interface Props {
 export class UpgradeScreen extends React.PureComponent<Props> {
   static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationScreenOptions => {
     return {
-      title: 'Upgrade to Pro',
+      title: 'Upgrade',
       headerLeft: null,
       headerRight: <ButtonClose onPress={navigation.getParam('handleOnClose')} />,
       headerTintColor: '#000'
