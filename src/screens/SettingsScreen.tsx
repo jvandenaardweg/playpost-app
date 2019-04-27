@@ -1,23 +1,20 @@
 import React from 'react';
+import RNFS from 'react-native-fs';
+import VersionNumber from 'react-native-version-number';
 import { Text, Switch, Alert } from 'react-native';
 import { SettingsScreen as SettingsScreenComponent, SettingsData } from 'react-native-settings-screen';
 import { connect } from 'react-redux';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 import * as Keychain from 'react-native-keychain';
-import RNFS from 'react-native-fs';
-import VersionNumber from 'react-native-version-number';
 
-import { LOCAL_STORAGE_PATH } from '../constants/files';
+import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 
 import { resetAuthState } from '../reducers/auth';
 import { resetUserState } from '../reducers/user';
 import { resetPlayerState } from '../reducers/player';
 import { resetPlaylistsState } from '../reducers/playlists';
 import { resetAudiofilesState } from '../reducers/audiofiles';
-import { resetVoicesState } from '../reducers/voices';
-
-
-import { getVoices } from '../reducers/voices';
+import { resetVoicesState, getVoices } from '../reducers/voices';
 
 import { getAvailableVoices } from '../selectors/voices';
 import { getUser } from '../selectors/user';
@@ -60,22 +57,38 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
 
   setCacheSize = async () => {
     try {
-      await RNFS.mkdir(LOCAL_STORAGE_PATH);
-      const files = await RNFS.readDir(LOCAL_STORAGE_PATH);
+      await RNFS.mkdir(LOCAL_CACHE_AUDIOFILES_PATH);
+      await RNFS.mkdir(LOCAL_CACHE_VOICE_PREVIEWS_PATH);
 
-      const size = files.reduce(
-        (prev, curr) => {
+      const directories = [LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH];
+      const sizes = [];
+
+      for (const directory of directories) {
+        const files = await RNFS.readDir(directory);
+        const size = files.reduce(
+          (prev, curr) => {
+            /* tslint:disable-next-line no-parameter-reassignment */
+            prev = prev + parseFloat(curr.size);
+            return prev;
+          },
+          0
+        );
+        sizes.push(size);
+      }
+
+      const combinedSize = sizes.reduce(
+        (prev, size) => {
           /* tslint:disable-next-line no-parameter-reassignment */
-          prev = prev + parseFloat(curr.size);
+          prev = prev + size;
           return prev;
         },
         0
       );
 
-      const sizeInMb = (size / 1000000).toFixed(2);
-      this.setState({ cacheSize: sizeInMb });
+      const sizeInMb = (combinedSize / 1000000).toFixed(2);
+      return this.setState({ cacheSize: sizeInMb });
     } catch (err) {
-      Alert.alert('Oops!', 'We could not set the cache size.');
+      return Alert.alert('Oops!', 'We could not set the cache size.');
     }
   }
 
@@ -86,7 +99,8 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
   handleOnPressClearCache = async () => {
     try {
       this.props.resetAudiofilesState();
-      await RNFS.unlink(LOCAL_STORAGE_PATH);
+      await RNFS.unlink(LOCAL_CACHE_AUDIOFILES_PATH);
+      await RNFS.unlink(LOCAL_CACHE_VOICE_PREVIEWS_PATH);
       this.setCacheSize();
       Alert.alert('Cache is cleared!', 'You should now have more space available.');
     } catch (err) {

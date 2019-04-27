@@ -1,32 +1,30 @@
 import React from 'react';
-import { FlatList, TouchableOpacity, Alert } from 'react-native';
+import { FlatList, Alert } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import TrackPlayer from 'react-native-track-player';
+import { setTrack, PlaybackStatus } from '../../reducers/player';
+import { getPlayerPlaybackState } from '../../selectors/player';
+import { downloadVoicePreview } from '../../storage';
 
 import { getAvailableVoices, getSelectedVoice } from '../../selectors/voices';
 import { setSelectedVoice } from '../../reducers/voices';
 
-import styles from './styles';
+// import styles from './styles';
 import { RootState } from '../../reducers';
+import { VoicePreviewButton } from '../VoicePreviewButton';
 
 interface Props {
   allAvailableVoices: Api.Voice[];
+  playbackState: PlaybackStatus;
   setSelectedVoice(voiceId: string): void;
   selectedVoice: Api.Voice | undefined;
+  setTrack(track: TrackPlayer.Track): void;
 }
 
 export class VoicesSelectComponent extends React.PureComponent<Props> {
 
   keyExtractor = (item: Api.Voice, index: number) => index.toString();
-
-  renderPreviewButton = () => {
-    return (
-      <TouchableOpacity style={styles.previewButton} activeOpacity={1} onPress={() => Alert.alert('Preview', 'Not available yet in this version of the app.')}>
-        <Icon name="play" size={10} style={styles.previewButtonIcon} />
-      </TouchableOpacity>
-    );
-  }
 
   handleOnListItemPress = (item: Api.Voice) => {
     const { selectedVoice } = this.props;
@@ -54,9 +52,24 @@ export class VoicesSelectComponent extends React.PureComponent<Props> {
     }
   }
 
+  handleOnPreviewPress = async (title: string, label: string, url: string | null, id: string) => {
+    if (!url) return Alert.alert('No voice preview available, yet.');
+
+    const localFilePath = await downloadVoicePreview(url);
+
+    return this.props.setTrack({
+      id,
+      title,
+      url: localFilePath,
+      artist: label,
+      album: 'Voice previews'
+    });
+  }
+
   renderItem = ({ item }: { item: Api.Voice}) => {
-    const { selectedVoice } = this.props;
+    const { selectedVoice, playbackState } = this.props;
     const badgeValue = (item.isPremium) ? 'premium' : 'free';
+    const title = `${item.languageName} (${item.countryCode})`;
     const label = (item.label) ? item.label : 'Unknown';
     const gender = (item.gender === 'MALE') ? 'Male' : 'Female';
 
@@ -66,10 +79,10 @@ export class VoicesSelectComponent extends React.PureComponent<Props> {
       <ListItem
         onPress={() => this.handleOnListItemPress(item)}
         title={`${item.languageName} (${item.countryCode})`}
-        subtitle={`${label}, ${gender}`}
+        subtitle={`${label}, ${gender}, ${playbackState}`}
         subtitleStyle={{ opacity: 0.7 }}
         badge={{ value: badgeValue, textStyle: { color: 'white' }, badgeStyle: { paddingLeft: 4, paddingRight: 4 } }}
-        rightElement={this.renderPreviewButton()}
+        rightElement={<VoicePreviewButton onPress={() => this.handleOnPreviewPress(title, label, item.exampleAudioUrl, item.id)} />}
         bottomDivider
         checkmark={isSelected}
       />
@@ -90,11 +103,13 @@ export class VoicesSelectComponent extends React.PureComponent<Props> {
 
 const mapStateToProps = (state: RootState) => ({
   allAvailableVoices: getAvailableVoices(state),
-  selectedVoice: getSelectedVoice(state)
+  selectedVoice: getSelectedVoice(state),
+  playbackState: getPlayerPlaybackState(state)
 });
 
 const mapDispatchToProps = {
-  setSelectedVoice
+  setSelectedVoice,
+  setTrack
 };
 
 export const VoicesSelect = connect(
