@@ -10,11 +10,12 @@ export const getFileNameFromPath = (path: string) => {
 };
 
 /**
- * Gets the local file path based on the fileName and basePath.
- * A fileName could something like: "ad3a5edb-d3f0-4857-ac8c-0dd920704324/4eb3076b-7621-4e06-a28a-4621daef1ecd.mp3"
+ * Gets the local file path based on the filePath and basePath.
+ * A filePath could something like: "articles/ad3a5edb-d3f0-4857-ac8c-0dd920704324/audiofiles/4eb3076b-7621-4e06-a28a-4621daef1ecd.mp3"
  * (with a slash)
  */
-export const getLocalFilePath = (fileName: string, basePath: string) => {
+export const getLocalFilePath = (filePath: string, basePath: string) => {
+  const fileName = getFileNameFromPath(filePath);
   return `file://${basePath}/${fileName}`;
 };
 
@@ -27,10 +28,10 @@ export const downloadVoicePreview = async (url: string) => {
   const localFilePath = `${LOCAL_CACHE_VOICE_PREVIEWS_PATH}/${fileName}`;
 
   // Download the file and store it at the localFilePath
-  await RNFetchBlob.config({ path: localFilePath }).fetch('GET', url);
+  const result = await RNFetchBlob.config({ path: localFilePath }).fetch('GET', url);
 
   // Return the local file path
-  return `file://${localFilePath}`;
+  return `file://${result.path()}`;
 };
 
 export const downloadArticleAudiofile = async (url: string, filePath: string) => {
@@ -42,8 +43,8 @@ export const downloadArticleAudiofile = async (url: string, filePath: string) =>
   const localFilePath = `${LOCAL_CACHE_AUDIOFILES_PATH}/${fileName}`;
 
   // Download the file and store it at the localFilePath
-  await RNFetchBlob.config({ path: localFilePath }).fetch('GET', url);
+  const result = await RNFetchBlob.config({ path: localFilePath }).fetch('GET', url);
 
   // Return the local file path
-  return `file://${localFilePath}`;
+  return `file://${result.path()}`;
 };
