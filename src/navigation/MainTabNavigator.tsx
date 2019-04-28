@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator, createBottomTabNavigator, StackNavigatorConfig, BottomTabNavigatorConfig, TabBarBottomProps } from 'react-navigation';
+import { createStackNavigator, createBottomTabNavigator, StackNavigatorConfig, BottomTabNavigatorConfig, BottomTabBarProps } from 'react-navigation';
 
 import { TabBar, TabBarIcon } from '../components/TabBar';
 
@@ -88,7 +88,7 @@ export const MainTabNavigator: BottomTabNavigatorConfig = createBottomTabNavigat
     SettingsStack,
   },
   {
-    tabBarComponent: (props: TabBarBottomProps) => <TabBar {...props} />,
+    tabBarComponent: (props: BottomTabBarProps) => <TabBar {...props} />,
     tabBarOptions: {
       showLabel: false
     },
