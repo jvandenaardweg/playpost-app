@@ -93,7 +93,7 @@ exports[`Article active rendering should render active correctly 1`] = `
                 "fontWeight": "normal",
               },
               Object {
-                "fontWeight": "700",
+                "fontWeight": "900",
               },
             ]
           }
@@ -120,7 +120,7 @@ exports[`Article active rendering should render active correctly 1`] = `
                 "fontWeight": "normal",
               },
               Object {
-                "fontWeight": "700",
+                "fontWeight": "900",
               },
             ]
           }
@@ -211,7 +211,7 @@ exports[`Article active rendering should render active correctly 1`] = `
                   "fontWeight": "normal",
                 },
                 Object {
-                  "fontWeight": "700",
+                  "fontWeight": "900",
                 },
               ]
             }
@@ -332,7 +332,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
                 "fontWeight": "normal",
               },
               Object {
-                "fontWeight": "700",
+                "fontWeight": "900",
               },
             ]
           }
@@ -359,7 +359,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
                 "fontWeight": "normal",
               },
               Object {
-                "fontWeight": "700",
+                "fontWeight": "900",
               },
             ]
           }
@@ -450,7 +450,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
                   "fontWeight": "normal",
                 },
                 Object {
-                  "fontWeight": "700",
+                  "fontWeight": "900",
                 },
               ]
             }
@@ -573,7 +573,7 @@ exports[`Article full rendering should render full correctly 1`] = `
                 "fontWeight": "normal",
               },
               Object {
-                "fontWeight": "700",
+                "fontWeight": "900",
               },
             ]
           }
@@ -600,7 +600,7 @@ exports[`Article full rendering should render full correctly 1`] = `
                 "fontWeight": "normal",
               },
               Object {
-                "fontWeight": "700",
+                "fontWeight": "900",
               },
             ]
           }
@@ -696,7 +696,7 @@ exports[`Article full rendering should render full correctly 1`] = `
                   "fontWeight": "normal",
                 },
                 Object {
-                  "fontWeight": "700",
+                  "fontWeight": "900",
                 },
               ]
             }
@@ -817,7 +817,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
                 "fontWeight": "normal",
               },
               Object {
-                "fontWeight": "700",
+                "fontWeight": "900",
               },
             ]
           }
@@ -844,7 +844,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
                 "fontWeight": "normal",
               },
               Object {
-                "fontWeight": "700",
+                "fontWeight": "900",
               },
             ]
           }
@@ -1040,7 +1040,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
                 "fontWeight": "normal",
               },
               Object {
-                "fontWeight": "700",
+                "fontWeight": "900",
               },
             ]
           }
@@ -1067,7 +1067,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
                 "fontWeight": "normal",
               },
               Object {
-                "fontWeight": "700",
+                "fontWeight": "900",
               },
             ]
           }
@@ -1158,7 +1158,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
                   "fontWeight": "normal",
                 },
                 Object {
-                  "fontWeight": "700",
+                  "fontWeight": "900",
                 },
               ]
             }
@@ -1279,7 +1279,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
                 "fontWeight": "normal",
               },
               Object {
-                "fontWeight": "700",
+                "fontWeight": "900",
               },
             ]
           }
@@ -1306,7 +1306,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
                 "fontWeight": "normal",
               },
               Object {
-                "fontWeight": "700",
+                "fontWeight": "900",
               },
             ]
           }
@@ -1397,7 +1397,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
                   "fontWeight": "normal",
                 },
                 Object {
-                  "fontWeight": "700",
+                  "fontWeight": "900",
                 },
               ]
             }
