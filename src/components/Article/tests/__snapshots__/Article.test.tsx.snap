@@ -6,7 +6,7 @@ exports[`Article active rendering should render active correctly 1`] = `
     Object {
       "backgroundColor": "#ffffff",
       "flex": 1,
-      "padding": 14,
+      "padding": 16,
       "width": "100%",
     }
   }
@@ -31,7 +31,7 @@ exports[`Article active rendering should render active correctly 1`] = `
       numberOfLines={2}
       style={
         Object {
-          "color": "#111111",
+          "color": "#222222",
           "fontSize": 17,
           "fontWeight": "600",
           "lineHeight": 22,
@@ -85,7 +85,7 @@ exports[`Article active rendering should render active correctly 1`] = `
               Object {
                 "marginRight": 4,
                 "position": "relative",
-                "top": 2,
+                "top": 1,
               },
               Object {
                 "fontFamily": "FontAwesome5Free-Solid",
@@ -112,7 +112,7 @@ exports[`Article active rendering should render active correctly 1`] = `
               Object {
                 "marginRight": 4,
                 "position": "relative",
-                "top": 2,
+                "top": 1,
               },
               Object {
                 "fontFamily": "FontAwesome5Free-Solid",
@@ -245,7 +245,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
     Object {
       "backgroundColor": "#ffffff",
       "flex": 1,
-      "padding": 14,
+      "padding": 16,
       "width": "100%",
     }
   }
@@ -270,7 +270,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
       numberOfLines={2}
       style={
         Object {
-          "color": "#111111",
+          "color": "#222222",
           "fontSize": 17,
           "fontWeight": "600",
           "lineHeight": 22,
@@ -324,7 +324,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
               Object {
                 "marginRight": 4,
                 "position": "relative",
-                "top": 2,
+                "top": 1,
               },
               Object {
                 "fontFamily": "FontAwesome5Free-Solid",
@@ -351,7 +351,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
               Object {
                 "marginRight": 4,
                 "position": "relative",
-                "top": 2,
+                "top": 1,
               },
               Object {
                 "fontFamily": "FontAwesome5Free-Solid",
@@ -424,7 +424,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "#111111",
+            "backgroundColor": "#222222",
             "borderRadius": 50,
             "height": 50,
             "justifyContent": "center",
@@ -484,7 +484,7 @@ exports[`Article full rendering should render full correctly 1`] = `
     Object {
       "backgroundColor": "#ffffff",
       "flex": 1,
-      "padding": 14,
+      "padding": 16,
       "width": "100%",
     }
   }
@@ -509,7 +509,7 @@ exports[`Article full rendering should render full correctly 1`] = `
       numberOfLines={2}
       style={
         Object {
-          "color": "#111111",
+          "color": "#222222",
           "fontSize": 17,
           "fontWeight": "600",
           "lineHeight": 22,
@@ -565,7 +565,7 @@ exports[`Article full rendering should render full correctly 1`] = `
               Object {
                 "marginRight": 4,
                 "position": "relative",
-                "top": 2,
+                "top": 1,
               },
               Object {
                 "fontFamily": "FontAwesome5Free-Solid",
@@ -592,7 +592,7 @@ exports[`Article full rendering should render full correctly 1`] = `
               Object {
                 "marginRight": 4,
                 "position": "relative",
-                "top": 2,
+                "top": 1,
               },
               Object {
                 "fontFamily": "FontAwesome5Free-Solid",
@@ -670,7 +670,7 @@ exports[`Article full rendering should render full correctly 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "#111111",
+            "backgroundColor": "#222222",
             "borderRadius": 50,
             "height": 50,
             "justifyContent": "center",
@@ -730,7 +730,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
     Object {
       "backgroundColor": "#ffffff",
       "flex": 1,
-      "padding": 14,
+      "padding": 16,
       "width": "100%",
     }
   }
@@ -755,7 +755,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
       numberOfLines={2}
       style={
         Object {
-          "color": "#111111",
+          "color": "#222222",
           "fontSize": 17,
           "fontWeight": "600",
           "lineHeight": 22,
@@ -809,7 +809,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
               Object {
                 "marginRight": 4,
                 "position": "relative",
-                "top": 2,
+                "top": 1,
               },
               Object {
                 "fontFamily": "FontAwesome5Free-Solid",
@@ -836,7 +836,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
               Object {
                 "marginRight": 4,
                 "position": "relative",
-                "top": 2,
+                "top": 1,
               },
               Object {
                 "fontFamily": "FontAwesome5Free-Solid",
@@ -909,7 +909,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "#111111",
+            "backgroundColor": "#222222",
             "borderRadius": 50,
             "height": 50,
             "justifyContent": "center",
@@ -953,7 +953,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
     Object {
       "backgroundColor": "#ffffff",
       "flex": 1,
-      "padding": 14,
+      "padding": 16,
       "width": "100%",
     }
   }
@@ -978,7 +978,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
       numberOfLines={2}
       style={
         Object {
-          "color": "#111111",
+          "color": "#222222",
           "fontSize": 17,
           "fontWeight": "600",
           "lineHeight": 22,
@@ -1032,7 +1032,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
               Object {
                 "marginRight": 4,
                 "position": "relative",
-                "top": 2,
+                "top": 1,
               },
               Object {
                 "fontFamily": "FontAwesome5Free-Solid",
@@ -1059,7 +1059,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
               Object {
                 "marginRight": 4,
                 "position": "relative",
-                "top": 2,
+                "top": 1,
               },
               Object {
                 "fontFamily": "FontAwesome5Free-Solid",
@@ -1132,7 +1132,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "#111111",
+            "backgroundColor": "#222222",
             "borderRadius": 50,
             "height": 50,
             "justifyContent": "center",
@@ -1192,7 +1192,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
     Object {
       "backgroundColor": "#ffffff",
       "flex": 1,
-      "padding": 14,
+      "padding": 16,
       "width": "100%",
     }
   }
@@ -1217,7 +1217,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
       numberOfLines={2}
       style={
         Object {
-          "color": "#111111",
+          "color": "#222222",
           "fontSize": 17,
           "fontWeight": "600",
           "lineHeight": 22,
@@ -1271,7 +1271,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
               Object {
                 "marginRight": 4,
                 "position": "relative",
-                "top": 2,
+                "top": 1,
               },
               Object {
                 "fontFamily": "FontAwesome5Free-Solid",
@@ -1298,7 +1298,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
               Object {
                 "marginRight": 4,
                 "position": "relative",
-                "top": 2,
+                "top": 1,
               },
               Object {
                 "fontFamily": "FontAwesome5Free-Solid",

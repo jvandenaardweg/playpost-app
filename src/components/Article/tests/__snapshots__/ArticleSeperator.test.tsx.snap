@@ -4,9 +4,19 @@ exports[`ArticleSeperator rendering should render correctly 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "#EEF0F4",
-      "height": 1,
+      "backgroundColor": "#ffffff",
+      "paddingLeft": 16,
+      "paddingRight": 16,
     }
   }
-/>
+>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#cccccc",
+        "borderBottomWidth": 0.5,
+      }
+    }
+  />
+</View>
 `;
