@@ -65,6 +65,7 @@ export default StyleSheet.create({
     flex: 1,
     alignItems: 'stretch',
     justifyContent: 'center',
-    marginBottom: 34
+    marginBottom: 14,
+    backgroundColor: 'red'
   }
 });
