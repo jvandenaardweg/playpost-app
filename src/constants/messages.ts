@@ -26,3 +26,4 @@ export const ALERT_SETTINGS_SETTING_UNAVAILABLE = 'Changing this setting is not 
 export const ALERT_SETTINGS_RESET_CACHE_FAIL = 'We could not clear the cache. Please try again.';
 export const ALERT_SETTINGS_CLEAR_CACHE_WARNING = 'This will delete the already downloaded article audio and voice previews.';
 export const ALERT_SETTINGS_VOICE_CHANGE = 'Changing the voice only applies to new articles. Articles with already available audio will not be changed to this new voice.';
+export const ALERT_SETTINGS_LOGOUT_FAIL = 'We failed to log you out. Please try again.';

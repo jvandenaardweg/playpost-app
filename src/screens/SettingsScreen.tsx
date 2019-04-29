@@ -10,17 +10,18 @@ import * as Keychain from 'react-native-keychain';
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 
 import { resetAuthState } from '../reducers/auth';
-import { resetUserState } from '../reducers/user';
+import { resetUserState, getUser } from '../reducers/user';
 import { resetPlayerState } from '../reducers/player';
 import { resetPlaylistsState } from '../reducers/playlists';
 import { resetAudiofilesState } from '../reducers/audiofiles';
 import { resetVoicesState, getVoices, resetDownloadedVoices } from '../reducers/voices';
 
 import { getSelectedVoice } from '../selectors/voices';
+import { getCurrentUser } from '../selectors/user';
 
 import { persistor } from '../store';
 import { RootState } from '../reducers';
-import { ALERT_SETTINGS_SET_CACHE_SIZE_FAIL, ALERT_SETTINGS_SETTING_UNAVAILABLE, ALERT_SETTINGS_RESET_CACHE_FAIL, ALERT_SETTINGS_CLEAR_CACHE_WARNING } from '../constants/messages';
+import { ALERT_SETTINGS_SET_CACHE_SIZE_FAIL, ALERT_SETTINGS_SETTING_UNAVAILABLE, ALERT_SETTINGS_RESET_CACHE_FAIL, ALERT_SETTINGS_CLEAR_CACHE_WARNING, ALERT_SETTINGS_LOGOUT_FAIL } from '../constants/messages';
 
 interface Props {
   resetAuthState(): void;
@@ -31,6 +32,8 @@ interface Props {
   resetVoicesState(): void;
   getVoices(): void;
   resetDownloadedVoices(): void;
+  getUser(): void;
+  user: Api.User | null;
   navigation: NavigationScreenProp<NavigationRoute>;
   selectedVoice: Api.Voice | undefined;
 }
@@ -38,6 +41,7 @@ interface Props {
 interface State {
   cacheSize: string;
   isClearingCache: boolean;
+  isLoggingOut: boolean;
 }
 
 class SettingsScreenContainer extends React.PureComponent<Props, State> {
@@ -47,12 +51,43 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
 
   state = {
     cacheSize: '0',
-    isClearingCache: false
+    isClearingCache: false,
+    isLoggingOut: false
   };
 
   componentDidMount() {
     this.setCacheSize();
     this.fetchVoices();
+
+    // Pre-populate the user data
+    // We only do this once
+    if (!this.props.user) {
+      this.fetchUser();
+    }
+  }
+
+  async componentWillUnmount () {
+    const { isLoggingOut } = this.state;
+
+    if (isLoggingOut) {
+      // Remove the API token from secure store
+      await Keychain.resetGenericPassword();
+
+      // Remove the persisted state
+      await persistor.purge();
+
+      // Reset all the stores to it's original state
+      this.props.resetAuthState();
+      this.props.resetUserState();
+      this.props.resetPlayerState();
+      this.props.resetPlaylistsState();
+      this.props.resetAudiofilesState();
+      this.props.resetVoicesState();
+    }
+  }
+
+  fetchUser = async () => {
+    await this.props.getUser();
   }
 
   fetchVoices = async () => {
@@ -138,21 +173,15 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
   }
 
   handleOnPressLogout = async () => {
-    // Remove the token from secure store
-    await Keychain.resetGenericPassword();
-
-    // Reset all the stores to it's original state
-    this.props.resetAuthState();
-    this.props.resetUserState();
-    this.props.resetPlayerState();
-    this.props.resetPlaylistsState();
-    this.props.resetAudiofilesState();
-    this.props.resetVoicesState();
-
-    // Remove the persisted state
-    await persistor.purge();
-
-    this.props.navigation.navigate('Onboarding');
+    return this.setState({ isLoggingOut: true }, async () => {
+      try {
+        this.props.navigation.navigate('Onboarding');
+      } catch (err) {
+        return this.setState({ isLoggingOut: false }, () => {
+          return Alert.alert('Oops!', ALERT_SETTINGS_LOGOUT_FAIL);
+        });
+      }
+    });
   }
 
   get selectedVoiceLabel() {
@@ -246,7 +275,21 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
         },
         {
           title: 'Logout',
-          onPress: this.handleOnPressLogout
+          onPress: this.handleOnPressLogout,
+          renderAccessory: () => {
+            const { isLoggingOut } = this.state;
+            const userEmail = (this.props.user) ? this.props.user.email : null;
+
+            if (isLoggingOut) {
+              return (<ActivityIndicator />);
+            }
+
+            return (
+              <Text style={{ color: '#999', marginRight: 6, fontSize: 17 }}>
+                {userEmail}
+              </Text>
+            );
+          }
         }
       ],
     },
@@ -275,7 +318,8 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
 }
 
 const mapStateToProps = (state: RootState) => ({
-  selectedVoice: getSelectedVoice(state)
+  selectedVoice: getSelectedVoice(state),
+  user: getCurrentUser(state)
 });
 
 const mapDispatchToProps = {
@@ -286,7 +330,8 @@ const mapDispatchToProps = {
   resetAudiofilesState,
   resetVoicesState,
   resetDownloadedVoices,
-  getVoices
+  getVoices,
+  getUser
 };
 
 export const SettingsScreen = connect(
