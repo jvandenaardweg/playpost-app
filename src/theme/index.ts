@@ -13,7 +13,8 @@ export const reactNativeElementsTheme: Theme = {
   },
   Divider: {
     style: {
-      backgroundColor: colors.borderDefault
+      backgroundColor: colors.borderDefault,
+      borderColor: colors.borderDefault
     }
   }
 };

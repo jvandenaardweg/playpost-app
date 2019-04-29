@@ -4,6 +4,12 @@ import { ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import TrackPlayer from 'react-native-track-player';
 
+import { LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../../constants/files';
+
+import * as cache from '../../cache';
+
+import { VoicePreviewButton } from '../VoicePreviewButton';
+
 import { RootState } from '../../reducers';
 import { setTrack, PlaybackStatus } from '../../reducers/player';
 import { setSelectedVoice, setDownloadedVoice } from '../../reducers/voices';
@@ -11,11 +17,7 @@ import { setSelectedVoice, setDownloadedVoice } from '../../reducers/voices';
 import { getPlayerPlaybackState, getPlayerTrack } from '../../selectors/player';
 import { getAvailableVoices, getSelectedVoice, getDownloadedVoices } from '../../selectors/voices';
 
-import * as cache from '../../cache';
-
-// import styles from './styles';
-import { VoicePreviewButton } from '../VoicePreviewButton';
-import { LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../../constants/files';
+import styles from './styles';
 
 interface Props {
   allAvailableVoices: Api.Voice[];
@@ -174,12 +176,13 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
         bottomDivider
         onPress={() => this.handleOnListItemPress(item)}
         title={`${item.languageName} (${item.countryCode})`}
-        titleStyle={{ fontWeight: '500' }}
         subtitle={subtitle}
-        subtitleStyle={{ opacity: 0.5, fontSize: 14 }}
-        badge={{ value: badgeValue, status: badgeStatus, textStyle: { color: 'white', fontWeight: '400' }, badgeStyle: { paddingLeft: 2, paddingRight: 2 } }}
+        badge={{ value: badgeValue, status: badgeStatus, textStyle: styles.listItemBadgeText, badgeStyle: styles.listItemBadge }}
         leftElement={<VoicePreviewButton isPlaying={isPlaying} isLoading={isLoading} isActive={isActive} onPress={() => this.handleOnPreviewPress(title, label, item)} />}
         checkmark={isSelected}
+        containerStyle={styles.listItemContainer}
+        titleStyle={styles.listItemTitle}
+        subtitleStyle={styles.listItemSubtitle}
       />
     );
   }

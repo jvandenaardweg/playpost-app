@@ -23,5 +23,22 @@ export default StyleSheet.create({
     position: 'relative',
     right: -2,
     color: colors.grayDark
+  },
+  listItemContainer: {
+    borderColor: colors.borderDefault
+  },
+  listItemTitle: {
+    fontWeight: '500'
+  },
+  listItemSubtitle: {
+    color: colors.paragraphGrayed,
+    fontSize: 14
+  },
+  listItemBadge: {
+    paddingLeft: 2, paddingRight: 2
+  },
+  listItemBadgeText: {
+    color: 'white', fontWeight: '400'
   }
+
 });

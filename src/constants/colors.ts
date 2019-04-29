@@ -33,7 +33,7 @@ export default {
   titleDefault: black,
   paragraphDefault: black,
   paragraphGrayed: grayDark,
-  borderDefault: grayLightest,
+  borderDefault: grayLight,
 
   controlButtonDefault: black,
   controlButtonActive: tintColor,

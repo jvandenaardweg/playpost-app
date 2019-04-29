@@ -11,8 +11,8 @@ export default StyleSheet.create({
     // height: '100%'
   },
   seperator: {
-    height: 1,
-    backgroundColor: Colors.borderDefault
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: Colors.borderDefault
   },
   sectionHeader: {
 
