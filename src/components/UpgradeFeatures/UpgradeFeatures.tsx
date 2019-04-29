@@ -4,6 +4,7 @@ import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import styles from './styles';
+import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../../constants/urls';
 
 export class UpgradeFeatures extends React.PureComponent {
 
@@ -51,9 +52,9 @@ export class UpgradeFeatures extends React.PureComponent {
         <View style={styles.footer}>
           <Text style={styles.footerText}>Payment will be charged to your Apple ID account at the confirmation of purchase. Subscription automatically renews unless it is canceled at least 24 hours before the end of the current period. Your account will be charged for renewal within 24 hours prior to the end of the current period. You can manage and cancel your subscriptions by going to your account settings on the App Store after purchase.</Text>
           <View style={styles.footerLinks}>
-            <Text style={[styles.footerText, styles.textHighlight]} onPress={() => Linking.openURL('https://playpost.app/privacy-policy?ref=playpost://upgrade')}>Privacy Policy</Text>
+            <Text style={[styles.footerText, styles.textHighlight]} onPress={() => Linking.openURL(`${URL_PRIVACY_POLICY}?ref=playpost://upgrade`)}>Privacy Policy</Text>
             <Text> - </Text>
-            <Text style={[styles.footerText, styles.textHighlight]} onPress={() => Linking.openURL('https://playpost.app/terms-of-use?ref=playpost://upgrade')}>Terms of Use</Text>
+            <Text style={[styles.footerText, styles.textHighlight]} onPress={() => Linking.openURL(`${URL_TERMS_OF_USE}?ref=playpost://upgrade`)}>Terms of Use</Text>
           </View>
         </View>
       </View>

@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TextInput, KeyboardAvoidingView, Linking } from 'react-native';
 import { Button } from 'react-native-elements';
 import styles from './styles';
+import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../../constants/urls';
 
 interface Props {
   onChangeText(field: string, text: string): void;
@@ -71,9 +72,9 @@ export const SignupForm: React.FC<Props> = ({
       <View style={styles.footerContainer}>
         <View style={styles.footer}>
           <Text style={styles.footerText}>By signing up you agree to our </Text>
-          <Text style={[styles.footerText, styles.footerTextHighlight]} onPress={() => Linking.openURL('https://playpost.app/privacy-policy?ref=playpost://signup')}>Privacy Policy</Text>
+          <Text style={[styles.footerText, styles.footerTextHighlight]} onPress={() => Linking.openURL(`${URL_PRIVACY_POLICY}?ref=playpost://signup`)}>Privacy Policy</Text>
           <Text style={styles.footerText}> and </Text>
-          <Text style={[styles.footerText, styles.footerTextHighlight]} onPress={() => Linking.openURL('https://playpost.app/terms-of-use?ref=playpost://signup')}>Terms of Use</Text>
+          <Text style={[styles.footerText, styles.footerTextHighlight]} onPress={() => Linking.openURL(`${URL_TERMS_OF_USE}?ref=playpost://signup`)}>Terms of Use</Text>
         </View>
       </View>
 
