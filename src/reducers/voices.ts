@@ -8,11 +8,14 @@ export const GET_VOICES_SUCCESS = 'voices/GET_VOICES_SUCCESS';
 export const GET_VOICES_FAIL = 'voices/GET_VOICES_FAIL';
 export const RESET_VOICES_STATE = 'voices/RESET_VOICES_STATE';
 export const SET_SELECTED_VOICE = 'voices/SET_SELECTED_VOICE';
+export const SET_DOWNLOADED_VOICE = 'voices/SET_DOWNLOADED_VOICE';
+export const RESET_DOWNLOADED_VOICES = 'voices/RESET_DOWNLOADED_VOICES';
 
 export interface VoicesState {
   isLoading: boolean;
   voices: Api.Voice[];
   selectedVoiceId: string;
+  downloaded: Api.Voice[];
   error: string;
 }
 
@@ -20,6 +23,7 @@ const initialState: VoicesState = {
   isLoading: false,
   voices: [],
   selectedVoiceId: '',
+  downloaded: [],
   error: ''
 };
 
@@ -84,8 +88,26 @@ export function voicesReducer(state = initialState, action: AuthActionTypes): Vo
       return {
         ...state,
         isLoading: false,
-        // voices: [],
         error: postAuthFailMessage
+      };
+
+    case SET_DOWNLOADED_VOICE:
+      const voice: Api.Voice = action.payload;
+
+      return {
+        ...state,
+        isLoading: false,
+        downloaded: [
+          ...state.downloaded.slice(0, 0),
+          voice,
+          ...state.downloaded.slice(0)
+        ]
+      };
+
+    case RESET_DOWNLOADED_VOICES:
+      return {
+        ...state,
+        downloaded: initialState.downloaded
       };
 
     case RESET_VOICES_STATE:
@@ -101,6 +123,12 @@ export function voicesReducer(state = initialState, action: AuthActionTypes): Vo
 export function resetVoicesState() {
   return {
     type: RESET_VOICES_STATE
+  };
+}
+
+export function resetDownloadedVoices() {
+  return {
+    type: RESET_DOWNLOADED_VOICES
   };
 }
 
@@ -120,5 +148,12 @@ export function setSelectedVoice(voiceId: string) {
   return {
     type: SET_SELECTED_VOICE,
     payload: voiceId
+  };
+}
+
+export function setDownloadedVoice(voice: Api.Voice) {
+  return {
+    type: SET_DOWNLOADED_VOICE,
+    payload: voice
   };
 }

@@ -5,16 +5,19 @@ import colors from '../../constants/colors';
 
 export default StyleSheet.create({
   container: {
-    borderRadius: 30,
-    height: 30,
-    width: 30,
+    borderRadius: 32,
+    height: 32,
+    width: 32,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.black
   },
+  containerActive: {
+    backgroundColor: colors.tintColor
+  },
   icon: {
+    color: colors.white,
     position: 'relative',
-    right: -1,
-    color: colors.white
+    right: -1
   }
 });

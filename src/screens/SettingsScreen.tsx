@@ -14,9 +14,9 @@ import { resetUserState } from '../reducers/user';
 import { resetPlayerState } from '../reducers/player';
 import { resetPlaylistsState } from '../reducers/playlists';
 import { resetAudiofilesState } from '../reducers/audiofiles';
-import { resetVoicesState, getVoices } from '../reducers/voices';
+import { resetVoicesState, getVoices, resetDownloadedVoices } from '../reducers/voices';
 
-import { getAvailableVoices } from '../selectors/voices';
+import { getAvailableVoices, getSelectedVoice } from '../selectors/voices';
 import { getUser } from '../selectors/user';
 
 import { persistor } from '../store';
@@ -30,7 +30,9 @@ interface Props {
   resetAudiofilesState(): void;
   resetVoicesState(): void;
   getVoices(): void;
+  resetDownloadedVoices(): void;
   navigation: NavigationScreenProp<NavigationRoute>;
+  selectedVoice: Api.Voice;
 }
 
 interface State {
@@ -57,6 +59,8 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
 
   setCacheSize = async () => {
     try {
+      let combinedSize = 0;
+
       await RNFS.mkdir(LOCAL_CACHE_AUDIOFILES_PATH);
       await RNFS.mkdir(LOCAL_CACHE_VOICE_PREVIEWS_PATH);
 
@@ -76,14 +80,16 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
         sizes.push(size);
       }
 
-      const combinedSize = sizes.reduce(
-        (prev, size) => {
-          /* tslint:disable-next-line no-parameter-reassignment */
-          prev = prev + size;
-          return prev;
-        },
-        0
-      );
+      if (sizes.length) {
+        combinedSize = sizes.reduce(
+          (prev, size) => {
+            /* tslint:disable-next-line no-parameter-reassignment */
+            prev = prev + size;
+            return prev;
+          },
+          0
+        );
+      }
 
       const sizeInMb = (combinedSize / 1000000).toFixed(2);
       return this.setState({ cacheSize: sizeInMb });
@@ -99,6 +105,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
   handleOnPressClearCache = async () => {
     try {
       this.props.resetAudiofilesState();
+      this.props.resetDownloadedVoices();
       await RNFS.unlink(LOCAL_CACHE_AUDIOFILES_PATH);
       await RNFS.unlink(LOCAL_CACHE_VOICE_PREVIEWS_PATH);
       this.setCacheSize();
@@ -126,6 +133,11 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
     this.props.navigation.navigate('Onboarding');
   }
 
+  get selectedVoiceLabel() {
+    const { selectedVoice } = this.props;
+    return `${selectedVoice.label}, ${selectedVoice.languageName} (${selectedVoice.countryCode})`;
+  }
+
   handleOnPressUpgrade = () => this.props.navigation.navigate('Upgrade');
 
   handleOnPressLanguage = () => this.props.navigation.navigate('SettingsVoices');
@@ -133,41 +145,17 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
   settingsData: SettingsData = [
     {
       type: 'SECTION',
-      header: 'Voice'.toUpperCase(),
+      header: 'Audio'.toUpperCase(),
       rows: [
         {
-          title: 'Language',
+          title: 'Voice',
           renderAccessory: () => (
             <Text style={{ color: '#999', marginRight: 6, fontSize: 17 }}>
-              English (US)
+              {this.selectedVoiceLabel}
             </Text>
           ),
           onPress: this.handleOnPressLanguage
         },
-        {
-          title: 'Gender',
-          renderAccessory: () => (
-            <Text style={{ color: '#999', marginRight: 6, fontSize: 17 }}>
-              Male
-            </Text>
-          ),
-          onPress: this.handleOnPressRow
-        },
-        {
-          title: 'Speed',
-          renderAccessory: () => (
-            <Text style={{ color: '#999', marginRight: 6, fontSize: 17 }}>
-              Normal
-            </Text>
-          ),
-          onPress: this.handleOnPressRow
-        }
-      ],
-    },
-    {
-      type: 'SECTION',
-      header: 'Audio'.toUpperCase(),
-      rows: [
         {
           title: 'Quality',
           renderAccessory: () => (
@@ -244,7 +232,8 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
 
 const mapStateToProps = (state: RootState) => ({
   user: getUser(state),
-  availableVoices: getAvailableVoices(state)
+  availableVoices: getAvailableVoices(state),
+  selectedVoice: getSelectedVoice(state)
 });
 
 const mapDispatchToProps = {
@@ -254,6 +243,7 @@ const mapDispatchToProps = {
   resetPlaylistsState,
   resetAudiofilesState,
   resetVoicesState,
+  resetDownloadedVoices,
   getVoices
 };
 

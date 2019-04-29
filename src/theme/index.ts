@@ -1,4 +1,5 @@
 import { Theme } from 'react-native-elements';
+import colors from '../constants/colors';
 
 export const reactNativeElementsTheme: Theme = {
   Button: {
@@ -10,4 +11,9 @@ export const reactNativeElementsTheme: Theme = {
       fontSize: 17
     },
   },
+  Divider: {
+    style: {
+      backgroundColor: colors.borderDefault
+    }
+  }
 };

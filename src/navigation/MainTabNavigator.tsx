@@ -16,6 +16,8 @@ const PlaylistStack: StackNavigatorConfig = createStackNavigator(
     Browser: BrowserScreen,
   },
   {
+    headerMode: 'float',
+    headerTransitionPreset: 'uikit',
     navigationOptions: {
       tabBarLabel: 'Playlist',
       tabBarIcon: ({ focused }) => (
@@ -33,6 +35,8 @@ const ArchiveStack: StackNavigatorConfig = createStackNavigator(
     Archive: ArchiveScreen
   },
   {
+    headerMode: 'float',
+    headerTransitionPreset: 'uikit',
     navigationOptions: {
       tabBarLabel: 'Archive',
       tabBarIcon: ({ focused }) => (
@@ -50,6 +54,8 @@ const FavoritesStack: StackNavigatorConfig = createStackNavigator(
     Favorites: FavoritesScreen
   },
   {
+    headerMode: 'float',
+    headerTransitionPreset: 'uikit',
     navigationOptions: {
       tabBarLabel: 'Favorites',
       tabBarIcon: ({ focused }) => (
@@ -68,6 +74,8 @@ const SettingsStack: StackNavigatorConfig = createStackNavigator(
     SettingsVoices: SettingsVoicesScreen
   },
   {
+    headerMode: 'float',
+    headerTransitionPreset: 'uikit',
     navigationOptions: {
       tabBarLabel: 'Settings',
       tabBarIcon: ({ focused }) => (
@@ -76,7 +84,8 @@ const SettingsStack: StackNavigatorConfig = createStackNavigator(
           name="settings"
         />
       ),
-    }
+    },
+
   }
 );
 

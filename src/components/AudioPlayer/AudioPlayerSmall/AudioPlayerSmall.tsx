@@ -33,9 +33,7 @@ export const AudioPlayerSmall: React.FC<Props> = React.memo(({
           <View>
             <Text style={styles.trackInfoArtist} ellipsizeMode="tail" numberOfLines={1}>
               {(artist) ? artist : '-'}
-              {' '}
-              {' '}
-              {album}
+              {(album) ? `, ${album}` : null}
             </Text>
           </View>
         </View>

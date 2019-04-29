@@ -20,7 +20,7 @@ import { setDownloadedAudiofile } from '../../reducers/audiofiles';
 import { getPlayerTrack, getPlayerPlaybackState } from '../../selectors/player';
 import { getDefaultFreeVoice, getDefaultPremiumVoice, getSelectedVoice } from '../../selectors/voices';
 import { ArticleEmptyProcessing, ArticleEmptyFailed } from './ArticleEmpty';
-import { downloadArticleAudiofile, getLocalFilePath } from '../../storage';
+import * as cache from '../../cache';
 
 interface State {
   isLoading: boolean;
@@ -207,7 +207,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     return new Promise((resolve, reject) => {
       return this.setState({ isActive: true, isLoading: true, isDownloadingAudiofile: true }, async () => {
         try {
-          const localFilePath = await downloadArticleAudiofile(url, filename);
+          const localFilePath = await cache.downloadArticleAudiofile(url, filename);
           resolve(localFilePath);
         } catch (err) {
           this.setState({ isLoading: false });
@@ -251,7 +251,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
       const audiofile = this.articleAudiofiles[0];
 
-      let localAudiofilePath = getLocalFilePath(audiofile.filename, LOCAL_CACHE_AUDIOFILES_PATH);
+      let localAudiofilePath = cache.getLocalFilePath(audiofile.filename, LOCAL_CACHE_AUDIOFILES_PATH);
 
       if (!isDownloaded) {
         if (!isConnected) return Alert.alert('No internet', 'You need an active internet connection to listen to this article.');

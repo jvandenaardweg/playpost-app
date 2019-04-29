@@ -9,6 +9,11 @@ export const getVoices = createSelector(
   voices => voices.voices
 );
 
+export const getDownloadedVoices = createSelector(
+  [voicesSelector],
+  voices => voices.downloaded
+);
+
 export const getSelectedVoiceId = createSelector(
   [voicesSelector],
   voices => voices.selectedVoiceId
