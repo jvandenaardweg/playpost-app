@@ -156,7 +156,8 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
               {this.selectedVoiceLabel}
             </Text>
           ),
-          onPress: this.handleOnPressLanguage
+          onPress: this.handleOnPressLanguage,
+          showDisclosureIndicator: true
         },
         {
           title: 'Quality',
@@ -165,7 +166,18 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
               Normal
             </Text>
           ),
-          onPress: this.handleOnPressRow
+          onPress: this.handleOnPressRow,
+          showDisclosureIndicator: true
+        },
+        {
+          title: 'Playback speed',
+          renderAccessory: () => (
+            <Text style={{ color: '#999', marginRight: 6, fontSize: 17 }}>
+              Normal (1x)
+            </Text>
+          ),
+          onPress: this.handleOnPressRow,
+          showDisclosureIndicator: true
         },
         {
           title: 'Auto play next article',
