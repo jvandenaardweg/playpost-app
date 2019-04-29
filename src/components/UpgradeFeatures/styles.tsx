@@ -15,7 +15,7 @@ export default StyleSheet.create({
   headerTitle: {
     textAlign: 'center',
     fontSize: 22,
-    color: colors.paragraphDefault,
+    color: colors.black,
     fontWeight: '600',
     marginBottom: 24,
     marginTop: 12
@@ -27,8 +27,8 @@ export default StyleSheet.create({
   },
   paragraph: {
     color: colors.paragraphGrayed,
-    lineHeight: 23,
-    fontSize: 15
+    lineHeight: 22,
+    fontSize: 14
   },
   feature: {
     marginTop: 14,
