@@ -65,7 +65,16 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
         );
     } else {
       if (selectedVoice && selectedVoice.id !== item.id) {
-        this.props.setSelectedVoice(item.id);
+        Alert.alert(
+          'Only for new articles',
+          'Changing the voice only applies to new articles. Articles with already available audio will not be changed to this new voice.',
+          [
+            {
+              text: 'OK',
+              onPress: () => this.props.setSelectedVoice(item.id)
+            }
+          ]
+        );
       }
     }
   }
