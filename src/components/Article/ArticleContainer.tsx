@@ -6,11 +6,15 @@ import { withNavigation, NavigationInjectedProps } from 'react-navigation';
 import isEqual from 'react-fast-compare';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH } from '../../constants/files';
+import { ALERT_ARTICLE_AUDIOFILE_CREATE_FAIL, ALERT_ARTICLE_PLAY_INTERNET_REQUIRED, ALERT_ARTICLE_AUDIOFILE_DOWNLOAD_FAIL, ALERT_ARTICLE_PLAY_FAIL, ALERT_ARTICLE_DOWNLOAD_FAIL, ALERT_PLAYLIST_UPDATE_FAIL, ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL, ALERT_ARTICLE_VOICE_FAIL, ALERT_ARTICLE_LANGUAGE_UNSUPPORTED } from '../../constants/messages';
+
+import * as cache from '../../cache';
 
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
 import { Article } from './Article';
 import { AppleStyleSwipeableRow } from '../../components/SwipeableRow/AppleStyleSwipeableRow';
+import { ArticleEmptyProcessing, ArticleEmptyFailed } from './ArticleEmpty';
 
 import { RootState } from '../../reducers';
 import { getPlaylists, removeArticleFromPlaylist } from '../../reducers/playlists';
@@ -19,8 +23,6 @@ import { setDownloadedAudiofile } from '../../reducers/audiofiles';
 
 import { getPlayerTrack, getPlayerPlaybackState } from '../../selectors/player';
 import { getDefaultFreeVoice, getDefaultPremiumVoice, getSelectedVoice } from '../../selectors/voices';
-import { ArticleEmptyProcessing, ArticleEmptyFailed } from './ArticleEmpty';
-import * as cache from '../../cache';
 
 interface State {
   isLoading: boolean;
@@ -88,18 +90,15 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   componentDidUpdate() {
     const { playbackState } = this.props;
     const { isPlaying, isLoading, isCreatingAudiofile, isDownloadingAudiofile } = this.state;
-    // console.log('Update ArticleContainerComponent', this.props.article.audiofiles[0].id);
 
     if (!isCreatingAudiofile && !isDownloadingAudiofile) {
       // When a track is playing
       if (playbackState && [TrackPlayer.STATE_PLAYING].includes(playbackState) && !isPlaying) {
-        // console.log('ArticleContainer', 'componentDidUpdate', 'Set state playing, loading false');
         this.setState({ isPlaying: true, isLoading: false });
       }
 
       // When a track is stopped or paused
       if (playbackState && [TrackPlayer.STATE_STOPPED, TrackPlayer.STATE_PAUSED].includes(playbackState) && isPlaying) {
-        // console.log('ArticleContainer', 'componentDidUpdate', 'Set playing false');
         this.setState({ isPlaying: false });
       }
     }
@@ -133,11 +132,11 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     const { article, selectedVoice } = this.props;
 
     if (article.languageCode !== 'en') {
-      return Alert.alert('Language not supported', `In this version we only allow English articles. This article seems to have the language: ${article.languageCode}.`);
+      return Alert.alert('Language not supported', `${ALERT_ARTICLE_LANGUAGE_UNSUPPORTED}. This article seems to have the language: ${article.languageCode}.`);
     }
 
     if (!selectedVoice || !selectedVoice.id) {
-      return Alert.alert('Voice not ready', 'Audiofile could not be generated at this point. Please try again later.');
+      return Alert.alert('Voice not ready', ALERT_ARTICLE_VOICE_FAIL);
     }
 
     this.setState({ isPlaying: false, isLoading: true, isActive: true, isCreatingAudiofile: true }, async () => {
@@ -149,7 +148,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         this.setState({ isLoading: false });
         Alert.alert(
           'Oops!',
-          'There was a problem while creating the audio for this article.',
+          ALERT_ARTICLE_AUDIOFILE_CREATE_FAIL,
           [
             {
               text: 'Cancel',
@@ -184,7 +183,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     }
 
     if (!article.audiofiles.length && !isConnected) {
-      return Alert.alert('No internet', 'You need an active internet connection to listen to this article.');
+      return Alert.alert('No internet', ALERT_ARTICLE_PLAY_INTERNET_REQUIRED);
     }
 
     // If we don't have an audiofile yet, we create it first
@@ -214,7 +213,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
           return reject(Alert.alert(
             'Oops!',
-            'There was a problem while downloading the audio for this article.',
+            ALERT_ARTICLE_AUDIOFILE_DOWNLOAD_FAIL,
             [
               {
                 text: 'Cancel',
@@ -240,7 +239,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
     if (!article || !this.articleAudiofiles.length) {
       this.setState({ isActive: false, isLoading: false });
-      return Alert.alert('Oops!', 'Could not play the article. Please try again.');
+      return Alert.alert('Oops!', ALERT_ARTICLE_PLAY_FAIL);
     }
 
     this.props.resetPlaybackStatus();
@@ -254,7 +253,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       let localAudiofilePath = cache.getLocalFilePath(audiofile.filename, LOCAL_CACHE_AUDIOFILES_PATH);
 
       if (!isDownloaded) {
-        if (!isConnected) return Alert.alert('No internet', 'You need an active internet connection to listen to this article.');
+        if (!isConnected) return Alert.alert('No internet', ALERT_ARTICLE_PLAY_INTERNET_REQUIRED);
 
         const downloadedLocalAudiofilePath = await this.downloadAudiofile(audiofile.url, audiofile.id, audiofile.filename);
 
@@ -265,7 +264,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
           localAudiofilePath = downloadedLocalAudiofilePath;
         } else {
           this.setState({ isLoading: false });
-          return Alert.alert('Oops!', 'We could not download this article. Please try again.');
+          return Alert.alert('Oops!', ALERT_ARTICLE_DOWNLOAD_FAIL);
         }
       }
 
@@ -285,7 +284,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         );
       }
 
-      return Alert.alert('Oops!', 'We could not play this article. Please try again.');
+      return Alert.alert('Oops!', ALERT_ARTICLE_PLAY_FAIL);
     });
   }
 
@@ -295,7 +294,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     } catch (err) {
       Alert.alert(
         'Oops!',
-        'We could get your up-to-date playlist.',
+        ALERT_PLAYLIST_UPDATE_FAIL,
         [
           {
             text: 'Cancel',
@@ -322,7 +321,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     } catch (err) {
       Alert.alert(
         'Oops!',
-        'We could not remove this article from your playlist.',
+        ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL,
         [
           {
             text: 'Cancel',
