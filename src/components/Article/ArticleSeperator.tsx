@@ -4,5 +4,7 @@ import { View } from 'react-native';
 import styles from './styles';
 
 export const ArticleSeperator: React.FC = () => (
-  <View style={styles.seperator}></View>
+  <View style={styles.seperator}>
+    <View style={styles.seperatorLine}></View>
+  </View>
 );

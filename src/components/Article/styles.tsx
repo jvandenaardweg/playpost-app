@@ -6,13 +6,18 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.articleBackground,
-    padding: 14,
+    padding: 16,
     width: '100%',
     // height: '100%'
   },
   seperator: {
+    backgroundColor: Colors.articleBackground,
+    paddingLeft: 16,
+    paddingRight: 16
+  },
+  seperatorLine: {
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: Colors.borderDefault
+    borderBottomColor: Colors.borderDefault,
   },
   sectionHeader: {
 
