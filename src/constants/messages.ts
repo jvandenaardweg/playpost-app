@@ -19,3 +19,9 @@ export const ALERT_ARTICLE_VOICE_FAIL = 'Audiofile could not be generated at thi
 // Alerts related to the playlist
 export const ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL = 'We could not remove this article from your playlist.';
 export const ALERT_PLAYLIST_UPDATE_FAIL = 'We could get your up-to-date playlist.';
+
+// Alerts on the settings screen
+export const ALERT_SETTINGS_SET_CACHE_SIZE_FAIL = 'We could not set the cache size.';
+export const ALERT_SETTINGS_SETTING_UNAVAILABLE = 'Changing this setting is not available yet. It will be available in later versions.';
+export const ALERT_SETTINGS_RESET_CACHE_FAIL = 'We could not clear the cache. Please try again.';
+export const ALERT_SETTINGS_CLEAR_CACHE_WARNING = 'This will delete the already downloaded article audio and voice previews.';

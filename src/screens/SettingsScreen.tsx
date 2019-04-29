@@ -1,7 +1,7 @@
 import React from 'react';
 import RNFS from 'react-native-fs';
 import VersionNumber from 'react-native-version-number';
-import { Text, Switch, Alert } from 'react-native';
+import { Text, Switch, Alert, ActivityIndicator } from 'react-native';
 import { SettingsScreen as SettingsScreenComponent, SettingsData } from 'react-native-settings-screen';
 import { connect } from 'react-redux';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
@@ -20,6 +20,7 @@ import { getSelectedVoice } from '../selectors/voices';
 
 import { persistor } from '../store';
 import { RootState } from '../reducers';
+import { ALERT_SETTINGS_SET_CACHE_SIZE_FAIL, ALERT_SETTINGS_SETTING_UNAVAILABLE, ALERT_SETTINGS_RESET_CACHE_FAIL, ALERT_SETTINGS_CLEAR_CACHE_WARNING } from '../constants/messages';
 
 interface Props {
   resetAuthState(): void;
@@ -36,6 +37,7 @@ interface Props {
 
 interface State {
   cacheSize: string;
+  isClearingCache: boolean;
 }
 
 class SettingsScreenContainer extends React.PureComponent<Props, State> {
@@ -44,7 +46,8 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
   };
 
   state = {
-    cacheSize: '0'
+    cacheSize: '0',
+    isClearingCache: false
   };
 
   componentDidMount() {
@@ -93,25 +96,45 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
       const sizeInMb = (combinedSize / 1000000).toFixed(2);
       return this.setState({ cacheSize: sizeInMb });
     } catch (err) {
-      return Alert.alert('Oops!', 'We could not set the cache size.');
+      return Alert.alert('Oops!', ALERT_SETTINGS_SET_CACHE_SIZE_FAIL);
     }
   }
 
   handleOnPressRow = () => {
-    Alert.alert('Not available', 'Changing this setting is not available yet. It will be available in later versions.');
+    Alert.alert('Not available', ALERT_SETTINGS_SETTING_UNAVAILABLE);
   }
 
   handleOnPressClearCache = async () => {
-    try {
-      this.props.resetAudiofilesState();
-      this.props.resetDownloadedVoices();
-      await RNFS.unlink(LOCAL_CACHE_AUDIOFILES_PATH);
-      await RNFS.unlink(LOCAL_CACHE_VOICE_PREVIEWS_PATH);
-      this.setCacheSize();
-      Alert.alert('Cache is cleared!', 'You should now have more space available.');
-    } catch (err) {
-      Alert.alert('Oops!', 'We could not delete the cache. Please try again.');
-    }
+    return Alert.alert(
+      'Are you sure?',
+      ALERT_SETTINGS_CLEAR_CACHE_WARNING,
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel'
+        },
+        {
+          text: 'Clear cache',
+          onPress: () => this.resetCache()
+        }
+      ]
+    );
+  }
+
+  resetCache = async () => {
+    return this.setState({ isClearingCache: true }, async () => {
+      try {
+        this.props.resetAudiofilesState();
+        this.props.resetDownloadedVoices();
+        await RNFS.unlink(LOCAL_CACHE_AUDIOFILES_PATH);
+        await RNFS.unlink(LOCAL_CACHE_VOICE_PREVIEWS_PATH);
+        return this.setCacheSize();
+      } catch (err) {
+        return Alert.alert('Oops!', ALERT_SETTINGS_RESET_CACHE_FAIL);
+      } finally {
+        return this.setState({ isClearingCache: false });
+      }
+    });
   }
 
   handleOnPressLogout = async () => {
@@ -197,11 +220,18 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
       rows: [
         {
           title: 'Clear cache',
-          renderAccessory: () => (
-            <Text style={{ color: '#999', marginRight: 6, fontSize: 17 }}>
-              {this.state.cacheSize} mb
-            </Text>
-          ),
+          renderAccessory: () => {
+            const { isClearingCache, cacheSize } = this.state;
+            if (isClearingCache) {
+              return (<ActivityIndicator />);
+            }
+
+            return (
+              <Text style={{ color: '#999', marginRight: 6, fontSize: 17 }}>
+                {cacheSize} mb
+              </Text>
+            );
+          },
           onPress: this.handleOnPressClearCache
         },
       ],
