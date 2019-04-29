@@ -247,7 +247,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
     this.setState({ isActive: true, isLoading: true }, async () => {
       const artist = (article.authorName) ? article.authorName : article.sourceName;
-      const album = (article.categoryName && article.sourceName) ? `${article.categoryName} on ${article.sourceName}` : '';
+      const album = (article.sourceName) ? article.sourceName : '';
 
       const audiofile = this.articleAudiofiles[0];
 
