@@ -136,9 +136,8 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
     const { selectedVoice } = this.props;
     if (selectedVoice) {
       return `${selectedVoice.label}, ${selectedVoice.languageName} (${selectedVoice.countryCode})`;
-    } else {
-      return 'Select voice';
     }
+    return 'Select voice';
   }
 
   handleOnPressUpgrade = () => this.props.navigation.navigate('Upgrade');
