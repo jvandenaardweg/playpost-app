@@ -1,5 +1,6 @@
 const tintColor = '#037DE2';
-const black = '#111111';
+const black = '#222222';
+const grayDarkest = '#444444';
 const grayDark = '#888888';
 const grayLight = '#cccccc';
 const grayLightest = '#EEF0F4';
@@ -31,7 +32,7 @@ export default {
   articleBackground: white,
 
   titleDefault: black,
-  paragraphDefault: black,
+  paragraphDefault: grayDarkest,
   paragraphGrayed: grayDark,
   borderDefault: grayLight,
 
