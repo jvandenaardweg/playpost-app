@@ -16,8 +16,7 @@ import { resetPlaylistsState } from '../reducers/playlists';
 import { resetAudiofilesState } from '../reducers/audiofiles';
 import { resetVoicesState, getVoices, resetDownloadedVoices } from '../reducers/voices';
 
-import { getAvailableVoices, getSelectedVoice } from '../selectors/voices';
-import { getUser } from '../selectors/user';
+import { getSelectedVoice } from '../selectors/voices';
 
 import { persistor } from '../store';
 import { RootState } from '../reducers';
@@ -32,7 +31,7 @@ interface Props {
   getVoices(): void;
   resetDownloadedVoices(): void;
   navigation: NavigationScreenProp<NavigationRoute>;
-  selectedVoice: Api.Voice;
+  selectedVoice: Api.Voice | undefined;
 }
 
 interface State {
@@ -135,7 +134,11 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
 
   get selectedVoiceLabel() {
     const { selectedVoice } = this.props;
-    return `${selectedVoice.label}, ${selectedVoice.languageName} (${selectedVoice.countryCode})`;
+    if (selectedVoice) {
+      return `${selectedVoice.label}, ${selectedVoice.languageName} (${selectedVoice.countryCode})`;
+    } else {
+      return 'Select voice';
+    }
   }
 
   handleOnPressUpgrade = () => this.props.navigation.navigate('Upgrade');
@@ -231,8 +234,6 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
 }
 
 const mapStateToProps = (state: RootState) => ({
-  user: getUser(state),
-  availableVoices: getAvailableVoices(state),
   selectedVoice: getSelectedVoice(state)
 });
 
