@@ -49,6 +49,11 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     this.onStateError = TrackPlayer.addEventListener('playback-error', ({ code, message }) => {
       console.log('Event', 'playback-error', code, message);
     });
+
+    this.onTrackChange = TrackPlayer.addEventListener('playback-queue-ended', async ({ track, position }) => {
+      console.log('Event', 'playback-queue-ended', track, position);
+      TrackPlayer.stop();
+    });
   }
 
   setupTrackPlayer = async () => {
