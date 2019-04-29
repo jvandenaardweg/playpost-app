@@ -66,7 +66,6 @@ export const SignupForm: React.FC<Props> = ({
 
       <View>
         <Button title="Create account" loading={isLoading} onPress={onPressSignup} disabled={isLoading} buttonStyle={styles.buttonStyle} activeOpacity={1} disabledStyle={styles.buttonStyle} />
-        {/* <Button title="I already have an account" type="clear" onPress={onPressLogin} titleStyle={{ color: 'gray', fontWeight: 'normal' }} /> */}
       </View>
 
       <View style={styles.footerContainer}>
