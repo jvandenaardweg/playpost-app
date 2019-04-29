@@ -18,6 +18,7 @@ import { getPlayerPlaybackState, getPlayerTrack } from '../../selectors/player';
 import { getAvailableVoices, getSelectedVoice, getDownloadedVoices } from '../../selectors/voices';
 
 import styles from './styles';
+import { ALERT_SETTINGS_VOICE_CHANGE } from '../../constants/messages';
 
 interface Props {
   allAvailableVoices: Api.Voice[];
@@ -47,36 +48,36 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
     const { selectedVoice } = this.props;
 
     // TODO: check if user is premium
-    if (item.isPremium) {
+    // if (item.isPremium) {
+    //   Alert.alert(
+    //     'Upgrade to Premium',
+    //     'This higher quality voice is only available for Premium users.',
+    //     [
+    //       {
+    //         text: 'Cancel',
+    //         style: 'cancel'
+    //       },
+    //       {
+    //         text: 'Upgrade',
+    //         onPress: () => this.props.onPressUpgrade(),
+    //       },
+    //     ],
+    //     { cancelable: true }
+    //     );
+    // } else {
+    if (selectedVoice && selectedVoice.id !== item.id) {
       Alert.alert(
-        'Upgrade to Premium',
-        'This higher quality voice is only available for Premium users.',
+        'Only for new articles',
+        ALERT_SETTINGS_VOICE_CHANGE,
         [
           {
-            text: 'Cancel',
-            style: 'cancel'
-          },
-          {
-            text: 'Upgrade',
-            onPress: () => this.props.onPressUpgrade(),
-          },
-        ],
-        { cancelable: true }
-        );
-    } else {
-      if (selectedVoice && selectedVoice.id !== item.id) {
-        Alert.alert(
-          'Only for new articles',
-          'Changing the voice only applies to new articles. Articles with already available audio will not be changed to this new voice.',
-          [
-            {
-              text: 'OK',
-              onPress: () => this.props.setSelectedVoice(item.id)
-            }
-          ]
-        );
-      }
+            text: 'OK',
+            onPress: () => this.props.setSelectedVoice(item.id)
+          }
+        ]
+      );
     }
+    // }
   }
 
   handleOnPreviewPress = async (title: string, label: string, voice: Api.Voice) => {

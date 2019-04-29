@@ -25,3 +25,4 @@ export const ALERT_SETTINGS_SET_CACHE_SIZE_FAIL = 'We could not set the cache si
 export const ALERT_SETTINGS_SETTING_UNAVAILABLE = 'Changing this setting is not available yet. It will be available in later versions.';
 export const ALERT_SETTINGS_RESET_CACHE_FAIL = 'We could not clear the cache. Please try again.';
 export const ALERT_SETTINGS_CLEAR_CACHE_WARNING = 'This will delete the already downloaded article audio and voice previews.';
+export const ALERT_SETTINGS_VOICE_CHANGE = 'Changing the voice only applies to new articles. Articles with already available audio will not be changed to this new voice.';
