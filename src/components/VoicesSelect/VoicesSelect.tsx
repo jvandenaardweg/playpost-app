@@ -25,6 +25,7 @@ interface Props {
   selectedVoice: Api.Voice | undefined;
   playerTrack: TrackPlayer.Track;
   downloadedVoices: Api.Voice[];
+  onPressUpgrade(): void;
   setSelectedVoice(voiceId: string): void;
   setDownloadedVoice(voice: Api.Voice): void;
   setTrack(track: TrackPlayer.Track): void;
@@ -57,7 +58,7 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
           },
           {
             text: 'Upgrade',
-            onPress: () => {},
+            onPress: () => this.props.onPressUpgrade(),
           },
         ],
         { cancelable: true }
@@ -188,7 +189,6 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
   }
 
   render() {
-    console.log('re-render');
     return (
       <FlatList
         keyExtractor={this.keyExtractor}
