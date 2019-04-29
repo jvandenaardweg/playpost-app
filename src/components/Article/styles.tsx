@@ -59,13 +59,11 @@ export default StyleSheet.create({
     alignItems: 'baseline',
   },
   sourceIcon: {
-    color: Colors.grayLight,
-    position: 'relative',
-    top: 1
+    color: Colors.grayLight
   },
   downloadIcon: {
     position: 'relative',
-    top: 2,
+    top: 1,
     marginRight: 4
   },
   sourceName: {
