@@ -22,7 +22,7 @@ export const SignupForm: React.FC<Props> = ({
   passwordValidation,
   isLoading
 }) => (
-  <KeyboardAvoidingView style={styles.container} behavior="padding" keyboardVerticalOffset={120} enabled>
+  <KeyboardAvoidingView style={styles.container} behavior="padding" keyboardVerticalOffset={100} enabled>
     <View style={styles.form}>
 
       <TextInput
