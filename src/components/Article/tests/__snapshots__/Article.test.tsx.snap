@@ -32,9 +32,9 @@ exports[`Article active rendering should render active correctly 1`] = `
       style={
         Object {
           "color": "#222222",
-          "fontSize": 17,
+          "fontSize": 16,
           "fontWeight": "600",
-          "lineHeight": 22,
+          "lineHeight": 20,
           "marginBottom": 8,
         }
       }
@@ -80,12 +80,10 @@ exports[`Article active rendering should render active correctly 1`] = `
             Array [
               Object {
                 "color": "#cccccc",
-                "fontSize": 11,
+                "fontSize": 10,
               },
               Object {
                 "marginRight": 4,
-                "position": "relative",
-                "top": 1,
               },
               Object {
                 "fontFamily": "FontAwesome5Free-Solid",
@@ -107,12 +105,10 @@ exports[`Article active rendering should render active correctly 1`] = `
             Array [
               Object {
                 "color": "#cccccc",
-                "fontSize": 11,
+                "fontSize": 10,
               },
               Object {
                 "marginRight": 4,
-                "position": "relative",
-                "top": 1,
               },
               Object {
                 "fontFamily": "FontAwesome5Free-Solid",
@@ -129,10 +125,13 @@ exports[`Article active rendering should render active correctly 1`] = `
           
         </Text>
         <Text
+          ellipsizeMode="tail"
+          numberOfLines={1}
           style={
             Object {
               "color": "#888888",
-              "fontSize": 12,
+              "fontSize": 11,
+              "fontWeight": "100",
               "marginBottom": 8,
               "marginLeft": 2,
             }
@@ -271,9 +270,9 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
       style={
         Object {
           "color": "#222222",
-          "fontSize": 17,
+          "fontSize": 16,
           "fontWeight": "600",
-          "lineHeight": 22,
+          "lineHeight": 20,
           "marginBottom": 8,
         }
       }
@@ -319,12 +318,10 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
             Array [
               Object {
                 "color": "#cccccc",
-                "fontSize": 11,
+                "fontSize": 10,
               },
               Object {
                 "marginRight": 4,
-                "position": "relative",
-                "top": 1,
               },
               Object {
                 "fontFamily": "FontAwesome5Free-Solid",
@@ -346,12 +343,10 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
             Array [
               Object {
                 "color": "#03A87C",
-                "fontSize": 11,
+                "fontSize": 10,
               },
               Object {
                 "marginRight": 4,
-                "position": "relative",
-                "top": 1,
               },
               Object {
                 "fontFamily": "FontAwesome5Free-Solid",
@@ -368,10 +363,13 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
           
         </Text>
         <Text
+          ellipsizeMode="tail"
+          numberOfLines={1}
           style={
             Object {
               "color": "#888888",
-              "fontSize": 12,
+              "fontSize": 11,
+              "fontWeight": "100",
               "marginBottom": 8,
               "marginLeft": 2,
             }
@@ -510,9 +508,9 @@ exports[`Article full rendering should render full correctly 1`] = `
       style={
         Object {
           "color": "#222222",
-          "fontSize": 17,
+          "fontSize": 16,
           "fontWeight": "600",
-          "lineHeight": 22,
+          "lineHeight": 20,
           "marginBottom": 8,
         }
       }
@@ -560,12 +558,10 @@ exports[`Article full rendering should render full correctly 1`] = `
             Array [
               Object {
                 "color": "#cccccc",
-                "fontSize": 11,
+                "fontSize": 10,
               },
               Object {
                 "marginRight": 4,
-                "position": "relative",
-                "top": 1,
               },
               Object {
                 "fontFamily": "FontAwesome5Free-Solid",
@@ -587,12 +583,10 @@ exports[`Article full rendering should render full correctly 1`] = `
             Array [
               Object {
                 "color": "#cccccc",
-                "fontSize": 11,
+                "fontSize": 10,
               },
               Object {
                 "marginRight": 4,
-                "position": "relative",
-                "top": 1,
               },
               Object {
                 "fontFamily": "FontAwesome5Free-Solid",
@@ -609,10 +603,13 @@ exports[`Article full rendering should render full correctly 1`] = `
           
         </Text>
         <Text
+          ellipsizeMode="tail"
+          numberOfLines={1}
           style={
             Object {
               "color": "#888888",
-              "fontSize": 12,
+              "fontSize": 11,
+              "fontWeight": "100",
               "marginBottom": 8,
               "marginLeft": 2,
             }
@@ -756,9 +753,9 @@ exports[`Article loading rendering should render loading correctly 1`] = `
       style={
         Object {
           "color": "#222222",
-          "fontSize": 17,
+          "fontSize": 16,
           "fontWeight": "600",
-          "lineHeight": 22,
+          "lineHeight": 20,
           "marginBottom": 8,
         }
       }
@@ -804,12 +801,10 @@ exports[`Article loading rendering should render loading correctly 1`] = `
             Array [
               Object {
                 "color": "#cccccc",
-                "fontSize": 11,
+                "fontSize": 10,
               },
               Object {
                 "marginRight": 4,
-                "position": "relative",
-                "top": 1,
               },
               Object {
                 "fontFamily": "FontAwesome5Free-Solid",
@@ -831,12 +826,10 @@ exports[`Article loading rendering should render loading correctly 1`] = `
             Array [
               Object {
                 "color": "#cccccc",
-                "fontSize": 11,
+                "fontSize": 10,
               },
               Object {
                 "marginRight": 4,
-                "position": "relative",
-                "top": 1,
               },
               Object {
                 "fontFamily": "FontAwesome5Free-Solid",
@@ -853,10 +846,13 @@ exports[`Article loading rendering should render loading correctly 1`] = `
           
         </Text>
         <Text
+          ellipsizeMode="tail"
+          numberOfLines={1}
           style={
             Object {
               "color": "#888888",
-              "fontSize": 12,
+              "fontSize": 11,
+              "fontWeight": "100",
               "marginBottom": 8,
               "marginLeft": 2,
             }
@@ -979,9 +975,9 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
       style={
         Object {
           "color": "#222222",
-          "fontSize": 17,
+          "fontSize": 16,
           "fontWeight": "600",
-          "lineHeight": 22,
+          "lineHeight": 20,
           "marginBottom": 8,
         }
       }
@@ -1027,12 +1023,10 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
             Array [
               Object {
                 "color": "#cccccc",
-                "fontSize": 11,
+                "fontSize": 10,
               },
               Object {
                 "marginRight": 4,
-                "position": "relative",
-                "top": 1,
               },
               Object {
                 "fontFamily": "FontAwesome5Free-Solid",
@@ -1054,12 +1048,10 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
             Array [
               Object {
                 "color": "#cccccc",
-                "fontSize": 11,
+                "fontSize": 10,
               },
               Object {
                 "marginRight": 4,
-                "position": "relative",
-                "top": 1,
               },
               Object {
                 "fontFamily": "FontAwesome5Free-Solid",
@@ -1076,10 +1068,13 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
           
         </Text>
         <Text
+          ellipsizeMode="tail"
+          numberOfLines={1}
           style={
             Object {
               "color": "#888888",
-              "fontSize": 12,
+              "fontSize": 11,
+              "fontWeight": "100",
               "marginBottom": 8,
               "marginLeft": 2,
             }
@@ -1218,9 +1213,9 @@ exports[`Article playing rendering should render playing correctly 1`] = `
       style={
         Object {
           "color": "#222222",
-          "fontSize": 17,
+          "fontSize": 16,
           "fontWeight": "600",
-          "lineHeight": 22,
+          "lineHeight": 20,
           "marginBottom": 8,
         }
       }
@@ -1266,12 +1261,10 @@ exports[`Article playing rendering should render playing correctly 1`] = `
             Array [
               Object {
                 "color": "#cccccc",
-                "fontSize": 11,
+                "fontSize": 10,
               },
               Object {
                 "marginRight": 4,
-                "position": "relative",
-                "top": 1,
               },
               Object {
                 "fontFamily": "FontAwesome5Free-Solid",
@@ -1293,12 +1286,10 @@ exports[`Article playing rendering should render playing correctly 1`] = `
             Array [
               Object {
                 "color": "#cccccc",
-                "fontSize": 11,
+                "fontSize": 10,
               },
               Object {
                 "marginRight": 4,
-                "position": "relative",
-                "top": 1,
               },
               Object {
                 "fontFamily": "FontAwesome5Free-Solid",
@@ -1315,10 +1306,13 @@ exports[`Article playing rendering should render playing correctly 1`] = `
           
         </Text>
         <Text
+          ellipsizeMode="tail"
+          numberOfLines={1}
           style={
             Object {
               "color": "#888888",
-              "fontSize": 12,
+              "fontSize": 11,
+              "fontWeight": "100",
               "marginBottom": 8,
               "marginLeft": 2,
             }
