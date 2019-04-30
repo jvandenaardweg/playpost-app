@@ -9,6 +9,8 @@ import * as Keychain from 'react-native-keychain';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 
+import { ButtonUpgrade } from '../components/Header/ButtonUpgrade';
+
 import { resetAuthState } from '../reducers/auth';
 import { resetUserState, getUser } from '../reducers/user';
 import { resetPlayerState } from '../reducers/player';
@@ -22,6 +24,7 @@ import { getCurrentUser } from '../selectors/user';
 import { persistor } from '../store';
 import { RootState } from '../reducers';
 import { ALERT_SETTINGS_SET_CACHE_SIZE_FAIL, ALERT_SETTINGS_SETTING_UNAVAILABLE, ALERT_SETTINGS_RESET_CACHE_FAIL, ALERT_SETTINGS_CLEAR_CACHE_WARNING, ALERT_SETTINGS_LOGOUT_FAIL } from '../constants/messages';
+import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE, URL_ABOUT } from '../constants/urls';
 
 interface Props {
   resetAuthState(): void;
@@ -45,9 +48,12 @@ interface State {
 }
 
 class SettingsScreenContainer extends React.PureComponent<Props, State> {
-  static navigationOptions = {
-    title: 'Settings'
-  };
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }) => {
+    return {
+      title: 'Settings',
+      headerRight: <ButtonUpgrade onPress={navigation.getParam('handleOnPressUpgrade')} />
+    };
+  }
 
   state = {
     cacheSize: '0',
@@ -56,6 +62,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
   };
 
   componentDidMount() {
+    this.props.navigation.setParams({ handleOnPressUpgrade: this.handleOnPressUpgrade });
     this.setCacheSize();
     this.fetchVoices();
 
@@ -84,6 +91,10 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
       this.props.resetAudiofilesState();
       this.props.resetVoicesState();
     }
+  }
+
+  handleOnPressUpgrade = () => {
+    this.props.navigation.navigate('Upgrade');
   }
 
   fetchUser = async () => {
@@ -196,7 +207,76 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
 
   handleOnPressLanguage = () => this.props.navigation.navigate('SettingsVoices');
 
+  handleOnPressAccountPassword = () => Alert.alert('Not available', ALERT_SETTINGS_SETTING_UNAVAILABLE);
+
+  handleOnPressAccountEmail = () => Alert.alert('Not available', ALERT_SETTINGS_SETTING_UNAVAILABLE);
+
+  handleOnPressAccountDelete = () => Alert.alert('Not available', ALERT_SETTINGS_SETTING_UNAVAILABLE);
+
   settingsData: SettingsData = [
+    {
+      type: 'SECTION',
+      header: 'Account'.toUpperCase(),
+      rows: [
+        {
+          title: 'Upgrade',
+          onPress: this.handleOnPressUpgrade,
+          showDisclosureIndicator: true
+        },
+        {
+          title: 'E-mail',
+          onPress: this.handleOnPressAccountPassword,
+          renderAccessory: () => {
+            const { isLoggingOut } = this.state;
+            const userEmail = (this.props.user) ? this.props.user.email : null;
+
+            if (isLoggingOut) {
+              return (<ActivityIndicator />);
+            }
+
+            return (
+              <Text style={{ color: '#999', marginRight: 6, fontSize: 17 }}>
+                {userEmail}
+              </Text>
+            );
+          },
+          showDisclosureIndicator: true
+        },
+        {
+          title: 'Password',
+          onPress: this.handleOnPressAccountPassword,
+          renderAccessory: () => {
+            const { isLoggingOut } = this.state;
+            const userPassword = (this.props.user) ? '**********' : null;
+
+            if (isLoggingOut) {
+              return (<ActivityIndicator />);
+            }
+
+            return (
+              <Text style={{ color: '#999', marginRight: 6, fontSize: 17 }}>
+                {userPassword}
+              </Text>
+            );
+          },
+          showDisclosureIndicator: true
+        },
+        {
+          title: 'Logout',
+          onPress: this.handleOnPressLogout,
+          renderAccessory: () => {
+            const { isLoggingOut } = this.state;
+
+            if (isLoggingOut) {
+              return (<ActivityIndicator />);
+            }
+
+            return <Text>{null}</Text>;
+          },
+          showDisclosureIndicator: true
+        }
+      ],
+    },
     {
       type: 'SECTION',
       header: 'Audio'.toUpperCase(),
@@ -251,6 +331,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
           title: 'Clear cache',
           renderAccessory: () => {
             const { isClearingCache, cacheSize } = this.state;
+
             if (isClearingCache) {
               return (<ActivityIndicator />);
             }
@@ -267,30 +348,23 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
     },
     {
       type: 'SECTION',
-      header: 'Account'.toUpperCase(),
+      header: 'About'.toUpperCase(),
       rows: [
         {
-          title: 'Upgrade',
-          onPress: this.handleOnPressUpgrade
+          title: 'About',
+          onPress: () => this.props.navigation.navigate('Browser', { url: URL_ABOUT, title: 'About' }),
+          showDisclosureIndicator: true
         },
         {
-          title: 'Logout',
-          onPress: this.handleOnPressLogout,
-          renderAccessory: () => {
-            const { isLoggingOut } = this.state;
-            const userEmail = (this.props.user) ? this.props.user.email : null;
-
-            if (isLoggingOut) {
-              return (<ActivityIndicator />);
-            }
-
-            return (
-              <Text style={{ color: '#999', marginRight: 6, fontSize: 17 }}>
-                {userEmail}
-              </Text>
-            );
-          }
-        }
+          title: 'Privacy Policy',
+          onPress: () => this.props.navigation.navigate('Browser', { url: URL_PRIVACY_POLICY, title: 'Privacy Policy' }),
+          showDisclosureIndicator: true
+        },
+        {
+          title: 'Terms of Use',
+          onPress: () => this.props.navigation.navigate('Browser', { url: URL_TERMS_OF_USE, title: 'Terms of Use' }),
+          showDisclosureIndicator: true
+        },
       ],
     },
     {
@@ -305,6 +379,22 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
           }}
         >
           Version: {VersionNumber.appVersion}, Build: {VersionNumber.buildVersion}
+        </Text>
+      ),
+    },
+    {
+      type: 'CUSTOM_VIEW',
+      render: () => (
+        <Text
+          style={{
+            alignSelf: 'center',
+            fontSize: 16,
+            color: 'red',
+            marginBottom: 40
+          }}
+          onPress={this.handleOnPressAccountDelete}
+        >
+          Delete account
         </Text>
       ),
     },
