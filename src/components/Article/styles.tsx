@@ -7,8 +7,7 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.articleBackground,
     padding: 16,
-    width: '100%',
-    // height: '100%'
+    width: '100%'
   },
   seperator: {
     backgroundColor: Colors.articleBackground,
@@ -36,11 +35,10 @@ export default StyleSheet.create({
     paddingTop: 6
   },
   title: {
-    // fontFamily: 'Merriweather-Regular',
-    fontSize: 17,
+    fontSize: 16,
     fontWeight: '600',
     color: Colors.titleDefault,
-    lineHeight: 22,
+    lineHeight: 20,
     marginBottom: 8
   },
   description: {
@@ -64,18 +62,14 @@ export default StyleSheet.create({
     alignItems: 'baseline',
   },
   sourceIcon: {
-    color: Colors.grayLight
-  },
-  downloadIcon: {
-    position: 'relative',
-    top: 1,
     marginRight: 4
   },
   sourceName: {
-    fontSize: 12,
+    fontSize: 11,
     color: Colors.paragraphGrayed,
     marginBottom: 8,
-    marginLeft: 2
+    marginLeft: 2,
+    fontWeight: '100'
   },
   authorName: {
     color: Colors.paragraphGrayed

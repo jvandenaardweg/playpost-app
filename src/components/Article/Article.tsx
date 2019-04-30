@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { Image } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import styles from './styles';
@@ -50,29 +51,21 @@ export const Article: React.FC<Props> = React.memo(({
         <View style={styles.source}>
           <Icon
             name="circle"
-            size={11}
+            size={10}
             solid
-            style={styles.downloadIcon}
+            style={styles.sourceIcon}
             color={hasAudiofile ? colors.green : colors.grayLight}
             testID="article-icon-playable"
           />
           <Icon
             name="arrow-alt-circle-down"
-            size={11}
+            size={10}
             solid
-            style={styles.downloadIcon}
+            style={styles.sourceIcon}
             color={isDownloaded ? colors.green : colors.grayLight}
             testID="article-icon-downloaded"
           />
-          {/* <Icon
-            name="heart"
-            size={11}
-            solid
-            style={styles.downloadIcon}
-            color={isDownloaded ? colors.green : colors.grayLight}
-            testID="article-icon-downloaded"
-          /> */}
-          <Text style={styles.sourceName} testID="article-source-name">
+          <Text style={styles.sourceName} ellipsizeMode="tail" numberOfLines={1} testID="article-source-name">
             {authorName && `${authorName} on `}
             {sourceName}
           </Text>
