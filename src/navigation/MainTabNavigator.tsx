@@ -71,7 +71,8 @@ const FavoritesStack: StackNavigatorConfig = createStackNavigator(
 const SettingsStack: StackNavigatorConfig = createStackNavigator(
   {
     Settings: SettingsScreen,
-    SettingsVoices: SettingsVoicesScreen
+    SettingsVoices: SettingsVoicesScreen,
+    Browser: BrowserScreen
   },
   {
     headerMode: 'float',
