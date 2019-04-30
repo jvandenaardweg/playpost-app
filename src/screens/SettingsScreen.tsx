@@ -93,10 +93,6 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
     }
   }
 
-  handleOnPressUpgrade = () => {
-    this.props.navigation.navigate('Upgrade');
-  }
-
   fetchUser = async () => {
     await this.props.getUser();
   }
