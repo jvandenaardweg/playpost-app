@@ -2,6 +2,8 @@ import { StyleSheet } from 'react-native';
 
 import Colors from '../../constants/colors';
 
+import fonts from '../../constants/fonts';
+
 export default StyleSheet.create({
   container: {
     flex: 1,
@@ -29,26 +31,25 @@ export default StyleSheet.create({
     flex: 1
   },
   sectionControl: {
-    width: 50,
+    width: 45,
     justifyContent: 'center',
-    marginLeft: 24,
-    paddingTop: 6
+    marginLeft: 16,
+    paddingTop: 20
   },
   title: {
-    fontSize: 16,
+    fontSize: fonts.fontSize.subhead.small,
     fontWeight: '600',
     color: Colors.titleDefault,
     lineHeight: 20,
-    marginBottom: 8
+    marginBottom: 6
   },
   description: {
     alignSelf: 'flex-start',
-    width: '100%',
-    height: '100%'
+    width: '100%'
   },
   descriptionText: {
     fontSize: 14,
-    color: Colors.paragraphGrayed,
+    color: Colors.paragraphDefault,
     lineHeight: 21
   },
   author: {
@@ -59,7 +60,8 @@ export default StyleSheet.create({
   source: {
     flex: 1,
     flexDirection: 'row',
-    alignItems: 'baseline',
+    marginBottom: 4,
+    alignItems: 'baseline'
   },
   sourceIcon: {
     marginRight: 4
@@ -67,8 +69,9 @@ export default StyleSheet.create({
   sourceName: {
     fontSize: 11,
     color: Colors.paragraphGrayed,
-    marginBottom: 8,
+    // marginBottom: 8,
     marginLeft: 2,
+    paddingRight: 28,
     fontWeight: '100'
   },
   authorName: {
@@ -79,11 +82,11 @@ export default StyleSheet.create({
   },
   controlButton: {
     backgroundColor: Colors.controlButtonDefault,
-    width: 50,
-    height: 50,
-    borderRadius: 50,
+    width: 45,
+    height: 45,
+    borderRadius: 45,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   controlButtonActive: {
     backgroundColor: Colors.controlButtonActive
@@ -92,10 +95,10 @@ export default StyleSheet.create({
     // marginLeft: 2
   },
   duration: {
-    color: Colors.paragraphGrayed,
+    color: Colors.paragraphDefault,
     textAlign: 'center',
-    marginTop: 6,
-    fontSize: 12
+    marginTop: 4,
+    fontSize: 11
   },
   articleEmptyActivityIndicator: {
     marginBottom: 12
