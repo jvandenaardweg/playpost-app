@@ -186,7 +186,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
       if (showHelpVideo) {
         return (
           <EmptyState
-            localVideo={require('../../assets/video/help/enabling-sharing/enable-sharing-square.m4v')}
+            localVideo={require('../../assets/video/help/enabling-sharing/enable-sharing-square-v2.m4v')}
             actionButtonLabel="Hide instructions"
             actionButtonOnPress={() => this.handleOnHideVideo()}
           />
