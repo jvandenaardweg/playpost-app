@@ -41,7 +41,8 @@ export default StyleSheet.create({
     paddingLeft: 2, paddingRight: 2
   },
   listItemBadgeText: {
-    color: 'white', fontWeight: '400'
+    color: 'white',
+    fontWeight: '400'
   }
 
 });

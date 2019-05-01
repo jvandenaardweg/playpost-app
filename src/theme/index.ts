@@ -8,7 +8,7 @@ export const reactNativeElementsTheme: Theme = {
       height: 50
     },
     titleStyle: {
-      fontWeight: '600',
+      fontWeight: fonts.fontWeight.semibold,
       fontSize: fonts.fontSize.button
     },
   },

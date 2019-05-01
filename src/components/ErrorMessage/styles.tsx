@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
+import fonts from '../../constants/fonts';
 
 export default StyleSheet.create({
   container: {
@@ -12,7 +13,7 @@ export default StyleSheet.create({
   },
   title: {
     color: colors.white,
-    fontWeight: '700',
+    fontWeight: fonts.fontWeight.bold,
     marginBottom: 6
   },
   message: {

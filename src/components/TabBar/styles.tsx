@@ -1,10 +1,10 @@
 import { StyleSheet } from 'react-native';
 
-import Colors from '../../constants/colors';
+import colors from '../../constants/colors';
 
 export default StyleSheet.create({
   container: {
-    borderTopColor: '#666',
-    backgroundColor: Colors.tabBar
+    borderTopColor: colors.borderDefault,
+    backgroundColor: colors.tabBar
   }
 });

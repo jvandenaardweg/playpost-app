@@ -28,7 +28,7 @@ export default StyleSheet.create({
   emptyText: {
     fontSize: fonts.fontSize.body,
     color: colors.white,
-    fontWeight: '700'
+    fontWeight: fonts.fontWeight.semibold
   },
   trackInfoButton: {
     flex: 1,
@@ -39,13 +39,13 @@ export default StyleSheet.create({
     // marginRight: 14
   },
   trackInfoTitle: {
-    fontSize: fonts.fontSize.body,
+    fontSize: fonts.fontSize.small,
     color: colors.white,
-    fontWeight: '700',
+    fontWeight: fonts.fontWeight.bold,
     marginBottom: 2
   },
   trackInfoArtist: {
-    fontSize: fonts.fontSize.small,
+    fontSize: fonts.fontSize.tiny,
     color: colors.paragraphGrayed,
   },
   controls: {

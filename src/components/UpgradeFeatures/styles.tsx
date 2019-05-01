@@ -17,13 +17,13 @@ export default StyleSheet.create({
     textAlign: 'center',
     fontSize: fonts.fontSize.titleLarge,
     color: colors.black,
-    fontWeight: '600',
+    fontWeight: fonts.fontWeight.semibold,
     marginBottom: 24,
     marginTop: 12
   },
   title: {
     fontSize: fonts.fontSize.title,
-    fontWeight: '600',
+    fontWeight: fonts.fontWeight.semibold,
     marginBottom: 4
   },
   paragraph: {

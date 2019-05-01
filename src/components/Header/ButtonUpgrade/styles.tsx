@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../../constants/colors';
+import fonts from '../../../constants/fonts';
 
 export default StyleSheet.create({
   container: {
@@ -11,7 +12,7 @@ export default StyleSheet.create({
   },
   label: {
     color: colors.tintColor,
-    fontWeight: '500'
+    fontWeight: fonts.fontWeight.medium
   },
   icon: {
     marginLeft: 6

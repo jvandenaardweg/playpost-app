@@ -50,7 +50,7 @@ export const Article: React.FC<Props> = React.memo(({
         <View style={styles.source}>
           <Icon
             name="circle"
-            size={10}
+            size={9}
             solid
             style={styles.sourceIcon}
             color={hasAudiofile ? colors.green : colors.grayLight}
@@ -58,7 +58,7 @@ export const Article: React.FC<Props> = React.memo(({
           />
           <Icon
             name="arrow-alt-circle-down"
-            size={10}
+            size={9}
             solid
             style={styles.sourceIcon}
             color={isDownloaded ? colors.green : colors.grayLight}
@@ -110,8 +110,8 @@ export const PlayButton = (props: { isPlaying?: boolean, onPress(): void, isLoad
   >
     <View>
       {props.isLoading && <ActivityIndicator testID="article-activity-indicator" size="small" color="#fff" />}
-      {!props.isLoading && !props.isPlaying && <Icon name="play" size={14} color="white" testID="article-icon-play" style={styles.controlIcon} />}
-      {!props.isLoading && props.isPlaying && <Icon name="pause" size={14} color="white" testID="article-icon-pause" style={styles.controlIcon} />}
+      {!props.isLoading && !props.isPlaying && <Icon name="play" size={14} color="white" testID="article-icon-play" />}
+      {!props.isLoading && props.isPlaying && <Icon name="pause" size={14} color="white" testID="article-icon-pause" />}
     </View>
   </TouchableOpacity>
 );

@@ -16,14 +16,13 @@ export default StyleSheet.create({
     paddingLeft: 12,
   },
   content: {
-    alignItems: 'center',
-    // backgroundColor: 'green'
+    alignItems: 'center'
   },
   title: {
     textAlign: 'center',
     fontSize: fonts.fontSize.title,
-    fontWeight: '600',
-    color: '#000',
+    fontWeight: fonts.fontWeight.semibold,
+    color: colors.titleDefault,
     marginBottom: 6
   },
   description: {

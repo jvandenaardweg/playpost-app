@@ -26,6 +26,7 @@ import { persistor } from '../store';
 import { RootState } from '../reducers';
 import { ALERT_SETTINGS_SET_CACHE_SIZE_FAIL, ALERT_SETTINGS_SETTING_UNAVAILABLE, ALERT_SETTINGS_RESET_CACHE_FAIL, ALERT_SETTINGS_CLEAR_CACHE_WARNING, ALERT_SETTINGS_LOGOUT_FAIL } from '../constants/messages';
 import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE, URL_ABOUT } from '../constants/urls';
+import colors from '../constants/colors';
 
 interface Props {
   resetAuthState(): void;
@@ -232,7 +233,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
             }
 
             return (
-              <Text style={{ color: '#999', marginRight: 6, fontSize: fonts.fontSize.body }}>
+              <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.body }}>
                 {userEmail}
               </Text>
             );
@@ -251,7 +252,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
             }
 
             return (
-              <Text style={{ color: '#999', marginRight: 6, fontSize: fonts.fontSize.body }}>
+              <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.body }}>
                 {userPassword}
               </Text>
             );
@@ -281,7 +282,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
         {
           title: 'Voice',
           renderAccessory: () => (
-            <Text style={{ color: '#999', marginRight: 6, fontSize: fonts.fontSize.body }}>
+            <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.body }}>
               {this.selectedVoiceLabel}
             </Text>
           ),
@@ -291,7 +292,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
         {
           title: 'Playback speed',
           renderAccessory: () => (
-            <Text style={{ color: '#999', marginRight: 6, fontSize: fonts.fontSize.body }}>
+            <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.body }}>
               Normal (1x)
             </Text>
           ),
@@ -324,7 +325,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
             }
 
             return (
-              <Text style={{ color: '#999', marginRight: 6, fontSize: fonts.fontSize.body }}>
+              <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.body }}>
                 {cacheSize} mb
               </Text>
             );
@@ -361,7 +362,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
           style={{
             alignSelf: 'center',
             fontSize: fonts.fontSize.body,
-            color: '#999',
+            color: colors.grayDark,
             marginBottom: 40
           }}
         >

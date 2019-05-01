@@ -13,9 +13,7 @@ export class UpgradeScreen extends React.PureComponent<Props> {
     return {
       title: 'Upgrade',
       headerLeft: null,
-      headerRight: <ButtonClose onPress={navigation.getParam('handleOnClose')} />,
-      headerTintColor: '#000'
-
+      headerRight: <ButtonClose onPress={navigation.getParam('handleOnClose')} />
     };
   }
 

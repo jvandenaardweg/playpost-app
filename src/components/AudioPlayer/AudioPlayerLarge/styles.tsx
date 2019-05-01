@@ -1,12 +1,13 @@
 import { StyleSheet } from 'react-native';
 
 import fonts from '../../../constants/fonts';
+import colors from '../../../constants/colors';
 
 export default StyleSheet.create({
   wrapper: {
     flex: 1,
     paddingTop: 42,
-    backgroundColor: '#000'
+    backgroundColor: colors.black
   },
   container: {
     flex: 1,
@@ -30,12 +31,12 @@ export default StyleSheet.create({
   scrollableContainer: {
     flexGrow: 1,
     flexShrink: 1,
-    backgroundColor: '#161616',
+    backgroundColor: colors.grayDarkest,
     marginTop: 24,
     marginBottom: 24,
-    borderTopColor: '#373737',
+    borderTopColor: colors.grayDarker,
     borderTopWidth: 1,
-    borderBottomColor: '#373737',
+    borderBottomColor: colors.grayDarker,
     borderBottomWidth: 1,
     overflow: 'hidden'
   },
@@ -43,19 +44,20 @@ export default StyleSheet.create({
     padding: 24,
   },
   contentText: {
-    color: '#fff',
+    color: colors.white,
     fontSize: fonts.fontSize.body,
     lineHeight: 25,
   },
   title: {
-    color: '#fff',
+    color: colors.white,
     fontSize: fonts.fontSize.title,
     lineHeight: 22,
-    fontWeight: '700',
+    fontWeight: fonts.fontWeight.semibold,
     marginBottom: 6
   },
   album: {
-    color: 'gray'
+    color: colors.paragraphGrayed,
+    fontSize: fonts.fontSize.small
   },
   controlsRow: {
     flexDirection: 'row',

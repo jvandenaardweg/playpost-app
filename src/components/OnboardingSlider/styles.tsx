@@ -37,6 +37,6 @@ export default StyleSheet.create({
     backgroundColor: 'transparent',
     textAlign: 'center',
     marginBottom: 12,
-    fontWeight: '700'
+    fontWeight: fonts.fontWeight.bold
   }
 });

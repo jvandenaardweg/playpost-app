@@ -33,20 +33,21 @@ export default StyleSheet.create({
   },
   sectionControl: {
     width: 45,
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     marginLeft: 16,
-    paddingTop: 20
+    paddingBottom: 3
   },
   title: {
     fontSize: fonts.fontSize.body,
-    fontWeight: '600',
-    color: '#000000',
+    fontWeight: fonts.fontWeight.semibold,
+    color: colors.titleDefault,
     lineHeight: 20,
     marginBottom: 6
   },
   description: {
-    alignSelf: 'flex-start',
-    width: '100%'
+    justifyContent: 'flex-start',
+    width: '100%',
+    height: '100%'
   },
   descriptionText: {
     fontSize: fonts.fontSize.small,
@@ -70,10 +71,9 @@ export default StyleSheet.create({
   sourceName: {
     fontSize: fonts.fontSize.tiny,
     color: colors.paragraphGrayed,
-    // marginBottom: 8,
     marginLeft: 2,
     paddingRight: 28,
-    fontWeight: '100'
+    fontWeight: fonts.fontWeight.thin
   },
   authorName: {
     color: colors.paragraphGrayed
@@ -91,9 +91,6 @@ export default StyleSheet.create({
   },
   controlButtonActive: {
     backgroundColor: Colors.controlButtonActive
-  },
-  controlIcon: {
-    // marginLeft: 2
   },
   duration: {
     color: Colors.paragraphGrayed,
