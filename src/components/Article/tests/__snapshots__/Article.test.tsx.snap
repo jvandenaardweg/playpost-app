@@ -35,7 +35,7 @@ exports[`Article active rendering should render active correctly 1`] = `
           "fontSize": 16,
           "fontWeight": "600",
           "lineHeight": 20,
-          "marginBottom": 8,
+          "marginBottom": 6,
         }
       }
       testID="article-title"
@@ -71,6 +71,7 @@ exports[`Article active rendering should render active correctly 1`] = `
             "alignItems": "baseline",
             "flex": 1,
             "flexDirection": "row",
+            "marginBottom": 4,
           }
         }
       >
@@ -132,8 +133,8 @@ exports[`Article active rendering should render active correctly 1`] = `
               "color": "#888888",
               "fontSize": 11,
               "fontWeight": "100",
-              "marginBottom": 8,
               "marginLeft": 2,
+              "paddingRight": 28,
             }
           }
           testID="article-source-name"
@@ -143,7 +144,6 @@ exports[`Article active rendering should render active correctly 1`] = `
         style={
           Object {
             "alignSelf": "flex-start",
-            "height": "100%",
             "width": "100%",
           }
         }
@@ -153,7 +153,7 @@ exports[`Article active rendering should render active correctly 1`] = `
           numberOfLines={3}
           style={
             Object {
-              "color": "#888888",
+              "color": "#666666",
               "fontSize": 14,
               "lineHeight": 21,
             }
@@ -166,9 +166,9 @@ exports[`Article active rendering should render active correctly 1`] = `
       style={
         Object {
           "justifyContent": "center",
-          "marginLeft": 24,
-          "paddingTop": 6,
-          "width": 50,
+          "marginLeft": 16,
+          "paddingTop": 20,
+          "width": 45,
         }
       }
     >
@@ -185,11 +185,11 @@ exports[`Article active rendering should render active correctly 1`] = `
           Object {
             "alignItems": "center",
             "backgroundColor": "#037DE2",
-            "borderRadius": 50,
-            "height": 50,
+            "borderRadius": 45,
+            "height": 45,
             "justifyContent": "center",
             "opacity": 1,
-            "width": 50,
+            "width": 45,
           }
         }
         testID="article-play-button"
@@ -223,9 +223,9 @@ exports[`Article active rendering should render active correctly 1`] = `
       <Text
         style={
           Object {
-            "color": "#888888",
-            "fontSize": 12,
-            "marginTop": 6,
+            "color": "#666666",
+            "fontSize": 11,
+            "marginTop": 4,
             "textAlign": "center",
           }
         }
@@ -273,7 +273,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
           "fontSize": 16,
           "fontWeight": "600",
           "lineHeight": 20,
-          "marginBottom": 8,
+          "marginBottom": 6,
         }
       }
       testID="article-title"
@@ -309,6 +309,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
             "alignItems": "baseline",
             "flex": 1,
             "flexDirection": "row",
+            "marginBottom": 4,
           }
         }
       >
@@ -370,8 +371,8 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
               "color": "#888888",
               "fontSize": 11,
               "fontWeight": "100",
-              "marginBottom": 8,
               "marginLeft": 2,
+              "paddingRight": 28,
             }
           }
           testID="article-source-name"
@@ -381,7 +382,6 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
         style={
           Object {
             "alignSelf": "flex-start",
-            "height": "100%",
             "width": "100%",
           }
         }
@@ -391,7 +391,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
           numberOfLines={3}
           style={
             Object {
-              "color": "#888888",
+              "color": "#666666",
               "fontSize": 14,
               "lineHeight": 21,
             }
@@ -404,9 +404,9 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
       style={
         Object {
           "justifyContent": "center",
-          "marginLeft": 24,
-          "paddingTop": 6,
-          "width": 50,
+          "marginLeft": 16,
+          "paddingTop": 20,
+          "width": 45,
         }
       }
     >
@@ -423,11 +423,11 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
           Object {
             "alignItems": "center",
             "backgroundColor": "#222222",
-            "borderRadius": 50,
-            "height": 50,
+            "borderRadius": 45,
+            "height": 45,
             "justifyContent": "center",
             "opacity": 1,
-            "width": 50,
+            "width": 45,
           }
         }
         testID="article-play-button"
@@ -461,9 +461,9 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
       <Text
         style={
           Object {
-            "color": "#888888",
-            "fontSize": 12,
-            "marginTop": 6,
+            "color": "#666666",
+            "fontSize": 11,
+            "marginTop": 4,
             "textAlign": "center",
           }
         }
@@ -511,7 +511,7 @@ exports[`Article full rendering should render full correctly 1`] = `
           "fontSize": 16,
           "fontWeight": "600",
           "lineHeight": 20,
-          "marginBottom": 8,
+          "marginBottom": 6,
         }
       }
       testID="article-title"
@@ -549,6 +549,7 @@ exports[`Article full rendering should render full correctly 1`] = `
             "alignItems": "baseline",
             "flex": 1,
             "flexDirection": "row",
+            "marginBottom": 4,
           }
         }
       >
@@ -610,8 +611,8 @@ exports[`Article full rendering should render full correctly 1`] = `
               "color": "#888888",
               "fontSize": 11,
               "fontWeight": "100",
-              "marginBottom": 8,
               "marginLeft": 2,
+              "paddingRight": 28,
             }
           }
           testID="article-source-name"
@@ -624,7 +625,6 @@ exports[`Article full rendering should render full correctly 1`] = `
         style={
           Object {
             "alignSelf": "flex-start",
-            "height": "100%",
             "width": "100%",
           }
         }
@@ -634,7 +634,7 @@ exports[`Article full rendering should render full correctly 1`] = `
           numberOfLines={3}
           style={
             Object {
-              "color": "#888888",
+              "color": "#666666",
               "fontSize": 14,
               "lineHeight": 21,
             }
@@ -649,9 +649,9 @@ exports[`Article full rendering should render full correctly 1`] = `
       style={
         Object {
           "justifyContent": "center",
-          "marginLeft": 24,
-          "paddingTop": 6,
-          "width": 50,
+          "marginLeft": 16,
+          "paddingTop": 20,
+          "width": 45,
         }
       }
     >
@@ -668,11 +668,11 @@ exports[`Article full rendering should render full correctly 1`] = `
           Object {
             "alignItems": "center",
             "backgroundColor": "#222222",
-            "borderRadius": 50,
-            "height": 50,
+            "borderRadius": 45,
+            "height": 45,
             "justifyContent": "center",
             "opacity": 1,
-            "width": 50,
+            "width": 45,
           }
         }
         testID="article-play-button"
@@ -706,9 +706,9 @@ exports[`Article full rendering should render full correctly 1`] = `
       <Text
         style={
           Object {
-            "color": "#888888",
-            "fontSize": 12,
-            "marginTop": 6,
+            "color": "#666666",
+            "fontSize": 11,
+            "marginTop": 4,
             "textAlign": "center",
           }
         }
@@ -756,7 +756,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
           "fontSize": 16,
           "fontWeight": "600",
           "lineHeight": 20,
-          "marginBottom": 8,
+          "marginBottom": 6,
         }
       }
       testID="article-title"
@@ -792,6 +792,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
             "alignItems": "baseline",
             "flex": 1,
             "flexDirection": "row",
+            "marginBottom": 4,
           }
         }
       >
@@ -853,8 +854,8 @@ exports[`Article loading rendering should render loading correctly 1`] = `
               "color": "#888888",
               "fontSize": 11,
               "fontWeight": "100",
-              "marginBottom": 8,
               "marginLeft": 2,
+              "paddingRight": 28,
             }
           }
           testID="article-source-name"
@@ -864,7 +865,6 @@ exports[`Article loading rendering should render loading correctly 1`] = `
         style={
           Object {
             "alignSelf": "flex-start",
-            "height": "100%",
             "width": "100%",
           }
         }
@@ -874,7 +874,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
           numberOfLines={3}
           style={
             Object {
-              "color": "#888888",
+              "color": "#666666",
               "fontSize": 14,
               "lineHeight": 21,
             }
@@ -887,9 +887,9 @@ exports[`Article loading rendering should render loading correctly 1`] = `
       style={
         Object {
           "justifyContent": "center",
-          "marginLeft": 24,
-          "paddingTop": 6,
-          "width": 50,
+          "marginLeft": 16,
+          "paddingTop": 20,
+          "width": 45,
         }
       }
     >
@@ -906,11 +906,11 @@ exports[`Article loading rendering should render loading correctly 1`] = `
           Object {
             "alignItems": "center",
             "backgroundColor": "#222222",
-            "borderRadius": 50,
-            "height": 50,
+            "borderRadius": 45,
+            "height": 45,
             "justifyContent": "center",
             "opacity": 1,
-            "width": 50,
+            "width": 45,
           }
         }
         testID="article-play-button"
@@ -928,9 +928,9 @@ exports[`Article loading rendering should render loading correctly 1`] = `
       <Text
         style={
           Object {
-            "color": "#888888",
-            "fontSize": 12,
-            "marginTop": 6,
+            "color": "#666666",
+            "fontSize": 11,
+            "marginTop": 4,
             "textAlign": "center",
           }
         }
@@ -978,7 +978,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
           "fontSize": 16,
           "fontWeight": "600",
           "lineHeight": 20,
-          "marginBottom": 8,
+          "marginBottom": 6,
         }
       }
       testID="article-title"
@@ -1014,6 +1014,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
             "alignItems": "baseline",
             "flex": 1,
             "flexDirection": "row",
+            "marginBottom": 4,
           }
         }
       >
@@ -1075,8 +1076,8 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
               "color": "#888888",
               "fontSize": 11,
               "fontWeight": "100",
-              "marginBottom": 8,
               "marginLeft": 2,
+              "paddingRight": 28,
             }
           }
           testID="article-source-name"
@@ -1086,7 +1087,6 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
         style={
           Object {
             "alignSelf": "flex-start",
-            "height": "100%",
             "width": "100%",
           }
         }
@@ -1096,7 +1096,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
           numberOfLines={3}
           style={
             Object {
-              "color": "#888888",
+              "color": "#666666",
               "fontSize": 14,
               "lineHeight": 21,
             }
@@ -1109,9 +1109,9 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
       style={
         Object {
           "justifyContent": "center",
-          "marginLeft": 24,
-          "paddingTop": 6,
-          "width": 50,
+          "marginLeft": 16,
+          "paddingTop": 20,
+          "width": 45,
         }
       }
     >
@@ -1128,11 +1128,11 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
           Object {
             "alignItems": "center",
             "backgroundColor": "#222222",
-            "borderRadius": 50,
-            "height": 50,
+            "borderRadius": 45,
+            "height": 45,
             "justifyContent": "center",
             "opacity": 1,
-            "width": 50,
+            "width": 45,
           }
         }
         testID="article-play-button"
@@ -1166,9 +1166,9 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
       <Text
         style={
           Object {
-            "color": "#888888",
-            "fontSize": 12,
-            "marginTop": 6,
+            "color": "#666666",
+            "fontSize": 11,
+            "marginTop": 4,
             "textAlign": "center",
           }
         }
@@ -1216,7 +1216,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
           "fontSize": 16,
           "fontWeight": "600",
           "lineHeight": 20,
-          "marginBottom": 8,
+          "marginBottom": 6,
         }
       }
       testID="article-title"
@@ -1252,6 +1252,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
             "alignItems": "baseline",
             "flex": 1,
             "flexDirection": "row",
+            "marginBottom": 4,
           }
         }
       >
@@ -1313,8 +1314,8 @@ exports[`Article playing rendering should render playing correctly 1`] = `
               "color": "#888888",
               "fontSize": 11,
               "fontWeight": "100",
-              "marginBottom": 8,
               "marginLeft": 2,
+              "paddingRight": 28,
             }
           }
           testID="article-source-name"
@@ -1324,7 +1325,6 @@ exports[`Article playing rendering should render playing correctly 1`] = `
         style={
           Object {
             "alignSelf": "flex-start",
-            "height": "100%",
             "width": "100%",
           }
         }
@@ -1334,7 +1334,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
           numberOfLines={3}
           style={
             Object {
-              "color": "#888888",
+              "color": "#666666",
               "fontSize": 14,
               "lineHeight": 21,
             }
@@ -1347,9 +1347,9 @@ exports[`Article playing rendering should render playing correctly 1`] = `
       style={
         Object {
           "justifyContent": "center",
-          "marginLeft": 24,
-          "paddingTop": 6,
-          "width": 50,
+          "marginLeft": 16,
+          "paddingTop": 20,
+          "width": 45,
         }
       }
     >
@@ -1366,11 +1366,11 @@ exports[`Article playing rendering should render playing correctly 1`] = `
           Object {
             "alignItems": "center",
             "backgroundColor": "#037DE2",
-            "borderRadius": 50,
-            "height": 50,
+            "borderRadius": 45,
+            "height": 45,
             "justifyContent": "center",
             "opacity": 1,
-            "width": 50,
+            "width": 45,
           }
         }
         testID="article-play-button"
@@ -1404,9 +1404,9 @@ exports[`Article playing rendering should render playing correctly 1`] = `
       <Text
         style={
           Object {
-            "color": "#888888",
-            "fontSize": 12,
-            "marginTop": 6,
+            "color": "#666666",
+            "fontSize": 11,
+            "marginTop": 4,
             "textAlign": "center",
           }
         }
