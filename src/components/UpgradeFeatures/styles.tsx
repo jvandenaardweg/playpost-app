@@ -28,7 +28,7 @@ export default StyleSheet.create({
   },
   paragraph: {
     color: colors.paragraphGrayed,
-    lineHeight: 23,
+    lineHeight: 24,
     fontSize: fonts.fontSize.body
   },
   feature: {

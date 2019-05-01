@@ -46,7 +46,8 @@ export default StyleSheet.create({
   contentText: {
     color: colors.white,
     fontSize: fonts.fontSize.body,
-    lineHeight: 25,
+    lineHeight: 24,
+    marginBottom: 22
   },
   title: {
     color: colors.white,
