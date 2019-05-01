@@ -32,9 +32,9 @@ exports[`Article active rendering should render active correctly 1`] = `
       style={
         Object {
           "color": "#000000",
-          "fontSize": 15,
+          "fontSize": 16,
           "fontWeight": "600",
-          "lineHeight": 20,
+          "lineHeight": 21,
           "marginBottom": 6,
         }
       }
@@ -271,9 +271,9 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
       style={
         Object {
           "color": "#000000",
-          "fontSize": 15,
+          "fontSize": 16,
           "fontWeight": "600",
-          "lineHeight": 20,
+          "lineHeight": 21,
           "marginBottom": 6,
         }
       }
@@ -510,9 +510,9 @@ exports[`Article full rendering should render full correctly 1`] = `
       style={
         Object {
           "color": "#000000",
-          "fontSize": 15,
+          "fontSize": 16,
           "fontWeight": "600",
-          "lineHeight": 20,
+          "lineHeight": 21,
           "marginBottom": 6,
         }
       }
@@ -756,9 +756,9 @@ exports[`Article loading rendering should render loading correctly 1`] = `
       style={
         Object {
           "color": "#000000",
-          "fontSize": 15,
+          "fontSize": 16,
           "fontWeight": "600",
-          "lineHeight": 20,
+          "lineHeight": 21,
           "marginBottom": 6,
         }
       }
@@ -979,9 +979,9 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
       style={
         Object {
           "color": "#000000",
-          "fontSize": 15,
+          "fontSize": 16,
           "fontWeight": "600",
-          "lineHeight": 20,
+          "lineHeight": 21,
           "marginBottom": 6,
         }
       }
@@ -1218,9 +1218,9 @@ exports[`Article playing rendering should render playing correctly 1`] = `
       style={
         Object {
           "color": "#000000",
-          "fontSize": 15,
+          "fontSize": 16,
           "fontWeight": "600",
-          "lineHeight": 20,
+          "lineHeight": 21,
           "marginBottom": 6,
         }
       }

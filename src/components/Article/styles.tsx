@@ -38,10 +38,10 @@ export default StyleSheet.create({
     paddingBottom: 3
   },
   title: {
-    fontSize: fonts.fontSize.body,
+    fontSize: fonts.fontSize.subheader,
     fontWeight: fonts.fontWeight.semibold,
     color: colors.titleDefault,
-    lineHeight: 20,
+    lineHeight: 21,
     marginBottom: 6
   },
   description: {
