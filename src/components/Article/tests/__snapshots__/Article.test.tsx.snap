@@ -168,8 +168,8 @@ exports[`Article active rendering should render active correctly 1`] = `
         Object {
           "justifyContent": "flex-end",
           "marginLeft": 16,
-          "paddingBottom": 3,
-          "width": 45,
+          "paddingBottom": 5,
+          "width": 50,
         }
       }
     >
@@ -186,11 +186,11 @@ exports[`Article active rendering should render active correctly 1`] = `
           Object {
             "alignItems": "center",
             "backgroundColor": "#037DE2",
-            "borderRadius": 45,
-            "height": 45,
+            "borderRadius": 50,
+            "height": 50,
             "justifyContent": "center",
             "opacity": 1,
-            "width": 45,
+            "width": 50,
           }
         }
         testID="article-play-button"
@@ -407,8 +407,8 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
         Object {
           "justifyContent": "flex-end",
           "marginLeft": 16,
-          "paddingBottom": 3,
-          "width": 45,
+          "paddingBottom": 5,
+          "width": 50,
         }
       }
     >
@@ -425,11 +425,11 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
           Object {
             "alignItems": "center",
             "backgroundColor": "#000000",
-            "borderRadius": 45,
-            "height": 45,
+            "borderRadius": 50,
+            "height": 50,
             "justifyContent": "center",
             "opacity": 1,
-            "width": 45,
+            "width": 50,
           }
         }
         testID="article-play-button"
@@ -653,8 +653,8 @@ exports[`Article full rendering should render full correctly 1`] = `
         Object {
           "justifyContent": "flex-end",
           "marginLeft": 16,
-          "paddingBottom": 3,
-          "width": 45,
+          "paddingBottom": 5,
+          "width": 50,
         }
       }
     >
@@ -671,11 +671,11 @@ exports[`Article full rendering should render full correctly 1`] = `
           Object {
             "alignItems": "center",
             "backgroundColor": "#000000",
-            "borderRadius": 45,
-            "height": 45,
+            "borderRadius": 50,
+            "height": 50,
             "justifyContent": "center",
             "opacity": 1,
-            "width": 45,
+            "width": 50,
           }
         }
         testID="article-play-button"
@@ -892,8 +892,8 @@ exports[`Article loading rendering should render loading correctly 1`] = `
         Object {
           "justifyContent": "flex-end",
           "marginLeft": 16,
-          "paddingBottom": 3,
-          "width": 45,
+          "paddingBottom": 5,
+          "width": 50,
         }
       }
     >
@@ -910,11 +910,11 @@ exports[`Article loading rendering should render loading correctly 1`] = `
           Object {
             "alignItems": "center",
             "backgroundColor": "#000000",
-            "borderRadius": 45,
-            "height": 45,
+            "borderRadius": 50,
+            "height": 50,
             "justifyContent": "center",
             "opacity": 1,
-            "width": 45,
+            "width": 50,
           }
         }
         testID="article-play-button"
@@ -1115,8 +1115,8 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
         Object {
           "justifyContent": "flex-end",
           "marginLeft": 16,
-          "paddingBottom": 3,
-          "width": 45,
+          "paddingBottom": 5,
+          "width": 50,
         }
       }
     >
@@ -1133,11 +1133,11 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
           Object {
             "alignItems": "center",
             "backgroundColor": "#000000",
-            "borderRadius": 45,
-            "height": 45,
+            "borderRadius": 50,
+            "height": 50,
             "justifyContent": "center",
             "opacity": 1,
-            "width": 45,
+            "width": 50,
           }
         }
         testID="article-play-button"
@@ -1354,8 +1354,8 @@ exports[`Article playing rendering should render playing correctly 1`] = `
         Object {
           "justifyContent": "flex-end",
           "marginLeft": 16,
-          "paddingBottom": 3,
-          "width": 45,
+          "paddingBottom": 5,
+          "width": 50,
         }
       }
     >
@@ -1372,11 +1372,11 @@ exports[`Article playing rendering should render playing correctly 1`] = `
           Object {
             "alignItems": "center",
             "backgroundColor": "#037DE2",
-            "borderRadius": 45,
-            "height": 45,
+            "borderRadius": 50,
+            "height": 50,
             "justifyContent": "center",
             "opacity": 1,
-            "width": 45,
+            "width": 50,
           }
         }
         testID="article-play-button"

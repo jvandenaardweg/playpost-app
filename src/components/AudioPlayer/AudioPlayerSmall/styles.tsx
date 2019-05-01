@@ -26,9 +26,9 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   emptyText: {
-    fontSize: fonts.fontSize.small,
+    fontSize: fonts.fontSize.body,
     color: colors.white,
-    fontWeight: fonts.fontWeight.semibold
+    fontWeight: fonts.fontWeight.medium
   },
   trackInfoButton: {
     flex: 1,

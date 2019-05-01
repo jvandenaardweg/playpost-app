@@ -32,10 +32,10 @@ export default StyleSheet.create({
     flex: 1
   },
   sectionControl: {
-    width: 45,
+    width: 50,
     justifyContent: 'flex-end',
     marginLeft: 16,
-    paddingBottom: 3
+    paddingBottom: 5
   },
   title: {
     fontSize: fonts.fontSize.title,
@@ -83,9 +83,9 @@ export default StyleSheet.create({
   },
   controlButton: {
     backgroundColor: Colors.controlButtonDefault,
-    width: 45,
-    height: 45,
-    borderRadius: 45,
+    width: 50,
+    height: 50,
+    borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
   },
