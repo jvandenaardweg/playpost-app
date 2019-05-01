@@ -31,12 +31,27 @@ export default StyleSheet.create({
     lineHeight: 24,
   },
   title: {
-    fontSize: fonts.fontSize.headline,
-    lineHeight: 29,
-    color: 'white',
+    fontSize: fonts.fontSize.titleLarge,
+    lineHeight: 24,
+    color: colors.white,
     backgroundColor: 'transparent',
     textAlign: 'center',
     marginBottom: 12,
     fontWeight: fonts.fontWeight.bold
+  },
+  footerContainer: {
+    marginBottom: 22,
+    paddingLeft: 14,
+    paddingRight: 14
+  },
+  signupButtonTitleStyle: {
+    color: colors.black
+  },
+  signupButtonStyle: {
+    backgroundColor: colors.white,
+    marginBottom: 4
+  },
+  loginButtonTitleStyle: {
+    color: colors.white
   }
 });

@@ -39,7 +39,7 @@ exports[`EmptyState basic rendering should render correctly 1`] = `
       style={
         Object {
           "color": "#888888",
-          "fontSize": 16,
+          "fontSize": 15,
           "lineHeight": 24,
           "marginBottom": 14,
           "paddingLeft": 24,
@@ -94,7 +94,7 @@ exports[`EmptyState full rendering should render correctly 1`] = `
       style={
         Object {
           "color": "#888888",
-          "fontSize": 16,
+          "fontSize": 15,
           "lineHeight": 24,
           "marginBottom": 14,
           "paddingLeft": 24,

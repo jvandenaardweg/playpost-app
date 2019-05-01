@@ -51,7 +51,7 @@ export default StyleSheet.create({
   },
   title: {
     color: colors.white,
-    fontSize: fonts.fontSize.title,
+    fontSize: fonts.fontSize.titleMedium,
     lineHeight: 22,
     fontWeight: fonts.fontWeight.semibold,
     marginBottom: 6

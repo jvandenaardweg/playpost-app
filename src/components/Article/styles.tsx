@@ -38,7 +38,7 @@ export default StyleSheet.create({
     paddingBottom: 3
   },
   title: {
-    fontSize: fonts.fontSize.subheader,
+    fontSize: fonts.fontSize.title,
     fontWeight: fonts.fontWeight.semibold,
     color: colors.titleDefault,
     lineHeight: 21,
@@ -50,9 +50,9 @@ export default StyleSheet.create({
     height: '100%'
   },
   descriptionText: {
-    fontSize: fonts.fontSize.small,
+    fontSize: fonts.fontSize.body,
     color: colors.paragraphGrayed,
-    lineHeight: 20
+    lineHeight: 24
   },
   author: {
     fontSize: fonts.fontSize.small,
@@ -69,7 +69,7 @@ export default StyleSheet.create({
     marginRight: 4
   },
   sourceName: {
-    fontSize: fonts.fontSize.tiny,
+    fontSize: fonts.fontSize.small,
     color: colors.paragraphGrayed,
     marginLeft: 2,
     paddingRight: 28,
@@ -96,7 +96,7 @@ export default StyleSheet.create({
     color: Colors.paragraphGrayed,
     textAlign: 'center',
     marginTop: 4,
-    fontSize: fonts.fontSize.tiny
+    fontSize: fonts.fontSize.small
   },
   articleEmptyActivityIndicator: {
     marginBottom: 12

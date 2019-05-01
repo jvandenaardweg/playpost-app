@@ -15,7 +15,7 @@ export default StyleSheet.create({
   },
   headerTitle: {
     textAlign: 'center',
-    fontSize: fonts.fontSize.title,
+    fontSize: fonts.fontSize.titleMedium,
     color: colors.black,
     fontWeight: fonts.fontWeight.semibold,
     marginBottom: 16,

@@ -29,7 +29,7 @@ export default StyleSheet.create({
     borderColor: colors.borderDefault
   },
   listItemTitle: {
-    fontSize: fonts.fontSize.body,
+    fontSize: fonts.fontSize.title,
     fontWeight: '400'
   },
   listItemSubtitle: {

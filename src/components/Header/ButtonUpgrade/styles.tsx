@@ -12,7 +12,7 @@ export default StyleSheet.create({
   },
   label: {
     color: colors.tintColor,
-    fontWeight: fonts.fontWeight.normal,
+    fontWeight: fonts.fontWeight.medium,
     fontSize: fonts.fontSize.body
   },
   icon: {

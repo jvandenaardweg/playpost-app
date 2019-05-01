@@ -20,7 +20,7 @@ export default StyleSheet.create({
   },
   title: {
     textAlign: 'center',
-    fontSize: fonts.fontSize.title,
+    fontSize: fonts.fontSize.titleMedium,
     fontWeight: fonts.fontWeight.semibold,
     color: colors.titleDefault,
     marginBottom: 6

@@ -1,13 +1,15 @@
+// Font sizes: https://learnui.design/blog/ios-font-size-guidelines.html
+
 export default {
   fontSize: {
     headline: 24,
     titleLarge: 21,
-    title: 18,
-    subheader: 17,
-    body: 16,
+    titleMedium: 18,
+    title: 17,
+    body: 15,
     small: 13,
     tiny: 11,
-    button: 16
+    button: 17
   },
   fontWeight: {
     normal: 'normal' as 'normal',

@@ -27,7 +27,6 @@ class OnboardingSliderComponent extends React.PureComponent<Props> {
       key: 'slide0',
       title: 'Instant podcasts of every article',
       text: 'Turn every article on the web into audio using industry leading high quality voices. So you can listen to it just like Podcasts and Audiobooks.',
-      image: require('../../assets/images/logo-1024.png'),
     },
     {
       key: 'slide1',
@@ -69,9 +68,9 @@ class OnboardingSliderComponent extends React.PureComponent<Props> {
           renderPrevButton={() => <Icon name="arrow-left" color="white" size={24} />}
           hideDoneButton
         />
-        <View style={{ marginBottom: 22, paddingLeft: 14, paddingRight: 14 }}>
-          <Button title="Create account" onPress={() => this.props.navigation.navigate('Signup')} buttonStyle={{ backgroundColor: 'white', marginBottom: 4 }} titleStyle={{ color: 'black' }} />
-          <Button title="I already have an account" type="clear" onPress={() => this.props.navigation.navigate('Login')} titleStyle={{ color: 'white', fontWeight: 'normal' }} />
+        <View style={styles.footerContainer}>
+          <Button title="Create account" onPress={() => this.props.navigation.navigate('Signup')} buttonStyle={styles.signupButtonStyle} titleStyle={styles.signupButtonTitleStyle} />
+          <Button title="I already have an account" type="clear" onPress={() => this.props.navigation.navigate('Login')} titleStyle={styles.loginButtonTitleStyle} />
         </View>
       </View>
     );
