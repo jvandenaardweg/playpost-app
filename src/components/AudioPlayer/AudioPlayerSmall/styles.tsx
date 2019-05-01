@@ -5,7 +5,7 @@ import fonts from '../../../constants/fonts';
 
 export default StyleSheet.create({
   wrapper: {
-    height: 60,
+    height: 55,
   },
   container: {
     flexDirection: 'row',
@@ -16,7 +16,7 @@ export default StyleSheet.create({
     paddingRight: 14,
     paddingTop: 8,
     paddingBottom: 8,
-    height: 60
+    height: 55
   },
   sideIcon: {
     width: 34,
