@@ -75,25 +75,25 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
     }
   }
 
-  async componentWillUnmount () {
-    const { isLoggingOut } = this.state;
+  // async componentWillUnmount () {
+  //   const { isLoggingOut } = this.state;
 
-    if (isLoggingOut) {
-      // Remove the API token from secure store
-      await Keychain.resetGenericPassword();
+  //   if (isLoggingOut) {
+  //     // Remove the API token from secure store
+  //     await Keychain.resetGenericPassword();
 
-      // Remove the persisted state
-      await persistor.purge();
+  //     // Remove the persisted state
+  //     await persistor.purge();
 
-      // Reset all the stores to it's original state
-      this.props.resetAuthState();
-      this.props.resetUserState();
-      this.props.resetPlayerState();
-      this.props.resetPlaylistsState();
-      this.props.resetAudiofilesState();
-      this.props.resetVoicesState();
-    }
-  }
+  //     // Reset all the stores to it's original state
+  //     this.props.resetAuthState();
+  //     this.props.resetUserState();
+  //     this.props.resetPlayerState();
+  //     this.props.resetPlaylistsState();
+  //     this.props.resetAudiofilesState();
+  //     this.props.resetVoicesState();
+  //   }
+  // }
 
   fetchUser = async () => {
     await this.props.getUser();
@@ -159,6 +159,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
         },
         {
           text: 'Clear cache',
+          style: 'destructive',
           onPress: () => this.resetCache()
         }
       ]
@@ -184,6 +185,20 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
   handleOnPressLogout = async () => {
     return this.setState({ isLoggingOut: true }, async () => {
       try {
+        // Remove the API token from secure store
+        await Keychain.resetGenericPassword();
+
+        // Remove the persisted state
+        await persistor.purge();
+
+        // Reset all the stores to it's original state
+        this.props.resetAuthState();
+        this.props.resetUserState();
+        this.props.resetPlayerState();
+        this.props.resetPlaylistsState();
+        this.props.resetAudiofilesState();
+        this.props.resetVoicesState();
+
         this.props.navigation.navigate('Onboarding');
       } catch (err) {
         return this.setState({ isLoggingOut: false }, () => {
@@ -222,18 +237,13 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
           showDisclosureIndicator: true
         },
         {
-          title: 'E-mail',
+          title: 'Change e-mail',
           onPress: this.handleOnPressAccountPassword,
           renderAccessory: () => {
-            const { isLoggingOut } = this.state;
             const userEmail = (this.props.user) ? this.props.user.email : null;
 
-            if (isLoggingOut) {
-              return (<ActivityIndicator />);
-            }
-
             return (
-              <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.title }}>
+              <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.title, width: 150 }} ellipsizeMode="tail" numberOfLines={1}>
                 {userEmail}
               </Text>
             );
@@ -241,22 +251,8 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
           showDisclosureIndicator: true
         },
         {
-          title: 'Password',
+          title: 'Change password',
           onPress: this.handleOnPressAccountPassword,
-          renderAccessory: () => {
-            const { isLoggingOut } = this.state;
-            const userPassword = (this.props.user) ? '**********' : null;
-
-            if (isLoggingOut) {
-              return (<ActivityIndicator />);
-            }
-
-            return (
-              <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.title }}>
-                {userPassword}
-              </Text>
-            );
-          },
           showDisclosureIndicator: true
         },
         {

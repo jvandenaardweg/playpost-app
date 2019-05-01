@@ -37,7 +37,6 @@ export default StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     textAlign: 'center',
-    paddingTop: 6,
     maxWidth: 300,
   },
   footerText: {

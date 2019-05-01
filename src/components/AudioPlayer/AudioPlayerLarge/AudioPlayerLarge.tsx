@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, ScrollView, NativeScrollEvent } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/Feather';
 import TrackPlayer from 'react-native-track-player';
 
 import { ProgressBar } from '../ProgressBar';
@@ -47,16 +47,20 @@ export class AudioPlayerLarge extends React.PureComponent<Props> {
 
     return (
       <View style={styles.wrapper}>
-        <TouchableOpacity activeOpacity={1} onPress={onPressClose} style={styles.openCloseControl}>
-          <Icon name="chevron-down" size={24} color="#fff" />
+        <TouchableOpacity activeOpacity={1} onPress={onPressClose} style={styles.openCloseControl} hitSlop={{ top: 20, left: 20, right: 20, bottom: 20 }}>
+          <Icon name="chevron-down" size={34} color="#fff" />
         </TouchableOpacity>
         <View style={styles.container}>
-          <View style={styles.titleContainer}>
+          {/* <View style={styles.titleContainer}>
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.album}>{artist}</Text>
-          </View>
+          </View> */}
           <View style={styles.scrollableContainer}>
             <ScrollView indicatorStyle="white" onScroll={onScroll} scrollEventThrottle={500} ref={this.scrollViewRef}>
+              <View style={styles.titleContainer}>
+                <Text style={styles.title}>{title}</Text>
+                <Text style={styles.album}>{artist}</Text>
+              </View>
               <View style={styles.scrollableContent}>
                 {/* We split the text in seperate paragraphs, because it seems React Native cannot handle large text inside a Text. It will not render the text at all then. */}
                 {articleText && articleText.split('\n\n').map(text => <Text style={styles.contentText}>{text}</Text>)}

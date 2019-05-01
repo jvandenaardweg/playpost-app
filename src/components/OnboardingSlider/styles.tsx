@@ -31,13 +31,13 @@ export default StyleSheet.create({
     lineHeight: 24,
   },
   title: {
-    fontSize: fonts.fontSize.titleLarge,
-    lineHeight: 24,
+    fontSize: fonts.fontSize.headline,
+    lineHeight: 28,
     color: colors.white,
     backgroundColor: 'transparent',
     textAlign: 'center',
     marginBottom: 12,
-    fontWeight: fonts.fontWeight.bold
+    fontWeight: fonts.fontWeight.semibold
   },
   footerContainer: {
     marginBottom: 22,

@@ -6,7 +6,7 @@ import colors from '../../../constants/colors';
 export default StyleSheet.create({
   wrapper: {
     flex: 1,
-    paddingTop: 42,
+    paddingTop: 30,
     backgroundColor: colors.black
   },
   container: {
@@ -16,28 +16,29 @@ export default StyleSheet.create({
   },
   openCloseControl: {
     alignItems: 'flex-end',
-    marginBottom: 16,
+    marginBottom: 10,
     paddingRight: 24,
     paddingLeft: 24
   },
   controlsContainer: {
     paddingLeft: 24,
-    paddingRight: 24
+    paddingRight: 24,
   },
   titleContainer: {
+    paddingTop: 24,
     paddingLeft: 24,
     paddingRight: 24
   },
   scrollableContainer: {
     flexGrow: 1,
     flexShrink: 1,
-    backgroundColor: colors.grayDarkest,
-    marginTop: 24,
-    marginBottom: 24,
-    borderTopColor: colors.grayDarker,
-    borderTopWidth: 1,
-    borderBottomColor: colors.grayDarker,
+    backgroundColor: '#1f1f1f',
     borderBottomWidth: 1,
+    borderBottomColor: '#333333',
+    borderTopWidth: 1,
+    borderTopColor: '#333333',
+    marginTop: 0,
+    marginBottom: 24,
     overflow: 'hidden'
   },
   scrollableContent: {
@@ -51,8 +52,8 @@ export default StyleSheet.create({
   },
   title: {
     color: colors.white,
-    fontSize: fonts.fontSize.titleMedium,
-    lineHeight: 22,
+    fontSize: fonts.fontSize.titleLarge,
+    lineHeight: 26,
     fontWeight: fonts.fontWeight.semibold,
     marginBottom: 6
   },
