@@ -26,7 +26,7 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   emptyText: {
-    fontSize: fonts.fontSize.body,
+    fontSize: fonts.fontSize.small,
     color: colors.white,
     fontWeight: fonts.fontWeight.semibold
   },

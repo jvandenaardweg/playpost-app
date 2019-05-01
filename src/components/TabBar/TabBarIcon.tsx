@@ -15,7 +15,7 @@ export const TabBarIcon: React.FC<Props> = React.memo(({ focused, name }) => {
     <Icon
       name={name}
       size={24}
-      style={{ marginBottom: -3 }}
+      style={{ marginBottom: -2 }}
       color={color}
     />
   );
