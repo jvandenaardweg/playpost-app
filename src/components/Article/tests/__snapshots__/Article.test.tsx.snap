@@ -131,7 +131,7 @@ exports[`Article active rendering should render active correctly 1`] = `
           style={
             Object {
               "color": "#888888",
-              "fontSize": 13,
+              "fontSize": 12,
               "fontWeight": "100",
               "marginLeft": 2,
               "paddingRight": 28,
@@ -168,7 +168,7 @@ exports[`Article active rendering should render active correctly 1`] = `
         Object {
           "justifyContent": "flex-end",
           "marginLeft": 16,
-          "paddingBottom": 5,
+          "paddingBottom": 4,
           "width": 50,
         }
       }
@@ -226,7 +226,7 @@ exports[`Article active rendering should render active correctly 1`] = `
           Object {
             "color": "#888888",
             "fontSize": 13,
-            "marginTop": 4,
+            "marginTop": 5,
             "textAlign": "center",
           }
         }
@@ -370,7 +370,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
           style={
             Object {
               "color": "#888888",
-              "fontSize": 13,
+              "fontSize": 12,
               "fontWeight": "100",
               "marginLeft": 2,
               "paddingRight": 28,
@@ -407,7 +407,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
         Object {
           "justifyContent": "flex-end",
           "marginLeft": 16,
-          "paddingBottom": 5,
+          "paddingBottom": 4,
           "width": 50,
         }
       }
@@ -465,7 +465,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
           Object {
             "color": "#888888",
             "fontSize": 13,
-            "marginTop": 4,
+            "marginTop": 5,
             "textAlign": "center",
           }
         }
@@ -611,7 +611,7 @@ exports[`Article full rendering should render full correctly 1`] = `
           style={
             Object {
               "color": "#888888",
-              "fontSize": 13,
+              "fontSize": 12,
               "fontWeight": "100",
               "marginLeft": 2,
               "paddingRight": 28,
@@ -653,7 +653,7 @@ exports[`Article full rendering should render full correctly 1`] = `
         Object {
           "justifyContent": "flex-end",
           "marginLeft": 16,
-          "paddingBottom": 5,
+          "paddingBottom": 4,
           "width": 50,
         }
       }
@@ -711,7 +711,7 @@ exports[`Article full rendering should render full correctly 1`] = `
           Object {
             "color": "#888888",
             "fontSize": 13,
-            "marginTop": 4,
+            "marginTop": 5,
             "textAlign": "center",
           }
         }
@@ -855,7 +855,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
           style={
             Object {
               "color": "#888888",
-              "fontSize": 13,
+              "fontSize": 12,
               "fontWeight": "100",
               "marginLeft": 2,
               "paddingRight": 28,
@@ -892,7 +892,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
         Object {
           "justifyContent": "flex-end",
           "marginLeft": 16,
-          "paddingBottom": 5,
+          "paddingBottom": 4,
           "width": 50,
         }
       }
@@ -934,7 +934,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
           Object {
             "color": "#888888",
             "fontSize": 13,
-            "marginTop": 4,
+            "marginTop": 5,
             "textAlign": "center",
           }
         }
@@ -1078,7 +1078,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
           style={
             Object {
               "color": "#888888",
-              "fontSize": 13,
+              "fontSize": 12,
               "fontWeight": "100",
               "marginLeft": 2,
               "paddingRight": 28,
@@ -1115,7 +1115,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
         Object {
           "justifyContent": "flex-end",
           "marginLeft": 16,
-          "paddingBottom": 5,
+          "paddingBottom": 4,
           "width": 50,
         }
       }
@@ -1173,7 +1173,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
           Object {
             "color": "#888888",
             "fontSize": 13,
-            "marginTop": 4,
+            "marginTop": 5,
             "textAlign": "center",
           }
         }
@@ -1317,7 +1317,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
           style={
             Object {
               "color": "#888888",
-              "fontSize": 13,
+              "fontSize": 12,
               "fontWeight": "100",
               "marginLeft": 2,
               "paddingRight": 28,
@@ -1354,7 +1354,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
         Object {
           "justifyContent": "flex-end",
           "marginLeft": 16,
-          "paddingBottom": 5,
+          "paddingBottom": 4,
           "width": 50,
         }
       }
@@ -1412,7 +1412,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
           Object {
             "color": "#888888",
             "fontSize": 13,
-            "marginTop": 4,
+            "marginTop": 5,
             "textAlign": "center",
           }
         }

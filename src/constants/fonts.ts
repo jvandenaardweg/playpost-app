@@ -8,7 +8,7 @@ export default {
     title: 17,
     body: 15,
     small: 13,
-    tiny: 11,
+    tiny: 12,
     button: 17
   },
   fontWeight: {

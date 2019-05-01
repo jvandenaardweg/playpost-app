@@ -35,7 +35,7 @@ export default StyleSheet.create({
     width: 50,
     justifyContent: 'flex-end',
     marginLeft: 16,
-    paddingBottom: 5
+    paddingBottom: 4
   },
   title: {
     fontSize: fonts.fontSize.title,
@@ -55,7 +55,7 @@ export default StyleSheet.create({
     lineHeight: 24
   },
   author: {
-    fontSize: fonts.fontSize.small,
+    fontSize: fonts.fontSize.tiny,
     color: colors.paragraphGrayed,
     lineHeight: 18
   },
@@ -69,7 +69,7 @@ export default StyleSheet.create({
     marginRight: 4
   },
   sourceName: {
-    fontSize: fonts.fontSize.small,
+    fontSize: fonts.fontSize.tiny,
     color: colors.paragraphGrayed,
     marginLeft: 2,
     paddingRight: 28,
@@ -95,7 +95,7 @@ export default StyleSheet.create({
   duration: {
     color: Colors.paragraphGrayed,
     textAlign: 'center',
-    marginTop: 4,
+    marginTop: 5,
     fontSize: fonts.fontSize.small
   },
   articleEmptyActivityIndicator: {
