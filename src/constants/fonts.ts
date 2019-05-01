@@ -2,9 +2,9 @@ export default {
   fontSize: {
     headline: 24,
     titleLarge: 21,
-    title: 17,
-    subheader: 16,
-    body: 15,
+    title: 18,
+    subheader: 17,
+    body: 16,
     small: 13,
     tiny: 11,
     button: 16

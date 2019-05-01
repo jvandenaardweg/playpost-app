@@ -25,7 +25,7 @@ exports[`EmptyState basic rendering should render correctly 1`] = `
       style={
         Object {
           "color": "#000000",
-          "fontSize": 17,
+          "fontSize": 18,
           "fontWeight": "600",
           "marginBottom": 6,
           "textAlign": "center",
@@ -39,7 +39,7 @@ exports[`EmptyState basic rendering should render correctly 1`] = `
       style={
         Object {
           "color": "#888888",
-          "fontSize": 15,
+          "fontSize": 16,
           "lineHeight": 24,
           "marginBottom": 14,
           "paddingLeft": 24,
@@ -80,7 +80,7 @@ exports[`EmptyState full rendering should render correctly 1`] = `
       style={
         Object {
           "color": "#000000",
-          "fontSize": 17,
+          "fontSize": 18,
           "fontWeight": "600",
           "marginBottom": 6,
           "textAlign": "center",
@@ -94,7 +94,7 @@ exports[`EmptyState full rendering should render correctly 1`] = `
       style={
         Object {
           "color": "#888888",
-          "fontSize": 15,
+          "fontSize": 16,
           "lineHeight": 24,
           "marginBottom": 14,
           "paddingLeft": 24,

@@ -12,7 +12,8 @@ export default StyleSheet.create({
   },
   label: {
     color: colors.tintColor,
-    fontWeight: fonts.fontWeight.medium
+    fontWeight: fonts.fontWeight.normal,
+    fontSize: fonts.fontSize.body
   },
   icon: {
     marginLeft: 6
