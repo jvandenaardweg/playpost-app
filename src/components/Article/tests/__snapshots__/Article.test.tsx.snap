@@ -80,8 +80,8 @@ exports[`Article active rendering should render active correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#cccccc",
-                "fontSize": 10,
+                "color": "#e5e5e5",
+                "fontSize": 9,
               },
               Object {
                 "marginRight": 4,
@@ -105,8 +105,8 @@ exports[`Article active rendering should render active correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#cccccc",
-                "fontSize": 10,
+                "color": "#e5e5e5",
+                "fontSize": 9,
               },
               Object {
                 "marginRight": 4,
@@ -143,7 +143,8 @@ exports[`Article active rendering should render active correctly 1`] = `
       <View
         style={
           Object {
-            "alignSelf": "flex-start",
+            "height": "100%",
+            "justifyContent": "flex-start",
             "width": "100%",
           }
         }
@@ -165,9 +166,9 @@ exports[`Article active rendering should render active correctly 1`] = `
     <View
       style={
         Object {
-          "justifyContent": "center",
+          "justifyContent": "flex-end",
           "marginLeft": 16,
-          "paddingTop": 20,
+          "paddingBottom": 3,
           "width": 45,
         }
       }
@@ -203,7 +204,7 @@ exports[`Article active rendering should render active correctly 1`] = `
                   "color": "white",
                   "fontSize": 14,
                 },
-                Object {},
+                undefined,
                 Object {
                   "fontFamily": "FontAwesome5Free-Solid",
                   "fontStyle": "normal",
@@ -318,8 +319,8 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#cccccc",
-                "fontSize": 10,
+                "color": "#e5e5e5",
+                "fontSize": 9,
               },
               Object {
                 "marginRight": 4,
@@ -344,7 +345,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
             Array [
               Object {
                 "color": "#03A87C",
-                "fontSize": 10,
+                "fontSize": 9,
               },
               Object {
                 "marginRight": 4,
@@ -381,7 +382,8 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
       <View
         style={
           Object {
-            "alignSelf": "flex-start",
+            "height": "100%",
+            "justifyContent": "flex-start",
             "width": "100%",
           }
         }
@@ -403,9 +405,9 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
     <View
       style={
         Object {
-          "justifyContent": "center",
+          "justifyContent": "flex-end",
           "marginLeft": 16,
-          "paddingTop": 20,
+          "paddingBottom": 3,
           "width": 45,
         }
       }
@@ -441,7 +443,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
                   "color": "white",
                   "fontSize": 14,
                 },
-                Object {},
+                undefined,
                 Object {
                   "fontFamily": "FontAwesome5Free-Solid",
                   "fontStyle": "normal",
@@ -558,8 +560,8 @@ exports[`Article full rendering should render full correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#cccccc",
-                "fontSize": 10,
+                "color": "#e5e5e5",
+                "fontSize": 9,
               },
               Object {
                 "marginRight": 4,
@@ -583,8 +585,8 @@ exports[`Article full rendering should render full correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#cccccc",
-                "fontSize": 10,
+                "color": "#e5e5e5",
+                "fontSize": 9,
               },
               Object {
                 "marginRight": 4,
@@ -624,7 +626,8 @@ exports[`Article full rendering should render full correctly 1`] = `
       <View
         style={
           Object {
-            "alignSelf": "flex-start",
+            "height": "100%",
+            "justifyContent": "flex-start",
             "width": "100%",
           }
         }
@@ -648,9 +651,9 @@ exports[`Article full rendering should render full correctly 1`] = `
     <View
       style={
         Object {
-          "justifyContent": "center",
+          "justifyContent": "flex-end",
           "marginLeft": 16,
-          "paddingTop": 20,
+          "paddingBottom": 3,
           "width": 45,
         }
       }
@@ -686,7 +689,7 @@ exports[`Article full rendering should render full correctly 1`] = `
                   "color": "white",
                   "fontSize": 14,
                 },
-                Object {},
+                undefined,
                 Object {
                   "fontFamily": "FontAwesome5Free-Solid",
                   "fontStyle": "normal",
@@ -801,8 +804,8 @@ exports[`Article loading rendering should render loading correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#cccccc",
-                "fontSize": 10,
+                "color": "#e5e5e5",
+                "fontSize": 9,
               },
               Object {
                 "marginRight": 4,
@@ -826,8 +829,8 @@ exports[`Article loading rendering should render loading correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#cccccc",
-                "fontSize": 10,
+                "color": "#e5e5e5",
+                "fontSize": 9,
               },
               Object {
                 "marginRight": 4,
@@ -864,7 +867,8 @@ exports[`Article loading rendering should render loading correctly 1`] = `
       <View
         style={
           Object {
-            "alignSelf": "flex-start",
+            "height": "100%",
+            "justifyContent": "flex-start",
             "width": "100%",
           }
         }
@@ -886,9 +890,9 @@ exports[`Article loading rendering should render loading correctly 1`] = `
     <View
       style={
         Object {
-          "justifyContent": "center",
+          "justifyContent": "flex-end",
           "marginLeft": 16,
-          "paddingTop": 20,
+          "paddingBottom": 3,
           "width": 45,
         }
       }
@@ -1023,8 +1027,8 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#cccccc",
-                "fontSize": 10,
+                "color": "#e5e5e5",
+                "fontSize": 9,
               },
               Object {
                 "marginRight": 4,
@@ -1048,8 +1052,8 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#cccccc",
-                "fontSize": 10,
+                "color": "#e5e5e5",
+                "fontSize": 9,
               },
               Object {
                 "marginRight": 4,
@@ -1086,7 +1090,8 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
       <View
         style={
           Object {
-            "alignSelf": "flex-start",
+            "height": "100%",
+            "justifyContent": "flex-start",
             "width": "100%",
           }
         }
@@ -1108,9 +1113,9 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
     <View
       style={
         Object {
-          "justifyContent": "center",
+          "justifyContent": "flex-end",
           "marginLeft": 16,
-          "paddingTop": 20,
+          "paddingBottom": 3,
           "width": 45,
         }
       }
@@ -1146,7 +1151,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
                   "color": "white",
                   "fontSize": 14,
                 },
-                Object {},
+                undefined,
                 Object {
                   "fontFamily": "FontAwesome5Free-Solid",
                   "fontStyle": "normal",
@@ -1261,8 +1266,8 @@ exports[`Article playing rendering should render playing correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#cccccc",
-                "fontSize": 10,
+                "color": "#e5e5e5",
+                "fontSize": 9,
               },
               Object {
                 "marginRight": 4,
@@ -1286,8 +1291,8 @@ exports[`Article playing rendering should render playing correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#cccccc",
-                "fontSize": 10,
+                "color": "#e5e5e5",
+                "fontSize": 9,
               },
               Object {
                 "marginRight": 4,
@@ -1324,7 +1329,8 @@ exports[`Article playing rendering should render playing correctly 1`] = `
       <View
         style={
           Object {
-            "alignSelf": "flex-start",
+            "height": "100%",
+            "justifyContent": "flex-start",
             "width": "100%",
           }
         }
@@ -1346,9 +1352,9 @@ exports[`Article playing rendering should render playing correctly 1`] = `
     <View
       style={
         Object {
-          "justifyContent": "center",
+          "justifyContent": "flex-end",
           "marginLeft": 16,
-          "paddingTop": 20,
+          "paddingBottom": 3,
           "width": 45,
         }
       }
@@ -1384,7 +1390,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
                   "color": "white",
                   "fontSize": 14,
                 },
-                Object {},
+                undefined,
                 Object {
                   "fontFamily": "FontAwesome5Free-Solid",
                   "fontStyle": "normal",
