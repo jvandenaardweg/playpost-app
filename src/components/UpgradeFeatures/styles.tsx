@@ -3,6 +3,7 @@ import {
 } from 'react-native';
 
 import colors from '../../constants/colors';
+import fonts from '../../constants/fonts';
 
 export default StyleSheet.create({
   container: {
@@ -14,21 +15,21 @@ export default StyleSheet.create({
   },
   headerTitle: {
     textAlign: 'center',
-    fontSize: 22,
+    fontSize: fonts.fontSize.titleLarge,
     color: colors.black,
     fontWeight: '600',
     marginBottom: 24,
     marginTop: 12
   },
   title: {
-    fontSize: 17,
+    fontSize: fonts.fontSize.title,
     fontWeight: '600',
     marginBottom: 4
   },
   paragraph: {
     color: colors.paragraphGrayed,
-    lineHeight: 22,
-    fontSize: 14
+    lineHeight: 23,
+    fontSize: fonts.fontSize.body
   },
   feature: {
     marginTop: 14,
@@ -57,7 +58,7 @@ export default StyleSheet.create({
     paddingBottom: 24
   },
   footerText: {
-    fontSize: 12,
+    fontSize: fonts.fontSize.small,
     lineHeight: 18,
     opacity: 0.5
   },
@@ -72,11 +73,6 @@ export default StyleSheet.create({
     opacity: 1
   },
   subscribeContainer: {
-    paddingTop: 24,
-    // borderTopWidth: 1,
-    // borderColor: colors.grayLightest,
-  },
-  icon: {
-    color: colors.tintColor
+    paddingTop: 24
   }
 });

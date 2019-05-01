@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import fonts from '../../../constants/fonts';
+
 export default StyleSheet.create({
   wrapper: {
     flex: 1,
@@ -42,12 +44,12 @@ export default StyleSheet.create({
   },
   contentText: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: fonts.fontSize.body,
     lineHeight: 25,
   },
   title: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: fonts.fontSize.title,
     lineHeight: 22,
     fontWeight: '700',
     marginBottom: 6

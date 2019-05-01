@@ -3,6 +3,8 @@ import { View, Text, Linking, Alert } from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
+import fonts from '../../constants/fonts';
+
 import styles from './styles';
 import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../../constants/urls';
 
@@ -47,7 +49,7 @@ export class UpgradeFeatures extends React.PureComponent {
 
         <View style={styles.subscribeContainer}>
           <Button title="Upgrade for €9,99 per month" onPress={() => this.handleOnPressUpgrade()} />
-          <Button type="clear" title="Already upgraded? Restore purchase" onPress={() => this.handleOnPressRestore()} titleStyle={{ fontSize: 14 }} />
+          <Button type="clear" title="Already upgraded? Restore purchase" onPress={() => this.handleOnPressRestore()} titleStyle={{ fontSize: fonts.fontSize.body }} />
         </View>
         <View style={styles.footer}>
           <Text style={styles.footerText}>Payment will be charged to your Apple ID account at the confirmation of purchase. Subscription automatically renews unless it is canceled at least 24 hours before the end of the current period. Your account will be charged for renewal within 24 hours prior to the end of the current period. You can manage and cancel your subscriptions by going to your account settings on the App Store after purchase.</Text>

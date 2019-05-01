@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
+import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
 
 import { EmptyState } from '../components/EmptyState';
 
@@ -8,10 +8,12 @@ interface Props {
 }
 
 export class SignupSuccessScreen extends React.PureComponent<Props> {
-  static navigationOptions = {
-    title: 'Signup success',
-    header: null
-  };
+  static navigationOptions = (): NavigationStackScreenOptions => {
+    return {
+      title: 'Signup success',
+      header: null
+    };
+  }
 
   render() {
     return (

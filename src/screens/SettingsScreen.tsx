@@ -4,10 +4,11 @@ import VersionNumber from 'react-native-version-number';
 import { Text, Switch, Alert, ActivityIndicator } from 'react-native';
 import { SettingsScreen as SettingsScreenComponent, SettingsData } from 'react-native-settings-screen';
 import { connect } from 'react-redux';
-import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
+import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
 import * as Keychain from 'react-native-keychain';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
+import fonts from '../constants/fonts';
 
 import { ButtonUpgrade } from '../components/Header/ButtonUpgrade';
 
@@ -48,7 +49,7 @@ interface State {
 }
 
 class SettingsScreenContainer extends React.PureComponent<Props, State> {
-  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }) => {
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: 'Settings',
       headerRight: <ButtonUpgrade onPress={navigation.getParam('handleOnPressUpgrade')} />
@@ -231,7 +232,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
             }
 
             return (
-              <Text style={{ color: '#999', marginRight: 6, fontSize: 17 }}>
+              <Text style={{ color: '#999', marginRight: 6, fontSize: fonts.fontSize.body }}>
                 {userEmail}
               </Text>
             );
@@ -250,7 +251,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
             }
 
             return (
-              <Text style={{ color: '#999', marginRight: 6, fontSize: 17 }}>
+              <Text style={{ color: '#999', marginRight: 6, fontSize: fonts.fontSize.body }}>
                 {userPassword}
               </Text>
             );
@@ -280,7 +281,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
         {
           title: 'Voice',
           renderAccessory: () => (
-            <Text style={{ color: '#999', marginRight: 6, fontSize: 17 }}>
+            <Text style={{ color: '#999', marginRight: 6, fontSize: fonts.fontSize.body }}>
               {this.selectedVoiceLabel}
             </Text>
           ),
@@ -288,19 +289,9 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
           showDisclosureIndicator: true
         },
         {
-          title: 'Quality',
-          renderAccessory: () => (
-            <Text style={{ color: '#999', marginRight: 6, fontSize: 17 }}>
-              Normal
-            </Text>
-          ),
-          onPress: this.handleOnPressRow,
-          showDisclosureIndicator: true
-        },
-        {
           title: 'Playback speed',
           renderAccessory: () => (
-            <Text style={{ color: '#999', marginRight: 6, fontSize: 17 }}>
+            <Text style={{ color: '#999', marginRight: 6, fontSize: fonts.fontSize.body }}>
               Normal (1x)
             </Text>
           ),
@@ -333,7 +324,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
             }
 
             return (
-              <Text style={{ color: '#999', marginRight: 6, fontSize: 17 }}>
+              <Text style={{ color: '#999', marginRight: 6, fontSize: fonts.fontSize.body }}>
                 {cacheSize} mb
               </Text>
             );
@@ -369,7 +360,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
         <Text
           style={{
             alignSelf: 'center',
-            fontSize: 16,
+            fontSize: fonts.fontSize.body,
             color: '#999',
             marginBottom: 40
           }}
@@ -384,7 +375,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
         <Text
           style={{
             alignSelf: 'center',
-            fontSize: 16,
+            fontSize: fonts.fontSize.body,
             color: 'red',
             marginBottom: 40
           }}
@@ -398,7 +389,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
 
   render() {
     return (
-      <SettingsScreenComponent data={this.settingsData} style={{ paddingTop: 14 }} />
+      <SettingsScreenComponent data={this.settingsData} style={{ paddingTop: 14 }} globalTextStyle={{ fontSize: fonts.fontSize.body }} />
     );
   }
 }

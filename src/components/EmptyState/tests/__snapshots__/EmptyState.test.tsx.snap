@@ -5,7 +5,7 @@ exports[`EmptyState basic rendering should render correctly 1`] = `
   style={
     Object {
       "alignItems": "center",
-      "backgroundColor": "#EBEBEB",
+      "backgroundColor": "#F1F1F1",
       "flex": 1,
       "flexDirection": "row",
       "justifyContent": "center",
@@ -24,10 +24,10 @@ exports[`EmptyState basic rendering should render correctly 1`] = `
     <Text
       style={
         Object {
-          "color": "#222222",
-          "fontSize": 22,
+          "color": "#000",
+          "fontSize": 17,
           "fontWeight": "600",
-          "marginBottom": 20,
+          "marginBottom": 6,
           "textAlign": "center",
         }
       }
@@ -39,11 +39,11 @@ exports[`EmptyState basic rendering should render correctly 1`] = `
       style={
         Object {
           "color": "#888888",
-          "fontSize": 16,
+          "fontSize": 15,
           "lineHeight": 24,
           "marginBottom": 14,
-          "paddingLeft": 18,
-          "paddingRight": 18,
+          "paddingLeft": 24,
+          "paddingRight": 24,
           "textAlign": "center",
         }
       }
@@ -60,7 +60,7 @@ exports[`EmptyState full rendering should render correctly 1`] = `
   style={
     Object {
       "alignItems": "center",
-      "backgroundColor": "#EBEBEB",
+      "backgroundColor": "#F1F1F1",
       "flex": 1,
       "flexDirection": "row",
       "justifyContent": "center",
@@ -79,10 +79,10 @@ exports[`EmptyState full rendering should render correctly 1`] = `
     <Text
       style={
         Object {
-          "color": "#222222",
-          "fontSize": 22,
+          "color": "#000",
+          "fontSize": 17,
           "fontWeight": "600",
-          "marginBottom": 20,
+          "marginBottom": 6,
           "textAlign": "center",
         }
       }
@@ -94,11 +94,11 @@ exports[`EmptyState full rendering should render correctly 1`] = `
       style={
         Object {
           "color": "#888888",
-          "fontSize": 16,
+          "fontSize": 15,
           "lineHeight": 24,
           "marginBottom": 14,
-          "paddingLeft": 18,
-          "paddingRight": 18,
+          "paddingLeft": 24,
+          "paddingRight": 24,
           "textAlign": "center",
         }
       }

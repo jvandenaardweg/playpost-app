@@ -3,6 +3,7 @@ import {
 } from 'react-native';
 
 import colors from '../../constants/colors';
+import fonts from '../../constants/fonts';
 
 export default StyleSheet.create({
   container: {
@@ -20,19 +21,18 @@ export default StyleSheet.create({
   },
   title: {
     textAlign: 'center',
-    // fontFamily: 'Merriweather-Regular',
-    fontSize: 22,
+    fontSize: fonts.fontSize.title,
     fontWeight: '600',
-    color: colors.titleDefault,
-    marginBottom: 20
+    color: '#000',
+    marginBottom: 6
   },
   description: {
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: fonts.fontSize.body,
     lineHeight: 24,
     color: colors.paragraphGrayed,
-    paddingRight: 18,
-    paddingLeft: 18,
+    paddingRight: 24,
+    paddingLeft: 24,
     marginBottom: 14
   },
   button: {

@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
-import Colors from '../../constants/colors';
+import colors from '../../constants/colors';
+import fonts from '../../constants/fonts';
 import textInputStyle from '../../constants/text-input';
 
 export default StyleSheet.create({
@@ -8,7 +9,8 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 14
+    padding: 14,
+    backgroundColor: colors.appBackground
   },
   form: {
     width: '100%'
@@ -22,7 +24,7 @@ export default StyleSheet.create({
     color: 'red'
   },
   buttonStyle: {
-    backgroundColor: Colors.black,
+    backgroundColor: colors.black,
     marginBottom: 14,
     opacity: 1
   },
@@ -39,12 +41,12 @@ export default StyleSheet.create({
     maxWidth: 300,
   },
   footerText: {
-    fontSize: 16,
+    fontSize: fonts.fontSize.body,
     lineHeight: 24,
-    color: Colors.paragraphGrayed,
+    color: colors.paragraphGrayed,
     textAlign: 'center'
   },
   footerTextHighlight: {
-    color: Colors.black
+    color: colors.black
   }
 });

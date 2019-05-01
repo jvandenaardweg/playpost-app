@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
 
 import colors from '../../../constants/colors';
+import fonts from '../../../constants/fonts';
 
 export default StyleSheet.create({
   wrapper: {
-    height: 55,
+    height: 60,
   },
   container: {
     flexDirection: 'row',
@@ -15,7 +16,7 @@ export default StyleSheet.create({
     paddingRight: 14,
     paddingTop: 8,
     paddingBottom: 8,
-    height: 55
+    height: 60
   },
   sideIcon: {
     width: 34,
@@ -25,7 +26,9 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   emptyText: {
-    color: colors.white
+    fontSize: fonts.fontSize.body,
+    color: colors.white,
+    fontWeight: '700'
   },
   trackInfoButton: {
     flex: 1,
@@ -36,14 +39,14 @@ export default StyleSheet.create({
     // marginRight: 14
   },
   trackInfoTitle: {
-    fontSize: 14,
+    fontSize: fonts.fontSize.body,
     color: colors.white,
-    fontWeight: '600'
+    fontWeight: '700',
+    marginBottom: 2
   },
   trackInfoArtist: {
-    fontSize: 12,
-    color: colors.white,
-    opacity: 0.7
+    fontSize: fonts.fontSize.small,
+    color: colors.paragraphGrayed,
   },
   controls: {
     marginTop: 20,

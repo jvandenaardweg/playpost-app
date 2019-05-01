@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 import Colors from '../../constants/colors';
 
 import fonts from '../../constants/fonts';
+import colors from '../../constants/colors';
 
 export default StyleSheet.create({
   container: {
@@ -37,9 +38,9 @@ export default StyleSheet.create({
     paddingTop: 20
   },
   title: {
-    fontSize: fonts.fontSize.subhead.small,
+    fontSize: fonts.fontSize.body,
     fontWeight: '600',
-    color: Colors.titleDefault,
+    color: '#000000',
     lineHeight: 20,
     marginBottom: 6
   },
@@ -48,13 +49,13 @@ export default StyleSheet.create({
     width: '100%'
   },
   descriptionText: {
-    fontSize: 14,
-    color: Colors.paragraphDefault,
-    lineHeight: 21
+    fontSize: fonts.fontSize.small,
+    color: colors.paragraphGrayed,
+    lineHeight: 20
   },
   author: {
-    fontSize: 12,
-    color: Colors.paragraphGrayed,
+    fontSize: fonts.fontSize.small,
+    color: colors.paragraphGrayed,
     lineHeight: 18
   },
   source: {
@@ -67,15 +68,15 @@ export default StyleSheet.create({
     marginRight: 4
   },
   sourceName: {
-    fontSize: 11,
-    color: Colors.paragraphGrayed,
+    fontSize: fonts.fontSize.tiny,
+    color: colors.paragraphGrayed,
     // marginBottom: 8,
     marginLeft: 2,
     paddingRight: 28,
     fontWeight: '100'
   },
   authorName: {
-    color: Colors.paragraphGrayed
+    color: colors.paragraphGrayed
   },
   publicationName: {
     color: Colors.paragraphGrayed
@@ -95,10 +96,10 @@ export default StyleSheet.create({
     // marginLeft: 2
   },
   duration: {
-    color: Colors.paragraphDefault,
+    color: Colors.paragraphGrayed,
     textAlign: 'center',
     marginTop: 4,
-    fontSize: 11
+    fontSize: fonts.fontSize.tiny
   },
   articleEmptyActivityIndicator: {
     marginBottom: 12

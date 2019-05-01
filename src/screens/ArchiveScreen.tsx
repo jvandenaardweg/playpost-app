@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
+import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
 
 import { EmptyState } from '../components/EmptyState';
 import { ButtonUpgrade } from '../components/Header/ButtonUpgrade';
@@ -8,7 +8,7 @@ interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;
 }
 export class ArchiveScreen extends React.PureComponent<Props> {
-  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }) => {
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: 'Archive',
       headerRight: <ButtonUpgrade onPress={navigation.getParam('handleOnPressUpgrade')} />

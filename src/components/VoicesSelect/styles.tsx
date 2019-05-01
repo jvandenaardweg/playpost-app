@@ -1,7 +1,9 @@
 import {
   StyleSheet
 } from 'react-native';
+
 import colors from '../../constants/colors';
+import fonts from '../../constants/fonts';
 
 export default StyleSheet.create({
   container: {
@@ -14,7 +16,6 @@ export default StyleSheet.create({
     height: 30,
     width: 30,
     borderColor: colors.grayLight,
-    // flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.white
@@ -28,11 +29,13 @@ export default StyleSheet.create({
     borderColor: colors.borderDefault
   },
   listItemTitle: {
-    fontWeight: '500'
+    fontSize: fonts.fontSize.body,
+    fontWeight: '400'
   },
   listItemSubtitle: {
     color: colors.paragraphGrayed,
-    fontSize: 14
+    fontSize: fonts.fontSize.small,
+    marginTop: 2
   },
   listItemBadge: {
     paddingLeft: 2, paddingRight: 2

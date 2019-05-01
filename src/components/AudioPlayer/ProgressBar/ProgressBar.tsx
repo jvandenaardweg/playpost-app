@@ -63,11 +63,11 @@ export class ProgressBar extends ProgressComponent<Props, State> {
               minimumValue={0}
               maximumValue={1}
               value={percentage}
-              minimumTrackTintColor={colors.tintColor}
-              maximumTrackTintColor={colors.grayDark}
+              minimumTrackTintColor={colors.white}
+              maximumTrackTintColor={colors.grayDarkest}
               thumbTintColor={colors.white}
-              thumbStyle={{ width: 16, height: 16 }}
-              trackStyle={{ height: 3, borderRadius: 3 }}
+              thumbStyle={styles.thumbStyle}
+              trackStyle={styles.trackStyle}
               onSlidingComplete={this.props.onProgressChange}
             />
           </View>

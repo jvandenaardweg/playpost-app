@@ -5,6 +5,7 @@ import Swipeable from 'react-native-gesture-handler/Swipeable';
 import Icon from 'react-native-vector-icons/Feather';
 
 import { NetworkContext } from '../../contexts/NetworkProvider';
+import fonts from '../../constants/fonts';
 
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
@@ -134,7 +135,7 @@ const styles = StyleSheet.create({
   },
   actionText: {
     color: 'white',
-    fontSize: 16,
+    fontSize: fonts.fontSize.body,
     backgroundColor: 'transparent',
     padding: 10,
   },

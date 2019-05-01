@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
-import Colors from '../../constants/colors';
+import colors from '../../constants/colors';
+
 import textInputStyle from '../../constants/text-input';
 
 export default StyleSheet.create({
@@ -9,7 +10,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 14,
-    backgroundColor: Colors.white
+    backgroundColor: colors.appBackground
   },
   form: {
     width: '100%'
@@ -23,21 +24,10 @@ export default StyleSheet.create({
     color: 'red'
   },
   buttonStyle: {
-    backgroundColor: Colors.black,
+    backgroundColor: colors.black,
     marginBottom: 14
   },
   buttonTitleStyle: {
-    color: Colors.white,
-  },
-  title: {
-    fontSize: 34,
-    lineHeight: 40,
-    color: Colors.grayDark,
-    fontWeight: '800'
-  },
-  subtitle: {
-    fontSize: 18,
-    lineHeight: 26,
-    color: Colors.grayLight,
+    color: colors.white,
   }
 });

@@ -1,7 +1,7 @@
 // @ts-ignore
 import React from 'react';
 import { View, Animated } from 'react-native';
-import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
+import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
 import { WebView } from 'react-native-webview';
 
 import { ButtonReload } from '../components/Header';
@@ -21,7 +21,7 @@ export class BrowserScreen extends React.PureComponent<Props, State> {
   /* tslint:disable-next-line no-any */
   private webviewRef = React.createRef<any>();
 
-  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }) => {
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: navigation.getParam('title', null),
       headerRight: <ButtonReload onPress={navigation.getParam('handleOnReload')} />

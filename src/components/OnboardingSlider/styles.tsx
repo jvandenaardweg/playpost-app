@@ -1,15 +1,18 @@
 import { StyleSheet } from 'react-native';
 
+import colors from '../../constants/colors';
+import fonts from '../../constants/fonts';
+
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#037DE2'
+    backgroundColor: colors.tintColor
   },
   mainContent: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-around',
-    backgroundColor: '#037DE2',
+    backgroundColor: colors.tintColor,
     padding: 16,
     paddingTop: 0,
     paddingBottom: '27%'
@@ -19,21 +22,21 @@ export default StyleSheet.create({
     height: 320,
   },
   text: {
-    color: 'rgba(255, 255, 255, 0.8)',
+    color: colors.white,
+    opacity: 0.9,
     backgroundColor: 'transparent',
     textAlign: 'center',
     paddingHorizontal: 16,
-    fontSize: 16,
+    fontSize: fonts.fontSize.body,
     lineHeight: 24,
   },
   title: {
-    fontSize: 28,
-    lineHeight: 34,
+    fontSize: fonts.fontSize.headline,
+    lineHeight: 29,
     color: 'white',
     backgroundColor: 'transparent',
     textAlign: 'center',
-    marginBottom: 24,
-    fontWeight: '700',
-    // fontFamily: 'Merriweather-Regular'
+    marginBottom: 12,
+    fontWeight: '700'
   }
 });

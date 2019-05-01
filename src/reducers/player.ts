@@ -8,6 +8,7 @@ export const GET_AUDIOFILE_FAIL = 'player/LOAD_FAIL';
 export const SET_PLAYBACK_STATUS = 'player/SET_PLAYBACK_STATUS';
 export const RESET_PLAYBACK_STATUS = 'player/RESET_PLAYBACK_STATUS';
 export const SET_TRACK = 'player/SET_TRACK';
+export const SET_PLAYBACK_SPEED = 'player/SET_PLAYBACK_SPEED';
 
 export const CREATE_AUDIOFILE = 'player/CREATE_AUDIOFILE';
 export const CREATE_AUDIOFILE_SUCCESS = 'player/CREATE_AUDIOFILE_SUCCESS';
@@ -24,6 +25,7 @@ export interface PlayerState {
   audiofile: Api.Audiofile | null;
   articleId: string;
   playbackState: PlaybackStatus;
+  playbackSpeed: number;
   isLoading: boolean;
   error: string;
 }
@@ -42,6 +44,7 @@ const initialState: PlayerState = {
   audiofile: null,
   articleId: '',
   playbackState: 'none',
+  playbackSpeed: 1,
   error: ''
 };
 
@@ -87,6 +90,11 @@ export function playerReducer(state = initialState, action: PlayerActionTypes): 
         ...state,
         track: action.payload.track,
         playbackState: initialState.playbackState
+      };
+    case SET_PLAYBACK_SPEED:
+      return {
+        ...state,
+        playbackSpeed: action.payload
       };
     case RESET_PLAYER_STATE:
       return {
@@ -149,6 +157,13 @@ export function setTrack(track: TrackPlayer.Track) {
     payload: {
       track
     }
+  };
+}
+
+export function setPlaybackSpeed(playbackSpeed: number) {
+  return {
+    type: SET_PLAYBACK_SPEED,
+    payload: playbackSpeed
   };
 }
 

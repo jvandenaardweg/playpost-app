@@ -4,7 +4,7 @@ exports[`AppBackground rendering should render correctly 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "#EBEBEB",
+      "backgroundColor": "#F1F1F1",
       "flex": 1,
     }
   }

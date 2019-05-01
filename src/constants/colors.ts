@@ -1,10 +1,11 @@
 const tintColor = '#037DE2';
-const black = '#222222';
-const grayDarkest = '#666666';
+const black = '#000000';
+const grayDarkest = '#111111';
+const grayDarker = '#444444';
 const grayDark = '#888888';
 const grayLight = '#cccccc';
 const grayLightest = '#EEF0F4';
-const appBackground = '#EBEBEB';
+const appBackground = '#F1F1F1';
 const white = '#ffffff';
 const blue = tintColor;
 const red = '#FF1017';
@@ -15,6 +16,8 @@ const green = '#03A87C';
 export default {
   tintColor,
   black,
+  grayDarkest,
+  grayDarker,
   grayDark,
   grayLight,
   grayLightest,
@@ -34,7 +37,7 @@ export default {
   titleDefault: black,
   paragraphDefault: grayDarkest,
   paragraphGrayed: grayDark,
-  borderDefault: grayLight,
+  borderDefault: '#e5e5e5',
 
   controlButtonDefault: black,
   controlButtonActive: tintColor,
