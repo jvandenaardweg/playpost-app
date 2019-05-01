@@ -18,7 +18,7 @@ export default StyleSheet.create({
     fontSize: fonts.fontSize.title,
     color: colors.black,
     fontWeight: fonts.fontWeight.semibold,
-    marginBottom: 24,
+    marginBottom: 16,
     marginTop: 12
   },
   title: {

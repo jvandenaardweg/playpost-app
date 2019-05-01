@@ -22,7 +22,7 @@ export class UpgradeFeatures extends React.PureComponent {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>Upgrade for Premium features</Text>
+          {/* <Text style={styles.headerTitle}>Upgrade for Premium features</Text> */}
 
           <View style={styles.feature}>
             <Icon name="gem" size={32} style={styles.featureIcon} />
