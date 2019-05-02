@@ -4,7 +4,7 @@ import * as Icon from '../../../components/Icon';
 import TrackPlayer from 'react-native-track-player';
 
 import { ProgressBar } from '../ProgressBar';
-import { PlayPauseControl, PlayPauseControlCircle } from '../PlayPauseControl';
+import { PlayPauseControlCircle } from '../PlayPauseControl';
 
 import styles from './styles';
 import { defaultHitslop } from '../../../constants/buttons';
