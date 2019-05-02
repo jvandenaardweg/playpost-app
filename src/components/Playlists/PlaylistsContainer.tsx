@@ -13,7 +13,7 @@ import { NetworkContext } from '../../contexts/NetworkProvider';
 import { getPlaylists } from '../../reducers/playlists';
 import { getVoices } from '../../reducers/voices';
 
-import { getDefaultPlaylistArticles, getDefaultPlaylist } from '../../selectors/playlists';
+import { getDefaultPlaylistArticles, getDefaultPlaylist, getArchivedPlaylistArticles, getFavoritedPlaylistArticles } from '../../selectors/playlists';
 
 import isEqual from 'react-fast-compare';
 import { RootState } from '../../reducers';
@@ -32,6 +32,10 @@ interface State {
 
 interface Props {
   articles: Api.Article[];
+  archivedArticles: Api.Article[];
+  favoritedArticles: Api.Article[];
+  isArchiveScreen?: boolean;
+  isFavoriteScreen?: boolean;
   defaultPlaylist: Api.Playlist | null;
   downloadedAudiofiles: Api.Audiofile[];
   getPlaylists(): void;
@@ -64,8 +68,13 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
 
   componentDidMount() {
     const { isConnected } = this.context;
+    const { isArchiveScreen, isFavoriteScreen } = this.props;
 
     this.showOrHideHelpVideo();
+
+    // When in Archive or Favorite screen, we assume we already have all the required data
+    // TODO: figure out if this works
+    if (isArchiveScreen || isFavoriteScreen) return;
 
     if (isConnected && !this.hasArticles) {
       this.setState({ isLoading: true }, () => this.fetchPlaylists());
@@ -170,12 +179,21 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
 
   renderEmptyState = () => {
     const { isLoading, isRefreshing, showHelpVideo, errorMessage } = this.state;
+    const { isArchiveScreen, isFavoriteScreen } = this.props;
     const { isConnected } = this.context;
 
     if (isLoading) return <CenterLoadingIndicator />;
 
     // If there's an error, and we don't have playlist items yet
     if (errorMessage && !this.hasArticles) return <EmptyState title="Error" description={errorMessage} actionButtonLabel="Try again" actionButtonOnPress={() => this.handleOnRefresh()} />;
+
+    if (isArchiveScreen) {
+      return <EmptyState title="Your archived articles" description="Articles you've already listened will be shown here in your archive, for easy future reference." />;
+    }
+
+    if (isFavoriteScreen) {
+      return <EmptyState title="Your favorite articles" description="Articles you really liked can be saved here, away from your daily playlist." />;
+    }
 
     // Warning to the user there's no internet connection
     if (!isConnected && !this.hasArticles) {
@@ -208,8 +226,18 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
   }
 
   render() {
-    const { articles, defaultPlaylist } = this.props;
+    const { defaultPlaylist, isArchiveScreen, isFavoriteScreen, archivedArticles, favoritedArticles } = this.props;
     const { isRefreshing } = this.state;
+
+    let articles = this.props.articles;
+
+    if (isArchiveScreen) {
+      articles = archivedArticles;
+    }
+
+    if (isFavoriteScreen) {
+      articles = favoritedArticles;
+    }
 
     return (
       <FlatList
@@ -236,6 +264,8 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
 const mapStateToProps = (state: RootState) => ({
   defaultPlaylist: getDefaultPlaylist(state),
   articles: getDefaultPlaylistArticles(state),
+  archivedArticles: getArchivedPlaylistArticles(state),
+  favoritedArticles: getFavoritedPlaylistArticles(state),
   downloadedAudiofiles: getDownloadedAudiofiles(state)
 });
 

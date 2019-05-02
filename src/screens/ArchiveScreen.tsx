@@ -1,7 +1,8 @@
 import React from 'react';
 import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
 
-import { EmptyState } from '../components/EmptyState';
+import { PlaylistsContainer } from '../components/Playlists';
+import { AppBackground } from '../components/AppBackground';
 import { ButtonUpgrade } from '../components/Header/ButtonUpgrade';
 
 interface Props {
@@ -25,7 +26,9 @@ export class ArchiveScreen extends React.PureComponent<Props> {
 
   render() {
     return (
-      <EmptyState title="Your archived articles" description="Articles you’ve already listened will be shown in your archive. Not available yet in this version." />
+      <AppBackground>
+        <PlaylistsContainer isArchiveScreen />
+      </AppBackground>
     );
   }
 }

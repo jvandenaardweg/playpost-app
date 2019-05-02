@@ -23,6 +23,8 @@ declare namespace Api {
     plays: number;
     createdAt: Date;
     updatedAt: Date;
+    favoritedAt: Date | null;
+    archivedAt: Date | null;
     article: Article;
   }
 
@@ -45,6 +47,7 @@ declare namespace Api {
     updatedAt: Date;
     audiofiles: Audiofile[];
     status: ArticleStatus;
+    isPublic: boolean | null;
   }
 
   export interface User {

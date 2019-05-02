@@ -49,7 +49,34 @@ export const getDefaultPlaylistArticles = createSelector(
     if (!playlist || !playlist.playlistItems || !playlist.playlistItems.length) return [];
 
     const articles = playlist.playlistItems
+      .filter(playlistItem => !playlistItem.archivedAt)
       .sort((a, b) => a.order - b.order) // Sort by the custom order
+      .map(playlistItem => playlistItem.article);
+
+    return articles;
+  }
+);
+
+export const getArchivedPlaylistArticles = createSelector(
+  getDefaultPlaylist,
+  (playlist): Api.Article[] => {
+    if (!playlist || !playlist.playlistItems || !playlist.playlistItems.length) return [];
+
+    const articles = playlist.playlistItems
+      .filter(playlistItem => playlistItem.archivedAt)
+      .map(playlistItem => playlistItem.article);
+
+    return articles;
+  }
+);
+
+export const getFavoritedPlaylistArticles = createSelector(
+  getDefaultPlaylist,
+  (playlist): Api.Article[] => {
+    if (!playlist || !playlist.playlistItems || !playlist.playlistItems.length) return [];
+
+    const articles = playlist.playlistItems
+      .filter(playlistItem => playlistItem.favoritedAt)
       .map(playlistItem => playlistItem.article);
 
     return articles;
