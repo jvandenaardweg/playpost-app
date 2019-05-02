@@ -13,7 +13,7 @@ export default StyleSheet.create({
     height: '100%'
   },
   containerInteractive: {
-    marginBottom: 16
+    marginBottom: 8
   },
   sliderContainer: {
     flex: 1,

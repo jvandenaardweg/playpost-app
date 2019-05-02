@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-
-import styles from './styles';
 
 import colors from '../../constants/colors';
+
+import * as Icon from '../../components/Icon';
+
+import styles from './styles';
 
 interface Props {
   isLoading?: boolean;
@@ -48,7 +49,7 @@ export const Article: React.FC<Props> = React.memo(({
     <View style={styles.sectionBody}>
       <TouchableOpacity style={styles.sectionMeta} activeOpacity={1} onPress={() => onOpenUrl(url)}>
         <View style={styles.source}>
-          <Icon
+          <Icon.FontAwesome5
             name="circle"
             size={9}
             solid
@@ -56,7 +57,7 @@ export const Article: React.FC<Props> = React.memo(({
             color={hasAudiofile ? colors.green : colors.grayLight}
             testID="article-icon-playable"
           />
-          <Icon
+          <Icon.FontAwesome5
             name="arrow-alt-circle-down"
             size={9}
             solid
@@ -110,8 +111,8 @@ export const PlayButton = (props: { isPlaying?: boolean, onPress(): void, isLoad
   >
     <View>
       {props.isLoading && <ActivityIndicator testID="article-activity-indicator" size="small" color="#fff" />}
-      {!props.isLoading && !props.isPlaying && <Icon name="play" size={14} color="white" testID="article-icon-play" />}
-      {!props.isLoading && props.isPlaying && <Icon name="pause" size={14} color="white" testID="article-icon-pause" />}
+      {!props.isLoading && !props.isPlaying && <Icon.FontAwesome5 name="play" size={14} color="white" testID="article-icon-play" />}
+      {!props.isLoading && props.isPlaying && <Icon.FontAwesome5 name="pause" size={14} color="white" testID="article-icon-pause" />}
     </View>
   </TouchableOpacity>
 );

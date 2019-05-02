@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
+import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
   container: {
@@ -13,7 +14,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     backgroundColor: colors.tintColor,
-    padding: 16,
+    padding: spacing.default,
     paddingTop: 0,
     paddingBottom: '27%'
   },
@@ -26,7 +27,7 @@ export default StyleSheet.create({
     opacity: 0.9,
     backgroundColor: 'transparent',
     textAlign: 'center',
-    paddingHorizontal: 16,
+    paddingHorizontal: spacing.default,
     fontSize: fonts.fontSize.body,
     lineHeight: 24,
   },
@@ -36,13 +37,13 @@ export default StyleSheet.create({
     color: colors.white,
     backgroundColor: 'transparent',
     textAlign: 'center',
-    marginBottom: 12,
+    marginBottom: spacing.default,
     fontWeight: fonts.fontWeight.semibold
   },
   footerContainer: {
     marginBottom: 22,
-    paddingLeft: 14,
-    paddingRight: 14
+    paddingLeft: spacing.default,
+    paddingRight: spacing.default
   },
   signupButtonTitleStyle: {
     color: colors.black

@@ -1,11 +1,14 @@
 import React from 'react';
-import { ActivityIndicator, TouchableHighlight, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import { ActivityIndicator, TouchableOpacity, View } from 'react-native';
+import * as Icon from '../../../components/Icon';
 
 import styles from './styles';
+import { defaultHitslop } from '../../../constants/buttons';
+import colors from '../../../constants/colors';
 
 interface IProps {
   size?: number;
+  iconColor?: string;
   onPressPlay(): void;
 }
 
@@ -13,6 +16,7 @@ interface PlayPauseIconProps {
   isPlaying: boolean;
   isLoading: boolean;
   size?: number;
+  color?: string;
 }
 
 type Props = PlayPauseIconProps & IProps;
@@ -21,24 +25,40 @@ export const PlayPauseControl: React.FC<Props> = React.memo(({
   isPlaying,
   isLoading,
   size,
-  onPressPlay
+  onPressPlay,
 }) => {
   return (
-    <TouchableHighlight style={styles.playButton} onPress={() => onPressPlay()} hitSlop={{ top: 20, left: 20, right: 20, bottom: 20 }}>
+    <TouchableOpacity style={styles.playButton} activeOpacity={1} onPress={() => onPressPlay()} hitSlop={defaultHitslop}>
       <View style={styles.controlPlay}>
         <PlayPauseIcon isLoading={isLoading} isPlaying={isPlaying} size={size} />
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
+  );
+});
+
+export const PlayPauseControlCircle: React.FC<Props> = React.memo(({
+  isPlaying,
+  isLoading,
+  size,
+  iconColor,
+  onPressPlay,
+}) => {
+  return (
+    <TouchableOpacity style={[styles.playButton, styles.playButtonCircle]} activeOpacity={1} onPress={() => onPressPlay()} hitSlop={defaultHitslop}>
+      <View style={styles.controlPlay}>
+        <PlayPauseIcon isLoading={isLoading} isPlaying={isPlaying} size={size} color={iconColor} />
+      </View>
+    </TouchableOpacity>
   );
 });
 
 export const PlayPauseIcon: React.FC<PlayPauseIconProps>  = React.memo(({
   isPlaying,
   isLoading,
-  size
+  size,
+  color
 }) => {
-
   if (isLoading) return <ActivityIndicator />;
-  if (isPlaying) return <Icon name="pause" color="white" size={(size) ? size : 16} />;
-  return <Icon name="play" color="white" size={(size) ? size : 16} />;
+  if (isPlaying) return <Icon.FontAwesome5 name="pause" color={(color) ? color : colors.white} size={(size) ? size : 16} />;
+  return <Icon.FontAwesome5 name="play" color={(color) ? color : colors.white} size={(size) ? size : 16} style={{ marginLeft: 3 }} />;
 });

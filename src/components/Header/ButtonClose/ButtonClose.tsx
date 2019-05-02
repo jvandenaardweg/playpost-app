@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
+import * as Icon from '../../../components/Icon';
 
 import colors from '../../../constants/colors';
 
@@ -13,7 +13,7 @@ interface Props {
 export const ButtonClose: React.FC<Props> = React.memo(({ onPress }) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
-      <Icon name="x" size={26} color={colors.black} />
+      <Icon.Feather name="x" size={26} color={colors.black} />
     </TouchableOpacity>
   );
 });

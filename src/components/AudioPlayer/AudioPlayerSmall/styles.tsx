@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 
 import colors from '../../../constants/colors';
 import fonts from '../../../constants/fonts';
+import spacing from '../../../constants/spacing';
 
 export default StyleSheet.create({
   wrapper: {
@@ -12,8 +13,8 @@ export default StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: colors.black,
-    paddingLeft: 14,
-    paddingRight: 14,
+    paddingLeft: spacing.default,
+    paddingRight: spacing.default,
     paddingTop: 8,
     paddingBottom: 8,
     height: 55
@@ -32,11 +33,11 @@ export default StyleSheet.create({
   },
   trackInfoButton: {
     flex: 1,
-    marginRight: 14
+    marginRight: spacing.default
   },
   trackInfo: {
     // flex: 1,
-    // marginRight: 14
+    // marginRight: spacing.default
   },
   trackInfoTitle: {
     fontSize: fonts.fontSize.small,

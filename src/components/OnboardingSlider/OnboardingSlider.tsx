@@ -6,7 +6,7 @@ import { withNavigation, NavigationScreenProp, NavigationRoute } from 'react-nav
 import SplashScreen from 'react-native-splash-screen';
 
 import styles from './styles';
-import Icon from 'react-native-vector-icons/Feather';
+import * as Icon from '../../components/Icon';
 
 interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;
@@ -64,8 +64,8 @@ class OnboardingSliderComponent extends React.PureComponent<Props> {
           slides={this.slides}
           renderItem={this.renderItem}
           showPrevButton
-          renderNextButton={() => <Icon name="arrow-right" color="white" size={24} />}
-          renderPrevButton={() => <Icon name="arrow-left" color="white" size={24} />}
+          renderNextButton={() => <Icon.Feather name="arrow-right" color="white" size={24} />}
+          renderPrevButton={() => <Icon.Feather name="arrow-left" color="white" size={24} />}
           hideDoneButton
         />
         <View style={styles.footerContainer}>

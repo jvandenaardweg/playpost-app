@@ -4,11 +4,12 @@ import {
 
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
+import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    padding: 14,
+    padding: spacing.default,
   },
   previewButton: {
     borderWidth: 1,

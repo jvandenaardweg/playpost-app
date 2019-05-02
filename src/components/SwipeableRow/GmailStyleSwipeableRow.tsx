@@ -1,8 +1,6 @@
 import React from 'react';
 import { Animated, StyleSheet } from 'react-native';
-
 import { RectButton } from 'react-native-gesture-handler';
-
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import Icon from 'react-native-vector-icons/Feather';
 

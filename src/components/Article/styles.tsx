@@ -1,25 +1,24 @@
 import { StyleSheet } from 'react-native';
 
-import Colors from '../../constants/colors';
-
 import fonts from '../../constants/fonts';
 import colors from '../../constants/colors';
+import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.articleBackground,
-    padding: 16,
+    backgroundColor: colors.articleBackground,
+    padding: spacing.default,
     width: '100%'
   },
   seperator: {
-    backgroundColor: Colors.articleBackground,
-    paddingLeft: 16,
-    paddingRight: 16
+    backgroundColor: colors.articleBackground,
+    paddingLeft: spacing.default,
+    paddingRight: spacing.default
   },
   seperatorLine: {
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: Colors.borderDefault,
+    borderBottomColor: colors.borderDefault,
   },
   sectionHeader: {
 
@@ -34,7 +33,7 @@ export default StyleSheet.create({
   sectionControl: {
     width: 50,
     justifyContent: 'flex-end',
-    marginLeft: 16,
+    marginLeft: spacing.default,
     paddingBottom: 4
   },
   title: {
@@ -79,10 +78,10 @@ export default StyleSheet.create({
     color: colors.paragraphGrayed
   },
   publicationName: {
-    color: Colors.paragraphGrayed
+    color: colors.paragraphGrayed
   },
   controlButton: {
-    backgroundColor: Colors.controlButtonDefault,
+    backgroundColor: colors.controlButtonDefault,
     width: 50,
     height: 50,
     borderRadius: 50,
@@ -90,26 +89,26 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   controlButtonActive: {
-    backgroundColor: Colors.controlButtonActive
+    backgroundColor: colors.controlButtonActive
   },
   duration: {
-    color: Colors.paragraphGrayed,
+    color: colors.paragraphGrayed,
     textAlign: 'center',
     marginTop: 5,
     fontSize: fonts.fontSize.small
   },
   articleEmptyActivityIndicator: {
-    marginBottom: 12
+    marginBottom: spacing.small
   },
   articleEmpty: {
     flex: 1,
-    backgroundColor: Colors.articleBackground,
-    padding: 14,
+    backgroundColor: colors.articleBackground,
+    padding: spacing.medium,
     width: '100%',
     justifyContent: 'center'
   },
   articleEmptyText: {
-    color: Colors.grayLight,
+    color: colors.grayLight,
     alignSelf: 'center'
   }
 });

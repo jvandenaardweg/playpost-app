@@ -1,6 +1,7 @@
 import React from 'react';
 import { ActivityIndicator, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+
+import * as Icon from '../../components/Icon';
 
 import styles from './styles';
 
@@ -22,8 +23,8 @@ export const VoicePreviewButton: React.FC<Props> = React.memo(({
     activeOpacity={1}
     onPress={onPress}
     hitSlop={{ top: 20, left: 20, right: 20, bottom: 20 }}>
-    {!isPlaying && !isLoading && <Icon name="play" size={9} style={styles.icon} />}
-    {isPlaying && !isLoading && <Icon name="pause" size={9} style={styles.icon} />}
+    {!isPlaying && !isLoading && <Icon.FontAwesome5 name="play" size={9} style={styles.icon} />}
+    {isPlaying && !isLoading && <Icon.FontAwesome5 name="pause" size={9} style={styles.icon} />}
     {isLoading && !isPlaying && <ActivityIndicator />}
   </TouchableOpacity>
 ));

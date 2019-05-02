@@ -1,5 +1,6 @@
 import colors from '../constants/colors';
 import fonts from '../constants/fonts';
+import spacing from './spacing';
 
 export default {
   height: 50,
@@ -7,8 +8,8 @@ export default {
   borderWidth: 1,
   borderColor: colors.borderDefault,
   borderRadius: 4,
-  paddingLeft: 16,
-  paddingRight: 16,
-  marginBottom: 12,
+  paddingLeft: spacing.default,
+  paddingRight: spacing.default,
+  marginBottom: spacing.small,
   fontSize: fonts.fontSize.body
 };

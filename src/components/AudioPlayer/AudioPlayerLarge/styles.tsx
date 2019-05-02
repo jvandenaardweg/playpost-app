@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 
 import fonts from '../../../constants/fonts';
 import colors from '../../../constants/colors';
+import spacing from '../../../constants/spacing';
 
 export default StyleSheet.create({
   wrapper: {
@@ -17,17 +18,17 @@ export default StyleSheet.create({
   openCloseControl: {
     alignItems: 'flex-end',
     marginBottom: 10,
-    paddingRight: 24,
-    paddingLeft: 24
+    paddingRight: spacing.large,
+    paddingLeft: spacing.large
   },
   controlsContainer: {
-    paddingLeft: 24,
-    paddingRight: 24,
+    paddingLeft: spacing.large,
+    paddingRight: spacing.large
   },
   titleContainer: {
-    paddingTop: 24,
-    paddingLeft: 24,
-    paddingRight: 24
+    paddingTop: spacing.large,
+    paddingLeft: spacing.large,
+    paddingRight: spacing.large
   },
   scrollableContainer: {
     flexGrow: 1,
@@ -38,17 +39,17 @@ export default StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: '#333333',
     marginTop: 0,
-    marginBottom: 24,
+    marginBottom: spacing.large,
     overflow: 'hidden'
   },
   scrollableContent: {
-    padding: 24,
+    padding: spacing.large,
   },
   contentText: {
     color: colors.white,
     fontSize: fonts.fontSize.body,
     lineHeight: 24,
-    marginBottom: 22
+    marginBottom: spacing.large
   },
   title: {
     color: colors.white,
@@ -71,7 +72,7 @@ export default StyleSheet.create({
     flex: 1,
     alignItems: 'stretch',
     justifyContent: 'center',
-    marginBottom: 14,
+    marginBottom: spacing.default,
     backgroundColor: 'red'
   }
 });

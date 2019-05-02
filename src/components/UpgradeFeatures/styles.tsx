@@ -4,21 +4,22 @@ import {
 
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
+import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    padding: 14,
+    padding: spacing.default,
   },
   header: {
-    marginBottom: 14
+    marginBottom: spacing.default
   },
   headerTitle: {
     textAlign: 'center',
     fontSize: fonts.fontSize.titleMedium,
     color: colors.black,
     fontWeight: fonts.fontWeight.semibold,
-    marginBottom: 16,
+    marginBottom: spacing.default,
     marginTop: 12
   },
   title: {
@@ -32,8 +33,8 @@ export default StyleSheet.create({
     fontSize: fonts.fontSize.body
   },
   feature: {
-    marginTop: 14,
-    paddingBottom: 14,
+    marginTop: spacing.default,
+    paddingBottom: spacing.default,
     borderBottomWidth: 1,
     borderColor: 'rgba(0,0,0,0.05)',
     flex: 1,
@@ -46,13 +47,13 @@ export default StyleSheet.create({
   },
   featureIcon: {
     color: colors.tintColor,
-    marginRight: 18,
+    marginRight: spacing.default,
     marginLeft: 8,
     width: 40
   },
   footer: {
-    marginTop: 16,
-    paddingTop: 16,
+    marginTop: spacing.default,
+    paddingTop: spacing.default,
     borderTopWidth: 1,
     borderColor: colors.grayLightest,
     paddingBottom: 24

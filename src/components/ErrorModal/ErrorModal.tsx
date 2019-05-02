@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
+import spacing from '../../constants/spacing';
 
 interface Props {
   onPressAction(url: string): void;
@@ -11,7 +12,7 @@ interface Props {
 export const ErrorModal: React.FC<Props> = ({ message, action, onPressAction }) => (
   <View style={{
     backgroundColor: 'white',
-    padding: 14,
+    padding: spacing.default,
     borderRadius: 10
   }}>
     <Text>{message}</Text>

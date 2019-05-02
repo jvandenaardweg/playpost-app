@@ -2,11 +2,12 @@ import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
+import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
   container: {
     backgroundColor: colors.errorBackground,
-    padding: 14,
+    padding: spacing.default,
     flexDirection: 'row',
     alignItems: 'flex-start',
     alignContent: 'flex-start'

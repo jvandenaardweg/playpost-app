@@ -1,12 +1,13 @@
 import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
+import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
   container: {
     backgroundColor: colors.white,
     height: 160,
-    padding: 14,
+    padding: spacing.default,
     borderRadius: 10,
     width: '100%'
   },

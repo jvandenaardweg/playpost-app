@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, ActivityIndicator, Text } from 'react-native';
 import { Button } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/Feather';
+
+import * as Icon from '../../components/Icon';
 
 import colors from '../../constants/colors';
 
@@ -16,7 +17,7 @@ export const ArticleEmptyProcessing: React.FC<Props> = props => (
   <View style={styles.articleEmpty}>
     <ActivityIndicator style={styles.articleEmptyActivityIndicator} />
     <Text style={styles.articleEmptyText}>Processing article...</Text>
-    <Button type="clear" title="Update" onPress={props.onPressUpdate} icon={<Icon name="refresh-ccw" size={18} color={colors.tintColor} style={{ marginLeft: 10 }} />} iconRight />
+    <Button type="clear" title="Update" onPress={props.onPressUpdate} icon={<Icon.Feather name="refresh-ccw" size={18} color={colors.tintColor} style={{ marginLeft: 10 }} />} iconRight />
   </View>
 );
 

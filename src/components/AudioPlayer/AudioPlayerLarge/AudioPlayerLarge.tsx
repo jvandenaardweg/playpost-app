@@ -1,12 +1,14 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView, NativeScrollEvent } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
+import { View, Text, TouchableOpacity, ScrollView, NativeScrollEvent, TouchableHighlight } from 'react-native';
+import * as Icon from '../../../components/Icon';
 import TrackPlayer from 'react-native-track-player';
 
 import { ProgressBar } from '../ProgressBar';
-import { PlayPauseControl } from '../PlayPauseControl';
+import { PlayPauseControl, PlayPauseControlCircle } from '../PlayPauseControl';
 
 import styles from './styles';
+import { defaultHitslop } from '../../../constants/buttons';
+import colors from '../../../constants/colors';
 
 interface Props {
   isPlaying: boolean;
@@ -38,8 +40,8 @@ export class AudioPlayerLarge extends React.PureComponent<Props> {
       track: { title, artist },
       articleText,
       onPressPlay,
-      // onPressNext,
-      // onPressPrevious,
+      onPressNext,
+      onPressPrevious,
       onPressClose,
       onScroll,
       onProgressChange
@@ -47,14 +49,10 @@ export class AudioPlayerLarge extends React.PureComponent<Props> {
 
     return (
       <View style={styles.wrapper}>
-        <TouchableOpacity activeOpacity={1} onPress={onPressClose} style={styles.openCloseControl} hitSlop={{ top: 20, left: 20, right: 20, bottom: 20 }}>
-          <Icon name="chevron-down" size={34} color="#fff" />
+        <TouchableOpacity activeOpacity={1} onPress={onPressClose} style={styles.openCloseControl} hitSlop={defaultHitslop}>
+          <Icon.FontAwesome5 name="chevron-down" size={24} color="#fff" />
         </TouchableOpacity>
         <View style={styles.container}>
-          {/* <View style={styles.titleContainer}>
-            <Text style={styles.title}>{title}</Text>
-            <Text style={styles.album}>{artist}</Text>
-          </View> */}
           <View style={styles.scrollableContainer}>
             <ScrollView indicatorStyle="white" onScroll={onScroll} scrollEventThrottle={500} ref={this.scrollViewRef}>
               <View style={styles.titleContainer}>
@@ -70,9 +68,21 @@ export class AudioPlayerLarge extends React.PureComponent<Props> {
           <View style={styles.controlsContainer}>
             <ProgressBar onProgressChange={onProgressChange} />
             <View style={styles.controlsRow}>
-              {/* <View><TouchableHighlight onPress={onPressPrevious}><Icon name="step-backward" size={22} color="#fff" /></TouchableHighlight></View> */}
-              <View><PlayPauseControl size={42} isLoading={isLoading} isPlaying={isPlaying} onPressPlay={onPressPlay} /></View>
-              {/* <View><TouchableHighlight onPress={onPressNext}><Icon name="step-forward" size={22} color="#fff" /></TouchableHighlight></View> */}
+              <View>
+                <TouchableHighlight onPress={onPressPrevious} hitSlop={defaultHitslop}>
+                  <Icon.FontAwesome5 name="redo-alt" size={20} color="#fff" />
+                </TouchableHighlight>
+              </View>
+              <View>
+                <PlayPauseControlCircle size={24} iconColor={colors.black} isLoading={isLoading} isPlaying={isPlaying} onPressPlay={onPressPlay} />
+              </View>
+              <View>
+                <TouchableHighlight onPress={onPressNext} hitSlop={defaultHitslop}>
+                  <View>
+                    <Icon.FontAwesome5 name="redo-alt" size={20} color="#fff" />
+                  </View>
+                </TouchableHighlight>
+              </View>
             </View>
           </View>
         </View>

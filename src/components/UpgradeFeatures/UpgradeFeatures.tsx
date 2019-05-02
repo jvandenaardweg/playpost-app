@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, Linking, Alert } from 'react-native';
 import { Button } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 
+import * as Icon from '../../components/Icon';
 import fonts from '../../constants/fonts';
 
 import styles from './styles';
@@ -25,21 +25,21 @@ export class UpgradeFeatures extends React.PureComponent {
           {/* <Text style={styles.headerTitle}>Upgrade for Premium features</Text> */}
 
           <View style={styles.feature}>
-            <Icon name="gem" size={32} style={styles.featureIcon} />
+            <Icon.FontAwesome5 name="gem" size={32} style={styles.featureIcon} />
             <View style={styles.featureContent}>
               <Text style={styles.title}>Higher quality voices</Text>
               <Text style={styles.paragraph}>The highest quality artificially generated voices. You can preview these Premium voices in the settings screen.</Text>
             </View>
           </View>
           <View style={styles.feature}>
-            <Icon name="assistive-listening-systems" solid size={32} style={styles.featureIcon} />
+            <Icon.FontAwesome5 name="assistive-listening-systems" solid size={32} style={styles.featureIcon} />
             <View style={styles.featureContent}>
               <Text style={styles.title}>Voice customization</Text>
               <Text style={styles.paragraph}>Choose between a variety of high quality male and female voices with accents like American, British or Australian English.</Text>
             </View>
           </View>
           <View style={styles.feature}>
-            <Icon name="clock" size={32} style={styles.featureIcon} />
+            <Icon.FontAwesome5 name="clock" size={32} style={styles.featureIcon} />
             <View style={styles.featureContent}>
               <Text style={styles.title}>Unlimited listening</Text>
               <Text style={styles.paragraph}>No article limits. Listen to articles longer then 10 minutes.</Text>

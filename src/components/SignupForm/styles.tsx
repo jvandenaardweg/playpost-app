@@ -3,13 +3,14 @@ import { StyleSheet } from 'react-native';
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
 import textInputStyle from '../../constants/text-input';
+import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 14,
+    padding: spacing.default,
     backgroundColor: colors.appBackground
   },
   form: {
@@ -18,14 +19,14 @@ export default StyleSheet.create({
   textField: textInputStyle,
   errorContainer: {
     minHeight: 20,
-    marginBottom: 12
+    marginBottom: spacing.default
   },
   errorText: {
     color: 'red'
   },
   buttonStyle: {
     backgroundColor: colors.black,
-    marginBottom: 14,
+    marginBottom: spacing.default,
     opacity: 1
   },
   footerContainer: {

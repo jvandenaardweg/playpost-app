@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import Icon from 'react-native-vector-icons/Feather';
+import * as Icon from '../../components/Icon';
 
 import styles from './styles';
 
@@ -50,7 +50,7 @@ class ErrorMessageContainer extends React.PureComponent<Props, State> {
           <Text style={styles.title}>Oh no! An error happened...</Text>
           <Text style={styles.message}>{this.errorMessages()}</Text>
         </View>
-        <View style={styles.button}><Icon name="x-circle" size={24} color="#fff" /></View>
+        <View style={styles.button}><Icon.Feather name="x-circle" size={24} color="#fff" /></View>
       </TouchableOpacity>
     );
   }

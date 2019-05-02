@@ -4,6 +4,7 @@ import {
 
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
+import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
   container: {
@@ -12,8 +13,8 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.appBackground,
-    paddingRight: 12,
-    paddingLeft: 12,
+    paddingRight: spacing.small,
+    paddingLeft: spacing.small,
   },
   content: {
     alignItems: 'center'
@@ -30,18 +31,18 @@ export default StyleSheet.create({
     fontSize: fonts.fontSize.body,
     lineHeight: 24,
     color: colors.paragraphGrayed,
-    paddingRight: 24,
-    paddingLeft: 24,
-    marginBottom: 14
+    paddingRight: spacing.large,
+    paddingLeft: spacing.large,
+    marginBottom: spacing.medium
   },
   button: {
-    marginTop: 24,
-    paddingLeft: 24,
-    paddingRight: 24
+    marginTop: spacing.large,
+    paddingLeft: spacing.large,
+    paddingRight: spacing.large
   },
   icon: {
-    marginTop: 12,
-    marginBottom: 20,
+    marginTop: spacing.small,
+    marginBottom: spacing.default,
     borderWidth: 1,
     borderColor: colors.grayLight,
     width: 40,

@@ -27,6 +27,7 @@ import { RootState } from '../reducers';
 import { ALERT_SETTINGS_SET_CACHE_SIZE_FAIL, ALERT_SETTINGS_SETTING_UNAVAILABLE, ALERT_SETTINGS_RESET_CACHE_FAIL, ALERT_SETTINGS_CLEAR_CACHE_WARNING, ALERT_SETTINGS_LOGOUT_FAIL } from '../constants/messages';
 import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE, URL_ABOUT } from '../constants/urls';
 import colors from '../constants/colors';
+import spacing from '../constants/spacing';
 
 interface Props {
   resetAuthState(): void;
@@ -386,7 +387,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
 
   render() {
     return (
-      <SettingsScreenComponent data={this.settingsData} style={{ paddingTop: 14 }} globalTextStyle={{ fontSize: fonts.fontSize.title }} />
+      <SettingsScreenComponent data={this.settingsData} style={{ paddingTop: spacing.default }} globalTextStyle={{ fontSize: fonts.fontSize.title }} />
     );
   }
 }
