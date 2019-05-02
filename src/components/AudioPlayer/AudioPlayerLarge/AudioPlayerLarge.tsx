@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView, NativeScrollEvent, TouchableHighlight } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, NativeScrollEvent } from 'react-native';
 import * as Icon from '../../../components/Icon';
 import TrackPlayer from 'react-native-track-player';
 
@@ -40,8 +40,8 @@ export class AudioPlayerLarge extends React.PureComponent<Props> {
       track: { title, artist },
       articleText,
       onPressPlay,
-      onPressNext,
-      onPressPrevious,
+      // onPressNext,
+      // onPressPrevious,
       onPressClose,
       onScroll,
       onProgressChange
@@ -68,21 +68,21 @@ export class AudioPlayerLarge extends React.PureComponent<Props> {
           <View style={styles.controlsContainer}>
             <ProgressBar onProgressChange={onProgressChange} />
             <View style={styles.controlsRow}>
-              <View>
+              {/* <View>
                 <TouchableHighlight onPress={onPressPrevious} hitSlop={defaultHitslop}>
                   <Icon.FontAwesome5 name="redo-alt" size={20} color="#fff" />
                 </TouchableHighlight>
-              </View>
+              </View> */}
               <View>
                 <PlayPauseControlCircle size={24} iconColor={colors.black} isLoading={isLoading} isPlaying={isPlaying} onPressPlay={onPressPlay} />
               </View>
-              <View>
+              {/* <View>
                 <TouchableHighlight onPress={onPressNext} hitSlop={defaultHitslop}>
                   <View>
                     <Icon.FontAwesome5 name="redo-alt" size={20} color="#fff" />
                   </View>
                 </TouchableHighlight>
-              </View>
+              </View> */}
             </View>
           </View>
         </View>
