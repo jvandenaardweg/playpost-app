@@ -48,7 +48,9 @@ export const getDefaultPlaylistArticles = createSelector(
   (playlist): Api.Article[] => {
     if (!playlist || !playlist.playlistItems || !playlist.playlistItems.length) return [];
 
-    const articles = playlist.playlistItems.map(playlistItem => playlistItem.article);
+    const articles = playlist.playlistItems
+      .sort((a, b) => a.order - b.order) // Sort by the custom order
+      .map(playlistItem => playlistItem.article);
 
     return articles;
   }
