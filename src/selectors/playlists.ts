@@ -64,6 +64,11 @@ export const getArchivedPlaylistArticles = createSelector(
 
     const articles = playlist.playlistItems
       .filter(playlistItem => playlistItem.archivedAt)
+      .sort((a, b) => {
+        const aTime = (a.archivedAt !== null) ? new Date(a.archivedAt).getTime() : 0;
+        const bTime = (b.archivedAt !== null) ? new Date(b.archivedAt).getTime() : 0;
+        return bTime - aTime;
+      })
       .map(playlistItem => playlistItem.article);
 
     return articles;
@@ -77,6 +82,11 @@ export const getFavoritedPlaylistArticles = createSelector(
 
     const articles = playlist.playlistItems
       .filter(playlistItem => playlistItem.favoritedAt)
+      .sort((a, b) => {
+        const aTime = (a.favoritedAt !== null) ? new Date(a.favoritedAt).getTime() : 0;
+        const bTime = (b.favoritedAt !== null) ? new Date(b.favoritedAt).getTime() : 0;
+        return bTime - aTime;
+      })
       .map(playlistItem => playlistItem.article);
 
     return articles;

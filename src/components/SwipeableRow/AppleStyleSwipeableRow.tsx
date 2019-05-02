@@ -11,6 +11,8 @@ const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
 interface Props {
   removeArticle(): void;
+  archiveArticle(): void;
+  favoriteArticle(): void;
 }
 export class AppleStyleSwipeableRow extends React.PureComponent<Props> {
   private swipeableRef: React.RefObject<Swipeable> = React.createRef();
@@ -103,7 +105,7 @@ export class AppleStyleSwipeableRow extends React.PureComponent<Props> {
       return Alert.alert('No internet', 'You need an active internet connection to listen to archive this article.');
     }
 
-    return Alert.alert('Should archive this article');
+    return this.props.archiveArticle();
   }
 
   close = () => {

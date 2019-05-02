@@ -6,7 +6,7 @@ import { withNavigation, NavigationInjectedProps } from 'react-navigation';
 import isEqual from 'react-fast-compare';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH } from '../../constants/files';
-import { ALERT_ARTICLE_AUDIOFILE_CREATE_FAIL, ALERT_ARTICLE_PLAY_INTERNET_REQUIRED, ALERT_ARTICLE_AUDIOFILE_DOWNLOAD_FAIL, ALERT_ARTICLE_PLAY_FAIL, ALERT_ARTICLE_DOWNLOAD_FAIL, ALERT_PLAYLIST_UPDATE_FAIL, ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL, ALERT_ARTICLE_VOICE_FAIL, ALERT_ARTICLE_LANGUAGE_UNSUPPORTED } from '../../constants/messages';
+import { ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL, ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL, ALERT_ARTICLE_AUDIOFILE_CREATE_FAIL, ALERT_ARTICLE_PLAY_INTERNET_REQUIRED, ALERT_ARTICLE_AUDIOFILE_DOWNLOAD_FAIL, ALERT_ARTICLE_PLAY_FAIL, ALERT_ARTICLE_DOWNLOAD_FAIL, ALERT_PLAYLIST_UPDATE_FAIL, ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL, ALERT_ARTICLE_VOICE_FAIL, ALERT_ARTICLE_LANGUAGE_UNSUPPORTED } from '../../constants/messages';
 
 import * as cache from '../../cache';
 
@@ -17,7 +17,7 @@ import { AppleStyleSwipeableRow } from '../../components/SwipeableRow/AppleStyle
 import { ArticleEmptyProcessing, ArticleEmptyFailed } from './ArticleEmpty';
 
 import { RootState } from '../../reducers';
-import { getPlaylists, removeArticleFromPlaylist } from '../../reducers/playlists';
+import { getPlaylists, removeArticleFromPlaylist, archivePlaylistItem, favoritePlaylistItem } from '../../reducers/playlists';
 import { setTrack, PlaybackStatus, createAudiofile, resetPlaybackStatus } from '../../reducers/player';
 import { setDownloadedAudiofile } from '../../reducers/audiofiles';
 
@@ -337,6 +337,61 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     }
   }
 
+  handleArchiveArticle = async () => {
+    const articleId = this.props.article.id;
+    const { playlistId } = this.props;
+
+    try {
+      await this.props.archivePlaylistItem(articleId, playlistId);
+      this.fetchPlaylists();
+    } catch (err) {
+      console.log(err);
+      Alert.alert(
+        'Oops!',
+        ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL,
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel'
+          },
+          {
+            text: 'Try again',
+            onPress: () => this.handleArchiveArticle(),
+          },
+        ],
+        { cancelable: true }
+      );
+    }
+  }
+
+  handleFavoriteArticle = async () => {
+    const articleId = this.props.article.id;
+    const { playlistId } = this.props;
+
+    try {
+      await this.props.favoritePlaylistItem(articleId, playlistId);
+      this.fetchPlaylists();
+    } catch (err) {
+      console.log(err);
+      Alert.alert(
+        'Oops!',
+        ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL,
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel'
+          },
+          {
+            text: 'Try again',
+            onPress: () => this.handleFavoriteArticle(),
+          },
+        ],
+        { cancelable: true }
+      );
+    }
+  }
+
+
   get listenTimeInSeconds() {
     // const { article } = this.props;
 
@@ -377,6 +432,8 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     return (
       <AppleStyleSwipeableRow
         removeArticle={this.handleRemoveArticle}
+        archiveArticle={this.handleArchiveArticle}
+        favoriteArticle={this.handleFavoriteArticle}
       >
         {this.isFailed &&
           <ArticleEmptyFailed url={articleUrl} />
@@ -420,6 +477,8 @@ interface DispatchProps {
   createAudiofile(articleId: string, voiceId: string): void;
   getPlaylists(): void;
   removeArticleFromPlaylist(articleId: string, playlistId: string): void;
+  archivePlaylistItem(articleId: string, playlistId: string): void;
+  favoritePlaylistItem(articleId: string, playlistId: string): void;
   resetPlaybackStatus(): void;
   setDownloadedAudiofile(audiofile: Api.Audiofile): void;
 }
@@ -437,6 +496,8 @@ const mapDispatchToProps: DispatchProps = {
   getPlaylists,
   createAudiofile,
   removeArticleFromPlaylist,
+  archivePlaylistItem,
+  favoritePlaylistItem,
   resetPlaybackStatus,
   setDownloadedAudiofile
 };

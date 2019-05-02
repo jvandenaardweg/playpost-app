@@ -17,7 +17,9 @@ export const ALERT_ARTICLE_LANGUAGE_UNSUPPORTED = 'In this version we only allow
 export const ALERT_ARTICLE_VOICE_FAIL = 'Audiofile could not be generated at this point, because there is no available voice. Please try again later.';
 
 // Alerts related to the playlist
-export const ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL = 'We could not remove this article from your playlist.';
+export const ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL = 'We could not remove this article from your playlist. Please try again later.';
+export const ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL = 'We could not favorite this article. Please try again later.';
+export const ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL = 'We could not favorite this article. Please try again later.';
 export const ALERT_PLAYLIST_UPDATE_FAIL = 'We could get your up-to-date playlist.';
 
 // Alerts on the settings screen

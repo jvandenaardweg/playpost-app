@@ -13,6 +13,14 @@ export const CREATE_PLAYLIST_ITEM = 'playlists/CREATE_PLAYLIST_ITEM';
 export const CREATE_PLAYLIST_ITEM_SUCCESS = 'playlists/CREATE_PLAYLIST_ITEM_SUCCESS';
 export const CREATE_PLAYLIST_ITEM_FAIL = 'playlists/CREATE_PLAYLIST_ITEM_FAIL';
 
+export const ARCHIVE_PLAYLIST_ITEM = 'playlists/ARCHIVE_PLAYLIST_ITEM';
+export const ARCHIVE_PLAYLIST_ITEM_SUCCESS = 'playlists/ARCHIVE_PLAYLIST_ITEM_SUCCESS';
+export const ARCHIVE_PLAYLIST_ITEM_FAIL = 'playlists/ARCHIVE_PLAYLIST_ITEM_FAIL';
+
+export const FAVORITE_PLAYLIST_ITEM = 'playlists/FAVORITE_PLAYLIST_ITEM';
+export const FAVORITE_PLAYLIST_ITEM_SUCCESS = 'playlists/FAVORITE_PLAYLIST_ITEM_SUCCESS';
+export const FAVORITE_PLAYLIST_ITEM_FAIL = 'playlists/FAVORITE_PLAYLIST_ITEM_FAIL';
+
 export const REMOVE_PLAYLIST_ITEM = 'playlists/REMOVE_PLAYLIST_ITEM';
 export const REMOVE_PLAYLIST_ITEM_SUCCESS = 'playlists/REMOVE_PLAYLIST_ITEM_SUCCESS';
 export const REMOVE_PLAYLIST_ITEM_FAIL = 'playlists/REMOVE_PLAYLIST_ITEM_FAIL';
@@ -21,12 +29,14 @@ export const RESET_STATE = 'playlists/RESET_STATE';
 
 const GET_PLAYLISTS_FAIL_MESSAGE = 'An unknown error happened while getting your playlist. Please contact us when this happens all the time.';
 const CREATE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while adding this article to your playlist. Please contact us when this happens all the time.';
+const FAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while favoriting this article. Please contact us when this happens all the time.';
 const REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while removing this article from your playlist. Please contact us when this happens all the time.';
 const GET_ARTICLE_FAIL_MESSAGE = 'An unknown error happened while fetching an article. Please contact us when this happens all the time.';
 
 export interface PlaylistsState {
   isLoading: boolean;
   isLoadingCreateItem: boolean;
+  isLoadingFavoriteItem: boolean;
   playlists: Api.Playlist[];
   error: string;
 }
@@ -34,6 +44,7 @@ export interface PlaylistsState {
 const initialState: PlaylistsState = {
   isLoading: false,
   isLoadingCreateItem: false,
+  isLoadingFavoriteItem: false,
   playlists: [],
   error: ''
 };
@@ -153,6 +164,34 @@ export function playlistsReducer(state = initialState, action: PlaylistActionTyp
         error: (action.error.response) ? action.error.response.data.message : CREATE_PLAYLIST_ITEM_FAIL_MESSAGE
       };
 
+    case FAVORITE_PLAYLIST_ITEM:
+      return {
+        ...state,
+        isLoadingFavoriteItem: true
+      };
+
+    case FAVORITE_PLAYLIST_ITEM_SUCCESS:
+      Analytics.trackEvent('Favorite playlist article');
+
+      return {
+        ...state,
+        isLoadingFavoriteItem: false,
+        error: ''
+      };
+
+    case FAVORITE_PLAYLIST_ITEM_FAIL:
+      if (action.error.response && action.error.response.data && action.error.response.data.message) {
+        Analytics.trackEvent('Error favorite article', { message: action.error.response.data.message });
+      } else {
+        Analytics.trackEvent('Error favorite article', { message: FAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE });
+      }
+
+      return {
+        ...state,
+        isLoadingCreateItem: false,
+        error: (action.error.response) ? action.error.response.data.message : CREATE_PLAYLIST_ITEM_FAIL_MESSAGE
+      };
+
     case REMOVE_PLAYLIST_ITEM:
       return {
         ...state,
@@ -238,6 +277,36 @@ export function removeArticleFromPlaylist(articleId: string, playlistId: string)
       request: {
         method: 'delete',
         url: `v1/playlists/${playlistId}/articles/${articleId}`
+      }
+    }
+  };
+}
+
+export function favoritePlaylistItem(articleId: string, playlistId: string) {
+  return {
+    type: FAVORITE_PLAYLIST_ITEM,
+    payload: {
+      request: {
+        method: 'patch',
+        url: `v1/playlists/${playlistId}/articles/${articleId}/favoritedat`,
+        data: {
+          favoritedAt: new Date() // date is ignored on the server, we use server time
+        }
+      }
+    }
+  };
+}
+
+export function archivePlaylistItem(articleId: string, playlistId: string) {
+  return {
+    type: ARCHIVE_PLAYLIST_ITEM,
+    payload: {
+      request: {
+        method: 'patch',
+        url: `v1/playlists/${playlistId}/articles/${articleId}/archivedat`,
+        data: {
+          archivedAt: new Date() // date is ignored on the server, we use server time
+        }
       }
     }
   };
