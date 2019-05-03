@@ -2,9 +2,8 @@ import React from 'react';
 import { Animated, StyleSheet, View, Alert } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
-// import Icon from 'react-native-vector-icons/Feather';
-import * as Icon from '../../components/Icon';
 
+import * as Icon from '../../components/Icon';
 import { NetworkContext } from '../../contexts/NetworkProvider';
 import fonts from '../../constants/fonts';
 import colors from '../../constants/colors';
@@ -20,19 +19,6 @@ export class AppleStyleSwipeableRow extends React.PureComponent<Props> {
   private swipeableRef: React.RefObject<Swipeable> = React.createRef();
 
   static contextType = NetworkContext;
-
-  renderLeftActions = (progress: Animated.Value, dragX: Animated.Value) => {
-    return (
-      <RectButton style={styles.leftAction} onPress={this.close}>
-        <Icon.Feather
-          name="archive"
-          size={22}
-          color="#10A641"
-          style={styles.actionIcon}
-        />
-      </RectButton>
-    );
-  }
 
   handleOnPressRightAction = (actionName: string) => {
     const { isConnected } = this.context;
@@ -68,7 +54,7 @@ export class AppleStyleSwipeableRow extends React.PureComponent<Props> {
 
   renderRightAction = (action: string, icon: string, iconColor: string | null) => {
     return (
-      <Animated.View style={{ flex: 1 }}>
+      <View style={styles.rightActionContainer}>
         <RectButton
           style={styles.rightAction}
           onPress={() => this.handleOnPressRightAction(action)}
@@ -77,32 +63,24 @@ export class AppleStyleSwipeableRow extends React.PureComponent<Props> {
             name={icon}
             size={22}
             color={(iconColor) ? iconColor : colors.gray}
-            style={styles.actionIcon}
           />
         </RectButton>
-      </Animated.View>
+      </View>
     );
   }
 
-  renderRightActions = (progress: Animated.Value, dragX: Animated.Value) => (
-    <View style={{ width: 250, flexDirection: 'row', paddingLeft: 16, paddingRight: 16 }}>
-      {this.renderRightAction('download', 'download', null)}
-      {this.renderRightAction('archive', 'archive', (this.props.isArchived) ? colors.black : null)}
-      {this.renderRightAction('favorite', 'heart', (this.props.isFavorited) ? colors.black : null)}
-      {this.renderRightAction('delete', 'trash-2', null)}
-    </View>
-  )
+  renderRightActions = (progressAnimatedValue: Animated.Value | Animated.AnimatedInterpolation, dragAnimatedValue: Animated.Value | Animated.AnimatedInterpolation) => {
+    const { isArchived, isFavorited } = this.props;
 
-  // onSwipeableLeftWillOpen = () => {
-  //   const { isConnected } = this.context;
-
-  //   if (!isConnected) {
-  //     this.close();
-  //     return Alert.alert('No internet', 'You need an active internet connection to listen to archive this article.');
-  //   }
-
-  //   return this.props.archiveArticle();
-  // }
+    return (
+      <Animated.View style={styles.rightActionsContainer}>
+        {this.renderRightAction('download', 'download', null)}
+        {this.renderRightAction('archive', 'archive', (isArchived) ? colors.black : null)}
+        {this.renderRightAction('favorite', 'heart', (isFavorited) ? colors.black : null)}
+        {this.renderRightAction('delete', 'trash-2', null)}
+      </Animated.View>
+    );
+  }
 
   close = () => {
     this.swipeableRef.current && this.swipeableRef.current.close();
@@ -113,10 +91,7 @@ export class AppleStyleSwipeableRow extends React.PureComponent<Props> {
       <Swipeable
         ref={this.swipeableRef}
         friction={2}
-        // leftThreshold={80}
         rightThreshold={40}
-        // onSwipeableLeftWillOpen={this.onSwipeableLeftWillOpen}
-        // renderLeftActions={this.renderLeftActions}
         renderRightActions={this.renderRightActions}
       >
         {this.props.children}
@@ -137,13 +112,21 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     padding: 10,
   },
-  actionIcon: {
-    width: 30,
-    marginHorizontal: 20,
+  rightActionsContainer: {
+    width: 250,
+    flexDirection: 'row',
+    paddingLeft: 16,
+    paddingRight: 16
+  },
+  rightActionContainer: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
   },
   rightAction: {
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
+    width: 54 // 250 - 16 - 16 / 4
   },
 });

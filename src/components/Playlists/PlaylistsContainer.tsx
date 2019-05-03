@@ -20,8 +20,6 @@ import { RootState } from '../../reducers';
 import { getDownloadedAudiofiles } from '../../selectors/audiofiles';
 import { ArticleSeperator } from '../Article/ArticleSeperator';
 
-// import { GmailStyleSwipeableRow } from '../../components/SwipeableRow/GmailStyleSwipeableRow';
-
 interface State {
   isLoading: boolean;
   isRefreshing: boolean;
