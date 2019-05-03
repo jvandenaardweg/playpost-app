@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "importHelpers": true, // https://github.com/piotrwitek/react-redux-typescript-guide/blob/master/README.md#tslib
     // "rootDir": "src",
     // "baseUrl": "src",
     "allowJs": false,
