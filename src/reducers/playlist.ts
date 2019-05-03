@@ -17,9 +17,17 @@ export const ARCHIVE_PLAYLIST_ITEM = 'playlist/ARCHIVE_PLAYLIST_ITEM';
 export const ARCHIVE_PLAYLIST_ITEM_SUCCESS = 'playlist/ARCHIVE_PLAYLIST_ITEM_SUCCESS';
 export const ARCHIVE_PLAYLIST_ITEM_FAIL = 'playlist/ARCHIVE_PLAYLIST_ITEM_FAIL';
 
+export const UNARCHIVE_PLAYLIST_ITEM = 'playlist/UNARCHIVE_PLAYLIST_ITEM';
+export const UNARCHIVE_PLAYLIST_ITEM_SUCCESS = 'playlist/UNARCHIVE_PLAYLIST_ITEM_SUCCESS';
+export const UNARCHIVE_PLAYLIST_ITEM_FAIL = 'playlist/UNARCHIVE_PLAYLIST_ITEM_FAIL';
+
 export const FAVORITE_PLAYLIST_ITEM = 'playlist/FAVORITE_PLAYLIST_ITEM';
 export const FAVORITE_PLAYLIST_ITEM_SUCCESS = 'playlist/FAVORITE_PLAYLIST_ITEM_SUCCESS';
 export const FAVORITE_PLAYLIST_ITEM_FAIL = 'playlist/FAVORITE_PLAYLIST_ITEM_FAIL';
+
+export const UNFAVORITE_PLAYLIST_ITEM = 'playlist/UNFAVORITE_PLAYLIST_ITEM';
+export const UNFAVORITE_PLAYLIST_ITEM_SUCCESS = 'playlist/UNFAVORITE_PLAYLIST_ITEM_SUCCESS';
+export const UNFAVORITE_PLAYLIST_ITEM_FAIL = 'playlist/UNFAVORITE_PLAYLIST_ITEM_FAIL';
 
 export const REMOVE_PLAYLIST_ITEM = 'playlist/REMOVE_PLAYLIST_ITEM';
 export const REMOVE_PLAYLIST_ITEM_SUCCESS = 'playlist/REMOVE_PLAYLIST_ITEM_SUCCESS';
@@ -30,6 +38,9 @@ export const RESET_STATE = 'playlist/RESET_STATE';
 const GET_PLAYLIST_FAIL_MESSAGE = 'An unknown error happened while getting your playlist. Please contact us when this happens all the time.';
 const CREATE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while adding this article to your playlist. Please contact us when this happens all the time.';
 const FAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while favoriting this article. Please contact us when this happens all the time.';
+const UNFAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while unfavoriting this article. Please contact us when this happens all the time.';
+const ARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while archiving this article. Please contact us when this happens all the time.';
+const UNARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while unarchiving this article. Please contact us when this happens all the time.';
 const REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while removing this article from your playlist. Please contact us when this happens all the time.';
 const GET_ARTICLE_FAIL_MESSAGE = 'An unknown error happened while fetching an article. Please contact us when this happens all the time.';
 
@@ -37,6 +48,9 @@ export interface PlaylistState {
   isLoading: boolean;
   isLoadingCreateItem: boolean;
   isLoadingFavoriteItem: boolean;
+  isLoadingUnFavoriteItem: boolean;
+  isLoadingArchiveItem: boolean;
+  isLoadingUnArchiveItem: boolean;
   items: Api.PlaylistItem[];
   error: string;
 }
@@ -45,6 +59,9 @@ const initialState: PlaylistState = {
   isLoading: false,
   isLoadingCreateItem: false,
   isLoadingFavoriteItem: false,
+  isLoadingUnFavoriteItem: false,
+  isLoadingArchiveItem: false,
+  isLoadingUnArchiveItem: false,
   items: [],
   error: ''
 };
@@ -183,8 +200,92 @@ export function playlistReducer(state = initialState, action: PlaylistActionType
 
       return {
         ...state,
-        isLoadingCreateItem: false,
-        error: (action.error.response) ? action.error.response.data.message : CREATE_PLAYLIST_ITEM_FAIL_MESSAGE
+        isLoadingFavoriteItem: false,
+        error: (action.error.response) ? action.error.response.data.message : FAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE
+      };
+
+    case UNFAVORITE_PLAYLIST_ITEM:
+      return {
+        ...state,
+        isLoadingUnFavoriteItem: true
+      };
+
+    case UNFAVORITE_PLAYLIST_ITEM_SUCCESS:
+      Analytics.trackEvent('Unfavorite playlist article');
+
+      return {
+        ...state,
+        isLoadingUnFavoriteItem: false,
+        error: ''
+      };
+
+    case UNFAVORITE_PLAYLIST_ITEM_FAIL:
+      if (action.error.response && action.error.response.data && action.error.response.data.message) {
+        Analytics.trackEvent('Error unfavorite article', { message: action.error.response.data.message });
+      } else {
+        Analytics.trackEvent('Error unfavorite article', { message: UNFAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE });
+      }
+
+      return {
+        ...state,
+        isLoadingUnFavoriteItem: false,
+        error: (action.error.response) ? action.error.response.data.message : UNFAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE
+      };
+
+    case ARCHIVE_PLAYLIST_ITEM:
+      return {
+        ...state,
+        isLoadingArchiveItem: true
+      };
+
+    case ARCHIVE_PLAYLIST_ITEM_SUCCESS:
+      Analytics.trackEvent('Archive playlist article');
+
+      return {
+        ...state,
+        isLoadingArchiveItem: false,
+        error: ''
+      };
+
+    case ARCHIVE_PLAYLIST_ITEM_FAIL:
+      if (action.error.response && action.error.response.data && action.error.response.data.message) {
+        Analytics.trackEvent('Error archive article', { message: action.error.response.data.message });
+      } else {
+        Analytics.trackEvent('Error archive article', { message: ARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE });
+      }
+
+      return {
+        ...state,
+        isLoadingArchiveItem: false,
+        error: (action.error.response) ? action.error.response.data.message : ARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE
+      };
+
+    case UNARCHIVE_PLAYLIST_ITEM:
+      return {
+        ...state,
+        isLoadingUnArchiveItem: true
+      };
+
+    case UNARCHIVE_PLAYLIST_ITEM_SUCCESS:
+      Analytics.trackEvent('Unarchive playlist article');
+
+      return {
+        ...state,
+        isLoadingUnArchiveItem: false,
+        error: ''
+      };
+
+    case UNARCHIVE_PLAYLIST_ITEM_FAIL:
+      if (action.error.response && action.error.response.data && action.error.response.data.message) {
+        Analytics.trackEvent('Error unarchive article', { message: action.error.response.data.message });
+      } else {
+        Analytics.trackEvent('Error unarchive article', { message: UNARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE });
+      }
+
+      return {
+        ...state,
+        isLoadingUnArchiveItem: false,
+        error: (action.error.response) ? action.error.response.data.message : UNARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE
       };
 
     case REMOVE_PLAYLIST_ITEM:
@@ -292,6 +393,21 @@ export function favoritePlaylistItem(articleId: string) {
   };
 }
 
+export function unFavoritePlaylistItem(articleId: string) {
+  return {
+    type: UNFAVORITE_PLAYLIST_ITEM,
+    payload: {
+      request: {
+        method: 'patch',
+        url: `v1/playlist/articles/${articleId}/favoritedat`,
+        data: {
+          favoritedAt: null
+        }
+      }
+    }
+  };
+}
+
 export function archivePlaylistItem(articleId: string) {
   return {
     type: ARCHIVE_PLAYLIST_ITEM,
@@ -301,6 +417,21 @@ export function archivePlaylistItem(articleId: string) {
         url: `v1/playlist/articles/${articleId}/archivedat`,
         data: {
           archivedAt: new Date() // date is ignored on the server, we use server time
+        }
+      }
+    }
+  };
+}
+
+export function unArchivePlaylistItem(articleId: string) {
+  return {
+    type: UNARCHIVE_PLAYLIST_ITEM,
+    payload: {
+      request: {
+        method: 'patch',
+        url: `v1/playlist/articles/${articleId}/archivedat`,
+        data: {
+          archivedAt: null
         }
       }
     }

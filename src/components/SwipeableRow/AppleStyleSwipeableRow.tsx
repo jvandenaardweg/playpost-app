@@ -12,6 +12,8 @@ interface Props {
   removeArticle(): void;
   archiveArticle(): void;
   favoriteArticle(): void;
+  unArchiveArticle(): void;
+  unFavoriteArticle(): void;
   isFavorited: boolean;
   isArchived: boolean;
 }
@@ -36,12 +38,16 @@ export class AppleStyleSwipeableRow extends React.PureComponent<Props> {
     if (actionName === 'favorite') {
       if (!isFavorited) {
         this.props.favoriteArticle();
+      } else {
+        this.props.unFavoriteArticle();
       }
     }
 
     if (actionName === 'archive') {
       if (!isArchived) {
         this.props.archiveArticle();
+      } else {
+        this.props.unArchiveArticle();
       }
     }
 

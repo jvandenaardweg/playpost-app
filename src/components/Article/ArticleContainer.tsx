@@ -6,7 +6,7 @@ import { withNavigation, NavigationInjectedProps } from 'react-navigation';
 import isEqual from 'react-fast-compare';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH } from '../../constants/files';
-import { ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL, ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL, ALERT_ARTICLE_AUDIOFILE_CREATE_FAIL, ALERT_ARTICLE_PLAY_INTERNET_REQUIRED, ALERT_ARTICLE_AUDIOFILE_DOWNLOAD_FAIL, ALERT_ARTICLE_PLAY_FAIL, ALERT_ARTICLE_DOWNLOAD_FAIL, ALERT_PLAYLIST_UPDATE_FAIL, ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL, ALERT_ARTICLE_VOICE_FAIL, ALERT_ARTICLE_LANGUAGE_UNSUPPORTED } from '../../constants/messages';
+import { ALERT_PLAYLIST_UNFAVORITE_ARTICLE_FAIL, ALERT_PLAYLIST_UNARCHIVE_ARTICLE_FAIL, ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL, ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL, ALERT_ARTICLE_AUDIOFILE_CREATE_FAIL, ALERT_ARTICLE_PLAY_INTERNET_REQUIRED, ALERT_ARTICLE_AUDIOFILE_DOWNLOAD_FAIL, ALERT_ARTICLE_PLAY_FAIL, ALERT_ARTICLE_DOWNLOAD_FAIL, ALERT_PLAYLIST_UPDATE_FAIL, ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL, ALERT_ARTICLE_VOICE_FAIL, ALERT_ARTICLE_LANGUAGE_UNSUPPORTED } from '../../constants/messages';
 
 import * as cache from '../../cache';
 
@@ -17,7 +17,7 @@ import { AppleStyleSwipeableRow } from '../../components/SwipeableRow/AppleStyle
 import { ArticleEmptyProcessing, ArticleEmptyFailed } from './ArticleEmpty';
 
 import { RootState } from '../../reducers';
-import { getPlaylist, removeArticleFromPlaylist, archivePlaylistItem, favoritePlaylistItem } from '../../reducers/playlist';
+import { getPlaylist, removeArticleFromPlaylist, archivePlaylistItem, favoritePlaylistItem, unArchivePlaylistItem, unFavoritePlaylistItem } from '../../reducers/playlist';
 import { setTrack, PlaybackStatus, createAudiofile, resetPlaybackStatus } from '../../reducers/player';
 import { setDownloadedAudiofile } from '../../reducers/audiofiles';
 
@@ -399,6 +399,58 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     }
   }
 
+  handleUnFavoriteArticle = async () => {
+    const articleId = this.props.article.id;
+
+    try {
+      await this.props.unFavoritePlaylistItem(articleId);
+      this.fetchPlaylist();
+    } catch (err) {
+      console.log(err);
+      Alert.alert(
+        'Oops!',
+        ALERT_PLAYLIST_UNFAVORITE_ARTICLE_FAIL,
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel'
+          },
+          {
+            text: 'Try again',
+            onPress: () => this.handleUnFavoriteArticle(),
+          },
+        ],
+        { cancelable: true }
+      );
+    }
+  }
+
+  handleUnArchiveArticle = async () => {
+    const articleId = this.props.article.id;
+
+    try {
+      await this.props.unArchivePlaylistItem(articleId);
+      this.fetchPlaylist();
+    } catch (err) {
+      console.log(err);
+      Alert.alert(
+        'Oops!',
+        ALERT_PLAYLIST_UNARCHIVE_ARTICLE_FAIL,
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel'
+          },
+          {
+            text: 'Try again',
+            onPress: () => this.handleUnArchiveArticle(),
+          },
+        ],
+        { cancelable: true }
+      );
+    }
+  }
+
   get listenTimeInSeconds() {
     // TODO: when using multiple audiofiles, we need to adjust this
     return (this.articleAudiofiles[0] && this.articleAudiofiles[0].length) ? this.articleAudiofiles[0].length : 0;
@@ -440,6 +492,8 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         removeArticle={this.handleRemoveArticle}
         archiveArticle={this.handleArchiveArticle}
         favoriteArticle={this.handleFavoriteArticle}
+        unArchiveArticle={this.handleUnArchiveArticle}
+        unFavoriteArticle={this.handleUnFavoriteArticle}
         isFavorited={isFavorited}
         isArchived={isArchived}
       >
@@ -488,6 +542,8 @@ interface DispatchProps {
   removeArticleFromPlaylist(articleId: string): void;
   archivePlaylistItem(articleId: string): void;
   favoritePlaylistItem(articleId: string): void;
+  unArchivePlaylistItem(articleId: string): void;
+  unFavoritePlaylistItem(articleId: string): void;
   resetPlaybackStatus(): void;
   setDownloadedAudiofile(audiofile: Api.Audiofile): void;
 }
@@ -507,6 +563,8 @@ const mapDispatchToProps: DispatchProps = {
   removeArticleFromPlaylist,
   archivePlaylistItem,
   favoritePlaylistItem,
+  unArchivePlaylistItem,
+  unFavoritePlaylistItem,
   resetPlaybackStatus,
   setDownloadedAudiofile
 };
