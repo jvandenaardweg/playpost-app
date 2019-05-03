@@ -34,6 +34,7 @@ interface State {
 
 interface IProps extends NavigationInjectedProps {
   article: Api.Article;
+  playlistItem: Api.PlaylistItem;
   isDownloaded: boolean;
   isFavorited: boolean;
   isArchived: boolean;
@@ -72,6 +73,12 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     // For example: when the article status turns from "new" into "finished", so the article is crawled and
     // has information like; title, description etc...
     if (!isEqual(this.props.article, nextProps.article)) {
+      return true;
+    }
+
+    // Re-render when playlist item for this article changes
+    // For example: when the user favorites or archived an playlist item
+    if (!isEqual(this.props.playlistItem, nextProps.playlistItem)) {
       return true;
     }
 
@@ -433,6 +440,8 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         removeArticle={this.handleRemoveArticle}
         archiveArticle={this.handleArchiveArticle}
         favoriteArticle={this.handleFavoriteArticle}
+        isFavorited={isFavorited}
+        isArchived={isArchived}
       >
         {this.isFailed &&
           <ArticleEmptyFailed url={articleUrl} />

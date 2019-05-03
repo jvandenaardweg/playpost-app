@@ -252,6 +252,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
           <ArticleContainer
             isFavorited={!!item.favoritedAt}
             isArchived={!!item.archivedAt}
+            playlistItem={item}
             article={item.article}
             isDownloaded={this.isDownloaded(item.article)}
           />

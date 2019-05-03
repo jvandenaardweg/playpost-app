@@ -2,17 +2,19 @@ import React from 'react';
 import { Animated, StyleSheet, View, Alert } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
-import Icon from 'react-native-vector-icons/Feather';
+// import Icon from 'react-native-vector-icons/Feather';
+import * as Icon from '../../components/Icon';
 
 import { NetworkContext } from '../../contexts/NetworkProvider';
 import fonts from '../../constants/fonts';
-
-const AnimatedIcon = Animated.createAnimatedComponent(Icon);
+import colors from '../../constants/colors';
 
 interface Props {
   removeArticle(): void;
   archiveArticle(): void;
   favoriteArticle(): void;
+  isFavorited: boolean;
+  isArchived: boolean;
 }
 export class AppleStyleSwipeableRow extends React.PureComponent<Props> {
   private swipeableRef: React.RefObject<Swipeable> = React.createRef();
@@ -20,24 +22,13 @@ export class AppleStyleSwipeableRow extends React.PureComponent<Props> {
   static contextType = NetworkContext;
 
   renderLeftActions = (progress: Animated.Value, dragX: Animated.Value) => {
-    const translateX = dragX.interpolate({
-      inputRange: [0, 50, 80, 81],
-      outputRange: [-20, 0, 0, 1],
-    });
-
-    const scale = dragX.interpolate({
-      inputRange: [0, 80],
-      outputRange: [0, 1],
-      extrapolate: 'clamp',
-    });
-
     return (
       <RectButton style={styles.leftAction} onPress={this.close}>
-        <AnimatedIcon
+        <Icon.Feather
           name="archive"
           size={20}
           color="#10A641"
-          style={[styles.actionIcon, { transform: [{ scale }, { translateX }] }]}
+          style={styles.actionIcon}
         />
       </RectButton>
     );
@@ -45,45 +36,48 @@ export class AppleStyleSwipeableRow extends React.PureComponent<Props> {
 
   handleOnPressRightAction = (actionName: string) => {
     const { isConnected } = this.context;
+    const { isFavorited, isArchived } = this.props;
 
     if (!isConnected) {
       this.close();
-      return Alert.alert('No internet', `You need an active internet connection to listen to ${actionName} this article.`);
+      return Alert.alert('No internet', 'You need an active internet connection to do this.');
     }
 
     if (actionName === 'delete') {
-      // console.log('Should show delete animation.');
-      return this.props.removeArticle();
+      this.props.removeArticle();
     }
 
-    Alert.alert(`Should ${actionName} this article.`);
+    if (actionName === 'favorite') {
+      if (!isFavorited) {
+        this.props.favoriteArticle();
+      }
+    }
+
+    if (actionName === 'archive') {
+      if (!isArchived) {
+        this.props.archiveArticle();
+      }
+    }
+
+    if (actionName === 'download') {
+      return Alert.alert('Not available yet', 'This feature is not available yet.');
+    }
 
     return this.close();
   }
 
-  renderRightAction = (action: string, icon: string, color: string, fill: string, x: number, progress: Animated.Value, dragX: Animated.Value) => {
-    const trans = progress.interpolate({
-      inputRange: [0, 1],
-      outputRange: [x, 0],
-    });
-
-    const scale = dragX.interpolate({
-      inputRange: [-80, 0],
-      outputRange: [1, 0],
-      extrapolate: 'clamp',
-    });
-
+  renderRightAction = (action: string, icon: string, iconColor: string | null) => {
     return (
-      <Animated.View style={{ flex: 1, transform: [{ translateX: trans }] }}>
+      <Animated.View style={{ flex: 1 }}>
         <RectButton
-          style={[styles.rightAction, { backgroundColor: color }]}
+          style={styles.rightAction}
           onPress={() => this.handleOnPressRightAction(action)}
         >
-          <AnimatedIcon
+          <Icon.Feather
             name={icon}
             size={20}
-            color={fill}
-            style={[styles.actionIcon, { transform: [{ scale }] }]}
+            color={(iconColor) ? iconColor : colors.gray}
+            style={styles.actionIcon}
           />
         </RectButton>
       </Animated.View>
@@ -91,22 +85,24 @@ export class AppleStyleSwipeableRow extends React.PureComponent<Props> {
   }
 
   renderRightActions = (progress: Animated.Value, dragX: Animated.Value) => (
-    <View style={{ width: 192, flexDirection: 'row' }}>
-      {this.renderRightAction('download', 'download', '#CDE7F0', '#1566AA', 128, progress, dragX)}
-      {this.renderRightAction('delete', 'trash-2', '#FBD6D6', '#E7383D', 64, progress, dragX)}
+    <View style={{ width: 250, flexDirection: 'row', paddingLeft: 16, paddingRight: 16 }}>
+      {this.renderRightAction('download', 'download', null)}
+      {this.renderRightAction('archive', 'archive', (this.props.isArchived) ? colors.black : null)}
+      {this.renderRightAction('favorite', 'heart', (this.props.isFavorited) ? colors.black : null)}
+      {this.renderRightAction('delete', 'trash-2', null)}
     </View>
   )
 
-  onSwipeableLeftWillOpen = () => {
-    const { isConnected } = this.context;
+  // onSwipeableLeftWillOpen = () => {
+  //   const { isConnected } = this.context;
 
-    if (!isConnected) {
-      this.close();
-      return Alert.alert('No internet', 'You need an active internet connection to listen to archive this article.');
-    }
+  //   if (!isConnected) {
+  //     this.close();
+  //     return Alert.alert('No internet', 'You need an active internet connection to listen to archive this article.');
+  //   }
 
-    return this.props.archiveArticle();
-  }
+  //   return this.props.archiveArticle();
+  // }
 
   close = () => {
     this.swipeableRef.current && this.swipeableRef.current.close();
@@ -117,10 +113,10 @@ export class AppleStyleSwipeableRow extends React.PureComponent<Props> {
       <Swipeable
         ref={this.swipeableRef}
         friction={2}
-        leftThreshold={80}
+        // leftThreshold={80}
         rightThreshold={40}
-        onSwipeableLeftWillOpen={this.onSwipeableLeftWillOpen}
-        renderLeftActions={this.renderLeftActions}
+        // onSwipeableLeftWillOpen={this.onSwipeableLeftWillOpen}
+        // renderLeftActions={this.renderLeftActions}
         renderRightActions={this.renderRightActions}
       >
         {this.props.children}
@@ -147,7 +143,6 @@ const styles = StyleSheet.create({
   },
   rightAction: {
     alignItems: 'center',
-    backgroundColor: '#dd2c00',
     flex: 1,
     justifyContent: 'center',
   },
