@@ -25,7 +25,7 @@ import { getCurrentUser } from '../selectors/user';
 import { persistor } from '../store';
 import { RootState } from '../reducers';
 import { ALERT_SETTINGS_SET_CACHE_SIZE_FAIL, ALERT_SETTINGS_SETTING_UNAVAILABLE, ALERT_SETTINGS_RESET_CACHE_FAIL, ALERT_SETTINGS_CLEAR_CACHE_WARNING, ALERT_SETTINGS_LOGOUT_FAIL } from '../constants/messages';
-import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE, URL_ABOUT } from '../constants/urls';
+import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE, URL_ABOUT, URL_FEEDBACK } from '../constants/urls';
 import colors from '../constants/colors';
 import spacing from '../constants/spacing';
 
@@ -348,6 +348,16 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
         {
           title: 'Terms of Use',
           onPress: () => this.props.navigation.navigate('Browser', { url: URL_TERMS_OF_USE, title: 'Terms of Use' }),
+          showDisclosureIndicator: true
+        },
+        {
+          title: 'Feedback',
+          onPress: () => this.props.navigation.navigate('Browser', { url: URL_FEEDBACK, title: 'Feedback' }),
+          showDisclosureIndicator: true
+        },
+        {
+          title: 'Support',
+          onPress: () => this.props.navigation.navigate('Browser', { url: URL_FEEDBACK, title: 'Support' }),
           showDisclosureIndicator: true
         },
       ],
