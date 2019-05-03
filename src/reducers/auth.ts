@@ -9,11 +9,11 @@ export const POST_AUTH_FAIL = 'auth/POST_AUTH_FAIL';
 export const RESET_AUTH_STATE = 'auth/RESET_AUTH_STATE';
 export const SET_AUTH_TOKEN = 'auth/SET_AUTH_TOKEN';
 
-export interface AuthState {
-  isLoading: boolean;
-  token: string;
-  error: string;
-}
+export type AuthState = {
+  readonly isLoading: boolean;
+  readonly token: string;
+  readonly error: string;
+};
 
 const initialState: AuthState = {
   isLoading: false,
@@ -22,11 +22,11 @@ const initialState: AuthState = {
 };
 
 /* tslint:disable no-any */
-interface AuthActionTypes {
+type AuthActionTypes = {
   type: string;
   payload: any;
   error: AxiosError & AxiosResponse;
-}
+};
 
 export function authReducer(state = initialState, action: AuthActionTypes): AuthState {
   switch (action.type) {
@@ -88,33 +88,27 @@ export function authReducer(state = initialState, action: AuthActionTypes): Auth
   }
 }
 
-export function setAuthToken(token: string) {
-  return {
-    type: SET_AUTH_TOKEN,
-    payload: {
-      token
-    }
-  };
-}
+export const setAuthToken = (token: string) => ({
+  type: SET_AUTH_TOKEN,
+  payload: {
+    token
+  }
+});
 
-export function resetAuthState() {
-  return {
-    type: RESET_AUTH_STATE
-  };
-}
+export const resetAuthState = () => ({
+  type: RESET_AUTH_STATE
+});
 
-export function postAuth(email: string, password: string) {
-  return {
-    type: POST_AUTH,
-    payload: {
-      request: {
-        method: 'post',
-        url: '/v1/auth',
-        data: {
-          email,
-          password
-        }
+export const postAuth = (email: string, password: string) => ({
+  type: POST_AUTH,
+  payload: {
+    request: {
+      method: 'post',
+      url: '/v1/auth',
+      data: {
+        email,
+        password
       }
     }
-  };
-}
+  }
+});

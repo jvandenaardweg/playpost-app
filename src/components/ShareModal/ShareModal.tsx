@@ -15,16 +15,16 @@ interface State {
   errorMessage: string;
 }
 
-interface Props {
+interface IProps {
   url: string;
   type: string;
   closeDelay?: number;
   playlistError: string;
-  isLoadingCreateItem: boolean;
   onPressClose(): void;
   onPressSave(): void;
-  addArticleToPlaylistByUrl(articleUrl: string): void;
 }
+
+type Props = IProps & StateProps & DispatchProps;
 
 export class ShareModalContainer extends React.PureComponent<Props, State> {
   state = {
@@ -113,6 +113,14 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
       </View>
     );
   }
+}
+
+interface StateProps {
+  isLoadingCreateItem: ReturnType<typeof getPlaylistIsLoadingCreateItem>;
+}
+
+interface DispatchProps {
+  addArticleToPlaylistByUrl: typeof addArticleToPlaylistByUrl;
 }
 
 const mapStateToProps = (state: RootState) => ({

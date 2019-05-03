@@ -22,9 +22,10 @@ export const getAllPlaylistArticles = createSelector(
   (playlistItems) => {
     if (!playlistItems || !playlistItems.length) return [];
 
-    const articles = playlistItems
-      .sort((a, b) => a.order - b.order) // Sort by the custom order
-      .map(playlistItem => playlistItem.article);
+    // Create a copy of the array, to enforce immutability. Then sort it.
+    const sortedPlaylistItems = [...playlistItems].sort((a, b) => a.order - b.order);
+
+    const articles = sortedPlaylistItems.map(playlistItem => playlistItem.article);
 
     return articles;
   }

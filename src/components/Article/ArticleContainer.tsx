@@ -18,7 +18,7 @@ import { ArticleEmptyProcessing, ArticleEmptyFailed } from './ArticleEmpty';
 
 import { RootState } from '../../reducers';
 import { getPlaylist, removeArticleFromPlaylist, archivePlaylistItem, favoritePlaylistItem, unArchivePlaylistItem, unFavoritePlaylistItem } from '../../reducers/playlist';
-import { setTrack, PlaybackStatus, createAudiofile, resetPlaybackStatus } from '../../reducers/player';
+import { setTrack, createAudiofile, resetPlaybackStatus } from '../../reducers/player';
 import { setDownloadedAudiofile } from '../../reducers/audiofiles';
 
 import { getPlayerTrack, getPlayerPlaybackState } from '../../selectors/player';
@@ -528,27 +528,27 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 }
 
 interface StateProps {
-  track: TrackPlayer.Track;
-  playbackState: PlaybackStatus;
-  defaultPremiumVoice: Api.Voice | undefined;
-  defaultFreeVoice: Api.Voice | undefined;
-  selectedVoice: Api.Voice | undefined;
+  track: ReturnType<typeof getPlayerTrack>;
+  playbackState: ReturnType<typeof getPlayerPlaybackState>;
+  defaultPremiumVoice: ReturnType<typeof getDefaultPremiumVoice>;
+  defaultFreeVoice: ReturnType<typeof getDefaultFreeVoice>;
+  selectedVoice: ReturnType<typeof getSelectedVoice>;
 }
 
 interface DispatchProps {
-  setTrack(track: TrackPlayer.Track): void;
-  createAudiofile(articleId: string, voiceId: string): void;
-  getPlaylist(): void;
-  removeArticleFromPlaylist(articleId: string): void;
-  archivePlaylistItem(articleId: string): void;
-  favoritePlaylistItem(articleId: string): void;
-  unArchivePlaylistItem(articleId: string): void;
-  unFavoritePlaylistItem(articleId: string): void;
-  resetPlaybackStatus(): void;
-  setDownloadedAudiofile(audiofile: Api.Audiofile): void;
+  setTrack: typeof setTrack;
+  createAudiofile: typeof createAudiofile;
+  getPlaylist: typeof getPlaylist;
+  removeArticleFromPlaylist: typeof removeArticleFromPlaylist;
+  archivePlaylistItem: typeof archivePlaylistItem;
+  favoritePlaylistItem: typeof favoritePlaylistItem;
+  unArchivePlaylistItem: typeof unArchivePlaylistItem;
+  unFavoritePlaylistItem: typeof unFavoritePlaylistItem;
+  resetPlaybackStatus: typeof resetPlaybackStatus;
+  setDownloadedAudiofile: typeof setDownloadedAudiofile;
 }
 
-const mapStateToProps = (state: RootState): StateProps => ({
+const mapStateToProps = (state: RootState) => ({
   track: getPlayerTrack(state),
   playbackState: getPlayerPlaybackState(state),
   defaultPremiumVoice: getDefaultPremiumVoice(state),

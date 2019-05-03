@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
+import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions, NavigationInjectedProps } from 'react-navigation';
 import * as Keychain from 'react-native-keychain';
 import { Alert } from 'react-native';
 
@@ -22,13 +22,9 @@ interface State {
   error: any;
 }
 
-interface Props {
-  authError: string;
-  userError: string;
-  getUser(): void;
-  postAuth(email: string, password: string): void;
-  navigation: NavigationScreenProp<NavigationRoute>;
-}
+interface IProps extends NavigationInjectedProps {}
+
+type Props = IProps & StateProps & DispatchProps;
 
 class LoginScreenContainer extends React.PureComponent<Props, State> {
   static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
@@ -113,6 +109,16 @@ class LoginScreenContainer extends React.PureComponent<Props, State> {
       />
     );
   }
+}
+
+interface StateProps {
+  authError: ReturnType<typeof getAuthError>;
+  userError: ReturnType<typeof getUserError>;
+}
+
+interface DispatchProps {
+  postAuth: typeof postAuth;
+  getUser: typeof getUser;
 }
 
 const mapStateToProps = (state: RootState) => ({

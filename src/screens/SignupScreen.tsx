@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Alert } from 'react-native';
-import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
+import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions, NavigationInjectedProps } from 'react-navigation';
 import * as Keychain from 'react-native-keychain';
 
 import { SignupForm } from '../components/SignupForm';
@@ -25,18 +25,11 @@ interface State {
   error: any;
 }
 
-interface IProps {
-  navigation: NavigationScreenProp<NavigationRoute>;
-}
+interface IProps extends NavigationInjectedProps {}
 
 interface StateProps {
   authError: string;
   userError: string;
-}
-
-interface DispatchProps {
-  postAuth(email: string, password: string): void;
-  createUser(email: string, password: string): void;
 }
 
 type Props = IProps & StateProps & DispatchProps;
@@ -152,12 +145,22 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
   }
 }
 
+interface StateProps {
+  authError: ReturnType<typeof getAuthError>;
+  userError: ReturnType<typeof getUserError>;
+}
+
+interface DispatchProps {
+  createUser: typeof createUser;
+  postAuth: typeof postAuth;
+}
+
 const mapStateToProps = (state: RootState): StateProps => ({
   authError: getAuthError(state),
   userError: getUserError(state)
 });
 
-const mapDispatchToProps: DispatchProps = {
+const mapDispatchToProps = {
   createUser,
   postAuth
 };

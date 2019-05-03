@@ -16,7 +16,7 @@ declare namespace Api {
     playlistItems: PlaylistItem[];
   }
 
-  export interface PlaylistItem {
+  export type PlaylistItem = {
     id: string;
     order: number;
     lastPlayedAt: Date | null;

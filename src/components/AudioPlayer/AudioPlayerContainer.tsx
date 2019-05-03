@@ -3,7 +3,7 @@ import { View, Modal, Alert, NativeScrollEvent } from 'react-native';
 import { connect } from 'react-redux';
 import TrackPlayer from 'react-native-track-player';
 
-import { setPlaybackStatus, PlaybackStatus } from '../../reducers/player';
+import { setPlaybackStatus } from '../../reducers/player';
 import { AudioPlayerSmall, EmptyPlayer } from './AudioPlayerSmall';
 import { AudioPlayerLarge } from './AudioPlayerLarge';
 
@@ -245,13 +245,13 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
 }
 
 interface StateProps {
-  track: TrackPlayer.Track;
-  playbackState: PlaybackStatus;
-  articles: Api.Article[];
+  track: ReturnType<typeof getPlayerTrack>;
+  playbackState: ReturnType<typeof getPlayerPlaybackState>;
+  articles: ReturnType<typeof getAllPlaylistArticles>;
 }
 
 interface DispatchProps {
-  setPlaybackStatus: (status: PlaybackStatus) => void;
+  setPlaybackStatus: typeof setPlaybackStatus;
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({

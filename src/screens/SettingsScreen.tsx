@@ -4,7 +4,7 @@ import VersionNumber from 'react-native-version-number';
 import { Text, Switch, Alert, ActivityIndicator } from 'react-native';
 import { SettingsScreen as SettingsScreenComponent, SettingsData } from 'react-native-settings-screen';
 import { connect } from 'react-redux';
-import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
+import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions, NavigationInjectedProps } from 'react-navigation';
 import * as Keychain from 'react-native-keychain';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
@@ -29,20 +29,9 @@ import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE, URL_ABOUT, URL_FEEDBACK } from '.
 import colors from '../constants/colors';
 import spacing from '../constants/spacing';
 
-interface Props {
-  resetAuthState(): void;
-  resetUserState(): void;
-  resetPlayerState(): void;
-  resetPlaylistState(): void;
-  resetAudiofilesState(): void;
-  resetVoicesState(): void;
-  getVoices(): void;
-  resetDownloadedVoices(): void;
-  getUser(): void;
-  user: Api.User | null;
-  navigation: NavigationScreenProp<NavigationRoute>;
-  selectedVoice: Api.Voice | undefined;
-}
+interface IProps extends NavigationInjectedProps {}
+
+type Props = IProps & DispatchProps & StateProps;
 
 interface State {
   cacheSize: string;
@@ -400,6 +389,23 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
       <SettingsScreenComponent data={this.settingsData} style={{ paddingTop: spacing.default }} globalTextStyle={{ fontSize: fonts.fontSize.title }} />
     );
   }
+}
+
+interface DispatchProps {
+  resetAuthState: typeof resetAuthState;
+  resetUserState: typeof resetUserState;
+  resetPlayerState: typeof resetPlayerState;
+  resetPlaylistState: typeof resetPlaylistState;
+  resetAudiofilesState: typeof resetAudiofilesState;
+  resetVoicesState: typeof resetVoicesState;
+  getVoices: typeof getVoices;
+  resetDownloadedVoices: typeof resetDownloadedVoices;
+  getUser: typeof getUser;
+}
+
+interface StateProps {
+  selectedVoice: ReturnType<typeof getSelectedVoice>;
+  user: ReturnType<typeof getUserDetails>;
 }
 
 const mapStateToProps = (state: RootState) => ({

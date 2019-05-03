@@ -11,13 +11,13 @@ export const SET_SELECTED_VOICE = 'voices/SET_SELECTED_VOICE';
 export const SET_DOWNLOADED_VOICE = 'voices/SET_DOWNLOADED_VOICE';
 export const RESET_DOWNLOADED_VOICES = 'voices/RESET_DOWNLOADED_VOICES';
 
-export interface VoicesState {
-  isLoading: boolean;
-  voices: Api.Voice[];
-  selectedVoiceId: string;
-  downloaded: Api.Voice[];
-  error: string;
-}
+export type VoicesState = {
+  readonly isLoading: boolean;
+  readonly voices: ReadonlyArray<Api.Voice>;
+  readonly selectedVoiceId: string;
+  readonly downloaded: ReadonlyArray<Api.Voice>;
+  readonly error: string;
+};
 
 const initialState: VoicesState = {
   isLoading: false,
@@ -28,11 +28,11 @@ const initialState: VoicesState = {
 };
 
 /* tslint:disable no-any */
-interface AuthActionTypes {
+type AuthActionTypes = {
   type: string;
   payload: any;
   error: AxiosError & AxiosResponse;
-}
+};
 
 export function voicesReducer(state = initialState, action: AuthActionTypes): VoicesState {
   switch (action.type) {

@@ -27,16 +27,12 @@ interface State {
   showHelpVideo: boolean;
 }
 
-interface Props {
+interface IProps {
   isArchiveScreen?: boolean;
   isFavoriteScreen?: boolean;
-  archivedPlaylistItems: Api.PlaylistItem[];
-  favoritedPlaylistItems: Api.PlaylistItem[];
-  newPlaylistItems: Api.PlaylistItem[];
-  downloadedAudiofiles: Api.Audiofile[];
-  getPlaylist(): void;
-  getVoices(): void;
 }
+
+type Props = IProps & StateProps & DispatchProps;
 
 class ArticlesContainerComponent extends React.Component<Props, State> {
   state = {
@@ -257,6 +253,18 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
       />
     );
   }
+}
+
+interface StateProps {
+  newPlaylistItems: ReturnType<typeof getNewPlaylistItems>;
+  archivedPlaylistItems: ReturnType<typeof getArchivedPlaylistItems>;
+  favoritedPlaylistItems: ReturnType<typeof getFavoritedPlaylistItems>;
+  downloadedAudiofiles: ReturnType<typeof getDownloadedAudiofiles>;
+}
+
+interface DispatchProps {
+  getPlaylist: typeof getPlaylist;
+  getVoices: typeof getVoices;
 }
 
 const mapStateToProps = (state: RootState) => ({

@@ -13,11 +13,11 @@ export const CREATE_USER_FAIL = 'user/CREATE_USER_FAIL';
 
 export const RESET_USER_STATE = 'user/RESET_USER_STATE';
 
-export interface UserState {
-  isLoading: boolean;
-  details: Api.User | null;
-  error: string;
-}
+export type UserState = {
+  readonly isLoading: boolean;
+  readonly details: Api.User | null;
+  readonly error: string;
+};
 
 const initialState: UserState = {
   isLoading: false,
@@ -25,11 +25,11 @@ const initialState: UserState = {
   error: ''
 };
 
-interface UserActionTypes {
+type UserActionTypes = {
   type: string;
   payload: AxiosResponse;
   error: AxiosError & AxiosResponse;
-}
+};
 
 export function userReducer(state = initialState, action: UserActionTypes): UserState {
   switch (action.type) {

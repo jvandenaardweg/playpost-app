@@ -13,10 +13,12 @@ interface State {
   forceClose: boolean;
 }
 
-interface Props {
+interface IProps {
   userError: string;
   authError: string;
 }
+
+type Props = IProps & StateProps;
 
 class ErrorMessageContainer extends React.PureComponent<Props, State> {
   state = {
@@ -54,6 +56,11 @@ class ErrorMessageContainer extends React.PureComponent<Props, State> {
       </TouchableOpacity>
     );
   }
+}
+
+interface StateProps {
+  userError: ReturnType<typeof getUserError>;
+  authError: ReturnType<typeof getAuthError>;
 }
 
 const mapStateToProps = (state: RootState) => ({

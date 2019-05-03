@@ -20,17 +20,13 @@ import { getAvailableVoices, getSelectedVoice, getDownloadedVoices } from '../..
 import styles from './styles';
 import { ALERT_SETTINGS_VOICE_CHANGE } from '../../constants/messages';
 
-interface Props {
-  allAvailableVoices: Api.Voice[];
-  playbackState: PlaybackStatus;
-  selectedVoice: Api.Voice | undefined;
-  playerTrack: TrackPlayer.Track;
-  downloadedVoices: Api.Voice[];
+
+
+interface IProps {
   onPressUpgrade(): void;
-  setSelectedVoice(voiceId: string): void;
-  setDownloadedVoice(voice: Api.Voice): void;
-  setTrack(track: TrackPlayer.Track): void;
 }
+
+type Props = IProps & StateProps & DispatchProps;
 
 interface State {
   isLoadingVoiceId: string; // voice ID: "d2ede165-9dc0-4969-af8c-f4ff3716da53"
@@ -208,6 +204,20 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
       />
     );
   }
+}
+
+interface DispatchProps {
+  setSelectedVoice: typeof setSelectedVoice;
+  setDownloadedVoice: typeof setDownloadedVoice;
+  setTrack: typeof setTrack;
+}
+
+interface StateProps {
+  readonly allAvailableVoices: ReadonlyArray<Api.Voice>;
+  readonly playbackState: PlaybackStatus;
+  readonly selectedVoice: Api.Voice | undefined;
+  readonly playerTrack: TrackPlayer.Track;
+  readonly downloadedVoices: ReadonlyArray<Api.Voice>;
 }
 
 const mapStateToProps = (state: RootState) => ({

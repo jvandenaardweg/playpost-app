@@ -44,16 +44,16 @@ const UNARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while un
 const REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while removing this article from your playlist. Please contact us when this happens all the time.';
 const GET_ARTICLE_FAIL_MESSAGE = 'An unknown error happened while fetching an article. Please contact us when this happens all the time.';
 
-export interface PlaylistState {
-  isLoading: boolean;
-  isLoadingCreateItem: boolean;
-  isLoadingFavoriteItem: boolean;
-  isLoadingUnFavoriteItem: boolean;
-  isLoadingArchiveItem: boolean;
-  isLoadingUnArchiveItem: boolean;
-  items: Api.PlaylistItem[];
-  error: string;
-}
+export type PlaylistState = {
+  readonly isLoading: boolean;
+  readonly isLoadingCreateItem: boolean;
+  readonly isLoadingFavoriteItem: boolean;
+  readonly isLoadingUnFavoriteItem: boolean;
+  readonly isLoadingArchiveItem: boolean;
+  readonly isLoadingUnArchiveItem: boolean;
+  readonly items: ReadonlyArray<Api.PlaylistItem>;
+  readonly error: string;
+};
 
 const initialState: PlaylistState = {
   isLoading: false,
@@ -66,11 +66,11 @@ const initialState: PlaylistState = {
   error: ''
 };
 
-interface PlaylistActionTypes {
+type PlaylistActionTypes = {
   type: string;
   payload: AxiosResponse;
   error: AxiosError;
-}
+};
 
 export function playlistReducer(state = initialState, action: PlaylistActionTypes): PlaylistState {
   switch (action.type) {
@@ -320,120 +320,101 @@ export function playlistReducer(state = initialState, action: PlaylistActionType
       return state;
   }
 }
+export const resetPlaylistState = () => ({
+  type: RESET_STATE
+});
 
-export function resetPlaylistState() {
-  return {
-    type: RESET_STATE
-  };
-}
+export const getPlaylist = () => ({
+  type: GET_PLAYLIST,
+  payload: {
+    request: {
+      method: 'get',
+      url: '/v1/playlist'
+    }
+  }
+});
 
-export function getPlaylist() {
-  return {
-    type: GET_PLAYLIST,
-    payload: {
-      request: {
-        method: 'get',
-        url: '/v1/playlist'
+export const getArticle = (articleId: string) => ({
+  type: GET_ARTICLE,
+  payload: {
+    request: {
+      method: 'get',
+      url: `/v1/articles/${articleId}`
+    }
+  }
+});
+
+export const addArticleToPlaylistByUrl = (articleUrl: string) => ({
+  type: CREATE_PLAYLIST_ITEM,
+  payload: {
+    request: {
+      method: 'post',
+      url: 'v1/playlist/articles',
+      data: {
+        articleUrl
       }
     }
-  };
-}
+  }
+});
 
-export function getArticle(articleId: string) {
-  return {
-    type: GET_ARTICLE,
-    payload: {
-      request: {
-        method: 'get',
-        url: `/v1/articles/${articleId}`
+export const removeArticleFromPlaylist = (articleId: string) => ({
+  type: REMOVE_PLAYLIST_ITEM,
+  payload: {
+    request: {
+      method: 'delete',
+      url: `v1/playlist/articles/${articleId}`
+    }
+  }
+});
+
+export const favoritePlaylistItem = (articleId: string) => ({
+  type: FAVORITE_PLAYLIST_ITEM,
+  payload: {
+    request: {
+      method: 'patch',
+      url: `v1/playlist/articles/${articleId}/favoritedat`,
+      data: {
+        favoritedAt: new Date() // date is ignored on the server, we use server time
       }
     }
-  };
-}
+  }
+});
 
-export function addArticleToPlaylistByUrl(articleUrl: string) {
-  return {
-    type: CREATE_PLAYLIST_ITEM,
-    payload: {
-      request: {
-        method: 'post',
-        url: 'v1/playlist/articles',
-        data: {
-          articleUrl
-        }
+export const unFavoritePlaylistItem = (articleId: string) => ({
+  type: UNFAVORITE_PLAYLIST_ITEM,
+  payload: {
+    request: {
+      method: 'patch',
+      url: `v1/playlist/articles/${articleId}/favoritedat`,
+      data: {
+        favoritedAt: null
       }
     }
-  };
-}
+  }
+});
 
-export function removeArticleFromPlaylist(articleId: string) {
-  return {
-    type: REMOVE_PLAYLIST_ITEM,
-    payload: {
-      request: {
-        method: 'delete',
-        url: `v1/playlist/articles/${articleId}`
+export const archivePlaylistItem = (articleId: string) => ({
+  type: ARCHIVE_PLAYLIST_ITEM,
+  payload: {
+    request: {
+      method: 'patch',
+      url: `v1/playlist/articles/${articleId}/archivedat`,
+      data: {
+        archivedAt: new Date() // date is ignored on the server, we use server time
       }
     }
-  };
-}
+  }
+});
 
-export function favoritePlaylistItem(articleId: string) {
-  return {
-    type: FAVORITE_PLAYLIST_ITEM,
-    payload: {
-      request: {
-        method: 'patch',
-        url: `v1/playlist/articles/${articleId}/favoritedat`,
-        data: {
-          favoritedAt: new Date() // date is ignored on the server, we use server time
-        }
+export const unArchivePlaylistItem = (articleId: string) => ({
+  type: UNARCHIVE_PLAYLIST_ITEM,
+  payload: {
+    request: {
+      method: 'patch',
+      url: `v1/playlist/articles/${articleId}/archivedat`,
+      data: {
+        archivedAt: null
       }
     }
-  };
-}
-
-export function unFavoritePlaylistItem(articleId: string) {
-  return {
-    type: UNFAVORITE_PLAYLIST_ITEM,
-    payload: {
-      request: {
-        method: 'patch',
-        url: `v1/playlist/articles/${articleId}/favoritedat`,
-        data: {
-          favoritedAt: null
-        }
-      }
-    }
-  };
-}
-
-export function archivePlaylistItem(articleId: string) {
-  return {
-    type: ARCHIVE_PLAYLIST_ITEM,
-    payload: {
-      request: {
-        method: 'patch',
-        url: `v1/playlist/articles/${articleId}/archivedat`,
-        data: {
-          archivedAt: new Date() // date is ignored on the server, we use server time
-        }
-      }
-    }
-  };
-}
-
-export function unArchivePlaylistItem(articleId: string) {
-  return {
-    type: UNARCHIVE_PLAYLIST_ITEM,
-    payload: {
-      request: {
-        method: 'patch',
-        url: `v1/playlist/articles/${articleId}/archivedat`,
-        data: {
-          archivedAt: null
-        }
-      }
-    }
-  };
-}
+  }
+});
