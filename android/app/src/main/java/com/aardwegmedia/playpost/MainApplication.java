@@ -13,7 +13,6 @@ import com.rnfs.RNFSPackage;
 import com.reactnativecommunity.netinfo.NetInfoPackage;
 import com.oblador.keychain.KeychainPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
-import com.avishayil.rnrestart.ReactNativeRestartPackage;
 import com.alinz.parkerdan.shareextension.SharePackage;
 import com.guichaguri.trackplayer.TrackPlayer;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -50,7 +49,6 @@ public class MainApplication extends Application implements ReactApplication {
             new NetInfoPackage(),
             new KeychainPackage(),
             new SplashScreenReactPackage(),
-            new ReactNativeRestartPackage(),
             new SharePackage(),
             new TrackPlayer(),
             new VectorIconsPackage(),

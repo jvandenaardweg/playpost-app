@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Alert, View, Text } from 'react-native';
-import RNRestart from 'react-native-restart';
+import { View, Text } from 'react-native';
 
 interface State {
   error: Error | null;
@@ -44,18 +43,6 @@ export class ErrorBoundary extends React.Component<Props, State> {
     }
 
     this.errorShown = true;
-
-    Alert.alert(
-      'Oops! Something went wrong...',
-      'Please restart the app to continue.',
-      [
-        {
-          text: 'Restart app',
-          onPress: RNRestart.Restart,
-        },
-      ],
-      { cancelable: false }
-    );
 
     // this.setState({ error, errorInfo });
 

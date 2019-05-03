@@ -2,7 +2,6 @@ import React from 'react';
 import { FlatList, Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { connect } from 'react-redux';
-import RNRestart from 'react-native-restart';
 import SplashScreen from 'react-native-splash-screen';
 
 import { CenterLoadingIndicator } from '../../components/CenterLoadingIndicator';
@@ -196,7 +195,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
 
     // Warning to the user there's no internet connection
     if (!isConnected && !this.hasPlaylistItems) {
-      return <EmptyState title="No internet" description="There's no active internet connection, so we cannot display your playlist." actionButtonLabel="Try again" actionButtonOnPress={() => RNRestart.Restart()} />;
+      return <EmptyState title="No internet" description="There's no active internet connection, so we cannot display your playlist." actionButtonLabel="Try again" actionButtonOnPress={() => this.handleOnRefresh()} />;
     }
 
     if (!isLoading && !isRefreshing && !this.hasPlaylistItems) {
