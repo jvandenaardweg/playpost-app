@@ -44,16 +44,16 @@ const UNARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while un
 const REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while removing this article from your playlist. Please contact us when this happens all the time.';
 const GET_ARTICLE_FAIL_MESSAGE = 'An unknown error happened while fetching an article. Please contact us when this happens all the time.';
 
-export type PlaylistState = {
-  readonly isLoading: boolean;
-  readonly isLoadingCreateItem: boolean;
-  readonly isLoadingFavoriteItem: boolean;
-  readonly isLoadingUnFavoriteItem: boolean;
-  readonly isLoadingArchiveItem: boolean;
-  readonly isLoadingUnArchiveItem: boolean;
-  readonly items: ReadonlyArray<Api.PlaylistItem>;
-  readonly error: string;
-};
+export type PlaylistState = Readonly<{
+  isLoading: boolean;
+  isLoadingCreateItem: boolean;
+  isLoadingFavoriteItem: boolean;
+  isLoadingUnFavoriteItem: boolean;
+  isLoadingArchiveItem: boolean;
+  isLoadingUnArchiveItem: boolean;
+  items: ReadonlyArray<Api.PlaylistItem>;
+  error: string;
+}>;
 
 const initialState: PlaylistState = {
   isLoading: false,

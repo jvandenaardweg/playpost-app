@@ -20,15 +20,15 @@ export type PlaybackStatus = 'ready' | 'loading' | 'playing' | 'paused' | 'stopp
 
 const CREATE_AUDIOFILE_FAIL_MESSAGE = 'An unknown error happened while creating creating an audiofile. Please contact us when this happens all the time.';
 
-export type PlayerState = {
-  readonly track: TrackPlayer.Track;
-  readonly audiofile: Api.Audiofile | null;
-  readonly articleId: string;
-  readonly playbackState: PlaybackStatus;
-  readonly playbackSpeed: number;
-  readonly isLoading: boolean;
-  readonly error: string;
-};
+export type PlayerState = Readonly<{
+  track: TrackPlayer.Track;
+  audiofile: Api.Audiofile | null;
+  articleId: string;
+  playbackState: PlaybackStatus;
+  playbackSpeed: number;
+  isLoading: boolean;
+  error: string;
+}>;
 
 const initialState: PlayerState = {
   isLoading: false,

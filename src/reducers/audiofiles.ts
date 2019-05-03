@@ -4,11 +4,11 @@ import { AxiosError, AxiosResponse } from 'axios';
 export const SET_DOWNLOADED_AUDIOFILE = 'audiofiles/SET_DOWNLOADED_AUDIOFILE';
 export const RESET_STATE = 'audiofiles/RESET_STATE';
 
-export type AudiofilesState = {
+export type AudiofilesState = Readonly<{
   isLoading: boolean;
-  downloaded: Api.Audiofile[];
+  downloaded: ReadonlyArray<Api.Audiofile>;
   error: string;
-};
+}>;
 
 const initialState: AudiofilesState = {
   isLoading: false,

@@ -9,11 +9,11 @@ export const POST_AUTH_FAIL = 'auth/POST_AUTH_FAIL';
 export const RESET_AUTH_STATE = 'auth/RESET_AUTH_STATE';
 export const SET_AUTH_TOKEN = 'auth/SET_AUTH_TOKEN';
 
-export type AuthState = {
-  readonly isLoading: boolean;
-  readonly token: string;
-  readonly error: string;
-};
+export type AuthState = Readonly<{
+  isLoading: boolean;
+  token: string;
+  error: string;
+}>;
 
 const initialState: AuthState = {
   isLoading: false,

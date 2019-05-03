@@ -11,13 +11,13 @@ export const SET_SELECTED_VOICE = 'voices/SET_SELECTED_VOICE';
 export const SET_DOWNLOADED_VOICE = 'voices/SET_DOWNLOADED_VOICE';
 export const RESET_DOWNLOADED_VOICES = 'voices/RESET_DOWNLOADED_VOICES';
 
-export type VoicesState = {
-  readonly isLoading: boolean;
-  readonly voices: ReadonlyArray<Api.Voice>;
-  readonly selectedVoiceId: string;
-  readonly downloaded: ReadonlyArray<Api.Voice>;
-  readonly error: string;
-};
+export type VoicesState = Readonly<{
+  isLoading: boolean;
+  voices: ReadonlyArray<Api.Voice>;
+  selectedVoiceId: string;
+  downloaded: ReadonlyArray<Api.Voice>;
+  error: string;
+}>;
 
 const initialState: VoicesState = {
   isLoading: false,

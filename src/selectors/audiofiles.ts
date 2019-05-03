@@ -6,5 +6,5 @@ const audiofilesSelector = (state: RootState): AudiofilesState => state.audiofil
 
 export const getDownloadedAudiofiles = createSelector(
   [audiofilesSelector],
-  (audiofiles): Api.Audiofile[] => audiofiles.downloaded
+  audiofiles => audiofiles.downloaded
 );

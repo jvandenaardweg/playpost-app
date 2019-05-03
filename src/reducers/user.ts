@@ -13,11 +13,11 @@ export const CREATE_USER_FAIL = 'user/CREATE_USER_FAIL';
 
 export const RESET_USER_STATE = 'user/RESET_USER_STATE';
 
-export type UserState = {
-  readonly isLoading: boolean;
-  readonly details: Api.User | null;
-  readonly error: string;
-};
+export type UserState = Readonly<{
+  isLoading: boolean;
+  details: Api.User | null;
+  error: string;
+}>;
 
 const initialState: UserState = {
   isLoading: false,
