@@ -73,11 +73,12 @@ export class BrowserScreen extends React.PureComponent<Props, State> {
           ref={this.webviewRef}
           source={{ uri: url }}
           startInLoadingState={true}
-          onLoadProgress={this.handleOnLoadProgress}
-          onLoadEnd={this.handleOnLoadEnd}
+          // onLoadProgress={this.handleOnLoadProgress}
+          // onLoadEnd={this.handleOnLoadEnd}
           sharedCookiesEnabled={true}
           thirdPartyCookiesEnabled={true}
           incognito={false}
+          decelerationRate="normal"
         />
       </View>
 
