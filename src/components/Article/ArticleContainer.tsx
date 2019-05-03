@@ -62,6 +62,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
     // Only update if playbackState changes for the audiofileId of this article
     if (this.props.playbackState !== nextProps.playbackState) {
+      // TODO: when using multiple audiofiles, we need to adjust this
       if (nextProps.track.id === (this.articleAudiofiles.length && this.articleAudiofiles[0].id)) {
         return true;
       }
@@ -126,6 +127,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
     if (!this.articleAudiofiles.length) return false;
 
+    // TODO: when using multiple audiofiles, we need to adjust this
     return track.id === this.articleAudiofiles[0].id;
   }
 
@@ -238,24 +240,25 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     const { isConnected } = this.context;
     const { article, isDownloaded } = this.props;
 
+    // TODO: when using multiple audiofiles, we need to adjust this
+    const audiofile = this.articleAudiofiles[0];
+
     if (!article || !this.articleAudiofiles.length) {
       this.setState({ isActive: false, isLoading: false });
       return Alert.alert('Oops!', ALERT_ARTICLE_PLAY_FAIL);
     }
 
-    this.props.resetPlaybackStatus();
+    if (!isDownloaded && !isConnected) return Alert.alert('No internet', ALERT_ARTICLE_PLAY_INTERNET_REQUIRED);
 
     this.setState({ isActive: true, isLoading: true }, async () => {
+      this.props.resetPlaybackStatus();
+
       const artist = (article.authorName) ? article.authorName : article.sourceName;
       const album = (article.sourceName) ? article.sourceName : '';
-
-      const audiofile = this.articleAudiofiles[0];
 
       let localAudiofilePath = cache.getLocalFilePath(audiofile.filename, LOCAL_CACHE_AUDIOFILES_PATH);
 
       if (!isDownloaded) {
-        if (!isConnected) return Alert.alert('No internet', ALERT_ARTICLE_PLAY_INTERNET_REQUIRED);
-
         const downloadedLocalAudiofilePath = await this.downloadAudiofile(audiofile.url, audiofile.id, audiofile.filename);
 
         // Save the audiofile in store, so we can track which article has downloaded articles
@@ -389,10 +392,8 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     }
   }
 
-
   get listenTimeInSeconds() {
-    // const { article } = this.props;
-
+    // TODO: when using multiple audiofiles, we need to adjust this
     return (this.articleAudiofiles[0] && this.articleAudiofiles[0].length) ? this.articleAudiofiles[0].length : 0;
   }
 
