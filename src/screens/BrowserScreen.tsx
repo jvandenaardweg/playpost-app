@@ -75,6 +75,9 @@ export class BrowserScreen extends React.PureComponent<Props, State> {
           startInLoadingState={true}
           onLoadProgress={this.handleOnLoadProgress}
           onLoadEnd={this.handleOnLoadEnd}
+          sharedCookiesEnabled={true}
+          thirdPartyCookiesEnabled={true}
+          incognito={false}
         />
       </View>
 

@@ -25,6 +25,9 @@ export class ModalBrowserScreen extends React.PureComponent<Props> {
       <WebView
         ref={this.webviewRef}
         source={{ uri: url }}
+        sharedCookiesEnabled={true}
+        thirdPartyCookiesEnabled={true}
+        incognito={false}
       />
     );
   }
