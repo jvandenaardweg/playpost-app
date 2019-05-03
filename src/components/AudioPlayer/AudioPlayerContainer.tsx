@@ -8,7 +8,7 @@ import { AudioPlayerSmall, EmptyPlayer } from './AudioPlayerSmall';
 import { AudioPlayerLarge } from './AudioPlayerLarge';
 
 import { getPlayerPlaybackState, getPlayerTrack } from '../../selectors/player';
-import { getPlaylistArticles } from '../../selectors/playlist';
+import { getAllPlaylistArticles } from '../../selectors/playlist';
 import { RootState } from '../../reducers';
 
 interface State {
@@ -168,10 +168,15 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   get article() {
     const { track, articles } = this.props;
 
+    if (!track || !track.id) return;
+
     // Find the article based on the audiofile id
     const article = articles.find((article) => {
-      if (!article.audiofiles.length) return false;
-      return article.audiofiles[0].id === track.id;
+      if (article.audiofiles.length) {
+        const audiofile = article.audiofiles.find(audiofile => audiofile.id === track.id);
+        if (audiofile) return true;
+      }
+      return false;
     });
 
     return article;
@@ -204,6 +209,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     const { isLoading, isPlaying, scrolled } = this.state;
 
     const articleText = this.article && this.article.text;
+
 
     // TODO: make sure "scrolled" is changed when we change tracks
     return (
@@ -251,7 +257,7 @@ interface DispatchProps {
 const mapStateToProps = (state: RootState): StateProps => ({
   track: getPlayerTrack(state),
   playbackState: getPlayerPlaybackState(state),
-  articles: getPlaylistArticles(state)
+  articles: getAllPlaylistArticles(state)
 });
 
 const mapDispatchToProps: DispatchProps = {

@@ -13,7 +13,7 @@ import { NetworkContext } from '../../contexts/NetworkProvider';
 import { getPlaylist } from '../../reducers/playlist';
 import { getVoices } from '../../reducers/voices';
 
-import { getPlaylistArticles, getPlaylistItems, getArchivedPlaylistArticles, getFavoritedPlaylistArticles } from '../../selectors/playlist';
+import { getNewPlaylistItems, getArchivedPlaylistItems, getFavoritedPlaylistItems } from '../../selectors/playlist';
 
 import isEqual from 'react-fast-compare';
 import { RootState } from '../../reducers';
@@ -31,12 +31,11 @@ interface State {
 }
 
 interface Props {
-  articles: Api.Article[];
-  archivedArticles: Api.Article[];
-  favoritedArticles: Api.Article[];
   isArchiveScreen?: boolean;
   isFavoriteScreen?: boolean;
-  playlistItems: Api.PlaylistItem[];
+  archivedPlaylistItems: Api.PlaylistItem[];
+  favoritedPlaylistItems: Api.PlaylistItem[];
+  newPlaylistItems: Api.PlaylistItem[];
   downloadedAudiofiles: Api.Audiofile[];
   getPlaylist(): void;
   getVoices(): void;
@@ -76,7 +75,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
     // TODO: figure out if this works
     if (isArchiveScreen || isFavoriteScreen) return;
 
-    if (isConnected && !this.hasArticles) {
+    if (isConnected && !this.hasPlaylistItems) {
       this.setState({ isLoading: true }, () => this.fetchPlaylist());
     } else {
       // Just fetch the playlist in the background, so we always get an up-to-date playlist upon launch
@@ -100,7 +99,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
   }
 
   async fetchPlaylist() {
-    const { articles } = this.props;
+    const { newPlaylistItems } = this.props;
     const { errorMessage } = this.state;
     const { isConnected } = this.context;
 
@@ -116,7 +115,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
       const customErrorMessage = 'There was an error while getting your playlist.';
 
       // If we don't have articles we show an empty error state
-      if (!articles || !articles.length) {
+      if (!newPlaylistItems || !newPlaylistItems.length) {
         return this.setState({ errorMessage: customErrorMessage });
       }
 
@@ -145,14 +144,14 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
     );
   }
 
-  get hasArticles() {
-    const { articles } = this.props;
-    return (articles && articles.length);
+  get hasPlaylistItems() {
+    const { newPlaylistItems } = this.props;
+    return (newPlaylistItems && newPlaylistItems.length);
   }
 
   handleOnRefresh() {
     // If we don't have any articles, we show the general centered loading indicator
-    const isLoading = !this.hasArticles;
+    const isLoading = !this.hasPlaylistItems;
 
     this.setState({ isLoading, isRefreshing: true }, () => this.fetchPlaylist());
   }
@@ -185,7 +184,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
     if (isLoading) return <CenterLoadingIndicator />;
 
     // If there's an error, and we don't have playlist items yet
-    if (errorMessage && !this.hasArticles) return <EmptyState title="Error" description={errorMessage} actionButtonLabel="Try again" actionButtonOnPress={() => this.handleOnRefresh()} />;
+    if (errorMessage && !this.hasPlaylistItems) return <EmptyState title="Error" description={errorMessage} actionButtonLabel="Try again" actionButtonOnPress={() => this.handleOnRefresh()} />;
 
     if (isArchiveScreen) {
       return <EmptyState title="Your archived articles" description="Articles you've already listened will be shown here in your archive, for easy future reference." />;
@@ -196,11 +195,11 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
     }
 
     // Warning to the user there's no internet connection
-    if (!isConnected && !this.hasArticles) {
+    if (!isConnected && !this.hasPlaylistItems) {
       return <EmptyState title="No internet" description="There's no active internet connection, so we cannot display your playlist." actionButtonLabel="Try again" actionButtonOnPress={() => RNRestart.Restart()} />;
     }
 
-    if (!isLoading && !isRefreshing && !this.hasArticles) {
+    if (!isLoading && !isRefreshing && !this.hasPlaylistItems) {
       if (showHelpVideo) {
         return (
           <EmptyState
@@ -226,33 +225,35 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
   }
 
   render() {
-    const { isArchiveScreen, isFavoriteScreen, archivedArticles, favoritedArticles } = this.props;
+    const { isArchiveScreen, isFavoriteScreen, archivedPlaylistItems, favoritedPlaylistItems, newPlaylistItems } = this.props;
     const { isRefreshing } = this.state;
 
-    let articles = this.props.articles;
+    let playlistItems = newPlaylistItems;
 
     if (isArchiveScreen) {
-      articles = archivedArticles;
+      playlistItems = archivedPlaylistItems;
     }
 
     if (isFavoriteScreen) {
-      articles = favoritedArticles;
+      playlistItems = favoritedPlaylistItems;
     }
 
     return (
       <FlatList
-        scrollEnabled={!!this.hasArticles}
+        scrollEnabled={!!this.hasPlaylistItems}
         contentContainerStyle={{ flexGrow: 1 }}
         refreshing={isRefreshing}
         onRefresh={() => this.handleOnRefresh()}
-        data={articles}
+        data={playlistItems}
         keyExtractor={item => item.id.toString()}
         ItemSeparatorComponent={() => <ArticleSeperator />}
         ListEmptyComponent={() => this.renderEmptyState()}
         renderItem={({ item }) => (
           <ArticleContainer
-            article={item}
-            isDownloaded={this.isDownloaded(item)}
+            isFavorited={!!item.favoritedAt}
+            isArchived={!!item.archivedAt}
+            article={item.article}
+            isDownloaded={this.isDownloaded(item.article)}
           />
         )}
       />
@@ -261,10 +262,9 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
 }
 
 const mapStateToProps = (state: RootState) => ({
-  playlistItems: getPlaylistItems(state),
-  articles: getPlaylistArticles(state),
-  archivedArticles: getArchivedPlaylistArticles(state),
-  favoritedArticles: getFavoritedPlaylistArticles(state),
+  newPlaylistItems: getNewPlaylistItems(state),
+  archivedPlaylistItems: getArchivedPlaylistItems(state),
+  favoritedPlaylistItems: getFavoritedPlaylistItems(state),
   downloadedAudiofiles: getDownloadedAudiofiles(state)
 });
 

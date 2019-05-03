@@ -61,7 +61,7 @@ export class AudioPlayerLarge extends React.PureComponent<Props> {
               </View>
               <View style={styles.scrollableContent}>
                 {/* We split the text in seperate paragraphs, because it seems React Native cannot handle large text inside a Text. It will not render the text at all then. */}
-                {articleText && articleText.split('\n\n').map(text => <Text style={styles.contentText}>{text}</Text>)}
+                {articleText && articleText.split('\n\n').map((text, index) => <Text key={index} style={styles.contentText}>{text}</Text>)}
               </View>
             </ScrollView>
           </View>

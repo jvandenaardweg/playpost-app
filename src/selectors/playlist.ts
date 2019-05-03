@@ -17,13 +17,12 @@ export const getPlaylistItems = createSelector(
 /**
  * Get's the articles of the default playlist.
  */
-export const getPlaylistArticles = createSelector(
+export const getAllPlaylistArticles = createSelector(
   getPlaylistItems,
   (playlistItems) => {
     if (!playlistItems || !playlistItems.length) return [];
 
     const articles = playlistItems
-      .filter(playlistItem => !playlistItem.archivedAt)
       .sort((a, b) => a.order - b.order) // Sort by the custom order
       .map(playlistItem => playlistItem.article);
 
@@ -31,58 +30,49 @@ export const getPlaylistArticles = createSelector(
   }
 );
 
-export const getArchivedPlaylistArticles = createSelector(
+export const getNewPlaylistItems = createSelector(
   getPlaylistItems,
   (playlistItems) => {
     if (!playlistItems || !playlistItems.length) return [];
 
     const articles = playlistItems
+      .filter(playlistItem => !playlistItem.archivedAt)
+      .sort((a, b) => a.order - b.order); // Sort by the custom order
+
+    return articles;
+  }
+);
+
+export const getArchivedPlaylistItems = createSelector(
+  getPlaylistItems,
+  (playlistItems) => {
+    if (!playlistItems || !playlistItems.length) return [];
+
+    const archivedPlaylistItems = playlistItems
       .filter(playlistItem => playlistItem.archivedAt)
       .sort((a, b) => {
         const aTime = (a.archivedAt !== null) ? new Date(a.archivedAt).getTime() : 0;
         const bTime = (b.archivedAt !== null) ? new Date(b.archivedAt).getTime() : 0;
         return bTime - aTime;
-      })
-      .map(playlistItem => playlistItem.article);
+      });
 
-    return articles;
+    return archivedPlaylistItems;
   }
 );
 
-export const getFavoritedPlaylistArticles = createSelector(
+export const getFavoritedPlaylistItems = createSelector(
   getPlaylistItems,
-  (playlistItems): Api.Article[] => {
+  (playlistItems) => {
     if (!playlistItems || !playlistItems.length) return [];
 
-    const articles = playlistItems
+    const favoritedPlaylistItems = playlistItems
       .filter(playlistItem => playlistItem.favoritedAt)
       .sort((a, b) => {
         const aTime = (a.favoritedAt !== null) ? new Date(a.favoritedAt).getTime() : 0;
         const bTime = (b.favoritedAt !== null) ? new Date(b.favoritedAt).getTime() : 0;
         return bTime - aTime;
-      })
-      .map(playlistItem => playlistItem.article);
+      });
 
-    return articles;
+    return favoritedPlaylistItems;
   }
 );
-
-/**
- * Get's an audiofile out of a playlist by using the article's ID.
- *
- * Returns `null` when no audiofile is present.
- *
- * Returns `Api.Audiofile` when there's a match.
- */
-export const getAudiofileByArticleId = (state: RootState, articleId: string) => createSelector(
-  getPlaylistArticles,
-  (articles): Api.Audiofile | null => {
-    const article = articles.find(article => article.id === articleId);
-
-    if (!article) return null;
-
-    if (!article.audiofiles || !article.audiofiles.length) return null;
-
-    return article.audiofiles[0];
-  }
-)(state);

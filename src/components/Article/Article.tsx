@@ -13,6 +13,7 @@ interface Props {
   isActive?: boolean;
   isDownloaded?: boolean;
   isFavorited?: boolean;
+  isArchived?: boolean;
   hasAudiofile?: boolean;
   title?: string;
   url: string;
@@ -31,6 +32,7 @@ export const Article: React.FC<Props> = React.memo(({
   isActive,
   isDownloaded,
   isFavorited,
+  isArchived,
   hasAudiofile,
   title,
   url,
