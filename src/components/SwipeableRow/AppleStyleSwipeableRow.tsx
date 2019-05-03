@@ -26,7 +26,7 @@ export class AppleStyleSwipeableRow extends React.PureComponent<Props> {
       <RectButton style={styles.leftAction} onPress={this.close}>
         <Icon.Feather
           name="archive"
-          size={20}
+          size={22}
           color="#10A641"
           style={styles.actionIcon}
         />
@@ -75,7 +75,7 @@ export class AppleStyleSwipeableRow extends React.PureComponent<Props> {
         >
           <Icon.Feather
             name={icon}
-            size={20}
+            size={22}
             color={(iconColor) ? iconColor : colors.gray}
             style={styles.actionIcon}
           />
