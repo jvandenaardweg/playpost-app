@@ -10,10 +10,10 @@ import { EmptyState } from '../../components/EmptyState';
 import { ArticleContainer } from '../../components/Article/ArticleContainer';
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
-import { getPlaylists } from '../../reducers/playlists';
+import { getPlaylist } from '../../reducers/playlist';
 import { getVoices } from '../../reducers/voices';
 
-import { getDefaultPlaylistArticles, getDefaultPlaylist, getArchivedPlaylistArticles, getFavoritedPlaylistArticles } from '../../selectors/playlists';
+import { getPlaylistArticles, getPlaylistItems, getArchivedPlaylistArticles, getFavoritedPlaylistArticles } from '../../selectors/playlist';
 
 import isEqual from 'react-fast-compare';
 import { RootState } from '../../reducers';
@@ -36,15 +36,15 @@ interface Props {
   favoritedArticles: Api.Article[];
   isArchiveScreen?: boolean;
   isFavoriteScreen?: boolean;
-  defaultPlaylist: Api.Playlist | null;
+  playlistItems: Api.PlaylistItem[];
   downloadedAudiofiles: Api.Audiofile[];
-  getPlaylists(): void;
+  getPlaylist(): void;
   getVoices(): void;
 }
 
 class ArticlesContainerComponent extends React.Component<Props, State> {
   state = {
-    isLoading: false, // Show loading upon mount, because we fetch the playlists of the user
+    isLoading: false, // Show loading upon mount, because we fetch the playlist of the user
     isRefreshing: false,
     errorMessage: '',
     showHelpVideo: false
@@ -77,10 +77,10 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
     if (isArchiveScreen || isFavoriteScreen) return;
 
     if (isConnected && !this.hasArticles) {
-      this.setState({ isLoading: true }, () => this.fetchPlaylists());
+      this.setState({ isLoading: true }, () => this.fetchPlaylist());
     } else {
-      // Just fetch the playlists in the background, so we always get an up-to-date playlist upon launch
-      this.fetchPlaylists();
+      // Just fetch the playlist in the background, so we always get an up-to-date playlist upon launch
+      this.fetchPlaylist();
       this.fetchVoices();
     }
 
@@ -99,14 +99,14 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
     await this.props.getVoices();
   }
 
-  async fetchPlaylists() {
+  async fetchPlaylist() {
     const { articles } = this.props;
     const { errorMessage } = this.state;
     const { isConnected } = this.context;
 
     try {
       // Get the user's playlist
-      await this.props.getPlaylists();
+      await this.props.getPlaylist();
 
       // Cleanup the error message if it's there
       if (errorMessage) return this.setState({ errorMessage: '' });
@@ -154,7 +154,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
     // If we don't have any articles, we show the general centered loading indicator
     const isLoading = !this.hasArticles;
 
-    this.setState({ isLoading, isRefreshing: true }, () => this.fetchPlaylists());
+    this.setState({ isLoading, isRefreshing: true }, () => this.fetchPlaylist());
   }
 
   handleOnHideVideo = async () => {
@@ -226,7 +226,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
   }
 
   render() {
-    const { defaultPlaylist, isArchiveScreen, isFavoriteScreen, archivedArticles, favoritedArticles } = this.props;
+    const { isArchiveScreen, isFavoriteScreen, archivedArticles, favoritedArticles } = this.props;
     const { isRefreshing } = this.state;
 
     let articles = this.props.articles;
@@ -253,7 +253,6 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
           <ArticleContainer
             article={item}
             isDownloaded={this.isDownloaded(item)}
-            playlistId={defaultPlaylist && defaultPlaylist.id}
           />
         )}
       />
@@ -262,15 +261,15 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
 }
 
 const mapStateToProps = (state: RootState) => ({
-  defaultPlaylist: getDefaultPlaylist(state),
-  articles: getDefaultPlaylistArticles(state),
+  playlistItems: getPlaylistItems(state),
+  articles: getPlaylistArticles(state),
   archivedArticles: getArchivedPlaylistArticles(state),
   favoritedArticles: getFavoritedPlaylistArticles(state),
   downloadedAudiofiles: getDownloadedAudiofiles(state)
 });
 
 const mapDispatchToProps = {
-  getPlaylists,
+  getPlaylist,
   getVoices
 };
 

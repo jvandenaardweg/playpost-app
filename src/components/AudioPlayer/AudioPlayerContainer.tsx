@@ -8,7 +8,7 @@ import { AudioPlayerSmall, EmptyPlayer } from './AudioPlayerSmall';
 import { AudioPlayerLarge } from './AudioPlayerLarge';
 
 import { getPlayerPlaybackState, getPlayerTrack } from '../../selectors/player';
-import { getDefaultPlaylistArticles } from '../../selectors/playlists';
+import { getPlaylistArticles } from '../../selectors/playlist';
 import { RootState } from '../../reducers';
 
 interface State {
@@ -156,8 +156,25 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     }
   }
 
+  handleOnPressFavorite = () => {
+    const articleId = (this.article) ? this.article.id : '';
+    Alert.alert('Should favorite', articleId);
+  }
+
   handleOnScroll = (event: { nativeEvent: NativeScrollEvent }) => {
     this.setState({ scrolled: event.nativeEvent.contentOffset.y });
+  }
+
+  get article() {
+    const { track, articles } = this.props;
+
+    // Find the article based on the audiofile id
+    const article = articles.find((article) => {
+      if (!article.audiofiles.length) return false;
+      return article.audiofiles[0].id === track.id;
+    });
+
+    return article;
   }
 
   renderAudioPlayerSmall() {
@@ -177,21 +194,16 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
         isPlaying={isPlaying}
         onPressPlay={this.handleOnPressPlay}
         onPressShowModal={this.handleOnShowModal}
+        onPressFavorite={this.handleOnPressFavorite}
       />
     );
   }
 
   renderAudioPlayerLarge() {
-    const { track, articles } = this.props;
+    const { track } = this.props;
     const { isLoading, isPlaying, scrolled } = this.state;
 
-    const article = articles.find((article) => {
-      if (!article.audiofiles.length) return false;
-
-      return article.audiofiles[0].id === track.id;
-    });
-
-    const articleText = article && article.text;
+    const articleText = this.article && this.article.text;
 
     // TODO: make sure "scrolled" is changed when we change tracks
     return (
@@ -239,7 +251,7 @@ interface DispatchProps {
 const mapStateToProps = (state: RootState): StateProps => ({
   track: getPlayerTrack(state),
   playbackState: getPlayerPlaybackState(state),
-  articles: getDefaultPlaylistArticles(state)
+  articles: getPlaylistArticles(state)
 });
 
 const mapDispatchToProps: DispatchProps = {

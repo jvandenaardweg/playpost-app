@@ -17,7 +17,7 @@ import { AppleStyleSwipeableRow } from '../../components/SwipeableRow/AppleStyle
 import { ArticleEmptyProcessing, ArticleEmptyFailed } from './ArticleEmpty';
 
 import { RootState } from '../../reducers';
-import { getPlaylists, removeArticleFromPlaylist, archivePlaylistItem, favoritePlaylistItem } from '../../reducers/playlists';
+import { getPlaylist, removeArticleFromPlaylist, archivePlaylistItem, favoritePlaylistItem } from '../../reducers/playlist';
 import { setTrack, PlaybackStatus, createAudiofile, resetPlaybackStatus } from '../../reducers/player';
 import { setDownloadedAudiofile } from '../../reducers/audiofiles';
 
@@ -34,7 +34,6 @@ interface State {
 
 interface IProps extends NavigationInjectedProps {
   article: Api.Article;
-  playlistId: string;
   isDownloaded: boolean;
 }
 
@@ -142,7 +141,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     this.setState({ isPlaying: false, isLoading: true, isActive: true, isCreatingAudiofile: true }, async () => {
       try {
         await this.props.createAudiofile(article.id, selectedVoice.id);
-        await this.props.getPlaylists(); // Get the playlist, it contains the article with the newly created audiofile
+        await this.props.getPlaylist(); // Get the playlist, it contains the article with the newly created audiofile
         this.handleSetTrack(); // Set the track. Upon track change, the track with automatically play.
       } catch (err) {
         this.setState({ isLoading: false });
@@ -288,9 +287,9 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     });
   }
 
-  fetchPlaylists = async () => {
+  fetchPlaylist = async () => {
     try {
-      await this.props.getPlaylists();
+      await this.props.getPlaylist();
     } catch (err) {
       Alert.alert(
         'Oops!',
@@ -302,7 +301,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
           },
           {
             text: 'Try again',
-            onPress: () => this.fetchPlaylists(),
+            onPress: () => this.fetchPlaylist(),
           },
         ],
         { cancelable: true }
@@ -313,11 +312,10 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
   handleRemoveArticle = async () => {
     const articleId = this.props.article.id;
-    const { playlistId } = this.props;
 
     try {
-      await this.props.removeArticleFromPlaylist(articleId, playlistId);
-      this.fetchPlaylists();
+      await this.props.removeArticleFromPlaylist(articleId);
+      this.fetchPlaylist();
     } catch (err) {
       Alert.alert(
         'Oops!',
@@ -339,11 +337,10 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
   handleArchiveArticle = async () => {
     const articleId = this.props.article.id;
-    const { playlistId } = this.props;
 
     try {
-      await this.props.archivePlaylistItem(articleId, playlistId);
-      this.fetchPlaylists();
+      await this.props.archivePlaylistItem(articleId);
+      this.fetchPlaylist();
     } catch (err) {
       console.log(err);
       Alert.alert(
@@ -366,11 +363,10 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
   handleFavoriteArticle = async () => {
     const articleId = this.props.article.id;
-    const { playlistId } = this.props;
 
     try {
-      await this.props.favoritePlaylistItem(articleId, playlistId);
-      this.fetchPlaylists();
+      await this.props.favoritePlaylistItem(articleId);
+      this.fetchPlaylist();
     } catch (err) {
       console.log(err);
       Alert.alert(
@@ -426,7 +422,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     // If the article is not yet done processing, for example, when we are still crawling it
     // We show it as loading
     if (this.isProcessing) {
-      return <ArticleEmptyProcessing onPressUpdate={() => this.fetchPlaylists()} url={articleUrl} />;
+      return <ArticleEmptyProcessing onPressUpdate={() => this.fetchPlaylist()} url={articleUrl} />;
     }
 
     return (
@@ -475,10 +471,10 @@ interface StateProps {
 interface DispatchProps {
   setTrack(track: TrackPlayer.Track): void;
   createAudiofile(articleId: string, voiceId: string): void;
-  getPlaylists(): void;
-  removeArticleFromPlaylist(articleId: string, playlistId: string): void;
-  archivePlaylistItem(articleId: string, playlistId: string): void;
-  favoritePlaylistItem(articleId: string, playlistId: string): void;
+  getPlaylist(): void;
+  removeArticleFromPlaylist(articleId: string): void;
+  archivePlaylistItem(articleId: string): void;
+  favoritePlaylistItem(articleId: string): void;
   resetPlaybackStatus(): void;
   setDownloadedAudiofile(audiofile: Api.Audiofile): void;
 }
@@ -493,7 +489,7 @@ const mapStateToProps = (state: RootState): StateProps => ({
 
 const mapDispatchToProps: DispatchProps = {
   setTrack,
-  getPlaylists,
+  getPlaylist,
   createAudiofile,
   removeArticleFromPlaylist,
   archivePlaylistItem,

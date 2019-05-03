@@ -80,7 +80,7 @@ exports[`Article active rendering should render active correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#e5e5e5",
+                "color": "#C5C5C5",
                 "fontSize": 9,
               },
               Object {
@@ -105,7 +105,7 @@ exports[`Article active rendering should render active correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#e5e5e5",
+                "color": "#C5C5C5",
                 "fontSize": 9,
               },
               Object {
@@ -124,6 +124,31 @@ exports[`Article active rendering should render active correctly 1`] = `
           testID="article-icon-downloaded"
         >
           
+        </Text>
+        <Text
+          allowFontScaling={false}
+          style={
+            Array [
+              Object {
+                "color": "#C5C5C5",
+                "fontSize": 9,
+              },
+              Object {
+                "marginRight": 4,
+              },
+              Object {
+                "fontFamily": "FontAwesome5Free-Solid",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+              Object {
+                "fontWeight": "900",
+              },
+            ]
+          }
+          testID="article-icon-favorited"
+        >
+          
         </Text>
         <Text
           ellipsizeMode="tail"
@@ -319,7 +344,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#e5e5e5",
+                "color": "#C5C5C5",
                 "fontSize": 9,
               },
               Object {
@@ -363,6 +388,31 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
           testID="article-icon-downloaded"
         >
           
+        </Text>
+        <Text
+          allowFontScaling={false}
+          style={
+            Array [
+              Object {
+                "color": "#C5C5C5",
+                "fontSize": 9,
+              },
+              Object {
+                "marginRight": 4,
+              },
+              Object {
+                "fontFamily": "FontAwesome5Free-Solid",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+              Object {
+                "fontWeight": "900",
+              },
+            ]
+          }
+          testID="article-icon-favorited"
+        >
+          
         </Text>
         <Text
           ellipsizeMode="tail"
@@ -560,7 +610,7 @@ exports[`Article full rendering should render full correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#e5e5e5",
+                "color": "#C5C5C5",
                 "fontSize": 9,
               },
               Object {
@@ -585,7 +635,7 @@ exports[`Article full rendering should render full correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#e5e5e5",
+                "color": "#C5C5C5",
                 "fontSize": 9,
               },
               Object {
@@ -604,6 +654,31 @@ exports[`Article full rendering should render full correctly 1`] = `
           testID="article-icon-downloaded"
         >
           
+        </Text>
+        <Text
+          allowFontScaling={false}
+          style={
+            Array [
+              Object {
+                "color": "#C5C5C5",
+                "fontSize": 9,
+              },
+              Object {
+                "marginRight": 4,
+              },
+              Object {
+                "fontFamily": "FontAwesome5Free-Solid",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+              Object {
+                "fontWeight": "900",
+              },
+            ]
+          }
+          testID="article-icon-favorited"
+        >
+          
         </Text>
         <Text
           ellipsizeMode="tail"
@@ -804,7 +879,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#e5e5e5",
+                "color": "#C5C5C5",
                 "fontSize": 9,
               },
               Object {
@@ -829,7 +904,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#e5e5e5",
+                "color": "#C5C5C5",
                 "fontSize": 9,
               },
               Object {
@@ -848,6 +923,31 @@ exports[`Article loading rendering should render loading correctly 1`] = `
           testID="article-icon-downloaded"
         >
           
+        </Text>
+        <Text
+          allowFontScaling={false}
+          style={
+            Array [
+              Object {
+                "color": "#C5C5C5",
+                "fontSize": 9,
+              },
+              Object {
+                "marginRight": 4,
+              },
+              Object {
+                "fontFamily": "FontAwesome5Free-Solid",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+              Object {
+                "fontWeight": "900",
+              },
+            ]
+          }
+          testID="article-icon-favorited"
+        >
+          
         </Text>
         <Text
           ellipsizeMode="tail"
@@ -1027,7 +1127,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#e5e5e5",
+                "color": "#C5C5C5",
                 "fontSize": 9,
               },
               Object {
@@ -1052,7 +1152,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#e5e5e5",
+                "color": "#C5C5C5",
                 "fontSize": 9,
               },
               Object {
@@ -1071,6 +1171,31 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
           testID="article-icon-downloaded"
         >
           
+        </Text>
+        <Text
+          allowFontScaling={false}
+          style={
+            Array [
+              Object {
+                "color": "#C5C5C5",
+                "fontSize": 9,
+              },
+              Object {
+                "marginRight": 4,
+              },
+              Object {
+                "fontFamily": "FontAwesome5Free-Solid",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+              Object {
+                "fontWeight": "900",
+              },
+            ]
+          }
+          testID="article-icon-favorited"
+        >
+          
         </Text>
         <Text
           ellipsizeMode="tail"
@@ -1266,7 +1391,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#e5e5e5",
+                "color": "#C5C5C5",
                 "fontSize": 9,
               },
               Object {
@@ -1291,7 +1416,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#e5e5e5",
+                "color": "#C5C5C5",
                 "fontSize": 9,
               },
               Object {
@@ -1310,6 +1435,31 @@ exports[`Article playing rendering should render playing correctly 1`] = `
           testID="article-icon-downloaded"
         >
           
+        </Text>
+        <Text
+          allowFontScaling={false}
+          style={
+            Array [
+              Object {
+                "color": "#C5C5C5",
+                "fontSize": 9,
+              },
+              Object {
+                "marginRight": 4,
+              },
+              Object {
+                "fontFamily": "FontAwesome5Free-Solid",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+              Object {
+                "fontWeight": "900",
+              },
+            ]
+          }
+          testID="article-icon-favorited"
+        >
+          
         </Text>
         <Text
           ellipsizeMode="tail"

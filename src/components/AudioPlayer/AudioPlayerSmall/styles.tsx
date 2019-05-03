@@ -19,12 +19,21 @@ export default StyleSheet.create({
     paddingBottom: 8,
     height: 55
   },
-  sideIcon: {
-    width: 34,
+  leftIcon: {
+    width: 20,
     height: 34,
     flexShrink: 0,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginRight: spacing.medium
+  },
+  rightIcon: {
+    width: 20,
+    height: 34,
+    flexShrink: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: spacing.default
   },
   emptyText: {
     fontSize: fonts.fontSize.body,
@@ -33,7 +42,7 @@ export default StyleSheet.create({
   },
   trackInfoButton: {
     flex: 1,
-    marginRight: spacing.default
+    // marginRight: spacing.default
   },
   trackInfo: {
     // flex: 1,

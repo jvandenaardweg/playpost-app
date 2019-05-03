@@ -11,7 +11,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './store';
 import { reactNativeElementsTheme } from './theme';
 
-import { getPlaylists } from './reducers/playlists';
+import { getPlaylist } from './reducers/playlist';
 
 import { AppNavigator } from './navigation/AppNavigator';
 // import { ErrorBoundary } from './components/ErrorBoundary';
@@ -77,12 +77,10 @@ export default class App extends React.PureComponent<State> {
   }
 
   async fetchPlaylist() {
-    // console.log('Fetching the user his playlists...');
-    store.dispatch(getPlaylists());
+    store.dispatch(getPlaylist());
   }
 
   async fetchVoices() {
-    // console.log('Fetching the user his playlists...');
     store.dispatch(getVoices());
   }
 

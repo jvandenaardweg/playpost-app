@@ -54,7 +54,7 @@ export const Article: React.FC<Props> = React.memo(({
             size={9}
             solid
             style={styles.sourceIcon}
-            color={hasAudiofile ? colors.green : colors.grayLight}
+            color={hasAudiofile ? colors.green : colors.gray}
             testID="article-icon-playable"
           />
           <Icon.FontAwesome5
@@ -62,8 +62,16 @@ export const Article: React.FC<Props> = React.memo(({
             size={9}
             solid
             style={styles.sourceIcon}
-            color={isDownloaded ? colors.green : colors.grayLight}
+            color={isDownloaded ? colors.green : colors.gray}
             testID="article-icon-downloaded"
+          />
+          <Icon.FontAwesome5
+            name="heart"
+            size={9}
+            solid
+            style={styles.sourceIcon}
+            color={isFavorited ? colors.favorite : colors.gray}
+            testID="article-icon-favorited"
           />
           <Text style={styles.sourceName} ellipsizeMode="tail" numberOfLines={1} testID="article-source-name">
             {authorName && `${authorName} on `}

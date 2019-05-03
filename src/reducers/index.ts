@@ -4,7 +4,7 @@ import { AxiosResponse, AxiosRequestConfig } from 'axios';
 import { playerReducer } from './player';
 import { authReducer } from './auth';
 import { userReducer } from './user';
-import { playlistsReducer } from './playlists';
+import { playlistReducer } from './playlist';
 import { audiofilesReducer } from './audiofiles';
 import { voicesReducer } from './voices';
 
@@ -25,7 +25,7 @@ const rootReducer = combineReducers({
   player: playerReducer,
   auth: authReducer,
   user: userReducer,
-  playlists: playlistsReducer,
+  playlist: playlistReducer,
   audiofiles: audiofilesReducer,
   voices: voicesReducer
 });

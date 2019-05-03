@@ -1,51 +1,51 @@
 import Analytics from 'appcenter-analytics';
 import { AxiosResponse, AxiosError } from 'axios';
 
-export const GET_PLAYLISTS = 'playlists/GET_PLAYLISTS';
-export const GET_PLAYLISTS_SUCCESS = 'playlists/GET_PLAYLISTS_SUCCESS';
-export const GET_PLAYLISTS_FAIL = 'playlists/GET_PLAYLISTS_FAIL';
+export const GET_PLAYLIST = 'playlist/GET_PLAYLIST';
+export const GET_PLAYLIST_SUCCESS = 'playlist/GET_PLAYLIST_SUCCESS';
+export const GET_PLAYLIST_FAIL = 'playlist/GET_PLAYLIST_FAIL';
 
-export const GET_ARTICLE = 'playlists/GET_ARTICLE';
-export const GET_ARTICLE_SUCCESS = 'playlists/GET_ARTICLE_SUCCESS';
-export const GET_ARTICLE_FAIL = 'playlists/GET_ARTICLE_FAIL';
+export const GET_ARTICLE = 'playlist/GET_ARTICLE';
+export const GET_ARTICLE_SUCCESS = 'playlist/GET_ARTICLE_SUCCESS';
+export const GET_ARTICLE_FAIL = 'playlist/GET_ARTICLE_FAIL';
 
-export const CREATE_PLAYLIST_ITEM = 'playlists/CREATE_PLAYLIST_ITEM';
-export const CREATE_PLAYLIST_ITEM_SUCCESS = 'playlists/CREATE_PLAYLIST_ITEM_SUCCESS';
-export const CREATE_PLAYLIST_ITEM_FAIL = 'playlists/CREATE_PLAYLIST_ITEM_FAIL';
+export const CREATE_PLAYLIST_ITEM = 'playlist/CREATE_PLAYLIST_ITEM';
+export const CREATE_PLAYLIST_ITEM_SUCCESS = 'playlist/CREATE_PLAYLIST_ITEM_SUCCESS';
+export const CREATE_PLAYLIST_ITEM_FAIL = 'playlist/CREATE_PLAYLIST_ITEM_FAIL';
 
-export const ARCHIVE_PLAYLIST_ITEM = 'playlists/ARCHIVE_PLAYLIST_ITEM';
-export const ARCHIVE_PLAYLIST_ITEM_SUCCESS = 'playlists/ARCHIVE_PLAYLIST_ITEM_SUCCESS';
-export const ARCHIVE_PLAYLIST_ITEM_FAIL = 'playlists/ARCHIVE_PLAYLIST_ITEM_FAIL';
+export const ARCHIVE_PLAYLIST_ITEM = 'playlist/ARCHIVE_PLAYLIST_ITEM';
+export const ARCHIVE_PLAYLIST_ITEM_SUCCESS = 'playlist/ARCHIVE_PLAYLIST_ITEM_SUCCESS';
+export const ARCHIVE_PLAYLIST_ITEM_FAIL = 'playlist/ARCHIVE_PLAYLIST_ITEM_FAIL';
 
-export const FAVORITE_PLAYLIST_ITEM = 'playlists/FAVORITE_PLAYLIST_ITEM';
-export const FAVORITE_PLAYLIST_ITEM_SUCCESS = 'playlists/FAVORITE_PLAYLIST_ITEM_SUCCESS';
-export const FAVORITE_PLAYLIST_ITEM_FAIL = 'playlists/FAVORITE_PLAYLIST_ITEM_FAIL';
+export const FAVORITE_PLAYLIST_ITEM = 'playlist/FAVORITE_PLAYLIST_ITEM';
+export const FAVORITE_PLAYLIST_ITEM_SUCCESS = 'playlist/FAVORITE_PLAYLIST_ITEM_SUCCESS';
+export const FAVORITE_PLAYLIST_ITEM_FAIL = 'playlist/FAVORITE_PLAYLIST_ITEM_FAIL';
 
-export const REMOVE_PLAYLIST_ITEM = 'playlists/REMOVE_PLAYLIST_ITEM';
-export const REMOVE_PLAYLIST_ITEM_SUCCESS = 'playlists/REMOVE_PLAYLIST_ITEM_SUCCESS';
-export const REMOVE_PLAYLIST_ITEM_FAIL = 'playlists/REMOVE_PLAYLIST_ITEM_FAIL';
+export const REMOVE_PLAYLIST_ITEM = 'playlist/REMOVE_PLAYLIST_ITEM';
+export const REMOVE_PLAYLIST_ITEM_SUCCESS = 'playlist/REMOVE_PLAYLIST_ITEM_SUCCESS';
+export const REMOVE_PLAYLIST_ITEM_FAIL = 'playlist/REMOVE_PLAYLIST_ITEM_FAIL';
 
-export const RESET_STATE = 'playlists/RESET_STATE';
+export const RESET_STATE = 'playlist/RESET_STATE';
 
-const GET_PLAYLISTS_FAIL_MESSAGE = 'An unknown error happened while getting your playlist. Please contact us when this happens all the time.';
+const GET_PLAYLIST_FAIL_MESSAGE = 'An unknown error happened while getting your playlist. Please contact us when this happens all the time.';
 const CREATE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while adding this article to your playlist. Please contact us when this happens all the time.';
 const FAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while favoriting this article. Please contact us when this happens all the time.';
 const REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while removing this article from your playlist. Please contact us when this happens all the time.';
 const GET_ARTICLE_FAIL_MESSAGE = 'An unknown error happened while fetching an article. Please contact us when this happens all the time.';
 
-export interface PlaylistsState {
+export interface PlaylistState {
   isLoading: boolean;
   isLoadingCreateItem: boolean;
   isLoadingFavoriteItem: boolean;
-  playlists: Api.Playlist[];
+  items: Api.PlaylistItem[];
   error: string;
 }
 
-const initialState: PlaylistsState = {
+const initialState: PlaylistState = {
   isLoading: false,
   isLoadingCreateItem: false,
   isLoadingFavoriteItem: false,
-  playlists: [],
+  items: [],
   error: ''
 };
 
@@ -55,35 +55,35 @@ interface PlaylistActionTypes {
   error: AxiosError;
 }
 
-export function playlistsReducer(state = initialState, action: PlaylistActionTypes): PlaylistsState {
+export function playlistReducer(state = initialState, action: PlaylistActionTypes): PlaylistState {
   switch (action.type) {
-    case GET_PLAYLISTS:
+    case GET_PLAYLIST:
       return {
         ...state,
         isLoading: true
       };
 
-    case GET_PLAYLISTS_SUCCESS:
-      Analytics.trackEvent('Get playlists success');
+    case GET_PLAYLIST_SUCCESS:
+      Analytics.trackEvent('Get playlist success');
 
       return {
         ...state,
         isLoading: false,
-        playlists: action.payload.data,
+        items: action.payload.data,
         error: ''
       };
 
-    case GET_PLAYLISTS_FAIL:
+    case GET_PLAYLIST_FAIL:
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
         Analytics.trackEvent('Error get playlist', { message: action.error.response.data.message });
       } else {
-        Analytics.trackEvent('Error get playlist', { message: GET_PLAYLISTS_FAIL_MESSAGE });
+        Analytics.trackEvent('Error get playlist', { message: GET_PLAYLIST_FAIL_MESSAGE });
       }
 
       return {
         ...state,
         isLoading: false,
-        error: (action.error.response) ? action.error.response.data.message : GET_PLAYLISTS_FAIL_MESSAGE
+        error: (action.error.response) ? action.error.response.data.message : GET_PLAYLIST_FAIL_MESSAGE
       };
 
     case GET_ARTICLE:
@@ -98,23 +98,18 @@ export function playlistsReducer(state = initialState, action: PlaylistActionTyp
       const article = action.payload.data;
 
       // Find the default playlist so we can replace the article
-      const updatedPlaylists = state.playlists.map((playlist) => {
-        if (playlist.name === 'Default') {
-          playlist.playlistItems.map((playlistItem) => {
-            if (playlistItem.article.id !== article.id) return playlistItem;
+      const updatedPlaylistItems = state.items.map((playlistItem) => {
+        if (playlistItem.article.id !== article.id) return playlistItem;
 
-            // Replace the article
-            return playlistItem.article = article;
-          });
-        }
-
-        return playlist;
+        // Replace the article
+        playlistItem.article = article;
+        return playlistItem;
       });
 
       return {
         ...state,
         isLoading: false,
-        playlists: updatedPlaylists,
+        items: updatedPlaylistItems,
         error: ''
       };
 
@@ -225,19 +220,19 @@ export function playlistsReducer(state = initialState, action: PlaylistActionTyp
   }
 }
 
-export function resetPlaylistsState() {
+export function resetPlaylistState() {
   return {
     type: RESET_STATE
   };
 }
 
-export function getPlaylists() {
+export function getPlaylist() {
   return {
-    type: GET_PLAYLISTS,
+    type: GET_PLAYLIST,
     payload: {
       request: {
         method: 'get',
-        url: '/v1/me/playlists'
+        url: '/v1/playlist'
       }
     }
   };
@@ -255,13 +250,13 @@ export function getArticle(articleId: string) {
   };
 }
 
-export function addArticleToPlaylistByUrl(articleUrl: string, playlistId: string) {
+export function addArticleToPlaylistByUrl(articleUrl: string) {
   return {
     type: CREATE_PLAYLIST_ITEM,
     payload: {
       request: {
         method: 'post',
-        url: `v1/playlists/${playlistId}/articles`,
+        url: 'v1/playlist/articles',
         data: {
           articleUrl
         }
@@ -270,25 +265,25 @@ export function addArticleToPlaylistByUrl(articleUrl: string, playlistId: string
   };
 }
 
-export function removeArticleFromPlaylist(articleId: string, playlistId: string) {
+export function removeArticleFromPlaylist(articleId: string) {
   return {
     type: REMOVE_PLAYLIST_ITEM,
     payload: {
       request: {
         method: 'delete',
-        url: `v1/playlists/${playlistId}/articles/${articleId}`
+        url: `v1/playlist/articles/${articleId}`
       }
     }
   };
 }
 
-export function favoritePlaylistItem(articleId: string, playlistId: string) {
+export function favoritePlaylistItem(articleId: string) {
   return {
     type: FAVORITE_PLAYLIST_ITEM,
     payload: {
       request: {
         method: 'patch',
-        url: `v1/playlists/${playlistId}/articles/${articleId}/favoritedat`,
+        url: `v1/playlist/articles/${articleId}/favoritedat`,
         data: {
           favoritedAt: new Date() // date is ignored on the server, we use server time
         }
@@ -297,13 +292,13 @@ export function favoritePlaylistItem(articleId: string, playlistId: string) {
   };
 }
 
-export function archivePlaylistItem(articleId: string, playlistId: string) {
+export function archivePlaylistItem(articleId: string) {
   return {
     type: ARCHIVE_PLAYLIST_ITEM,
     payload: {
       request: {
         method: 'patch',
-        url: `v1/playlists/${playlistId}/articles/${articleId}/archivedat`,
+        url: `v1/playlist/articles/${articleId}/archivedat`,
         data: {
           archivedAt: new Date() // date is ignored on the server, we use server time
         }

@@ -14,7 +14,7 @@ export const getUserIsLoading = createSelector(
   user => user.isLoading
 );
 
-export const getCurrentUser = createSelector(
+export const getUserDetails = createSelector(
   [userSelector],
-  user => user.user
+  user => user.details
 );

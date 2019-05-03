@@ -15,13 +15,13 @@ export const RESET_USER_STATE = 'user/RESET_USER_STATE';
 
 export interface UserState {
   isLoading: boolean;
-  user: Api.User | null;
+  details: Api.User | null;
   error: string;
 }
 
 const initialState: UserState = {
   isLoading: false,
-  user: null,
+  details: null,
   error: ''
 };
 
@@ -41,12 +41,12 @@ export function userReducer(state = initialState, action: UserActionTypes): User
       };
 
     case GET_USER_SUCCESS:
-      Analytics.trackEvent('Get account success');
+      Analytics.trackEvent('Get details success');
 
       return {
         ...state,
         isLoading: false,
-        user: action.payload.data,
+        details: action.payload.data,
         error: ''
       };
 
@@ -70,7 +70,7 @@ export function userReducer(state = initialState, action: UserActionTypes): User
       return {
         ...state,
         isLoading: false,
-        user: null,
+        details: null,
         error: getUserFailMessage
       };
 
@@ -87,7 +87,7 @@ export function userReducer(state = initialState, action: UserActionTypes): User
       return {
         ...state,
         isLoading: false,
-        user: action.payload.data,
+        details: action.payload.data,
         error: ''
       };
 
@@ -111,7 +111,7 @@ export function userReducer(state = initialState, action: UserActionTypes): User
       return {
         ...state,
         isLoading: false,
-        user: null,
+        details: null,
         error: createUserFailMessage
       };
 

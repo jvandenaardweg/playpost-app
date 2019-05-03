@@ -3,12 +3,13 @@ const black = '#000000';
 const grayDarkest = '#222222';
 const grayDarker = '#444444';
 const grayDark = '#888888';
-const gray = '#bfbfbf';
+const gray = '#C5C5C5';
 const grayLight = '#e5e5e5';
 const grayLightest = '#EEF0F4';
 const appBackground = '#F1F1F1';
 const white = '#ffffff';
 const blue = tintColor;
+const redLight = '#FF4F54';
 const red = '#FF1017';
 const redDark = '#b52424';
 const orange = '#EAEB5E';
@@ -26,6 +27,7 @@ export default {
   grayLightest,
   white,
   blue,
+  redLight,
   red,
   redDark,
   orange,
@@ -37,6 +39,8 @@ export default {
   tabBar: white,
 
   articleBackground: white,
+
+  favorite: redLight,
 
   titleDefault: black,
   paragraphDefault: grayDarkest,

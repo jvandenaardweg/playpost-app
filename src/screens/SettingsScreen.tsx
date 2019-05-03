@@ -15,12 +15,12 @@ import { ButtonUpgrade } from '../components/Header/ButtonUpgrade';
 import { resetAuthState } from '../reducers/auth';
 import { resetUserState, getUser } from '../reducers/user';
 import { resetPlayerState } from '../reducers/player';
-import { resetPlaylistsState } from '../reducers/playlists';
+import { resetPlaylistState } from '../reducers/playlist';
 import { resetAudiofilesState } from '../reducers/audiofiles';
 import { resetVoicesState, getVoices, resetDownloadedVoices } from '../reducers/voices';
 
 import { getSelectedVoice } from '../selectors/voices';
-import { getCurrentUser } from '../selectors/user';
+import { getUserDetails } from '../selectors/user';
 
 import { persistor } from '../store';
 import { RootState } from '../reducers';
@@ -33,7 +33,7 @@ interface Props {
   resetAuthState(): void;
   resetUserState(): void;
   resetPlayerState(): void;
-  resetPlaylistsState(): void;
+  resetPlaylistState(): void;
   resetAudiofilesState(): void;
   resetVoicesState(): void;
   getVoices(): void;
@@ -90,7 +90,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
   //     this.props.resetAuthState();
   //     this.props.resetUserState();
   //     this.props.resetPlayerState();
-  //     this.props.resetPlaylistsState();
+  //     this.props.resetPlaylistState();
   //     this.props.resetAudiofilesState();
   //     this.props.resetVoicesState();
   //   }
@@ -196,7 +196,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
         this.props.resetAuthState();
         this.props.resetUserState();
         this.props.resetPlayerState();
-        this.props.resetPlaylistsState();
+        this.props.resetPlaylistState();
         this.props.resetAudiofilesState();
         this.props.resetVoicesState();
 
@@ -404,14 +404,14 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
 
 const mapStateToProps = (state: RootState) => ({
   selectedVoice: getSelectedVoice(state),
-  user: getCurrentUser(state)
+  user: getUserDetails(state)
 });
 
 const mapDispatchToProps = {
   resetAuthState,
   resetUserState,
   resetPlayerState,
-  resetPlaylistsState,
+  resetPlaylistState,
   resetAudiofilesState,
   resetVoicesState,
   resetDownloadedVoices,

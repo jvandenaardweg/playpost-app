@@ -30,7 +30,7 @@ describe('Article', () => {
     });
 
     it('should render default color download icon', () => {
-      expect(wrapper.getByTestId('article-icon-downloaded').props.color).toBe('#e5e5e5');
+      expect(wrapper.getByTestId('article-icon-downloaded').props.color).toBe('#C5C5C5');
     });
   });
 

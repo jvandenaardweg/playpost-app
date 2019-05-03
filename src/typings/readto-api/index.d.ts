@@ -58,7 +58,6 @@ declare namespace Api {
     authenticatedAt: Date | null;
     createdAt: Date;
     updatedAt: Date;
-    playlists?: Playlist[];
   }
 
   export interface Audiofile {
