@@ -8,14 +8,6 @@ declare namespace Api {
     token: string;
   }
 
-  export interface Playlist {
-    id: string;
-    name: string;
-    createdAt: Date;
-    updatedAt: Date;
-    playlistItems: PlaylistItem[];
-  }
-
   export type PlaylistItem = {
     id: string;
     order: number;
