@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const TabBarIcon: React.FC<Props> = React.memo(({ focused, name }) => {
-  const color = focused ? colors.tabIconSelected : colors.tabIconDefault;
+  const color = focused ? colors.white : colors.grayDarker;
 
   return (
     <Icon.Feather

@@ -14,12 +14,13 @@ import { AudioPlayerContainer } from '../../components/AudioPlayer';
 import styles from './styles';
 import { ErrorMessage } from '../ErrorMessage';
 import { OfflineNotice } from '../OfflineNotice';
+import colors from '../../constants/colors';
 
 export const TabBar: React.FC<BottomTabBarProps> = React.memo(props => (
   <View style={styles.container}>
     <OfflineNotice />
     <ErrorMessage />
     <AudioPlayerContainer />
-    <BottomTabBar {...props} />
+    <BottomTabBar style={{backgroundColor: 'black', borderTopWidth: 1, borderTopColor: colors.grayDarkest }} {...props} />
   </View>
 ));
