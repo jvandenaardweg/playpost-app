@@ -12,4 +12,4 @@ const environments: ApiEnvironments = {
   development: DEVELOPMENT_API_URL
 };
 
-export const API_URL = environments[process.env.NODE_ENV || 'production'];
+export const API_URL = (__DEV__) ? environments['development'] : environments['production'];
