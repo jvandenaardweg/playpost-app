@@ -3,9 +3,9 @@ package com.aardwegmedia.playpost;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.facebook.react.BuildConfig;
 import com.reactnativecommunity.webview.RNCWebViewPackage;
-import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.apsl.versionnumber.RNVersionNumberPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
@@ -40,8 +40,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new RNCWebViewPackage(),
             new AsyncStoragePackage(),
+            new RNCWebViewPackage(),
             new RNVersionNumberPackage(),
             new ReactVideoPackage(),
             new RNFetchBlobPackage(),

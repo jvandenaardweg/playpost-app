@@ -95,8 +95,6 @@
 		8C7A3A0F2219D88D00A9A9A7 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEC11A77002D4D729CD3412A /* SimpleLineIcons.ttf */; };
 		8C92A68C2243B7D60057A1EE /* libRNVersionNumber.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C92A6882243B7CD0057A1EE /* libRNVersionNumber.a */; };
 		8C92A68D2243B7E20057A1EE /* libRNVersionNumber.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C92A6882243B7CD0057A1EE /* libRNVersionNumber.a */; };
-		8C92A6942243C8F20057A1EE /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C92A6932243C8EC0057A1EE /* libRNCAsyncStorage.a */; };
-		8C92A6952243C8FB0057A1EE /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C92A6932243C8EC0057A1EE /* libRNCAsyncStorage.a */; };
 		8C92A69C2243CA290057A1EE /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C92A69B2243CA210057A1EE /* libRNCWebView.a */; };
 		8C92A69D2243CA320057A1EE /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C92A69B2243CA210057A1EE /* libRNCWebView.a */; };
 		8CAA1197220F2CCE002741D6 /* libPods-Playpost-PlaypostShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAA1196220F2CCE002741D6 /* libPods-Playpost-PlaypostShareExtension.a */; };
@@ -442,13 +440,6 @@
 			remoteGlobalIDString = 2858ECD01F8B91B400610575;
 			remoteInfo = "RNVersionNumber-tvOS";
 		};
-		8C92A6922243C8EC0057A1EE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8C92A68E2243C8EC0057A1EE /* RNCAsyncStorage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RNCAsyncStorage;
-		};
 		8C92A69A2243CA210057A1EE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8C92A6962243CA210057A1EE /* RNCWebView.xcodeproj */;
@@ -656,7 +647,6 @@
 		8C5A7DDA220F23EC00ECCC65 /* libPods-Playpost.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-Playpost.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C5A7DDC220F23EC00ECCC65 /* libPods-PlaypostTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-PlaypostTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C92A64C2243B7CC0057A1EE /* RNVersionNumber.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNVersionNumber.xcodeproj; path = "../node_modules/react-native-version-number/ios/RNVersionNumber.xcodeproj"; sourceTree = "<group>"; };
-		8C92A68E2243C8EC0057A1EE /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCAsyncStorage.xcodeproj; path = "../node_modules/@react-native-community/async-storage/ios/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; };
 		8C92A6962243CA210057A1EE /* RNCWebView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCWebView.xcodeproj; path = "../node_modules/react-native-webview/ios/RNCWebView.xcodeproj"; sourceTree = "<group>"; };
 		8CAA1196220F2CCE002741D6 /* libPods-Playpost-PlaypostShareExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-Playpost-PlaypostShareExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD2ED1B223E70AA00A054E6 /* RNFS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
@@ -719,7 +709,6 @@
 				8C437591220813CD000A15FE /* libRNTrackPlayer.a in Frameworks */,
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
 				8C92A69D2243CA320057A1EE /* libRNCWebView.a in Frameworks */,
-				8C92A6942243C8F20057A1EE /* libRNCAsyncStorage.a in Frameworks */,
 				8C92A68D2243B7E20057A1EE /* libRNVersionNumber.a in Frameworks */,
 				8CD47C382240D0BA00D95B46 /* libRCTVideo.a in Frameworks */,
 				8C15B036223EB688001058F0 /* libRNFetchBlob.a in Frameworks */,
@@ -978,7 +967,6 @@
 			isa = PBXGroup;
 			children = (
 				8C92A6962243CA210057A1EE /* RNCWebView.xcodeproj */,
-				8C92A68E2243C8EC0057A1EE /* RNCAsyncStorage.xcodeproj */,
 				8C92A64C2243B7CC0057A1EE /* RNVersionNumber.xcodeproj */,
 				8CD47BF92240D09E00D95B46 /* RCTVideo.xcodeproj */,
 				8C15AFFB223EB671001058F0 /* RNFetchBlob.xcodeproj */,
@@ -1108,14 +1096,6 @@
 			children = (
 				8C92A6882243B7CD0057A1EE /* libRNVersionNumber.a */,
 				8C92A68A2243B7CD0057A1EE /* libRNVersionNumber-tvOS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		8C92A68F2243C8EC0057A1EE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8C92A6932243C8EC0057A1EE /* libRNCAsyncStorage.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1425,10 +1405,6 @@
 				{
 					ProductGroup = 8C5A7DD5220F230600ECCC65 /* Products */;
 					ProjectRef = 8C5A7DD4220F230600ECCC65 /* ReactNativeShareExtension.xcodeproj */;
-				},
-				{
-					ProductGroup = 8C92A68F2243C8EC0057A1EE /* Products */;
-					ProjectRef = 8C92A68E2243C8EC0057A1EE /* RNCAsyncStorage.xcodeproj */;
 				},
 				{
 					ProductGroup = 8CE6CA532237F3D5006512BB /* Products */;
@@ -1759,13 +1735,6 @@
 			fileType = archive.ar;
 			path = "libRNVersionNumber-tvOS.a";
 			remoteRef = 8C92A6892243B7CD0057A1EE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		8C92A6932243C8EC0057A1EE /* libRNCAsyncStorage.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNCAsyncStorage.a;
-			remoteRef = 8C92A6922243C8EC0057A1EE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		8C92A69B2243CA210057A1EE /* libRNCWebView.a */ = {
