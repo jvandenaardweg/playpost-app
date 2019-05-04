@@ -9,6 +9,11 @@ export const getPlaylistIsLoadingCreateItem = createSelector(
   (playlist): boolean => playlist.isLoadingCreateItem
 );
 
+export const getPlaylistError = createSelector(
+  [playlistSelector],
+  playlist => playlist.error
+);
+
 export const getPlaylistItems = createSelector(
   [playlistSelector],
   playlist => playlist.items

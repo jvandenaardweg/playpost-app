@@ -6,13 +6,14 @@ import validUrl from 'valid-url';
 
 import { addArticleToPlaylistByUrl } from '../../reducers/playlist';
 
-import { getPlaylistIsLoadingCreateItem } from '../../selectors/playlist';
+import { getPlaylistError } from '../../selectors/playlist';
 
 import styles from './styles';
 import { RootState } from '../../reducers';
 
 interface State {
   errorMessage: string;
+  isLoading: boolean;
 }
 
 interface IProps {
@@ -28,7 +29,8 @@ type Props = IProps & StateProps & DispatchProps;
 
 export class ShareModalContainer extends React.PureComponent<Props, State> {
   state = {
-    errorMessage: ''
+    errorMessage: '',
+    isLoading: true // Start in loading state
   };
 
   static defaultProps = {
@@ -39,9 +41,13 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
     const { url } = this.props;
 
     if (!validUrl.isUri(url)) {
-      return this.setState({ errorMessage: `Could not share this URL: ${url}` });
+      return this.setState({
+        errorMessage: `Could not share this URL because it is not a valid URL: ${url}`,
+        isLoading: false
+      });
     }
 
+    this.addArticleToPlaylist();
   }
 
   async componentDidUpdate(prevProps: Props) {
@@ -49,28 +55,25 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
 
     // When a new API error happens
     if (prevProps.playlistError !== playlistError) {
-      this.setState({ errorMessage: playlistError });
+      return this.setState({
+        errorMessage: playlistError,
+        isLoading: false });
     }
   }
 
   addArticleToPlaylist = async () => {
     const { closeDelay, url } = this.props;
 
-    try {
-      await this.props.addArticleToPlaylistByUrl(url);
+    await this.props.addArticleToPlaylistByUrl(url);
 
-      // Automatically close the modal after X seconds
-      setTimeout(() => this.props.onPressClose(), closeDelay);
-    } catch (err) {
-      return console.log('Error during addArticleToPlaylist.', err);
-    }
+    // Automatically close the modal after X seconds
+    setTimeout(() => this.props.onPressClose(), closeDelay);
   }
 
   renderMessage = () => {
-    const { errorMessage } = this.state;
-    const { isLoadingCreateItem } = this.props;
+    const { errorMessage, isLoading } = this.state;
 
-    if (isLoadingCreateItem) return null;
+    if (isLoading) return null;
 
     // TODO: handle error messages
     // scenario: article could not be added (for example wrong language)
@@ -88,9 +91,9 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
   }
 
   renderActivityIndicator = () => {
-    const { isLoadingCreateItem } = this.props;
+    const { isLoading } = this.state;
 
-    if (!isLoadingCreateItem) return null;
+    if (!isLoading) return null;
 
     return <ActivityIndicator />;
   }
@@ -116,7 +119,7 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
 }
 
 interface StateProps {
-  isLoadingCreateItem: ReturnType<typeof getPlaylistIsLoadingCreateItem>;
+  playlistError: ReturnType<typeof getPlaylistError>;
 }
 
 interface DispatchProps {
@@ -124,7 +127,7 @@ interface DispatchProps {
 }
 
 const mapStateToProps = (state: RootState) => ({
-  isLoadingCreateItem: getPlaylistIsLoadingCreateItem(state)
+  playlistError: getPlaylistError(state)
 });
 
 const mapDispatchToProps = {
