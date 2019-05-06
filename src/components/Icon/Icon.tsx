@@ -25,14 +25,14 @@ import ZocialI from 'react-native-vector-icons/Zocial';
 import { IconProps } from 'react-native-vector-icons/Icon';
 
 // export const MaterialCommunityIcons = (props: IconProps) => <MaterialCommunityIconsI {...props} />;)
-export const SimpleLineIcons = (props: IconProps) => <SimpleLineIconsI {...props} />;
-export const MaterialIcons = (props: IconProps) => <MaterialIconsI {...props} />;
-export const FontAwesome = (props: IconProps) => <FontAwesomeI {...props} />;
-export const FontAwesome5 = (props: FontAwesome5IconProps) => <FontAwesome5I {...props} />;
-export const Foundation = (props: IconProps) => <FoundationI {...props} />;
-export const EvilIcons = (props: IconProps) => <EvilIconsI {...props} />;
-export const Ionicons = (props: IconProps) => <IoniconsI {...props} />;
-export const Octicons = (props: IconProps) => <OcticonsI {...props} />;
-export const Feather = (props: IconProps) => <FeatherI {...props} />;
-export const Entypo = (props: IconProps) => <EntypoI {...props} />;
-export const Zocial = (props: IconProps) => <ZocialI {...props} />;
+export const SimpleLineIcons = React.memo((props: IconProps) => <SimpleLineIconsI {...props} />);
+export const MaterialIcons = React.memo((props: IconProps) => <MaterialIconsI {...props} />);
+export const FontAwesome = React.memo((props: IconProps) => <FontAwesomeI {...props} />);
+export const FontAwesome5 = React.memo((props: FontAwesome5IconProps) => <FontAwesome5I {...props} />);
+export const Foundation = React.memo((props: IconProps) => <FoundationI {...props} />);
+export const EvilIcons = React.memo((props: IconProps) => <EvilIconsI {...props} />);
+export const Ionicons = React.memo((props: IconProps) => <IoniconsI {...props} />);
+export const Octicons = React.memo((props: IconProps) => <OcticonsI {...props} />);
+export const Feather = React.memo((props: IconProps) => <FeatherI {...props} />);
+export const Entypo = React.memo((props: IconProps) => <EntypoI {...props} />);
+export const Zocial = React.memo((props: IconProps) => <ZocialI {...props} />);

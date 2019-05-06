@@ -6,19 +6,19 @@ import validUrl from 'valid-url';
 
 import { addArticleToPlaylistByUrl } from '../../reducers/playlist';
 
-import { getPlaylistIsLoadingCreateItem } from '../../selectors/playlist';
+import { getPlaylistError } from '../../selectors/playlist';
 
 import styles from './styles';
 import { RootState } from '../../reducers';
 
 interface State {
   errorMessage: string;
+  isLoading: boolean;
 }
 
 interface IProps {
   url: string;
   type: string;
-  closeDelay?: number;
   playlistError: string;
   onPressClose(): void;
   onPressSave(): void;
@@ -28,54 +28,57 @@ type Props = IProps & StateProps & DispatchProps;
 
 export class ShareModalContainer extends React.PureComponent<Props, State> {
   state = {
-    errorMessage: ''
-  };
-
-  static defaultProps = {
-    closeDelay: 2500
+    errorMessage: '',
+    isLoading: true // Start in loading state
   };
 
   componentDidMount() {
     const { url } = this.props;
 
+    // If it is no valid URL, we show an error message to the user
     if (!validUrl.isUri(url)) {
-      return this.setState({ errorMessage: `Could not share this URL: ${url}` });
+      return this.setState({
+        errorMessage: `Could not add this article to your playlist, because it does not seem to be a valid URL: "${url}"`,
+        isLoading: false
+      });
     }
 
+    this.addArticleToPlaylist();
   }
 
   async componentDidUpdate(prevProps: Props) {
     const { playlistError } = this.props;
 
-    // When a new API error happens
+    // When a new API error happens, we show a message to the user
     if (prevProps.playlistError !== playlistError) {
-      this.setState({ errorMessage: playlistError });
+      return this.setState({
+        errorMessage: playlistError,
+        isLoading: false
+      });
     }
   }
 
   addArticleToPlaylist = async () => {
-    const { closeDelay, url } = this.props;
+    const { url } = this.props;
 
     try {
+      // Do the API call to add the URL to the user's playlist
       await this.props.addArticleToPlaylistByUrl(url);
 
       // Automatically close the modal after X seconds
-      setTimeout(() => this.props.onPressClose(), closeDelay);
-    } catch (err) {
-      return console.log('Error during addArticleToPlaylist.', err);
+      setTimeout(() => this.props.onPressClose(), 2500);
+    } finally {
+      this.setState({
+        isLoading: false
+      });
     }
   }
 
   renderMessage = () => {
-    const { errorMessage } = this.state;
-    const { isLoadingCreateItem } = this.props;
+    const { errorMessage, isLoading } = this.state;
 
-    if (isLoadingCreateItem) return null;
+    if (isLoading) return null;
 
-    // TODO: handle error messages
-    // scenario: article could not be added (for example wrong language)
-    // scenario: no internet
-    // scenario: timeout
     if (errorMessage) {
       return (
         <Text style={{ color: 'red' }}>{errorMessage}</Text>
@@ -88,9 +91,9 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
   }
 
   renderActivityIndicator = () => {
-    const { isLoadingCreateItem } = this.props;
+    const { isLoading } = this.state;
 
-    if (!isLoadingCreateItem) return null;
+    if (!isLoading) return null;
 
     return <ActivityIndicator />;
   }
@@ -107,7 +110,6 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
           </View>
           <View style={styles.footer}>
             <Button title="Close" onPress={onPressClose} />
-            {/* <Button title="Open app" onPress={onPressClose} /> */}
           </View>
         </View>
       </View>
@@ -116,7 +118,7 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
 }
 
 interface StateProps {
-  isLoadingCreateItem: ReturnType<typeof getPlaylistIsLoadingCreateItem>;
+  playlistError: ReturnType<typeof getPlaylistError>;
 }
 
 interface DispatchProps {
@@ -124,7 +126,7 @@ interface DispatchProps {
 }
 
 const mapStateToProps = (state: RootState) => ({
-  isLoadingCreateItem: getPlaylistIsLoadingCreateItem(state)
+  playlistError: getPlaylistError(state)
 });
 
 const mapDispatchToProps = {

@@ -14,7 +14,7 @@ interface Props {
   actionButtonOnPress?(): void;
 }
 
-export const EmptyState: React.FC<Props> = ({ title, description, actionButtonLabel, localVideo, actionButtonOnPress }) => (
+export const EmptyState: React.FC<Props> = React.memo(({ title, description, actionButtonLabel, localVideo, actionButtonOnPress }) => (
   <View style={styles.container}>
     <View style={styles.content}>
       {title && <Text style={styles.title} testID="empty-state-title">{title}</Text>}
@@ -23,4 +23,4 @@ export const EmptyState: React.FC<Props> = ({ title, description, actionButtonLa
       {actionButtonLabel && <Button buttonStyle={styles.button} title={actionButtonLabel} onPress={actionButtonOnPress} testID="empty-state-button" />}
     </View>
   </View>
-);
+));

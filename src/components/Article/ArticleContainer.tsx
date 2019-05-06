@@ -38,6 +38,9 @@ interface IProps extends NavigationInjectedProps {
   isDownloaded: boolean;
   isFavorited: boolean;
   isArchived: boolean;
+  isMoving: boolean;
+  onLongPress(): void;
+  onPressOut(): void;
 }
 
 type Props = IProps & StateProps & DispatchProps;
@@ -103,7 +106,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     if (!isCreatingAudiofile && !isDownloadingAudiofile) {
       // When a track is playing
       if (playbackState && [TrackPlayer.STATE_PLAYING].includes(playbackState) && !isPlaying) {
-        this.setState({ isPlaying: true, isLoading: false });
+        this.setState({ isActive: true, isPlaying: true, isLoading: false });
       }
 
       // When a track is stopped or paused
@@ -134,8 +137,10 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
     if (!this.articleAudiofiles.length) return false;
 
-    // TODO: when using multiple audiofiles, we need to adjust this
-    return track.id === this.articleAudiofiles[0].id;
+    // Find the active audiofile
+    const audiofileIsActive = this.articleAudiofiles.find(audiofile => audiofile.id === track.id);
+
+    return audiofileIsActive !== undefined;
   }
 
   async handleCreateAudiofile() {
@@ -474,7 +479,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
   render() {
     const { isCreatingAudiofile, isLoading, isPlaying, isActive } = this.state;
-    const { article, isDownloaded, isFavorited, isArchived } = this.props;
+    const { article, isDownloaded, isFavorited, isArchived, isMoving, onLongPress, onPressOut } = this.props;
 
     // Use the canonicalUrl if we have it, else fall back to the normal url
     const articleUrl = (article.canonicalUrl) ? article.canonicalUrl : article.url;
@@ -503,6 +508,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
         {!this.isFailed &&
           <Article
+            isMoving={isMoving}
             isLoading={isLoading || isCreatingAudiofile}
             isPlaying={isPlaying}
             isActive={isActive}
@@ -519,6 +525,8 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
             readingTime={article.readingTime}
             onPlayPress={this.handleOnPlayPress}
             onOpenUrl={this.handleOnOpenUrl}
+            onLongPress={onLongPress}
+            onPressOut={onPressOut}
         />
         }
 

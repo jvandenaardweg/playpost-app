@@ -13,16 +13,16 @@ interface Props {
   url: string;
 }
 
-export const ArticleEmptyProcessing: React.FC<Props> = props => (
+export const ArticleEmptyProcessing: React.FC<Props> = React.memo((props: Props) => (
   <View style={styles.articleEmpty}>
     <ActivityIndicator style={styles.articleEmptyActivityIndicator} />
     <Text style={styles.articleEmptyText}>Processing article...</Text>
     <Button type="clear" title="Update" onPress={props.onPressUpdate} icon={<Icon.Feather name="refresh-ccw" size={18} color={colors.tintColor} style={{ marginLeft: 10 }} />} iconRight />
   </View>
-);
+));
 
-export const ArticleEmptyFailed: React.FC<Props> = props => (
+export const ArticleEmptyFailed: React.FC<Props> = React.memo((props: Props) => (
   <View style={styles.articleEmpty}>
     <Text style={styles.articleEmptyText}>Article processing failed. Remove this article and try again: {props.url}</Text>
   </View>
-);
+));

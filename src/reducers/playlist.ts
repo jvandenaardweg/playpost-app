@@ -33,6 +33,10 @@ export const REMOVE_PLAYLIST_ITEM = 'playlist/REMOVE_PLAYLIST_ITEM';
 export const REMOVE_PLAYLIST_ITEM_SUCCESS = 'playlist/REMOVE_PLAYLIST_ITEM_SUCCESS';
 export const REMOVE_PLAYLIST_ITEM_FAIL = 'playlist/REMOVE_PLAYLIST_ITEM_FAIL';
 
+export const REORDER_PLAYLIST_ITEM = 'playlist/REORDER_PLAYLIST_ITEM';
+export const REORDER_PLAYLIST_ITEM_SUCCESS = 'playlist/REORDER_PLAYLIST_ITEM_SUCCESS';
+export const REORDER_PLAYLIST_ITEM_FAIL = 'playlist/REORDER_PLAYLIST_ITEM_FAIL';
+
 export const RESET_STATE = 'playlist/RESET_STATE';
 
 const GET_PLAYLIST_FAIL_MESSAGE = 'An unknown error happened while getting your playlist. Please contact us when this happens all the time.';
@@ -42,6 +46,7 @@ const UNFAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while u
 const ARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while archiving this article. Please contact us when this happens all the time.';
 const UNARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while unarchiving this article. Please contact us when this happens all the time.';
 const REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while removing this article from your playlist. Please contact us when this happens all the time.';
+const REORDER_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while re-ordering this article in your playlist. Please contact us when this happens all the time.';
 const GET_ARTICLE_FAIL_MESSAGE = 'An unknown error happened while fetching an article. Please contact us when this happens all the time.';
 
 export type PlaylistState = Readonly<{
@@ -51,6 +56,7 @@ export type PlaylistState = Readonly<{
   isLoadingUnFavoriteItem: boolean;
   isLoadingArchiveItem: boolean;
   isLoadingUnArchiveItem: boolean;
+  isLoadingReOrderItem: boolean;
   items: ReadonlyArray<Api.PlaylistItem>;
   error: string;
 }>;
@@ -62,6 +68,7 @@ const initialState: PlaylistState = {
   isLoadingUnFavoriteItem: false,
   isLoadingArchiveItem: false,
   isLoadingUnArchiveItem: false,
+  isLoadingReOrderItem: false,
   items: [],
   error: ''
 };
@@ -316,6 +323,34 @@ export function playlistReducer(state = initialState, action: PlaylistActionType
         error: (action.error.response) ? action.error.response.data.message : REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE
       };
 
+    case REORDER_PLAYLIST_ITEM:
+      return {
+        ...state,
+        isLoadingReOrderItem: true
+      };
+
+    case REORDER_PLAYLIST_ITEM_SUCCESS:
+      Analytics.trackEvent('Re-order playlist article');
+
+      return {
+        ...state,
+        isLoadingReOrderItem: false,
+        error: ''
+      };
+
+    case REORDER_PLAYLIST_ITEM_FAIL:
+      if (action.error.response && action.error.response.data && action.error.response.data.message) {
+        Analytics.trackEvent('Error re-order article', { message: action.error.response.data.message });
+      } else {
+        Analytics.trackEvent('Error re-order article', { message: REORDER_PLAYLIST_ITEM_FAIL_MESSAGE });
+      }
+
+      return {
+        ...state,
+        isLoadingReOrderItem: false,
+        error: (action.error.response) ? action.error.response.data.message : REORDER_PLAYLIST_ITEM_FAIL_MESSAGE
+      };
+
     default:
       return state;
   }
@@ -414,6 +449,19 @@ export const unArchivePlaylistItem = (articleId: string) => ({
       url: `v1/playlist/articles/${articleId}/archivedat`,
       data: {
         archivedAt: null
+      }
+    }
+  }
+});
+
+export const reOrderPlaylistItem = (articleId: string, order: number) => ({
+  type: REORDER_PLAYLIST_ITEM,
+  payload: {
+    request: {
+      method: 'patch',
+      url: `v1/playlist/articles/${articleId}/order`,
+      data: {
+        order
       }
     }
   }

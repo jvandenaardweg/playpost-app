@@ -13,7 +13,7 @@ interface Props {
   isLoading: boolean;
 }
 
-export const LoginForm: React.FC<Props> = ({
+export const LoginForm: React.FC<Props> = React.memo(({
   onChangeText,
   onPressLogin,
   onPressSignup,
@@ -57,4 +57,4 @@ export const LoginForm: React.FC<Props> = ({
 
     </View>
   </KeyboardAvoidingView>
-);
+));

@@ -2,6 +2,7 @@ export const GENERIC_NETWORK_ERROR = 'Could not communicate with the server. Ple
 
 export const GET_USER_FAIL_MESSAGE = 'An unknown error happened while getting your account. Please contact us when this happens all the time.';
 export const CREATE_USER_FAIL_MESSAGE = 'An unknown error happened while creating your account. Please contact us when this happens all the time.';
+export const DELETE_USER_FAIL_MESSAGE = 'An unknown error happened while deleting your account. Please contact us when this happens all the time.';
 
 export const POST_AUTH_FAIL_MESSAGE = 'An unknown error happened while loggin you in. Please contact us when this happens all the time.';
 
@@ -31,3 +32,5 @@ export const ALERT_SETTINGS_RESET_CACHE_FAIL = 'We could not clear the cache. Pl
 export const ALERT_SETTINGS_CLEAR_CACHE_WARNING = 'This will delete the already downloaded article audio and voice previews.';
 export const ALERT_SETTINGS_VOICE_CHANGE = 'Changing the voice only applies to new articles. Articles with already available audio will not be changed to this new voice.';
 export const ALERT_SETTINGS_LOGOUT_FAIL = 'We failed to log you out. Please try again.';
+export const ALERT_SETTINGS_DELETE_USER = 'Deleting your account cannot be undone. All your data will be deleted from our systems.';
+export const ALERT_SETTINGS_DELETE_USER_FAIL = 'An error happened while trying to delete your account. Please try again or contact us when this happens all the time.';

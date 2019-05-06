@@ -1,15 +1,16 @@
 import React from 'react';
-import { FlatList, Alert } from 'react-native';
+import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { connect } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
+import DraggableFlatList from 'react-native-draggable-flatlist'
 
 import { CenterLoadingIndicator } from '../../components/CenterLoadingIndicator';
 import { EmptyState } from '../../components/EmptyState';
 import { ArticleContainer } from '../../components/Article/ArticleContainer';
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
-import { getPlaylist } from '../../reducers/playlist';
+import { getPlaylist, reOrderPlaylistItem } from '../../reducers/playlist';
 import { getVoices } from '../../reducers/voices';
 
 import { getNewPlaylistItems, getArchivedPlaylistItems, getFavoritedPlaylistItems } from '../../selectors/playlist';
@@ -23,8 +24,10 @@ import { ArticleSeperator } from '../Article/ArticleSeperator';
 interface State {
   isLoading: boolean;
   isRefreshing: boolean;
+  isReOrdering: boolean;
   errorMessage: string;
   showHelpVideo: boolean;
+  playlistItems: readonly Api.PlaylistItem[];
 }
 
 interface IProps {
@@ -38,8 +41,10 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
   state = {
     isLoading: false, // Show loading upon mount, because we fetch the playlist of the user
     isRefreshing: false,
+    isReOrdering: false,
     errorMessage: '',
-    showHelpVideo: false
+    showHelpVideo: false,
+    playlistItems: []
   };
 
   static contextType = NetworkContext;
@@ -81,6 +86,27 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
     setTimeout(() => SplashScreen.hide(), 100);
   }
 
+  static getDerivedStateFromProps(props: Props, state: State) {
+    // Prevent state update when we are re-ordering
+    if (state.isReOrdering) {
+      return null;
+    }
+
+    let playlistItems = props.newPlaylistItems;
+
+    if (props.isArchiveScreen && !isEqual(props.isArchiveScreen, state.playlistItems)) {
+      playlistItems = props.archivedPlaylistItems;
+    }
+
+    if (props.isFavoriteScreen && !isEqual(props.isFavoriteScreen, state.playlistItems)) {
+      playlistItems = props.favoritedPlaylistItems;
+    }
+
+    return {
+      playlistItems
+    };
+  }
+
   async showOrHideHelpVideo() {
     const showHelpVideo = await AsyncStorage.getItem('@showHelpVideo');
 
@@ -92,8 +118,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
   }
 
   async fetchPlaylist() {
-    const { newPlaylistItems } = this.props;
-    const { errorMessage } = this.state;
+    const { errorMessage, playlistItems } = this.state;
     const { isConnected } = this.context;
 
     try {
@@ -108,7 +133,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
       const customErrorMessage = 'There was an error while getting your playlist.';
 
       // If we don't have articles we show an empty error state
-      if (!newPlaylistItems || !newPlaylistItems.length) {
+      if (!playlistItems || !playlistItems.length) {
         return this.setState({ errorMessage: customErrorMessage });
       }
 
@@ -138,11 +163,11 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
   }
 
   get hasPlaylistItems() {
-    const { newPlaylistItems } = this.props;
-    return (newPlaylistItems && newPlaylistItems.length);
+    const { playlistItems } = this.state;
+    return (playlistItems && playlistItems.length);
   }
 
-  handleOnRefresh() {
+  handleOnRefresh = () => {
     // If we don't have any articles, we show the general centered loading indicator
     const isLoading = !this.hasPlaylistItems;
 
@@ -169,7 +194,7 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
     return downloadedAudiofileIds.includes(article.audiofiles[0].id);
   }
 
-  renderEmptyState = () => {
+  renderEmptyComponent = () => {
     const { isLoading, isRefreshing, showHelpVideo, errorMessage } = this.state;
     const { isArchiveScreen, isFavoriteScreen } = this.props;
     const { isConnected } = this.context;
@@ -217,39 +242,72 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
     return null;
   }
 
-  render() {
-    const { isArchiveScreen, isFavoriteScreen, archivedPlaylistItems, favoritedPlaylistItems, newPlaylistItems } = this.props;
-    const { isRefreshing } = this.state;
+  handleOnMoveEnd = async ({ data, to, from, row }: { data: readonly Api.PlaylistItem[] | null, to: number, from: number, row: Api.PlaylistItem }) => {
+    const articleId = row.article.id;
+    const newOrder = to;
+    const newPlaylistItemsOrder: readonly Api.PlaylistItem[] | null = data;
 
-    let playlistItems = newPlaylistItems;
+    console.log(to, from);
 
-    if (isArchiveScreen) {
-      playlistItems = archivedPlaylistItems;
-    }
+    if (!newPlaylistItemsOrder) return;
 
-    if (isFavoriteScreen) {
-      playlistItems = favoritedPlaylistItems;
-    }
+    return this.setState({ playlistItems: newPlaylistItemsOrder, isReOrdering: true }, async () => {
+      try {
+        // Call API to set new order in the database
+        await this.props.reOrderPlaylistItem(articleId, newOrder);
+
+        // Get the newly ordered playlist
+        await this.props.getPlaylist();
+      } catch (err) {
+        Alert.alert('Oops!', 'An error happened while re-ordering your playlist. Please try again.');
+      } finally {
+        this.setState({ isReOrdering: false });
+      }
+    });
+  }
+
+  renderSeperatorComponent = () => {
+    return (<ArticleSeperator />);
+  }
+
+  renderItem = (
+    { item, index, move, moveEnd, isActive }:
+    { item: Api.PlaylistItem, index: number, move(): void, moveEnd(): void, isActive: boolean}
+  ) => {
+
+    // Only allow re-ordering of items when in the playlist screen
+    const allowMove = !this.props.isArchiveScreen || !this.props.isFavoriteScreen;
 
     return (
-      <FlatList
+      <ArticleContainer
+        isMoving={(allowMove) ? isActive : false}
+        isFavorited={!!item.favoritedAt}
+        isArchived={!!item.archivedAt}
+        playlistItem={item}
+        article={item.article}
+        isDownloaded={this.isDownloaded(item.article)}
+        onLongPress={(allowMove) ? move : () => {}}
+        onPressOut={(allowMove) ? moveEnd : () => {}}
+      />
+    );
+  }
+
+  render() {
+    const { isRefreshing, playlistItems } = this.state;
+
+    return (
+      <DraggableFlatList
         scrollEnabled={!!this.hasPlaylistItems}
         contentContainerStyle={{ flexGrow: 1 }}
         refreshing={isRefreshing}
-        onRefresh={() => this.handleOnRefresh()}
+        onRefresh={this.handleOnRefresh}
         data={playlistItems}
-        keyExtractor={item => item.id.toString()}
-        ItemSeparatorComponent={() => <ArticleSeperator />}
-        ListEmptyComponent={() => this.renderEmptyState()}
-        renderItem={({ item }) => (
-          <ArticleContainer
-            isFavorited={!!item.favoritedAt}
-            isArchived={!!item.archivedAt}
-            playlistItem={item}
-            article={item.article}
-            isDownloaded={this.isDownloaded(item.article)}
-          />
-        )}
+        keyExtractor={(item: Api.PlaylistItem) => item.id.toString()}
+        ItemSeparatorComponent={this.renderSeperatorComponent}
+        ListEmptyComponent={this.renderEmptyComponent}
+        onMoveEnd={this.handleOnMoveEnd}
+        scrollPercent={5}
+        renderItem={this.renderItem}
       />
     );
   }
@@ -265,6 +323,7 @@ interface StateProps {
 interface DispatchProps {
   getPlaylist: typeof getPlaylist;
   getVoices: typeof getVoices;
+  reOrderPlaylistItem: typeof reOrderPlaylistItem;
 }
 
 const mapStateToProps = (state: RootState) => ({
@@ -276,7 +335,8 @@ const mapStateToProps = (state: RootState) => ({
 
 const mapDispatchToProps = {
   getPlaylist,
-  getVoices
+  getVoices,
+  reOrderPlaylistItem
 };
 
 export const PlaylistsContainer = connect(

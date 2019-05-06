@@ -12,6 +12,8 @@ describe('Article', () => {
         <Article
           onOpenUrl={() => {}}
           onPlayPress={() => {}}
+          onLongPress={() => {}}
+          onPressOut={() => {}}
           url="https://www.google.nl"
         />
       );
@@ -42,6 +44,8 @@ describe('Article', () => {
         <Article
           onOpenUrl={() => {}}
           onPlayPress={() => {}}
+          onLongPress={() => {}}
+          onPressOut={() => {}}
           url="https://www.google.nl"
           isLoading
         />);
@@ -64,6 +68,8 @@ describe('Article', () => {
         <Article
           onOpenUrl={() => {}}
           onPlayPress={() => {}}
+          onLongPress={() => {}}
+          onPressOut={() => {}}
           url="https://www.google.nl"
           isActive
         />);
@@ -86,6 +92,8 @@ describe('Article', () => {
         <Article
           onOpenUrl={() => {}}
           onPlayPress={() => {}}
+          onLongPress={() => {}}
+          onPressOut={() => {}}
           url="https://www.google.nl"
           isPlaying
           isActive
@@ -109,6 +117,8 @@ describe('Article', () => {
         <Article
           onOpenUrl={() => {}}
           onPlayPress={() => {}}
+          onLongPress={() => {}}
+          onPressOut={() => {}}
           url="https://www.google.nl"
           isDownloaded
         />);
@@ -131,6 +141,8 @@ describe('Article', () => {
         <Article
           onOpenUrl={() => {}}
           onPlayPress={() => {}}
+          onLongPress={() => {}}
+          onPressOut={() => {}}
           url="https://www.google.nl"
           title="Test title"
           description="Test description"
