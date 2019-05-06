@@ -3,12 +3,15 @@
 exports[`Article active rendering should render active correctly 1`] = `
 <View
   style={
-    Object {
-      "backgroundColor": "#ffffff",
-      "flex": 1,
-      "padding": 16,
-      "width": "100%",
-    }
+    Array [
+      Object {
+        "backgroundColor": "#ffffff",
+        "flex": 1,
+        "padding": 16,
+        "width": "100%",
+      },
+      null,
+    ]
   }
 >
   <View
@@ -267,12 +270,15 @@ exports[`Article active rendering should render active correctly 1`] = `
 exports[`Article downloaded rendering should render downloaded correctly 1`] = `
 <View
   style={
-    Object {
-      "backgroundColor": "#ffffff",
-      "flex": 1,
-      "padding": 16,
-      "width": "100%",
-    }
+    Array [
+      Object {
+        "backgroundColor": "#ffffff",
+        "flex": 1,
+        "padding": 16,
+        "width": "100%",
+      },
+      null,
+    ]
   }
 >
   <View
@@ -531,12 +537,15 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
 exports[`Article full rendering should render full correctly 1`] = `
 <View
   style={
-    Object {
-      "backgroundColor": "#ffffff",
-      "flex": 1,
-      "padding": 16,
-      "width": "100%",
-    }
+    Array [
+      Object {
+        "backgroundColor": "#ffffff",
+        "flex": 1,
+        "padding": 16,
+        "width": "100%",
+      },
+      null,
+    ]
   }
 >
   <View
@@ -802,12 +811,15 @@ exports[`Article full rendering should render full correctly 1`] = `
 exports[`Article loading rendering should render loading correctly 1`] = `
 <View
   style={
-    Object {
-      "backgroundColor": "#ffffff",
-      "flex": 1,
-      "padding": 16,
-      "width": "100%",
-    }
+    Array [
+      Object {
+        "backgroundColor": "#ffffff",
+        "flex": 1,
+        "padding": 16,
+        "width": "100%",
+      },
+      null,
+    ]
   }
 >
   <View
@@ -1050,12 +1062,15 @@ exports[`Article loading rendering should render loading correctly 1`] = `
 exports[`Article minimal rendering should render minimal correctly 1`] = `
 <View
   style={
-    Object {
-      "backgroundColor": "#ffffff",
-      "flex": 1,
-      "padding": 16,
-      "width": "100%",
-    }
+    Array [
+      Object {
+        "backgroundColor": "#ffffff",
+        "flex": 1,
+        "padding": 16,
+        "width": "100%",
+      },
+      null,
+    ]
   }
 >
   <View
@@ -1314,12 +1329,15 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
 exports[`Article playing rendering should render playing correctly 1`] = `
 <View
   style={
-    Object {
-      "backgroundColor": "#ffffff",
-      "flex": 1,
-      "padding": 16,
-      "width": "100%",
-    }
+    Array [
+      Object {
+        "backgroundColor": "#ffffff",
+        "flex": 1,
+        "padding": 16,
+        "width": "100%",
+      },
+      null,
+    ]
   }
 >
   <View
