@@ -38,6 +38,9 @@ interface IProps extends NavigationInjectedProps {
   isDownloaded: boolean;
   isFavorited: boolean;
   isArchived: boolean;
+  isMoving: boolean;
+  onLongPress(): void;
+  onPressOut(): void;
 }
 
 type Props = IProps & StateProps & DispatchProps;
@@ -476,7 +479,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
   render() {
     const { isCreatingAudiofile, isLoading, isPlaying, isActive } = this.state;
-    const { article, isDownloaded, isFavorited, isArchived } = this.props;
+    const { article, isDownloaded, isFavorited, isArchived, isMoving, onLongPress, onPressOut } = this.props;
 
     // Use the canonicalUrl if we have it, else fall back to the normal url
     const articleUrl = (article.canonicalUrl) ? article.canonicalUrl : article.url;
@@ -505,6 +508,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
         {!this.isFailed &&
           <Article
+            isMoving={isMoving}
             isLoading={isLoading || isCreatingAudiofile}
             isPlaying={isPlaying}
             isActive={isActive}
@@ -521,6 +525,8 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
             readingTime={article.readingTime}
             onPlayPress={this.handleOnPlayPress}
             onOpenUrl={this.handleOnOpenUrl}
+            onLongPress={onLongPress}
+            onPressOut={onPressOut}
         />
         }
 

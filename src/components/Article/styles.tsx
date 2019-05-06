@@ -11,6 +11,9 @@ export default StyleSheet.create({
     padding: spacing.default,
     width: '100%'
   },
+  isMoving: {
+    backgroundColor: colors.appBackground
+  },
   seperator: {
     backgroundColor: colors.articleBackground,
     paddingLeft: spacing.default,

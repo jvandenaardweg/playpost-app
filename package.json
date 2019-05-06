@@ -58,6 +58,7 @@
     "react-fast-compare": "^2.0.4",
     "react-native": "0.59.5",
     "react-native-app-intro-slider": "^2.0.1",
+    "react-native-draggable-flatlist": "^1.1.7",
     "react-native-elements": "^1.1.0",
     "react-native-fs": "^2.13.3",
     "react-native-gesture-handler": "^1.2.1",

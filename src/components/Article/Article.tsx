@@ -8,6 +8,7 @@ import * as Icon from '../../components/Icon';
 import styles from './styles';
 
 interface Props {
+  isMoving?: boolean;
   isLoading?: boolean;
   isPlaying?: boolean;
   isActive?: boolean;
@@ -24,9 +25,12 @@ interface Props {
   readingTime?: number | null;
   onPlayPress?(): void;
   onOpenUrl(url: string): void;
+  onLongPress(): void;
+  onPressOut(): void;
 }
 
 export const Article: React.FC<Props> = React.memo(({
+  isMoving,
   isLoading,
   isPlaying,
   isActive,
@@ -42,14 +46,16 @@ export const Article: React.FC<Props> = React.memo(({
   listenTimeInSeconds,
   readingTime,
   onPlayPress,
-  onOpenUrl
+  onOpenUrl,
+  onLongPress,
+  onPressOut
 }) => (
-  <View style={styles.container}>
-    <TouchableOpacity style={styles.sectionHeader} activeOpacity={1} onPress={() => onOpenUrl(url)}>
+  <View style={[styles.container, (isMoving) ? styles.isMoving : null]}>
+    <TouchableOpacity style={styles.sectionHeader} activeOpacity={1} onPress={() => onOpenUrl(url)} onLongPress={onLongPress} onPressOut={onPressOut}>
       <Text style={styles.title} ellipsizeMode="tail" numberOfLines={2} testID="article-title">{title}</Text>
     </TouchableOpacity>
     <View style={styles.sectionBody}>
-      <TouchableOpacity style={styles.sectionMeta} activeOpacity={1} onPress={() => onOpenUrl(url)}>
+      <TouchableOpacity style={styles.sectionMeta} activeOpacity={1} onPress={() => onOpenUrl(url)} onLongPress={onLongPress} onPressOut={onPressOut}>
         <View style={styles.source}>
           <Icon.FontAwesome5
             name="circle"
