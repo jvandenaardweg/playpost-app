@@ -13,7 +13,7 @@ import fonts from '../constants/fonts';
 import { ButtonUpgrade } from '../components/Header/ButtonUpgrade';
 
 import { resetAuthState } from '../reducers/auth';
-import { resetUserState, getUser } from '../reducers/user';
+import { resetUserState, getUser, deleteUser } from '../reducers/user';
 import { resetPlayerState } from '../reducers/player';
 import { resetPlaylistState } from '../reducers/playlist';
 import { resetAudiofilesState } from '../reducers/audiofiles';
@@ -24,7 +24,7 @@ import { getUserDetails } from '../selectors/user';
 
 import { persistor } from '../store';
 import { RootState } from '../reducers';
-import { ALERT_SETTINGS_SET_CACHE_SIZE_FAIL, ALERT_SETTINGS_SETTING_UNAVAILABLE, ALERT_SETTINGS_RESET_CACHE_FAIL, ALERT_SETTINGS_CLEAR_CACHE_WARNING, ALERT_SETTINGS_LOGOUT_FAIL } from '../constants/messages';
+import { ALERT_SETTINGS_SET_CACHE_SIZE_FAIL, ALERT_SETTINGS_SETTING_UNAVAILABLE, ALERT_SETTINGS_RESET_CACHE_FAIL, ALERT_SETTINGS_CLEAR_CACHE_WARNING, ALERT_SETTINGS_LOGOUT_FAIL, ALERT_SETTINGS_DELETE_USER, ALERT_SETTINGS_DELETE_USER_FAIL } from '../constants/messages';
 import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE, URL_ABOUT, URL_FEEDBACK } from '../constants/urls';
 import colors from '../constants/colors';
 import spacing from '../constants/spacing';
@@ -37,6 +37,7 @@ interface State {
   cacheSize: string;
   isClearingCache: boolean;
   isLoggingOut: boolean;
+  isDeletingAccount: boolean;
 }
 
 class SettingsScreenContainer extends React.PureComponent<Props, State> {
@@ -50,7 +51,8 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
   state = {
     cacheSize: '0',
     isClearingCache: false,
-    isLoggingOut: false
+    isLoggingOut: false,
+    isDeletingAccount: false
   };
 
   componentDidMount() {
@@ -159,11 +161,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
   resetCache = async () => {
     return this.setState({ isClearingCache: true }, async () => {
       try {
-        this.props.resetAudiofilesState();
-        this.props.resetDownloadedVoices();
-        await RNFS.unlink(LOCAL_CACHE_AUDIOFILES_PATH);
-        await RNFS.unlink(LOCAL_CACHE_VOICE_PREVIEWS_PATH);
-        return this.setCacheSize();
+        await this.doResetCache();
       } catch (err) {
         return Alert.alert('Oops!', ALERT_SETTINGS_RESET_CACHE_FAIL);
       } finally {
@@ -172,30 +170,46 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
     });
   }
 
-  handleOnPressLogout = async () => {
-    return this.setState({ isLoggingOut: true }, async () => {
+  doResetCache = async () => {
+    this.props.resetAudiofilesState();
+    this.props.resetDownloadedVoices();
+    await RNFS.unlink(LOCAL_CACHE_AUDIOFILES_PATH);
+    await RNFS.unlink(LOCAL_CACHE_VOICE_PREVIEWS_PATH);
+    return this.setCacheSize();
+  }
+
+  deleteAccount = async () => {
+    return this.setState({ isDeletingAccount: true }, async () => {
       try {
-        // Remove the API token from secure store
-        await Keychain.resetGenericPassword();
-
-        // Remove the persisted state
-        await persistor.purge();
-
-        // Reset all the stores to it's original state
-        this.props.resetAuthState();
-        this.props.resetUserState();
-        this.props.resetPlayerState();
-        this.props.resetPlaylistState();
-        this.props.resetAudiofilesState();
-        this.props.resetVoicesState();
-
-        this.props.navigation.navigate('Onboarding');
+        await this.props.deleteUser();
+        await this.logout();
       } catch (err) {
-        return this.setState({ isLoggingOut: false }, () => {
-          return Alert.alert('Oops!', ALERT_SETTINGS_LOGOUT_FAIL);
-        });
+        return Alert.alert('Oops!', ALERT_SETTINGS_DELETE_USER_FAIL);
+      } finally {
+        return this.setState({ isDeletingAccount: false });
       }
     });
+  }
+
+  logout = async () => {
+
+    await this.doResetCache();
+
+    // Remove the API token from secure store
+    await Keychain.resetGenericPassword();
+
+    // Remove the persisted state
+    await persistor.purge();
+
+    // Reset all the stores to it's original state
+    this.props.resetAuthState();
+    this.props.resetUserState();
+    this.props.resetPlayerState();
+    this.props.resetPlaylistState();
+    this.props.resetAudiofilesState();
+    this.props.resetVoicesState();
+
+    return this.props.navigation.navigate('Onboarding');
   }
 
   get selectedVoiceLabel() {
@@ -206,6 +220,18 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
     return 'Select voice';
   }
 
+  handleOnPressLogout = async () => {
+    return this.setState({ isLoggingOut: true }, async () => {
+      try {
+        await this.logout();
+      } catch (err) {
+        return this.setState({ isLoggingOut: false }, () => {
+          return Alert.alert('Oops!', ALERT_SETTINGS_LOGOUT_FAIL);
+        });
+      }
+    });
+  }
+
   handleOnPressUpgrade = () => this.props.navigation.navigate('Upgrade');
 
   handleOnPressLanguage = () => this.props.navigation.navigate('SettingsVoices');
@@ -214,7 +240,23 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
 
   handleOnPressAccountEmail = () => Alert.alert('Not available', ALERT_SETTINGS_SETTING_UNAVAILABLE);
 
-  handleOnPressAccountDelete = () => Alert.alert('Not available', ALERT_SETTINGS_SETTING_UNAVAILABLE);
+  handleOnPressAccountDelete = () => {
+    return Alert.alert(
+      'Are you sure?',
+      ALERT_SETTINGS_DELETE_USER,
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel'
+        },
+        {
+          text: 'Delete account',
+          style: 'destructive',
+          onPress: () => this.deleteAccount()
+        }
+      ]
+    );
+  };
 
   settingsData: SettingsData = [
     {
@@ -368,19 +410,27 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
     },
     {
       type: 'CUSTOM_VIEW',
-      render: () => (
-        <Text
-          style={{
-            alignSelf: 'center',
-            fontSize: fonts.fontSize.title,
-            color: 'red',
-            marginBottom: 40
-          }}
-          onPress={this.handleOnPressAccountDelete}
-        >
-          Delete account
-        </Text>
-      ),
+      render: () => {
+        const { isDeletingAccount } = this.state;
+
+        if (isDeletingAccount) {
+          return (<ActivityIndicator />);
+        }
+
+        return (
+          <Text
+            style={{
+              alignSelf: 'center',
+              fontSize: fonts.fontSize.title,
+              color: 'red',
+              marginBottom: 40
+            }}
+            onPress={this.handleOnPressAccountDelete}
+          >
+            Delete account
+          </Text>
+        )
+      }
     },
   ];
 
@@ -401,6 +451,7 @@ interface DispatchProps {
   getVoices: typeof getVoices;
   resetDownloadedVoices: typeof resetDownloadedVoices;
   getUser: typeof getUser;
+  deleteUser: typeof deleteUser;
 }
 
 interface StateProps {
@@ -422,7 +473,8 @@ const mapDispatchToProps = {
   resetVoicesState,
   resetDownloadedVoices,
   getVoices,
-  getUser
+  getUser,
+  deleteUser
 };
 
 export const SettingsScreen = connect(
