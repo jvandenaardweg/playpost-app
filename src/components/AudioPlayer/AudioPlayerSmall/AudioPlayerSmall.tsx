@@ -31,7 +31,7 @@ export const AudioPlayerSmall: React.FC<Props> = React.memo(({
 }) => (
   <View style={styles.wrapper}>
     <View style={styles.container}>
-      <View style={styles.leftIcon}>
+      {/* <View style={styles.leftIcon}>
         <TouchableHighlight onPress={onPressFavorite} hitSlop={defaultHitslop}>
           <Icon.FontAwesome5
             name="heart"
@@ -39,7 +39,7 @@ export const AudioPlayerSmall: React.FC<Props> = React.memo(({
             color={colors.white}
           />
         </TouchableHighlight>
-      </View>
+      </View> */}
       <TouchableHighlight style={styles.trackInfoButton} onPress={onPressShowModal}>
         <View style={styles.trackInfo}>
           <View>
