@@ -49,11 +49,12 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
   async componentDidUpdate(prevProps: Props) {
     const { playlistError } = this.props;
 
-    // When a new API error happens
+    // When a new API error happens, we show a message to the user
     if (prevProps.playlistError !== playlistError) {
       return this.setState({
         errorMessage: playlistError,
-        isLoading: false });
+        isLoading: false
+      });
     }
   }
 
@@ -78,10 +79,6 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
 
     if (isLoading) return null;
 
-    // TODO: handle error messages
-    // scenario: article could not be added (for example wrong language)
-    // scenario: no internet
-    // scenario: timeout
     if (errorMessage) {
       return (
         <Text style={{ color: 'red' }}>{errorMessage}</Text>
@@ -113,7 +110,6 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
           </View>
           <View style={styles.footer}>
             <Button title="Close" onPress={onPressClose} />
-            {/* <Button title="Open app" onPress={onPressClose} /> */}
           </View>
         </View>
       </View>
