@@ -3,6 +3,7 @@ import RNFS from 'react-native-fs';
 import * as Keychain from 'react-native-keychain';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 import NetInfo from '@react-native-community/netinfo';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 
@@ -17,6 +18,21 @@ export class AuthLoadingScreen extends React.PureComponent<Props> {
 
   // Upon load of the app, do the following...
   bootstrapAsync = async () => {
+
+    // Determine if this is the first run after install
+    // If so, delete any API token we had from a previous install
+    // This will make sure the user starts clean and will see the onboarding screen, instead of the app screen
+    const hasRunBefore = await AsyncStorage.getItem('@hasRunBefore');
+
+    if (!hasRunBefore) {
+      // Delete any API token we had from a previous install
+      await Keychain.resetGenericPassword();
+
+      // Set the item to something, so we don't reset the API token upon next launch
+      await AsyncStorage.setItem('@hasRunBefore', 'true');
+    }
+
+    // Check if the user already has an API token
     // Important: Only rely on this token, so the user can use the app offline
     const credentials = await Keychain.getGenericPassword({ accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' });
     let token = null;
