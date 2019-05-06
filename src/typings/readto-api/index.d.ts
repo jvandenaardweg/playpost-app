@@ -22,12 +22,12 @@ declare namespace Api {
 
   export interface Article {
     id: string;
-    title: string;
-    description: string;
+    title: string | null;
+    description: string | null;
     url: string;
-    canonicalUrl: string;
-    languageCode: string;
-    sourceName: string;
+    canonicalUrl: string | null;
+    languageCode: string | null;
+    sourceName: string | null;
     imageUrl: string | null;
     readingTime: number | null;
     authorName: string | null;
