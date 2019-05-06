@@ -9,7 +9,7 @@ interface Props {
   action: string;
 }
 
-export const ErrorModal: React.FC<Props> = ({ message, action, onPressAction }) => (
+export const ErrorModal: React.FC<Props> = React.memo(({ message, action, onPressAction }) => (
   <View style={{
     backgroundColor: 'white',
     padding: spacing.default,
@@ -32,4 +32,4 @@ export const ErrorModal: React.FC<Props> = ({ message, action, onPressAction }) 
     )}
 
   </View>
-);
+));
