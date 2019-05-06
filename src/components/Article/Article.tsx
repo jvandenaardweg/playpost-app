@@ -16,10 +16,10 @@ interface Props {
   isFavorited?: boolean;
   isArchived?: boolean;
   hasAudiofile?: boolean;
-  title?: string;
+  title?: string | null;
   url: string;
-  description?: string;
-  sourceName?: string;
+  description?: string | null;
+  sourceName?: string | null;
   authorName?: string | null;
   listenTimeInSeconds?: number;
   readingTime?: number | null;

@@ -265,7 +265,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     this.setState({ isActive: true, isLoading: true }, async () => {
       this.props.resetPlaybackStatus();
 
-      const artist = (article.authorName) ? article.authorName : article.sourceName;
+      const artist = (article.authorName) ? article.authorName : article.sourceName || '';
       const album = (article.sourceName) ? article.sourceName : '';
 
       let localAudiofilePath = cache.getLocalFilePath(audiofile.filename, LOCAL_CACHE_AUDIOFILES_PATH);
@@ -290,12 +290,13 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
             artist,
             album,
             id: audiofile.id,
-            title: article.title,
+            title: article.title || '',
             url: localAudiofilePath,
             duration: audiofile.length,
             artwork: require('../../assets/images/logo-1024.png'),
             // contentType
-            contentType: 'audio/mpeg'
+            contentType: 'audio/mpeg',
+            key: audiofile.id
           }
         );
       }

@@ -2,15 +2,15 @@ import React from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
 import styles from './styles';
 
-import * as Icon from '../../../components/Icon';
+// import * as Icon from '../../../components/Icon';
 
 import { ProgressBar } from '../../AudioPlayer';
 
 import { PlayPauseControl } from '../PlayPauseControl';
 
 import TrackPlayer from 'react-native-track-player';
-import colors from '../../../constants/colors';
-import { defaultHitslop } from '../../../constants/buttons';
+// import colors from '../../../constants/colors';
+// import { defaultHitslop } from '../../../constants/buttons';
 
 interface Props {
   onPressShowModal(): void;
@@ -31,7 +31,7 @@ export const AudioPlayerSmall: React.FC<Props> = React.memo(({
 }) => (
   <View style={styles.wrapper}>
     <View style={styles.container}>
-      <View style={styles.leftIcon}>
+      {/* <View style={styles.leftIcon}>
         <TouchableHighlight onPress={onPressFavorite} hitSlop={defaultHitslop}>
           <Icon.FontAwesome5
             name="heart"
@@ -39,7 +39,7 @@ export const AudioPlayerSmall: React.FC<Props> = React.memo(({
             color={colors.white}
           />
         </TouchableHighlight>
-      </View>
+      </View> */}
       <TouchableHighlight style={styles.trackInfoButton} onPress={onPressShowModal}>
         <View style={styles.trackInfo}>
           <View>
