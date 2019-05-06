@@ -103,7 +103,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     if (!isCreatingAudiofile && !isDownloadingAudiofile) {
       // When a track is playing
       if (playbackState && [TrackPlayer.STATE_PLAYING].includes(playbackState) && !isPlaying) {
-        this.setState({ isPlaying: true, isLoading: false });
+        this.setState({ isActive: true, isPlaying: true, isLoading: false });
       }
 
       // When a track is stopped or paused
