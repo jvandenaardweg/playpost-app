@@ -134,8 +134,10 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
     if (!this.articleAudiofiles.length) return false;
 
-    // TODO: when using multiple audiofiles, we need to adjust this
-    return track.id === this.articleAudiofiles[0].id;
+    // Find the active audiofile
+    const audiofileIsActive = this.articleAudiofiles.find(audiofile => audiofile.id === track.id);
+
+    return audiofileIsActive !== undefined;
   }
 
   async handleCreateAudiofile() {
