@@ -19,7 +19,6 @@ interface State {
 interface IProps {
   url: string;
   type: string;
-  closeDelay?: number;
   playlistError: string;
   onPressClose(): void;
   onPressSave(): void;
@@ -31,10 +30,6 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
   state = {
     errorMessage: '',
     isLoading: true // Start in loading state
-  };
-
-  static defaultProps = {
-    closeDelay: 2500
   };
 
   componentDidMount() {
@@ -62,12 +57,19 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
   }
 
   addArticleToPlaylist = async () => {
-    const { closeDelay, url } = this.props;
+    const { url } = this.props;
 
-    await this.props.addArticleToPlaylistByUrl(url);
+    try {
+      // Do the API call to add the URL to the user's playlist
+      await this.props.addArticleToPlaylistByUrl(url);
 
-    // Automatically close the modal after X seconds
-    setTimeout(() => this.props.onPressClose(), closeDelay);
+      // Automatically close the modal after X seconds
+      setTimeout(() => this.props.onPressClose(), 2500);
+    } finally {
+      this.setState({
+        isLoading: false
+      });
+    }
   }
 
   renderMessage = () => {
