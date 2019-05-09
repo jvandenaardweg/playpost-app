@@ -141,7 +141,7 @@ export default StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 4,
-    opacity: 0.8
+    opacity: 0.9
   },
   imagePlaceholder: {
     backgroundColor: colors.grayLight
