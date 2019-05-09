@@ -27,7 +27,7 @@ interface State {
   isReOrdering: boolean;
   errorMessage: string;
   showHelpVideo: boolean;
-  playlistItems: readonly Api.PlaylistItem[];
+  playlistItems: Api.PlaylistItem[];
 }
 
 interface IProps {
@@ -242,10 +242,10 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
     return null;
   }
 
-  handleOnMoveEnd = async ({ data, to, from, row }: { data: readonly Api.PlaylistItem[] | null, to: number, from: number, row: Api.PlaylistItem }) => {
+  handleOnMoveEnd = async ({ data, to, from, row }: { data: Api.PlaylistItem[] | null, to: number, from: number, row: Api.PlaylistItem }) => {
     const articleId = row.article.id;
     const newOrder = to;
-    const newPlaylistItemsOrder: readonly Api.PlaylistItem[] | null = data;
+    const newPlaylistItemsOrder: Api.PlaylistItem[] | null = data;
 
     console.log(to, from);
 

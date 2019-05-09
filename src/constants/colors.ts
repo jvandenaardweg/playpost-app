@@ -47,7 +47,7 @@ export default {
   paragraphGrayed: grayDark,
   borderDefault: grayLight,
 
-  controlButtonDefault: black,
+  controlButtonDefault: white,
   controlButtonActive: tintColor,
 
   errorBackground: red,

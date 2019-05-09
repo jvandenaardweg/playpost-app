@@ -480,7 +480,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
   render() {
     const { isCreatingAudiofile, isLoading, isPlaying, isActive } = this.state;
-    const { article, isDownloaded, isFavorited, isArchived, isMoving, onLongPress, onPressOut } = this.props;
+    const { article, isDownloaded, isFavorited, isArchived, isMoving, onLongPress, onPressOut, playlistItem } = this.props;
 
     // Use the canonicalUrl if we have it, else fall back to the normal url
     const articleUrl = (article.canonicalUrl) ? article.canonicalUrl : article.url;
@@ -519,6 +519,8 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
             hasAudiofile={hasAudiofile}
             title={article.title}
             url={articleUrl}
+            imageUrl={article.imageUrl}
+            playlistItemCreatedAt={playlistItem.createdAt}
             description={article.description}
             sourceName={article.sourceName}
             authorName={article.authorName}
