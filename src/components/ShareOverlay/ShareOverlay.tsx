@@ -93,10 +93,6 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
 
   openUrlInMainApp = async (url: string) => {
     try {
-      // const supported = await Linking.canOpenUrl(url);
-
-      // if (!supported) return console.log(`Can't handle url: ${url}`);
-
       return ShareExtension.openURL(url);
     } catch (err) {
       const errorMessage = (err.message) ? err.message : 'An unknown error happened while opening the app. Please try again.';

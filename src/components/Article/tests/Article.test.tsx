@@ -15,6 +15,7 @@ describe('Article', () => {
           onLongPress={() => {}}
           onPressOut={() => {}}
           url="https://www.google.nl"
+          playlistItemCreatedAt={new Date()}
         />
       );
     });
@@ -47,6 +48,7 @@ describe('Article', () => {
           onLongPress={() => {}}
           onPressOut={() => {}}
           url="https://www.google.nl"
+          playlistItemCreatedAt={new Date()}
           isLoading
         />);
     });
@@ -71,6 +73,7 @@ describe('Article', () => {
           onLongPress={() => {}}
           onPressOut={() => {}}
           url="https://www.google.nl"
+          playlistItemCreatedAt={new Date()}
           isActive
         />);
     });
@@ -95,6 +98,7 @@ describe('Article', () => {
           onLongPress={() => {}}
           onPressOut={() => {}}
           url="https://www.google.nl"
+          playlistItemCreatedAt={new Date()}
           isPlaying
           isActive
         />);
@@ -120,6 +124,7 @@ describe('Article', () => {
           onLongPress={() => {}}
           onPressOut={() => {}}
           url="https://www.google.nl"
+          playlistItemCreatedAt={new Date()}
           isDownloaded
         />);
     });
@@ -144,6 +149,7 @@ describe('Article', () => {
           onLongPress={() => {}}
           onPressOut={() => {}}
           url="https://www.google.nl"
+          playlistItemCreatedAt={new Date()}
           title="Test title"
           description="Test description"
           sourceName="Test"
@@ -161,17 +167,13 @@ describe('Article', () => {
       expect(wrapper.getByTestId('article-title').props.children).toBe('Test title');
     });
 
-    it('should render a description', () => {
-      expect(wrapper.getByTestId('article-description').props.children).toBe('Test description');
-    });
-
     it('should render a source name', () => {
-      expect(wrapper.getByTestId('article-source-name').props.children[0]).toBe('Jordy on ');
-      expect(wrapper.getByTestId('article-source-name').props.children[1]).toBe('Test');
+      expect(wrapper.getByTestId('article-source-name').props.children[0]).toBe('- ');
+      expect(wrapper.getByTestId('article-source-name').props.children[1]).toBe('Jordy on Test');
     });
 
     it('should render a duration', () => {
-      expect(wrapper.getByTestId('article-duration').props.children).toBe('2 min');
+      expect(wrapper.getByTestId('article-duration').props.children).toBe('2 min.');
     });
 
     it('should render a play button with a play icon', () => {

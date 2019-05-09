@@ -1,5 +1,8 @@
 import React from 'react';
 import { View, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { Image } from 'react-native-elements';
+import urlParse from 'url-parse';
+import dateFns from 'date-fns';
 
 import colors from '../../constants/colors';
 
@@ -18,12 +21,14 @@ interface Props {
   hasAudiofile?: boolean;
   title?: string | null;
   url: string;
+  playlistItemCreatedAt: Date;
+  imageUrl?: string | null;
   description?: string | null;
   sourceName?: string | null;
   authorName?: string | null;
   listenTimeInSeconds?: number;
   readingTime?: number | null;
-  onPlayPress?(): void;
+  onPlayPress(): void;
   onOpenUrl(url: string): void;
   onLongPress(): void;
   onPressOut(): void;
@@ -40,6 +45,8 @@ export const Article: React.FC<Props> = React.memo(({
   hasAudiofile,
   title,
   url,
+  playlistItemCreatedAt,
+  imageUrl,
   description,
   sourceName,
   authorName,
@@ -51,17 +58,14 @@ export const Article: React.FC<Props> = React.memo(({
   onPressOut
 }) => (
   <View style={[styles.container, (isMoving) ? styles.isMoving : null]}>
-    <TouchableOpacity style={styles.sectionHeader} activeOpacity={1} onPress={() => onOpenUrl(url)} onLongPress={onLongPress} onPressOut={onPressOut}>
-      <Text style={styles.title} ellipsizeMode="tail" numberOfLines={2} testID="article-title">{title}</Text>
-    </TouchableOpacity>
-    <View style={styles.sectionBody}>
-      <TouchableOpacity style={styles.sectionMeta} activeOpacity={1} onPress={() => onOpenUrl(url)} onLongPress={onLongPress} onPressOut={onPressOut}>
-        <View style={styles.source}>
+    <TouchableOpacity style={styles.sectionBody} activeOpacity={1} onPress={() => onOpenUrl(url)} onLongPress={onLongPress} onPressOut={onPressOut}>
+      <View style={styles.bodyMeta}>
+        <View style={styles.bodyMetaIcons}>
           <Icon.FontAwesome5
             name="circle"
             size={9}
             solid
-            style={styles.sourceIcon}
+            style={styles.bodySourceIcon}
             color={hasAudiofile ? colors.green : colors.gray}
             testID="article-icon-playable"
           />
@@ -69,7 +73,7 @@ export const Article: React.FC<Props> = React.memo(({
             name="arrow-alt-circle-down"
             size={9}
             solid
-            style={styles.sourceIcon}
+            style={styles.bodySourceIcon}
             color={isDownloaded ? colors.green : colors.gray}
             testID="article-icon-downloaded"
           />
@@ -77,58 +81,80 @@ export const Article: React.FC<Props> = React.memo(({
             name="heart"
             size={9}
             solid
-            style={styles.sourceIcon}
+            style={styles.bodySourceIcon}
             color={isFavorited ? colors.favorite : colors.gray}
             testID="article-icon-favorited"
           />
-          <Text style={styles.sourceName} ellipsizeMode="tail" numberOfLines={1} testID="article-source-name">
-            {authorName && `${authorName} on `}
-            {sourceName}
-          </Text>
         </View>
-        <View style={styles.description}>
-          <Text style={styles.descriptionText} ellipsizeMode="tail" numberOfLines={3} testID="article-description">{description}</Text>
+        <View style={styles.bodyMetaSource}>
+          <SourceText authorName={authorName} sourceName={sourceName} url={url} />
         </View>
-      </TouchableOpacity>
-      {onPlayPress && (
-        <View style={styles.sectionControl}>
-          <PlayButton
+      </View>
+      <View style={styles.bodyTitle}>
+        <Text style={styles.bodyTitleText} testID="article-title" ellipsizeMode="tail" numberOfLines={3}>{title}</Text>
+      </View>
+      <View style={styles.bodyFooter}>
+        <Text style={styles.bodyFooterText}>Added {dateFns.distanceInWords(new Date(), playlistItemCreatedAt)} ago</Text>
+      </View>
+    </TouchableOpacity>
+    <View style={styles.sectionControl}>
+      <TouchableOpacity style={styles.imageContainer} onPress={onPlayPress} activeOpacity={1} disabled={isLoading}>
+        {imageUrl && <Image style={styles.image} source={{ uri: imageUrl }} placeholderStyle={styles.imagePlaceholder} />}
+        <View style={styles.playButtonContainer}>
+          <PlayIcon
             isLoading={isLoading}
             isPlaying={isPlaying}
             isActive={isActive}
-            onPress={onPlayPress}
           />
-          <Duration listenTimeInSeconds={listenTimeInSeconds} readingTime={readingTime} />
         </View>
-      )}
+      </TouchableOpacity>
+      <Duration listenTimeInSeconds={listenTimeInSeconds} readingTime={readingTime} />
     </View>
   </View>
 ));
 
+const SourceText = (props: { authorName: Props['authorName'], sourceName: Props['sourceName'], url: Props['url']}) => {
+  let text;
+
+  if (props.authorName && props.sourceName) {
+    text = `${props.authorName} on ${props.sourceName}`;
+  } else if (props.authorName && !props.sourceName) {
+    text = props.authorName;
+  } else if (props.url) {
+    text = urlParse(props.url).hostname;
+  } else {
+    text = 'Unknown source';
+  }
+
+  return (
+    <Text style={styles.bodySourceText} ellipsizeMode="tail" numberOfLines={1} testID="article-source-name">
+      {'- '}{text}
+    </Text>
+  );
+};
+
 export const Duration = (props: { listenTimeInSeconds?: number, readingTime?: number | null }) => {
+  // During our tests, it seems that it takes about 10-20% longer to listen to an article, then to read one
+  // So we manually adjust the readingTime
+  const readingTimeToListenTimeMargin = 1.10;
+
   if (props.listenTimeInSeconds) {
-    return <Text style={styles.duration} testID="article-duration">{`${Math.ceil(props.listenTimeInSeconds / 60)} min`}</Text>;
+    return <Text style={styles.duration} testID="article-duration">{`${Math.ceil(props.listenTimeInSeconds / 60)} min.`}</Text>;
   }
 
   if (props.readingTime) {
-    return <Text style={styles.duration} testID="article-duration">{`${Math.ceil(props.readingTime / 60)} min`}</Text>;
+    return <Text style={styles.duration} testID="article-duration">{`${Math.ceil((props.readingTime * readingTimeToListenTimeMargin) / 60)} min.`}</Text>;
   }
 
-  return <Text style={styles.duration} testID="article-duration">? min</Text>;
+  return <Text style={styles.duration} testID="article-duration">? min.</Text>;
 };
 
-export const PlayButton = (props: { isPlaying?: boolean, onPress(): void, isLoading?: boolean, isActive?: boolean }) => (
-  <TouchableOpacity
+export const PlayIcon = (props: { isPlaying?: boolean, isLoading?: boolean, isActive?: boolean }) => (
+  <View
     style={[styles.controlButton, (props.isPlaying || props.isActive) ? styles.controlButtonActive : null]}
-    onPress={props.onPress}
-    activeOpacity={0.7}
-    disabled={props.isLoading}
-    testID="article-play-button"
-  >
-    <View>
-      {props.isLoading && <ActivityIndicator testID="article-activity-indicator" size="small" color="#fff" />}
-      {!props.isLoading && !props.isPlaying && <Icon.FontAwesome5 name="play" size={14} color="white" testID="article-icon-play" />}
-      {!props.isLoading && props.isPlaying && <Icon.FontAwesome5 name="pause" size={14} color="white" testID="article-icon-pause" />}
-    </View>
-  </TouchableOpacity>
+    testID="article-play-button">
+    {props.isLoading && <ActivityIndicator testID="article-activity-indicator" size="small" color={(props.isPlaying || props.isActive) ? '#fff' : '#000'} />}
+    {!props.isLoading && !props.isPlaying && <Icon.FontAwesome5 name="play" size={11} color={(props.isPlaying || props.isActive) ? '#fff' : '#000'} testID="article-icon-play" style={{ marginLeft: 2 }} />}
+    {!props.isLoading && props.isPlaying && <Icon.FontAwesome5 name="pause" size={11} color={(props.isPlaying || props.isActive) ? '#fff' : '#000'} testID="article-icon-pause" />}
+  </View>
 );

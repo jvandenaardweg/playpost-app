@@ -9,10 +9,14 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: colors.articleBackground,
     padding: spacing.default,
-    width: '100%'
+    width: '100%',
+    flexDirection: 'row',
   },
   isMoving: {
     backgroundColor: colors.appBackground
+  },
+  isActive: {
+    backgroundColor: colors.tintColor
   },
   seperator: {
     backgroundColor: colors.articleBackground,
@@ -23,58 +27,68 @@ export default StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: colors.borderDefault,
   },
-  sectionHeader: {
-
-  },
   sectionBody: {
     flex: 1,
-    flexDirection: 'row'
-  },
-  sectionMeta: {
-    flex: 1
+    flexDirection: 'column'
   },
   sectionControl: {
-    width: 50,
-    justifyContent: 'flex-end',
-    marginLeft: spacing.default,
-    paddingBottom: 4
-  },
-  title: {
-    fontSize: fonts.fontSize.title,
-    fontWeight: fonts.fontWeight.semibold,
-    color: colors.titleDefault,
-    lineHeight: 21,
-    marginBottom: 6
-  },
-  description: {
-    justifyContent: 'flex-start',
-    width: '100%',
-    height: '100%'
-  },
-  descriptionText: {
-    fontSize: fonts.fontSize.body,
-    color: colors.paragraphGrayed,
-    lineHeight: 24
+    width: 80,
+    marginLeft: spacing.default
   },
   author: {
     fontSize: fonts.fontSize.tiny,
     color: colors.paragraphGrayed,
     lineHeight: 18
   },
-  source: {
-    flex: 1,
+  bodyMeta: {
     flexDirection: 'row',
-    marginBottom: 4,
-    alignItems: 'baseline'
+    alignItems: 'baseline',
+    height: 14
   },
-  sourceIcon: {
-    marginRight: 4
+  bodyMetaIcons: {
+    flexDirection: 'row',
+    width: 39
   },
-  sourceName: {
+  bodyMetaSource: {
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 'auto'
+  },
+  bodyTitle: {
+    flex: 1,
+    flexGrow: 0,
+    flexBasis: 'auto',
+    marginTop: 6,
+    marginBottom: 6
+  },
+  bodyFooter: {
+    flex: 1,
+    flexGrow: 0,
+    flexShrink: 1,
+    flexBasis: 'auto',
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    height: 16
+  },
+  bodyTitleText: {
+    fontSize: fonts.fontSize.title,
+    fontWeight: fonts.fontWeight.semibold,
+    color: colors.titleDefault,
+    lineHeight: 21,
+  },
+  bodyFooterText: {
     fontSize: fonts.fontSize.tiny,
     color: colors.paragraphGrayed,
-    marginLeft: 2,
-    paddingRight: 28,
+    fontWeight: fonts.fontWeight.thin,
+    paddingLeft: 2
+  },
+  bodySourceIcon: {
+    marginRight: 4
+  },
+  bodySourceText: {
+    fontSize: fonts.fontSize.tiny,
+    color: colors.paragraphGrayed,
+    paddingRight: 0,
     fontWeight: fonts.fontWeight.thin
   },
   authorName: {
@@ -85,11 +99,20 @@ export default StyleSheet.create({
   },
   controlButton: {
     backgroundColor: colors.controlButtonDefault,
-    width: 50,
-    height: 50,
-    borderRadius: 50,
+    width: 32,
+    height: 32,
+    borderRadius: 32,
     alignItems: 'center',
     justifyContent: 'center',
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1,
+
+    elevation: 1,
   },
   controlButtonActive: {
     backgroundColor: colors.controlButtonActive
@@ -97,21 +120,30 @@ export default StyleSheet.create({
   duration: {
     color: colors.paragraphGrayed,
     textAlign: 'center',
-    marginTop: 5,
-    fontSize: fonts.fontSize.small
+    marginTop: 6,
+    fontSize: fonts.fontSize.tiny,
+    fontWeight: fonts.fontWeight.thin
   },
-  articleEmptyActivityIndicator: {
-    marginBottom: spacing.small
+  imageContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.gray,
+    borderRadius: 4,
+    width: 80,
+    height: 80
   },
-  articleEmpty: {
-    flex: 1,
-    backgroundColor: colors.articleBackground,
-    padding: spacing.medium,
-    width: '100%',
-    justifyContent: 'center'
+  playButtonContainer: {
+    position: 'absolute',
+    width: 32,
+    height: 32
   },
-  articleEmptyText: {
-    color: colors.grayLight,
-    alignSelf: 'center'
+  image: {
+    width: 80,
+    height: 80,
+    borderRadius: 4,
+    opacity: 0.9
+  },
+  imagePlaceholder: {
+    backgroundColor: colors.grayLight
   }
 });
