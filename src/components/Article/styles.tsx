@@ -9,10 +9,14 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: colors.articleBackground,
     padding: spacing.default,
-    width: '100%'
+    width: '100%',
+    flexDirection: 'row'
   },
   isMoving: {
     backgroundColor: colors.appBackground
+  },
+  isActive: {
+    backgroundColor: colors.tintColor
   },
   seperator: {
     backgroundColor: colors.articleBackground,
@@ -23,57 +27,71 @@ export default StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: colors.borderDefault,
   },
-  sectionHeader: {
-
-  },
   sectionBody: {
     flex: 1,
-    flexDirection: 'row'
-  },
-  sectionMeta: {
-    flex: 1
+    // flexGrow: 0,
+    // flexShrink: 1,
+    // flexBasis: 'auto',
+    flexDirection: 'column',
+    // backgroundColor: 'red'
   },
   sectionControl: {
-    width: 50,
-    justifyContent: 'flex-end',
+    width: 80,
     marginLeft: spacing.default,
-    paddingBottom: 4
-  },
-  title: {
-    fontSize: fonts.fontSize.title,
-    fontWeight: fonts.fontWeight.semibold,
-    color: colors.titleDefault,
-    lineHeight: 21,
-    marginBottom: 6
-  },
-  description: {
-    justifyContent: 'flex-start',
-    width: '100%',
-    height: '100%'
-  },
-  descriptionText: {
-    fontSize: fonts.fontSize.body,
-    color: colors.paragraphGrayed,
-    lineHeight: 24
+    // backgroundColor: 'red'
   },
   author: {
     fontSize: fonts.fontSize.tiny,
     color: colors.paragraphGrayed,
     lineHeight: 18
   },
-  source: {
+  bodyMeta: {
     flex: 1,
+    flexGrow: 0,
+    flexShrink: 1,
     flexDirection: 'row',
-    marginBottom: 4,
-    alignItems: 'baseline'
+    alignItems: 'baseline',
+    // backgroundColor: 'green',
+    height: 16
   },
-  sourceIcon: {
-    marginRight: 4
+  bodyTitle: {
+    flex: 1,
+    flexGrow: 0,
+    flexBasis: 'auto',
+    marginTop: 6,
+    marginBottom: 6,
+    // backgroundColor: 'yellow'
   },
-  sourceName: {
+  bodyFooter: {
+    flex: 1,
+    flexGrow: 0,
+    flexShrink: 1,
+    flexBasis: 'auto',
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    // backgroundColor: 'blue',
+    height: 16
+  },
+  bodyTitleText: {
+    fontSize: fonts.fontSize.title,
+    fontWeight: fonts.fontWeight.semibold,
+    color: colors.titleDefault,
+    lineHeight: 21,
+    // marginTop: 6,
+    // marginBottom: 6
+  },
+  bodyFooterText: {
     fontSize: fonts.fontSize.tiny,
     color: colors.paragraphGrayed,
-    marginLeft: 2,
+    fontWeight: fonts.fontWeight.thin,
+    paddingLeft: 2
+  },
+  bodySourceIcon: {
+    marginRight: 4
+  },
+  bodySourceText: {
+    fontSize: fonts.fontSize.tiny,
+    color: colors.paragraphGrayed,
     paddingRight: 28,
     fontWeight: fonts.fontWeight.thin
   },
@@ -85,9 +103,9 @@ export default StyleSheet.create({
   },
   controlButton: {
     backgroundColor: colors.controlButtonDefault,
-    width: 50,
-    height: 50,
-    borderRadius: 50,
+    width: 30,
+    height: 30,
+    borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -97,8 +115,9 @@ export default StyleSheet.create({
   duration: {
     color: colors.paragraphGrayed,
     textAlign: 'center',
-    marginTop: 5,
-    fontSize: fonts.fontSize.small
+    marginTop: 6,
+    fontSize: fonts.fontSize.tiny,
+    fontWeight: fonts.fontWeight.thin
   },
   articleEmptyActivityIndicator: {
     marginBottom: spacing.small
@@ -113,5 +132,27 @@ export default StyleSheet.create({
   articleEmptyText: {
     color: colors.grayLight,
     alignSelf: 'center'
+  },
+  imageContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.gray,
+    borderRadius: 4,
+    width: 80,
+    height: 80,
+  },
+  playButtonContainer: {
+    position: 'absolute',
+    width: 30,
+    height: 30
+  },
+  image: {
+    width: 80,
+    height: 80,
+    borderRadius: 4,
+    opacity: 0.9
+  },
+  imagePlaceholder: {
+    backgroundColor: colors.grayLight
   }
 });
