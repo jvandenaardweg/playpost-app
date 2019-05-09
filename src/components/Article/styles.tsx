@@ -52,7 +52,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'baseline',
     // backgroundColor: 'green',
-    height: 16
+    height: 14
   },
   bodyTitle: {
     flex: 1,
@@ -103,11 +103,11 @@ export default StyleSheet.create({
   },
   controlButton: {
     backgroundColor: colors.controlButtonDefault,
-    width: 30,
-    height: 30,
-    borderRadius: 30,
+    width: 32,
+    height: 32,
+    borderRadius: 32,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   controlButtonActive: {
     backgroundColor: colors.controlButtonActive
@@ -143,14 +143,14 @@ export default StyleSheet.create({
   },
   playButtonContainer: {
     position: 'absolute',
-    width: 30,
-    height: 30
+    width: 32,
+    height: 32
   },
   image: {
     width: 80,
     height: 80,
     borderRadius: 4,
-    opacity: 0.9
+    opacity: 0.8
   },
   imagePlaceholder: {
     backgroundColor: colors.grayLight

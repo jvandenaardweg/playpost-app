@@ -1,13 +1,14 @@
 import React from 'react';
 import { View, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { Image } from 'react-native-elements';
 import urlParse from 'url-parse';
 import dateFns from 'date-fns';
+
 import colors from '../../constants/colors';
 
 import * as Icon from '../../components/Icon';
 
 import styles from './styles';
-import { Image } from 'react-native-elements';
 
 interface Props {
   isMoving?: boolean;
@@ -93,17 +94,16 @@ export const Article: React.FC<Props> = React.memo(({
       </View>
     </TouchableOpacity>
     <View style={styles.sectionControl}>
-      <View style={styles.imageContainer}>
+      <TouchableOpacity style={styles.imageContainer} onPress={onPlayPress} activeOpacity={1} disabled={isLoading}>
         {imageUrl && <Image style={styles.image} source={{ uri: imageUrl }} placeholderStyle={styles.imagePlaceholder} />}
         <View style={styles.playButtonContainer}>
-          <PlayButton
+          <PlayIcon
             isLoading={isLoading}
             isPlaying={isPlaying}
             isActive={isActive}
-            onPress={onPlayPress}
           />
         </View>
-      </View>
+      </TouchableOpacity>
       <Duration listenTimeInSeconds={listenTimeInSeconds} readingTime={readingTime} />
     </View>
   </View>
@@ -141,18 +141,12 @@ export const Duration = (props: { listenTimeInSeconds?: number, readingTime?: nu
   return <Text style={styles.duration} testID="article-duration">? min</Text>;
 };
 
-export const PlayButton = (props: { isPlaying?: boolean, onPress(): void, isLoading?: boolean, isActive?: boolean }) => (
-  <TouchableOpacity
+export const PlayIcon = (props: { isPlaying?: boolean, isLoading?: boolean, isActive?: boolean }) => (
+  <View
     style={[styles.controlButton, (props.isPlaying || props.isActive) ? styles.controlButtonActive : null]}
-    onPress={props.onPress}
-    activeOpacity={0.7}
-    disabled={props.isLoading}
-    testID="article-play-button"
-  >
-    <View>
-      {props.isLoading && <ActivityIndicator testID="article-activity-indicator" size="small" color={(props.isPlaying || props.isActive) ? '#fff' : '#000'} />}
-      {!props.isLoading && !props.isPlaying && <Icon.FontAwesome5 name="play" size={11} color={(props.isPlaying || props.isActive) ? '#fff' : '#000'} testID="article-icon-play" />}
-      {!props.isLoading && props.isPlaying && <Icon.FontAwesome5 name="pause" size={11} color={(props.isPlaying || props.isActive) ? '#fff' : '#000'} testID="article-icon-pause" />}
-    </View>
-  </TouchableOpacity>
+    testID="article-play-button">
+    {props.isLoading && <ActivityIndicator testID="article-activity-indicator" size="small" color={(props.isPlaying || props.isActive) ? '#fff' : '#000'} />}
+    {!props.isLoading && !props.isPlaying && <Icon.FontAwesome5 name="play" size={11} color={(props.isPlaying || props.isActive) ? '#fff' : '#000'} testID="article-icon-play" style={{ marginLeft: 2 }} />}
+    {!props.isLoading && props.isPlaying && <Icon.FontAwesome5 name="pause" size={11} color={(props.isPlaying || props.isActive) ? '#fff' : '#000'} testID="article-icon-pause" />}
+  </View>
 );
