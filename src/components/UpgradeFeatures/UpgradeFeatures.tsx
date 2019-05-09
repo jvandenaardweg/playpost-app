@@ -48,7 +48,7 @@ export class UpgradeFeatures extends React.PureComponent {
         </View>
 
         <View style={styles.subscribeContainer}>
-          <Button title="Upgrade for €2,99 per month" onPress={() => this.handleOnPressUpgrade()} />
+          <Button title="Upgrade for €3,99 per month" onPress={() => this.handleOnPressUpgrade()} />
           <Button type="clear" title="Already upgraded? Restore purchase" onPress={() => this.handleOnPressRestore()} titleStyle={{ fontSize: fonts.fontSize.body }} />
         </View>
         <View style={styles.footer}>

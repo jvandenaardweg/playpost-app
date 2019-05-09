@@ -60,36 +60,40 @@ export const Article: React.FC<Props> = React.memo(({
   <View style={[styles.container, (isMoving) ? styles.isMoving : null]}>
     <TouchableOpacity style={styles.sectionBody} activeOpacity={1} onPress={() => onOpenUrl(url)} onLongPress={onLongPress} onPressOut={onPressOut}>
       <View style={styles.bodyMeta}>
-        <SourceText authorName={authorName} sourceName={sourceName} url={url} />
+        <View style={styles.bodyMetaIcons}>
+          <Icon.FontAwesome5
+            name="circle"
+            size={9}
+            solid
+            style={styles.bodySourceIcon}
+            color={hasAudiofile ? colors.green : colors.gray}
+            testID="article-icon-playable"
+          />
+          <Icon.FontAwesome5
+            name="arrow-alt-circle-down"
+            size={9}
+            solid
+            style={styles.bodySourceIcon}
+            color={isDownloaded ? colors.green : colors.gray}
+            testID="article-icon-downloaded"
+          />
+          <Icon.FontAwesome5
+            name="heart"
+            size={9}
+            solid
+            style={styles.bodySourceIcon}
+            color={isFavorited ? colors.favorite : colors.gray}
+            testID="article-icon-favorited"
+          />
+        </View>
+        <View style={styles.bodyMetaSource}>
+          <SourceText authorName={authorName} sourceName={sourceName} url={url} />
+        </View>
       </View>
       <View style={styles.bodyTitle}>
-        <Text style={styles.bodyTitleText} testID="article-title">{title}</Text>
+        <Text style={styles.bodyTitleText} testID="article-title" ellipsizeMode="tail" numberOfLines={3}>{title}</Text>
       </View>
       <View style={styles.bodyFooter}>
-        <Icon.FontAwesome5
-          name="circle"
-          size={9}
-          solid
-          style={styles.bodySourceIcon}
-          color={hasAudiofile ? colors.green : colors.gray}
-          testID="article-icon-playable"
-        />
-        <Icon.FontAwesome5
-          name="arrow-alt-circle-down"
-          size={9}
-          solid
-          style={styles.bodySourceIcon}
-          color={isDownloaded ? colors.green : colors.gray}
-          testID="article-icon-downloaded"
-        />
-        <Icon.FontAwesome5
-          name="heart"
-          size={9}
-          solid
-          style={styles.bodySourceIcon}
-          color={isFavorited ? colors.favorite : colors.gray}
-          testID="article-icon-favorited"
-        />
         <Text style={styles.bodyFooterText}>Added {dateFns.distanceInWords(new Date(), playlistItemCreatedAt)} ago</Text>
       </View>
     </TouchableOpacity>
@@ -124,21 +128,25 @@ const SourceText = (props: { authorName: Props['authorName'], sourceName: Props[
 
   return (
     <Text style={styles.bodySourceText} ellipsizeMode="tail" numberOfLines={1} testID="article-source-name">
-      {text}
+      {'- '}{text}
     </Text>
   );
 };
 
 export const Duration = (props: { listenTimeInSeconds?: number, readingTime?: number | null }) => {
+  // During our tests, it seems that it takes about 10-20% longer to listen to an article, then to read one
+  // So we manually adjust the readingTime
+  const readingTimeToListenTimeMargin = 1.10;
+
   if (props.listenTimeInSeconds) {
-    return <Text style={styles.duration} testID="article-duration">{`${Math.ceil(props.listenTimeInSeconds / 60)} min`}</Text>;
+    return <Text style={styles.duration} testID="article-duration">{`${Math.ceil(props.listenTimeInSeconds / 60)} min.`}</Text>;
   }
 
   if (props.readingTime) {
-    return <Text style={styles.duration} testID="article-duration">{`${Math.ceil(props.readingTime / 60)} min`}</Text>;
+    return <Text style={styles.duration} testID="article-duration">{`${Math.ceil((props.readingTime * readingTimeToListenTimeMargin) / 60)} min.`}</Text>;
   }
 
-  return <Text style={styles.duration} testID="article-duration">? min</Text>;
+  return <Text style={styles.duration} testID="article-duration">? min.</Text>;
 };
 
 export const PlayIcon = (props: { isPlaying?: boolean, isLoading?: boolean, isActive?: boolean }) => (

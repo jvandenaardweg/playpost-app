@@ -472,6 +472,17 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     return this.props.navigation.navigate('Browser', { url, title: article.title });
   }
 
+  handleOnPressUpdate = () => {
+    this.setState({ isLoading: true }, async () => {
+      try {
+        await this.fetchPlaylist();
+      } finally {
+        this.setState({ isLoading: false });
+      }
+    })
+
+  }
+
   render() {
     const { isCreatingAudiofile, isLoading, isPlaying, isActive } = this.state;
     const { article, isDownloaded, isFavorited, isArchived, isMoving, onLongPress, onPressOut, playlistItem } = this.props;
@@ -484,7 +495,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     // If the article is not yet done processing, for example, when we are still crawling it
     // We show it as loading
     if (this.isProcessing) {
-      return <ArticleEmptyProcessing onPressUpdate={() => this.fetchPlaylist()} url={articleUrl} />;
+      return <ArticleEmptyProcessing isLoading={isLoading} onPressUpdate={this.handleOnPressUpdate} url={articleUrl} />;
     }
 
     return (
@@ -498,7 +509,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         isArchived={isArchived}
       >
         {this.isFailed &&
-          <ArticleEmptyFailed url={articleUrl} />
+          <ArticleEmptyFailed isLoading={false} url={articleUrl} />
         }
 
         {!this.isFailed &&

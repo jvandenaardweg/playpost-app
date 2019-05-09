@@ -10,7 +10,7 @@ export default StyleSheet.create({
     backgroundColor: colors.articleBackground,
     padding: spacing.default,
     width: '100%',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   isMoving: {
     backgroundColor: colors.appBackground
@@ -29,16 +29,11 @@ export default StyleSheet.create({
   },
   sectionBody: {
     flex: 1,
-    // flexGrow: 0,
-    // flexShrink: 1,
-    // flexBasis: 'auto',
-    flexDirection: 'column',
-    // backgroundColor: 'red'
+    flexDirection: 'column'
   },
   sectionControl: {
     width: 80,
-    marginLeft: spacing.default,
-    // backgroundColor: 'red'
+    marginLeft: spacing.default
   },
   author: {
     fontSize: fonts.fontSize.tiny,
@@ -46,21 +41,25 @@ export default StyleSheet.create({
     lineHeight: 18
   },
   bodyMeta: {
-    flex: 1,
-    flexGrow: 0,
-    flexShrink: 1,
     flexDirection: 'row',
     alignItems: 'baseline',
-    // backgroundColor: 'green',
     height: 14
+  },
+  bodyMetaIcons: {
+    flexDirection: 'row',
+    width: 39
+  },
+  bodyMetaSource: {
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 'auto'
   },
   bodyTitle: {
     flex: 1,
     flexGrow: 0,
     flexBasis: 'auto',
     marginTop: 6,
-    marginBottom: 6,
-    // backgroundColor: 'yellow'
+    marginBottom: 6
   },
   bodyFooter: {
     flex: 1,
@@ -69,7 +68,6 @@ export default StyleSheet.create({
     flexBasis: 'auto',
     flexDirection: 'row',
     alignItems: 'baseline',
-    // backgroundColor: 'blue',
     height: 16
   },
   bodyTitleText: {
@@ -77,8 +75,6 @@ export default StyleSheet.create({
     fontWeight: fonts.fontWeight.semibold,
     color: colors.titleDefault,
     lineHeight: 21,
-    // marginTop: 6,
-    // marginBottom: 6
   },
   bodyFooterText: {
     fontSize: fonts.fontSize.tiny,
@@ -92,7 +88,7 @@ export default StyleSheet.create({
   bodySourceText: {
     fontSize: fonts.fontSize.tiny,
     color: colors.paragraphGrayed,
-    paddingRight: 28,
+    paddingRight: 0,
     fontWeight: fonts.fontWeight.thin
   },
   authorName: {
@@ -107,7 +103,16 @@ export default StyleSheet.create({
     height: 32,
     borderRadius: 32,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1,
+
+    elevation: 1,
   },
   controlButtonActive: {
     backgroundColor: colors.controlButtonActive
@@ -119,27 +124,13 @@ export default StyleSheet.create({
     fontSize: fonts.fontSize.tiny,
     fontWeight: fonts.fontWeight.thin
   },
-  articleEmptyActivityIndicator: {
-    marginBottom: spacing.small
-  },
-  articleEmpty: {
-    flex: 1,
-    backgroundColor: colors.articleBackground,
-    padding: spacing.medium,
-    width: '100%',
-    justifyContent: 'center'
-  },
-  articleEmptyText: {
-    color: colors.grayLight,
-    alignSelf: 'center'
-  },
   imageContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: colors.gray,
     borderRadius: 4,
     width: 80,
-    height: 80,
+    height: 80
   },
   playButtonContainer: {
     position: 'absolute',

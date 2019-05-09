@@ -168,11 +168,12 @@ describe('Article', () => {
     });
 
     it('should render a source name', () => {
-      expect(wrapper.getByTestId('article-source-name').props.children).toBe('Jordy on Test');
+      expect(wrapper.getByTestId('article-source-name').props.children[0]).toBe('- ');
+      expect(wrapper.getByTestId('article-source-name').props.children[1]).toBe('Jordy on Test');
     });
 
     it('should render a duration', () => {
-      expect(wrapper.getByTestId('article-duration').props.children).toBe('2 min');
+      expect(wrapper.getByTestId('article-duration').props.children).toBe('2 min.');
     });
 
     it('should render a play button with a play icon', () => {
