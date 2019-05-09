@@ -109,8 +109,6 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   }
 
   handleTrackUpdate = async (track: TrackPlayer.Track) => {
-    console.log('Track updated');
-
     // Reset the scrolled position for the Large Audio Player
     this.setState({ scrolled: 0 });
 

@@ -62,8 +62,6 @@ export default class App extends React.PureComponent<State> {
 
   handleAppStateChange = async (nextAppState: AppStateStatus) => {
     if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
-      // console.log('App has come to the foreground! We should check for new playlist items.');
-
       // Only fetch the playlist when there's an active internet connection
       const isConnected = await NetInfo.isConnected.fetch();
 

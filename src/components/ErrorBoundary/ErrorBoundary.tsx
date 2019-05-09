@@ -32,7 +32,6 @@ export class ErrorBoundary extends React.Component<Props, State> {
   // }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.log('ERORROR!', error, errorInfo);
     // to prevent this alert blocking your view of a red screen while developing
     if (__DEV__) {
       return;

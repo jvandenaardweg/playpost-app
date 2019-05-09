@@ -247,8 +247,6 @@ class ArticlesContainerComponent extends React.Component<Props, State> {
     const newOrder = to;
     const newPlaylistItemsOrder: Api.PlaylistItem[] | null = data;
 
-    console.log(to, from);
-
     if (!newPlaylistItemsOrder) return;
 
     return this.setState({ playlistItems: newPlaylistItemsOrder, isReOrdering: true }, async () => {

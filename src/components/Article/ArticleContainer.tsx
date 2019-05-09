@@ -216,8 +216,6 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   downloadAudiofile = async (url: string, audiofileId: string, filename: string): Promise<string | void> => {
-    // console.log('Downloading audiofile...');
-
     return new Promise((resolve, reject) => {
       return this.setState({ isActive: true, isLoading: true, isDownloadingAudiofile: true }, async () => {
         try {
@@ -360,7 +358,6 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       await this.props.archivePlaylistItem(articleId);
       this.fetchPlaylist();
     } catch (err) {
-      console.log(err);
       Alert.alert(
         'Oops!',
         ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL,
@@ -386,7 +383,6 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       await this.props.favoritePlaylistItem(articleId);
       this.fetchPlaylist();
     } catch (err) {
-      console.log(err);
       Alert.alert(
         'Oops!',
         ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL,
@@ -412,7 +408,6 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       await this.props.unFavoritePlaylistItem(articleId);
       this.fetchPlaylist();
     } catch (err) {
-      console.log(err);
       Alert.alert(
         'Oops!',
         ALERT_PLAYLIST_UNFAVORITE_ARTICLE_FAIL,
@@ -438,7 +433,6 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       await this.props.unArchivePlaylistItem(articleId);
       this.fetchPlaylist();
     } catch (err) {
-      console.log(err);
       Alert.alert(
         'Oops!',
         ALERT_PLAYLIST_UNARCHIVE_ARTICLE_FAIL,
