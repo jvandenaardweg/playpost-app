@@ -3,7 +3,7 @@ import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { connect } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
-import DraggableFlatList from 'react-native-draggable-flatlist'
+import DraggableFlatList from 'react-native-draggable-flatlist';
 
 import { CenterLoadingIndicator } from '../../components/CenterLoadingIndicator';
 import { EmptyState } from '../../components/EmptyState';

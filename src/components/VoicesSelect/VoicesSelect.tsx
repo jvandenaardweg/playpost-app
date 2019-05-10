@@ -20,8 +20,6 @@ import { getAvailableVoices, getSelectedVoice, getDownloadedVoices } from '../..
 import styles from './styles';
 import { ALERT_SETTINGS_VOICE_CHANGE } from '../../constants/messages';
 
-
-
 interface IProps {
   onPressUpgrade(): void;
 }

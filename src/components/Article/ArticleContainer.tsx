@@ -479,7 +479,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       } finally {
         this.setState({ isLoading: false });
       }
-    })
+    });
 
   }
 

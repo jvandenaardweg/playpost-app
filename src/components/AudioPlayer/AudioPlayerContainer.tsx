@@ -208,7 +208,6 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
 
     const articleText = this.article && this.article.text;
 
-
     // TODO: make sure "scrolled" is changed when we change tracks
     return (
       <AudioPlayerLarge

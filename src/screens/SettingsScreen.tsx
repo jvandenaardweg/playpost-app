@@ -200,7 +200,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
         }
       ]
     );
-  };
+  }
 
   settingsData: SettingsData = [
     {
@@ -364,7 +364,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
           >
             Delete account
           </Text>
-        )
+        );
       }
     },
   ];

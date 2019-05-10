@@ -18,7 +18,7 @@ declare namespace Api {
     favoritedAt: Date | null;
     archivedAt: Date | null;
     article: Article;
-  }
+  };
 
   export interface Article {
     id: string;
