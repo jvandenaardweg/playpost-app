@@ -9,11 +9,13 @@ import { AuthLoadingScreen } from '../screens/AuthLoadingScreen';
 import { OnboardingScreen } from '../screens/OnboardingScreen';
 import { ModalBrowserScreen } from '../screens/ModalBrowserScreen';
 import { UpgradeScreen } from '../screens/UpgradeScreen';
+import { LogoutScreen } from '../screens/LogoutScreen';
 
 export const AppNavigator: NavigationContainer = createAppContainer(
   createSwitchNavigator(
     {
       AuthLoading: AuthLoadingScreen,
+      Logout: LogoutScreen,
       Root: createStackNavigator(
         {
           App: MainTabNavigator,

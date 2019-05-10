@@ -5,6 +5,8 @@ import * as Icon from '../../components/Icon';
 
 import styles from './styles';
 
+import { resetUserError } from '../../reducers/user';
+import { resetAuthError } from '../../reducers/auth';
 import { getUserError } from '../../selectors/user';
 import { getAuthError } from '../../selectors/auth';
 import { RootState } from '../../reducers';
@@ -18,7 +20,7 @@ interface IProps {
   authError: string;
 }
 
-type Props = IProps & StateProps;
+type Props = IProps & StateProps & DispatchProps;
 
 class ErrorMessageContainer extends React.PureComponent<Props, State> {
   state = {
@@ -37,7 +39,13 @@ class ErrorMessageContainer extends React.PureComponent<Props, State> {
   }
 
   handleOnPressClose = () => {
-    this.setState({ forceClose: true });
+    const { userError, authError } = this.props;
+
+    this.setState({ forceClose: true }, () => {
+      // Reset the errors, so it does not pop up anymore
+      if (userError) this.props.resetUserError();
+      if (authError) this.props.resetAuthError();
+    });
   }
 
   render () {
@@ -63,12 +71,20 @@ interface StateProps {
   authError: ReturnType<typeof getAuthError>;
 }
 
+interface DispatchProps {
+  resetUserError: typeof resetUserError;
+  resetAuthError: typeof resetAuthError;
+}
+
 const mapStateToProps = (state: RootState) => ({
   userError: getUserError(state),
   authError: getAuthError(state)
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  resetUserError,
+  resetAuthError
+};
 
 export const ErrorMessage = connect(
   mapStateToProps,

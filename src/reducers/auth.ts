@@ -8,6 +8,7 @@ export const POST_AUTH_SUCCESS = 'auth/POST_AUTH_SUCCESS';
 export const POST_AUTH_FAIL = 'auth/POST_AUTH_FAIL';
 export const RESET_AUTH_STATE = 'auth/RESET_AUTH_STATE';
 export const SET_AUTH_TOKEN = 'auth/SET_AUTH_TOKEN';
+export const RESET_AUTH_ERROR = 'auth/RESET_AUTH_ERROR';
 
 export type AuthState = Readonly<{
   isLoading: boolean;
@@ -72,6 +73,12 @@ export function authReducer(state = initialState, action: AuthActionTypes): Auth
         error: postAuthFailMessage
       };
 
+    case RESET_AUTH_ERROR:
+      return {
+        ...state,
+        error: ''
+      };
+
     case RESET_AUTH_STATE:
       return {
         ...initialState
@@ -97,6 +104,10 @@ export const setAuthToken = (token: string) => ({
 
 export const resetAuthState = () => ({
   type: RESET_AUTH_STATE
+});
+
+export const resetAuthError = () => ({
+  type: RESET_AUTH_ERROR
 });
 
 export const postAuth = (email: string, password: string) => ({

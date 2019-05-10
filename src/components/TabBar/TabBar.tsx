@@ -12,13 +12,13 @@ import { BottomTabBar, BottomTabBarProps } from 'react-navigation';
 import { AudioPlayerContainer } from '../../components/AudioPlayer';
 
 import styles from './styles';
-import { ErrorMessage } from '../ErrorMessage';
+// import { ErrorMessage } from '../ErrorMessage';
 import { OfflineNotice } from '../OfflineNotice';
 
 export const TabBar: React.FC<BottomTabBarProps> = React.memo(props => (
   <View style={styles.container}>
     <OfflineNotice />
-    <ErrorMessage />
+    {/* <ErrorMessage /> */}
     <AudioPlayerContainer />
     <BottomTabBar {...props} />
   </View>

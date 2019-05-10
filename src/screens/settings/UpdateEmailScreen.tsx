@@ -8,9 +8,9 @@ import { ALERT_GENERIC_INTERNET_REQUIRED } from '../../constants/messages';
 import { UpdateEmailForm } from '../../components/UpdateEmailForm';
 
 import { RootState } from '../../reducers';
-import { updateUserEmail, getUser } from '../../reducers/user';
+import { updateUserEmail } from '../../reducers/user';
 
-import { getUserError } from '../../selectors/user';
+import { getUserError, getUserDetails } from '../../selectors/user';
 
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
@@ -18,7 +18,7 @@ interface State {
   isLoading: boolean;
   isSuccess: boolean;
   email: string;
-  emailValidation: string;
+  previousEmail: string;
   validationError: string;
 }
 
@@ -41,11 +41,23 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
     isLoading: false,
     isSuccess: false,
     email: '',
+    previousEmail: '',
     emailValidation: '',
     validationError: '',
   };
 
   static contextType = NetworkContext;
+
+  componentDidMount() {
+    const { userDetails } = this.props;
+
+    if (userDetails && userDetails.email) {
+      this.setState({
+        email: userDetails.email,
+        previousEmail: userDetails.email
+      });
+    }
+  }
 
   componentDidUpdate(prevProps: Props) {
     const { userError } = this.props;
@@ -55,36 +67,26 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
     }
   }
 
-  fetchUser = async () => {
-    try {
-      await this.props.getUser();
-      this.setState({ isSuccess: true });
-    } catch (err) {
-      this.setState({ isSuccess: false });
-    } finally {
-      this.setState({ isLoading: false });
-    }
-  }
-
   handleOnPressUpdateEmail = async () => {
-    const { email, emailValidation, isSuccess } = this.state;
+    const { email, previousEmail, isSuccess } = this.state;
     const { isConnected } = this.context;
 
     if (!isConnected) return Alert.alert('Oops!', ALERT_GENERIC_INTERNET_REQUIRED);
 
-    // Just navigate back to the settings screen
-    if (isSuccess) return this.props.navigation.navigate('Settings');
-
-    if (email !== emailValidation) {
-      return Alert.alert('Oops!', 'The given e-mail addresses do not match. Please make sure you typed your e-mail address correctly.');
+    if (email === previousEmail) {
+      return Alert.alert('Nothing to update...', 'The e-mail address given is the same. No need to update :-)');
     }
+
+    // If the user clicks on the button after a success
+    if (isSuccess) return this.props.navigation.navigate('Settings');
 
     this.setState({ isLoading: true }, async () => {
       try {
         await this.props.updateUserEmail(email);
 
-        // Get the user account details to update our store with the new e-mail address
-        await this.fetchUser();
+        return this.setState({ isSuccess: true, isLoading: false }, () => {
+          setTimeout(() => this.props.navigation.navigate('Settings'), 2000);
+        });
       } catch (err) {
         this.setState({ isSuccess: false, isLoading: false });
         // For errors, rely on the Redux state error we get through props
@@ -93,18 +95,16 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
     });
   }
 
-  handleOnChangeText = (field: 'email' | 'emailValidation', value: string) => {
+  handleOnChangeText = (field: 'email', value: string) => {
     if (field === 'email') this.setState({ email: value });
-    if (field === 'emailValidation') this.setState({ emailValidation: value });
   }
 
   render() {
-    const { email, emailValidation, isLoading, isSuccess } = this.state;
+    const { email, isLoading, isSuccess } = this.state;
 
     return (
       <UpdateEmailForm
         email={email}
-        emailValidation={emailValidation}
         isLoading={isLoading}
         isSuccess={isSuccess}
         onChangeText={this.handleOnChangeText}
@@ -116,20 +116,20 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
 
 interface StateProps {
   userError: ReturnType<typeof getUserError>;
+  userDetails: ReturnType<typeof getUserDetails>;
 }
 
 interface DispatchProps {
   updateUserEmail: typeof updateUserEmail;
-  getUser: typeof getUser;
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
-  userError: getUserError(state)
+  userError: getUserError(state),
+  userDetails: getUserDetails(state)
 });
 
 const mapDispatchToProps = {
-  updateUserEmail,
-  getUser
+  updateUserEmail
 };
 
 export const UpdateEmailScreen = connect(

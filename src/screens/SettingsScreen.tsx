@@ -5,26 +5,21 @@ import { Text, Switch, Alert, ActivityIndicator } from 'react-native';
 import { SettingsScreen as SettingsScreenComponent, SettingsData } from 'react-native-settings-screen';
 import { connect } from 'react-redux';
 import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions, NavigationInjectedProps } from 'react-navigation';
-import * as Keychain from 'react-native-keychain';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 import fonts from '../constants/fonts';
 
 import { ButtonUpgrade } from '../components/Header/ButtonUpgrade';
 
-import { resetAuthState } from '../reducers/auth';
-import { resetUserState, getUser, deleteUser } from '../reducers/user';
-import { resetPlayerState } from '../reducers/player';
-import { resetPlaylistState } from '../reducers/playlist';
+import { getUser, deleteUser } from '../reducers/user';
 import { resetAudiofilesState } from '../reducers/audiofiles';
 import { resetVoicesState, getVoices, resetDownloadedVoices } from '../reducers/voices';
 
 import { getSelectedVoice } from '../selectors/voices';
 import { getUserDetails } from '../selectors/user';
 
-import { persistor } from '../store';
 import { RootState } from '../reducers';
-import { ALERT_SETTINGS_SET_CACHE_SIZE_FAIL, ALERT_SETTINGS_SETTING_UNAVAILABLE, ALERT_SETTINGS_RESET_CACHE_FAIL, ALERT_SETTINGS_CLEAR_CACHE_WARNING, ALERT_SETTINGS_LOGOUT_FAIL, ALERT_SETTINGS_DELETE_USER, ALERT_SETTINGS_DELETE_USER_FAIL } from '../constants/messages';
+import { ALERT_SETTINGS_SET_CACHE_SIZE_FAIL, ALERT_SETTINGS_SETTING_UNAVAILABLE, ALERT_SETTINGS_RESET_CACHE_FAIL, ALERT_SETTINGS_CLEAR_CACHE_WARNING, ALERT_SETTINGS_DELETE_USER, ALERT_SETTINGS_DELETE_USER_FAIL } from '../constants/messages';
 import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE, URL_ABOUT, URL_FEEDBACK } from '../constants/urls';
 import colors from '../constants/colors';
 import spacing from '../constants/spacing';
@@ -66,26 +61,6 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
       this.fetchUser();
     }
   }
-
-  // async componentWillUnmount () {
-  //   const { isLoggingOut } = this.state;
-
-  //   if (isLoggingOut) {
-  //     // Remove the API token from secure store
-  //     await Keychain.resetGenericPassword();
-
-  //     // Remove the persisted state
-  //     await persistor.purge();
-
-  //     // Reset all the stores to it's original state
-  //     this.props.resetAuthState();
-  //     this.props.resetUserState();
-  //     this.props.resetPlayerState();
-  //     this.props.resetPlaylistState();
-  //     this.props.resetAudiofilesState();
-  //     this.props.resetVoicesState();
-  //   }
-  // }
 
   fetchUser = async () => {
     await this.props.getUser();
@@ -182,34 +157,13 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
     return this.setState({ isDeletingAccount: true }, async () => {
       try {
         await this.props.deleteUser();
-        await this.logout();
+        return this.props.navigation.navigate('Logout');
       } catch (err) {
         return Alert.alert('Oops!', ALERT_SETTINGS_DELETE_USER_FAIL);
       } finally {
         return this.setState({ isDeletingAccount: false });
       }
     });
-  }
-
-  logout = async () => {
-
-    await this.doResetCache();
-
-    // Remove the API token from secure store
-    await Keychain.resetGenericPassword();
-
-    // Remove the persisted state
-    await persistor.purge();
-
-    // Reset all the stores to it's original state
-    this.props.resetAuthState();
-    this.props.resetUserState();
-    this.props.resetPlayerState();
-    this.props.resetPlaylistState();
-    this.props.resetAudiofilesState();
-    this.props.resetVoicesState();
-
-    return this.props.navigation.navigate('Onboarding');
   }
 
   get selectedVoiceLabel() {
@@ -220,17 +174,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
     return 'Select voice';
   }
 
-  handleOnPressLogout = async () => {
-    return this.setState({ isLoggingOut: true }, async () => {
-      try {
-        await this.logout();
-      } catch (err) {
-        return this.setState({ isLoggingOut: false }, () => {
-          return Alert.alert('Oops!', ALERT_SETTINGS_LOGOUT_FAIL);
-        });
-      }
-    });
-  }
+  handleOnPressLogout = async () => this.props.navigation.navigate('Logout');
 
   handleOnPressUpgrade = () => this.props.navigation.navigate('Upgrade');
 
@@ -290,15 +234,6 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
         {
           title: 'Logout',
           onPress: this.handleOnPressLogout,
-          renderAccessory: () => {
-            const { isLoggingOut } = this.state;
-
-            if (isLoggingOut) {
-              return (<ActivityIndicator />);
-            }
-
-            return <Text>{null}</Text>;
-          },
           showDisclosureIndicator: true
         }
       ],
@@ -442,14 +377,10 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
 }
 
 interface DispatchProps {
-  resetAuthState: typeof resetAuthState;
-  resetUserState: typeof resetUserState;
-  resetPlayerState: typeof resetPlayerState;
-  resetPlaylistState: typeof resetPlaylistState;
   resetAudiofilesState: typeof resetAudiofilesState;
   resetVoicesState: typeof resetVoicesState;
-  getVoices: typeof getVoices;
   resetDownloadedVoices: typeof resetDownloadedVoices;
+  getVoices: typeof getVoices;
   getUser: typeof getUser;
   deleteUser: typeof deleteUser;
 }
@@ -465,10 +396,6 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = {
-  resetAuthState,
-  resetUserState,
-  resetPlayerState,
-  resetPlaylistState,
   resetAudiofilesState,
   resetVoicesState,
   resetDownloadedVoices,

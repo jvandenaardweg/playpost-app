@@ -7,7 +7,6 @@ interface Props {
   onChangeText(field: string, text: string): void;
   onPressUpdateEmail(): void;
   email: string;
-  emailValidation: string;
   isLoading: boolean;
   isSuccess: boolean;
 }
@@ -16,7 +15,6 @@ export const UpdateEmailForm: React.FC<Props> = React.memo(({
   onChangeText,
   onPressUpdateEmail,
   email,
-  emailValidation,
   isLoading,
   isSuccess
 }) => (
@@ -28,18 +26,6 @@ export const UpdateEmailForm: React.FC<Props> = React.memo(({
         autoCapitalize="none"
         value={email}
         onChangeText={text => onChangeText('email', text)}
-        textContentType="emailAddress"
-        style={styles.textField}
-        returnKeyType="done"
-        clearButtonMode="always"
-        blurOnSubmit={false}
-      />
-
-      <TextInput
-        placeholder="Your new e-mail address again to validate"
-        autoCapitalize="none"
-        value={emailValidation}
-        onChangeText={text => onChangeText('emailValidation', text)}
         textContentType="emailAddress"
         style={styles.textField}
         returnKeyType="done"

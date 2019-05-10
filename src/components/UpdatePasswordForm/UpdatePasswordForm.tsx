@@ -5,7 +5,7 @@ import styles from './styles';
 
 interface Props {
   onChangeText(field: string, text: string): void;
-  onPressUpdateEmail(): void;
+  onPressUpdatePassword(): void;
   password: string;
   passwordValidation: string;
   isLoading: boolean;
@@ -14,7 +14,7 @@ interface Props {
 
 export const UpdatePasswordForm: React.FC<Props> = React.memo(({
   onChangeText,
-  onPressUpdateEmail,
+  onPressUpdatePassword,
   password,
   passwordValidation,
   isLoading,
@@ -37,7 +37,7 @@ export const UpdatePasswordForm: React.FC<Props> = React.memo(({
       />
 
       <TextInput
-        placeholder="Your new password again to validate"
+        placeholder="Confirm your new password"
         autoCapitalize="none"
         secureTextEntry
         value={passwordValidation}
@@ -53,7 +53,7 @@ export const UpdatePasswordForm: React.FC<Props> = React.memo(({
         <Button
           title={(isSuccess) ? 'Update success!' : 'Update password'}
           loading={isLoading}
-          onPress={onPressUpdateEmail}
+          onPress={onPressUpdatePassword}
           disabled={isLoading}
           buttonStyle={(isSuccess) ? styles.buttonStyleSuccess : styles.buttonStyle}
           titleStyle={(isSuccess) ? styles.buttonTitleStyleSuccess : {}}

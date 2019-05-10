@@ -24,6 +24,7 @@ export const UPDATE_USER_EMAIL_SUCCESS = 'user/UPDATE_USER_EMAIL_SUCCESS';
 export const UPDATE_USER_EMAIL_FAIL = 'user/UPDATE_USER_EMAIL_FAIL';
 
 export const RESET_USER_STATE = 'user/RESET_USER_STATE';
+export const RESET_USER_ERROR = 'user/RESET_USER_ERROR';
 
 export type UserState = Readonly<{
   isLoading: boolean;
@@ -250,6 +251,12 @@ export function userReducer(state = initialState, action: UserActionTypes): User
         error: updateUserEmailFailMessage
       };
 
+    case RESET_USER_ERROR:
+      return {
+        ...state,
+        error: ''
+      };
+
     case RESET_USER_STATE:
       return {
         ...initialState
@@ -263,6 +270,12 @@ export function userReducer(state = initialState, action: UserActionTypes): User
 export function resetUserState() {
   return {
     type: RESET_USER_STATE
+  };
+}
+
+export function resetUserError() {
+  return {
+    type: RESET_USER_ERROR
   };
 }
 

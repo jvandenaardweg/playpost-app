@@ -37,3 +37,6 @@ export const ALERT_SETTINGS_VOICE_CHANGE = 'Changing the voice only applies to n
 export const ALERT_SETTINGS_LOGOUT_FAIL = 'We failed to log you out. Please try again.';
 export const ALERT_SETTINGS_DELETE_USER = 'Deleting your account cannot be undone. All your data will be deleted from our systems.';
 export const ALERT_SETTINGS_DELETE_USER_FAIL = 'An error happened while trying to delete your account. Please try again or contact us when this happens all the time.';
+
+export const ALERT_SETTINGS_UPDATE_EMAIL_WARNING = 'For security reasons, after updating your e-mail address, you need to login again with your new e-mail address.';
+export const ALERT_SETTINGS_UPDATE_EMAIL_INVALID_MATCH = 'The given e-mail addresses do not match. Please make sure you typed your e-mail address correctly.';

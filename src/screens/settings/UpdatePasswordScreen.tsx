@@ -71,13 +71,13 @@ export class UpdatePasswordScreenContainer extends React.PureComponent<Props, St
     this.setState({ isLoading: true }, async () => {
       try {
         await this.props.updateUserPassword(password);
-        this.setState({ isSuccess: true });
+        return this.setState({ isSuccess: true, isLoading: false }, () => {
+          setTimeout(() => this.props.navigation.navigate('Settings'), 2000);
+        });
       } catch (err) {
-        this.setState({ isSuccess: false });
+        this.setState({ isSuccess: false, isLoading: false });
         // For errors, rely on the Redux state error we get through props
         return err;
-      } finally {
-        this.setState({ isLoading: false });
       }
     });
   }
