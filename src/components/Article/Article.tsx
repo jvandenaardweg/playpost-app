@@ -60,32 +60,6 @@ export const Article: React.FC<Props> = React.memo(({
   <View style={[styles.container, (isMoving) ? styles.isMoving : null]}>
     <TouchableOpacity style={styles.sectionBody} activeOpacity={1} onPress={() => onOpenUrl(url)} onLongPress={onLongPress} onPressOut={onPressOut}>
       <View style={styles.bodyMeta}>
-        <View style={styles.bodyMetaIcons}>
-          <Icon.FontAwesome5
-            name="circle"
-            size={9}
-            solid
-            style={styles.bodySourceIcon}
-            color={hasAudiofile ? colors.green : colors.gray}
-            testID="article-icon-playable"
-          />
-          <Icon.FontAwesome5
-            name="arrow-alt-circle-down"
-            size={9}
-            solid
-            style={styles.bodySourceIcon}
-            color={isDownloaded ? colors.green : colors.gray}
-            testID="article-icon-downloaded"
-          />
-          <Icon.FontAwesome5
-            name="heart"
-            size={9}
-            solid
-            style={styles.bodySourceIcon}
-            color={isFavorited ? colors.favorite : colors.gray}
-            testID="article-icon-favorited"
-          />
-        </View>
         <View style={styles.bodyMetaSource}>
           <SourceText authorName={authorName} sourceName={sourceName} url={url} />
         </View>
@@ -94,10 +68,37 @@ export const Article: React.FC<Props> = React.memo(({
         <Text style={styles.bodyTitleText} testID="article-title" ellipsizeMode="tail" numberOfLines={3}>{title}</Text>
       </View>
       <View style={styles.bodyFooter}>
+        <View style={styles.bodyFooterIcons}>
+            <Icon.FontAwesome5
+              name="circle"
+              size={8}
+              solid
+              style={styles.bodySourceIcon}
+              color={hasAudiofile ? colors.green : '#ddd'}
+              testID="article-icon-playable"
+            />
+            <Icon.FontAwesome5
+              name="arrow-alt-circle-down"
+              size={8}
+              solid
+              style={styles.bodySourceIcon}
+              color={isDownloaded ? colors.green : '#ddd'}
+              testID="article-icon-downloaded"
+            />
+            <Icon.FontAwesome5
+              name="heart"
+              size={8}
+              solid
+              style={styles.bodySourceIcon}
+              color={isFavorited ? colors.favorite : '#ddd'}
+              testID="article-icon-favorited"
+            />
+          </View>
         <Text style={styles.bodyFooterText}>Added {dateFns.distanceInWords(new Date(), playlistItemCreatedAt)} ago</Text>
       </View>
     </TouchableOpacity>
     <View style={styles.sectionControl}>
+
       <TouchableOpacity style={styles.imageContainer} onPress={onPlayPress} activeOpacity={1} disabled={isLoading}>
         {imageUrl && <Image style={styles.image} source={{ uri: imageUrl }} placeholderStyle={styles.imagePlaceholder} />}
         <View style={styles.playButtonContainer}>
@@ -128,7 +129,7 @@ const SourceText = (props: { authorName: Props['authorName'], sourceName: Props[
 
   return (
     <Text style={styles.bodySourceText} ellipsizeMode="tail" numberOfLines={1} testID="article-source-name">
-      {'- '}{text}
+      {text}
     </Text>
   );
 };
