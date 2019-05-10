@@ -8,7 +8,7 @@ import { ALERT_GENERIC_INTERNET_REQUIRED } from '../../constants/messages';
 import { UpdateEmailForm } from '../../components/UpdateEmailForm';
 
 import { RootState } from '../../reducers';
-import { updateUserEmail } from '../../reducers/user';
+import { updateUserEmail, getUser } from '../../reducers/user';
 
 import { getUserError, getUserDetails } from '../../selectors/user';
 
@@ -84,6 +84,8 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
       try {
         await this.props.updateUserEmail(email);
 
+        await this.props.getUser();
+
         return this.setState({ isSuccess: true, isLoading: false }, () => {
           setTimeout(() => this.props.navigation.navigate('Settings'), 2000);
         });
@@ -121,6 +123,7 @@ interface StateProps {
 
 interface DispatchProps {
   updateUserEmail: typeof updateUserEmail;
+  getUser: typeof getUser;
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
@@ -129,7 +132,8 @@ const mapStateToProps = (state: RootState): StateProps => ({
 });
 
 const mapDispatchToProps = {
-  updateUserEmail
+  updateUserEmail,
+  getUser
 };
 
 export const UpdateEmailScreen = connect(
