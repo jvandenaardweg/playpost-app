@@ -6,17 +6,17 @@ import styles from './styles';
 interface Props {
   onChangeText(field: string, text: string): void;
   onPressUpdateEmail(): void;
-  password: string;
-  passwordValidation: string;
+  email: string;
+  emailValidation: string;
   isLoading: boolean;
   isSuccess: boolean;
 }
 
-export const UpdatePasswordForm: React.FC<Props> = React.memo(({
+export const UpdateEmailForm: React.FC<Props> = React.memo(({
   onChangeText,
   onPressUpdateEmail,
-  password,
-  passwordValidation,
+  email,
+  emailValidation,
   isLoading,
   isSuccess
 }) => (
@@ -24,12 +24,11 @@ export const UpdatePasswordForm: React.FC<Props> = React.memo(({
     <View style={styles.form}>
 
       <TextInput
-        placeholder="Your new password"
+        placeholder="Your new e-mail address"
         autoCapitalize="none"
-        secureTextEntry
-        value={password}
-        onChangeText={text => onChangeText('password', text)}
-        textContentType="password"
+        value={email}
+        onChangeText={text => onChangeText('email', text)}
+        textContentType="emailAddress"
         style={styles.textField}
         returnKeyType="done"
         clearButtonMode="always"
@@ -37,12 +36,11 @@ export const UpdatePasswordForm: React.FC<Props> = React.memo(({
       />
 
       <TextInput
-        placeholder="Your new password again to validate"
+        placeholder="Your new e-mail address again to validate"
         autoCapitalize="none"
-        secureTextEntry
-        value={passwordValidation}
-        onChangeText={text => onChangeText('passwordValidation', text)}
-        textContentType="password"
+        value={emailValidation}
+        onChangeText={text => onChangeText('emailValidation', text)}
+        textContentType="emailAddress"
         style={styles.textField}
         returnKeyType="done"
         clearButtonMode="always"
@@ -51,7 +49,7 @@ export const UpdatePasswordForm: React.FC<Props> = React.memo(({
 
       <View>
         <Button
-          title={(isSuccess) ? 'Update success!' : 'Update password'}
+          title={(isSuccess) ? 'Update success!' : 'Update e-mail address'}
           loading={isLoading}
           onPress={onPressUpdateEmail}
           disabled={isLoading}

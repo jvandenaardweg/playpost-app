@@ -238,7 +238,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
 
   handleOnPressAccountPassword = () => this.props.navigation.navigate('UpdatePassword');
 
-  handleOnPressAccountEmail = () => Alert.alert('Not available', ALERT_SETTINGS_SETTING_UNAVAILABLE);
+  handleOnPressAccountEmail = () => this.props.navigation.navigate('UpdateEmail');
 
   handleOnPressAccountDelete = () => {
     return Alert.alert(
@@ -270,7 +270,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
         },
         {
           title: 'Change e-mail',
-          onPress: this.handleOnPressAccountPassword,
+          onPress: this.handleOnPressAccountEmail,
           renderAccessory: () => {
             const userEmail = (this.props.user) ? this.props.user.email : null;
 
