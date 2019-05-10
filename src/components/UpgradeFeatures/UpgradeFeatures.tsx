@@ -25,24 +25,38 @@ export class UpgradeFeatures extends React.PureComponent {
           {/* <Text style={styles.headerTitle}>Upgrade for Premium features</Text> */}
 
           <View style={styles.feature}>
-            <Icon.FontAwesome5 name="gem" size={32} style={styles.featureIcon} />
+            <Icon.FontAwesome5 name="gem" size={28} style={styles.featureIcon} />
             <View style={styles.featureContent}>
               <Text style={styles.title}>Higher quality voices</Text>
-              <Text style={styles.paragraph}>The highest quality artificially generated voices. You can preview these Premium voices in the settings screen.</Text>
+              <Text style={styles.paragraph}>Besided the free voices, you can use our highest quality Premium voices. You can preview these Premium voices in the settings screen.</Text>
             </View>
           </View>
           <View style={styles.feature}>
-            <Icon.FontAwesome5 name="assistive-listening-systems" solid size={32} style={styles.featureIcon} />
+            <Icon.FontAwesome5 name="assistive-listening-systems" solid size={28} style={styles.featureIcon} />
             <View style={styles.featureContent}>
-              <Text style={styles.title}>Voice customization</Text>
+              <Text style={styles.title}>More voice customization options</Text>
               <Text style={styles.paragraph}>Choose between a variety of high quality male and female voices with accents like American, British or Australian English.</Text>
             </View>
           </View>
           <View style={styles.feature}>
-            <Icon.FontAwesome5 name="clock" size={32} style={styles.featureIcon} />
+            <Icon.FontAwesome5 name="clock" size={28} style={styles.featureIcon} />
             <View style={styles.featureContent}>
               <Text style={styles.title}>Unlimited listening</Text>
-              <Text style={styles.paragraph}>No article limits. Listen to articles longer then 10 minutes.</Text>
+              <Text style={styles.paragraph}>No article limits. Listen to articles longer then 5 minutes.</Text>
+            </View>
+          </View>
+          <View style={styles.feature}>
+            <Icon.FontAwesome5 name="headphones-alt" size={28} style={styles.featureIcon} />
+            <View style={styles.featureContent}>
+              <Text style={styles.title}>Playlist auto-play</Text>
+              <Text style={styles.paragraph}>Automatically play the next article in your playlist.</Text>
+            </View>
+          </View>
+          <View style={styles.feature}>
+            <Icon.FontAwesome5 name="star" solid size={28} style={styles.featureIcon} />
+            <View style={styles.featureContent}>
+              <Text style={styles.title}>No advertisements</Text>
+              <Text style={styles.paragraph}>Sponsored content helps us continue to provide a free version of Playlist. After upgrading to Playpost Premium, you won’t see any ads, and you’ll be supporting Playpost more directly!</Text>
             </View>
           </View>
         </View>

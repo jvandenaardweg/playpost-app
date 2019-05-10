@@ -9,11 +9,13 @@ import { FavoritesScreen } from '../screens/FavoritesScreen';
 import { SettingsScreen } from '../screens/SettingsScreen';
 import { BrowserScreen } from '../screens/BrowserScreen';
 import { SettingsVoicesScreen } from '../screens/SettingsVoicesScreen';
+import { FullArticleScreen } from '../screens/FullArticleScreen';
 
 const PlaylistStack: StackNavigatorConfig = createStackNavigator(
   {
     Playlist: PlaylistScreen,
     Browser: BrowserScreen,
+    FullArticle: FullArticleScreen
   },
   {
     headerMode: 'float',

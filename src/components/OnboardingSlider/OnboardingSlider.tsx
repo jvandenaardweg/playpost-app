@@ -66,7 +66,7 @@ class OnboardingSliderComponent extends React.PureComponent<Props> {
           showPrevButton
           renderNextButton={() => <Icon.Feather name="arrow-right" color="white" size={24} />}
           renderPrevButton={() => <Icon.Feather name="arrow-left" color="white" size={24} />}
-          hideDoneButton
+          renderDoneButton={() => null}
         />
         <View style={styles.footerContainer}>
           <Button title="Create account" onPress={() => this.props.navigation.navigate('Signup')} buttonStyle={styles.signupButtonStyle} titleStyle={styles.signupButtonTitleStyle} />

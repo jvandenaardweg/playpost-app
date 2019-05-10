@@ -37,7 +37,7 @@ interface IProps {
 
 type Props = IProps & StateProps & DispatchProps;
 
-class ArticlesContainerComponent extends React.Component<Props, State> {
+class PlaylistsContainerComponent extends React.Component<Props, State> {
   state = {
     isLoading: false, // Show loading upon mount, because we fetch the playlist of the user
     isRefreshing: false,
@@ -340,4 +340,4 @@ const mapDispatchToProps = {
 export const PlaylistsContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(ArticlesContainerComponent);
+)(PlaylistsContainerComponent);

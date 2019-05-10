@@ -32,7 +32,7 @@ export default StyleSheet.create({
     flexDirection: 'column'
   },
   sectionControl: {
-    width: 80,
+    width: 75,
     marginLeft: spacing.default
   },
   author: {
@@ -44,10 +44,6 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'baseline',
     height: 14
-  },
-  bodyMetaIcons: {
-    flexDirection: 'row',
-    width: 39
   },
   bodyMetaSource: {
     flexGrow: 1,
@@ -68,7 +64,11 @@ export default StyleSheet.create({
     flexBasis: 'auto',
     flexDirection: 'row',
     alignItems: 'baseline',
-    height: 16
+    height: 14
+  },
+  bodyFooterIcons: {
+    flexDirection: 'row',
+    width: 35
   },
   bodyTitleText: {
     fontSize: fonts.fontSize.title,
@@ -129,8 +129,8 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.gray,
     borderRadius: 4,
-    width: 80,
-    height: 80
+    width: 75,
+    height: 75
   },
   playButtonContainer: {
     position: 'absolute',
@@ -138,8 +138,8 @@ export default StyleSheet.create({
     height: 32
   },
   image: {
-    width: 80,
-    height: 80,
+    width: 75,
+    height: 75,
     borderRadius: 4,
     opacity: 0.9
   },
