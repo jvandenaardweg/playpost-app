@@ -33,7 +33,7 @@ describe('Article', () => {
     });
 
     it('should render default color download icon', () => {
-      expect(wrapper.getByTestId('article-icon-downloaded').props.color).toBe('#C5C5C5');
+      expect(wrapper.getByTestId('article-icon-downloaded').props.color).toBe('#ddd');
     });
   });
 
@@ -168,8 +168,7 @@ describe('Article', () => {
     });
 
     it('should render a source name', () => {
-      expect(wrapper.getByTestId('article-source-name').props.children[0]).toBe('- ');
-      expect(wrapper.getByTestId('article-source-name').props.children[1]).toBe('Jordy on Test');
+      expect(wrapper.getByTestId('article-source-name').props.children).toBe('Jordy on Test');
     });
 
     it('should render a duration', () => {
