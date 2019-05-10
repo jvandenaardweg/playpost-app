@@ -31,6 +31,7 @@ export const SignupForm: React.FC<Props> = React.memo(({
         autoCapitalize="none"
         value={email}
         onChangeText={text => onChangeText('email', text)}
+        textContentType="emailAddress"
         style={styles.textField}
         keyboardType="email-address"
         returnKeyType="done"
