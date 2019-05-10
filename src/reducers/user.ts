@@ -1,7 +1,7 @@
 import Analytics from 'appcenter-analytics';
 import { AxiosError, AxiosResponse } from 'axios';
 
-import { GENERIC_NETWORK_ERROR, GET_USER_FAIL_MESSAGE, CREATE_USER_FAIL_MESSAGE, DELETE_USER_FAIL_MESSAGE } from '../constants/messages';
+import { GENERIC_NETWORK_ERROR, GET_USER_FAIL_MESSAGE, CREATE_USER_FAIL_MESSAGE, DELETE_USER_FAIL_MESSAGE, UPDATE_USER_PASSWORD_FAIL_MESSAGE, UPDATE_USER_EMAIL_FAIL_MESSAGE } from '../constants/messages';
 
 export const GET_USER = 'user/GET_USER';
 export const GET_USER_SUCCESS = 'user/GET_USER_SUCCESS';
@@ -15,11 +15,21 @@ export const DELETE_USER = 'user/DELETE_USER';
 export const DELETE_USER_SUCCESS = 'user/DELETE_USER_SUCCESS';
 export const DELETE_USER_FAIL = 'user/DELETE_USER_FAIL';
 
+export const UPDATE_USER_PASSWORD = 'user/UPDATE_USER_PASSWORD';
+export const UPDATE_USER_PASSWORD_SUCCESS = 'user/UPDATE_USER_PASSWORD_SUCCESS';
+export const UPDATE_USER_PASSWORD_FAIL = 'user/UPDATE_USER_PASSWORD_FAIL';
+
+export const UPDATE_USER_EMAIL = 'user/UPDATE_USER_EMAIL';
+export const UPDATE_USER_EMAIL_SUCCESS = 'user/UPDATE_USER_EMAIL_SUCCESS';
+export const UPDATE_USER_EMAIL_FAIL = 'user/UPDATE_USER_EMAIL_FAIL';
+
 export const RESET_USER_STATE = 'user/RESET_USER_STATE';
 
 export type UserState = Readonly<{
   isLoading: boolean;
   isLoadingDelete: boolean;
+  isLoadingUpdatePassword: boolean;
+  isLoadingUpdateEmail: boolean;
   details: Api.User | null;
   error: string;
 }>;
@@ -27,6 +37,8 @@ export type UserState = Readonly<{
 const initialState: UserState = {
   isLoading: false,
   isLoadingDelete: false,
+  isLoadingUpdatePassword: false,
+  isLoadingUpdateEmail: false,
   details: null,
   error: ''
 };
@@ -160,6 +172,84 @@ export function userReducer(state = initialState, action: UserActionTypes): User
         error: deleteUserFailMessage
       };
 
+    case UPDATE_USER_PASSWORD:
+      return {
+        ...state,
+        isLoadingUpdatePassword: true,
+        error: ''
+      };
+
+    case UPDATE_USER_PASSWORD_SUCCESS:
+      Analytics.trackEvent('Update user password success');
+
+      return {
+        ...state,
+        isLoadingUpdatePassword: false,
+        error: ''
+      };
+
+    case UPDATE_USER_PASSWORD_FAIL:
+      let updateUserPasswordFailMessage = '';
+
+      // Network error
+      if (action.error.status === 0) {
+        updateUserPasswordFailMessage = GENERIC_NETWORK_ERROR;
+      } else {
+        // Error, from the API
+        if (action.error.response && action.error.response.data && action.error.response.data.message) {
+          Analytics.trackEvent('Error update user password', { message: action.error.response.data.message });
+          updateUserPasswordFailMessage = action.error.response.data.message;
+        } else {
+          Analytics.trackEvent('Error update user password', { message: UPDATE_USER_PASSWORD_FAIL_MESSAGE });
+          updateUserPasswordFailMessage = UPDATE_USER_PASSWORD_FAIL_MESSAGE;
+        }
+      }
+
+      return {
+        ...state,
+        isLoadingUpdatePassword: false,
+        error: updateUserPasswordFailMessage
+      };
+
+    case UPDATE_USER_EMAIL:
+      return {
+        ...state,
+        isLoadingUpdateEmail: true,
+        error: ''
+      };
+
+    case UPDATE_USER_EMAIL_SUCCESS:
+      Analytics.trackEvent('Update user email success');
+
+      return {
+        ...state,
+        isLoadingUpdateEmail: false,
+        error: ''
+      };
+
+    case UPDATE_USER_EMAIL_FAIL:
+      let updateUserEmailFailMessage = '';
+
+      // Network error
+      if (action.error.status === 0) {
+        updateUserEmailFailMessage = GENERIC_NETWORK_ERROR;
+      } else {
+        // Error, from the API
+        if (action.error.response && action.error.response.data && action.error.response.data.message) {
+          Analytics.trackEvent('Error update user e-mail', { message: action.error.response.data.message });
+          updateUserEmailFailMessage = action.error.response.data.message;
+        } else {
+          Analytics.trackEvent('Error update user e-mail', { message: UPDATE_USER_EMAIL_FAIL_MESSAGE });
+          updateUserEmailFailMessage = UPDATE_USER_EMAIL_FAIL_MESSAGE;
+        }
+      }
+
+      return {
+        ...state,
+        isLoadingUpdateEmail: false,
+        error: updateUserEmailFailMessage
+      };
+
     case RESET_USER_STATE:
       return {
         ...initialState
@@ -183,6 +273,36 @@ export function getUser() {
       request: {
         method: 'get',
         url: '/v1/me'
+      }
+    }
+  };
+}
+
+export function updateUserPassword(password: string) {
+  return {
+    type: UPDATE_USER_PASSWORD,
+    payload: {
+      request: {
+        method: 'patch',
+        url: '/v1/me/password',
+        data: {
+          password
+        }
+      }
+    }
+  };
+}
+
+export function updateUserEmail(email: string) {
+  return {
+    type: UPDATE_USER_EMAIL,
+    payload: {
+      request: {
+        method: 'patch',
+        url: '/v1/me/email',
+        data: {
+          email
+        }
       }
     }
   };

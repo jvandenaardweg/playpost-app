@@ -10,6 +10,7 @@ import { SettingsScreen } from '../screens/SettingsScreen';
 import { BrowserScreen } from '../screens/BrowserScreen';
 import { SettingsVoicesScreen } from '../screens/SettingsVoicesScreen';
 import { FullArticleScreen } from '../screens/FullArticleScreen';
+import { UpdatePasswordScreen } from '../screens/settings/UpdatePasswordScreen';
 
 const PlaylistStack: StackNavigatorConfig = createStackNavigator(
   {
@@ -74,7 +75,8 @@ const SettingsStack: StackNavigatorConfig = createStackNavigator(
   {
     Settings: SettingsScreen,
     SettingsVoices: SettingsVoicesScreen,
-    Browser: BrowserScreen
+    Browser: BrowserScreen,
+    UpdatePassword: UpdatePasswordScreen
   },
   {
     headerMode: 'float',

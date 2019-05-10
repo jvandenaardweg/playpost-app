@@ -21,8 +21,6 @@ interface State {
   password: string;
   passwordValidation: string;
   validationError: string;
-  showModal: boolean;
-  error: any;
 }
 
 interface IProps extends NavigationInjectedProps {}
@@ -48,9 +46,7 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
     email: '',
     password: '',
     passwordValidation: '',
-    validationError: '',
-    showModal: false,
-    error: null
+    validationError: ''
   };
 
   /**
@@ -97,7 +93,8 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
       const response: any = await this.props.postAuth(email, password);
       this.saveToken(response.payload.data.token);
     } catch (err) {
-      this.setState({ error: err, isLoading: false });
+      // Only stop loading on error, so we can keep a persisting activity indicator till we switch screens
+      this.setState({ isLoading: false });
     }
   }
 
@@ -113,7 +110,8 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
         await this.props.createUser(email, password);
         this.autoLogin();
       } catch (err) {
-        this.setState({ error: err, isLoading: false });
+        // Only stop loading on error, so we can keep a persisting activity indicator till we switch screens
+        this.setState({ isLoading: false });
       }
     });
   }

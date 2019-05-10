@@ -236,7 +236,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
 
   handleOnPressLanguage = () => this.props.navigation.navigate('SettingsVoices');
 
-  handleOnPressAccountPassword = () => Alert.alert('Not available', ALERT_SETTINGS_SETTING_UNAVAILABLE);
+  handleOnPressAccountPassword = () => this.props.navigation.navigate('UpdatePassword');
 
   handleOnPressAccountEmail = () => Alert.alert('Not available', ALERT_SETTINGS_SETTING_UNAVAILABLE);
 
