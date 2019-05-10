@@ -56,7 +56,7 @@ export class UpgradeFeatures extends React.PureComponent {
             <Icon.FontAwesome5 name="star" solid size={28} style={styles.featureIcon} />
             <View style={styles.featureContent}>
               <Text style={styles.title}>No advertisements</Text>
-              <Text style={styles.paragraph}>Sponsored content helps us continue to provide a free version of Playlist. After upgrading to Playpost Premium, you won’t see any ads, and you’ll be supporting Playpost more directly!</Text>
+              <Text style={styles.paragraph}>Sponsored content helps us continue to provide a free version of Playpost. After upgrading to Playpost Premium, you won’t see any ads, and you’ll be supporting Playpost more directly!</Text>
             </View>
           </View>
         </View>
