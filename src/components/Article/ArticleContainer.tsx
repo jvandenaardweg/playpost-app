@@ -492,12 +492,6 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
     const hasAudiofile = article.audiofiles.length > 0;
 
-    // If the article is not yet done processing, for example, when we are still crawling it
-    // We show it as loading
-    if (this.isProcessing) {
-      return <ArticleEmptyProcessing isLoading={isLoading} onPressUpdate={this.handleOnPressUpdate} url={articleUrl} />;
-    }
-
     return (
       <AppleStyleSwipeableRow
         removeArticle={this.handleRemoveArticle}
@@ -512,7 +506,11 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
           <ArticleEmptyFailed isLoading={false} url={articleUrl} />
         }
 
-        {!this.isFailed &&
+        {this.isProcessing &&
+          <ArticleEmptyProcessing isLoading={isLoading} onPressUpdate={this.handleOnPressUpdate} url={articleUrl} />
+        }
+
+        {!this.isFailed && !this.isProcessing &&
           <Article
             isMoving={isMoving}
             isLoading={isLoading || isCreatingAudiofile}
