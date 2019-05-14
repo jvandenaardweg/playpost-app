@@ -46,6 +46,8 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
     validationError: '',
   };
 
+  navigationTimeout: NodeJS.Timeout | null = null;
+
   static contextType = NetworkContext;
 
   componentDidMount() {
@@ -56,6 +58,12 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
         email: userDetails.email,
         previousEmail: userDetails.email
       });
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.navigationTimeout) {
+      clearTimeout(this.navigationTimeout);
     }
   }
 
@@ -87,7 +95,7 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
         await this.props.getUser();
 
         return this.setState({ isSuccess: true, isLoading: false }, () => {
-          setTimeout(() => this.props.navigation.navigate('Settings'), 2000);
+          this.navigationTimeout = setTimeout(() => this.props.navigation.navigate('Settings'), 2000);
         });
       } catch (err) {
         this.setState({ isSuccess: false, isLoading: false });

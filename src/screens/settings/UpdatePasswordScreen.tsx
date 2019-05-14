@@ -45,6 +45,8 @@ export class UpdatePasswordScreenContainer extends React.PureComponent<Props, St
     validationError: '',
   };
 
+  navigationTimeout: NodeJS.Timeout | null = null;
+
   static contextType = NetworkContext;
 
   componentDidUpdate(prevProps: Props) {
@@ -52,6 +54,12 @@ export class UpdatePasswordScreenContainer extends React.PureComponent<Props, St
 
     if (userError && prevProps.userError !== userError) {
       return Alert.alert('Oops!', userError);
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.navigationTimeout) {
+      clearTimeout(this.navigationTimeout);
     }
   }
 
@@ -72,7 +80,7 @@ export class UpdatePasswordScreenContainer extends React.PureComponent<Props, St
       try {
         await this.props.updateUserPassword(password);
         return this.setState({ isSuccess: true, isLoading: false }, () => {
-          setTimeout(() => this.props.navigation.navigate('Settings'), 2000);
+          this.navigationTimeout = setTimeout(() => this.props.navigation.navigate('Settings'), 2000);
         });
       } catch (err) {
         this.setState({ isSuccess: false, isLoading: false });
