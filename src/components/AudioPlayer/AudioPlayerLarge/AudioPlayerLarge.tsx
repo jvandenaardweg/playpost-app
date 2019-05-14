@@ -1,20 +1,22 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView, NativeScrollEvent } from 'react-native';
-import * as Icon from '../../../components/Icon';
+import { View, TouchableOpacity, ScrollView, NativeScrollEvent } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
 
+import * as Icon from '../../../components/Icon';
 import { ProgressBar } from '../ProgressBar';
 import { PlayPauseControlCircle } from '../PlayPauseControl';
+import { ArticleView } from '../../ArticleView/ArticleView';
 
-import styles from './styles';
 import { defaultHitslop } from '../../../constants/buttons';
 import colors from '../../../constants/colors';
+
+import styles from './styles';
 
 interface Props {
   isPlaying: boolean;
   isLoading: boolean;
   track: TrackPlayer.Track;
-  articleText: string | null | undefined;
+  article: Api.Article | undefined;
   scrolled: number;
   onPressPlay(): void;
   onPressNext(): void;
@@ -37,13 +39,12 @@ export class AudioPlayerLarge extends React.PureComponent<Props> {
     const {
       isPlaying,
       isLoading,
-      track: { title, artist },
-      articleText,
       onPressPlay,
+      article,
       // onPressNext,
       // onPressPrevious,
       onPressClose,
-      onScroll,
+      // onScroll,
       onProgressChange
     } = this.props;
 
@@ -54,16 +55,16 @@ export class AudioPlayerLarge extends React.PureComponent<Props> {
         </TouchableOpacity>
         <View style={styles.container}>
           <View style={styles.scrollableContainer}>
-            <ScrollView indicatorStyle="white" onScroll={onScroll} scrollEventThrottle={500} ref={this.scrollViewRef}>
+            <ArticleView article={article} />
+            {/* <ScrollView indicatorStyle="white" onScroll={onScroll} scrollEventThrottle={500} ref={this.scrollViewRef}>
               <View style={styles.titleContainer}>
                 <Text style={styles.title}>{title}</Text>
                 <Text style={styles.album}>{artist}</Text>
               </View>
               <View style={styles.scrollableContent}>
-                {/* We split the text in seperate paragraphs, because it seems React Native cannot handle large text inside a Text. It will not render the text at all then. */}
-                {articleText && articleText.split('\n\n').map((text, index) => <Text key={index} style={styles.contentText}>{text}</Text>)}
+                {articleHtml && <WebView source={{ html: articleHtml }} />}
               </View>
-            </ScrollView>
+            </ScrollView> */}
           </View>
           <View style={styles.controlsContainer}>
             <ProgressBar onProgressChange={onProgressChange} />

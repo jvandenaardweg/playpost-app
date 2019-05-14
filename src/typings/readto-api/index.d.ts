@@ -34,7 +34,9 @@ declare namespace Api {
     authorUrl: string | null;
     categoryName: string | null;
     ssml: string | null;
-    text: string | null;
+    // text: string | null;
+    html: string | null;
+    documentHtml: string | null;
     createdAt: Date;
     updatedAt: Date;
     audiofiles: Audiofile[];

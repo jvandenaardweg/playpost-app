@@ -469,7 +469,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   handleOnOpenUrl = (url: string) => {
     const { article } = this.props;
 
-    return this.props.navigation.navigate('Browser', { url, title: article.title });
+    return this.props.navigation.navigate('FullArticle', { article });
   }
 
   handleOnPressUpdate = () => {

@@ -7,7 +7,7 @@ import spacing from '../../../constants/spacing';
 export default StyleSheet.create({
   wrapper: {
     flex: 1,
-    paddingTop: 30,
+    paddingTop: 46,
     backgroundColor: colors.black
   },
   container: {
