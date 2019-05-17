@@ -21,12 +21,12 @@ export const VoicePreviewButton: React.FC<Props> = React.memo(({
   onPress
 }) => (
   <TouchableOpacity
-    style={[styles.container, (isPlaying || isActive) ? styles.containerActive : null, (isAvailable) ? styles.isAvailable : null]}
+    style={[styles.container, (isPlaying || isActive) ? styles.containerActive : null, (isAvailable && !isActive) ? styles.isAvailable : null]}
     activeOpacity={1}
     onPress={onPress}
     hitSlop={{ top: 20, left: 20, right: 20, bottom: 20 }}>
     {!isPlaying && !isLoading && <Icon.FontAwesome5 name="play" size={9} style={styles.icon} />}
     {isPlaying && !isLoading && <Icon.FontAwesome5 name="pause" size={9} style={styles.icon} />}
-    {isLoading && !isPlaying && <ActivityIndicator />}
+    {isLoading && !isPlaying && <ActivityIndicator color="white" />}
   </TouchableOpacity>
 ));

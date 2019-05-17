@@ -256,7 +256,7 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
     const { isLoadingSaveSelectedVoiceId } = this.state;
 
     if (isLoadingSaveSelectedVoiceId === item.id) {
-      return <View style={{ width: 20 }}><ActivityIndicator size="small" color="white" /></View>;
+      return <View style={{ width: 20 }}><ActivityIndicator size="small" color="black" /></View>;
     }
 
     return <View style={{ width: 20 }}><Icon.FontAwesome5 name="check" size={16} solid color={(isSelected) ? colors.black : colors.grayLightest} /></View>;
