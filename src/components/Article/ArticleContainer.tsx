@@ -198,6 +198,24 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       return Alert.alert('No internet', ALERT_ARTICLE_PLAY_INTERNET_REQUIRED);
     }
 
+    // If article's readingTime is below 5 minutes, show a warning to our free account user's they cannot listen to this.
+    // if (article && article.readingTime && article.readingTime > 300) {
+    //   return Alert.alert(
+    //     'Upgrade to Premium',
+    //     'This article is longer then 5 minutes, listening is only available for Premium users.',
+    //     [
+    //       {
+    //         text: 'Cancel',
+    //         style: 'cancel'
+    //       },
+    //       {
+    //         text: 'Upgrade',
+    //         onPress: () => {}
+    //       }
+    //     ]
+    //   );
+    // }
+
     // If we don't have an audiofile yet, we create it first
     if (!article.audiofiles.length) {
       return this.handleCreateAudiofile();

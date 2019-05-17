@@ -54,18 +54,10 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
     this.setCacheSize();
 
     // Make sure the settings screen always has the latest data
-    this.fetchLanguages();
+    this.props.getLanguages();
 
     // Getting the user details, but also the user's settings (for example: user selected voices)
-    this.fetchUser();
-  }
-
-  fetchUser = async () => {
-    await this.props.getUser();
-  }
-
-  fetchLanguages = async () => {
-    await this.props.getLanguages();
+    this.props.getUser();
   }
 
   setCacheSize = async () => {
