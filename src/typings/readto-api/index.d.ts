@@ -65,6 +65,7 @@ declare namespace Api {
     encoding: 'MP3' | 'OGG_OPUS';
     voiceId: string;
     lastPlayedAt: Date | null;
+    language: Language | null | undefined;
     createdAt: Date;
     updatedAt: Date;
   }

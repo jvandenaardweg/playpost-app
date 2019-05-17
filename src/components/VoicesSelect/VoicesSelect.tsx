@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, Alert } from 'react-native';
+import { FlatList, Alert, ActivityIndicator, View } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import TrackPlayer from 'react-native-track-player';
@@ -13,7 +13,7 @@ import { NetworkContext } from '../../contexts/NetworkProvider';
 import { RootState } from '../../reducers';
 import { setTrack } from '../../reducers/player';
 import { setDownloadedVoice } from '../../reducers/voices';
-import { saveSelectedVoice } from '../../reducers/user';
+import { saveSelectedVoice, getUser } from '../../reducers/user';
 
 import { getPlayerPlaybackState, getPlayerTrack } from '../../selectors/player';
 import { getDownloadedVoicePreviews, getAvailableVoicesByLanguageName, getDefaultVoicesByLanguageName } from '../../selectors/voices';
@@ -34,12 +34,14 @@ type Props = IProps & StateProps & DispatchProps;
 
 interface State {
   isLoadingVoiceId: string; // voice ID: "d2ede165-9dc0-4969-af8c-f4ff3716da53"
+  isLoadingSaveSelectedVoiceId: string;
 }
 
 export class VoicesSelectComponent extends React.PureComponent<Props, State> {
 
   state = {
-    isLoadingVoiceId: ''
+    isLoadingVoiceId: '',
+    isLoadingSaveSelectedVoiceId: ''
   };
 
   static contextType = NetworkContext;
@@ -75,21 +77,48 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
 
     // Only change voice when it's not already selected
     if (!isSelected) {
+      // Warn the user, it only applies to new articles
       Alert.alert(
-        'Only for new articles',
+        'Only applies to new articles',
         ALERT_SETTINGS_VOICE_CHANGE,
         [
           {
             text: 'OK',
-            onPress: () => {
-              this.props.saveSelectedVoice(item.id); // Saves the selected voice in the database
-              // TODO: get user voice settings after success
-            }
+            onPress: () => this.handleOnSaveSelectedVoice(item)
           }
         ]
       );
     }
     // }
+  }
+
+  handleOnSaveSelectedVoice = async (item: Api.Voice) => {
+    return this.setState({ isLoadingSaveSelectedVoiceId: item.id }, async () => {
+      try {
+        // Save the selected voice for the user
+        await this.props.saveSelectedVoice(item.id);
+
+        // Get the updated settings
+        await this.props.getUser();
+      } catch (err) {
+        Alert.alert(
+          'Oops!',
+          'Saving the selected voice for this language failed. Please try again.',
+          [
+            {
+              text: 'Cancel',
+              style: 'cancel'
+            },
+            {
+              text: 'Try again',
+              onPress: () => this.handleOnSaveSelectedVoice(item)
+            }
+          ]
+        );
+      } finally {
+        return this.setState({ isLoadingSaveSelectedVoiceId: '' });
+      }
+    });
   }
 
   handleOnPreviewPress = async (title: string, label: string, voice: Api.Voice) => {
@@ -179,6 +208,7 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
   }
 
   isSelected = (item: Api.Voice) => {
+    const { isLoadingSaveSelectedVoiceId } = this.state;
     const { defaultVoicesByLanguageName, userSelectedVoiceByLanguageName } = this.props;
     const isDefaultSelected = (defaultVoicesByLanguageName) ? !!defaultVoicesByLanguageName.find(voice => voice.id === item.id) : false;
     const isUserSelected = (userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName.id === item.id);
@@ -193,13 +223,40 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
       isSelected = isDefaultSelected;
     }
 
+    // When we are saving a selected voice, just show it as selected already
+    // So we give the user the impression the app is fast.
+    if (isLoadingSaveSelectedVoiceId === item.id) {
+      return true;
+    }
+
+    // If there's a saving of the selected voice in progress, remove the selected status from the other items
+    if (isLoadingSaveSelectedVoiceId && isLoadingSaveSelectedVoiceId !== item.id) {
+      return false;
+    }
+
     return isSelected;
   }
 
-  renderItem = ({ item }: { item: Api.Voice}) => {
+  renderRightElement = (item: Api.Voice, isSelected: boolean) => {
+    // const { isLoadingSaveSelectedVoiceId } = this.state;
 
+    // if (isLoadingSaveSelectedVoiceId === item.id) {
+    //   return <View style={{ width: 20 }}><ActivityIndicator size="small" /></View>;
+    // }
+
+    return <View style={{ width: 20 }}><Icon.FontAwesome5 name="check" size={16} solid color={(isSelected) ? colors.black : colors.grayLightest} /></View>;
+  }
+
+  renderLeftElement = (title: string, label: string, item: Api.Voice) => {
     const { isLoadingVoiceId } = this.state;
+    const isPlaying = this.isVoicePlayingInPlayer(item.id);
+    const isLoading = isLoadingVoiceId === item.id;
+    const isActive = this.isVoiceActiveInPlayer(item.id);
 
+    return <VoicePreviewButton isPlaying={isPlaying} isLoading={isLoading} isActive={isActive} onPress={() => this.handleOnPreviewPress(title, label, item)} />;
+  }
+
+  renderItem = ({ item }: { item: Api.Voice}) => {
     const defaultLabel = (item.isLanguageDefault) ? '(Default) ' : '';
     const badgeValue = (item.isPremium) ? 'premium' : 'free';
     const gender = (item.gender === 'MALE') ? 'Male' : 'Female';
@@ -212,29 +269,19 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
     // Determine if the default voice is selected
     // Or if the user already selected a different voice as it's language default
     const isSelected = this.isSelected(item);
-    const isPlaying = this.isVoicePlayingInPlayer(item.id);
-    const isLoading = isLoadingVoiceId === item.id;
-    const isActive = this.isVoiceActiveInPlayer(item.id);
 
     return (
       <ListItem
         bottomDivider
-        onPress={() => this.handleOnListItemPress(item)}
         title={title}
         subtitle={subtitle}
+        onPress={() => this.handleOnListItemPress(item)}
         badge={{ value: badgeValue, status: badgeStatus, textStyle: styles.listItemBadgeText, badgeStyle: styles.listItemBadge }}
-        leftElement={<VoicePreviewButton isPlaying={isPlaying} isLoading={isLoading} isActive={isActive} onPress={() => this.handleOnPreviewPress(title, label, item)} />}
         containerStyle={[styles.listItemContainer, (isSelected) ? { backgroundColor: colors.grayLightest } : {}]}
         titleStyle={styles.listItemTitle}
         subtitleStyle={styles.listItemSubtitle}
-        rightElement={
-          <Icon.FontAwesome5
-            name="check"
-            size={16}
-            solid
-            color={(isSelected) ? colors.black : colors.grayLightest}
-          />
-        }
+        leftElement={this.renderLeftElement(title, label, item)}
+        rightElement={this.renderRightElement(item, isSelected)}
       />
     );
   }
@@ -247,7 +294,7 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
         keyExtractor={this.keyExtractor}
         data={availableVoicesByLanguageName}
         renderItem={this.renderItem}
-        extraData={this.props} // So it re-renders when our props change
+        extraData={[this.props, this.state]} // So it re-renders when our props change
       />
     );
   }
@@ -257,6 +304,7 @@ interface DispatchProps {
   saveSelectedVoice: typeof saveSelectedVoice;
   setDownloadedVoice: typeof setDownloadedVoice;
   setTrack: typeof setTrack;
+  getUser: typeof getUser;
 }
 
 interface StateProps {
@@ -280,7 +328,8 @@ const mapStateToProps = (state: RootState, props: Props) => ({
 const mapDispatchToProps = {
   saveSelectedVoice,
   setTrack,
-  setDownloadedVoice
+  setDownloadedVoice,
+  getUser
 };
 
 export const VoicesSelect = connect(
