@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, Alert, View } from 'react-native';
+import { FlatList, Alert, View, ActivityIndicator } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import TrackPlayer from 'react-native-track-player';
@@ -19,7 +19,7 @@ import { getPlayerPlaybackState, getPlayerTrack } from '../../selectors/player';
 import { getDownloadedVoicePreviews, getAvailableVoicesByLanguageName, getDefaultVoicesByLanguageName } from '../../selectors/voices';
 
 import styles from './styles';
-import { ALERT_SETTINGS_VOICE_CHANGE, ALERT_GENERIC_INTERNET_REQUIRED } from '../../constants/messages';
+import { ALERT_SETTINGS_VOICE_CHANGE, ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_LANGUAGES_VOICE_SAVE, ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE } from '../../constants/messages';
 
 import * as Icon from '../../components/Icon';
 import colors from '../../constants/colors';
@@ -33,14 +33,14 @@ interface IProps {
 type Props = IProps & StateProps & DispatchProps;
 
 interface State {
-  isLoadingVoiceId: string; // voice ID: "d2ede165-9dc0-4969-af8c-f4ff3716da53"
+  isLoadingPreviewVoiceId: string;
   isLoadingSaveSelectedVoiceId: string;
 }
 
 export class VoicesSelectComponent extends React.PureComponent<Props, State> {
 
   state = {
-    isLoadingVoiceId: '',
+    isLoadingPreviewVoiceId: '',
     isLoadingSaveSelectedVoiceId: ''
   };
 
@@ -71,7 +71,7 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
     //         onPress: () => this.props.onPressUpgrade(),
     //       },
     //     ],
-    //     { cancelable: true }
+
     //     );
     // } else {
 
@@ -83,6 +83,10 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
         ALERT_SETTINGS_VOICE_CHANGE,
         [
           {
+            text: 'Cancel',
+            style: 'cancel'
+          },
+          {
             text: 'OK',
             onPress: () => this.handleOnSaveSelectedVoice(item)
           }
@@ -92,6 +96,10 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
     // }
   }
 
+  /**
+   * Handles the saving of the selected voice to the database
+   * Will also properly handle errors by showing an Alert to the user
+   */
   handleOnSaveSelectedVoice = async (item: Api.Voice) => {
     return this.setState({ isLoadingSaveSelectedVoiceId: item.id }, async () => {
       try {
@@ -103,7 +111,7 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
       } catch (err) {
         Alert.alert(
           'Oops!',
-          'Saving the selected voice for this language failed. Please try again.',
+          ALERT_SETTINGS_LANGUAGES_VOICE_SAVE,
           [
             {
               text: 'Cancel',
@@ -157,14 +165,22 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
     return TrackPlayer.play();
   }
 
-  fetchVoicePreview = async (title: string, label: string, voice: Api.Voice) => {
+  fetchVoicePreview = (title: string, label: string, voice: Api.Voice) => {
+    const { isConnected } = this.context;
+    const exampleAudioUrl = voice && voice.exampleAudioUrl;
 
-    this.setState({ isLoadingVoiceId: voice.id }, async () => {
+    if (!isConnected) {
+      return Alert.alert('Not connected', ALERT_GENERIC_INTERNET_REQUIRED);
+    }
+
+    if (!exampleAudioUrl) {
+      return Alert.alert('Oops!', ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE);
+    }
+
+    return this.setState({ isLoadingPreviewVoiceId: voice.id }, async () => {
       try {
-        if (!voice.exampleAudioUrl) return Alert.alert('No voice preview available, yet.');
-
         // Download the file and put it in a local cache directory
-        const localFilePath = await cache.downloadVoicePreview(voice.exampleAudioUrl);
+        const localFilePath = await cache.downloadVoicePreview(exampleAudioUrl);
 
         // Set it as downloaded in the Redux store
         this.props.setDownloadedVoice(voice);
@@ -176,7 +192,7 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
         const message = (err.message) ? err.message : null;
         const alertMessage = (message) ? `An error happened while downloading the voice preview: "${message}".` : 'An error happened while downloading the voice preview.';
 
-        return Alert.alert(
+        Alert.alert(
           'Oops!',
           alertMessage,
           [
@@ -188,11 +204,10 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
               text: 'Try again',
               onPress: () => this.fetchVoicePreview(title, label, voice),
             },
-          ],
-          { cancelable: true }
+          ]
         );
       } finally {
-        return this.setState({ isLoadingVoiceId: '' });
+        return this.setState({ isLoadingPreviewVoiceId: '' });
       }
     });
   }
@@ -208,7 +223,7 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
   }
 
   isSelected = (item: Api.Voice) => {
-    const { isLoadingSaveSelectedVoiceId } = this.state;
+    // const { isLoadingSaveSelectedVoiceId } = this.state;
     const { defaultVoicesByLanguageName, userSelectedVoiceByLanguageName } = this.props;
     const isDefaultSelected = (defaultVoicesByLanguageName) ? !!defaultVoicesByLanguageName.find(voice => voice.id === item.id) : false;
     const isUserSelected = (userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName.id === item.id);
@@ -225,35 +240,36 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
 
     // When we are saving a selected voice, just show it as selected already
     // So we give the user the impression the app is fast.
-    if (isLoadingSaveSelectedVoiceId === item.id) {
-      return true;
-    }
+    // if (isLoadingSaveSelectedVoiceId === item.id) {
+    //   return true;
+    // }
 
-    // If there's a saving of the selected voice in progress, remove the selected status from the other items
-    if (isLoadingSaveSelectedVoiceId && isLoadingSaveSelectedVoiceId !== item.id) {
-      return false;
-    }
+    // // If there's a saving of the selected voice in progress, remove the selected status from the other items
+    // if (isLoadingSaveSelectedVoiceId && isLoadingSaveSelectedVoiceId !== item.id) {
+    //   return false;
+    // }
 
     return isSelected;
   }
 
   renderRightElement = (item: Api.Voice, isSelected: boolean) => {
-    // const { isLoadingSaveSelectedVoiceId } = this.state;
+    const { isLoadingSaveSelectedVoiceId } = this.state;
 
-    // if (isLoadingSaveSelectedVoiceId === item.id) {
-    //   return <View style={{ width: 20 }}><ActivityIndicator size="small" /></View>;
-    // }
+    if (isLoadingSaveSelectedVoiceId === item.id) {
+      return <View style={{ width: 20 }}><ActivityIndicator size="small" color="white" /></View>;
+    }
 
     return <View style={{ width: 20 }}><Icon.FontAwesome5 name="check" size={16} solid color={(isSelected) ? colors.black : colors.grayLightest} /></View>;
   }
 
   renderLeftElement = (title: string, label: string, item: Api.Voice) => {
-    const { isLoadingVoiceId } = this.state;
+    const { isLoadingPreviewVoiceId } = this.state;
     const isPlaying = this.isVoicePlayingInPlayer(item.id);
-    const isLoading = isLoadingVoiceId === item.id;
+    const isLoading = isLoadingPreviewVoiceId === item.id;
     const isActive = this.isVoiceActiveInPlayer(item.id);
+    const isAvailable = !!item.exampleAudioUrl;
 
-    return <VoicePreviewButton isPlaying={isPlaying} isLoading={isLoading} isActive={isActive} onPress={() => this.handleOnPreviewPress(title, label, item)} />;
+    return <VoicePreviewButton isPlaying={isPlaying} isLoading={isLoading} isActive={isActive} isAvailable={isAvailable} onPress={() => this.handleOnPreviewPress(title, label, item)} />;
   }
 
   renderItem = ({ item }: { item: Api.Voice}) => {

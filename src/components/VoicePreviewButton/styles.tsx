@@ -10,10 +10,13 @@ export default StyleSheet.create({
     width: 32,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.black
+    backgroundColor: colors.gray
   },
   containerActive: {
     backgroundColor: colors.tintColor
+  },
+  isAvailable: {
+    backgroundColor: colors.black
   },
   icon: {
     color: colors.white,

@@ -9,6 +9,7 @@ interface Props {
   isLoading?: boolean;
   isPlaying?: boolean;
   isActive?: boolean;
+  isAvailable?: boolean;
   onPress(): void;
 }
 
@@ -16,10 +17,11 @@ export const VoicePreviewButton: React.FC<Props> = React.memo(({
   isLoading,
   isPlaying,
   isActive,
+  isAvailable,
   onPress
 }) => (
   <TouchableOpacity
-    style={[styles.container, (isPlaying || isActive) ? styles.containerActive : null]}
+    style={[styles.container, (isPlaying || isActive) ? styles.containerActive : null, (isAvailable) ? styles.isAvailable : null]}
     activeOpacity={1}
     onPress={onPress}
     hitSlop={{ top: 20, left: 20, right: 20, bottom: 20 }}>
