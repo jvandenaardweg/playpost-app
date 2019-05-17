@@ -26,7 +26,6 @@ declare namespace Api {
     description: string | null;
     url: string;
     canonicalUrl: string | null;
-    languageCode: string | null;
     sourceName: string | null;
     imageUrl: string | null;
     readingTime: number | null;
@@ -41,6 +40,7 @@ declare namespace Api {
     updatedAt: Date;
     audiofiles: Audiofile[];
     status: ArticleStatus;
+    language: Language;
     isPublic: boolean | null;
   }
 
@@ -50,6 +50,7 @@ declare namespace Api {
     onboardAt: Date | null;
     activatedAt: Date | null;
     authenticatedAt: Date | null;
+    voiceSettings: UserVoiceSetting[];
     createdAt: Date;
     updatedAt: Date;
   }
@@ -72,7 +73,6 @@ declare namespace Api {
     id: string;
     languageCode: string;
     countryCode: string;
-    languageName: string;
     name: string;
     label: string | null;
     gender: Gender;
@@ -84,6 +84,28 @@ declare namespace Api {
     isActive: boolean;
     isPremium: boolean;
     exampleAudioUrl: string | null;
+    language: Language;
+    isLanguageDefault: boolean | null;
+    createdAt: Date;
+    updatedAt: Date;
+  }
+
+  export interface Language {
+    id: string;
+    name: string;
+    languageCode: string;
+    nativeName: string | null;
+    isActive: boolean;
+    voices: Voice[];
+    createdAt: Date;
+    updatedAt: Date;
+  }
+
+  export interface UserVoiceSetting {
+    id: string;
+    user: User;
+    voice: Voice;
+    language: Language;
     createdAt: Date;
     updatedAt: Date;
   }
