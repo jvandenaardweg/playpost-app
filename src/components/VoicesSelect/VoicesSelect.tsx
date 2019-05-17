@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, Alert, ActivityIndicator, View } from 'react-native';
+import { FlatList, Alert, View } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import TrackPlayer from 'react-native-track-player';
