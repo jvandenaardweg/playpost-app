@@ -39,8 +39,7 @@ export default StyleSheet.create({
     marginTop: 2
   },
   listItemBadge: {
-    paddingLeft: 2,
-    paddingRight: 2
+    paddingLeft: 2, paddingRight: 2
   },
   listItemBadgeText: {
     color: 'white',

@@ -8,7 +8,8 @@ import { ArchiveScreen } from '../screens/ArchiveScreen';
 import { FavoritesScreen } from '../screens/FavoritesScreen';
 import { SettingsScreen } from '../screens/SettingsScreen';
 import { BrowserScreen } from '../screens/BrowserScreen';
-import { SettingsVoicesScreen } from '../screens/SettingsVoicesScreen';
+import { SettingsVoicesScreen } from '../screens/settings/VoicesScreen';
+import { SettingsLanguagesScreen } from '../screens/settings/LanguagesScreen';
 import { FullArticleScreen } from '../screens/FullArticleScreen';
 import { UpdatePasswordScreen } from '../screens/settings/UpdatePasswordScreen';
 import { UpdateEmailScreen } from '../screens/settings/UpdateEmailScreen';
@@ -76,6 +77,7 @@ const SettingsStack: StackNavigatorConfig = createStackNavigator(
   {
     Settings: SettingsScreen,
     SettingsVoices: SettingsVoicesScreen,
+    SettingsLanguages: SettingsLanguagesScreen,
     Browser: BrowserScreen,
     UpdatePassword: UpdatePasswordScreen,
     UpdateEmail: UpdateEmailScreen

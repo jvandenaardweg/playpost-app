@@ -11,7 +11,7 @@ import { ArticleContainer } from '../../components/Article/ArticleContainer';
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
 import { getPlaylist, reOrderPlaylistItem } from '../../reducers/playlist';
-import { getVoices } from '../../reducers/voices';
+import { getLanguages } from '../../reducers/voices';
 
 import { getNewPlaylistItems, getArchivedPlaylistItems, getFavoritedPlaylistItems } from '../../selectors/playlist';
 
@@ -74,12 +74,17 @@ class PlaylistsContainerComponent extends React.Component<Props, State> {
     if (isArchiveScreen || isFavoriteScreen) return;
 
     if (isConnected && !this.hasPlaylistItems) {
-      this.setState({ isLoading: true }, () => this.fetchPlaylist());
+      this.setState({ isLoading: true }, () => {
+        this.fetchPlaylist();
+        this.fetchLanguages();
+      });
     } else {
       // Just fetch the playlist in the background, so we always get an up-to-date playlist upon launch
       this.fetchPlaylist();
-      this.fetchVoices();
+      this.fetchLanguages();
     }
+
+    // TODO: also fetch user? with his settings?
 
     // Wait a little longer, then hide the splash screen.
     // So we don't have a "black" flash.
@@ -113,8 +118,8 @@ class PlaylistsContainerComponent extends React.Component<Props, State> {
     if (showHelpVideo) this.setState({ showHelpVideo: true });
   }
 
-  async fetchVoices() {
-    await this.props.getVoices();
+  async fetchLanguages() {
+    await this.props.getLanguages();
   }
 
   async fetchPlaylist() {
@@ -320,7 +325,7 @@ interface StateProps {
 
 interface DispatchProps {
   getPlaylist: typeof getPlaylist;
-  getVoices: typeof getVoices;
+  getLanguages: typeof getLanguages;
   reOrderPlaylistItem: typeof reOrderPlaylistItem;
 }
 
@@ -333,7 +338,7 @@ const mapStateToProps = (state: RootState) => ({
 
 const mapDispatchToProps = {
   getPlaylist,
-  getVoices,
+  getLanguages,
   reOrderPlaylistItem
 };
 

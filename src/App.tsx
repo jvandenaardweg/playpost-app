@@ -16,7 +16,7 @@ import { getPlaylist } from './reducers/playlist';
 import { AppNavigator } from './navigation/AppNavigator';
 // import { ErrorBoundary } from './components/ErrorBoundary';
 import { NetworkProvider } from './contexts/NetworkProvider';
-import { getVoices } from './reducers/voices';
+import { getLanguages } from './reducers/voices';
 
 // import { whyDidYouUpdate } from 'why-did-you-update';
 // whyDidYouUpdate(React, { exclude: /^YellowBox|Icon|Swipeable/ });
@@ -67,7 +67,7 @@ export default class App extends React.PureComponent<State> {
 
       if (isConnected) {
         this.fetchPlaylist();
-        this.fetchVoices();
+        this.fetchLanguages();
       }
     }
 
@@ -78,8 +78,8 @@ export default class App extends React.PureComponent<State> {
     store.dispatch(getPlaylist());
   }
 
-  async fetchVoices() {
-    store.dispatch(getVoices());
+  async fetchLanguages() {
+    store.dispatch(getLanguages());
   }
 
   render() {

@@ -17,5 +17,11 @@ export const reactNativeElementsTheme: Theme = {
       backgroundColor: colors.borderDefault,
       borderColor: colors.borderDefault
     }
+  },
+  colors: {
+    primary: colors.tintColor,
+    error: colors.redLight,
+    divider: colors.borderDefault,
+    success: colors.green
   }
 };

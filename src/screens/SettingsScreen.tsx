@@ -13,9 +13,8 @@ import { ButtonUpgrade } from '../components/Header/ButtonUpgrade';
 
 import { getUser, deleteUser } from '../reducers/user';
 import { resetAudiofilesState } from '../reducers/audiofiles';
-import { resetVoicesState, getVoices, resetDownloadedVoices } from '../reducers/voices';
+import { resetVoicesState, getLanguages, resetDownloadedVoices } from '../reducers/voices';
 
-import { getSelectedVoice } from '../selectors/voices';
 import { getUserDetails } from '../selectors/user';
 
 import { RootState } from '../reducers';
@@ -53,21 +52,20 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
   componentDidMount() {
     this.props.navigation.setParams({ handleOnPressUpgrade: this.handleOnPressUpgrade });
     this.setCacheSize();
-    this.fetchVoices();
 
-    // Pre-populate the user data
-    // We only do this once
-    if (!this.props.user) {
-      this.fetchUser();
-    }
+    // Make sure the settings screen always has the latest data
+    this.fetchLanguages();
+
+    // Getting the user details, but also the user's settings (for example: user selected voices)
+    this.fetchUser();
   }
 
   fetchUser = async () => {
     await this.props.getUser();
   }
 
-  fetchVoices = async () => {
-    await this.props.getVoices();
+  fetchLanguages = async () => {
+    await this.props.getLanguages();
   }
 
   setCacheSize = async () => {
@@ -166,19 +164,11 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
     });
   }
 
-  get selectedVoiceLabel() {
-    const { selectedVoice } = this.props;
-    if (selectedVoice) {
-      return `${selectedVoice.label}, ${selectedVoice.languageName} (${selectedVoice.countryCode})`;
-    }
-    return 'Select voice';
-  }
-
   handleOnPressLogout = async () => this.props.navigation.navigate('Logout');
 
   handleOnPressUpgrade = () => this.props.navigation.navigate('Upgrade');
 
-  handleOnPressLanguage = () => this.props.navigation.navigate('SettingsVoices');
+  handleOnPressLanguage = () => this.props.navigation.navigate('SettingsLanguages');
 
   handleOnPressAccountPassword = () => this.props.navigation.navigate('UpdatePassword');
 
@@ -243,12 +233,7 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
       header: 'Audio'.toUpperCase(),
       rows: [
         {
-          title: 'Voice',
-          renderAccessory: () => (
-            <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.title }}>
-              {this.selectedVoiceLabel}
-            </Text>
-          ),
+          title: 'Languages & voices',
           onPress: this.handleOnPressLanguage,
           showDisclosureIndicator: true
         },
@@ -380,18 +365,16 @@ interface DispatchProps {
   resetAudiofilesState: typeof resetAudiofilesState;
   resetVoicesState: typeof resetVoicesState;
   resetDownloadedVoices: typeof resetDownloadedVoices;
-  getVoices: typeof getVoices;
+  getLanguages: typeof getLanguages;
   getUser: typeof getUser;
   deleteUser: typeof deleteUser;
 }
 
 interface StateProps {
-  selectedVoice: ReturnType<typeof getSelectedVoice>;
   user: ReturnType<typeof getUserDetails>;
 }
 
 const mapStateToProps = (state: RootState) => ({
-  selectedVoice: getSelectedVoice(state),
   user: getUserDetails(state)
 });
 
@@ -399,7 +382,7 @@ const mapDispatchToProps = {
   resetAudiofilesState,
   resetVoicesState,
   resetDownloadedVoices,
-  getVoices,
+  getLanguages,
   getUser,
   deleteUser
 };

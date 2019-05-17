@@ -9,7 +9,8 @@ export const DELETE_USER_FAIL_MESSAGE = 'An unknown error happened while deletin
 
 export const POST_AUTH_FAIL_MESSAGE = 'An unknown error happened while loggin you in. Please contact us when this happens all the time.';
 
-export const GET_VOICES_FAIL_MESSAGE = 'An unknown error happened while getting the available voices. Please contact us when this happens all the time.';
+export const GET_LANGUAGES_FAIL_MESSAGE = 'An unknown error happened while getting the available languages. Please contact us when this happens all the time.';
+export const SAVE_SELECTED_VOICE_FAIL_MESSAGE = 'An unknown error happened while saving this voice setting. Please contact us when this happens all the time.';
 
 // Alerts related to articles
 export const ALERT_ARTICLE_AUDIOFILE_CREATE_FAIL = 'There was a problem while creating the audio for this article.';

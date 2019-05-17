@@ -6,7 +6,7 @@ import { withNavigation, NavigationInjectedProps } from 'react-navigation';
 import isEqual from 'react-fast-compare';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH } from '../../constants/files';
-import { ALERT_PLAYLIST_UNFAVORITE_ARTICLE_FAIL, ALERT_PLAYLIST_UNARCHIVE_ARTICLE_FAIL, ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL, ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL, ALERT_ARTICLE_AUDIOFILE_CREATE_FAIL, ALERT_ARTICLE_PLAY_INTERNET_REQUIRED, ALERT_ARTICLE_AUDIOFILE_DOWNLOAD_FAIL, ALERT_ARTICLE_PLAY_FAIL, ALERT_ARTICLE_DOWNLOAD_FAIL, ALERT_PLAYLIST_UPDATE_FAIL, ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL, ALERT_ARTICLE_VOICE_FAIL, ALERT_ARTICLE_LANGUAGE_UNSUPPORTED } from '../../constants/messages';
+import { ALERT_PLAYLIST_UNFAVORITE_ARTICLE_FAIL, ALERT_PLAYLIST_UNARCHIVE_ARTICLE_FAIL, ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL, ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL, ALERT_ARTICLE_AUDIOFILE_CREATE_FAIL, ALERT_ARTICLE_PLAY_INTERNET_REQUIRED, ALERT_ARTICLE_AUDIOFILE_DOWNLOAD_FAIL, ALERT_ARTICLE_PLAY_FAIL, ALERT_ARTICLE_DOWNLOAD_FAIL, ALERT_PLAYLIST_UPDATE_FAIL, ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL, ALERT_ARTICLE_LANGUAGE_UNSUPPORTED } from '../../constants/messages';
 
 import * as cache from '../../cache';
 
@@ -22,7 +22,6 @@ import { setTrack, createAudiofile, resetPlaybackStatus } from '../../reducers/p
 import { setDownloadedAudiofile } from '../../reducers/audiofiles';
 
 import { getPlayerTrack, getPlayerPlaybackState } from '../../selectors/player';
-import { getDefaultFreeVoice, getDefaultPremiumVoice, getSelectedVoice } from '../../selectors/voices';
 
 interface State {
   isLoading: boolean;
@@ -144,19 +143,17 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   async handleCreateAudiofile() {
-    const { article, selectedVoice } = this.props;
+    const { article } = this.props;
 
-    if (article.languageCode !== 'en') {
-      return Alert.alert('Language not supported', `${ALERT_ARTICLE_LANGUAGE_UNSUPPORTED}. This article seems to have the language: ${article.languageCode}.`);
-    }
+    const articleLanguageCode = article.language && article.language.languageCode;
 
-    if (!selectedVoice || !selectedVoice.id) {
-      return Alert.alert('Voice not ready', ALERT_ARTICLE_VOICE_FAIL);
+    if (!articleLanguageCode || articleLanguageCode !== 'en') {
+      return Alert.alert('Language not supported', `${ALERT_ARTICLE_LANGUAGE_UNSUPPORTED}. This article seems to have the language: ${articleLanguageCode}.`);
     }
 
     this.setState({ isPlaying: false, isLoading: true, isActive: true, isCreatingAudiofile: true }, async () => {
       try {
-        await this.props.createAudiofile(article.id, selectedVoice.id);
+        await this.props.createAudiofile(article.id);
         await this.props.getPlaylist(); // Get the playlist, it contains the article with the newly created audiofile
         this.handleSetTrack(); // Set the track. Upon track change, the track with automatically play.
       } catch (err) {
@@ -544,9 +541,6 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 interface StateProps {
   track: ReturnType<typeof getPlayerTrack>;
   playbackState: ReturnType<typeof getPlayerPlaybackState>;
-  defaultPremiumVoice: ReturnType<typeof getDefaultPremiumVoice>;
-  defaultFreeVoice: ReturnType<typeof getDefaultFreeVoice>;
-  selectedVoice: ReturnType<typeof getSelectedVoice>;
 }
 
 interface DispatchProps {
@@ -565,9 +559,6 @@ interface DispatchProps {
 const mapStateToProps = (state: RootState) => ({
   track: getPlayerTrack(state),
   playbackState: getPlayerPlaybackState(state),
-  defaultPremiumVoice: getDefaultPremiumVoice(state),
-  defaultFreeVoice: getDefaultFreeVoice(state),
-  selectedVoice: getSelectedVoice(state)
 });
 
 const mapDispatchToProps: DispatchProps = {

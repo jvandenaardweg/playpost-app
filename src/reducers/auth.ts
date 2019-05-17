@@ -39,8 +39,6 @@ export function authReducer(state = initialState, action: AuthActionTypes): Auth
       };
 
     case POST_AUTH_SUCCESS:
-      Analytics.trackEvent('Auth success');
-
       return {
         ...state,
         isLoading: false,

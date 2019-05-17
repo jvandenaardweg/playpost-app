@@ -167,7 +167,11 @@ export function setPlaybackSpeed(playbackSpeed: number) {
   };
 }
 
-export function createAudiofile(articleId: string, voiceId: string) {
+/**
+ * Creates an audiofile for the user using the default voice or user selected voice
+ * The selection of which voice to use is handled by the API.
+ */
+export function createAudiofile(articleId: string) {
   return {
     type: CREATE_AUDIOFILE,
     payload: {
@@ -175,7 +179,6 @@ export function createAudiofile(articleId: string, voiceId: string) {
         method: 'post',
         url: `/v1/articles/${articleId}/audiofiles`,
         data: {
-          voiceId,
           mimeType: 'audio/mpeg'
         }
       }

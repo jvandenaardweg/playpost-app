@@ -88,8 +88,6 @@ export function playlistReducer(state = initialState, action: PlaylistActionType
       };
 
     case GET_PLAYLIST_SUCCESS:
-      Analytics.trackEvent('Get playlist success');
-
       return {
         ...state,
         isLoading: false,

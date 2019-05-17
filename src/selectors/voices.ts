@@ -2,51 +2,61 @@ import { createSelector } from 'reselect';
 import { RootState } from '../reducers';
 import { VoicesState } from '../reducers/voices';
 
+export type VoicesLanguages = {
+  languageName: string;
+  countryCode: string;
+};
+
 const voicesSelector = (state: RootState): VoicesState => state.voices;
 
-export const getVoices = createSelector(
+export const getLanguages = createSelector(
   [voicesSelector],
-  voices => voices.voices
+  voices => voices.languages
 );
 
-export const getDownloadedVoices = createSelector(
-  [voicesSelector],
-  voices => voices.downloaded
-);
+export const getLanguagesWithActiveVoices = createSelector(
+  [getLanguages],
+  (languages) => {
+    // Return languages with active voices
+    const languagesWithActiveVoices = languages.map((language) => {
+      return {
+        ...language,
+        voices: language.voices.filter(voice => voice.isActive)
+      };
+    });
 
-export const getSelectedVoiceId = createSelector(
-  [voicesSelector],
-  voices => voices.selectedVoiceId
-);
-
-export const getAvailableVoices = createSelector(
-  [getVoices],
-  voices => voices.filter(voice => voice.isActive)
-);
-
-export const getAvailableFreeVoices = createSelector(
-  [getAvailableVoices],
-  voices => voices.filter(voice => !voice.isPremium)
-);
-
-export const getAvailablePremiumVoices = createSelector(
-  [getAvailableVoices],
-  voices => voices.filter(voice => voice.isPremium)
-);
-
-export const getDefaultFreeVoice = createSelector(
-  [getAvailableFreeVoices],
-  voices => voices.find(voice => voice.name === 'Joanna' && voice.synthesizer === 'AWS')
-);
-
-export const getDefaultPremiumVoice = createSelector(
-  [getAvailablePremiumVoices],
-  voices => voices.find(voice => voice.name === 'en-US-Wavenet-D' && voice.synthesizer === 'Google')
-);
-
-export const getSelectedVoice = createSelector(
-  [getSelectedVoiceId, getAvailableVoices],
-  (selectedVoiceId, availableVoices) => {
-    return availableVoices.find(voice => voice.id === selectedVoiceId);
+    return languagesWithActiveVoices;
   }
 );
+
+export const getIsLoadingLanguages = createSelector(
+  [voicesSelector],
+  voices => voices.isLoadingLanguages
+);
+
+export const getDownloadedVoicePreviews = createSelector(
+  [voicesSelector],
+  voices => voices.downloadedVoicePreviews
+);
+
+export const getAvailableVoicesByLanguageName = (state: RootState, props: { languageName: string }) => createSelector(
+  [getLanguagesWithActiveVoices],
+  (languages) => {
+    const language = languages.find(language => language.name === props.languageName);
+    if (!language) return [];
+
+    return language.voices;
+  }
+)(state);
+
+export const getDefaultVoicesByLanguageName = (state: RootState, props: { languageName: string }) => createSelector(
+  [getLanguagesWithActiveVoices],
+  (languages) => {
+    const language = languages.find(language => language.name === props.languageName);
+    if (!language) return null;
+
+    const defaultVoice = language.voices.filter(voice => !!voice.isLanguageDefault);
+
+    return defaultVoice;
+  }
+)(state);

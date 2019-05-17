@@ -1,7 +1,7 @@
 import Analytics from 'appcenter-analytics';
 import { AxiosError, AxiosResponse } from 'axios';
 
-import { GENERIC_NETWORK_ERROR, GET_USER_FAIL_MESSAGE, CREATE_USER_FAIL_MESSAGE, DELETE_USER_FAIL_MESSAGE, UPDATE_USER_PASSWORD_FAIL_MESSAGE, UPDATE_USER_EMAIL_FAIL_MESSAGE } from '../constants/messages';
+import { GENERIC_NETWORK_ERROR, GET_USER_FAIL_MESSAGE, CREATE_USER_FAIL_MESSAGE, DELETE_USER_FAIL_MESSAGE, UPDATE_USER_PASSWORD_FAIL_MESSAGE, UPDATE_USER_EMAIL_FAIL_MESSAGE, SAVE_SELECTED_VOICE_FAIL_MESSAGE } from '../constants/messages';
 
 export const GET_USER = 'user/GET_USER';
 export const GET_USER_SUCCESS = 'user/GET_USER_SUCCESS';
@@ -23,6 +23,10 @@ export const UPDATE_USER_EMAIL = 'user/UPDATE_USER_EMAIL';
 export const UPDATE_USER_EMAIL_SUCCESS = 'user/UPDATE_USER_EMAIL_SUCCESS';
 export const UPDATE_USER_EMAIL_FAIL = 'user/UPDATE_USER_EMAIL_FAIL';
 
+export const SAVE_SELECTED_VOICE = 'user/SAVE_SELECTED_VOICE';
+export const SAVE_SELECTED_VOICE_SUCCESS = 'user/SAVE_SELECTED_VOICE_SUCCESS';
+export const SAVE_SELECTED_VOICE_FAIL = 'user/SAVE_SELECTED_VOICE_FAIL';
+
 export const RESET_USER_STATE = 'user/RESET_USER_STATE';
 export const RESET_USER_ERROR = 'user/RESET_USER_ERROR';
 
@@ -31,6 +35,7 @@ export type UserState = Readonly<{
   isLoadingDelete: boolean;
   isLoadingUpdatePassword: boolean;
   isLoadingUpdateEmail: boolean;
+  isLoadingSaveSelectedVoice: boolean;
   details: Api.User | null;
   error: string;
 }>;
@@ -40,6 +45,7 @@ const initialState: UserState = {
   isLoadingDelete: false,
   isLoadingUpdatePassword: false,
   isLoadingUpdateEmail: false,
+  isLoadingSaveSelectedVoice: false,
   details: null,
   error: ''
 };
@@ -60,8 +66,6 @@ export function userReducer(state = initialState, action: UserActionTypes): User
       };
 
     case GET_USER_SUCCESS:
-      Analytics.trackEvent('Get details success');
-
       return {
         ...state,
         isLoading: false,
@@ -101,8 +105,6 @@ export function userReducer(state = initialState, action: UserActionTypes): User
       };
 
     case CREATE_USER_SUCCESS:
-      Analytics.trackEvent('Create user success');
-
       return {
         ...state,
         isLoading: false,
@@ -142,8 +144,6 @@ export function userReducer(state = initialState, action: UserActionTypes): User
       };
 
     case DELETE_USER_SUCCESS:
-      Analytics.trackEvent('Delete user success');
-
       return {
         ...state,
         isLoadingDelete: false,
@@ -181,8 +181,6 @@ export function userReducer(state = initialState, action: UserActionTypes): User
       };
 
     case UPDATE_USER_PASSWORD_SUCCESS:
-      Analytics.trackEvent('Update user password success');
-
       return {
         ...state,
         isLoadingUpdatePassword: false,
@@ -220,8 +218,6 @@ export function userReducer(state = initialState, action: UserActionTypes): User
       };
 
     case UPDATE_USER_EMAIL_SUCCESS:
-      Analytics.trackEvent('Update user email success');
-
       return {
         ...state,
         isLoadingUpdateEmail: false,
@@ -249,6 +245,44 @@ export function userReducer(state = initialState, action: UserActionTypes): User
         ...state,
         isLoadingUpdateEmail: false,
         error: updateUserEmailFailMessage
+      };
+
+    case SAVE_SELECTED_VOICE:
+      return {
+        ...state,
+        isLoadingSaveSelectedVoice: true,
+        error: ''
+      };
+
+    case SAVE_SELECTED_VOICE_SUCCESS:
+      return {
+        ...state,
+        isLoadingSaveSelectedVoice: false,
+        error: ''
+      };
+
+    case SAVE_SELECTED_VOICE_FAIL:
+
+      let saveSelectedVoiceFailMessage = '';
+
+      // Network error
+      if (action.error.status === 0) {
+        saveSelectedVoiceFailMessage = GENERIC_NETWORK_ERROR;
+      } else {
+        // Error, from the API
+        if (action.error.response && action.error.response.data && action.error.response.data.message) {
+          Analytics.trackEvent('Error get languages', { message: action.error.response.data.message });
+          saveSelectedVoiceFailMessage = action.error.response.data.message;
+        } else {
+          Analytics.trackEvent('Error get languages', { message: SAVE_SELECTED_VOICE_FAIL_MESSAGE });
+          saveSelectedVoiceFailMessage = SAVE_SELECTED_VOICE_FAIL_MESSAGE;
+        }
+      }
+
+      return {
+        ...state,
+        isLoadingSaveSelectedVoice: false,
+        error: saveSelectedVoiceFailMessage
       };
 
     case RESET_USER_ERROR:
@@ -344,6 +378,26 @@ export function deleteUser() {
       request: {
         method: 'delete',
         url: '/v1/me'
+      }
+    }
+  };
+}
+
+/**
+ * Saves the selected voice as a default voice for the voice's language
+ *
+ * @param voiceId
+ */
+export function saveSelectedVoice(voiceId: string) {
+  return {
+    type: SAVE_SELECTED_VOICE,
+    payload: {
+      request: {
+        method: 'post',
+        url: '/v1/me/voices',
+        data: {
+          voiceId
+        }
       }
     }
   };
