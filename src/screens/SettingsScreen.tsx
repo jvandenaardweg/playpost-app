@@ -1,7 +1,7 @@
 import React from 'react';
 import RNFS from 'react-native-fs';
 import VersionNumber from 'react-native-version-number';
-import { Text, Switch, Alert, ActivityIndicator } from 'react-native';
+import { Text, Alert, ActivityIndicator } from 'react-native';
 import { SettingsScreen as SettingsScreenComponent, SettingsData } from 'react-native-settings-screen';
 import { connect } from 'react-redux';
 import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions, NavigationInjectedProps } from 'react-navigation';
@@ -13,7 +13,7 @@ import { ButtonUpgrade } from '../components/Header/ButtonUpgrade';
 
 import { getUser, deleteUser } from '../reducers/user';
 import { resetAudiofilesState } from '../reducers/audiofiles';
-import { resetVoicesState, getLanguages, resetDownloadedVoices } from '../reducers/voices';
+import { resetVoicesState, resetDownloadedVoices } from '../reducers/voices';
 
 import { getUserDetails } from '../selectors/user';
 
@@ -52,9 +52,6 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
   componentDidMount() {
     this.props.navigation.setParams({ handleOnPressUpgrade: this.handleOnPressUpgrade });
     this.setCacheSize();
-
-    // Make sure the settings screen always has the latest data
-    this.props.getLanguages();
 
     // Getting the user details, but also the user's settings (for example: user selected voices)
     this.props.getUser();
@@ -229,26 +226,26 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
           onPress: this.handleOnPressLanguage,
           showDisclosureIndicator: true
         },
-        {
-          title: 'Playback speed',
-          renderAccessory: () => (
-            <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.title }}>
-              Normal (1x)
-            </Text>
-          ),
-          onPress: this.handleOnPressRow,
-          showDisclosureIndicator: true
-        },
-        {
-          title: 'Auto play next article',
-          renderAccessory: () => <Switch value={false} onValueChange={() => this.handleOnPressRow()} />,
-          onPress: this.handleOnPressRow
-        },
-        {
-          title: 'Auto archive played articles',
-          renderAccessory: () => <Switch value={false} onValueChange={() => this.handleOnPressRow()} />,
-          onPress: this.handleOnPressRow
-        }
+        // {
+        //   title: 'Playback speed',
+        //   renderAccessory: () => (
+        //     <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.title }}>
+        //       Normal (1x)
+        //     </Text>
+        //   ),
+        //   onPress: this.handleOnPressRow,
+        //   showDisclosureIndicator: true
+        // },
+        // {
+        //   title: 'Auto play next article',
+        //   renderAccessory: () => <Switch value={false} onValueChange={() => this.handleOnPressRow()} />,
+        //   onPress: this.handleOnPressRow
+        // },
+        // {
+        //   title: 'Auto archive played articles',
+        //   renderAccessory: () => <Switch value={false} onValueChange={() => this.handleOnPressRow()} />,
+        //   onPress: this.handleOnPressRow
+        // }
       ],
     },
     {
@@ -357,7 +354,6 @@ interface DispatchProps {
   resetAudiofilesState: typeof resetAudiofilesState;
   resetVoicesState: typeof resetVoicesState;
   resetDownloadedVoices: typeof resetDownloadedVoices;
-  getLanguages: typeof getLanguages;
   getUser: typeof getUser;
   deleteUser: typeof deleteUser;
 }
@@ -374,7 +370,6 @@ const mapDispatchToProps = {
   resetAudiofilesState,
   resetVoicesState,
   resetDownloadedVoices,
-  getLanguages,
   getUser,
   deleteUser
 };

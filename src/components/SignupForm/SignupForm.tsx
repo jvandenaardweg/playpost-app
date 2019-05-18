@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, KeyboardAvoidingView, Linking } from 'react-native';
+import { View, Text, TextInput, KeyboardAvoidingView, Linking, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import styles from './styles';
 import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../../constants/urls';
@@ -24,7 +24,7 @@ export const SignupForm: React.FC<Props> = React.memo(({
   isLoading
 }) => (
   <KeyboardAvoidingView style={styles.container} behavior="padding" keyboardVerticalOffset={100} enabled>
-    <View style={styles.form}>
+    <ScrollView style={styles.form} contentContainerStyle={styles.formContent}>
 
       <TextInput
         placeholder="E-mail address"
@@ -79,6 +79,6 @@ export const SignupForm: React.FC<Props> = React.memo(({
         </View>
       </View>
 
-    </View>
+    </ScrollView>
   </KeyboardAvoidingView>
 ));

@@ -16,6 +16,11 @@ export default StyleSheet.create({
   form: {
     width: '100%'
   },
+  formContent: {
+    flex: 1,
+    justifyContent: 'center',
+    flexDirection: 'column'
+  },
   textField: textInputStyle,
   errorContainer: {
     minHeight: 20,

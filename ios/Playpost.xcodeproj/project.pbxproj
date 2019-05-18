@@ -98,6 +98,8 @@
 		8C92A68D2243B7E20057A1EE /* libRNVersionNumber.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C92A6882243B7CD0057A1EE /* libRNVersionNumber.a */; };
 		8C92A69C2243CA290057A1EE /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C92A69B2243CA210057A1EE /* libRNCWebView.a */; };
 		8C92A69D2243CA320057A1EE /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C92A69B2243CA210057A1EE /* libRNCWebView.a */; };
+		8CA3D2DA22900BC700516BF9 /* libRNReanimated.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA3D2D322900BBA00516BF9 /* libRNReanimated.a */; };
+		8CA3D2DB22900BD300516BF9 /* libRNReanimated.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA3D2D322900BBA00516BF9 /* libRNReanimated.a */; };
 		8CAA1197220F2CCE002741D6 /* libPods-Playpost-PlaypostShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAA1196220F2CCE002741D6 /* libPods-Playpost-PlaypostShareExtension.a */; };
 		8CAA1198220F2FC3002741D6 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		8CBA9CD4227DA93800CE20A0 /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CBA9CC1227DA93100CE20A0 /* libRNCAsyncStorage.a */; };
@@ -450,6 +452,13 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNCWebView;
 		};
+		8CA3D2D222900BBA00516BF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CA3D29922900BBA00516BF9 /* RNReanimated.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNReanimated;
+		};
 		8CAAAAE922061A2100E67A62 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
@@ -665,6 +674,7 @@
 		8C5A7DDC220F23EC00ECCC65 /* libPods-PlaypostTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-PlaypostTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C92A64C2243B7CC0057A1EE /* RNVersionNumber.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNVersionNumber.xcodeproj; path = "../node_modules/react-native-version-number/ios/RNVersionNumber.xcodeproj"; sourceTree = "<group>"; };
 		8C92A6962243CA210057A1EE /* RNCWebView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCWebView.xcodeproj; path = "../node_modules/react-native-webview/ios/RNCWebView.xcodeproj"; sourceTree = "<group>"; };
+		8CA3D29922900BBA00516BF9 /* RNReanimated.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNReanimated.xcodeproj; path = "../node_modules/react-native-reanimated/ios/RNReanimated.xcodeproj"; sourceTree = "<group>"; };
 		8CAA1196220F2CCE002741D6 /* libPods-Playpost-PlaypostShareExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-Playpost-PlaypostShareExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CBA9C90227DA93100CE20A0 /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCAsyncStorage.xcodeproj; path = "../node_modules/@react-native-community/async-storage/ios/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; };
 		8CD2ED1B223E70AA00A054E6 /* RNFS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
@@ -729,6 +739,7 @@
 				8C92A69D2243CA320057A1EE /* libRNCWebView.a in Frameworks */,
 				8CBA9CD4227DA93800CE20A0 /* libRNCAsyncStorage.a in Frameworks */,
 				8C92A68D2243B7E20057A1EE /* libRNVersionNumber.a in Frameworks */,
+				8CA3D2DA22900BC700516BF9 /* libRNReanimated.a in Frameworks */,
 				8CD47C382240D0BA00D95B46 /* libRCTVideo.a in Frameworks */,
 				8C15B036223EB688001058F0 /* libRNFetchBlob.a in Frameworks */,
 				8CD2ED58223E70BC00A054E6 /* libRNFS.a in Frameworks */,
@@ -767,6 +778,7 @@
 				8C92A69C2243CA290057A1EE /* libRNCWebView.a in Frameworks */,
 				8CBA9CD5227DA94500CE20A0 /* libRNCAsyncStorage.a in Frameworks */,
 				8C92A68C2243B7D60057A1EE /* libRNVersionNumber.a in Frameworks */,
+				8CA3D2DB22900BD300516BF9 /* libRNReanimated.a in Frameworks */,
 				8CD47C372240D0A900D95B46 /* libRCTVideo.a in Frameworks */,
 				8C4182FF22365409002F5B00 /* libRNKeychain.a in Frameworks */,
 				8C15B035223EB67E001058F0 /* libRNFetchBlob.a in Frameworks */,
@@ -985,6 +997,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				8CA3D29922900BBA00516BF9 /* RNReanimated.xcodeproj */,
 				8CBA9C90227DA93100CE20A0 /* RNCAsyncStorage.xcodeproj */,
 				8C92A6962243CA210057A1EE /* RNCWebView.xcodeproj */,
 				8C92A64C2243B7CC0057A1EE /* RNVersionNumber.xcodeproj */,
@@ -1124,6 +1137,14 @@
 			isa = PBXGroup;
 			children = (
 				8C92A69B2243CA210057A1EE /* libRNCWebView.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8CA3D29A22900BBA00516BF9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8CA3D2D322900BBA00516BF9 /* libRNReanimated.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1463,6 +1484,10 @@
 					ProjectRef = 8C4182C7223653E3002F5B00 /* RNKeychain.xcodeproj */;
 				},
 				{
+					ProductGroup = 8CA3D29A22900BBA00516BF9 /* Products */;
+					ProjectRef = 8CA3D29922900BBA00516BF9 /* RNReanimated.xcodeproj */;
+				},
+				{
 					ProductGroup = 8C437560220813C4000A15FE /* Products */;
 					ProjectRef = 8C43755F220813C4000A15FE /* RNTrackPlayer.xcodeproj */;
 				},
@@ -1774,6 +1799,13 @@
 			fileType = archive.ar;
 			path = libRNCWebView.a;
 			remoteRef = 8C92A69A2243CA210057A1EE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8CA3D2D322900BBA00516BF9 /* libRNReanimated.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNReanimated.a;
+			remoteRef = 8CA3D2D222900BBA00516BF9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		8CAAAAEA22061A2100E67A62 /* libjsi.a */ = {

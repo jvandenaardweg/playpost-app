@@ -31,12 +31,12 @@ export default StyleSheet.create({
   },
   listItemTitle: {
     fontSize: fonts.fontSize.title,
-    fontWeight: '400'
+    fontWeight: fonts.fontWeight.medium
   },
   listItemSubtitle: {
     color: colors.paragraphGrayed,
     fontSize: fonts.fontSize.small,
-    marginTop: 2
+    marginTop: 4
   },
   listItemBadge: {
     paddingLeft: 2,

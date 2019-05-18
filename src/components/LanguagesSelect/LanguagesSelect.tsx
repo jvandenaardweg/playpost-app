@@ -7,6 +7,8 @@ import colors from '../../constants/colors';
 
 import { RootState } from '../../reducers';
 
+import { getLanguages } from '../../reducers/voices';
+
 import { getLanguagesWithActiveVoices } from '../../selectors/voices';
 import { getUserSelectedVoices } from '../../selectors/user';
 
@@ -21,6 +23,10 @@ type IProps = {
 type Props = IProps & StateProps & DispatchProps;
 
 export class LanguagesSelectComponent extends React.PureComponent<Props> {
+  componentDidMount() {
+    this.props.getLanguages();
+  }
+
   keyExtractor = (item: Api.Language, index: number) => index.toString();
 
   handleOnListItemPress = (item: Api.Language) => this.props.onSelectLanguage(item.name);
@@ -81,7 +87,9 @@ export class LanguagesSelectComponent extends React.PureComponent<Props> {
   }
 }
 
-interface DispatchProps { }
+interface DispatchProps {
+  readonly getLanguages: typeof getLanguages;
+}
 
 interface StateProps {
   readonly languagesWithActiveVoices: ReturnType<typeof getLanguagesWithActiveVoices>;
@@ -93,7 +101,9 @@ const mapStateToProps = (state: RootState) => ({
   userSelectedVoices: getUserSelectedVoices(state)
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  getLanguages
+};
 
 export const LanguagesSelect = connect(
   mapStateToProps,

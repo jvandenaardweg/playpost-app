@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TextInput, KeyboardAvoidingView } from 'react-native';
+import { View, TextInput, KeyboardAvoidingView, Text, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import styles from './styles';
 
@@ -23,7 +23,7 @@ export const LoginForm: React.FC<Props> = React.memo(({
   isLoading
 }) => (
   <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
-    <View style={styles.form}>
+    <ScrollView style={styles.form} contentContainerStyle={styles.formContent}>
 
       <TextInput
         placeholder="E-mail address"
@@ -56,6 +56,6 @@ export const LoginForm: React.FC<Props> = React.memo(({
         <Button title="Login" loading={isLoading} onPress={onPressLogin} disabled={isLoading} buttonStyle={styles.buttonStyle} disabledStyle={styles.buttonStyle} activeOpacity={1} titleStyle={styles.buttonTitleStyle} />
       </View>
 
-    </View>
+    </ScrollView>
   </KeyboardAvoidingView>
 ));
