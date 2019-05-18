@@ -57,7 +57,7 @@
     "jest-runner": "^24.8.0",
     "jest-runtime": "^24.8.0",
     "metro-react-native-babel-preset": "^0.54.1",
-    "react": "16.8.3",
+    "react": "^16.8.6",
     "react-fast-compare": "^2.0.4",
     "react-native": "0.59.8",
     "react-native-app-intro-slider": "^2.0.1",
