@@ -1,4 +1,5 @@
-import { createSwitchNavigator, createAppContainer, createStackNavigator, NavigationContainer } from 'react-navigation';
+import { createAppContainer, createStackNavigator, NavigationContainer } from 'react-navigation';
+import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
 
 import { MainTabNavigator } from './MainTabNavigator';
 
@@ -12,10 +13,11 @@ import { UpgradeScreen } from '../screens/UpgradeScreen';
 import { LogoutScreen } from '../screens/LogoutScreen';
 
 export const AppNavigator: NavigationContainer = createAppContainer(
-  createSwitchNavigator(
+  createAnimatedSwitchNavigator(
     {
       AuthLoading: AuthLoadingScreen,
       Logout: LogoutScreen,
+      SignupSuccess: SignupSuccessScreen, // We place this screen outside the onboarding, so we got a nice animation to it (cross-fade)
       Root: createStackNavigator(
         {
           App: MainTabNavigator,
@@ -39,7 +41,6 @@ export const AppNavigator: NavigationContainer = createAppContainer(
           Onboarding: OnboardingScreen,
           Login: LoginScreen,
           Signup: SignupScreen,
-          SignupSuccess: SignupSuccessScreen,
           ModalBrowser: ModalBrowserScreen,
         },
         {
@@ -50,7 +51,7 @@ export const AppNavigator: NavigationContainer = createAppContainer(
       )
     },
     {
-      initialRouteName: 'AuthLoading',
+      initialRouteName: 'AuthLoading'
     }
   )
 );

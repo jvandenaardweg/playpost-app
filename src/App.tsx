@@ -17,6 +17,7 @@ import { AppNavigator } from './navigation/AppNavigator';
 // import { ErrorBoundary } from './components/ErrorBoundary';
 import { NetworkProvider } from './contexts/NetworkProvider';
 import { getLanguages } from './reducers/voices';
+import { getUser } from './reducers/user';
 
 // import { whyDidYouUpdate } from 'why-did-you-update';
 // whyDidYouUpdate(React, { exclude: /^YellowBox|Icon|Swipeable/ });
@@ -38,6 +39,9 @@ export default class App extends React.PureComponent<State> {
 
   componentDidMount() {
     this.setAnalytics();
+
+    this.fetchLanguages();
+    this.fetchUser();
     // this.setCrashes();
 
     AppState.addEventListener('change', this.handleAppStateChange);
@@ -68,6 +72,7 @@ export default class App extends React.PureComponent<State> {
       if (isConnected) {
         this.fetchPlaylist();
         this.fetchLanguages();
+        this.fetchUser();
       }
     }
 
@@ -80,6 +85,10 @@ export default class App extends React.PureComponent<State> {
 
   async fetchLanguages() {
     store.dispatch(getLanguages());
+  }
+
+  async fetchUser() {
+    store.dispatch(getUser());
   }
 
   render() {
