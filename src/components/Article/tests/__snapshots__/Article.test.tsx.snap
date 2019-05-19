@@ -209,6 +209,7 @@ exports[`Article active rendering should render active correctly 1`] = `
     style={
       Object {
         "marginLeft": 16,
+        "marginTop": 4,
         "width": 75,
       }
     }
@@ -524,6 +525,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
     style={
       Object {
         "marginLeft": 16,
+        "marginTop": 4,
         "width": 75,
       }
     }
@@ -839,6 +841,7 @@ exports[`Article full rendering should render full correctly 1`] = `
     style={
       Object {
         "marginLeft": 16,
+        "marginTop": 4,
         "width": 75,
       }
     }
@@ -1152,6 +1155,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
     style={
       Object {
         "marginLeft": 16,
+        "marginTop": 4,
         "width": 75,
       }
     }
@@ -1447,6 +1451,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
     style={
       Object {
         "marginLeft": 16,
+        "marginTop": 4,
         "width": 75,
       }
     }
@@ -1760,6 +1765,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
     style={
       Object {
         "marginLeft": 16,
+        "marginTop": 4,
         "width": 75,
       }
     }

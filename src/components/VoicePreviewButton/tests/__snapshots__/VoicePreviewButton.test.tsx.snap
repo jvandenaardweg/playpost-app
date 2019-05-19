@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VoicePreviewButton rendering should render correctly 1`] = `
+<View
+  accessible={true}
+  hitSlop={
+    Object {
+      "bottom": 20,
+      "left": 20,
+      "right": 20,
+      "top": 20,
+    }
+  }
+  isTVSelectable={true}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#C5C5C5",
+      "borderRadius": 32,
+      "height": 32,
+      "justifyContent": "center",
+      "opacity": 1,
+      "width": 32,
+    }
+  }
+>
+  <Text
+    allowFontScaling={false}
+    style={
+      Array [
+        Object {
+          "color": undefined,
+          "fontSize": 9,
+        },
+        Object {
+          "color": "#ffffff",
+          "position": "relative",
+          "right": -1,
+        },
+        Object {
+          "fontFamily": "FontAwesome5Free-Solid",
+          "fontStyle": "normal",
+          "fontWeight": "normal",
+        },
+        Object {
+          "fontWeight": "900",
+        },
+      ]
+    }
+  >
+    
+  </Text>
+</View>
+`;

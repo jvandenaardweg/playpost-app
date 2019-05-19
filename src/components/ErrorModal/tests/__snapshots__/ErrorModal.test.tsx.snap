@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorModal rendering should render correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "white",
+      "borderRadius": 10,
+      "padding": 16,
+    }
+  }
+>
+  <Text>
+    Test
+  </Text>
+</View>
+`;
