@@ -311,6 +311,7 @@ class PlaylistsContainerComponent extends React.Component<Props, State> {
         onMoveEnd={this.handleOnMoveEnd}
         scrollPercent={5}
         renderItem={this.renderItem}
+        removeClippedSubviews // unmount components that are off of the window
       />
     );
   }
