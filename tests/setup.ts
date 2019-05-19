@@ -43,3 +43,19 @@ jest.mock('react-native-splash-screen');
 jest.mock('react-native-app-intro-slider');
 
 jest.mock('react-navigation', ({ withNavigation: (component: any) => component }));
+
+// Workaround for error:
+// Attempted to log "Calling .focus() in the test renderer environment is not supported. Instead, mock out your components that use findNodeHandle with replacements that don't rely on the native environment."
+// https://github.com/facebook/jest/issues/3707
+jest.mock('TextInput', () => {
+  const RealComponent = require.requireActual('TextInput');
+  const React = require('React');
+
+  class TextInput extends React.Component {
+    render() {
+      return React.createElement('TextInput', { ...this.props, autoFocus: false }, this.props.children);
+    }
+  }
+  TextInput.propTypes = RealComponent.propTypes;
+  return TextInput;
+});

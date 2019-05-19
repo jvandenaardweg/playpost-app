@@ -32,15 +32,13 @@ exports[`SignupForm rendering should render correctly 1`] = `
   >
     <View>
       <TextInput
-        allowFontScaling={true}
         autoCapitalize="none"
-        autoFocus={true}
+        autoFocus={false}
         blurOnSubmit={false}
         clearButtonMode="always"
         keyboardType="email-address"
         onChangeText={[Function]}
         placeholder="E-mail address"
-        rejectResponderTermination={true}
         returnKeyType="done"
         style={
           Object {
@@ -56,17 +54,15 @@ exports[`SignupForm rendering should render correctly 1`] = `
           }
         }
         textContentType="emailAddress"
-        underlineColorAndroid="transparent"
         value=""
       />
       <TextInput
-        allowFontScaling={true}
         autoCapitalize="none"
+        autoFocus={false}
         blurOnSubmit={false}
         clearButtonMode="always"
         onChangeText={[Function]}
         placeholder="Your password"
-        rejectResponderTermination={true}
         returnKeyType="done"
         secureTextEntry={true}
         style={
@@ -83,17 +79,15 @@ exports[`SignupForm rendering should render correctly 1`] = `
           }
         }
         textContentType="password"
-        underlineColorAndroid="transparent"
         value=""
       />
       <TextInput
-        allowFontScaling={true}
         autoCapitalize="none"
+        autoFocus={false}
         blurOnSubmit={false}
         clearButtonMode="always"
         onChangeText={[Function]}
         placeholder="Your password again to validate"
-        rejectResponderTermination={true}
         returnKeyType="done"
         secureTextEntry={true}
         style={
@@ -110,7 +104,6 @@ exports[`SignupForm rendering should render correctly 1`] = `
           }
         }
         textContentType="password"
-        underlineColorAndroid="transparent"
         value=""
       />
       <View>

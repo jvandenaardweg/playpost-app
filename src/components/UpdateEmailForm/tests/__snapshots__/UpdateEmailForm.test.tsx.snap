@@ -26,13 +26,12 @@ exports[`UpdateEmailForm rendering should render correctly 1`] = `
     }
   >
     <TextInput
-      allowFontScaling={true}
       autoCapitalize="none"
+      autoFocus={false}
       blurOnSubmit={false}
       clearButtonMode="always"
       onChangeText={[Function]}
       placeholder="Your new e-mail address"
-      rejectResponderTermination={true}
       returnKeyType="done"
       style={
         Object {
@@ -48,7 +47,6 @@ exports[`UpdateEmailForm rendering should render correctly 1`] = `
         }
       }
       textContentType="emailAddress"
-      underlineColorAndroid="transparent"
       value=""
     />
     <View>
