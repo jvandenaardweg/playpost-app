@@ -143,7 +143,6 @@ export class ArticleView extends React.PureComponent<Props> {
         originWhitelist={['*']}
         javaScriptEnabled={false}
         source={{ html: this.renderHtmlDocument(), baseUrl: '' }}
-        scalesPageToFit={false}
       />
     );
   }

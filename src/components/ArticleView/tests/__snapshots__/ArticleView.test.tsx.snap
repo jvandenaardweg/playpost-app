@@ -19,7 +19,6 @@ exports[`ArticleView rendering should render correctly 1`] = `
     onLoadingStart={[Function]}
     onMessage={[Function]}
     onShouldStartLoadWithRequest={[Function]}
-    scalesPageToFit={false}
     source={
       Object {
         "baseUrl": "",
