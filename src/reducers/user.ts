@@ -71,15 +71,15 @@ export function userReducer(state = initialState, action: any): UserState {
       let getUserFailMessage = '';
 
       // Network error
-      if (action.error.status === 0) {
+      if (action.error && action.error.status === 0) {
         getUserFailMessage = GENERIC_NETWORK_ERROR;
       } else {
         // Error, from the API
-        if (action.error.response && action.error.response.data && action.error.response.data.message) {
+        if (action.error && action.error.response && action.error.response.data && action.error.response.data.message) {
           Analytics.trackEvent('Error get account', { message: action.error.response.data.message });
           getUserFailMessage = action.error.response.data.message;
         } else {
-          Analytics.trackEvent('Error get account', { message: GET_USER_FAIL_MESSAGE });
+          // Analytics.trackEvent('Error get account', { message: GET_USER_FAIL_MESSAGE });
           getUserFailMessage = GET_USER_FAIL_MESSAGE;
         }
       }
