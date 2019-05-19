@@ -21,7 +21,7 @@ interface Props {
   hasAudiofile?: boolean;
   title?: string | null;
   url: string;
-  playlistItemCreatedAt: Date;
+  playlistItemCreatedAt: Date | string;
   imageUrl?: string | null;
   description?: string | null;
   sourceName?: string | null;
