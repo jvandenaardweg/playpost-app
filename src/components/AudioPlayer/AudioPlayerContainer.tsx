@@ -203,13 +203,11 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   }
 
   renderAudioPlayerLarge() {
-    const { track } = this.props;
     const { isLoading, isPlaying, scrolled } = this.state;
 
     // TODO: make sure "scrolled" is changed when we change tracks
     return (
       <AudioPlayerLarge
-        track={track}
         article={this.article}
         isLoading={isLoading}
         isPlaying={isPlaying}
