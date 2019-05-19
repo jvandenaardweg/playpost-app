@@ -1,5 +1,4 @@
 import Analytics from 'appcenter-analytics';
-import { AxiosError, AxiosResponse } from 'axios';
 
 import { GENERIC_NETWORK_ERROR, GET_USER_FAIL_MESSAGE, CREATE_USER_FAIL_MESSAGE, DELETE_USER_FAIL_MESSAGE, UPDATE_USER_PASSWORD_FAIL_MESSAGE, UPDATE_USER_EMAIL_FAIL_MESSAGE, SAVE_SELECTED_VOICE_FAIL_MESSAGE } from '../constants/messages';
 
@@ -40,7 +39,7 @@ export type UserState = Readonly<{
   error: string;
 }>;
 
-const initialState: UserState = {
+export const initialState: UserState = {
   isLoading: false,
   isLoadingDelete: false,
   isLoadingUpdatePassword: false,
@@ -50,13 +49,8 @@ const initialState: UserState = {
   error: ''
 };
 
-type UserActionTypes = {
-  type: string;
-  payload: AxiosResponse;
-  error: AxiosError & AxiosResponse;
-};
-
-export function userReducer(state = initialState, action: UserActionTypes): UserState {
+/* tslint:disable no-any */
+export function userReducer(state = initialState, action: any): UserState {
   switch (action.type) {
     case GET_USER:
       return {

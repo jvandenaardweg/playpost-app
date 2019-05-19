@@ -1,5 +1,4 @@
 import Analytics from 'appcenter-analytics';
-import { AxiosError, AxiosResponse } from 'axios';
 
 import { GENERIC_NETWORK_ERROR, POST_AUTH_FAIL_MESSAGE } from '../constants/messages';
 
@@ -16,20 +15,14 @@ export type AuthState = Readonly<{
   error: string;
 }>;
 
-const initialState: AuthState = {
+export const initialState: AuthState = {
   isLoading: false,
   token: '',
   error: ''
 };
 
-/* tslint:disable no-any */
-type AuthActionTypes = {
-  type: string;
-  payload: any;
-  error: AxiosError & AxiosResponse;
-};
-
-export function authReducer(state = initialState, action: AuthActionTypes): AuthState {
+/* tslint:disable-next-line no-any */
+export function authReducer(state = initialState, action: any): AuthState {
   switch (action.type) {
     case POST_AUTH:
       return {

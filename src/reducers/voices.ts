@@ -1,5 +1,4 @@
 import Analytics from 'appcenter-analytics';
-import { AxiosError, AxiosResponse } from 'axios';
 
 import { GENERIC_NETWORK_ERROR, GET_LANGUAGES_FAIL_MESSAGE } from '../constants/messages';
 
@@ -24,7 +23,7 @@ export type VoicesState = Readonly<{
   error: string;
 }>;
 
-const initialState: VoicesState = {
+export const initialState: VoicesState = {
   isLoading: false,
   isLoadingLanguages: false,
   downloadedVoicePreviews: [],
@@ -32,14 +31,8 @@ const initialState: VoicesState = {
   error: ''
 };
 
-/* tslint:disable no-any */
-type AuthActionTypes = {
-  type: string;
-  payload: any;
-  error: AxiosError & AxiosResponse;
-};
-
-export function voicesReducer(state = initialState, action: AuthActionTypes): VoicesState {
+/* tslint:disable-next-line no-any */
+export function voicesReducer(state = initialState, action: any): VoicesState {
   switch (action.type) {
     case GET_LANGUAGES:
       return {

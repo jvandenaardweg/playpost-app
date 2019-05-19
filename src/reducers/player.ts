@@ -1,6 +1,5 @@
 import TrackPlayer from 'react-native-track-player';
 import Analytics from 'appcenter-analytics';
-import { AxiosError } from 'axios';
 
 export const GET_AUDIOFILE = 'player/LOAD';
 export const GET_AUDIOFILE_SUCCESS = 'player/LOAD_SUCCESS';
@@ -30,7 +29,7 @@ export type PlayerState = Readonly<{
   error: string;
 }>;
 
-const initialState: PlayerState = {
+export const initialState: PlayerState = {
   isLoading: false,
   track: {
     id: '',
@@ -48,14 +47,8 @@ const initialState: PlayerState = {
   error: ''
 };
 
-/* tslint:disable no-any */
-type PlayerActionTypes = {
-  type: string;
-  payload: any;
-  error: AxiosError;
-};
-
-export function playerReducer(state = initialState, action: PlayerActionTypes): PlayerState {
+/* tslint:disable-next-line no-any */
+export function playerReducer(state = initialState, action: any): PlayerState {
   switch (action.type) {
     case GET_AUDIOFILE:
       return {

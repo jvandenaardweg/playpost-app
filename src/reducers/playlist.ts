@@ -1,5 +1,4 @@
 import Analytics from 'appcenter-analytics';
-import { AxiosResponse, AxiosError } from 'axios';
 
 export const GET_PLAYLIST = 'playlist/GET_PLAYLIST';
 export const GET_PLAYLIST_SUCCESS = 'playlist/GET_PLAYLIST_SUCCESS';
@@ -61,7 +60,7 @@ export type PlaylistState = Readonly<{
   error: string;
 }>;
 
-const initialState: PlaylistState = {
+export const initialState: PlaylistState = {
   isLoading: false,
   isLoadingCreateItem: false,
   isLoadingFavoriteItem: false,
@@ -73,13 +72,8 @@ const initialState: PlaylistState = {
   error: ''
 };
 
-type PlaylistActionTypes = {
-  type: string;
-  payload: AxiosResponse;
-  error: AxiosError;
-};
-
-export function playlistReducer(state = initialState, action: PlaylistActionTypes): PlaylistState {
+/* tslint:disable-next-line no-any */
+export function playlistReducer(state = initialState, action: any): PlaylistState {
   switch (action.type) {
     case GET_PLAYLIST:
       return {
