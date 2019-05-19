@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, TouchableOpacity, ScrollView, NativeScrollEvent } from 'react-native';
-import TrackPlayer from 'react-native-track-player';
 
 import * as Icon from '../../../components/Icon';
 import { ProgressBar } from '../ProgressBar';
@@ -15,7 +14,6 @@ import styles from './styles';
 interface Props {
   isPlaying: boolean;
   isLoading: boolean;
-  track: TrackPlayer.Track;
   article: Api.Article | undefined;
   scrolled: number;
   onPressPlay(): void;
