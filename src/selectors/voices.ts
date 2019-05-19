@@ -21,7 +21,7 @@ export const getLanguagesWithActiveVoices = createSelector(
     const languagesWithActiveVoices = languages.map((language) => {
       return {
         ...language,
-        voices: language.voices.filter(voice => voice.isActive)
+        voices: language.voices && language.voices.filter(voice => voice.isActive)
       };
     });
 
@@ -44,6 +44,7 @@ export const getAvailableVoicesByLanguageName = (state: RootState, props: { lang
   (languages) => {
     const language = languages.find(language => language.name === props.languageName);
     if (!language) return [];
+    if (!language.voices) return null;
 
     return language.voices;
   }
@@ -55,7 +56,7 @@ export const getDefaultVoicesByLanguageName = (state: RootState, props: { langua
     const language = languages.find(language => language.name === props.languageName);
     if (!language) return null;
 
-    const defaultVoice = language.voices.filter(voice => !!voice.isLanguageDefault);
+    const defaultVoice = language.voices && language.voices.filter(voice => !!voice.isLanguageDefault);
 
     return defaultVoice;
   }

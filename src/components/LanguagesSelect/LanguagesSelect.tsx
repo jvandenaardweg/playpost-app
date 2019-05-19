@@ -32,7 +32,7 @@ export class LanguagesSelectComponent extends React.PureComponent<Props> {
   handleOnListItemPress = (item: Api.Language) => this.props.onSelectLanguage(item.name);
 
   getDefaultVoice = (language: Api.Language) => {
-    return language.voices.find(voice => !!voice.isLanguageDefault);
+    return language.voices && language.voices.find(voice => !!voice.isLanguageDefault);
   }
 
   getVoiceSubtitle = (item: Api.Language) => {
@@ -56,7 +56,7 @@ export class LanguagesSelectComponent extends React.PureComponent<Props> {
   }
 
   renderItem = ({ item }: { item: Api.Language}) => {
-    const totalVoices = item.voices.length;
+    const totalVoices = item.voices && item.voices.length;
     const title = `${item.name}`;
     const subtitle = this.getVoiceSubtitle(item);
 
