@@ -11,12 +11,12 @@ declare namespace Api {
   export type PlaylistItem = {
     id: string;
     order: number;
-    lastPlayedAt: Date | null;
+    lastPlayedAt: Date<string> | null;
     plays: number;
-    createdAt: Date;
-    updatedAt: Date;
-    favoritedAt: Date | null;
-    archivedAt: Date | null;
+    createdAt: Date<string>;
+    updatedAt: Date<string>;
+    favoritedAt: Date<string> | null;
+    archivedAt: Date<string> | null;
     article: Article;
   };
 
@@ -25,34 +25,35 @@ declare namespace Api {
     title: string | null;
     description: string | null;
     url: string;
-    canonicalUrl: string | null;
+    languageCode: string | null; // TODO: remove after upgrade
+    language: Language | null | undefined;
     sourceName: string | null;
     imageUrl: string | null;
-    readingTime: number | null;
     authorName: string | null;
-    authorUrl: string | null;
-    categoryName: string | null;
-    ssml: string | null;
-    // text: string | null;
     html: string | null;
-    documentHtml: string | null;
-    createdAt: Date;
-    updatedAt: Date;
-    audiofiles: Audiofile[];
-    status: ArticleStatus;
-    language: Language;
+    ssml?: string; // optional
+    text?: string; // optional
+    createdAt: Date<string>;
+    updatedAt: Date<string>;
+    user?: User; // optional
+    readingTime: number | null;
+    canonicalUrl: string | null;
+    status: ArticleStatus<string>;
     isPublic: boolean | null;
+    documentHtml?: string; // optional
+    audiofiles: Audiofile[];
+    language: Language;
   }
 
   export interface User {
     id: string;
     email: string;
-    onboardAt: Date | null;
-    activatedAt: Date | null;
-    authenticatedAt: Date | null;
+    onboardAt: Date<string> | null;
+    activatedAt: Date<string> | null;
+    authenticatedAt: Date<string> | null;
     voiceSettings: UserVoiceSetting[];
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: Date<string>;
+    updatedAt: Date<string>;
   }
 
   export interface Audiofile {
@@ -62,12 +63,10 @@ declare namespace Api {
     filename: string;
     length: number;
     languageCode: string;
-    encoding: 'MP3' | 'OGG_OPUS';
-    voiceId: string;
-    lastPlayedAt: Date | null;
-    language: Language | null | undefined;
-    createdAt: Date;
-    updatedAt: Date;
+    mimeType: string;
+    // language: Language | null | undefined;
+    createdAt: Date<string>;
+    updatedAt: Date<string>;
   }
 
   export interface Voice {
@@ -87,8 +86,8 @@ declare namespace Api {
     exampleAudioUrl: string | null;
     language: Language;
     isLanguageDefault: boolean | null;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: Date<string>;
+    updatedAt: Date<string>;
   }
 
   export interface Language {
@@ -97,9 +96,9 @@ declare namespace Api {
     languageCode: string;
     nativeName: string | null;
     isActive: boolean;
-    voices: Voice[];
-    createdAt: Date;
-    updatedAt: Date;
+    voices?: Voice[];
+    createdAt: Date<string>;
+    updatedAt: Date<string>;
   }
 
   export interface UserVoiceSetting {
@@ -107,8 +106,8 @@ declare namespace Api {
     user: User;
     voice: Voice;
     language: Language;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: Date<string>;
+    updatedAt: Date<string>;
   }
 
   export enum ArticleStatus {
