@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 import { UserState } from '../reducers/user';
 import { RootState } from '../reducers';
 
-const userSelector = (state: RootState): UserState => state.user;
+export const userSelector = (state: RootState): UserState => state.user;
 
 export const getUserError = createSelector(
   [userSelector],
@@ -25,9 +25,7 @@ export const getUserSelectedVoices = createSelector(
     if (!user.details || !user.details.voiceSettings.length) {
       return [];
     }
-
     return user.details.voiceSettings.map(userVoiceSetting => userVoiceSetting.voice);
-
   }
 );
 

@@ -48,7 +48,7 @@ declare namespace Api {
   export interface User {
     id: string;
     email: string;
-    onboardAt: Date<string> | null;
+    // onboardAt: Date<string> | null;
     activatedAt: Date<string> | null;
     authenticatedAt: Date<string> | null;
     voiceSettings: UserVoiceSetting[];
@@ -75,9 +75,9 @@ declare namespace Api {
     countryCode: string;
     name: string;
     label: string | null;
-    gender: Gender;
-    synthesizer: Synthesizer;
-    audioProfile: AudioProfile;
+    gender: Gender<string>;
+    synthesizer: Synthesizer<string>;
+    audioProfile: AudioProfile<string>;
     speakingRate: number;
     pitch: number;
     naturalSampleRateHertz: number | null;
@@ -103,7 +103,7 @@ declare namespace Api {
 
   export interface UserVoiceSetting {
     id: string;
-    user: User;
+    // user?: User;
     voice: Voice;
     language: Language;
     createdAt: Date<string>;
