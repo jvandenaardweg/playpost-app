@@ -82,6 +82,7 @@ export class LanguagesSelectComponent extends React.PureComponent<Props> {
         data={this.props.languagesWithActiveVoices}
         renderItem={this.renderItem}
         extraData={this.props} // So it re-renders when our props change
+        removeClippedSubviews // unmount components that are off of the window
       />
     );
   }
