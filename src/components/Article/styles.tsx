@@ -33,7 +33,8 @@ export default StyleSheet.create({
   },
   sectionControl: {
     width: 75,
-    marginLeft: spacing.default
+    marginLeft: spacing.default,
+    marginTop: 4
   },
   author: {
     fontSize: fonts.fontSize.tiny,
