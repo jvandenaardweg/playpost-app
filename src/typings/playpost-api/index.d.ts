@@ -12,7 +12,6 @@ declare namespace Api {
     id: string;
     order: number;
     lastPlayedAt: Date<string> | null;
-    plays: number;
     createdAt: Date<string>;
     updatedAt: Date<string>;
     favoritedAt: Date<string> | null;

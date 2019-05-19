@@ -2,12 +2,7 @@ import { createSelector } from 'reselect';
 import { PlaylistState } from '../reducers/playlist';
 import { RootState } from '../reducers';
 
-const playlistSelector = (state: RootState): PlaylistState => state.playlist;
-
-export const getPlaylistIsLoadingCreateItem = createSelector(
-  [playlistSelector],
-  (playlist): boolean => playlist.isLoadingCreateItem
-);
+export const playlistSelector = (state: RootState): PlaylistState => state.playlist;
 
 export const getPlaylistError = createSelector(
   [playlistSelector],
@@ -17,6 +12,11 @@ export const getPlaylistError = createSelector(
 export const getPlaylistItems = createSelector(
   [playlistSelector],
   playlist => playlist.items
+);
+
+export const getPlaylistIsLoadingCreateItem = createSelector(
+  [playlistSelector],
+  (playlist): boolean => playlist.isLoadingCreateItem
 );
 
 /**

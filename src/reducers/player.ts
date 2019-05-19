@@ -15,15 +15,13 @@ export const CREATE_AUDIOFILE_FAIL = 'player/CREATE_AUDIOFILE_FAIL';
 
 export const RESET_PLAYER_STATE = 'player/RESET_PLAYER_STATE';
 
-export type PlaybackStatus = 'ready' | 'loading' | 'playing' | 'paused' | 'stopped' | 'buffering' | 'none';
-
 const CREATE_AUDIOFILE_FAIL_MESSAGE = 'An unknown error happened while creating creating an audiofile. Please contact us when this happens all the time.';
 
 export type PlayerState = Readonly<{
   track: TrackPlayer.Track;
   audiofile: Api.Audiofile | null;
   articleId: string;
-  playbackState: PlaybackStatus;
+  playbackState: string | number;
   playbackSpeed: number;
   isLoading: boolean;
   error: string;
@@ -131,7 +129,7 @@ export function resetPlayerState() {
   };
 }
 
-export function setPlaybackStatus(playbackState: PlaybackStatus) {
+export function setPlaybackStatus(playbackState: string) {
   return {
     type: SET_PLAYBACK_STATUS,
     payload: playbackState
