@@ -67,3 +67,13 @@ Make sure the Share Extension has the properties below. This makes sure the Shar
   <string>com.apple.share-services</string>
 </dict>
   ```
+
+## In App Purchase Test account
+Use the account below to test the in app purchase features. This is a Sandbox user created through App Store Connect: https://itunesconnect.apple.com/access/testers
+
+**Important**: Do NOT login to iCloud or iTunes, as this will invalidate the Sandbox account.
+
+To use the Sandbox account: just purchase a subscription, you will be prompted to login. Use the credentials below:
+
+E-mail: `tester@playpost.app`
+Password: `m382qQLi^{Q^>nY692g>k8Z8Kq39rB`
