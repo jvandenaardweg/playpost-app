@@ -70,26 +70,3 @@ exports[`Icon rendering should render FontAwesome5 icon 1`] = `
   
 </Text>
 `;
-
-exports[`Icon rendering should render correctly 1`] = `
-<Text
-  allowFontScaling={false}
-  style={
-    Array [
-      Object {
-        "color": undefined,
-        "fontSize": 12,
-      },
-      undefined,
-      Object {
-        "fontFamily": "FontAwesome",
-        "fontStyle": "normal",
-        "fontWeight": "normal",
-      },
-      Object {},
-    ]
-  }
->
-  
-</Text>
-`;
