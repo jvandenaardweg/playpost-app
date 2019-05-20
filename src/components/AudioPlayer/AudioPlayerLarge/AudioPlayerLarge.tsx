@@ -53,7 +53,7 @@ export class AudioPlayerLarge extends React.PureComponent<Props> {
         </TouchableOpacity>
         <View style={styles.container}>
           <View style={styles.scrollableContainer}>
-            <ArticleView article={article} />
+            <ArticleView article={article} theme="dark" />
             {/* <ScrollView indicatorStyle="white" onScroll={onScroll} scrollEventThrottle={500} ref={this.scrollViewRef}>
               <View style={styles.titleContainer}>
                 <Text style={styles.title}>{title}</Text>

@@ -10,7 +10,9 @@ exports[`ArticleView rendering should render correctly 1`] = `
   }
 >
   <RNCWKWebView
+    bounces={true}
     cacheEnabled={true}
+    decelerationRate={0.998}
     javaScriptEnabled={false}
     messagingEnabled={false}
     onLoadingError={[Function]}
@@ -18,100 +20,101 @@ exports[`ArticleView rendering should render correctly 1`] = `
     onLoadingProgress={[Function]}
     onLoadingStart={[Function]}
     onMessage={[Function]}
+    onNavigationStateChange={[Function]}
     onShouldStartLoadWithRequest={[Function]}
     source={
       Object {
         "baseUrl": "",
         "html": "
       <!DOCTYPE html>
-        <head>
-          <title>Strategies to Pull Yourself Out of a Bad Mood</title>
-          <meta http-equiv=\\"content-type\\" content=\\"text/html; charset=utf-8\\">
-          <meta name=\\"viewport\\" content=\\"width=device-width\\">
-          <link href=\\"https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i|PT+Serif:400,400i,700,700i\\" rel=\\"stylesheet\\">
-          <style type=\\"text/css\\">
-            html {
-              box-sizing: border-box;
-            }
-            *, *:before, *:after {
-              box-sizing: inherit;
-            }
-            body {
-              padding: 16px;
-              font-size: 17px;
-              font-family: 'PT Serif', serif;
-              line-height: 1.5;
-              color: #444444;
-              font-weight: normal;
-              word-break: break-word;
-              background-color: #ffffff;
-            }
+      
+      <head>
+        <meta http-equiv=\\"content-type\\" content=\\"text/html; charset=utf-8\\">
+        <meta name=\\"viewport\\" content=\\"width=device-width\\">
+        <link href=\\"https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i|PT+Serif:400,400i,700,700i\\" rel=\\"stylesheet\\">
+        <style type=\\"text/css\\">
+          html {
+            box-sizing: border-box;
+          }
+          *, *:before, *:after {
+            box-sizing: inherit;
+          }
+          body {
+            padding: 8px;
+            font-size: 17px;
+            font-family: 'PT Serif', serif;
+            line-height: 1.5;
+            color: #000000;
+            font-weight: normal;
+            word-break: break-word;
+            background-color: #ffffff;
+          }
 
-            h1, h2, h3, h4, h5, h6, h7, h8 {
-              line-height: 1.2;
-              margin-top: 0;
-              margin-bottom: 10px;
-              color: #000000;
-              font-family: 'PT Sans', sans-serif;
-            }
+          h1, h2, h3, h4, h5, h6, h7, h8 {
+            line-height: 1.2;
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #000000;
+            font-family: 'PT Sans', sans-serif;
+          }
 
-            h1 {
-              font-size: 24px;
-              margin-bottom: 16px;
-            }
+          h1 {
+            font-size: 24px;
+            margin-bottom: 16px;
+          }
 
-            h2, h3, h4 {
-              margin-top: 24px;
-              font-size: 21px;
-            }
+          h2, h3, h4 {
+            margin-top: 24px;
+            font-size: 21px;
+          }
 
-            h5, h6, h7, h8 {
-              margin-top: 24px;
-              font-size 18px
-            }
+          h5, h6, h7, h8 {
+            margin-top: 24px;
+            font-size 18px
+          }
 
-            p {
-              margin-top: 0;
-              text-align: justify;
-            }
+          p {
+            margin-top: 0;
+            text-align: justify;
+          }
 
-            a, strong {
-              color: #000000;
-            }
+          a, strong {
+            color: #000000;
+          }
 
-            img, figure {
-              max-width: 100%;
-              margin-bottom: 16px;
-              margin-top: 16px;
-              display: block;
-            }
+          img, figure {
+            max-width: 100%;
+            margin-bottom: 16px;
+            margin-top: 16px;
+            display: block;
+          }
 
-            blockquote {
-              font-style: italic;
-              color: #000000;
-              margin-left: 24px;
-              margin-right: 24px;
-            }
-            blockquote p {
-              font-style: italic;
-            }
+          blockquote {
+            font-style: italic;
+            color: #000000;
+            margin-left: 24px;
+            margin-right: 24px;
+          }
+          blockquote p {
+            font-style: italic;
+          }
 
-            figcaption {
-              display: none;
-            }
+          figcaption {
+            display: none;
+          }
 
-            .meta-header {
-              margin-bottom: 24px;
-            }
+          .meta-header {
+            margin-bottom: 24px;
+          }
 
-            .meta-header strong {
-              display: block;
-              color: #888888;
-              font-weight: normal;
-            }
+          .meta-header strong {
+            display: block;
+            color: #888888;
+            font-weight: normal;
+          }
 
-          </style>
-        </head>
+        </style>
+      </head>
         <body>
           <h1>Strategies to Pull Yourself Out of a Bad Mood</h1>
           <div class=\\"meta-header\\">
@@ -134,7 +137,9 @@ exports[`ArticleView rendering should render correctly 1`] = `
         Object {
           "backgroundColor": "#ffffff",
         },
-        undefined,
+        Object {
+          "backgroundColor": "#ffffff",
+        },
         Object {
           "flex": 0,
           "height": 0,
@@ -160,7 +165,7 @@ exports[`ArticleView rendering should render correctly 1`] = `
           "width": "100%",
         },
         Object {
-          "backgroundColor": "#F1F1F1",
+          "backgroundColor": "#ffffff",
         },
       ]
     }

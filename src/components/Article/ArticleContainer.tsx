@@ -198,7 +198,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       return Alert.alert('No internet', ALERT_ARTICLE_PLAY_INTERNET_REQUIRED);
     }
 
-    // If article's readingTime is below 5 minutes, show a warning to our free account user's they cannot listen to this.
+    // If article's readingTime is greater then 5 minutes, show a warning to our free account user's they cannot listen to this.
     // if (article && article.readingTime && article.readingTime > 300) {
     //   return Alert.alert(
     //     'Upgrade to Premium',
