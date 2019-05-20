@@ -7,7 +7,7 @@ export type VoicesLanguages = {
   countryCode: string;
 };
 
-const voicesSelector = (state: RootState): VoicesState => state.voices;
+export const voicesSelector = (state: RootState): VoicesState => state.voices;
 
 export const getLanguages = createSelector(
   [voicesSelector],
@@ -27,11 +27,6 @@ export const getLanguagesWithActiveVoices = createSelector(
 
     return languagesWithActiveVoices;
   }
-);
-
-export const getIsLoadingLanguages = createSelector(
-  [voicesSelector],
-  voices => voices.isLoadingLanguages
 );
 
 export const getDownloadedVoicePreviews = createSelector(
