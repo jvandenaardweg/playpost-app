@@ -28,7 +28,7 @@ export class UpgradeScreen extends React.PureComponent<Props> {
   render() {
     return (
       <ScrollView>
-        <UpgradeFeatures />
+        <UpgradeFeatures onClose={this.handleOnClose} />
       </ScrollView>
     );
   }

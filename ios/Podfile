@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '10.0'
+platform :ios, '12.2'
 
 target 'Playpost' do
   inherit! :search_paths
@@ -34,6 +34,8 @@ target 'Playpost' do
   # pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
 
   # pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+
+  # pod 'RNIap', :path => '../node_modules/react-native-iap'
 
   target 'PlaypostShareExtension' do
     inherit! :complete

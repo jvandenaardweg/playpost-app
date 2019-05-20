@@ -45,9 +45,12 @@
 		7511265BB44A44218ED118E7 /* Merriweather-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD2F913E2FA64E8CB3D747F3 /* Merriweather-Bold.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8AC92B55EE1A4901AFA213FE /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEC11A77002D4D729CD3412A /* SimpleLineIcons.ttf */; };
+		8C13332F2292B24E00516937 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C13332E2292B24E00516937 /* StoreKit.framework */; };
 		8C15B035223EB67E001058F0 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C15B02A223EB671001058F0 /* libRNFetchBlob.a */; };
 		8C15B036223EB688001058F0 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C15B02A223EB671001058F0 /* libRNFetchBlob.a */; };
 		8C272C72220F91F200DEF4DB /* dummy2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3D19D220F7B5B0030C131 /* dummy2.swift */; };
+		8C2A4DC12292A2CB00062B11 /* libRNIap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C2A4DB72292A2B400062B11 /* libRNIap.a */; };
+		8C2A4DC22292A2D800062B11 /* libRNIap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C2A4DB72292A2B400062B11 /* libRNIap.a */; };
 		8C4182FE223653FC002F5B00 /* libRNKeychain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4182F7223653E3002F5B00 /* libRNKeychain.a */; };
 		8C4182FF22365409002F5B00 /* libRNKeychain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4182F7223653E3002F5B00 /* libRNKeychain.a */; };
 		8C437591220813CD000A15FE /* libRNTrackPlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C43758E220813C4000A15FE /* libRNTrackPlayer.a */; };
@@ -375,6 +378,13 @@
 			remoteGlobalIDString = A15C300E1CD25C330074CB35;
 			remoteInfo = RNFetchBlob;
 		};
+		8C2A4DB62292A2B400062B11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C2A4D7F2292A2B300062B11 /* RNIap.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNIap;
+		};
 		8C4182F6223653E3002F5B00 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8C4182C7223653E3002F5B00 /* RNKeychain.xcodeproj */;
@@ -659,7 +669,9 @@
 		798363327FED4F4FEB0DAF2F /* Pods-Playpost-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Playpost-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Playpost-tvOS/Pods-Playpost-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		83BDA12E82754BE4AFD0FC8D /* AppCenterReactNative.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNative.xcodeproj; path = ../node_modules/appcenter/ios/AppCenterReactNative.xcodeproj; sourceTree = "<group>"; };
+		8C13332E2292B24E00516937 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		8C15AFFB223EB671001058F0 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/rn-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
+		8C2A4D7F2292A2B300062B11 /* RNIap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNIap.xcodeproj; path = "../node_modules/react-native-iap/ios/RNIap.xcodeproj"; sourceTree = "<group>"; };
 		8C4182C7223653E3002F5B00 /* RNKeychain.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNKeychain.xcodeproj; path = "../node_modules/react-native-keychain/RNKeychain.xcodeproj"; sourceTree = "<group>"; };
 		8C43755F220813C4000A15FE /* RNTrackPlayer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNTrackPlayer.xcodeproj; path = "../node_modules/react-native-track-player/ios/RNTrackPlayer.xcodeproj"; sourceTree = "<group>"; };
 		8C43759222081410000A15FE /* Playpost-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Playpost-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -738,6 +750,7 @@
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
 				8C92A69D2243CA320057A1EE /* libRNCWebView.a in Frameworks */,
 				8CBA9CD4227DA93800CE20A0 /* libRNCAsyncStorage.a in Frameworks */,
+				8C2A4DC12292A2CB00062B11 /* libRNIap.a in Frameworks */,
 				8C92A68D2243B7E20057A1EE /* libRNVersionNumber.a in Frameworks */,
 				8CA3D2DA22900BC700516BF9 /* libRNReanimated.a in Frameworks */,
 				8CD47C382240D0BA00D95B46 /* libRCTVideo.a in Frameworks */,
@@ -753,6 +766,7 @@
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
+				8C13332F2292B24E00516937 /* StoreKit.framework in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
@@ -777,6 +791,7 @@
 				8C5A7DF2220F23EC00ECCC65 /* libReact.a in Frameworks */,
 				8C92A69C2243CA290057A1EE /* libRNCWebView.a in Frameworks */,
 				8CBA9CD5227DA94500CE20A0 /* libRNCAsyncStorage.a in Frameworks */,
+				8C2A4DC22292A2D800062B11 /* libRNIap.a in Frameworks */,
 				8C92A68C2243B7D60057A1EE /* libRNVersionNumber.a in Frameworks */,
 				8CA3D2DB22900BD300516BF9 /* libRNReanimated.a in Frameworks */,
 				8CD47C372240D0A900D95B46 /* libRCTVideo.a in Frameworks */,
@@ -928,6 +943,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8C13332E2292B24E00516937 /* StoreKit.framework */,
 				8CD3D196220F6C870030C131 /* libPods-Playpost-PlaypostShareExtension.a */,
 				8CAA1196220F2CCE002741D6 /* libPods-Playpost-PlaypostShareExtension.a */,
 				8C5A7DDA220F23EC00ECCC65 /* libPods-Playpost.a */,
@@ -997,6 +1013,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				8C2A4D7F2292A2B300062B11 /* RNIap.xcodeproj */,
 				8CA3D29922900BBA00516BF9 /* RNReanimated.xcodeproj */,
 				8CBA9C90227DA93100CE20A0 /* RNCAsyncStorage.xcodeproj */,
 				8C92A6962243CA210057A1EE /* RNCWebView.xcodeproj */,
@@ -1074,6 +1091,14 @@
 			isa = PBXGroup;
 			children = (
 				8C15B02A223EB671001058F0 /* libRNFetchBlob.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8C2A4D802292A2B300062B11 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8C2A4DB72292A2B400062B11 /* libRNIap.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1354,6 +1379,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
 							com.apple.Keychain = {
 								enabled = 1;
 							};
@@ -1380,6 +1408,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -1478,6 +1507,10 @@
 				{
 					ProductGroup = 8CAAAAF122061A2100E67A62 /* Products */;
 					ProjectRef = 4DC9D75E4E7E46AC85D4F7E7 /* RNGestureHandler.xcodeproj */;
+				},
+				{
+					ProductGroup = 8C2A4D802292A2B300062B11 /* Products */;
+					ProjectRef = 8C2A4D7F2292A2B300062B11 /* RNIap.xcodeproj */;
 				},
 				{
 					ProductGroup = 8C4182C8223653E3002F5B00 /* Products */;
@@ -1743,6 +1776,13 @@
 			fileType = archive.ar;
 			path = libRNFetchBlob.a;
 			remoteRef = 8C15B029223EB671001058F0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8C2A4DB72292A2B400062B11 /* libRNIap.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNIap.a;
+			remoteRef = 8C2A4DB62292A2B400062B11 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		8C4182F7223653E3002F5B00 /* libRNKeychain.a */ = {
@@ -2280,7 +2320,7 @@
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
 				INFOPLIST_FILE = Playpost/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -2318,7 +2358,7 @@
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
 				INFOPLIST_FILE = Playpost/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -2384,7 +2424,7 @@
 					"$(SRCROOT)/../react-native/React",
 					"$(SRCROOT)/../../React",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -2434,7 +2474,7 @@
 					"$(SRCROOT)/../react-native/React",
 					"$(SRCROOT)/../../React",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -2471,7 +2511,7 @@
 					"$(SRCROOT)/../node_modules/react-native-share-extension/ios/**",
 				);
 				INFOPLIST_FILE = PlaypostShareExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -2522,7 +2562,7 @@
 					"$(SRCROOT)/../node_modules/react-native-share-extension/ios/**",
 				);
 				INFOPLIST_FILE = PlaypostShareExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MTL_FAST_MATH = YES;

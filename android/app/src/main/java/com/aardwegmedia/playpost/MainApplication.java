@@ -3,6 +3,7 @@ package com.aardwegmedia.playpost;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.dooboolab.RNIap.RNIapPackage;
 import com.swmansion.reanimated.ReanimatedPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.facebook.react.BuildConfig;
@@ -41,6 +42,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNIapPackage(),
             new ReanimatedPackage(),
             new AsyncStoragePackage(),
             new RNCWebViewPackage(),
