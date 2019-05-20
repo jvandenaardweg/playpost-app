@@ -40,6 +40,7 @@ export default class App extends React.PureComponent<State> {
   componentDidMount() {
     this.setAnalytics();
 
+    // TODO: only when logged in
     this.fetchLanguages();
     this.fetchUser();
     // this.setCrashes();
@@ -69,6 +70,7 @@ export default class App extends React.PureComponent<State> {
       // Only fetch the playlist when there's an active internet connection
       const isConnected = await NetInfo.isConnected.fetch();
 
+      // TODO: only when logged in
       if (isConnected) {
         this.fetchPlaylist();
         this.fetchLanguages();

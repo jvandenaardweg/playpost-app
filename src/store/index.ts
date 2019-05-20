@@ -3,24 +3,28 @@ import reduxAxiosMiddleware from 'redux-axios-middleware';
 import { createStore, applyMiddleware } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
-// import storage from 'redux-persist/lib/storage';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import * as Keychain from 'react-native-keychain';
-// import hardSet from 'redux-persist/lib/stateReconciler/hardSet';
+import createSagaMiddleware from 'redux-saga';
 
+import { initSagas } from '../sagas';
 import { rootReducer } from '../reducers';
 
 import { API_URL } from '../constants/api';
 
+// Setup persist
 const persistConfig = {
   storage: AsyncStorage,
   key: 'root',
   blacklist: ['player']
-  // stateReconciler: hardSet
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
+// Setup Sagas middleware
+const sagaMiddleware = createSagaMiddleware();
+
+// Setup axios middleware
 const client = axios.create({
   baseURL: API_URL,
   responseType: 'json',
@@ -42,10 +46,14 @@ const store = createStore(
   persistedReducer,
   composeWithDevTools(
     applyMiddleware(
+      sagaMiddleware,
       reduxAxiosMiddleware(client, { returnRejectedPromiseOnError: true })
     )
   )
 );
+
+// Run the sagas
+initSagas(sagaMiddleware);
 
 const persistor = persistStore(store);
 

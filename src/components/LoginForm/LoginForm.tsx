@@ -6,20 +6,16 @@ import styles from './styles';
 interface Props {
   onChangeText(field: string, text: string): void;
   onPressLogin(): void;
-  onPressSignup(): void;
   email: string;
   password: string;
-  error: string;
   isLoading: boolean;
 }
 
 export const LoginForm: React.FC<Props> = React.memo(({
   onChangeText,
   onPressLogin,
-  onPressSignup,
   email,
   password,
-  error,
   isLoading
 }) => (
   <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>

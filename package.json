@@ -86,6 +86,7 @@
     "redux-axios-middleware": "^4.0.0",
     "redux-devtools-extension": "^2.13.8",
     "redux-persist": "^5.10.0",
+    "redux-saga": "^1.0.2",
     "reselect": "^4.0.0",
     "rn-fetch-blob": "^0.10.15",
     "ts-jest": "^24.0.2",
