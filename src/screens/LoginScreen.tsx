@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions, NavigationInjectedProps } from 'react-navigation';
 import { Alert } from 'react-native';
+import * as Keychain from 'react-native-keychain';
 
 import { LoginForm } from '../components/LoginForm';
 
@@ -54,8 +55,13 @@ class LoginScreenContainer extends React.PureComponent<Props, State> {
     // If we have a token, the user is logged in successfully!
     // Navigate the user to the app
     if (token && prevProps.token !== token) {
-      this.props.navigation.navigate('App');
+      this.saveToken(token);
     }
+  }
+
+  saveToken = async (token: string) => {
+    await Keychain.setGenericPassword('token', token, { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' });
+    this.props.navigation.navigate('App');
   }
 
   handleOnClose = () => {

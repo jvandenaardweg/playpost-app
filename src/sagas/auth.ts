@@ -11,7 +11,7 @@ export function* authorize({ email, password }: AnyAction) {
     yield put(resetAuthError());
 
     // Get a token from the API
-    const { data } = yield call(API.getAuthToken, email, password);
+    const { data } = yield call(API.getAuthToken,  email, password);
     const token = data.token;
 
     if (!token) {
@@ -21,8 +21,8 @@ export function* authorize({ email, password }: AnyAction) {
     // Save the token in the store
     yield put(setAuthToken(token));
 
-    // Save the token in the Keychain
-    yield call([Keychain, Keychain.setGenericPassword], 'token', token, { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' });
+    // Save the token in the Keychain, so it can be re-used by our Share App ánd be picked up by Axios as Authorization headers
+    yield call(Keychain.setGenericPassword, 'token', token, { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' });
 
     return token;
   } catch (err) {

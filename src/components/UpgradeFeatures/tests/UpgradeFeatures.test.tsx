@@ -9,7 +9,7 @@ describe('UpgradeFeatures', () => {
     let wrapper: RenderAPI;
 
     beforeAll(() => {
-      wrapper = render(<UpgradeFeatures />);
+      wrapper = render(<UpgradeFeatures onClose={() => {}} />);
     });
 
     it('should render correctly', () => {
