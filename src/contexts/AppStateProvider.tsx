@@ -1,17 +1,28 @@
 import React from 'react';
 import { AppState, AppStateStatus } from 'react-native';
-import { NetworkProvider } from './NetworkProvider';
+import { connect } from 'react-redux';
 
-export const AppStateContext = React.createContext({ appState: AppState.currentState, stateChanged: false });
+import { RootState } from '../reducers';
+import { getPlaylist } from '../reducers/playlist';
+import { updateUserEmail, getUser } from '../reducers/user';
+
+import { getAuthenticationStatus } from '../selectors/auth';
+
+export const AppStateContext = React.createContext<{ appState: AppStateStatus, stateChanged: boolean }>({ appState: AppState.currentState, stateChanged: false });
 
 export const AppStateConsumer = AppStateContext.Consumer;
 
+interface IProps {
+  children: React.ReactElement;
+}
 interface State {
   appState: AppStateStatus;
   stateChanged: boolean;
 }
 
-export class AppStateProvider extends React.PureComponent<State> {
+type Props = IProps & StateProps & DispatchProps;
+
+export class AppStateProviderContainer extends React.PureComponent<Props, State> {
   state = {
     appState: AppState.currentState,
     stateChanged: false
@@ -26,15 +37,23 @@ export class AppStateProvider extends React.PureComponent<State> {
   }
 
   handleAppStateChange = async (nextAppState: AppStateStatus) => {
+    const { authenticationStatus } = this.props;
     const stateChanged = !!(this.state.appState.match(/inactive|background/) && nextAppState === 'active');
 
-    console.log('app state changed?', stateChanged, nextAppState);
+    console.log('AppStateProvider', 'App State Changed:', stateChanged, nextAppState);
 
     // Detect a change in AppState
     this.setState({
       stateChanged,
       appState: nextAppState
     });
+
+    // Fetch additional data when the app becomes active
+    // TODO: get user?
+    if (authenticationStatus === 'LOGGED_IN' && stateChanged && nextAppState === 'active') {
+      console.log('App became active again, get the user his playlist...');
+      this.props.getPlaylist();
+    }
   }
 
   render() {
@@ -45,3 +64,24 @@ export class AppStateProvider extends React.PureComponent<State> {
     );
   }
 }
+
+interface StateProps {
+  authenticationStatus: ReturnType<typeof getAuthenticationStatus>;
+}
+
+interface DispatchProps {
+  getPlaylist: typeof getPlaylist;
+}
+
+const mapStateToProps = (state: RootState): StateProps => ({
+  authenticationStatus: getAuthenticationStatus(state)
+});
+
+const mapDispatchToProps = {
+  getPlaylist
+};
+
+export const AppStateProvider = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AppStateProviderContainer);
