@@ -4,6 +4,11 @@ module.exports = {
       plugins: [
         'transform-remove-console'
       ]
+    },
+    staging: {
+      plugins: [
+        'transform-remove-console'
+      ]
     }
   },
   presets: ['module:metro-react-native-babel-preset']
