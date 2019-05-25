@@ -1,4 +1,4 @@
-import { userSelector, getUserError, getUserIsLoading, getUserDetails, getUserSelectedVoices, getUserSelectedVoiceByLanguageName } from '../user';
+import { userSelector, getUserError, getUserIsLoading, getUserDetails, getUserSelectedVoices, getUserSelectedVoiceByLanguageName, getUserSubscriptions } from '../user';
 import { createStore } from 'redux';
 
 import { initialState } from '../../reducers/user';
@@ -83,5 +83,20 @@ describe('user selector', () => {
     const expected = voices.find(voice => voice.language.name === languageName);
 
     expect(getUserSelectedVoiceByLanguageName(exampleUserDetailsState, { languageName })).toEqual(expected);
+  });
+
+  it('should return the user\'s subscriptions', () => {
+    const exampleUserState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: exampleUser
+      }
+    };
+
+    // TODO: add example data when we have some in the local API
+    const expected: any[] = [];
+
+    expect(getUserSubscriptions(exampleUserState)).toEqual(expected);
   });
 });

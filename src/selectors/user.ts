@@ -33,3 +33,8 @@ export const getUserSelectedVoiceByLanguageName = (state: RootState, props: { la
   [getUserSelectedVoices],
   voices => voices.find(voice => voice.language.name === props.languageName)
 )(state);
+
+export const getUserSubscriptions = createSelector(
+  [getUserDetails],
+  userDetails => userDetails && userDetails.subscriptions
+);
