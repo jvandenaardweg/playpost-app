@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import { RootState } from '../reducers';
 import { getPlaylist } from '../reducers/playlist';
-import { updateUserEmail, getUser } from '../reducers/user';
 
 import { getAuthenticationStatus } from '../selectors/auth';
 

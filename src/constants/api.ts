@@ -18,6 +18,6 @@ const environment = (nodeEnv: string | undefined) => {
   if ((__DEV__) || !nodeEnv) return environments['development'];
 
   return environments[nodeEnv];
-}
+};
 
 export const API_URL = environment(NODE_ENV);

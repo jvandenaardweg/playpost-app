@@ -11,8 +11,7 @@ import { reactNativeElementsTheme } from './theme';
 import { AppNavigator } from './navigation/AppNavigator';
 import { NetworkProvider } from './contexts/NetworkProvider';
 import { AppStateProvider } from './contexts/AppStateProvider';
-import { AppStatus } from './components/AppStatus';
-
+// import { AppStatus } from './components/AppStatus';
 
 // import { whyDidYouUpdate } from 'why-did-you-update';
 // whyDidYouUpdate(React, { exclude: /^YellowBox|Icon|Swipeable/ });
@@ -22,7 +21,6 @@ if (Platform.OS === 'ios' && __DEV__) {
 }
 
 console.disableYellowBox = true;
-
 
 export default class App extends React.PureComponent {
   componentDidMount() {
