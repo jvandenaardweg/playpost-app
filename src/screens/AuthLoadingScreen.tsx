@@ -49,14 +49,14 @@ export class AuthLoadingScreen extends React.PureComponent<Props> {
     await RNFS.mkdir(LOCAL_CACHE_AUDIOFILES_PATH);
     await RNFS.mkdir(LOCAL_CACHE_VOICE_PREVIEWS_PATH);
 
-    // TODO:
-    // fetch user playlist
-    // fetch user settings/details
-    // fetch languages/voices
+    if (!token) {
+      return this.props.navigation.navigate('Onboarding');
+    }
 
-    // This will switch to the App screen or Auth screen and this loading
-    // screen will be unmounted and thrown away.
-    this.props.navigation.navigate(token ? 'App' : 'Onboarding');
+    // Pre-populate the app with the user data
+    // Every other pre-population is done within the start screen, so we can load faster
+    // await store.dispatch(getUser());
+    return this.props.navigation.navigate('App');
   }
 
   // Render any loading content that you like here
