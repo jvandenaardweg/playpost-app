@@ -1,16 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions, NavigationInjectedProps } from 'react-navigation';
-import * as Keychain from 'react-native-keychain';
 import { Alert } from 'react-native';
+import * as Keychain from 'react-native-keychain';
 
 import { LoginForm } from '../components/LoginForm';
 
-import { postAuth } from '../reducers/auth';
-import { getUser } from '../reducers/user';
+import { getAuthToken } from '../reducers/auth';
 
-import { getAuthError } from '../selectors/auth';
-import { getUserError } from '../selectors/user';
+import { getAuthError, getAuthenticationToken } from '../selectors/auth';
 import { RootState } from '../reducers';
 import { ButtonClose } from '../components/Header/ButtonClose';
 
@@ -47,44 +45,36 @@ class LoginScreenContainer extends React.PureComponent<Props, State> {
   }
 
   componentDidUpdate(prevProps: Props) {
-    const { userError, authError } = this.props;
+    const { authError, token } = this.props;
 
     if (authError && prevProps.authError !== authError) {
+      this.setState({ isLoading: false });
       return Alert.alert('Oops!', authError);
     }
 
-    if (userError && prevProps.userError !== userError) {
-      return Alert.alert('Oops!', userError);
+    // If we have a token, the user is logged in successfully!
+    // Navigate the user to the app
+    if (token && prevProps.token !== token) {
+      this.saveToken(token);
     }
+  }
+
+  saveToken = async (token: string) => {
+    await Keychain.setGenericPassword('token', token, { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' });
+    this.props.navigation.navigate('App');
   }
 
   handleOnClose = () => {
     this.props.navigation.goBack();
   }
 
-  saveToken = async (token: string) => {
-    try {
-      await Keychain.setGenericPassword('token', token, { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' });
-      this.props.navigation.navigate('App');
-    } catch (err) {
-      this.setState({ isLoading: false, error: err  });
-    }
-  }
-
   handleOnPressLogin = async () => {
     const { email, password } = this.state;
 
-    this.setState({ isLoading: true }, async () => {
-      try {
-        const response: any = await this.props.postAuth(email, password);
-        this.saveToken(response.payload.data.token);
-      } catch (err) {
-        this.setState({ isLoading: false, error: err });
-      }
+    this.setState({ isLoading: true }, () => {
+      this.props.getAuthToken(email, password);
     });
   }
-
-  handleOnPressSignup = () => this.props.navigation.navigate('Signup');
 
   handleOnChangeText = (field: 'email' | 'password', value: string) => {
     if (field === 'email') this.setState({ email: value });
@@ -93,19 +83,14 @@ class LoginScreenContainer extends React.PureComponent<Props, State> {
 
   render() {
     const { email, password, isLoading } = this.state;
-    const { userError, authError } = this.props;
-
-    const error = userError || authError;
 
     return (
       <LoginForm
         email={email}
         password={password}
-        error={error}
         isLoading={isLoading}
         onChangeText={this.handleOnChangeText}
         onPressLogin={this.handleOnPressLogin}
-        onPressSignup={this.handleOnPressSignup}
       />
     );
   }
@@ -113,22 +98,20 @@ class LoginScreenContainer extends React.PureComponent<Props, State> {
 
 interface StateProps {
   authError: ReturnType<typeof getAuthError>;
-  userError: ReturnType<typeof getUserError>;
+  token: ReturnType<typeof getAuthenticationToken>;
 }
 
 interface DispatchProps {
-  postAuth: typeof postAuth;
-  getUser: typeof getUser;
+  getAuthToken: typeof getAuthToken;
 }
 
 const mapStateToProps = (state: RootState) => ({
   authError: getAuthError(state),
-  userError: getUserError(state)
+  token: getAuthenticationToken(state)
 });
 
 const mapDispatchToProps = {
-  postAuth,
-  getUser
+  getAuthToken
 };
 
 export const LoginScreen = connect(

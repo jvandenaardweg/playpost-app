@@ -9,6 +9,9 @@ export const RESET_AUTH_STATE = 'auth/RESET_AUTH_STATE';
 export const SET_AUTH_TOKEN = 'auth/SET_AUTH_TOKEN';
 export const RESET_AUTH_ERROR = 'auth/RESET_AUTH_ERROR';
 
+export const SET_AUTH_ERROR = 'auth/SET_AUTH_ERROR';
+export const GET_AUTH_TOKEN = 'auth/GET_AUTH_TOKEN';
+
 export type AuthState = Readonly<{
   isLoading: boolean;
   token: string;
@@ -37,6 +40,12 @@ export function authReducer(state = initialState, action: any): AuthState {
         isLoading: false,
         token: action.payload.data.token,
         error: ''
+      };
+
+    case SET_AUTH_ERROR:
+      return {
+        ...state,
+        error: action.errorMessage
       };
 
     case POST_AUTH_FAIL:
@@ -86,11 +95,22 @@ export function authReducer(state = initialState, action: any): AuthState {
   }
 }
 
+export const getAuthToken = (email: string, password: string) => ({
+  email,
+  password,
+  type: GET_AUTH_TOKEN
+});
+
 export const setAuthToken = (token: string) => ({
   type: SET_AUTH_TOKEN,
   payload: {
     token
   }
+});
+
+export const setAuthError = (errorMessage?: string) => ({
+  errorMessage,
+  type: SET_AUTH_ERROR,
 });
 
 export const resetAuthState = () => ({

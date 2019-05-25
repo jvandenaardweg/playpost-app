@@ -9,7 +9,7 @@ describe('LoginForm', () => {
     let wrapper: RenderAPI;
 
     beforeAll(() => {
-      wrapper = render(<LoginForm onChangeText={() => {}} onPressLogin={() => {}} onPressSignup={() => {}} email="" password="" error="" isLoading={false} />);
+      wrapper = render(<LoginForm onChangeText={() => {}} onPressLogin={() => {}} email="" password="" isLoading={false} />);
     });
 
     it('should render correctly', () => {
