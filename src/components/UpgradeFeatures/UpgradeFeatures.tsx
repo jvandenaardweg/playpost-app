@@ -8,16 +8,17 @@ import { NetworkContext } from '../../contexts/NetworkProvider';
 import * as Icon from '../../components/Icon';
 import fonts from '../../constants/fonts';
 
-import { subscriptionProductIds } from '../../billing';
+import { subscriptionProductId } from '../../billing';
 
 import styles from './styles';
 import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../../constants/urls';
 import { ALERT_GENERIC_INTERNET_REQUIRED } from '../../constants/messages';
 
 interface State {
-  readonly product: RNIap.Subscription<string> | null;
-  readonly receipt: RNIap.ProductPurchase | string;
+  readonly subscription: RNIap.Subscription<string>;
+  readonly purchase: RNIap.ProductPurchase;
   readonly isLoadingBuySubscription: boolean;
+  readonly isLoadingRestorePurchases: boolean;
   readonly isPurchased: boolean;
 }
 
@@ -27,9 +28,10 @@ type Props = {
 export class UpgradeFeatures extends React.PureComponent<Props, State> {
 
   state = {
-    product: {} as RNIap.Subscription<string>,
-    receipt: {} as RNIap.ProductPurchase,
+    subscription: {} as RNIap.Subscription<string>,
+    purchase: {} as RNIap.ProductPurchase,
     isLoadingBuySubscription: false,
+    isLoadingRestorePurchases: false,
     isPurchased: false
   };
 
@@ -46,19 +48,32 @@ export class UpgradeFeatures extends React.PureComponent<Props, State> {
     }
 
     this.fetchInAppPurchaseItems();
-    this.getSubscriptions();
+  }
+
+  componentWillUnmount() {
+    RNIap.endConnection();
   }
 
   // TODO: https://github.com/dooboolab/react-native-iap#ios-purchasing-process-right-way
   // Validate receipt on server
 
   handleOnPressUpgrade = () => {
-    this.buySubscriptionItem(subscriptionProductIds[0]);
+    this.buySubscriptionItem(subscriptionProductId);
     // Alert.alert('Upgrade to Premium', 'This is currently not working in this version of the App. Upgrading to Premium becomes available in later versions.');
   }
 
-  handleOnPressRestore = () => {
-    Alert.alert('Restore purchase', 'This is currently not working in this version of the App. Restoring purchases becomes available in later versions.');
+  handleOnPressRestore = async () => {
+    try {
+      await this.restorePurchases();
+
+      Alert.alert('Restore Successful', 'You successfully restored the subscription! You can now use the extra features.');
+
+      // TODO: set user as premium in app
+
+      this.props.onClose();
+    } catch (err) {
+      return Alert.alert('Restore purchase error', err.message);
+    }
   }
 
   goToNext = () => {
@@ -70,38 +85,52 @@ export class UpgradeFeatures extends React.PureComponent<Props, State> {
   fetchInAppPurchaseItems = async () => {
     try {
       const result = await RNIap.initConnection();
+
+      if (!result) {
+        return new Error('Could not set up a connection to the App Store. Please try again later.');
+      }
+
       await RNIap.consumeAllItems();
-      console.log('result', result);
+
+      this.getSubscriptions();
     } catch (err) {
-      console.warn(err.code, err.message);
+      return Alert.alert('Oops!', err.message);
     }
   }
 
   getSubscriptions = async() => {
     try {
-      const products = await RNIap.getSubscriptions(subscriptionProductIds);
-      console.log('Products', products);
-      this.setState({ product: products[0] });
+      const subscriptions = await RNIap.getSubscriptions([subscriptionProductId]);
+
+      // Only get the Premium product
+      const subscription = subscriptions.find(subscription => subscription.productId === subscriptionProductId);
+
+      if (!subscription) {
+        return new Error('We could not get the subscription to purchase. Please try again later.');
+      }
+
+      return this.setState({ subscription }, () => subscription);
     } catch (err) {
-      console.warn(err.code, err.message);
+      return Alert.alert('Oops!', err.message);
     }
   }
 
   buySubscriptionItem = async (sku: string) => {
     return this.setState({ isLoadingBuySubscription: true }, async () => {
       try {
-        console.log('buySubscriptionItem: ' + sku);
         const purchase = await RNIap.buySubscription(sku);
-        console.info(purchase);
+
+        if (!purchase) {
+          return new Error('We failed to buy the subscription. Please try again.');
+        }
 
         // TODO: set purchase in state, so our app does not show the purchase button anymore
         // TODO: add purchase check on app load
-        this.setState({ receipt: purchase.transactionReceipt }, () => this.props.onClose());
+        return this.setState({ purchase }, () => this.props.onClose());
       } catch (err) {
-        console.warn(err.code, err.message);
         Alert.alert('Oops!', err.message);
       } finally {
-        this.setState({ isLoadingBuySubscription: false });
+        return this.setState({ isLoadingBuySubscription: false });
       }
     });
   }
@@ -121,53 +150,66 @@ export class UpgradeFeatures extends React.PureComponent<Props, State> {
   //   });
   // }
 
-  getAvailablePurchases = async() => {
-    try {
-      console.info('Get available purchases (non-consumable or unconsumed consumable)');
-      const purchases = await RNIap.getAvailablePurchases();
-      console.info('Available purchases :: ', purchases);
-      if (purchases && purchases.length > 0) {
-        this.setState({
-          receipt: purchases[0].transactionReceipt,
-        });
-      }
-    } catch (err) {
-      console.warn(err.code, err.message);
-      Alert.alert(err.message);
-    }
+  isPurchased = (purchases: RNIap.ProductPurchase[], subscriptionProductId: string): Promise<RNIap.ProductPurchase> => {
+    return new Promise((resolve, reject) => {
+
+      // TODO: check if the purchase is still valid?
+      const purchase = purchases.find(purchase => purchase.productId === subscriptionProductId);
+
+      if (!purchase) return reject(null);
+
+      return resolve(purchase);
+    });
   }
 
   /**
    * Method to restore any previous purchases
    */
   restorePurchases = async() => {
-    try {
-      const purchases = await RNIap.getAvailablePurchases();
-      purchases.forEach((purchase) => {
-        if (subscriptionProductIds.includes(purchase.productId)) {
-          this.setState({ isPurchased: true });
+    return new Promise((resolve, reject) => {
+      return this.setState({ isLoadingRestorePurchases: true }, async () => {
+        try {
+          const purchases = await RNIap.getAvailablePurchases();
+
+          if (!purchases.length) {
+            return new Error('We could not find any previous purchases to restore.');
+          }
+
+          const purchase = await this.isPurchased(purchases, subscriptionProductId);
+
+          if (!purchase) {
+            return new Error('We could not find any previous purchases to restore.');
+          }
+
+          // if (!purchase.purchaseToken) {
+          //   return new Error('Could not get the purchase token.');
+          // }
+
+          // await RNIap.consumePurchase(purchase.purchaseToken);
+
+          return this.setState({ purchase, isLoadingRestorePurchases: false }, () => resolve(purchase));
+        } catch (err) {
+          return this.setState({ isLoadingRestorePurchases: false }, () => reject(err));
         }
       });
-      Alert.alert('Restore Successful', 'You successfully restored the subscription!');
-    } catch (err) {
-      console.warn(err); // standardized err.code and err.message available
-      Alert.alert('Oops!', err.message);
-    }
+    });
   }
 
   get buttonTitle() {
-    const { product } = this.state;
-    return `Upgrade for ${product.localizedPrice} per month`;
+    const { subscription } = this.state;
+    return `Upgrade for ${subscription.localizedPrice} per month`;
   }
 
   get isLoading() {
-    const { product } = this.state;
+    const { subscription, isLoadingBuySubscription } = this.state;
     const { isConnected } = this.context;
 
-    return (isConnected && (!product || !product.localizedPrice));
+    return (isConnected && isLoadingBuySubscription || (!subscription || !subscription.localizedPrice));
   }
 
   render() {
+    const { isLoadingRestorePurchases } = this.state;
+
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -210,7 +252,7 @@ export class UpgradeFeatures extends React.PureComponent<Props, State> {
 
         <View style={styles.subscribeContainer}>
           <Button title={this.buttonTitle} onPress={() => this.handleOnPressUpgrade()} loading={this.isLoading} />
-          <Button type="clear" title="Already upgraded? Restore purchase" onPress={() => this.handleOnPressRestore()} titleStyle={{ fontSize: fonts.fontSize.body }} />
+          <Button type="clear" title="Already upgraded? Restore purchase" loading={isLoadingRestorePurchases} onPress={() => this.handleOnPressRestore()} titleStyle={{ fontSize: fonts.fontSize.body }} />
         </View>
 
         <View style={styles.footer}>
