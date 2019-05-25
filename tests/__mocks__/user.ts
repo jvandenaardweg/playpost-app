@@ -216,5 +216,6 @@ export default {
         updatedAt: '2019-05-16T12:51:57.546Z'
       }
     }
-  ]
+  ],
+  subscriptions: []
 }
