@@ -24,6 +24,13 @@ Below packages where added manually using the installation instructions. This re
 - [React Native Share Extension](https://github.com/alinz/react-native-share-extension)
 
 
+# Setting up build environment
+Make sure the `.env`, `.env.staging` and `.env.production` files are filled with the right environment variables. Use the correct `ENVIRONMENT` environment variable:
+- Staging: `ENVIRONMENT=staging`
+- Production: `ENVIRONMENT=production`
+
+A correct `.env` file is created upon build. See `appcenter-pre-build.sh`
+
 # Troubleshooting
 First, try to build from XCode. Open the `Playpost.xcworkspace` file (not the `'.xcodeproject`).
 
