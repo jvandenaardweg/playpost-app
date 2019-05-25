@@ -187,9 +187,16 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
       header: 'Account'.toUpperCase(),
       rows: [
         {
-          title: 'Upgrade',
+          title: 'Subscription',
           onPress: this.handleOnPressUpgrade,
-          showDisclosureIndicator: true
+          showDisclosureIndicator: true,
+          renderAccessory: () => {
+            return (
+              <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.title }}>
+                Free
+              </Text>
+            );
+          },
         },
         {
           title: 'Change e-mail',
