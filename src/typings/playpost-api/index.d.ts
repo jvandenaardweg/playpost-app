@@ -8,6 +8,36 @@ declare namespace Api {
     token: string;
   }
 
+  export interface Subscription {
+    id: string;
+    productId: string;
+    name: string;
+    description: string;
+    price: number;
+    currency: string;
+    duration: string;
+    service: string;
+    isActive: boolean;
+    createdAt: Date<string>;
+    updatedAt: Date<string>;
+  }
+
+  export interface UserSubscription {
+    id: string;
+    productId: string;
+    purchaseDate: string;
+    cancellationDate: string | null;
+    quantity: number;
+    transactionId: string;
+    transactionReceipt: string;
+    isTrial: boolean;
+    status: string;
+    user: User;
+    subscription: Subscription;
+    createdAt: Date<string>;
+    updatedAt: Date<string>;
+  }
+
   export type PlaylistItem = {
     id: string;
     order: number;
@@ -51,6 +81,7 @@ declare namespace Api {
     activatedAt: Date<string> | null;
     authenticatedAt: Date<string> | null;
     voiceSettings: UserVoiceSetting[];
+    subscriptions: UserSubscription[],
     createdAt: Date<string>;
     updatedAt: Date<string>;
   }
