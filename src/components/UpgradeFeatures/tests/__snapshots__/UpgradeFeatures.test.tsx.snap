@@ -420,19 +420,17 @@ exports[`UpgradeFeatures rendering should render correctly 1`] = `
             }
           }
         >
-          <Text
+          <ActivityIndicator
+            animating={true}
+            color="white"
+            hidesWhenStopped={true}
+            size="small"
             style={
               Object {
-                "color": "white",
-                "fontSize": 18,
-                "paddingBottom": 1,
-                "paddingTop": 2,
-                "textAlign": "center",
+                "marginVertical": 2,
               }
             }
-          >
-            Upgrade for €4,99 per month
-          </Text>
+          />
         </View>
       </View>
     </View>
