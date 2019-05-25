@@ -12,6 +12,8 @@ import { NetworkContext } from '../../contexts/NetworkProvider';
 
 import { getPlaylist, reOrderPlaylistItem } from '../../reducers/playlist';
 import { getLanguages } from '../../reducers/voices';
+import { getSubscriptions } from '../../reducers/subscriptions';
+import { getUser } from '../../reducers/user';
 
 import { getNewPlaylistItems, getArchivedPlaylistItems, getFavoritedPlaylistItems } from '../../selectors/playlist';
 
@@ -70,25 +72,37 @@ class PlaylistsContainerComponent extends React.Component<Props, State> {
     this.showOrHideHelpVideo();
 
     // When in Archive or Favorite screen, we assume we already have all the required data
-    // TODO: figure out if this works
     if (isArchiveScreen || isFavoriteScreen) return;
 
-    if (isConnected && !this.hasPlaylistItems) {
-      this.setState({ isLoading: true }, () => {
-        this.fetchPlaylist();
-        this.fetchLanguages();
-      });
-    } else {
-      // Just fetch the playlist in the background, so we always get an up-to-date playlist upon launch
-      this.fetchPlaylist();
-      this.fetchLanguages();
-    }
+    // If we mount this component, and we don't have any playlist items, fetch them
+    if (isConnected) {
+      this.prePopulateApp();
 
-    // TODO: also fetch user? with his settings?
+      if (!this.hasPlaylistItems) {
+        this.setState({ isLoading: true }, () => {
+          this.fetchPlaylist();
+        });
+      }
+    }
 
     // Wait a little longer, then hide the splash screen.
     // So we don't have a "black" flash.
+    // TODO: remove timeout on unmount
     setTimeout(() => SplashScreen.hide(), 100);
+  }
+
+  /**
+   * Method to pre-populate the app with initial data
+   * We use it here because we can give the user a faster perceived loading performance
+   */
+  prePopulateApp = async () => {
+    const promises = await Promise.all([
+      this.props.getUser(),
+      this.props.getLanguages(),
+      this.props.getSubscriptions()
+    ]);
+
+    return promises;
   }
 
   static getDerivedStateFromProps(props: Props, state: State) {
@@ -116,10 +130,6 @@ class PlaylistsContainerComponent extends React.Component<Props, State> {
     const showHelpVideo = await AsyncStorage.getItem('@showHelpVideo');
 
     if (showHelpVideo) this.setState({ showHelpVideo: true });
-  }
-
-  async fetchLanguages() {
-    await this.props.getLanguages();
   }
 
   async fetchPlaylist() {
@@ -327,6 +337,8 @@ interface StateProps {
 interface DispatchProps {
   getPlaylist: typeof getPlaylist;
   getLanguages: typeof getLanguages;
+  getSubscriptions: typeof getSubscriptions;
+  getUser: typeof getUser;
   reOrderPlaylistItem: typeof reOrderPlaylistItem;
 }
 
@@ -340,6 +352,8 @@ const mapStateToProps = (state: RootState) => ({
 const mapDispatchToProps = {
   getPlaylist,
   getLanguages,
+  getSubscriptions,
+  getUser,
   reOrderPlaylistItem
 };
 
