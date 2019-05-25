@@ -1,10 +1,9 @@
 import axios from 'axios';
 import * as Keychain from 'react-native-keychain';
-
-import { API_URL } from '../constants/api';
+import Config from 'react-native-config';
 
 const apiClient = axios.create({
-  baseURL: API_URL,
+  baseURL: Config.API_URL,
   responseType: 'json',
   timeout: 30000 // 30 seconds timeout, creation of audiofiles could take 10 seconds
 });

@@ -107,6 +107,8 @@
 		8CAA1198220F2FC3002741D6 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		8CBA9CD4227DA93800CE20A0 /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CBA9CC1227DA93100CE20A0 /* libRNCAsyncStorage.a */; };
 		8CBA9CD5227DA94500CE20A0 /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CBA9CC1227DA93100CE20A0 /* libRNCAsyncStorage.a */; };
+		8CBBA4FE22995C7D00C05945 /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CBBA4E722995C7300C05945 /* libReactNativeConfig.a */; };
+		8CBBA4FF22995C8A00C05945 /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CBBA4E722995C7300C05945 /* libReactNativeConfig.a */; };
 		8CD2ED58223E70BC00A054E6 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD2ED4B223E70AB00A054E6 /* libRNFS.a */; };
 		8CD2ED59223E70C800A054E6 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD2ED4B223E70AB00A054E6 /* libRNFS.a */; };
 		8CD3D194220F69A50030C131 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -553,6 +555,20 @@
 			remoteGlobalIDString = B5027B1B2237B30F00F1AABA;
 			remoteInfo = "RNCNetInfo-tvOS";
 		};
+		8CBBA4E622995C7300C05945 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CBBA4B822995C7300C05945 /* ReactNativeConfig.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB2648DF1C7BE17A00B8F155;
+			remoteInfo = ReactNativeConfig;
+		};
+		8CBBA4E822995C7300C05945 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CBBA4B822995C7300C05945 /* ReactNativeConfig.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3DF7F6AC203AA09B00D0EAB7;
+			remoteInfo = "ReactNativeConfig-tvOS";
+		};
 		8CD2ED4A223E70AB00A054E6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8CD2ED1B223E70AA00A054E6 /* RNFS.xcodeproj */;
@@ -689,6 +705,7 @@
 		8CA3D29922900BBA00516BF9 /* RNReanimated.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNReanimated.xcodeproj; path = "../node_modules/react-native-reanimated/ios/RNReanimated.xcodeproj"; sourceTree = "<group>"; };
 		8CAA1196220F2CCE002741D6 /* libPods-Playpost-PlaypostShareExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-Playpost-PlaypostShareExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CBA9C90227DA93100CE20A0 /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCAsyncStorage.xcodeproj; path = "../node_modules/@react-native-community/async-storage/ios/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; };
+		8CBBA4B822995C7300C05945 /* ReactNativeConfig.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeConfig.xcodeproj; path = "../node_modules/react-native-config/ios/ReactNativeConfig.xcodeproj"; sourceTree = "<group>"; };
 		8CD2ED1B223E70AA00A054E6 /* RNFS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		8CD3D196220F6C870030C131 /* libPods-Playpost-PlaypostShareExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-Playpost-PlaypostShareExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD3D19C220F7B5B0030C131 /* PlaypostShareExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PlaypostShareExtension-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -750,6 +767,7 @@
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
 				8C92A69D2243CA320057A1EE /* libRNCWebView.a in Frameworks */,
 				8CBA9CD4227DA93800CE20A0 /* libRNCAsyncStorage.a in Frameworks */,
+				8CBBA4FE22995C7D00C05945 /* libReactNativeConfig.a in Frameworks */,
 				8C2A4DC12292A2CB00062B11 /* libRNIap.a in Frameworks */,
 				8C92A68D2243B7E20057A1EE /* libRNVersionNumber.a in Frameworks */,
 				8CA3D2DA22900BC700516BF9 /* libRNReanimated.a in Frameworks */,
@@ -791,6 +809,7 @@
 				8C5A7DF2220F23EC00ECCC65 /* libReact.a in Frameworks */,
 				8C92A69C2243CA290057A1EE /* libRNCWebView.a in Frameworks */,
 				8CBA9CD5227DA94500CE20A0 /* libRNCAsyncStorage.a in Frameworks */,
+				8CBBA4FF22995C8A00C05945 /* libReactNativeConfig.a in Frameworks */,
 				8C2A4DC22292A2D800062B11 /* libRNIap.a in Frameworks */,
 				8C92A68C2243B7D60057A1EE /* libRNVersionNumber.a in Frameworks */,
 				8CA3D2DB22900BD300516BF9 /* libRNReanimated.a in Frameworks */,
@@ -1013,6 +1032,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				8CBBA4B822995C7300C05945 /* ReactNativeConfig.xcodeproj */,
 				8C2A4D7F2292A2B300062B11 /* RNIap.xcodeproj */,
 				8CA3D29922900BBA00516BF9 /* RNReanimated.xcodeproj */,
 				8CBA9C90227DA93100CE20A0 /* RNCAsyncStorage.xcodeproj */,
@@ -1233,6 +1253,15 @@
 			isa = PBXGroup;
 			children = (
 				8CBA9CC1227DA93100CE20A0 /* libRNCAsyncStorage.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8CBBA4B922995C7300C05945 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8CBBA4E722995C7300C05945 /* libReactNativeConfig.a */,
+				8CBBA4E922995C7300C05945 /* libReactNativeConfig-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1479,6 +1508,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = 8CBBA4B922995C7300C05945 /* Products */;
+					ProjectRef = 8CBBA4B822995C7300C05945 /* ReactNativeConfig.xcodeproj */;
 				},
 				{
 					ProductGroup = 8C5A7DD5220F230600ECCC65 /* Products */;
@@ -1930,6 +1963,20 @@
 			fileType = archive.ar;
 			path = "libRNCNetInfo-tvOS.a";
 			remoteRef = 8CBA9CC4227DA93100CE20A0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8CBBA4E722995C7300C05945 /* libReactNativeConfig.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libReactNativeConfig.a;
+			remoteRef = 8CBBA4E622995C7300C05945 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8CBBA4E922995C7300C05945 /* libReactNativeConfig-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libReactNativeConfig-tvOS.a";
+			remoteRef = 8CBBA4E822995C7300C05945 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		8CD2ED4B223E70AB00A054E6 /* libRNFS.a */ = {
@@ -2424,6 +2471,9 @@
 					"$(SRCROOT)/../react-native/React",
 					"$(SRCROOT)/../../React",
 				);
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
+				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
+				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2474,6 +2524,9 @@
 					"$(SRCROOT)/../react-native/React",
 					"$(SRCROOT)/../../React",
 				);
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
+				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
+				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
