@@ -84,3 +84,9 @@ To use the Sandbox account: just purchase a subscription, you will be prompted t
 
 E-mail: `tester@playpost.app`
 Password: `m382qQLi^{Q^>nY692g>k8Z8Kq39rB`
+
+## Troubleshooting
+
+### Android App crashing in simulator when starting
+Run `react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res`
+Then start again
