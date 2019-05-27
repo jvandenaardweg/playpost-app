@@ -7,7 +7,7 @@ import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.dooboolab.RNIap.RNIapPackage;
 import com.swmansion.reanimated.ReanimatedPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
-import com.facebook.react.BuildConfig;
+// import com.facebook.react.BuildConfig; // Commenting this fixed a problem where the Metro bundler was not doing anything
 import com.reactnativecommunity.webview.RNCWebViewPackage;
 import com.apsl.versionnumber.RNVersionNumberPackage;
 import com.brentvatne.react.ReactVideoPackage;
