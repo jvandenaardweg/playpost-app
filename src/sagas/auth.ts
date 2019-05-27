@@ -1,6 +1,12 @@
 import { put, all, call, takeLatest } from 'redux-saga/effects';
 import { AnyAction } from 'redux';
 import * as Keychain from 'react-native-keychain';
+import { Platform } from 'react-native';
+
+export const keychainArguments = Platform.select({
+  ios: { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' },
+  android: { service: 'com.aardwegmedia.playpost' }
+});
 
 import { setAuthToken, setAuthError, GET_AUTH_TOKEN, resetAuthError } from '../reducers/auth';
 import * as API from '../api/auth';
@@ -22,7 +28,7 @@ export function* authorize({ email, password }: AnyAction) {
     yield put(setAuthToken(token));
 
     // Save the token in the Keychain, so it can be re-used by our Share App ánd be picked up by Axios as Authorization headers
-    yield call(Keychain.setGenericPassword, 'token', token, { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' });
+    yield call(Keychain.setGenericPassword, 'token', token, keychainArguments);
 
     return token;
   } catch (err) {
@@ -40,7 +46,7 @@ export function* setAuthorized(token: string) {
     yield put(setAuthToken(token));
 
     // Add the token to the keychain
-    yield call([Keychain, Keychain.setGenericPassword], 'token', token, { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' });
+    yield call([Keychain, Keychain.setGenericPassword], 'token', token, keychainArguments);
 
     return token;
   } catch (err) {

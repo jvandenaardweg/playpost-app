@@ -1,8 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Alert } from 'react-native';
+import { Alert, Platform } from 'react-native';
 import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions, NavigationInjectedProps } from 'react-navigation';
 import * as Keychain from 'react-native-keychain';
+
+export const keychainArguments = Platform.select({
+  ios: { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' },
+  android: { service: 'com.aardwegmedia.playpost' }
+});
 
 import { SignupForm } from '../components/SignupForm';
 import { ButtonClose } from '../components/Header/ButtonClose';
@@ -54,7 +59,7 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
    */
   saveToken = async (token: string) => {
     try {
-      await Keychain.setGenericPassword('token', token, { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' });
+      await Keychain.setGenericPassword('token', token, keychainArguments);
       this.props.navigation.navigate('SignupSuccess');
     } catch (err) {
       Alert.alert('Oops!', 'We have successfully created your account, but could not log you in. Please try logging in manually.');
