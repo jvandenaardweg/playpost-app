@@ -31,11 +31,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
-  [AppCenterReactNativeCrashes registerWithAutomaticProcessing];  // Initialize AppCenter crashes
-
-  [AppCenterReactNativeAnalytics registerWithInitiallyEnabled:false];  // Initialize AppCenter analytics
-
-  [AppCenterReactNative register];  // Initialize AppCenter
+  // Custom added: AppCenter
+  [AppCenterReactNativeCrashes registerWithAutomaticProcessing];
+  [AppCenterReactNativeAnalytics registerWithInitiallyEnabled:false];
+  [AppCenterReactNative register];
 
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
@@ -59,12 +58,13 @@
 {
 #if DEBUG
 
+  // Custom added: This prevents the logs from constantly showing websocket connection errors
   // https://github.com/facebook/react-native/issues/21030#issuecomment-493392051
+  // original:
+  // return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
   NSURL *jsUrl = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
   [[RCTBundleURLProvider sharedSettings] setJsLocation:jsUrl.host];
   return jsUrl;
-
-  // return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
 #else
   return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
