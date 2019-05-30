@@ -5,7 +5,7 @@ import * as RNIap from 'react-native-iap';
 
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
-import * as Icon from '../../components/Icon';
+import * as Icon from '../Icon';
 import fonts from '../../constants/fonts';
 
 import { subscriptionProductId } from '../../billing';
@@ -25,7 +25,7 @@ interface State {
 type Props = {
   onClose(): void;
 };
-export class UpgradeFeatures extends React.PureComponent<Props, State> {
+export class Upgrade extends React.PureComponent<Props, State> {
 
   state = {
     subscription: {} as RNIap.Subscription<string>,

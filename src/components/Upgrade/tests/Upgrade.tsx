@@ -1,15 +1,15 @@
 import React from 'react';
 import { render, RenderAPI } from 'react-native-testing-library';
 
-import { UpgradeFeatures } from '../UpgradeFeatures';
+import { Upgrade } from '../Upgrade';
 
-describe('UpgradeFeatures', () => {
+describe('Upgrade', () => {
 
   describe('rendering', () => {
     let wrapper: RenderAPI;
 
     beforeAll(() => {
-      wrapper = render(<UpgradeFeatures onClose={() => {}} />);
+      wrapper = render(<Upgrade onClose={() => {}} />);
     });
 
     it('should render correctly', () => {
