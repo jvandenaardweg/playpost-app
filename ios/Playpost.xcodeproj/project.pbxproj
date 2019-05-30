@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -385,6 +386,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNIap;
+		};
+		8C2C6368229FACE700D5F340 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C2A4D7F2292A2B300062B11 /* RNIap.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 070744702296C0EF00B1DC9D;
+			remoteInfo = "RNIap-tvOS";
 		};
 		8C4182F6223653E3002F5B00 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1118,6 +1126,7 @@
 			isa = PBXGroup;
 			children = (
 				8C2A4DB72292A2B400062B11 /* libRNIap.a */,
+				8C2C6369229FACE700D5F340 /* libRNIap.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1817,6 +1826,13 @@
 			remoteRef = 8C2A4DB62292A2B400062B11 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		8C2C6369229FACE700D5F340 /* libRNIap.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNIap.a;
+			remoteRef = 8C2C6368229FACE700D5F340 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		8C4182F7223653E3002F5B00 /* libRNKeychain.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -2300,7 +2316,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 				);
 				INFOPLIST_FILE = PlaypostTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
@@ -2330,7 +2346,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 				);
 				INFOPLIST_FILE = PlaypostTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
