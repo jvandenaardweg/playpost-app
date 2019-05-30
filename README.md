@@ -84,3 +84,10 @@ To use the Sandbox account: just purchase a subscription, you will be prompted t
 
 E-mail: `tester@playpost.app`
 Password: `m382qQLi^{Q^>nY692g>k8Z8Kq39rB`
+
+## Running local dev version on a device
+1. Open XCode and add your device
+2. Create a `.env.local` file in the root of this project with the same contents as the `.env` file, but change the address of the `API_URL` from `localhost` to your computer's local IP address, for example: `API_URL="http://192.168.0.102:3000`
+3. Make sure that `API_URL` is reachable
+4. Make sure your iPhone and Computer is using the same WIFI/Network
+5. Run `npm run device`. As this will use the environment vars used in `.env.local`. The App installed on your device will now use your local running API.
