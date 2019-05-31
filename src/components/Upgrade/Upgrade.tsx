@@ -28,6 +28,7 @@ interface State {
 
 type Props = {
   onClose(): void;
+  onPressSupport(): void;
 };
 export class Upgrade extends React.PureComponent<Props, State> {
 
@@ -61,7 +62,8 @@ export class Upgrade extends React.PureComponent<Props, State> {
   componentWillUnmount() {
     RNIap.endConnection();
 
-    this.subscriptionPurchaseListener && this.subscriptionPurchaseListener.remove();
+    // Remove the listeners gives an "Attempted to remove more RNiapIos listeners than added"
+    // this.subscriptionPurchaseListener && this.subscriptionPurchaseListener.remove();
   }
 
   // TODO: https://github.com/dooboolab/react-native-iap#ios-purchasing-process-right-way
@@ -75,7 +77,22 @@ export class Upgrade extends React.PureComponent<Props, State> {
 
       this.props.onClose();
     } catch (err) {
-      return Alert.alert('Buy Subscription Error', (err.message) ? err.message : 'An unknown error happened.');
+      const errorMessage = (err && err.message) ? err.message : 'An unknown error happened while buying a subscription.';
+
+      return Alert.alert(
+        'Buy Subscription Error',
+        errorMessage,
+        [
+          {
+            text: 'Close',
+            style: 'cancel'
+          },
+          {
+            text: 'Contact support',
+            onPress: () => this.props.onPressSupport()
+          }
+        ]
+      );
     }
   }
 
@@ -89,7 +106,22 @@ export class Upgrade extends React.PureComponent<Props, State> {
 
       this.props.onClose();
     } catch (err) {
-      return Alert.alert('Restore purchase error', (err.message) ? err.message : 'An unknown error happened.');
+      const errorMessage = (err && err.message) ? err.message : 'An unknown error happened while restoring a subscription.';
+
+      return Alert.alert(
+        'Restore purchase error',
+        errorMessage,
+        [
+          {
+            text: 'Close',
+            style: 'cancel'
+          },
+          {
+            text: 'Contact support',
+            onPress: () => this.props.onPressSupport()
+          }
+        ]
+      );
     }
   }
 
@@ -112,7 +144,8 @@ export class Upgrade extends React.PureComponent<Props, State> {
         return this.setState({ subscription, isLoadingSubscriptionItems: false }, () => subscription);
       } catch (err) {
         return this.setState({ isLoadingSubscriptionItems: false }, () => {
-          Alert.alert('Oops!', err.message);
+          const errorMessage = (err && err.message) ? err.message : 'An unknown error happened while fetching the available subscriptions';
+          Alert.alert('Oops!', errorMessage);
         });
       }
     });
@@ -161,8 +194,8 @@ export class Upgrade extends React.PureComponent<Props, State> {
       // TODO: is this the right purchase to validate?
       const purchase = sortedPurchases.find(purchase => purchase.productId === SUBSCRIPTION_PRODUCT_ID);
 
-      if (!purchase) return reject(null);
-      debugger;
+      if (!purchase) return reject(new Error('We could not find a purchase to restore inside your previous purchases.\n\n If you had a subscription before, it might be expired. If you think this is incorrect, contact our support or e-mail at info@playpost.app.'));
+
       return resolve(purchase);
     });
   }
@@ -182,7 +215,7 @@ export class Upgrade extends React.PureComponent<Props, State> {
 
     if (result.status && result.status !== 0) {
       const validationMessage = (appleReceiptValidationMessages[result.status]);
-      const errorMessage = (validationMessage) ? validationMessage : 'An unknown error happened while validating a subscription receipt. Are you sure you have an active subscription?';
+      const errorMessage = (validationMessage) ? validationMessage : 'An unknown error happened while validating a subscription receipt.\n\n Are you sure you have an active subscription?';
       return new Error(errorMessage);
     }
 
@@ -196,14 +229,11 @@ export class Upgrade extends React.PureComponent<Props, State> {
     return new Promise((resolve, reject) => {
       return this.setState({ isLoadingRestorePurchases: true }, async () => {
         try {
-          //
           const purchases = await RNIap.getAvailablePurchases();
 
-          if (!purchases.length) return new Error('We could not find any previous purchases to restore.');
+          if (!purchases.length) return new Error('We could not find a subscription purchase to restore. If you had a subscription before, it might be expired. If you think this is incorrect, contact our support or e-mail at info@playpost.app.');
 
           const purchase = await this.isPurchased(purchases, SUBSCRIPTION_PRODUCT_ID);
-
-          if (!purchase) return new Error('We could not find any previous purchases to restore.');
 
           await this.validateReceipt(purchase.transactionReceipt);
 
