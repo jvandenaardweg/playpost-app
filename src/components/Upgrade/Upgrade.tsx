@@ -16,7 +16,6 @@ import { SUBSCRIPTION_PRODUCT_ID } from '../../constants/in-app-purchase';
 
 import appleReceiptValidationMessages from '../../constants/apple-receipt-validation-messages';
 
-
 interface State {
   readonly subscription: RNIap.Subscription<string>;
   readonly purchase: RNIap.ProductPurchase;
@@ -30,6 +29,7 @@ type Props = {
   onClose(): void;
   onPressSupport(): void;
 };
+
 export class Upgrade extends React.PureComponent<Props, State> {
 
   state = {
