@@ -9,7 +9,7 @@ describe('Upgrade', () => {
     let wrapper: RenderAPI;
 
     beforeAll(() => {
-      wrapper = render(<Upgrade onClose={() => {}} />);
+      wrapper = render(<Upgrade onClose={() => {}} onPressSupport={() => {}} />);
     });
 
     it('should render correctly', () => {
