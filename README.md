@@ -3,29 +3,40 @@ When your eyes are too busy to read, but your ears are free to listen. Listen to
 
 [![Build status](https://build.appcenter.ms/v0.1/apps/be2d00ac-bfc6-43ce-ab5f-3c7c7a674048/branches/master/badge)](https://appcenter.ms)
 
-# Installing
+# Set up
 1. Run `npm install`
 2. Make sure you have accepted all Android SDK licenses, run: `sdkmanager --licenses`
-3. Run `react-native run-ios` or `react-native run-android`
+3. Create a `.env` file in the root, containing:
+```json
+NODE_ENV="development"
+API_URL="http://localhost:3000"
+APPLE_IAP_SHARED_SECRET="FILL_IN"
+```
+Ask the repo maintainer for the `APPLE_IAP_SHARED_SECRET` contents.
+4. Create a `.env.ocal` file in the root, containing:
+```json
+NODE_ENV="development"
+API_URL="http://192.168.0.102:3000"
+APPLE_IAP_SHARED_SECRET="FILL_IN"
+```
+Where `192.168.0.102` is your own local machine's IP address. This is used for on device developing.
+5. Run `react-native run-ios` or `react-native run-android`
 
-# Installing Detox (E2E Testing)
+## Installing Detox (E2E Testing)
 1. Run `brew update`
 2. Run `brew tap wix/brew`
 3. Run `brew install applesimutils`
 4. Then you can run `npm run test:e2e`
 
-# Upgrading to new React Native version?
+## Upgrading to new React Native version?
 Use `react-native-git-upgrade`.
 
-# Added manually
-Below packages where added manually using the installation instructions. This required manually editting files. This should be taken into account when we upgrade React Native.
-
-- [React Navigation](https://reactnavigation.org/docs/en/getting-started.html)
-- [React Native Share Extension](https://github.com/alinz/react-native-share-extension)
+## Upgrading NPM depedencies?
+Run `npm run upgrade-interactive`
 
 
-# Setting up build environment
-Make sure the `.env`, `.env.staging` and `.env.production` files are filled with the right environment variables. Use the correct `ENVIRONMENT` environment variable:
+## Setting up build environment
+Make sure the `.env.staging` and `.env.production` files are filled with the right environment variables. Use the correct `ENVIRONMENT` environment variable:
 - Staging: `ENVIRONMENT=staging`
 - Production: `ENVIRONMENT=production`
 
@@ -45,8 +56,10 @@ Fix from: https://stackoverflow.com/a/54542903/3194288
 When you get build errors about missing imports with React related files with the `.h` extension. Make sure `Parallelize Builds` is off for both schemes. In `Product` > `Scheme` > `Manage schemes` > Open the `Build` tab > Uncheck `Parallelize Builds`. Do this for both the `Playpost` and `PlaypostShareExtension`.
 This will make sure React get's build first.
 
-## iOS Deployment Target 10.0
-The Deployment Target is locked at `10.0` because of the Share Extension. Any version higher than `10.0` makes the Share Extension not work in Safari in iOS. Pretty important.
+## iOS Deployment Target 12.2
+The Deployment Target is locked at `12.2` because of our In App Purchase package to allow promotion codes.
+
+The other minimum deployment target is `10.0`, below that Share Extension will not work in Safari in iOS. Pretty important.
 
 ## Share Extension iOS Target Properties
 Make sure the Share Extension has the properties below. This makes sure the Share Extension is visible in; Safari, other browsers like Chrome ánd other apps that share URL's from within the App. So our Share Extension shows in those apps.
