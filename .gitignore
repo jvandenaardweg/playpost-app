@@ -9,6 +9,7 @@ build/
 .jest/
 
 .env.local
+.env
 
 # Added Pods folder manually, got too big for version control
 #Pods/
