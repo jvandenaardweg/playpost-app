@@ -56,7 +56,7 @@ export class Upgrade extends React.PureComponent<Props, State> {
       return Alert.alert('Upgrading requires internet', ALERT_GENERIC_INTERNET_REQUIRED);
     }
 
-    this.fetchAvailableSubscriptionItems();
+    this.fetchAvailableSubscriptionItems(SUBSCRIPTION_PRODUCT_ID);
   }
 
   componentWillUnmount() {
@@ -69,6 +69,23 @@ export class Upgrade extends React.PureComponent<Props, State> {
   // TODO: https://github.com/dooboolab/react-native-iap#ios-purchasing-process-right-way
   // Validate receipt on server
 
+  showAlert = (title: string, message: string) => {
+    return Alert.alert(
+      title,
+      message,
+      [
+        {
+          text: 'Close',
+          style: 'cancel'
+        },
+        {
+          text: 'Contact support',
+          onPress: () => this.props.onPressSupport()
+        }
+      ]
+    );
+  }
+
   handleOnPressUpgrade = async () => {
     try {
       await this.buySubscriptionItem(SUBSCRIPTION_PRODUCT_ID);
@@ -78,27 +95,13 @@ export class Upgrade extends React.PureComponent<Props, State> {
       this.props.onClose();
     } catch (err) {
       const errorMessage = (err && err.message) ? err.message : 'An unknown error happened while buying a subscription.';
-
-      return Alert.alert(
-        'Buy Subscription Error',
-        errorMessage,
-        [
-          {
-            text: 'Close',
-            style: 'cancel'
-          },
-          {
-            text: 'Contact support',
-            onPress: () => this.props.onPressSupport()
-          }
-        ]
-      );
+      return this.showAlert('Buy Subscription Error', errorMessage);
     }
   }
 
   handleOnPressRestore = async () => {
     try {
-      await this.restorePurchases();
+      await this.restorePurchases(SUBSCRIPTION_PRODUCT_ID);
 
       Alert.alert('Restore Successful', 'You successfully restored the subscription! You can now use the extra features.');
 
@@ -107,25 +110,11 @@ export class Upgrade extends React.PureComponent<Props, State> {
       this.props.onClose();
     } catch (err) {
       const errorMessage = (err && err.message) ? err.message : 'An unknown error happened while restoring a subscription.';
-
-      return Alert.alert(
-        'Restore purchase error',
-        errorMessage,
-        [
-          {
-            text: 'Close',
-            style: 'cancel'
-          },
-          {
-            text: 'Contact support',
-            onPress: () => this.props.onPressSupport()
-          }
-        ]
-      );
+      return this.showAlert('Restore purchase error', errorMessage);
     }
   }
 
-  fetchAvailableSubscriptionItems = async () => {
+  fetchAvailableSubscriptionItems = async (subscriptionProductId: string) => {
     return this.setState({ isLoadingSubscriptionItems: true }, async () => {
       try {
         const result = await RNIap.initConnection();
@@ -134,10 +123,10 @@ export class Upgrade extends React.PureComponent<Props, State> {
 
         await RNIap.consumeAllItems();
 
-        const subscriptions = await RNIap.getSubscriptions([SUBSCRIPTION_PRODUCT_ID]);
+        const subscriptions = await RNIap.getSubscriptions([subscriptionProductId]);
 
         // Only get the Premium product
-        const subscription = subscriptions.find(subscription => subscription.productId === SUBSCRIPTION_PRODUCT_ID);
+        const subscription = subscriptions.find(subscription => subscription.productId === subscriptionProductId);
 
         if (!subscription) return new Error('We could not get the subscription to purchase. Please try again later.');
 
@@ -151,11 +140,11 @@ export class Upgrade extends React.PureComponent<Props, State> {
     });
   }
 
-  buySubscriptionItem = async (sku: string) => {
+  buySubscriptionItem = async (subscriptionProductId: string) => {
     return new Promise((resolve, reject) => {
       return this.setState({ isLoadingBuySubscription: true }, async () => {
         try {
-          const purchase = await RNIap.buySubscription(sku);
+          const purchase = await RNIap.buySubscription(subscriptionProductId);
 
           if (!purchase) return new Error('Failed to buy the subscription. Please try again.');
 
@@ -192,7 +181,7 @@ export class Upgrade extends React.PureComponent<Props, State> {
       const sortedPurchases = purchases.sort((a, b) => a.transactionDate + b.transactionDate);
 
       // TODO: is this the right purchase to validate?
-      const purchase = sortedPurchases.find(purchase => purchase.productId === SUBSCRIPTION_PRODUCT_ID);
+      const purchase = sortedPurchases.find(purchase => purchase.productId === subscriptionProductId);
 
       if (!purchase) return reject(new Error('We could not find a purchase to restore inside your previous purchases.\n\n If you had a subscription before, it might be expired. If you think this is incorrect, contact our support or e-mail at info@playpost.app.'));
 
@@ -225,7 +214,7 @@ export class Upgrade extends React.PureComponent<Props, State> {
   /**
    * Method to restore any previous purchases
    */
-  restorePurchases = async() => {
+  restorePurchases = async (subscriptionProductId: string) => {
     return new Promise((resolve, reject) => {
       return this.setState({ isLoadingRestorePurchases: true }, async () => {
         try {
@@ -233,7 +222,7 @@ export class Upgrade extends React.PureComponent<Props, State> {
 
           if (!purchases.length) return new Error('We could not find a subscription purchase to restore. If you had a subscription before, it might be expired. If you think this is incorrect, contact our support or e-mail at info@playpost.app.');
 
-          const purchase = await this.isPurchased(purchases, SUBSCRIPTION_PRODUCT_ID);
+          const purchase = await this.isPurchased(purchases, subscriptionProductId);
 
           await this.validateReceipt(purchase.transactionReceipt);
 
