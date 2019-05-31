@@ -9,13 +9,13 @@ import { NetworkContext } from '../../contexts/NetworkProvider';
 import * as Icon from '../Icon';
 import fonts from '../../constants/fonts';
 
-import { subscriptionProductId } from '../../billing';
-
 import styles from './styles';
 import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../../constants/urls';
 import { ALERT_GENERIC_INTERNET_REQUIRED } from '../../constants/messages';
+import { SUBSCRIPTION_PRODUCT_ID } from '../../constants/in-app-purchase';
 
 import appleReceiptValidationMessages from '../../constants/apple-receipt-validation-messages';
+
 
 interface State {
   readonly subscription: RNIap.Subscription<string>;
@@ -69,7 +69,7 @@ export class Upgrade extends React.PureComponent<Props, State> {
 
   handleOnPressUpgrade = async () => {
     try {
-      await this.buySubscriptionItem(subscriptionProductId);
+      await this.buySubscriptionItem(SUBSCRIPTION_PRODUCT_ID);
 
       // TODO: set user as premium in app
 
@@ -102,10 +102,10 @@ export class Upgrade extends React.PureComponent<Props, State> {
 
         await RNIap.consumeAllItems();
 
-        const subscriptions = await RNIap.getSubscriptions([subscriptionProductId]);
+        const subscriptions = await RNIap.getSubscriptions([SUBSCRIPTION_PRODUCT_ID]);
 
         // Only get the Premium product
-        const subscription = subscriptions.find(subscription => subscription.productId === subscriptionProductId);
+        const subscription = subscriptions.find(subscription => subscription.productId === SUBSCRIPTION_PRODUCT_ID);
 
         if (!subscription) return new Error('We could not get the subscription to purchase. Please try again later.');
 
@@ -159,7 +159,7 @@ export class Upgrade extends React.PureComponent<Props, State> {
       const sortedPurchases = purchases.sort((a, b) => a.transactionDate + b.transactionDate);
 
       // TODO: is this the right purchase to validate?
-      const purchase = sortedPurchases.find(purchase => purchase.productId === subscriptionProductId);
+      const purchase = sortedPurchases.find(purchase => purchase.productId === SUBSCRIPTION_PRODUCT_ID);
 
       if (!purchase) return reject(null);
       debugger;
@@ -201,7 +201,7 @@ export class Upgrade extends React.PureComponent<Props, State> {
 
           if (!purchases.length) return new Error('We could not find any previous purchases to restore.');
 
-          const purchase = await this.isPurchased(purchases, subscriptionProductId);
+          const purchase = await this.isPurchased(purchases, SUBSCRIPTION_PRODUCT_ID);
 
           if (!purchase) return new Error('We could not find any previous purchases to restore.');
 
