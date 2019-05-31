@@ -13,10 +13,10 @@ cat .env
 
 # Change bundle name of an iOS app for non-production
 # Becomes: "Playpost Beta"
-if [ "$APPCENTER_BRANCH" != "master" ];
-then
-    plutil -replace CFBundleName -string "\$(PRODUCT_NAME) Beta" $APPCENTER_SOURCE_DIRECTORY/Playpost/Info.plist
-fi
+# if [ "$APPCENTER_BRANCH" != "master" ];
+# then
+#     plutil -replace CFBundleName -string "\$(PRODUCT_NAME) Beta" $APPCENTER_SOURCE_DIRECTORY/Playpost/Info.plist
+# fi
 
 # Run tslint before running the build
 npm run lint
