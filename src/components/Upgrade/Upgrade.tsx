@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Linking, Alert, EmitterSubscription } from 'react-native';
+import { View, Text, Linking, Alert } from 'react-native';
 import { Button } from 'react-native-elements';
 import * as RNIap from 'react-native-iap';
 import Config from 'react-native-config';
@@ -16,7 +16,6 @@ import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../../constants/urls';
 import { ALERT_GENERIC_INTERNET_REQUIRED } from '../../constants/messages';
 
 import appleReceiptValidationMessages from '../../constants/apple-receipt-validation-messages';
-
 
 interface State {
   readonly subscription: RNIap.Subscription<string>;
@@ -43,6 +42,7 @@ export class Upgrade extends React.PureComponent<Props, State> {
 
   static contextType = NetworkContext;
 
+  /* tslint:disable-next-line no-any */
   subscriptionPurchaseListener: any = null;
 
   componentDidMount() {
