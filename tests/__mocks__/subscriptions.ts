@@ -1,7 +1,7 @@
 export default [
   {
     id: 'd6e4dbde-8abd-4b85-94a5-037ccffcc352',
-    productId: 'premium',
+    productId: 'com.aardwegmedia.playpost.premium',
     name: 'Premium',
     description: 'Monthly Subscription',
     price: 3.99,
