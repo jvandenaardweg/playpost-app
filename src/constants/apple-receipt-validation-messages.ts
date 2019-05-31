@@ -10,4 +10,4 @@ export default {
   21008: 'This receipt is from the production environment, but it was sent to the test environment for verification. Send it to the production environment instead.',
   21010: 'This receipt could not be authorized. Treat this the same as if a purchase was never made.',
   21100: 'Internal data access error.'
-}
+};

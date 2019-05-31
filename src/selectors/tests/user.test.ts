@@ -95,6 +95,7 @@ describe('user selector', () => {
     };
 
     // TODO: add example data when we have some in the local API
+    /* tslint:disable-next-line no-any */
     const expected: any[] = [];
 
     expect(getUserSubscriptions(exampleUserState)).toEqual(expected);

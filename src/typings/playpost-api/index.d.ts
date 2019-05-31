@@ -81,7 +81,7 @@ declare namespace Api {
     activatedAt: Date<string> | null;
     authenticatedAt: Date<string> | null;
     voiceSettings: UserVoiceSetting[];
-    subscriptions: UserSubscription[],
+    subscriptions: UserSubscription[];
     createdAt: Date<string>;
     updatedAt: Date<string>;
   }
