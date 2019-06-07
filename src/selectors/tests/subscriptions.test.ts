@@ -1,4 +1,4 @@
-import { subscriptionsSelector, selectSubscriptions, selectIsLoadingSubscriptions } from '../subscriptions';
+import { subscriptionsSelector, selectSubscriptions, selectIsLoadingSubscriptions, selectSubscriptionsError } from '../subscriptions';
 import { createStore } from 'redux';
 
 import { initialState } from '../../reducers/subscriptions';
@@ -12,6 +12,7 @@ const rootState = store.getState();
 // const userStore = rootState.user;
 
 describe('subscriptions selector', () => {
+
   it('should return the initial state', () => {
     expect(subscriptionsSelector(rootState)).toEqual(initialState);
   });
@@ -38,6 +39,18 @@ describe('subscriptions selector', () => {
     };
 
     expect(selectIsLoadingSubscriptions(exampleState)).toBe(true);
+  });
+
+  it('should return the error', () => {
+    const exampleState = {
+      ...rootState,
+      subscriptions: {
+        ...rootState.subscriptions,
+        error: 'Some example error'
+      }
+    };
+
+    expect(selectSubscriptionsError(exampleState)).toBe('Some example error');
   });
 
 });
