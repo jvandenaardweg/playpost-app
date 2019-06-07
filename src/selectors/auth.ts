@@ -4,23 +4,23 @@ import { RootState } from '../reducers';
 
 export const authSelector = (state: RootState): AuthState => state.auth;
 
-export const getAuthenticationToken = createSelector(
+export const selectAuthenticationToken = createSelector(
   [authSelector],
   auth => auth.token
 );
 
-export const getAuthError = createSelector(
+export const selectAuthError = createSelector(
   [authSelector],
   auth => auth.error
 );
 
-export const getIsLoading = createSelector(
+export const selectIsLoading = createSelector(
   [authSelector],
   auth => auth.isLoading
 );
 
-export const getAuthenticationStatus = createSelector(
-  [getAuthenticationToken],
+export const selectAuthenticationStatus = createSelector(
+  [selectAuthenticationToken],
   (token) => {
     if (token) return 'LOGGED_IN';
     return 'LOGGED_OUT';

@@ -5,17 +5,17 @@ import { RootState } from '../reducers';
 
 export const playerSelector = (state: RootState): PlayerState => state.player;
 
-export const getPlayerTrack = createSelector(
+export const selectPlayerTrack = createSelector(
   [playerSelector],
   player => player.track
 );
 
-export const getPlayerAudiofile = createSelector(
+export const selectPlayerAudiofile = createSelector(
   [playerSelector],
   player => player.audiofile
 );
 
-export const getPlayerPlaybackState = createSelector(
+export const selectPlayerPlaybackState = createSelector(
   [playerSelector],
   player => player.playbackState
 );

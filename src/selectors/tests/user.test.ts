@@ -1,4 +1,4 @@
-import { userSelector, getUserError, getUserIsLoading, getUserDetails, getUserSelectedVoices, getUserSelectedVoiceByLanguageName, getUserSubscriptions } from '../user';
+import { userSelector, selectUserError, selectUserIsLoading, selectUserDetails, selectUserSelectedVoices, selectUserSelectedVoiceByLanguageName, selectUserSubscriptions, selectUserIsPremium } from '../user';
 import { createStore } from 'redux';
 
 import { initialState } from '../../reducers/user';
@@ -25,7 +25,7 @@ describe('user selector', () => {
       }
     };
 
-    expect(getUserError(exampleErrorState)).toBe('Test error');
+    expect(selectUserError(exampleErrorState)).toBe('Test error');
   });
 
   it('should return the loading status', () => {
@@ -37,7 +37,7 @@ describe('user selector', () => {
       }
     };
 
-    expect(getUserIsLoading(exampleLoadingState)).toBe(true);
+    expect(selectUserIsLoading(exampleLoadingState)).toBe(true);
   });
 
   it('should return the user details', () => {
@@ -50,7 +50,19 @@ describe('user selector', () => {
       }
     };
 
-    expect(getUserDetails(exampleUserDetailsState)).toMatchObject(exampleUser);
+    expect(selectUserDetails(exampleUserDetailsState)).toMatchObject(exampleUser);
+  });
+
+  it('should return the premium status', () => {
+    const exampleLoadingState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        isPremium: true
+      }
+    };
+
+    expect(selectUserIsPremium(exampleLoadingState)).toBe(true);
   });
 
   it('should return the user\'s selected voices', () => {
@@ -64,7 +76,7 @@ describe('user selector', () => {
 
     const expected = exampleUser.voiceSettings.map(userVoiceSetting => userVoiceSetting.voice);
 
-    expect(getUserSelectedVoices(exampleUserDetailsState)).toEqual(expected);
+    expect(selectUserSelectedVoices(exampleUserDetailsState)).toEqual(expected);
   });
 
   it('should return the user\'s selected voices by language name', () => {
@@ -78,11 +90,11 @@ describe('user selector', () => {
 
     const languageName = 'English';
 
-    const voices = getUserSelectedVoices(exampleUserDetailsState);
+    const voices = selectUserSelectedVoices(exampleUserDetailsState);
 
     const expected = voices.find(voice => voice.language.name === languageName);
 
-    expect(getUserSelectedVoiceByLanguageName(exampleUserDetailsState, { languageName })).toEqual(expected);
+    expect(selectUserSelectedVoiceByLanguageName(exampleUserDetailsState, { languageName })).toEqual(expected);
   });
 
   it('should return the user\'s subscriptions', () => {
@@ -98,6 +110,6 @@ describe('user selector', () => {
     /* tslint:disable-next-line no-any */
     const expected: any[] = [];
 
-    expect(getUserSubscriptions(exampleUserState)).toEqual(expected);
+    expect(selectUserSubscriptions(exampleUserState)).toEqual(expected);
   });
 });

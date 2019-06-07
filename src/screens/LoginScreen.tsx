@@ -13,7 +13,7 @@ import { LoginForm } from '../components/LoginForm';
 
 import { getAuthToken } from '../reducers/auth';
 
-import { getAuthError, getAuthenticationToken } from '../selectors/auth';
+import { selectAuthError, selectAuthenticationToken } from '../selectors/auth';
 import { RootState } from '../reducers';
 import { ButtonClose } from '../components/Header/ButtonClose';
 
@@ -102,8 +102,8 @@ class LoginScreenContainer extends React.PureComponent<Props, State> {
 }
 
 interface StateProps {
-  authError: ReturnType<typeof getAuthError>;
-  token: ReturnType<typeof getAuthenticationToken>;
+  authError: ReturnType<typeof selectAuthError>;
+  token: ReturnType<typeof selectAuthenticationToken>;
 }
 
 interface DispatchProps {
@@ -111,8 +111,8 @@ interface DispatchProps {
 }
 
 const mapStateToProps = (state: RootState) => ({
-  authError: getAuthError(state),
-  token: getAuthenticationToken(state)
+  authError: selectAuthError(state),
+  token: selectAuthenticationToken(state)
 });
 
 const mapDispatchToProps = {

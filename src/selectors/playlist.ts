@@ -4,17 +4,17 @@ import { RootState } from '../reducers';
 
 export const playlistSelector = (state: RootState): PlaylistState => state.playlist;
 
-export const getPlaylistError = createSelector(
+export const selectPlaylistError = createSelector(
   [playlistSelector],
   playlist => playlist.error
 );
 
-export const getPlaylistItems = createSelector(
+export const selectPlaylistItems = createSelector(
   [playlistSelector],
   playlist => playlist.items
 );
 
-export const getPlaylistIsLoadingCreateItem = createSelector(
+export const selectPlaylistIsLoadingCreateItem = createSelector(
   [playlistSelector],
   (playlist): boolean => playlist.isLoadingCreateItem
 );
@@ -22,8 +22,8 @@ export const getPlaylistIsLoadingCreateItem = createSelector(
 /**
  * Get's the articles of the default playlist.
  */
-export const getAllPlaylistArticles = createSelector(
-  getPlaylistItems,
+export const selectAllPlaylistArticles = createSelector(
+  selectPlaylistItems,
   (playlistItems) => {
     if (!playlistItems || !playlistItems.length) return [];
 
@@ -36,8 +36,8 @@ export const getAllPlaylistArticles = createSelector(
   }
 );
 
-export const getNewPlaylistItems = createSelector(
-  getPlaylistItems,
+export const selectNewPlaylistItems = createSelector(
+  selectPlaylistItems,
   (playlistItems) => {
     if (!playlistItems || !playlistItems.length) return [];
 
@@ -49,8 +49,8 @@ export const getNewPlaylistItems = createSelector(
   }
 );
 
-export const getArchivedPlaylistItems = createSelector(
-  getPlaylistItems,
+export const selectArchivedPlaylistItems = createSelector(
+  selectPlaylistItems,
   (playlistItems) => {
     if (!playlistItems || !playlistItems.length) return [];
 
@@ -66,8 +66,8 @@ export const getArchivedPlaylistItems = createSelector(
   }
 );
 
-export const getFavoritedPlaylistItems = createSelector(
-  getPlaylistItems,
+export const selectFavoritedPlaylistItems = createSelector(
+  selectPlaylistItems,
   (playlistItems) => {
     if (!playlistItems || !playlistItems.length) return [];
 

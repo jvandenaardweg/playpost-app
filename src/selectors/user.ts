@@ -4,22 +4,27 @@ import { RootState } from '../reducers';
 
 export const userSelector = (state: RootState): UserState => state.user;
 
-export const getUserError = createSelector(
+export const selectUserError = createSelector(
   [userSelector],
   user => user.error
 );
 
-export const getUserIsLoading = createSelector(
+export const selectUserIsLoading = createSelector(
   [userSelector],
   user => user.isLoading
 );
 
-export const getUserDetails = createSelector(
+export const selectUserDetails = createSelector(
   [userSelector],
   user => user.details
 );
 
-export const getUserSelectedVoices = createSelector(
+export const selectUserIsPremium = createSelector(
+  [userSelector],
+  user => user.isPremium
+);
+
+export const selectUserSelectedVoices = createSelector(
   [userSelector],
   (user) => {
     if (!user.details || !user.details.voiceSettings.length) {
@@ -29,12 +34,12 @@ export const getUserSelectedVoices = createSelector(
   }
 );
 
-export const getUserSelectedVoiceByLanguageName = (state: RootState, props: { languageName: string }) => createSelector(
-  [getUserSelectedVoices],
+export const selectUserSelectedVoiceByLanguageName = (state: RootState, props: { languageName: string }) => createSelector(
+  [selectUserSelectedVoices],
   voices => voices.find(voice => voice.language.name === props.languageName)
 )(state);
 
-export const getUserSubscriptions = createSelector(
-  [getUserDetails],
+export const selectUserSubscriptions = createSelector(
+  [selectUserDetails],
   userDetails => userDetails && userDetails.subscriptions
 );

@@ -1,4 +1,4 @@
-import { subscriptionsSelector, getSubscriptions, getIsLoadingSubscriptions } from '../subscriptions';
+import { subscriptionsSelector, selectSubscriptions, selectIsLoadingSubscriptions } from '../subscriptions';
 import { createStore } from 'redux';
 
 import { initialState } from '../../reducers/subscriptions';
@@ -25,7 +25,7 @@ describe('subscriptions selector', () => {
       }
     };
 
-    expect(getSubscriptions(exampleState)).toEqual(subscriptionsMock);
+    expect(selectSubscriptions(exampleState)).toEqual(subscriptionsMock);
   });
 
   it('should return the loading state', () => {
@@ -37,7 +37,7 @@ describe('subscriptions selector', () => {
       }
     };
 
-    expect(getIsLoadingSubscriptions(exampleState)).toBe(true);
+    expect(selectIsLoadingSubscriptions(exampleState)).toBe(true);
   });
 
 });

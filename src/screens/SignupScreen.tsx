@@ -15,8 +15,8 @@ import { ButtonClose } from '../components/Header/ButtonClose';
 import { createUser } from '../reducers/user';
 import { postAuth } from '../reducers/auth';
 
-import { getAuthError } from '../selectors/auth';
-import { getUserError } from '../selectors/user';
+import { selectAuthError } from '../selectors/auth';
+import { selectUserError } from '../selectors/user';
 import { RootState } from '../reducers';
 
 /* tslint:disable no-any */
@@ -149,8 +149,8 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
 }
 
 interface StateProps {
-  authError: ReturnType<typeof getAuthError>;
-  userError: ReturnType<typeof getUserError>;
+  authError: ReturnType<typeof selectAuthError>;
+  userError: ReturnType<typeof selectUserError>;
 }
 
 interface DispatchProps {
@@ -159,8 +159,8 @@ interface DispatchProps {
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
-  authError: getAuthError(state),
-  userError: getUserError(state)
+  authError: selectAuthError(state),
+  userError: selectUserError(state)
 });
 
 const mapDispatchToProps = {

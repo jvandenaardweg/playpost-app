@@ -10,7 +10,7 @@ import { UpdateEmailForm } from '../../components/UpdateEmailForm';
 import { RootState } from '../../reducers';
 import { updateUserEmail, getUser } from '../../reducers/user';
 
-import { getUserError, getUserDetails } from '../../selectors/user';
+import { selectUserError, selectUserDetails } from '../../selectors/user';
 
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
@@ -125,8 +125,8 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
 }
 
 interface StateProps {
-  userError: ReturnType<typeof getUserError>;
-  userDetails: ReturnType<typeof getUserDetails>;
+  userError: ReturnType<typeof selectUserError>;
+  userDetails: ReturnType<typeof selectUserDetails>;
 }
 
 interface DispatchProps {
@@ -135,8 +135,8 @@ interface DispatchProps {
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
-  userError: getUserError(state),
-  userDetails: getUserDetails(state)
+  userError: selectUserError(state),
+  userDetails: selectUserDetails(state)
 });
 
 const mapDispatchToProps = {

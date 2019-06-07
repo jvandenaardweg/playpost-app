@@ -1,4 +1,4 @@
-import { audiofilesSelector, getDownloadedAudiofiles } from '../audiofiles';
+import { audiofilesSelector, selectDownloadedAudiofiles } from '../audiofiles';
 import { createStore } from 'redux';
 
 import { initialState } from '../../reducers/audiofiles';
@@ -25,7 +25,7 @@ describe('audiofiles selector', () => {
       }
     };
 
-    expect(getDownloadedAudiofiles(exampleState)).toMatchObject(audiofilesMock);
+    expect(selectDownloadedAudiofiles(exampleState)).toMatchObject(audiofilesMock);
   });
 
 });

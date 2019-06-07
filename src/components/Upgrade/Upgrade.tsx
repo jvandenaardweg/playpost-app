@@ -15,6 +15,7 @@ import { ALERT_GENERIC_INTERNET_REQUIRED } from '../../constants/messages';
 import { SUBSCRIPTION_PRODUCT_ID } from '../../constants/in-app-purchase';
 
 import appleReceiptValidationMessages from '../../constants/apple-receipt-validation-messages';
+import { selectSubscriptionsError, selectSubscriptions, selectSubscriptionsValidationResult } from '../../selectors/subscriptions';
 
 interface State {
   readonly subscription: RNIap.Subscription<string>;

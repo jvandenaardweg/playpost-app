@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { RootState } from '../reducers';
 import { getPlaylist } from '../reducers/playlist';
 
-import { getAuthenticationStatus } from '../selectors/auth';
+import { selectAuthenticationStatus } from '../selectors/auth';
 
 export const AppStateContext = React.createContext<{ appState: AppStateStatus, stateChanged: boolean }>({ appState: AppState.currentState, stateChanged: false });
 
@@ -65,7 +65,7 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
 }
 
 interface StateProps {
-  authenticationStatus: ReturnType<typeof getAuthenticationStatus>;
+  authenticationStatus: ReturnType<typeof selectAuthenticationStatus>;
 }
 
 interface DispatchProps {
@@ -73,7 +73,7 @@ interface DispatchProps {
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
-  authenticationStatus: getAuthenticationStatus(state)
+  authenticationStatus: selectAuthenticationStatus(state)
 });
 
 const mapDispatchToProps = {

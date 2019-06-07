@@ -21,7 +21,7 @@ import { getPlaylist, removeArticleFromPlaylist, archivePlaylistItem, favoritePl
 import { setTrack, createAudiofile, resetPlaybackStatus } from '../../reducers/player';
 import { setDownloadedAudiofile } from '../../reducers/audiofiles';
 
-import { getPlayerTrack, getPlayerPlaybackState } from '../../selectors/player';
+import { selectPlayerTrack, selectPlayerPlaybackState } from '../../selectors/player';
 
 interface State {
   isLoading: boolean;
@@ -557,8 +557,8 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 }
 
 interface StateProps {
-  track: ReturnType<typeof getPlayerTrack>;
-  playbackState: ReturnType<typeof getPlayerPlaybackState>;
+  track: ReturnType<typeof selectPlayerTrack>;
+  playbackState: ReturnType<typeof selectPlayerPlaybackState>;
 }
 
 interface DispatchProps {
@@ -575,8 +575,8 @@ interface DispatchProps {
 }
 
 const mapStateToProps = (state: RootState) => ({
-  track: getPlayerTrack(state),
-  playbackState: getPlayerPlaybackState(state),
+  track: selectPlayerTrack(state),
+  playbackState: selectPlayerPlaybackState(state),
 });
 
 const mapDispatchToProps: DispatchProps = {

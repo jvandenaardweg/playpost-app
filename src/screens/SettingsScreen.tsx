@@ -15,7 +15,7 @@ import { getUser, deleteUser } from '../reducers/user';
 import { resetAudiofilesState } from '../reducers/audiofiles';
 import { resetVoicesState, resetDownloadedVoices } from '../reducers/voices';
 
-import { getUserDetails } from '../selectors/user';
+import { selectUserDetails } from '../selectors/user';
 
 import { RootState } from '../reducers';
 import { ALERT_SETTINGS_SET_CACHE_SIZE_FAIL, ALERT_SETTINGS_SETTING_UNAVAILABLE, ALERT_SETTINGS_RESET_CACHE_FAIL, ALERT_SETTINGS_CLEAR_CACHE_WARNING, ALERT_SETTINGS_DELETE_USER, ALERT_SETTINGS_DELETE_USER_FAIL } from '../constants/messages';
@@ -366,11 +366,11 @@ interface DispatchProps {
 }
 
 interface StateProps {
-  user: ReturnType<typeof getUserDetails>;
+  user: ReturnType<typeof selectUserDetails>;
 }
 
 const mapStateToProps = (state: RootState) => ({
-  user: getUserDetails(state)
+  user: selectUserDetails(state)
 });
 
 const mapDispatchToProps = {

@@ -7,8 +7,8 @@ import { setPlaybackStatus } from '../../reducers/player';
 import { AudioPlayerSmall, EmptyPlayer } from './AudioPlayerSmall';
 import { AudioPlayerLarge } from './AudioPlayerLarge';
 
-import { getPlayerPlaybackState, getPlayerTrack } from '../../selectors/player';
-import { getAllPlaylistArticles } from '../../selectors/playlist';
+import { selectPlayerPlaybackState, selectPlayerTrack } from '../../selectors/player';
+import { selectAllPlaylistArticles } from '../../selectors/playlist';
 import { RootState } from '../../reducers';
 
 interface State {
@@ -238,9 +238,9 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
 }
 
 interface StateProps {
-  track: ReturnType<typeof getPlayerTrack>;
-  playbackState: ReturnType<typeof getPlayerPlaybackState>;
-  articles: ReturnType<typeof getAllPlaylistArticles>;
+  track: ReturnType<typeof selectPlayerTrack>;
+  playbackState: ReturnType<typeof selectPlayerPlaybackState>;
+  articles: ReturnType<typeof selectAllPlaylistArticles>;
 }
 
 interface DispatchProps {
@@ -248,9 +248,9 @@ interface DispatchProps {
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
-  track: getPlayerTrack(state),
-  playbackState: getPlayerPlaybackState(state),
-  articles: getAllPlaylistArticles(state)
+  track: selectPlayerTrack(state),
+  playbackState: selectPlayerPlaybackState(state),
+  articles: selectAllPlaylistArticles(state)
 });
 
 const mapDispatchToProps: DispatchProps = {

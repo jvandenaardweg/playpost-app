@@ -1,4 +1,4 @@
-import { playlistSelector, getPlaylistError, getPlaylistItems, getPlaylistIsLoadingCreateItem, getAllPlaylistArticles, getNewPlaylistItems, getArchivedPlaylistItems, getFavoritedPlaylistItems } from '../playlist';
+import { playlistSelector, selectPlaylistError, selectPlaylistItems, selectPlaylistIsLoadingCreateItem, selectAllPlaylistArticles, selectNewPlaylistItems, selectArchivedPlaylistItems, selectFavoritedPlaylistItems } from '../playlist';
 import { createStore } from 'redux';
 
 import { initialState } from '../../reducers/playlist';
@@ -24,7 +24,7 @@ describe('playlist selector', () => {
       }
     };
 
-    expect(getPlaylistError(exampleState)).toBe('Test error');
+    expect(selectPlaylistError(exampleState)).toBe('Test error');
   });
 
   it('should return the playlist items', () => {
@@ -36,7 +36,7 @@ describe('playlist selector', () => {
       }
     };
 
-    expect(getPlaylistItems(exampleState)).toMatchObject(playlistMock);
+    expect(selectPlaylistItems(exampleState)).toMatchObject(playlistMock);
   });
 
   it('should return the correct loading state when creating a new item', () => {
@@ -48,7 +48,7 @@ describe('playlist selector', () => {
       }
     };
 
-    expect(getPlaylistIsLoadingCreateItem(exampleState)).toBe(true);
+    expect(selectPlaylistIsLoadingCreateItem(exampleState)).toBe(true);
   });
 
   it('should return all the playlist articles', () => {
@@ -62,7 +62,7 @@ describe('playlist selector', () => {
 
     const expected = playlistMock.map(playlistItem => playlistItem.article);
 
-    expect(getAllPlaylistArticles(exampleState)).toEqual(expected);
+    expect(selectAllPlaylistArticles(exampleState)).toEqual(expected);
   });
 
   it('should return all the playlist items that are not archived', () => {
@@ -76,7 +76,7 @@ describe('playlist selector', () => {
 
     const expected = playlistMock.filter(playlistItem => !playlistItem.archivedAt);
 
-    expect(getNewPlaylistItems(exampleState)).toEqual(expected);
+    expect(selectNewPlaylistItems(exampleState)).toEqual(expected);
   });
 
   it('should return all the playlist items that are archived', () => {
@@ -96,7 +96,7 @@ describe('playlist selector', () => {
       return bTime - aTime;
     });
 
-    expect(getArchivedPlaylistItems(exampleState)).toEqual(expected);
+    expect(selectArchivedPlaylistItems(exampleState)).toEqual(expected);
   });
 
   it('should return all the playlist items that are favorited', () => {
@@ -116,7 +116,7 @@ describe('playlist selector', () => {
       return bTime - aTime;
     });
 
-    expect(getFavoritedPlaylistItems(exampleState)).toEqual(expected);
+    expect(selectFavoritedPlaylistItems(exampleState)).toEqual(expected);
   });
 
 });

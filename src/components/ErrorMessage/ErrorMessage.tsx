@@ -7,8 +7,8 @@ import styles from './styles';
 
 import { resetUserError } from '../../reducers/user';
 import { resetAuthError } from '../../reducers/auth';
-import { getUserError } from '../../selectors/user';
-import { getAuthError } from '../../selectors/auth';
+import { selectUserError } from '../../selectors/user';
+import { selectAuthError } from '../../selectors/auth';
 import { RootState } from '../../reducers';
 
 interface State {
@@ -67,8 +67,8 @@ class ErrorMessageContainer extends React.PureComponent<Props, State> {
 }
 
 interface StateProps {
-  userError: ReturnType<typeof getUserError>;
-  authError: ReturnType<typeof getAuthError>;
+  userError: ReturnType<typeof selectUserError>;
+  authError: ReturnType<typeof selectAuthError>;
 }
 
 interface DispatchProps {
@@ -77,8 +77,8 @@ interface DispatchProps {
 }
 
 const mapStateToProps = (state: RootState) => ({
-  userError: getUserError(state),
-  authError: getAuthError(state)
+  userError: selectUserError(state),
+  authError: selectAuthError(state)
 });
 
 const mapDispatchToProps = {

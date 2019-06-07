@@ -9,13 +9,13 @@ export type VoicesLanguages = {
 
 export const voicesSelector = (state: RootState): VoicesState => state.voices;
 
-export const getLanguages = createSelector(
+export const selectLanguages = createSelector(
   [voicesSelector],
   voices => voices.languages
 );
 
-export const getLanguagesWithActiveVoices = createSelector(
-  [getLanguages],
+export const selectLanguagesWithActiveVoices = createSelector(
+  [selectLanguages],
   (languages) => {
     // Return languages with active voices
     const languagesWithActiveVoices = languages.map((language) => {
@@ -29,13 +29,13 @@ export const getLanguagesWithActiveVoices = createSelector(
   }
 );
 
-export const getDownloadedVoicePreviews = createSelector(
+export const selectDownloadedVoicePreviews = createSelector(
   [voicesSelector],
   voices => voices.downloadedVoicePreviews
 );
 
-export const getAvailableVoicesByLanguageName = (state: RootState, props: { languageName: string }) => createSelector(
-  [getLanguagesWithActiveVoices],
+export const selectAvailableVoicesByLanguageName = (state: RootState, props: { languageName: string }) => createSelector(
+  [selectLanguagesWithActiveVoices],
   (languages) => {
     const language = languages.find(language => language.name === props.languageName);
     if (!language) return [];
@@ -45,8 +45,8 @@ export const getAvailableVoicesByLanguageName = (state: RootState, props: { lang
   }
 )(state);
 
-export const getDefaultVoicesByLanguageName = (state: RootState, props: { languageName: string }) => createSelector(
-  [getLanguagesWithActiveVoices],
+export const selectDefaultVoicesByLanguageName = (state: RootState, props: { languageName: string }) => createSelector(
+  [selectLanguagesWithActiveVoices],
   (languages) => {
     const language = languages.find(language => language.name === props.languageName);
     if (!language) return null;

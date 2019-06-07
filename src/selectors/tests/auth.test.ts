@@ -1,4 +1,4 @@
-import { authSelector, getAuthError, getIsLoading, getAuthenticationStatus } from '../auth';
+import { authSelector, selectAuthError, selectIsLoading, selectAuthenticationStatus } from '../auth';
 import { createStore } from 'redux';
 
 import { initialState } from '../../reducers/auth';
@@ -22,7 +22,7 @@ describe('auth selector', () => {
       }
     };
 
-    expect(getAuthError(exampleState)).toBe('Test error');
+    expect(selectAuthError(exampleState)).toBe('Test error');
   });
 
   it('should return the auth loading state', () => {
@@ -34,7 +34,7 @@ describe('auth selector', () => {
       }
     };
 
-    expect(getIsLoading(exampleState)).toBe(true);
+    expect(selectIsLoading(exampleState)).toBe(true);
   });
 
   it('should return the authentication status', () => {
@@ -46,6 +46,6 @@ describe('auth selector', () => {
       }
     };
 
-    expect(getAuthenticationStatus(exampleState)).toBe('LOGGED_IN');
+    expect(selectAuthenticationStatus(exampleState)).toBe('LOGGED_IN');
   });
 });

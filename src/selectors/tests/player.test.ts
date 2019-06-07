@@ -1,4 +1,4 @@
-import { playerSelector, getPlayerAudiofile, getPlayerPlaybackState } from '../player';
+import { playerSelector, selectPlayerAudiofile, selectPlayerPlaybackState } from '../player';
 import { createStore } from 'redux';
 
 import { initialState } from '../../reducers/player';
@@ -24,7 +24,7 @@ describe('player selector', () => {
       }
     };
 
-    expect(getPlayerAudiofile(exampleState)).toMatchObject(audiofileMock);
+    expect(selectPlayerAudiofile(exampleState)).toMatchObject(audiofileMock);
   });
 
   it('should return the player playback state', () => {
@@ -36,6 +36,6 @@ describe('player selector', () => {
       }
     };
 
-    expect(getPlayerPlaybackState(exampleState)).toBe('playing');
+    expect(selectPlayerPlaybackState(exampleState)).toBe('playing');
   });
 });

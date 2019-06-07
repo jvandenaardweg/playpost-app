@@ -9,8 +9,8 @@ import { RootState } from '../../reducers';
 
 import { getLanguages } from '../../reducers/voices';
 
-import { getLanguagesWithActiveVoices } from '../../selectors/voices';
-import { getUserSelectedVoices } from '../../selectors/user';
+import { selectLanguagesWithActiveVoices } from '../../selectors/voices';
+import { selectUserSelectedVoices } from '../../selectors/user';
 
 import * as Icon from '../../components/Icon';
 
@@ -93,13 +93,13 @@ interface DispatchProps {
 }
 
 interface StateProps {
-  readonly languagesWithActiveVoices: ReturnType<typeof getLanguagesWithActiveVoices>;
-  readonly userSelectedVoices: ReturnType<typeof getUserSelectedVoices>;
+  readonly languagesWithActiveVoices: ReturnType<typeof selectLanguagesWithActiveVoices>;
+  readonly userSelectedVoices: ReturnType<typeof selectUserSelectedVoices>;
 }
 
 const mapStateToProps = (state: RootState) => ({
-  languagesWithActiveVoices: getLanguagesWithActiveVoices(state),
-  userSelectedVoices: getUserSelectedVoices(state)
+  languagesWithActiveVoices: selectLanguagesWithActiveVoices(state),
+  userSelectedVoices: selectUserSelectedVoices(state)
 });
 
 const mapDispatchToProps = {

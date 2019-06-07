@@ -10,7 +10,7 @@ import { UpdatePasswordForm } from '../../components/UpdatePasswordForm';
 import { RootState } from '../../reducers';
 import { updateUserPassword } from '../../reducers/user';
 
-import { getUserError } from '../../selectors/user';
+import { selectUserError } from '../../selectors/user';
 
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
@@ -112,7 +112,7 @@ export class UpdatePasswordScreenContainer extends React.PureComponent<Props, St
 }
 
 interface StateProps {
-  userError: ReturnType<typeof getUserError>;
+  userError: ReturnType<typeof selectUserError>;
 }
 
 interface DispatchProps {
@@ -120,7 +120,7 @@ interface DispatchProps {
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
-  userError: getUserError(state)
+  userError: selectUserError(state)
 });
 
 const mapDispatchToProps = {

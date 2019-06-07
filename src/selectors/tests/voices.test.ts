@@ -1,4 +1,4 @@
-import { voicesSelector, getLanguages, getLanguagesWithActiveVoices, getDownloadedVoicePreviews, getAvailableVoicesByLanguageName, getDefaultVoicesByLanguageName } from '../voices';
+import { voicesSelector, selectLanguages, selectLanguagesWithActiveVoices, selectDownloadedVoicePreviews, selectAvailableVoicesByLanguageName, selectDefaultVoicesByLanguageName } from '../voices';
 import { createStore } from 'redux';
 
 import { initialState } from '../../reducers/voices';
@@ -26,7 +26,7 @@ describe('voices selector', () => {
       }
     };
 
-    expect(getLanguages(exampleState)).toMatchObject(languagesMock);
+    expect(selectLanguages(exampleState)).toMatchObject(languagesMock);
   });
 
   it('should return the languages with active voices', () => {
@@ -45,7 +45,7 @@ describe('voices selector', () => {
       };
     });
 
-    expect(getLanguagesWithActiveVoices(exampleState)).toMatchObject(expected);
+    expect(selectLanguagesWithActiveVoices(exampleState)).toMatchObject(expected);
   });
 
   it('should return the downloaded voice preview voices', () => {
@@ -57,7 +57,7 @@ describe('voices selector', () => {
       }
     };
 
-    expect(getDownloadedVoicePreviews(exampleState)).toMatchObject(voicesMock);
+    expect(selectDownloadedVoicePreviews(exampleState)).toMatchObject(voicesMock);
   });
 
   it('should return the available voices by language name', () => {
@@ -70,12 +70,12 @@ describe('voices selector', () => {
     };
 
     const languageName = 'English';
-    const languages = getLanguagesWithActiveVoices(exampleState);
+    const languages = selectLanguagesWithActiveVoices(exampleState);
 
     const language = languages.find(language => language.name === languageName);
     const expected = language && language.voices;
 
-    expect(getAvailableVoicesByLanguageName(exampleState, { languageName })).toEqual(expected);
+    expect(selectAvailableVoicesByLanguageName(exampleState, { languageName })).toEqual(expected);
   });
 
   it('should return the default voice by language name', () => {
@@ -88,11 +88,11 @@ describe('voices selector', () => {
     };
 
     const languageName = 'English';
-    const languages = getLanguagesWithActiveVoices(exampleState);
+    const languages = selectLanguagesWithActiveVoices(exampleState);
 
     const language = languages.find(language => language.name === languageName);
     const expected = language && language.voices && language.voices.filter(voice => !!voice.isLanguageDefault);
 
-    expect(getDefaultVoicesByLanguageName(exampleState, { languageName })).toEqual(expected);
+    expect(selectDefaultVoicesByLanguageName(exampleState, { languageName })).toEqual(expected);
   });
 });

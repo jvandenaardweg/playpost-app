@@ -12,15 +12,15 @@ import { NetworkContext } from '../../contexts/NetworkProvider';
 
 import { getPlaylist, reOrderPlaylistItem } from '../../reducers/playlist';
 import { getLanguages } from '../../reducers/voices';
-import { getSubscriptions } from '../../reducers/subscriptions';
+import { getActiveSubscriptions } from '../../reducers/subscriptions';
 import { getUser } from '../../reducers/user';
 
-import { getNewPlaylistItems, getArchivedPlaylistItems, getFavoritedPlaylistItems } from '../../selectors/playlist';
+import { selectNewPlaylistItems, selectArchivedPlaylistItems, selectFavoritedPlaylistItems } from '../../selectors/playlist';
 
 import isEqual from 'react-fast-compare';
 import { RootState } from '../../reducers';
 
-import { getDownloadedAudiofiles } from '../../selectors/audiofiles';
+import { selectDownloadedAudiofiles } from '../../selectors/audiofiles';
 import { ArticleSeperator } from '../Article/ArticleSeperator';
 
 interface State {
@@ -99,7 +99,7 @@ class PlaylistsContainerComponent extends React.Component<Props, State> {
     const promises = await Promise.all([
       this.props.getUser(),
       this.props.getLanguages(),
-      this.props.getSubscriptions()
+      this.props.getActiveSubscriptions()
     ]);
 
     return promises;
@@ -328,31 +328,31 @@ class PlaylistsContainerComponent extends React.Component<Props, State> {
 }
 
 interface StateProps {
-  newPlaylistItems: ReturnType<typeof getNewPlaylistItems>;
-  archivedPlaylistItems: ReturnType<typeof getArchivedPlaylistItems>;
-  favoritedPlaylistItems: ReturnType<typeof getFavoritedPlaylistItems>;
-  downloadedAudiofiles: ReturnType<typeof getDownloadedAudiofiles>;
+  newPlaylistItems: ReturnType<typeof selectNewPlaylistItems>;
+  archivedPlaylistItems: ReturnType<typeof selectArchivedPlaylistItems>;
+  favoritedPlaylistItems: ReturnType<typeof selectFavoritedPlaylistItems>;
+  downloadedAudiofiles: ReturnType<typeof selectDownloadedAudiofiles>;
 }
 
 interface DispatchProps {
   getPlaylist: typeof getPlaylist;
   getLanguages: typeof getLanguages;
-  getSubscriptions: typeof getSubscriptions;
+  getActiveSubscriptions: typeof getActiveSubscriptions;
   getUser: typeof getUser;
   reOrderPlaylistItem: typeof reOrderPlaylistItem;
 }
 
 const mapStateToProps = (state: RootState) => ({
-  newPlaylistItems: getNewPlaylistItems(state),
-  archivedPlaylistItems: getArchivedPlaylistItems(state),
-  favoritedPlaylistItems: getFavoritedPlaylistItems(state),
-  downloadedAudiofiles: getDownloadedAudiofiles(state)
+  newPlaylistItems: selectNewPlaylistItems(state),
+  archivedPlaylistItems: selectArchivedPlaylistItems(state),
+  favoritedPlaylistItems: selectFavoritedPlaylistItems(state),
+  downloadedAudiofiles: selectDownloadedAudiofiles(state)
 });
 
 const mapDispatchToProps = {
   getPlaylist,
   getLanguages,
-  getSubscriptions,
+  getActiveSubscriptions,
   getUser,
   reOrderPlaylistItem
 };

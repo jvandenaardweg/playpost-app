@@ -6,7 +6,7 @@ import validUrl from 'valid-url';
 
 import { addArticleToPlaylistByUrl } from '../../reducers/playlist';
 
-import { getPlaylistError } from '../../selectors/playlist';
+import { selectPlaylistError } from '../../selectors/playlist';
 
 import styles from './styles';
 import { RootState } from '../../reducers';
@@ -118,7 +118,7 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
 }
 
 interface StateProps {
-  playlistError: ReturnType<typeof getPlaylistError>;
+  playlistError: ReturnType<typeof selectPlaylistError>;
 }
 
 interface DispatchProps {
@@ -126,7 +126,7 @@ interface DispatchProps {
 }
 
 const mapStateToProps = (state: RootState) => ({
-  playlistError: getPlaylistError(state)
+  playlistError: selectPlaylistError(state)
 });
 
 const mapDispatchToProps = {

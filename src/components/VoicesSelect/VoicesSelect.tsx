@@ -15,15 +15,15 @@ import { setTrack } from '../../reducers/player';
 import { setDownloadedVoice } from '../../reducers/voices';
 import { saveSelectedVoice, getUser } from '../../reducers/user';
 
-import { getPlayerPlaybackState, getPlayerTrack } from '../../selectors/player';
-import { getDownloadedVoicePreviews, getAvailableVoicesByLanguageName, getDefaultVoicesByLanguageName } from '../../selectors/voices';
+import { selectPlayerPlaybackState, selectPlayerTrack } from '../../selectors/player';
+import { selectDownloadedVoicePreviews, selectAvailableVoicesByLanguageName, selectDefaultVoicesByLanguageName } from '../../selectors/voices';
 
 import styles from './styles';
 import { ALERT_SETTINGS_VOICE_CHANGE, ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_LANGUAGES_VOICE_SAVE, ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE } from '../../constants/messages';
 
 import * as Icon from '../../components/Icon';
 import colors from '../../constants/colors';
-import { getUserSelectedVoiceByLanguageName } from '../../selectors/user';
+import { selectUserSelectedVoiceByLanguageName } from '../../selectors/user';
 
 interface IProps {
   onPressUpgrade(): void;
@@ -325,21 +325,21 @@ interface DispatchProps {
 }
 
 interface StateProps {
-  readonly playbackState: ReturnType<typeof getPlayerPlaybackState>;
-  readonly playerTrack: ReturnType<typeof getPlayerTrack>;
-  readonly downloadedVoices: ReturnType<typeof getDownloadedVoicePreviews>;
-  readonly availableVoicesByLanguageName: ReturnType<typeof getAvailableVoicesByLanguageName>;
-  readonly defaultVoicesByLanguageName: ReturnType<typeof getDefaultVoicesByLanguageName>;
-  readonly userSelectedVoiceByLanguageName: ReturnType<typeof getUserSelectedVoiceByLanguageName>;
+  readonly playbackState: ReturnType<typeof selectPlayerPlaybackState>;
+  readonly playerTrack: ReturnType<typeof selectPlayerTrack>;
+  readonly downloadedVoices: ReturnType<typeof selectDownloadedVoicePreviews>;
+  readonly availableVoicesByLanguageName: ReturnType<typeof selectAvailableVoicesByLanguageName>;
+  readonly defaultVoicesByLanguageName: ReturnType<typeof selectDefaultVoicesByLanguageName>;
+  readonly userSelectedVoiceByLanguageName: ReturnType<typeof selectUserSelectedVoiceByLanguageName>;
 }
 
 const mapStateToProps = (state: RootState, props: Props) => ({
-  playbackState: getPlayerPlaybackState(state),
-  playerTrack: getPlayerTrack(state),
-  downloadedVoices: getDownloadedVoicePreviews(state),
-  availableVoicesByLanguageName: getAvailableVoicesByLanguageName(state, props), // does not memoize correctly? // https://github.com/reduxjs/reselect#containersvisibletodolistjs-2
-  defaultVoicesByLanguageName: getDefaultVoicesByLanguageName(state, props),
-  userSelectedVoiceByLanguageName: getUserSelectedVoiceByLanguageName(state, props)
+  playbackState: selectPlayerPlaybackState(state),
+  playerTrack: selectPlayerTrack(state),
+  downloadedVoices: selectDownloadedVoicePreviews(state),
+  availableVoicesByLanguageName: selectAvailableVoicesByLanguageName(state, props), // does not memoize correctly? // https://github.com/reduxjs/reselect#containersvisibletodolistjs-2
+  defaultVoicesByLanguageName: selectDefaultVoicesByLanguageName(state, props),
+  userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state, props)
 });
 
 const mapDispatchToProps = {
