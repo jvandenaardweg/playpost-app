@@ -5,23 +5,23 @@ import { connect } from 'react-redux';
 import { withNavigation, NavigationInjectedProps } from 'react-navigation';
 import isEqual from 'react-fast-compare';
 
-import { LOCAL_CACHE_AUDIOFILES_PATH } from '../../constants/files';
-import { ALERT_PLAYLIST_UNFAVORITE_ARTICLE_FAIL, ALERT_PLAYLIST_UNARCHIVE_ARTICLE_FAIL, ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL, ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL, ALERT_ARTICLE_AUDIOFILE_CREATE_FAIL, ALERT_ARTICLE_PLAY_INTERNET_REQUIRED, ALERT_ARTICLE_AUDIOFILE_DOWNLOAD_FAIL, ALERT_ARTICLE_PLAY_FAIL, ALERT_ARTICLE_DOWNLOAD_FAIL, ALERT_PLAYLIST_UPDATE_FAIL, ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL, ALERT_ARTICLE_LANGUAGE_UNSUPPORTED } from '../../constants/messages';
+import { LOCAL_CACHE_AUDIOFILES_PATH } from '../constants/files';
+import { ALERT_PLAYLIST_UNFAVORITE_ARTICLE_FAIL, ALERT_PLAYLIST_UNARCHIVE_ARTICLE_FAIL, ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL, ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL, ALERT_ARTICLE_AUDIOFILE_CREATE_FAIL, ALERT_ARTICLE_PLAY_INTERNET_REQUIRED, ALERT_ARTICLE_AUDIOFILE_DOWNLOAD_FAIL, ALERT_ARTICLE_PLAY_FAIL, ALERT_ARTICLE_DOWNLOAD_FAIL, ALERT_PLAYLIST_UPDATE_FAIL, ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL, ALERT_ARTICLE_LANGUAGE_UNSUPPORTED } from '../constants/messages';
 
-import * as cache from '../../cache';
+import * as cache from '../cache';
 
-import { NetworkContext } from '../../contexts/NetworkProvider';
+import { NetworkContext } from '../contexts/NetworkProvider';
 
-import { Article } from './Article';
-import { AppleStyleSwipeableRow } from '../../components/SwipeableRow/AppleStyleSwipeableRow';
-import { ArticleEmptyProcessing, ArticleEmptyFailed } from './ArticleEmpty';
+import { Article } from '../components/Article/Article';
+import { AppleStyleSwipeableRow } from '../components/SwipeableRow/AppleStyleSwipeableRow';
+import { ArticleEmptyProcessing, ArticleEmptyFailed } from '../components/Article/ArticleEmpty';
 
-import { RootState } from '../../reducers';
-import { getPlaylist, removeArticleFromPlaylist, archivePlaylistItem, favoritePlaylistItem, unArchivePlaylistItem, unFavoritePlaylistItem } from '../../reducers/playlist';
-import { setTrack, createAudiofile, resetPlaybackStatus } from '../../reducers/player';
-import { setDownloadedAudiofile } from '../../reducers/audiofiles';
+import { RootState } from '../reducers';
+import { getPlaylist, removeArticleFromPlaylist, archivePlaylistItem, favoritePlaylistItem, unArchivePlaylistItem, unFavoritePlaylistItem } from '../reducers/playlist';
+import { setTrack, createAudiofile, resetPlaybackStatus } from '../reducers/player';
+import { setDownloadedAudiofile } from '../reducers/audiofiles';
 
-import { selectPlayerTrack, selectPlayerPlaybackState } from '../../selectors/player';
+import { selectPlayerTrack, selectPlayerPlaybackState } from '../selectors/player';
 
 interface State {
   isLoading: boolean;
@@ -306,7 +306,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
             title: article.title || '',
             url: localAudiofilePath,
             duration: audiofile.length,
-            artwork: require('../../assets/images/logo-1024.png'),
+            artwork: require('../assets/images/logo-1024.png'),
             // contentType
             contentType: 'audio/mpeg',
             key: audiofile.id

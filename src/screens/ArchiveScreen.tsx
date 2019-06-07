@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
 
-import { PlaylistsContainer } from '../components/Playlists';
+import { PlaylistContainer } from '../containers/PlaylistContainer';
 import { AppBackground } from '../components/AppBackground';
 import { ButtonUpgrade } from '../components/Header/ButtonUpgrade';
 
@@ -27,7 +27,7 @@ export class ArchiveScreen extends React.PureComponent<Props> {
   render() {
     return (
       <AppBackground>
-        <PlaylistsContainer isArchiveScreen />
+        <PlaylistContainer isArchiveScreen />
       </AppBackground>
     );
   }

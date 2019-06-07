@@ -5,23 +5,23 @@ import { connect } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 import DraggableFlatList from 'react-native-draggable-flatlist';
 
-import { CenterLoadingIndicator } from '../../components/CenterLoadingIndicator';
-import { EmptyState } from '../../components/EmptyState';
-import { ArticleContainer } from '../../components/Article/ArticleContainer';
-import { NetworkContext } from '../../contexts/NetworkProvider';
+import { CenterLoadingIndicator } from '../components/CenterLoadingIndicator';
+import { EmptyState } from '../components/EmptyState';
+import { ArticleContainer } from './ArticleContainer';
+import { NetworkContext } from '../contexts/NetworkProvider';
 
-import { getPlaylist, reOrderPlaylistItem } from '../../reducers/playlist';
-import { getLanguages } from '../../reducers/voices';
-import { getActiveSubscriptions } from '../../reducers/subscriptions';
-import { getUser } from '../../reducers/user';
+import { getPlaylist, reOrderPlaylistItem } from '../reducers/playlist';
+import { getLanguages } from '../reducers/voices';
+import { getActiveSubscriptions } from '../reducers/subscriptions';
+import { getUser } from '../reducers/user';
 
-import { selectNewPlaylistItems, selectArchivedPlaylistItems, selectFavoritedPlaylistItems } from '../../selectors/playlist';
+import { selectNewPlaylistItems, selectArchivedPlaylistItems, selectFavoritedPlaylistItems } from '../selectors/playlist';
 
 import isEqual from 'react-fast-compare';
-import { RootState } from '../../reducers';
+import { RootState } from '../reducers';
 
-import { selectDownloadedAudiofiles } from '../../selectors/audiofiles';
-import { ArticleSeperator } from '../Article/ArticleSeperator';
+import { selectDownloadedAudiofiles } from '../selectors/audiofiles';
+import { ArticleSeperator } from '../components/Article/ArticleSeperator';
 
 interface State {
   isLoading: boolean;
@@ -39,7 +39,7 @@ interface IProps {
 
 type Props = IProps & StateProps & DispatchProps;
 
-class PlaylistsContainerComponent extends React.Component<Props, State> {
+class PlaylistContainerComponent extends React.Component<Props, State> {
   state = {
     isLoading: false, // Show loading upon mount, because we fetch the playlist of the user
     isRefreshing: false,
@@ -236,7 +236,7 @@ class PlaylistsContainerComponent extends React.Component<Props, State> {
       if (showHelpVideo) {
         return (
           <EmptyState
-            localVideo={require('../../assets/video/help/enabling-sharing/enable-sharing-square-v2.m4v')}
+            localVideo={require('../assets/video/help/enabling-sharing/enable-sharing-square-v2.m4v')}
             actionButtonLabel="Hide instructions"
             actionButtonOnPress={() => this.handleOnHideVideo()}
           />
@@ -357,7 +357,7 @@ const mapDispatchToProps = {
   reOrderPlaylistItem
 };
 
-export const PlaylistsContainer = connect(
+export const PlaylistContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(PlaylistsContainerComponent);
+)(PlaylistContainerComponent);
