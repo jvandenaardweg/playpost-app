@@ -122,6 +122,7 @@ export class UpgradeContainer extends React.PureComponent<Props, State> {
 
         // Validate the receipt on our server
         const result = await this.validateReceiptOnServer(latestReceipt, SUBSCRIPTION_PRODUCT_ID);
+        console.log(result);
 
         // TODO: set user as premium in app
 
@@ -189,6 +190,7 @@ export class UpgradeContainer extends React.PureComponent<Props, State> {
           // TODO: validate on API
           // TODO: use transaction in here
           const latestReceipt = await this.validateReceiptOnServer(purchase.transactionReceipt, subscriptionProductId);
+          console.log(latestReceipt);
 
           // TODO: add purchase check on app load
           return this.setState({ purchase, isLoadingBuySubscription: false }, () => resolve(true));
