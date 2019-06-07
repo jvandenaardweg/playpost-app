@@ -19,7 +19,7 @@ exports[`Icon rendering should render Feather icon 1`] = `
     ]
   }
 >
-  
+  
 </Text>
 `;
 

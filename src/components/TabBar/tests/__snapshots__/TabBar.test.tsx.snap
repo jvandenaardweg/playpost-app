@@ -19,6 +19,6 @@ exports[`TabBarIcon rendering should render correctly 1`] = `
     ]
   }
 >
-  
+  
 </Text>
 `;

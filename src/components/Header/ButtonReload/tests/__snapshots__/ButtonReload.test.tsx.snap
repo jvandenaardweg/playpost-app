@@ -39,7 +39,7 @@ exports[`ButtonReload rendering should render correctly 1`] = `
       ]
     }
   >
-    
+    
   </Text>
 </View>
 `;
