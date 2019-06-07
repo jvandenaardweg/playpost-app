@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Modal, Alert, NativeScrollEvent } from 'react-native';
+import { View, Modal } from 'react-native';
 import { connect } from 'react-redux';
 import TrackPlayer from 'react-native-track-player';
 
@@ -142,10 +142,6 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
 
   handleOnShowModal = () => this.setState({ showModal: true });
 
-  handleOnPressNext = () => Alert.alert('Should play next article.');
-
-  handleOnPressPrevious = () => Alert.alert('Should play previous article.');
-
   handleOnProgressChange = async (percentage: number) => {
     const trackId = await TrackPlayer.getCurrentTrack();
     const track = await TrackPlayer.getTrack(trackId);
@@ -154,16 +150,6 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
       await TrackPlayer.seekTo(seekToSeconds);
     }
   }
-
-  handleOnPressFavorite = () => {
-    const articleId = (this.article) ? this.article.id : '';
-    Alert.alert('Should favorite', articleId);
-  }
-
-  handleOnScroll = (event: { nativeEvent: NativeScrollEvent }) => {
-    this.setState({ scrolled: event.nativeEvent.contentOffset.y });
-  }
-
   get article() {
     const { track, articles } = this.props;
 
@@ -198,26 +184,20 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
         isPlaying={isPlaying}
         onPressPlay={this.handleOnPressPlay}
         onPressShowModal={this.handleOnShowModal}
-        onPressFavorite={this.handleOnPressFavorite}
       />
     );
   }
 
   renderAudioPlayerLarge() {
-    const { isLoading, isPlaying, scrolled } = this.state;
+    const { isLoading, isPlaying } = this.state;
 
-    // TODO: make sure "scrolled" is changed when we change tracks
     return (
       <AudioPlayerLarge
         article={this.article}
         isLoading={isLoading}
         isPlaying={isPlaying}
-        scrolled={scrolled}
         onPressPlay={this.handleOnPressPlay}
-        onPressNext={this.handleOnPressNext}
-        onPressPrevious={this.handleOnPressPrevious}
         onPressClose={this.handleOnPressClose}
-        onScroll={this.handleOnScroll}
         onProgressChange={this.handleOnProgressChange}
       />
     );

@@ -1,21 +1,15 @@
 import React from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
+import TrackPlayer from 'react-native-track-player';
+
 import styles from './styles';
 
-// import * as Icon from '../../../components/Icon';
-
-import { AudioPlayerProgressBar } from '../AudioPlayerProgressBar';
-
+import { AudioPlayerSmallProgressBar } from '../AudioPlayerSmallProgressBar';
 import { PlayPauseControl } from '../PlayPauseControl';
-
-import TrackPlayer from 'react-native-track-player';
-// import colors from '../../../constants/colors';
-// import { defaultHitslop } from '../../../constants/buttons';
 
 interface Props {
   onPressShowModal(): void;
   onPressPlay(): void;
-  onPressFavorite(): void;
   isPlaying: boolean;
   isLoading: boolean;
   track: TrackPlayer.Track;
@@ -24,22 +18,12 @@ interface Props {
 export const AudioPlayerSmall: React.FC<Props> = React.memo(({
   onPressShowModal,
   onPressPlay,
-  onPressFavorite,
   isPlaying,
   isLoading,
   track: { title, artist, album }
 }) => (
   <View style={styles.wrapper}>
     <View style={styles.container}>
-      {/* <View style={styles.leftIcon}>
-        <TouchableHighlight onPress={onPressFavorite} hitSlop={defaultHitslop}>
-          <Icon.FontAwesome5
-            name="heart"
-            size={18}
-            color={colors.white}
-          />
-        </TouchableHighlight>
-      </View> */}
       <TouchableHighlight style={styles.trackInfoButton} onPress={onPressShowModal}>
         <View style={styles.trackInfo}>
           <View>
@@ -58,7 +42,7 @@ export const AudioPlayerSmall: React.FC<Props> = React.memo(({
       </View>
     </View>
     <View style={styles.progressBarContainer} pointerEvents="none">
-      <AudioPlayerProgressBar color="rgba(255, 255, 255, 0.15)" backgroundColor="transparent" />
+      <AudioPlayerSmallProgressBar />
     </View>
   </View>
 ));

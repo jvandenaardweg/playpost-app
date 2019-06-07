@@ -4,7 +4,7 @@ import { View, Animated } from 'react-native';
 import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
 import { WebView } from 'react-native-webview';
 
-import { ButtonReload } from '../components/Header';
+import { ButtonReload } from '../components/ButtonReload';
 
 import colors from '../constants/colors';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ActivityIndicator, TouchableOpacity } from 'react-native';
 
-import * as Icon from '../../components/Icon';
+import * as Icon from '../Icon';
 
 import styles from './styles';
 
@@ -13,7 +13,7 @@ interface Props {
   onPress(): void;
 }
 
-export const VoicePreviewButton: React.FC<Props> = React.memo(({
+export const ButtonVoicePreview: React.FC<Props> = React.memo(({
   isLoading,
   isPlaying,
   isActive,

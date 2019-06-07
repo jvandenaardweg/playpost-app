@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, RenderAPI } from 'react-native-testing-library';
 
-import { ButtonUpgrade } from '../ButtonUpgrade';
+import { ButtonUpgrade } from '../index';
 
 describe('ButtonUpgrade', () => {
 

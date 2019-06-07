@@ -1,15 +1,15 @@
 import React from 'react';
 import { render, RenderAPI } from 'react-native-testing-library';
 
-import { VoicePreviewButton } from '../VoicePreviewButton';
+import { ButtonVoicePreview } from '../ButtonVoicePreview';
 
-describe('VoicePreviewButton', () => {
+describe('ButtonVoicePreview', () => {
 
   describe('rendering', () => {
     let wrapper: RenderAPI;
 
     beforeAll(() => {
-      wrapper = render(<VoicePreviewButton onPress={() => {}} />);
+      wrapper = render(<ButtonVoicePreview onPress={() => {}} />);
     });
 
     it('should render correctly', () => {

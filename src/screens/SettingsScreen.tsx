@@ -9,7 +9,7 @@ import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions, Na
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 import fonts from '../constants/fonts';
 
-import { ButtonUpgrade } from '../components/Header/ButtonUpgrade';
+import { ButtonUpgrade } from '../components/ButtonUpgrade';
 
 import { getUser, deleteUser } from '../reducers/user';
 import { resetAudiofilesState } from '../reducers/audiofiles';

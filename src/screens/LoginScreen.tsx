@@ -15,7 +15,7 @@ import { getAuthToken } from '../reducers/auth';
 
 import { selectAuthError, selectAuthenticationToken } from '../selectors/auth';
 import { RootState } from '../reducers';
-import { ButtonClose } from '../components/Header/ButtonClose';
+import { ButtonClose } from '../components/ButtonClose';
 
 /* tslint:disable no-any */
 interface State {

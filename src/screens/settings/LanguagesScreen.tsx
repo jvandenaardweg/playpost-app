@@ -2,7 +2,7 @@ import React from 'react';
 import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
 import { ScrollView } from 'react-native';
 
-import { ButtonUpgrade } from '../../components/Header/ButtonUpgrade';
+import { ButtonUpgrade } from '../../components/ButtonUpgrade';
 import { LanguagesSelect } from '../../components/LanguagesSelect';
 
 interface Props {

@@ -10,7 +10,7 @@ export const keychainArguments = Platform.select({
 });
 
 import { SignupForm } from '../components/SignupForm';
-import { ButtonClose } from '../components/Header/ButtonClose';
+import { ButtonClose } from '../components/ButtonClose';
 
 import { createUser } from '../reducers/user';
 import { postAuth } from '../reducers/auth';

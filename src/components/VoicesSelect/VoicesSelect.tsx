@@ -8,7 +8,7 @@ import { LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../../constants/files';
 
 import * as cache from '../../cache';
 
-import { VoicePreviewButton } from '../VoicePreviewButton';
+import { ButtonVoicePreview } from '../ButtonVoicePreview';
 import { NetworkContext } from '../../contexts/NetworkProvider';
 import { RootState } from '../../reducers';
 import { setTrack } from '../../reducers/player';
@@ -269,7 +269,7 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
     const isActive = this.isVoiceActiveInPlayer(item.id);
     const isAvailable = !!item.exampleAudioUrl;
 
-    return <VoicePreviewButton isPlaying={isPlaying} isLoading={isLoading} isActive={isActive} isAvailable={isAvailable} onPress={() => this.handleOnPreviewPress(title, label, item)} />;
+    return <ButtonVoicePreview isPlaying={isPlaying} isLoading={isLoading} isActive={isActive} isAvailable={isAvailable} onPress={() => this.handleOnPreviewPress(title, label, item)} />;
   }
 
   renderItem = ({ item }: { item: Api.Voice}) => {

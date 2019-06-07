@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`VoicePreviewButton rendering should render correctly 1`] = `
+exports[`ButtonVoicePreview rendering should render correctly 1`] = `
 <View
   accessible={true}
   hitSlop={

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationScreenProp, NavigationRoute, NavigationScreenOptions } from 'react-navigation';
 import { ScrollView } from 'react-native';
-import { ButtonClose } from '../components/Header/ButtonClose';
+import { ButtonClose } from '../components/ButtonClose';
 import { Upgrade } from '../components/Upgrade';
 import { URL_FEEDBACK } from '../constants/urls';
 

@@ -5,14 +5,6 @@ import fonts from '../../constants/fonts';
 
 export default StyleSheet.create({
   container: {
-    height: '100%',
-    width: '100%',
-    flexDirection: 'row'
-  },
-  progress: {
-    height: '100%'
-  },
-  containerInteractive: {
     marginBottom: 8
   },
   sliderContainer: {

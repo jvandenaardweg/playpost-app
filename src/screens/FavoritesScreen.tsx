@@ -3,7 +3,7 @@ import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } f
 
 import { PlaylistContainer } from '../containers/PlaylistContainer';
 import { AppBackground } from '../components/AppBackground';
-import { ButtonUpgrade } from '../components/Header/ButtonUpgrade';
+import { ButtonUpgrade } from '../components/ButtonUpgrade';
 
 interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;
