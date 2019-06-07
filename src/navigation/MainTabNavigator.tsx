@@ -1,7 +1,8 @@
 import React from 'react';
 import { createStackNavigator, createBottomTabNavigator, StackNavigatorConfig, BottomTabNavigatorConfig, BottomTabBarProps } from 'react-navigation';
 
-import { TabBar, TabBarIcon } from '../components/TabBar';
+import { TabBar } from '../components/TabBar';
+import { TabBarIcon } from '../components/TabBarIcon';
 
 import { PlaylistScreen } from '../screens/PlaylistScreen';
 import { ArchiveScreen } from '../screens/ArchiveScreen';

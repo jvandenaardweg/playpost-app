@@ -1,0 +1,210 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArticleEmpty ArticleEmptyFailed rendering processing should render correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#F1F1F1",
+        "flex": 1,
+        "flexDirection": "row",
+        "padding": 14,
+        "width": "100%",
+      },
+      Object {
+        "backgroundColor": "#E9110B",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "justifyContent": "center",
+        "width": 50,
+      }
+    }
+  >
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": "#ffffff",
+            "fontSize": 34,
+          },
+          undefined,
+          Object {
+            "fontFamily": "FontAwesome5Free-Solid",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {
+            "fontWeight": "900",
+          },
+        ]
+      }
+    >
+      
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "flexShrink": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontSize": 15,
+            "fontWeight": "600",
+            "lineHeight": 21,
+            "marginBottom": 10,
+          },
+          Object {
+            "color": "#ffffff",
+          },
+        ]
+      }
+    >
+      Failed to process an article
+    </Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "marginBottom": 10,
+            "opacity": 0.9,
+          },
+          Object {
+            "color": "#ffffff",
+          },
+        ]
+      }
+    >
+      Please remove the article from your playlist and try again.
+    </Text>
+    <Text
+      onPress={[Function]}
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "marginBottom": 10,
+            "opacity": 0.9,
+          },
+          Object {
+            "color": "#ffffff",
+          },
+          Object {
+            "textDecorationLine": "underline",
+          },
+        ]
+      }
+    >
+      https://www.google.nl
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`ArticleEmpty ArticleEmptyProcessing rendering processing should render correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#F1F1F1",
+      "flex": 1,
+      "flexDirection": "row",
+      "padding": 14,
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "justifyContent": "center",
+        "width": 50,
+      }
+    }
+  >
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontSize": 34,
+          },
+          undefined,
+          Object {
+            "fontFamily": "FontAwesome5Free-Solid",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {
+            "fontWeight": "900",
+          },
+        ]
+      }
+    >
+      
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "flexShrink": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#000000",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "lineHeight": 21,
+          "marginBottom": 10,
+        }
+      }
+    >
+      Processing article...
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "#000000",
+          "marginBottom": 10,
+          "opacity": 0.9,
+        }
+      }
+    >
+      The article from "
+      www.google.nl
+      " is still being processed.
+    </Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "marginBottom": 10,
+            "opacity": 0.9,
+          },
+          Object {
+            "textDecorationLine": "underline",
+          },
+        ]
+      }
+    >
+      Check for update
+    </Text>
+  </View>
+</View>
+`;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, RenderAPI } from 'react-native-testing-library';
 
-import { TabBarIcon } from '../TabBarIcon';
+import { TabBarIcon } from '../index';
 
 describe('TabBarIcon', () => {
 
