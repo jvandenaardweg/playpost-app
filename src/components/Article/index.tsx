@@ -113,7 +113,9 @@ export const Article: React.FC<Props> = React.memo(({
   </View>
 ));
 
-const SourceText = (props: { authorName: Props['authorName'], sourceName: Props['sourceName'], url: Props['url']}) => {
+type SourceTextProps =  { authorName: Props['authorName'], sourceName: Props['sourceName'], url: Props['url']}
+
+const SourceText: React.FC<SourceTextProps> = React.memo((props: SourceTextProps) => {
   let text;
 
   if (props.authorName && props.sourceName) {
@@ -131,9 +133,14 @@ const SourceText = (props: { authorName: Props['authorName'], sourceName: Props[
       {text}
     </Text>
   );
+});
+
+type DurationProps =  {
+  listenTimeInSeconds?: number,
+  readingTime?: number | null
 };
 
-export const Duration = (props: { listenTimeInSeconds?: number, readingTime?: number | null }) => {
+const Duration: React.FC<DurationProps> = React.memo((props: DurationProps) => {
   // During our tests, it seems that it takes about 10-20% longer to listen to an article, then to read one
   // So we manually adjust the readingTime
   const readingTimeToListenTimeMargin = 1.10;
@@ -147,9 +154,15 @@ export const Duration = (props: { listenTimeInSeconds?: number, readingTime?: nu
   }
 
   return <Text style={styles.duration} testID="article-duration">? min.</Text>;
+});
+
+type PlayIconProps = {
+  isPlaying?: boolean,
+  isLoading?: boolean,
+  isActive?: boolean
 };
 
-export const PlayIcon = (props: { isPlaying?: boolean, isLoading?: boolean, isActive?: boolean }) => (
+const PlayIcon: React.FC<PlayIconProps> = React.memo((props: PlayIconProps) => (
   <View
     style={[styles.controlButton, (props.isPlaying || props.isActive) ? styles.controlButtonActive : null]}
     testID="article-play-button">
@@ -157,4 +170,4 @@ export const PlayIcon = (props: { isPlaying?: boolean, isLoading?: boolean, isAc
     {!props.isLoading && !props.isPlaying && <Icon.FontAwesome5 name="play" size={11} color={(props.isPlaying || props.isActive) ? '#fff' : '#000'} testID="article-icon-play" style={{ marginLeft: 2 }} />}
     {!props.isLoading && props.isPlaying && <Icon.FontAwesome5 name="pause" size={11} color={(props.isPlaying || props.isActive) ? '#fff' : '#000'} testID="article-icon-pause" />}
   </View>
-);
+));
