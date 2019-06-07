@@ -8,6 +8,39 @@ declare namespace Api {
     token: string;
   }
 
+  export interface InAppSubscription {
+    id: string;
+    productId: string;
+    description: string;
+    price: number;
+    currency: string;
+    duration: string;
+    service: string;
+    isActive: boolean;
+    createdAt: Date<string>;
+    updatedAt: Date<string>;
+  }
+
+  export interface ReceiptValidationResponse {
+    id: string;
+    startedAt: Date<string>;
+    endedAt: Date<string> | null;
+    latestTransactionId: string | null;
+    originalTransactionId: string;
+    latestReceipt: string;
+    isTrial: boolean;
+    isCanceled: boolean | null;
+    isExpired: boolean | null;
+    status: string;
+    environment: string;
+    renewedAt: Date<string> | null;
+    canceledAt: Date<string> | null;
+    createdAt: Date<string>;
+    updatedAt: Date<string>;
+    inAppSubscription: InAppSubscription;
+  }
+
+
   export interface Subscription {
     id: string;
     productId: string;
