@@ -26,6 +26,9 @@ export const SAVE_SELECTED_VOICE = 'user/SAVE_SELECTED_VOICE';
 export const SAVE_SELECTED_VOICE_SUCCESS = 'user/SAVE_SELECTED_VOICE_SUCCESS';
 export const SAVE_SELECTED_VOICE_FAIL = 'user/SAVE_SELECTED_VOICE_FAIL';
 
+export const SET_USER_PREMIUM = 'user/SET_USER_PREMIUM';
+export const RESET_USER_PREMIUM = 'user/RESET_USER_PREMIUM';
+
 export const RESET_USER_STATE = 'user/RESET_USER_STATE';
 export const RESET_USER_ERROR = 'user/RESET_USER_ERROR';
 
@@ -36,6 +39,7 @@ export type UserState = Readonly<{
   isLoadingUpdateEmail: boolean;
   isLoadingSaveSelectedVoice: boolean;
   details: Api.User | null;
+  isPremium: boolean;
   error: string;
 }>;
 
@@ -46,6 +50,7 @@ export const initialState: UserState = {
   isLoadingUpdateEmail: false,
   isLoadingSaveSelectedVoice: false,
   details: null,
+  isPremium: false,
   error: ''
 };
 
@@ -277,6 +282,18 @@ export function userReducer(state = initialState, action: any): UserState {
         ...state,
         isLoadingSaveSelectedVoice: false,
         error: saveSelectedVoiceFailMessage
+      };
+
+    case SET_USER_PREMIUM:
+      return {
+        ...state,
+        isPremium: true
+      };
+
+    case RESET_USER_PREMIUM:
+      return {
+        ...state,
+        isPremium: initialState.isPremium
       };
 
     case RESET_USER_ERROR:

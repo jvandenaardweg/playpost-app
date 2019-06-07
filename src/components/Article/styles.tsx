@@ -18,15 +18,6 @@ export default StyleSheet.create({
   isActive: {
     backgroundColor: colors.tintColor
   },
-  seperator: {
-    backgroundColor: colors.articleBackground,
-    paddingLeft: spacing.default,
-    paddingRight: spacing.default
-  },
-  seperatorLine: {
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.borderDefault,
-  },
   sectionBody: {
     flex: 1,
     flexDirection: 'column'

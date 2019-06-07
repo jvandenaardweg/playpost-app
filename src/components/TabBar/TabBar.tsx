@@ -9,7 +9,7 @@ import { View } from 'react-native';
 // @ts-ignore
 import { BottomTabBar, BottomTabBarProps } from 'react-navigation';
 
-import { AudioPlayerContainer } from '../../components/AudioPlayer';
+import { AudioPlayerContainer } from '../../containers/AudioPlayerContainer';
 
 import styles from './styles';
 // import { ErrorMessage } from '../ErrorMessage';

@@ -12,9 +12,9 @@ import * as cache from '../cache';
 
 import { NetworkContext } from '../contexts/NetworkProvider';
 
-import { Article } from '../components/Article/Article';
+import { Article } from '../components/Article';
 import { AppleStyleSwipeableRow } from '../components/SwipeableRow/AppleStyleSwipeableRow';
-import { ArticleEmptyProcessing, ArticleEmptyFailed } from '../components/Article/ArticleEmpty';
+import { ArticleEmptyProcessing, ArticleEmptyFailed } from '../components/ArticleEmpty';
 
 import { RootState } from '../reducers';
 import { getPlaylist, removeArticleFromPlaylist, archivePlaylistItem, favoritePlaylistItem, unArchivePlaylistItem, unFavoritePlaylistItem } from '../reducers/playlist';

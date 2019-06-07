@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
 
-import { ArticleView } from '../components/ArticleView/ArticleView';
+import { ArticleReader } from '../components/ArticleReader';
 
 interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;
@@ -20,7 +20,7 @@ export class FullArticleScreen extends React.PureComponent<Props> {
 
   render() {
     return (
-      <ArticleView article={this.article} />
+      <ArticleReader article={this.article} />
     );
   }
 }

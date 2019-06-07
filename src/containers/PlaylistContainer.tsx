@@ -21,7 +21,7 @@ import isEqual from 'react-fast-compare';
 import { RootState } from '../reducers';
 
 import { selectDownloadedAudiofiles } from '../selectors/audiofiles';
-import { ArticleSeperator } from '../components/Article/ArticleSeperator';
+import { ListSeperator } from '../components/ListSeperator';
 
 interface State {
   isLoading: boolean;
@@ -280,7 +280,7 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
   }
 
   renderSeperatorComponent = () => {
-    return (<ArticleSeperator />);
+    return (<ListSeperator />);
   }
 
   renderItem = (
