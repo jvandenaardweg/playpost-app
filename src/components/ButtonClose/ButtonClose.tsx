@@ -12,7 +12,7 @@ interface Props {
 
 export const ButtonClose: React.FC<Props> = React.memo(({ onPress }) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
+    <TouchableOpacity onPress={onPress} style={styles.container} testID="button-close">
       <Icon.Feather name="x" size={26} color={colors.black} />
     </TouchableOpacity>
   );

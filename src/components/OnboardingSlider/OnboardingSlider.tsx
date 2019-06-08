@@ -58,9 +58,9 @@ class OnboardingSliderComponent extends React.PureComponent<Props> {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.container} testID="onboarding-screen">
         <AppIntroSlider
-          testID="OnboardingScreen-slider"
+          testID="onboarding-slider"
           slides={this.slides}
           renderItem={this.renderItem}
           showPrevButton
@@ -69,8 +69,8 @@ class OnboardingSliderComponent extends React.PureComponent<Props> {
           renderDoneButton={() => null}
         />
         <View style={styles.footerContainer}>
-          <Button title="Create account" onPress={() => this.props.navigation.navigate('Signup')} buttonStyle={styles.signupButtonStyle} titleStyle={styles.signupButtonTitleStyle} />
-          <Button title="I already have an account" type="clear" onPress={() => this.props.navigation.navigate('Login')} titleStyle={styles.loginButtonTitleStyle} />
+          <Button testID="onboarding-button-signup" title="Create account" onPress={() => this.props.navigation.navigate('Signup')} buttonStyle={styles.signupButtonStyle} titleStyle={styles.signupButtonTitleStyle} />
+          <Button testID="onboarding-button-login" title="I already have an account" type="clear" onPress={() => this.props.navigation.navigate('Login')} titleStyle={styles.loginButtonTitleStyle} />
         </View>
       </View>
     );
@@ -89,8 +89,8 @@ const OnboardingSlide = (props: OnboardingSlideProps) => (
     ]}
   >
     <View>
-      <Text testID="OnboardingScreen-title" style={styles.title}>{props.title}</Text>
-      <Text testID="OnboardingScreen-text" style={styles.text}>{props.text}</Text>
+      <Text testID="onboarding-slider-item-title" style={styles.title}>{props.title}</Text>
+      <Text testID="onboarding-slider-item-text" style={styles.text}>{props.text}</Text>
     </View>
   </View>
 );

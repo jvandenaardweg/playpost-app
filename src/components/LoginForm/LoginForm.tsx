@@ -18,7 +18,7 @@ export const LoginForm: React.FC<Props> = React.memo(({
   password,
   isLoading
 }) => (
-  <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+  <KeyboardAvoidingView testID="login-form" style={styles.container} behavior="padding" enabled>
     <ScrollView style={styles.form} contentContainerStyle={styles.formContent}>
 
       <TextInput

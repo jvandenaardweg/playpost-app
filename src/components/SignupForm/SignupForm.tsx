@@ -23,7 +23,7 @@ export const SignupForm: React.FC<Props> = React.memo(({
   passwordValidation,
   isLoading
 }) => (
-  <KeyboardAvoidingView style={styles.container} behavior="padding" keyboardVerticalOffset={100} enabled>
+  <KeyboardAvoidingView testID="signup-form" style={styles.container} behavior="padding" keyboardVerticalOffset={100} enabled>
     <ScrollView style={styles.form} contentContainerStyle={styles.formContent}>
 
       <TextInput

@@ -128,6 +128,18 @@
     ]
   },
   "devDependencies": {
+    "detox": "^12.11.0",
     "npm-check": "^5.9.0"
+  },
+  "detox": {
+    "configurations": {
+      "ios.sim.debug": {
+        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/Playpost.app",
+        "build": "xcodebuild -workspace ios/Playpost.xcworkspace -scheme Playpost -configuration Debug -destination 'platform=iOS Simulator,name=iPhone 7' -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "name": "iPhone X"
+      }
+    },
+    "test-runner": "jest"
   }
 }
