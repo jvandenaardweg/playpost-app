@@ -22,8 +22,8 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
         mavenLocal()
+        google()
         jcenter()
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
@@ -31,11 +31,3 @@ allprojects {
         }
     }
 }
-
-
-// Commenting below fixes error "Cannot add task 'wrapper' as a task with that name already exists."
-//
-// task wrapper(type: Wrapper) {
-//    gradleVersion = '4.7'
-//    distributionUrl = distributionUrl.replace("bin", "all")
-// }
