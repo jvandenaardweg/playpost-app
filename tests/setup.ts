@@ -29,7 +29,8 @@ jest.mock('react-native-track-player', () => ({
   getPosition: jest.fn(),
   getBufferedPosition: jest.fn(),
   getState: jest.fn(),
-  getRate: jest.fn()
+  getRate: jest.fn(),
+  ProgressComponent: jest.fn()
 }));
 
 jest.mock('@react-native-community/netinfo', () => {
