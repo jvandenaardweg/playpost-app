@@ -6,21 +6,21 @@ import { SettingsScreen as SettingsScreenComponent, SettingsData } from 'react-n
 import { connect } from 'react-redux';
 import { NavigationInjectedProps } from 'react-navigation';
 
-import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
-import fonts from '../constants/fonts';
+import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../../constants/files';
+import fonts from '../../constants/fonts';
 
-import { getUser, deleteUser } from '../reducers/user';
-import { resetAudiofilesState } from '../reducers/audiofiles';
-import { resetVoicesState, resetDownloadedVoices } from '../reducers/voices';
+import { getUser, deleteUser } from '../../reducers/user';
+import { resetAudiofilesState } from '../../reducers/audiofiles';
+import { resetVoicesState, resetDownloadedVoices } from '../../reducers/voices';
 
-import { selectUserDetails } from '../selectors/user';
+import { selectUserDetails } from '../../selectors/user';
 
-import { RootState } from '../reducers';
-import { ALERT_SETTINGS_SET_CACHE_SIZE_FAIL, ALERT_SETTINGS_SETTING_UNAVAILABLE, ALERT_SETTINGS_RESET_CACHE_FAIL, ALERT_SETTINGS_CLEAR_CACHE_WARNING, ALERT_SETTINGS_DELETE_USER, ALERT_SETTINGS_DELETE_USER_FAIL } from '../constants/messages';
-import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE, URL_ABOUT, URL_FEEDBACK } from '../constants/urls';
-import colors from '../constants/colors';
-import spacing from '../constants/spacing';
-import { selectIsSubscribed } from '../selectors/subscriptions';
+import { RootState } from '../../reducers';
+import { ALERT_SETTINGS_SET_CACHE_SIZE_FAIL, ALERT_SETTINGS_SETTING_UNAVAILABLE, ALERT_SETTINGS_RESET_CACHE_FAIL, ALERT_SETTINGS_CLEAR_CACHE_WARNING, ALERT_SETTINGS_DELETE_USER, ALERT_SETTINGS_DELETE_USER_FAIL } from '../../constants/messages';
+import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE, URL_ABOUT, URL_FEEDBACK } from '../../constants/urls';
+import colors from '../../constants/colors';
+import spacing from '../../constants/spacing';
+import { selectIsSubscribed } from '../../selectors/subscriptions';
 
 interface IProps extends NavigationInjectedProps {}
 

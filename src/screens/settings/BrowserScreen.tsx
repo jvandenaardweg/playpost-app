@@ -4,9 +4,9 @@ import { View, Animated } from 'react-native';
 import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
 import { WebView } from 'react-native-webview';
 
-import { ButtonReload } from '../components/ButtonReload';
+import { ButtonReload } from '../../components/ButtonReload';
 
-import colors from '../constants/colors';
+import colors from '../../constants/colors';
 
 interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;

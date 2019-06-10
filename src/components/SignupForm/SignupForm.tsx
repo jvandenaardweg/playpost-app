@@ -6,7 +6,6 @@ import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../../constants/urls';
 
 interface Props {
   onChangeText(field: string, text: string): void;
-  onPressLogin(): void;
   onPressSignup(): void;
   email: string;
   password: string;
@@ -16,14 +15,13 @@ interface Props {
 
 export const SignupForm: React.FC<Props> = React.memo(({
   onChangeText,
-  onPressLogin,
   onPressSignup,
   email,
   password,
   passwordValidation,
   isLoading
 }) => (
-  <KeyboardAvoidingView testID="signup-form" style={styles.container} behavior="padding" keyboardVerticalOffset={100} enabled>
+  <KeyboardAvoidingView testID="signup-form" style={styles.container} behavior="padding" keyboardVerticalOffset={80} enabled>
     <ScrollView style={styles.form} contentContainerStyle={styles.formContent} keyboardShouldPersistTaps={'handled'}>
 
       <TextInput

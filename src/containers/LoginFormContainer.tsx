@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions, NavigationInjectedProps } from 'react-navigation';
+import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { Alert, Platform } from 'react-native';
 import * as Keychain from 'react-native-keychain';
 
@@ -15,7 +15,6 @@ import { getAuthToken } from '../reducers/auth';
 
 import { selectAuthError, selectAuthenticationToken } from '../selectors/auth';
 import { RootState } from '../reducers';
-import { ButtonClose } from '../components/ButtonClose';
 
 /* tslint:disable no-any */
 interface State {
@@ -29,15 +28,7 @@ interface IProps extends NavigationInjectedProps {}
 
 type Props = IProps & StateProps & DispatchProps;
 
-class LoginScreenContainer extends React.PureComponent<Props, State> {
-  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
-    return {
-      title: 'Login',
-      headerLeft: null,
-      headerRight: <ButtonClose onPress={navigation.getParam('handleOnClose')} />
-    };
-  }
-
+class LoginFormContainerComponent extends React.PureComponent<Props, State> {
   state = {
     isLoading: false,
     email: '',
@@ -119,7 +110,9 @@ const mapDispatchToProps = {
   getAuthToken
 };
 
-export const LoginScreen = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LoginScreenContainer);
+export const LoginFormContainer = withNavigation(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(LoginFormContainerComponent)
+);

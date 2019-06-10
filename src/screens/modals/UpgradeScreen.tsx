@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavigationScreenProp, NavigationRoute, NavigationScreenOptions } from 'react-navigation';
 import { ScrollView } from 'react-native';
-import { ButtonClose } from '../components/ButtonClose';
-import { UpgradeContainer } from '../containers/UpgradeContainer';
+import { ButtonClose } from '../../components/ButtonClose';
+import { UpgradeContainer } from '../../containers/UpgradeContainer';
 
 interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;

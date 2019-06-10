@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Alert, Platform } from 'react-native';
-import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions, NavigationInjectedProps } from 'react-navigation';
+import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import * as Keychain from 'react-native-keychain';
 
 export const keychainArguments = Platform.select({
@@ -10,7 +10,6 @@ export const keychainArguments = Platform.select({
 });
 
 import { SignupForm } from '../components/SignupForm';
-import { ButtonClose } from '../components/ButtonClose';
 
 import { createUser } from '../reducers/user';
 import { postAuth } from '../reducers/auth';
@@ -37,15 +36,7 @@ interface StateProps {
 
 type Props = IProps & StateProps & DispatchProps;
 
-class SignupScreenContainer extends React.PureComponent<Props, State> {
-  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
-    return {
-      title: 'Signup',
-      headerLeft: null,
-      headerRight: <ButtonClose onPress={navigation.getParam('handleOnClose')} />
-    };
-  }
-
+class SignupFormContainerComponent extends React.PureComponent<Props, State> {
   state = {
     isLoading: false,
     email: '',
@@ -65,14 +56,6 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
       Alert.alert('Oops!', 'We have successfully created your account, but could not log you in. Please try logging in manually.');
       this.setState({ isLoading: false });
     }
-  }
-
-  componentDidMount() {
-    this.props.navigation.setParams({ handleOnClose: this.handleOnClose });
-  }
-
-  handleOnClose = () => {
-    this.props.navigation.goBack();
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -121,15 +104,11 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
     });
   }
 
-  handleOnPressLogin = () => this.props.navigation.navigate('Login');
-
   handleOnChangeText = (field: 'email' | 'password' | 'passwordValidation', value: string) => {
     if (field === 'email') this.setState({ email: value });
     if (field === 'password') this.setState({ password: value });
     if (field === 'passwordValidation') this.setState({ passwordValidation: value });
   }
-
-  handleOnPressOpenModal = (title: string, url: string) => this.props.navigation.navigate('ModalBrowser', { title, url });
 
   render() {
     const { email, password, passwordValidation, isLoading } = this.state;
@@ -141,7 +120,6 @@ class SignupScreenContainer extends React.PureComponent<Props, State> {
         passwordValidation={passwordValidation}
         isLoading={isLoading}
         onChangeText={this.handleOnChangeText}
-        onPressLogin={this.handleOnPressLogin}
         onPressSignup={this.handleOnPressSignup}
       />
     );
@@ -168,7 +146,9 @@ const mapDispatchToProps = {
   postAuth
 };
 
-export const SignupScreen = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SignupScreenContainer);
+export const SignupFormContainer = withNavigation(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(SignupFormContainerComponent)
+);
