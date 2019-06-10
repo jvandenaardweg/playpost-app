@@ -9,6 +9,7 @@ import fonts from '../../constants/fonts';
 import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../../constants/urls';
 
 interface Props {
+  isLoadingSubscriptionItems: boolean;
   isLoadingBuySubscription: boolean;
   isLoadingRestorePurchases: boolean;
   upgradeButtonTitle: string;
@@ -16,7 +17,7 @@ interface Props {
   onPressRestore(): void;
 }
 
-export const Upgrade: React.FC<Props> = React.memo(({ isLoadingBuySubscription, isLoadingRestorePurchases, onPressUpgrade, onPressRestore, upgradeButtonTitle }) => {
+export const Upgrade: React.FC<Props> = React.memo(({ isLoadingSubscriptionItems, isLoadingBuySubscription, isLoadingRestorePurchases, onPressUpgrade, onPressRestore, upgradeButtonTitle }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -58,8 +59,21 @@ export const Upgrade: React.FC<Props> = React.memo(({ isLoadingBuySubscription, 
       </View>
 
       <View style={styles.subscribeContainer}>
-        <Button title={upgradeButtonTitle} onPress={() => onPressUpgrade()} loading={isLoadingBuySubscription || !upgradeButtonTitle} disabled={isLoadingBuySubscription} />
-        <Button type="clear" title="Already upgraded? Restore purchase" loading={isLoadingRestorePurchases} disabled={isLoadingRestorePurchases} onPress={() => onPressRestore()} titleStyle={{ fontSize: fonts.fontSize.body }} />
+        <Button
+          title={upgradeButtonTitle}
+          onPress={onPressUpgrade}
+          loading={isLoadingBuySubscription || isLoadingSubscriptionItems}
+          disabled={isLoadingBuySubscription || isLoadingSubscriptionItems}
+          disabledStyle={styles.primaryButtonDisabledStyle}
+        />
+        <Button
+          type="clear"
+          title="Already upgraded? Restore purchase"
+          loading={isLoadingRestorePurchases}
+          disabled={isLoadingRestorePurchases}
+          onPress={onPressRestore}
+          titleStyle={{ fontSize: fonts.fontSize.body }}
+        />
       </View>
 
       <View style={styles.footer}>

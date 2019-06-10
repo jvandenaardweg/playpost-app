@@ -76,5 +76,8 @@ export default StyleSheet.create({
   },
   subscribeContainer: {
     paddingTop: 0
+  },
+  primaryButtonDisabledStyle: {
+    backgroundColor: colors.tintColor
   }
 });
