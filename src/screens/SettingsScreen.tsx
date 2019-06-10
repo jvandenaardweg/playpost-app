@@ -4,12 +4,10 @@ import VersionNumber from 'react-native-version-number';
 import { Text, Alert, ActivityIndicator } from 'react-native';
 import { SettingsScreen as SettingsScreenComponent, SettingsData } from 'react-native-settings-screen';
 import { connect } from 'react-redux';
-import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions, NavigationInjectedProps } from 'react-navigation';
+import { NavigationInjectedProps } from 'react-navigation';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 import fonts from '../constants/fonts';
-
-import { ButtonUpgrade } from '../components/ButtonUpgrade';
 
 import { getUser, deleteUser } from '../reducers/user';
 import { resetAudiofilesState } from '../reducers/audiofiles';
