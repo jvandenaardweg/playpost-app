@@ -157,7 +157,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         }
 
         // Get the latest receipt from the purchases to validate
-        const latestReceipt = await this.getLatestReceipt(purchases, SUBSCRIPTION_PRODUCT_ID);
+        const latestReceipt = this.getLatestReceipt(purchases, SUBSCRIPTION_PRODUCT_ID);
 
         // Validate the receipt on our server
         await this.props.validateSubscriptionReceipt(subscription.id, latestReceipt);
@@ -205,19 +205,17 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     });
   }
 
-  getLatestReceipt = (purchases: RNIap.ProductPurchase[], subscriptionProductId: string): Promise<string> => {
-    return new Promise((resolve, reject) => {
+  getLatestReceipt = (purchases: RNIap.ProductPurchase[], subscriptionProductId: string): string => {
 
-      // First, sort the array, so the latest purchase is on top
-      const sortedPurchases = purchases.sort((a, b) => b.transactionDate - a.transactionDate);
+    // First, sort the array, so the latest purchase is on top
+    const sortedPurchases = purchases.sort((a, b) => b.transactionDate - a.transactionDate);
 
-      // Find the latest purchase based on the subscription productId
-      const purchase = sortedPurchases.find(purchase => purchase.productId === subscriptionProductId);
+    // Find the latest purchase based on the subscription productId
+    const purchase = sortedPurchases.find(purchase => purchase.productId === subscriptionProductId);
 
-      if (!purchase) return reject(new Error('We could not find a purchase to restore inside your previous purchases.\n\n If you had a subscription before, it might be expired. If you think this is incorrect, contact our support or e-mail at info@playpost.app.'));
+    if (!purchase) throw new Error('We could not find a purchase to restore inside your previous purchases.\n\n If you had a subscription before, it might be expired. If you think this is incorrect, contact our support or e-mail at info@playpost.app.');
 
-      return resolve(purchase.transactionReceipt);
-    });
+    return purchase.transactionReceipt;
   }
 
   get upgradeButtonTitle() {
@@ -226,10 +224,11 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   }
 
   render() {
-    const { isLoadingRestorePurchases, isLoadingBuySubscription } = this.state;
+    const { isLoadingRestorePurchases, isLoadingBuySubscription, isLoadingSubscriptionItems } = this.state;
 
     return (
       <Upgrade
+        isLoadingSubscriptionItems={isLoadingSubscriptionItems}
         isLoadingBuySubscription={isLoadingBuySubscription}
         isLoadingRestorePurchases={isLoadingRestorePurchases}
         upgradeButtonTitle={this.upgradeButtonTitle}

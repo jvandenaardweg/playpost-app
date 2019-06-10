@@ -51,6 +51,6 @@ export const ALERT_SUBSCRIPTION_INIT_FAIL = 'Could not set up a connection to th
 export const ALERT_SUBSCRIPTION_PURCHASE_SUBSCRIPTION_NOT_FOUND = 'We could not get the subscription to purchase. Please try again later.';
 export const ALERT_SUBSCRIPTION_EXPIRED = 'Your subscription is expired. To use our Premium features again, re-subscribe by using the Upgrade button.';
 export const ALERT_SUBSCRIPTION_BUY_SUCCESS = 'You can now use our premium features.';
-export const ALERT_SUBSCRIPTION_RESTORE_PURCHASE_NOT_FOUND = 'We could not find a subscription purchase to restore. If you had a subscription before, it might be expired. If you think this is incorrect, contact our support or e-mail at info@playpost.app.'
+export const ALERT_SUBSCRIPTION_RESTORE_PURCHASE_NOT_FOUND = 'We could not find a subscription purchase to restore. If you had a subscription before, it might be expired. If you think this is incorrect, contact our support.';
 export const ALERT_SUBSCRIPTION_RESTORE_SUCCESS = 'You successfully restored the subscription! You can now use the extra features.';
 export const ALERT_SUBSCRIPTION_NOT_FOUND = 'The subscription to upgrade to cannot be found. Please try again later.';
