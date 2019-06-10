@@ -1,3 +1,6 @@
+
+import { expect, device, element, by } from 'detox';
+
 describe('Onboarding', () => {
   beforeEach(async () => {
     await device.reloadReactNative();
