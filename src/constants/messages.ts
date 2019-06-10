@@ -46,3 +46,11 @@ export const ALERT_SETTINGS_DELETE_USER_FAIL = 'An error happened while trying t
 
 export const ALERT_SETTINGS_UPDATE_EMAIL_WARNING = 'For security reasons, after updating your e-mail address, you need to login again with your new e-mail address.';
 export const ALERT_SETTINGS_UPDATE_EMAIL_INVALID_MATCH = 'The given e-mail addresses do not match. Please make sure you typed your e-mail address correctly.';
+
+export const ALERT_SUBSCRIPTION_INIT_FAIL = 'Could not set up a connection to the App Store. Please try again later.';
+export const ALERT_SUBSCRIPTION_PURCHASE_SUBSCRIPTION_NOT_FOUND = 'We could not get the subscription to purchase. Please try again later.';
+export const ALERT_SUBSCRIPTION_EXPIRED = 'Your subscription is expired. To use our Premium features again, re-subscribe by using the Upgrade button.';
+export const ALERT_SUBSCRIPTION_BUY_SUCCESS = 'You can now use our premium features.';
+export const ALERT_SUBSCRIPTION_RESTORE_PURCHASE_NOT_FOUND = 'We could not find a subscription purchase to restore. If you had a subscription before, it might be expired. If you think this is incorrect, contact our support or e-mail at info@playpost.app.'
+export const ALERT_SUBSCRIPTION_RESTORE_SUCCESS = 'You successfully restored the subscription! You can now use the extra features.';
+export const ALERT_SUBSCRIPTION_NOT_FOUND = 'The subscription to upgrade to cannot be found. Please try again later.';

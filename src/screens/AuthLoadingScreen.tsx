@@ -60,6 +60,10 @@ export class AuthLoadingScreen extends React.PureComponent<Props> {
       return this.props.navigation.navigate('Onboarding');
     }
 
+    // User is logged in if we end up here
+
+    // Prepare the app for the logged in user
+
     // Pre-populate the app with the user data
     // Every other pre-population is done within the start screen, so we can load faster
     // await store.dispatch(getUser());

@@ -5,10 +5,14 @@ import { PlaylistContainer } from '../containers/PlaylistContainer';
 import { AppBackground } from '../components/AppBackground';
 import { ButtonUpgrade } from '../components/ButtonUpgrade';
 
+import { AppStateContext } from '../contexts/AppStateProvider';
+
 interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;
 }
 export class PlaylistScreen extends React.PureComponent<Props> {
+  static contextType = AppStateContext;
+
   static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: 'Playlist',
@@ -17,6 +21,9 @@ export class PlaylistScreen extends React.PureComponent<Props> {
   }
 
   componentDidMount() {
+    const { isSubscribed } = this.context;
+    console.log('isSubscribed', isSubscribed);
+
     this.props.navigation.setParams({ handleOnPressUpgrade: this.handleOnPressUpgrade });
   }
 

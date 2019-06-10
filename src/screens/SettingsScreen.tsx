@@ -22,6 +22,7 @@ import { ALERT_SETTINGS_SET_CACHE_SIZE_FAIL, ALERT_SETTINGS_SETTING_UNAVAILABLE,
 import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE, URL_ABOUT, URL_FEEDBACK } from '../constants/urls';
 import colors from '../constants/colors';
 import spacing from '../constants/spacing';
+import { selectIsSubscribed } from '../selectors/subscriptions';
 
 interface IProps extends NavigationInjectedProps {}
 
@@ -191,9 +192,12 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
           onPress: this.handleOnPressUpgrade,
           showDisclosureIndicator: true,
           renderAccessory: () => {
+            const { isSubscribed } = this.props;
+            console.log('settings isSubscribed', isSubscribed);
+
             return (
               <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.title }}>
-                Free
+                {isSubscribed ? 'Premium' : 'Free'}
               </Text>
             );
           },
@@ -367,10 +371,12 @@ interface DispatchProps {
 
 interface StateProps {
   user: ReturnType<typeof selectUserDetails>;
+  isSubscribed: ReturnType<typeof selectIsSubscribed>;
 }
 
 const mapStateToProps = (state: RootState) => ({
-  user: selectUserDetails(state)
+  user: selectUserDetails(state),
+  isSubscribed: selectIsSubscribed(state)
 });
 
 const mapDispatchToProps = {

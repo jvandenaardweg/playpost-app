@@ -2,7 +2,6 @@ import React from 'react';
 import { NavigationScreenProp, NavigationRoute, NavigationScreenOptions } from 'react-navigation';
 import { ScrollView } from 'react-native';
 import { ButtonClose } from '../components/ButtonClose';
-import { URL_FEEDBACK } from '../constants/urls';
 import { UpgradeContainer } from '../containers/UpgradeContainer';
 
 interface Props {
@@ -23,17 +22,13 @@ export class UpgradeScreen extends React.PureComponent<Props> {
   }
 
   handleOnClose = () => {
-    this.props.navigation.navigate('App');
-  }
-
-  handleOnPressSupport = () => {
-    this.props.navigation.navigate('Browser', { url: URL_FEEDBACK, title: 'Support' });
+    this.props.navigation.goBack(null);
   }
 
   render() {
     return (
       <ScrollView>
-        <UpgradeContainer onClose={this.handleOnClose} onPressSupport={this.handleOnPressSupport} />
+        <UpgradeContainer />
       </ScrollView>
     );
   }
