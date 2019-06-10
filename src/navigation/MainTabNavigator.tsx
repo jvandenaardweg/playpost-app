@@ -19,7 +19,6 @@ import { ButtonUpgrade } from '../components/ButtonUpgrade';
 const PlaylistStack: StackNavigatorConfig = createStackNavigator(
   {
     Playlist: PlaylistScreen,
-    Browser: BrowserScreen,
     FullArticle: FullArticleScreen
   },
   {
