@@ -16,6 +16,7 @@ import { resetVoicesState, resetDownloadedVoices } from '../reducers/voices';
 import { persistor } from '../store';
 import { RootState } from '../reducers';
 import { CenterLoadingIndicator } from '../components/CenterLoadingIndicator';
+import { resetSubscriptionsState } from '../reducers/subscriptions';
 
 interface IProps extends NavigationInjectedProps {}
 
@@ -57,6 +58,7 @@ class LogoutScreenContainer extends React.PureComponent<Props> {
     this.props.resetPlaylistState();
     this.props.resetAudiofilesState();
     this.props.resetVoicesState();
+    this.props.resetSubscriptionsState();
 
     return this.props.navigation.navigate('Onboarding');
   }
@@ -75,6 +77,7 @@ interface DispatchProps {
   resetPlaylistState: typeof resetPlaylistState;
   resetAudiofilesState: typeof resetAudiofilesState;
   resetVoicesState: typeof resetVoicesState;
+  resetSubscriptionsState: typeof resetSubscriptionsState;
   resetDownloadedVoices: typeof resetDownloadedVoices;
 }
 
@@ -87,6 +90,7 @@ const mapDispatchToProps = {
   resetPlaylistState,
   resetAudiofilesState,
   resetVoicesState,
+  resetSubscriptionsState,
   resetDownloadedVoices
 };
 
