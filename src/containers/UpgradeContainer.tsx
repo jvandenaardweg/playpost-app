@@ -2,6 +2,7 @@ import React from 'react';
 import { Alert } from 'react-native';
 import { connect } from 'react-redux';
 import * as RNIap from 'react-native-iap';
+import isEqual from 'react-fast-compare';
 
 import { withNavigation, NavigationScreenProp, NavigationRoute } from 'react-navigation';
 
@@ -19,7 +20,6 @@ import { URL_FEEDBACK } from '../constants/urls';
 
 interface State {
   readonly subscription: RNIap.Subscription<string>;
-  readonly purchase: RNIap.ProductPurchase;
   readonly isLoadingBuySubscription: boolean;
   readonly isLoadingRestorePurchases: boolean;
   readonly isLoadingSubscriptionItems: boolean;
@@ -36,7 +36,6 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
   state = {
     subscription: {} as RNIap.Subscription<string>,
-    purchase: {} as RNIap.ProductPurchase,
     isLoadingBuySubscription: false,
     isLoadingRestorePurchases: false,
     isLoadingSubscriptionItems: false,
@@ -75,16 +74,12 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       try {
         await this.props.validateSubscriptionReceipt(subscription.id, purchase.transactionReceipt);
 
-        this.setState({ purchase, isLoadingBuySubscription: false }, () => {
-          this.handleClose();
-          Alert.alert('Upgrade success!', ALERT_SUBSCRIPTION_BUY_SUCCESS);
-        });
+        // The validation result is handled in componentDidUpdate
       } catch (err) {
         const errorMessage = (err && err.message) ? err.message : 'An uknown error happened while upgrading.';
-
-        return this.setState({ isLoadingBuySubscription: false }, () =>
-          this.showErrorAlert('Upgrade error', errorMessage)
-        );
+        this.showErrorAlert('Upgrade error', errorMessage);
+      } finally {
+        this.setState({ isLoadingRestorePurchases: false });
       }
     });
   }
@@ -96,6 +91,35 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     }
 
     RNIap.endConnectionAndroid();
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    const { isLoadingBuySubscription, isLoadingRestorePurchases } = this.state;
+    const { validationResult } = this.props;
+
+    // When we receive an API response when doing an upgrade...
+    if (isLoadingBuySubscription && validationResult) {
+      if (!isEqual(prevProps.validationResult, validationResult)) {
+        this.handleClose();
+        return Alert.alert('Upgrade success!', ALERT_SUBSCRIPTION_BUY_SUCCESS);
+      }
+    }
+
+    // When we receive an API response when doing a restore...
+    if (isLoadingRestorePurchases && validationResult) {
+      // If we try to restore a previous purchase...
+      if (!isEqual(prevProps.validationResult, validationResult)) {
+
+        // Error!
+        if (validationResult.status !== 'active') {
+          return this.showErrorAlert('Restore purchase error', `Your previous subscription is ${validationResult.status}. In order to use our Premium features, you need to buy a new subscription.`);
+        }
+
+        // Success!
+        Alert.alert('Restore Successful', ALERT_SUBSCRIPTION_RESTORE_SUCCESS);
+        return this.handleClose();
+      }
+    }
   }
 
   handleClose () {
@@ -143,7 +167,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   }
 
   handleOnPressRestore = async () => {
-    const { validationResult, subscription } = this.props;
+    const { subscription } = this.props;
 
     if (!subscription) return Alert.alert('Cannot restore', ALERT_SUBSCRIPTION_NOT_FOUND);
 
@@ -152,29 +176,18 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         // Get the previous purchases of the current user
         const purchases = await RNIap.getAvailablePurchases();
 
-        if (!purchases.length) {
-          throw new Error(ALERT_SUBSCRIPTION_RESTORE_PURCHASE_NOT_FOUND);
-        }
-
         // Get the latest receipt from the purchases to validate
         const latestReceipt = this.getLatestReceipt(purchases, SUBSCRIPTION_PRODUCT_ID);
 
         // Validate the receipt on our server
         await this.props.validateSubscriptionReceipt(subscription.id, latestReceipt);
 
-        if (validationResult.status !== 'active') {
-          throw new Error(`Your previous subscription is ${validationResult.status}. In order to use our Premium features, you need to buy a new subscription.`);
-        }
-
-        // If we end up here, the subscription is still active
-
-        Alert.alert('Restore Successful', ALERT_SUBSCRIPTION_RESTORE_SUCCESS);
-        return this.handleClose();
+        // The validation result is handled in componentDidUpdate
       } catch (err) {
         const errorMessage = (err && err.message) ? err.message : 'An unknown error happened while restoring a subscription.';
-        return this.showErrorAlert('Restore purchase error', errorMessage);
+        this.showErrorAlert('Restore purchase error', errorMessage);
       } finally {
-        return this.setState({ isLoadingRestorePurchases: false });
+        this.setState({ isLoadingRestorePurchases: false });
       }
     });
   }
@@ -185,8 +198,6 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         const result = await RNIap.initConnection();
 
         if (!result) throw new Error(ALERT_SUBSCRIPTION_INIT_FAIL);
-
-        // await RNIap.consumeAllItemsAndroid();
 
         const subscriptions = await RNIap.getSubscriptions([subscriptionProductId]);
 
@@ -206,6 +217,9 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   }
 
   getLatestReceipt = (purchases: RNIap.ProductPurchase[], subscriptionProductId: string): string => {
+    if (!purchases.length) {
+      throw new Error(ALERT_SUBSCRIPTION_RESTORE_PURCHASE_NOT_FOUND);
+    }
 
     // First, sort the array, so the latest purchase is on top
     const sortedPurchases = purchases.sort((a, b) => b.transactionDate - a.transactionDate);

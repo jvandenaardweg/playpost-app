@@ -21,7 +21,7 @@ export function* authorize({ email, password }: AnyAction) {
     const token = data.token;
 
     if (!token) {
-      throw 'Did not receive the correct data from the server. Please try again.';
+      throw new Error('Did not receive the correct data from the server. Please try again.');
     }
 
     // Save the token in the store
