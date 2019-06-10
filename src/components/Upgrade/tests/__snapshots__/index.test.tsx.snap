@@ -1,0 +1,498 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Upgrade rendering should render correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "padding": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "marginBottom": 16,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomWidth": 1,
+          "borderColor": "rgba(0,0,0,0.05)",
+          "flex": 1,
+          "flexDirection": "row",
+          "marginBottom": 14,
+          "paddingBottom": 14,
+        }
+      }
+    >
+      <Text
+        allowFontScaling={false}
+        style={
+          Array [
+            Object {
+              "color": undefined,
+              "fontSize": 28,
+            },
+            Object {
+              "color": "#037DE2",
+              "marginLeft": 8,
+              "marginRight": 16,
+              "width": 40,
+            },
+            Object {
+              "fontFamily": "FontAwesome5Free-Regular",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            Object {
+              "fontWeight": "400",
+            },
+          ]
+        }
+      >
+        
+      </Text>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "fontSize": 17,
+              "fontWeight": "600",
+              "lineHeight": 21,
+              "marginBottom": 4,
+            }
+          }
+        >
+          Higher quality voices
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "#888888",
+              "fontSize": 15,
+              "lineHeight": 24,
+            }
+          }
+        >
+          Access to our highest quality Premium voices for easier listening. You can preview these Premium voices in the settings screen.
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomWidth": 1,
+          "borderColor": "rgba(0,0,0,0.05)",
+          "flex": 1,
+          "flexDirection": "row",
+          "marginBottom": 14,
+          "paddingBottom": 14,
+        }
+      }
+    >
+      <Text
+        allowFontScaling={false}
+        style={
+          Array [
+            Object {
+              "color": undefined,
+              "fontSize": 28,
+            },
+            Object {
+              "color": "#037DE2",
+              "marginLeft": 8,
+              "marginRight": 16,
+              "width": 40,
+            },
+            Object {
+              "fontFamily": "FontAwesome5Free-Solid",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            Object {
+              "fontWeight": "900",
+            },
+          ]
+        }
+      >
+        
+      </Text>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "fontSize": 17,
+              "fontWeight": "600",
+              "lineHeight": 21,
+              "marginBottom": 4,
+            }
+          }
+        >
+          Voice customization options
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "#888888",
+              "fontSize": 15,
+              "lineHeight": 24,
+            }
+          }
+        >
+          Choose between a variety of male and female voices with accents like American, British or Australian English.
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomWidth": 1,
+          "borderColor": "rgba(0,0,0,0.05)",
+          "flex": 1,
+          "flexDirection": "row",
+          "marginBottom": 14,
+          "paddingBottom": 14,
+        }
+      }
+    >
+      <Text
+        allowFontScaling={false}
+        style={
+          Array [
+            Object {
+              "color": undefined,
+              "fontSize": 28,
+            },
+            Object {
+              "color": "#037DE2",
+              "marginLeft": 8,
+              "marginRight": 16,
+              "width": 40,
+            },
+            Object {
+              "fontFamily": "FontAwesome5Free-Regular",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            Object {
+              "fontWeight": "400",
+            },
+          ]
+        }
+      >
+        
+      </Text>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "fontSize": 17,
+              "fontWeight": "600",
+              "lineHeight": 21,
+              "marginBottom": 4,
+            }
+          }
+        >
+          Unlimited listening
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "#888888",
+              "fontSize": 15,
+              "lineHeight": 24,
+            }
+          }
+        >
+          No article limits. Listen to articles longer then 5 minutes.
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomWidth": 1,
+          "borderColor": "rgba(0,0,0,0.05)",
+          "flex": 1,
+          "flexDirection": "row",
+          "marginBottom": 14,
+          "paddingBottom": 14,
+        }
+      }
+    >
+      <Text
+        allowFontScaling={false}
+        style={
+          Array [
+            Object {
+              "color": undefined,
+              "fontSize": 28,
+            },
+            Object {
+              "color": "#037DE2",
+              "marginLeft": 8,
+              "marginRight": 16,
+              "width": 40,
+            },
+            Object {
+              "fontFamily": "FontAwesome5Free-Solid",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            Object {
+              "fontWeight": "900",
+            },
+          ]
+        }
+      >
+        
+      </Text>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "fontSize": 17,
+              "fontWeight": "600",
+              "lineHeight": 21,
+              "marginBottom": 4,
+            }
+          }
+        >
+          No advertisements
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "#888888",
+              "fontSize": 15,
+              "lineHeight": 24,
+            }
+          }
+        >
+          Sponsored content helps us continue to provide a free version of Playpost. After upgrading to Playpost Premium, you won’t see any ads, and you’ll be supporting Playpost more directly!
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "paddingTop": 0,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "borderRadius": 3,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#2089dc",
+              "borderColor": "#2089dc",
+              "borderRadius": 3,
+              "borderWidth": 0,
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "padding": 8,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 18,
+                "paddingBottom": 1,
+                "paddingTop": 2,
+                "textAlign": "center",
+              }
+            }
+          >
+            Upgrade for 1 euro
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "borderRadius": 3,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "transparent",
+              "borderColor": "#2089dc",
+              "borderRadius": 3,
+              "borderWidth": 0,
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "padding": 8,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#2089dc",
+                "fontSize": 15,
+                "paddingBottom": 1,
+                "paddingTop": 2,
+                "textAlign": "center",
+              }
+            }
+          >
+            Already upgraded? Restore purchase
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "borderColor": "#EEEEEE",
+        "borderTopWidth": 1,
+        "marginTop": 16,
+        "paddingBottom": 24,
+        "paddingTop": 16,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 13,
+          "lineHeight": 18,
+          "opacity": 0.5,
+        }
+      }
+    >
+      Payment will be charged to your Apple ID account at the confirmation of purchase. Subscription automatically renews unless it is canceled at least 24 hours before the end of the current period. Your account will be charged for renewal within 24 hours prior to the end of the current period. You can manage and cancel your subscriptions by going to your account settings on the App Store after purchase.
+    </Text>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "marginTop": 6,
+        }
+      }
+    >
+      <Text
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "fontSize": 13,
+              "lineHeight": 18,
+              "opacity": 0.5,
+            },
+            Object {
+              "color": "#000000",
+              "opacity": 1,
+            },
+          ]
+        }
+      >
+        Privacy Policy
+      </Text>
+      <Text>
+         - 
+      </Text>
+      <Text
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "fontSize": 13,
+              "lineHeight": 18,
+              "opacity": 0.5,
+            },
+            Object {
+              "color": "#000000",
+              "opacity": 1,
+            },
+          ]
+        }
+      >
+        Terms of Use
+      </Text>
+    </View>
+  </View>
+</View>
+`;

@@ -20,6 +20,7 @@ exports[`ButtonClose rendering should render correctly 1`] = `
       "width": 40,
     }
   }
+  testID="button-close"
 >
   <Text
     allowFontScaling={false}

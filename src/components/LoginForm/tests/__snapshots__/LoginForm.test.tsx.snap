@@ -17,6 +17,7 @@ exports[`LoginForm rendering should render correctly 1`] = `
       },
     ]
   }
+  testID="login-form"
 >
   <RCTScrollView
     contentContainerStyle={
