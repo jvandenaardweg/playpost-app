@@ -11,6 +11,7 @@ describe('Upgrade', () => {
     beforeAll(() => {
       wrapper = render(
         <Upgrade
+          isLoadingSubscriptionItems={false}
           isLoadingBuySubscription={false}
           isLoadingRestorePurchases={false}
           onPressUpgrade={() => {}}

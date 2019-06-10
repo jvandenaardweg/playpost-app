@@ -25,6 +25,7 @@ exports[`SignupForm rendering should render correctly 1`] = `
         "justifyContent": "center",
       }
     }
+    keyboardShouldPersistTaps="handled"
     style={
       Object {
         "width": "100%",
