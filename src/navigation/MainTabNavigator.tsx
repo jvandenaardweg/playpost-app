@@ -14,6 +14,7 @@ import { SettingsLanguagesScreen } from '../screens/settings/LanguagesScreen';
 import { FullArticleScreen } from '../screens/FullArticleScreen';
 import { UpdatePasswordScreen } from '../screens/settings/UpdatePasswordScreen';
 import { UpdateEmailScreen } from '../screens/settings/UpdateEmailScreen';
+import { ButtonUpgrade } from '../components/ButtonUpgrade';
 
 const PlaylistStack: StackNavigatorConfig = createStackNavigator(
   {
@@ -24,6 +25,10 @@ const PlaylistStack: StackNavigatorConfig = createStackNavigator(
   {
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
+    defaultNavigationOptions: ({ navigation }) => ({
+      title: 'Playlist',
+      headerRight: <ButtonUpgrade onPress={() => navigation.navigate('Upgrade')} />
+    }),
     navigationOptions: {
       tabBarLabel: 'Playlist',
       tabBarIcon: ({ focused }) => (
@@ -43,6 +48,10 @@ const ArchiveStack: StackNavigatorConfig = createStackNavigator(
   {
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
+    defaultNavigationOptions: ({ navigation }) => ({
+      title: 'Archive',
+      headerRight: <ButtonUpgrade onPress={() => navigation.navigate('Upgrade')} />
+    }),
     navigationOptions: {
       tabBarLabel: 'Archive',
       tabBarIcon: ({ focused }) => (
@@ -62,6 +71,10 @@ const FavoritesStack: StackNavigatorConfig = createStackNavigator(
   {
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
+    defaultNavigationOptions: ({ navigation }) => ({
+      title: 'Favorites',
+      headerRight: <ButtonUpgrade onPress={() => navigation.navigate('Upgrade')} />
+    }),
     navigationOptions: {
       tabBarLabel: 'Favorites',
       tabBarIcon: ({ focused }) => (
@@ -86,6 +99,10 @@ const SettingsStack: StackNavigatorConfig = createStackNavigator(
   {
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
+    defaultNavigationOptions: ({ navigation }) => ({
+      title: 'Settings',
+      headerRight: <ButtonUpgrade onPress={() => navigation.navigate('Upgrade')} />
+    }),
     navigationOptions: {
       tabBarLabel: 'Settings',
       tabBarIcon: ({ focused }) => (
@@ -93,9 +110,8 @@ const SettingsStack: StackNavigatorConfig = createStackNavigator(
           focused={focused}
           name="settings"
         />
-      ),
-    },
-
+      )
+    }
   }
 );
 

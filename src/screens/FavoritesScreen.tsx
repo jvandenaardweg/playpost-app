@@ -1,29 +1,9 @@
 import React from 'react';
-import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
 
 import { PlaylistContainer } from '../containers/PlaylistContainer';
 import { AppBackground } from '../components/AppBackground';
-import { ButtonUpgrade } from '../components/ButtonUpgrade';
 
-interface Props {
-  navigation: NavigationScreenProp<NavigationRoute>;
-}
-export class FavoritesScreen extends React.PureComponent<Props> {
-  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
-    return {
-      title: 'Favorites',
-      headerRight: <ButtonUpgrade onPress={navigation.getParam('handleOnPressUpgrade')} />
-    };
-  }
-
-  componentDidMount() {
-    this.props.navigation.setParams({ handleOnPressUpgrade: this.handleOnPressUpgrade });
-  }
-
-  handleOnPressUpgrade = () => {
-    this.props.navigation.navigate('Upgrade');
-  }
-
+export class FavoritesScreen extends React.PureComponent {
   render() {
     return (
       <AppBackground>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
+
 import * as Icon from '../Icon';
 
 import colors from '../../constants/colors';

@@ -36,13 +36,6 @@ interface State {
 }
 
 class SettingsScreenContainer extends React.PureComponent<Props, State> {
-  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
-    return {
-      title: 'Settings',
-      headerRight: <ButtonUpgrade onPress={navigation.getParam('handleOnPressUpgrade')} />
-    };
-  }
-
   state = {
     cacheSize: '0',
     isClearingCache: false,

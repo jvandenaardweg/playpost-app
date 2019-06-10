@@ -12,6 +12,7 @@ import { ModalBrowserScreen } from '../screens/ModalBrowserScreen';
 import { UpgradeScreen } from '../screens/UpgradeScreen';
 import { LogoutScreen } from '../screens/LogoutScreen';
 
+
 export const AppNavigator: NavigationContainer = createAppContainer(
   createAnimatedSwitchNavigator(
     {
