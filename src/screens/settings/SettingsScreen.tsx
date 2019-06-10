@@ -1,7 +1,7 @@
 import React from 'react';
 import RNFS from 'react-native-fs';
 import VersionNumber from 'react-native-version-number';
-import { Text, Alert, ActivityIndicator } from 'react-native';
+import { Text, Alert, ActivityIndicator, Linking } from 'react-native';
 import { SettingsScreen as SettingsScreenComponent, SettingsData } from 'react-native-settings-screen';
 import { connect } from 'react-redux';
 import { NavigationInjectedProps } from 'react-navigation';
@@ -17,7 +17,7 @@ import { selectUserDetails } from '../../selectors/user';
 
 import { RootState } from '../../reducers';
 import { ALERT_SETTINGS_SET_CACHE_SIZE_FAIL, ALERT_SETTINGS_SETTING_UNAVAILABLE, ALERT_SETTINGS_RESET_CACHE_FAIL, ALERT_SETTINGS_CLEAR_CACHE_WARNING, ALERT_SETTINGS_DELETE_USER, ALERT_SETTINGS_DELETE_USER_FAIL } from '../../constants/messages';
-import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE, URL_ABOUT, URL_FEEDBACK } from '../../constants/urls';
+import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE, URL_ABOUT, URL_FEEDBACK, URL_DONATE } from '../../constants/urls';
 import colors from '../../constants/colors';
 import spacing from '../../constants/spacing';
 import { selectIsSubscribed } from '../../selectors/subscriptions';
@@ -277,6 +277,11 @@ class SettingsScreenContainer extends React.PureComponent<Props, State> {
       type: 'SECTION',
       header: 'About'.toUpperCase(),
       rows: [
+        {
+          title: 'Donate ❤️',
+          onPress: () => Linking.openURL(URL_DONATE),
+          showDisclosureIndicator: true
+        },
         {
           title: 'About',
           onPress: () => this.props.navigation.navigate('Browser', { url: URL_ABOUT, title: 'About' }),
