@@ -68,8 +68,6 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
     this.fetchAvailableSubscriptionItems(SUBSCRIPTION_PRODUCT_ID);
 
-    // TODO: remove this ts-ignore when fixed: https://github.com/dooboolab/react-native-iap/issues/514
-    // @ts-ignore
     this.purchaseUpdateSubscription = RNIap.purchaseUpdatedListener(async (purchase: RNIap.ProductPurchase) => {
       try {
         await this.props.validateSubscriptionReceipt(subscription.id, purchase.transactionReceipt);
