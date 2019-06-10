@@ -120,7 +120,8 @@
     ],
     "testPathIgnorePatterns": [
       "\\.snap$",
-      "<rootDir>/node_modules/"
+      "<rootDir>/node_modules/",
+      "<rootDir>/tests/e2e"
     ],
     "cacheDirectory": ".jest/cache",
     "setupFiles": [
