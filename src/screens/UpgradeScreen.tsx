@@ -2,8 +2,8 @@ import React from 'react';
 import { NavigationScreenProp, NavigationRoute, NavigationScreenOptions } from 'react-navigation';
 import { ScrollView } from 'react-native';
 import { ButtonClose } from '../components/ButtonClose';
-import { Upgrade } from '../components/Upgrade';
 import { URL_FEEDBACK } from '../constants/urls';
+import { UpgradeContainer } from '../containers/UpgradeContainer';
 
 interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;
@@ -33,7 +33,7 @@ export class UpgradeScreen extends React.PureComponent<Props> {
   render() {
     return (
       <ScrollView>
-        <Upgrade onClose={this.handleOnClose} onPressSupport={this.handleOnPressSupport} />
+        <UpgradeContainer onClose={this.handleOnClose} onPressSupport={this.handleOnPressSupport} />
       </ScrollView>
     );
   }

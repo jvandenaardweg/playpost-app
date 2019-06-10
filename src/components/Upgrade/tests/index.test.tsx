@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, RenderAPI } from 'react-native-testing-library';
 
-import { Upgrade } from '../Upgrade';
+import { Upgrade } from '../index';
 
 describe('Upgrade', () => {
 
@@ -9,7 +9,15 @@ describe('Upgrade', () => {
     let wrapper: RenderAPI;
 
     beforeAll(() => {
-      wrapper = render(<Upgrade onClose={() => {}} onPressSupport={() => {}} />);
+      wrapper = render(
+        <Upgrade
+          isLoadingBuySubscription={false}
+          isLoadingRestorePurchases={false}
+          onPressUpgrade={() => {}}
+          onPressRestore={() => {}}
+          upgradeButtonTitle="Upgrade for 1 euro"
+        />
+      );
     });
 
     it('should render correctly', () => {

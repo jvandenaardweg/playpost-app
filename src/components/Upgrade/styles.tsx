@@ -25,7 +25,8 @@ export default StyleSheet.create({
   title: {
     fontSize: fonts.fontSize.title,
     fontWeight: fonts.fontWeight.semibold,
-    lineHeight: 21
+    lineHeight: 21,
+    marginBottom: 4
   },
   paragraph: {
     color: colors.paragraphGrayed,
@@ -33,7 +34,7 @@ export default StyleSheet.create({
     fontSize: fonts.fontSize.body
   },
   feature: {
-    marginTop: spacing.medium,
+    marginBottom: spacing.medium,
     paddingBottom: spacing.medium,
     borderBottomWidth: 1,
     borderColor: 'rgba(0,0,0,0.05)',
@@ -74,6 +75,6 @@ export default StyleSheet.create({
     opacity: 1
   },
   subscribeContainer: {
-    paddingTop: 24
+    paddingTop: 0
   }
 });
