@@ -107,7 +107,7 @@
     "preset": "react-native",
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "**/*.{ts,tsx,js,jsx,json,node}",
+      "src/**/*.{ts,tsx,js,jsx,json,node}",
       "!**/node_modules/**",
       "!**/typings/**",
       "!**/integration/**",
