@@ -77,6 +77,14 @@ describe('user selector', () => {
     const expected = exampleUser.voiceSettings.map(userVoiceSetting => userVoiceSetting.voice);
 
     expect(selectUserSelectedVoices(exampleUserDetailsState)).toEqual(expected);
+
+    const exampleUserDetailsState2 = {
+      ...rootState,
+      user: {
+        ...rootState.user
+      }
+    };
+    expect(selectUserSelectedVoices(exampleUserDetailsState2)).toEqual([]);
   });
 
   it('should return the user\'s selected voices by language name', () => {
@@ -94,7 +102,7 @@ describe('user selector', () => {
 
     const expected = voices.find(voice => voice.language.name === languageName);
 
-    expect(selectUserSelectedVoiceByLanguageName(exampleUserDetailsState, { languageName })).toEqual(expected);
+    expect(selectUserSelectedVoiceByLanguageName(exampleUserDetailsState, languageName)).toEqual(expected);
   });
 
   it('should return the user\'s subscriptions', () => {

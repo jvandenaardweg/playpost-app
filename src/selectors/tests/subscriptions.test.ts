@@ -1,10 +1,11 @@
-import { subscriptionsSelector, selectSubscriptions, selectIsLoadingSubscriptions, selectSubscriptionsError } from '../subscriptions';
+import { subscriptionsSelector, selectSubscriptions, selectIsLoadingSubscriptions, selectSubscriptionsError, selectSubscriptionByProductId, selectSubscriptionsValidationResult, selectSubscriptionLatestReceipt, selectIsSubscribed } from '../subscriptions';
 import { createStore } from 'redux';
 
 import { initialState } from '../../reducers/subscriptions';
 import { rootReducer } from '../../reducers';
 
 import subscriptionsMock from '../../../tests/__mocks__/subscriptions';
+import subscriptionValidationResultMock from '../../../tests/__mocks__/subscription-validation-result';
 
 const store = createStore(rootReducer);
 
@@ -51,6 +52,58 @@ describe('subscriptions selector', () => {
     };
 
     expect(selectSubscriptionsError(exampleState)).toBe('Some example error');
+  });
+
+  it('should return the subscription by subscription id', () => {
+    const exampleState = {
+      ...rootState,
+      subscriptions: {
+        ...rootState.subscriptions,
+        subscriptions: subscriptionsMock
+      }
+    };
+
+    const productId = subscriptionsMock[0].productId;
+    const expected = subscriptionsMock[0];
+
+    expect(selectSubscriptionByProductId(exampleState, productId)).toEqual(expected);
+  });
+
+  it('should return the subscription validation result', () => {
+    const exampleState = {
+      ...rootState,
+      subscriptions: {
+        ...rootState.subscriptions,
+        validationResult: subscriptionValidationResultMock
+      }
+    };
+
+    expect(selectSubscriptionsValidationResult(exampleState)).toEqual(subscriptionValidationResultMock);
+  });
+
+  it('should return the subscription latest receipt', () => {
+    const exampleState = {
+      ...rootState,
+      subscriptions: {
+        ...rootState.subscriptions,
+        validationResult: subscriptionValidationResultMock
+      }
+    };
+
+    expect(selectSubscriptionLatestReceipt(exampleState)).toEqual(subscriptionValidationResultMock.latestReceipt);
+  });
+
+  it('should return the subscription latest receipt', () => {
+    const exampleState = {
+      ...rootState,
+      subscriptions: {
+        ...rootState.subscriptions,
+        validationResult: subscriptionValidationResultMock
+      }
+    };
+
+    // The mock data contains a unsubscribed/expired subscription
+    expect(selectIsSubscribed(exampleState)).toEqual(false);
   });
 
 });

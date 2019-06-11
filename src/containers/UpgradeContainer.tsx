@@ -264,7 +264,7 @@ interface DispatchProps {
 
 const mapStateToProps = (state: RootState): StateProps => ({
   subscriptionsError: selectSubscriptionsError(state),
-  subscription: selectSubscriptionByProductId(state, { productId: SUBSCRIPTION_PRODUCT_ID }),
+  subscription: selectSubscriptionByProductId(state, SUBSCRIPTION_PRODUCT_ID),
   validationResult: selectSubscriptionsValidationResult(state)
 });
 

@@ -42,6 +42,7 @@ jest.mock('@react-native-community/netinfo', () => {
 jest.mock('react-native-video');
 jest.mock('react-native-splash-screen');
 jest.mock('react-native-app-intro-slider');
+jest.mock('react-native-fs');
 
 jest.mock('react-navigation', ({ withNavigation: (component: any) => component }));
 

@@ -65,6 +65,18 @@ describe('playlist selector', () => {
     expect(selectAllPlaylistArticles(exampleState)).toEqual(expected);
   });
 
+  it('should return an empty array when there are no playlist items', () => {
+    const exampleState = {
+      ...rootState,
+      playlist: {
+        ...rootState.playlist,
+        items: []
+      }
+    };
+
+    expect(selectAllPlaylistArticles(exampleState)).toEqual([]);
+  });
+
   it('should return all the playlist items that are not archived', () => {
     const exampleState = {
       ...rootState,
@@ -77,6 +89,18 @@ describe('playlist selector', () => {
     const expected = playlistMock.filter(playlistItem => !playlistItem.archivedAt);
 
     expect(selectNewPlaylistItems(exampleState)).toEqual(expected);
+  });
+
+  it('should return an empty array when there are no (new) playlist items', () => {
+    const exampleState = {
+      ...rootState,
+      playlist: {
+        ...rootState.playlist,
+        items: []
+      }
+    };
+
+    expect(selectNewPlaylistItems(exampleState)).toEqual([]);
   });
 
   it('should return all the playlist items that are archived', () => {
@@ -99,7 +123,19 @@ describe('playlist selector', () => {
     expect(selectArchivedPlaylistItems(exampleState)).toEqual(expected);
   });
 
-  it('should return all the playlist items that are favorited', () => {
+  it('should return an empty array when there are no (archived) playlist items', () => {
+    const exampleState = {
+      ...rootState,
+      playlist: {
+        ...rootState.playlist,
+        items: []
+      }
+    };
+
+    expect(selectArchivedPlaylistItems(exampleState)).toEqual([]);
+  });
+
+  it('selectFavoritedPlaylistItems should return all the playlist items that are favorited', () => {
     const exampleState = {
       ...rootState,
       playlist: {
@@ -117,6 +153,18 @@ describe('playlist selector', () => {
     });
 
     expect(selectFavoritedPlaylistItems(exampleState)).toEqual(expected);
+  });
+
+  it('selectFavoritedPlaylistItems should return an empty array when there are no playlist items', () => {
+    const exampleState = {
+      ...rootState,
+      playlist: {
+        ...rootState.playlist,
+        items: []
+      }
+    };
+
+    expect(selectFavoritedPlaylistItems(exampleState)).toEqual([]);
   });
 
 });

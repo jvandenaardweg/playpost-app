@@ -75,7 +75,8 @@ describe('voices selector', () => {
     const language = languages.find(language => language.name === languageName);
     const expected = language && language.voices;
 
-    expect(selectAvailableVoicesByLanguageName(exampleState, { languageName })).toEqual(expected);
+    expect(selectAvailableVoicesByLanguageName(exampleState, languageName)).toEqual(expected);
+    expect(selectAvailableVoicesByLanguageName(exampleState, '')).toEqual([]);
   });
 
   it('should return the default voice by language name', () => {
@@ -93,6 +94,7 @@ describe('voices selector', () => {
     const language = languages.find(language => language.name === languageName);
     const expected = language && language.voices && language.voices.filter(voice => !!voice.isLanguageDefault);
 
-    expect(selectDefaultVoicesByLanguageName(exampleState, { languageName })).toEqual(expected);
+    expect(selectDefaultVoicesByLanguageName(exampleState, languageName)).toEqual(expected);
+    expect(selectDefaultVoicesByLanguageName(exampleState, '')).toEqual(null);
   });
 });

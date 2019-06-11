@@ -544,7 +544,7 @@ export default [
     order: 4,
     lastPlayedAt: null,
     archivedAt: null,
-    favoritedAt: null,
+    favoritedAt: '2019-05-15T07:37:52.155Z',
     createdAt: '2019-04-01T18:26:00.580Z',
     updatedAt: '2019-05-15T07:37:52.155Z',
     article: {
@@ -802,7 +802,7 @@ export default [
     order: 6,
     lastPlayedAt: null,
     archivedAt: '2019-05-02T16:13:48.794Z',
-    favoritedAt: null,
+    favoritedAt: '2019-05-02T16:13:48.794Z',
     createdAt: '2019-04-30T09:41:56.153Z',
     updatedAt: '2019-05-15T07:37:52.155Z',
     article: {

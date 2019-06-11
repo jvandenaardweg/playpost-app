@@ -34,21 +34,21 @@ export const selectDownloadedVoicePreviews = createSelector(
   voices => voices.downloadedVoicePreviews
 );
 
-export const selectAvailableVoicesByLanguageName = (state: RootState, props: { languageName: string }) => createSelector(
+export const selectAvailableVoicesByLanguageName = (state: RootState, languageName: string) => createSelector(
   [selectLanguagesWithActiveVoices],
   (languages) => {
-    const language = languages.find(language => language.name === props.languageName);
+    const language = languages.find(language => language.name === languageName);
     if (!language) return [];
-    if (!language.voices) return null;
+    if (!language.voices) return [];
 
     return language.voices;
   }
 )(state);
 
-export const selectDefaultVoicesByLanguageName = (state: RootState, props: { languageName: string }) => createSelector(
+export const selectDefaultVoicesByLanguageName = (state: RootState, languageName: string) => createSelector(
   [selectLanguagesWithActiveVoices],
   (languages) => {
-    const language = languages.find(language => language.name === props.languageName);
+    const language = languages.find(language => language.name === languageName);
     if (!language) return null;
 
     const defaultVoice = language.voices && language.voices.filter(voice => !!voice.isLanguageDefault);

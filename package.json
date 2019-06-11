@@ -105,6 +105,14 @@
   },
   "jest": {
     "preset": "react-native",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.{ts,tsx,js,jsx,json,node}",
+      "!**/node_modules/**",
+      "!**/typings/**",
+      "!**/integration/**",
+      "!**/e2e/**"
+    ],
     "moduleFileExtensions": [
       "ts",
       "tsx",

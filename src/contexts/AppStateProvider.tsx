@@ -152,7 +152,7 @@ interface DispatchProps {
 const mapStateToProps = (state: RootState, props: Props): StateProps => ({
   authenticationStatus: selectAuthenticationStatus(state),
   subscriptionsValidationResult: selectSubscriptionsValidationResult(state),
-  subscription: selectSubscriptionByProductId(state, { productId: SUBSCRIPTION_PRODUCT_ID }),
+  subscription: selectSubscriptionByProductId(state, SUBSCRIPTION_PRODUCT_ID),
   isSubscribed: selectIsSubscribed(state),
 });
 

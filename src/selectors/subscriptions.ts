@@ -9,9 +9,9 @@ export const selectSubscriptions = createSelector(
   state => state.subscriptions
 );
 
-export const selectSubscriptionByProductId = (state: RootState, props: { productId: string }) => createSelector(
+export const selectSubscriptionByProductId = (state: RootState, productId: string) => createSelector(
   [selectSubscriptions],
-  subscriptions => subscriptions.find(subscription => subscription.productId === props.productId)
+  subscriptions => subscriptions.find(subscription => subscription.productId === productId)
 )(state);
 
 export const selectIsLoadingSubscriptions = createSelector(

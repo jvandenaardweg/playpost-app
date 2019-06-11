@@ -337,9 +337,9 @@ const mapStateToProps = (state: RootState, props: Props) => ({
   playbackState: selectPlayerPlaybackState(state),
   playerTrack: selectPlayerTrack(state),
   downloadedVoices: selectDownloadedVoicePreviews(state),
-  availableVoicesByLanguageName: selectAvailableVoicesByLanguageName(state, props), // does not memoize correctly? // https://github.com/reduxjs/reselect#containersvisibletodolistjs-2
-  defaultVoicesByLanguageName: selectDefaultVoicesByLanguageName(state, props),
-  userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state, props)
+  availableVoicesByLanguageName: selectAvailableVoicesByLanguageName(state, props.languageName), // does not memoize correctly? // https://github.com/reduxjs/reselect#containersvisibletodolistjs-2
+  defaultVoicesByLanguageName: selectDefaultVoicesByLanguageName(state, props.languageName),
+  userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state, props.languageName)
 });
 
 const mapDispatchToProps = {
