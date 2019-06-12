@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import WebView from 'react-native-webview';
 import urlParse from 'url-parse';
 
@@ -11,19 +11,50 @@ import { WebViewNavigation } from 'react-native-webview/lib/WebViewTypes';
 
 interface Props {
   article: Api.Article | undefined;
-  theme: string;
+  theme?: string;
 }
 
-export class ArticleReader extends React.PureComponent<Props> {
+interface ThemeStyles {
+  backgroundColor: string;
+  fontColor: string;
+  highlightColor: string;
+  metaColor: string;
+}
 
-  private webViewRef = React.createRef<WebView>();
+export const ArticleReader: React.FC<Props> = React.memo(({
+  theme,
+  article
+}) => {
+  const webViewRef = useRef<WebView>(null);
+  const themeStyles = getThemeStyles(theme);
 
-  static defaultProps = {
-    theme: 'light'
+  const handleWebViewNavigationStateChange = (request: WebViewNavigation) => {
+    const { url } = request;
+
+    if (!url || url.includes('file://')) return;
+
+    webViewRef.current && webViewRef.current.stopLoading();
+
+    return Linking.openURL(url);
   };
 
-  get themeStyles() {
-    const { theme } = this.props;
+  return (
+    <WebView
+      ref={webViewRef}
+      startInLoadingState={true}
+      renderLoading={() => <CenterLoadingIndicator backgroundColor={themeStyles.backgroundColor} />}
+      useWebKit
+      originWhitelist={['*']}
+      javaScriptEnabled={false}
+      source={{ html: getHtmlDocument(article, themeStyles), baseUrl: '' }}
+      bounces
+      decelerationRate="normal"
+      style={{ backgroundColor: themeStyles.backgroundColor }}
+      onNavigationStateChange={handleWebViewNavigationStateChange}
+    />
+  );
+
+  function getThemeStyles(theme?: string): ThemeStyles {
 
     // Light
     let backgroundColor = colors.white;
@@ -46,7 +77,7 @@ export class ArticleReader extends React.PureComponent<Props> {
     };
   }
 
-  get htmlHeader() {
+  function getHtmlHeader(themeStyles: ThemeStyles) {
     return `
       <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -64,17 +95,17 @@ export class ArticleReader extends React.PureComponent<Props> {
             font-size: ${Math.ceil(fonts.fontSize.body * 1.1)}px;
             font-family: 'PT Serif', serif;
             line-height: 1.5;
-            color: ${this.themeStyles.fontColor};
+            color: ${themeStyles.fontColor};
             font-weight: normal;
             word-break: break-word;
-            background-color: ${this.themeStyles.backgroundColor};
+            background-color: ${themeStyles.backgroundColor};
           }
 
           h1, h2, h3, h4, h5, h6, h7, h8 {
             line-height: 1.2;
             margin-top: 0;
             margin-bottom: ${spacing.tiny}px;
-            color: ${this.themeStyles.highlightColor};
+            color: ${themeStyles.highlightColor};
             font-family: 'PT Sans', sans-serif;
           }
 
@@ -99,7 +130,7 @@ export class ArticleReader extends React.PureComponent<Props> {
           }
 
           a, strong {
-            color: ${this.themeStyles.highlightColor};
+            color: ${themeStyles.highlightColor};
           }
 
           img, figure {
@@ -111,7 +142,7 @@ export class ArticleReader extends React.PureComponent<Props> {
 
           blockquote {
             font-style: italic;
-            color: ${this.themeStyles.highlightColor};
+            color: ${themeStyles.highlightColor};
             margin-left: ${spacing.large}px;
             margin-right: ${spacing.large}px;
           }
@@ -129,7 +160,7 @@ export class ArticleReader extends React.PureComponent<Props> {
 
           .meta-header strong {
             display: block;
-            color: ${this.themeStyles.metaColor};
+            color: ${themeStyles.metaColor};
             font-weight: normal;
           }
 
@@ -137,13 +168,12 @@ export class ArticleReader extends React.PureComponent<Props> {
       </head>`;
   }
 
-  get noHtmlDocument() {
-    const { article } = this.props;
+  function getNoHtmlDocument(article: Api.Article | undefined, themeStyles: ThemeStyles) {
     const articleUrlLink = (article && article.url) ? `<a href="${article.url}">View the original article</a>` : '';
 
     return `
       <!DOCTYPE html>
-        ${this.htmlHeader}
+        ${getHtmlHeader(themeStyles)}
         <body>
           <h1>Insufficient article data</h1>
           <p>The article did not return any sufficient content to show. This could happen when the article is behind a pay-wall or requires a login.</p>
@@ -153,18 +183,17 @@ export class ArticleReader extends React.PureComponent<Props> {
     `;
   }
 
-  get htmlDocument() {
-    const { article } = this.props;
+  function getHtmlDocument(article: Api.Article | undefined, themeStyles: ThemeStyles) {
 
     // When we have no article or no html, show the user we don't have enough data
-    if (!article || !article.html) return this.noHtmlDocument;
+    if (!article || !article.html) return getNoHtmlDocument(article, themeStyles);
 
     const articleUrl = article.canonicalUrl || article.url;
     const authorElement = (article.authorName) ? `<strong>${article.authorName}</strong>` : '';
 
     let htmlDocument = `
       <!DOCTYPE html>
-      ${this.htmlHeader}
+      ${getHtmlHeader(themeStyles)}
         <body>
           <h1>${article.title}</h1>
           <div class="meta-header">
@@ -180,29 +209,4 @@ export class ArticleReader extends React.PureComponent<Props> {
 
     return htmlDocument;
   }
-
-  handleWebViewNavigationStateChange = (request: WebViewNavigation) => {
-    const { url } = request;
-    if (!url || url.includes('file://')) return;
-    this.webViewRef.current && this.webViewRef.current.stopLoading();
-    return Linking.openURL(url);
-  }
-
-  render() {
-    return (
-      <WebView
-        ref={this.webViewRef}
-        startInLoadingState={true}
-        renderLoading={() => <CenterLoadingIndicator backgroundColor={this.themeStyles.backgroundColor} />}
-        useWebKit
-        originWhitelist={['*']}
-        javaScriptEnabled={false}
-        source={{ html: this.htmlDocument, baseUrl: '' }}
-        bounces
-        decelerationRate="normal"
-        style={{ backgroundColor: this.themeStyles.backgroundColor }}
-        onNavigationStateChange={this.handleWebViewNavigationStateChange}
-      />
-    );
-  }
-}
+});
