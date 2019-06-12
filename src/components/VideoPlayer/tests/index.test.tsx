@@ -1,15 +1,15 @@
 import React from 'react';
 import { render, RenderAPI } from 'react-native-testing-library';
 
-import { OfflineNotice } from '../OfflineNotice';
+import { VideoPlayer } from '../index';
 
-describe('OfflineNotice', () => {
+describe('VideoPlayer', () => {
 
   describe('rendering', () => {
     let wrapper: RenderAPI;
 
     beforeAll(() => {
-      wrapper = render(<OfflineNotice />);
+      wrapper = render(<VideoPlayer />);
     });
 
     it('should render correctly', () => {

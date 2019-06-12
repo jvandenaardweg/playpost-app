@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-native-testing-library';
 
-import * as Icon from '../Icon';
+import * as Icon from '../index';
 
 describe('Icon', () => {
 

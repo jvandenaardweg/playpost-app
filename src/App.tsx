@@ -15,37 +15,37 @@ import { AppStateProvider } from './contexts/AppStateProvider';
 // import { whyDidYouUpdate } from 'why-did-you-update';
 // whyDidYouUpdate(React, { exclude: /^YellowBox|Icon|Swipeable/ });
 
-if (Platform.OS === 'ios' && __DEV__) {
-  NativeModules.DevSettings.setIsDebuggingRemotely(true);
-}
-
 console.disableYellowBox = true;
 
-export default class App extends React.PureComponent {
-  componentDidMount() {
-    this.setAnalytics();
+export default () => {
+  setAnalytics(__DEV__);
+  setRemoteDebugging(__DEV__);
+
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <ThemeProvider theme={reactNativeElementsTheme}>
+          <NetworkProvider>
+            <AppStateProvider>
+              <AppNavigator />
+            </AppStateProvider>
+          </NetworkProvider>
+        </ThemeProvider>
+      </PersistGate>
+    </Provider>
+  );
+
+  async function setAnalytics(dev: boolean) {
+    if (dev) return;
+
+    await Analytics.setEnabled(true);
   }
 
-  setAnalytics = async () => {
-    if (!__DEV__) {
-      // Enable Analytics, so we can track errors
-      await Analytics.setEnabled(true);
-    }
-  }
+  function setRemoteDebugging(dev: boolean) {
+    if (Platform.OS !== 'ios') return;
 
-  render() {
-    return (
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <ThemeProvider theme={reactNativeElementsTheme}>
-            <NetworkProvider>
-              <AppStateProvider>
-                <AppNavigator />
-              </AppStateProvider>
-            </NetworkProvider>
-          </ThemeProvider>
-        </PersistGate>
-      </Provider>
-    );
+    if (!dev) return;
+
+    NativeModules.DevSettings.setIsDebuggingRemotely(true);
   }
-}
+};

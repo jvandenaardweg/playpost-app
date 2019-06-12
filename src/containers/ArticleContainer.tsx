@@ -13,7 +13,7 @@ import * as cache from '../cache';
 import { NetworkContext } from '../contexts/NetworkProvider';
 
 import { Article } from '../components/Article';
-import { AppleStyleSwipeableRow } from '../components/SwipeableRow/AppleStyleSwipeableRow';
+import { SwipeableRow } from '../components/SwipeableRow';
 import { ArticleEmptyProcessing, ArticleEmptyFailed } from '../components/ArticleEmpty';
 
 import { RootState } from '../reducers';
@@ -508,7 +508,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     const hasAudiofile = article.audiofiles.length > 0;
 
     return (
-      <AppleStyleSwipeableRow
+      <SwipeableRow
         removeArticle={this.handleRemoveArticle}
         archiveArticle={this.handleArchiveArticle}
         favoriteArticle={this.handleFavoriteArticle}
@@ -551,7 +551,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         />
         }
 
-      </AppleStyleSwipeableRow>
+      </SwipeableRow>
     );
   }
 }

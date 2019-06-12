@@ -6,28 +6,29 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import { reactNativeElementsTheme } from './theme';
 
-// import { ErrorBoundary } from './components/ErrorBoundary';
 import { ShareOverlay } from './components/ShareOverlay';
 import { NetworkProvider } from './contexts/NetworkProvider';
 
-if (Platform.OS === 'ios' && __DEV__) {
-  NativeModules.DevSettings.setIsDebuggingRemotely(true);
-}
-
 console.disableYellowBox = true;
 
-export default class ShareApp extends React.PureComponent {
-  render() {
-    return (
-      // <ErrorBoundary>
-        <Provider store={store}>
-          <ThemeProvider theme={reactNativeElementsTheme}>
-            <NetworkProvider>
-              <ShareOverlay />
-            </NetworkProvider>
-          </ThemeProvider>
-        </Provider>
-      // </ErrorBoundary>
-    );
+export default () => {
+  setRemoteDebugging(__DEV__);
+
+  return (
+    <Provider store={store}>
+      <ThemeProvider theme={reactNativeElementsTheme}>
+        <NetworkProvider>
+          <ShareOverlay />
+        </NetworkProvider>
+      </ThemeProvider>
+    </Provider>
+  );
+
+  function setRemoteDebugging(dev: boolean) {
+    if (Platform.OS !== 'ios') return;
+
+    if (!dev) return;
+
+    NativeModules.DevSettings.setIsDebuggingRemotely(true);
   }
-}
+};

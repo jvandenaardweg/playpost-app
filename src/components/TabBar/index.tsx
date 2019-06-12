@@ -1,6 +1,8 @@
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { View } from 'react-native';
+
+import { NetworkContext } from '../../contexts/NetworkProvider';
 
 // BottomTabBar not seems to be in the exported types, but is available to import
 // So we ignore the error for now
@@ -12,14 +14,16 @@ import { BottomTabBar, BottomTabBarProps } from 'react-navigation';
 import { AudioPlayerContainer } from '../../containers/AudioPlayerContainer';
 
 import styles from './styles';
-// import { ErrorMessage } from '../ErrorMessage';
 import { OfflineNotice } from '../OfflineNotice';
 
-export const TabBar: React.FC<BottomTabBarProps> = React.memo(props => (
-  <View style={styles.container}>
-    <OfflineNotice />
-    {/* <ErrorMessage /> */}
-    <AudioPlayerContainer />
-    <BottomTabBar {...props} />
-  </View>
-));
+export const TabBar: React.FC<BottomTabBarProps> = (props: BottomTabBarProps) => {
+  const { isConnected } = useContext(NetworkContext);
+
+  return (
+    <View style={styles.container}>
+      {!isConnected && <OfflineNotice />}
+      <AudioPlayerContainer />
+      <BottomTabBar {...props} />
+    </View>
+  );
+};

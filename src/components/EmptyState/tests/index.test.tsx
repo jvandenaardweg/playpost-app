@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, RenderAPI } from 'react-native-testing-library';
-import { EmptyState } from '../EmptyState';
+
+import { EmptyState } from '../index';
 
 describe('EmptyState', () => {
 

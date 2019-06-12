@@ -48,6 +48,12 @@ First, try to build from XCode. Open the `Playpost.xcworkspace` file (not the `'
 Clean the cache: `cmd + shift + k`
 Start a build: `cmd + b`
 
+## Hot Reloading not working
+Make sure you:
+1. Don't use a `index.ts` with a `export * from './Component`. Hot reloading will not work.
+2. Don't use `React.memo()` around a Functional Component. Hot reloading will not work.
+3. Use A Functional HMR plugin: https://github.com/bvic23/babel-plugin-functional-hmr
+
 ## Undefined symbols for architecture arm64
 When you get errors related to "Undefined symbols for architecture arm64 - JSClassCreate". Add the `JavaScriptCore.framework` on top of the `Linked Frameworks and Libraries` in the `PlaypostShareExtension` target.
 Fix from: https://stackoverflow.com/a/54542903/3194288

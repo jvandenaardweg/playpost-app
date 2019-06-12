@@ -5,6 +5,7 @@
     "max-line-length": false,
     "variable-name": [true, "ban-keywords", "check-format", "allow-pascal-case"],
     "import-name": [false],
-    "no-any": true
+    "no-any": true,
+    "align": false
   }
 }

@@ -1,15 +1,15 @@
 import React from 'react';
 import { render, RenderAPI } from 'react-native-testing-library';
 
-import { SignupForm } from '../SignupForm';
+import { LoginForm } from '../index';
 
-describe('SignupForm', () => {
+describe('LoginForm', () => {
 
   describe('rendering', () => {
     let wrapper: RenderAPI;
 
     beforeAll(() => {
-      wrapper = render(<SignupForm onChangeText={() => {}} onPressSignup={() => {}} email="" password="" passwordValidation="" isLoading={false} />);
+      wrapper = render(<LoginForm onChangeText={() => {}} onPressLogin={() => {}} email="" password="" isLoading={false} />);
     });
 
     it('should render correctly', () => {

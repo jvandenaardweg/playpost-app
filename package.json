@@ -141,7 +141,10 @@
     ]
   },
   "devDependencies": {
+    "babel-plugin-functional-hmr": "^1.0.24",
     "detox": "^12.11.0",
+    "install": "^0.12.2",
+    "npm": "^6.9.0",
     "npm-check": "^5.9.0"
   },
   "detox": {

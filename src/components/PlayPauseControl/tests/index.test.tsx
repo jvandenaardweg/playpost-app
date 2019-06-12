@@ -1,15 +1,15 @@
 import React from 'react';
 import { render, RenderAPI } from 'react-native-testing-library';
 
-import { VideoPlayer } from '../VideoPlayer';
+import { PlayPauseControl } from '../index';
 
-describe('VideoPlayer', () => {
+describe('PlayPauseControl', () => {
 
   describe('rendering', () => {
     let wrapper: RenderAPI;
 
     beforeAll(() => {
-      wrapper = render(<VideoPlayer />);
+      wrapper = render(<PlayPauseControl isPlaying={false} isLoading={false} onPressPlay={() => {}} />);
     });
 
     it('should render correctly', () => {

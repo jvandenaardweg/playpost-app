@@ -1,15 +1,15 @@
 import React from 'react';
 import { render, RenderAPI } from 'react-native-testing-library';
 
-import { ButtonVoicePreview } from '../ButtonVoicePreview';
+import { UpdatePasswordForm } from '../index';
 
-describe('ButtonVoicePreview', () => {
+describe('UpdatePasswordForm', () => {
 
   describe('rendering', () => {
     let wrapper: RenderAPI;
 
     beforeAll(() => {
-      wrapper = render(<ButtonVoicePreview onPress={() => {}} />);
+      wrapper = render(<UpdatePasswordForm onChangeText={() => {}} onPressUpdatePassword={() => {}} password="" passwordValidation="" isLoading={false} isSuccess={false} />);
     });
 
     it('should render correctly', () => {

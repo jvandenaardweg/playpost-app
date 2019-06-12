@@ -1,15 +1,15 @@
 import React from 'react';
 import { render, RenderAPI } from 'react-native-testing-library';
 
-import { UpdateEmailForm } from '../UpdateEmailForm';
+import { ButtonVoicePreview } from '../index';
 
-describe('UpdateEmailForm', () => {
+describe('ButtonVoicePreview', () => {
 
   describe('rendering', () => {
     let wrapper: RenderAPI;
 
     beforeAll(() => {
-      wrapper = render(<UpdateEmailForm onChangeText={() => {}} onPressUpdateEmail={() => {}} email="" isLoading={false} isSuccess={false} />);
+      wrapper = render(<ButtonVoicePreview onPress={() => {}} />);
     });
 
     it('should render correctly', () => {

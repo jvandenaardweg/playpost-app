@@ -1,15 +1,15 @@
 import React from 'react';
 import { render, RenderAPI } from 'react-native-testing-library';
 
-import { PlayPauseControl } from '../PlayPauseControl';
+import { SignupForm } from '../index';
 
-describe('PlayPauseControl', () => {
+describe('SignupForm', () => {
 
   describe('rendering', () => {
     let wrapper: RenderAPI;
 
     beforeAll(() => {
-      wrapper = render(<PlayPauseControl isPlaying={false} isLoading={false} onPressPlay={() => {}} />);
+      wrapper = render(<SignupForm onChangeText={() => {}} onPressSignup={() => {}} email="" password="" passwordValidation="" isLoading={false} />);
     });
 
     it('should render correctly', () => {

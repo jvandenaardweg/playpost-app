@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import AppIntroSlider from 'react-native-app-intro-slider';
@@ -20,9 +20,10 @@ interface OnboardingSlideProps {
   text: string;
 }
 
-class OnboardingSliderComponent extends React.PureComponent<Props> {
-
-  slides = [
+const OnboardingSliderComponent: React.FC<Props> = React.memo(({
+  navigation
+}) => {
+  const slides = [
     {
       key: 'slide0',
       title: 'Instant podcasts of every article',
@@ -50,49 +51,55 @@ class OnboardingSliderComponent extends React.PureComponent<Props> {
     },
   ];
 
-  componentDidMount() {
+  useEffect(() => {
     SplashScreen.hide();
+  }, []);
+
+  function renderItem(props: OnboardingSlideProps) {
+    return <OnboardingSlide {...props} />;
   }
 
-  renderItem = (props: OnboardingSlideProps) => <OnboardingSlide {...props} />;
-
-  render() {
-    return (
-      <View style={styles.container} testID="onboarding-screen">
-        <AppIntroSlider
-          testID="onboarding-slider"
-          slides={this.slides}
-          renderItem={this.renderItem}
-          showPrevButton
-          renderNextButton={() => <Icon.Feather name="arrow-right" color="white" size={24} />}
-          renderPrevButton={() => <Icon.Feather name="arrow-left" color="white" size={24} />}
-          renderDoneButton={() => null}
-        />
-        <View style={styles.footerContainer}>
-          <Button testID="onboarding-button-signup" title="Create account" onPress={() => this.props.navigation.navigate('Signup')} buttonStyle={styles.signupButtonStyle} titleStyle={styles.signupButtonTitleStyle} />
-          <Button testID="onboarding-button-login" title="I already have an account" type="clear" onPress={() => this.props.navigation.navigate('Login')} titleStyle={styles.loginButtonTitleStyle} />
-        </View>
+  return (
+    <View style={styles.container} testID="onboarding-screen">
+      <AppIntroSlider
+        testID="onboarding-slider"
+        slides={slides}
+        renderItem={renderItem}
+        showPrevButton
+        renderNextButton={() => <Icon.Feather name="arrow-right" color="white" size={24} />}
+        renderPrevButton={() => <Icon.Feather name="arrow-left" color="white" size={24} />}
+        renderDoneButton={() => null}
+      />
+      <View style={styles.footerContainer}>
+        <Button testID="onboarding-button-signup" title="Create account" onPress={() => navigation.navigate('Signup')} buttonStyle={styles.signupButtonStyle} titleStyle={styles.signupButtonTitleStyle} />
+        <Button testID="onboarding-button-login" title="I already have an account" type="clear" onPress={() => navigation.navigate('Login')} titleStyle={styles.loginButtonTitleStyle} />
       </View>
-    );
-  }
-}
+    </View>
+  );
+});
 
-const OnboardingSlide = (props: OnboardingSlideProps) => (
+const OnboardingSlide: React.FC<OnboardingSlideProps> = React.memo(({
+  topSpacer,
+  width,
+  height,
+  title,
+  text
+}) => (
   <View
     style={[
       styles.mainContent,
       {
-        paddingTop: props.topSpacer,
-        width: props.width,
-        height: props.height,
+        width,
+        height,
+        paddingTop: topSpacer
       },
     ]}
   >
     <View>
-      <Text testID="onboarding-slider-item-title" style={styles.title}>{props.title}</Text>
-      <Text testID="onboarding-slider-item-text" style={styles.text}>{props.text}</Text>
+      <Text testID="onboarding-slider-item-title" style={styles.title}>{title}</Text>
+      <Text testID="onboarding-slider-item-text" style={styles.text}>{text}</Text>
     </View>
   </View>
-);
+));
 
 export const OnboardingSlider = withNavigation(OnboardingSliderComponent);
