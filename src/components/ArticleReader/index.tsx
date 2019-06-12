@@ -139,7 +139,7 @@ export class ArticleReader extends React.PureComponent<Props> {
 
   get noHtmlDocument() {
     const { article } = this.props;
-    const articleUrl = (article) ? article.url : '';
+    const articleUrlLink = (article && article.url) ? `<a href="${article.url}">View the original article</a>` : '';
 
     return `
       <!DOCTYPE html>
@@ -147,7 +147,7 @@ export class ArticleReader extends React.PureComponent<Props> {
         <body>
           <h1>Insufficient article data</h1>
           <p>The article did not return any sufficient content to show. This could happen when the article is behind a pay-wall or requires a login.</p>
-          <a href="${articleUrl}">View the original article</a>
+          ${articleUrlLink}
         </body>
       </html>
     `;

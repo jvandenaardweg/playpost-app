@@ -126,6 +126,10 @@
       "**/__tests__/**/*.(ts|tsx|js)",
       "**/?(*.)+(spec|test).(ts|tsx|js)"
     ],
+    "forceCoverageMatch": [
+      "<rootDir>/src/**/__tests__/**/*.(ts|tsx|js)",
+      "<rootDir>/src/**/?(*.)+(spec|test).(ts|tsx|js)"
+    ],
     "testPathIgnorePatterns": [
       "\\.snap$",
       "<rootDir>/node_modules/",

@@ -1,5 +1,3 @@
-import Analytics from 'appcenter-analytics';
-
 import { GENERIC_NETWORK_ERROR, POST_AUTH_FAIL_MESSAGE } from '../constants/messages';
 
 export const POST_AUTH = 'auth/POST_AUTH';
@@ -58,10 +56,8 @@ export function authReducer(state = initialState, action: any): AuthState {
       } else {
         // Error, from the API
         if (action.error.response && action.error.response.data && action.error.response.data.message) {
-          Analytics.trackEvent('Error auth', { message: action.error.response.data.message });
           postAuthFailMessage = action.error.response.data.message;
         } else {
-          Analytics.trackEvent('Error auth', { message: POST_AUTH_FAIL_MESSAGE });
           postAuthFailMessage = POST_AUTH_FAIL_MESSAGE;
         }
       }

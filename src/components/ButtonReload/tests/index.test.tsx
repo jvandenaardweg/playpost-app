@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, RenderAPI } from 'react-native-testing-library';
 
-import { ButtonReload } from '../ButtonReload';
+import { ButtonReload } from '../index';
 
 describe('ButtonReload', () => {
 
