@@ -35,6 +35,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
+  [AppCenterReactNative register];  // Initialize AppCenter
   // Custom added
   [AppCenterReactNativeCrashes registerWithAutomaticProcessing];
   [AppCenterReactNativeAnalytics registerWithInitiallyEnabled:false];

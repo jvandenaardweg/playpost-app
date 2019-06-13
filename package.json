@@ -1,6 +1,6 @@
 {
   "name": "playpost",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -13,7 +13,8 @@
     "typescript": "tsc",
     "upgrade-interactive": "npm-check --update",
     "tsc": "tsc -p ./ --noEmit",
-    "tsc:watch": "tsc -p ./ --noEmit -w"
+    "tsc:watch": "tsc -p ./ --noEmit -w",
+    "postversion": "react-native-version"
   },
   "rnpm": {
     "assets": [
@@ -78,6 +79,7 @@
     "react-native-track-player": "^1.1.4",
     "react-native-typescript-transformer": "^1.2.12",
     "react-native-vector-icons": "^6.5.0",
+    "react-native-version": "^3.1.0",
     "react-native-version-number": "^0.3.6",
     "react-native-video": "^4.4.1",
     "react-native-webview": "5.8.2",

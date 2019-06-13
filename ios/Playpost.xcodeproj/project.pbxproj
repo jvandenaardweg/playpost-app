@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -37,12 +36,12 @@
 		571FC51D85E24AB892B9A7EE /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEA58976D2AA4935B3A2482B /* AntDesign.ttf */; };
 		5941A6E6051B45D483D7C0D6 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AACBBB1DF13F40C4891C2A74 /* FontAwesome.ttf */; };
 		5D905B24A555412FB69367C3 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 07C3AF520686418DABBB26ED /* Foundation.ttf */; };
-		618874949B36ECD1C772C666 /* libPods-Playpost-PlaypostShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD3D196220F6C870030C131 /* libPods-Playpost-PlaypostShareExtension.a */; };
 		686893D645554C13996D9CCD /* libAppCenterReactNativeCrashes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48ED15BFDF1F4A899AD2926E /* libAppCenterReactNativeCrashes.a */; };
 		6980D35EFFB14D90B2D9A316 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A158EB63085341FB9AB6822F /* FontAwesome5_Brands.ttf */; };
-		6EFE652E6A47ED339C0080E5 /* libPods-PlaypostTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5A7DDC220F23EC00ECCC65 /* libPods-PlaypostTests.a */; };
+		70946F427DB337ADE57F082B /* libPods-PlaypostTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 247D47559962B0CAB54E69BC /* libPods-PlaypostTests.a */; };
 		73153140F51E4A83916440D1 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC4C9FB3C91949BC8C0030C5 /* Octicons.ttf */; };
 		7511265BB44A44218ED118E7 /* Merriweather-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD2F913E2FA64E8CB3D747F3 /* Merriweather-Bold.ttf */; };
+		79EA6E00569F10C9FA6A4049 /* libPods-Playpost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DCCC00F687607FC5D5D1F67 /* libPods-Playpost.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8AC92B55EE1A4901AFA213FE /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEC11A77002D4D729CD3412A /* SimpleLineIcons.ttf */; };
 		8C13332F2292B24E00516937 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C13332E2292B24E00516937 /* StoreKit.framework */; };
@@ -103,7 +102,6 @@
 		8C92A69D2243CA320057A1EE /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C92A69B2243CA210057A1EE /* libRNCWebView.a */; };
 		8CA3D2DA22900BC700516BF9 /* libRNReanimated.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA3D2D322900BBA00516BF9 /* libRNReanimated.a */; };
 		8CA3D2DB22900BD300516BF9 /* libRNReanimated.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA3D2D322900BBA00516BF9 /* libRNReanimated.a */; };
-		8CAA1197220F2CCE002741D6 /* libPods-Playpost-PlaypostShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAA1196220F2CCE002741D6 /* libPods-Playpost-PlaypostShareExtension.a */; };
 		8CAA1198220F2FC3002741D6 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		8CBA9CD4227DA93800CE20A0 /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CBA9CC1227DA93100CE20A0 /* libRNCAsyncStorage.a */; };
 		8CBA9CD5227DA94500CE20A0 /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CBA9CC1227DA93100CE20A0 /* libRNCAsyncStorage.a */; };
@@ -123,13 +121,12 @@
 		8CF6C612220F27E300A07384 /* libAppCenterReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAAAAFD22061A2200E67A62 /* libAppCenterReactNative.a */; };
 		8CF6C613220F27E300A07384 /* libAppCenterReactNativeAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAAAB0022061A2200E67A62 /* libAppCenterReactNativeAnalytics.a */; };
 		8CF6C614220F27E300A07384 /* libAppCenterReactNativeCrashes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAAAB0322061A2200E67A62 /* libAppCenterReactNativeCrashes.a */; };
-		8D5E2C5F4C5838651B90A6B1 /* libPods-Playpost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5A7DDA220F23EC00ECCC65 /* libPods-Playpost.a */; };
 		99D4C970290A4F928DF35E6F /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA8692927B564C5AAF0BC603 /* Entypo.ttf */; };
 		A64A372C832C4F67B5C9F81E /* Merriweather-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 208F0875A5244E5E8585FD01 /* Merriweather-Italic.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		BA57E94CCC4F4FEFBFBCCFC9 /* Merriweather-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E93C050B5DB7430FABAD8C10 /* Merriweather-Black.ttf */; };
 		CA76FFC07A68429E9BD11FE8 /* libAppCenterReactNativeAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 205E8F451EE84A6CA4C1CEE4 /* libAppCenterReactNativeAnalytics.a */; };
-		D3028119ADE3B1EDE1E2DDA6 /* libPods-Playpost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CFF8F28AD2636C8BEF2561 /* libPods-Playpost.a */; };
+		D1300DE1B24B817748BA81BE /* libPods-Playpost-PlaypostShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FF89644E2DAC8B6D7D4E89E /* libPods-Playpost-PlaypostShareExtension.a */; };
 		D78C3E34E78F441AA7357785 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA7338DD2C124970A39CE86E /* FontAwesome5_Solid.ttf */; };
 		DD6BBD1A43F44BC8A477438A /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CE153E601D849F1A72C8047 /* AppCenter-Config.plist */; };
 		E37AB72DE5E246B78375F07E /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CA2C114AF24416C8B59526F /* Zocial.ttf */; };
@@ -138,7 +135,6 @@
 		ED75251423134820A02E38D2 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7172C5072020474BA598FF33 /* EvilIcons.ttf */; };
 		EFA00F99313549C38DC09A55 /* Merriweather-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4737CA2073746B38C3D16F0 /* Merriweather-Regular.ttf */; };
 		F3D7C7106DCF4E8CA6FE4D45 /* Merriweather-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B9779BB4A0A4F7CBDD605DB /* Merriweather-LightItalic.ttf */; };
-		FA85A9F1BD0EB71EA9371CB3 /* libPods-PlaypostTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C6C3D0B637499127C6109E /* libPods-PlaypostTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -651,10 +647,11 @@
 		00E356EE1AD99517003FC87E /* PlaypostTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlaypostTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* PlaypostTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaypostTests.m; sourceTree = "<group>"; };
+		01E26A0EE8CF7C11556B619F /* Pods-Playpost-PlaypostShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Playpost-PlaypostShareExtension.release.xcconfig"; path = "Target Support Files/Pods-Playpost-PlaypostShareExtension/Pods-Playpost-PlaypostShareExtension.release.xcconfig"; sourceTree = "<group>"; };
+		071427B8A979A222D497463A /* Pods-PlaypostTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlaypostTests.release.xcconfig"; path = "Target Support Files/Pods-PlaypostTests/Pods-PlaypostTests.release.xcconfig"; sourceTree = "<group>"; };
 		07C3AF520686418DABBB26ED /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		0A8BC5BF901745769E48F6CB /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		0CA2C114AF24416C8B59526F /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
-		100B94C61C813CFE231BD6A9 /* Pods-Playpost-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Playpost-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Playpost-tvOSTests/Pods-Playpost-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Playpost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Playpost.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -669,29 +666,27 @@
 		205E8F451EE84A6CA4C1CEE4 /* libAppCenterReactNativeAnalytics.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAppCenterReactNativeAnalytics.a; sourceTree = "<group>"; };
 		208F0875A5244E5E8585FD01 /* Merriweather-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Merriweather-Italic.ttf"; path = "../src/assets/fonts/Merriweather-Italic.ttf"; sourceTree = "<group>"; };
 		23A6E13F11684AB99934AD89 /* Merriweather-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Merriweather-BlackItalic.ttf"; path = "../src/assets/fonts/Merriweather-BlackItalic.ttf"; sourceTree = "<group>"; };
+		247D47559962B0CAB54E69BC /* libPods-PlaypostTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PlaypostTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		36CD98AD90CF1D596500E44D /* Pods-Playpost-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Playpost-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Playpost-tvOS/Pods-Playpost-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		3CDF1F5F159C4DECB5D04F34 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
-		3E6C3515855DB372255BBD5C /* libPods-Playpost-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Playpost-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F8E8C00076E46B5B577BC36 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		48ED15BFDF1F4A899AD2926E /* libAppCenterReactNativeCrashes.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAppCenterReactNativeCrashes.a; sourceTree = "<group>"; };
 		49D936597B894FCEA212DD93 /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = "<group>"; };
-		4AC2789B0A47FB3B8C3B7D6B /* libPods-PlaypostShareExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PlaypostShareExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C2C4B176CD9442ABBFAFEE9 /* AppCenterReactNativeAnalytics.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNativeAnalytics.xcodeproj; path = "../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics.xcodeproj"; sourceTree = "<group>"; };
 		4DC9D75E4E7E46AC85D4F7E7 /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGestureHandler.xcodeproj; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; };
-		54BD4F0B82A3F87AB30B2025 /* Pods-Playpost.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Playpost.release.xcconfig"; path = "Pods/Target Support Files/Pods-Playpost/Pods-Playpost.release.xcconfig"; sourceTree = "<group>"; };
-		55C6C3D0B637499127C6109E /* libPods-PlaypostTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PlaypostTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F3D7B8FC4B48AEE1E2D96B1 /* Pods-PlaypostTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlaypostTests.debug.xcconfig"; path = "Target Support Files/Pods-PlaypostTests/Pods-PlaypostTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4FF89644E2DAC8B6D7D4E89E /* libPods-Playpost-PlaypostShareExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Playpost-PlaypostShareExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5870CA0BA01A90982AEEABFA /* Pods-Playpost.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Playpost.release.xcconfig"; path = "Target Support Files/Pods-Playpost/Pods-Playpost.release.xcconfig"; sourceTree = "<group>"; };
 		5B9779BB4A0A4F7CBDD605DB /* Merriweather-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Merriweather-LightItalic.ttf"; path = "../src/assets/fonts/Merriweather-LightItalic.ttf"; sourceTree = "<group>"; };
 		5E3CC4A515AA4BE5A41469EC /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
-		6821334D78C6B5036F62E635 /* libPods-Playpost-PlaypostShareExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Playpost-PlaypostShareExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7172C5072020474BA598FF33 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		7360537CBD6943B09618FAEF /* Merriweather-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Merriweather-Light.ttf"; path = "../src/assets/fonts/Merriweather-Light.ttf"; sourceTree = "<group>"; };
 		740368AC306045B2AC5A575C /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
-		798363327FED4F4FEB0DAF2F /* Pods-Playpost-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Playpost-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Playpost-tvOS/Pods-Playpost-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		83BDA12E82754BE4AFD0FC8D /* AppCenterReactNative.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNative.xcodeproj; path = ../node_modules/appcenter/ios/AppCenterReactNative.xcodeproj; sourceTree = "<group>"; };
+		89F8ED4BACC4723F806AA210 /* Pods-Playpost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Playpost.debug.xcconfig"; path = "Target Support Files/Pods-Playpost/Pods-Playpost.debug.xcconfig"; sourceTree = "<group>"; };
 		8C13332E2292B24E00516937 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		8C15AFFB223EB671001058F0 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/rn-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		8C2A4D7F2292A2B300062B11 /* RNIap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNIap.xcodeproj; path = "../node_modules/react-native-iap/ios/RNIap.xcodeproj"; sourceTree = "<group>"; };
@@ -705,16 +700,12 @@
 		8C5A7DCA220F224A00ECCC65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C5A7DD2220F22A700ECCC65 /* PlaypostShareExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaypostShareExtension.m; sourceTree = "<group>"; };
 		8C5A7DD4220F230600ECCC65 /* ReactNativeShareExtension.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeShareExtension.xcodeproj; path = "../node_modules/react-native-share-extension/ios/ReactNativeShareExtension.xcodeproj"; sourceTree = "<group>"; };
-		8C5A7DDA220F23EC00ECCC65 /* libPods-Playpost.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-Playpost.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8C5A7DDC220F23EC00ECCC65 /* libPods-PlaypostTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-PlaypostTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C92A64C2243B7CC0057A1EE /* RNVersionNumber.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNVersionNumber.xcodeproj; path = "../node_modules/react-native-version-number/ios/RNVersionNumber.xcodeproj"; sourceTree = "<group>"; };
 		8C92A6962243CA210057A1EE /* RNCWebView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCWebView.xcodeproj; path = "../node_modules/react-native-webview/ios/RNCWebView.xcodeproj"; sourceTree = "<group>"; };
 		8CA3D29922900BBA00516BF9 /* RNReanimated.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNReanimated.xcodeproj; path = "../node_modules/react-native-reanimated/ios/RNReanimated.xcodeproj"; sourceTree = "<group>"; };
-		8CAA1196220F2CCE002741D6 /* libPods-Playpost-PlaypostShareExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-Playpost-PlaypostShareExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CBA9C90227DA93100CE20A0 /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCAsyncStorage.xcodeproj; path = "../node_modules/@react-native-community/async-storage/ios/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; };
 		8CBBA4B822995C7300C05945 /* ReactNativeConfig.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeConfig.xcodeproj; path = "../node_modules/react-native-config/ios/ReactNativeConfig.xcodeproj"; sourceTree = "<group>"; };
 		8CD2ED1B223E70AA00A054E6 /* RNFS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
-		8CD3D196220F6C870030C131 /* libPods-Playpost-PlaypostShareExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-Playpost-PlaypostShareExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD3D19C220F7B5B0030C131 /* PlaypostShareExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PlaypostShareExtension-Bridging-Header.h"; sourceTree = "<group>"; };
 		8CD3D19D220F7B5B0030C131 /* dummy2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dummy2.swift; sourceTree = "<group>"; };
 		8CD47BF92240D09E00D95B46 /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
@@ -723,34 +714,26 @@
 		8CF6C610220F27B800A07384 /* PlaypostShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PlaypostShareExtension.entitlements; sourceTree = "<group>"; };
 		8CF6C611220F27C100A07384 /* Playpost.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Playpost.entitlements; path = Playpost/Playpost.entitlements; sourceTree = "<group>"; };
 		8DC5133D459F41CFBD1D4CE5 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
+		8DCCC00F687607FC5D5D1F67 /* libPods-Playpost.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Playpost.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E2303C7C8C549689F8CFD7A /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
-		9AA2EA891EBFDEFA79E02712 /* Pods-Playpost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Playpost.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Playpost/Pods-Playpost.debug.xcconfig"; sourceTree = "<group>"; };
 		A158EB63085341FB9AB6822F /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		A4737CA2073746B38C3D16F0 /* Merriweather-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Merriweather-Regular.ttf"; path = "../src/assets/fonts/Merriweather-Regular.ttf"; sourceTree = "<group>"; };
-		A6A3ECD444D9644274E1B065 /* Pods-Playpost-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Playpost-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Playpost-tvOSTests/Pods-Playpost-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		A8FE01DAAFAE7A3E4FFCB018 /* libPods-Playpost-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Playpost-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AACBBB1DF13F40C4891C2A74 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
-		ABE92AD3C7DC1B55D89AC3EB /* Pods-Playpost-PlaypostShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Playpost-PlaypostShareExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Playpost-PlaypostShareExtension/Pods-Playpost-PlaypostShareExtension.release.xcconfig"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		BA8692927B564C5AAF0BC603 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		BC4C9FB3C91949BC8C0030C5 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		BEA58976D2AA4935B3A2482B /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		BEC11A77002D4D729CD3412A /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		CD2F913E2FA64E8CB3D747F3 /* Merriweather-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Merriweather-Bold.ttf"; path = "../src/assets/fonts/Merriweather-Bold.ttf"; sourceTree = "<group>"; };
+		CE35987CC7794749C9AF5A7B /* Pods-Playpost-PlaypostShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Playpost-PlaypostShareExtension.debug.xcconfig"; path = "Target Support Files/Pods-Playpost-PlaypostShareExtension/Pods-Playpost-PlaypostShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		D26B6FB34F514B5BA57F3AAD /* libAppCenterReactNative.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAppCenterReactNative.a; sourceTree = "<group>"; };
-		D4CFF8F28AD2636C8BEF2561 /* libPods-Playpost.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Playpost.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAAA645FBE924A1D9FC30D2C /* libRNVectorIcons-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNVectorIcons-tvOS.a"; sourceTree = "<group>"; };
-		DBED289227567476C0069775 /* Pods-PlaypostShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlaypostShareExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlaypostShareExtension/Pods-PlaypostShareExtension.release.xcconfig"; sourceTree = "<group>"; };
-		DF76707E5DD14253D50F18F2 /* Pods-PlaypostTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlaypostTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlaypostTests/Pods-PlaypostTests.release.xcconfig"; sourceTree = "<group>"; };
-		E464428CA299C117A466EB63 /* Pods-Playpost-PlaypostShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Playpost-PlaypostShareExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Playpost-PlaypostShareExtension/Pods-Playpost-PlaypostShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		E5C433349EFA4F739AE21096 /* SpaceMono-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SpaceMono-Regular.ttf"; path = "../src/assets/fonts/SpaceMono-Regular.ttf"; sourceTree = "<group>"; };
-		E931AB2F4225F38734BA4472 /* Pods-PlaypostShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlaypostShareExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlaypostShareExtension/Pods-PlaypostShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		E93C050B5DB7430FABAD8C10 /* Merriweather-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Merriweather-Black.ttf"; path = "../src/assets/fonts/Merriweather-Black.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F9A86DB16AB64E2FA6CD209F /* AppCenterReactNativeCrashes.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNativeCrashes.xcodeproj; path = "../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes.xcodeproj"; sourceTree = "<group>"; };
 		FA7338DD2C124970A39CE86E /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
-		FCC6FB9E5C4E2544D7D36957 /* Pods-PlaypostTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlaypostTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlaypostTests/Pods-PlaypostTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -759,8 +742,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
-				FA85A9F1BD0EB71EA9371CB3 /* libPods-PlaypostTests.a in Frameworks */,
-				6EFE652E6A47ED339C0080E5 /* libPods-PlaypostTests.a in Frameworks */,
+				70946F427DB337ADE57F082B /* libPods-PlaypostTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -769,7 +751,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CD3D198220F6CF50030C131 /* libReactNativeShareExtension.a in Frameworks */,
-				8CAA1197220F2CCE002741D6 /* libPods-Playpost-PlaypostShareExtension.a in Frameworks */,
 				8C437591220813CD000A15FE /* libRNTrackPlayer.a in Frameworks */,
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
 				8C92A69D2243CA320057A1EE /* libRNCWebView.a in Frameworks */,
@@ -802,8 +783,7 @@
 				CA76FFC07A68429E9BD11FE8 /* libAppCenterReactNativeAnalytics.a in Frameworks */,
 				686893D645554C13996D9CCD /* libAppCenterReactNativeCrashes.a in Frameworks */,
 				05070F8112484BF891C52C39 /* libRNVectorIcons.a in Frameworks */,
-				D3028119ADE3B1EDE1E2DDA6 /* libPods-Playpost.a in Frameworks */,
-				8D5E2C5F4C5838651B90A6B1 /* libPods-Playpost.a in Frameworks */,
+				79EA6E00569F10C9FA6A4049 /* libPods-Playpost.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -842,7 +822,7 @@
 				8C5A7DF6220F23EC00ECCC65 /* libRNVectorIcons.a in Frameworks */,
 				8CD3D19A220F786A0030C131 /* libReactNativeShareExtension.a in Frameworks */,
 				8CD3D19B220F7B090030C131 /* libRNTrackPlayer.a in Frameworks */,
-				618874949B36ECD1C772C666 /* libPods-Playpost-PlaypostShareExtension.a in Frameworks */,
+				D1300DE1B24B817748BA81BE /* libPods-Playpost-PlaypostShareExtension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -966,23 +946,30 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		1D3E133986E40FA9610FEEF2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				89F8ED4BACC4723F806AA210 /* Pods-Playpost.debug.xcconfig */,
+				5870CA0BA01A90982AEEABFA /* Pods-Playpost.release.xcconfig */,
+				CE35987CC7794749C9AF5A7B /* Pods-Playpost-PlaypostShareExtension.debug.xcconfig */,
+				01E26A0EE8CF7C11556B619F /* Pods-Playpost-PlaypostShareExtension.release.xcconfig */,
+				4F3D7B8FC4B48AEE1E2D96B1 /* Pods-PlaypostTests.debug.xcconfig */,
+				071427B8A979A222D497463A /* Pods-PlaypostTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				8C13332E2292B24E00516937 /* StoreKit.framework */,
-				8CD3D196220F6C870030C131 /* libPods-Playpost-PlaypostShareExtension.a */,
-				8CAA1196220F2CCE002741D6 /* libPods-Playpost-PlaypostShareExtension.a */,
-				8C5A7DDA220F23EC00ECCC65 /* libPods-Playpost.a */,
-				8C5A7DDC220F23EC00ECCC65 /* libPods-PlaypostTests.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
-				D4CFF8F28AD2636C8BEF2561 /* libPods-Playpost.a */,
-				A8FE01DAAFAE7A3E4FFCB018 /* libPods-Playpost-tvOS.a */,
-				3E6C3515855DB372255BBD5C /* libPods-Playpost-tvOSTests.a */,
-				55C6C3D0B637499127C6109E /* libPods-PlaypostTests.a */,
-				6821334D78C6B5036F62E635 /* libPods-Playpost-PlaypostShareExtension.a */,
-				4AC2789B0A47FB3B8C3B7D6B /* libPods-PlaypostShareExtension.a */,
+				8DCCC00F687607FC5D5D1F67 /* libPods-Playpost.a */,
+				4FF89644E2DAC8B6D7D4E89E /* libPods-Playpost-PlaypostShareExtension.a */,
+				247D47559962B0CAB54E69BC /* libPods-PlaypostTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1096,8 +1083,8 @@
 				8CE153E601D849F1A72C8047 /* AppCenter-Config.plist */,
 				32749CB2CB9340C9BCC73F46 /* Resources */,
 				8CAAAAC322061A1E00E67A62 /* Recovered References */,
-				DE351A728FD2C05C30DFA63B /* Pods */,
 				8C43759222081410000A15FE /* Playpost-Bridging-Header.h */,
+				1D3E133986E40FA9610FEEF2 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -1310,25 +1297,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DE351A728FD2C05C30DFA63B /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				9AA2EA891EBFDEFA79E02712 /* Pods-Playpost.debug.xcconfig */,
-				54BD4F0B82A3F87AB30B2025 /* Pods-Playpost.release.xcconfig */,
-				798363327FED4F4FEB0DAF2F /* Pods-Playpost-tvOS.debug.xcconfig */,
-				36CD98AD90CF1D596500E44D /* Pods-Playpost-tvOS.release.xcconfig */,
-				100B94C61C813CFE231BD6A9 /* Pods-Playpost-tvOSTests.debug.xcconfig */,
-				A6A3ECD444D9644274E1B065 /* Pods-Playpost-tvOSTests.release.xcconfig */,
-				FCC6FB9E5C4E2544D7D36957 /* Pods-PlaypostTests.debug.xcconfig */,
-				DF76707E5DD14253D50F18F2 /* Pods-PlaypostTests.release.xcconfig */,
-				E464428CA299C117A466EB63 /* Pods-Playpost-PlaypostShareExtension.debug.xcconfig */,
-				ABE92AD3C7DC1B55D89AC3EB /* Pods-Playpost-PlaypostShareExtension.release.xcconfig */,
-				E931AB2F4225F38734BA4472 /* Pods-PlaypostShareExtension.debug.xcconfig */,
-				DBED289227567476C0069775 /* Pods-PlaypostShareExtension.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1336,7 +1304,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "PlaypostTests" */;
 			buildPhases = (
-				7FFE4C6D7B3BE503C0D4EFEA /* [CP] Check Pods Manifest.lock */,
+				41BD4F12AD86330B912F888B /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
@@ -1355,7 +1323,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Playpost" */;
 			buildPhases = (
-				E3039AEF23BEA5094F014FAF /* [CP] Check Pods Manifest.lock */,
+				D03E12B1EECE1FBD2DEF15A4 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
@@ -1377,7 +1345,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C5A7DCE220F224A00ECCC65 /* Build configuration list for PBXNativeTarget "PlaypostShareExtension" */;
 			buildPhases = (
-				8220BBC592F301BA6B538779 /* [CP] Check Pods Manifest.lock */,
+				E4C92D042CED0B4D57AA60BD /* [CP] Check Pods Manifest.lock */,
 				8C5A7DBE220F224A00ECCC65 /* Sources */,
 				8C5A7DBF220F224A00ECCC65 /* Frameworks */,
 				8C5A7DC0220F224A00ECCC65 /* Resources */,
@@ -2137,7 +2105,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		7FFE4C6D7B3BE503C0D4EFEA /* [CP] Check Pods Manifest.lock */ = {
+		41BD4F12AD86330B912F888B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2153,28 +2121,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-PlaypostTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8220BBC592F301BA6B538779 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Playpost-PlaypostShareExtension-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2198,7 +2144,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		E3039AEF23BEA5094F014FAF /* [CP] Check Pods Manifest.lock */ = {
+		D03E12B1EECE1FBD2DEF15A4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2214,6 +2160,28 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Playpost-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4C92D042CED0B4D57AA60BD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Playpost-PlaypostShareExtension-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2299,7 +2267,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FCC6FB9E5C4E2544D7D36957 /* Pods-PlaypostTests.debug.xcconfig */;
+			baseConfigurationReference = 4F3D7B8FC4B48AEE1E2D96B1 /* Pods-PlaypostTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2332,7 +2300,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF76707E5DD14253D50F18F2 /* Pods-PlaypostTests.release.xcconfig */;
+			baseConfigurationReference = 071427B8A979A222D497463A /* Pods-PlaypostTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2362,7 +2330,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9AA2EA891EBFDEFA79E02712 /* Pods-Playpost.debug.xcconfig */;
+			baseConfigurationReference = 89F8ED4BACC4723F806AA210 /* Pods-Playpost.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2401,7 +2369,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 54BD4F0B82A3F87AB30B2025 /* Pods-Playpost.release.xcconfig */;
+			baseConfigurationReference = 5870CA0BA01A90982AEEABFA /* Pods-Playpost.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2552,7 +2520,7 @@
 		};
 		8C5A7DCF220F224A00ECCC65 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E464428CA299C117A466EB63 /* Pods-Playpost-PlaypostShareExtension.debug.xcconfig */;
+			baseConfigurationReference = CE35987CC7794749C9AF5A7B /* Pods-Playpost-PlaypostShareExtension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2602,7 +2570,7 @@
 		};
 		8C5A7DD0220F224A00ECCC65 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ABE92AD3C7DC1B55D89AC3EB /* Pods-Playpost-PlaypostShareExtension.release.xcconfig */;
+			baseConfigurationReference = 01E26A0EE8CF7C11556B619F /* Pods-Playpost-PlaypostShareExtension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
