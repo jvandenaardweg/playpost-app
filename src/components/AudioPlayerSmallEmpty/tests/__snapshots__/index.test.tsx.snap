@@ -4,28 +4,78 @@ exports[`AudioPlayerSmallEmpty rendering should render correctly 1`] = `
 <View
   style={
     Object {
-      "alignItems": "center",
-      "backgroundColor": "#000000",
-      "flexDirection": "row",
       "height": 55,
-      "justifyContent": "space-around",
-      "paddingBottom": 8,
-      "paddingLeft": 16,
-      "paddingRight": 16,
-      "paddingTop": 8,
     }
   }
 >
-  <Text
+  <View
     style={
       Object {
-        "color": "#ffffff",
-        "fontSize": 15,
-        "fontWeight": "500",
+        "alignItems": "center",
+        "backgroundColor": "#000000",
+        "flexDirection": "row",
+        "height": 55,
+        "justifyContent": "space-around",
+        "paddingBottom": 8,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 8,
       }
     }
   >
-    Select an article to listen
-  </Text>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontSize": 15,
+            "fontWeight": "500",
+          }
+        }
+      >
+        Select an article to listen
+      </Text>
+      <View
+        style={
+          Object {
+            "bottom": 0,
+            "position": "absolute",
+            "right": 30,
+            "top": 2,
+          }
+        }
+      >
+        <Text
+          allowFontScaling={false}
+          style={
+            Array [
+              Object {
+                "color": "white",
+                "fontSize": 14,
+              },
+              undefined,
+              Object {
+                "fontFamily": "FontAwesome",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+              Object {},
+            ]
+          }
+        >
+          
+        </Text>
+      </View>
+    </View>
+  </View>
 </View>
 `;
