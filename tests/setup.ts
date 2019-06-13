@@ -45,27 +45,28 @@ jest.mock('react-native-splash-screen');
 jest.mock('react-native-app-intro-slider');
 jest.mock('react-native-fs');
 
-jest.mock('react-navigation', ({
-  withNavigation: (component: any) => component,
-  navigation: {
-    state: { params: {} },
-    dispatch: jest.fn(),
-    goBack: jest.fn(),
-    dismiss: jest.fn(),
-    navigate: jest.fn(),
-    openDrawer: jest.fn(),
-    closeDrawer: jest.fn(),
-    toggleDrawer: jest.fn(),
-    getParam: jest.fn(),
-    setParams: jest.fn(),
-    addListener: jest.fn(),
-    push: jest.fn(),
-    replace: jest.fn(),
-    pop: jest.fn(),
-    popToTop: jest.fn(),
-    isFocused: jest.fn()
-  }
-}));
+// Below gives TS errors... So we uncomment it for now
+// jest.mock('react-navigation', ({
+//   withNavigation: (component: any) => component,
+//   navigation: {
+//     state: { params: {} },
+//     dispatch: jest.fn(),
+//     goBack: jest.fn(),
+//     dismiss: jest.fn(),
+//     navigate: jest.fn(),
+//     openDrawer: jest.fn(),
+//     closeDrawer: jest.fn(),
+//     toggleDrawer: jest.fn(),
+//     getParam: jest.fn(),
+//     setParams: jest.fn(),
+//     addListener: jest.fn(),
+//     push: jest.fn(),
+//     replace: jest.fn(),
+//     pop: jest.fn(),
+//     popToTop: jest.fn(),
+//     isFocused: jest.fn()
+//   }
+// }));
 
 // Workaround for error:
 // Attempted to log "Calling .focus() in the test renderer environment is not supported. Instead, mock out your components that use findNodeHandle with replacements that don't rely on the native environment."

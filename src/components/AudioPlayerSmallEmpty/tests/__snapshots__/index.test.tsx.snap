@@ -44,37 +44,6 @@ exports[`AudioPlayerSmallEmpty rendering should render correctly 1`] = `
       >
         Select an article to listen
       </Text>
-      <View
-        style={
-          Object {
-            "bottom": 0,
-            "position": "absolute",
-            "right": 30,
-            "top": 2,
-          }
-        }
-      >
-        <Text
-          allowFontScaling={false}
-          style={
-            Array [
-              Object {
-                "color": "white",
-                "fontSize": 14,
-              },
-              undefined,
-              Object {
-                "fontFamily": "FontAwesome",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-              Object {},
-            ]
-          }
-        >
-          
-        </Text>
-      </View>
     </View>
   </View>
 </View>
