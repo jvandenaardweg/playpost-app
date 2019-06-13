@@ -137,7 +137,8 @@
     ],
     "cacheDirectory": ".jest/cache",
     "setupFiles": [
-      "<rootDir>/tests/setup.ts"
+      "<rootDir>/tests/setup.ts",
+      "<rootDir>/node_modules/react-native-gesture-handler/jestSetup.js"
     ]
   },
   "devDependencies": {

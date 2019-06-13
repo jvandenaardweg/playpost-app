@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavigationScreenProp, NavigationRoute, NavigationScreenOptions } from 'react-navigation';
-import { ScrollView } from 'react-native';
 import { ButtonClose } from '../../components/ButtonClose';
 import { UpgradeContainer } from '../../containers/UpgradeContainer';
 
@@ -27,9 +26,7 @@ export class UpgradeScreen extends React.PureComponent<Props> {
 
   render() {
     return (
-      <ScrollView>
-        <UpgradeContainer />
-      </ScrollView>
+      <UpgradeContainer />
     );
   }
 }

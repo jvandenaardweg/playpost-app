@@ -8,7 +8,6 @@ import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
     padding: spacing.default,
   },
   header: {
@@ -53,10 +52,6 @@ export default StyleSheet.create({
     width: 40
   },
   footer: {
-    marginTop: spacing.default,
-    paddingTop: spacing.default,
-    borderTopWidth: 1,
-    borderColor: colors.grayLightest,
     paddingBottom: 24
   },
   footerText: {
@@ -75,7 +70,9 @@ export default StyleSheet.create({
     opacity: 1
   },
   subscribeContainer: {
-    paddingTop: 0
+    borderTopWidth: 1,
+    borderColor: colors.grayLightest,
+    padding: spacing.large
   },
   primaryButtonDisabledStyle: {
     backgroundColor: colors.tintColor
