@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppState, AppStateStatus } from 'react-native';
+import { AppState, AppStateStatus, Alert } from 'react-native';
 import { connect } from 'react-redux';
 
 import { RootState } from '../reducers';
@@ -10,6 +10,7 @@ import { SUBSCRIPTION_PRODUCT_ID } from '../constants/in-app-purchase';
 import { selectAuthenticationStatus } from '../selectors/auth';
 import { selectSubscriptionsValidationResult, selectSubscriptionByProductId, selectIsSubscribed } from '../selectors/subscriptions';
 import { validateSubscriptionReceipt } from '../reducers/subscriptions';
+import { ALERT_SUBSCRIPTION_EXPIRED } from '../constants/messages';
 // import { ALERT_SUBSCRIPTION_EXPIRED } from '../constants/messages';
 
 export const AppStateContext = React.createContext<{ appState: AppStateStatus, stateChanged: boolean, isSubscribed: boolean }>({ appState: AppState.currentState, stateChanged: false, isSubscribed: false });
@@ -54,7 +55,7 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
     if (prevProps.isSubscribed !== isSubscribed) {
       // If the state changes from subscribed, to unsubscribed, notify the user, so the user can re-subscribe again if he wants to.
       if (!isSubscribed) {
-        // Alert.alert('Subscription expired', ALERT_SUBSCRIPTION_EXPIRED);
+        Alert.alert('Subscription expired', ALERT_SUBSCRIPTION_EXPIRED);
       }
 
       this.setState({ isSubscribed });
@@ -66,7 +67,7 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
    * app goes to the background or foreground.
    */
   handleAppStateChange = async (nextAppState: AppStateStatus) => {
-    const stateChanged = !!(this.state.appState.match(/inactive|background/) && nextAppState === 'active');
+    const stateChanged = nextAppState === 'active';
 
     console.log('AppStateProvider', 'App State Changed:', stateChanged, nextAppState);
 
@@ -88,7 +89,7 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
 
     console.log('App became active again, get the user his playlist...');
 
-    if (authenticationStatus !== 'LOGGED_IN') return console.log('User is not logged in, so we cannot check if his subscription is expired.');
+    if (authenticationStatus !== 'LOGGED_IN') return console.warn('User is not logged in, so we cannot get the user his playlist.');
     this.props.getPlaylist();
   }
 
@@ -101,7 +102,7 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
   validateActiveSubscription = async () => {
     const { authenticationStatus, subscriptionsValidationResult, validateSubscriptionReceipt, subscription } = this.props;
 
-    if (authenticationStatus !== 'LOGGED_IN') return console.log('User is not logged in, so we cannot check if his subscription is expired.');
+    if (authenticationStatus !== 'LOGGED_IN') return console.warn('User is not logged in, so we cannot check if his subscription is expired.');
     if (!subscription) return console.error('No subscription found to validate the users subscription.');
     if (!subscriptionsValidationResult) return console.error('No subscriptionsValidationResult found to validate the users subscription. Probably because the user has no subscription.');
 
