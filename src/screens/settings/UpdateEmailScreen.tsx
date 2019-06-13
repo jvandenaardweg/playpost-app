@@ -33,7 +33,7 @@ type Props = IProps & StateProps & DispatchProps;
 export class UpdateEmailScreenContainer extends React.PureComponent<Props, State> {
   static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
-      title: 'Change e-mail address'
+      title: 'Change e-mail'
     };
   }
 
