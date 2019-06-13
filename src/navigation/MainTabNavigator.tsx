@@ -14,7 +14,8 @@ import { SettingsLanguagesScreen } from '../screens/settings/LanguagesScreen';
 import { FullArticleScreen } from '../screens/FullArticleScreen';
 import { UpdatePasswordScreen } from '../screens/settings/UpdatePasswordScreen';
 import { UpdateEmailScreen } from '../screens/settings/UpdateEmailScreen';
-import { ButtonUpgrade } from '../components/ButtonUpgrade';
+
+import { ButtonUpgradeContainer } from '../containers/ButtonUpgradeContainer';
 
 const PlaylistStack: StackNavigatorConfig = createStackNavigator(
   {
@@ -26,7 +27,7 @@ const PlaylistStack: StackNavigatorConfig = createStackNavigator(
     headerTransitionPreset: 'uikit',
     defaultNavigationOptions: ({ navigation }) => ({
       title: 'Playlist',
-      headerRight: <ButtonUpgrade onPress={() => navigation.navigate('Upgrade')} />
+      headerRight: <ButtonUpgradeContainer />
     }),
     navigationOptions: {
       tabBarLabel: 'Playlist',
@@ -49,7 +50,7 @@ const ArchiveStack: StackNavigatorConfig = createStackNavigator(
     headerTransitionPreset: 'uikit',
     defaultNavigationOptions: ({ navigation }) => ({
       title: 'Archive',
-      headerRight: <ButtonUpgrade onPress={() => navigation.navigate('Upgrade')} />
+      headerRight: <ButtonUpgradeContainer />
     }),
     navigationOptions: {
       tabBarLabel: 'Archive',
@@ -72,7 +73,7 @@ const FavoritesStack: StackNavigatorConfig = createStackNavigator(
     headerTransitionPreset: 'uikit',
     defaultNavigationOptions: ({ navigation }) => ({
       title: 'Favorites',
-      headerRight: <ButtonUpgrade onPress={() => navigation.navigate('Upgrade')} />
+      headerRight: <ButtonUpgradeContainer />
     }),
     navigationOptions: {
       tabBarLabel: 'Favorites',
@@ -100,7 +101,7 @@ const SettingsStack: StackNavigatorConfig = createStackNavigator(
     headerTransitionPreset: 'uikit',
     defaultNavigationOptions: ({ navigation }) => ({
       title: 'Settings',
-      headerRight: <ButtonUpgrade onPress={() => navigation.navigate('Upgrade')} />
+      headerRight: <ButtonUpgradeContainer />
     }),
     navigationOptions: {
       tabBarLabel: 'Settings',
