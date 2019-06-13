@@ -5,6 +5,8 @@ import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 import NetInfo from '@react-native-community/netinfo';
 import AsyncStorage from '@react-native-community/async-storage';
 
+import { persistor } from '../store';
+
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 
 import { Platform } from 'react-native';
@@ -34,6 +36,9 @@ export class AuthLoadingScreen extends React.PureComponent<Props> {
     if (!hasRunBefore) {
       // Delete any API token we had from a previous install
       await Keychain.resetGenericPassword();
+
+      // Reset the persisted store, so we start clean from previous installs
+      await persistor.purge();
 
       // Set the item to something, so we don't reset the API token upon next launch
       await AsyncStorage.setItem('@hasRunBefore', 'true');

@@ -28,7 +28,8 @@ export function* authorize({ email, password }: AnyAction) {
     yield put(setAuthToken(token));
 
     // Save the token in the Keychain, so it can be re-used by our Share App ánd be picked up by Axios as Authorization headers
-    yield call(Keychain.setGenericPassword, 'token', token, keychainArguments);
+    // yield call(Keychain.setGenericPassword, 'token', token, keychainArguments);
+    // yield call([Keychain, Keychain.setGenericPassword], 'token', token, keychainArguments);
 
     return token;
   } catch (err) {
@@ -37,20 +38,6 @@ export function* authorize({ email, password }: AnyAction) {
       errorMessage = err.response.data.message;
     }
     yield put(setAuthError(errorMessage));
-    return err;
-  }
-}
-
-export function* setAuthorized(token: string) {
-  try {
-    yield put(setAuthToken(token));
-
-    // Add the token to the keychain
-    yield call([Keychain, Keychain.setGenericPassword], 'token', token, keychainArguments);
-
-    return token;
-  } catch (err) {
-    yield put(setAuthError(err));
     return err;
   }
 }
