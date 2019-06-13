@@ -1,24 +1,17 @@
 import React from 'react';
 import { FlatList } from 'react-native';
-import { ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 
-import colors from '../../constants/colors';
+import { RootState } from '../reducers';
 
-import { RootState } from '../../reducers';
+import { getLanguages } from '../reducers/voices';
 
-import { getLanguages } from '../../reducers/voices';
+import { selectLanguagesWithActiveVoices } from '../selectors/voices';
+import { selectUserSelectedVoices } from '../selectors/user';
+import { ListItemLanguage } from '../components/ListItemLanguage';
+import { withNavigation, NavigationInjectedProps } from 'react-navigation';
 
-import { selectLanguagesWithActiveVoices } from '../../selectors/voices';
-import { selectUserSelectedVoices } from '../../selectors/user';
-
-import * as Icon from '../../components/Icon';
-
-import styles from './styles';
-
-type IProps = {
-  onSelectLanguage(languageName: string): void;
-};
+interface IProps extends NavigationInjectedProps {}
 
 type Props = IProps & StateProps & DispatchProps;
 
@@ -29,7 +22,7 @@ export class LanguagesSelectComponent extends React.PureComponent<Props> {
 
   keyExtractor = (item: Api.Language, index: number) => index.toString();
 
-  handleOnListItemPress = (item: Api.Language) => this.props.onSelectLanguage(item.name);
+  handleOnListItemPress = (item: Api.Language) => this.props.navigation.navigate('SettingsVoices', { languageName: item.name });
 
   getDefaultVoice = (language: Api.Language) => {
     return language.voices && language.voices.find(voice => !!voice.isLanguageDefault);
@@ -51,26 +44,14 @@ export class LanguagesSelectComponent extends React.PureComponent<Props> {
     return `${defaultLabel}${voice.label} (${voice.countryCode}) (${genderLabel})`;
   }
 
-  renderRightElement = () => {
-    return <Icon.FontAwesome5 name="chevron-right" size={16} solid color={colors.gray} />;
-  }
-
   renderItem = ({ item }: { item: Api.Language}) => {
-    const totalVoices = item.voices && item.voices.length;
-    const title = `${item.name}`;
     const subtitle = this.getVoiceSubtitle(item);
 
     return (
-      <ListItem
-        bottomDivider
-        onPress={() => this.handleOnListItemPress(item)}
-        title={title}
+      <ListItemLanguage
+        onPress={this.handleOnListItemPress}
+        language={item}
         subtitle={subtitle}
-        containerStyle={styles.listItemContainer}
-        badge={{ value: totalVoices, badgeStyle: { width: 26, height: 20 } }}
-        titleStyle={styles.listItemTitle}
-        subtitleStyle={styles.listItemSubtitle}
-        rightElement={this.renderRightElement()}
       />
     );
   }
@@ -106,7 +87,10 @@ const mapDispatchToProps = {
   getLanguages
 };
 
-export const LanguagesSelect = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LanguagesSelectComponent);
+export const LanguagesSelectContainer =
+  withNavigation(
+    connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )(LanguagesSelectComponent)
+  );

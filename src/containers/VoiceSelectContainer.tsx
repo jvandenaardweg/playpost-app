@@ -1,43 +1,40 @@
 import React from 'react';
-import { FlatList, Alert, View, ActivityIndicator } from 'react-native';
-import { ListItem } from 'react-native-elements';
+import { FlatList, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import TrackPlayer from 'react-native-track-player';
 
-import { LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../../constants/files';
+import { LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 
-import * as cache from '../../cache';
+import * as cache from '../cache';
 
-import { ButtonVoicePreview } from '../ButtonVoicePreview';
-import { NetworkContext } from '../../contexts/NetworkProvider';
-import { RootState } from '../../reducers';
-import { setTrack } from '../../reducers/player';
-import { setDownloadedVoice } from '../../reducers/voices';
-import { saveSelectedVoice, getUser } from '../../reducers/user';
+import { NetworkContext } from '../contexts/NetworkProvider';
 
-import { selectPlayerPlaybackState, selectPlayerTrack } from '../../selectors/player';
-import { selectDownloadedVoicePreviews, selectAvailableVoicesByLanguageName, selectDefaultVoicesByLanguageName } from '../../selectors/voices';
+import { RootState } from '../reducers';
+import { setTrack } from '../reducers/player';
+import { setDownloadedVoice } from '../reducers/voices';
+import { saveSelectedVoice, getUser } from '../reducers/user';
 
-import styles from './styles';
-import { ALERT_SETTINGS_VOICE_CHANGE, ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_LANGUAGES_VOICE_SAVE, ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE } from '../../constants/messages';
+import { selectPlayerPlaybackState, selectPlayerTrack } from '../selectors/player';
+import { selectDownloadedVoicePreviews, selectAvailableVoicesByLanguageName, selectDefaultVoicesByLanguageName } from '../selectors/voices';
+import { selectUserSelectedVoiceByLanguageName } from '../selectors/user';
 
-import * as Icon from '../../components/Icon';
-import colors from '../../constants/colors';
-import { selectUserSelectedVoiceByLanguageName } from '../../selectors/user';
+import { ALERT_SETTINGS_VOICE_CHANGE, ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_LANGUAGES_VOICE_SAVE, ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE } from '../constants/messages';
 
-interface IProps {
-  onPressUpgrade(): void;
+import { ListItemVoice } from '../components/ListItemVoice';
+import { withNavigation, NavigationInjectedProps } from 'react-navigation';
+
+type IProps = {
   languageName: string;
 }
 
-type Props = IProps & StateProps & DispatchProps;
+type Props = IProps & NavigationInjectedProps & StateProps & DispatchProps;
 
 interface State {
   isLoadingPreviewVoiceId: string;
   isLoadingSaveSelectedVoiceId: string;
 }
 
-export class VoicesSelectComponent extends React.PureComponent<Props, State> {
+export class VoiceSelectContainerComponent extends React.PureComponent<Props, State> {
 
   state = {
     isLoadingPreviewVoiceId: '',
@@ -48,9 +45,9 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
 
   keyExtractor = (item: Api.Voice, index: number) => index.toString();
 
-  handleOnListItemPress = (item: Api.Voice) => {
+  handleOnListItemPress = (voice: Api.Voice) => {
     const { isConnected } = this.context;
-    const isSelected = this.isSelected(item);
+    const isSelected = this.isSelected(voice);
 
     if (!isConnected) {
       return Alert.alert('Not connected', ALERT_GENERIC_INTERNET_REQUIRED);
@@ -68,7 +65,7 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
     //       },
     //       {
     //         text: 'Upgrade',
-    //         onPress: () => this.props.onPressUpgrade(),
+    //         onPress: () => this.props.navigation.navigate('Upgrade'),
     //       },
     //     ],
 
@@ -88,7 +85,7 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
           },
           {
             text: 'OK',
-            onPress: () => this.handleOnSaveSelectedVoice(item)
+            onPress: () => this.handleOnSaveSelectedVoice(voice)
           }
         ]
       );
@@ -252,52 +249,27 @@ export class VoicesSelectComponent extends React.PureComponent<Props, State> {
     return isSelected;
   }
 
-  renderRightElement = (item: Api.Voice, isSelected: boolean) => {
-    const { isLoadingSaveSelectedVoiceId } = this.state;
+  renderItem = ({ item }: { item: Api.Voice}) => {
+    const { isLoadingSaveSelectedVoiceId, isLoadingPreviewVoiceId } = this.state;
 
-    if (isLoadingSaveSelectedVoiceId === item.id) {
-      return <View style={{ width: 20 }}><ActivityIndicator size="small" color="black" /></View>;
-    }
-
-    return <View style={{ width: 20 }}><Icon.FontAwesome5 name="check" size={16} solid color={(isSelected) ? colors.black : colors.grayLightest} /></View>;
-  }
-
-  renderLeftElement = (title: string, label: string, item: Api.Voice) => {
-    const { isLoadingPreviewVoiceId } = this.state;
+    const isSelected = this.isSelected(item);
     const isPlaying = this.isVoicePlayingInPlayer(item.id);
-    const isLoading = isLoadingPreviewVoiceId === item.id;
     const isActive = this.isVoiceActiveInPlayer(item.id);
     const isAvailable = !!item.exampleAudioUrl;
-
-    return <ButtonVoicePreview isPlaying={isPlaying} isLoading={isLoading} isActive={isActive} isAvailable={isAvailable} onPress={() => this.handleOnPreviewPress(title, label, item)} />;
-  }
-
-  renderItem = ({ item }: { item: Api.Voice}) => {
-    const defaultLabel = (item.isLanguageDefault) ? '(Default) ' : '';
-    const badgeValue = (item.isPremium) ? 'premium' : 'free';
-    const gender = (item.gender === 'MALE') ? 'Male' : 'Female';
-    const subtitle = `${defaultLabel}${gender}, ${item.language.name} (${item.countryCode})`;
-
-    const title = `${item.label || item.name}`;
-    const label = (item.label) ? item.label : 'Unknown';
-    const badgeStatus = (item.isPremium) ? 'warning' : 'primary';
-
-    // Determine if the default voice is selected
-    // Or if the user already selected a different voice as it's language default
-    const isSelected = this.isSelected(item);
+    const isLoadingSaveSelected = isLoadingSaveSelectedVoiceId === item.id;
+    const isLoadingVoicePreview = isLoadingPreviewVoiceId === item.id;
 
     return (
-      <ListItem
-        bottomDivider
-        title={title}
-        subtitle={subtitle}
-        onPress={() => this.handleOnListItemPress(item)}
-        badge={{ value: badgeValue, status: badgeStatus, textStyle: styles.listItemBadgeText, badgeStyle: styles.listItemBadge }}
-        containerStyle={[styles.listItemContainer, (isSelected) ? { backgroundColor: colors.grayLightest } : {}]}
-        titleStyle={styles.listItemTitle}
-        subtitleStyle={styles.listItemSubtitle}
-        leftElement={this.renderLeftElement(title, label, item)}
-        rightElement={this.renderRightElement(item, isSelected)}
+      <ListItemVoice
+        voice={item}
+        isLoadingSaveSelected={isLoadingSaveSelected}
+        isLoadingVoicePreview={isLoadingVoicePreview}
+        isPlaying={isPlaying}
+        isActive={isActive}
+        isAvailable={isAvailable}
+        onPressSelect={this.handleOnListItemPress}
+        onPressPreview={this.handleOnPreviewPress}
+        isSelected={isSelected}
       />
     );
   }
@@ -337,9 +309,9 @@ const mapStateToProps = (state: RootState, props: Props) => ({
   playbackState: selectPlayerPlaybackState(state),
   playerTrack: selectPlayerTrack(state),
   downloadedVoices: selectDownloadedVoicePreviews(state),
-  availableVoicesByLanguageName: selectAvailableVoicesByLanguageName(state, props.languageName), // does not memoize correctly? // https://github.com/reduxjs/reselect#containersvisibletodolistjs-2
-  defaultVoicesByLanguageName: selectDefaultVoicesByLanguageName(state, props.languageName),
-  userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state, props.languageName)
+  availableVoicesByLanguageName: selectAvailableVoicesByLanguageName(state, props.navigation.getParam('languageName', '')), // does not memoize correctly? // https://github.com/reduxjs/reselect#containersvisibletodolistjs-2
+  defaultVoicesByLanguageName: selectDefaultVoicesByLanguageName(state, props.navigation.getParam('languageName', '')),
+  userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state, props.navigation.getParam('languageName', ''))
 });
 
 const mapDispatchToProps = {
@@ -349,7 +321,10 @@ const mapDispatchToProps = {
   getUser
 };
 
-export const VoicesSelect = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(VoicesSelectComponent);
+export const VoiceSelectContainer =
+  withNavigation(
+    connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )(VoiceSelectContainerComponent)
+  );

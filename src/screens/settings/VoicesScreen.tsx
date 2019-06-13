@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
 import { ScrollView } from 'react-native';
-import { VoicesSelect } from '../../components/VoicesSelect';
 import { ButtonUpgrade } from '../../components/ButtonUpgrade';
+import { VoiceSelectContainer } from '../../containers/VoiceSelectContainer';
 
 interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;
@@ -25,11 +25,9 @@ export class SettingsVoicesScreen extends React.PureComponent<Props> {
   }
 
   render() {
-    const languageName: string = this.props.navigation.getParam('languageName', '');
-
     return (
       <ScrollView>
-        <VoicesSelect onPressUpgrade={this.handleOnPressUpgrade} languageName={languageName} />
+        <VoiceSelectContainer />
       </ScrollView>
     );
   }
