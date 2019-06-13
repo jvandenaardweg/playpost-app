@@ -113,7 +113,7 @@ export const Article: React.FC<Props> = React.memo(({
   </View>
 ));
 
-type SourceTextProps =  { authorName: Props['authorName'], sourceName: Props['sourceName'], url: Props['url']}
+type SourceTextProps =  { authorName: Props['authorName'], sourceName: Props['sourceName'], url: Props['url']};
 
 const SourceText: React.FC<SourceTextProps> = React.memo((props: SourceTextProps) => {
   let text;

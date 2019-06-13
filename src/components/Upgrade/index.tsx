@@ -88,8 +88,6 @@ export const Upgrade: React.FC<Props> = React.memo(({ isLoadingSubscriptionItems
         />
       </View>
 
-
-
     </View>
   );
 });

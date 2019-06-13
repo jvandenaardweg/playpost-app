@@ -44,4 +44,3 @@ export default StyleSheet.create({
     textDecorationLine: 'underline'
   }
 });
-

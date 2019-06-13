@@ -25,7 +25,7 @@ import { withNavigation, NavigationInjectedProps } from 'react-navigation';
 
 type IProps = {
   languageName: string;
-}
+};
 
 type Props = IProps & NavigationInjectedProps & StateProps & DispatchProps;
 

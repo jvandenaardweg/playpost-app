@@ -1,6 +1,6 @@
 import { put, all, call, takeLatest } from 'redux-saga/effects';
 import { AnyAction } from 'redux';
-import * as Keychain from 'react-native-keychain';
+// import * as Keychain from 'react-native-keychain';
 import { Platform } from 'react-native';
 
 export const keychainArguments = Platform.select({

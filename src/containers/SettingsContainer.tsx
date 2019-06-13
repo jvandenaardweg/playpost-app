@@ -259,11 +259,11 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
             title: 'Clear cache',
             renderAccessory: () => {
               const { isClearingCache, cacheSize } = this.state;
-  
+
               if (isClearingCache) {
                 return (<ActivityIndicator />);
               }
-  
+
               return (
                 <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.title }}>
                   {cacheSize} mb
@@ -329,11 +329,11 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
         type: 'CUSTOM_VIEW',
         render: () => {
           const { isDeletingAccount } = this.state;
-  
+
           if (isDeletingAccount) {
             return (<ActivityIndicator />);
           }
-  
+
           return (
             <Text
               style={{

@@ -40,7 +40,6 @@ declare namespace Api {
     inAppSubscription: InAppSubscription;
   }
 
-
   export interface Subscription {
     id: string;
     productId: string;

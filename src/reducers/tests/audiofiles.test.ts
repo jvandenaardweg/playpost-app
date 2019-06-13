@@ -35,5 +35,5 @@ describe('audiofiles reducer', () => {
         payload: audiofileMock
       })
     ).toEqual(expectedState);
-  })
+  });
 });

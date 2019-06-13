@@ -22,5 +22,5 @@ export const ErrorMessage: React.FC<Props> = React.memo(({
       </View>
       <View style={styles.button}><Icon.Feather name="x-circle" size={24} color="#fff" /></View>
     </TouchableOpacity>
-  )
-})
+  );
+});
