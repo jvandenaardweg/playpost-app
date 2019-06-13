@@ -34,6 +34,9 @@ Use `react-native-git-upgrade`.
 ## Upgrading NPM depedencies?
 Run `npm run upgrade-interactive`
 
+## Releasing a new version of the App?
+Run `npm version x.x.x` and push to git.
+
 
 ## Setting up build environment
 Make sure the `.env.staging` and `.env.production` files are filled with the right environment variables. Use the correct `ENVIRONMENT` environment variable:
