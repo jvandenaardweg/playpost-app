@@ -15,6 +15,7 @@ import { getAuthToken } from '../reducers/auth';
 
 import { selectAuthError, selectAuthenticationToken } from '../selectors/auth';
 import { RootState } from '../reducers';
+import { ALERT_LOGIN_SAVE_TOKEN_FAIL } from '../constants/messages';
 
 /* tslint:disable no-any */
 interface State {
@@ -56,8 +57,26 @@ class LoginFormContainerComponent extends React.PureComponent<Props, State> {
   }
 
   saveToken = async (token: string) => {
-    await Keychain.setGenericPassword('token', token, keychainArguments);
-    this.props.navigation.navigate('App');
+    try {
+      await Keychain.setGenericPassword('token', token, keychainArguments);
+      this.props.navigation.navigate('App');
+    } catch (err) {
+      Alert.alert(
+        'Oops!',
+        ALERT_LOGIN_SAVE_TOKEN_FAIL,
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel'
+          },
+          {
+            text: 'Try again',
+            onPress: () => this.saveToken(token),
+          },
+        ],
+        { cancelable: true }
+      );
+    }
   }
 
   handleOnClose = () => {

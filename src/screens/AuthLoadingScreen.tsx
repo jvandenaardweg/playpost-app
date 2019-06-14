@@ -35,7 +35,7 @@ export class AuthLoadingScreen extends React.PureComponent<Props> {
 
     if (!hasRunBefore) {
       // Delete any API token we had from a previous install
-      await Keychain.resetGenericPassword();
+      await Keychain.resetGenericPassword(keychainArguments);
 
       // Reset the persisted store, so we start clean from previous installs
       await persistor.purge();
@@ -57,7 +57,7 @@ export class AuthLoadingScreen extends React.PureComponent<Props> {
     // So we know if we can do API requests, or not
     await NetInfo.isConnected.fetch();
 
-    // Make sure we have the correct cache directories needed in the app
+    // Make sure we have the correct cache direct\ories needed in the app
     await RNFS.mkdir(LOCAL_CACHE_AUDIOFILES_PATH);
     await RNFS.mkdir(LOCAL_CACHE_VOICE_PREVIEWS_PATH);
 

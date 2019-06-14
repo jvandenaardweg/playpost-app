@@ -1,5 +1,6 @@
 import React from 'react';
 import RNFS from 'react-native-fs';
+import { Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions, NavigationInjectedProps } from 'react-navigation';
 import * as Keychain from 'react-native-keychain';
@@ -17,6 +18,11 @@ import { persistor } from '../store';
 import { RootState } from '../reducers';
 import { CenterLoadingIndicator } from '../components/CenterLoadingIndicator';
 import { resetSubscriptionsState } from '../reducers/subscriptions';
+
+export const keychainArguments = Platform.select({
+  ios: { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' },
+  android: { service: 'com.aardwegmedia.playpost' }
+});
 
 interface IProps extends NavigationInjectedProps {}
 
@@ -46,7 +52,7 @@ class LogoutScreenContainer extends React.PureComponent<Props> {
     await this.doResetCache();
 
     // Remove the API token from secure store
-    await Keychain.resetGenericPassword();
+    await Keychain.resetGenericPassword(keychainArguments);
 
     // Remove the persisted state
     await persistor.purge();

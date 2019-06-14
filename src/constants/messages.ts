@@ -54,3 +54,5 @@ export const ALERT_SUBSCRIPTION_BUY_SUCCESS = 'You can now use our premium featu
 export const ALERT_SUBSCRIPTION_RESTORE_PURCHASE_NOT_FOUND = 'We could not find a subscription purchase to restore. If you had a subscription before, it might be expired. If you think this is incorrect, contact our support.';
 export const ALERT_SUBSCRIPTION_RESTORE_SUCCESS = 'You successfully restored the subscription! You can now use the extra features.';
 export const ALERT_SUBSCRIPTION_NOT_FOUND = 'The subscription to upgrade to cannot be found. Please try again later.';
+
+export const ALERT_LOGIN_SAVE_TOKEN_FAIL = 'Failed to save authentication credentials. Please try again.';
