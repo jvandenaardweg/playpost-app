@@ -17,35 +17,39 @@ import { AppStateProvider } from './contexts/AppStateProvider';
 
 console.disableYellowBox = true;
 
-export default () => {
-  setAnalytics(__DEV__);
-  setRemoteDebugging(__DEV__);
+async function setAnalytics(dev: boolean) {
+  if (dev) return;
 
-  return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <ThemeProvider theme={reactNativeElementsTheme}>
-          <NetworkProvider>
-            <AppStateProvider>
-              <AppNavigator />
-            </AppStateProvider>
-          </NetworkProvider>
-        </ThemeProvider>
-      </PersistGate>
-    </Provider>
-  );
+  await Analytics.setEnabled(true);
+}
 
-  async function setAnalytics(dev: boolean) {
-    if (dev) return;
+function setRemoteDebugging(dev: boolean) {
+  if (Platform.OS !== 'ios') return;
 
-    await Analytics.setEnabled(true);
+  if (!dev) return;
+
+  NativeModules.DevSettings.setIsDebuggingRemotely(true);
+}
+
+setAnalytics(__DEV__);
+setRemoteDebugging(__DEV__);
+
+// Important: Keep this App a Class component
+// Using a Functional Component as the root component breaks Hot Reloading (on a local device)
+export default class App extends React.PureComponent {
+  render () {
+    return (
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <ThemeProvider theme={reactNativeElementsTheme}>
+            <NetworkProvider>
+              <AppStateProvider>
+                <AppNavigator />
+              </AppStateProvider>
+            </NetworkProvider>
+          </ThemeProvider>
+        </PersistGate>
+      </Provider>
+    );
   }
-
-  function setRemoteDebugging(dev: boolean) {
-    if (Platform.OS !== 'ios') return;
-
-    if (!dev) return;
-
-    NativeModules.DevSettings.setIsDebuggingRemotely(true);
-  }
-};
+}

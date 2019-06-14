@@ -11,24 +11,28 @@ import { NetworkProvider } from './contexts/NetworkProvider';
 
 console.disableYellowBox = true;
 
-export default () => {
-  setRemoteDebugging(__DEV__);
+function setRemoteDebugging(dev: boolean) {
+  if (Platform.OS !== 'ios') return;
 
-  return (
-    <Provider store={store}>
-      <ThemeProvider theme={reactNativeElementsTheme}>
-        <NetworkProvider>
-          <ShareOverlay />
-        </NetworkProvider>
-      </ThemeProvider>
-    </Provider>
-  );
+  if (!dev) return;
 
-  function setRemoteDebugging(dev: boolean) {
-    if (Platform.OS !== 'ios') return;
+  NativeModules.DevSettings.setIsDebuggingRemotely(true);
+}
 
-    if (!dev) return;
+setRemoteDebugging(__DEV__);
 
-    NativeModules.DevSettings.setIsDebuggingRemotely(true);
+// Important: Keep this App a Class component
+// Using a Functional Component as the root component breaks Hot Reloading (on a local device)
+export default class ShareApp extends React.PureComponent {
+  render () {
+    return (
+      <Provider store={store}>
+        <ThemeProvider theme={reactNativeElementsTheme}>
+          <NetworkProvider>
+            <ShareOverlay />
+          </NetworkProvider>
+        </ThemeProvider>
+      </Provider>
+    );
   }
-};
+}
