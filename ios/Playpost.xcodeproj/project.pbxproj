@@ -101,6 +101,8 @@
 		8C92A68D2243B7E20057A1EE /* libRNVersionNumber.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C92A6882243B7CD0057A1EE /* libRNVersionNumber.a */; };
 		8C92A69C2243CA290057A1EE /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C92A69B2243CA210057A1EE /* libRNCWebView.a */; };
 		8C92A69D2243CA320057A1EE /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C92A69B2243CA210057A1EE /* libRNCWebView.a */; };
+		8C96C7BB22B3A1F9006E5704 /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF37A02FD9F246028F4091AF /* RNPlaceholder.swift */; };
+		8C96C7BC22B3A1F9006E5704 /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF37A02FD9F246028F4091AF /* RNPlaceholder.swift */; };
 		8CA3D2DA22900BC700516BF9 /* libRNReanimated.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA3D2D322900BBA00516BF9 /* libRNReanimated.a */; };
 		8CA3D2DB22900BD300516BF9 /* libRNReanimated.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA3D2D322900BBA00516BF9 /* libRNReanimated.a */; };
 		8CAA1198220F2FC3002741D6 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
@@ -129,6 +131,7 @@
 		CA76FFC07A68429E9BD11FE8 /* libAppCenterReactNativeAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 205E8F451EE84A6CA4C1CEE4 /* libAppCenterReactNativeAnalytics.a */; };
 		D1300DE1B24B817748BA81BE /* libPods-Playpost-PlaypostShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FF89644E2DAC8B6D7D4E89E /* libPods-Playpost-PlaypostShareExtension.a */; };
 		D78C3E34E78F441AA7357785 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA7338DD2C124970A39CE86E /* FontAwesome5_Solid.ttf */; };
+		D820DC91A1B84330B668B87A /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF37A02FD9F246028F4091AF /* RNPlaceholder.swift */; };
 		DD6BBD1A43F44BC8A477438A /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CE153E601D849F1A72C8047 /* AppCenter-Config.plist */; };
 		E37AB72DE5E246B78375F07E /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CA2C114AF24416C8B59526F /* Zocial.ttf */; };
 		E670C17210AE4BC89AFBDC83 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 740368AC306045B2AC5A575C /* MaterialCommunityIcons.ttf */; };
@@ -733,6 +736,7 @@
 		E93C050B5DB7430FABAD8C10 /* Merriweather-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Merriweather-Black.ttf"; path = "../src/assets/fonts/Merriweather-Black.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		EF37A02FD9F246028F4091AF /* RNPlaceholder.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; path = RNPlaceholder.swift; sourceTree = "<group>"; };
 		F9A86DB16AB64E2FA6CD209F /* AppCenterReactNativeCrashes.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNativeCrashes.xcodeproj; path = "../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes.xcodeproj"; sourceTree = "<group>"; };
 		FA7338DD2C124970A39CE86E /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1198,6 +1202,7 @@
 				48ED15BFDF1F4A899AD2926E /* libAppCenterReactNativeCrashes.a */,
 				3CDF1F5F159C4DECB5D04F34 /* libRNVectorIcons.a */,
 				DAAA645FBE924A1D9FC30D2C /* libRNVectorIcons-tvOS.a */,
+				EF37A02FD9F246028F4091AF /* RNPlaceholder.swift */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -2198,6 +2203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E356F31AD99517003FC87E /* PlaypostTests.m in Sources */,
+				8C96C7BC22B3A1F9006E5704 /* RNPlaceholder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2209,6 +2215,7 @@
 				8C43759422081410000A15FE /* dummy.swift in Sources */,
 				8C272C72220F91F200DEF4DB /* dummy2.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				8C96C7BB22B3A1F9006E5704 /* RNPlaceholder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2218,6 +2225,7 @@
 			files = (
 				8CD3D19E220F7B5B0030C131 /* dummy2.swift in Sources */,
 				8C5A7DD3220F22A700ECCC65 /* PlaypostShareExtension.m in Sources */,
+				D820DC91A1B84330B668B87A /* RNPlaceholder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2297,6 +2305,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Playpost.app/Playpost";
 			};
 			name = Debug;
@@ -2328,6 +2337,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Playpost.app/Playpost";
 			};
 			name = Release;
@@ -2365,7 +2375,7 @@
 				PRODUCT_NAME = Playpost;
 				SWIFT_OBJC_BRIDGING_HEADER = "Playpost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -2402,7 +2412,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.aardwegmedia.playpost;
 				PRODUCT_NAME = Playpost;
 				SWIFT_OBJC_BRIDGING_HEADER = "Playpost-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -2465,6 +2475,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -2518,6 +2529,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -2566,7 +2578,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "PlaypostShareExtension/PlaypostShareExtension-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 4.0;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2615,7 +2627,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "PlaypostShareExtension/PlaypostShareExtension-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 4.0;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

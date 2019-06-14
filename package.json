@@ -75,6 +75,7 @@
     "react-native-settings-screen": "^2.1.2",
     "react-native-share-extension": "git+https://github.com/alinz/react-native-share-extension.git#3db5320135c154c367d72c44688a29ce41b210e7",
     "react-native-splash-screen": "^3.2.0",
+    "react-native-swift": "^1.2.2",
     "react-native-testing-library": "^1.9.1",
     "react-native-track-player": "^1.1.4",
     "react-native-typescript-transformer": "^1.2.12",
@@ -160,5 +161,6 @@
       }
     },
     "test-runner": "jest"
-  }
+  },
+  "isSwift": true
 }
