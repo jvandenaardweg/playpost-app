@@ -24,7 +24,7 @@ declare namespace Api {
   export interface ReceiptValidationResponse {
     id: string;
     startedAt: Date<string>;
-    endedAt: Date<string> | null;
+    expiresAt: Date<string> | null;
     latestTransactionId: string | null;
     originalTransactionId: string;
     latestReceipt: string;

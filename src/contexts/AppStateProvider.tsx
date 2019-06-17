@@ -35,6 +35,8 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
     isSubscribed: false
   };
 
+  validateSubscriptionInterval: NodeJS.Timeout | null = null;
+
   componentDidMount() {
     const { isSubscribed } = this.props;
 
@@ -43,10 +45,20 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
     this.setState({ isSubscribed }, () => {
       this.validateActiveSubscription();
     });
+
+    // Check every minute if Subscription is still active
+    this.validateSubscriptionInterval = setInterval(() => {
+      this.validateActiveSubscription();
+    }, 1000 * 10); // Every 1 minute
   }
 
   componentWillUnmount() {
     AppState.removeEventListener('change', this.handleAppStateChange);
+
+    if (this.validateSubscriptionInterval) {
+      clearInterval(this.validateSubscriptionInterval);
+      this.validateSubscriptionInterval = null;
+    }
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -112,20 +124,22 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
     if (subscriptionsValidationResult.status !== 'active') return console.warn('User his subscription status is not active, so we dont need to validate it with our server for now.');
 
     // If we end up here, the user is logged in AND it has a subscription receipt we can validate
-    const { endedAt, latestReceipt } = subscriptionsValidationResult;
-    const endedAtDateMs = new Date(endedAt).getTime();
+    const { expiresAt, latestReceipt } = subscriptionsValidationResult;
+    const expiresAtDateMs = new Date(expiresAt).getTime();
     const currentTime = Date.now();
 
     // Check if subscription is expired locally
     // If it is expired locally, we need to validate it on our server to check if the subscription is still active
-    // Important: this might allow Jailbreak devs to bypass our subscription validation, as they can just adjust the endedAtDateMs to always be in the future
-    if (currentTime > endedAtDateMs) {
+    // Important: this might allow Jailbreak devs to bypass our subscription validation, as they can just adjust the expiresAtDateMs to always be in the future
+    if (currentTime > expiresAtDateMs) {
       try {
         console.warn('User his subscription is expired locally. We validate his latest receipt on our server to check if the user still has a valid subscription.', subscription);
         await validateSubscriptionReceipt(subscription.id, latestReceipt);
       } catch (err) {
         console.log(err);
       }
+    } else {
+      console.log('Local subscription not expired yet, so we do not validate the receipt just yet.');
     }
   }
 

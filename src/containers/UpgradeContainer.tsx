@@ -63,7 +63,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
     if (!subscription) {
       this.handleClose();
-      return Alert.alert('Cannot upgrade', ALERT_SUBSCRIPTION_NOT_FOUND);
+      return this.showErrorAlert('Cannot upgrade', ALERT_SUBSCRIPTION_NOT_FOUND);
     }
 
     this.fetchAvailableSubscriptionItems(SUBSCRIPTION_PRODUCT_ID);
@@ -110,7 +110,10 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
         // Error!
         if (validationResult.status !== 'active') {
-          return this.showErrorAlert('Restore purchase error', `Your previous subscription is ${validationResult.status}. In order to use our Premium features, you need to buy a new subscription.`);
+          return this.showErrorAlert(
+            'Restore purchase error',
+            `Your previous subscription is ${validationResult.status}. In order to use our Premium features, you need to buy a new subscription.`
+          );
         }
 
         // Success!
@@ -167,7 +170,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   handleOnPressRestore = async () => {
     const { subscription } = this.props;
 
-    if (!subscription) return Alert.alert('Cannot restore', ALERT_SUBSCRIPTION_NOT_FOUND);
+    if (!subscription) return this.showErrorAlert('Cannot restore', ALERT_SUBSCRIPTION_NOT_FOUND);
 
     return this.setState({ isLoadingRestorePurchases: true }, async () => {
       try {
@@ -197,18 +200,22 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
         if (!result) throw new Error(ALERT_SUBSCRIPTION_INIT_FAIL);
 
+        // Pre-populate the app with subscriptions and previous purchases of the user
         const subscriptions = await RNIap.getSubscriptions([subscriptionProductId]);
 
-        // Only get the Premium product
+        // Validate if we've received the right subscriptions from Apple
+        // We'll use the productId from our database entry to determine if we have it
+        // So our database entries are correctly in sync
         const subscription = subscriptions.find(subscription => subscription.productId === subscriptionProductId);
 
         if (!subscription) throw new Error(ALERT_SUBSCRIPTION_PURCHASE_SUBSCRIPTION_NOT_FOUND);
 
         return this.setState({ subscription, isLoadingSubscriptionItems: false }, () => subscription);
       } catch (err) {
+        const errorMessage = (err && err.message) ? err.message : 'An unknown error happened while fetching the available subscriptions';
+
         return this.setState({ isLoadingSubscriptionItems: false }, () => {
-          const errorMessage = (err && err.message) ? err.message : 'An unknown error happened while fetching the available subscriptions';
-          Alert.alert('Oops!', errorMessage);
+          return this.showErrorAlert('Oops!', errorMessage);
         });
       }
     });

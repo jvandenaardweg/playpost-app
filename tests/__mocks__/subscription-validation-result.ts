@@ -1,7 +1,7 @@
 export default {
   id: 'e3901c8f-5a61-46bb-bebf-e7ed9f936922',
   startedAt: '2019-06-10T18:50:08.000Z',
-  endedAt: '2019-06-10T18:56:06.000Z',
+  expiresAt: '2019-06-10T18:56:06.000Z',
   latestTransactionId: '1000000535687698',
   originalTransactionId: '1000000531243136',
   latestReceipt: 'EXAMPLE',
