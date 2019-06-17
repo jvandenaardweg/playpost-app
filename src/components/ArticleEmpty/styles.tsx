@@ -26,7 +26,13 @@ export default StyleSheet.create({
     width: 50
   },
   articleEmptyContent: {
+    flexShrink: 1
+  },
+  articleEmptyFooter: {
     flexShrink: 1,
+    height: 30,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start'
   },
   articleEmptyTitle: {
     fontSize: fonts.fontSize.body,
@@ -38,7 +44,7 @@ export default StyleSheet.create({
   articleEmptyText: {
     color: colors.black,
     opacity: 0.9,
-    marginBottom: spacing.tiny
+    marginBottom: spacing.tiny,
   },
   link: {
     textDecorationLine: 'underline'

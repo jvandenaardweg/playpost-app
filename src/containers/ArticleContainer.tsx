@@ -14,7 +14,7 @@ import { NetworkContext } from '../contexts/NetworkProvider';
 
 import { Article } from '../components/Article';
 import { SwipeableRow } from '../components/SwipeableRow';
-import { ArticleEmptyProcessing, ArticleEmptyFailed } from '../components/ArticleEmpty';
+import { ArticleEmptyProcessing, ArticleEmptyFailed, ArticleEmptyNew } from '../components/ArticleEmpty';
 
 import { RootState } from '../reducers';
 import { getPlaylist, removeArticleFromPlaylist, archivePlaylistItem, favoritePlaylistItem, unArchivePlaylistItem, unFavoritePlaylistItem } from '../reducers/playlist';
@@ -471,16 +471,6 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     return (this.articleAudiofiles[0] && this.articleAudiofiles[0].length) ? this.articleAudiofiles[0].length : 0;
   }
 
-  get isProcessing() {
-    const { article } = this.props;
-    return article.status === 'crawling' || article.status === 'new';
-  }
-
-  get isFailed() {
-    const { article } = this.props;
-    return article.status === 'failed';
-  }
-
   handleOnOpenUrl = (url: string) => {
     const { article } = this.props;
 
@@ -517,15 +507,19 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         isFavorited={isFavorited}
         isArchived={isArchived}
       >
-        {this.isFailed &&
+        {article.status === 'failed' &&
           <ArticleEmptyFailed isLoading={false} url={articleUrl} />
         }
 
-        {this.isProcessing &&
+        {article.status === 'crawling' &&
           <ArticleEmptyProcessing isLoading={isLoading} onPressUpdate={this.handleOnPressUpdate} url={articleUrl} />
         }
 
-        {!this.isFailed && !this.isProcessing &&
+        {article.status === 'new' &&
+          <ArticleEmptyNew isLoading={isLoading} onPressUpdate={this.handleOnPressUpdate} url={articleUrl} />
+        }
+
+        {article.status === 'finished' &&
           <Article
             isMoving={isMoving}
             isLoading={isLoading || isCreatingAudiofile}
@@ -550,7 +544,6 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
             onPressOut={onPressOut}
         />
         }
-
       </SwipeableRow>
     );
   }

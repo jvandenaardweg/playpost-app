@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Linking } from 'react-native';
+import { View, Text, Linking, ActivityIndicator } from 'react-native';
 import urlParse from 'url-parse';
 
 import colors from '../../constants/colors';
@@ -14,6 +14,22 @@ interface Props {
   url: string;
 }
 
+export const ArticleEmptyNew: React.FC<Props> = React.memo((props: Props) => (
+  <View style={styles.articleEmptyContainer}>
+    <View style={styles.articleEmptyIcon}>
+      <Icon.FontAwesome5 name="exclamation-circle" size={34} color={colors.black} />
+    </View>
+    <View style={styles.articleEmptyContent}>
+      <Text style={styles.articleEmptyTitle}>Not processing article, yet!</Text>
+      <Text style={styles.articleEmptyText}>Hold on, it seems busy. We will start processing this article shortly.</Text>
+      <View style={styles.articleEmptyFooter}>
+        {props.isLoading && <ActivityIndicator size="small" color={colors.black} />}
+        {!props.isLoading && <Text style={[styles.articleEmptyText, styles.link]} onPress={props.onPressUpdate}>Check for update</Text>}
+      </View>
+    </View>
+  </View>
+));
+
 export const ArticleEmptyProcessing: React.FC<Props> = React.memo((props: Props) => (
   <View style={styles.articleEmptyContainer}>
     <View style={styles.articleEmptyIcon}>
@@ -22,10 +38,10 @@ export const ArticleEmptyProcessing: React.FC<Props> = React.memo((props: Props)
     <View style={styles.articleEmptyContent}>
       <Text style={styles.articleEmptyTitle}>Processing article...</Text>
       <Text style={styles.articleEmptyText}>The article from "{urlParse(props.url).hostname}" is still being processed.</Text>
-      <Text style={[styles.articleEmptyText, styles.link]} onPress={props.onPressUpdate}>
-        {props.isLoading && 'Checking for update...'}
-        {!props.isLoading && 'Check for update'}
-      </Text>
+      <View style={styles.articleEmptyFooter}>
+        {props.isLoading && <ActivityIndicator size="small" color={colors.black} />}
+        {!props.isLoading && <Text style={[styles.articleEmptyText, styles.link]} onPress={props.onPressUpdate}>Check for update</Text>}
+      </View>
     </View>
   </View>
 ));
