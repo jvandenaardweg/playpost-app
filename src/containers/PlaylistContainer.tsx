@@ -110,10 +110,8 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
 
     let playlistItems = props.newPlaylistItems;
 
-    if (props.isArchiveScreen) {
+    if (props.isArchiveScreen && !isEqual(props.isArchiveScreen, state.playlistItems)) {
       playlistItems = props.archivedPlaylistItems;
-
-      console.log('archivescreen', playlistItems)
     }
 
     if (props.isFavoriteScreen && !isEqual(props.isFavoriteScreen, state.playlistItems)) {
