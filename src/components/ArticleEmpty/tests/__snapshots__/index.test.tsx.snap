@@ -226,6 +226,206 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering loading should render correct
 </View>
 `;
 
+exports[`ArticleEmpty ArticleEmptyNew rendering default should render correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#F1F1F1",
+      "flex": 1,
+      "flexDirection": "row",
+      "padding": 14,
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "justifyContent": "center",
+        "width": 50,
+      }
+    }
+  >
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontSize": 34,
+          },
+          undefined,
+          Object {
+            "fontFamily": "FontAwesome5Free-Solid",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {
+            "fontWeight": "900",
+          },
+        ]
+      }
+    >
+      
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "flexShrink": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#000000",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "lineHeight": 21,
+          "marginBottom": 10,
+        }
+      }
+    >
+      Not processing article, yet!
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "#000000",
+          "marginBottom": 10,
+          "opacity": 0.9,
+        }
+      }
+    >
+      Hold on, it seems busy. We will start processing this article shortly.
+    </Text>
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "flexShrink": 1,
+          "height": 30,
+          "justifyContent": "flex-start",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "marginBottom": 10,
+              "opacity": 0.9,
+            },
+            Object {
+              "textDecorationLine": "underline",
+            },
+          ]
+        }
+      >
+        Check for update
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`ArticleEmpty ArticleEmptyNew rendering loading should render correctly when isLoading is true 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#F1F1F1",
+      "flex": 1,
+      "flexDirection": "row",
+      "padding": 14,
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "justifyContent": "center",
+        "width": 50,
+      }
+    }
+  >
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontSize": 34,
+          },
+          undefined,
+          Object {
+            "fontFamily": "FontAwesome5Free-Solid",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {
+            "fontWeight": "900",
+          },
+        ]
+      }
+    >
+      
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "flexShrink": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#000000",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "lineHeight": 21,
+          "marginBottom": 10,
+        }
+      }
+    >
+      Not processing article, yet!
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "#000000",
+          "marginBottom": 10,
+          "opacity": 0.9,
+        }
+      }
+    >
+      Hold on, it seems busy. We will start processing this article shortly.
+    </Text>
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "flexShrink": 1,
+          "height": 30,
+          "justifyContent": "flex-start",
+        }
+      }
+    >
+      <ActivityIndicator
+        animating={true}
+        color="#000000"
+        hidesWhenStopped={true}
+        size="small"
+      />
+    </View>
+  </View>
+</View>
+`;
+
 exports[`ArticleEmpty ArticleEmptyProcessing rendering default should render correctly when isLoading is false 1`] = `
 <View
   style={
@@ -302,22 +502,33 @@ exports[`ArticleEmpty ArticleEmptyProcessing rendering default should render cor
       www.google.nl
       " is still being processed.
     </Text>
-    <Text
+    <View
       style={
-        Array [
-          Object {
-            "color": "#000000",
-            "marginBottom": 10,
-            "opacity": 0.9,
-          },
-          Object {
-            "textDecorationLine": "underline",
-          },
-        ]
+        Object {
+          "alignItems": "flex-start",
+          "flexShrink": 1,
+          "height": 30,
+          "justifyContent": "flex-start",
+        }
       }
     >
-      Check for update
-    </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "marginBottom": 10,
+              "opacity": 0.9,
+            },
+            Object {
+              "textDecorationLine": "underline",
+            },
+          ]
+        }
+      >
+        Check for update
+      </Text>
+    </View>
   </View>
 </View>
 `;
@@ -398,22 +609,23 @@ exports[`ArticleEmpty ArticleEmptyProcessing rendering loading should render cor
       www.google.nl
       " is still being processed.
     </Text>
-    <Text
+    <View
       style={
-        Array [
-          Object {
-            "color": "#000000",
-            "marginBottom": 10,
-            "opacity": 0.9,
-          },
-          Object {
-            "textDecorationLine": "underline",
-          },
-        ]
+        Object {
+          "alignItems": "flex-start",
+          "flexShrink": 1,
+          "height": 30,
+          "justifyContent": "flex-start",
+        }
       }
     >
-      Checking for update...
-    </Text>
+      <ActivityIndicator
+        animating={true}
+        color="#000000"
+        hidesWhenStopped={true}
+        size="small"
+      />
+    </View>
   </View>
 </View>
 `;

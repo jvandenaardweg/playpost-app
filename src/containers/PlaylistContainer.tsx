@@ -71,11 +71,8 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
 
     this.showOrHideHelpVideo();
 
-    // When in Archive or Favorite screen, we assume we already have all the required data
-    if (isArchiveScreen || isFavoriteScreen) return;
-
     // If we mount this component, and we don't have any playlist items, fetch them
-    if (isConnected) {
+    if (isConnected && (!isArchiveScreen || !isFavoriteScreen)) {
       this.prePopulateApp();
 
       if (!this.hasPlaylistItems) {
@@ -113,8 +110,10 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
 
     let playlistItems = props.newPlaylistItems;
 
-    if (props.isArchiveScreen && !isEqual(props.isArchiveScreen, state.playlistItems)) {
+    if (props.isArchiveScreen) {
       playlistItems = props.archivedPlaylistItems;
+
+      console.log('archivescreen', playlistItems)
     }
 
     if (props.isFavoriteScreen && !isEqual(props.isFavoriteScreen, state.playlistItems)) {
