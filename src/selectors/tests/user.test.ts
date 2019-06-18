@@ -1,4 +1,4 @@
-import { userSelector, selectUserError, selectUserIsLoading, selectUserDetails, selectUserSelectedVoices, selectUserSelectedVoiceByLanguageName, selectUserSubscriptions, selectUserIsPremium } from '../user';
+import { userSelector, selectUserError, selectUserIsLoading, selectUserDetails, selectUserSelectedVoices, selectUserSelectedVoiceByLanguageName, selectUserSubscriptions, selectUserIsPremium, selectUserErrorSaveSelectedVoice } from '../user';
 import { createStore } from 'redux';
 
 import { initialState } from '../../reducers/user';
@@ -26,6 +26,18 @@ describe('user selector', () => {
     };
 
     expect(selectUserError(exampleErrorState)).toBe('Test error');
+  });
+
+  it('selectUserErrorSaveSelectedVoice should return the user error', () => {
+    const exampleErrorState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        error: 'Test error 2'
+      }
+    };
+
+    expect(selectUserErrorSaveSelectedVoice(exampleErrorState)).toBe('Test error 2');
   });
 
   it('should return the loading status', () => {

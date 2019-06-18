@@ -9,6 +9,11 @@ export const selectUserError = createSelector(
   user => user.error
 );
 
+export const selectUserErrorSaveSelectedVoice = createSelector(
+  [userSelector],
+  user => user.errorSaveSelectedVoice
+);
+
 export const selectUserIsLoading = createSelector(
   [userSelector],
   user => user.isLoading

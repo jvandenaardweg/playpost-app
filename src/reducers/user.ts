@@ -1,5 +1,3 @@
-import Analytics from 'appcenter-analytics';
-
 import { GENERIC_NETWORK_ERROR, GET_USER_FAIL_MESSAGE, CREATE_USER_FAIL_MESSAGE, DELETE_USER_FAIL_MESSAGE, UPDATE_USER_PASSWORD_FAIL_MESSAGE, UPDATE_USER_EMAIL_FAIL_MESSAGE, SAVE_SELECTED_VOICE_FAIL_MESSAGE } from '../constants/messages';
 
 export const GET_USER = 'user/GET_USER';
@@ -41,6 +39,7 @@ export type UserState = Readonly<{
   details: Api.User | null;
   isPremium: boolean;
   error: string;
+  errorSaveSelectedVoice: string;
 }>;
 
 export const initialState: UserState = {
@@ -51,7 +50,8 @@ export const initialState: UserState = {
   isLoadingSaveSelectedVoice: false,
   details: null,
   isPremium: false,
-  error: ''
+  error: '',
+  errorSaveSelectedVoice: ''
 };
 
 /* tslint:disable no-any */
@@ -81,10 +81,8 @@ export function userReducer(state = initialState, action: any): UserState {
       } else {
         // Error, from the API
         if (action.error && action.error.response && action.error.response.data && action.error.response.data.message) {
-          Analytics.trackEvent('Error get account', { message: action.error.response.data.message });
           getUserFailMessage = action.error.response.data.message;
         } else {
-          // Analytics.trackEvent('Error get account', { message: GET_USER_FAIL_MESSAGE });
           getUserFailMessage = GET_USER_FAIL_MESSAGE;
         }
       }
@@ -120,10 +118,8 @@ export function userReducer(state = initialState, action: any): UserState {
       } else {
         // Error, from the API
         if (action.error.response && action.error.response.data && action.error.response.data.message) {
-          Analytics.trackEvent('Error create user', { message: action.error.response.data.message });
           createUserFailMessage = action.error.response.data.message;
         } else {
-          Analytics.trackEvent('Error create user', { message: CREATE_USER_FAIL_MESSAGE });
           createUserFailMessage = CREATE_USER_FAIL_MESSAGE;
         }
       }
@@ -158,10 +154,8 @@ export function userReducer(state = initialState, action: any): UserState {
       } else {
         // Error, from the API
         if (action.error.response && action.error.response.data && action.error.response.data.message) {
-          Analytics.trackEvent('Error delete user', { message: action.error.response.data.message });
           deleteUserFailMessage = action.error.response.data.message;
         } else {
-          Analytics.trackEvent('Error delete user', { message: DELETE_USER_FAIL_MESSAGE });
           deleteUserFailMessage = DELETE_USER_FAIL_MESSAGE;
         }
       }
@@ -195,10 +189,8 @@ export function userReducer(state = initialState, action: any): UserState {
       } else {
         // Error, from the API
         if (action.error.response && action.error.response.data && action.error.response.data.message) {
-          Analytics.trackEvent('Error update user password', { message: action.error.response.data.message });
           updateUserPasswordFailMessage = action.error.response.data.message;
         } else {
-          Analytics.trackEvent('Error update user password', { message: UPDATE_USER_PASSWORD_FAIL_MESSAGE });
           updateUserPasswordFailMessage = UPDATE_USER_PASSWORD_FAIL_MESSAGE;
         }
       }
@@ -232,10 +224,8 @@ export function userReducer(state = initialState, action: any): UserState {
       } else {
         // Error, from the API
         if (action.error.response && action.error.response.data && action.error.response.data.message) {
-          Analytics.trackEvent('Error update user e-mail', { message: action.error.response.data.message });
           updateUserEmailFailMessage = action.error.response.data.message;
         } else {
-          Analytics.trackEvent('Error update user e-mail', { message: UPDATE_USER_EMAIL_FAIL_MESSAGE });
           updateUserEmailFailMessage = UPDATE_USER_EMAIL_FAIL_MESSAGE;
         }
       }
@@ -250,14 +240,14 @@ export function userReducer(state = initialState, action: any): UserState {
       return {
         ...state,
         isLoadingSaveSelectedVoice: true,
-        error: ''
+        errorSaveSelectedVoice: ''
       };
 
     case SAVE_SELECTED_VOICE_SUCCESS:
       return {
         ...state,
         isLoadingSaveSelectedVoice: false,
-        error: ''
+        errorSaveSelectedVoice: ''
       };
 
     case SAVE_SELECTED_VOICE_FAIL:
@@ -270,10 +260,8 @@ export function userReducer(state = initialState, action: any): UserState {
       } else {
         // Error, from the API
         if (action.error.response && action.error.response.data && action.error.response.data.message) {
-          Analytics.trackEvent('Error get languages', { message: action.error.response.data.message });
           saveSelectedVoiceFailMessage = action.error.response.data.message;
         } else {
-          Analytics.trackEvent('Error get languages', { message: SAVE_SELECTED_VOICE_FAIL_MESSAGE });
           saveSelectedVoiceFailMessage = SAVE_SELECTED_VOICE_FAIL_MESSAGE;
         }
       }
@@ -281,7 +269,7 @@ export function userReducer(state = initialState, action: any): UserState {
       return {
         ...state,
         isLoadingSaveSelectedVoice: false,
-        error: saveSelectedVoiceFailMessage
+        errorSaveSelectedVoice: saveSelectedVoiceFailMessage
       };
 
     case SET_USER_PREMIUM:

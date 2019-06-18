@@ -16,10 +16,10 @@ import { saveSelectedVoice, getUser } from '../reducers/user';
 
 import { selectPlayerPlaybackState, selectPlayerTrack } from '../selectors/player';
 import { selectDownloadedVoicePreviews, selectAvailableVoicesByLanguageName, selectDefaultVoicesByLanguageName } from '../selectors/voices';
-import { selectUserSelectedVoiceByLanguageName } from '../selectors/user';
+import { selectUserSelectedVoiceByLanguageName, selectUserErrorSaveSelectedVoice } from '../selectors/user';
 import { selectIsSubscribed } from '../selectors/subscriptions';
 
-import { ALERT_SETTINGS_VOICE_CHANGE, ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_LANGUAGES_VOICE_SAVE, ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE } from '../constants/messages';
+import { ALERT_SETTINGS_VOICE_CHANGE, ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE } from '../constants/messages';
 
 import { ListItemVoice } from '../components/ListItemVoice';
 import { withNavigation, NavigationInjectedProps } from 'react-navigation';
@@ -43,6 +43,23 @@ export class VoiceSelectContainerComponent extends React.PureComponent<Props, St
   };
 
   static contextType = NetworkContext;
+
+  componentDidUpdate(prevProps: Props) {
+    const { errorSaveSelectedVoice } = this.props;
+
+    // If we have an Error
+    if (errorSaveSelectedVoice && prevProps.errorSaveSelectedVoice !== errorSaveSelectedVoice) {
+      return Alert.alert(
+        'Oops!',
+        errorSaveSelectedVoice,
+        [
+          {
+            text: 'OK'
+          }
+        ]
+      );
+    }
+  }
 
   keyExtractor = (item: Api.Voice, index: number) => index.toString();
 
@@ -106,21 +123,6 @@ export class VoiceSelectContainerComponent extends React.PureComponent<Props, St
 
         // Get the updated settings
         await this.props.getUser();
-      } catch (err) {
-        Alert.alert(
-          'Oops!',
-          ALERT_SETTINGS_LANGUAGES_VOICE_SAVE,
-          [
-            {
-              text: 'Cancel',
-              style: 'cancel'
-            },
-            {
-              text: 'Try again',
-              onPress: () => this.handleOnSaveSelectedVoice(item)
-            }
-          ]
-        );
       } finally {
         return this.setState({ isLoadingSaveSelectedVoiceId: '' });
       }
@@ -305,6 +307,7 @@ interface StateProps {
   readonly defaultVoicesByLanguageName: ReturnType<typeof selectDefaultVoicesByLanguageName>;
   readonly userSelectedVoiceByLanguageName: ReturnType<typeof selectUserSelectedVoiceByLanguageName>;
   readonly isSubscribed: ReturnType<typeof selectIsSubscribed>;
+  readonly errorSaveSelectedVoice: ReturnType<typeof selectUserErrorSaveSelectedVoice>;
 }
 
 const mapStateToProps = (state: RootState, props: Props) => ({
@@ -314,7 +317,8 @@ const mapStateToProps = (state: RootState, props: Props) => ({
   availableVoicesByLanguageName: selectAvailableVoicesByLanguageName(state, props.navigation.getParam('languageName', '')), // does not memoize correctly? // https://github.com/reduxjs/reselect#containersvisibletodolistjs-2
   defaultVoicesByLanguageName: selectDefaultVoicesByLanguageName(state, props.navigation.getParam('languageName', '')),
   userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state, props.navigation.getParam('languageName', '')),
-  isSubscribed: selectIsSubscribed(state)
+  isSubscribed: selectIsSubscribed(state),
+  errorSaveSelectedVoice: selectUserErrorSaveSelectedVoice(state)
 });
 
 const mapDispatchToProps = {
