@@ -10,6 +10,11 @@ export const selectPlayerTrack = createSelector(
   player => player.track
 );
 
+export const selectErrorCreateAudiofile = createSelector(
+  [playerSelector],
+  player => player.errorCreateAudiofile
+);
+
 export const selectPlayerAudiofile = createSelector(
   [playerSelector],
   player => player.audiofile

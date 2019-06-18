@@ -1,4 +1,4 @@
-import { playerSelector, selectPlayerAudiofile, selectPlayerPlaybackState, selectPlayerTrack } from '../player';
+import { playerSelector, selectPlayerAudiofile, selectPlayerPlaybackState, selectPlayerTrack, selectErrorCreateAudiofile } from '../player';
 import { createStore } from 'redux';
 
 import { initialState } from '../../reducers/player';
@@ -50,5 +50,17 @@ describe('player selector', () => {
     };
 
     expect(selectPlayerTrack(exampleState)).toEqual(trackMock);
+  });
+
+  it('selectErrorCreateAudiofile should return an error message when creating an audiofile fails', () => {
+    const exampleState = {
+      ...rootState,
+      player: {
+        ...rootState.player,
+        errorCreateAudiofile: 'Test error'
+      }
+    };
+
+    expect(selectErrorCreateAudiofile(exampleState)).toEqual('Test error');
   });
 });

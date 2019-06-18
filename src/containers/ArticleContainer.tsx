@@ -6,7 +6,7 @@ import { withNavigation, NavigationInjectedProps } from 'react-navigation';
 import isEqual from 'react-fast-compare';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH } from '../constants/files';
-import { ALERT_PLAYLIST_UNFAVORITE_ARTICLE_FAIL, ALERT_PLAYLIST_UNARCHIVE_ARTICLE_FAIL, ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL, ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL, ALERT_ARTICLE_AUDIOFILE_CREATE_FAIL, ALERT_ARTICLE_PLAY_INTERNET_REQUIRED, ALERT_ARTICLE_AUDIOFILE_DOWNLOAD_FAIL, ALERT_ARTICLE_PLAY_FAIL, ALERT_ARTICLE_DOWNLOAD_FAIL, ALERT_PLAYLIST_UPDATE_FAIL, ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL, ALERT_ARTICLE_LANGUAGE_UNSUPPORTED } from '../constants/messages';
+import { ALERT_PLAYLIST_UNFAVORITE_ARTICLE_FAIL, ALERT_PLAYLIST_UNARCHIVE_ARTICLE_FAIL, ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL, ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL, ALERT_ARTICLE_PLAY_INTERNET_REQUIRED, ALERT_ARTICLE_AUDIOFILE_DOWNLOAD_FAIL, ALERT_ARTICLE_PLAY_FAIL, ALERT_ARTICLE_DOWNLOAD_FAIL, ALERT_PLAYLIST_UPDATE_FAIL, ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL, ALERT_ARTICLE_LANGUAGE_UNSUPPORTED } from '../constants/messages';
 
 import * as cache from '../cache';
 
@@ -159,22 +159,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         await this.props.getPlaylist(); // Get the playlist, it contains the article with the newly created audiofile
         this.handleSetTrack(); // Set the track. Upon track change, the track with automatically play.
       } catch (err) {
-        this.setState({ isLoading: false });
-        Alert.alert(
-          'Oops!',
-          ALERT_ARTICLE_AUDIOFILE_CREATE_FAIL,
-          [
-            {
-              text: 'Cancel',
-              style: 'cancel'
-            },
-            {
-              text: 'Try again',
-              onPress: () => this.handleCreateAudiofile(),
-            },
-          ],
-          { cancelable: true }
-        );
+        this.setState({ isLoading: false, isActive: false });
       } finally {
         this.setState({ isCreatingAudiofile: false });
       }
@@ -200,30 +185,14 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       return Alert.alert('No internet', ALERT_ARTICLE_PLAY_INTERNET_REQUIRED);
     }
 
-    // If article's readingTime is greater then 5 minutes, show a warning to our free account user's they cannot listen to this.
-    // if (article && article.readingTime && article.readingTime > 300) {
-    //   return Alert.alert(
-    //     'Upgrade to Premium',
-    //     'This article is longer then 5 minutes, listening is only available for Premium users.',
-    //     [
-    //       {
-    //         text: 'Cancel',
-    //         style: 'cancel'
-    //       },
-    //       {
-    //         text: 'Upgrade',
-    //         onPress: () => {}
-    //       }
-    //     ]
-    //   );
-    // }
-
     // If we don't have an audiofile yet, we create it first
     if (!article.audiofiles.length) {
       // If the selected voice of the user, is a Premium voice, but the user has no Premium account active
       if (userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName.isPremium && !isSubscribed) {
         // Show an Alert he needs to change his default voice for the "userSelectedVoiceByLanguageName.name" language
         const selectedVoiceLanguageName = userSelectedVoiceByLanguageName.language.name;
+
+
         return Alert.alert(
           'Cannot use selected voice',
           `Your selected voice for this ${selectedVoiceLanguageName} article is a Premium voice, but you have no active Premium subscription. If you want to continue to use this voice you should upgrade again.`,

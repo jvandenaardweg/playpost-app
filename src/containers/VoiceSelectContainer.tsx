@@ -12,7 +12,7 @@ import { NetworkContext } from '../contexts/NetworkProvider';
 import { RootState } from '../reducers';
 import { setTrack } from '../reducers/player';
 import { setDownloadedVoice } from '../reducers/voices';
-import { saveSelectedVoice, getUser } from '../reducers/user';
+import { saveSelectedVoice, getUser, resetSaveSelectedVoiceError } from '../reducers/user';
 
 import { selectPlayerPlaybackState, selectPlayerTrack } from '../selectors/player';
 import { selectDownloadedVoicePreviews, selectAvailableVoicesByLanguageName, selectDefaultVoicesByLanguageName } from '../selectors/voices';
@@ -44,22 +44,24 @@ export class VoiceSelectContainerComponent extends React.PureComponent<Props, St
 
   static contextType = NetworkContext;
 
-  componentDidUpdate(prevProps: Props) {
-    const { errorSaveSelectedVoice } = this.props;
+  // componentDidUpdate(prevProps: Props) {
+  //   const { errorSaveSelectedVoice } = this.props;
+  //   const { isLoadingSaveSelectedVoiceId } = this.state;
 
-    // If we have an Error
-    if (errorSaveSelectedVoice && prevProps.errorSaveSelectedVoice !== errorSaveSelectedVoice) {
-      return Alert.alert(
-        'Oops!',
-        errorSaveSelectedVoice,
-        [
-          {
-            text: 'OK'
-          }
-        ]
-      );
-    }
-  }
+  //   // If we have an while saving the selected voice
+  //   if (isLoadingSaveSelectedVoiceId && errorSaveSelectedVoice && prevProps.errorSaveSelectedVoice !== errorSaveSelectedVoice) {
+  //     return Alert.alert(
+  //       'Oops!',
+  //       errorSaveSelectedVoice,
+  //       [
+  //         {
+  //           text: 'OK',
+  //           onPress: () => this.props.resetSaveSelectedVoiceError()
+  //         }
+  //       ]
+  //     );
+  //   }
+  // }
 
   keyExtractor = (item: Api.Voice, index: number) => index.toString();
 
@@ -297,6 +299,7 @@ interface DispatchProps {
   setDownloadedVoice: typeof setDownloadedVoice;
   setTrack: typeof setTrack;
   getUser: typeof getUser;
+  resetSaveSelectedVoiceError: typeof resetSaveSelectedVoiceError;
 }
 
 interface StateProps {
@@ -325,7 +328,8 @@ const mapDispatchToProps = {
   saveSelectedVoice,
   setTrack,
   setDownloadedVoice,
-  getUser
+  getUser,
+  resetSaveSelectedVoiceError
 };
 
 export const VoiceSelectContainer =

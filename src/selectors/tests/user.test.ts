@@ -33,7 +33,7 @@ describe('user selector', () => {
       ...rootState,
       user: {
         ...rootState.user,
-        error: 'Test error 2'
+        errorSaveSelectedVoice: 'Test error 2'
       }
     };
 

@@ -1,9 +1,5 @@
 import TrackPlayer from 'react-native-track-player';
-import Analytics from 'appcenter-analytics';
 
-export const GET_AUDIOFILE = 'player/LOAD';
-export const GET_AUDIOFILE_SUCCESS = 'player/LOAD_SUCCESS';
-export const GET_AUDIOFILE_FAIL = 'player/LOAD_FAIL';
 export const SET_PLAYBACK_STATUS = 'player/SET_PLAYBACK_STATUS';
 export const RESET_PLAYBACK_STATUS = 'player/RESET_PLAYBACK_STATUS';
 export const SET_TRACK = 'player/SET_TRACK';
@@ -12,6 +8,7 @@ export const SET_PLAYBACK_SPEED = 'player/SET_PLAYBACK_SPEED';
 export const CREATE_AUDIOFILE = 'player/CREATE_AUDIOFILE';
 export const CREATE_AUDIOFILE_SUCCESS = 'player/CREATE_AUDIOFILE_SUCCESS';
 export const CREATE_AUDIOFILE_FAIL = 'player/CREATE_AUDIOFILE_FAIL';
+export const RESET_CREATE_AUDIOFILE_ERROR = 'player/RESET_CREATE_AUDIOFILE_ERROR';
 
 export const RESET_PLAYER_STATE = 'player/RESET_PLAYER_STATE';
 
@@ -23,12 +20,12 @@ export type PlayerState = Readonly<{
   articleId: string;
   playbackState: string | number;
   playbackSpeed: number;
-  isLoading: boolean;
   error: string;
+  errorCreateAudiofile: string;
+  isLoadingCreateAudiofile: boolean;
 }>;
 
 export const initialState: PlayerState = {
-  isLoading: false,
   track: {
     id: '',
     url: '',
@@ -42,51 +39,39 @@ export const initialState: PlayerState = {
   articleId: '',
   playbackState: 'none',
   playbackSpeed: 1,
-  error: ''
+  error: '',
+  errorCreateAudiofile: '',
+  isLoadingCreateAudiofile: false,
 };
 
 /* tslint:disable-next-line no-any */
 export function playerReducer(state = initialState, action: any): PlayerState {
   switch (action.type) {
-    case GET_AUDIOFILE:
-      return {
-        ...state,
-        isLoading: true
-      };
-    case GET_AUDIOFILE_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        audiofile: action.payload.data,
-        error: ''
-      };
-    case GET_AUDIOFILE_FAIL:
-      return {
-        ...state,
-        isLoading: false,
-        error: 'Error while fetching a audiofile.'
-      };
     case SET_PLAYBACK_STATUS:
       return {
         ...state,
         playbackState: action.payload
       };
+
     case RESET_PLAYBACK_STATUS:
       return {
         ...state,
         playbackState: initialState.playbackState
       };
+
     case SET_TRACK:
       return {
         ...state,
         track: action.payload.track,
         playbackState: initialState.playbackState
       };
+
     case SET_PLAYBACK_SPEED:
       return {
         ...state,
         playbackSpeed: action.payload
       };
+
     case RESET_PLAYER_STATE:
       return {
         ...initialState
@@ -95,29 +80,37 @@ export function playerReducer(state = initialState, action: any): PlayerState {
     case CREATE_AUDIOFILE:
       return {
         ...state,
-        isLoading: true
+        isLoadingCreateAudiofile: true,
+        errorCreateAudiofile: ''
       };
+
     case CREATE_AUDIOFILE_SUCCESS:
       return {
         ...state,
-        isLoading: false,
+        isLoadingCreateAudiofile: false,
         audiofile: action.payload.data,
+        errorCreateAudiofile: ''
       };
+
     case CREATE_AUDIOFILE_FAIL:
-      let error = CREATE_AUDIOFILE_FAIL_MESSAGE;
+      let errorCreateAudiofile = CREATE_AUDIOFILE_FAIL_MESSAGE;
 
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        error = action.error.response.data.message;
-        Analytics.trackEvent('Error create audiofile', { message: action.error.response.data.message });
-      } else {
-        Analytics.trackEvent('Error create audiofile', { message: CREATE_AUDIOFILE_FAIL_MESSAGE });
+        errorCreateAudiofile = action.error.response.data.message;
       }
 
       return {
         ...state,
-        error,
-        isLoading: false
+        errorCreateAudiofile,
+        isLoadingCreateAudiofile: false
       };
+
+    case RESET_CREATE_AUDIOFILE_ERROR:
+      return {
+        ...state,
+        errorCreateAudiofile: ''
+      }
+
     default:
       return state;
   }
@@ -126,6 +119,12 @@ export function playerReducer(state = initialState, action: any): PlayerState {
 export function resetPlayerState() {
   return {
     type: RESET_PLAYER_STATE
+  };
+}
+
+export function resetCreateAudiofileError() {
+  return {
+    type: RESET_CREATE_AUDIOFILE_ERROR
   };
 }
 
