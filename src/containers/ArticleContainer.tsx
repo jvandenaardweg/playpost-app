@@ -24,6 +24,7 @@ import { setDownloadedAudiofile } from '../reducers/audiofiles';
 import { selectPlayerTrack, selectPlayerPlaybackState } from '../selectors/player';
 import { selectIsSubscribed } from '../selectors/subscriptions';
 import { selectUserSelectedVoiceByLanguageName } from '../selectors/user';
+import { selectIsDownloadedAudiofilesByArticleAudiofiles } from '../selectors/audiofiles';
 
 interface State {
   isLoading: boolean;
@@ -36,7 +37,6 @@ interface State {
 interface IProps extends NavigationInjectedProps {
   article: Api.Article;
   playlistItem: Api.PlaylistItem;
-  isDownloaded: boolean;
   isFavorited: boolean;
   isArchived: boolean;
   isMoving: boolean;
@@ -86,8 +86,8 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       return true;
     }
 
-    // Rerender when the user empties the cache
-    if (this.props.isDownloaded !== nextProps.isDownloaded) {
+    // Always re-render when we clear the cache or when an audiofile is downloaded
+    if (!isEqual(this.props.isDownloaded, nextProps.isDownloaded)) {
       return true;
     }
 
@@ -581,6 +581,7 @@ interface StateProps {
   readonly playbackState: ReturnType<typeof selectPlayerPlaybackState>;
   readonly isSubscribed: ReturnType<typeof selectIsSubscribed>;
   readonly userSelectedVoiceByLanguageName: ReturnType<typeof selectUserSelectedVoiceByLanguageName>;
+  readonly isDownloaded: ReturnType<typeof selectIsDownloadedAudiofilesByArticleAudiofiles>;
 }
 
 interface DispatchProps {
@@ -600,7 +601,8 @@ const mapStateToProps = (state: RootState, props: Props) => ({
   track: selectPlayerTrack(state),
   playbackState: selectPlayerPlaybackState(state),
   isSubscribed: selectIsSubscribed(state),
-  userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state, (props.article.language) ? props.article.language.name : '')
+  userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state, (props.article.language) ? props.article.language.name : ''),
+  isDownloaded: selectIsDownloadedAudiofilesByArticleAudiofiles(state, props.article.audiofiles)
 });
 
 const mapDispatchToProps: DispatchProps = {

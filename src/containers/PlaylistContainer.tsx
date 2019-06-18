@@ -196,16 +196,6 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
     this.setState({ showHelpVideo: true });
   }
 
-  isDownloaded(article: Api.Article) {
-    const { downloadedAudiofiles } = this.props;
-
-    if (!article.audiofiles.length) return false;
-
-    const downloadedAudiofileIds = downloadedAudiofiles.map(audiofile => audiofile.id);
-
-    return downloadedAudiofileIds.includes(article.audiofiles[0].id);
-  }
-
   renderEmptyComponent = () => {
     const { isLoading, isRefreshing, showHelpVideo, errorMessage } = this.state;
     const { isArchiveScreen, isFavoriteScreen } = this.props;
@@ -295,7 +285,6 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
         isArchived={!!item.archivedAt}
         playlistItem={item}
         article={item.article}
-        isDownloaded={this.isDownloaded(item.article)}
         onLongPress={(allowMove) ? move : () => {}}
         onPressOut={(allowMove) ? moveEnd : () => {}}
       />
