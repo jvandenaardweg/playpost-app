@@ -17,6 +17,7 @@ import { saveSelectedVoice, getUser } from '../reducers/user';
 import { selectPlayerPlaybackState, selectPlayerTrack } from '../selectors/player';
 import { selectDownloadedVoicePreviews, selectAvailableVoicesByLanguageName, selectDefaultVoicesByLanguageName } from '../selectors/voices';
 import { selectUserSelectedVoiceByLanguageName } from '../selectors/user';
+import { selectIsSubscribed } from '../selectors/subscriptions';
 
 import { ALERT_SETTINGS_VOICE_CHANGE, ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_LANGUAGES_VOICE_SAVE, ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE } from '../constants/messages';
 
@@ -47,50 +48,50 @@ export class VoiceSelectContainerComponent extends React.PureComponent<Props, St
 
   handleOnListItemPress = (voice: Api.Voice) => {
     const { isConnected } = this.context;
+    const { isSubscribed } = this.props;
     const isSelected = this.isSelected(voice);
+
+    // If it's already selected, do nothing
+    if (isSelected) return;
 
     if (!isConnected) {
       return Alert.alert('Not connected', ALERT_GENERIC_INTERNET_REQUIRED);
     }
 
-    // TODO: check if user is premium
-    // if (item.isPremium) {
-    //   Alert.alert(
-    //     'Upgrade to Premium',
-    //     'This higher quality voice is only available for Premium users.',
-    //     [
-    //       {
-    //         text: 'Cancel',
-    //         style: 'cancel'
-    //       },
-    //       {
-    //         text: 'Upgrade',
-    //         onPress: () => this.props.navigation.navigate('Upgrade'),
-    //       },
-    //     ],
-
-    //     );
-    // } else {
-
-    // Only change voice when it's not already selected
-    if (!isSelected) {
-      // Warn the user, it only applies to new articles
-      Alert.alert(
-        'Only applies to new articles',
-        ALERT_SETTINGS_VOICE_CHANGE,
+    // If it's a premium voice and the user is not subscribed
+    // Show a warning
+    if (voice.isPremium && !isSubscribed) {
+      return Alert.alert(
+        'Upgrade to Premium',
+        'This higher quality voice is only available for Premium users.',
         [
           {
             text: 'Cancel',
             style: 'cancel'
           },
           {
-            text: 'OK',
-            onPress: () => this.handleOnSaveSelectedVoice(voice)
-          }
-        ]
+            text: 'Upgrade',
+            onPress: () => this.props.navigation.navigate('Upgrade'),
+          },
+        ],
       );
     }
-    // }
+
+    // Warn the user, it only applies to new articles
+    Alert.alert(
+      'Only applies to new articles',
+      ALERT_SETTINGS_VOICE_CHANGE,
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel'
+        },
+        {
+          text: 'OK',
+          onPress: () => this.handleOnSaveSelectedVoice(voice)
+        }
+      ]
+    );
   }
 
   /**
@@ -303,6 +304,7 @@ interface StateProps {
   readonly availableVoicesByLanguageName: ReturnType<typeof selectAvailableVoicesByLanguageName>;
   readonly defaultVoicesByLanguageName: ReturnType<typeof selectDefaultVoicesByLanguageName>;
   readonly userSelectedVoiceByLanguageName: ReturnType<typeof selectUserSelectedVoiceByLanguageName>;
+  readonly isSubscribed: ReturnType<typeof selectIsSubscribed>;
 }
 
 const mapStateToProps = (state: RootState, props: Props) => ({
@@ -311,7 +313,8 @@ const mapStateToProps = (state: RootState, props: Props) => ({
   downloadedVoices: selectDownloadedVoicePreviews(state),
   availableVoicesByLanguageName: selectAvailableVoicesByLanguageName(state, props.navigation.getParam('languageName', '')), // does not memoize correctly? // https://github.com/reduxjs/reselect#containersvisibletodolistjs-2
   defaultVoicesByLanguageName: selectDefaultVoicesByLanguageName(state, props.navigation.getParam('languageName', '')),
-  userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state, props.navigation.getParam('languageName', ''))
+  userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state, props.navigation.getParam('languageName', '')),
+  isSubscribed: selectIsSubscribed(state)
 });
 
 const mapDispatchToProps = {
