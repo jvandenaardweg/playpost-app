@@ -11,9 +11,9 @@ export const selectDownloadedAudiofiles = createSelector(
 
 /**
  * Selector to find out if an audiofile is downloaded based on an array of audiofiles.
- * 
+ *
  * @param state
- * @param compareAudiofiles 
+ * @param compareAudiofiles
  */
 export const selectIsDownloadedAudiofilesByArticleAudiofiles = (state: RootState, compareAudiofiles?: Api.Audiofile[]) => createSelector(
   [selectDownloadedAudiofiles],

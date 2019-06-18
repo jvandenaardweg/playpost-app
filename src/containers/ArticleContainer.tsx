@@ -192,7 +192,6 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         // Show an Alert he needs to change his default voice for the "userSelectedVoiceByLanguageName.name" language
         const selectedVoiceLanguageName = userSelectedVoiceByLanguageName.language.name;
 
-
         return Alert.alert(
           'Cannot use selected voice',
           `Your selected voice for this ${selectedVoiceLanguageName} article is a Premium voice, but you have no active Premium subscription. If you want to continue to use this voice you should upgrade again.`,

@@ -109,7 +109,7 @@ export function playerReducer(state = initialState, action: any): PlayerState {
       return {
         ...state,
         errorCreateAudiofile: ''
-      }
+      };
 
     default:
       return state;
