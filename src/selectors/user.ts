@@ -34,9 +34,12 @@ export const selectUserSelectedVoices = createSelector(
   }
 );
 
-export const selectUserSelectedVoiceByLanguageName = (state: RootState, languageName: string) => createSelector(
+export const selectUserSelectedVoiceByLanguageName = (state: RootState, languageName?: string) => createSelector(
   [selectUserSelectedVoices],
-  voices => voices.find(voice => voice.language.name === languageName)
+  (voices) => {
+    if (!languageName) return;
+    return voices.find(voice => voice.language.name === languageName);
+  }
 )(state);
 
 export const selectUserSubscriptions = createSelector(

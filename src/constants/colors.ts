@@ -31,6 +31,7 @@ export default {
   red,
   redDark,
   orange,
+  orangeDark,
   green,
   appBackground,
 

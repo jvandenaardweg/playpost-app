@@ -22,6 +22,8 @@ import { setTrack, createAudiofile, resetPlaybackStatus } from '../reducers/play
 import { setDownloadedAudiofile } from '../reducers/audiofiles';
 
 import { selectPlayerTrack, selectPlayerPlaybackState } from '../selectors/player';
+import { selectIsSubscribed } from '../selectors/subscriptions';
+import { selectUserSelectedVoiceByLanguageName } from '../selectors/user';
 
 interface State {
   isLoading: boolean;
@@ -187,7 +189,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
    */
   handleOnPlayPress = async () => {
     const { isPlaying } = this.state;
-    const { article } = this.props;
+    const { article, userSelectedVoiceByLanguageName, isSubscribed } = this.props;
     const { isConnected } = this.context;
 
     if (isPlaying) {
@@ -218,6 +220,31 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
     // If we don't have an audiofile yet, we create it first
     if (!article.audiofiles.length) {
+      // If the selected voice of the user, is a Premium voice, but the user has no Premium account active
+      if (userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName.isPremium && !isSubscribed) {
+        // Show an Alert he needs to change his default voice for the "userSelectedVoiceByLanguageName.name" language
+        const selectedVoiceLanguageName = userSelectedVoiceByLanguageName.language.name;
+        return Alert.alert(
+          'Cannot use selected voice',
+          `Your selected voice for this ${selectedVoiceLanguageName} article is a Premium voice, but you have no active Premium subscription. If you want to continue to use this voice you should upgrade again.`,
+          [
+            {
+              text: 'Cancel',
+              style: 'cancel'
+            },
+            {
+              text: 'Upgrade to Premium',
+              onPress: () => this.props.navigation.navigate('Upgrade')
+            },
+            {
+              text: `Change ${selectedVoiceLanguageName} voice`,
+              onPress: () => this.props.navigation.navigate('SettingsVoices', { languageName: selectedVoiceLanguageName })
+            }
+          ],
+          { cancelable: true }
+        );
+      }
+
       return this.handleCreateAudiofile();
     }
 
@@ -550,26 +577,30 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 }
 
 interface StateProps {
-  track: ReturnType<typeof selectPlayerTrack>;
-  playbackState: ReturnType<typeof selectPlayerPlaybackState>;
+  readonly track: ReturnType<typeof selectPlayerTrack>;
+  readonly playbackState: ReturnType<typeof selectPlayerPlaybackState>;
+  readonly isSubscribed: ReturnType<typeof selectIsSubscribed>;
+  readonly userSelectedVoiceByLanguageName: ReturnType<typeof selectUserSelectedVoiceByLanguageName>;
 }
 
 interface DispatchProps {
-  setTrack: typeof setTrack;
-  createAudiofile: typeof createAudiofile;
-  getPlaylist: typeof getPlaylist;
-  removeArticleFromPlaylist: typeof removeArticleFromPlaylist;
-  archivePlaylistItem: typeof archivePlaylistItem;
-  favoritePlaylistItem: typeof favoritePlaylistItem;
-  unArchivePlaylistItem: typeof unArchivePlaylistItem;
-  unFavoritePlaylistItem: typeof unFavoritePlaylistItem;
-  resetPlaybackStatus: typeof resetPlaybackStatus;
-  setDownloadedAudiofile: typeof setDownloadedAudiofile;
+  readonly setTrack: typeof setTrack;
+  readonly createAudiofile: typeof createAudiofile;
+  readonly getPlaylist: typeof getPlaylist;
+  readonly removeArticleFromPlaylist: typeof removeArticleFromPlaylist;
+  readonly archivePlaylistItem: typeof archivePlaylistItem;
+  readonly favoritePlaylistItem: typeof favoritePlaylistItem;
+  readonly unArchivePlaylistItem: typeof unArchivePlaylistItem;
+  readonly unFavoritePlaylistItem: typeof unFavoritePlaylistItem;
+  readonly resetPlaybackStatus: typeof resetPlaybackStatus;
+  readonly setDownloadedAudiofile: typeof setDownloadedAudiofile;
 }
 
-const mapStateToProps = (state: RootState) => ({
+const mapStateToProps = (state: RootState, props: Props) => ({
   track: selectPlayerTrack(state),
   playbackState: selectPlayerPlaybackState(state),
+  isSubscribed: selectIsSubscribed(state),
+  userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state, (props.article.language) ? props.article.language.name : '')
 });
 
 const mapDispatchToProps: DispatchProps = {
