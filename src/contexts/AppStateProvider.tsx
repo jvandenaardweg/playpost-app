@@ -49,7 +49,7 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
     // Check every minute if Subscription is still active
     this.validateSubscriptionInterval = setInterval(() => {
       this.validateActiveSubscription();
-    }, 1000 * 10); // Every 1 minute
+    }, 1000 * 60); // Every 1 minute
   }
 
   componentWillUnmount() {
