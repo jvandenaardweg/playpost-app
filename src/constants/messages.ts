@@ -1,4 +1,6 @@
 export const GENERIC_NETWORK_ERROR = 'Could not communicate with the server. Please make sure you have an active internet connection.';
+export const GENERIC_UNAUTHORIZED_ERROR = 'You are not authorized to do this. If you think this is incorrect? Try to logout and then login again.';
+export const GENERIC_MAINTENANCE_ERROR = 'Our systems have maintenance right now. Please try again later.';
 export const ALERT_GENERIC_INTERNET_REQUIRED = 'You need to have an active internet connection to do this.';
 
 export const GET_USER_FAIL_MESSAGE = 'An unknown error happened while getting your account. Please contact us when this happens all the time.';
