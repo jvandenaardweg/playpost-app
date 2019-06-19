@@ -126,9 +126,7 @@ describe('user selector', () => {
       }
     };
 
-    // TODO: add example data when we have some in the local API
-    /* tslint:disable-next-line no-any */
-    const expected: any[] = [];
+    const expected = exampleUser.inAppSubscriptions;
 
     expect(selectUserSubscriptions(exampleUserState)).toEqual(expected);
   });
