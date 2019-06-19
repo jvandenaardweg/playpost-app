@@ -131,7 +131,7 @@ declare namespace Api {
     languageCode: string;
     article?: Article;
     user?: User;
-    voice?: Voice;
+    voice: Voice;
     mimeType: string;
     language?: Language;
     createdAt: string;
