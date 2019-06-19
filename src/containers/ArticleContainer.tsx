@@ -220,6 +220,31 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
       return this.handleCreateAudiofile();
     }
 
+    // When we end up here, it means the article already has an audiofile
+
+    // If the user is on a free account, check if available audiofile uses different voice. Show alert if it does.
+    if (!isSubscribed) {
+      const selectedVoiceId = userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName.id;
+      const hasAudioWithSameVoice = !!article.audiofiles.find(audiofile => audiofile.voice.id === selectedVoiceId);
+
+      if (!hasAudioWithSameVoice && !this.isActiveInPlayer) {
+        Alert.alert(
+          'Article has different voice',
+          'Because you are on a free account, we will use the already available voice for this article. Which is a different voice. Premium users do not have this limitation.',
+          [
+            {
+              text: 'Upgrade to Premium',
+              onPress: () => this.props.navigation.navigate('Upgrade')
+            },
+            {
+              text: 'OK',
+              style: 'cancel'
+            }
+          ]
+        );
+      }
+    }
+
     // Only set a new track when it's a different one
     if (!this.isActiveInPlayer) {
       return this.handleSetTrack();
