@@ -110,7 +110,7 @@ describe('user selector', () => {
 
     const languageName = 'English';
 
-    const voices = selectUserSelectedVoices(exampleUserDetailsState);
+    const voices: Api.Voice[] = selectUserSelectedVoices(exampleUserDetailsState);
 
     const expected = voices.find(voice => voice.language.name === languageName);
 

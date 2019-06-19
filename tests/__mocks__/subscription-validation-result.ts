@@ -4,7 +4,7 @@ export default {
   expiresAt: '2019-06-10T18:56:06.000Z',
   latestTransactionId: '1000000535687698',
   originalTransactionId: '1000000531243136',
-  latestReceipt: 'EXAMPLE',
+  latestReceipt: '[REDACTED]',
   isTrial: false,
   isCanceled: false,
   isExpired: true,

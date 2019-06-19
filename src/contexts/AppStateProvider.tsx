@@ -125,13 +125,13 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
 
     // If we end up here, the user is logged in AND it has a subscription receipt we can validate
     const { expiresAt, latestReceipt } = subscriptionsValidationResult;
-    const expiresAtDateMs = new Date(expiresAt).getTime();
+    const expiresAtDateMs = (expiresAt) ? new Date(expiresAt).getTime() : null;
     const currentTime = Date.now();
 
     // Check if subscription is expired locally
     // If it is expired locally, we need to validate it on our server to check if the subscription is still active
     // Important: this might allow Jailbreak devs to bypass our subscription validation, as they can just adjust the expiresAtDateMs to always be in the future
-    if (currentTime > expiresAtDateMs) {
+    if (expiresAtDateMs && currentTime > expiresAtDateMs) {
       try {
         console.warn('User his subscription is expired locally. We validate his latest receipt on our server to check if the user still has a valid subscription.', subscription);
         await validateSubscriptionReceipt(subscription.id, latestReceipt);

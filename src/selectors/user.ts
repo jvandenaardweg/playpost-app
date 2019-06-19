@@ -49,5 +49,5 @@ export const selectUserSelectedVoiceByLanguageName = (state: RootState, language
 
 export const selectUserSubscriptions = createSelector(
   [selectUserDetails],
-  userDetails => userDetails && userDetails.subscriptions
+  userDetails => userDetails && userDetails.inAppSubscriptions
 );

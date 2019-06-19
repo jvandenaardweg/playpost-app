@@ -17,14 +17,14 @@ declare namespace Api {
     duration: string;
     service: string;
     isActive: boolean;
-    createdAt: Date<string>;
-    updatedAt: Date<string>;
+    createdAt: string;
+    updatedAt: string;
   }
 
   export interface ReceiptValidationResponse {
     id: string;
-    startedAt: Date<string>;
-    expiresAt: Date<string> | null;
+    startedAt: string;
+    expiresAt: string | null;
     latestTransactionId: string | null;
     originalTransactionId: string;
     latestReceipt: string;
@@ -33,14 +33,14 @@ declare namespace Api {
     isExpired: boolean | null;
     status: string;
     environment: string;
-    renewedAt: Date<string> | null;
-    canceledAt: Date<string> | null;
-    createdAt: Date<string>;
-    updatedAt: Date<string>;
+    renewedAt: string | null;
+    canceledAt: string | null;
+    createdAt: string;
+    updatedAt: string;
     inAppSubscription: InAppSubscription;
   }
 
-  export interface Subscription {
+  export interface InAppSubscription {
     id: string;
     productId: string;
     name: string;
@@ -50,35 +50,40 @@ declare namespace Api {
     duration: string;
     service: string;
     isActive: boolean;
-    createdAt: Date<string>;
-    updatedAt: Date<string>;
+    createdAt: string;
+    updatedAt: string;
   }
 
-  export interface UserSubscription {
+  export interface UserInAppSubscriptions {
     id: string;
-    productId: string;
-    purchaseDate: string;
-    cancellationDate: string | null;
-    quantity: number;
-    transactionId: string;
-    transactionReceipt: string;
+    latestTransactionId: string;
+    originalTransactionId: string;
+    latestReceipt: string;
     isTrial: boolean;
     status: string;
-    user: User;
-    subscription: Subscription;
-    createdAt: Date<string>;
-    updatedAt: Date<string>;
+    environment: string;
+    renewedAt: string | null;
+    canceledAt: string | null;
+    startedAt: string;
+    expiresAt: string | null;
+    isCanceled: boolean;
+    isExpired: boolean;
+    user?: User;
+    inAppSubscription: InAppSubscription;
+    createdAt: string;
+    updatedAt: string;
   }
 
   export type PlaylistItem = {
     id: string;
     order: number;
-    lastPlayedAt: Date<string> | null;
-    createdAt: Date<string>;
-    updatedAt: Date<string>;
-    favoritedAt: Date<string> | null;
-    archivedAt: Date<string> | null;
+    lastPlayedAt: string | null;
+    createdAt: string;
+    updatedAt: string;
+    favoritedAt: string | null;
+    archivedAt: string | null;
     article: Article;
+    user?: User;
   };
 
   export interface Article {
@@ -87,15 +92,15 @@ declare namespace Api {
     description: string | null;
     url: string;
     languageCode: string | null; // TODO: remove after upgrade
-    language: Language | null | undefined;
+    language?: Language;
     sourceName: string | null;
     imageUrl: string | null;
     authorName: string | null;
     html: string | null;
-    ssml?: string; // optional
-    text?: string; // optional
-    createdAt: Date<string>;
-    updatedAt: Date<string>;
+    ssml?: string | null; // optional
+    text?: string | null; // optional
+    createdAt: string;
+    updatedAt: string;
     user?: User; // optional
     readingTime: number | null;
     canonicalUrl: string | null;
@@ -109,13 +114,12 @@ declare namespace Api {
   export interface User {
     id: string;
     email: string;
-    // onboardAt: Date<string> | null;
-    activatedAt: Date<string> | null;
-    authenticatedAt: Date<string> | null;
+    activatedAt: string | null;
+    authenticatedAt: string | null;
     voiceSettings: UserVoiceSetting[];
-    subscriptions: UserSubscription[];
-    createdAt: Date<string>;
-    updatedAt: Date<string>;
+    inAppSubscriptions: UserInAppSubscriptions[];
+    createdAt: string;
+    updatedAt: string;
   }
 
   export interface Audiofile {
@@ -125,10 +129,13 @@ declare namespace Api {
     filename: string;
     length: number;
     languageCode: string;
+    article?: Article;
+    user?: User;
+    voice?: Voice;
     mimeType: string;
-    // language: Language | null | undefined;
-    createdAt: Date<string>;
-    updatedAt: Date<string>;
+    language?: Language;
+    createdAt: string;
+    updatedAt: string;
   }
 
   export interface Voice {
@@ -145,11 +152,12 @@ declare namespace Api {
     naturalSampleRateHertz: number | null;
     isActive: boolean;
     isPremium: boolean;
+    isHighestQuality: boolean;
     exampleAudioUrl: string | null;
     language: Language;
     isLanguageDefault: boolean | null;
-    createdAt: Date<string>;
-    updatedAt: Date<string>;
+    createdAt: string;
+    updatedAt: string;
   }
 
   export interface Language {
@@ -159,17 +167,17 @@ declare namespace Api {
     nativeName: string | null;
     isActive: boolean;
     voices?: Voice[];
-    createdAt: Date<string>;
-    updatedAt: Date<string>;
+    createdAt: string;
+    updatedAt: string;
   }
 
   export interface UserVoiceSetting {
     id: string;
-    // user?: User;
     voice: Voice;
     language: Language;
-    createdAt: Date<string>;
-    updatedAt: Date<string>;
+    user?: User;
+    createdAt: string;
+    updatedAt: string;
   }
 
   export enum ArticleStatus {

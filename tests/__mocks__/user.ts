@@ -1,10 +1,11 @@
+// v1/me
 export default {
   id: '34dba06f-091d-425b-90b7-66ada329e2f8',
   email: 'jordyvandenaardweg@gmail.com',
-  authenticatedAt: '2019-05-18T10:49:52.044Z',
+  authenticatedAt: '2019-06-18T07:47:47.120Z',
   activatedAt: null,
   createdAt: '2019-02-27T13:31:29.376Z',
-  updatedAt: '2019-05-18T08:49:52.056Z',
+  updatedAt: '2019-06-18T05:47:47.130Z',
   voiceSettings: [
     {
       id: 'ba1df53b-4771-4030-86c9-6a3da7f3669b',
@@ -24,6 +25,7 @@ export default {
         naturalSampleRateHertz: null,
         isActive: true,
         isPremium: false,
+        isHighestQuality: false,
         isLanguageDefault: true,
         exampleAudioUrl: null,
         createdAt: '2019-04-25T11:35:03.481Z',
@@ -65,7 +67,8 @@ export default {
         pitch: 0,
         naturalSampleRateHertz: null,
         isActive: true,
-        isPremium: false,
+        isPremium: true,
+        isHighestQuality: false,
         isLanguageDefault: null,
         exampleAudioUrl: null,
         createdAt: '2019-04-25T11:35:03.561Z',
@@ -107,7 +110,8 @@ export default {
         pitch: 0,
         naturalSampleRateHertz: null,
         isActive: true,
-        isPremium: false,
+        isPremium: true,
+        isHighestQuality: false,
         isLanguageDefault: null,
         exampleAudioUrl: null,
         createdAt: '2019-04-25T11:35:03.818Z',
@@ -150,6 +154,7 @@ export default {
         naturalSampleRateHertz: 24000,
         isActive: true,
         isPremium: true,
+        isHighestQuality: true,
         isLanguageDefault: null,
         exampleAudioUrl: 'https://storage-development.playpost.app/voices/63dc3e3e-e04d-450b-ba08-7f97b484d78c.wav',
         createdAt: '2019-04-25T07:27:13.494Z',
@@ -177,25 +182,26 @@ export default {
     {
       id: '5dc78d9f-7030-4819-bc46-61fafacbc7ba',
       createdAt: '2019-05-16T13:16:04.102Z',
-      updatedAt: '2019-05-17T13:38:53.495Z',
+      updatedAt: '2019-06-18T07:48:00.202Z',
       voice: {
-        id: '97170d75-94c1-4c46-972f-e8f1c1e17b1f',
+        id: 'b735e14e-33ad-4ce9-9985-b868c822c554',
         languageCode: 'en-GB',
         countryCode: 'GB',
-        name: 'Brian',
-        label: 'Brian',
+        name: 'en-GB-Wavenet-D',
+        label: null,
         gender: 'MALE',
-        synthesizer: 'AWS',
+        synthesizer: 'Google',
         audioProfile: 'default',
         speakingRate: 1,
         pitch: 0,
-        naturalSampleRateHertz: null,
+        naturalSampleRateHertz: 24000,
         isActive: true,
-        isPremium: false,
+        isPremium: true,
+        isHighestQuality: true,
         isLanguageDefault: null,
-        exampleAudioUrl: null,
-        createdAt: '2019-04-25T11:35:03.743Z',
-        updatedAt: '2019-05-16T15:01:14.570Z',
+        exampleAudioUrl: 'https://storage-development.playpost.app/voices/b735e14e-33ad-4ce9-9985-b868c822c554.wav',
+        createdAt: '2019-04-25T07:27:13.130Z',
+        updatedAt: '2019-05-16T15:01:14.914Z',
         language: {
           id: '95f01039-fe8e-412d-a542-7089303b84c8',
           name: 'English',
@@ -217,5 +223,36 @@ export default {
       }
     }
   ],
-  subscriptions: []
-}
+  inAppSubscriptions: [
+    {
+      id: 'e3901c8f-5a61-46bb-bebf-e7ed9f936922',
+      startedAt: '2019-06-18T10:11:55.000Z',
+      expiresAt: '2019-06-18T10:17:45.000Z',
+      latestTransactionId: '1000000538183122',
+      originalTransactionId: '1000000531243136',
+      latestReceipt: '[REDACTED]',
+      isTrial: false,
+      isCanceled: false,
+      isExpired: true,
+      status: 'expired',
+      environment: 'Sandbox',
+      renewedAt: '2019-06-18T10:12:45.000Z',
+      canceledAt: null,
+      createdAt: '2019-06-01T08:19:58.217Z',
+      updatedAt: '2019-06-18T08:28:51.473Z',
+      inAppSubscription: {
+        id: '7e31ec53-b7c0-4795-83ea-98432ac7754b',
+        productId: 'com.aardwegmedia.playpost.premium',
+        name: 'Premium',
+        description: 'Monthly Subscription',
+        price: 3.99,
+        currency: 'eur',
+        duration: '1m',
+        service: 'apple',
+        isActive: true,
+        createdAt: '2019-06-01T08:16:42.873Z',
+        updatedAt: '2019-06-01T08:16:42.873Z'
+      }
+    }
+  ]
+};

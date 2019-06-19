@@ -28,7 +28,7 @@ export const selectAllPlaylistArticles = createSelector(
     if (!playlistItems || !playlistItems.length) return [];
 
     // Create a copy of the array, to enforce immutability. Then sort it.
-    const sortedPlaylistItems = [...playlistItems].sort((a, b) => a.order - b.order);
+    const sortedPlaylistItems = [...playlistItems].sort((a: Api.PlaylistItem, b: Api.PlaylistItem) => a.order - b.order);
 
     const articles = sortedPlaylistItems.map(playlistItem => playlistItem.article);
 
@@ -43,7 +43,7 @@ export const selectNewPlaylistItems = createSelector(
 
     const articles = playlistItems
       .filter(playlistItem => !playlistItem.archivedAt)
-      .sort((a, b) => a.order - b.order); // Sort by the custom order
+      .sort((a: Api.PlaylistItem, b: Api.PlaylistItem) => a.order - b.order); // Sort by the custom order
 
     return articles;
   }
@@ -55,10 +55,10 @@ export const selectArchivedPlaylistItems = createSelector(
     if (!playlistItems || !playlistItems.length) return [];
 
     const archivedPlaylistItems = playlistItems
-      .filter(playlistItem => playlistItem.archivedAt)
-      .sort((a, b) => {
-        const aTime = (a.archivedAt !== null) ? new Date(a.archivedAt).getTime() : 0;
-        const bTime = (b.archivedAt !== null) ? new Date(b.archivedAt).getTime() : 0;
+      .filter(playlistItem => !!playlistItem.archivedAt)
+      .sort((a: Api.PlaylistItem, b: Api.PlaylistItem) => {
+        const aTime = (a.archivedAt) ? new Date(a.archivedAt).getTime() : 0;
+        const bTime = (b.archivedAt) ? new Date(b.archivedAt).getTime() : 0;
         return bTime - aTime;
       });
 
@@ -72,10 +72,10 @@ export const selectFavoritedPlaylistItems = createSelector(
     if (!playlistItems || !playlistItems.length) return [];
 
     const favoritedPlaylistItems = playlistItems
-      .filter(playlistItem => playlistItem.favoritedAt)
-      .sort((a, b) => {
-        const aTime = (a.favoritedAt !== null) ? new Date(a.favoritedAt).getTime() : 0;
-        const bTime = (b.favoritedAt !== null) ? new Date(b.favoritedAt).getTime() : 0;
+      .filter(playlistItem => !!playlistItem.favoritedAt)
+      .sort((a: Api.PlaylistItem, b: Api.PlaylistItem) => {
+        const aTime = (a.favoritedAt) ? new Date(a.favoritedAt).getTime() : 0;
+        const bTime = (b.favoritedAt) ? new Date(b.favoritedAt).getTime() : 0;
         return bTime - aTime;
       });
 

@@ -114,9 +114,9 @@ describe('playlist selector', () => {
 
     const expected = playlistMock
     .filter(playlistItem => playlistItem.archivedAt)
-    .sort((a, b) => {
-      const aTime = (a.archivedAt !== null) ? new Date(a.archivedAt).getTime() : 0;
-      const bTime = (b.archivedAt !== null) ? new Date(b.archivedAt).getTime() : 0;
+    .sort((a: Api.PlaylistItem, b: Api.PlaylistItem) => {
+      const aTime = (a.archivedAt) ? new Date(a.archivedAt).getTime() : 0;
+      const bTime = (b.archivedAt) ? new Date(b.archivedAt).getTime() : 0;
       return bTime - aTime;
     });
 
@@ -145,10 +145,10 @@ describe('playlist selector', () => {
     };
 
     const expected = playlistMock
-    .filter(playlistItem => playlistItem.favoritedAt)
-    .sort((a, b) => {
-      const aTime = (a.favoritedAt !== null) ? new Date(a.favoritedAt).getTime() : 0;
-      const bTime = (b.favoritedAt !== null) ? new Date(b.favoritedAt).getTime() : 0;
+    .filter(playlistItem => !!playlistItem.favoritedAt)
+    .sort((a: Api.PlaylistItem, b: Api.PlaylistItem) => {
+      const aTime = (a.favoritedAt) ? new Date(a.favoritedAt).getTime() : 0;
+      const bTime = (b.favoritedAt) ? new Date(b.favoritedAt).getTime() : 0;
       return bTime - aTime;
     });
 

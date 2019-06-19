@@ -14,7 +14,7 @@ export const POST_VALIDATE_SUBSCRIPTION_RECEIPT_FAIL = 'subscriptions/POST_VALID
 export type SubscriptionsState = Readonly<{
   isLoadingSubscriptions: boolean;
   isLoadingValidateSubscriptionReceipt: boolean;
-  subscriptions: Api.Subscription[];
+  subscriptions: Api.InAppSubscription[];
   validationResult: Api.ReceiptValidationResponse;
   error: string;
 }>;
@@ -22,7 +22,7 @@ export type SubscriptionsState = Readonly<{
 export const initialState: SubscriptionsState = {
   isLoadingSubscriptions: false,
   isLoadingValidateSubscriptionReceipt: false,
-  subscriptions: [] as Api.Subscription[],
+  subscriptions: [] as Api.InAppSubscription[],
   validationResult: {} as Api.ReceiptValidationResponse,
   error: ''
 };
