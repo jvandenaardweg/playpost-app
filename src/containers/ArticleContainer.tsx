@@ -191,8 +191,10 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
 
     // If we don't have an audiofile yet, we create it first
     if (!article.audiofiles.length) {
+
       // If the selected voice of the user, is a Premium voice, but the user has no Premium account active
       if (userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName.isPremium && !isSubscribed) {
+
         // Show an Alert he needs to change his default voice for the "userSelectedVoiceByLanguageName.name" language
         const selectedVoiceLanguageName = userSelectedVoiceByLanguageName.language.name;
 
