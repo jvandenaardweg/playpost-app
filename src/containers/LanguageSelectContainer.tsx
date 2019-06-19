@@ -40,8 +40,9 @@ export class LanguagesSelectComponent extends React.PureComponent<Props> {
 
     const defaultLabel = (voice.isLanguageDefault) ? '(Default) ' : '';
     const genderLabel = (voice.gender === 'MALE') ? 'Male' : 'Female';
+    const label = (voice.label) ? voice.label : '';
 
-    return `${defaultLabel}${voice.label} (${voice.countryCode}) (${genderLabel})`;
+    return `${defaultLabel}${label} (${voice.countryCode}) (${genderLabel})`;
   }
 
   renderItem = ({ item }: { item: Api.Language}) => {
