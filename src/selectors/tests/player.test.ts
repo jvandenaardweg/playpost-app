@@ -1,4 +1,4 @@
-import { playerSelector, selectPlayerAudiofile, selectPlayerPlaybackState, selectPlayerTrack, selectErrorCreateAudiofile } from '../player';
+import { playerSelector, selectPlayerAudiofile, selectPlayerPlaybackState, selectPlayerTrack, selectErrorCreateAudiofile, selectPlayerArticleId } from '../player';
 import { createStore } from 'redux';
 
 import { initialState } from '../../reducers/player';
@@ -50,6 +50,18 @@ describe('player selector', () => {
     };
 
     expect(selectPlayerTrack(exampleState)).toEqual(trackMock);
+  });
+
+  it('selectPlayerArticleId should return articleId of the currently playing audio', () => {
+    const exampleState = {
+      ...rootState,
+      player: {
+        ...rootState.player,
+        articleId: 'e102cb67-62cd-4d56-8d0f-2e4f7f1381af'
+      }
+    };
+
+    expect(selectPlayerArticleId(exampleState)).toEqual('e102cb67-62cd-4d56-8d0f-2e4f7f1381af');
   });
 
   it('selectErrorCreateAudiofile should return an error message when creating an audiofile fails', () => {

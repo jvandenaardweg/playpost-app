@@ -63,7 +63,8 @@ export function playerReducer(state = initialState, action: any): PlayerState {
       return {
         ...state,
         track: action.payload.track,
-        playbackState: initialState.playbackState
+        playbackState: initialState.playbackState,
+        articleId: action.payload.articleId
       };
 
     case SET_PLAYBACK_SPEED:
@@ -141,11 +142,12 @@ export function resetPlaybackStatus() {
   };
 }
 
-export function setTrack(track: TrackPlayer.Track) {
+export function setTrack(track: TrackPlayer.Track, articleId: string) {
   return {
     type: SET_TRACK,
     payload: {
-      track
+      track,
+      articleId
     }
   };
 }

@@ -21,7 +21,7 @@ import { getPlaylist, removeArticleFromPlaylist, archivePlaylistItem, favoritePl
 import { setTrack, createAudiofile, resetPlaybackStatus } from '../reducers/player';
 import { setDownloadedAudiofile } from '../reducers/audiofiles';
 
-import { selectPlayerTrack, selectPlayerPlaybackState } from '../selectors/player';
+import { selectPlayerTrack, selectPlayerPlaybackState, selectPlayerArticleId } from '../selectors/player';
 import { selectIsSubscribed } from '../selectors/subscriptions';
 import { selectUserSelectedVoiceByLanguageName } from '../selectors/user';
 import { selectIsDownloadedAudiofilesByArticleAudiofiles } from '../selectors/audiofiles';
@@ -44,15 +44,19 @@ interface IProps extends NavigationInjectedProps {
   onPressOut(): void;
 }
 
+const initialState = {
+  isLoading: false,
+  isPlaying: false,
+  isActive: false,
+  isCreatingAudiofile: false,
+  isDownloadingAudiofile: false
+};
+
 type Props = IProps & StateProps & DispatchProps;
 
-export class ArticleContainerComponent extends React.Component<Props, State> {
+export class ArticleContainerComponent extends React.PureComponent<Props, State> {
   state = {
-    isLoading: false,
-    isPlaying: false,
-    isActive: false,
-    isCreatingAudiofile: false,
-    isDownloadingAudiofile: false
+    ...initialState
   };
 
   static contextType = NetworkContext;
@@ -305,7 +309,8 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
             // contentType
             contentType: 'audio/mpeg',
             key: audiofile.id
-          }
+          },
+          article.id
         );
       }
 
@@ -550,6 +555,7 @@ interface StateProps {
   readonly isSubscribed: ReturnType<typeof selectIsSubscribed>;
   readonly userSelectedVoiceByLanguageName: ReturnType<typeof selectUserSelectedVoiceByLanguageName>;
   readonly isDownloaded: ReturnType<typeof selectIsDownloadedAudiofilesByArticleAudiofiles>;
+  readonly playerArticleId: ReturnType<typeof selectPlayerArticleId>;
 }
 
 interface DispatchProps {
@@ -570,7 +576,8 @@ const mapStateToProps = (state: RootState, props: Props) => ({
   playbackState: selectPlayerPlaybackState(state),
   isSubscribed: selectIsSubscribed(state),
   userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state, (props.article.language) ? props.article.language.name : ''),
-  isDownloaded: selectIsDownloadedAudiofilesByArticleAudiofiles(state, props.article.audiofiles)
+  isDownloaded: selectIsDownloadedAudiofilesByArticleAudiofiles(state, props.article.audiofiles),
+  playerArticleId: selectPlayerArticleId(state)
 });
 
 const mapDispatchToProps: DispatchProps = {
