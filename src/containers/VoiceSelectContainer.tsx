@@ -161,7 +161,7 @@ export class VoiceSelectContainerComponent extends React.PureComponent<Props, St
         url: localFilePath,
         artist: label,
         album: 'Voice previews'
-      });
+      }, '');
     }
 
     return TrackPlayer.play();

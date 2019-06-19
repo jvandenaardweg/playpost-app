@@ -44,7 +44,36 @@ export default [
           languageCode: 'en-GB',
           mimeType: 'audio/mpeg',
           createdAt: '2019-06-17T16:11:40.363Z',
-          updatedAt: '2019-06-17T16:11:40.363Z'
+          updatedAt: '2019-06-17T16:11:40.363Z',
+          voice: {
+            id: '2534d51a-11c4-446f-a4da-a3f946305c44',
+            languageCode: 'en-GB',
+            countryCode: 'GB',
+            name: 'en-GB-Wavenet-C',
+            label: null,
+            gender: 'FEMALE',
+            synthesizer: 'Google',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: 24000,
+            isActive: true,
+            isPremium: true,
+            isHighestQuality: true,
+            isLanguageDefault: null,
+            exampleAudioUrl: null,
+            createdAt: '2019-04-25T07:27:13.114Z',
+            updatedAt: '2019-05-16T15:01:14.900Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              languageCode: 'en',
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-05-16T12:51:57.546Z'
+            }
+          }
         }
       ]
     }
@@ -84,7 +113,48 @@ export default [
         createdAt: '2019-05-16T12:52:08.217Z',
         updatedAt: '2019-05-16T12:52:08.217Z'
       },
-      audiofiles: []
+      audiofiles: [
+        {
+          id: '10ba346a-2abf-4cef-9c11-34b29b95e54f',
+          url: 'https://storage-development.playpost.app/articles/2870630d-e056-424c-88a2-8f220b428e6d/audiofiles/10ba346a-2abf-4cef-9c11-34b29b95e54f.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/2870630d-e056-424c-88a2-8f220b428e6d/audiofiles/10ba346a-2abf-4cef-9c11-34b29b95e54f.mp3',
+          length: 163.03020408163266,
+          languageCode: 'nl-NL',
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-06-19T09:02:06.662Z',
+          updatedAt: '2019-06-19T09:02:06.662Z',
+          voice: {
+            id: 'd4c0973c-5a36-4950-afe1-3e2224592c20',
+            languageCode: 'nl-NL',
+            countryCode: 'NL',
+            name: 'Ruben',
+            label: 'Ruben',
+            gender: 'MALE',
+            synthesizer: 'AWS',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: null,
+            isActive: true,
+            isPremium: false,
+            isHighestQuality: false,
+            isLanguageDefault: true,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/d4c0973c-5a36-4950-afe1-3e2224592c20.mp3',
+            createdAt: '2019-04-25T11:35:03.293Z',
+            updatedAt: '2019-05-16T10:41:23.625Z',
+            language: {
+              id: 'cd72f71c-dc59-4be7-8a40-0143fe6f0ad9',
+              name: 'Dutch',
+              nativeName: 'Nederlands',
+              languageCode: 'nl',
+              isActive: true,
+              createdAt: '2019-05-16T12:52:08.217Z',
+              updatedAt: '2019-05-16T12:52:08.217Z'
+            }
+          }
+        }
+      ]
     }
   },
   {
@@ -132,7 +202,7 @@ export default [
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-03-27T13:03:17.781Z',
-    updatedAt: '2019-06-17T16:11:01.775Z',
+    updatedAt: '2019-06-19T09:03:30.001Z',
     article: {
       id: 'a7d08dbe-ba5c-4699-a11d-c1155e30ec3a',
       title: 'What if Mark Zuckerberg Had Stayed in School?',
@@ -170,7 +240,36 @@ export default [
           languageCode: 'en-GB',
           mimeType: 'audio/mpeg',
           createdAt: '2019-05-17T10:56:50.182Z',
-          updatedAt: '2019-05-17T10:56:50.182Z'
+          updatedAt: '2019-05-17T10:56:50.182Z',
+          voice: {
+            id: '1a6136d5-fb0d-4543-a6f2-68feb020a31f',
+            languageCode: 'en-GB',
+            countryCode: 'GB',
+            name: 'Amy',
+            label: 'Amy',
+            gender: 'FEMALE',
+            synthesizer: 'AWS',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: null,
+            isActive: true,
+            isPremium: true,
+            isHighestQuality: false,
+            isLanguageDefault: null,
+            exampleAudioUrl: null,
+            createdAt: '2019-04-25T11:35:03.758Z',
+            updatedAt: '2019-05-16T15:01:14.571Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              languageCode: 'en',
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-05-16T12:51:57.546Z'
+            }
+          }
         }
       ]
     }
@@ -180,9 +279,9 @@ export default [
     order: 4,
     lastPlayedAt: null,
     archivedAt: null,
-    favoritedAt: null,
+    favoritedAt: '2019-06-19T11:03:39.123Z',
     createdAt: '2019-04-03T04:49:39.349Z',
-    updatedAt: '2019-06-17T16:11:01.775Z',
+    updatedAt: '2019-06-19T09:03:39.127Z',
     article: {
       id: '6d5f84e5-efa2-41cf-a0c1-de65fecbaa45',
       title: 'Women are only 24% of the infosec workforce. Now go follow them on Twitter',
@@ -220,7 +319,36 @@ export default [
           languageCode: 'en-US',
           mimeType: 'audio/mpeg',
           createdAt: '2019-05-17T09:20:34.521Z',
-          updatedAt: '2019-05-17T09:20:34.521Z'
+          updatedAt: '2019-05-17T09:20:34.521Z',
+          voice: {
+            id: 'd2ede165-9dc0-4969-af8c-f4ff3716da53',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'Joanna',
+            label: 'Joanna',
+            gender: 'FEMALE',
+            synthesizer: 'AWS',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: null,
+            isActive: true,
+            isPremium: false,
+            isHighestQuality: false,
+            isLanguageDefault: true,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
+            createdAt: '2019-04-25T11:35:03.678Z',
+            updatedAt: '2019-05-16T15:01:14.608Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              languageCode: 'en',
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-05-16T12:51:57.546Z'
+            }
+          }
         }
       ]
     }
@@ -270,7 +398,36 @@ export default [
           languageCode: 'en-US',
           mimeType: 'audio/mpeg',
           createdAt: '2019-05-17T09:44:33.453Z',
-          updatedAt: '2019-05-17T09:44:33.453Z'
+          updatedAt: '2019-05-17T09:44:33.453Z',
+          voice: {
+            id: '6e4c1ec7-98a0-464b-b6e9-53e00629df6c',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'Matthew',
+            label: 'Matthew',
+            gender: 'MALE',
+            synthesizer: 'AWS',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: null,
+            isActive: true,
+            isPremium: true,
+            isHighestQuality: false,
+            isLanguageDefault: null,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/6e4c1ec7-98a0-464b-b6e9-53e00629df6c.mp3',
+            createdAt: '2019-04-25T11:35:03.611Z',
+            updatedAt: '2019-05-16T15:01:14.598Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              languageCode: 'en',
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-05-16T12:51:57.546Z'
+            }
+          }
         }
       ]
     }
@@ -424,7 +581,48 @@ export default [
         createdAt: '2019-05-16T12:51:57.546Z',
         updatedAt: '2019-05-16T12:51:57.546Z'
       },
-      audiofiles: []
+      audiofiles: [
+        {
+          id: '35f3dcf8-b6b4-4f57-b3c9-4881cf5fd520',
+          url: 'https://storage-development.playpost.app/articles/8f103d1a-53e6-4b9a-9f47-b529ddc76ece/audiofiles/35f3dcf8-b6b4-4f57-b3c9-4881cf5fd520.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/8f103d1a-53e6-4b9a-9f47-b529ddc76ece/audiofiles/35f3dcf8-b6b4-4f57-b3c9-4881cf5fd520.mp3',
+          length: 244.27102040816325,
+          languageCode: 'en-US',
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-06-19T09:10:03.184Z',
+          updatedAt: '2019-06-19T09:10:03.184Z',
+          voice: {
+            id: 'd2ede165-9dc0-4969-af8c-f4ff3716da53',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'Joanna',
+            label: 'Joanna',
+            gender: 'FEMALE',
+            synthesizer: 'AWS',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: null,
+            isActive: true,
+            isPremium: false,
+            isHighestQuality: false,
+            isLanguageDefault: true,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
+            createdAt: '2019-04-25T11:35:03.678Z',
+            updatedAt: '2019-05-16T15:01:14.608Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              languageCode: 'en',
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-05-16T12:51:57.546Z'
+            }
+          }
+        }
+      ]
     }
   },
   {
@@ -472,7 +670,36 @@ export default [
           languageCode: 'en-US',
           mimeType: 'audio/mpeg',
           createdAt: '2019-04-29T10:53:17.414Z',
-          updatedAt: '2019-04-29T10:53:17.414Z'
+          updatedAt: '2019-04-29T10:53:17.414Z',
+          voice: {
+            id: 'd2ede165-9dc0-4969-af8c-f4ff3716da53',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'Joanna',
+            label: 'Joanna',
+            gender: 'FEMALE',
+            synthesizer: 'AWS',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: null,
+            isActive: true,
+            isPremium: false,
+            isHighestQuality: false,
+            isLanguageDefault: true,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
+            createdAt: '2019-04-25T11:35:03.678Z',
+            updatedAt: '2019-05-16T15:01:14.608Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              languageCode: 'en',
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-05-16T12:51:57.546Z'
+            }
+          }
         }
       ]
     }
@@ -522,7 +749,36 @@ export default [
           languageCode: 'en-US',
           mimeType: 'audio/mpeg',
           createdAt: '2019-04-29T17:03:36.335Z',
-          updatedAt: '2019-04-29T17:03:36.335Z'
+          updatedAt: '2019-04-29T17:03:36.335Z',
+          voice: {
+            id: '701be98d-3eb3-4c38-a504-d70d706f5d37',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'en-US-Wavenet-D',
+            label: 'Alexander',
+            gender: 'MALE',
+            synthesizer: 'Google',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: 24000,
+            isActive: true,
+            isPremium: true,
+            isHighestQuality: true,
+            isLanguageDefault: null,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/701be98d-3eb3-4c38-a504-d70d706f5d37.wav',
+            createdAt: '2019-04-25T07:27:13.226Z',
+            updatedAt: '2019-05-16T15:01:14.720Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              languageCode: 'en',
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-05-16T12:51:57.546Z'
+            }
+          }
         }
       ]
     }
@@ -572,7 +828,36 @@ export default [
           languageCode: 'en-GB',
           mimeType: 'audio/mpeg',
           createdAt: '2019-05-17T10:50:53.046Z',
-          updatedAt: '2019-05-17T10:50:53.046Z'
+          updatedAt: '2019-05-17T10:50:53.046Z',
+          voice: {
+            id: '1a6136d5-fb0d-4543-a6f2-68feb020a31f',
+            languageCode: 'en-GB',
+            countryCode: 'GB',
+            name: 'Amy',
+            label: 'Amy',
+            gender: 'FEMALE',
+            synthesizer: 'AWS',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: null,
+            isActive: true,
+            isPremium: true,
+            isHighestQuality: false,
+            isLanguageDefault: null,
+            exampleAudioUrl: null,
+            createdAt: '2019-04-25T11:35:03.758Z',
+            updatedAt: '2019-05-16T15:01:14.571Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              languageCode: 'en',
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-05-16T12:51:57.546Z'
+            }
+          }
         }
       ]
     }
@@ -622,7 +907,36 @@ export default [
           languageCode: 'en-GB',
           mimeType: 'audio/mpeg',
           createdAt: '2019-05-17T09:45:21.502Z',
-          updatedAt: '2019-05-17T09:45:21.502Z'
+          updatedAt: '2019-05-17T09:45:21.502Z',
+          voice: {
+            id: 'b735e14e-33ad-4ce9-9985-b868c822c554',
+            languageCode: 'en-GB',
+            countryCode: 'GB',
+            name: 'en-GB-Wavenet-D',
+            label: null,
+            gender: 'MALE',
+            synthesizer: 'Google',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: 24000,
+            isActive: true,
+            isPremium: true,
+            isHighestQuality: true,
+            isLanguageDefault: null,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/b735e14e-33ad-4ce9-9985-b868c822c554.wav',
+            createdAt: '2019-04-25T07:27:13.130Z',
+            updatedAt: '2019-05-16T15:01:14.914Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              languageCode: 'en',
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-05-16T12:51:57.546Z'
+            }
+          }
         }
       ]
     }
@@ -664,15 +978,44 @@ export default [
       },
       audiofiles: [
         {
-          id: 'be41698f-70c8-4a89-a21f-58290dccac14',
-          url: 'https://storage-development.playpost.app/articles/b13a3868-d161-4463-b6eb-b1f0942788ea/audiofiles/be41698f-70c8-4a89-a21f-58290dccac14.mp3',
+          id: '8413fafe-cf48-4ce7-9413-cf9ef4cefbf2',
+          url: 'https://storage-development.playpost.app/articles/b13a3868-d161-4463-b6eb-b1f0942788ea/audiofiles/8413fafe-cf48-4ce7-9413-cf9ef4cefbf2.mp3',
           bucket: 'storage-development.playpost.app',
-          filename: 'articles/b13a3868-d161-4463-b6eb-b1f0942788ea/audiofiles/be41698f-70c8-4a89-a21f-58290dccac14.mp3',
-          length: 272.48326530612246,
+          filename: 'articles/b13a3868-d161-4463-b6eb-b1f0942788ea/audiofiles/8413fafe-cf48-4ce7-9413-cf9ef4cefbf2.mp3',
+          length: 277.23755102040815,
           languageCode: 'en-US',
           mimeType: 'audio/mpeg',
-          createdAt: '2019-04-30T04:53:15.689Z',
-          updatedAt: '2019-04-30T04:53:15.689Z'
+          createdAt: '2019-06-19T09:16:49.066Z',
+          updatedAt: '2019-06-19T09:16:49.066Z',
+          voice: {
+            id: 'd2ede165-9dc0-4969-af8c-f4ff3716da53',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'Joanna',
+            label: 'Joanna',
+            gender: 'FEMALE',
+            synthesizer: 'AWS',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: null,
+            isActive: true,
+            isPremium: false,
+            isHighestQuality: false,
+            isLanguageDefault: true,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
+            createdAt: '2019-04-25T11:35:03.678Z',
+            updatedAt: '2019-05-16T15:01:14.608Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              languageCode: 'en',
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-05-16T12:51:57.546Z'
+            }
+          }
         }
       ]
     }
@@ -712,7 +1055,48 @@ export default [
         createdAt: '2019-05-16T12:51:57.546Z',
         updatedAt: '2019-05-16T12:51:57.546Z'
       },
-      audiofiles: []
+      audiofiles: [
+        {
+          id: '5406376c-2eda-47d0-aa25-07d5762fe465',
+          url: 'https://storage-development.playpost.app/articles/4671b44f-b361-40e6-8dfd-8f389e1febe0/audiofiles/5406376c-2eda-47d0-aa25-07d5762fe465.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/4671b44f-b361-40e6-8dfd-8f389e1febe0/audiofiles/5406376c-2eda-47d0-aa25-07d5762fe465.mp3',
+          length: 138.31836734693877,
+          languageCode: 'en-US',
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-06-19T07:20:17.049Z',
+          updatedAt: '2019-06-19T07:20:17.049Z',
+          voice: {
+            id: 'd2ede165-9dc0-4969-af8c-f4ff3716da53',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'Joanna',
+            label: 'Joanna',
+            gender: 'FEMALE',
+            synthesizer: 'AWS',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: null,
+            isActive: true,
+            isPremium: false,
+            isHighestQuality: false,
+            isLanguageDefault: true,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
+            createdAt: '2019-04-25T11:35:03.678Z',
+            updatedAt: '2019-05-16T15:01:14.608Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              languageCode: 'en',
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-05-16T12:51:57.546Z'
+            }
+          }
+        }
+      ]
     }
   },
   {
@@ -788,7 +1172,48 @@ export default [
         createdAt: '2019-05-16T12:51:57.546Z',
         updatedAt: '2019-05-16T12:51:57.546Z'
       },
-      audiofiles: []
+      audiofiles: [
+        {
+          id: '956e7131-3d0f-4cab-9754-9e46a0032e38',
+          url: 'https://storage-development.playpost.app/articles/d337fe4d-c588-4db7-9b1d-d3bcca3ed31e/audiofiles/956e7131-3d0f-4cab-9754-9e46a0032e38.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/d337fe4d-c588-4db7-9b1d-d3bcca3ed31e/audiofiles/956e7131-3d0f-4cab-9754-9e46a0032e38.mp3',
+          length: 150.6742857142857,
+          languageCode: 'en-US',
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-06-19T07:22:57.451Z',
+          updatedAt: '2019-06-19T07:22:57.451Z',
+          voice: {
+            id: 'd2ede165-9dc0-4969-af8c-f4ff3716da53',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'Joanna',
+            label: 'Joanna',
+            gender: 'FEMALE',
+            synthesizer: 'AWS',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: null,
+            isActive: true,
+            isPremium: false,
+            isHighestQuality: false,
+            isLanguageDefault: true,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
+            createdAt: '2019-04-25T11:35:03.678Z',
+            updatedAt: '2019-05-16T15:01:14.608Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              languageCode: 'en',
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-05-16T12:51:57.546Z'
+            }
+          }
+        }
+      ]
     }
   },
   {
@@ -864,7 +1289,48 @@ export default [
         createdAt: '2019-05-16T12:51:57.546Z',
         updatedAt: '2019-05-16T12:51:57.546Z'
       },
-      audiofiles: []
+      audiofiles: [
+        {
+          id: '7b1a554b-9812-489d-a477-237ff91bd347',
+          url: 'https://storage-development.playpost.app/articles/ba6042fc-9a96-4cc9-afa5-9a22c4c297ba/audiofiles/7b1a554b-9812-489d-a477-237ff91bd347.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/ba6042fc-9a96-4cc9-afa5-9a22c4c297ba/audiofiles/7b1a554b-9812-489d-a477-237ff91bd347.mp3',
+          length: 229.4334693877551,
+          languageCode: 'en-US',
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-06-19T07:24:25.072Z',
+          updatedAt: '2019-06-19T07:24:25.072Z',
+          voice: {
+            id: 'd2ede165-9dc0-4969-af8c-f4ff3716da53',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'Joanna',
+            label: 'Joanna',
+            gender: 'FEMALE',
+            synthesizer: 'AWS',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: null,
+            isActive: true,
+            isPremium: false,
+            isHighestQuality: false,
+            isLanguageDefault: true,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
+            createdAt: '2019-04-25T11:35:03.678Z',
+            updatedAt: '2019-05-16T15:01:14.608Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              languageCode: 'en',
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-05-16T12:51:57.546Z'
+            }
+          }
+        }
+      ]
     }
   },
   {
@@ -940,7 +1406,48 @@ export default [
         createdAt: '2019-05-16T12:51:57.546Z',
         updatedAt: '2019-05-16T12:51:57.546Z'
       },
-      audiofiles: []
+      audiofiles: [
+        {
+          id: 'ffcfbc0d-1cc1-4bf9-b3f3-4f1123fc56cc',
+          url: 'https://storage-development.playpost.app/articles/1125480a-a077-4960-aed9-4e16cfe2affb/audiofiles/ffcfbc0d-1cc1-4bf9-b3f3-4f1123fc56cc.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/1125480a-a077-4960-aed9-4e16cfe2affb/audiofiles/ffcfbc0d-1cc1-4bf9-b3f3-4f1123fc56cc.mp3',
+          length: 336.0130612244898,
+          languageCode: 'en-US',
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-06-19T07:25:41.386Z',
+          updatedAt: '2019-06-19T07:25:41.386Z',
+          voice: {
+            id: 'd2ede165-9dc0-4969-af8c-f4ff3716da53',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'Joanna',
+            label: 'Joanna',
+            gender: 'FEMALE',
+            synthesizer: 'AWS',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: null,
+            isActive: true,
+            isPremium: false,
+            isHighestQuality: false,
+            isLanguageDefault: true,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
+            createdAt: '2019-04-25T11:35:03.678Z',
+            updatedAt: '2019-05-16T15:01:14.608Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              languageCode: 'en',
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-05-16T12:51:57.546Z'
+            }
+          }
+        }
+      ]
     }
   }
 ]
