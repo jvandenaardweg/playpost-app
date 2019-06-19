@@ -25,6 +25,7 @@ import { selectPlayerTrack, selectPlayerPlaybackState, selectPlayerArticleId } f
 import { selectIsSubscribed } from '../selectors/subscriptions';
 import { selectUserSelectedVoiceByLanguageName } from '../selectors/user';
 import { selectIsDownloadedAudiofilesByArticleAudiofiles } from '../selectors/audiofiles';
+import { selectLanguagesWithActiveVoices } from '../selectors/voices';
 
 interface State {
   isLoading: boolean;
@@ -55,105 +56,44 @@ const initialState = {
 type Props = IProps & StateProps & DispatchProps;
 
 export class ArticleContainerComponent extends React.PureComponent<Props, State> {
-  state = {
-    ...initialState
-  };
+  state = initialState;
 
   static contextType = NetworkContext;
 
-  /**
-   * Manually determine when we should update an article.
-   * Because this ArticleContainer is rendered in a list, we want to be careful with re-renders...
-   * ...as this impacts performance.
-   */
-  shouldComponentUpdate(nextProps: Props, nextState: State) {
-    const { isActive, isPlaying, isLoading, isCreatingAudiofile, isDownloadingAudiofile } = this.state;
+  componentDidUpdate(prevProps: Props, prevState: State) {
+    const { playbackState, playerArticleId, article } = this.props;
+    const { isLoading, isCreatingAudiofile, isDownloadingAudiofile } = this.state;
 
-    // Only update if playbackState changes for the audiofileId of this article
-    if (this.props.playbackState !== nextProps.playbackState) {
-      // TODO: when using multiple audiofiles, we need to adjust this
-      if (nextProps.track.id === (this.articleAudiofiles.length && this.articleAudiofiles[0].id)) {
-        return true;
-      }
+    const isActiveInPlayer = playerArticleId === article.id;
+    const hasSomethingLoading = isCreatingAudiofile || isDownloadingAudiofile;
+
+    // If the article is not active in the player
+    // And if the state is different from the initial state
+    // Reset it, because the track became inactive
+    if (!isActiveInPlayer && !hasSomethingLoading && !isLoading && !isEqual(this.state, initialState)) {
+      return this.setState(initialState);
     }
 
-    // If an article has updated information
-    // For example: when the article status turns from "new" into "finished", so the article is crawled and
-    // has information like; title, description etc...
-    if (!isEqual(this.props.article, nextProps.article)) {
-      return true;
-    }
-
-    // Re-render when playlist item for this article changes
-    // For example: when the user favorites or archived an playlist item
-    if (!isEqual(this.props.playlistItem, nextProps.playlistItem)) {
-      return true;
-    }
-
-    // Always re-render when we clear the cache or when an audiofile is downloaded
-    if (!isEqual(this.props.isDownloaded, nextProps.isDownloaded)) {
-      return true;
-    }
-
-    // If there's a state change inside the component, always update it
-    // So the active, playing or loading state is correctly updated on an external change
-    if (!isEqual(this.state, nextState) || isActive || isPlaying || isLoading || isCreatingAudiofile || isDownloadingAudiofile) {
-      return true;
-    }
-
-    return false;
-  }
-
-  componentDidUpdate() {
-    const { playbackState } = this.props;
-    const { isPlaying, isLoading, isCreatingAudiofile, isDownloadingAudiofile } = this.state;
-
-    if (!isCreatingAudiofile && !isDownloadingAudiofile) {
+    if (!hasSomethingLoading) {
       // When a track is playing
-      if (playbackState && [TrackPlayer.STATE_PLAYING].includes(playbackState) && !isPlaying) {
-        this.setState({ isPlaying: true, isLoading: false });
+      if (playbackState && [TrackPlayer.STATE_PLAYING].includes(playbackState) && !prevState.isPlaying) {
+        this.setState({ isPlaying: true, isActive: true, isLoading: false });
       }
 
       // When a track is stopped or paused
-      if (playbackState && [TrackPlayer.STATE_STOPPED, TrackPlayer.STATE_PAUSED].includes(playbackState) && isPlaying) {
-        this.setState({ isPlaying: false });
+      if (playbackState && [TrackPlayer.STATE_STOPPED, TrackPlayer.STATE_PAUSED].includes(playbackState) && prevState.isPlaying) {
+        this.setState({ isPlaying: false, isActive: true });
       }
     }
-
-    // When it's not the current track, reset the state if any is changed
-    // So our play button returns to not-active
-    if (this.isActiveInPlayer && playbackState === 'none' && !isLoading) {
-      this.setState({
-        isPlaying: false,
-        isLoading: false,
-        isActive: false,
-        isCreatingAudiofile: false
-      });
-    }
-  }
-
-  get articleAudiofiles() {
-    const { article } = this.props;
-    return article.audiofiles;
-  }
-
-  get isActiveInPlayer() {
-    const { track } = this.props;
-
-    if (!this.articleAudiofiles.length) return false;
-
-    // Find the active audiofile
-    const audiofileIsActive = this.articleAudiofiles.find(audiofile => audiofile.id === track.id);
-
-    return audiofileIsActive !== undefined;
   }
 
   async handleCreateAudiofile() {
-    const { article } = this.props;
+    const { article, languagesWithActiveVoices } = this.props;
 
     const articleLanguageCode = article.language && article.language.languageCode;
+    const isLanguageSupported = !!languagesWithActiveVoices.find(language => language.languageCode === articleLanguageCode);
 
-    if (!articleLanguageCode || articleLanguageCode !== 'en') {
+    if (!articleLanguageCode || !isLanguageSupported) {
       return Alert.alert('Language not supported', `${ALERT_ARTICLE_LANGUAGE_UNSUPPORTED}. This article seems to have the language: ${articleLanguageCode}.`);
     }
 
@@ -178,7 +118,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
    */
   handleOnPlayPress = async () => {
     const { isPlaying } = this.state;
-    const { article, userSelectedVoiceByLanguageName, isSubscribed } = this.props;
+    const { article, userSelectedVoiceByLanguageName, isSubscribed, playerArticleId } = this.props;
     const { isConnected } = this.context;
 
     if (isPlaying) {
@@ -229,7 +169,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
       const selectedVoiceId = userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName.id;
       const hasAudioWithSameVoice = !!article.audiofiles.find(audiofile => audiofile.voice.id === selectedVoiceId);
 
-      if (!hasAudioWithSameVoice && !this.isActiveInPlayer) {
+      if (!hasAudioWithSameVoice && playerArticleId !== article.id) {
         Alert.alert(
           'Article has different voice',
           'Because you are on a free account, we will use the already available voice for this article. Which is a different voice. Premium users do not have this limitation.',
@@ -248,7 +188,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     }
 
     // Only set a new track when it's a different one
-    if (!this.isActiveInPlayer) {
+    if (playerArticleId !== article.id) {
       return this.handleSetTrack();
     }
 
@@ -292,9 +232,9 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     const { article, isDownloaded } = this.props;
 
     // TODO: when using multiple audiofiles, we need to adjust this
-    const audiofile = this.articleAudiofiles[0];
+    const audiofile = article.audiofiles[0];
 
-    if (!article || !this.articleAudiofiles.length) {
+    if (!article || !article.audiofiles.length) {
       this.setState({ isActive: false, isLoading: false });
       return Alert.alert('Oops!', ALERT_ARTICLE_PLAY_FAIL);
     }
@@ -494,8 +434,9 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
   }
 
   get listenTimeInSeconds() {
+    const { article } = this.props;
     // TODO: when using multiple audiofiles, we need to adjust this
-    return (this.articleAudiofiles[0] && this.articleAudiofiles[0].length) ? this.articleAudiofiles[0].length : 0;
+    return (article.audiofiles[0] && article.audiofiles[0].length) ? article.audiofiles[0].length : 0;
   }
 
   handleOnOpenUrl = (url: string) => {
@@ -516,7 +457,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
   }
 
   render() {
-    const { isCreatingAudiofile, isLoading, isPlaying, isActive } = this.state;
+    const { isCreatingAudiofile, isDownloadingAudiofile, isLoading, isPlaying, isActive } = this.state;
     const { article, isDownloaded, isFavorited, isArchived, isMoving, onLongPress, onPressOut, playlistItem } = this.props;
 
     // Use the canonicalUrl if we have it, else fall back to the normal url
@@ -549,7 +490,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
         {article.status === 'finished' &&
           <Article
             isMoving={isMoving}
-            isLoading={isLoading || isCreatingAudiofile}
+            isLoading={isLoading || isCreatingAudiofile || isDownloadingAudiofile}
             isPlaying={isPlaying}
             isActive={isActive}
             isDownloaded={isDownloaded}
@@ -583,6 +524,7 @@ interface StateProps {
   readonly userSelectedVoiceByLanguageName: ReturnType<typeof selectUserSelectedVoiceByLanguageName>;
   readonly isDownloaded: ReturnType<typeof selectIsDownloadedAudiofilesByArticleAudiofiles>;
   readonly playerArticleId: ReturnType<typeof selectPlayerArticleId>;
+  readonly languagesWithActiveVoices: ReturnType<typeof selectLanguagesWithActiveVoices>;
 }
 
 interface DispatchProps {
@@ -604,7 +546,8 @@ const mapStateToProps = (state: RootState, props: Props) => ({
   isSubscribed: selectIsSubscribed(state),
   userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state, (props.article.language) ? props.article.language.name : ''),
   isDownloaded: selectIsDownloadedAudiofilesByArticleAudiofiles(state, props.article.audiofiles),
-  playerArticleId: selectPlayerArticleId(state)
+  playerArticleId: selectPlayerArticleId(state),
+  languagesWithActiveVoices: selectLanguagesWithActiveVoices(state)
 });
 
 const mapDispatchToProps: DispatchProps = {
