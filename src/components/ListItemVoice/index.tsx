@@ -32,7 +32,7 @@ export const ListItemVoice: React.FC<Props> = React.memo(({
   onPressPreview
 }) => {
   const title = `${voice.label || voice.name}`;
-  const badgeValue = (voice.isPremium) ? 'premium' : 'free';
+  const badgeValue = getBadgeValue(voice.isPremium, voice.isHighestQuality);
   const defaultLabel = (voice.isLanguageDefault) ? '(Default) ' : '';
   const gender = (voice.gender === 'MALE') ? 'Male' : 'Female';
   const subtitle = `${defaultLabel}${gender}, ${voice.language.name} (${voice.countryCode})`;
@@ -67,5 +67,17 @@ export const ListItemVoice: React.FC<Props> = React.memo(({
     if (isLoadingSaveSelected) return <View style={{ width: 20 }}><ActivityIndicator size="small" color="black" /></View>;
 
     return <View style={{ width: 20 }}><Icon.FontAwesome5 name="check" size={16} solid color={(isSelected) ? colors.black : colors.grayLightest} /></View>;
+  }
+
+  function getBadgeValue(isPremium: boolean, isHighestQuality: boolean) {
+    if (isPremium && isHighestQuality) {
+      return 'premium (hq)';
+    }
+
+    if (isPremium) {
+      return 'premium';
+    }
+
+    return 'free';
   }
 });
