@@ -127,12 +127,10 @@ declare namespace Api {
     bucket: string;
     filename: string;
     length: number;
-    languageCode: string;
     article?: Article;
     user?: User;
     voice: Voice;
     mimeType: string;
-    language?: Language;
     createdAt: string;
     updatedAt: string;
   }
@@ -162,7 +160,7 @@ declare namespace Api {
   export interface Language {
     id: string;
     name: string;
-    languageCode: string;
+    code: string;
     nativeName: string | null;
     isActive: boolean;
     voices?: Voice[];

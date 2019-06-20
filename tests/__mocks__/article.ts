@@ -17,7 +17,7 @@ export default {
     id: '95f01039-fe8e-412d-a542-7089303b84c8',
     name: 'English',
     nativeName: 'English',
-    languageCode: 'en',
+    code: 'en',
     isActive: true,
     createdAt: '2019-05-16T12:51:57.546Z',
     updatedAt: '2019-05-16T12:51:57.546Z'
@@ -29,7 +29,6 @@ export default {
       bucket: 'storage-development.playpost.app',
       filename: 'articles/98e0c749-3945-45d4-980b-0e5756339de5/audiofiles/6e455ab5-b8e4-4bb9-b43c-b764147c7b4e.mp3',
       length: 415.60816326530613,
-      languageCode: 'en-GB',
       mimeType: 'audio/mpeg',
       createdAt: '2019-05-17T10:50:53.046Z',
       updatedAt: '2019-05-17T10:50:53.046Z',
@@ -56,7 +55,7 @@ export default {
           id: '95f01039-fe8e-412d-a542-7089303b84c8',
           name: 'English',
           nativeName: 'English',
-          languageCode: 'en',
+          code: 'en',
           isActive: true,
           createdAt: '2019-05-16T12:51:57.546Z',
           updatedAt: '2019-05-16T12:51:57.546Z'

@@ -90,8 +90,8 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
   async handleCreateAudiofile() {
     const { article, languagesWithActiveVoices } = this.props;
 
-    const articleLanguageCode = article.language && article.language.languageCode;
-    const isLanguageSupported = !!languagesWithActiveVoices.find(language => language.languageCode === articleLanguageCode);
+    const articleLanguageCode = article.language && article.language.code;
+    const isLanguageSupported = !!languagesWithActiveVoices.find(language => language.code === articleLanguageCode);
 
     if (!articleLanguageCode || !isLanguageSupported) {
       return Alert.alert('Language not supported', `${ALERT_ARTICLE_LANGUAGE_UNSUPPORTED}. This article seems to have the language: ${articleLanguageCode}.`);
