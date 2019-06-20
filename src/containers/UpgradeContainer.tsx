@@ -45,10 +45,10 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   static contextType = NetworkContext;
 
   /* tslint:disable-next-line no-any */
-  subscriptionPurchaseListener: any = null;
+  purchaseUpdateSubscription: any = null;
 
   /* tslint:disable-next-line no-any */
-  purchaseUpdateSubscription: any = null;
+  purchaseErrorSubscription: any = null;
 
   componentDidMount() {
     const { isConnected } = this.context;
@@ -77,8 +77,13 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         const errorMessage = (err && err.message) ? err.message : 'An uknown error happened while upgrading.';
         this.showErrorAlert('Upgrade error', errorMessage);
       } finally {
-        this.setState({ isLoadingRestorePurchases: false });
+        this.setState({ isLoadingRestorePurchases: false, isLoadingBuySubscription: false });
       }
+    });
+
+    this.purchaseErrorSubscription = RNIap.purchaseErrorListener(async (error: RNIap.PurchaseError) => {
+      this.showErrorAlert('Oops!', `An error happened. Please contact our support with this information:\n\n ${JSON.stringify(error)}`);
+      this.setState({ isLoadingRestorePurchases: false, isLoadingBuySubscription: false });
     });
   }
 
@@ -86,6 +91,11 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     if (this.purchaseUpdateSubscription) {
       this.purchaseUpdateSubscription.remove();
       this.purchaseUpdateSubscription = null;
+    }
+
+    if (this.purchaseErrorSubscription) {
+      this.purchaseErrorSubscription.remove();
+      this.purchaseErrorSubscription = null;
     }
 
     RNIap.endConnectionAndroid();
