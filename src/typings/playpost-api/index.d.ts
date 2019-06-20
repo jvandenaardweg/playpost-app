@@ -91,7 +91,6 @@ declare namespace Api {
     title: string | null;
     description: string | null;
     url: string;
-    languageCode: string | null; // TODO: remove after upgrade
     language?: Language;
     sourceName: string | null;
     imageUrl: string | null;
