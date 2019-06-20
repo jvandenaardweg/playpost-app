@@ -41,7 +41,15 @@ export const selectAvailableVoicesByLanguageName = (state: RootState, languageNa
     if (!language) return [];
     if (!language.voices) return [];
 
-    return language.voices;
+    // Sort by label name
+    // Create a copy of the array by using the spread syntax
+    const sortedVoices = [...language.voices].sort((a, b) => {
+      const aLabel = (a.label) ? a.label : '';
+      const bLabel = (b.label) ? b.label : '';
+      return aLabel.localeCompare(bLabel);
+    });
+
+    return sortedVoices;
   }
 )(state);
 

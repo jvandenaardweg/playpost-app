@@ -17,7 +17,7 @@ describe('voices selector', () => {
     expect(voicesSelector(rootState)).toEqual(initialState);
   });
 
-  it('should return the languages', () => {
+  it('selectLanguages should return the languages', () => {
     const exampleState = {
       ...rootState,
       voices: {
@@ -29,7 +29,7 @@ describe('voices selector', () => {
     expect(selectLanguages(exampleState)).toMatchObject(languagesMock);
   });
 
-  it('should return the languages with active voices', () => {
+  it('selectLanguagesWithActiveVoices should return the languages with active voices', () => {
     const exampleState = {
       ...rootState,
       voices: {
@@ -48,7 +48,7 @@ describe('voices selector', () => {
     expect(selectLanguagesWithActiveVoices(exampleState)).toMatchObject(expected);
   });
 
-  it('should return the downloaded voice preview voices', () => {
+  it('selectDownloadedVoicePreviews should return the downloaded voice preview voices', () => {
     const exampleState = {
       ...rootState,
       voices: {
@@ -60,7 +60,7 @@ describe('voices selector', () => {
     expect(selectDownloadedVoicePreviews(exampleState)).toMatchObject(voicesMock);
   });
 
-  it('should return the available voices by language name', () => {
+  it('selectAvailableVoicesByLanguageName should return the available voices by language name', () => {
     const exampleState = {
       ...rootState,
       voices: {
@@ -73,13 +73,18 @@ describe('voices selector', () => {
     const languages = selectLanguagesWithActiveVoices(exampleState);
 
     const language = languages.find(language => language.name === languageName);
-    const expected = language && language.voices;
+
+    const expected = language && language.voices && [...language.voices].sort((a, b) => {
+      const aLabel = (a.label) ? a.label : '';
+      const bLabel = (b.label) ? b.label : '';
+      return aLabel.localeCompare(bLabel);
+    });
 
     expect(selectAvailableVoicesByLanguageName(exampleState, languageName)).toEqual(expected);
     expect(selectAvailableVoicesByLanguageName(exampleState, '')).toEqual([]);
   });
 
-  it('should return the default voice by language name', () => {
+  it('selectDefaultVoicesByLanguageName should return the default voice by language name', () => {
     const exampleState = {
       ...rootState,
       voices: {
