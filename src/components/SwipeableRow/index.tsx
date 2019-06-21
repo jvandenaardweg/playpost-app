@@ -80,7 +80,7 @@ export class SwipeableRow extends React.PureComponent<Props> {
 
     return (
       <Animated.View style={styles.rightActionsContainer}>
-        {this.renderRightAction('download', 'download', null)}
+        {/* {this.renderRightAction('download', 'download', null)} */}
         {this.renderRightAction('archive', 'archive', (isArchived) ? colors.black : null)}
         {this.renderRightAction('favorite', 'heart', (isFavorited) ? colors.black : null)}
         {this.renderRightAction('delete', 'trash-2', null)}
