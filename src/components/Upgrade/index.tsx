@@ -42,7 +42,7 @@ export const Upgrade: React.FC<Props> = React.memo(({ isLoadingSubscriptionItems
             <Icon.FontAwesome5 name="clock" size={28} style={styles.featureIcon} />
             <View style={styles.featureContent}>
               <Text style={styles.title}>Unlimited listening</Text>
-              <Text style={styles.paragraph}>No article limits. Listen to articles longer then 5 minutes.</Text>
+              <Text style={styles.paragraph}>No article time limits. Listen to articles longer than 5 minutes.</Text>
             </View>
           </View>
           {/* <View style={styles.feature}>
