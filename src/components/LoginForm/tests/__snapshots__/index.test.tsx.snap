@@ -42,8 +42,9 @@ exports[`LoginForm rendering should render correctly 1`] = `
         clearButtonMode="always"
         keyboardType="email-address"
         onChangeText={[Function]}
+        onSubmitEditing={[Function]}
         placeholder="E-mail address"
-        returnKeyType="done"
+        returnKeyType="next"
         style={
           Object {
             "backgroundColor": "#ffffff",
@@ -57,7 +58,7 @@ exports[`LoginForm rendering should render correctly 1`] = `
             "paddingRight": 16,
           }
         }
-        textContentType="emailAddress"
+        textContentType="username"
         value=""
       />
       <TextInput
@@ -66,6 +67,7 @@ exports[`LoginForm rendering should render correctly 1`] = `
         blurOnSubmit={false}
         clearButtonMode="always"
         onChangeText={[Function]}
+        onSubmitEditing={[Function]}
         placeholder="Password"
         returnKeyType="done"
         secureTextEntry={true}

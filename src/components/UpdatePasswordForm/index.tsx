@@ -19,49 +19,57 @@ export const UpdatePasswordForm: React.FC<Props> = React.memo(({
   passwordValidation,
   isLoading,
   isSuccess
-}) => (
-  <KeyboardAvoidingView style={styles.container} behavior="padding" keyboardVerticalOffset={100} enabled>
-    <View style={styles.form}>
+}) => {
 
-      <TextInput
-        placeholder="Your new password"
-        autoCapitalize="none"
-        secureTextEntry
-        value={password}
-        onChangeText={text => onChangeText('password', text)}
-        textContentType="password"
-        style={styles.textField}
-        returnKeyType="done"
-        clearButtonMode="always"
-        blurOnSubmit={false}
-      />
+  let passwordInput: TextInput | null = null;
 
-      <TextInput
-        placeholder="Confirm your new password"
-        autoCapitalize="none"
-        secureTextEntry
-        value={passwordValidation}
-        onChangeText={text => onChangeText('passwordValidation', text)}
-        textContentType="password"
-        style={styles.textField}
-        returnKeyType="done"
-        clearButtonMode="always"
-        blurOnSubmit={false}
-      />
+  return (
+    <KeyboardAvoidingView style={styles.container} behavior="padding" keyboardVerticalOffset={100} enabled>
+      <View style={styles.form}>
 
-      <View>
-        <Button
-          title={(isSuccess) ? 'Update success!' : 'Update password'}
-          loading={isLoading}
-          onPress={onPressUpdatePassword}
-          disabled={isLoading}
-          buttonStyle={(isSuccess) ? styles.buttonStyleSuccess : styles.buttonStyle}
-          titleStyle={(isSuccess) ? styles.buttonTitleStyleSuccess : {}}
-          activeOpacity={1}
-          disabledStyle={(isSuccess) ? styles.buttonStyleSuccess : styles.buttonStyle}
-         />
+        <TextInput
+          placeholder="Your new password"
+          autoCapitalize="none"
+          secureTextEntry
+          value={password}
+          onChangeText={text => onChangeText('password', text)}
+          onSubmitEditing={() => { passwordInput && passwordInput.focus(); }}
+          textContentType="password"
+          style={styles.textField}
+          returnKeyType="next"
+          clearButtonMode="always"
+          blurOnSubmit={false}
+        />
+
+        <TextInput
+          ref={(input) => { passwordInput = input; }}
+          placeholder="Confirm your new password"
+          autoCapitalize="none"
+          secureTextEntry
+          value={passwordValidation}
+          onChangeText={text => onChangeText('passwordValidation', text)}
+          onSubmitEditing={() => onPressUpdatePassword()}
+          textContentType="password"
+          style={styles.textField}
+          returnKeyType="done"
+          clearButtonMode="always"
+          blurOnSubmit={false}
+        />
+
+        <View>
+          <Button
+            title={(isSuccess) ? 'Update success!' : 'Update password'}
+            loading={isLoading}
+            onPress={onPressUpdatePassword}
+            disabled={isLoading}
+            buttonStyle={(isSuccess) ? styles.buttonStyleSuccess : styles.buttonStyle}
+            titleStyle={(isSuccess) ? styles.buttonTitleStyleSuccess : {}}
+            activeOpacity={1}
+            disabledStyle={(isSuccess) ? styles.buttonStyleSuccess : styles.buttonStyle}
+          />
+        </View>
+
       </View>
-
-    </View>
-  </KeyboardAvoidingView>
-));
+    </KeyboardAvoidingView>
+  );
+});

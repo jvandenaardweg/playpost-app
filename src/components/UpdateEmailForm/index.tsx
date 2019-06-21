@@ -26,6 +26,7 @@ export const UpdateEmailForm: React.FC<Props> = React.memo(({
         autoCapitalize="none"
         value={email}
         onChangeText={text => onChangeText('email', text)}
+        onSubmitEditing={() => onPressUpdateEmail()}
         textContentType="emailAddress"
         style={styles.textField}
         returnKeyType="done"

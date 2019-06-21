@@ -23,7 +23,6 @@ interface State {
   isLoading: boolean;
   email: string;
   password: string;
-  passwordValidation: string;
   validationError: string;
 }
 
@@ -41,7 +40,6 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
     isLoading: false,
     email: '',
     password: '',
-    passwordValidation: '',
     validationError: ''
   };
 
@@ -87,11 +85,7 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
   }
 
   handleOnPressSignup = async () => {
-    const { email, password, passwordValidation } = this.state;
-
-    if (password !== passwordValidation) {
-      return Alert.alert('Oops!', 'The given passwords do not match. Please make sure you typed your passwords correctly.');
-    }
+    const { email, password } = this.state;
 
     this.setState({ isLoading: true }, async () => {
       try {
@@ -104,20 +98,18 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
     });
   }
 
-  handleOnChangeText = (field: 'email' | 'password' | 'passwordValidation', value: string) => {
+  handleOnChangeText = (field: 'email' | 'password', value: string) => {
     if (field === 'email') this.setState({ email: value });
     if (field === 'password') this.setState({ password: value });
-    if (field === 'passwordValidation') this.setState({ passwordValidation: value });
   }
 
   render() {
-    const { email, password, passwordValidation, isLoading } = this.state;
+    const { email, password, isLoading } = this.state;
 
     return (
       <SignupForm
         email={email}
         password={password}
-        passwordValidation={passwordValidation}
         isLoading={isLoading}
         onChangeText={this.handleOnChangeText}
         onPressSignup={this.handleOnPressSignup}

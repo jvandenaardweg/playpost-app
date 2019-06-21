@@ -40,8 +40,9 @@ exports[`SignupForm rendering should render correctly 1`] = `
         clearButtonMode="always"
         keyboardType="email-address"
         onChangeText={[Function]}
+        onSubmitEditing={[Function]}
         placeholder="E-mail address"
-        returnKeyType="done"
+        returnKeyType="next"
         style={
           Object {
             "backgroundColor": "#ffffff",
@@ -55,7 +56,7 @@ exports[`SignupForm rendering should render correctly 1`] = `
             "paddingRight": 16,
           }
         }
-        textContentType="emailAddress"
+        textContentType="username"
         value=""
       />
       <TextInput
@@ -64,32 +65,8 @@ exports[`SignupForm rendering should render correctly 1`] = `
         blurOnSubmit={false}
         clearButtonMode="always"
         onChangeText={[Function]}
+        onSubmitEditing={[Function]}
         placeholder="Your password"
-        returnKeyType="done"
-        secureTextEntry={true}
-        style={
-          Object {
-            "backgroundColor": "#ffffff",
-            "borderColor": "#e5e5e5",
-            "borderRadius": 4,
-            "borderWidth": 1,
-            "fontSize": 15,
-            "height": 50,
-            "marginBottom": 12,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-          }
-        }
-        textContentType="password"
-        value=""
-      />
-      <TextInput
-        autoCapitalize="none"
-        autoFocus={false}
-        blurOnSubmit={false}
-        clearButtonMode="always"
-        onChangeText={[Function]}
-        placeholder="Your password again to validate"
         returnKeyType="done"
         secureTextEntry={true}
         style={
