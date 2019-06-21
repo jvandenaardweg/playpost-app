@@ -204,19 +204,19 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
     if (isLoading) return <CenterLoadingIndicator />;
 
     // If there's an error, and we don't have playlist items yet
-    if (errorMessage && !this.hasPlaylistItems) return <EmptyState title="Error" description={errorMessage} actionButtonLabel="Try again" actionButtonOnPress={() => this.handleOnRefresh()} />;
+    if (errorMessage && !this.hasPlaylistItems) return <EmptyState title="Error" description={[errorMessage]} actionButtonLabel="Try again" actionButtonOnPress={() => this.handleOnRefresh()} />;
 
     if (isArchiveScreen) {
-      return <EmptyState title="Your archived articles" description="Articles you've already listened will be shown here in your archive, for easy future reference." />;
+      return <EmptyState title="Your archived articles" description={['Articles you\'ve already listened will be shown here in your archive, for easy future reference. You can archive an article by swiping from right to left on an article.']} />;
     }
 
     if (isFavoriteScreen) {
-      return <EmptyState title="Your favorite articles" description="Articles you really liked can be saved here, away from your daily playlist." />;
+      return <EmptyState title="Your favorite articles" description={['Articles you really liked can be saved here, away from your daily playlist.', 'You can favorite an article by swiping from right to left on an article.']} />;
     }
 
     // Warning to the user there's no internet connection
     if (!isConnected && !this.hasPlaylistItems) {
-      return <EmptyState title="No internet" description="There's no active internet connection, so we cannot display your playlist." actionButtonLabel="Try again" actionButtonOnPress={() => this.handleOnRefresh()} />;
+      return <EmptyState title="No internet" description={['There\'s no active internet connection, so we cannot display your playlist.']} actionButtonLabel="Try again" actionButtonOnPress={() => this.handleOnRefresh()} />;
     }
 
     if (!isLoading && !isRefreshing && !this.hasPlaylistItems) {
@@ -233,7 +233,7 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
       return (
         <EmptyState
           title="Nothing in your playlist, yet"
-          description="Easily add articles to your playlist by using the share icon in every app on your phone."
+          description={['Easily add articles to your playlist by using the share icon in every app on your phone.']}
           actionButtonLabel="Show instructions"
           actionButtonOnPress={() => this.handleOnShowVideo()}
         />

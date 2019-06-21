@@ -12,7 +12,7 @@ describe('EmptyState', () => {
       wrapper = render(
         <EmptyState
           title="Test empty state"
-          description="Test description"
+          description={['Test description']}
          />
       );
     });
@@ -37,7 +37,7 @@ describe('EmptyState', () => {
       wrapper = render(
         <EmptyState
           title="Test empty state"
-          description="Test description"
+          description={['Test description']}
           // localVideo={require('../../../assets/video/help/enabling-sharing/enable-sharing-square.m4v')}
           actionButtonLabel="Test button"
           actionButtonOnPress={() => {}}
