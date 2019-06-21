@@ -241,7 +241,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 }
               }
             >
-              No article limits. Listen to articles longer then 5 minutes.
+              No article time limits. Listen to articles longer than 5 minutes.
             </Text>
           </View>
         </View>
