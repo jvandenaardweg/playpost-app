@@ -49,7 +49,8 @@ export const ArticleReader: React.FC<Props> = React.memo(({
       source={{ html: getHtmlDocument(article, themeStyles), baseUrl: '' }}
       bounces
       decelerationRate="normal"
-      style={{ backgroundColor: themeStyles.backgroundColor }}
+      style={{ backgroundColor: themeStyles.backgroundColor, padding: 0, margin: 0 }}
+      scalesPageToFit={false}
       onNavigationStateChange={handleWebViewNavigationStateChange}
     />
   );
@@ -90,8 +91,10 @@ export const ArticleReader: React.FC<Props> = React.memo(({
           *, *:before, *:after {
             box-sizing: inherit;
           }
+
           body {
-            padding: ${Math.ceil(spacing.default / 2)}px;
+            padding: 0 !important;
+            margin: 0 !important;
             font-size: ${Math.ceil(fonts.fontSize.body * 1.1)}px;
             font-family: 'PT Serif', serif;
             line-height: 1.5;
@@ -112,6 +115,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
           h1 {
             font-size: ${fonts.fontSize.headline}px;
             margin-bottom: ${spacing.default}px;
+            text-align: center;
           }
 
           h2, h3, h4 {
@@ -125,19 +129,16 @@ export const ArticleReader: React.FC<Props> = React.memo(({
           }
 
           p {
-            margin-top: 0;
+            font-size: ${Math.ceil(fonts.fontSize.body * 1.1)}px;
+            margin-top: 1.5;
             text-align: justify;
+            color: ${colors.grayDarker};
+            line-height: 1.5;
+            margin-bottom: 1.5;
           }
 
           a, strong {
             color: ${themeStyles.highlightColor};
-          }
-
-          img, figure {
-            max-width: 100%;
-            margin-bottom: ${spacing.default}px;
-            margin-top: ${spacing.default}px;
-            display: block;
           }
 
           blockquote {
@@ -155,13 +156,40 @@ export const ArticleReader: React.FC<Props> = React.memo(({
           }
 
           .meta-header {
-            margin-bottom: ${spacing.large}px;
+            text-align: center;
+            padding: ${spacing.default}px;
           }
 
           .meta-header strong {
             display: block;
             color: ${themeStyles.metaColor};
             font-weight: normal;
+          }
+
+          .meta-header a {
+            color: ${themeStyles.metaColor};
+          }
+
+          .image-header {
+            margin-bottom: ${spacing.tiny}px
+          }
+
+          .image-header img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+          }
+
+          .content {
+            padding: ${spacing.default}px;
+          }
+
+          .content img,
+          .content figure {
+            max-width: 100%;
+            margin-bottom: ${spacing.default}px;
+            margin-top: ${spacing.default}px;
+            display: none;
           }
 
         </style>
@@ -190,17 +218,21 @@ export const ArticleReader: React.FC<Props> = React.memo(({
 
     const articleUrl = article.canonicalUrl || article.url;
     const authorElement = (article.authorName) ? `<strong>${article.authorName}</strong>` : '';
+    const imageElement = (article.imageUrl) ? `<div class="image-header"><img src="${article.imageUrl}" /></div>` : '';
 
     let htmlDocument = `
       <!DOCTYPE html>
       ${getHtmlHeader(themeStyles)}
         <body>
-          <h1>${article.title}</h1>
+          ${imageElement}
           <div class="meta-header">
+            <h1>${article.title}</h1>
             ${authorElement}
             <strong><a href="${articleUrl}">${urlParse(articleUrl).hostname}</a></strong>
           </div>
-          [ARTICLE_HTML_PLACEHOLDER]
+          <div class="content">
+            [ARTICLE_HTML_PLACEHOLDER]
+          </div>
         </body>
       </html>
     `;
