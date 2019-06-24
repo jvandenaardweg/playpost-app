@@ -104,7 +104,10 @@
     "typescript-tslint-plugin": "^0.5.2",
     "url-parse": "^1.4.7",
     "valid-url": "^1.0.9",
-    "why-did-you-update": "^1.0.6"
+    "why-did-you-update": "^1.0.6",
+    "babel-plugin-functional-hmr": "^1.0.25",
+    "detox": "^12.11.2",
+    "npm-check": "^5.9.0"
   },
   "jest": {
     "preset": "react-native",
@@ -143,13 +146,6 @@
       "<rootDir>/tests/setup.ts",
       "<rootDir>/node_modules/react-native-gesture-handler/jestSetup.js"
     ]
-  },
-  "devDependencies": {
-    "babel-plugin-functional-hmr": "^1.0.25",
-    "detox": "^12.11.2",
-    "install": "^0.12.2",
-    "npm": "^6.9.0",
-    "npm-check": "^5.9.0"
   },
   "detox": {
     "configurations": {
