@@ -1,13 +1,15 @@
 import { NavigationActions } from 'react-navigation';
 
-let _navigator: any;
+/* tslint:disable no-any */
+
+let navigator: any;
 
 function setTopLevelNavigator(navigatorRef: any) {
-  _navigator = navigatorRef;
+  navigator = navigatorRef;
 }
 
 function navigate(routeName: string, params?: object) {
-  _navigator.dispatch(
+  navigator.dispatch(
     NavigationActions.navigate({
       routeName,
       params,

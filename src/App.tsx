@@ -20,8 +20,6 @@ import NavigationService from './navigation/NavigationService';
 
 console.disableYellowBox = true;
 
-
-
 async function setAnalytics(dev: boolean) {
   if (dev) return;
 
@@ -60,11 +58,13 @@ export default class App extends React.PureComponent {
       NavigationService.navigate(path, { resetPasswordToken });
     });
 
-    Linking.getInitialURL().then(url => {
-      if (url) {
-        Linking.openURL(url);
-      }
-    }).catch(err => console.error('An error occurred on linking', err));
+    Linking.getInitialURL()
+      .then((url) => {
+        if (url) {
+          Linking.openURL(url);
+        }
+      })
+      .catch(err => console.error('An error occurred on linking', err));
 
   }
 
@@ -72,7 +72,7 @@ export default class App extends React.PureComponent {
     Linking.removeEventListener('url', this.handleUrl);
   }
 
-  handleUrl({ url }: { url: string }) {
+  handleUrl = ({ url }: { url: string }) => {
     Linking.canOpenURL(url).then((supported) => {
       if (supported) {
         DeepLinking.evaluateUrl(url);
