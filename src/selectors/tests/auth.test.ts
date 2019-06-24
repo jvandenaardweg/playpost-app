@@ -1,4 +1,4 @@
-import { authSelector, selectAuthError, selectIsLoading, selectAuthenticationStatus } from '../auth';
+import { authSelector, selectAuthError, selectIsLoading, selectAuthenticationStatus, selectErrorResetPassword } from '../auth';
 import { createStore } from 'redux';
 
 import { initialState } from '../../reducers/auth';
@@ -13,7 +13,7 @@ describe('auth selector', () => {
     expect(authSelector(rootState)).toEqual(initialState);
   });
 
-  it('should return the auth error', () => {
+  it('selectAuthError should return the auth error', () => {
     const exampleState = {
       ...rootState,
       auth: {
@@ -25,7 +25,19 @@ describe('auth selector', () => {
     expect(selectAuthError(exampleState)).toBe('Test error');
   });
 
-  it('should return the auth loading state', () => {
+  it('selectErrorResetPassword should return the reset password error', () => {
+    const exampleState = {
+      ...rootState,
+      auth: {
+        ...rootState.auth,
+        errorResetPassword: 'Test reset password error'
+      }
+    };
+
+    expect(selectErrorResetPassword(exampleState)).toBe('Test reset password error');
+  });
+
+  it('selectIsLoading should return the auth loading state', () => {
     const exampleState = {
       ...rootState,
       auth: {
@@ -37,7 +49,7 @@ describe('auth selector', () => {
     expect(selectIsLoading(exampleState)).toBe(true);
   });
 
-  it('should return the authentication status', () => {
+  it('selectAuthenticationStatus should return the authentication status', () => {
     const exampleState = {
       ...rootState,
       auth: {

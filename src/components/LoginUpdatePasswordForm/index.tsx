@@ -1,24 +1,24 @@
 import React from 'react';
-import { View, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { View, TextInput, KeyboardAvoidingView, ScrollView, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import styles from './styles';
 
 interface Props {
   onChangeText(field: string, text: string): void;
-  onPressLogin(): void;
-  onPressForgotPassword(): void;
-  email: string;
+  onPressUpdatePassword(): void;
   password: string;
+  resetPasswordToken: string;
   isLoading: boolean;
+  isSuccess: boolean | null;
 }
 
-export const LoginForm: React.FC<Props> = React.memo(({
-  email,
+export const LoginUpdatePasswordForm: React.FC<Props> = React.memo(({
   password,
+  resetPasswordToken,
   isLoading,
+  isSuccess,
   onChangeText,
-  onPressLogin,
-  onPressForgotPassword
+  onPressUpdatePassword
 }) => {
 
   let passwordInput: TextInput | null = null;
@@ -28,14 +28,14 @@ export const LoginForm: React.FC<Props> = React.memo(({
       <ScrollView style={styles.form} contentContainerStyle={styles.formContent} keyboardShouldPersistTaps={'handled'}>
 
         <TextInput
-          placeholder="E-mail address"
-          autoCapitalize="none"
-          value={email}
-          onChangeText={text => onChangeText('email', text)}
+          placeholder="6 character reset password code"
+          autoCapitalize="characters"
+          value={resetPasswordToken}
+          onChangeText={text => onChangeText('resetPasswordToken', text)}
           textContentType="username"
           onSubmitEditing={() => { passwordInput && passwordInput.focus(); }}
           style={styles.textField}
-          keyboardType="email-address"
+          keyboardType="default"
           returnKeyType="next"
           clearButtonMode="always"
           // autoFocus
@@ -44,12 +44,12 @@ export const LoginForm: React.FC<Props> = React.memo(({
 
         <TextInput
           ref={(input) => { passwordInput = input; }}
-          placeholder="Password"
+          placeholder="Your new password"
           autoCapitalize="none"
           secureTextEntry
           value={password}
           onChangeText={text => onChangeText('password', text)}
-          onSubmitEditing={() => onPressLogin()}
+          onSubmitEditing={() => onPressUpdatePassword()}
           textContentType="password"
           style={styles.textField}
           returnKeyType="done"
@@ -58,8 +58,8 @@ export const LoginForm: React.FC<Props> = React.memo(({
         />
 
         <View>
-          <Button title="Login" loading={isLoading} onPress={onPressLogin} disabled={isLoading} buttonStyle={styles.buttonStyle} disabledStyle={styles.buttonStyle} activeOpacity={1} titleStyle={styles.buttonTitleStyle} />
-          <Button title="Forgot password?" type="clear" onPress={onPressForgotPassword} />
+          {isSuccess && <Text>Success!</Text>}
+          <Button title="Save my new password" loading={isLoading} onPress={onPressUpdatePassword} disabled={isLoading} buttonStyle={styles.buttonStyle} disabledStyle={styles.buttonStyle} activeOpacity={1} titleStyle={styles.buttonTitleStyle} />
         </View>
 
       </ScrollView>

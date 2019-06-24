@@ -145,3 +145,12 @@ Actual subscription duration -> Test duration
 The subscription will automatically renew 6 times per account per 8 hour window, then the subscription will automatically expire at the end of each subscription period. These renewals happen automatically whether the app is open or not, just like renewals on the App Store. Unlike the App Store, there’s no option to cancel, so there’s no way to directly test cancelation. There’s also no way to test subscription management while using TestFlight or sandbox users.
 
 Each automatic renewal sends a transaction to the app. The transaction, or transactions, depending on how much time has passed, is processed the next time the app is opened. Validating these transactions triggers yet another password prompt. When the app is live on the App Store it shouldn’t trigger these additional password prompts.
+
+
+### Testing deep links on iOS
+1. Run the App in a Simulator: `react-native run-ios --simulator "iPhone X"`
+2. Close the App
+3. Run `xcrun simctl openurl booted playpost://login/update-password/123456`
+4. App should now open on the correct route
+
+To test universal links, use: `xcrun simctl openurl booted https://playpost.app/login/update-password/123456`
