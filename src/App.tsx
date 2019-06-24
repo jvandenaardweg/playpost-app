@@ -11,7 +11,7 @@ import { reactNativeElementsTheme } from './theme';
 import { AppNavigator } from './navigation/AppNavigator';
 import { NetworkProvider } from './contexts/NetworkProvider';
 import { AppStateProvider } from './contexts/AppStateProvider';
-import { ErrorAlertContainer } from './containers/ErrorAlertContainer';
+import { APIErrorAlertContainer } from './containers/APIErrorAlertContainer';
 
 // import { whyDidYouUpdate } from 'why-did-you-update';
 // whyDidYouUpdate(React, { exclude: /^YellowBox|Icon|Swipeable/ });
@@ -45,9 +45,9 @@ export default class App extends React.PureComponent {
           <ThemeProvider theme={reactNativeElementsTheme}>
             <NetworkProvider>
               <AppStateProvider>
-                <ErrorAlertContainer>
+                <APIErrorAlertContainer>
                   <AppNavigator />
-                </ErrorAlertContainer>
+                </APIErrorAlertContainer>
               </AppStateProvider>
             </NetworkProvider>
           </ThemeProvider>

@@ -70,12 +70,9 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
     this.purchaseUpdateSubscription = RNIap.purchaseUpdatedListener(async (purchase: RNIap.ProductPurchase) => {
       try {
-        await this.props.validateSubscriptionReceipt(subscription.id, purchase.transactionReceipt);
-
+        // Validatation error is handeled in ErrorAlertContainer
         // The validation result is handled in componentDidUpdate
-      } catch (err) {
-        const errorMessage = (err && err.message) ? err.message : 'An uknown error happened while upgrading.';
-        this.showErrorAlert('Upgrade error', errorMessage);
+        await this.props.validateSubscriptionReceipt(subscription.id, purchase.transactionReceipt);
       } finally {
         this.setState({ isLoadingRestorePurchases: false, isLoadingBuySubscription: false });
       }

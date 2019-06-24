@@ -115,8 +115,8 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
     const { authenticationStatus, subscriptionsValidationResult, validateSubscriptionReceipt, subscription } = this.props;
 
     if (authenticationStatus !== 'LOGGED_IN') return console.warn('User is not logged in, so we cannot check if his subscription is expired.');
-    if (!subscription) return console.error('No subscription found to validate the users subscription.');
-    if (!subscriptionsValidationResult) return console.error('No subscriptionsValidationResult found to validate the users subscription. Probably because the user has no subscription.');
+    if (!subscription) return console.warn('No subscription found to validate the users subscription.');
+    if (!subscriptionsValidationResult) return console.warn('No subscriptionsValidationResult found to validate the users subscription. Probably because the user has no subscription.');
 
     // Just don't do a check anymore when the subscription is expired or canceled.
     // The user has to manually subscribe again or restore his purchase, which results in a validation within that flow.
