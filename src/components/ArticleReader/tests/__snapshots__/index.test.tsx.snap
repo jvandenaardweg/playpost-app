@@ -22,7 +22,6 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
     onMessage={[Function]}
     onNavigationStateChange={[Function]}
     onShouldStartLoadWithRequest={[Function]}
-    scalesPageToFit={false}
     source={
       Object {
         "baseUrl": "",
@@ -235,7 +234,6 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
     onMessage={[Function]}
     onNavigationStateChange={[Function]}
     onShouldStartLoadWithRequest={[Function]}
-    scalesPageToFit={false}
     source={
       Object {
         "baseUrl": "",
@@ -448,7 +446,6 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
     onMessage={[Function]}
     onNavigationStateChange={[Function]}
     onShouldStartLoadWithRequest={[Function]}
-    scalesPageToFit={false}
     source={
       Object {
         "baseUrl": "",
@@ -655,7 +652,6 @@ exports[`ArticleReader rendering no author name should render no authorName when
     onMessage={[Function]}
     onNavigationStateChange={[Function]}
     onShouldStartLoadWithRequest={[Function]}
-    scalesPageToFit={false}
     source={
       Object {
         "baseUrl": "",
@@ -862,7 +858,6 @@ exports[`ArticleReader rendering no html should render a different HTML output w
     onMessage={[Function]}
     onNavigationStateChange={[Function]}
     onShouldStartLoadWithRequest={[Function]}
-    scalesPageToFit={false}
     source={
       Object {
         "baseUrl": "",

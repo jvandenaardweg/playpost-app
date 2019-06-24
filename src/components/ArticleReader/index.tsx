@@ -50,7 +50,6 @@ export const ArticleReader: React.FC<Props> = React.memo(({
       bounces
       decelerationRate="normal"
       style={{ backgroundColor: themeStyles.backgroundColor, padding: 0, margin: 0 }}
-      scalesPageToFit={false}
       onNavigationStateChange={handleWebViewNavigationStateChange}
     />
   );
