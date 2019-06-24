@@ -7,6 +7,7 @@ import { userReducer } from './user';
 import { playlistReducer } from './playlist';
 import { audiofilesReducer } from './audiofiles';
 import { voicesReducer } from './voices';
+import { subscriptionsReducer } from './subscriptions';
 
 /* tslint:disable no-any */
 export interface AxiosActionResponse extends AxiosResponse {
@@ -27,7 +28,8 @@ const rootReducer = combineReducers({
   user: userReducer,
   playlist: playlistReducer,
   audiofiles: audiofilesReducer,
-  voices: voicesReducer
+  voices: voicesReducer,
+  subscriptions: subscriptionsReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

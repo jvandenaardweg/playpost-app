@@ -1,71 +1,31 @@
 import { createSelector } from 'reselect';
-import TrackPlayer from 'react-native-track-player';
 
 import { PlayerState } from '../reducers/player';
 import { RootState } from '../reducers';
 
-const playerSelector = (state: RootState): PlayerState => state.player;
+export const playerSelector = (state: RootState): PlayerState => state.player;
 
-export const getPlayerTrack = createSelector(
+export const selectPlayerTrack = createSelector(
   [playerSelector],
   player => player.track
 );
 
-export const getPlayerAudiofile = createSelector(
+export const selectPlayerArticleId = createSelector(
+  [playerSelector],
+  player => player.articleId
+);
+
+export const selectErrorCreateAudiofile = createSelector(
+  [playerSelector],
+  player => player.errorCreateAudiofile
+);
+
+export const selectPlayerAudiofile = createSelector(
   [playerSelector],
   player => player.audiofile
 );
 
-export const getPlayerPlaybackState = createSelector(
+export const selectPlayerPlaybackState = createSelector(
   [playerSelector],
   player => player.playbackState
-);
-
-export const isLoading = createSelector(
-  [getPlayerPlaybackState],
-  (playbackState) => {
-    return playbackState && playbackState === TrackPlayer.STATE_BUFFERING;
-  }
-);
-
-export const isPlaying = createSelector(
-  [getPlayerPlaybackState],
-  (playbackState) => {
-    return playbackState && playbackState === TrackPlayer.STATE_PLAYING;
-  }
-);
-
-export const isStopped = createSelector(
-  [getPlayerPlaybackState],
-  (playbackState) => {
-    return playbackState && playbackState === TrackPlayer.STATE_STOPPED;
-  }
-);
-
-export const isPaused = createSelector(
-  [getPlayerPlaybackState],
-  (playbackState) => {
-    return playbackState && playbackState === TrackPlayer.STATE_PAUSED;
-  }
-);
-
-export const isIdle = createSelector(
-  [getPlayerPlaybackState],
-  (playbackState) => {
-    return playbackState && playbackState === TrackPlayer.STATE_NONE;
-  }
-);
-
-export const isReady = createSelector(
-  [getPlayerPlaybackState],
-  (playbackState) => {
-    return playbackState && playbackState === 'ready';
-  }
-);
-
-export const isNotPlaying = createSelector(
-  [isReady, isIdle, isPaused, isStopped],
-  (isReady, isIdle, isPaused, isStopped) => {
-    return isReady || isIdle || isPaused || isStopped;
-  }
 );

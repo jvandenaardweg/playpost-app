@@ -4,7 +4,13 @@ module.exports = {
       plugins: [
         'transform-remove-console'
       ]
+    },
+    staging: {
+      plugins: [
+        'transform-remove-console'
+      ]
     }
   },
-  presets: ['module:metro-react-native-babel-preset']
+  presets: ['module:metro-react-native-babel-preset'],
+  plugins: ['functional-hmr']
 };

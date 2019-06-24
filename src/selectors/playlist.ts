@@ -2,33 +2,33 @@ import { createSelector } from 'reselect';
 import { PlaylistState } from '../reducers/playlist';
 import { RootState } from '../reducers';
 
-const playlistSelector = (state: RootState): PlaylistState => state.playlist;
+export const playlistSelector = (state: RootState): PlaylistState => state.playlist;
 
-export const getPlaylistIsLoadingCreateItem = createSelector(
-  [playlistSelector],
-  (playlist): boolean => playlist.isLoadingCreateItem
-);
-
-export const getPlaylistError = createSelector(
+export const selectPlaylistError = createSelector(
   [playlistSelector],
   playlist => playlist.error
 );
 
-export const getPlaylistItems = createSelector(
+export const selectPlaylistItems = createSelector(
   [playlistSelector],
   playlist => playlist.items
+);
+
+export const selectPlaylistIsLoadingCreateItem = createSelector(
+  [playlistSelector],
+  (playlist): boolean => playlist.isLoadingCreateItem
 );
 
 /**
  * Get's the articles of the default playlist.
  */
-export const getAllPlaylistArticles = createSelector(
-  getPlaylistItems,
+export const selectAllPlaylistArticles = createSelector(
+  selectPlaylistItems,
   (playlistItems) => {
     if (!playlistItems || !playlistItems.length) return [];
 
     // Create a copy of the array, to enforce immutability. Then sort it.
-    const sortedPlaylistItems = [...playlistItems].sort((a, b) => a.order - b.order);
+    const sortedPlaylistItems = [...playlistItems].sort((a: Api.PlaylistItem, b: Api.PlaylistItem) => a.order - b.order);
 
     const articles = sortedPlaylistItems.map(playlistItem => playlistItem.article);
 
@@ -36,29 +36,29 @@ export const getAllPlaylistArticles = createSelector(
   }
 );
 
-export const getNewPlaylistItems = createSelector(
-  getPlaylistItems,
+export const selectNewPlaylistItems = createSelector(
+  selectPlaylistItems,
   (playlistItems) => {
     if (!playlistItems || !playlistItems.length) return [];
 
     const articles = playlistItems
       .filter(playlistItem => !playlistItem.archivedAt)
-      .sort((a, b) => a.order - b.order); // Sort by the custom order
+      .sort((a: Api.PlaylistItem, b: Api.PlaylistItem) => a.order - b.order); // Sort by the custom order
 
     return articles;
   }
 );
 
-export const getArchivedPlaylistItems = createSelector(
-  getPlaylistItems,
+export const selectArchivedPlaylistItems = createSelector(
+  selectPlaylistItems,
   (playlistItems) => {
     if (!playlistItems || !playlistItems.length) return [];
 
     const archivedPlaylistItems = playlistItems
-      .filter(playlistItem => playlistItem.archivedAt)
-      .sort((a, b) => {
-        const aTime = (a.archivedAt !== null) ? new Date(a.archivedAt).getTime() : 0;
-        const bTime = (b.archivedAt !== null) ? new Date(b.archivedAt).getTime() : 0;
+      .filter(playlistItem => !!playlistItem.archivedAt)
+      .sort((a: Api.PlaylistItem, b: Api.PlaylistItem) => {
+        const aTime = (a.archivedAt) ? new Date(a.archivedAt).getTime() : 0;
+        const bTime = (b.archivedAt) ? new Date(b.archivedAt).getTime() : 0;
         return bTime - aTime;
       });
 
@@ -66,16 +66,16 @@ export const getArchivedPlaylistItems = createSelector(
   }
 );
 
-export const getFavoritedPlaylistItems = createSelector(
-  getPlaylistItems,
+export const selectFavoritedPlaylistItems = createSelector(
+  selectPlaylistItems,
   (playlistItems) => {
     if (!playlistItems || !playlistItems.length) return [];
 
     const favoritedPlaylistItems = playlistItems
-      .filter(playlistItem => playlistItem.favoritedAt)
-      .sort((a, b) => {
-        const aTime = (a.favoritedAt !== null) ? new Date(a.favoritedAt).getTime() : 0;
-        const bTime = (b.favoritedAt !== null) ? new Date(b.favoritedAt).getTime() : 0;
+      .filter(playlistItem => !!playlistItem.favoritedAt)
+      .sort((a: Api.PlaylistItem, b: Api.PlaylistItem) => {
+        const aTime = (a.favoritedAt) ? new Date(a.favoritedAt).getTime() : 0;
+        const bTime = (b.favoritedAt) ? new Date(b.favoritedAt).getTime() : 0;
         return bTime - aTime;
       });
 

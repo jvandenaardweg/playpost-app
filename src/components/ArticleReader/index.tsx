@@ -1,0 +1,243 @@
+import React, { useRef } from 'react';
+import WebView from 'react-native-webview';
+import urlParse from 'url-parse';
+
+import spacing from '../../constants/spacing';
+import fonts from '../../constants/fonts';
+import colors from '../../constants/colors';
+import { CenterLoadingIndicator } from '../CenterLoadingIndicator';
+import { Linking } from 'react-native';
+import { WebViewNavigation } from 'react-native-webview/lib/WebViewTypes';
+
+interface Props {
+  article: Api.Article | undefined;
+  theme?: string;
+}
+
+interface ThemeStyles {
+  backgroundColor: string;
+  fontColor: string;
+  highlightColor: string;
+  metaColor: string;
+}
+
+export const ArticleReader: React.FC<Props> = React.memo(({
+  theme,
+  article
+}) => {
+  const webViewRef = useRef<WebView>(null);
+  const themeStyles = getThemeStyles(theme);
+
+  const handleWebViewNavigationStateChange = (request: WebViewNavigation) => {
+    const { url } = request;
+
+    if (!url || url.includes('file://')) return;
+
+    webViewRef.current && webViewRef.current.stopLoading();
+
+    return Linking.openURL(url);
+  };
+
+  return (
+    <WebView
+      ref={webViewRef}
+      startInLoadingState={true}
+      renderLoading={() => <CenterLoadingIndicator backgroundColor={themeStyles.backgroundColor} />}
+      useWebKit
+      originWhitelist={['*']}
+      javaScriptEnabled={false}
+      source={{ html: getHtmlDocument(article, themeStyles), baseUrl: '' }}
+      bounces
+      decelerationRate="normal"
+      style={{ backgroundColor: themeStyles.backgroundColor, padding: 0, margin: 0 }}
+      onNavigationStateChange={handleWebViewNavigationStateChange}
+    />
+  );
+
+  function getThemeStyles(theme?: string): ThemeStyles {
+
+    // Light
+    let backgroundColor = colors.white;
+    let fontColor = colors.black;
+    let highlightColor = colors.black;
+    let metaColor = colors.paragraphGrayed;
+
+    if (theme === 'dark') {
+      backgroundColor = colors.grayDarkest;
+      fontColor = colors.gray;
+      highlightColor = colors.white;
+      metaColor = colors.gray;
+    }
+
+    return {
+      backgroundColor,
+      fontColor,
+      highlightColor,
+      metaColor
+    };
+  }
+
+  function getHtmlHeader(themeStyles: ThemeStyles) {
+    return `
+      <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width">
+        <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i|PT+Serif:400,400i,700,700i" rel="stylesheet">
+        <style type="text/css">
+          html {
+            box-sizing: border-box;
+          }
+          *, *:before, *:after {
+            box-sizing: inherit;
+          }
+
+          body {
+            padding: 0 !important;
+            margin: 0 !important;
+            font-size: ${Math.ceil(fonts.fontSize.body * 1.1)}px;
+            font-family: 'PT Serif', serif;
+            line-height: 1.5;
+            color: ${themeStyles.fontColor};
+            font-weight: normal;
+            word-break: break-word;
+            background-color: ${themeStyles.backgroundColor};
+          }
+
+          h1, h2, h3, h4, h5, h6, h7, h8 {
+            line-height: 1.2;
+            margin-top: 0;
+            margin-bottom: ${spacing.tiny}px;
+            color: ${themeStyles.highlightColor};
+            font-family: 'PT Sans', sans-serif;
+          }
+
+          h1 {
+            font-size: ${fonts.fontSize.headline}px;
+            margin-bottom: ${spacing.default}px;
+            text-align: center;
+          }
+
+          h2, h3, h4 {
+            margin-top: ${spacing.large}px;
+            font-size: ${fonts.fontSize.titleLarge}px;
+          }
+
+          h5, h6, h7, h8 {
+            margin-top: ${spacing.large}px;
+            font-size ${fonts.fontSize.titleMedium}px
+          }
+
+          p {
+            font-size: ${Math.ceil(fonts.fontSize.body * 1.1)}px;
+            margin-top: 1.5;
+            text-align: justify;
+            color: ${colors.grayDarker};
+            line-height: 1.5;
+            margin-bottom: 1.5;
+          }
+
+          a, strong {
+            color: ${themeStyles.highlightColor};
+          }
+
+          blockquote {
+            font-style: italic;
+            color: ${themeStyles.highlightColor};
+            margin-left: ${spacing.large}px;
+            margin-right: ${spacing.large}px;
+          }
+          blockquote p {
+            font-style: italic;
+          }
+
+          figcaption {
+            display: none;
+          }
+
+          .meta-header {
+            text-align: center;
+            padding: ${spacing.default}px;
+          }
+
+          .meta-header strong {
+            display: block;
+            color: ${themeStyles.metaColor};
+            font-weight: normal;
+          }
+
+          .meta-header a {
+            color: ${themeStyles.metaColor};
+          }
+
+          .image-header {
+            margin-bottom: ${spacing.tiny}px
+          }
+
+          .image-header img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+          }
+
+          .content {
+            padding: ${spacing.default}px;
+          }
+
+          .content img,
+          .content figure {
+            max-width: 100%;
+            margin-bottom: ${spacing.default}px;
+            margin-top: ${spacing.default}px;
+            display: none;
+          }
+
+        </style>
+      </head>`;
+  }
+
+  function getNoHtmlDocument(article: Api.Article | undefined, themeStyles: ThemeStyles) {
+    const articleUrlLink = (article && article.url) ? `<a href="${article.url}">View the original article</a>` : '';
+
+    return `
+      <!DOCTYPE html>
+        ${getHtmlHeader(themeStyles)}
+        <body>
+          <h1>Insufficient article data</h1>
+          <p>The article did not return any sufficient content to show. This could happen when the article is behind a pay-wall or requires a login.</p>
+          ${articleUrlLink}
+        </body>
+      </html>
+    `;
+  }
+
+  function getHtmlDocument(article: Api.Article | undefined, themeStyles: ThemeStyles) {
+
+    // When we have no article or no html, show the user we don't have enough data
+    if (!article || !article.html) return getNoHtmlDocument(article, themeStyles);
+
+    const articleUrl = article.canonicalUrl || article.url;
+    const authorElement = (article.authorName) ? `<strong>${article.authorName}</strong>` : '';
+    const imageElement = (article.imageUrl) ? `<div class="image-header"><img src="${article.imageUrl}" /></div>` : '';
+
+    let htmlDocument = `
+      <!DOCTYPE html>
+      ${getHtmlHeader(themeStyles)}
+        <body>
+          ${imageElement}
+          <div class="meta-header">
+            <h1>${article.title}</h1>
+            ${authorElement}
+            <strong><a href="${articleUrl}">${urlParse(articleUrl).hostname}</a></strong>
+          </div>
+          <div class="content">
+            [ARTICLE_HTML_PLACEHOLDER]
+          </div>
+        </body>
+      </html>
+    `;
+
+    htmlDocument = htmlDocument.replace('[ARTICLE_HTML_PLACEHOLDER]', article.html);
+
+    return htmlDocument;
+  }
+});

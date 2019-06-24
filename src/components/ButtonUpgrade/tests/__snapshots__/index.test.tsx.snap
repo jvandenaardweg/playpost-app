@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonUpgrade rendering should render correctly 1`] = `
+<View
+  accessible={true}
+  isTVSelectable={true}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "row",
+      "height": 40,
+      "marginRight": 12,
+      "opacity": 1,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#037DE2",
+        "fontSize": 15,
+        "fontWeight": "500",
+      }
+    }
+  >
+    Upgrade
+  </Text>
+  <Text
+    allowFontScaling={false}
+    style={
+      Array [
+        Object {
+          "color": "#037DE2",
+          "fontSize": 16,
+        },
+        Object {
+          "marginLeft": 6,
+        },
+        Object {
+          "fontFamily": "FontAwesome5Free-Solid",
+          "fontStyle": "normal",
+          "fontWeight": "normal",
+        },
+        Object {
+          "fontWeight": "900",
+        },
+      ]
+    }
+  >
+    
+  </Text>
+</View>
+`;

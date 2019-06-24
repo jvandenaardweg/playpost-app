@@ -5,7 +5,16 @@ import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 import NetInfo from '@react-native-community/netinfo';
 import AsyncStorage from '@react-native-community/async-storage';
 
+import { persistor } from '../store';
+
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
+
+import { Platform } from 'react-native';
+
+export const keychainArguments = Platform.select({
+  ios: { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' },
+  android: { service: 'com.aardwegmedia.playpost' }
+});
 
 interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;
@@ -26,7 +35,10 @@ export class AuthLoadingScreen extends React.PureComponent<Props> {
 
     if (!hasRunBefore) {
       // Delete any API token we had from a previous install
-      await Keychain.resetGenericPassword();
+      await Keychain.resetGenericPassword(keychainArguments);
+
+      // Reset the persisted store, so we start clean from previous installs
+      await persistor.purge();
 
       // Set the item to something, so we don't reset the API token upon next launch
       await AsyncStorage.setItem('@hasRunBefore', 'true');
@@ -34,7 +46,7 @@ export class AuthLoadingScreen extends React.PureComponent<Props> {
 
     // Check if the user already has an API token
     // Important: Only rely on this token, so the user can use the app offline
-    const credentials = await Keychain.getGenericPassword({ accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' });
+    const credentials = await Keychain.getGenericPassword(keychainArguments);
     let token = null;
 
     if (credentials && credentials.password) {
@@ -45,13 +57,22 @@ export class AuthLoadingScreen extends React.PureComponent<Props> {
     // So we know if we can do API requests, or not
     await NetInfo.isConnected.fetch();
 
-    // Make sure we have the correct cache directories needed in the app
+    // Make sure we have the correct cache direct\ories needed in the app
     await RNFS.mkdir(LOCAL_CACHE_AUDIOFILES_PATH);
     await RNFS.mkdir(LOCAL_CACHE_VOICE_PREVIEWS_PATH);
 
-    // This will switch to the App screen or Auth screen and this loading
-    // screen will be unmounted and thrown away.
-    this.props.navigation.navigate(token ? 'App' : 'Onboarding');
+    if (!token) {
+      return this.props.navigation.navigate('Onboarding');
+    }
+
+    // User is logged in if we end up here
+
+    // Prepare the app for the logged in user
+
+    // Pre-populate the app with the user data
+    // Every other pre-population is done within the start screen, so we can load faster
+    // await store.dispatch(getUser());
+    return this.props.navigation.navigate('App');
   }
 
   // Render any loading content that you like here

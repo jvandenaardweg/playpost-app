@@ -1,6 +1,3 @@
-import Analytics from 'appcenter-analytics';
-import { AxiosError, AxiosResponse } from 'axios';
-
 import { GENERIC_NETWORK_ERROR, POST_AUTH_FAIL_MESSAGE } from '../constants/messages';
 
 export const POST_AUTH = 'auth/POST_AUTH';
@@ -8,6 +5,10 @@ export const POST_AUTH_SUCCESS = 'auth/POST_AUTH_SUCCESS';
 export const POST_AUTH_FAIL = 'auth/POST_AUTH_FAIL';
 export const RESET_AUTH_STATE = 'auth/RESET_AUTH_STATE';
 export const SET_AUTH_TOKEN = 'auth/SET_AUTH_TOKEN';
+export const RESET_AUTH_ERROR = 'auth/RESET_AUTH_ERROR';
+
+export const SET_AUTH_ERROR = 'auth/SET_AUTH_ERROR';
+export const GET_AUTH_TOKEN = 'auth/GET_AUTH_TOKEN';
 
 export type AuthState = Readonly<{
   isLoading: boolean;
@@ -15,20 +16,14 @@ export type AuthState = Readonly<{
   error: string;
 }>;
 
-const initialState: AuthState = {
+export const initialState: AuthState = {
   isLoading: false,
   token: '',
   error: ''
 };
 
-/* tslint:disable no-any */
-type AuthActionTypes = {
-  type: string;
-  payload: any;
-  error: AxiosError & AxiosResponse;
-};
-
-export function authReducer(state = initialState, action: AuthActionTypes): AuthState {
+/* tslint:disable-next-line no-any */
+export function authReducer(state = initialState, action: any): AuthState {
   switch (action.type) {
     case POST_AUTH:
       return {
@@ -38,13 +33,17 @@ export function authReducer(state = initialState, action: AuthActionTypes): Auth
       };
 
     case POST_AUTH_SUCCESS:
-      Analytics.trackEvent('Auth success');
-
       return {
         ...state,
         isLoading: false,
         token: action.payload.data.token,
         error: ''
+      };
+
+    case SET_AUTH_ERROR:
+      return {
+        ...state,
+        error: action.errorMessage
       };
 
     case POST_AUTH_FAIL:
@@ -57,10 +56,8 @@ export function authReducer(state = initialState, action: AuthActionTypes): Auth
       } else {
         // Error, from the API
         if (action.error.response && action.error.response.data && action.error.response.data.message) {
-          Analytics.trackEvent('Error auth', { message: action.error.response.data.message });
           postAuthFailMessage = action.error.response.data.message;
         } else {
-          Analytics.trackEvent('Error auth', { message: POST_AUTH_FAIL_MESSAGE });
           postAuthFailMessage = POST_AUTH_FAIL_MESSAGE;
         }
       }
@@ -70,6 +67,12 @@ export function authReducer(state = initialState, action: AuthActionTypes): Auth
         isLoading: false,
         token: '',
         error: postAuthFailMessage
+      };
+
+    case RESET_AUTH_ERROR:
+      return {
+        ...state,
+        error: ''
       };
 
     case RESET_AUTH_STATE:
@@ -88,6 +91,12 @@ export function authReducer(state = initialState, action: AuthActionTypes): Auth
   }
 }
 
+export const getAuthToken = (email: string, password: string) => ({
+  email,
+  password,
+  type: GET_AUTH_TOKEN
+});
+
 export const setAuthToken = (token: string) => ({
   type: SET_AUTH_TOKEN,
   payload: {
@@ -95,8 +104,17 @@ export const setAuthToken = (token: string) => ({
   }
 });
 
+export const setAuthError = (errorMessage?: string) => ({
+  errorMessage,
+  type: SET_AUTH_ERROR,
+});
+
 export const resetAuthState = () => ({
   type: RESET_AUTH_STATE
+});
+
+export const resetAuthError = () => ({
+  type: RESET_AUTH_ERROR
 });
 
 export const postAuth = (email: string, password: string) => ({

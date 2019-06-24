@@ -8,13 +8,18 @@ import spacing from '../../constants/spacing';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
     padding: spacing.default,
     backgroundColor: colors.appBackground
   },
   form: {
     width: '100%'
+  },
+  formContent: {
+    flex: 1,
+    justifyContent: 'center',
+    flexDirection: 'column'
   },
   textField: textInputStyle,
   errorContainer: {

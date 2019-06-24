@@ -8,6 +8,10 @@ build/
 
 .jest/
 
+.env.local
+.env
+coverage/
+
 # Added Pods folder manually, got too big for version control
 #Pods/
 

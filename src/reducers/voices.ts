@@ -1,113 +1,96 @@
 import Analytics from 'appcenter-analytics';
-import { AxiosError, AxiosResponse } from 'axios';
 
-import { GENERIC_NETWORK_ERROR, GET_VOICES_FAIL_MESSAGE } from '../constants/messages';
+import { GENERIC_NETWORK_ERROR, GET_LANGUAGES_FAIL_MESSAGE } from '../constants/messages';
 
-export const GET_VOICES = 'voices/GET_VOICES';
-export const GET_VOICES_SUCCESS = 'voices/GET_VOICES_SUCCESS';
-export const GET_VOICES_FAIL = 'voices/GET_VOICES_FAIL';
+export const GET_LANGUAGES = 'voices/GET_LANGUAGES';
+export const GET_LANGUAGES_SUCCESS = 'voices/GET_LANGUAGES_SUCCESS';
+export const GET_LANGUAGES_FAIL = 'voices/GET_LANGUAGES_FAIL';
+
 export const RESET_VOICES_STATE = 'voices/RESET_VOICES_STATE';
-export const SET_SELECTED_VOICE = 'voices/SET_SELECTED_VOICE';
 export const SET_DOWNLOADED_VOICE = 'voices/SET_DOWNLOADED_VOICE';
 export const RESET_DOWNLOADED_VOICES = 'voices/RESET_DOWNLOADED_VOICES';
+export const SET_SELECTED_VOICE_OBJECT = 'voices/SET_SELECTED_VOICE_OBJECT';
+
+export type SelectedVoice = {
+  readonly [key: string]: Api.Voice;
+};
 
 export type VoicesState = Readonly<{
   isLoading: boolean;
-  voices: ReadonlyArray<Api.Voice>;
-  selectedVoiceId: string;
-  downloaded: ReadonlyArray<Api.Voice>;
+  isLoadingLanguages: boolean;
+  downloadedVoicePreviews: ReadonlyArray<Api.Voice>;
+  languages: ReadonlyArray<Api.Language>;
   error: string;
 }>;
 
-const initialState: VoicesState = {
+export const initialState: VoicesState = {
   isLoading: false,
-  voices: [],
-  selectedVoiceId: '',
-  downloaded: [],
+  isLoadingLanguages: false,
+  downloadedVoicePreviews: [],
+  languages: [],
   error: ''
 };
 
-/* tslint:disable no-any */
-type AuthActionTypes = {
-  type: string;
-  payload: any;
-  error: AxiosError & AxiosResponse;
-};
-
-export function voicesReducer(state = initialState, action: AuthActionTypes): VoicesState {
+/* tslint:disable-next-line no-any */
+export function voicesReducer(state = initialState, action: any): VoicesState {
   switch (action.type) {
-    case SET_SELECTED_VOICE:
+    case GET_LANGUAGES:
       return {
         ...state,
-        selectedVoiceId: action.payload
-      };
-    case GET_VOICES:
-      return {
-        ...state,
-        isLoading: true,
+        isLoadingLanguages: true,
         error: ''
       };
 
-    case GET_VOICES_SUCCESS:
-      Analytics.trackEvent('Get voices success');
-
-      let defaultSelectedVoice;
-
-      if (!state.selectedVoiceId) {
-        defaultSelectedVoice = action.payload.data.find((voice: Api.Voice) => voice.name === 'Joanna' && voice.synthesizer === 'AWS');
-      }
-
-      const defaultSelectedVoiceId = (defaultSelectedVoice) ? defaultSelectedVoice.id : state.selectedVoiceId;
+    case GET_LANGUAGES_SUCCESS:
+      const languages: Api.Language[] = action.payload.data;
 
       return {
         ...state,
-        isLoading: false,
-        voices: action.payload.data,
-        selectedVoiceId: defaultSelectedVoiceId,
+        languages,
+        isLoadingLanguages: false,
         error: ''
       };
 
-    case GET_VOICES_FAIL:
-
-      let postAuthFailMessage = '';
+    case GET_LANGUAGES_FAIL:
+      let getLanguagesFailMessage = '';
 
       // Network error
       if (action.error.status === 0) {
-        postAuthFailMessage = GENERIC_NETWORK_ERROR;
+        getLanguagesFailMessage = GENERIC_NETWORK_ERROR;
       } else {
         // Error, from the API
         if (action.error.response && action.error.response.data && action.error.response.data.message) {
-          Analytics.trackEvent('Error get voices', { message: action.error.response.data.message });
-          postAuthFailMessage = action.error.response.data.message;
+          Analytics.trackEvent('Error get languages', { message: action.error.response.data.message });
+          getLanguagesFailMessage = action.error.response.data.message;
         } else {
-          Analytics.trackEvent('Error get voices', { message: GET_VOICES_FAIL_MESSAGE });
-          postAuthFailMessage = GET_VOICES_FAIL_MESSAGE;
+          Analytics.trackEvent('Error get languages', { message: GET_LANGUAGES_FAIL_MESSAGE });
+          getLanguagesFailMessage = GET_LANGUAGES_FAIL_MESSAGE;
         }
       }
 
       return {
         ...state,
-        isLoading: false,
-        error: postAuthFailMessage
+        isLoadingLanguages: false,
+        error: getLanguagesFailMessage
       };
 
     case SET_DOWNLOADED_VOICE:
-      const voice: Api.Voice = action.payload;
+      const downloadedVoice: Api.Voice = action.payload;
 
       return {
         ...state,
         isLoading: false,
-        downloaded: [
-          ...state.downloaded.slice(0, 0),
-          voice,
-          ...state.downloaded.slice(0)
+        downloadedVoicePreviews: [
+          ...state.downloadedVoicePreviews.slice(0, 0),
+          downloadedVoice,
+          ...state.downloadedVoicePreviews.slice(0)
         ]
       };
 
     case RESET_DOWNLOADED_VOICES:
       return {
         ...state,
-        downloaded: initialState.downloaded
+        downloadedVoicePreviews: initialState.downloadedVoicePreviews
       };
 
     case RESET_VOICES_STATE:
@@ -132,22 +115,15 @@ export function resetDownloadedVoices() {
   };
 }
 
-export function getVoices() {
+export function getLanguages() {
   return {
-    type: GET_VOICES,
+    type: GET_LANGUAGES,
     payload: {
       request: {
         method: 'get',
-        url: '/v1/voices/active'
+        url: '/v1/languages/active'
       }
     }
-  };
-}
-
-export function setSelectedVoice(voiceId: string) {
-  return {
-    type: SET_SELECTED_VOICE,
-    payload: voiceId
   };
 }
 

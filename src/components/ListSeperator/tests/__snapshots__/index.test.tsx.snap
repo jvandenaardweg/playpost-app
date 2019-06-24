@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListSeperator rendering should render correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#ffffff",
+      "paddingLeft": 16,
+      "paddingRight": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#e5e5e5",
+        "borderBottomWidth": 0.5,
+      }
+    }
+  />
+</View>
+`;

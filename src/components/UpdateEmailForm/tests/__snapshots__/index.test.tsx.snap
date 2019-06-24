@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UpdateEmailForm rendering should render correctly 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#F1F1F1",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <TextInput
+      autoCapitalize="none"
+      autoFocus={false}
+      blurOnSubmit={false}
+      clearButtonMode="always"
+      onChangeText={[Function]}
+      onSubmitEditing={[Function]}
+      placeholder="Your new e-mail address"
+      returnKeyType="done"
+      style={
+        Object {
+          "backgroundColor": "#ffffff",
+          "borderColor": "#e5e5e5",
+          "borderRadius": 4,
+          "borderWidth": 1,
+          "fontSize": 15,
+          "height": 50,
+          "marginBottom": 12,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+        }
+      }
+      textContentType="emailAddress"
+      value=""
+    />
+    <View>
+      <View
+        style={
+          Object {
+            "borderRadius": 3,
+          }
+        }
+      >
+        <View
+          accessible={true}
+          isTVSelectable={true}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#000000",
+                "borderColor": "#2089dc",
+                "borderRadius": 3,
+                "borderWidth": 0,
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "marginBottom": 16,
+                "opacity": 1,
+                "padding": 8,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "white",
+                  "fontSize": 18,
+                  "paddingBottom": 1,
+                  "paddingTop": 2,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Update e-mail address
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

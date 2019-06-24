@@ -1,36 +1,33 @@
 import React from 'react';
-import NetInfo from '@react-native-community/netinfo';
+import NetInfo, { NetInfoSubscription } from '@react-native-community/netinfo';
 
-export const NetworkContext = React.createContext({ isConnected: true });
+export const NetworkContext = React.createContext<{ isConnected: boolean }>({ isConnected: false });
 
 export const NetworkConsumer = NetworkContext.Consumer;
 
 interface State {
   isConnected?: boolean;
-  // connectionType?: ConnectionType;
-  // effectiveConnectionType?: EffectiveConnectionType;
 }
 
 export class NetworkProvider extends React.PureComponent<State> {
   state = {
-    isConnected: true,
-    // connectionType: null,
-    // effectiveConnectionType: null
+    isConnected: false
   };
 
+  unsubscribe: NetInfoSubscription | null = null;
+
   componentDidMount() {
-    NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
-    // NetInfo.addEventListener('connectionChange', this.handleConnectionChange);
+    this.unsubscribe = NetInfo.addEventListener((state) => {
+      this.setState({ isConnected: state.isConnected });
+    });
   }
 
   componentWillUnmount() {
-    NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
-    // NetInfo.removeEventListener('connectionChange', this.handleConnectionChange);
+    if (this.unsubscribe) {
+      this.unsubscribe();
+      this.unsubscribe = null;
+    }
   }
-
-  // handleConnectionChange = (result: ConnectionInfo) => this.setState({ connectionType: result.type, effectiveConnectionType: result.effectiveType });
-
-  handleConnectivityChange = (isConnected: boolean) => this.setState({ isConnected });
 
   render() {
     return (

@@ -31,6 +31,14 @@ public class MainActivity extends ReactActivity {
       super.onCreate(savedInstanceState);
     }
 
+    // Fix for build not working:
+    // https://github.com/crazycodeboy/react-native-splash-screen/issues/32#issuecomment-362186109
+    @Override
+    protected void onPause() {
+      SplashScreen.hide(this);
+      super.onPause();
+    }
+
     @Override
     protected ReactActivityDelegate createReactActivityDelegate() {
       return new ReactActivityDelegate(this, getMainComponentName()) {

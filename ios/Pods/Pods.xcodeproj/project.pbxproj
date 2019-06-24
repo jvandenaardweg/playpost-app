@@ -6,69 +6,123 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		2CD32458A161AF8E4BA58B4310701AB3 /* AppCenterReactNativeShared */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B1AADDABC0FF92BF51AC88E6BD57DB25 /* Build configuration list for PBXAggregateTarget "AppCenterReactNativeShared" */;
+			buildPhases = (
+			);
+			dependencies = (
+				0051E4214884EF5346A2A55966EC832B /* PBXTargetDependency */,
+			);
+			name = AppCenterReactNativeShared;
+		};
+		A3282A5B2437E609EEB85861D7ECE717 /* AppCenter */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = D0944D0DEFF9CDF0CBE6D4A41B195020 /* Build configuration list for PBXAggregateTarget "AppCenter" */;
+			buildPhases = (
+			);
+			dependencies = (
+			);
+			name = AppCenter;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
-		1A36AF816710D7C3B66E79FCFA9E82C8 /* Pods-PlaypostTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB9CD87768242A8B30169DAD46FDF24 /* Pods-PlaypostTests-dummy.m */; };
-		62C39D9C428F6F8596864B47B090EFD7 /* Pods-Playpost-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 20681125800D19ADD74D41194E81642A /* Pods-Playpost-dummy.m */; };
-		AB15C878293C18EAA5FCC9969138F90B /* Pods-Playpost-PlaypostShareExtension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DC729E8047C2045B7C6C13ECF5937051 /* Pods-Playpost-PlaypostShareExtension-dummy.m */; };
+		27861CF36A42148D730BCA1655C5A632 /* Pods-Playpost-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E34921F18F34665102B540F0EB99B34 /* Pods-Playpost-dummy.m */; };
+		A99BEB9DB580F28F54845FAF2F4667D5 /* Pods-Playpost-PlaypostShareExtension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DC173D1AAD8DD14B26F63ADCEA81E78B /* Pods-Playpost-PlaypostShareExtension-dummy.m */; };
+		C5CD1A1DC028B76A2FF5E24285B4C980 /* Pods-PlaypostTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E688C2CC91B98A0157251F3CF1FAB3ED /* Pods-PlaypostTests-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0E2A0F33ED31130EFE7B9D8E059CA997 /* PBXContainerItemProxy */ = {
+		4A8ED66AD6022DAC3315BEFB93C3E176 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 7DF78F7AF50336F186351CB9747D6473;
+			remoteGlobalIDString = 2CD32458A161AF8E4BA58B4310701AB3;
+			remoteInfo = AppCenterReactNativeShared;
+		};
+		59AC8F91A97ABBBB7A80382003D44209 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DFEB123BDF43D214C5D83522121003F1;
 			remoteInfo = "Pods-Playpost";
+		};
+		63249B6EA2EE6C84238B5DFDA79BADB3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A3282A5B2437E609EEB85861D7ECE717;
+			remoteInfo = AppCenter;
+		};
+		A70395FC21299D7372788868C9F58FD0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2CD32458A161AF8E4BA58B4310701AB3;
+			remoteInfo = AppCenterReactNativeShared;
+		};
+		CB0F596A638E2FF6F38970D7C7857633 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A3282A5B2437E609EEB85861D7ECE717;
+			remoteInfo = AppCenter;
+		};
+		D96B09CB6F7CDF72F3099DD83AD5AB87 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A3282A5B2437E609EEB85861D7ECE717;
+			remoteInfo = AppCenter;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0472E2429961616215D9D5E872E7938C /* Pods-Playpost-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Playpost-resources.sh"; sourceTree = "<group>"; };
-		0A45C7C77FDB7AE0C015AC3912A59D08 /* Pods-PlaypostTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PlaypostTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		20681125800D19ADD74D41194E81642A /* Pods-Playpost-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Playpost-dummy.m"; sourceTree = "<group>"; };
-		24390EFD555DD124430DFF9724065945 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		4794AC8A804EE1750BE257A370D2EE67 /* Pods-PlaypostTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PlaypostTests-resources.sh"; sourceTree = "<group>"; };
-		481CE66797FD6C8368C8DB8C10730DF2 /* Pods-Playpost-PlaypostShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Playpost-PlaypostShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		4C8B8C53E64521E38C6B984A076FE786 /* Pods-Playpost-PlaypostShareExtension-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Playpost-PlaypostShareExtension-acknowledgements.plist"; sourceTree = "<group>"; };
-		4EB9CD87768242A8B30169DAD46FDF24 /* Pods-PlaypostTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PlaypostTests-dummy.m"; sourceTree = "<group>"; };
-		54C2EF6F1BC581380FA39562A5F46410 /* Pods-Playpost-PlaypostShareExtension-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Playpost-PlaypostShareExtension-resources.sh"; sourceTree = "<group>"; };
-		588719A637C34DC717D9567A97284EE7 /* libPods-Playpost.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Playpost.a"; path = "libPods-Playpost.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5A508B6F7F0842060568C72732A4706F /* AppCenterReactNativeShared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterReactNativeShared.framework; path = AppCenterReactNativeShared/AppCenterReactNativeShared.framework; sourceTree = "<group>"; };
-		6806297863EA19948D5D6625A46D6595 /* Pods-PlaypostTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PlaypostTests.release.xcconfig"; sourceTree = "<group>"; };
-		6A83F2E257C4B1C1B8EC5550B103D6BD /* libPods-Playpost-PlaypostShareExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Playpost-PlaypostShareExtension.a"; path = "libPods-Playpost-PlaypostShareExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7BC225C0D6BF22FB635C7C00C58193D8 /* Pods-Playpost-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Playpost-acknowledgements.markdown"; sourceTree = "<group>"; };
-		824FD310E4509E043791B6F713C96778 /* Pods-PlaypostTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PlaypostTests-frameworks.sh"; sourceTree = "<group>"; };
-		896A3737EB95A449D54E056F94150DCD /* Pods-Playpost-PlaypostShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Playpost-PlaypostShareExtension.release.xcconfig"; sourceTree = "<group>"; };
-		8EE05519DDCD8B2F39C9832D6B6AA713 /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterCrashes.framework; path = "AppCenter-SDK-Apple/iOS/AppCenterCrashes.framework"; sourceTree = "<group>"; };
-		A20BB4EA253B3014996A6BFE59E393C2 /* Pods-PlaypostTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PlaypostTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		ADED0F3FFBE2C7198982750F06CCA8A5 /* Pods-Playpost-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Playpost-acknowledgements.plist"; sourceTree = "<group>"; };
-		B38ADDD98B081935A7AAD794729CDC8C /* Pods-Playpost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Playpost.debug.xcconfig"; sourceTree = "<group>"; };
-		B395903752B4208CEA7081AC79B729A3 /* Pods-Playpost-PlaypostShareExtension-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Playpost-PlaypostShareExtension-acknowledgements.markdown"; sourceTree = "<group>"; };
-		BEC5A8153A7B6061204E9117BA910792 /* Pods-PlaypostTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PlaypostTests.debug.xcconfig"; sourceTree = "<group>"; };
-		DBE92C88402D176EA837BDB51143A4C5 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenter.framework; path = "AppCenter-SDK-Apple/iOS/AppCenter.framework"; sourceTree = "<group>"; };
-		DC729E8047C2045B7C6C13ECF5937051 /* Pods-Playpost-PlaypostShareExtension-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Playpost-PlaypostShareExtension-dummy.m"; sourceTree = "<group>"; };
-		DD2C386DDB9175A958A22ED64A8FA552 /* libPods-PlaypostTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-PlaypostTests.a"; path = "libPods-PlaypostTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E9720A506C2FCB42E5952337E24B5456 /* Pods-Playpost-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Playpost-frameworks.sh"; sourceTree = "<group>"; };
-		F91485CCEA07A5DB82CE80C5502927A7 /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterAnalytics.framework; path = "AppCenter-SDK-Apple/iOS/AppCenterAnalytics.framework"; sourceTree = "<group>"; };
-		FBA9A9502CDCB91A792B991FA106113A /* Pods-Playpost.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Playpost.release.xcconfig"; sourceTree = "<group>"; };
+		016D921A9F01352CCB9BB6818BA51A79 /* libPods-Playpost-PlaypostShareExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Playpost-PlaypostShareExtension.a"; path = "libPods-Playpost-PlaypostShareExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		101086D48961A1F5D174F74008C809D8 /* AppCenterReactNativeShared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterReactNativeShared.framework; path = AppCenterReactNativeShared/AppCenterReactNativeShared.framework; sourceTree = "<group>"; };
+		1D555659DBB149A71180709E9E4420A1 /* libPods-PlaypostTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-PlaypostTests.a"; path = "libPods-PlaypostTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E34921F18F34665102B540F0EB99B34 /* Pods-Playpost-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Playpost-dummy.m"; sourceTree = "<group>"; };
+		259A51087349695F5B93EE5070F4CE70 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenter.framework; path = "AppCenter-SDK-Apple/iOS/AppCenter.framework"; sourceTree = "<group>"; };
+		35BB92E29CF2F0ED624864EEC06BA5A5 /* Pods-Playpost-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Playpost-acknowledgements.plist"; sourceTree = "<group>"; };
+		3CB06D98D938C665DF90A87727C80411 /* Pods-Playpost-PlaypostShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Playpost-PlaypostShareExtension.release.xcconfig"; sourceTree = "<group>"; };
+		57447041E60F2B2A34B159A833C2254C /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterAnalytics.framework; path = "AppCenter-SDK-Apple/iOS/AppCenterAnalytics.framework"; sourceTree = "<group>"; };
+		59CE2BED226D8BACCDFB3EEC78580EC1 /* AppCenter.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AppCenter.xcconfig; sourceTree = "<group>"; };
+		7530C7D54A7D24FD20E75DB865A784A2 /* Pods-PlaypostTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PlaypostTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7EC45A84382612CE4760E84D644E7090 /* Pods-PlaypostTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PlaypostTests.release.xcconfig"; sourceTree = "<group>"; };
+		8B62D4ABE9B7EC6322CF4083E8097F34 /* Pods-Playpost-PlaypostShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Playpost-PlaypostShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		95A55B214553581627D9CF1DD6E8F4D9 /* Pods-Playpost-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Playpost-acknowledgements.markdown"; sourceTree = "<group>"; };
+		99920A5D6A5F84452D96C99D99090519 /* Pods-Playpost.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Playpost.release.xcconfig"; sourceTree = "<group>"; };
+		9AD645ED93BC107473EF1AD69850A17B /* Pods-Playpost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Playpost.debug.xcconfig"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		AA7EACDAE2D002613907213E06A174D8 /* Pods-PlaypostTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PlaypostTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		B949CDF652086A792464DA9B3CE2C9FA /* AppCenterReactNativeShared.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AppCenterReactNativeShared.xcconfig; sourceTree = "<group>"; };
+		CD14D8A23DD2F0C4C5F33D0B703E9DD1 /* libPods-Playpost.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Playpost.a"; path = "libPods-Playpost.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB21C3224AE23C16EFACAA3ECB290B71 /* Pods-Playpost-PlaypostShareExtension-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Playpost-PlaypostShareExtension-acknowledgements.plist"; sourceTree = "<group>"; };
+		DC173D1AAD8DD14B26F63ADCEA81E78B /* Pods-Playpost-PlaypostShareExtension-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Playpost-PlaypostShareExtension-dummy.m"; sourceTree = "<group>"; };
+		E688C2CC91B98A0157251F3CF1FAB3ED /* Pods-PlaypostTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PlaypostTests-dummy.m"; sourceTree = "<group>"; };
+		F1DD48ED9EBB9AADB59CAB22465CA646 /* Pods-PlaypostTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PlaypostTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		F4CE7345C6137AF49A54827B4AEA2E17 /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterCrashes.framework; path = "AppCenter-SDK-Apple/iOS/AppCenterCrashes.framework"; sourceTree = "<group>"; };
+		FF888D8D51DDD1E8DDBD0B1D2C459D16 /* Pods-Playpost-PlaypostShareExtension-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Playpost-PlaypostShareExtension-acknowledgements.markdown"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		22865D488BC82DD8F666B350C68BE418 /* Frameworks */ = {
+		88B124AE27861E8D916A71A739C2E0F3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6595B5B1247657A8C3C36583095B17DE /* Frameworks */ = {
+		A379FC1EB5430976E0A92C35C9DC6DBF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A840757D984F8377F1A359F67D739FB4 /* Frameworks */ = {
+		CAE671A23A0945CB5C3888E95D8139AB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -78,136 +132,152 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0832E7EC22E8E5291C263CEAF3EE9CED /* Frameworks */ = {
+		17124FE8D3A0ACF54F4BFB41B8C9F819 /* Pods-Playpost */ = {
 			isa = PBXGroup;
 			children = (
-				DBE92C88402D176EA837BDB51143A4C5 /* AppCenter.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		10B7D2931E6059BDD56FAAA38C8D6139 /* Analytics */ = {
-			isa = PBXGroup;
-			children = (
-				E7174C79B362F5D77F87A78C3E904803 /* Frameworks */,
-			);
-			name = Analytics;
-			sourceTree = "<group>";
-		};
-		1E116725A47B3002A6007A7B1D3DA817 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				2D5EDEEA269E8112E5F199E4110B3536 /* AppCenter */,
-				D05BF74939E504A95B1C2FF94B8596C5 /* AppCenterReactNativeShared */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		269EBDAC70B3D20DD5D118B7FEF9833C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				5A508B6F7F0842060568C72732A4706F /* AppCenterReactNativeShared.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		2D5EDEEA269E8112E5F199E4110B3536 /* AppCenter */ = {
-			isa = PBXGroup;
-			children = (
-				10B7D2931E6059BDD56FAAA38C8D6139 /* Analytics */,
-				410D72508DD5543B0E0043CA07C81615 /* Core */,
-				6C6700AB6C5A4329F72AE7C6CE450A01 /* Crashes */,
-			);
-			name = AppCenter;
-			path = AppCenter;
-			sourceTree = "<group>";
-		};
-		410D72508DD5543B0E0043CA07C81615 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				0832E7EC22E8E5291C263CEAF3EE9CED /* Frameworks */,
-			);
-			name = Core;
-			sourceTree = "<group>";
-		};
-		5FCC2DEA032EB27289573C3C895BAD9F /* Pods-Playpost-PlaypostShareExtension */ = {
-			isa = PBXGroup;
-			children = (
-				B395903752B4208CEA7081AC79B729A3 /* Pods-Playpost-PlaypostShareExtension-acknowledgements.markdown */,
-				4C8B8C53E64521E38C6B984A076FE786 /* Pods-Playpost-PlaypostShareExtension-acknowledgements.plist */,
-				DC729E8047C2045B7C6C13ECF5937051 /* Pods-Playpost-PlaypostShareExtension-dummy.m */,
-				54C2EF6F1BC581380FA39562A5F46410 /* Pods-Playpost-PlaypostShareExtension-resources.sh */,
-				481CE66797FD6C8368C8DB8C10730DF2 /* Pods-Playpost-PlaypostShareExtension.debug.xcconfig */,
-				896A3737EB95A449D54E056F94150DCD /* Pods-Playpost-PlaypostShareExtension.release.xcconfig */,
-			);
-			name = "Pods-Playpost-PlaypostShareExtension";
-			path = "Target Support Files/Pods-Playpost-PlaypostShareExtension";
-			sourceTree = "<group>";
-		};
-		6C6700AB6C5A4329F72AE7C6CE450A01 /* Crashes */ = {
-			isa = PBXGroup;
-			children = (
-				6C7366223ED847E5CA3ED7B2AEC1D347 /* Frameworks */,
-			);
-			name = Crashes;
-			sourceTree = "<group>";
-		};
-		6C7366223ED847E5CA3ED7B2AEC1D347 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				8EE05519DDCD8B2F39C9832D6B6AA713 /* AppCenterCrashes.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		793CB6C3A07BB4D1AF41FC8236C5CA02 /* Pods-Playpost */ = {
-			isa = PBXGroup;
-			children = (
-				7BC225C0D6BF22FB635C7C00C58193D8 /* Pods-Playpost-acknowledgements.markdown */,
-				ADED0F3FFBE2C7198982750F06CCA8A5 /* Pods-Playpost-acknowledgements.plist */,
-				20681125800D19ADD74D41194E81642A /* Pods-Playpost-dummy.m */,
-				E9720A506C2FCB42E5952337E24B5456 /* Pods-Playpost-frameworks.sh */,
-				0472E2429961616215D9D5E872E7938C /* Pods-Playpost-resources.sh */,
-				B38ADDD98B081935A7AAD794729CDC8C /* Pods-Playpost.debug.xcconfig */,
-				FBA9A9502CDCB91A792B991FA106113A /* Pods-Playpost.release.xcconfig */,
+				95A55B214553581627D9CF1DD6E8F4D9 /* Pods-Playpost-acknowledgements.markdown */,
+				35BB92E29CF2F0ED624864EEC06BA5A5 /* Pods-Playpost-acknowledgements.plist */,
+				1E34921F18F34665102B540F0EB99B34 /* Pods-Playpost-dummy.m */,
+				9AD645ED93BC107473EF1AD69850A17B /* Pods-Playpost.debug.xcconfig */,
+				99920A5D6A5F84452D96C99D99090519 /* Pods-Playpost.release.xcconfig */,
 			);
 			name = "Pods-Playpost";
 			path = "Target Support Files/Pods-Playpost";
 			sourceTree = "<group>";
 		};
-		963611E98B228303BFD0F8C86E1FCFA0 /* Pods-PlaypostTests */ = {
+		17E14367056B7D67CE359EC6DE7EAD80 /* Pods-PlaypostTests */ = {
 			isa = PBXGroup;
 			children = (
-				0A45C7C77FDB7AE0C015AC3912A59D08 /* Pods-PlaypostTests-acknowledgements.markdown */,
-				A20BB4EA253B3014996A6BFE59E393C2 /* Pods-PlaypostTests-acknowledgements.plist */,
-				4EB9CD87768242A8B30169DAD46FDF24 /* Pods-PlaypostTests-dummy.m */,
-				824FD310E4509E043791B6F713C96778 /* Pods-PlaypostTests-frameworks.sh */,
-				4794AC8A804EE1750BE257A370D2EE67 /* Pods-PlaypostTests-resources.sh */,
-				BEC5A8153A7B6061204E9117BA910792 /* Pods-PlaypostTests.debug.xcconfig */,
-				6806297863EA19948D5D6625A46D6595 /* Pods-PlaypostTests.release.xcconfig */,
+				AA7EACDAE2D002613907213E06A174D8 /* Pods-PlaypostTests-acknowledgements.markdown */,
+				F1DD48ED9EBB9AADB59CAB22465CA646 /* Pods-PlaypostTests-acknowledgements.plist */,
+				E688C2CC91B98A0157251F3CF1FAB3ED /* Pods-PlaypostTests-dummy.m */,
+				7530C7D54A7D24FD20E75DB865A784A2 /* Pods-PlaypostTests.debug.xcconfig */,
+				7EC45A84382612CE4760E84D644E7090 /* Pods-PlaypostTests.release.xcconfig */,
 			);
 			name = "Pods-PlaypostTests";
 			path = "Target Support Files/Pods-PlaypostTests";
 			sourceTree = "<group>";
 		};
-		CF1408CF629C7361332E53B88F7BD30C = {
+		1E40D94BB364328FBE96A84A9A48CC14 /* AppCenterReactNativeShared */ = {
 			isa = PBXGroup;
 			children = (
-				24390EFD555DD124430DFF9724065945 /* Podfile */,
-				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
-				1E116725A47B3002A6007A7B1D3DA817 /* Pods */,
-				FB8F4876E864EC2345CF694E3AC57AA2 /* Products */,
-				F7B5865B8E23D890C8D975870D85C145 /* Targets Support Files */,
-			);
-			sourceTree = "<group>";
-		};
-		D05BF74939E504A95B1C2FF94B8596C5 /* AppCenterReactNativeShared */ = {
-			isa = PBXGroup;
-			children = (
-				269EBDAC70B3D20DD5D118B7FEF9833C /* Frameworks */,
+				ED7F0E7602AAB87E8282D7EE77A128F2 /* Frameworks */,
+				C2F79BBE68CAC64203149AF75B3502BF /* Support Files */,
 			);
 			name = AppCenterReactNativeShared;
 			path = AppCenterReactNativeShared;
+			sourceTree = "<group>";
+		};
+		23977631E0E947775B0FF421D89FC310 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				259A51087349695F5B93EE5070F4CE70 /* AppCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2D46366A65DDC0794CEBC0FE82BB8A8A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				57447041E60F2B2A34B159A833C2254C /* AppCenterAnalytics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5D0D3521F21C1BB5DCE82B8CAEF9692B /* AppCenter */ = {
+			isa = PBXGroup;
+			children = (
+				6EDB0407D90518B826ED8A5E5A0B7C09 /* Analytics */,
+				94182EE150168D8F091F83224D20C0A4 /* Core */,
+				9B7151692B2AC286B115FA8800335CA1 /* Crashes */,
+				D7E2631FD0126E1F8A2EF339F5A433A9 /* Support Files */,
+			);
+			name = AppCenter;
+			path = AppCenter;
+			sourceTree = "<group>";
+		};
+		6EDB0407D90518B826ED8A5E5A0B7C09 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				2D46366A65DDC0794CEBC0FE82BB8A8A /* Frameworks */,
+			);
+			name = Analytics;
+			sourceTree = "<group>";
+		};
+		94182EE150168D8F091F83224D20C0A4 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				23977631E0E947775B0FF421D89FC310 /* Frameworks */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		9B7151692B2AC286B115FA8800335CA1 /* Crashes */ = {
+			isa = PBXGroup;
+			children = (
+				BB344F108DF82A6C8E5EC1D35D0DE13C /* Frameworks */,
+			);
+			name = Crashes;
+			sourceTree = "<group>";
+		};
+		BB344F108DF82A6C8E5EC1D35D0DE13C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F4CE7345C6137AF49A54827B4AEA2E17 /* AppCenterCrashes.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C2F79BBE68CAC64203149AF75B3502BF /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				B949CDF652086A792464DA9B3CE2C9FA /* AppCenterReactNativeShared.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/AppCenterReactNativeShared";
+			sourceTree = "<group>";
+		};
+		C5DC68644DB4C89D144FF51BBE11DE2C /* Pods-Playpost-PlaypostShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				FF888D8D51DDD1E8DDBD0B1D2C459D16 /* Pods-Playpost-PlaypostShareExtension-acknowledgements.markdown */,
+				DB21C3224AE23C16EFACAA3ECB290B71 /* Pods-Playpost-PlaypostShareExtension-acknowledgements.plist */,
+				DC173D1AAD8DD14B26F63ADCEA81E78B /* Pods-Playpost-PlaypostShareExtension-dummy.m */,
+				8B62D4ABE9B7EC6322CF4083E8097F34 /* Pods-Playpost-PlaypostShareExtension.debug.xcconfig */,
+				3CB06D98D938C665DF90A87727C80411 /* Pods-Playpost-PlaypostShareExtension.release.xcconfig */,
+			);
+			name = "Pods-Playpost-PlaypostShareExtension";
+			path = "Target Support Files/Pods-Playpost-PlaypostShareExtension";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
+				EE373CD21EE89767163B4F9D8A04C324 /* Pods */,
+				FB8F4876E864EC2345CF694E3AC57AA2 /* Products */,
+				D5EAC18844072CCF14E2B679C88928F3 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D5EAC18844072CCF14E2B679C88928F3 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				17124FE8D3A0ACF54F4BFB41B8C9F819 /* Pods-Playpost */,
+				C5DC68644DB4C89D144FF51BBE11DE2C /* Pods-Playpost-PlaypostShareExtension */,
+				17E14367056B7D67CE359EC6DE7EAD80 /* Pods-PlaypostTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		D7E2631FD0126E1F8A2EF339F5A433A9 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				59CE2BED226D8BACCDFB3EEC78580EC1 /* AppCenter.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/AppCenter";
 			sourceTree = "<group>";
 		};
 		D89477F20FB1DE18A04690586D7808C4 /* Frameworks */ = {
@@ -217,30 +287,29 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E7174C79B362F5D77F87A78C3E904803 /* Frameworks */ = {
+		ED7F0E7602AAB87E8282D7EE77A128F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F91485CCEA07A5DB82CE80C5502927A7 /* AppCenterAnalytics.framework */,
+				101086D48961A1F5D174F74008C809D8 /* AppCenterReactNativeShared.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F7B5865B8E23D890C8D975870D85C145 /* Targets Support Files */ = {
+		EE373CD21EE89767163B4F9D8A04C324 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				793CB6C3A07BB4D1AF41FC8236C5CA02 /* Pods-Playpost */,
-				5FCC2DEA032EB27289573C3C895BAD9F /* Pods-Playpost-PlaypostShareExtension */,
-				963611E98B228303BFD0F8C86E1FCFA0 /* Pods-PlaypostTests */,
+				5D0D3521F21C1BB5DCE82B8CAEF9692B /* AppCenter */,
+				1E40D94BB364328FBE96A84A9A48CC14 /* AppCenterReactNativeShared */,
 			);
-			name = "Targets Support Files";
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		FB8F4876E864EC2345CF694E3AC57AA2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				588719A637C34DC717D9567A97284EE7 /* libPods-Playpost.a */,
-				6A83F2E257C4B1C1B8EC5550B103D6BD /* libPods-Playpost-PlaypostShareExtension.a */,
-				DD2C386DDB9175A958A22ED64A8FA552 /* libPods-PlaypostTests.a */,
+				CD14D8A23DD2F0C4C5F33D0B703E9DD1 /* libPods-Playpost.a */,
+				016D921A9F01352CCB9BB6818BA51A79 /* libPods-Playpost-PlaypostShareExtension.a */,
+				1D555659DBB149A71180709E9E4420A1 /* libPods-PlaypostTests.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -248,21 +317,21 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		4A9501DDB810F882FECAF11580EE39C4 /* Headers */ = {
+		59EB39642A2704113C7C973A10093D57 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A90224B28A3E772B4EC221D964FB26AC /* Headers */ = {
+		629ADC4807C51BF41458103945F373FB /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EFD893B35B822265AE6EF933B929B5EE /* Headers */ = {
+		B1C0354D9944276D32AC5BCC6BC13A7A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -272,56 +341,60 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		3767C5F3DF531E803AA05688FC4B5F3F /* Pods-Playpost-PlaypostShareExtension */ = {
+		87F01FB3B6BBFED00793AEB8638D7719 /* Pods-Playpost-PlaypostShareExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 81FFB263D69254098E43E2E3D9DA92E3 /* Build configuration list for PBXNativeTarget "Pods-Playpost-PlaypostShareExtension" */;
+			buildConfigurationList = 26F51383E06948D564EDDE07F680F6AD /* Build configuration list for PBXNativeTarget "Pods-Playpost-PlaypostShareExtension" */;
 			buildPhases = (
-				4A9501DDB810F882FECAF11580EE39C4 /* Headers */,
-				5679B40997830E6BC378A8730EA96CCA /* Sources */,
-				6595B5B1247657A8C3C36583095B17DE /* Frameworks */,
+				629ADC4807C51BF41458103945F373FB /* Headers */,
+				EB83B1DD7FE31BB12D71A8E6F97DA705 /* Sources */,
+				88B124AE27861E8D916A71A739C2E0F3 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5B5E61888BE9E2EFC3C9C767B054E6D6 /* PBXTargetDependency */,
+				F8642117C780D70FAB2462A04E82BFDD /* PBXTargetDependency */,
 			);
 			name = "Pods-Playpost-PlaypostShareExtension";
 			productName = "Pods-Playpost-PlaypostShareExtension";
-			productReference = 6A83F2E257C4B1C1B8EC5550B103D6BD /* libPods-Playpost-PlaypostShareExtension.a */;
+			productReference = 016D921A9F01352CCB9BB6818BA51A79 /* libPods-Playpost-PlaypostShareExtension.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		7DF78F7AF50336F186351CB9747D6473 /* Pods-Playpost */ = {
+		B1BD618E81A6BFB1E7B2081F113DED03 /* Pods-PlaypostTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 976B6ECC37C40D0F3E15FF5A18AF15C3 /* Build configuration list for PBXNativeTarget "Pods-Playpost" */;
+			buildConfigurationList = BB7F63F7CB141068D114F9415719E2CE /* Build configuration list for PBXNativeTarget "Pods-PlaypostTests" */;
 			buildPhases = (
-				EFD893B35B822265AE6EF933B929B5EE /* Headers */,
-				FF79A9779C3FFB6447C33D4FFD7F5C35 /* Sources */,
-				22865D488BC82DD8F666B350C68BE418 /* Frameworks */,
+				59EB39642A2704113C7C973A10093D57 /* Headers */,
+				1D208E61A41BA52E4E2843F4B374301C /* Sources */,
+				CAE671A23A0945CB5C3888E95D8139AB /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-			);
-			name = "Pods-Playpost";
-			productName = "Pods-Playpost";
-			productReference = 588719A637C34DC717D9567A97284EE7 /* libPods-Playpost.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		E5D3C86E4E64A5E981FCD717F24A2281 /* Pods-PlaypostTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2448B59ACD9BB35691D969BCD7D181A3 /* Build configuration list for PBXNativeTarget "Pods-PlaypostTests" */;
-			buildPhases = (
-				A90224B28A3E772B4EC221D964FB26AC /* Headers */,
-				7DAD1213F6E9A14DFEFDF452222DAF49 /* Sources */,
-				A840757D984F8377F1A359F67D739FB4 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9EB4BAE43F5AB250982CFCD2F8AD883A /* PBXTargetDependency */,
+				FC6E13D4EDE68BB0D1C5CD7A8BAF6E16 /* PBXTargetDependency */,
 			);
 			name = "Pods-PlaypostTests";
 			productName = "Pods-PlaypostTests";
-			productReference = DD2C386DDB9175A958A22ED64A8FA552 /* libPods-PlaypostTests.a */;
+			productReference = 1D555659DBB149A71180709E9E4420A1 /* libPods-PlaypostTests.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		DFEB123BDF43D214C5D83522121003F1 /* Pods-Playpost */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93AD0EFF8A6A51251DA6E6AEA43AE89D /* Build configuration list for PBXNativeTarget "Pods-Playpost" */;
+			buildPhases = (
+				B1C0354D9944276D32AC5BCC6BC13A7A /* Headers */,
+				C8D283C153397B95A4DF0D017449ED27 /* Sources */,
+				A379FC1EB5430976E0A92C35C9DC6DBF /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				30E8943DE44E814EDD4B4685DFA1C8E4 /* PBXTargetDependency */,
+				82DA7EDAB5917CC4D4A4D84B91B88655 /* PBXTargetDependency */,
+			);
+			name = "Pods-Playpost";
+			productName = "Pods-Playpost";
+			productReference = CD14D8A23DD2F0C4C5F33D0B703E9DD1 /* libPods-Playpost.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -330,12 +403,12 @@
 		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -345,61 +418,94 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7DF78F7AF50336F186351CB9747D6473 /* Pods-Playpost */,
-				3767C5F3DF531E803AA05688FC4B5F3F /* Pods-Playpost-PlaypostShareExtension */,
-				E5D3C86E4E64A5E981FCD717F24A2281 /* Pods-PlaypostTests */,
+				A3282A5B2437E609EEB85861D7ECE717 /* AppCenter */,
+				2CD32458A161AF8E4BA58B4310701AB3 /* AppCenterReactNativeShared */,
+				DFEB123BDF43D214C5D83522121003F1 /* Pods-Playpost */,
+				87F01FB3B6BBFED00793AEB8638D7719 /* Pods-Playpost-PlaypostShareExtension */,
+				B1BD618E81A6BFB1E7B2081F113DED03 /* Pods-PlaypostTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		5679B40997830E6BC378A8730EA96CCA /* Sources */ = {
+		1D208E61A41BA52E4E2843F4B374301C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB15C878293C18EAA5FCC9969138F90B /* Pods-Playpost-PlaypostShareExtension-dummy.m in Sources */,
+				C5CD1A1DC028B76A2FF5E24285B4C980 /* Pods-PlaypostTests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7DAD1213F6E9A14DFEFDF452222DAF49 /* Sources */ = {
+		C8D283C153397B95A4DF0D017449ED27 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A36AF816710D7C3B66E79FCFA9E82C8 /* Pods-PlaypostTests-dummy.m in Sources */,
+				27861CF36A42148D730BCA1655C5A632 /* Pods-Playpost-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FF79A9779C3FFB6447C33D4FFD7F5C35 /* Sources */ = {
+		EB83B1DD7FE31BB12D71A8E6F97DA705 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62C39D9C428F6F8596864B47B090EFD7 /* Pods-Playpost-dummy.m in Sources */,
+				A99BEB9DB580F28F54845FAF2F4667D5 /* Pods-Playpost-PlaypostShareExtension-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9EB4BAE43F5AB250982CFCD2F8AD883A /* PBXTargetDependency */ = {
+		0051E4214884EF5346A2A55966EC832B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AppCenter;
+			target = A3282A5B2437E609EEB85861D7ECE717 /* AppCenter */;
+			targetProxy = D96B09CB6F7CDF72F3099DD83AD5AB87 /* PBXContainerItemProxy */;
+		};
+		30E8943DE44E814EDD4B4685DFA1C8E4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AppCenter;
+			target = A3282A5B2437E609EEB85861D7ECE717 /* AppCenter */;
+			targetProxy = 63249B6EA2EE6C84238B5DFDA79BADB3 /* PBXContainerItemProxy */;
+		};
+		5B5E61888BE9E2EFC3C9C767B054E6D6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AppCenter;
+			target = A3282A5B2437E609EEB85861D7ECE717 /* AppCenter */;
+			targetProxy = CB0F596A638E2FF6F38970D7C7857633 /* PBXContainerItemProxy */;
+		};
+		82DA7EDAB5917CC4D4A4D84B91B88655 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AppCenterReactNativeShared;
+			target = 2CD32458A161AF8E4BA58B4310701AB3 /* AppCenterReactNativeShared */;
+			targetProxy = A70395FC21299D7372788868C9F58FD0 /* PBXContainerItemProxy */;
+		};
+		F8642117C780D70FAB2462A04E82BFDD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AppCenterReactNativeShared;
+			target = 2CD32458A161AF8E4BA58B4310701AB3 /* AppCenterReactNativeShared */;
+			targetProxy = 4A8ED66AD6022DAC3315BEFB93C3E176 /* PBXContainerItemProxy */;
+		};
+		FC6E13D4EDE68BB0D1C5CD7A8BAF6E16 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-Playpost";
-			target = 7DF78F7AF50336F186351CB9747D6473 /* Pods-Playpost */;
-			targetProxy = 0E2A0F33ED31130EFE7B9D8E059CA997 /* PBXContainerItemProxy */;
+			target = DFEB123BDF43D214C5D83522121003F1 /* Pods-Playpost */;
+			targetProxy = 59AC8F91A97ABBBB7A80382003D44209 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		357F70CA4FEA216319FE7DABFCDD96ED /* Release */ = {
+		132D480B2C35F749DC1B2E9E18C6BEB8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FBA9A9502CDCB91A792B991FA106113A /* Pods-Playpost.release.xcconfig */;
+			baseConfigurationReference = 7EC45A84382612CE4760E84D644E7090 /* Pods-PlaypostTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -412,76 +518,7 @@
 			};
 			name = Release;
 		};
-		5990F9B7FB31FFDCF29A91E15E3DF7D7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 896A3737EB95A449D54E056F94150DCD /* Pods-Playpost-PlaypostShareExtension.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		7E6C619A3DDD47618958B515757C671C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = BEC5A8153A7B6061204E9117BA910792 /* Pods-PlaypostTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		89DBE19B27D7BA45FF3A4B1F436C89B5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 481CE66797FD6C8368C8DB8C10730DF2 /* Pods-Playpost-PlaypostShareExtension.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		984B99C322F45D243D991CA6A63EF1F1 /* Debug */ = {
+		204B8AEA4AE90A551A1768B355C2F9F0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -513,8 +550,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_ALLOWED = NO;
-				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -534,7 +569,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -542,34 +577,12 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Debug;
 		};
-		9FD12942671FD0B71E45124374A10EC7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B38ADDD98B081935A7AAD794729CDC8C /* Pods-Playpost.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		B7FD5B0ACE9286FFDADF4ACE2322AF4A /* Release */ = {
+		3CCC6195EDBEE5DA2A49DF962113BE16 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -601,8 +614,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_ALLOWED = NO;
-				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -619,29 +630,30 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
 		};
-		F5FC6AC653716A2069A195C2FB37716B /* Release */ = {
+		52387A765E9FCF031B77C41E90F063B1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6806297863EA19948D5D6625A46D6595 /* Pods-PlaypostTests.release.xcconfig */;
+			baseConfigurationReference = 99920A5D6A5F84452D96C99D99090519 /* Pods-Playpost.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -654,14 +666,171 @@
 			};
 			name = Release;
 		};
+		624F43B1F6361E22D74AE508E1FCDBA9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9AD645ED93BC107473EF1AD69850A17B /* Pods-Playpost.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7DA586E11515015CCCDFB13E5DE001AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 59CE2BED226D8BACCDFB3EEC78580EC1 /* AppCenter.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8814A1F38290C2A6DC22E60C0C5075B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 59CE2BED226D8BACCDFB3EEC78580EC1 /* AppCenter.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		989ADA84F955FC7A723C0081E114CDA0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3CB06D98D938C665DF90A87727C80411 /* Pods-Playpost-PlaypostShareExtension.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CD0A21AF6A473B7A66CDD89D8107BC85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B949CDF652086A792464DA9B3CE2C9FA /* AppCenterReactNativeShared.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D97DF13ACCF27545D264B2ED2C086657 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B949CDF652086A792464DA9B3CE2C9FA /* AppCenterReactNativeShared.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EA94EB1D57022B10FF1F52589F03F1FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7530C7D54A7D24FD20E75DB865A784A2 /* Pods-PlaypostTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F630761EE3C74DDAA7FC5ED091EB126D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B62D4ABE9B7EC6322CF4083E8097F34 /* Pods-Playpost-PlaypostShareExtension.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2448B59ACD9BB35691D969BCD7D181A3 /* Build configuration list for PBXNativeTarget "Pods-PlaypostTests" */ = {
+		26F51383E06948D564EDDE07F680F6AD /* Build configuration list for PBXNativeTarget "Pods-Playpost-PlaypostShareExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7E6C619A3DDD47618958B515757C671C /* Debug */,
-				F5FC6AC653716A2069A195C2FB37716B /* Release */,
+				F630761EE3C74DDAA7FC5ED091EB126D /* Debug */,
+				989ADA84F955FC7A723C0081E114CDA0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -669,26 +838,44 @@
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				984B99C322F45D243D991CA6A63EF1F1 /* Debug */,
-				B7FD5B0ACE9286FFDADF4ACE2322AF4A /* Release */,
+				204B8AEA4AE90A551A1768B355C2F9F0 /* Debug */,
+				3CCC6195EDBEE5DA2A49DF962113BE16 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		81FFB263D69254098E43E2E3D9DA92E3 /* Build configuration list for PBXNativeTarget "Pods-Playpost-PlaypostShareExtension" */ = {
+		93AD0EFF8A6A51251DA6E6AEA43AE89D /* Build configuration list for PBXNativeTarget "Pods-Playpost" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				89DBE19B27D7BA45FF3A4B1F436C89B5 /* Debug */,
-				5990F9B7FB31FFDCF29A91E15E3DF7D7 /* Release */,
+				624F43B1F6361E22D74AE508E1FCDBA9 /* Debug */,
+				52387A765E9FCF031B77C41E90F063B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		976B6ECC37C40D0F3E15FF5A18AF15C3 /* Build configuration list for PBXNativeTarget "Pods-Playpost" */ = {
+		B1AADDABC0FF92BF51AC88E6BD57DB25 /* Build configuration list for PBXAggregateTarget "AppCenterReactNativeShared" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9FD12942671FD0B71E45124374A10EC7 /* Debug */,
-				357F70CA4FEA216319FE7DABFCDD96ED /* Release */,
+				CD0A21AF6A473B7A66CDD89D8107BC85 /* Debug */,
+				D97DF13ACCF27545D264B2ED2C086657 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB7F63F7CB141068D114F9415719E2CE /* Build configuration list for PBXNativeTarget "Pods-PlaypostTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA94EB1D57022B10FF1F52589F03F1FC /* Debug */,
+				132D480B2C35F749DC1B2E9E18C6BEB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0944D0DEFF9CDF0CBE6D4A41B195020 /* Build configuration list for PBXAggregateTarget "AppCenter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7DA586E11515015CCCDFB13E5DE001AB /* Debug */,
+				8814A1F38290C2A6DC22E60C0C5075B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

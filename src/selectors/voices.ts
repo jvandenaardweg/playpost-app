@@ -2,51 +2,65 @@ import { createSelector } from 'reselect';
 import { RootState } from '../reducers';
 import { VoicesState } from '../reducers/voices';
 
-const voicesSelector = (state: RootState): VoicesState => state.voices;
+export type VoicesLanguages = {
+  languageName: string;
+  countryCode: string;
+};
 
-export const getVoices = createSelector(
+export const voicesSelector = (state: RootState): VoicesState => state.voices;
+
+export const selectLanguages = createSelector(
   [voicesSelector],
-  voices => voices.voices
+  voices => voices.languages
 );
 
-export const getDownloadedVoices = createSelector(
-  [voicesSelector],
-  voices => voices.downloaded
-);
+export const selectLanguagesWithActiveVoices = createSelector(
+  [selectLanguages],
+  (languages) => {
+    // Return languages with active voices
+    const languagesWithActiveVoices = languages.map((language) => {
+      return {
+        ...language,
+        voices: language.voices && language.voices.filter(voice => voice.isActive)
+      };
+    });
 
-export const getSelectedVoiceId = createSelector(
-  [voicesSelector],
-  voices => voices.selectedVoiceId
-);
-
-export const getAvailableVoices = createSelector(
-  [getVoices],
-  voices => voices.filter(voice => voice.isActive)
-);
-
-export const getAvailableFreeVoices = createSelector(
-  [getAvailableVoices],
-  voices => voices.filter(voice => !voice.isPremium)
-);
-
-export const getAvailablePremiumVoices = createSelector(
-  [getAvailableVoices],
-  voices => voices.filter(voice => voice.isPremium)
-);
-
-export const getDefaultFreeVoice = createSelector(
-  [getAvailableFreeVoices],
-  voices => voices.find(voice => voice.name === 'Joanna' && voice.synthesizer === 'AWS')
-);
-
-export const getDefaultPremiumVoice = createSelector(
-  [getAvailablePremiumVoices],
-  voices => voices.find(voice => voice.name === 'en-US-Wavenet-D' && voice.synthesizer === 'Google')
-);
-
-export const getSelectedVoice = createSelector(
-  [getSelectedVoiceId, getAvailableVoices],
-  (selectedVoiceId, availableVoices) => {
-    return availableVoices.find(voice => voice.id === selectedVoiceId);
+    return languagesWithActiveVoices;
   }
 );
+
+export const selectDownloadedVoicePreviews = createSelector(
+  [voicesSelector],
+  voices => voices.downloadedVoicePreviews
+);
+
+export const selectAvailableVoicesByLanguageName = (state: RootState, languageName: string) => createSelector(
+  [selectLanguagesWithActiveVoices],
+  (languages) => {
+    const language = languages.find(language => language.name === languageName);
+    if (!language) return [];
+    if (!language.voices) return [];
+
+    // Sort by label name
+    // Create a copy of the array by using the spread syntax
+    const sortedVoices = [...language.voices].sort((a, b) => {
+      const aLabel = (a.label) ? a.label : '';
+      const bLabel = (b.label) ? b.label : '';
+      return aLabel.localeCompare(bLabel);
+    });
+
+    return sortedVoices;
+  }
+)(state);
+
+export const selectDefaultVoicesByLanguageName = (state: RootState, languageName: string) => createSelector(
+  [selectLanguagesWithActiveVoices],
+  (languages) => {
+    const language = languages.find(language => language.name === languageName);
+    if (!language) return null;
+
+    const defaultVoice = language.voices && language.voices.filter(voice => !!voice.isLanguageDefault);
+
+    return defaultVoice;
+  }
+)(state);

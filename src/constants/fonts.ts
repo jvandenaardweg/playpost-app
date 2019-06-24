@@ -1,4 +1,5 @@
 // Font sizes: https://learnui.design/blog/ios-font-size-guidelines.html
+// https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/typography/
 
 export default {
   fontSize: {

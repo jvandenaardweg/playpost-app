@@ -12,11 +12,11 @@ export default StyleSheet.create({
   mainContent: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     backgroundColor: colors.tintColor,
     padding: spacing.default,
     paddingTop: 0,
-    paddingBottom: '27%'
+    paddingBottom: '25%'
   },
   image: {
     width: 320,

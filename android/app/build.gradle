@@ -1,4 +1,6 @@
 apply plugin: "com.android.application"
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 
 import com.android.build.OutputFile
 
@@ -101,8 +103,8 @@ android {
         applicationId "com.aardwegmedia.playpost"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 5
+        versionName "1.0.4"
     }
     splits {
         abi {
@@ -141,6 +143,9 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-config')
+    implementation project(':react-native-iap')
+    implementation project(':react-native-reanimated')
     implementation project(':@react-native-community_async-storage')
     implementation project(':react-native-webview')
     implementation project(':react-native-version-number')

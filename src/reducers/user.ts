@@ -1,7 +1,4 @@
-import Analytics from 'appcenter-analytics';
-import { AxiosError, AxiosResponse } from 'axios';
-
-import { GENERIC_NETWORK_ERROR, GET_USER_FAIL_MESSAGE, CREATE_USER_FAIL_MESSAGE, DELETE_USER_FAIL_MESSAGE } from '../constants/messages';
+import { GENERIC_NETWORK_ERROR, GET_USER_FAIL_MESSAGE, CREATE_USER_FAIL_MESSAGE, DELETE_USER_FAIL_MESSAGE, UPDATE_USER_PASSWORD_FAIL_MESSAGE, UPDATE_USER_EMAIL_FAIL_MESSAGE, SAVE_SELECTED_VOICE_FAIL_MESSAGE } from '../constants/messages';
 
 export const GET_USER = 'user/GET_USER';
 export const GET_USER_SUCCESS = 'user/GET_USER_SUCCESS';
@@ -15,29 +12,51 @@ export const DELETE_USER = 'user/DELETE_USER';
 export const DELETE_USER_SUCCESS = 'user/DELETE_USER_SUCCESS';
 export const DELETE_USER_FAIL = 'user/DELETE_USER_FAIL';
 
+export const UPDATE_USER_PASSWORD = 'user/UPDATE_USER_PASSWORD';
+export const UPDATE_USER_PASSWORD_SUCCESS = 'user/UPDATE_USER_PASSWORD_SUCCESS';
+export const UPDATE_USER_PASSWORD_FAIL = 'user/UPDATE_USER_PASSWORD_FAIL';
+
+export const UPDATE_USER_EMAIL = 'user/UPDATE_USER_EMAIL';
+export const UPDATE_USER_EMAIL_SUCCESS = 'user/UPDATE_USER_EMAIL_SUCCESS';
+export const UPDATE_USER_EMAIL_FAIL = 'user/UPDATE_USER_EMAIL_FAIL';
+
+export const SAVE_SELECTED_VOICE = 'user/SAVE_SELECTED_VOICE';
+export const SAVE_SELECTED_VOICE_SUCCESS = 'user/SAVE_SELECTED_VOICE_SUCCESS';
+export const SAVE_SELECTED_VOICE_FAIL = 'user/SAVE_SELECTED_VOICE_FAIL';
+export const RESET_SAVE_SELECTED_VOICE_ERROR = 'user/RESET_SAVE_SELECTED_VOICE_ERROR';
+
+export const SET_USER_PREMIUM = 'user/SET_USER_PREMIUM';
+export const RESET_USER_PREMIUM = 'user/RESET_USER_PREMIUM';
+
 export const RESET_USER_STATE = 'user/RESET_USER_STATE';
+export const RESET_USER_ERROR = 'user/RESET_USER_ERROR';
 
 export type UserState = Readonly<{
   isLoading: boolean;
   isLoadingDelete: boolean;
+  isLoadingUpdatePassword: boolean;
+  isLoadingUpdateEmail: boolean;
+  isLoadingSaveSelectedVoice: boolean;
   details: Api.User | null;
+  isPremium: boolean;
   error: string;
+  errorSaveSelectedVoice: string;
 }>;
 
-const initialState: UserState = {
+export const initialState: UserState = {
   isLoading: false,
   isLoadingDelete: false,
+  isLoadingUpdatePassword: false,
+  isLoadingUpdateEmail: false,
+  isLoadingSaveSelectedVoice: false,
   details: null,
-  error: ''
+  isPremium: false,
+  error: '',
+  errorSaveSelectedVoice: ''
 };
 
-type UserActionTypes = {
-  type: string;
-  payload: AxiosResponse;
-  error: AxiosError & AxiosResponse;
-};
-
-export function userReducer(state = initialState, action: UserActionTypes): UserState {
+/* tslint:disable no-any */
+export function userReducer(state = initialState, action: any): UserState {
   switch (action.type) {
     case GET_USER:
       return {
@@ -47,8 +66,6 @@ export function userReducer(state = initialState, action: UserActionTypes): User
       };
 
     case GET_USER_SUCCESS:
-      Analytics.trackEvent('Get details success');
-
       return {
         ...state,
         isLoading: false,
@@ -60,15 +77,13 @@ export function userReducer(state = initialState, action: UserActionTypes): User
       let getUserFailMessage = '';
 
       // Network error
-      if (action.error.status === 0) {
+      if (action.error && action.error.status === 0) {
         getUserFailMessage = GENERIC_NETWORK_ERROR;
       } else {
         // Error, from the API
-        if (action.error.response && action.error.response.data && action.error.response.data.message) {
-          Analytics.trackEvent('Error get account', { message: action.error.response.data.message });
+        if (action.error && action.error.response && action.error.response.data && action.error.response.data.message) {
           getUserFailMessage = action.error.response.data.message;
         } else {
-          Analytics.trackEvent('Error get account', { message: GET_USER_FAIL_MESSAGE });
           getUserFailMessage = GET_USER_FAIL_MESSAGE;
         }
       }
@@ -88,8 +103,6 @@ export function userReducer(state = initialState, action: UserActionTypes): User
       };
 
     case CREATE_USER_SUCCESS:
-      Analytics.trackEvent('Create user success');
-
       return {
         ...state,
         isLoading: false,
@@ -106,10 +119,8 @@ export function userReducer(state = initialState, action: UserActionTypes): User
       } else {
         // Error, from the API
         if (action.error.response && action.error.response.data && action.error.response.data.message) {
-          Analytics.trackEvent('Error create user', { message: action.error.response.data.message });
           createUserFailMessage = action.error.response.data.message;
         } else {
-          Analytics.trackEvent('Error create user', { message: CREATE_USER_FAIL_MESSAGE });
           createUserFailMessage = CREATE_USER_FAIL_MESSAGE;
         }
       }
@@ -129,8 +140,6 @@ export function userReducer(state = initialState, action: UserActionTypes): User
       };
 
     case DELETE_USER_SUCCESS:
-      Analytics.trackEvent('Delete user success');
-
       return {
         ...state,
         isLoadingDelete: false,
@@ -146,10 +155,8 @@ export function userReducer(state = initialState, action: UserActionTypes): User
       } else {
         // Error, from the API
         if (action.error.response && action.error.response.data && action.error.response.data.message) {
-          Analytics.trackEvent('Error delete user', { message: action.error.response.data.message });
           deleteUserFailMessage = action.error.response.data.message;
         } else {
-          Analytics.trackEvent('Error delete user', { message: DELETE_USER_FAIL_MESSAGE });
           deleteUserFailMessage = DELETE_USER_FAIL_MESSAGE;
         }
       }
@@ -158,6 +165,136 @@ export function userReducer(state = initialState, action: UserActionTypes): User
         ...state,
         isLoadingDelete: false,
         error: deleteUserFailMessage
+      };
+
+    case UPDATE_USER_PASSWORD:
+      return {
+        ...state,
+        isLoadingUpdatePassword: true,
+        error: ''
+      };
+
+    case UPDATE_USER_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        isLoadingUpdatePassword: false,
+        error: ''
+      };
+
+    case UPDATE_USER_PASSWORD_FAIL:
+      let updateUserPasswordFailMessage = '';
+
+      // Network error
+      if (action.error.status === 0) {
+        updateUserPasswordFailMessage = GENERIC_NETWORK_ERROR;
+      } else {
+        // Error, from the API
+        if (action.error.response && action.error.response.data && action.error.response.data.message) {
+          updateUserPasswordFailMessage = action.error.response.data.message;
+        } else {
+          updateUserPasswordFailMessage = UPDATE_USER_PASSWORD_FAIL_MESSAGE;
+        }
+      }
+
+      return {
+        ...state,
+        isLoadingUpdatePassword: false,
+        error: updateUserPasswordFailMessage
+      };
+
+    case UPDATE_USER_EMAIL:
+      return {
+        ...state,
+        isLoadingUpdateEmail: true,
+        error: ''
+      };
+
+    case UPDATE_USER_EMAIL_SUCCESS:
+      return {
+        ...state,
+        isLoadingUpdateEmail: false,
+        error: ''
+      };
+
+    case UPDATE_USER_EMAIL_FAIL:
+      let updateUserEmailFailMessage = '';
+
+      // Network error
+      if (action.error.status === 0) {
+        updateUserEmailFailMessage = GENERIC_NETWORK_ERROR;
+      } else {
+        // Error, from the API
+        if (action.error.response && action.error.response.data && action.error.response.data.message) {
+          updateUserEmailFailMessage = action.error.response.data.message;
+        } else {
+          updateUserEmailFailMessage = UPDATE_USER_EMAIL_FAIL_MESSAGE;
+        }
+      }
+
+      return {
+        ...state,
+        isLoadingUpdateEmail: false,
+        error: updateUserEmailFailMessage
+      };
+
+    case SAVE_SELECTED_VOICE:
+      return {
+        ...state,
+        isLoadingSaveSelectedVoice: true,
+        errorSaveSelectedVoice: ''
+      };
+
+    case SAVE_SELECTED_VOICE_SUCCESS:
+      return {
+        ...state,
+        isLoadingSaveSelectedVoice: false,
+        errorSaveSelectedVoice: ''
+      };
+
+    case SAVE_SELECTED_VOICE_FAIL:
+
+      let saveSelectedVoiceFailMessage = '';
+
+      // Network error
+      if (action.error.status === 0) {
+        saveSelectedVoiceFailMessage = GENERIC_NETWORK_ERROR;
+      } else {
+        // Error, from the API
+        if (action.error.response && action.error.response.data && action.error.response.data.message) {
+          saveSelectedVoiceFailMessage = action.error.response.data.message;
+        } else {
+          saveSelectedVoiceFailMessage = SAVE_SELECTED_VOICE_FAIL_MESSAGE;
+        }
+      }
+
+      return {
+        ...state,
+        isLoadingSaveSelectedVoice: false,
+        errorSaveSelectedVoice: saveSelectedVoiceFailMessage
+      };
+
+    case RESET_SAVE_SELECTED_VOICE_ERROR:
+      return {
+        ...state,
+        errorSaveSelectedVoice: ''
+      };
+
+    case SET_USER_PREMIUM:
+      return {
+        ...state,
+        isPremium: true
+      };
+
+    case RESET_USER_PREMIUM:
+      return {
+        ...state,
+        isPremium: initialState.isPremium
+      };
+
+    case RESET_USER_ERROR:
+      return {
+        ...state,
+        error: ''
       };
 
     case RESET_USER_STATE:
@@ -176,6 +313,18 @@ export function resetUserState() {
   };
 }
 
+export function resetSaveSelectedVoiceError() {
+  return {
+    type: RESET_SAVE_SELECTED_VOICE_ERROR
+  };
+}
+
+export function resetUserError() {
+  return {
+    type: RESET_USER_ERROR
+  };
+}
+
 export function getUser() {
   return {
     type: GET_USER,
@@ -183,6 +332,36 @@ export function getUser() {
       request: {
         method: 'get',
         url: '/v1/me'
+      }
+    }
+  };
+}
+
+export function updateUserPassword(password: string) {
+  return {
+    type: UPDATE_USER_PASSWORD,
+    payload: {
+      request: {
+        method: 'patch',
+        url: '/v1/me/password',
+        data: {
+          password
+        }
+      }
+    }
+  };
+}
+
+export function updateUserEmail(email: string) {
+  return {
+    type: UPDATE_USER_EMAIL,
+    payload: {
+      request: {
+        method: 'patch',
+        url: '/v1/me/email',
+        data: {
+          email
+        }
       }
     }
   };
@@ -211,6 +390,26 @@ export function deleteUser() {
       request: {
         method: 'delete',
         url: '/v1/me'
+      }
+    }
+  };
+}
+
+/**
+ * Saves the selected voice as a default voice for the voice's language
+ *
+ * @param voiceId
+ */
+export function saveSelectedVoice(voiceId: string) {
+  return {
+    type: SAVE_SELECTED_VOICE,
+    payload: {
+      request: {
+        method: 'post',
+        url: '/v1/me/voices',
+        data: {
+          voiceId
+        }
       }
     }
   };
