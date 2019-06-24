@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
-import { Alert } from 'react-native';
 
 import { postResetPassword } from '../reducers/auth';
 
-import { selectAuthError, selectAuthenticationToken, selectErrorResetPassword } from '../selectors/auth';
+import { selectErrorResetPassword } from '../selectors/auth';
 import { RootState } from '../reducers';
 import { LoginForgotPasswordForm } from '../components/LoginForgotPasswordForm';
 

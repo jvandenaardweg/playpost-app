@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LoginForm rendering should render correctly 1`] = `
+exports[`LoginUpdatePasswordForm rendering should render correctly 1`] = `
 <View
   onLayout={[Function]}
   style={
@@ -36,14 +36,14 @@ exports[`LoginForm rendering should render correctly 1`] = `
   >
     <View>
       <TextInput
-        autoCapitalize="none"
+        autoCapitalize="characters"
         autoFocus={false}
         blurOnSubmit={false}
         clearButtonMode="always"
-        keyboardType="email-address"
+        keyboardType="default"
         onChangeText={[Function]}
         onSubmitEditing={[Function]}
-        placeholder="E-mail address"
+        placeholder="6 character reset password code"
         returnKeyType="next"
         style={
           Object {
@@ -68,7 +68,7 @@ exports[`LoginForm rendering should render correctly 1`] = `
         clearButtonMode="always"
         onChangeText={[Function]}
         onSubmitEditing={[Function]}
-        placeholder="Password"
+        placeholder="Your new password"
         returnKeyType="done"
         secureTextEntry={true}
         style={
@@ -136,7 +136,7 @@ exports[`LoginForm rendering should render correctly 1`] = `
                   }
                 }
               >
-                Login
+                Save my new password
               </Text>
             </View>
           </View>

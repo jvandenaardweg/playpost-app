@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LoginForm rendering should render correctly 1`] = `
+exports[`LoginForgotPasswordForm rendering should render correctly 1`] = `
 <View
   onLayout={[Function]}
   style={
@@ -61,32 +61,6 @@ exports[`LoginForm rendering should render correctly 1`] = `
         textContentType="username"
         value=""
       />
-      <TextInput
-        autoCapitalize="none"
-        autoFocus={false}
-        blurOnSubmit={false}
-        clearButtonMode="always"
-        onChangeText={[Function]}
-        onSubmitEditing={[Function]}
-        placeholder="Password"
-        returnKeyType="done"
-        secureTextEntry={true}
-        style={
-          Object {
-            "backgroundColor": "#ffffff",
-            "borderColor": "#e5e5e5",
-            "borderRadius": 4,
-            "borderWidth": 1,
-            "fontSize": 15,
-            "height": 50,
-            "marginBottom": 12,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-          }
-        }
-        textContentType="password"
-        value=""
-      />
       <View>
         <View
           style={
@@ -136,7 +110,59 @@ exports[`LoginForm rendering should render correctly 1`] = `
                   }
                 }
               >
-                Login
+                Reset my password
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "borderRadius": 3,
+            }
+          }
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "transparent",
+                  "borderColor": "#2089dc",
+                  "borderRadius": 3,
+                  "borderWidth": 0,
+                  "flexDirection": "row",
+                  "justifyContent": "center",
+                  "padding": 8,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#2089dc",
+                    "fontSize": 18,
+                    "paddingBottom": 1,
+                    "paddingTop": 2,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                Already have reset password code?
               </Text>
             </View>
           </View>
