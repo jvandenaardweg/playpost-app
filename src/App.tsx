@@ -46,16 +46,16 @@ export default class App extends React.PureComponent {
     DeepLinking.addScheme('playpost://');
     DeepLinking.addScheme('https://');
 
-    DeepLinking.addRoute('/login/update-password/:resetPasswordToken', ({ path, resetPasswordToken }: { path: string, resetPasswordToken: string }) => {
+    DeepLinking.addRoute('/login/reset-password/:resetPasswordToken', ({ path, resetPasswordToken }: { path: string, resetPasswordToken: string }) => {
       // playpost://update-password/123ABC
       console.log('Should navigate to: ', path, ' with resetPasswordToken: ', resetPasswordToken);
-      NavigationService.navigate('login/update-password', { resetPasswordToken });
+      NavigationService.navigate('login/reset-password', { resetPasswordToken });
     });
 
-    DeepLinking.addRoute('/playpost.app/login/update-password/:resetPasswordToken', ({ path, resetPasswordToken }: { path: string, resetPasswordToken: string }) => {
+    DeepLinking.addRoute('/playpost.app/login/reset-password/:resetPasswordToken', ({ path, resetPasswordToken }: { path: string, resetPasswordToken: string }) => {
       // playpost://update-password/123ABC
       console.log('http Should navigate to: ', path, ' with resetPasswordToken: ', resetPasswordToken);
-      NavigationService.navigate(path, { resetPasswordToken });
+      NavigationService.navigate('login/reset-password', { resetPasswordToken });
     });
 
     Linking.getInitialURL()

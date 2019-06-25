@@ -38,7 +38,7 @@ export const LoginForm: React.FC<Props> = React.memo(({
           keyboardType="email-address"
           returnKeyType="next"
           clearButtonMode="always"
-          // autoFocus
+          autoFocus
           blurOnSubmit={false}
         />
 

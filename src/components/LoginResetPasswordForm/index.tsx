@@ -12,7 +12,7 @@ interface Props {
   isSuccess: boolean | null;
 }
 
-export const LoginUpdatePasswordForm: React.FC<Props> = React.memo(({
+export const LoginResetPasswordForm: React.FC<Props> = React.memo(({
   password,
   resetPasswordToken,
   isLoading,
@@ -24,11 +24,13 @@ export const LoginUpdatePasswordForm: React.FC<Props> = React.memo(({
   let passwordInput: TextInput | null = null;
 
   return (
-    <KeyboardAvoidingView testID="login-form" style={styles.container} behavior="padding" enabled>
+    <KeyboardAvoidingView testID="reset-password-form" style={styles.container} behavior="padding" enabled>
       <ScrollView style={styles.form} contentContainerStyle={styles.formContent} keyboardShouldPersistTaps={'handled'}>
 
+        <Text style={styles.subtitle}>Please check your e-mail's inbox for the password reset code and fill it in below.</Text>
+
         <TextInput
-          placeholder="6 character reset password code"
+          placeholder="Reset password code, example: A6HC13"
           autoCapitalize="characters"
           value={resetPasswordToken}
           onChangeText={text => onChangeText('resetPasswordToken', text)}
@@ -38,7 +40,7 @@ export const LoginUpdatePasswordForm: React.FC<Props> = React.memo(({
           keyboardType="default"
           returnKeyType="next"
           clearButtonMode="always"
-          // autoFocus
+          autoFocus
           blurOnSubmit={false}
         />
 
@@ -58,8 +60,17 @@ export const LoginUpdatePasswordForm: React.FC<Props> = React.memo(({
         />
 
         <View>
-          {isSuccess && <Text>Success!</Text>}
-          <Button title="Save my new password" loading={isLoading} onPress={onPressUpdatePassword} disabled={isLoading} buttonStyle={styles.buttonStyle} disabledStyle={styles.buttonStyle} activeOpacity={1} titleStyle={styles.buttonTitleStyle} />
+          <Button
+            title={(isSuccess) ? 'Successfully changed password!' : 'Save my new password'}
+            loading={isLoading}
+            onPress={onPressUpdatePassword}
+            disabled={isLoading || !!isSuccess}
+            buttonStyle={(isSuccess) ? styles.buttonStyleSuccess : styles.buttonStyle}
+            titleStyle={(isSuccess) ? styles.buttonTitleStyleSuccess : {}}
+            activeOpacity={1}
+            disabledStyle={(isSuccess) ? styles.buttonStyleSuccess : styles.buttonStyle}
+            disabledTitleStyle={(isSuccess) ? styles.buttonTitleStyleSuccess : styles.buttonStyle}
+          />
         </View>
 
       </ScrollView>

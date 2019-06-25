@@ -1,4 +1,4 @@
-import { authSelector, selectAuthError, selectIsLoading, selectAuthenticationStatus, selectErrorResetPassword } from '../auth';
+import { authSelector, selectAuthError, selectIsLoading, selectAuthenticationStatus, selectErrorRequestResetPasswordToken, selectErrorUpdatePassword } from '../auth';
 import { createStore } from 'redux';
 
 import { initialState } from '../../reducers/auth';
@@ -25,16 +25,28 @@ describe('auth selector', () => {
     expect(selectAuthError(exampleState)).toBe('Test error');
   });
 
-  it('selectErrorResetPassword should return the reset password error', () => {
+  it('selectErrorRequestResetPasswordToken should return the reset password error', () => {
     const exampleState = {
       ...rootState,
       auth: {
         ...rootState.auth,
-        errorResetPassword: 'Test reset password error'
+        errorRequestResetPasswordToken: 'Test reset password error'
       }
     };
 
-    expect(selectErrorResetPassword(exampleState)).toBe('Test reset password error');
+    expect(selectErrorRequestResetPasswordToken(exampleState)).toBe('Test reset password error');
+  });
+
+  it('selectErrorUpdatePassword should return the reset password error', () => {
+    const exampleState = {
+      ...rootState,
+      auth: {
+        ...rootState.auth,
+        errorUpdatePassword: 'Test update password error'
+      }
+    };
+
+    expect(selectErrorUpdatePassword(exampleState)).toBe('Test update password error');
   });
 
   it('selectIsLoading should return the auth loading state', () => {

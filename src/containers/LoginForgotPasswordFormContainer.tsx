@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
-import { postResetPassword } from '../reducers/auth';
+import { postRequestResetPasswordToken } from '../reducers/auth';
 
-import { selectErrorResetPassword } from '../selectors/auth';
+import { selectErrorRequestResetPasswordToken } from '../selectors/auth';
 import { RootState } from '../reducers';
 import { LoginForgotPasswordForm } from '../components/LoginForgotPasswordForm';
 
@@ -49,14 +49,14 @@ class LoginForgotPasswordFormContainerComponent extends React.PureComponent<Prop
     if (field === 'email') this.setState({ email: value });
   }
 
-  handleOnPressResetPasswordCode = () => this.props.navigation.navigate('login/update-password', { resetPasswordToken: '' });
+  handleOnPressResetPasswordCode = () => this.props.navigation.navigate('login/reset-password', { resetPasswordToken: '' });
 
   handleOnPressResetPassword = () => {
     const { email } = this.state;
     return this.setState({ isLoading: true }, async () => {
       try {
-        await this.props.postResetPassword(email);
-        this.setState({ isSuccess: true });
+        await this.props.postRequestResetPasswordToken(email);
+        this.setState({ isSuccess: true }, () => this.props.navigation.navigate('login/reset-password', { resetPasswordToken: '' }));
       } catch (err) {
         console.log('Error while resetting password', err);
       } finally {
@@ -82,19 +82,19 @@ class LoginForgotPasswordFormContainerComponent extends React.PureComponent<Prop
 }
 
 interface StateProps {
-  errorResetPassword: ReturnType<typeof selectErrorResetPassword>;
+  errorResetPassword: ReturnType<typeof selectErrorRequestResetPasswordToken>;
 }
 
 interface DispatchProps {
-  postResetPassword: typeof postResetPassword;
+  postRequestResetPasswordToken: typeof postRequestResetPasswordToken;
 }
 
 const mapStateToProps = (state: RootState) => ({
-  errorResetPassword: selectErrorResetPassword(state)
+  errorResetPassword: selectErrorRequestResetPasswordToken(state)
 });
 
 const mapDispatchToProps = {
-  postResetPassword
+  postRequestResetPasswordToken
 };
 
 export const LoginForgotPasswordFormContainer = withNavigation(

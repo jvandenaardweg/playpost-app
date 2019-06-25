@@ -4,6 +4,7 @@ import colors from '../../constants/colors';
 
 import textInputStyle from '../../constants/text-input';
 import spacing from '../../constants/spacing';
+import fonts from '../../constants/fonts';
 
 export default StyleSheet.create({
   container: {
@@ -33,7 +34,26 @@ export default StyleSheet.create({
     backgroundColor: colors.black,
     marginBottom: spacing.default
   },
+  buttonStyleSuccess: {
+    backgroundColor: colors.green,
+    marginBottom: spacing.default,
+    opacity: 1
+  },
   buttonTitleStyle: {
     color: colors.white,
+  },
+  buttonTitleStyleSuccess: {
+    color: colors.white
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: fonts.fontWeight.bold,
+    marginBottom: spacing.large
+  },
+  subtitle: {
+    fontSize: fonts.fontSize.body,
+    color: colors.paragraphDefault,
+    marginBottom: spacing.large,
+    lineHeight: 24
   }
 });

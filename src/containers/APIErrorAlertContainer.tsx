@@ -10,6 +10,8 @@ import { Alert } from 'react-native';
 import { selectErrorCreateAudiofile } from '../selectors/player';
 import { resetValidateSubscriptionReceiptError } from '../reducers/subscriptions';
 import { selectErrorValidateSubscriptionReceipt } from '../selectors/subscriptions';
+import { selectErrorUpdatePassword, selectErrorRequestResetPasswordToken } from '../selectors/auth';
+import { resetErrorUpdatePassword, resetErrorRequestPasswordToken } from '../reducers/auth';
 
 type IProps = {
   languageName: string;
@@ -24,7 +26,7 @@ type Props = IProps & NavigationInjectedProps & StateProps & DispatchProps;
  */
 export class APIErrorAlertContainerComponent extends React.PureComponent<Props> {
   componentDidUpdate(prevProps: Props) {
-    const { errorSaveSelectedVoice, errorCreateAudiofile, errorValidateSubscriptionReceipt } = this.props;
+    const { errorSaveSelectedVoice, errorCreateAudiofile, errorValidateSubscriptionReceipt, errorUpdatePassword, errorRequestResetPasswordToken } = this.props;
 
     if (errorSaveSelectedVoice && prevProps.errorSaveSelectedVoice !== errorSaveSelectedVoice) {
       return Alert.alert(
@@ -67,6 +69,34 @@ export class APIErrorAlertContainerComponent extends React.PureComponent<Props> 
         ]
       );
     }
+
+    if (errorUpdatePassword && prevProps.errorUpdatePassword !== errorUpdatePassword) {
+      return Alert.alert(
+        'Oops!',
+        errorUpdatePassword,
+        [
+          {
+            text: 'OK',
+            style: 'cancel',
+            onPress: () => this.props.resetErrorUpdatePassword()
+          }
+        ]
+      );
+    }
+
+    if (errorRequestResetPasswordToken && prevProps.errorRequestResetPasswordToken !== errorRequestResetPasswordToken) {
+      return Alert.alert(
+        'Oops!',
+        errorRequestResetPasswordToken,
+        [
+          {
+            text: 'OK',
+            style: 'cancel',
+            onPress: () => this.props.resetErrorRequestPasswordToken()
+          }
+        ]
+      );
+    }
   }
 
   render () {
@@ -78,24 +108,32 @@ interface DispatchProps {
   resetSaveSelectedVoiceError: typeof resetSaveSelectedVoiceError;
   resetCreateAudiofileError: typeof resetCreateAudiofileError;
   resetValidateSubscriptionReceiptError: typeof resetValidateSubscriptionReceiptError;
+  resetErrorUpdatePassword: typeof resetErrorUpdatePassword;
+  resetErrorRequestPasswordToken: typeof resetErrorRequestPasswordToken;
 }
 
 interface StateProps {
   readonly errorSaveSelectedVoice: ReturnType<typeof selectUserErrorSaveSelectedVoice>;
   readonly errorCreateAudiofile: ReturnType<typeof selectErrorCreateAudiofile>;
   readonly errorValidateSubscriptionReceipt: ReturnType<typeof selectErrorValidateSubscriptionReceipt>;
+  readonly errorUpdatePassword: ReturnType<typeof selectErrorUpdatePassword>;
+  readonly errorRequestResetPasswordToken: ReturnType<typeof selectErrorRequestResetPasswordToken>;
 }
 
 const mapStateToProps = (state: RootState, props: Props) => ({
   errorSaveSelectedVoice: selectUserErrorSaveSelectedVoice(state),
   errorCreateAudiofile: selectErrorCreateAudiofile(state),
-  errorValidateSubscriptionReceipt: selectErrorValidateSubscriptionReceipt(state)
+  errorValidateSubscriptionReceipt: selectErrorValidateSubscriptionReceipt(state),
+  errorUpdatePassword: selectErrorUpdatePassword(state),
+  errorRequestResetPasswordToken: selectErrorRequestResetPasswordToken(state),
 });
 
 const mapDispatchToProps = {
   resetSaveSelectedVoiceError,
   resetCreateAudiofileError,
-  resetValidateSubscriptionReceiptError
+  resetValidateSubscriptionReceiptError,
+  resetErrorUpdatePassword,
+  resetErrorRequestPasswordToken
 };
 
 export const APIErrorAlertContainer =

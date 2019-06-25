@@ -10,7 +10,8 @@ export const CREATE_USER_FAIL_MESSAGE = 'An unknown error happened while creatin
 export const DELETE_USER_FAIL_MESSAGE = 'An unknown error happened while deleting your account. Please contact us when this happens all the time.';
 
 export const POST_AUTH_FAIL_MESSAGE = 'An unknown error happened while loggin you in. Please contact us when this happens all the time.';
-export const POST_RESET_PASSWORD_FAIL_MESSAGE = 'An unknown error happened while resetting your password. Please contact us when this happens all the time.';
+export const POST_REQUEST_RESET_PASSWORD_TOKEN_FAIL_MESSAGE = 'An unknown error happened while resetting your password. Please contact us when this happens all the time.';
+export const POST_UPDATE_PASSWORD_FAIL_MESSAGE = 'An unknown error happened while updating your new password. Please contact us when this happens all the time.';
 
 export const GET_LANGUAGES_FAIL_MESSAGE = 'An unknown error happened while getting the available languages. Please contact us when this happens all the time.';
 export const SAVE_SELECTED_VOICE_FAIL_MESSAGE = 'An unknown error happened while saving this voice setting. Please contact us when this happens all the time.';

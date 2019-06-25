@@ -1,22 +1,22 @@
 import React from 'react';
 import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
-import { LoginUpdatePasswordFormContainer } from '../../containers/LoginUpdatePasswordFormContainer';
+import { LoginResetPasswordFormContainer } from '../../containers/LoginResetPasswordFormContainer';
 
 interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;
 }
 
-export class LoginUpdatePasswordScreen extends React.PureComponent<Props> {
+export class LoginResetPasswordScreen extends React.PureComponent<Props> {
   static navigationOptions = (): NavigationStackScreenOptions => {
     return {
-      title: 'Update your password',
+      title: 'Reset your password',
       // header: null
     };
   }
 
   render() {
     return (
-      <LoginUpdatePasswordFormContainer />
+      <LoginResetPasswordFormContainer />
     );
   }
 }

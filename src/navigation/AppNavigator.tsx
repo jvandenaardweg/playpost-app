@@ -7,7 +7,7 @@ import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
 import { MainTabNavigator } from './MainTabNavigator';
 
 import { LoginScreen } from '../screens/onboarding/LoginScreen';
-import { LoginUpdatePasswordScreen } from '../screens/login/LoginUpdatePasswordScreen';
+import { LoginResetPasswordScreen } from '../screens/login/LoginResetPasswordScreen';
 import { SignupScreen } from '../screens/onboarding/SignupScreen';
 import { SignupSuccessScreen } from '../screens/SignupSuccessScreen';
 import { AuthLoadingScreen } from '../screens/AuthLoadingScreen';
@@ -20,7 +20,7 @@ import { LoginForgotPasswordScreen } from '../screens/login/LoginForgotPasswordS
 const LoginStack = createStackNavigator(
   {
     login: LoginScreen,
-    'login/update-password': LoginUpdatePasswordScreen,
+    'login/reset-password': LoginResetPasswordScreen,
     'login/forgot-password': LoginForgotPasswordScreen
   },
   {

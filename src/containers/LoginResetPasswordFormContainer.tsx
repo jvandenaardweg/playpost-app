@@ -4,9 +4,9 @@ import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
 import { postUpdatePassword } from '../reducers/auth';
 
-import { selectErrorResetPassword } from '../selectors/auth';
+import { selectErrorRequestResetPasswordToken } from '../selectors/auth';
 import { RootState } from '../reducers';
-import { LoginUpdatePasswordForm } from '../components/LoginUpdatePasswordForm';
+import { LoginResetPasswordForm } from '../components/LoginResetPasswordForm';
 
 /* tslint:disable no-any */
 interface State {
@@ -21,7 +21,7 @@ interface IProps extends NavigationInjectedProps {}
 
 type Props = IProps & StateProps & DispatchProps;
 
-class LoginUpdatePasswordFormContainerComponent extends React.PureComponent<Props, State> {
+class LoginResetPasswordFormContainerComponent extends React.PureComponent<Props, State> {
   state = {
     isLoading: false,
     isSuccess: null,
@@ -30,26 +30,30 @@ class LoginUpdatePasswordFormContainerComponent extends React.PureComponent<Prop
     error: null
   };
 
+  timeout: NodeJS.Timeout | null = null;
+
   componentDidMount() {
     this.props.navigation.setParams({ handleOnClose: this.handleOnClose });
 
-    const resetPasswordToken = this.props.navigation.getParam('resetPasswordToken', '');
+    this.setResetPasswordTokenFromNavigationParams();
+  }
 
-    this.setState({ resetPasswordToken });
+  componentWillUnmount() {
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+      this.timeout = null;
+    }
   }
 
   componentDidUpdate(prevProps: Props) {
-    const { isSuccess } = this.state;
+    const { resetPasswordToken } = this.state;
 
-    if (isSuccess) {
-      // TODO: login user
-    }
-    // const { authError, token } = this.props;
+    if (!resetPasswordToken) this.setResetPasswordTokenFromNavigationParams();
+  }
 
-    // if (authError && prevProps.authError !== authError) {
-    //   this.setState({ isLoading: false });
-    //   return Alert.alert('Oops!', authError);
-    // }
+  setResetPasswordTokenFromNavigationParams = () => {
+    const resetPasswordToken = this.props.navigation.getParam('resetPasswordToken', '');
+    this.setState({ resetPasswordToken });
   }
 
   handleOnClose = () => {
@@ -63,12 +67,17 @@ class LoginUpdatePasswordFormContainerComponent extends React.PureComponent<Prop
 
   handleOnPressUpdatePassword = () => {
     const { password, resetPasswordToken } = this.state;
-    console.log('Update ', password, resetPasswordToken);
 
     return this.setState({ isLoading: true }, async () => {
       try {
         await this.props.postUpdatePassword(password, resetPasswordToken);
         this.setState({ isSuccess: true });
+
+        // Redirect the user to the login screen
+        this.timeout = setTimeout(() => {
+          this.props.navigation.navigate('login');
+        }, 2000);
+
       } catch (err) {
         console.log('Err', err);
       } finally {
@@ -81,7 +90,7 @@ class LoginUpdatePasswordFormContainerComponent extends React.PureComponent<Prop
     const { password, isLoading, isSuccess, resetPasswordToken } = this.state;
 
     return (
-      <LoginUpdatePasswordForm
+      <LoginResetPasswordForm
         password={password}
         resetPasswordToken={resetPasswordToken}
         isLoading={isLoading}
@@ -94,7 +103,7 @@ class LoginUpdatePasswordFormContainerComponent extends React.PureComponent<Prop
 }
 
 interface StateProps {
-  errorResetPassword: ReturnType<typeof selectErrorResetPassword>;
+  errorResetPassword: ReturnType<typeof selectErrorRequestResetPasswordToken>;
 }
 
 interface DispatchProps {
@@ -102,16 +111,16 @@ interface DispatchProps {
 }
 
 const mapStateToProps = (state: RootState) => ({
-  errorResetPassword: selectErrorResetPassword(state)
+  errorResetPassword: selectErrorRequestResetPasswordToken(state)
 });
 
 const mapDispatchToProps = {
   postUpdatePassword
 };
 
-export const LoginUpdatePasswordFormContainer = withNavigation(
+export const LoginResetPasswordFormContainer = withNavigation(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(LoginUpdatePasswordFormContainerComponent)
+  )(LoginResetPasswordFormContainerComponent)
 );

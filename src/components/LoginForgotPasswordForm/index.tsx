@@ -36,12 +36,12 @@ export const LoginForgotPasswordForm: React.FC<Props> = React.memo(({
           keyboardType="email-address"
           returnKeyType="next"
           clearButtonMode="always"
-          // autoFocus
+          autoFocus
+          editable={!isSuccess}
           blurOnSubmit={false}
         />
 
         <View>
-          {isSuccess && <Text>Success. Please check your e-mail!</Text>}
           <Button title="Reset my password" loading={isLoading} onPress={onPressResetPassword} disabled={isLoading} buttonStyle={styles.buttonStyle} disabledStyle={styles.buttonStyle} activeOpacity={1} titleStyle={styles.buttonTitleStyle} />
           <Button title="Already have reset password code?" type="clear" onPress={onPressResetPasswordCode} />
         </View>

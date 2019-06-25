@@ -150,7 +150,7 @@ Each automatic renewal sends a transaction to the app. The transaction, or trans
 ### Testing deep links on iOS
 1. Run the App in a Simulator: `react-native run-ios --simulator "iPhone X"`
 2. Close the App
-3. Run `xcrun simctl openurl booted playpost://login/update-password/123456`
+3. Run `xcrun simctl openurl booted playpost://login/reset-password/123456`
 4. App should now open on the correct route
 
-To test universal links, use: `xcrun simctl openurl booted https://playpost.app/login/update-password/123456`
+To test universal links, use: `xcrun simctl openurl booted https://playpost.app/login/reset-password/123456`
