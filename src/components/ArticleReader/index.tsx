@@ -1,14 +1,13 @@
 import React, { useRef } from 'react';
 import WebView from 'react-native-webview';
 import urlParse from 'url-parse';
-import { StatusBar } from 'react-native';
+import { StatusBar, Linking } from 'react-native';
+import { WebViewNavigation } from 'react-native-webview/lib/WebViewTypes';
 
 import spacing from '../../constants/spacing';
 import fonts from '../../constants/fonts';
 import colors from '../../constants/colors';
 import { CenterLoadingIndicator } from '../CenterLoadingIndicator';
-import { Linking } from 'react-native';
-import { WebViewNavigation } from 'react-native-webview/lib/WebViewTypes';
 
 interface Props {
   article: Api.Article | undefined;
@@ -18,8 +17,10 @@ interface Props {
 interface ThemeStyles {
   backgroundColor: string;
   fontColor: string;
+  paragraphColor: string;
   highlightColor: string;
   metaColor: string;
+  titleColor: string;
 }
 
 export const ArticleReader: React.FC<Props> = React.memo(({
@@ -67,21 +68,27 @@ export const ArticleReader: React.FC<Props> = React.memo(({
     // Light
     let backgroundColor = colors.white;
     let fontColor = colors.black;
+    let paragraphColor = colors.grayDarker;
     let highlightColor = colors.black;
     let metaColor = colors.paragraphGrayed;
+    let titleColor = colors.black;
 
     if (theme === 'dark') {
       backgroundColor = colors.grayDarkest;
       fontColor = colors.gray;
-      highlightColor = colors.white;
+      paragraphColor = colors.gray;
+      highlightColor = colors.gray;
       metaColor = colors.gray;
+      titleColor = colors.white;
     }
 
     return {
       backgroundColor,
       fontColor,
+      paragraphColor,
       highlightColor,
-      metaColor
+      metaColor,
+      titleColor
     };
   }
 
@@ -115,7 +122,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
             line-height: 1.2;
             margin-top: 0;
             margin-bottom: ${spacing.tiny}px;
-            color: ${themeStyles.highlightColor};
+            color: ${themeStyles.titleColor};
             font-family: 'PT Sans', sans-serif;
           }
 
@@ -139,7 +146,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
             font-size: ${Math.ceil(fonts.fontSize.body * 1.1)}px;
             margin-top: 1.5;
             text-align: justify;
-            color: ${colors.grayDarker};
+            color: ${themeStyles.paragraphColor};
             line-height: 1.5;
             margin-bottom: 1.5;
           }
