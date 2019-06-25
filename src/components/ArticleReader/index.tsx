@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import WebView from 'react-native-webview';
 import urlParse from 'url-parse';
+import { StatusBar } from 'react-native';
 
 import spacing from '../../constants/spacing';
 import fonts from '../../constants/fonts';
@@ -28,14 +29,21 @@ export const ArticleReader: React.FC<Props> = React.memo(({
   const webViewRef = useRef<WebView>(null);
   const themeStyles = getThemeStyles(theme);
 
-  const handleWebViewNavigationStateChange = (request: WebViewNavigation) => {
+  const handleWebViewNavigationStateChange = async (request: WebViewNavigation, webViewRef: React.RefObject<WebView>) => {
     const { url } = request;
 
     if (!url || url.includes('file://')) return;
 
-    webViewRef.current && webViewRef.current.stopLoading();
+    // It seems like when opening URL's from the WebView that the StatusBar turns white
+    // We want to keep it the default style so we enforce that here.
+    StatusBar.setBarStyle('default');
 
-    return Linking.openURL(url);
+    try {
+      await Linking.openURL(url);
+      return webViewRef.current && webViewRef.current.stopLoading();
+    } catch (err) {
+      console.log('Error while opening url in webview', err);
+    }
   };
 
   return (
@@ -50,7 +58,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
       bounces
       decelerationRate="normal"
       style={{ backgroundColor: themeStyles.backgroundColor, padding: 0, margin: 0 }}
-      onNavigationStateChange={handleWebViewNavigationStateChange}
+      onNavigationStateChange={(request: WebViewNavigation) => handleWebViewNavigationStateChange(request, webViewRef)}
     />
   );
 
@@ -161,12 +169,11 @@ export const ArticleReader: React.FC<Props> = React.memo(({
 
           .meta-header strong {
             display: block;
-            color: ${themeStyles.metaColor};
             font-weight: normal;
           }
 
           .meta-header a {
-            color: ${themeStyles.metaColor};
+            color: ${colors.tintColor};
           }
 
           .image-header {
@@ -227,7 +234,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
           <div class="meta-header">
             <h1>${article.title}</h1>
             ${authorElement}
-            <strong><a href="${articleUrl}">${urlParse(articleUrl).hostname}</a></strong>
+            <strong><a href="${articleUrl}">View on ${urlParse(articleUrl).hostname}</a></strong>
           </div>
           <div class="content">
             [ARTICLE_HTML_PLACEHOLDER]
