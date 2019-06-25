@@ -1,12 +1,12 @@
 import React from 'react';
 import { NavigationInjectedProps } from 'react-navigation';
 import { connect } from 'react-redux';
+import { Alert } from 'react-native';
 
 import { selectUserErrorSaveSelectedVoice } from '../selectors/user';
 import { RootState } from '../reducers';
 import { resetSaveSelectedVoiceError } from '../reducers/user';
 import { resetCreateAudiofileError } from '../reducers/player';
-import { Alert } from 'react-native';
 import { selectErrorCreateAudiofile } from '../selectors/player';
 import { resetValidateSubscriptionReceiptError } from '../reducers/subscriptions';
 import { selectErrorValidateSubscriptionReceipt } from '../selectors/subscriptions';
