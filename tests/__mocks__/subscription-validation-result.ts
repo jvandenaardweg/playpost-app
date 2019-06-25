@@ -19,7 +19,7 @@ export default {
     productId: 'com.aardwegmedia.playpost.premium',
     name: 'Premium',
     description: 'Monthly Subscription',
-    price: 3.99,
+    price: 4.99,
     currency: 'eur',
     duration: '1m',
     service: 'apple',
