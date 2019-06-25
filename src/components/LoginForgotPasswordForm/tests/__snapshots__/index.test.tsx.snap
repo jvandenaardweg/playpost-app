@@ -40,6 +40,7 @@ exports[`LoginForgotPasswordForm rendering should render correctly 1`] = `
         autoFocus={false}
         blurOnSubmit={false}
         clearButtonMode="always"
+        editable={true}
         keyboardType="email-address"
         onChangeText={[Function]}
         onSubmitEditing={[Function]}
