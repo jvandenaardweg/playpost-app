@@ -71,9 +71,7 @@ Fix from: https://stackoverflow.com/a/54542903/3194288
 When you get build errors about missing imports with React related files with the `.h` extension. Make sure `Parallelize Builds` is off for both schemes. In `Product` > `Scheme` > `Manage schemes` > Open the `Build` tab > Uncheck `Parallelize Builds`. Do this for both the `Playpost` and `PlaypostShareExtension`.
 This will make sure React get's build first.
 
-## iOS Deployment Target 12.2
-The Deployment Target is locked at `12.2` because of our In App Purchase package to allow promotion codes.
-
+## iOS Deployment Target 11.0
 The other minimum deployment target is `10.0`, below that Share Extension will not work in Safari in iOS. Pretty important.
 
 ## Share Extension iOS Target Properties

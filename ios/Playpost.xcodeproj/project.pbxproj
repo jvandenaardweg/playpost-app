@@ -2313,7 +2313,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 				);
 				INFOPLIST_FILE = PlaypostTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
@@ -2345,7 +2345,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 				);
 				INFOPLIST_FILE = PlaypostTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
@@ -2383,7 +2383,7 @@
 					"$(SRCROOT)/../node_modules/react-native/Libraries/LinkingIOS/**",
 				);
 				INFOPLIST_FILE = Playpost/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -2422,7 +2422,7 @@
 					"$(SRCROOT)/../node_modules/react-native/Libraries/LinkingIOS/**",
 				);
 				INFOPLIST_FILE = Playpost/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -2491,7 +2491,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -2545,7 +2545,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -2583,7 +2583,7 @@
 					"$(SRCROOT)/../node_modules/react-native-share-extension/ios/**",
 				);
 				INFOPLIST_FILE = PlaypostShareExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -2634,7 +2634,7 @@
 					"$(SRCROOT)/../node_modules/react-native-share-extension/ios/**",
 				);
 				INFOPLIST_FILE = PlaypostShareExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MTL_FAST_MATH = YES;
