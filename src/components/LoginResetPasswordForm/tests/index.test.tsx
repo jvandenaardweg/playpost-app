@@ -1,15 +1,15 @@
 import React from 'react';
 import { render, RenderAPI } from 'react-native-testing-library';
 
-import { LoginUpdatePasswordForm } from '../index';
+import { LoginResetPasswordForm } from '../index';
 
-describe('LoginUpdatePasswordForm', () => {
+describe('LoginResetPasswordForm', () => {
 
   describe('rendering', () => {
     let wrapper: RenderAPI;
 
     beforeAll(() => {
-      wrapper = render(<LoginUpdatePasswordForm onChangeText={() => {}} onPressUpdatePassword={() => {}} resetPasswordToken="" password="" isSuccess={false} isLoading={false} />);
+      wrapper = render(<LoginResetPasswordForm onChangeText={() => {}} onPressUpdatePassword={() => {}} resetPasswordToken="" password="" isSuccess={false} isLoading={false} />);
     });
 
     it('should render correctly', () => {
