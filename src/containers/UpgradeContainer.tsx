@@ -167,9 +167,13 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       } catch (err) {
         const errorMessage = (err && err.message) ? err.message : 'An uknown error happened while upgrading.';
 
-        return this.setState({ isLoadingBuySubscription: false }, () =>
-          this.showErrorAlert('Upgrade error', errorMessage)
-        );
+        // We don't do anything with this message, as errors are handled by: purchaseErrorListener
+
+        console.log(errorMessage);
+
+        // return this.setState({ isLoadingBuySubscription: false }, () =>
+        //   this.showErrorAlert('Upgrade error', errorMessage)
+        // );
       }
     });
   }
