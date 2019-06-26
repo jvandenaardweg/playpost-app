@@ -152,3 +152,18 @@ Each automatic renewal sends a transaction to the app. The transaction, or trans
 4. App should now open on the correct route
 
 To test universal links, use: `xcrun simctl openurl booted https://playpost.app/login/reset-password/123456`
+
+## Generate App Screenshots
+Use the Postman Mock Server to allow mocked responses to be send to the iPhone Simulator. We can change these mocked responses to edit titles, sources and authors from the articles in the App.
+
+1. Open Postman with the playpost-api collection
+2. Select the request you want to mock
+3. Do the request to the local API
+4. Save the response using the "Save" button on the right
+5. The response will be saved for use in the mock server
+
+To manually edit the mocked response:
+1. Click the request
+2. Open "Examples (1)" on the top right
+3. Edit the response
+4. Save the response
