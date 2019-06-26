@@ -128,8 +128,6 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     // We create an audiofile too
     if (isSubscribed && !this.audiofileByVoiceId) return this.handleCreateAudiofile();
 
-    debugger;
-
     // If the user is on a free account, check if available audiofile uses different voice. Show alert if it does.
     if (!isSubscribed) this.alertIfDifferentSelectedVoice();
 
