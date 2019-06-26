@@ -38,12 +38,14 @@ describe('voices selector', () => {
       }
     };
 
-    const expected = languagesMock.map((language: Api.Language) => {
+    const expected = languagesMock
+    .map((language: Api.Language) => {
       return {
         ...language,
         voices: language.voices && language.voices.filter(voice => voice.isActive)
       };
-    });
+    })
+    .sort((a, b) => a.name.localeCompare(b.name)); // sort languages alphabetically
 
     expect(selectLanguagesWithActiveVoices(exampleState)).toMatchObject(expected);
   });

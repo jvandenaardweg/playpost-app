@@ -87,27 +87,18 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  async handleCreateAudiofile() {
-    const { article, languagesWithActiveVoices } = this.props;
+  /**
+   * Find the audiofile in this article using the user's selected voice
+   */
+  get audiofileByVoiceId(): Api.Audiofile | undefined {
+    const { article, userSelectedVoiceByLanguageName } = this.props;
+    return userSelectedVoiceByLanguageName && article.audiofiles.find(audiofile => audiofile.voice.id === userSelectedVoiceByLanguageName.id);
+  }
 
-    const articleLanguageCode = article.language && article.language.code;
-    const isLanguageSupported = !!languagesWithActiveVoices.find(language => language.code === articleLanguageCode);
-
-    if (!articleLanguageCode || !isLanguageSupported) {
-      return Alert.alert('Language not supported', `${ALERT_ARTICLE_LANGUAGE_UNSUPPORTED}. This article seems to have the language: ${articleLanguageCode}.`);
-    }
-
-    this.setState({ isPlaying: false, isLoading: true, isActive: true, isCreatingAudiofile: true }, async () => {
-      try {
-        await this.props.createAudiofile(article.id);
-        await this.props.getPlaylist(); // Get the playlist, it contains the article with the newly created audiofile
-        this.handleSetTrack(); // Set the track. Upon track change, the track with automatically play.
-      } catch (err) {
-        this.setState({ isLoading: false, isActive: false });
-      } finally {
-        this.setState({ isCreatingAudiofile: false });
-      }
-    });
+  get audiofileToUse(): Api.Audiofile | undefined {
+    const { isSubscribed, article } = this.props;
+    const audiofile = (isSubscribed) ? this.audiofileByVoiceId : article.audiofiles[0];
+    return audiofile;
   }
 
   /**
@@ -118,82 +109,107 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
    */
   handleOnPlayPress = async () => {
     const { isPlaying } = this.state;
-    const { article, userSelectedVoiceByLanguageName, isSubscribed, playerArticleId } = this.props;
+    const { article, isSubscribed, playerArticleId } = this.props;
     const { isConnected } = this.context;
 
-    if (isPlaying) {
-      return TrackPlayer.pause();
-    }
+    // Toggle play/pause
+    if (isPlaying) return TrackPlayer.pause();
 
-    if (!article.audiofiles.length && !isConnected) {
-      return Alert.alert('No internet', ALERT_ARTICLE_PLAY_INTERNET_REQUIRED);
-    }
+    // If there are no audiofiles and when there's no internet connection
+    // Show the user he needs an active internet connection to listen to articles
+    if (!article.audiofiles.length && !isConnected) return Alert.alert('No internet', ALERT_ARTICLE_PLAY_INTERNET_REQUIRED);
 
     // If we don't have an audiofile yet, we create it first
-    if (!article.audiofiles.length) {
-
-      // If the selected voice of the user, is a Premium voice, but the user has no Premium account active
-      if (userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName.isPremium && !isSubscribed) {
-
-        // Show an Alert he needs to change his default voice for the "userSelectedVoiceByLanguageName.name" language
-        const selectedVoiceLanguageName = userSelectedVoiceByLanguageName.language.name;
-
-        return Alert.alert(
-          'Cannot use selected voice',
-          `Your selected voice for this ${selectedVoiceLanguageName} article is a Premium voice, but you have no active Premium subscription. If you want to continue to use this voice you should upgrade again.`,
-          [
-            {
-              text: 'Cancel',
-              style: 'cancel'
-            },
-            {
-              text: 'Upgrade to Premium',
-              onPress: () => this.props.navigation.navigate('Upgrade')
-            },
-            {
-              text: `Change ${selectedVoiceLanguageName} voice`,
-              onPress: () => this.props.navigation.navigate('SettingsVoices', { languageName: selectedVoiceLanguageName })
-            }
-          ],
-          { cancelable: true }
-        );
-      }
-
-      return this.handleCreateAudiofile();
-    }
+    if (!article.audiofiles.length) return this.handleCreateAudiofile();
 
     // When we end up here, it means the article already has an audiofile
 
-    // If the user is on a free account, check if available audiofile uses different voice. Show alert if it does.
-    if (!isSubscribed) {
-      const selectedVoiceId = userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName.id;
-      const hasAudioWithSameVoice = !!article.audiofiles.find(audiofile => audiofile.voice.id === selectedVoiceId);
+    // If he user is subscribed, but it has no audio for it's selected voice
+    // We create an audiofile too
+    if (isSubscribed && !this.audiofileByVoiceId) return this.handleCreateAudiofile();
 
-      if (!hasAudioWithSameVoice && playerArticleId !== article.id) {
-        Alert.alert(
-          'Article has different voice',
-          'Because you are on a free account, we will use the already available voice for this article. Which is a different voice. Premium users do not have this limitation.',
-          [
-            {
-              text: 'Upgrade to Premium',
-              onPress: () => this.props.navigation.navigate('Upgrade')
-            },
-            {
-              text: 'OK',
-              style: 'cancel'
-            }
-          ]
-        );
-      }
-    }
+    // If the user is on a free account, check if available audiofile uses different voice. Show alert if it does.
+    if (!isSubscribed) this.alertIfDifferentSelectedVoice();
 
     // Only set a new track when it's a different one
-    if (playerArticleId !== article.id) {
-      return this.handleSetTrack();
+    if (playerArticleId !== article.id) return this.handleSetTrack();
+
+    // If we end up here, it means the audio is already in the player, we just play it then
+    return TrackPlayer.play();
+  }
+
+  handleCreateAudiofile = async () => {
+    const { article, languagesWithActiveVoices, userSelectedVoiceByLanguageName, isSubscribed } = this.props;
+
+    // If the selected voice of the user, is a Premium voice, but the user has no Premium account active
+    if (userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName.isPremium && !isSubscribed) {
+
+      // Show an Alert he needs to change his default voice for the "userSelectedVoiceByLanguageName.name" language
+      const selectedVoiceLanguageName = userSelectedVoiceByLanguageName.language.name;
+
+      return Alert.alert(
+        'Cannot use selected voice',
+        `Your selected voice for this ${selectedVoiceLanguageName} article is a Premium voice, but you have no active Premium subscription. If you want to continue to use this voice you should upgrade again.`,
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel'
+          },
+          {
+            text: 'Upgrade to Premium',
+            onPress: () => this.props.navigation.navigate('Upgrade')
+          },
+          {
+            text: `Change ${selectedVoiceLanguageName} voice`,
+            onPress: () => this.props.navigation.navigate('SettingsVoices', { languageName: selectedVoiceLanguageName })
+          }
+        ],
+        { cancelable: true }
+      );
     }
 
-    // Just play the track when we end up here
-    return TrackPlayer.play();
+    const articleLanguageCode = article.language && article.language.code;
+    const isLanguageSupported = !!languagesWithActiveVoices.find(language => language.code === articleLanguageCode);
+
+    if (!articleLanguageCode || !isLanguageSupported) {
+      return Alert.alert('Language not supported', `${ALERT_ARTICLE_LANGUAGE_UNSUPPORTED}. This article seems to have the language: ${articleLanguageCode}.`);
+    }
+
+    return this.setState({ isPlaying: false, isLoading: true, isActive: true, isCreatingAudiofile: true }, async () => {
+      try {
+        await this.props.createAudiofile(article.id);
+        await this.props.getPlaylist(); // Get the playlist, it contains the article with the newly created audiofile
+        return this.handleSetTrack(); // Set the track. Upon track change, the track with automatically play.
+      } catch (err) {
+        return this.setState({ isLoading: false, isActive: false });
+      } finally {
+        return this.setState({ isCreatingAudiofile: false });
+      }
+    });
+  }
+
+  alertIfDifferentSelectedVoice = () => {
+    const { article, userSelectedVoiceByLanguageName, playerArticleId } = this.props;
+
+    const selectedVoiceId = userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName.id;
+    const hasAudioWithSameVoice = !!article.audiofiles.find(audiofile => audiofile.voice.id === selectedVoiceId);
+
+    if (!hasAudioWithSameVoice && playerArticleId !== article.id) {
+      Alert.alert(
+        'Article has different voice',
+        'Because you are on a free account, we will use the already available voice for this article. Which is a different voice. Premium users do not have this limitation.',
+        [
+          {
+            text: 'Upgrade to Premium',
+            onPress: () => this.props.navigation.navigate('Upgrade')
+          },
+          {
+            text: 'OK',
+            style: 'cancel'
+          }
+        ]
+      );
+    }
   }
 
   downloadAudiofile = async (url: string, audiofileId: string, filename: string): Promise<string | void> => {
@@ -231,17 +247,18 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     const { isConnected } = this.context;
     const { article, isDownloaded } = this.props;
 
-    // TODO: when using multiple audiofiles, we need to adjust this
-    const audiofile = article.audiofiles[0];
-
     if (!article || !article.audiofiles.length) {
       this.setState({ isActive: false, isLoading: false });
       return Alert.alert('Oops!', ALERT_ARTICLE_PLAY_FAIL);
     }
 
+    const audiofile = (this.audiofileToUse) ? this.audiofileToUse : null;
+
+    if (!audiofile) return Alert.alert('Err', 'no audio');
+
     if (!isDownloaded && !isConnected) return Alert.alert('No internet', ALERT_ARTICLE_PLAY_INTERNET_REQUIRED);
 
-    this.setState({ isActive: true, isLoading: true }, async () => {
+    return this.setState({ isActive: true, isLoading: true }, async () => {
       this.props.resetPlaybackStatus();
 
       const artist = (article.authorName) ? article.authorName : article.sourceName || '';
@@ -258,8 +275,9 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
         if (downloadedLocalAudiofilePath) {
           localAudiofilePath = downloadedLocalAudiofilePath;
         } else {
-          this.setState({ isLoading: false });
-          return Alert.alert('Oops!', ALERT_ARTICLE_DOWNLOAD_FAIL);
+          return this.setState({ isLoading: false }, () => {
+            Alert.alert('Oops!', ALERT_ARTICLE_DOWNLOAD_FAIL);
+          });
         }
       }
 
@@ -435,7 +453,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
 
   get listenTimeInSeconds() {
     const { article } = this.props;
-    // TODO: when using multiple audiofiles, we need to adjust this
+    // Just get the listen time of the first audiofile, for now
     return (article.audiofiles[0] && article.audiofiles[0].length) ? article.audiofiles[0].length : 0;
   }
 

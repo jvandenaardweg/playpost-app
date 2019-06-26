@@ -96,6 +96,8 @@ class LoginFormContainerComponent extends React.PureComponent<Props, State> {
     if (field === 'password') this.setState({ password: value });
   }
 
+  handleOnPressForgotPassword = () => this.props.navigation.navigate('login/forgot-password');
+
   render() {
     const { email, password, isLoading } = this.state;
 
@@ -106,6 +108,7 @@ class LoginFormContainerComponent extends React.PureComponent<Props, State> {
         isLoading={isLoading}
         onChangeText={this.handleOnChangeText}
         onPressLogin={this.handleOnPressLogin}
+        onPressForgotPassword={this.handleOnPressForgotPassword}
       />
     );
   }

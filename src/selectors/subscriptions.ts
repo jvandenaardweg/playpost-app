@@ -24,6 +24,11 @@ export const selectSubscriptionsError = createSelector(
   state => state.error
 );
 
+export const selectErrorValidateSubscriptionReceipt = createSelector(
+  [subscriptionsSelector],
+  state => state.errorValidateSubscriptionReceipt
+);
+
 export const selectSubscriptionsValidationResult = createSelector(
   [subscriptionsSelector],
   state => state.validationResult

@@ -72,7 +72,7 @@ const OnboardingSliderComponent: React.FC<Props> = React.memo(({
       />
       <View style={styles.footerContainer}>
         <Button testID="onboarding-button-signup" title="Create account" onPress={() => navigation.navigate('Signup')} buttonStyle={styles.signupButtonStyle} titleStyle={styles.signupButtonTitleStyle} />
-        <Button testID="onboarding-button-login" title="I already have an account" type="clear" onPress={() => navigation.navigate('Login')} titleStyle={styles.loginButtonTitleStyle} />
+        <Button testID="onboarding-button-login" title="I already have an account" type="clear" onPress={() => navigation.navigate('login')} titleStyle={styles.loginButtonTitleStyle} />
       </View>
     </View>
   );

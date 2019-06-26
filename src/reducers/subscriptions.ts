@@ -10,6 +10,7 @@ export const GET_ACTIVE_SUBSCRIPTIONS_FAIL = 'subscriptions/GET_ACTIVE_SUBSCRIPT
 export const POST_VALIDATE_SUBSCRIPTION_RECEIPT = 'subscriptions/POST_VALIDATE_SUBSCRIPTION_RECEIPT';
 export const POST_VALIDATE_SUBSCRIPTION_RECEIPT_SUCCESS = 'subscriptions/POST_VALIDATE_SUBSCRIPTION_RECEIPT_SUCCESS';
 export const POST_VALIDATE_SUBSCRIPTION_RECEIPT_FAIL = 'subscriptions/POST_VALIDATE_SUBSCRIPTION_RECEIPT_FAIL';
+export const RESET_VALIDATE_SUBSCRIPTION_RECEIPT_ERROR = 'subscriptions/RESET_VALIDATE_SUBSCRIPTION_RECEIPT_ERROR';
 
 export type SubscriptionsState = Readonly<{
   isLoadingSubscriptions: boolean;
@@ -17,6 +18,7 @@ export type SubscriptionsState = Readonly<{
   subscriptions: Api.InAppSubscription[];
   validationResult: Api.ReceiptValidationResponse;
   error: string;
+  errorValidateSubscriptionReceipt: string;
 }>;
 
 export const initialState: SubscriptionsState = {
@@ -24,7 +26,8 @@ export const initialState: SubscriptionsState = {
   isLoadingValidateSubscriptionReceipt: false,
   subscriptions: [] as Api.InAppSubscription[],
   validationResult: {} as Api.ReceiptValidationResponse,
-  error: ''
+  error: '',
+  errorValidateSubscriptionReceipt: ''
 };
 
 /* tslint:disable-next-line no-any */
@@ -71,7 +74,7 @@ export function subscriptionsReducer(state = initialState, action: any): Subscri
       return {
         ...state,
         isLoadingValidateSubscriptionReceipt: true,
-        error: ''
+        errorValidateSubscriptionReceipt: ''
       };
 
     case POST_VALIDATE_SUBSCRIPTION_RECEIPT_SUCCESS:
@@ -79,7 +82,7 @@ export function subscriptionsReducer(state = initialState, action: any): Subscri
         ...state,
         isLoadingValidateSubscriptionReceipt: false,
         validationResult: action.payload.data,
-        error: ''
+        errorValidateSubscriptionReceipt: ''
       };
 
     case POST_VALIDATE_SUBSCRIPTION_RECEIPT_FAIL:
@@ -91,7 +94,6 @@ export function subscriptionsReducer(state = initialState, action: any): Subscri
       } else {
         // Error, from the API
         if (action.error && action.error.response && action.error.response.data && action.error.response.data.message) {
-          Analytics.trackEvent('Error post validate subscription receipt', { message: action.error.response.data.message });
           postValidateSubscriptionReceiptFailMessage = action.error.response.data.message;
         } else {
           postValidateSubscriptionReceiptFailMessage = POST_VALIDATE_SUBSCRIPTION_RECEIPT_FAIL_MESSAGE;
@@ -101,7 +103,13 @@ export function subscriptionsReducer(state = initialState, action: any): Subscri
       return {
         ...state,
         isLoadingValidateSubscriptionReceipt: false,
-        error: postValidateSubscriptionReceiptFailMessage
+        errorValidateSubscriptionReceipt: postValidateSubscriptionReceiptFailMessage
+      };
+
+    case RESET_VALIDATE_SUBSCRIPTION_RECEIPT_ERROR:
+      return {
+        ...initialState,
+        errorValidateSubscriptionReceipt: ''
       };
 
     case RESET_SUBSCRIPTIONS_STATE:
@@ -116,6 +124,10 @@ export function subscriptionsReducer(state = initialState, action: any): Subscri
 
 export const resetSubscriptionsState = () => ({
   type: RESET_SUBSCRIPTIONS_STATE
+});
+
+export const resetValidateSubscriptionReceiptError = () => ({
+  type: RESET_VALIDATE_SUBSCRIPTION_RECEIPT_ERROR
 });
 
 export function getActiveSubscriptions() {

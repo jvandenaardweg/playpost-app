@@ -71,9 +71,7 @@ Fix from: https://stackoverflow.com/a/54542903/3194288
 When you get build errors about missing imports with React related files with the `.h` extension. Make sure `Parallelize Builds` is off for both schemes. In `Product` > `Scheme` > `Manage schemes` > Open the `Build` tab > Uncheck `Parallelize Builds`. Do this for both the `Playpost` and `PlaypostShareExtension`.
 This will make sure React get's build first.
 
-## iOS Deployment Target 12.2
-The Deployment Target is locked at `12.2` because of our In App Purchase package to allow promotion codes.
-
+## iOS Deployment Target 11.0
 The other minimum deployment target is `10.0`, below that Share Extension will not work in Safari in iOS. Pretty important.
 
 ## Share Extension iOS Target Properties
@@ -145,3 +143,27 @@ Actual subscription duration -> Test duration
 The subscription will automatically renew 6 times per account per 8 hour window, then the subscription will automatically expire at the end of each subscription period. These renewals happen automatically whether the app is open or not, just like renewals on the App Store. Unlike the App Store, there’s no option to cancel, so there’s no way to directly test cancelation. There’s also no way to test subscription management while using TestFlight or sandbox users.
 
 Each automatic renewal sends a transaction to the app. The transaction, or transactions, depending on how much time has passed, is processed the next time the app is opened. Validating these transactions triggers yet another password prompt. When the app is live on the App Store it shouldn’t trigger these additional password prompts.
+
+
+### Testing deep links on iOS
+1. Run the App in a Simulator: `react-native run-ios --simulator "iPhone X"`
+2. Close the App
+3. Run `xcrun simctl openurl booted playpost://login/reset-password/123456`
+4. App should now open on the correct route
+
+To test universal links, use: `xcrun simctl openurl booted https://playpost.app/login/reset-password/123456`
+
+## Generate App Screenshots
+Use the Postman Mock Server to allow mocked responses to be send to the iPhone Simulator. We can change these mocked responses to edit titles, sources and authors from the articles in the App.
+
+1. Open Postman with the playpost-api collection
+2. Select the request you want to mock
+3. Do the request to the local API
+4. Save the response using the "Save" button on the right
+5. The response will be saved for use in the mock server
+
+To manually edit the mocked response:
+1. Click the request
+2. Open "Examples (1)" on the top right
+3. Edit the response
+4. Save the response

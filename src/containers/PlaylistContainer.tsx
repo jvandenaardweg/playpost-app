@@ -207,7 +207,7 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
     if (errorMessage && !this.hasPlaylistItems) return <EmptyState title="Error" description={[errorMessage]} actionButtonLabel="Try again" actionButtonOnPress={() => this.handleOnRefresh()} />;
 
     if (isArchiveScreen) {
-      return <EmptyState title="Your archived articles" description={['Articles you\'ve already listened will be shown here in your archive, for easy future reference. You can archive an article by swiping from right to left on an article.']} />;
+      return <EmptyState title="Your archived articles" description={['Articles you\'ve already listened will be shown here in your archive, for easy future reference.', 'You can archive an article by swiping from right to left on an article.']} />;
     }
 
     if (isFavoriteScreen) {

@@ -1,4 +1,4 @@
-import { subscriptionsSelector, selectSubscriptions, selectIsLoadingSubscriptions, selectSubscriptionsError, selectSubscriptionByProductId, selectSubscriptionsValidationResult, selectSubscriptionLatestReceipt, selectIsSubscribed } from '../subscriptions';
+import { subscriptionsSelector, selectSubscriptions, selectIsLoadingSubscriptions, selectSubscriptionsError, selectSubscriptionByProductId, selectSubscriptionsValidationResult, selectSubscriptionLatestReceipt, selectIsSubscribed, selectErrorValidateSubscriptionReceipt } from '../subscriptions';
 import { createStore } from 'redux';
 
 import { initialState } from '../../reducers/subscriptions';
@@ -14,11 +14,11 @@ const rootState = store.getState();
 
 describe('subscriptions selector', () => {
 
-  it('should return the initial state', () => {
+  it('subscriptionsSelector should return the initial state', () => {
     expect(subscriptionsSelector(rootState)).toEqual(initialState);
   });
 
-  it('should return the subscriptions', () => {
+  it('selectSubscriptions should return the subscriptions', () => {
     const exampleState = {
       ...rootState,
       subscriptions: {
@@ -30,7 +30,7 @@ describe('subscriptions selector', () => {
     expect(selectSubscriptions(exampleState)).toEqual(subscriptionsMock);
   });
 
-  it('should return the loading state', () => {
+  it('selectIsLoadingSubscriptions should return the loading state', () => {
     const exampleState = {
       ...rootState,
       subscriptions: {
@@ -42,7 +42,7 @@ describe('subscriptions selector', () => {
     expect(selectIsLoadingSubscriptions(exampleState)).toBe(true);
   });
 
-  it('should return the error', () => {
+  it('selectSubscriptionsError should return the error', () => {
     const exampleState = {
       ...rootState,
       subscriptions: {
@@ -54,7 +54,19 @@ describe('subscriptions selector', () => {
     expect(selectSubscriptionsError(exampleState)).toBe('Some example error');
   });
 
-  it('should return the subscription by subscription id', () => {
+  it('selectErrorValidateSubscriptionReceipt should return the error', () => {
+    const exampleState = {
+      ...rootState,
+      subscriptions: {
+        ...rootState.subscriptions,
+        errorValidateSubscriptionReceipt: 'Some example error'
+      }
+    };
+
+    expect(selectErrorValidateSubscriptionReceipt(exampleState)).toBe('Some example error');
+  });
+
+  it('selectSubscriptionByProductId should return the subscription by subscription id', () => {
     const exampleState = {
       ...rootState,
       subscriptions: {
@@ -69,7 +81,7 @@ describe('subscriptions selector', () => {
     expect(selectSubscriptionByProductId(exampleState, productId)).toEqual(expected);
   });
 
-  it('should return the subscription validation result', () => {
+  it('selectSubscriptionsValidationResult should return the subscription validation result', () => {
     const exampleState = {
       ...rootState,
       subscriptions: {
@@ -81,7 +93,7 @@ describe('subscriptions selector', () => {
     expect(selectSubscriptionsValidationResult(exampleState)).toEqual(subscriptionValidationResultMock);
   });
 
-  it('should return the subscription latest receipt', () => {
+  it('selectSubscriptionLatestReceipt should return the subscription latest receipt', () => {
     const exampleState = {
       ...rootState,
       subscriptions: {
@@ -93,7 +105,7 @@ describe('subscriptions selector', () => {
     expect(selectSubscriptionLatestReceipt(exampleState)).toEqual(subscriptionValidationResultMock.latestReceipt);
   });
 
-  it('should return the subscription latest receipt', () => {
+  it('selectIsSubscribed should return the subscription latest receipt', () => {
     const exampleState = {
       ...rootState,
       subscriptions: {

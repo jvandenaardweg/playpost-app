@@ -19,6 +19,16 @@ export const selectIsLoading = createSelector(
   auth => auth.isLoading
 );
 
+export const selectErrorRequestResetPasswordToken = createSelector(
+  [authSelector],
+  auth => auth.errorRequestResetPasswordToken
+);
+
+export const selectErrorUpdatePassword = createSelector(
+  [authSelector],
+  auth => auth.errorUpdatePassword
+);
+
 export const selectAuthenticationStatus = createSelector(
   [selectAuthenticationToken],
   (token) => {

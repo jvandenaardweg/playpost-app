@@ -6,6 +6,7 @@ import styles from './styles';
 interface Props {
   onChangeText(field: string, text: string): void;
   onPressLogin(): void;
+  onPressForgotPassword(): void;
   email: string;
   password: string;
   isLoading: boolean;
@@ -16,7 +17,8 @@ export const LoginForm: React.FC<Props> = React.memo(({
   password,
   isLoading,
   onChangeText,
-  onPressLogin
+  onPressLogin,
+  onPressForgotPassword
 }) => {
 
   let passwordInput: TextInput | null = null;
@@ -57,6 +59,7 @@ export const LoginForm: React.FC<Props> = React.memo(({
 
         <View>
           <Button title="Login" loading={isLoading} onPress={onPressLogin} disabled={isLoading} buttonStyle={styles.buttonStyle} disabledStyle={styles.buttonStyle} activeOpacity={1} titleStyle={styles.buttonTitleStyle} />
+          <Button title="Forgot password?" type="clear" onPress={onPressForgotPassword} />
         </View>
 
       </ScrollView>

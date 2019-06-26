@@ -1,13 +1,13 @@
 import React, { useRef } from 'react';
 import WebView from 'react-native-webview';
 import urlParse from 'url-parse';
+import { StatusBar, Linking } from 'react-native';
+import { WebViewNavigation } from 'react-native-webview/lib/WebViewTypes';
 
 import spacing from '../../constants/spacing';
 import fonts from '../../constants/fonts';
 import colors from '../../constants/colors';
 import { CenterLoadingIndicator } from '../CenterLoadingIndicator';
-import { Linking } from 'react-native';
-import { WebViewNavigation } from 'react-native-webview/lib/WebViewTypes';
 
 interface Props {
   article: Api.Article | undefined;
@@ -17,8 +17,10 @@ interface Props {
 interface ThemeStyles {
   backgroundColor: string;
   fontColor: string;
+  paragraphColor: string;
   highlightColor: string;
   metaColor: string;
+  titleColor: string;
 }
 
 export const ArticleReader: React.FC<Props> = React.memo(({
@@ -28,14 +30,21 @@ export const ArticleReader: React.FC<Props> = React.memo(({
   const webViewRef = useRef<WebView>(null);
   const themeStyles = getThemeStyles(theme);
 
-  const handleWebViewNavigationStateChange = (request: WebViewNavigation) => {
+  const handleWebViewNavigationStateChange = async (request: WebViewNavigation, webViewRef: React.RefObject<WebView>) => {
     const { url } = request;
 
     if (!url || url.includes('file://')) return;
 
-    webViewRef.current && webViewRef.current.stopLoading();
+    // It seems like when opening URL's from the WebView that the StatusBar turns white
+    // We want to keep it the default style so we enforce that here.
+    StatusBar.setBarStyle('default');
 
-    return Linking.openURL(url);
+    try {
+      await Linking.openURL(url);
+      return webViewRef.current && webViewRef.current.stopLoading();
+    } catch (err) {
+      console.log('Error while opening url in webview', err);
+    }
   };
 
   return (
@@ -50,7 +59,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
       bounces
       decelerationRate="normal"
       style={{ backgroundColor: themeStyles.backgroundColor, padding: 0, margin: 0 }}
-      onNavigationStateChange={handleWebViewNavigationStateChange}
+      onNavigationStateChange={(request: WebViewNavigation) => handleWebViewNavigationStateChange(request, webViewRef)}
     />
   );
 
@@ -59,21 +68,27 @@ export const ArticleReader: React.FC<Props> = React.memo(({
     // Light
     let backgroundColor = colors.white;
     let fontColor = colors.black;
+    let paragraphColor = colors.grayDarker;
     let highlightColor = colors.black;
     let metaColor = colors.paragraphGrayed;
+    let titleColor = colors.black;
 
     if (theme === 'dark') {
       backgroundColor = colors.grayDarkest;
       fontColor = colors.gray;
-      highlightColor = colors.white;
+      paragraphColor = colors.gray;
+      highlightColor = colors.gray;
       metaColor = colors.gray;
+      titleColor = colors.white;
     }
 
     return {
       backgroundColor,
       fontColor,
+      paragraphColor,
       highlightColor,
-      metaColor
+      metaColor,
+      titleColor
     };
   }
 
@@ -107,7 +122,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
             line-height: 1.2;
             margin-top: 0;
             margin-bottom: ${spacing.tiny}px;
-            color: ${themeStyles.highlightColor};
+            color: ${themeStyles.titleColor};
             font-family: 'PT Sans', sans-serif;
           }
 
@@ -131,7 +146,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
             font-size: ${Math.ceil(fonts.fontSize.body * 1.1)}px;
             margin-top: 1.5;
             text-align: justify;
-            color: ${colors.grayDarker};
+            color: ${themeStyles.paragraphColor};
             line-height: 1.5;
             margin-bottom: 1.5;
           }
@@ -161,12 +176,11 @@ export const ArticleReader: React.FC<Props> = React.memo(({
 
           .meta-header strong {
             display: block;
-            color: ${themeStyles.metaColor};
             font-weight: normal;
           }
 
           .meta-header a {
-            color: ${themeStyles.metaColor};
+            color: ${colors.tintColor};
           }
 
           .image-header {
@@ -227,7 +241,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
           <div class="meta-header">
             <h1>${article.title}</h1>
             ${authorElement}
-            <strong><a href="${articleUrl}">${urlParse(articleUrl).hostname}</a></strong>
+            <strong><a href="${articleUrl}">View on ${urlParse(articleUrl).hostname}</a></strong>
           </div>
           <div class="content">
             [ARTICLE_HTML_PLACEHOLDER]
