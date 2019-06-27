@@ -10,12 +10,12 @@ import { Upgrade } from '../components/Upgrade';
 
 import { NetworkContext } from '../contexts/NetworkProvider';
 
-import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SUBSCRIPTION_BUY_SUCCESS, ALERT_SUBSCRIPTION_RESTORE_PURCHASE_NOT_FOUND, ALERT_SUBSCRIPTION_RESTORE_SUCCESS, ALERT_SUBSCRIPTION_INIT_FAIL, ALERT_SUBSCRIPTION_PURCHASE_SUBSCRIPTION_NOT_FOUND, ALERT_SUBSCRIPTION_NOT_FOUND } from '../constants/messages';
+import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SUBSCRIPTION_BUY_SUCCESS, ALERT_SUBSCRIPTION_RESTORE_PURCHASE_NOT_FOUND, ALERT_SUBSCRIPTION_RESTORE_SUCCESS, ALERT_SUBSCRIPTION_INIT_FAIL, ALERT_SUBSCRIPTION_PURCHASE_SUBSCRIPTION_NOT_FOUND } from '../constants/messages';
 import { SUBSCRIPTION_PRODUCT_ID } from '../constants/in-app-purchase';
 
-import { selectSubscriptionsError, selectSubscriptionsValidationResult, selectSubscriptionByProductId } from '../selectors/subscriptions';
+import { selectSubscriptionsError, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
 import { RootState } from '../reducers';
-import { validateSubscriptionReceipt, getActiveSubscriptions } from '../reducers/subscriptions';
+import { validateSubscriptionReceipt } from '../reducers/subscriptions';
 import { URL_FEEDBACK } from '../constants/urls';
 
 interface State {
@@ -50,9 +50,8 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   /* tslint:disable-next-line no-any */
   purchaseErrorSubscription: any = null;
 
-  componentDidMount() {
+  async componentDidMount() {
     const { isConnected } = this.context;
-    const { subscription } = this.props;
 
     // For now, just close the screen when there's no active internet connection
     // TODO: make more user friendly to show upgrade features when there's no internet connection
@@ -61,18 +60,13 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       return Alert.alert('Upgrading requires internet', ALERT_GENERIC_INTERNET_REQUIRED);
     }
 
-    if (!subscription) {
-      this.handleClose();
-      return this.showErrorAlert('Cannot upgrade', ALERT_SUBSCRIPTION_NOT_FOUND);
-    }
-
     this.fetchAvailableSubscriptionItems(SUBSCRIPTION_PRODUCT_ID);
 
     this.purchaseUpdateSubscription = RNIap.purchaseUpdatedListener(async (purchase: RNIap.ProductPurchase) => {
       try {
         // Validatation error is handeled in ErrorAlertContainer
         // The validation result is handled in componentDidUpdate
-        await this.props.validateSubscriptionReceipt(subscription.id, purchase.transactionReceipt);
+        await this.props.validateSubscriptionReceipt(SUBSCRIPTION_PRODUCT_ID, purchase.transactionReceipt);
       } finally {
         this.setState({ isLoadingRestorePurchases: false, isLoadingBuySubscription: false });
       }
@@ -179,10 +173,6 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   }
 
   handleOnPressRestore = async () => {
-    const { subscription } = this.props;
-
-    if (!subscription) return this.showErrorAlert('Cannot restore', ALERT_SUBSCRIPTION_NOT_FOUND);
-
     return this.setState({ isLoadingRestorePurchases: true }, async () => {
       try {
         // Get the previous purchases of the current user
@@ -192,7 +182,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         const latestReceipt = this.getLatestReceipt(purchases, SUBSCRIPTION_PRODUCT_ID);
 
         // Validate the receipt on our server
-        await this.props.validateSubscriptionReceipt(subscription.id, latestReceipt);
+        await this.props.validateSubscriptionReceipt(SUBSCRIPTION_PRODUCT_ID, latestReceipt);
 
         // The validation result is handled in componentDidUpdate
       } catch (err) {
@@ -271,24 +261,20 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
 interface StateProps {
   subscriptionsError: ReturnType<typeof selectSubscriptionsError>;
-  subscription: ReturnType<typeof selectSubscriptionByProductId>;
   validationResult: ReturnType<typeof selectSubscriptionsValidationResult>;
 }
 
 interface DispatchProps {
   validateSubscriptionReceipt: typeof validateSubscriptionReceipt;
-  getActiveSubscriptions: typeof getActiveSubscriptions;
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
   subscriptionsError: selectSubscriptionsError(state),
-  subscription: selectSubscriptionByProductId(state, SUBSCRIPTION_PRODUCT_ID),
   validationResult: selectSubscriptionsValidationResult(state)
 });
 
 const mapDispatchToProps = {
-  validateSubscriptionReceipt,
-  getActiveSubscriptions
+  validateSubscriptionReceipt
 };
 
 export const UpgradeContainer =

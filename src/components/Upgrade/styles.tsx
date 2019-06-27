@@ -67,7 +67,8 @@ export default StyleSheet.create({
   },
   textHighlight: {
     color: colors.black,
-    opacity: 1
+    opacity: 1,
+    textDecorationLine: 'underline'
   },
   subscribeContainer: {
     borderTopWidth: 1,
