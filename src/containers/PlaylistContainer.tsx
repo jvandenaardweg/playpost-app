@@ -12,7 +12,6 @@ import { NetworkContext } from '../contexts/NetworkProvider';
 
 import { getPlaylist, reOrderPlaylistItem } from '../reducers/playlist';
 import { getLanguages } from '../reducers/voices';
-import { getActiveSubscriptions } from '../reducers/subscriptions';
 import { getUser } from '../reducers/user';
 
 import { selectNewPlaylistItems, selectArchivedPlaylistItems, selectFavoritedPlaylistItems } from '../selectors/playlist';
@@ -95,8 +94,7 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
   prePopulateApp = async () => {
     const promises = await Promise.all([
       this.props.getUser(),
-      this.props.getLanguages(),
-      this.props.getActiveSubscriptions()
+      this.props.getLanguages()
     ]);
 
     return promises;
@@ -323,7 +321,6 @@ interface StateProps {
 interface DispatchProps {
   getPlaylist: typeof getPlaylist;
   getLanguages: typeof getLanguages;
-  getActiveSubscriptions: typeof getActiveSubscriptions;
   getUser: typeof getUser;
   reOrderPlaylistItem: typeof reOrderPlaylistItem;
 }
@@ -338,7 +335,6 @@ const mapStateToProps = (state: RootState) => ({
 const mapDispatchToProps = {
   getPlaylist,
   getLanguages,
-  getActiveSubscriptions,
   getUser,
   reOrderPlaylistItem
 };

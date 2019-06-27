@@ -142,14 +142,15 @@ export function getActiveSubscriptions() {
   };
 }
 
-export function validateSubscriptionReceipt(subscriptionId: string, latestReceipt: string) {
+export function validateSubscriptionReceipt(productId: string, latestReceipt: string) {
   return {
     type: POST_VALIDATE_SUBSCRIPTION_RECEIPT,
     payload: {
       request: {
         method: 'post',
-        url: `/v1/in-app-subscriptions/${subscriptionId}/validate`,
+        url: '/v1/in-app-subscriptions/validate',
         data: {
+          productId,
           receipt: latestReceipt
         }
       }
