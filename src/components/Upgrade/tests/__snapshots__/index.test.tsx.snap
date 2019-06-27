@@ -359,13 +359,22 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 Object {
                   "color": "#000000",
                   "opacity": 1,
+                  "textDecorationLine": "underline",
                 },
               ]
             }
           >
             Privacy Policy
           </Text>
-          <Text>
+          <Text
+            style={
+              Object {
+                "fontSize": 13,
+                "lineHeight": 18,
+                "opacity": 0.5,
+              }
+            }
+          >
              - 
           </Text>
           <Text
@@ -380,6 +389,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 Object {
                   "color": "#000000",
                   "opacity": 1,
+                  "textDecorationLine": "underline",
                 },
               ]
             }
