@@ -315,7 +315,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
         type: 'CUSTOM_VIEW',
         render: () => {
           const environment = Config.NODE_ENV;
-          const environmentText = (environment !== 'production') ? `(${environment})` : '';
+          const environmentText = (environment !== 'production') ? `(Env: ${environment})` : '';
           const versionText = `Version: ${VersionNumber.appVersion} (Build: ${VersionNumber.buildVersion}) ${environmentText}`;
 
           return (
