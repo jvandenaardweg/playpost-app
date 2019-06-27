@@ -79,9 +79,8 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
           p {
             font-size: 17px;
             margin-top: 1.5;
-            text-align: justify;
             color: #C5C5C5;
-            line-height: 1.5;
+            line-height: 1.58;
             margin-bottom: 1.5;
           }
 
@@ -290,9 +289,8 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
           p {
             font-size: 17px;
             margin-top: 1.5;
-            text-align: justify;
             color: #444444;
-            line-height: 1.5;
+            line-height: 1.58;
             margin-bottom: 1.5;
           }
 
@@ -501,9 +499,8 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
           p {
             font-size: 17px;
             margin-top: 1.5;
-            text-align: justify;
             color: #444444;
-            line-height: 1.5;
+            line-height: 1.58;
             margin-bottom: 1.5;
           }
 
@@ -706,9 +703,8 @@ exports[`ArticleReader rendering no author name should render no authorName when
           p {
             font-size: 17px;
             margin-top: 1.5;
-            text-align: justify;
             color: #444444;
-            line-height: 1.5;
+            line-height: 1.58;
             margin-bottom: 1.5;
           }
 
@@ -911,9 +907,8 @@ exports[`ArticleReader rendering no html should render a different HTML output w
           p {
             font-size: 17px;
             margin-top: 1.5;
-            text-align: justify;
             color: #444444;
-            line-height: 1.5;
+            line-height: 1.58;
             margin-bottom: 1.5;
           }
 
