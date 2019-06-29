@@ -115,7 +115,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
    * 2. Create an audiofile when there's none present
    * 3. Toggle play/pause
    */
-  handleOnPlayPress = async () => {
+  handleOnPlayPress = async (): Promise<void> => {
     const { isPlaying } = this.state;
     const { article, isSubscribed, playerArticleId } = this.props;
     const { isConnected } = this.context;
@@ -147,7 +147,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     return TrackPlayer.play();
   }
 
-  handleCreateAudiofile = async () => {
+  handleCreateAudiofile = async (): Promise<void> => {
     const { article, languagesWithActiveVoices, userSelectedVoiceByLanguageName, isSubscribed } = this.props;
 
     // If the selected voice of the user, is a Premium voice, but the user has no Premium account active
@@ -198,14 +198,17 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     });
   }
 
-  alertIfDifferentSelectedVoice = () => {
-    const { article, userSelectedVoiceByLanguageName, playerArticleId } = this.props;
+  alertIfDifferentSelectedVoice = (): void => {
+    const { article, playerArticleId } = this.props;
 
-    const selectedVoiceId = userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName.id;
-    const hasAudioWithSameVoice = !!article.audiofiles.find(audiofile => audiofile.voice.id === selectedVoiceId);
+    const audiofileWithUsersSelectedVoice = this.getAudiofileByUserSelectedVoice();
+    const selectedVoiceId = audiofileWithUsersSelectedVoice && audiofileWithUsersSelectedVoice.voice.id;
+    const audiofileVoiceId = this.audiofileToUse && this.audiofileToUse.voice.id;
+    const isAudioWithSameVoice = selectedVoiceId === audiofileVoiceId;
+    const isArticlePlaying = playerArticleId === article.id;
 
-    // TODO: fix bug where alert shows even if the voices are the same
-    if (!hasAudioWithSameVoice && playerArticleId !== article.id) {
+    // Show an alert, only when the selected article is not playing yet
+    if (!isAudioWithSameVoice && !isArticlePlaying) {
       Alert.alert(
         'Article has different voice',
         'Because you are on a free account, we will use the already available voice for this article. Which is a different voice. Premium users do not have this limitation.',
@@ -254,7 +257,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     });
   }
 
-  handleSetTrack = async () => {
+  handleSetTrack = async (): Promise<void> => {
     const { isConnected } = this.context;
     const { article, isDownloaded } = this.props;
 
@@ -320,7 +323,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     });
   }
 
-  fetchPlaylist = async () => {
+  fetchPlaylist = async (): Promise<void> => {
     try {
       await this.props.getPlaylist();
     } catch (err) {
@@ -343,7 +346,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
 
   }
 
-  handleRemoveArticle = async () => {
+  handleRemoveArticle = async (): Promise<void> => {
     const articleId = this.props.article.id;
 
     try {
@@ -368,7 +371,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  handleArchiveArticle = async () => {
+  handleArchiveArticle = async (): Promise<void> => {
     const articleId = this.props.article.id;
 
     try {
@@ -393,7 +396,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  handleFavoriteArticle = async () => {
+  handleFavoriteArticle = async (): Promise<void> => {
     const articleId = this.props.article.id;
 
     try {
@@ -418,7 +421,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  handleUnFavoriteArticle = async () => {
+  handleUnFavoriteArticle = async (): Promise<void> => {
     const articleId = this.props.article.id;
 
     try {
@@ -443,7 +446,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  handleUnArchiveArticle = async () => {
+  handleUnArchiveArticle = async (): Promise<void> => {
     const articleId = this.props.article.id;
 
     try {
@@ -468,7 +471,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  get listenTimeInSeconds() {
+  get listenTimeInSeconds(): number {
     const { article } = this.props;
     // Just get the listen time of the first audiofile, for now
     return (article.audiofiles[0] && article.audiofiles[0].length) ? article.audiofiles[0].length : 0;
@@ -480,7 +483,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     return this.props.navigation.navigate('FullArticle', { article });
   }
 
-  handleOnPressUpdate = () => {
+  handleOnPressUpdate = (): void => {
     this.setState({ isLoading: true }, async () => {
       try {
         await this.fetchPlaylist();
