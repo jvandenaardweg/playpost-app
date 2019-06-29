@@ -201,9 +201,10 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
   alertIfDifferentSelectedVoice = () => {
     const { article, playerArticleId } = this.props;
 
-    const selectedVoice = this.getAudiofileByUserSelectedVoice();
-    const selectedVoiceId = selectedVoice && selectedVoice.id;
-    const hasAudioWithSameVoice = !!article.audiofiles.find(audiofile => audiofile.voice.id === selectedVoiceId);
+    const audiofileWithUsersSelectedVoice = this.getAudiofileByUserSelectedVoice();
+    const selectedVoiceId = audiofileWithUsersSelectedVoice && audiofileWithUsersSelectedVoice.voice.id;
+    const audiofileVoiceId = this.audiofileToUse && this.audiofileToUse.voice.id;
+    const hasAudioWithSameVoice = selectedVoiceId === audiofileVoiceId;
 
     if (!hasAudioWithSameVoice && playerArticleId !== article.id) {
       Alert.alert(
