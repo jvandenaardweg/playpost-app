@@ -244,13 +244,14 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   }
 
   render() {
-    const { isLoadingRestorePurchases, isLoadingBuySubscription, isLoadingSubscriptionItems } = this.state;
+    const { isLoadingRestorePurchases, isLoadingBuySubscription, isLoadingSubscriptionItems, subscription } = this.state;
 
     return (
       <Upgrade
         isLoadingSubscriptionItems={isLoadingSubscriptionItems}
         isLoadingBuySubscription={isLoadingBuySubscription}
         isLoadingRestorePurchases={isLoadingRestorePurchases}
+        localizedPrice={subscription.localizedPrice}
         upgradeButtonTitle={this.upgradeButtonTitle}
         onPressUpgrade={this.handleOnPressUpgrade}
         onPressRestore={this.handleOnPressRestore}
