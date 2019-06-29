@@ -64,7 +64,7 @@ export const Upgrade: React.FC<Props> = React.memo(({ isLoadingSubscriptionItems
         <View style={styles.footer}>
           <Text style={styles.footerText}>
             Payment will be charged to your Apple ID account at the confirmation of purchase.
-            Your account will be charged {localizedPrice} (monthly) for renewal wihting 24 hours prior to the end of the current period.
+            Your account will be charged {localizedPrice} (monthly) for renewal within 24 hours prior to the end of the current period.
             Subscription automatically renews unless it is canceled at least 24 hours before the end of the current period.
             You can manage and cancel your subscriptions by going to your account settings on the App Store after purchase.
             Refunds are not available for unused portions of a subscription.
