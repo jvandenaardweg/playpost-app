@@ -36,25 +36,6 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
 
   componentDidMount() {
     this.setupTrackPlayer();
-
-    // Adds an event handler for the playback-track-changed event
-    this.onTrackChange = TrackPlayer.addEventListener('playback-track-changed', async ({ track, position, nextTrack }) => {
-      console.log('Event', 'playback-track-changed', track, position, nextTrack);
-    });
-
-    this.onStateChanged = TrackPlayer.addEventListener('playback-state', async ({ state }) => {
-      console.log('Event', 'playback-state', state);
-      this.props.setPlaybackStatus(state);
-    });
-
-    this.onStateError = TrackPlayer.addEventListener('playback-error', ({ code, message }) => {
-      console.log('Event', 'playback-error', code, message);
-    });
-
-    this.onTrackChange = TrackPlayer.addEventListener('playback-queue-ended', async ({ track, position }) => {
-      console.log('Event', 'playback-queue-ended', track, position);
-      TrackPlayer.stop();
-    });
   }
 
   setupTrackPlayer = async () => {
@@ -86,6 +67,25 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
         // TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
         TrackPlayer.CAPABILITY_SEEK_TO
       ]
+    });
+
+    // Adds an event handler for the playback-track-changed event
+    this.onTrackChange = TrackPlayer.addEventListener('playback-track-changed', async ({ track, position, nextTrack }) => {
+      console.log('Event', 'playback-track-changed', track, position, nextTrack);
+    });
+
+    this.onStateChanged = TrackPlayer.addEventListener('playback-state', async ({ state }) => {
+      console.log('Event', 'playback-state', state);
+      this.props.setPlaybackStatus(state);
+    });
+
+    this.onStateError = TrackPlayer.addEventListener('playback-error', ({ code, message }) => {
+      console.log('Event', 'playback-error', code, message);
+    });
+
+    this.onTrackChange = TrackPlayer.addEventListener('playback-queue-ended', async ({ track, position }) => {
+      console.log('Event', 'playback-queue-ended', track, position);
+      TrackPlayer.stop();
     });
   }
 
