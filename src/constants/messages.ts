@@ -25,6 +25,7 @@ export const ALERT_ARTICLE_AUDIOFILE_DOWNLOAD_FAIL = 'There was a problem while 
 export const ALERT_ARTICLE_PLAY_INTERNET_REQUIRED = 'You need an active internet connection to listen to this article.';
 export const ALERT_ARTICLE_DOWNLOAD_FAIL = 'We could not download this article. Please try again.';
 export const ALERT_ARTICLE_PLAY_FAIL = 'We could not play this article. Please try again.';
+export const ALERT_ARTICLE_PLAY_DOWNLOAD_FAIL = 'We could not play or download this article. Please try again.';
 export const ALERT_ARTICLE_LANGUAGE_UNSUPPORTED = 'In this version we only allow English articles';
 export const ALERT_ARTICLE_VOICE_FAIL = 'Audiofile could not be generated at this point, because there is no available voice. Please try again later.';
 
