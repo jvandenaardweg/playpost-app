@@ -199,12 +199,12 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
   }
 
   alertIfDifferentSelectedVoice = () => {
-    const { article, userSelectedVoiceByLanguageName, playerArticleId } = this.props;
+    const { article, playerArticleId } = this.props;
 
-    const selectedVoiceId = userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName.id;
+    const selectedVoice = this.getAudiofileByUserSelectedVoice();
+    const selectedVoiceId = selectedVoice && selectedVoice.id;
     const hasAudioWithSameVoice = !!article.audiofiles.find(audiofile => audiofile.voice.id === selectedVoiceId);
 
-    // TODO: fix bug where alert shows even if the voices are the same
     if (!hasAudioWithSameVoice && playerArticleId !== article.id) {
       Alert.alert(
         'Article has different voice',
