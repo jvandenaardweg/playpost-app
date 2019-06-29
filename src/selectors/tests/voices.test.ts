@@ -1,4 +1,4 @@
-import { voicesSelector, selectLanguages, selectLanguagesWithActiveVoices, selectDownloadedVoicePreviews, selectAvailableVoicesByLanguageName, selectDefaultVoicesByLanguageName } from '../voices';
+import { voicesSelector, selectLanguages, selectLanguagesWithActiveVoices, selectDownloadedVoicePreviews, selectAvailableVoicesByLanguageName, selectDefaultVoiceByLanguageName } from '../voices';
 import { createStore } from 'redux';
 
 import { initialState } from '../../reducers/voices';
@@ -86,7 +86,7 @@ describe('voices selector', () => {
     expect(selectAvailableVoicesByLanguageName(exampleState, '')).toEqual([]);
   });
 
-  it('selectDefaultVoicesByLanguageName should return the default voice by language name', () => {
+  it('selectDefaultVoiceByLanguageName should return the default voice by language name', () => {
     const exampleState = {
       ...rootState,
       voices: {
@@ -99,9 +99,9 @@ describe('voices selector', () => {
     const languages = selectLanguagesWithActiveVoices(exampleState);
 
     const language = languages.find(language => language.name === languageName);
-    const expected = language && language.voices && language.voices.filter(voice => !!voice.isLanguageDefault);
+    const expected = language && language.voices && language.voices.find(voice => !!voice.isLanguageDefault);
 
-    expect(selectDefaultVoicesByLanguageName(exampleState, languageName)).toEqual(expected);
-    expect(selectDefaultVoicesByLanguageName(exampleState, '')).toEqual(null);
+    expect(selectDefaultVoiceByLanguageName(exampleState, languageName)).toEqual(expected);
+    expect(selectDefaultVoiceByLanguageName(exampleState, '')).toEqual(null);
   });
 });

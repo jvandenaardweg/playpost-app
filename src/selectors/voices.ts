@@ -55,13 +55,14 @@ export const selectAvailableVoicesByLanguageName = (state: RootState, languageNa
   }
 )(state);
 
-export const selectDefaultVoicesByLanguageName = (state: RootState, languageName: string) => createSelector(
+export const selectDefaultVoiceByLanguageName = (state: RootState, languageName: string) => createSelector(
   [selectLanguagesWithActiveVoices],
   (languages) => {
     const language = languages.find(language => language.name === languageName);
+
     if (!language) return null;
 
-    const defaultVoice = language.voices && language.voices.filter(voice => !!voice.isLanguageDefault);
+    const defaultVoice = language.voices && language.voices.find(voice => !!voice.isLanguageDefault);
 
     return defaultVoice;
   }

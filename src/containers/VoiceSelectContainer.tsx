@@ -15,7 +15,7 @@ import { setDownloadedVoice } from '../reducers/voices';
 import { saveSelectedVoice, getUser, resetSaveSelectedVoiceError } from '../reducers/user';
 
 import { selectPlayerPlaybackState, selectPlayerTrack } from '../selectors/player';
-import { selectDownloadedVoicePreviews, selectAvailableVoicesByLanguageName, selectDefaultVoicesByLanguageName } from '../selectors/voices';
+import { selectDownloadedVoicePreviews, selectAvailableVoicesByLanguageName, selectDefaultVoiceByLanguageName } from '../selectors/voices';
 import { selectUserSelectedVoiceByLanguageName, selectUserErrorSaveSelectedVoice } from '../selectors/user';
 import { selectIsSubscribed } from '../selectors/subscriptions';
 
@@ -226,8 +226,8 @@ export class VoiceSelectContainerComponent extends React.PureComponent<Props, St
 
   isSelected = (item: Api.Voice) => {
     // const { isLoadingSaveSelectedVoiceId } = this.state;
-    const { defaultVoicesByLanguageName, userSelectedVoiceByLanguageName } = this.props;
-    const isDefaultSelected = (defaultVoicesByLanguageName) ? !!defaultVoicesByLanguageName.find(voice => voice.id === item.id) : false;
+    const { defaultVoiceByLanguageName, userSelectedVoiceByLanguageName } = this.props;
+    const isDefaultSelected = (defaultVoiceByLanguageName) ? defaultVoiceByLanguageName.id === item.id : false;
     const isUserSelected = (userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName.id === item.id);
 
     let isSelected = false;
@@ -307,7 +307,7 @@ interface StateProps {
   readonly playerTrack: ReturnType<typeof selectPlayerTrack>;
   readonly downloadedVoices: ReturnType<typeof selectDownloadedVoicePreviews>;
   readonly availableVoicesByLanguageName: ReturnType<typeof selectAvailableVoicesByLanguageName>;
-  readonly defaultVoicesByLanguageName: ReturnType<typeof selectDefaultVoicesByLanguageName>;
+  readonly defaultVoiceByLanguageName: ReturnType<typeof selectDefaultVoiceByLanguageName>;
   readonly userSelectedVoiceByLanguageName: ReturnType<typeof selectUserSelectedVoiceByLanguageName>;
   readonly isSubscribed: ReturnType<typeof selectIsSubscribed>;
   readonly errorSaveSelectedVoice: ReturnType<typeof selectUserErrorSaveSelectedVoice>;
@@ -318,7 +318,7 @@ const mapStateToProps = (state: RootState, props: Props) => ({
   playerTrack: selectPlayerTrack(state),
   downloadedVoices: selectDownloadedVoicePreviews(state),
   availableVoicesByLanguageName: selectAvailableVoicesByLanguageName(state, props.navigation.getParam('languageName', '')), // does not memoize correctly? // https://github.com/reduxjs/reselect#containersvisibletodolistjs-2
-  defaultVoicesByLanguageName: selectDefaultVoicesByLanguageName(state, props.navigation.getParam('languageName', '')),
+  defaultVoiceByLanguageName: selectDefaultVoiceByLanguageName(state, props.navigation.getParam('languageName', '')),
   userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state, props.navigation.getParam('languageName', '')),
   isSubscribed: selectIsSubscribed(state),
   errorSaveSelectedVoice: selectUserErrorSaveSelectedVoice(state)

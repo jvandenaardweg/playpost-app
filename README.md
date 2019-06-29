@@ -167,3 +167,13 @@ To manually edit the mocked response:
 2. Open "Examples (1)" on the top right
 3. Edit the response
 4. Save the response
+
+## Release a new version
+1. Make changes in the `develop` branche
+2. When the changes are fully tested and working, run `npm version patch` or `npm version minor` or `npm version major`
+3. Push those changes to `develop`
+4. Make sure the `develop` branche builds correctly
+5. Go to GitHub and merge `develop` into `master`
+6. A production build will now be created. Upon success, it's send to TestFlight.
+7. Go to App Store Connect and find the production build based on the build number from AppCenter
+8. Send that version to Apple for review

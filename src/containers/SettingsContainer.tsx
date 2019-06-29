@@ -5,6 +5,7 @@ import { Text, Alert, ActivityIndicator, Linking } from 'react-native';
 import { SettingsScreen as SettingsScreenComponent, SettingsData } from 'react-native-settings-screen';
 import { connect } from 'react-redux';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
+import Config from 'react-native-config';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 import fonts from '../constants/fonts';
@@ -312,18 +313,24 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
       },
       {
         type: 'CUSTOM_VIEW',
-        render: () => (
-          <Text
-            style={{
-              alignSelf: 'center',
-              fontSize: fonts.fontSize.title,
-              color: colors.grayDark,
-              marginBottom: 40
-            }}
-          >
-            Version: {VersionNumber.appVersion}, Build: {VersionNumber.buildVersion}
-          </Text>
-        ),
+        render: () => {
+          const environment = Config.NODE_ENV;
+          const environmentText = (environment !== 'production') ? `(Env: ${environment})` : '';
+          const versionText = `Version: ${VersionNumber.appVersion} (Build: ${VersionNumber.buildVersion}) ${environmentText}`;
+
+          return (
+            <Text
+              style={{
+                alignSelf: 'center',
+                fontSize: fonts.fontSize.body,
+                color: colors.grayDark,
+                marginBottom: 40
+              }}
+            >
+              {versionText}
+            </Text>
+          );
+        }
       },
       {
         type: 'CUSTOM_VIEW',

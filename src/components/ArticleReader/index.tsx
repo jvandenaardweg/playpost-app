@@ -143,11 +143,10 @@ export const ArticleReader: React.FC<Props> = React.memo(({
           }
 
           p {
-            font-size: ${Math.ceil(fonts.fontSize.body * 1.1)}px;
+            font-size: ${fonts.fontSize.title}px;
             margin-top: 1.5;
-            text-align: justify;
             color: ${themeStyles.paragraphColor};
-            line-height: 1.5;
+            line-height: 1.58;
             margin-bottom: 1.5;
           }
 

@@ -14,11 +14,12 @@ interface Props {
   isLoadingBuySubscription: boolean;
   isLoadingRestorePurchases: boolean;
   upgradeButtonTitle: string;
+  localizedPrice?: string;
   onPressUpgrade(): void;
   onPressRestore(): void;
 }
 
-export const Upgrade: React.FC<Props> = React.memo(({ isLoadingSubscriptionItems, isLoadingBuySubscription, isLoadingRestorePurchases, onPressUpgrade, onPressRestore, upgradeButtonTitle }) => {
+export const Upgrade: React.FC<Props> = React.memo(({ isLoadingSubscriptionItems, isLoadingBuySubscription, isLoadingRestorePurchases, onPressUpgrade, onPressRestore, upgradeButtonTitle, localizedPrice }) => {
   return (
 
     <View style={{ flex: 1 }}>
@@ -61,7 +62,13 @@ export const Upgrade: React.FC<Props> = React.memo(({ isLoadingSubscriptionItems
           </View>
         </View>
         <View style={styles.footer}>
-          <Text style={styles.footerText}>Payment will be charged to your Apple ID account at the confirmation of purchase. Subscription automatically renews unless it is canceled at least 24 hours before the end of the current period. Your account will be charged for renewal within 24 hours prior to the end of the current period. You can manage and cancel your subscriptions by going to your account settings on the App Store after purchase.</Text>
+          <Text style={styles.footerText}>
+            Payment will be charged to your Apple ID account at the confirmation of purchase.
+            Your account will be charged {localizedPrice} (monthly) for renewal within 24 hours prior to the end of the current period.
+            Subscription automatically renews unless it is canceled at least 24 hours before the end of the current period.
+            You can manage and cancel your subscriptions by going to your account settings on the App Store after purchase.
+            Refunds are not available for unused portions of a subscription.
+          </Text>
           <View style={styles.footerLinks}>
             <Text style={[styles.footerText, styles.textHighlight]} onPress={() => Linking.openURL(`${URL_PRIVACY_POLICY}?ref=playpost://upgrade`)}>Privacy Policy</Text>
             <Text style={styles.footerText}> - </Text>
