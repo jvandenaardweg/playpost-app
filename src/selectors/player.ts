@@ -25,6 +25,23 @@ export const selectPlayerAudiofile = createSelector(
   player => player.audiofile
 );
 
+export const selectPlayerAudiofileStatus = createSelector(
+  [playerSelector],
+  player => {
+    const { isCreatingAudiofile, isDownloadingAudiofile } = player;
+
+    if (isCreatingAudiofile && isDownloadingAudiofile) {
+      return 'Loading article audio...';
+    }
+
+    if (isCreatingAudiofile) return 'Creating article audio...';
+
+    if (isDownloadingAudiofile) return 'Downloading article audio...';
+
+    return null;
+  }
+);
+
 export const selectPlayerPlaybackState = createSelector(
   [playerSelector],
   player => player.playbackState
