@@ -8,9 +8,21 @@ describe('SignupForm', () => {
     let wrapper: RenderAPI;
     const onPressSignupHandler = jest.fn();
     const onChangeTextHandler = jest.fn();
+    const onPressPrivacyPolicyHandler = jest.fn();
+    const onPressTermsHandler = jest.fn();
 
     beforeEach(() => {
-      wrapper = render(<SignupForm onChangeText={onChangeTextHandler} onPressSignup={onPressSignupHandler} email="" password="" isLoading={false} />);
+      wrapper = render(
+        <SignupForm
+          onChangeText={onChangeTextHandler}
+          onPressSignup={onPressSignupHandler}
+          onPressPrivacyPolicy={onPressPrivacyPolicyHandler}
+          onPressTerms={onPressTermsHandler}
+          email=""
+          password=""
+          isLoading={false}
+        />
+      );
     });
 
     it('should render correctly', () => {
@@ -22,17 +34,39 @@ describe('SignupForm', () => {
     let wrapper: RenderAPI;
     const onPressSignupHandler = jest.fn();
     const onChangeTextHandler = jest.fn();
+    const onPressPrivacyPolicyHandler = jest.fn();
+    const onPressTermsHandler = jest.fn();
 
     beforeEach(() => {
-      wrapper = render(<SignupForm onChangeText={onChangeTextHandler} onPressSignup={onPressSignupHandler} email="" password="" isLoading={false} />);
+      wrapper = render(
+        <SignupForm
+          onChangeText={onChangeTextHandler}
+          onPressSignup={onPressSignupHandler}
+          onPressPrivacyPolicy={onPressPrivacyPolicyHandler}
+          onPressTerms={onPressTermsHandler}
+          email=""
+          password=""
+          isLoading={false}
+        />
+      );
     });
 
-    it('should fire onPressSignupHandler when the signup button is pressed', () => {
+    it('should fire onPressSignup when the signup button is pressed', () => {
       fireEvent.press(wrapper.getByTestId('SignupForm-signup-button'));
       expect(onPressSignupHandler).toHaveBeenCalledTimes(1);
     });
 
-    it('should fire onChangeTextHandler when filling in a TextInput', () => {
+    it('should fire onPressPrivacyPolicy when the Privacy Policy button is pressed', () => {
+      fireEvent.press(wrapper.getByTestId('SignupForm-privacy-policy-button'));
+      expect(onPressPrivacyPolicyHandler).toHaveBeenCalledTimes(1);
+    });
+
+    it('should fire onPressTerms when the Terms of Use button is pressed', () => {
+      fireEvent.press(wrapper.getByTestId('SignupForm-terms-button'));
+      expect(onPressTermsHandler).toHaveBeenCalledTimes(1);
+    });
+
+    it('should fire onChangeText when filling in a TextInput', () => {
       const exampleEmail = 'jordyvandenaardweg@gmail.com';
       const emailTextInput = wrapper.getByTestId('SignupForm-TextInput-email');
 
@@ -49,7 +83,17 @@ describe('SignupForm', () => {
     });
 
     it('should disable the signup button if isLoading is true', () => {
-      wrapper.update(<SignupForm onChangeText={onChangeTextHandler} onPressSignup={onPressSignupHandler} email="" password="" isLoading={true} />);
+      wrapper.update(
+        <SignupForm
+          onChangeText={onChangeTextHandler}
+          onPressSignup={onPressSignupHandler}
+          onPressPrivacyPolicy={onPressPrivacyPolicyHandler}
+          onPressTerms={onPressTermsHandler}
+          email=""
+          password=""
+          isLoading={true}
+        />
+      );
 
       expect(wrapper.getByTestId('SignupForm-signup-button').props.disabled).toBe(true);
     });

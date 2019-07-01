@@ -190,6 +190,7 @@ exports[`SignupForm rendering should render correctly 1`] = `
                 },
               ]
             }
+            testID="SignupForm-privacy-policy-button"
           >
             Privacy Policy
           </Text>
@@ -220,6 +221,7 @@ exports[`SignupForm rendering should render correctly 1`] = `
                 },
               ]
             }
+            testID="SignupForm-terms-button"
           >
             Terms of Use
           </Text>

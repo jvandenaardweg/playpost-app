@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Alert, Platform } from 'react-native';
+import { Alert, Platform, Linking } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import * as Keychain from 'react-native-keychain';
 
@@ -17,6 +17,7 @@ import { postAuth } from '../reducers/auth';
 import { selectAuthError } from '../selectors/auth';
 import { selectUserError } from '../selectors/user';
 import { RootState } from '../reducers';
+import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../constants/urls';
 
 /* tslint:disable no-any */
 interface State {
@@ -98,6 +99,10 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
     });
   }
 
+  handleOnPressPrivacyPolicy = () => Linking.openURL(`${URL_PRIVACY_POLICY}?ref=playpost://signup`);
+
+  handleOnPressTerms = () => Linking.openURL(`${URL_TERMS_OF_USE}?ref=playpost://signup`);
+
   handleOnChangeText = (field: 'email' | 'password', value: string) => {
     if (field === 'email') this.setState({ email: value });
     if (field === 'password') this.setState({ password: value });
@@ -113,6 +118,8 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
         isLoading={isLoading}
         onChangeText={this.handleOnChangeText}
         onPressSignup={this.handleOnPressSignup}
+        onPressPrivacyPolicy={this.handleOnPressPrivacyPolicy}
+        onPressTerms={this.handleOnPressTerms}
       />
     );
   }

@@ -1,18 +1,19 @@
 import React from 'react';
-import { View, Text, TextInput, KeyboardAvoidingView, Linking, ScrollView } from 'react-native';
+import { View, Text, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import styles from './styles';
-import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../../constants/urls';
 
 interface Props {
   onChangeText(field: string, text: string): void;
   onPressSignup(): void;
+  onPressPrivacyPolicy(): void;
+  onPressTerms(): void;
   email: string;
   password: string;
   isLoading: boolean;
 }
 
-export const SignupForm: React.FC<Props> = React.memo(({ onChangeText, onPressSignup, email, password, isLoading }) => {
+export const SignupForm: React.FC<Props> = React.memo(({ onChangeText, onPressSignup, onPressPrivacyPolicy, onPressTerms, email, password, isLoading }) => {
   let passwordInput: TextInput | null = null;
 
   return (
@@ -70,11 +71,11 @@ export const SignupForm: React.FC<Props> = React.memo(({ onChangeText, onPressSi
         <View style={styles.footerContainer}>
           <View style={styles.footer}>
             <Text style={styles.footerText}>By signing up you agree to our </Text>
-            <Text style={[styles.footerText, styles.footerTextHighlight]} onPress={() => Linking.openURL(`${URL_PRIVACY_POLICY}?ref=playpost://signup`)}>
+            <Text style={[styles.footerText, styles.footerTextHighlight]} testID="SignupForm-privacy-policy-button" onPress={() => onPressPrivacyPolicy()}>
               Privacy Policy
             </Text>
             <Text style={styles.footerText}> and </Text>
-            <Text style={[styles.footerText, styles.footerTextHighlight]} onPress={() => Linking.openURL(`${URL_TERMS_OF_USE}?ref=playpost://signup`)}>
+            <Text style={[styles.footerText, styles.footerTextHighlight]} testID="SignupForm-terms-button" onPress={() => onPressTerms()}>
               Terms of Use
             </Text>
           </View>
