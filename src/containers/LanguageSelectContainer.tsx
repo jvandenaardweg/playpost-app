@@ -38,23 +38,18 @@ export class LanguagesSelectComponent extends React.PureComponent<Props> {
 
     if (!voice) return '';
 
-    const defaultLabel = (voice.isLanguageDefault) ? '(Default) ' : '';
-    const genderLabel = (voice.gender === 'MALE') ? 'Male' : 'Female';
-    const label = (voice.label) ? voice.label : '';
+    const defaultLabel = voice.isLanguageDefault ? '(Default) ' : '';
+    const genderLabel = voice.gender === 'MALE' ? 'Male' : 'Female';
+    const label = voice.label ? voice.label : '';
 
     return `${defaultLabel}${label} (${voice.countryCode}) (${genderLabel})`;
   }
 
-  renderItem = ({ item }: { item: Api.Language}) => {
+  renderItem = ({ item }: { item: Api.Language }) => {
     const subtitle = this.getVoiceSubtitle(item);
+    const totalVoices = item.voices && item.voices.length ? item.voices.length : 0;
 
-    return (
-      <ListItemLanguage
-        onPress={this.handleOnListItemPress}
-        language={item}
-        subtitle={subtitle}
-      />
-    );
+    return <ListItemLanguage onPress={this.handleOnListItemPress} language={item} totalVoices={totalVoices} subtitle={subtitle} />;
   }
 
   render() {
@@ -88,10 +83,9 @@ const mapDispatchToProps = {
   getLanguages
 };
 
-export const LanguagesSelectContainer =
-  withNavigation(
-    connect(
-      mapStateToProps,
-      mapDispatchToProps
-    )(LanguagesSelectComponent)
-  );
+export const LanguagesSelectContainer = withNavigation(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(LanguagesSelectComponent)
+);

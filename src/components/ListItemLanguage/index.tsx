@@ -10,16 +10,11 @@ import styles from './styles';
 interface Props {
   language: Api.Language;
   subtitle: string;
+  totalVoices: number;
   onPress(language: Api.Language): void;
 }
 
-export const ListItemLanguage: React.FC<Props> = React.memo(({
-  language,
-  subtitle,
-  onPress
-}) => {
-  const totalVoices = language.voices && language.voices.length;
-
+export const ListItemLanguage: React.FC<Props> = React.memo(({ language, subtitle, totalVoices, onPress }) => {
   return (
     <ListItem
       bottomDivider
@@ -27,7 +22,11 @@ export const ListItemLanguage: React.FC<Props> = React.memo(({
       title={language.name}
       subtitle={subtitle}
       containerStyle={styles.listItemContainer}
-      badge={{ value: totalVoices, badgeStyle: { width: 26, height: 20 } }}
+      badge={{
+        value: totalVoices,
+        badgeStyle: styles.badgeStyle,
+        textStyle: styles.badgeTextStyle
+      }}
       titleStyle={styles.listItemTitle}
       subtitleStyle={styles.listItemSubtitle}
       rightElement={<Icon.FontAwesome5 name="chevron-right" size={16} solid color={colors.gray} />}
