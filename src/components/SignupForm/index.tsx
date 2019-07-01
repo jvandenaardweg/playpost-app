@@ -57,7 +57,7 @@ export const SignupForm: React.FC<Props> = React.memo(({ onChangeText, onPressSi
 
         <View>
           <Button
-            testID="SignupForm-signup-button"
+            testID="SignupForm-Button-signup"
             title="Create account"
             loading={isLoading}
             onPress={onPressSignup}
@@ -71,11 +71,11 @@ export const SignupForm: React.FC<Props> = React.memo(({ onChangeText, onPressSi
         <View style={styles.footerContainer}>
           <View style={styles.footer}>
             <Text style={styles.footerText}>By signing up you agree to our </Text>
-            <Text style={[styles.footerText, styles.footerTextHighlight]} testID="SignupForm-privacy-policy-button" onPress={() => onPressPrivacyPolicy()}>
+            <Text style={[styles.footerText, styles.footerTextHighlight]} testID="SignupForm-Text-privacy-policy" onPress={() => onPressPrivacyPolicy()}>
               Privacy Policy
             </Text>
             <Text style={styles.footerText}> and </Text>
-            <Text style={[styles.footerText, styles.footerTextHighlight]} testID="SignupForm-terms-button" onPress={() => onPressTerms()}>
+            <Text style={[styles.footerText, styles.footerTextHighlight]} testID="SignupForm-Text-terms" onPress={() => onPressTerms()}>
               Terms of Use
             </Text>
           </View>

@@ -52,17 +52,17 @@ describe('SignupForm', () => {
     });
 
     it('should fire onPressSignup when the signup button is pressed', () => {
-      fireEvent.press(wrapper.getByTestId('SignupForm-signup-button'));
+      fireEvent.press(wrapper.getByTestId('SignupForm-Button-signup'));
       expect(onPressSignupHandler).toHaveBeenCalledTimes(1);
     });
 
     it('should fire onPressPrivacyPolicy when the Privacy Policy button is pressed', () => {
-      fireEvent.press(wrapper.getByTestId('SignupForm-privacy-policy-button'));
+      fireEvent.press(wrapper.getByTestId('SignupForm-Text-privacy-policy'));
       expect(onPressPrivacyPolicyHandler).toHaveBeenCalledTimes(1);
     });
 
     it('should fire onPressTerms when the Terms of Use button is pressed', () => {
-      fireEvent.press(wrapper.getByTestId('SignupForm-terms-button'));
+      fireEvent.press(wrapper.getByTestId('SignupForm-Text-terms'));
       expect(onPressTermsHandler).toHaveBeenCalledTimes(1);
     });
 
@@ -95,7 +95,7 @@ describe('SignupForm', () => {
         />
       );
 
-      expect(wrapper.getByTestId('SignupForm-signup-button').props.disabled).toBe(true);
+      expect(wrapper.getByTestId('SignupForm-Button-signup').props.disabled).toBe(true);
     });
   });
 });
