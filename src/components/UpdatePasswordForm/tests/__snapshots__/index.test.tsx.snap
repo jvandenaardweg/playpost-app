@@ -17,6 +17,7 @@ exports[`UpdatePasswordForm rendering should render correctly 1`] = `
       },
     ]
   }
+  testID="UpdatePasswordForm"
 >
   <View
     style={
@@ -30,6 +31,7 @@ exports[`UpdatePasswordForm rendering should render correctly 1`] = `
       autoFocus={false}
       blurOnSubmit={false}
       clearButtonMode="always"
+      editable={true}
       onChangeText={[Function]}
       onSubmitEditing={[Function]}
       placeholder="Your new password"
@@ -48,6 +50,7 @@ exports[`UpdatePasswordForm rendering should render correctly 1`] = `
           "paddingRight": 16,
         }
       }
+      testID="UpdatePasswordForm-TextInput-password"
       textContentType="password"
       value=""
     />
@@ -56,6 +59,7 @@ exports[`UpdatePasswordForm rendering should render correctly 1`] = `
       autoFocus={false}
       blurOnSubmit={false}
       clearButtonMode="always"
+      editable={true}
       onChangeText={[Function]}
       onSubmitEditing={[Function]}
       placeholder="Confirm your new password"
@@ -74,6 +78,7 @@ exports[`UpdatePasswordForm rendering should render correctly 1`] = `
           "paddingRight": 16,
         }
       }
+      testID="UpdatePasswordForm-TextInput-password-validation"
       textContentType="password"
       value=""
     />
@@ -99,6 +104,7 @@ exports[`UpdatePasswordForm rendering should render correctly 1`] = `
               "opacity": 1,
             }
           }
+          testID="UpdatePasswordForm-Button-update"
         >
           <View
             style={
