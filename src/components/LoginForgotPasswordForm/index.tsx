@@ -25,12 +25,12 @@ export const LoginForgotPasswordForm: React.FC<Props> = React.memo(
             onChangeText={text => onChangeText('email', text)}
             textContentType="username"
             onSubmitEditing={() => onPressResetPassword()}
+            editable={!isLoading || !isLoading}
             style={styles.textField}
             keyboardType="email-address"
             returnKeyType="next"
             clearButtonMode="always"
             autoFocus
-            editable={!isSuccess}
             blurOnSubmit={false}
           />
 

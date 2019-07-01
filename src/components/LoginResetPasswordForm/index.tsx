@@ -31,6 +31,7 @@ export const LoginResetPasswordForm: React.FC<Props> = React.memo(
             onSubmitEditing={() => {
               passwordInput && passwordInput.focus();
             }}
+            editable={!isLoading}
             style={styles.textField}
             keyboardType="default"
             returnKeyType="next"
@@ -50,6 +51,7 @@ export const LoginResetPasswordForm: React.FC<Props> = React.memo(
             value={password}
             onChangeText={text => onChangeText('password', text)}
             onSubmitEditing={() => onPressUpdatePassword()}
+            editable={!isLoading}
             textContentType="password"
             style={styles.textField}
             returnKeyType="done"

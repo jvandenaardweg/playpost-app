@@ -29,6 +29,7 @@ export const SignupForm: React.FC<Props> = React.memo(({ onChangeText, onPressSi
           onSubmitEditing={() => {
             passwordInput && passwordInput.focus();
           }}
+          editable={!isLoading}
           style={styles.textField}
           keyboardType="email-address"
           returnKeyType="next"
@@ -48,6 +49,7 @@ export const SignupForm: React.FC<Props> = React.memo(({ onChangeText, onPressSi
           value={password}
           onChangeText={text => onChangeText('password', text)}
           onSubmitEditing={() => onPressSignup()}
+          editable={!isLoading}
           textContentType="password"
           style={styles.textField}
           returnKeyType="done"
