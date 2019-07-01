@@ -25,21 +25,22 @@ export default StyleSheet.create({
   buttonStyleSuccess: {
     backgroundColor: colors.green,
     marginBottom: spacing.default,
-    opacity: 1
+    opacity: 1,
+    color: colors.white
   },
   buttonTitleStyleSuccess: {
     color: colors.white
   },
   footerContainer: {
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   footer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
     textAlign: 'center',
-    maxWidth: 300,
+    maxWidth: 300
   },
   footerText: {
     fontSize: fonts.fontSize.body,
