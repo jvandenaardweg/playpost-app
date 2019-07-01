@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert } from 'react-native';
+import { Alert, FlatList } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { connect } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
@@ -14,7 +14,11 @@ import { getPlaylist, reOrderPlaylistItem } from '../reducers/playlist';
 import { getLanguages } from '../reducers/voices';
 import { getUser } from '../reducers/user';
 
-import { selectNewPlaylistItems, selectArchivedPlaylistItems, selectFavoritedPlaylistItems } from '../selectors/playlist';
+import {
+  selectNewPlaylistItems,
+  selectArchivedPlaylistItems,
+  selectFavoritedPlaylistItems
+} from '../selectors/playlist';
 
 import isEqual from 'react-fast-compare';
 import { RootState } from '../reducers';
@@ -108,11 +112,17 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
 
     let playlistItems = props.newPlaylistItems;
 
-    if (props.isArchiveScreen && !isEqual(props.isArchiveScreen, state.playlistItems)) {
+    if (
+      props.isArchiveScreen &&
+      !isEqual(props.isArchiveScreen, state.playlistItems)
+    ) {
       playlistItems = props.archivedPlaylistItems;
     }
 
-    if (props.isFavoriteScreen && !isEqual(props.isFavoriteScreen, state.playlistItems)) {
+    if (
+      props.isFavoriteScreen &&
+      !isEqual(props.isFavoriteScreen, state.playlistItems)
+    ) {
       playlistItems = props.favoritedPlaylistItems;
     }
 
@@ -140,7 +150,8 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
     } catch (err) {
       if (!isConnected) return; // Don't show an error when there's no internet connection.
 
-      const customErrorMessage = 'There was an error while getting your playlist.';
+      const customErrorMessage =
+        'There was an error while getting your playlist.';
 
       // If we don't have articles we show an empty error state
       if (!playlistItems || !playlistItems.length) {
@@ -165,8 +176,8 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
         },
         {
           text: 'Try again',
-          onPress: () => this.handleOnRefresh(),
-        },
+          onPress: () => this.handleOnRefresh()
+        }
       ],
       { cancelable: true }
     );
@@ -174,14 +185,17 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
 
   get hasPlaylistItems() {
     const { playlistItems } = this.state;
-    return (playlistItems && playlistItems.length);
+    return playlistItems && playlistItems.length;
   }
 
   handleOnRefresh = () => {
     // If we don't have any articles, we show the general centered loading indicator
     const isLoading = !this.hasPlaylistItems;
+    console.log('on reffresh');
 
-    this.setState({ isLoading, isRefreshing: true }, () => this.fetchPlaylist());
+    this.setState({ isLoading, isRefreshing: true }, () =>
+      this.fetchPlaylist()
+    );
   }
 
   handleOnHideVideo = async () => {
@@ -202,19 +216,53 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
     if (isLoading) return <CenterLoadingIndicator />;
 
     // If there's an error, and we don't have playlist items yet
-    if (errorMessage && !this.hasPlaylistItems) return <EmptyState title="Error" description={[errorMessage]} actionButtonLabel="Try again" actionButtonOnPress={() => this.handleOnRefresh()} />;
+    if (errorMessage && !this.hasPlaylistItems) {
+      return (
+        <EmptyState
+          title="Error"
+          description={[errorMessage]}
+          actionButtonLabel="Try again"
+          actionButtonOnPress={() => this.handleOnRefresh()}
+        />
+      );
+    }
 
     if (isArchiveScreen) {
-      return <EmptyState title="Your archived articles" description={['Articles you\'ve already listened will be shown here in your archive, for easy future reference.', 'You can archive an article by swiping from right to left on an article.']} />;
+      return (
+        <EmptyState
+          title="Your archived articles"
+          description={[
+            "Articles you've already listened will be shown here in your archive, for easy future reference.",
+            'You can archive an article by swiping from right to left on an article.'
+          ]}
+        />
+      );
     }
 
     if (isFavoriteScreen) {
-      return <EmptyState title="Your favorite articles" description={['Articles you really liked can be saved here, away from your daily playlist.', 'You can favorite an article by swiping from right to left on an article.']} />;
+      return (
+        <EmptyState
+          title="Your favorite articles"
+          description={[
+            'Articles you really liked can be saved here, away from your daily playlist.',
+            'You can favorite an article by swiping from right to left on an article.'
+          ]}
+        />
+      );
     }
 
     // Warning to the user there's no internet connection
     if (!isConnected && !this.hasPlaylistItems) {
-      return <EmptyState title="No internet" description={['There\'s no active internet connection, so we cannot display your playlist.']} actionButtonLabel="Try again" actionButtonOnPress={() => this.handleOnRefresh()} />;
+      return (
+        <EmptyState
+          title="No internet"
+          description={[
+            "There's no active internet connection, so we cannot display your playlist."
+          ]}
+          actionButtonLabel="Try again"
+          actionButtonOnPress={() => this.handleOnRefresh()}
+        />
+      );
     }
 
     if (!isLoading && !isRefreshing && !this.hasPlaylistItems) {
@@ -231,60 +279,77 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
       return (
         <EmptyState
           title="Nothing in your playlist, yet"
-          description={['Easily add articles to your playlist by using the share icon in every app on your phone.']}
+          description={[
+            'Easily add articles to your playlist by using the share icon in every app on your phone.'
+          ]}
           actionButtonLabel="Show instructions"
           actionButtonOnPress={() => this.handleOnShowVideo()}
         />
       );
-
     }
 
     return null;
   }
 
-  handleOnMoveEnd = async ({ data, to, from, row }: { data: Api.PlaylistItem[] | null, to: number, from: number, row: Api.PlaylistItem }) => {
+  handleOnMoveEnd = async ({
+    data,
+    to,
+    from,
+    row
+  }: {
+    data: Api.PlaylistItem[] | null;
+    to: number;
+    from: number;
+    row: Api.PlaylistItem;
+  }) => {
     const articleId = row.article.id;
     const newOrder = to;
     const newPlaylistItemsOrder: Api.PlaylistItem[] | null = data;
 
     if (!newPlaylistItemsOrder) return;
 
-    return this.setState({ playlistItems: newPlaylistItemsOrder, isReOrdering: true }, async () => {
-      try {
-        // Call API to set new order in the database
-        await this.props.reOrderPlaylistItem(articleId, newOrder);
+    return this.setState(
+      { playlistItems: newPlaylistItemsOrder, isReOrdering: true },
+      async () => {
+        try {
+          // Call API to set new order in the database
+          await this.props.reOrderPlaylistItem(articleId, newOrder);
 
-        // Get the newly ordered playlist
-        await this.props.getPlaylist();
-      } catch (err) {
-        Alert.alert('Oops!', 'An error happened while re-ordering your playlist. Please try again.');
-      } finally {
-        this.setState({ isReOrdering: false });
+          // Get the newly ordered playlist
+          await this.props.getPlaylist();
+        } catch (err) {
+          Alert.alert(
+            'Oops!',
+            'An error happened while re-ordering your playlist. Please try again.'
+          );
+        } finally {
+          this.setState({ isReOrdering: false });
+        }
       }
-    });
+    );
   }
 
   renderSeperatorComponent = () => {
-    return (<ListSeperator />);
+    return <ListSeperator />;
   }
 
-  renderItem = (
-    { item, index, move, moveEnd, isActive }:
-    { item: Api.PlaylistItem, index: number, move(): void, moveEnd(): void, isActive: boolean}
-  ) => {
-
+  renderItem = ({ item, index }: { item: Api.PlaylistItem; index: number }) => {
     // Only allow re-ordering of items when in the playlist screen
-    const allowMove = !this.props.isArchiveScreen || !this.props.isFavoriteScreen;
+    // const allowMove = !this.props.isArchiveScreen || !this.props.isFavoriteScreen;
 
     return (
       <ArticleContainer
-        isMoving={(allowMove) ? isActive : false}
+        key={index}
+        // isMoving={(allowMove) ? isActive : false}
+        isMoving={false}
         isFavorited={!!item.favoritedAt}
         isArchived={!!item.archivedAt}
         playlistItem={item}
         article={item.article}
-        onLongPress={(allowMove) ? move : () => {}}
-        onPressOut={(allowMove) ? moveEnd : () => {}}
+        // onLongPress={(allowMove) ? move : () => {}}
+        onLongPress={() => {}}
+        // onPressOut={(allowMove) ? moveEnd : () => {}}
+        onPressOut={() => {}}
       />
     );
   }
@@ -293,7 +358,7 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
     const { isRefreshing, playlistItems } = this.state;
 
     return (
-      <DraggableFlatList
+      <FlatList
         scrollEnabled={!!this.hasPlaylistItems}
         contentContainerStyle={{ flexGrow: 1 }}
         refreshing={isRefreshing}
@@ -302,11 +367,28 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
         keyExtractor={(item: Api.PlaylistItem) => item.id.toString()}
         ItemSeparatorComponent={this.renderSeperatorComponent}
         ListEmptyComponent={this.renderEmptyComponent}
-        onMoveEnd={this.handleOnMoveEnd}
-        scrollPercent={5}
+        // onMoveEnd={this.handleOnMoveEnd}
+        // scrollPercent={5}
         renderItem={this.renderItem}
-        removeClippedSubviews // unmount components that are off of the window
+        removeClippedSubviews={false} // unmount components that are off of the window, keep this false, as it sometimes renders no items when true
       />
+      // DraggableFlatList temporary disabled
+      // There seems to be a problem with the list dissapearing when archiving/favoriting
+      //
+      // <DraggableFlatList
+      //   scrollEnabled={!!this.hasPlaylistItems}
+      //   contentContainerStyle={{ flexGrow: 1 }}
+      //   refreshing={isRefreshing}
+      //   onRefresh={this.handleOnRefresh}
+      //   data={playlistItems}
+      //   keyExtractor={(item: Api.PlaylistItem) => item.id.toString()}
+      //   ItemSeparatorComponent={this.renderSeperatorComponent}
+      //   ListEmptyComponent={this.renderEmptyComponent}
+      //   onMoveEnd={this.handleOnMoveEnd}
+      //   scrollPercent={5}
+      //   renderItem={this.renderItem}
+      //   removeClippedSubviews // unmount components that are off of the window
+      // />
     );
   }
 }
