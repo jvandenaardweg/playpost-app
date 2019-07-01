@@ -8,13 +8,20 @@ describe('GlobalStatusIndicator', () => {
     let wrapper: RenderAPI;
 
     beforeAll(() => {
-      wrapper = render(
-        <GlobalStatusIndicator label="Creating article audio..." />
-      );
+      wrapper = render(<GlobalStatusIndicator label={'Creating article audio...'} />);
     });
 
     it('should render correctly', () => {
       expect(wrapper.toJSON()).toMatchSnapshot();
+    });
+
+    it('should render "Creating article audio..."', () => {
+      expect(wrapper.getByTestId('GlobalStatusIndicator-label').props.children).toBe('Creating article audio...');
+    });
+
+    it('should use a fallback label when label is not set', () => {
+      wrapper = render(<GlobalStatusIndicator />);
+      expect(wrapper.getByTestId('GlobalStatusIndicator-label').props.children).toBe('Loading...');
     });
   });
 });

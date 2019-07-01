@@ -9,7 +9,7 @@ exports[`GlobalStatusIndicator rendering should render correctly 1`] = `
       "height": 50,
       "justifyContent": "center",
       "position": "absolute",
-      "top": -54,
+      "top": -56,
       "width": "100%",
     }
   }
@@ -18,12 +18,13 @@ exports[`GlobalStatusIndicator rendering should render correctly 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "backgroundColor": "rgba(0, 0, 0, 1)",
+        "backgroundColor": "#037DE2",
         "borderRadius": 100,
         "flexDirection": "row",
         "height": 38,
         "justifyContent": "center",
-        "width": 260,
+        "paddingLeft": 16,
+        "paddingRight": 16,
       }
     }
   >
@@ -38,10 +39,11 @@ exports[`GlobalStatusIndicator rendering should render correctly 1`] = `
         Object {
           "color": "#ffffff",
           "fontSize": 15,
-          "fontWeight": "500",
-          "marginLeft": 8,
+          "fontWeight": "600",
+          "marginLeft": 10,
         }
       }
+      testID="GlobalStatusIndicator-label"
     >
       Creating article audio...
     </Text>
