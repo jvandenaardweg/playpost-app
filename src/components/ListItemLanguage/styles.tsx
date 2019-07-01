@@ -1,6 +1,4 @@
-import {
-  StyleSheet
-} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
@@ -19,10 +17,21 @@ export default StyleSheet.create({
     marginTop: 4
   },
   listItemBadge: {
-    paddingLeft: 2, paddingRight: 2
+    paddingLeft: 2,
+    paddingRight: 2
   },
   listItemBadgeText: {
     color: 'white',
     fontWeight: '400'
+  },
+  badgeStyle: {
+    width: 26,
+    height: 26,
+    borderRadius: 26,
+    backgroundColor: colors.grayLight
+  },
+  badgeTextStyle: {
+    fontWeight: fonts.fontWeight.semibold,
+    color: colors.black
   }
 });

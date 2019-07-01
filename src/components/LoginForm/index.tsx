@@ -12,28 +12,23 @@ interface Props {
   isLoading: boolean;
 }
 
-export const LoginForm: React.FC<Props> = React.memo(({
-  email,
-  password,
-  isLoading,
-  onChangeText,
-  onPressLogin,
-  onPressForgotPassword
-}) => {
-
+export const LoginForm: React.FC<Props> = React.memo(({ email, password, isLoading, onChangeText, onPressLogin, onPressForgotPassword }) => {
   let passwordInput: TextInput | null = null;
 
   return (
-    <KeyboardAvoidingView testID="login-form" style={styles.container} behavior="padding" enabled>
+    <KeyboardAvoidingView testID="LoginForm" style={styles.container} behavior="padding" enabled>
       <ScrollView style={styles.form} contentContainerStyle={styles.formContent} keyboardShouldPersistTaps={'handled'}>
-
         <TextInput
+          testID="LoginForm-TextInput-email"
           placeholder="E-mail address"
           autoCapitalize="none"
           value={email}
           onChangeText={text => onChangeText('email', text)}
           textContentType="username"
-          onSubmitEditing={() => { passwordInput && passwordInput.focus(); }}
+          onSubmitEditing={() => {
+            passwordInput && passwordInput.focus();
+          }}
+          editable={!isLoading}
           style={styles.textField}
           keyboardType="email-address"
           returnKeyType="next"
@@ -43,13 +38,17 @@ export const LoginForm: React.FC<Props> = React.memo(({
         />
 
         <TextInput
-          ref={(input) => { passwordInput = input; }}
+          testID="LoginForm-TextInput-password"
+          ref={input => {
+            passwordInput = input;
+          }}
           placeholder="Password"
           autoCapitalize="none"
           secureTextEntry
           value={password}
           onChangeText={text => onChangeText('password', text)}
           onSubmitEditing={() => onPressLogin()}
+          editable={!isLoading}
           textContentType="password"
           style={styles.textField}
           returnKeyType="done"
@@ -58,10 +57,19 @@ export const LoginForm: React.FC<Props> = React.memo(({
         />
 
         <View>
-          <Button title="Login" loading={isLoading} onPress={onPressLogin} disabled={isLoading} buttonStyle={styles.buttonStyle} disabledStyle={styles.buttonStyle} activeOpacity={1} titleStyle={styles.buttonTitleStyle} />
-          <Button title="Forgot password?" type="clear" onPress={onPressForgotPassword} />
+          <Button
+            testID="LoginForm-Button-login"
+            title="Login"
+            loading={isLoading}
+            onPress={onPressLogin}
+            disabled={isLoading}
+            buttonStyle={styles.buttonStyle}
+            disabledStyle={styles.buttonStyle}
+            activeOpacity={1}
+            titleStyle={styles.buttonTitleStyle}
+          />
+          <Button testID="LoginForm-Button-forgot-password" title="Forgot password?" type="clear" onPress={onPressForgotPassword} />
         </View>
-
       </ScrollView>
     </KeyboardAvoidingView>
   );

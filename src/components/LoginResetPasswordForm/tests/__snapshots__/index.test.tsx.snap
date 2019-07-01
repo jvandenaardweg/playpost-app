@@ -17,7 +17,7 @@ exports[`LoginResetPasswordForm rendering should render correctly 1`] = `
       },
     ]
   }
-  testID="reset-password-form"
+  testID="LoginResetPasswordForm"
 >
   <RCTScrollView
     contentContainerStyle={
@@ -52,6 +52,7 @@ exports[`LoginResetPasswordForm rendering should render correctly 1`] = `
         autoFocus={false}
         blurOnSubmit={false}
         clearButtonMode="always"
+        editable={true}
         keyboardType="default"
         onChangeText={[Function]}
         onSubmitEditing={[Function]}
@@ -70,6 +71,7 @@ exports[`LoginResetPasswordForm rendering should render correctly 1`] = `
             "paddingRight": 16,
           }
         }
+        testID="LoginResetPasswordForm-TextInput-reset-password-code"
         textContentType="username"
         value=""
       />
@@ -78,6 +80,7 @@ exports[`LoginResetPasswordForm rendering should render correctly 1`] = `
         autoFocus={false}
         blurOnSubmit={false}
         clearButtonMode="always"
+        editable={true}
         onChangeText={[Function]}
         onSubmitEditing={[Function]}
         placeholder="Your new password"
@@ -96,6 +99,7 @@ exports[`LoginResetPasswordForm rendering should render correctly 1`] = `
             "paddingRight": 16,
           }
         }
+        testID="LoginResetPasswordForm-TextInput-password"
         textContentType="password"
         value=""
       />
@@ -121,6 +125,7 @@ exports[`LoginResetPasswordForm rendering should render correctly 1`] = `
                 "opacity": 1,
               }
             }
+            testID="LoginResetPasswordForm-Button-update-password"
           >
             <View
               style={

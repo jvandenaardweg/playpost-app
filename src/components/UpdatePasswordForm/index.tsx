@@ -12,28 +12,23 @@ interface Props {
   isSuccess: boolean;
 }
 
-export const UpdatePasswordForm: React.FC<Props> = React.memo(({
-  onChangeText,
-  onPressUpdatePassword,
-  password,
-  passwordValidation,
-  isLoading,
-  isSuccess
-}) => {
-
+export const UpdatePasswordForm: React.FC<Props> = React.memo(({ onChangeText, onPressUpdatePassword, password, passwordValidation, isLoading, isSuccess }) => {
   let passwordInput: TextInput | null = null;
 
   return (
-    <KeyboardAvoidingView style={styles.container} behavior="padding" keyboardVerticalOffset={100} enabled>
+    <KeyboardAvoidingView testID="UpdatePasswordForm" style={styles.container} behavior="padding" keyboardVerticalOffset={100} enabled>
       <View style={styles.form}>
-
         <TextInput
+          testID="UpdatePasswordForm-TextInput-password"
           placeholder="Your new password"
           autoCapitalize="none"
           secureTextEntry
           value={password}
           onChangeText={text => onChangeText('password', text)}
-          onSubmitEditing={() => { passwordInput && passwordInput.focus(); }}
+          onSubmitEditing={() => {
+            passwordInput && passwordInput.focus();
+          }}
+          editable={!isLoading}
           textContentType="password"
           style={styles.textField}
           returnKeyType="next"
@@ -42,13 +37,17 @@ export const UpdatePasswordForm: React.FC<Props> = React.memo(({
         />
 
         <TextInput
-          ref={(input) => { passwordInput = input; }}
+          testID="UpdatePasswordForm-TextInput-password-validation"
+          ref={input => {
+            passwordInput = input;
+          }}
           placeholder="Confirm your new password"
           autoCapitalize="none"
           secureTextEntry
           value={passwordValidation}
           onChangeText={text => onChangeText('passwordValidation', text)}
           onSubmitEditing={() => onPressUpdatePassword()}
+          editable={!isLoading}
           textContentType="password"
           style={styles.textField}
           returnKeyType="done"
@@ -58,17 +57,18 @@ export const UpdatePasswordForm: React.FC<Props> = React.memo(({
 
         <View>
           <Button
-            title={(isSuccess) ? 'Update success!' : 'Update password'}
+            testID="UpdatePasswordForm-Button-update"
+            title={isSuccess ? 'Update success!' : 'Update password'}
             loading={isLoading}
             onPress={onPressUpdatePassword}
-            disabled={isLoading}
-            buttonStyle={(isSuccess) ? styles.buttonStyleSuccess : styles.buttonStyle}
-            titleStyle={(isSuccess) ? styles.buttonTitleStyleSuccess : {}}
+            disabled={isLoading || isSuccess}
+            buttonStyle={isSuccess ? styles.buttonStyleSuccess : styles.buttonStyle}
+            titleStyle={isSuccess ? styles.buttonTitleStyleSuccess : {}}
             activeOpacity={1}
-            disabledStyle={(isSuccess) ? styles.buttonStyleSuccess : styles.buttonStyle}
+            disabledStyle={isSuccess ? styles.buttonStyleSuccess : styles.buttonStyle}
+            disabledTitleStyle={isSuccess ? styles.buttonTitleStyleSuccess : styles.buttonStyle}
           />
         </View>
-
       </View>
     </KeyboardAvoidingView>
   );

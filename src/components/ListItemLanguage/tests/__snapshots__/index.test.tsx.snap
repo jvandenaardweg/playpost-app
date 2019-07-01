@@ -142,11 +142,11 @@ exports[`ListItemLanguage rendering should render correctly 1`] = `
           Object {
             "alignItems": "center",
             "alignSelf": "center",
-            "backgroundColor": "#2089dc",
+            "backgroundColor": "#e5e5e5",
             "borderColor": "#fff",
-            "borderRadius": 9,
+            "borderRadius": 26,
             "borderWidth": 0.5,
-            "height": 20,
+            "height": 26,
             "justifyContent": "center",
             "minWidth": 18,
             "width": 26,
@@ -156,8 +156,9 @@ exports[`ListItemLanguage rendering should render correctly 1`] = `
         <Text
           style={
             Object {
-              "color": "white",
+              "color": "#000000",
               "fontSize": 12,
+              "fontWeight": "600",
               "paddingHorizontal": 4,
             }
           }

@@ -25,6 +25,7 @@ exports[`PlayPauseControl rendering should render correctly 1`] = `
       "opacity": 1,
     }
   }
+  testID="PlayPauseControl-button"
 >
   <View
     style={
@@ -60,4 +61,99 @@ exports[`PlayPauseControl rendering should render correctly 1`] = `
     </Text>
   </View>
 </View>
+`;
+
+exports[`PlayPauseControlCircle rendering should render correctly 1`] = `
+<View
+  accessible={true}
+  hitSlop={
+    Object {
+      "bottom": 20,
+      "left": 20,
+      "right": 20,
+      "top": 20,
+    }
+  }
+  isTVSelectable={true}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#ffffff",
+      "borderRadius": 64,
+      "height": 64,
+      "justifyContent": "center",
+      "opacity": 1,
+      "padding": 12,
+      "width": 64,
+    }
+  }
+  testID="PlayPauseControlCircle-button"
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": "#ffffff",
+            "fontSize": 16,
+          },
+          Object {
+            "marginLeft": 3,
+          },
+          Object {
+            "fontFamily": "FontAwesome5Free-Solid",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {
+            "fontWeight": "900",
+          },
+        ]
+      }
+    >
+      
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`PlayPauseIcon rendering should render correctly 1`] = `
+<Text
+  allowFontScaling={false}
+  style={
+    Array [
+      Object {
+        "color": "white",
+        "fontSize": 16,
+      },
+      Object {
+        "marginLeft": 3,
+      },
+      Object {
+        "fontFamily": "FontAwesome5Free-Solid",
+        "fontStyle": "normal",
+        "fontWeight": "normal",
+      },
+      Object {
+        "fontWeight": "900",
+      },
+    ]
+  }
+>
+  
+</Text>
 `;

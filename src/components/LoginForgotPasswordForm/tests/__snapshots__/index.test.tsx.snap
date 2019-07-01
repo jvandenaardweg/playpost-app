@@ -17,7 +17,7 @@ exports[`LoginForgotPasswordForm rendering should render correctly 1`] = `
       },
     ]
   }
-  testID="login-form"
+  testID="LoginForgotPasswordForm"
 >
   <RCTScrollView
     contentContainerStyle={
@@ -59,6 +59,7 @@ exports[`LoginForgotPasswordForm rendering should render correctly 1`] = `
             "paddingRight": 16,
           }
         }
+        testID="LoginForgotPasswordForm-TextInput-email"
         textContentType="username"
         value=""
       />
@@ -84,6 +85,7 @@ exports[`LoginForgotPasswordForm rendering should render correctly 1`] = `
                 "opacity": 1,
               }
             }
+            testID="LoginForgotPasswordForm-Button-reset-password"
           >
             <View
               style={
@@ -137,6 +139,7 @@ exports[`LoginForgotPasswordForm rendering should render correctly 1`] = `
                 "opacity": 1,
               }
             }
+            testID="LoginForgotPasswordForm-Button-reset-password-code"
           >
             <View
               style={
