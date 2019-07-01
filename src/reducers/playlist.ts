@@ -72,7 +72,7 @@ export const initialState: PlaylistState = {
   error: ''
 };
 
-/* tslint:disable-next-line no-any */
+/* tslint:disable no-any */
 export function playlistReducer(state = initialState, action: any): PlaylistState {
   switch (action.type) {
     case GET_PLAYLIST:
@@ -91,15 +91,19 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
 
     case GET_PLAYLIST_FAIL:
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error get playlist', { message: action.error.response.data.message });
+        Analytics.trackEvent('Error get playlist', {
+          message: action.error.response.data.message
+        });
       } else {
-        Analytics.trackEvent('Error get playlist', { message: GET_PLAYLIST_FAIL_MESSAGE });
+        Analytics.trackEvent('Error get playlist', {
+          message: GET_PLAYLIST_FAIL_MESSAGE
+        });
       }
 
       return {
         ...state,
         isLoading: false,
-        error: (action.error.response) ? action.error.response.data.message : GET_PLAYLIST_FAIL_MESSAGE
+        error: action.error.response ? action.error.response.data.message : GET_PLAYLIST_FAIL_MESSAGE
       };
 
     case GET_ARTICLE:
@@ -114,7 +118,7 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       const article = action.payload.data;
 
       // Find the default playlist so we can replace the article
-      const updatedPlaylistItems = state.items.map((playlistItem) => {
+      const updatedPlaylistItems = state.items.map(playlistItem => {
         if (playlistItem.article.id !== article.id) return playlistItem;
 
         // Replace the article
@@ -131,15 +135,19 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
 
     case GET_ARTICLE_FAIL:
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error get article', { message: action.error.response.data.message });
+        Analytics.trackEvent('Error get article', {
+          message: action.error.response.data.message
+        });
       } else {
-        Analytics.trackEvent('Error get article', { message: GET_ARTICLE_FAIL_MESSAGE });
+        Analytics.trackEvent('Error get article', {
+          message: GET_ARTICLE_FAIL_MESSAGE
+        });
       }
 
       return {
         ...state,
         isLoading: false,
-        error: (action.error.response) ? action.error.response.data.message : GET_ARTICLE_FAIL_MESSAGE
+        error: action.error.response ? action.error.response.data.message : GET_ARTICLE_FAIL_MESSAGE
       };
 
     case RESET_STATE:
@@ -164,15 +172,19 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
 
     case CREATE_PLAYLIST_ITEM_FAIL:
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error add article to playlist', { message: action.error.response.data.message });
+        Analytics.trackEvent('Error add article to playlist', {
+          message: action.error.response.data.message
+        });
       } else {
-        Analytics.trackEvent('Error add article to playlist', { message: CREATE_PLAYLIST_ITEM_FAIL_MESSAGE });
+        Analytics.trackEvent('Error add article to playlist', {
+          message: CREATE_PLAYLIST_ITEM_FAIL_MESSAGE
+        });
       }
 
       return {
         ...state,
         isLoadingCreateItem: false,
-        error: (action.error.response) ? action.error.response.data.message : CREATE_PLAYLIST_ITEM_FAIL_MESSAGE
+        error: action.error.response ? action.error.response.data.message : CREATE_PLAYLIST_ITEM_FAIL_MESSAGE
       };
 
     case FAVORITE_PLAYLIST_ITEM:
@@ -192,15 +204,19 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
 
     case FAVORITE_PLAYLIST_ITEM_FAIL:
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error favorite article', { message: action.error.response.data.message });
+        Analytics.trackEvent('Error favorite article', {
+          message: action.error.response.data.message
+        });
       } else {
-        Analytics.trackEvent('Error favorite article', { message: FAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE });
+        Analytics.trackEvent('Error favorite article', {
+          message: FAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE
+        });
       }
 
       return {
         ...state,
         isLoadingFavoriteItem: false,
-        error: (action.error.response) ? action.error.response.data.message : FAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE
+        error: action.error.response ? action.error.response.data.message : FAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE
       };
 
     case UNFAVORITE_PLAYLIST_ITEM:
@@ -220,15 +236,19 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
 
     case UNFAVORITE_PLAYLIST_ITEM_FAIL:
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error unfavorite article', { message: action.error.response.data.message });
+        Analytics.trackEvent('Error unfavorite article', {
+          message: action.error.response.data.message
+        });
       } else {
-        Analytics.trackEvent('Error unfavorite article', { message: UNFAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE });
+        Analytics.trackEvent('Error unfavorite article', {
+          message: UNFAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE
+        });
       }
 
       return {
         ...state,
         isLoadingUnFavoriteItem: false,
-        error: (action.error.response) ? action.error.response.data.message : UNFAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE
+        error: action.error.response ? action.error.response.data.message : UNFAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE
       };
 
     case ARCHIVE_PLAYLIST_ITEM:
@@ -248,15 +268,19 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
 
     case ARCHIVE_PLAYLIST_ITEM_FAIL:
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error archive article', { message: action.error.response.data.message });
+        Analytics.trackEvent('Error archive article', {
+          message: action.error.response.data.message
+        });
       } else {
-        Analytics.trackEvent('Error archive article', { message: ARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE });
+        Analytics.trackEvent('Error archive article', {
+          message: ARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE
+        });
       }
 
       return {
         ...state,
         isLoadingArchiveItem: false,
-        error: (action.error.response) ? action.error.response.data.message : ARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE
+        error: action.error.response ? action.error.response.data.message : ARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE
       };
 
     case UNARCHIVE_PLAYLIST_ITEM:
@@ -276,15 +300,19 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
 
     case UNARCHIVE_PLAYLIST_ITEM_FAIL:
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error unarchive article', { message: action.error.response.data.message });
+        Analytics.trackEvent('Error unarchive article', {
+          message: action.error.response.data.message
+        });
       } else {
-        Analytics.trackEvent('Error unarchive article', { message: UNARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE });
+        Analytics.trackEvent('Error unarchive article', {
+          message: UNARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE
+        });
       }
 
       return {
         ...state,
         isLoadingUnArchiveItem: false,
-        error: (action.error.response) ? action.error.response.data.message : UNARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE
+        error: action.error.response ? action.error.response.data.message : UNARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE
       };
 
     case REMOVE_PLAYLIST_ITEM:
@@ -304,15 +332,19 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
 
     case REMOVE_PLAYLIST_ITEM_FAIL:
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error remove article from playlist', { message: action.error.response.data.message });
+        Analytics.trackEvent('Error remove article from playlist', {
+          message: action.error.response.data.message
+        });
       } else {
-        Analytics.trackEvent('Error remove article from playlist', { message: REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE });
+        Analytics.trackEvent('Error remove article from playlist', {
+          message: REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE
+        });
       }
 
       return {
         ...state,
         isLoading: false,
-        error: (action.error.response) ? action.error.response.data.message : REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE
+        error: action.error.response ? action.error.response.data.message : REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE
       };
 
     case REORDER_PLAYLIST_ITEM:
@@ -332,15 +364,19 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
 
     case REORDER_PLAYLIST_ITEM_FAIL:
       if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error re-order article', { message: action.error.response.data.message });
+        Analytics.trackEvent('Error re-order article', {
+          message: action.error.response.data.message
+        });
       } else {
-        Analytics.trackEvent('Error re-order article', { message: REORDER_PLAYLIST_ITEM_FAIL_MESSAGE });
+        Analytics.trackEvent('Error re-order article', {
+          message: REORDER_PLAYLIST_ITEM_FAIL_MESSAGE
+        });
       }
 
       return {
         ...state,
         isLoadingReOrderItem: false,
-        error: (action.error.response) ? action.error.response.data.message : REORDER_PLAYLIST_ITEM_FAIL_MESSAGE
+        error: action.error.response ? action.error.response.data.message : REORDER_PLAYLIST_ITEM_FAIL_MESSAGE
       };
 
     default:

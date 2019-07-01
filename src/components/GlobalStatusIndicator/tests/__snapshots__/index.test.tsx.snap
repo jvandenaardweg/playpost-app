@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GlobalStatusIndicator rendering should render correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "height": 50,
+      "justifyContent": "center",
+      "position": "absolute",
+      "top": -54,
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "rgba(0, 0, 0, 1)",
+        "borderRadius": 100,
+        "flexDirection": "row",
+        "height": 38,
+        "justifyContent": "center",
+        "width": 260,
+      }
+    }
+  >
+    <ActivityIndicator
+      animating={true}
+      color="white"
+      hidesWhenStopped={true}
+      size="small"
+    />
+    <Text
+      style={
+        Object {
+          "color": "#ffffff",
+          "fontSize": 15,
+          "fontWeight": "500",
+          "marginLeft": 8,
+        }
+      }
+    >
+      Creating article audio...
+    </Text>
+  </View>
+</View>
+`;

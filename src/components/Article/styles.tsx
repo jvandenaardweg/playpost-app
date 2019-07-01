@@ -10,7 +10,7 @@ export default StyleSheet.create({
     backgroundColor: colors.articleBackground,
     padding: spacing.default,
     width: '100%',
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   isMoving: {
     backgroundColor: colors.appBackground
@@ -66,7 +66,7 @@ export default StyleSheet.create({
     fontSize: fonts.fontSize.title,
     fontWeight: fonts.fontWeight.semibold,
     color: colors.titleDefault,
-    lineHeight: 21,
+    lineHeight: 21
   },
   bodyFooterText: {
     fontSize: fonts.fontSize.tiny,
@@ -99,12 +99,12 @@ export default StyleSheet.create({
     shadowColor: colors.black,
     shadowOffset: {
       width: 0,
-      height: 1,
+      height: 1
     },
     shadowOpacity: 0.2,
     shadowRadius: 1,
 
-    elevation: 1,
+    elevation: 1
   },
   controlButtonActive: {
     backgroundColor: colors.controlButtonActive
