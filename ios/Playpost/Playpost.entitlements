@@ -7,8 +7,6 @@
 		<string>webcredentials:playpost.app</string>
 		<string>applinks:playpost.app</string>
 		<string>applinks:*.playpost.app</string>
-		<string>applinks:api.playpost.app</string>
-		<string>applinks:api-staging.herokuapp.com</string>
 	</array>
 	<key>com.apple.security.application-groups</key>
 	<array>
