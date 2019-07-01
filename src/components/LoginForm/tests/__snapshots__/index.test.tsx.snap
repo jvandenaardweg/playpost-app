@@ -17,7 +17,7 @@ exports[`LoginForm rendering should render correctly 1`] = `
       },
     ]
   }
-  testID="login-form"
+  testID="LoginForm"
 >
   <RCTScrollView
     contentContainerStyle={
@@ -58,6 +58,7 @@ exports[`LoginForm rendering should render correctly 1`] = `
             "paddingRight": 16,
           }
         }
+        testID="LoginForm-TextInput-email"
         textContentType="username"
         value=""
       />
@@ -84,6 +85,7 @@ exports[`LoginForm rendering should render correctly 1`] = `
             "paddingRight": 16,
           }
         }
+        testID="LoginForm-TextInput-password"
         textContentType="password"
         value=""
       />
@@ -109,6 +111,7 @@ exports[`LoginForm rendering should render correctly 1`] = `
                 "opacity": 1,
               }
             }
+            testID="LoginForm-Button-login"
           >
             <View
               style={
@@ -162,6 +165,7 @@ exports[`LoginForm rendering should render correctly 1`] = `
                 "opacity": 1,
               }
             }
+            testID="LoginForm-Button-forgot-password"
           >
             <View
               style={
