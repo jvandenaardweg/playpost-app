@@ -1,4 +1,3 @@
-
 import React, { useContext } from 'react';
 import { View } from 'react-native';
 
@@ -15,13 +14,17 @@ import { AudioPlayerContainer } from '../../containers/AudioPlayerContainer';
 
 import styles from './styles';
 import { OfflineNotice } from '../OfflineNotice';
+import { AudiofileStatusContainer } from '../../containers/AudiofileStatusContainer';
 
-export const TabBar: React.FC<BottomTabBarProps> = (props: BottomTabBarProps) => {
+export const TabBar: React.FC<BottomTabBarProps> = (
+  props: BottomTabBarProps
+) => {
   const { isConnected } = useContext(NetworkContext);
 
   return (
     <View style={styles.container}>
       {!isConnected && <OfflineNotice />}
+      <AudiofileStatusContainer />
       <AudioPlayerContainer />
       <BottomTabBar {...props} />
     </View>

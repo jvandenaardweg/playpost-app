@@ -1,4 +1,12 @@
-import { playerSelector, selectPlayerAudiofile, selectPlayerPlaybackState, selectPlayerTrack, selectErrorCreateAudiofile, selectPlayerArticleId } from '../player';
+import {
+  playerSelector,
+  selectPlayerAudiofile,
+  selectPlayerPlaybackState,
+  selectPlayerTrack,
+  selectErrorCreateAudiofile,
+  selectPlayerArticleId,
+  selectPlayerAudiofileStatus
+} from '../player';
 import { createStore } from 'redux';
 
 import { initialState } from '../../reducers/player';
@@ -61,7 +69,9 @@ describe('player selector', () => {
       }
     };
 
-    expect(selectPlayerArticleId(exampleState)).toEqual('e102cb67-62cd-4d56-8d0f-2e4f7f1381af');
+    expect(selectPlayerArticleId(exampleState)).toEqual(
+      'e102cb67-62cd-4d56-8d0f-2e4f7f1381af'
+    );
   });
 
   it('selectErrorCreateAudiofile should return an error message when creating an audiofile fails', () => {
@@ -74,5 +84,54 @@ describe('player selector', () => {
     };
 
     expect(selectErrorCreateAudiofile(exampleState)).toEqual('Test error');
+  });
+
+  it('selectPlayerAudiofileStatus should return the correct status when creating or downloading an audiofile', () => {
+    const exampleState1 = {
+      ...rootState,
+      player: {
+        ...rootState.player,
+        isCreatingAudiofile: true,
+        isDownloadingAudiofile: false
+      }
+    };
+
+    const exampleState2 = {
+      ...rootState,
+      player: {
+        ...rootState.player,
+        isCreatingAudiofile: false,
+        isDownloadingAudiofile: true
+      }
+    };
+
+    const exampleState3 = {
+      ...rootState,
+      player: {
+        ...rootState.player,
+        isCreatingAudiofile: false,
+        isDownloadingAudiofile: false
+      }
+    };
+
+    const exampleState4 = {
+      ...rootState,
+      player: {
+        ...rootState.player,
+        isCreatingAudiofile: true,
+        isDownloadingAudiofile: true
+      }
+    };
+
+    expect(selectPlayerAudiofileStatus(exampleState1)).toEqual(
+      'Creating article audio...'
+    );
+    expect(selectPlayerAudiofileStatus(exampleState2)).toEqual(
+      'Downloading article audio...'
+    );
+    expect(selectPlayerAudiofileStatus(exampleState3)).toEqual(null);
+    expect(selectPlayerAudiofileStatus(exampleState4)).toEqual(
+      'Loading article audio...'
+    );
   });
 });

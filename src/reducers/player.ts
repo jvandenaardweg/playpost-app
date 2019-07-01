@@ -8,11 +8,20 @@ export const SET_PLAYBACK_SPEED = 'player/SET_PLAYBACK_SPEED';
 export const CREATE_AUDIOFILE = 'player/CREATE_AUDIOFILE';
 export const CREATE_AUDIOFILE_SUCCESS = 'player/CREATE_AUDIOFILE_SUCCESS';
 export const CREATE_AUDIOFILE_FAIL = 'player/CREATE_AUDIOFILE_FAIL';
-export const RESET_CREATE_AUDIOFILE_ERROR = 'player/RESET_CREATE_AUDIOFILE_ERROR';
+export const RESET_CREATE_AUDIOFILE_ERROR =
+  'player/RESET_CREATE_AUDIOFILE_ERROR';
+
+export const SET_IS_CREATING_AUDIOFILE = 'player/SET_IS_CREATING_AUDIOFILE';
+export const SET_IS_DOWNLOADING_AUDIOFILE =
+  'player/SET_IS_DOWNLOADING_AUDIOFILE';
+export const RESET_IS_CREATING_AUDIOFILE = 'player/RESET_IS_CREATING_AUDIOFILE';
+export const RESET_IS_DOWNLOADING_AUDIOFILE =
+  'player/RESET_IS_DOWNLOADING_AUDIOFILE';
 
 export const RESET_PLAYER_STATE = 'player/RESET_PLAYER_STATE';
 
-const CREATE_AUDIOFILE_FAIL_MESSAGE = 'An unknown error happened while creating creating an audiofile. Please contact us when this happens all the time.';
+const CREATE_AUDIOFILE_FAIL_MESSAGE =
+  'An unknown error happened while creating creating an audiofile. Please contact us when this happens all the time.';
 
 export type PlayerState = Readonly<{
   track: TrackPlayer.Track;
@@ -23,6 +32,8 @@ export type PlayerState = Readonly<{
   error: string;
   errorCreateAudiofile: string;
   isLoadingCreateAudiofile: boolean;
+  isCreatingAudiofile: boolean;
+  isDownloadingAudiofile: boolean;
 }>;
 
 export const initialState: PlayerState = {
@@ -42,6 +53,8 @@ export const initialState: PlayerState = {
   error: '',
   errorCreateAudiofile: '',
   isLoadingCreateAudiofile: false,
+  isCreatingAudiofile: false,
+  isDownloadingAudiofile: false
 };
 
 /* tslint:disable-next-line no-any */
@@ -96,20 +109,49 @@ export function playerReducer(state = initialState, action: any): PlayerState {
     case CREATE_AUDIOFILE_FAIL:
       let errorCreateAudiofile = CREATE_AUDIOFILE_FAIL_MESSAGE;
 
-      if (action.error.response && action.error.response.data && action.error.response.data.message) {
+      if (
+        action.error.response &&
+        action.error.response.data &&
+        action.error.response.data.message
+      ) {
         errorCreateAudiofile = action.error.response.data.message;
       }
 
       return {
         ...state,
         errorCreateAudiofile,
-        isLoadingCreateAudiofile: false
+        isLoadingCreateAudiofile: false,
+        isCreatingAudiofile: false
       };
 
     case RESET_CREATE_AUDIOFILE_ERROR:
       return {
         ...state,
         errorCreateAudiofile: ''
+      };
+
+    case SET_IS_CREATING_AUDIOFILE:
+      return {
+        ...state,
+        isCreatingAudiofile: true
+      };
+
+    case RESET_IS_CREATING_AUDIOFILE:
+      return {
+        ...state,
+        isCreatingAudiofile: false
+      };
+
+    case SET_IS_DOWNLOADING_AUDIOFILE:
+      return {
+        ...state,
+        isDownloadingAudiofile: true
+      };
+
+    case RESET_IS_DOWNLOADING_AUDIOFILE:
+      return {
+        ...state,
+        isDownloadingAudiofile: false
       };
 
     default:
@@ -138,7 +180,7 @@ export function setPlaybackStatus(playbackState: string) {
 
 export function resetPlaybackStatus() {
   return {
-    type: RESET_PLAYBACK_STATUS,
+    type: RESET_PLAYBACK_STATUS
   };
 }
 
@@ -175,5 +217,29 @@ export function createAudiofile(articleId: string) {
         }
       }
     }
+  };
+}
+
+export function setIsCreatingAudiofile() {
+  return {
+    type: SET_IS_CREATING_AUDIOFILE
+  };
+}
+
+export function setIsDownloadingAudiofile() {
+  return {
+    type: SET_IS_DOWNLOADING_AUDIOFILE
+  };
+}
+
+export function resetIsCreatingAudiofile() {
+  return {
+    type: RESET_IS_CREATING_AUDIOFILE
+  };
+}
+
+export function resetIsDownloadingAudiofile() {
+  return {
+    type: RESET_IS_DOWNLOADING_AUDIOFILE
   };
 }
