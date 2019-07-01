@@ -194,13 +194,6 @@ export function setTrack(track: TrackPlayer.Track, articleId: string) {
   };
 }
 
-export function setPlaybackSpeed(playbackSpeed: number) {
-  return {
-    type: SET_PLAYBACK_SPEED,
-    payload: playbackSpeed
-  };
-}
-
 /**
  * Creates an audiofile for the user using the default voice or user selected voice
  * The selection of which voice to use is handled by the API.
