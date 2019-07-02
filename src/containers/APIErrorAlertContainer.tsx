@@ -36,7 +36,6 @@ export class APIErrorAlertContainerComponent extends React.PureComponent<Props> 
       errorRequestResetPasswordToken,
       errorPlaylist
     } = this.props;
-    console.log(this.props);
 
     if (errorSaveSelectedVoice && prevProps.errorSaveSelectedVoice !== errorSaveSelectedVoice) {
       return Alert.alert('Oops!', errorSaveSelectedVoice, [
