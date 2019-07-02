@@ -12,6 +12,8 @@ import { resetValidateSubscriptionReceiptError } from '../reducers/subscriptions
 import { selectErrorValidateSubscriptionReceipt } from '../selectors/subscriptions';
 import { selectErrorUpdatePassword, selectErrorRequestResetPasswordToken } from '../selectors/auth';
 import { resetErrorUpdatePassword, resetErrorRequestPasswordToken } from '../reducers/auth';
+import { selectPlaylistError } from '../selectors/playlist';
+import { resetErrorPlaylist } from '../reducers/playlist';
 
 type IProps = {
   languageName: string;
@@ -26,80 +28,77 @@ type Props = IProps & NavigationInjectedProps & StateProps & DispatchProps;
  */
 export class APIErrorAlertContainerComponent extends React.PureComponent<Props> {
   componentDidUpdate(prevProps: Props) {
-    const { errorSaveSelectedVoice, errorCreateAudiofile, errorValidateSubscriptionReceipt, errorUpdatePassword, errorRequestResetPasswordToken } = this.props;
+    const {
+      errorSaveSelectedVoice,
+      errorCreateAudiofile,
+      errorValidateSubscriptionReceipt,
+      errorUpdatePassword,
+      errorRequestResetPasswordToken,
+      errorPlaylist
+    } = this.props;
 
     if (errorSaveSelectedVoice && prevProps.errorSaveSelectedVoice !== errorSaveSelectedVoice) {
-      return Alert.alert(
-        'Oops!',
-        errorSaveSelectedVoice,
-        [
-          {
-            text: 'OK',
-            style: 'cancel',
-            onPress: () => this.props.resetSaveSelectedVoiceError()
-          }
-        ]
-      );
+      return Alert.alert('Oops!', errorSaveSelectedVoice, [
+        {
+          text: 'OK',
+          style: 'cancel',
+          onPress: () => this.props.resetSaveSelectedVoiceError()
+        }
+      ]);
     }
 
     if (errorCreateAudiofile && prevProps.errorCreateAudiofile !== errorCreateAudiofile) {
-      return Alert.alert(
-        'Oops!',
-        errorCreateAudiofile,
-        [
-          {
-            text: 'OK',
-            style: 'cancel',
-            onPress: () => this.props.resetCreateAudiofileError()
-          }
-        ]
-      );
+      return Alert.alert('Oops!', errorCreateAudiofile, [
+        {
+          text: 'OK',
+          style: 'cancel',
+          onPress: () => this.props.resetCreateAudiofileError()
+        }
+      ]);
     }
 
     if (errorValidateSubscriptionReceipt && prevProps.errorValidateSubscriptionReceipt !== errorValidateSubscriptionReceipt) {
-      return Alert.alert(
-        'Oops!',
-        errorValidateSubscriptionReceipt,
-        [
-          {
-            text: 'OK',
-            style: 'cancel',
-            onPress: () => this.props.resetValidateSubscriptionReceiptError()
-          }
-        ]
-      );
+      return Alert.alert('Oops!', errorValidateSubscriptionReceipt, [
+        {
+          text: 'OK',
+          style: 'cancel',
+          onPress: () => this.props.resetValidateSubscriptionReceiptError()
+        }
+      ]);
     }
 
     if (errorUpdatePassword && prevProps.errorUpdatePassword !== errorUpdatePassword) {
-      return Alert.alert(
-        'Oops!',
-        errorUpdatePassword,
-        [
-          {
-            text: 'OK',
-            style: 'cancel',
-            onPress: () => this.props.resetErrorUpdatePassword()
-          }
-        ]
-      );
+      return Alert.alert('Oops!', errorUpdatePassword, [
+        {
+          text: 'OK',
+          style: 'cancel',
+          onPress: () => this.props.resetErrorUpdatePassword()
+        }
+      ]);
     }
 
     if (errorRequestResetPasswordToken && prevProps.errorRequestResetPasswordToken !== errorRequestResetPasswordToken) {
-      return Alert.alert(
-        'Oops!',
-        errorRequestResetPasswordToken,
-        [
-          {
-            text: 'OK',
-            style: 'cancel',
-            onPress: () => this.props.resetErrorRequestPasswordToken()
-          }
-        ]
-      );
+      return Alert.alert('Oops!', errorRequestResetPasswordToken, [
+        {
+          text: 'OK',
+          style: 'cancel',
+          onPress: () => this.props.resetErrorRequestPasswordToken()
+        }
+      ]);
+    }
+
+    if (errorPlaylist && prevProps.errorPlaylist !== errorPlaylist) {
+      return Alert.alert('Oops!', errorPlaylist, [
+        {
+          text: 'OK',
+          style: 'cancel',
+          onPress: () => this.props.resetErrorPlaylist()
+        }
+      ]);
     }
   }
 
-  render () {
+  render() {
     return this.props.children;
   }
 }
@@ -110,6 +109,7 @@ interface DispatchProps {
   resetValidateSubscriptionReceiptError: typeof resetValidateSubscriptionReceiptError;
   resetErrorUpdatePassword: typeof resetErrorUpdatePassword;
   resetErrorRequestPasswordToken: typeof resetErrorRequestPasswordToken;
+  resetErrorPlaylist: typeof resetErrorPlaylist;
 }
 
 interface StateProps {
@@ -118,6 +118,7 @@ interface StateProps {
   readonly errorValidateSubscriptionReceipt: ReturnType<typeof selectErrorValidateSubscriptionReceipt>;
   readonly errorUpdatePassword: ReturnType<typeof selectErrorUpdatePassword>;
   readonly errorRequestResetPasswordToken: ReturnType<typeof selectErrorRequestResetPasswordToken>;
+  readonly errorPlaylist: ReturnType<typeof selectPlaylistError>;
 }
 
 const mapStateToProps = (state: RootState, props: Props) => ({
@@ -126,6 +127,7 @@ const mapStateToProps = (state: RootState, props: Props) => ({
   errorValidateSubscriptionReceipt: selectErrorValidateSubscriptionReceipt(state),
   errorUpdatePassword: selectErrorUpdatePassword(state),
   errorRequestResetPasswordToken: selectErrorRequestResetPasswordToken(state),
+  errorPlaylist: selectPlaylistError(state)
 });
 
 const mapDispatchToProps = {
@@ -133,11 +135,11 @@ const mapDispatchToProps = {
   resetCreateAudiofileError,
   resetValidateSubscriptionReceiptError,
   resetErrorUpdatePassword,
-  resetErrorRequestPasswordToken
+  resetErrorRequestPasswordToken,
+  resetErrorPlaylist
 };
 
-export const APIErrorAlertContainer =
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(APIErrorAlertContainerComponent);
+export const APIErrorAlertContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(APIErrorAlertContainerComponent);

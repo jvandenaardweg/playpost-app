@@ -14,11 +14,7 @@ import { getPlaylist, reOrderPlaylistItem } from '../reducers/playlist';
 import { getLanguages } from '../reducers/voices';
 import { getUser } from '../reducers/user';
 
-import {
-  selectNewPlaylistItems,
-  selectArchivedPlaylistItems,
-  selectFavoritedPlaylistItems
-} from '../selectors/playlist';
+import { selectNewPlaylistItems, selectArchivedPlaylistItems, selectFavoritedPlaylistItems } from '../selectors/playlist';
 
 import isEqual from 'react-fast-compare';
 import { RootState } from '../reducers';
@@ -30,7 +26,6 @@ interface State {
   isLoading: boolean;
   isRefreshing: boolean;
   isReOrdering: boolean;
-  errorMessage: string;
   showHelpVideo: boolean;
   playlistItems: Api.PlaylistItem[];
 }
@@ -47,7 +42,6 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
     isLoading: false, // Show loading upon mount, because we fetch the playlist of the user
     isRefreshing: false,
     isReOrdering: false,
-    errorMessage: '',
     showHelpVideo: false,
     playlistItems: []
   };
@@ -96,10 +90,7 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
    * We use it here because we can give the user a faster perceived loading performance
    */
   prePopulateApp = async () => {
-    const promises = await Promise.all([
-      this.props.getUser(),
-      this.props.getLanguages()
-    ]);
+    const promises = await Promise.all([this.props.getUser(), this.props.getLanguages()]);
 
     return promises;
   }
@@ -112,17 +103,11 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
 
     let playlistItems = props.newPlaylistItems;
 
-    if (
-      props.isArchiveScreen &&
-      !isEqual(props.isArchiveScreen, state.playlistItems)
-    ) {
+    if (props.isArchiveScreen && !isEqual(props.isArchiveScreen, state.playlistItems)) {
       playlistItems = props.archivedPlaylistItems;
     }
 
-    if (
-      props.isFavoriteScreen &&
-      !isEqual(props.isFavoriteScreen, state.playlistItems)
-    ) {
+    if (props.isFavoriteScreen && !isEqual(props.isFavoriteScreen, state.playlistItems)) {
       playlistItems = props.favoritedPlaylistItems;
     }
 
@@ -138,49 +123,21 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
   }
 
   async fetchPlaylist() {
-    const { errorMessage, playlistItems } = this.state;
     const { isConnected } = this.context;
 
     try {
       // Get the user's playlist
       await this.props.getPlaylist();
-
-      // Cleanup the error message if it's there
-      if (errorMessage) return this.setState({ errorMessage: '' });
     } catch (err) {
       if (!isConnected) return; // Don't show an error when there's no internet connection.
 
-      const customErrorMessage =
-        'There was an error while getting your playlist.';
+      const customErrorMessage = 'There was an error while getting your playlist.';
 
-      // If we don't have articles we show an empty error state
-      if (!playlistItems || !playlistItems.length) {
-        return this.setState({ errorMessage: customErrorMessage });
-      }
-
-      // If we have articles in the playlist, we just show an alert
-      return this.showErrorAlert(customErrorMessage);
+      // Error message is handled by APIErrorAlertContainer
+      console.log(customErrorMessage);
     } finally {
       return this.setState({ isLoading: false, isRefreshing: false });
     }
-  }
-
-  showErrorAlert(errorMessage: string) {
-    return Alert.alert(
-      'Oops!',
-      errorMessage,
-      [
-        {
-          text: 'Cancel',
-          style: 'cancel'
-        },
-        {
-          text: 'Try again',
-          onPress: () => this.handleOnRefresh()
-        }
-      ],
-      { cancelable: true }
-    );
   }
 
   get hasPlaylistItems() {
@@ -191,11 +148,8 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
   handleOnRefresh = () => {
     // If we don't have any articles, we show the general centered loading indicator
     const isLoading = !this.hasPlaylistItems;
-    console.log('on reffresh');
 
-    this.setState({ isLoading, isRefreshing: true }, () =>
-      this.fetchPlaylist()
-    );
+    this.setState({ isLoading, isRefreshing: true }, () => this.fetchPlaylist());
   }
 
   handleOnHideVideo = async () => {
@@ -209,23 +163,11 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
   }
 
   renderEmptyComponent = () => {
-    const { isLoading, isRefreshing, showHelpVideo, errorMessage } = this.state;
+    const { isLoading, isRefreshing, showHelpVideo } = this.state;
     const { isArchiveScreen, isFavoriteScreen } = this.props;
     const { isConnected } = this.context;
 
     if (isLoading) return <CenterLoadingIndicator />;
-
-    // If there's an error, and we don't have playlist items yet
-    if (errorMessage && !this.hasPlaylistItems) {
-      return (
-        <EmptyState
-          title="Error"
-          description={[errorMessage]}
-          actionButtonLabel="Try again"
-          actionButtonOnPress={() => this.handleOnRefresh()}
-        />
-      );
-    }
 
     if (isArchiveScreen) {
       return (
@@ -256,9 +198,7 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
       return (
         <EmptyState
           title="No internet"
-          description={[
-            "There's no active internet connection, so we cannot display your playlist."
-          ]}
+          description={["There's no active internet connection, so we cannot display your playlist."]}
           actionButtonLabel="Try again"
           actionButtonOnPress={() => this.handleOnRefresh()}
         />
@@ -279,9 +219,7 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
       return (
         <EmptyState
           title="Nothing in your playlist, yet"
-          description={[
-            'Easily add articles to your playlist by using the share icon in every app on your phone.'
-          ]}
+          description={['Easily add articles to your playlist by using the share icon in every app on your phone.']}
           actionButtonLabel="Show instructions"
           actionButtonOnPress={() => this.handleOnShowVideo()}
         />
@@ -291,42 +229,26 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
     return null;
   }
 
-  handleOnMoveEnd = async ({
-    data,
-    to,
-    from,
-    row
-  }: {
-    data: Api.PlaylistItem[] | null;
-    to: number;
-    from: number;
-    row: Api.PlaylistItem;
-  }) => {
+  handleOnMoveEnd = async ({ data, to, from, row }: { data: Api.PlaylistItem[] | null; to: number; from: number; row: Api.PlaylistItem }) => {
     const articleId = row.article.id;
     const newOrder = to;
     const newPlaylistItemsOrder: Api.PlaylistItem[] | null = data;
 
     if (!newPlaylistItemsOrder) return;
 
-    return this.setState(
-      { playlistItems: newPlaylistItemsOrder, isReOrdering: true },
-      async () => {
-        try {
-          // Call API to set new order in the database
-          await this.props.reOrderPlaylistItem(articleId, newOrder);
+    return this.setState({ playlistItems: newPlaylistItemsOrder, isReOrdering: true }, async () => {
+      try {
+        // Call API to set new order in the database
+        await this.props.reOrderPlaylistItem(articleId, newOrder);
 
-          // Get the newly ordered playlist
-          await this.props.getPlaylist();
-        } catch (err) {
-          Alert.alert(
-            'Oops!',
-            'An error happened while re-ordering your playlist. Please try again.'
-          );
-        } finally {
-          this.setState({ isReOrdering: false });
-        }
+        // Get the newly ordered playlist
+        await this.props.getPlaylist();
+      } catch (err) {
+        Alert.alert('Oops!', 'An error happened while re-ordering your playlist. Please try again.');
+      } finally {
+        this.setState({ isReOrdering: false });
       }
-    );
+    });
   }
 
   renderSeperatorComponent = () => {

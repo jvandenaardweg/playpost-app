@@ -1,11 +1,22 @@
-import { subscriptionsSelector, selectSubscriptions, selectIsLoadingSubscriptions, selectSubscriptionsError, selectSubscriptionByProductId, selectSubscriptionsValidationResult, selectSubscriptionLatestReceipt, selectIsSubscribed, selectErrorValidateSubscriptionReceipt } from '../subscriptions';
+import {
+  subscriptionsSelector,
+  selectSubscriptions,
+  selectIsLoadingSubscriptions,
+  selectSubscriptionsError,
+  selectSubscriptionsValidationResult,
+  selectSubscriptionLatestReceipt,
+  selectIsSubscribed,
+  selectErrorValidateSubscriptionReceipt,
+  selectActiveSubscriptionProductId
+} from '../subscriptions';
 import { createStore } from 'redux';
 
 import { initialState } from '../../reducers/subscriptions';
 import { rootReducer } from '../../reducers';
 
 import subscriptionsMock from '../../../tests/__mocks__/subscriptions';
-import subscriptionValidationResultMock from '../../../tests/__mocks__/subscription-validation-result';
+import subscriptionValidationResultExpiredMock from '../../../tests/__mocks__/subscription-validation-result-expired';
+import subscriptionValidationResultActiveMock from '../../../tests/__mocks__/subscription-validation-result-active';
 
 const store = createStore(rootReducer);
 
@@ -13,7 +24,6 @@ const rootState = store.getState();
 // const userStore = rootState.user;
 
 describe('subscriptions selector', () => {
-
   it('subscriptionsSelector should return the initial state', () => {
     expect(subscriptionsSelector(rootState)).toEqual(initialState);
   });
@@ -66,31 +76,16 @@ describe('subscriptions selector', () => {
     expect(selectErrorValidateSubscriptionReceipt(exampleState)).toBe('Some example error');
   });
 
-  it('selectSubscriptionByProductId should return the subscription by subscription id', () => {
-    const exampleState = {
-      ...rootState,
-      subscriptions: {
-        ...rootState.subscriptions,
-        subscriptions: subscriptionsMock
-      }
-    };
-
-    const productId = subscriptionsMock[0].productId;
-    const expected = subscriptionsMock[0];
-
-    expect(selectSubscriptionByProductId(exampleState, productId)).toEqual(expected);
-  });
-
   it('selectSubscriptionsValidationResult should return the subscription validation result', () => {
     const exampleState = {
       ...rootState,
       subscriptions: {
         ...rootState.subscriptions,
-        validationResult: subscriptionValidationResultMock
+        validationResult: subscriptionValidationResultExpiredMock
       }
     };
 
-    expect(selectSubscriptionsValidationResult(exampleState)).toEqual(subscriptionValidationResultMock);
+    expect(selectSubscriptionsValidationResult(exampleState)).toEqual(subscriptionValidationResultExpiredMock);
   });
 
   it('selectSubscriptionLatestReceipt should return the subscription latest receipt', () => {
@@ -98,11 +93,11 @@ describe('subscriptions selector', () => {
       ...rootState,
       subscriptions: {
         ...rootState.subscriptions,
-        validationResult: subscriptionValidationResultMock
+        validationResult: subscriptionValidationResultExpiredMock
       }
     };
 
-    expect(selectSubscriptionLatestReceipt(exampleState)).toEqual(subscriptionValidationResultMock.latestReceipt);
+    expect(selectSubscriptionLatestReceipt(exampleState)).toEqual(subscriptionValidationResultExpiredMock.latestReceipt);
   });
 
   it('selectIsSubscribed should return the subscription latest receipt', () => {
@@ -110,7 +105,7 @@ describe('subscriptions selector', () => {
       ...rootState,
       subscriptions: {
         ...rootState.subscriptions,
-        validationResult: subscriptionValidationResultMock
+        validationResult: subscriptionValidationResultExpiredMock
       }
     };
 
@@ -118,4 +113,29 @@ describe('subscriptions selector', () => {
     expect(selectIsSubscribed(exampleState)).toEqual(false);
   });
 
+  it('selectActiveSubscriptionProductId should return the default productId "free" when there are no active subscriptions', () => {
+    const exampleState = {
+      ...rootState,
+      subscriptions: {
+        ...rootState.subscriptions,
+        validationResult: subscriptionValidationResultExpiredMock
+      }
+    };
+
+    // The mock data contains a unsubscribed/expired subscription
+    expect(selectActiveSubscriptionProductId(exampleState)).toEqual('free');
+  });
+
+  it('selectActiveSubscriptionProductId should return the active subscription productId', () => {
+    const exampleState = {
+      ...rootState,
+      subscriptions: {
+        ...rootState.subscriptions,
+        validationResult: subscriptionValidationResultActiveMock
+      }
+    };
+
+    // The mock data contains a unsubscribed/expired subscription
+    expect(selectActiveSubscriptionProductId(exampleState)).toEqual('com.aardwegmedia.playpost.premium');
+  });
 });
