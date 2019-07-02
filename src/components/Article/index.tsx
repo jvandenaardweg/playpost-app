@@ -102,7 +102,7 @@ export const Article: React.FC<Props> = React.memo(
       </TouchableOpacity>
       <View style={styles.sectionControl}>
         <TouchableOpacity style={styles.imageContainer} onPress={onPlayPress} activeOpacity={1} disabled={isLoading}>
-          {imageUrl && <Image style={styles.image} source={{ uri: imageUrl, cache: 'only-if-cached' }} placeholderStyle={styles.imagePlaceholder} />}
+          {imageUrl && <Image style={styles.image} source={{ uri: imageUrl }} placeholderStyle={styles.imagePlaceholder} />}
           <View style={styles.playButtonContainer}>
             <PlayIcon isLoading={isLoading} isPlaying={isPlaying} isActive={isActive} />
           </View>
