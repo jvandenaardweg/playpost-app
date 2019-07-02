@@ -28,7 +28,7 @@ import {
 import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE, URL_ABOUT, URL_FEEDBACK, URL_DONATE } from '../constants/urls';
 import colors from '../constants/colors';
 import spacing from '../constants/spacing';
-import { selectIsSubscribed } from '../selectors/subscriptions';
+import { selectIsSubscribed, selectActiveSubscriptionName } from '../selectors/subscriptions';
 
 interface IProps extends NavigationInjectedProps {}
 
@@ -180,10 +180,9 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
             onPress: this.handleOnPressUpgrade,
             showDisclosureIndicator: true,
             renderAccessory: () => {
-              const { isSubscribed } = this.props;
-              console.log('settings isSubscribed', isSubscribed);
+              const { activeSubscriptionName } = this.props;
 
-              return <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.title }}>{isSubscribed ? 'Premium' : 'Free'}</Text>;
+              return <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.title }}>{activeSubscriptionName}</Text>;
             }
           },
           {
@@ -360,11 +359,13 @@ interface DispatchProps {
 interface StateProps {
   user: ReturnType<typeof selectUserDetails>;
   isSubscribed: ReturnType<typeof selectIsSubscribed>;
+  activeSubscriptionName: ReturnType<typeof selectActiveSubscriptionName>;
 }
 
 const mapStateToProps = (state: RootState) => ({
   user: selectUserDetails(state),
-  isSubscribed: selectIsSubscribed(state)
+  isSubscribed: selectIsSubscribed(state),
+  activeSubscriptionName: selectActiveSubscriptionName(state)
 });
 
 const mapDispatchToProps = {

@@ -9,24 +9,19 @@ export const selectSubscriptions = createSelector(
   state => state.subscriptions
 );
 
-export const selectSubscriptionByProductId = (state: RootState, productId: string) => createSelector(
-  [selectSubscriptions],
-  subscriptions => subscriptions.find(subscription => subscription.productId === productId)
-)(state);
-
 export const selectIsLoadingSubscriptions = createSelector(
   [subscriptionsSelector],
-  state => state.isLoadingSubscriptions
+  (state): boolean => state.isLoadingSubscriptions
 );
 
 export const selectSubscriptionsError = createSelector(
   [subscriptionsSelector],
-  state => state.error
+  (state): string => state.error
 );
 
 export const selectErrorValidateSubscriptionReceipt = createSelector(
   [subscriptionsSelector],
-  state => state.errorValidateSubscriptionReceipt
+  (state): string => state.errorValidateSubscriptionReceipt
 );
 
 export const selectSubscriptionsValidationResult = createSelector(
@@ -36,18 +31,40 @@ export const selectSubscriptionsValidationResult = createSelector(
 
 export const selectSubscriptionLatestReceipt = createSelector(
   [selectSubscriptionsValidationResult],
-  (validationResult) => {
+  (validationResult): string => {
+    if (!validationResult) return '';
+
     const { latestReceipt } = validationResult;
-    if (!latestReceipt) return null;
+
+    if (!latestReceipt) return '';
+
     return latestReceipt;
   }
 );
 
 export const selectIsSubscribed = createSelector(
   [selectSubscriptionsValidationResult],
-  (validationResult) => {
+  (validationResult): boolean => {
     const { status } = validationResult;
     if (status !== 'active') return false;
     return true;
+  }
+);
+
+export const selectActiveSubscriptionProductId = createSelector(
+  [selectSubscriptionsValidationResult, selectIsSubscribed],
+  (validationResult, isSubscribed): string => {
+    if (!isSubscribed) return 'free';
+    if (!validationResult || !validationResult.inAppSubscription || !validationResult.inAppSubscription.productId) return 'free';
+    return validationResult.inAppSubscription.productId;
+  }
+);
+
+export const selectActiveSubscriptionName = createSelector(
+  [selectSubscriptionsValidationResult, selectIsSubscribed],
+  (validationResult, isSubscribed): string => {
+    if (!isSubscribed) return 'Free';
+    if (!validationResult || !validationResult.inAppSubscription || !validationResult.inAppSubscription.name) return 'Free';
+    return validationResult.inAppSubscription.name;
   }
 );

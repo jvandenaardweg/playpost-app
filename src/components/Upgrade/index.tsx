@@ -1,13 +1,11 @@
 import React from 'react';
-import { View, Text, Linking, ScrollView, Dimensions, ActivityIndicator } from 'react-native';
+import { View, Text, ScrollView, Dimensions, ActivityIndicator } from 'react-native';
 import { Button } from 'react-native-elements';
 import * as RNIap from 'react-native-iap';
 
 import * as Icon from '../../components/Icon';
 
 import styles from './styles';
-
-import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../../constants/urls';
 
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
@@ -19,8 +17,12 @@ interface Props {
   isLoadingRestorePurchases: boolean;
   subscriptions?: RNIap.Subscription<string>[];
   subscriptionFeatures: any[];
+  activeSubscriptionProductId: string;
   onPressUpgrade(productId: string): void;
   onPressRestore(): void;
+  onPressPrivacy(): void;
+  onPressTerms(): void;
+  onPressCancel(): void;
 }
 
 export const Upgrade: React.FC<Props> = React.memo(
@@ -28,10 +30,14 @@ export const Upgrade: React.FC<Props> = React.memo(
     isLoadingSubscriptionItems,
     isLoadingBuySubscription,
     isLoadingRestorePurchases,
+    subscriptions,
+    subscriptionFeatures,
+    activeSubscriptionProductId,
     onPressUpgrade,
     onPressRestore,
-    subscriptions,
-    subscriptionFeatures
+    onPressPrivacy,
+    onPressTerms,
+    onPressCancel
   }) => {
     const windowWidth = Dimensions.get('window').width;
     const cardMargin = 6;
@@ -41,6 +47,8 @@ export const Upgrade: React.FC<Props> = React.memo(
     const cardWidth = windowWidth - cardFirstMarginLeft - cardLastMarginRight;
     const snapToInterval = cardWidth + cardMargin * 2;
     const startOffset = snapToInterval;
+    const contentOffset = { x: startOffset, y: 0 };
+    const scrollEnabled = !isLoadingBuySubscription;
 
     return (
       <View style={{ flex: 1 }}>
@@ -51,9 +59,9 @@ export const Upgrade: React.FC<Props> = React.memo(
             style={styles.cardsScrollView}
             pagingEnabled
             snapToInterval={snapToInterval}
-            scrollEnabled={!isLoadingBuySubscription}
+            scrollEnabled={scrollEnabled}
             decelerationRate={0}
-            contentOffset={{ x: startOffset, y: 0 }}
+            contentOffset={contentOffset}
           >
             {subscriptionFeatures &&
               subscriptionFeatures.map((subscriptionFeature, index) => {
@@ -65,6 +73,7 @@ export const Upgrade: React.FC<Props> = React.memo(
                 const localizedPrice = subscription ? subscription.localizedPrice : subscriptionFeature.price;
                 const title = subscription ? subscription.title : subscriptionFeature.title;
                 const productId = subscription ? subscription.productId : subscriptionFeature.productId;
+                const buttonLabel = productId === 'free' ? 'Cancel to downgrade' : `Upgrade to ${title}`;
 
                 return (
                   <View
@@ -82,11 +91,17 @@ export const Upgrade: React.FC<Props> = React.memo(
                     <View>
                       <Text style={styles.cardMeta}>per month</Text>
                     </View>
-                    <View style={{ alignSelf: 'stretch', marginTop: 12, marginBottom: 6 }}>
+                    <View style={styles.cardButtonContainer}>
                       <Button
-                        title={`Upgrade to ${title}`}
+                        title={activeSubscriptionProductId === productId ? 'Current subscription' : buttonLabel}
                         onPress={() => onPressUpgrade(productId)}
-                        disabled={isLoadingSubscriptionItems || isLoadingBuySubscription || isLoadingRestorePurchases}
+                        disabled={
+                          isLoadingSubscriptionItems ||
+                          isLoadingBuySubscription ||
+                          isLoadingRestorePurchases ||
+                          activeSubscriptionProductId === productId ||
+                          productId === 'free'
+                        }
                         loading={isLoadingSubscriptionItems || isLoadingBuySubscription}
                         loadingProps={{ color: 'black' }}
                       />
@@ -118,19 +133,9 @@ export const Upgrade: React.FC<Props> = React.memo(
             <View style={{ width: cardWidth, height: 10, backgroundColor: 'red' }} />
           </View> */}
 
-          <View style={{ padding: spacing.default, backgroundColor: 'white', borderTopWidth: 1, borderTopColor: colors.grayLight }}>
+          <View style={styles.featuresContainer}>
             <View style={styles.header}>
-              <Text
-                style={{
-                  fontSize: fonts.fontSize.headline,
-                  textAlign: 'center',
-                  fontWeight: fonts.fontWeight.bold,
-                  marginTop: spacing.default,
-                  marginBottom: spacing.large
-                }}
-              >
-                Upgrade to Premium or Plus
-              </Text>
+              <Text style={styles.headerTitle}>Upgrade to Premium or Plus</Text>
               <View style={styles.feature}>
                 <Icon.FontAwesome5 name="gem" size={34} style={styles.featureIcon} />
                 <View style={styles.featureContent}>
@@ -182,15 +187,27 @@ export const Upgrade: React.FC<Props> = React.memo(
                 available for unused portions of a subscription.
               </Text>
               <View style={styles.footerLinks}>
-                <Text style={[styles.footerText, styles.textHighlight]} onPress={() => Linking.openURL(`${URL_PRIVACY_POLICY}?ref=playpost://upgrade`)}>
+                <Text style={[styles.footerText, styles.textHighlight]} onPress={() => onPressPrivacy()}>
                   Privacy Policy
                 </Text>
                 <Text style={styles.footerText}> - </Text>
-                <Text style={[styles.footerText, styles.textHighlight]} onPress={() => Linking.openURL(`${URL_TERMS_OF_USE}?ref=playpost://upgrade`)}>
+                <Text style={[styles.footerText, styles.textHighlight]} onPress={() => onPressTerms()}>
                   Terms of Use
                 </Text>
               </View>
               <View style={{ marginTop: 18 }}>
+                {activeSubscriptionProductId !== 'free' && (
+                  <View style={{ marginBottom: 18 }}>
+                    <Button
+                      type="outline"
+                      titleStyle={{ color: colors.red, fontSize: fonts.fontSize.body }}
+                      buttonStyle={{ borderColor: colors.red }}
+                      onPress={() => onPressCancel()}
+                      title="Cancel active subscription?"
+                    />
+                  </View>
+                )}
+
                 <Button
                   title="Already upgraded? Restore purchase"
                   loading={isLoadingRestorePurchases}

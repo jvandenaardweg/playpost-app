@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert } from 'react-native';
+import { Alert, Linking, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import * as RNIap from 'react-native-iap';
 import isEqual from 'react-fast-compare';
@@ -15,15 +15,14 @@ import {
   ALERT_SUBSCRIPTION_BUY_SUCCESS,
   ALERT_SUBSCRIPTION_RESTORE_PURCHASE_NOT_FOUND,
   ALERT_SUBSCRIPTION_RESTORE_SUCCESS,
-  ALERT_SUBSCRIPTION_INIT_FAIL,
-  ALERT_SUBSCRIPTION_PURCHASE_SUBSCRIPTION_NOT_FOUND
+  ALERT_SUBSCRIPTION_INIT_FAIL
 } from '../constants/messages';
 import { SUBSCRIPTION_PRODUCT_IDS } from '../constants/in-app-purchase';
 
-import { selectSubscriptionsError, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
+import { selectSubscriptionsError, selectSubscriptionsValidationResult, selectActiveSubscriptionProductId } from '../selectors/subscriptions';
 import { RootState } from '../reducers';
 import { validateSubscriptionReceipt } from '../reducers/subscriptions';
-import { URL_FEEDBACK } from '../constants/urls';
+import { URL_FEEDBACK, URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../constants/urls';
 
 interface State {
   readonly subscriptions: RNIap.Subscription<string>[];
@@ -146,6 +145,9 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     this.props.navigation.goBack(null);
   }
 
+  handleOpenPrivacy = () => Linking.openURL(`${URL_PRIVACY_POLICY}?ref=playpost://upgrade`);
+  handleOpenTerms = () => Linking.openURL(`${URL_TERMS_OF_USE}?ref=playpost://upgrade`);
+
   showErrorAlert = (title: string, message: string) => {
     return Alert.alert(title, message, [
       {
@@ -157,6 +159,20 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         onPress: () => this.props.navigation.navigate('Browser', { url: URL_FEEDBACK, title: 'Support' })
       }
     ]);
+  }
+
+  handleOnPressCancel = () => {
+    if (Platform.OS === 'android') {
+      return Alert.alert(
+        'Cancel your subscription?',
+        'Cancelling a subscription can only been done through the Google Play Store.\n\nOpen the Google Play Store > Subscriptions. Select the subscription you want to cancel and tap "Cancel subscription".'
+      );
+    }
+
+    return Alert.alert(
+      'Cancel your subscription?',
+      'Cancelling a subscription can only been done through the iTunes.\n\nClose this App and go to Settings > iTunes & Apple Store > Tap on your Apple ID at the top. Tap "View Apple ID". Then go to Account and scroll down to Subscriptions.'
+    );
   }
 
   handleOnPressUpgrade = async (productId: string) => {
@@ -257,7 +273,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
           'Unlimited playlist items',
           'Some advertisements'
         ],
-        footer: 'About 5 articles to audio'
+        footer: 'About 5 articles to audio, per month'
       },
       {
         productId: 'com.aardwegmedia.playpost.premium',
@@ -271,7 +287,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
           'Unlimited playlist items',
           'No advertisements'
         ],
-        footer: 'About 25 articles to audio'
+        footer: 'About 25 articles to audio, per month'
       },
       {
         productId: 'com.aardwegmedia.playpost.plus',
@@ -285,13 +301,14 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
           'Unlimited playlist items',
           'No advertisements'
         ],
-        footer: 'About 65 articles to audio'
+        footer: 'About 65 articles to audio, per month'
       }
     ];
   }
 
   render() {
     const { isLoadingRestorePurchases, isLoadingBuySubscription, isLoadingSubscriptionItems, subscriptions } = this.state;
+    const { activeSubscriptionProductId } = this.props;
 
     return (
       <Upgrade
@@ -299,9 +316,13 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         isLoadingBuySubscription={isLoadingBuySubscription}
         isLoadingRestorePurchases={isLoadingRestorePurchases}
         subscriptions={subscriptions}
+        activeSubscriptionProductId={activeSubscriptionProductId}
         subscriptionFeatures={this.subscriptionFeatures}
         onPressUpgrade={this.handleOnPressUpgrade}
         onPressRestore={this.handleOnPressRestore}
+        onPressPrivacy={this.handleOpenPrivacy}
+        onPressTerms={this.handleOpenTerms}
+        onPressCancel={this.handleOnPressCancel}
       />
     );
   }
@@ -310,6 +331,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 interface StateProps {
   subscriptionsError: ReturnType<typeof selectSubscriptionsError>;
   validationResult: ReturnType<typeof selectSubscriptionsValidationResult>;
+  activeSubscriptionProductId: ReturnType<typeof selectActiveSubscriptionProductId>;
 }
 
 interface DispatchProps {
@@ -318,7 +340,8 @@ interface DispatchProps {
 
 const mapStateToProps = (state: RootState): StateProps => ({
   subscriptionsError: selectSubscriptionsError(state),
-  validationResult: selectSubscriptionsValidationResult(state)
+  validationResult: selectSubscriptionsValidationResult(state),
+  activeSubscriptionProductId: selectActiveSubscriptionProductId(state)
 });
 
 const mapDispatchToProps = {

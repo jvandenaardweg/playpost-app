@@ -13,12 +13,11 @@ export default StyleSheet.create({
     marginBottom: spacing.default
   },
   headerTitle: {
+    fontSize: fonts.fontSize.headline,
     textAlign: 'center',
-    fontSize: fonts.fontSize.titleMedium,
-    color: colors.black,
-    fontWeight: fonts.fontWeight.semibold,
-    marginBottom: spacing.default,
-    marginTop: 12
+    fontWeight: fonts.fontWeight.bold,
+    marginTop: spacing.default,
+    marginBottom: spacing.large
   },
   title: {
     fontSize: fonts.fontSize.title,
@@ -30,6 +29,12 @@ export default StyleSheet.create({
     color: colors.paragraphGrayed,
     lineHeight: 24,
     fontSize: fonts.fontSize.body
+  },
+  featuresContainer: {
+    padding: spacing.default,
+    backgroundColor: 'white',
+    borderTopWidth: 1,
+    borderTopColor: colors.grayLight
   },
   feature: {
     paddingTop: spacing.large,
@@ -113,7 +118,6 @@ export default StyleSheet.create({
     },
     shadowOpacity: 0.05,
     shadowRadius: 5,
-
     elevation: 3
   },
   cardTitle: {
@@ -136,6 +140,11 @@ export default StyleSheet.create({
     marginTop: 6,
     marginLeft: 4,
     color: colors.paragraphGrayed
+  },
+  cardButtonContainer: {
+    alignSelf: 'stretch',
+    marginTop: 12,
+    marginBottom: 6
   },
   cardFooter: {
     marginTop: 12

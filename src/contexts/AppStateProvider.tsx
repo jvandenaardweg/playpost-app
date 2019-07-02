@@ -5,15 +5,17 @@ import { connect } from 'react-redux';
 import { RootState } from '../reducers';
 import { getPlaylist } from '../reducers/playlist';
 
-import { SUBSCRIPTION_PRODUCT_ID } from '../constants/in-app-purchase';
-
 import { selectAuthenticationStatus } from '../selectors/auth';
-import { selectSubscriptionsValidationResult, selectIsSubscribed } from '../selectors/subscriptions';
+import { selectSubscriptionsValidationResult, selectIsSubscribed, selectActiveSubscriptionProductId } from '../selectors/subscriptions';
 import { validateSubscriptionReceipt } from '../reducers/subscriptions';
 import { ALERT_SUBSCRIPTION_EXPIRED } from '../constants/messages';
 // import { ALERT_SUBSCRIPTION_EXPIRED } from '../constants/messages';
 
-export const AppStateContext = React.createContext<{ appState: AppStateStatus, stateChanged: boolean, isSubscribed: boolean }>({ appState: AppState.currentState, stateChanged: false, isSubscribed: false });
+export const AppStateContext = React.createContext<{ appState: AppStateStatus; stateChanged: boolean; isSubscribed: boolean }>({
+  appState: AppState.currentState,
+  stateChanged: false,
+  isSubscribed: false
+});
 
 export const AppStateConsumer = AppStateContext.Consumer;
 
@@ -112,19 +114,23 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
    * Only does an API call when the local receipt is expired.
    */
   validateActiveSubscription = async () => {
-    const { authenticationStatus, subscriptionsValidationResult, validateSubscriptionReceipt } = this.props;
+    const { authenticationStatus, subscriptionsValidationResult, validateSubscriptionReceipt, activeSubscriptionProductId } = this.props;
 
     if (authenticationStatus !== 'LOGGED_IN') return console.warn('User is not logged in, so we cannot check if his subscription is expired.');
-    if (!subscriptionsValidationResult) return console.warn('No subscriptionsValidationResult found to validate the users subscription. Probably because the user has no subscription.');
+    if (!subscriptionsValidationResult) {
+      return console.warn('No subscriptionsValidationResult found to validate the users subscription. Probably because the user has no subscription.');
+    }
 
     // Just don't do a check anymore when the subscription is expired or canceled.
     // The user has to manually subscribe again or restore his purchase, which results in a validation within that flow.
     // So we can just block the use of API validation here, as it is not needed. The user has no active subscription anymore.
-    if (subscriptionsValidationResult.status !== 'active') return console.warn('User his subscription status is not active, so we dont need to validate it with our server for now.');
+    if (subscriptionsValidationResult.status !== 'active') {
+      return console.warn('User his subscription status is not active, so we dont need to validate it with our server for now.');
+    }
 
     // If we end up here, the user is logged in AND it has a subscription receipt we can validate
     const { expiresAt, latestReceipt } = subscriptionsValidationResult;
-    const expiresAtDateMs = (expiresAt) ? new Date(expiresAt).getTime() : null;
+    const expiresAtDateMs = expiresAt ? new Date(expiresAt).getTime() : null;
     const currentTime = Date.now();
 
     // Check if subscription is expired locally
@@ -132,8 +138,10 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
     // Important: this might allow Jailbreak devs to bypass our subscription validation, as they can just adjust the expiresAtDateMs to always be in the future
     if (expiresAtDateMs && currentTime > expiresAtDateMs) {
       try {
-        console.warn('User his subscription is expired locally. We validate his latest receipt on our server to check if the user still has a valid subscription.');
-        await validateSubscriptionReceipt(SUBSCRIPTION_PRODUCT_ID, latestReceipt);
+        console.warn(
+          'User his subscription is expired locally. We validate his latest receipt on our server to check if the user still has a valid subscription.'
+        );
+        await validateSubscriptionReceipt(activeSubscriptionProductId, latestReceipt);
       } catch (err) {
         console.log(err);
       }
@@ -143,11 +151,7 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
   }
 
   render() {
-    return (
-      <AppStateContext.Provider value={this.state}>
-        {this.props.children}
-      </AppStateContext.Provider>
-    );
+    return <AppStateContext.Provider value={this.state}>{this.props.children}</AppStateContext.Provider>;
   }
 }
 
@@ -155,6 +159,7 @@ interface StateProps {
   authenticationStatus: ReturnType<typeof selectAuthenticationStatus>;
   subscriptionsValidationResult: ReturnType<typeof selectSubscriptionsValidationResult>;
   isSubscribed: ReturnType<typeof selectIsSubscribed>;
+  activeSubscriptionProductId: ReturnType<typeof selectActiveSubscriptionProductId>;
 }
 
 interface DispatchProps {
@@ -166,6 +171,7 @@ const mapStateToProps = (state: RootState, props: Props): StateProps => ({
   authenticationStatus: selectAuthenticationStatus(state),
   subscriptionsValidationResult: selectSubscriptionsValidationResult(state),
   isSubscribed: selectIsSubscribed(state),
+  activeSubscriptionProductId: selectActiveSubscriptionProductId(state)
 });
 
 const mapDispatchToProps = {
