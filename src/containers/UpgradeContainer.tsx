@@ -171,7 +171,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
     return Alert.alert(
       'Cancel your subscription?',
-      'Cancelling a subscription can only been done through the iTunes.\n\nClose this App and go to Settings > iTunes & Apple Store > Tap on your Apple ID at the top. Tap "View Apple ID". Then go to Account and scroll down to Subscriptions.'
+      'Cancelling a subscription can only been done through iTunes.\n\nClose this App and go to Settings > iTunes & Apple Store > Tap on your Apple ID at the top. Tap "View Apple ID". Then go to Account and scroll down to Subscriptions.'
     );
   }
 
