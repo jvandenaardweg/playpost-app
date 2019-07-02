@@ -77,6 +77,7 @@ export const Upgrade: React.FC<Props> = React.memo(
 
                 return (
                   <View
+                    key={index}
                     style={[
                       styles.card,
                       { width: cardWidth, marginLeft: isFirst ? cardFirstMarginLeft : cardMargin, marginRight: isLast ? cardLastMarginRight : cardMargin }
@@ -107,8 +108,10 @@ export const Upgrade: React.FC<Props> = React.memo(
                       />
                     </View>
                     <View style={styles.cardFeaturesList}>
-                      {subscriptionFeature.body.map((featureText: string) => (
-                        <Text style={styles.cardFeaturesListItem}>{featureText}</Text>
+                      {subscriptionFeature.body.map((featureText: string, index: number) => (
+                        <Text key={index} style={styles.cardFeaturesListItem}>
+                          {featureText}
+                        </Text>
                       ))}
                     </View>
                     <View style={styles.cardFooter}>

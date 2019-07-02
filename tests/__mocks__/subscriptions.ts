@@ -16,7 +16,7 @@ export default [
   },
   {
     id: '5370877e-3541-4573-9fe1-39634e1bd059',
-    productId: 'com.aardwegmedia.playpost.plus',
+    productId: 'com.aardwegmedia.playpost.subscription.plus',
     name: 'Plus',
     description: 'Monthly Plus Subscription',
     price: 9.99,
