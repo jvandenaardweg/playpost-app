@@ -178,7 +178,8 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   handleOnPressUpgrade = async (productId: string) => {
     return this.setState({ isLoadingBuySubscription: true, selectedProductId: productId }, async () => {
       try {
-        await RNIap.requestSubscription(productId);
+        const upgradeResult = await RNIap.requestSubscription(productId);
+        return upgradeResult;
       } catch (err) {
         const errorMessage = err && err.message ? err.message : 'An uknown error happened while upgrading.';
 
@@ -290,7 +291,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         footer: 'About 25 articles to audio, per month'
       },
       {
-        productId: 'com.aardwegmedia.playpost.plus',
+        productId: 'com.aardwegmedia.playpost.subscription.plus',
         title: 'Plus',
         price: null,
         body: [
