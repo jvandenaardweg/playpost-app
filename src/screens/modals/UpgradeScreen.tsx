@@ -2,6 +2,7 @@ import React from 'react';
 import { NavigationScreenProp, NavigationRoute, NavigationScreenOptions } from 'react-navigation';
 import { ButtonClose } from '../../components/ButtonClose';
 import { UpgradeContainer } from '../../containers/UpgradeContainer';
+import { AppBackground } from '../../components/AppBackground';
 
 interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;
@@ -10,7 +11,7 @@ interface Props {
 export class UpgradeScreen extends React.PureComponent<Props> {
   static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationScreenOptions => {
     return {
-      title: 'Upgrade to Premium',
+      title: 'Upgrade subscription',
       headerLeft: null,
       headerRight: <ButtonClose onPress={navigation.getParam('handleOnClose')} />
     };
@@ -26,7 +27,9 @@ export class UpgradeScreen extends React.PureComponent<Props> {
 
   render() {
     return (
-      <UpgradeContainer />
+      <AppBackground>
+        <UpgradeContainer />
+      </AppBackground>
     );
   }
 }

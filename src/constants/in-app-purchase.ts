@@ -1,6 +1,6 @@
 import { Platform } from 'react-native';
 
-export const SUBSCRIPTION_PRODUCT_ID = Platform.select({
-  ios: 'com.aardwegmedia.playpost.premium',
-  android: 'test.sub1'
+export const SUBSCRIPTION_PRODUCT_IDS = Platform.select({
+  ios: ['com.aardwegmedia.playpost.premium', 'com.aardwegmedia.playpost.plus'],
+  android: ['test.sub1', 'test.sub2']
 });

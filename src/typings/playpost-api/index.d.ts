@@ -1,5 +1,4 @@
 declare namespace Api {
-
   export interface ResponseError {
     message: string;
   }
@@ -117,6 +116,22 @@ declare namespace Api {
     authenticatedAt: string | null;
     voiceSettings: UserVoiceSetting[];
     inAppSubscriptions: UserInAppSubscriptions[];
+    used: {
+      audiofiles: {
+        currentMonthInSeconds: number;
+      };
+    };
+    available: {
+      audiofiles: {
+        currentMonthInSeconds: number;
+      };
+    };
+    limits: {
+      audiofiles: {
+        limitSecondsPerMonth: number;
+        limitSecondsPerArticle: number;
+      };
+    };
     createdAt: string;
     updatedAt: string;
   }
@@ -207,5 +222,4 @@ declare namespace Api {
     CAR_SPEAKER = 'large-automotive-class-device',
     INTERACTIVE_VOICE_RESPONSE_SYSTEM = 'telephony-class-application'
   }
-
 }
