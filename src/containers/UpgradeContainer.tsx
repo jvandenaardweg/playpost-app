@@ -185,11 +185,10 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
         // We don't do anything with this message, as errors are handled by: purchaseErrorListener
 
+        console.log(err);
         console.log(errorMessage);
 
-        // return this.setState({ isLoadingBuySubscription: false }, () =>
-        //   this.showErrorAlert('Upgrade error', errorMessage)
-        // );
+        return err;
       }
     });
   }
