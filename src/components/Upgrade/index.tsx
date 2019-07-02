@@ -16,6 +16,7 @@ interface Props {
   isLoadingBuySubscription: boolean;
   isLoadingRestorePurchases: boolean;
   subscriptions?: RNIap.Subscription<string>[];
+  /* tslint:disable-next-line no-any */
   subscriptionFeatures: any[];
   activeSubscriptionProductId: string;
   onPressUpgrade(productId: string): void;
