@@ -10,6 +10,7 @@ describe('Upgrade', () => {
     const onPressRestoreHandler = jest.fn();
     const onPressPrivacyHandler = jest.fn();
     const onPressTermsHandler = jest.fn();
+    const onPressCancelHandler = jest.fn();
 
     beforeAll(() => {
       wrapper = render(
@@ -24,6 +25,7 @@ describe('Upgrade', () => {
           onPressRestore={onPressRestoreHandler}
           onPressPrivacy={onPressPrivacyHandler}
           onPressTerms={onPressTermsHandler}
+          onPressCancel={onPressCancelHandler}
         />
       );
     });
