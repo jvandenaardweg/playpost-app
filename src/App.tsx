@@ -46,26 +46,28 @@ export default class App extends React.PureComponent {
     DeepLinking.addScheme('playpost://');
     DeepLinking.addScheme('https://');
 
-    DeepLinking.addRoute('/login/reset-password/:resetPasswordToken', ({ path, resetPasswordToken }: { path: string, resetPasswordToken: string }) => {
+    DeepLinking.addRoute('/login/reset-password/:resetPasswordToken', ({ path, resetPasswordToken }: { path: string; resetPasswordToken: string }) => {
       // playpost://update-password/123ABC
       console.log('Should navigate to: ', path, ' with resetPasswordToken: ', resetPasswordToken);
       NavigationService.navigate('login/reset-password', { resetPasswordToken });
     });
 
-    DeepLinking.addRoute('/playpost.app/login/reset-password/:resetPasswordToken', ({ path, resetPasswordToken }: { path: string, resetPasswordToken: string }) => {
-      // playpost://update-password/123ABC
-      console.log('http Should navigate to: ', path, ' with resetPasswordToken: ', resetPasswordToken);
-      NavigationService.navigate('login/reset-password', { resetPasswordToken });
-    });
+    DeepLinking.addRoute(
+      '/playpost.app/login/reset-password/:resetPasswordToken',
+      ({ path, resetPasswordToken }: { path: string; resetPasswordToken: string }) => {
+        // playpost://update-password/123ABC
+        console.log('http Should navigate to: ', path, ' with resetPasswordToken: ', resetPasswordToken);
+        NavigationService.navigate('login/reset-password', { resetPasswordToken });
+      }
+    );
 
     Linking.getInitialURL()
-      .then((url) => {
+      .then(url => {
         if (url) {
           Linking.openURL(url);
         }
       })
       .catch(err => console.error('An error occurred on linking', err));
-
   }
 
   componentWillUnmount() {
@@ -73,14 +75,14 @@ export default class App extends React.PureComponent {
   }
 
   handleUrl = ({ url }: { url: string }) => {
-    Linking.canOpenURL(url).then((supported) => {
+    Linking.canOpenURL(url).then(supported => {
       if (supported) {
         DeepLinking.evaluateUrl(url);
       }
     });
   }
 
-  render () {
+  render() {
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
@@ -89,7 +91,11 @@ export default class App extends React.PureComponent {
               <AppStateProvider>
                 <APIErrorAlertContainer>
                   {/* Below a method to have the Navigator available everywhere. Just import NavigationService and use: NavigationService.navigate(routeName)  */}
-                  <AppNavigator ref={(navigatorRef) => { NavigationService.setTopLevelNavigator(navigatorRef); }} />
+                  <AppNavigator
+                    ref={navigatorRef => {
+                      NavigationService.setTopLevelNavigator(navigatorRef);
+                    }}
+                  />
                 </APIErrorAlertContainer>
               </AppStateProvider>
             </NetworkProvider>

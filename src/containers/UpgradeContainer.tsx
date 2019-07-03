@@ -3,6 +3,7 @@ import { Alert, Linking, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import * as RNIap from 'react-native-iap';
 import isEqual from 'react-fast-compare';
+import Analytics from 'appcenter-analytics';
 
 import { withNavigation, NavigationScreenProp, NavigationRoute } from 'react-navigation';
 
@@ -22,7 +23,8 @@ import { SUBSCRIPTION_PRODUCT_IDS } from '../constants/in-app-purchase';
 import { selectSubscriptionsError, selectSubscriptionsValidationResult, selectActiveSubscriptionProductId } from '../selectors/subscriptions';
 import { RootState } from '../reducers';
 import { validateSubscriptionReceipt } from '../reducers/subscriptions';
-import { URL_FEEDBACK, URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../constants/urls';
+import { URL_FEEDBACK, URL_PRIVACY_POLICY, URL_TERMS_OF_USE, URL_MANAGE_APPLE_SUBSCRIPTIONS } from '../constants/urls';
+import { selectUserDetails } from '../selectors/user';
 
 interface State {
   readonly subscriptions: RNIap.Subscription<string>[];
@@ -59,6 +61,8 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
   async componentDidMount() {
     const { isConnected } = this.context;
+    const { userDetails } = this.props;
+    const analyticsUserId = `${userDetails && userDetails.id}`;
 
     // For now, just close the screen when there's no active internet connection
     // TODO: make more user friendly to show upgrade features when there's no internet connection
@@ -76,13 +80,24 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         // Validatation error is handeled in ErrorAlertContainer
         // The validation result is handled in componentDidUpdate
         await this.props.validateSubscriptionReceipt(selectedProductId, purchase.transactionReceipt);
+        Analytics.trackEvent('Subscriptions upgrade success', { Status: 'success', ProductId: purchase.productId, UserId: analyticsUserId });
       } finally {
         this.setState({ isLoadingRestorePurchases: false, isLoadingBuySubscription: false, selectedProductId: '' });
       }
     });
 
     this.purchaseErrorSubscription = RNIap.purchaseErrorListener(async (error: RNIap.PurchaseError) => {
-      this.showErrorAlert('Oops!', `An error happened. Please contact our support with this information:\n\n ${JSON.stringify(error)}`);
+      const errorMessage = JSON.stringify(error);
+
+      Analytics.trackEvent('Subscriptions upgrade error', {
+        Status: 'error',
+        Message: errorMessage,
+        ProductId: this.state.selectedProductId,
+        UserId: analyticsUserId
+      });
+
+      this.showErrorAlert('Oops!', `An error happened. Please contact our support with this information:\n\n ${errorMessage}`);
+
       this.setState({ isLoadingRestorePurchases: false, isLoadingBuySubscription: false, selectedProductId: '' });
     });
   }
@@ -163,19 +178,69 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
   handleOnPressCancel = () => {
     if (Platform.OS === 'android') {
-      return Alert.alert(
+      return this.showManageSubscriptionAlert(
         'Cancel your subscription?',
-        'Cancelling a subscription can only been done through the Google Play Store.\n\nOpen the Google Play Store > Subscriptions. Select the subscription you want to cancel and tap "Cancel subscription".'
+        'Cancelling a subscription can only be done through the Google Play Store.\n\nOpen the Google Play Store > Subscriptions. Select the subscription you want to cancel and tap "Cancel subscription".'
       );
     }
 
-    return Alert.alert(
+    return this.showManageSubscriptionAlert(
       'Cancel your subscription?',
-      'Cancelling a subscription can only been done through iTunes.\n\nClose this App and go to Settings > iTunes & Apple Store > Tap on your Apple ID at the top. Tap "View Apple ID". Then go to Account and scroll down to Subscriptions.'
+      'Cancelling a subscription can only be done through iTunes.\n\n Press "Manage Subscriptions" below to manage your subscriptions.'
     );
   }
 
+  showManageSubscriptionAlert = (title: string, message: string) => {
+    const { userDetails } = this.props;
+    const analyticsUserId = `${userDetails && userDetails.id}`;
+
+    let manageSubscriptionsButton: object = {
+      text: 'Manage Subscriptions',
+      onPress: () => {
+        Analytics.trackEvent('Subscriptions manage press', { ProductId: this.state.selectedProductId, UserId: analyticsUserId });
+        Linking.openURL(URL_MANAGE_APPLE_SUBSCRIPTIONS);
+      }
+    };
+
+    if (Platform.OS === 'android') {
+      manageSubscriptionsButton = {};
+    }
+
+    return Alert.alert(title, message, [
+      manageSubscriptionsButton,
+      {
+        text: 'OK',
+        style: 'cancel'
+      }
+    ]);
+  }
+
   handleOnPressUpgrade = async (productId: string) => {
+    const { userDetails } = this.props;
+    const analyticsUserId = `${userDetails && userDetails.id}`;
+
+    // If it's a downgrade to an other paid subscription
+    if (this.isDowngradePaidSubscription(productId)) {
+      Analytics.trackEvent('Subscriptions downgrade', { Status: 'alert', ProductId: productId, UserId: analyticsUserId });
+
+      return this.showManageSubscriptionAlert(
+        'Downgrading Subscription?',
+        'Downgrading a subscription can only be done through iTunes.\n\n Press "Manage Subscriptions" below to manage your subscriptions.'
+      );
+    }
+
+    // If it's a downgrade to "free"
+    if (this.isDowngradeFreeSubscription(productId)) {
+      Analytics.trackEvent('Subscriptions downgrade', { Status: 'alert', ProductId: productId, UserId: analyticsUserId });
+
+      return this.showManageSubscriptionAlert(
+        'Downgrade to Free?',
+        'To downgrade to Free you need to cancel your current subscription. Cancelling a subscription can only be done through iTunes.\n\n Press "Manage Subscriptions" below to manage your subscriptions.'
+      );
+    }
+
+    Analytics.trackEvent('Subscriptions upgrade', { Status: 'upgrading', ProductId: productId, UserId: analyticsUserId });
+
     return this.setState({ isLoadingBuySubscription: true, selectedProductId: productId }, async () => {
       try {
         const upgradeResult = await RNIap.requestSubscription(productId);
@@ -193,7 +258,30 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     });
   }
 
+  isDowngradePaidSubscription = (productId: string): boolean => {
+    const { activeSubscriptionProductId } = this.props;
+    const { subscriptions } = this.state;
+
+    const subscriptionToUpgradeTo = subscriptions.find(subscription => subscription.productId === productId);
+    const currentSubscription = subscriptions.find(subscription => subscription.productId === activeSubscriptionProductId);
+
+    if (!subscriptionToUpgradeTo) return false;
+    if (!currentSubscription) return false;
+
+    return Number(subscriptionToUpgradeTo.price) < Number(currentSubscription.price);
+  }
+
+  isDowngradeFreeSubscription = (productId: string): boolean => {
+    const { activeSubscriptionProductId } = this.props;
+    return productId === 'free' && activeSubscriptionProductId !== 'free';
+  }
+
   handleOnPressRestore = async () => {
+    const { userDetails } = this.props;
+    const analyticsUserId = `${userDetails && userDetails.id}`;
+
+    Analytics.trackEvent('Subscriptions restore', { Status: 'restoring', UserId: analyticsUserId });
+
     return this.setState({ isLoadingRestorePurchases: true }, async () => {
       try {
         // Get the previous purchases of the current user
@@ -205,9 +293,13 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         // Validate the receipt on our server
         await this.props.validateSubscriptionReceipt(productId, transactionReceipt);
 
+        Analytics.trackEvent('Subscriptions restore success', { Status: 'success', ProductId: productId, UserId: analyticsUserId });
+
         // The validation result is handled in componentDidUpdate
       } catch (err) {
         const errorMessage = err && err.message ? err.message : 'An unknown error happened while restoring a subscription.';
+        Analytics.trackEvent('Subscriptions restore error', { Status: 'error', Message: errorMessage, UserId: analyticsUserId });
+
         this.showErrorAlert('Restore purchase error', errorMessage);
       } finally {
         this.setState({ isLoadingRestorePurchases: false });
@@ -323,6 +415,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         onPressPrivacy={this.handleOpenPrivacy}
         onPressTerms={this.handleOpenTerms}
         onPressCancel={this.handleOnPressCancel}
+        isDowngradePaidSubscription={this.isDowngradePaidSubscription}
       />
     );
   }
@@ -332,6 +425,7 @@ interface StateProps {
   subscriptionsError: ReturnType<typeof selectSubscriptionsError>;
   validationResult: ReturnType<typeof selectSubscriptionsValidationResult>;
   activeSubscriptionProductId: ReturnType<typeof selectActiveSubscriptionProductId>;
+  userDetails: ReturnType<typeof selectUserDetails>;
 }
 
 interface DispatchProps {
@@ -341,7 +435,8 @@ interface DispatchProps {
 const mapStateToProps = (state: RootState): StateProps => ({
   subscriptionsError: selectSubscriptionsError(state),
   validationResult: selectSubscriptionsValidationResult(state),
-  activeSubscriptionProductId: selectActiveSubscriptionProductId(state)
+  activeSubscriptionProductId: selectActiveSubscriptionProductId(state),
+  userDetails: selectUserDetails(state)
 });
 
 const mapDispatchToProps = {

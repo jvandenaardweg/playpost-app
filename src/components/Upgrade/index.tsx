@@ -24,6 +24,7 @@ interface Props {
   onPressPrivacy(): void;
   onPressTerms(): void;
   onPressCancel(): void;
+  isDowngradePaidSubscription(productId: string): boolean;
 }
 
 export const Upgrade: React.FC<Props> = React.memo(
@@ -38,7 +39,8 @@ export const Upgrade: React.FC<Props> = React.memo(
     onPressRestore,
     onPressPrivacy,
     onPressTerms,
-    onPressCancel
+    onPressCancel,
+    isDowngradePaidSubscription
   }) => {
     const windowWidth = Dimensions.get('window').width;
     const cardMargin = 6;
@@ -74,7 +76,7 @@ export const Upgrade: React.FC<Props> = React.memo(
                 const localizedPrice = subscription ? subscription.localizedPrice : subscriptionFeature.price;
                 const title = subscription ? subscription.title : subscriptionFeature.title;
                 const productId = subscription ? subscription.productId : subscriptionFeature.productId;
-                const buttonLabel = productId === 'free' ? 'Cancel to downgrade' : `Upgrade to ${title}`;
+                const buttonLabel = isDowngradePaidSubscription(productId) || productId === 'free' ? `Downgrade to ${title}` : `Upgrade to ${title}`;
 
                 return (
                   <View
@@ -98,11 +100,7 @@ export const Upgrade: React.FC<Props> = React.memo(
                         title={activeSubscriptionProductId === productId ? 'Current subscription' : buttonLabel}
                         onPress={() => onPressUpgrade(productId)}
                         disabled={
-                          isLoadingSubscriptionItems ||
-                          isLoadingBuySubscription ||
-                          isLoadingRestorePurchases ||
-                          activeSubscriptionProductId === productId ||
-                          productId === 'free'
+                          isLoadingSubscriptionItems || isLoadingBuySubscription || isLoadingRestorePurchases || activeSubscriptionProductId === productId
                         }
                         loading={isLoadingSubscriptionItems || isLoadingBuySubscription}
                         loadingProps={{ color: 'black' }}
@@ -145,7 +143,8 @@ export const Upgrade: React.FC<Props> = React.memo(
                 <View style={styles.featureContent}>
                   <Text style={styles.title}>Higher Quality voices</Text>
                   <Text style={styles.paragraph}>
-                    Access to our highest quality Premium and Plus voices for easier listening. You can preview these Premium voices in the settings screen.
+                    Access to our highest quality Premium and Plus voices for easier listening. You can preview these Higher Quality voices in the settings
+                    screen.
                   </Text>
                 </View>
               </View>
