@@ -14,7 +14,8 @@
     "upgrade-interactive": "npm-check --update",
     "tsc": "tsc -p ./ --noEmit",
     "tsc:watch": "tsc -p ./ --noEmit -w",
-    "postversion": "react-native-version"
+    "postversion": "react-native-version",
+    "version": "auto-changelog -p && git add CHANGELOG.md"
   },
   "rnpm": {
     "assets": [
@@ -24,6 +25,12 @@
   "engines": {
     "node": "^10.15.0",
     "npm": "^6.8.0"
+  },
+  "auto-changelog": {
+    "output": "CHANGELOG.md",
+    "template": "keepachangelog",
+    "unreleased": true,
+    "commitLimit": false
   },
   "dependencies": {
     "@babel/core": "^7.4.5",
@@ -164,5 +171,8 @@
     },
     "test-runner": "jest"
   },
-  "isSwift": true
+  "isSwift": true,
+  "devDependencies": {
+    "auto-changelog": "^1.13.0"
+  }
 }
