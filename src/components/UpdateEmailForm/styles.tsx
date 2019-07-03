@@ -25,8 +25,7 @@ export default StyleSheet.create({
   buttonStyleSuccess: {
     backgroundColor: colors.green,
     marginBottom: spacing.default,
-    opacity: 1,
-    color: colors.white
+    opacity: 1
   },
   buttonTitleStyleSuccess: {
     color: colors.white
