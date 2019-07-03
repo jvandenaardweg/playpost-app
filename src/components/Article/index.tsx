@@ -34,41 +34,44 @@ interface Props {
   onPressOut(): void;
 }
 
-export const Article: React.FC<Props> = React.memo(({
-  isMoving,
-  isLoading,
-  isPlaying,
-  isActive,
-  isDownloaded,
-  isFavorited,
-  isArchived,
-  hasAudiofile,
-  title,
-  url,
-  playlistItemCreatedAt,
-  imageUrl,
-  description,
-  sourceName,
-  authorName,
-  listenTimeInSeconds,
-  readingTime,
-  onPlayPress,
-  onOpenUrl,
-  onLongPress,
-  onPressOut
-}) => (
-  <View style={[styles.container, (isMoving) ? styles.isMoving : null]}>
-    <TouchableOpacity style={styles.sectionBody} activeOpacity={1} onPress={() => onOpenUrl(url)} onLongPress={onLongPress} onPressOut={onPressOut}>
-      <View style={styles.bodyMeta}>
-        <View style={styles.bodyMetaSource}>
-          <SourceText authorName={authorName} sourceName={sourceName} url={url} />
+export const Article: React.FC<Props> = React.memo(
+  ({
+    isMoving,
+    isLoading,
+    isPlaying,
+    isActive,
+    isDownloaded,
+    isFavorited,
+    isArchived,
+    hasAudiofile,
+    title,
+    url,
+    playlistItemCreatedAt,
+    imageUrl,
+    description,
+    sourceName,
+    authorName,
+    listenTimeInSeconds,
+    readingTime,
+    onPlayPress,
+    onOpenUrl,
+    onLongPress,
+    onPressOut
+  }) => (
+    <View style={[styles.container, isMoving ? styles.isMoving : null]}>
+      <TouchableOpacity style={styles.sectionBody} activeOpacity={1} onPress={() => onOpenUrl(url)} onLongPress={onLongPress} onPressOut={onPressOut}>
+        <View style={styles.bodyMeta}>
+          <View style={styles.bodyMetaSource}>
+            <SourceText authorName={authorName} sourceName={sourceName} url={url} />
+          </View>
         </View>
-      </View>
-      <View style={styles.bodyTitle}>
-        <Text style={styles.bodyTitleText} testID="article-title" ellipsizeMode="tail" numberOfLines={3}>{title}</Text>
-      </View>
-      <View style={styles.bodyFooter}>
-        <View style={styles.bodyFooterIcons}>
+        <View style={styles.bodyTitle}>
+          <Text style={styles.bodyTitleText} testID="article-title" ellipsizeMode="tail" numberOfLines={3}>
+            {title}
+          </Text>
+        </View>
+        <View style={styles.bodyFooter}>
+          <View style={styles.bodyFooterIcons}>
             <Icon.FontAwesome5
               name="circle"
               size={8}
@@ -94,26 +97,23 @@ export const Article: React.FC<Props> = React.memo(({
               testID="article-icon-favorited"
             />
           </View>
-        <Text style={styles.bodyFooterText}>Added {dateFns.distanceInWords(new Date(), playlistItemCreatedAt)} ago</Text>
-      </View>
-    </TouchableOpacity>
-    <View style={styles.sectionControl}>
-      <TouchableOpacity style={styles.imageContainer} onPress={onPlayPress} activeOpacity={1} disabled={isLoading}>
-        {imageUrl && <Image style={styles.image} source={{ uri: imageUrl }} placeholderStyle={styles.imagePlaceholder} />}
-        <View style={styles.playButtonContainer}>
-          <PlayIcon
-            isLoading={isLoading}
-            isPlaying={isPlaying}
-            isActive={isActive}
-          />
+          <Text style={styles.bodyFooterText}>Added {dateFns.distanceInWords(new Date(), playlistItemCreatedAt)} ago</Text>
         </View>
       </TouchableOpacity>
-      <Duration listenTimeInSeconds={listenTimeInSeconds} readingTime={readingTime} />
+      <View style={styles.sectionControl}>
+        <TouchableOpacity style={styles.imageContainer} onPress={onPlayPress} activeOpacity={1} disabled={isLoading}>
+          {imageUrl && <Image style={styles.image} source={{ uri: imageUrl }} placeholderStyle={styles.imagePlaceholder} />}
+          <View style={styles.playButtonContainer}>
+            <PlayIcon isLoading={isLoading} isPlaying={isPlaying} isActive={isActive} />
+          </View>
+        </TouchableOpacity>
+        <Duration listenTimeInSeconds={listenTimeInSeconds} readingTime={readingTime} />
+      </View>
     </View>
-  </View>
-));
+  )
+);
 
-type SourceTextProps =  { authorName: Props['authorName'], sourceName: Props['sourceName'], url: Props['url']};
+type SourceTextProps = { authorName: Props['authorName']; sourceName: Props['sourceName']; url: Props['url'] };
 
 const SourceText: React.FC<SourceTextProps> = React.memo((props: SourceTextProps) => {
   let text;
@@ -135,15 +135,15 @@ const SourceText: React.FC<SourceTextProps> = React.memo((props: SourceTextProps
   );
 });
 
-type DurationProps =  {
-  listenTimeInSeconds?: number,
-  readingTime?: number | null
+type DurationProps = {
+  listenTimeInSeconds?: number;
+  readingTime?: number | null;
 };
 
 const Duration: React.FC<DurationProps> = React.memo((props: DurationProps) => {
   // During our tests, it seems that it takes about 10-20% longer to listen to an article, then to read one
   // So we manually adjust the readingTime
-  const readingTimeToListenTimeMargin = 1.10;
+  const readingTimeToListenTimeMargin = 1.1;
 
   if (props.listenTimeInSeconds) {
     return <Text style={styles.duration} testID="article-duration">{`${Math.ceil(props.listenTimeInSeconds / 60)} min.`}</Text>;
@@ -153,21 +153,33 @@ const Duration: React.FC<DurationProps> = React.memo((props: DurationProps) => {
     return <Text style={styles.duration} testID="article-duration">{`${Math.ceil((props.readingTime * readingTimeToListenTimeMargin) / 60)} min.`}</Text>;
   }
 
-  return <Text style={styles.duration} testID="article-duration">? min.</Text>;
+  return (
+    <Text style={styles.duration} testID="article-duration">
+      ? min.
+    </Text>
+  );
 });
 
 type PlayIconProps = {
-  isPlaying?: boolean,
-  isLoading?: boolean,
-  isActive?: boolean
+  isPlaying?: boolean;
+  isLoading?: boolean;
+  isActive?: boolean;
 };
 
 const PlayIcon: React.FC<PlayIconProps> = React.memo((props: PlayIconProps) => (
-  <View
-    style={[styles.controlButton, (props.isPlaying || props.isActive) ? styles.controlButtonActive : null]}
-    testID="article-play-button">
-    {props.isLoading && <ActivityIndicator testID="article-activity-indicator" size="small" color={(props.isPlaying || props.isActive) ? '#fff' : '#000'} />}
-    {!props.isLoading && !props.isPlaying && <Icon.FontAwesome5 name="play" size={11} color={(props.isPlaying || props.isActive) ? '#fff' : '#000'} testID="article-icon-play" style={{ marginLeft: 2 }} />}
-    {!props.isLoading && props.isPlaying && <Icon.FontAwesome5 name="pause" size={11} color={(props.isPlaying || props.isActive) ? '#fff' : '#000'} testID="article-icon-pause" />}
+  <View style={[styles.controlButton, props.isPlaying || props.isActive ? styles.controlButtonActive : null]} testID="article-play-button">
+    {props.isLoading && <ActivityIndicator testID="article-activity-indicator" size="small" color={props.isPlaying || props.isActive ? '#fff' : '#000'} />}
+    {!props.isLoading && !props.isPlaying && (
+      <Icon.FontAwesome5
+        name="play"
+        size={11}
+        color={props.isPlaying || props.isActive ? '#fff' : '#000'}
+        testID="article-icon-play"
+        style={{ marginLeft: 2 }}
+      />
+    )}
+    {!props.isLoading && props.isPlaying && (
+      <Icon.FontAwesome5 name="pause" size={11} color={props.isPlaying || props.isActive ? '#fff' : '#000'} testID="article-icon-pause" />
+    )}
   </View>
 ));

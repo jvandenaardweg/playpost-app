@@ -6,7 +6,20 @@ import { withNavigation, NavigationInjectedProps } from 'react-navigation';
 import isEqual from 'react-fast-compare';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH } from '../constants/files';
-import { ALERT_PLAYLIST_UNFAVORITE_ARTICLE_FAIL, ALERT_PLAYLIST_UNARCHIVE_ARTICLE_FAIL, ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL, ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL, ALERT_ARTICLE_PLAY_INTERNET_REQUIRED, ALERT_ARTICLE_AUDIOFILE_DOWNLOAD_FAIL, ALERT_ARTICLE_PLAY_FAIL, ALERT_ARTICLE_DOWNLOAD_FAIL, ALERT_PLAYLIST_UPDATE_FAIL, ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL, ALERT_ARTICLE_LANGUAGE_UNSUPPORTED, ALERT_ARTICLE_PLAY_DOWNLOAD_FAIL } from '../constants/messages';
+import {
+  ALERT_PLAYLIST_UNFAVORITE_ARTICLE_FAIL,
+  ALERT_PLAYLIST_UNARCHIVE_ARTICLE_FAIL,
+  ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL,
+  ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL,
+  ALERT_ARTICLE_PLAY_INTERNET_REQUIRED,
+  ALERT_ARTICLE_AUDIOFILE_DOWNLOAD_FAIL,
+  ALERT_ARTICLE_PLAY_FAIL,
+  ALERT_ARTICLE_DOWNLOAD_FAIL,
+  ALERT_PLAYLIST_UPDATE_FAIL,
+  ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL,
+  ALERT_ARTICLE_LANGUAGE_UNSUPPORTED,
+  ALERT_ARTICLE_PLAY_DOWNLOAD_FAIL
+} from '../constants/messages';
 
 import * as cache from '../cache';
 
@@ -17,8 +30,23 @@ import { SwipeableRow } from '../components/SwipeableRow';
 import { ArticleEmptyProcessing, ArticleEmptyFailed, ArticleEmptyNew } from '../components/ArticleEmpty';
 
 import { RootState } from '../reducers';
-import { getPlaylist, removeArticleFromPlaylist, archivePlaylistItem, favoritePlaylistItem, unArchivePlaylistItem, unFavoritePlaylistItem } from '../reducers/playlist';
-import { setTrack, createAudiofile, resetPlaybackStatus, setIsCreatingAudiofile, resetIsCreatingAudiofile, setIsDownloadingAudiofile, resetIsDownloadingAudiofile } from '../reducers/player';
+import {
+  getPlaylist,
+  removeArticleFromPlaylist,
+  archivePlaylistItem,
+  favoritePlaylistItem,
+  unArchivePlaylistItem,
+  unFavoritePlaylistItem
+} from '../reducers/playlist';
+import {
+  setTrack,
+  createAudiofile,
+  resetPlaybackStatus,
+  setIsCreatingAudiofile,
+  resetIsCreatingAudiofile,
+  setIsDownloadingAudiofile,
+  resetIsDownloadingAudiofile
+} from '../reducers/player';
 import { setDownloadedAudiofile } from '../reducers/audiofiles';
 
 import { selectPlayerTrack, selectPlayerPlaybackState, selectPlayerArticleId } from '../selectors/player';
@@ -168,7 +196,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
             style: 'cancel'
           },
           {
-            text: 'Upgrade to Premium',
+            text: 'Upgrade to Premium/Plus',
             onPress: () => this.props.navigation.navigate('Upgrade')
           },
           {
@@ -225,16 +253,20 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
 
     // Show an alert, only when the selected article is not playing yet
     if (!isAudioWithSameVoice && !isArticlePlaying) {
-      Alert.alert('Article has different voice', 'Because you are on a free account, we will use the already available voice for this article. Which is a different voice. Premium users do not have this limitation.', [
-        {
-          text: 'Upgrade to Premium',
-          onPress: () => this.props.navigation.navigate('Upgrade')
-        },
-        {
-          text: 'OK',
-          style: 'cancel'
-        }
-      ]);
+      Alert.alert(
+        'Article has different voice',
+        'Because you are on a free account, we will use the already available voice for this article. Which is a different voice. Premium users do not have this limitation.',
+        [
+          {
+            text: 'Upgrade to Premium/Plus',
+            onPress: () => this.props.navigation.navigate('Upgrade')
+          },
+          {
+            text: 'OK',
+            style: 'cancel'
+          }
+        ]
+      );
     }
   }
 
@@ -520,14 +552,46 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     const hasAudiofile = article.audiofiles.length > 0;
 
     return (
-      <SwipeableRow removeArticle={this.handleRemoveArticle} archiveArticle={this.handleArchiveArticle} favoriteArticle={this.handleFavoriteArticle} unArchiveArticle={this.handleUnArchiveArticle} unFavoriteArticle={this.handleUnFavoriteArticle} isFavorited={isFavorited} isArchived={isArchived}>
+      <SwipeableRow
+        removeArticle={this.handleRemoveArticle}
+        archiveArticle={this.handleArchiveArticle}
+        favoriteArticle={this.handleFavoriteArticle}
+        unArchiveArticle={this.handleUnArchiveArticle}
+        unFavoriteArticle={this.handleUnFavoriteArticle}
+        isFavorited={isFavorited}
+        isArchived={isArchived}
+      >
         {article.status === 'failed' && <ArticleEmptyFailed isLoading={false} url={articleUrl} />}
 
         {article.status === 'crawling' && <ArticleEmptyProcessing isLoading={isLoading} onPressUpdate={this.handleOnPressUpdate} url={articleUrl} />}
 
         {article.status === 'new' && <ArticleEmptyNew isLoading={isLoading} onPressUpdate={this.handleOnPressUpdate} url={articleUrl} />}
 
-        {article.status === 'finished' && <Article isMoving={isMoving} isLoading={isLoading || isCreatingAudiofile || isDownloadingAudiofile} isPlaying={isPlaying} isActive={isActive} isDownloaded={isDownloaded} isFavorited={isFavorited} isArchived={isArchived} hasAudiofile={hasAudiofile} title={article.title} url={articleUrl} imageUrl={article.imageUrl} playlistItemCreatedAt={playlistItem.createdAt} description={article.description} sourceName={article.sourceName} authorName={article.authorName} listenTimeInSeconds={this.listenTimeInSeconds} readingTime={article.readingTime} onPlayPress={this.handleOnPlayPress} onOpenUrl={this.handleOnOpenUrl} onLongPress={onLongPress} onPressOut={onPressOut} />}
+        {article.status === 'finished' && (
+          <Article
+            isMoving={isMoving}
+            isLoading={isLoading || isCreatingAudiofile || isDownloadingAudiofile}
+            isPlaying={isPlaying}
+            isActive={isActive}
+            isDownloaded={isDownloaded}
+            isFavorited={isFavorited}
+            isArchived={isArchived}
+            hasAudiofile={hasAudiofile}
+            title={article.title}
+            url={articleUrl}
+            imageUrl={article.imageUrl}
+            playlistItemCreatedAt={playlistItem.createdAt}
+            description={article.description}
+            sourceName={article.sourceName}
+            authorName={article.authorName}
+            listenTimeInSeconds={this.listenTimeInSeconds}
+            readingTime={article.readingTime}
+            onPlayPress={this.handleOnPlayPress}
+            onOpenUrl={this.handleOnOpenUrl}
+            onLongPress={onLongPress}
+            onPressOut={onPressOut}
+          />
+        )}
       </SwipeableRow>
     );
   }

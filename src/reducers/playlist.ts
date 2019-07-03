@@ -37,6 +37,7 @@ export const REORDER_PLAYLIST_ITEM_SUCCESS = 'playlist/REORDER_PLAYLIST_ITEM_SUC
 export const REORDER_PLAYLIST_ITEM_FAIL = 'playlist/REORDER_PLAYLIST_ITEM_FAIL';
 
 export const RESET_STATE = 'playlist/RESET_STATE';
+export const RESET_ERROR_PLAYLIST = 'playlist/RESET_ERROR_PLAYLIST';
 
 const GET_PLAYLIST_FAIL_MESSAGE = 'An unknown error happened while getting your playlist. Please contact us when this happens all the time.';
 const CREATE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while adding this article to your playlist. Please contact us when this happens all the time.';
@@ -153,6 +154,12 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
     case RESET_STATE:
       return {
         ...initialState
+      };
+
+    case RESET_ERROR_PLAYLIST:
+      return {
+        ...state,
+        error: ''
       };
 
     case CREATE_PLAYLIST_ITEM:
@@ -385,6 +392,10 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
 }
 export const resetPlaylistState = () => ({
   type: RESET_STATE
+});
+
+export const resetErrorPlaylist = () => ({
+  type: RESET_ERROR_PLAYLIST
 });
 
 export const getPlaylist = () => ({

@@ -17,11 +17,18 @@ import { resetVoicesState, resetDownloadedVoices } from '../reducers/voices';
 import { selectUserDetails } from '../selectors/user';
 
 import { RootState } from '../reducers';
-import { ALERT_SETTINGS_SET_CACHE_SIZE_FAIL, ALERT_SETTINGS_SETTING_UNAVAILABLE, ALERT_SETTINGS_RESET_CACHE_FAIL, ALERT_SETTINGS_CLEAR_CACHE_WARNING, ALERT_SETTINGS_DELETE_USER, ALERT_SETTINGS_DELETE_USER_FAIL } from '../constants/messages';
+import {
+  ALERT_SETTINGS_SET_CACHE_SIZE_FAIL,
+  ALERT_SETTINGS_SETTING_UNAVAILABLE,
+  ALERT_SETTINGS_RESET_CACHE_FAIL,
+  ALERT_SETTINGS_CLEAR_CACHE_WARNING,
+  ALERT_SETTINGS_DELETE_USER,
+  ALERT_SETTINGS_DELETE_USER_FAIL
+} from '../constants/messages';
 import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE, URL_ABOUT, URL_FEEDBACK, URL_DONATE } from '../constants/urls';
 import colors from '../constants/colors';
 import spacing from '../constants/spacing';
-import { selectIsSubscribed } from '../selectors/subscriptions';
+import { selectIsSubscribed, selectActiveSubscriptionName } from '../selectors/subscriptions';
 
 interface IProps extends NavigationInjectedProps {}
 
@@ -44,6 +51,8 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
 
   componentDidMount() {
     this.props.navigation.setParams({ handleOnPressUpgrade: this.handleOnPressUpgrade });
+
+    // TODO: Set cache size every time the settings screen becomes active
     this.setCacheSize();
 
     // Getting the user details, but also the user's settings (for example: user selected voices)
@@ -62,26 +71,20 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
 
       for (const directory of directories) {
         const files = await RNFS.readDir(directory);
-        const size = files.reduce(
-          (prev, curr) => {
-            /* tslint:disable-next-line no-parameter-reassignment */
-            prev = prev + parseFloat(curr.size);
-            return prev;
-          },
-          0
-        );
+        const size = files.reduce((prev, curr) => {
+          /* tslint:disable-next-line no-parameter-reassignment */
+          prev = prev + parseFloat(curr.size);
+          return prev;
+        }, 0);
         sizes.push(size);
       }
 
       if (sizes.length) {
-        combinedSize = sizes.reduce(
-          (prev, size) => {
-            /* tslint:disable-next-line no-parameter-reassignment */
-            prev = prev + size;
-            return prev;
-          },
-          0
-        );
+        combinedSize = sizes.reduce((prev, size) => {
+          /* tslint:disable-next-line no-parameter-reassignment */
+          prev = prev + size;
+          return prev;
+        }, 0);
       }
 
       const sizeInMb = (combinedSize / 1000000).toFixed(2);
@@ -96,21 +99,17 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
   }
 
   handleOnPressClearCache = async () => {
-    return Alert.alert(
-      'Are you sure?',
-      ALERT_SETTINGS_CLEAR_CACHE_WARNING,
-      [
-        {
-          text: 'Cancel',
-          style: 'cancel'
-        },
-        {
-          text: 'Clear cache',
-          style: 'destructive',
-          onPress: () => this.resetCache()
-        }
-      ]
-    );
+    return Alert.alert('Are you sure?', ALERT_SETTINGS_CLEAR_CACHE_WARNING, [
+      {
+        text: 'Cancel',
+        style: 'cancel'
+      },
+      {
+        text: 'Clear cache',
+        style: 'destructive',
+        onPress: () => this.resetCache()
+      }
+    ]);
   }
 
   resetCache = async () => {
@@ -157,21 +156,17 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
   handleOnPressAccountEmail = () => this.props.navigation.navigate('UpdateEmail');
 
   handleOnPressAccountDelete = () => {
-    return Alert.alert(
-      'Are you sure?',
-      ALERT_SETTINGS_DELETE_USER,
-      [
-        {
-          text: 'Cancel',
-          style: 'cancel'
-        },
-        {
-          text: 'Delete account',
-          style: 'destructive',
-          onPress: () => this.deleteAccount()
-        }
-      ]
-    );
+    return Alert.alert('Are you sure?', ALERT_SETTINGS_DELETE_USER, [
+      {
+        text: 'Cancel',
+        style: 'cancel'
+      },
+      {
+        text: 'Delete account',
+        style: 'destructive',
+        onPress: () => this.deleteAccount()
+      }
+    ]);
   }
 
   render() {
@@ -185,21 +180,16 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
             onPress: this.handleOnPressUpgrade,
             showDisclosureIndicator: true,
             renderAccessory: () => {
-              const { isSubscribed } = this.props;
-              console.log('settings isSubscribed', isSubscribed);
+              const { activeSubscriptionName } = this.props;
 
-              return (
-                <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.title }}>
-                  {isSubscribed ? 'Premium' : 'Free'}
-                </Text>
-              );
-            },
+              return <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.title }}>{activeSubscriptionName}</Text>;
+            }
           },
           {
             title: 'Change e-mail',
             onPress: this.handleOnPressAccountEmail,
             renderAccessory: () => {
-              const userEmail = (this.props.user) ? this.props.user.email : null;
+              const userEmail = this.props.user ? this.props.user.email : null;
 
               return (
                 <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.title, width: 150 }} ellipsizeMode="tail" numberOfLines={1}>
@@ -219,7 +209,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
             onPress: this.handleOnPressLogout,
             showDisclosureIndicator: true
           }
-        ],
+        ]
       },
       {
         type: 'SECTION',
@@ -229,7 +219,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
             title: 'Languages & voices',
             onPress: this.handleOnPressLanguage,
             showDisclosureIndicator: true
-          },
+          }
           // {
           //   title: 'Playback speed',
           //   renderAccessory: () => (
@@ -250,7 +240,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
           //   renderAccessory: () => <Switch value={false} onValueChange={() => this.handleOnPressRow()} />,
           //   onPress: this.handleOnPressRow
           // }
-        ],
+        ]
       },
       {
         type: 'SECTION',
@@ -262,18 +252,14 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
               const { isClearingCache, cacheSize } = this.state;
 
               if (isClearingCache) {
-                return (<ActivityIndicator />);
+                return <ActivityIndicator />;
               }
 
-              return (
-                <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.title }}>
-                  {cacheSize} mb
-                </Text>
-              );
+              return <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.title }}>{cacheSize} mb</Text>;
             },
             onPress: this.handleOnPressClearCache
-          },
-        ],
+          }
+        ]
       },
       {
         type: 'SECTION',
@@ -308,14 +294,14 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
             title: 'Support',
             onPress: () => this.props.navigation.navigate('Browser', { url: URL_FEEDBACK, title: 'Support' }),
             showDisclosureIndicator: true
-          },
-        ],
+          }
+        ]
       },
       {
         type: 'CUSTOM_VIEW',
         render: () => {
           const environment = Config.NODE_ENV;
-          const environmentText = (environment !== 'production') ? `(Env: ${environment})` : '';
+          const environmentText = environment !== 'production' ? `(Env: ${environment})` : '';
           const versionText = `Version: ${VersionNumber.appVersion} (Build: ${VersionNumber.buildVersion}) ${environmentText}`;
 
           return (
@@ -338,7 +324,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
           const { isDeletingAccount } = this.state;
 
           if (isDeletingAccount) {
-            return (<ActivityIndicator />);
+            return <ActivityIndicator />;
           }
 
           return (
@@ -355,12 +341,10 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
             </Text>
           );
         }
-      },
+      }
     ];
 
-    return (
-      <SettingsScreenComponent data={settingsData} style={{ paddingTop: spacing.default }} globalTextStyle={{ fontSize: fonts.fontSize.title }} />
-    );
+    return <SettingsScreenComponent data={settingsData} style={{ paddingTop: spacing.default }} globalTextStyle={{ fontSize: fonts.fontSize.title }} />;
   }
 }
 
@@ -375,11 +359,13 @@ interface DispatchProps {
 interface StateProps {
   user: ReturnType<typeof selectUserDetails>;
   isSubscribed: ReturnType<typeof selectIsSubscribed>;
+  activeSubscriptionName: ReturnType<typeof selectActiveSubscriptionName>;
 }
 
 const mapStateToProps = (state: RootState) => ({
   user: selectUserDetails(state),
-  isSubscribed: selectIsSubscribed(state)
+  isSubscribed: selectIsSubscribed(state),
+  activeSubscriptionName: selectActiveSubscriptionName(state)
 });
 
 const mapDispatchToProps = {
@@ -390,10 +376,9 @@ const mapDispatchToProps = {
   deleteUser
 };
 
-export const SettingsContainer =
-  withNavigation(
-    connect(
-      mapStateToProps,
-      mapDispatchToProps
-    )(SettingsContainerComponent)
-  );
+export const SettingsContainer = withNavigation(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(SettingsContainerComponent)
+);
