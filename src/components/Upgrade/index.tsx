@@ -80,6 +80,8 @@ export const Upgrade: React.FC<Props> = React.memo(
                 const localizedCurrency = subscriptions && subscriptions.length && subscriptions[0].currency;
                 const currencySymbol = localizedCurrency ? getSymbolFromCurrency(localizedCurrency) : '';
                 const localizedPrice = subscription ? subscription.localizedPrice : `${currencySymbol}${subscriptionFeature.price}`;
+                const title = subscriptionFeature.title; // Do not use the subscription.title, this appears to be missing on some localizations
+
                 const buttonLabel = isDowngradePaidSubscription(productId) || productId === 'free' ? `Downgrade to ${title}` : `Upgrade to ${title}`;
 
                 return (
