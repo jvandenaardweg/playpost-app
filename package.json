@@ -4,7 +4,11 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",
+    "test": "npm run tsc && npm run lint && npm run jest",
+    "test:typescript": "npm run tsc",
+    "test:lint": "npm run lint",
+    "test:jest": "npm run jest",
+    "jest": "jest",
     "device": "ENVFILE=.env.local react-native run-ios --device",
     "test:watch": "jest --watch --silent --verbose",
     "lint": "tslint -c tslint.json 'src/**/*' --project tsconfig.json",
@@ -17,6 +21,12 @@
     "postversion": "react-native-version",
     "preversion": "npm run lint && npm run tsc && npm run test && react-native-version",
     "version": "auto-changelog -p && git add CHANGELOG.md"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test",
+      "pre-push": "npm test"
+    }
   },
   "rnpm": {
     "assets": [
@@ -175,6 +185,7 @@
   },
   "isSwift": true,
   "devDependencies": {
-    "auto-changelog": "^1.13.0"
+    "auto-changelog": "^1.13.0",
+    "husky": "^3.0.0"
   }
 }
