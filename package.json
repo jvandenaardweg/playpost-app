@@ -4,9 +4,14 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",
+    "test": "concurrently \"npm run tsc\" \"npm run lint\" \"npm run jest\"",
+    "test:typescript": "npm run tsc",
+    "test:lint": "npm run lint",
+    "test:jest": "npm run jest",
+    "jest": "jest",
+    "jest:coverage": "jest --coverage",
     "device": "ENVFILE=.env.local react-native run-ios --device",
-    "test:watch": "jest --watch --silent --verbose",
+    "test:watch": "jest --watch --silent --verbose --coverage",
     "lint": "tslint -c tslint.json 'src/**/*' --project tsconfig.json",
     "lint:fix": "tslint -c tslint.json 'src/**/*' --fix --project tsconfig.json",
     "lint:debug": "tslint -c tslint.json 'src/**/*' --debug --project tsconfig.json",
@@ -17,6 +22,12 @@
     "postversion": "react-native-version",
     "preversion": "npm run lint && npm run tsc && npm run test && react-native-version",
     "version": "auto-changelog -p && git add CHANGELOG.md"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test",
+      "pre-push": "npm test"
+    }
   },
   "rnpm": {
     "assets": [
@@ -61,6 +72,7 @@
     "babel-plugin-functional-hmr": "^1.0.25",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "core-js": "^3.1.4",
+    "currency-symbol-map": "^4.0.4",
     "date-fns": "^1.30.1",
     "detox": "^13.0.2",
     "eslint": "^6.0.1",
@@ -125,7 +137,6 @@
   },
   "jest": {
     "preset": "react-native",
-    "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**/*.{ts,tsx,js,jsx,json,node}",
       "!**/node_modules/**",
@@ -174,6 +185,8 @@
   },
   "isSwift": true,
   "devDependencies": {
-    "auto-changelog": "^1.13.0"
+    "auto-changelog": "^1.13.0",
+    "concurrently": "^4.1.1",
+    "husky": "^3.0.0"
   }
 }

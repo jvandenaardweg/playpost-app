@@ -2,9 +2,7 @@
 
 When your eyes are too busy to read, but your ears are free to listen. Listen to any article from the web. Make the experience you enjoy by using different voices.
 
-[![Build status](https://build.appcenter.ms/v0.1/apps/be2d00ac-bfc6-43ce-ab5f-3c7c7a674048/branches/master/badge)](https://appcenter.ms)
-
-# Set up
+## Local development setup
 
 1. Run `npm install`
 2. Make sure you have accepted all Android SDK licenses, run: `sdkmanager --licenses`
@@ -28,7 +26,67 @@ APPLE_IAP_SHARED_SECRET="FILL_IN"
 
 Where `192.168.0.102` is your own local machine's IP address. This is used for on device developing.
 
-5. Run `react-native run-ios` or `react-native run-android`
+5. Run `react-native start`
+6. Then run `react-native run-ios` or `react-native run-android`
+
+Done!
+
+## AppCenter builds setup
+
+Use the Distribution build Provisioning Profile's on all branches.
+
+- Shared Scheme: Playpost
+- Xcode version: 10.2
+- Node.js version: 12.x
+- Build scripts: Pre-build
+- Build frequency: **See below, different for each environment**
+- Use legacy build system: On
+- Automatically increment build number: On
+- Build number format: Build ID
+- Run unit testse: On
+
+### develop
+
+Build frequency: Manually choose when to run builds
+
+Environment variables:
+
+```json
+ENVIRONMENT="test"
+RN_APPLE_IAP_SHARED_SECRET="FILL_IN"
+RN_NODE_ENV="test"
+RN_API_URL="https://playpost-api-test.herokuapp.com"
+```
+
+Distribute builds to: Store > App Store Connect Users
+
+### master
+
+Build frequency: Build this branch on every push
+
+Environment variables:
+
+```json
+ENVIRONMENT="production"
+RN_APPLE_IAP_SHARED_SECRET="FILL_IN"
+RN_NODE_ENV="production"
+RN_API_URL="https://api.playpost.app"
+```
+
+Distribute builds to: Store > Pre-Production
+
+## How to release a new version to the App Store
+
+1. Make changes in the `develop` branche
+2. When the changes are fully tested and working, merge them into `master`
+3. In the `master` branche, run `npm version patch` or `npm version minor` or `npm version major`. A changelog is now generated and the correct version is added to the required files.
+4. When that's done, push those changes to `master`
+5. Merge `master` back into `develop`, so the `develop` branche is up to date with the latest versioning and changelog
+6. A production build will now be created in AppCenter. Upon success, it's send to TestFlight.
+7. Go to App Store Connect and find the production build in the TestFlight tab based on the build number from AppCenter. Wait for the status to go from `Processing` to `Ready to Submit`
+8. When the status is `Ready to Submit`, submit it to the TestFlight users.
+9. Test the App changes in TestFlight. If all is good, then it's ready to send to Apple for review.
+10. Send that version to Apple for review
 
 ## Installing Detox (E2E Testing)
 
@@ -48,15 +106,6 @@ Run `npm run upgrade-interactive`
 ## Releasing a new version of the App?
 
 Run `npm version x.x.x` and push to git.
-
-## Setting up build environment
-
-Make sure the `.env.test` and `.env.production` files are filled with the right environment variables. Use the correct `ENVIRONMENT` environment variable:
-
-- Test: `ENVIRONMENT=test`
-- Production: `ENVIRONMENT=production`
-
-A correct `.env` file is created upon build. See `appcenter-pre-build.sh`
 
 # Troubleshooting
 
@@ -131,14 +180,14 @@ Use the account below to test the in app purchase features. This is a Sandbox us
 
 To use the Sandbox account: just purchase a subscription, you will be prompted to login. Use the credentials below:
 
-E-mail: `tester@playpost.app`
-Password: `m382qQLi^{Q^>nY692g>k8Z8Kq39rB`
+E-mail: `sandbox2@playpost.app`
+Password: `Sandboxdemo!1`
 
 ## Running local dev version on a device
 
 1. Open XCode and add your device
-2. Create a `.env.local` file in the root of this project with the same contents as the `.env` file, but change the address of the `API_URL` from `localhost` to your computer's local IP address, for example: `API_URL="http://192.168.0.102:3000`
-3. Make sure that `API_URL` is reachable
+2. Make sure you have created the `.env.local` from the Setup step with the IP address of your Computer in the `API_URL`
+3. Make sure that `API_URL` in the `.env.local` is reachable from outside your Computer, for example; not blocked by firewall rules
 4. Make sure your iPhone and Computer is using the same WIFI/Network
 5. Run `npm run device`. As this will use the environment vars used in `.env.local`. The App installed on your device will now use your local running API.
 
@@ -194,14 +243,3 @@ To manually edit the mocked response:
 2. Open "Examples (1)" on the top right
 3. Edit the response
 4. Save the response
-
-## Release a new version
-
-1. Make changes in the `develop` branche
-2. When the changes are fully tested and working, run `npm version patch` or `npm version minor` or `npm version major`
-3. Push those changes to `develop`
-4. Make sure the `develop` branche builds correctly
-5. Go to GitHub and merge `develop` into `master`
-6. A production build will now be created. Upon success, it's send to TestFlight.
-7. Go to App Store Connect and find the production build based on the build number from AppCenter
-8. Send that version to Apple for review
