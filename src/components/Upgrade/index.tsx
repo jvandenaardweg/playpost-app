@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, ScrollView, Dimensions, ActivityIndicator } from 'react-native';
 import { Button } from 'react-native-elements';
 import * as RNIap from 'react-native-iap';
+import getSymbolFromCurrency from 'currency-symbol-map';
 
 import * as Icon from '../../components/Icon';
 
@@ -73,9 +74,14 @@ export const Upgrade: React.FC<Props> = React.memo(
 
                 // Get the subscription data using the productId
                 const subscription = subscriptions && subscriptions.find(subscription => subscription.productId === subscriptionFeature.productId);
-                const localizedPrice = subscription ? subscription.localizedPrice : subscriptionFeature.price;
-                const title = subscription ? subscription.title : subscriptionFeature.title;
                 const productId = subscription ? subscription.productId : subscriptionFeature.productId;
+
+                // Get the localized currency, so we can show a localized currency symbol next to our "Free" option
+                const localizedCurrency = subscriptions && subscriptions.length && subscriptions[0].currency;
+                const currencySymbol = localizedCurrency ? getSymbolFromCurrency(localizedCurrency) : '';
+                const localizedPrice = subscription ? subscription.localizedPrice : `${currencySymbol}${subscriptionFeature.price}`;
+                const title = subscriptionFeature.title; // Do not use the subscription.title, this appears to be missing on some localizations
+
                 const buttonLabel = isDowngradePaidSubscription(productId) || productId === 'free' ? `Downgrade to ${title}` : `Upgrade to ${title}`;
 
                 return (
