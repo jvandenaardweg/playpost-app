@@ -138,6 +138,7 @@ export const Upgrade: React.FC<Props> = React.memo(
           <View style={styles.featuresContainer}>
             <View style={styles.header}>
               <Text style={styles.headerTitle}>Upgrade to Premium or Plus</Text>
+
               <View style={styles.feature}>
                 <Icon.FontAwesome5 name="gem" size={34} style={styles.featureIcon} />
                 <View style={styles.featureContent}>
