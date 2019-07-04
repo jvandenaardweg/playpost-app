@@ -33,12 +33,12 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
   };
 
   componentDidMount() {
-    const { url } = this.props;
+    const { url, type } = this.props;
 
     // If it is no valid URL, we show an error message to the user
     if (!validUrl.isUri(url)) {
       return this.setState({
-        errorMessage: `Could not add this article to your playlist, because it does not seem to be a valid URL: "${url}"`,
+        errorMessage: `Could not add this article to your playlist, because it does not seem to be a valid URL: "${url}" (${type})`,
         isLoading: false
       });
     }
