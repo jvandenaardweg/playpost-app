@@ -43,24 +43,26 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
   setup = async () => {
     try {
       // Start fade in animation of the overlay
-      Animated.timing(
-        this.opacityAnim,
-        {
-          toValue: 1,
-          duration: 300,
-          useNativeDriver: true
-        }
-      ).start();
+      Animated.timing(this.opacityAnim, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true
+      }).start();
 
       // Wait for the extension data
-      const { type, value } = await ShareExtension.data();
-      const url = value;
+      const { type, value }: { type: string; value: string } = await ShareExtension.data();
+
+      // It could be possible some app shares the URL with text, like: "This is an example article https://link.com/12312"
+      // In that case, we want to get: https://link.com/12312
+      const urlMatchesInText = value.match(/\bhttps?:\/\/\S+/gi);
+      const urlFromText = urlMatchesInText && urlMatchesInText.length ? urlMatchesInText[0] : '';
+
+      const url = urlFromText || value;
 
       // Update the state so our modal can pick up the URL
       return this.setState({ type, url, errorMessage: '' });
-
     } catch (err) {
-      const errorMessage = (err.message) ? err.message : 'An unknown error happened. Please try again.';
+      const errorMessage = err.message ? err.message : 'An unknown error happened. Please try again.';
       return this.setState({ errorMessage });
     } finally {
       return this.setState({ isLoading: false });
@@ -72,22 +74,16 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
 
     this.setState({ isOpen: false }, () => {
       // Use a simple timeout so the animation is done nicely
-      setTimeout(
-        () => {
-          Animated.timing(
-            this.opacityAnim,
-            {
-              toValue: 0,
-              duration: animationDuration,
-              useNativeDriver: true
-            }
-          ).start(() => {
-            // Close the share extension after our animation
-            ShareExtension.close();
-          });
-        },
-        animationDuration
-      );
+      setTimeout(() => {
+        Animated.timing(this.opacityAnim, {
+          toValue: 0,
+          duration: animationDuration,
+          useNativeDriver: true
+        }).start(() => {
+          // Close the share extension after our animation
+          ShareExtension.close();
+        });
+      }, animationDuration);
     });
   }
 
@@ -95,14 +91,14 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
     try {
       return ShareExtension.openURL(url);
     } catch (err) {
-      const errorMessage = (err.message) ? err.message : 'An unknown error happened while opening the app. Please try again.';
+      const errorMessage = err.message ? err.message : 'An unknown error happened while opening the app. Please try again.';
       return this.setState({ errorMessage });
     }
   }
 
   handleOnPressSave = () => this.closeOverlay();
 
-  handleOnPressClose = () =>  this.closeOverlay();
+  handleOnPressClose = () => this.closeOverlay();
 
   handleOnModalDissmiss = () => this.closeOverlay();
 
@@ -112,14 +108,14 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
     const { errorMessage, errorAction } = this.state;
     if (!errorMessage) return;
 
-    return (<ErrorModal message={errorMessage} action={errorAction} onPressAction={this.handleOnPressAction} />);
+    return <ErrorModal message={errorMessage} action={errorAction} onPressAction={this.handleOnPressAction} />;
   }
 
   renderShareModal() {
     const { type, url, errorMessage } = this.state;
     if (errorMessage) return;
 
-    return (<ShareModal type={type} url={url} onPressSave={this.handleOnPressSave} onPressClose={this.handleOnPressClose} />);
+    return <ShareModal type={type} url={url} onPressSave={this.handleOnPressSave} onPressClose={this.handleOnPressClose} />;
   }
 
   renderModal() {
@@ -145,11 +141,6 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
   }
 
   render() {
-
-    return (
-      <Animated.View style={[styles.container, { opacity: this.opacityAnim }]}>
-        {this.renderModal()}
-      </Animated.View>
-    );
+    return <Animated.View style={[styles.container, { opacity: this.opacityAnim }]}>{this.renderModal()}</Animated.View>;
   }
 }
