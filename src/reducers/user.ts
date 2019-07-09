@@ -1,4 +1,12 @@
-import { GENERIC_NETWORK_ERROR, GET_USER_FAIL_MESSAGE, CREATE_USER_FAIL_MESSAGE, DELETE_USER_FAIL_MESSAGE, UPDATE_USER_PASSWORD_FAIL_MESSAGE, UPDATE_USER_EMAIL_FAIL_MESSAGE, SAVE_SELECTED_VOICE_FAIL_MESSAGE } from '../constants/messages';
+import {
+  GENERIC_NETWORK_ERROR,
+  GET_USER_FAIL_MESSAGE,
+  CREATE_USER_FAIL_MESSAGE,
+  DELETE_USER_FAIL_MESSAGE,
+  UPDATE_USER_PASSWORD_FAIL_MESSAGE,
+  UPDATE_USER_EMAIL_FAIL_MESSAGE,
+  SAVE_SELECTED_VOICE_FAIL_MESSAGE
+} from '../constants/messages';
 
 export const GET_USER = 'user/GET_USER';
 export const GET_USER_SUCCESS = 'user/GET_USER_SUCCESS';
@@ -114,11 +122,11 @@ export function userReducer(state = initialState, action: any): UserState {
       let createUserFailMessage = '';
 
       // Network error
-      if (action.error.status === 0) {
+      if (action.error && action.error.status === 0) {
         createUserFailMessage = GENERIC_NETWORK_ERROR;
       } else {
         // Error, from the API
-        if (action.error.response && action.error.response.data && action.error.response.data.message) {
+        if (action.error && action.error.response && action.error.response.data && action.error.response.data.message) {
           createUserFailMessage = action.error.response.data.message;
         } else {
           createUserFailMessage = CREATE_USER_FAIL_MESSAGE;
@@ -150,11 +158,11 @@ export function userReducer(state = initialState, action: any): UserState {
       let deleteUserFailMessage = '';
 
       // Network error
-      if (action.error.status === 0) {
+      if (action.error && action.error.status === 0) {
         deleteUserFailMessage = GENERIC_NETWORK_ERROR;
       } else {
         // Error, from the API
-        if (action.error.response && action.error.response.data && action.error.response.data.message) {
+        if (action.error && action.error.response && action.error.response.data && action.error.response.data.message) {
           deleteUserFailMessage = action.error.response.data.message;
         } else {
           deleteUserFailMessage = DELETE_USER_FAIL_MESSAGE;
@@ -185,11 +193,11 @@ export function userReducer(state = initialState, action: any): UserState {
       let updateUserPasswordFailMessage = '';
 
       // Network error
-      if (action.error.status === 0) {
+      if (action.error && action.error.status === 0) {
         updateUserPasswordFailMessage = GENERIC_NETWORK_ERROR;
       } else {
         // Error, from the API
-        if (action.error.response && action.error.response.data && action.error.response.data.message) {
+        if (action.error && action.error.response && action.error.response.data && action.error.response.data.message) {
           updateUserPasswordFailMessage = action.error.response.data.message;
         } else {
           updateUserPasswordFailMessage = UPDATE_USER_PASSWORD_FAIL_MESSAGE;
@@ -220,11 +228,11 @@ export function userReducer(state = initialState, action: any): UserState {
       let updateUserEmailFailMessage = '';
 
       // Network error
-      if (action.error.status === 0) {
+      if (action.error && action.error.status === 0) {
         updateUserEmailFailMessage = GENERIC_NETWORK_ERROR;
       } else {
         // Error, from the API
-        if (action.error.response && action.error.response.data && action.error.response.data.message) {
+        if (action.error && action.error.response && action.error.response.data && action.error.response.data.message) {
           updateUserEmailFailMessage = action.error.response.data.message;
         } else {
           updateUserEmailFailMessage = UPDATE_USER_EMAIL_FAIL_MESSAGE;
@@ -252,15 +260,14 @@ export function userReducer(state = initialState, action: any): UserState {
       };
 
     case SAVE_SELECTED_VOICE_FAIL:
-
       let saveSelectedVoiceFailMessage = '';
 
       // Network error
-      if (action.error.status === 0) {
+      if (action.error && action.error.status === 0) {
         saveSelectedVoiceFailMessage = GENERIC_NETWORK_ERROR;
       } else {
         // Error, from the API
-        if (action.error.response && action.error.response.data && action.error.response.data.message) {
+        if (action.error && action.error.response && action.error.response.data && action.error.response.data.message) {
           saveSelectedVoiceFailMessage = action.error.response.data.message;
         } else {
           saveSelectedVoiceFailMessage = SAVE_SELECTED_VOICE_FAIL_MESSAGE;

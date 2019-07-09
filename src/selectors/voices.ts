@@ -14,18 +14,23 @@ export const selectLanguages = createSelector(
   voices => voices.languages
 );
 
+export const selectVoicesError = createSelector(
+  [voicesSelector],
+  voices => voices.error
+);
+
 export const selectLanguagesWithActiveVoices = createSelector(
   [selectLanguages],
-  (languages) => {
+  languages => {
     // Return languages with active voices
     const languagesWithActiveVoices = languages
-    .map((language) => {
-      return {
-        ...language,
-        voices: language.voices && language.voices.filter(voice => voice.isActive)
-      };
-    })
-    .sort((a, b) => a.name.localeCompare(b.name)); // sort languages alphabetically
+      .map(language => {
+        return {
+          ...language,
+          voices: language.voices && language.voices.filter(voice => voice.isActive)
+        };
+      })
+      .sort((a, b) => a.name.localeCompare(b.name)); // sort languages alphabetically
 
     return languagesWithActiveVoices;
   }
@@ -36,34 +41,36 @@ export const selectDownloadedVoicePreviews = createSelector(
   voices => voices.downloadedVoicePreviews
 );
 
-export const selectAvailableVoicesByLanguageName = (state: RootState, languageName: string) => createSelector(
-  [selectLanguagesWithActiveVoices],
-  (languages) => {
-    const language = languages.find(language => language.name === languageName);
-    if (!language) return [];
-    if (!language.voices) return [];
+export const selectAvailableVoicesByLanguageName = (state: RootState, languageName: string) =>
+  createSelector(
+    [selectLanguagesWithActiveVoices],
+    languages => {
+      const language = languages.find(language => language.name === languageName);
+      if (!language) return [];
+      if (!language.voices) return [];
 
-    // Sort by label name
-    // Create a copy of the array by using the spread syntax
-    const sortedVoices = [...language.voices].sort((a, b) => {
-      const aLabel = (a.label) ? a.label : '';
-      const bLabel = (b.label) ? b.label : '';
-      return aLabel.localeCompare(bLabel);
-    });
+      // Sort by label name
+      // Create a copy of the array by using the spread syntax
+      const sortedVoices = [...language.voices].sort((a, b) => {
+        const aLabel = a.label ? a.label : '';
+        const bLabel = b.label ? b.label : '';
+        return aLabel.localeCompare(bLabel);
+      });
 
-    return sortedVoices;
-  }
-)(state);
+      return sortedVoices;
+    }
+  )(state);
 
-export const selectDefaultVoiceByLanguageName = (state: RootState, languageName: string) => createSelector(
-  [selectLanguagesWithActiveVoices],
-  (languages) => {
-    const language = languages.find(language => language.name === languageName);
+export const selectDefaultVoiceByLanguageName = (state: RootState, languageName: string) =>
+  createSelector(
+    [selectLanguagesWithActiveVoices],
+    languages => {
+      const language = languages.find(language => language.name === languageName);
 
-    if (!language) return null;
+      if (!language) return null;
 
-    const defaultVoice = language.voices && language.voices.find(voice => !!voice.isLanguageDefault);
+      const defaultVoice = language.voices && language.voices.find(voice => !!voice.isLanguageDefault);
 
-    return defaultVoice;
-  }
-)(state);
+      return defaultVoice;
+    }
+  )(state);

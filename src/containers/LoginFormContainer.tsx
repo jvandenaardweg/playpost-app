@@ -61,21 +61,16 @@ class LoginFormContainerComponent extends React.PureComponent<Props, State> {
       await Keychain.setGenericPassword('token', token, keychainArguments);
       this.props.navigation.navigate('App');
     } catch (err) {
-      Alert.alert(
-        'Oops!',
-        ALERT_LOGIN_SAVE_TOKEN_FAIL,
-        [
-          {
-            text: 'Cancel',
-            style: 'cancel'
-          },
-          {
-            text: 'Try again',
-            onPress: () => this.saveToken(token),
-          },
-        ],
-        { cancelable: true }
-      );
+      Alert.alert('Oops!', ALERT_LOGIN_SAVE_TOKEN_FAIL, [
+        {
+          text: 'Cancel',
+          style: 'cancel'
+        },
+        {
+          text: 'Try again',
+          onPress: () => this.saveToken(token)
+        }
+      ]);
     }
   }
 

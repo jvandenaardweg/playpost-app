@@ -206,8 +206,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
                 languageName: selectedVoiceLanguageName
               })
           }
-        ],
-        { cancelable: true }
+        ]
       );
     }
 
@@ -281,21 +280,16 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
           this.setState({ isLoading: false, isDownloadingAudiofile: false });
 
           return reject(
-            Alert.alert(
-              'Oops!',
-              ALERT_ARTICLE_AUDIOFILE_DOWNLOAD_FAIL,
-              [
-                {
-                  text: 'Cancel',
-                  style: 'cancel'
-                },
-                {
-                  text: 'Try again',
-                  onPress: () => this.downloadAudiofile(url, audiofileId, filename)
-                }
-              ],
-              { cancelable: true }
-            )
+            Alert.alert('Oops!', ALERT_ARTICLE_AUDIOFILE_DOWNLOAD_FAIL, [
+              {
+                text: 'Cancel',
+                style: 'cancel'
+              },
+              {
+                text: 'Try again',
+                onPress: () => this.downloadAudiofile(url, audiofileId, filename)
+              }
+            ])
           );
         } finally {
           this.props.resetIsDownloadingAudiofile();
@@ -377,21 +371,16 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     try {
       await this.props.getPlaylist();
     } catch (err) {
-      Alert.alert(
-        'Oops!',
-        ALERT_PLAYLIST_UPDATE_FAIL,
-        [
-          {
-            text: 'Cancel',
-            style: 'cancel'
-          },
-          {
-            text: 'Try again',
-            onPress: () => this.fetchPlaylist()
-          }
-        ],
-        { cancelable: true }
-      );
+      Alert.alert('Oops!', ALERT_PLAYLIST_UPDATE_FAIL, [
+        {
+          text: 'Cancel',
+          style: 'cancel'
+        },
+        {
+          text: 'Try again',
+          onPress: () => this.fetchPlaylist()
+        }
+      ]);
     }
   }
 
@@ -402,21 +391,16 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
       await this.props.removeArticleFromPlaylist(articleId);
       this.fetchPlaylist();
     } catch (err) {
-      Alert.alert(
-        'Oops!',
-        ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL,
-        [
-          {
-            text: 'Cancel',
-            style: 'cancel'
-          },
-          {
-            text: 'Try again',
-            onPress: () => this.handleRemoveArticle()
-          }
-        ],
-        { cancelable: true }
-      );
+      Alert.alert('Oops!', ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL, [
+        {
+          text: 'Cancel',
+          style: 'cancel'
+        },
+        {
+          text: 'Try again',
+          onPress: () => this.handleRemoveArticle()
+        }
+      ]);
     }
   }
 
@@ -427,21 +411,16 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
       await this.props.archivePlaylistItem(articleId);
       this.fetchPlaylist();
     } catch (err) {
-      Alert.alert(
-        'Oops!',
-        ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL,
-        [
-          {
-            text: 'Cancel',
-            style: 'cancel'
-          },
-          {
-            text: 'Try again',
-            onPress: () => this.handleArchiveArticle()
-          }
-        ],
-        { cancelable: true }
-      );
+      Alert.alert('Oops!', ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL, [
+        {
+          text: 'Cancel',
+          style: 'cancel'
+        },
+        {
+          text: 'Try again',
+          onPress: () => this.handleArchiveArticle()
+        }
+      ]);
     }
   }
 
@@ -452,21 +431,16 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
       await this.props.favoritePlaylistItem(articleId);
       this.fetchPlaylist();
     } catch (err) {
-      Alert.alert(
-        'Oops!',
-        ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL,
-        [
-          {
-            text: 'Cancel',
-            style: 'cancel'
-          },
-          {
-            text: 'Try again',
-            onPress: () => this.handleFavoriteArticle()
-          }
-        ],
-        { cancelable: true }
-      );
+      Alert.alert('Oops!', ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL, [
+        {
+          text: 'Cancel',
+          style: 'cancel'
+        },
+        {
+          text: 'Try again',
+          onPress: () => this.handleFavoriteArticle()
+        }
+      ]);
     }
   }
 
@@ -477,21 +451,16 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
       await this.props.unFavoritePlaylistItem(articleId);
       this.fetchPlaylist();
     } catch (err) {
-      Alert.alert(
-        'Oops!',
-        ALERT_PLAYLIST_UNFAVORITE_ARTICLE_FAIL,
-        [
-          {
-            text: 'Cancel',
-            style: 'cancel'
-          },
-          {
-            text: 'Try again',
-            onPress: () => this.handleUnFavoriteArticle()
-          }
-        ],
-        { cancelable: true }
-      );
+      Alert.alert('Oops!', ALERT_PLAYLIST_UNFAVORITE_ARTICLE_FAIL, [
+        {
+          text: 'Cancel',
+          style: 'cancel'
+        },
+        {
+          text: 'Try again',
+          onPress: () => this.handleUnFavoriteArticle()
+        }
+      ]);
     }
   }
 
@@ -502,21 +471,16 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
       await this.props.unArchivePlaylistItem(articleId);
       this.fetchPlaylist();
     } catch (err) {
-      Alert.alert(
-        'Oops!',
-        ALERT_PLAYLIST_UNARCHIVE_ARTICLE_FAIL,
-        [
-          {
-            text: 'Cancel',
-            style: 'cancel'
-          },
-          {
-            text: 'Try again',
-            onPress: () => this.handleUnArchiveArticle()
-          }
-        ],
-        { cancelable: true }
-      );
+      Alert.alert('Oops!', ALERT_PLAYLIST_UNARCHIVE_ARTICLE_FAIL, [
+        {
+          text: 'Cancel',
+          style: 'cancel'
+        },
+        {
+          text: 'Try again',
+          onPress: () => this.handleUnArchiveArticle()
+        }
+      ]);
     }
   }
 

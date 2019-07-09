@@ -1,4 +1,12 @@
-import { voicesSelector, selectLanguages, selectLanguagesWithActiveVoices, selectDownloadedVoicePreviews, selectAvailableVoicesByLanguageName, selectDefaultVoiceByLanguageName } from '../voices';
+import {
+  voicesSelector,
+  selectLanguages,
+  selectLanguagesWithActiveVoices,
+  selectDownloadedVoicePreviews,
+  selectAvailableVoicesByLanguageName,
+  selectDefaultVoiceByLanguageName,
+  selectVoicesError
+} from '../voices';
 import { createStore } from 'redux';
 
 import { initialState } from '../../reducers/voices';
@@ -29,6 +37,18 @@ describe('voices selector', () => {
     expect(selectLanguages(exampleState)).toMatchObject(languagesMock);
   });
 
+  it('selectVoicesError should return the error', () => {
+    const exampleState = {
+      ...rootState,
+      voices: {
+        ...rootState.voices,
+        error: 'Example error'
+      }
+    };
+
+    expect(selectVoicesError(exampleState)).toBe('Example error');
+  });
+
   it('selectLanguagesWithActiveVoices should return the languages with active voices', () => {
     const exampleState = {
       ...rootState,
@@ -39,13 +59,13 @@ describe('voices selector', () => {
     };
 
     const expected = languagesMock
-    .map((language: Api.Language) => {
-      return {
-        ...language,
-        voices: language.voices && language.voices.filter(voice => voice.isActive)
-      };
-    })
-    .sort((a, b) => a.name.localeCompare(b.name)); // sort languages alphabetically
+      .map((language: Api.Language) => {
+        return {
+          ...language,
+          voices: language.voices && language.voices.filter(voice => voice.isActive)
+        };
+      })
+      .sort((a, b) => a.name.localeCompare(b.name)); // sort languages alphabetically
 
     expect(selectLanguagesWithActiveVoices(exampleState)).toMatchObject(expected);
   });
@@ -76,11 +96,14 @@ describe('voices selector', () => {
 
     const language = languages.find(language => language.name === languageName);
 
-    const expected = language && language.voices && [...language.voices].sort((a, b) => {
-      const aLabel = (a.label) ? a.label : '';
-      const bLabel = (b.label) ? b.label : '';
-      return aLabel.localeCompare(bLabel);
-    });
+    const expected =
+      language &&
+      language.voices &&
+      [...language.voices].sort((a, b) => {
+        const aLabel = a.label ? a.label : '';
+        const bLabel = b.label ? b.label : '';
+        return aLabel.localeCompare(bLabel);
+      });
 
     expect(selectAvailableVoicesByLanguageName(exampleState, languageName)).toEqual(expected);
     expect(selectAvailableVoicesByLanguageName(exampleState, '')).toEqual([]);

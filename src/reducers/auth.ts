@@ -1,4 +1,9 @@
-import { GENERIC_NETWORK_ERROR, POST_AUTH_FAIL_MESSAGE, POST_REQUEST_RESET_PASSWORD_TOKEN_FAIL_MESSAGE, POST_UPDATE_PASSWORD_FAIL_MESSAGE } from '../constants/messages';
+import {
+  GENERIC_NETWORK_ERROR,
+  POST_AUTH_FAIL_MESSAGE,
+  POST_REQUEST_RESET_PASSWORD_TOKEN_FAIL_MESSAGE,
+  POST_UPDATE_PASSWORD_FAIL_MESSAGE
+} from '../constants/messages';
 
 export const POST_AUTH = 'auth/POST_AUTH';
 export const POST_AUTH_SUCCESS = 'auth/POST_AUTH_SUCCESS';
@@ -59,15 +64,14 @@ export function authReducer(state = initialState, action: any): AuthState {
       };
 
     case POST_AUTH_FAIL:
-
       let postAuthFailMessage = '';
 
       // Network error
-      if (action.error.status === 0) {
+      if (action.error && action.error.status === 0) {
         postAuthFailMessage = GENERIC_NETWORK_ERROR;
       } else {
         // Error, from the API
-        if (action.error.response && action.error.response.data && action.error.response.data.message) {
+        if (action.error && action.error.response && action.error.response.data && action.error.response.data.message) {
           postAuthFailMessage = action.error.response.data.message;
         } else {
           postAuthFailMessage = POST_AUTH_FAIL_MESSAGE;
@@ -96,15 +100,14 @@ export function authReducer(state = initialState, action: any): AuthState {
       };
 
     case POST_REQUEST_RESET_PASSWORD_TOKEN_FAIL:
-
       let postResetPasswordFailMessage = '';
 
       // Network error
-      if (action.error.status === 0) {
+      if (action.error && action.error.status === 0) {
         postResetPasswordFailMessage = GENERIC_NETWORK_ERROR;
       } else {
         // Error, from the API
-        if (action.error.response && action.error.response.data && action.error.response.data.message) {
+        if (action.error && action.error.response && action.error.response.data && action.error.response.data.message) {
           postResetPasswordFailMessage = action.error.response.data.message;
         } else {
           postResetPasswordFailMessage = POST_REQUEST_RESET_PASSWORD_TOKEN_FAIL_MESSAGE;
@@ -132,15 +135,14 @@ export function authReducer(state = initialState, action: any): AuthState {
       };
 
     case POST_UPDATE_PASSWORD_FAIL:
-
       let postUpdatePasswordFailMessage = '';
 
       // Network error
-      if (action.error.status === 0) {
+      if (action.error && action.error.status === 0) {
         postUpdatePasswordFailMessage = GENERIC_NETWORK_ERROR;
       } else {
         // Error, from the API
-        if (action.error.response && action.error.response.data && action.error.response.data.message) {
+        if (action.error && action.error.response && action.error.response.data && action.error.response.data.message) {
           postUpdatePasswordFailMessage = action.error.response.data.message;
         } else {
           postUpdatePasswordFailMessage = POST_UPDATE_PASSWORD_FAIL_MESSAGE;
@@ -208,7 +210,7 @@ export const setAuthToken = (token: string) => ({
 
 export const setAuthError = (errorMessage?: string) => ({
   errorMessage,
-  type: SET_AUTH_ERROR,
+  type: SET_AUTH_ERROR
 });
 
 export const resetAuthState = () => ({

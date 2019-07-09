@@ -1,4 +1,3 @@
-import Analytics from 'appcenter-analytics';
 import { GENERIC_NETWORK_ERROR, GET_ACTIVE_SUBSCRIPTIONS_FAIL_MESSAGE, POST_VALIDATE_SUBSCRIPTION_RECEIPT_FAIL_MESSAGE } from '../constants/messages';
 
 export const RESET_SUBSCRIPTIONS_STATE = 'subscriptions/RESET_SUBSCRIPTIONS_STATE';
@@ -57,7 +56,6 @@ export function subscriptionsReducer(state = initialState, action: any): Subscri
       } else {
         // Error, from the API
         if (action.error && action.error.response && action.error.response.data && action.error.response.data.message) {
-          Analytics.trackEvent('Error get subscriptions', { message: action.error.response.data.message });
           getSubscriptionsFailMessage = action.error.response.data.message;
         } else {
           getSubscriptionsFailMessage = GET_ACTIVE_SUBSCRIPTIONS_FAIL_MESSAGE;

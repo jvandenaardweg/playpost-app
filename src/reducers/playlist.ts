@@ -1,5 +1,3 @@
-import Analytics from 'appcenter-analytics';
-
 export const GET_PLAYLIST = 'playlist/GET_PLAYLIST';
 export const GET_PLAYLIST_SUCCESS = 'playlist/GET_PLAYLIST_SUCCESS';
 export const GET_PLAYLIST_FAIL = 'playlist/GET_PLAYLIST_FAIL';
@@ -40,13 +38,16 @@ export const RESET_STATE = 'playlist/RESET_STATE';
 export const RESET_ERROR_PLAYLIST = 'playlist/RESET_ERROR_PLAYLIST';
 
 const GET_PLAYLIST_FAIL_MESSAGE = 'An unknown error happened while getting your playlist. Please contact us when this happens all the time.';
-const CREATE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while adding this article to your playlist. Please contact us when this happens all the time.';
+const CREATE_PLAYLIST_ITEM_FAIL_MESSAGE =
+  'An unknown error happened while adding this article to your playlist. Please contact us when this happens all the time.';
 const FAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while favoriting this article. Please contact us when this happens all the time.';
 const UNFAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while unfavoriting this article. Please contact us when this happens all the time.';
 const ARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while archiving this article. Please contact us when this happens all the time.';
 const UNARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while unarchiving this article. Please contact us when this happens all the time.';
-const REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while removing this article from your playlist. Please contact us when this happens all the time.';
-const REORDER_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while re-ordering this article in your playlist. Please contact us when this happens all the time.';
+const REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE =
+  'An unknown error happened while removing this article from your playlist. Please contact us when this happens all the time.';
+const REORDER_PLAYLIST_ITEM_FAIL_MESSAGE =
+  'An unknown error happened while re-ordering this article in your playlist. Please contact us when this happens all the time.';
 const GET_ARTICLE_FAIL_MESSAGE = 'An unknown error happened while fetching an article. Please contact us when this happens all the time.';
 
 export type PlaylistState = Readonly<{
@@ -91,16 +92,6 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case GET_PLAYLIST_FAIL:
-      if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error get playlist', {
-          message: action.error.response.data.message
-        });
-      } else {
-        Analytics.trackEvent('Error get playlist', {
-          message: GET_PLAYLIST_FAIL_MESSAGE
-        });
-      }
-
       return {
         ...state,
         isLoading: false,
@@ -114,8 +105,6 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case GET_ARTICLE_SUCCESS:
-      Analytics.trackEvent('Get article success');
-
       const article = action.payload.data;
 
       // Find the default playlist so we can replace the article
@@ -135,16 +124,6 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case GET_ARTICLE_FAIL:
-      if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error get article', {
-          message: action.error.response.data.message
-        });
-      } else {
-        Analytics.trackEvent('Error get article', {
-          message: GET_ARTICLE_FAIL_MESSAGE
-        });
-      }
-
       return {
         ...state,
         isLoading: false,
@@ -169,8 +148,6 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case CREATE_PLAYLIST_ITEM_SUCCESS:
-      Analytics.trackEvent('Create playlist article');
-
       return {
         ...state,
         isLoadingCreateItem: false,
@@ -178,16 +155,6 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case CREATE_PLAYLIST_ITEM_FAIL:
-      if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error add article to playlist', {
-          message: action.error.response.data.message
-        });
-      } else {
-        Analytics.trackEvent('Error add article to playlist', {
-          message: CREATE_PLAYLIST_ITEM_FAIL_MESSAGE
-        });
-      }
-
       return {
         ...state,
         isLoadingCreateItem: false,
@@ -201,8 +168,6 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case FAVORITE_PLAYLIST_ITEM_SUCCESS:
-      Analytics.trackEvent('Favorite playlist article');
-
       return {
         ...state,
         isLoadingFavoriteItem: false,
@@ -210,16 +175,6 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case FAVORITE_PLAYLIST_ITEM_FAIL:
-      if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error favorite article', {
-          message: action.error.response.data.message
-        });
-      } else {
-        Analytics.trackEvent('Error favorite article', {
-          message: FAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE
-        });
-      }
-
       return {
         ...state,
         isLoadingFavoriteItem: false,
@@ -233,8 +188,6 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case UNFAVORITE_PLAYLIST_ITEM_SUCCESS:
-      Analytics.trackEvent('Unfavorite playlist article');
-
       return {
         ...state,
         isLoadingUnFavoriteItem: false,
@@ -242,16 +195,6 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case UNFAVORITE_PLAYLIST_ITEM_FAIL:
-      if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error unfavorite article', {
-          message: action.error.response.data.message
-        });
-      } else {
-        Analytics.trackEvent('Error unfavorite article', {
-          message: UNFAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE
-        });
-      }
-
       return {
         ...state,
         isLoadingUnFavoriteItem: false,
@@ -265,8 +208,6 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case ARCHIVE_PLAYLIST_ITEM_SUCCESS:
-      Analytics.trackEvent('Archive playlist article');
-
       return {
         ...state,
         isLoadingArchiveItem: false,
@@ -274,16 +215,6 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case ARCHIVE_PLAYLIST_ITEM_FAIL:
-      if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error archive article', {
-          message: action.error.response.data.message
-        });
-      } else {
-        Analytics.trackEvent('Error archive article', {
-          message: ARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE
-        });
-      }
-
       return {
         ...state,
         isLoadingArchiveItem: false,
@@ -297,8 +228,6 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case UNARCHIVE_PLAYLIST_ITEM_SUCCESS:
-      Analytics.trackEvent('Unarchive playlist article');
-
       return {
         ...state,
         isLoadingUnArchiveItem: false,
@@ -306,16 +235,6 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case UNARCHIVE_PLAYLIST_ITEM_FAIL:
-      if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error unarchive article', {
-          message: action.error.response.data.message
-        });
-      } else {
-        Analytics.trackEvent('Error unarchive article', {
-          message: UNARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE
-        });
-      }
-
       return {
         ...state,
         isLoadingUnArchiveItem: false,
@@ -329,8 +248,6 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case REMOVE_PLAYLIST_ITEM_SUCCESS:
-      Analytics.trackEvent('Remove playlist article');
-
       return {
         ...state,
         isLoading: false,
@@ -338,16 +255,6 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case REMOVE_PLAYLIST_ITEM_FAIL:
-      if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error remove article from playlist', {
-          message: action.error.response.data.message
-        });
-      } else {
-        Analytics.trackEvent('Error remove article from playlist', {
-          message: REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE
-        });
-      }
-
       return {
         ...state,
         isLoading: false,
@@ -361,8 +268,6 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case REORDER_PLAYLIST_ITEM_SUCCESS:
-      Analytics.trackEvent('Re-order playlist article');
-
       return {
         ...state,
         isLoadingReOrderItem: false,
@@ -370,16 +275,6 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case REORDER_PLAYLIST_ITEM_FAIL:
-      if (action.error.response && action.error.response.data && action.error.response.data.message) {
-        Analytics.trackEvent('Error re-order article', {
-          message: action.error.response.data.message
-        });
-      } else {
-        Analytics.trackEvent('Error re-order article', {
-          message: REORDER_PLAYLIST_ITEM_FAIL_MESSAGE
-        });
-      }
-
       return {
         ...state,
         isLoadingReOrderItem: false,

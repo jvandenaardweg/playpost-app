@@ -3,9 +3,9 @@ import { NavigationInjectedProps } from 'react-navigation';
 import { connect } from 'react-redux';
 import { Alert } from 'react-native';
 
-import { selectUserErrorSaveSelectedVoice } from '../selectors/user';
+import { selectUserErrorSaveSelectedVoice, selectUserError } from '../selectors/user';
 import { RootState } from '../reducers';
-import { resetSaveSelectedVoiceError } from '../reducers/user';
+import { resetSaveSelectedVoiceError, resetUserError } from '../reducers/user';
 import { resetCreateAudiofileError } from '../reducers/player';
 import { selectErrorCreateAudiofile } from '../selectors/player';
 import { resetValidateSubscriptionReceiptError } from '../reducers/subscriptions';
@@ -14,9 +14,15 @@ import { selectErrorUpdatePassword, selectErrorRequestResetPasswordToken } from 
 import { resetErrorUpdatePassword, resetErrorRequestPasswordToken } from '../reducers/auth';
 import { selectPlaylistError } from '../selectors/playlist';
 import { resetErrorPlaylist } from '../reducers/playlist';
+import { selectVoicesError } from '../selectors/voices';
+import { resetVoicesError } from '../reducers/voices';
 
 type IProps = {
   languageName: string;
+};
+
+type State = {
+  hasOpenAlert: boolean;
 };
 
 type Props = IProps & NavigationInjectedProps & StateProps & DispatchProps;
@@ -26,7 +32,20 @@ type Props = IProps & NavigationInjectedProps & StateProps & DispatchProps;
  *
  * When creating errors in the API, make sure they will be understood by the end-user.
  */
-export class APIErrorAlertContainerComponent extends React.PureComponent<Props> {
+export class APIErrorAlertContainerComponent extends React.PureComponent<Props, State> {
+  state = {
+    hasOpenAlert: false // A way to prevent multiple alerts being thrown at the user
+  };
+
+  shouldComponentUpdate(nextProps: Props, nextState: State) {
+    // Just do not update the component when we already have an Alert open
+    if (!nextState.hasOpenAlert) {
+      return true;
+    }
+
+    return false;
+  }
+
   componentDidUpdate(prevProps: Props) {
     const {
       errorSaveSelectedVoice,
@@ -34,67 +53,145 @@ export class APIErrorAlertContainerComponent extends React.PureComponent<Props> 
       errorValidateSubscriptionReceipt,
       errorUpdatePassword,
       errorRequestResetPasswordToken,
-      errorPlaylist
+      errorPlaylist,
+      errorVoices,
+      errorUser
     } = this.props;
 
     if (errorSaveSelectedVoice && prevProps.errorSaveSelectedVoice !== errorSaveSelectedVoice) {
-      return Alert.alert('Oops!', errorSaveSelectedVoice, [
-        {
-          text: 'OK',
-          style: 'cancel',
-          onPress: () => this.props.resetSaveSelectedVoiceError()
-        }
-      ]);
+      return this.setState({ hasOpenAlert: true }, () => {
+        return Alert.alert(
+          'Oops!',
+          errorSaveSelectedVoice,
+          [
+            {
+              text: 'OK',
+              style: 'cancel',
+              onPress: () => this.setState({ hasOpenAlert: false }, () => this.props.resetSaveSelectedVoiceError())
+            }
+          ],
+          { cancelable: false }
+        );
+      });
     }
 
     if (errorCreateAudiofile && prevProps.errorCreateAudiofile !== errorCreateAudiofile) {
-      return Alert.alert('Oops!', errorCreateAudiofile, [
-        {
-          text: 'OK',
-          style: 'cancel',
-          onPress: () => this.props.resetCreateAudiofileError()
-        }
-      ]);
+      return this.setState({ hasOpenAlert: true }, () => {
+        return Alert.alert(
+          'Oops!',
+          errorCreateAudiofile,
+          [
+            {
+              text: 'OK',
+              style: 'cancel',
+              onPress: () => this.setState({ hasOpenAlert: false }, () => this.props.resetCreateAudiofileError())
+            }
+          ],
+          { cancelable: false }
+        );
+      });
     }
 
     if (errorValidateSubscriptionReceipt && prevProps.errorValidateSubscriptionReceipt !== errorValidateSubscriptionReceipt) {
-      return Alert.alert('Oops!', errorValidateSubscriptionReceipt, [
-        {
-          text: 'OK',
-          style: 'cancel',
-          onPress: () => this.props.resetValidateSubscriptionReceiptError()
-        }
-      ]);
+      return this.setState({ hasOpenAlert: true }, () => {
+        return Alert.alert(
+          'Oops!',
+          errorValidateSubscriptionReceipt,
+          [
+            {
+              text: 'OK',
+              style: 'cancel',
+              onPress: () => this.setState({ hasOpenAlert: false }, () => this.props.resetValidateSubscriptionReceiptError())
+            }
+          ],
+          { cancelable: false }
+        );
+      });
     }
 
     if (errorUpdatePassword && prevProps.errorUpdatePassword !== errorUpdatePassword) {
-      return Alert.alert('Oops!', errorUpdatePassword, [
-        {
-          text: 'OK',
-          style: 'cancel',
-          onPress: () => this.props.resetErrorUpdatePassword()
-        }
-      ]);
+      return this.setState({ hasOpenAlert: true }, () => {
+        return Alert.alert(
+          'Oops!',
+          errorUpdatePassword,
+          [
+            {
+              text: 'OK',
+              style: 'cancel',
+              onPress: () => this.setState({ hasOpenAlert: false }, () => this.props.resetErrorUpdatePassword())
+            }
+          ],
+          { cancelable: false }
+        );
+      });
     }
 
     if (errorRequestResetPasswordToken && prevProps.errorRequestResetPasswordToken !== errorRequestResetPasswordToken) {
-      return Alert.alert('Oops!', errorRequestResetPasswordToken, [
-        {
-          text: 'OK',
-          style: 'cancel',
-          onPress: () => this.props.resetErrorRequestPasswordToken()
-        }
-      ]);
+      return this.setState({ hasOpenAlert: true }, () => {
+        return Alert.alert(
+          'Oops!',
+          errorRequestResetPasswordToken,
+          [
+            {
+              text: 'OK',
+              style: 'cancel',
+              onPress: () => this.setState({ hasOpenAlert: false }, () => this.props.resetErrorRequestPasswordToken())
+            }
+          ],
+          { cancelable: false }
+        );
+      });
     }
 
     if (errorPlaylist && prevProps.errorPlaylist !== errorPlaylist) {
-      return Alert.alert('Oops!', errorPlaylist, [
-        {
-          text: 'OK',
-          style: 'cancel',
-          onPress: () => this.props.resetErrorPlaylist()
-        }
-      ]);
+      return this.setState({ hasOpenAlert: true }, () => {
+        return Alert.alert(
+          'Oops!',
+          errorPlaylist,
+          [
+            {
+              text: 'OK',
+              style: 'cancel',
+              onPress: () => this.setState({ hasOpenAlert: false }, () => this.props.resetErrorPlaylist())
+            }
+          ],
+          { cancelable: false }
+        );
+      });
+    }
+
+    if (errorVoices && prevProps.errorVoices !== errorVoices) {
+      return this.setState({ hasOpenAlert: true }, () => {
+        return Alert.alert(
+          'Oops!',
+          errorVoices,
+          [
+            {
+              text: 'OK',
+              style: 'cancel',
+              onPress: () => this.setState({ hasOpenAlert: false }, () => this.props.resetVoicesError())
+            }
+          ],
+          { cancelable: false }
+        );
+      });
+    }
+
+    if (errorUser && prevProps.errorUser !== errorUser) {
+      return this.setState({ hasOpenAlert: true }, () => {
+        return Alert.alert(
+          'Oops!',
+          errorUser,
+          [
+            {
+              text: 'OK',
+              style: 'cancel',
+              onPress: () => this.setState({ hasOpenAlert: false }, () => this.props.resetUserError())
+            }
+          ],
+          { cancelable: false }
+        );
+      });
     }
   }
 
@@ -110,6 +207,8 @@ interface DispatchProps {
   resetErrorUpdatePassword: typeof resetErrorUpdatePassword;
   resetErrorRequestPasswordToken: typeof resetErrorRequestPasswordToken;
   resetErrorPlaylist: typeof resetErrorPlaylist;
+  resetUserError: typeof resetUserError;
+  resetVoicesError: typeof resetVoicesError;
 }
 
 interface StateProps {
@@ -119,6 +218,8 @@ interface StateProps {
   readonly errorUpdatePassword: ReturnType<typeof selectErrorUpdatePassword>;
   readonly errorRequestResetPasswordToken: ReturnType<typeof selectErrorRequestResetPasswordToken>;
   readonly errorPlaylist: ReturnType<typeof selectPlaylistError>;
+  readonly errorVoices: ReturnType<typeof selectVoicesError>;
+  readonly errorUser: ReturnType<typeof selectUserError>;
 }
 
 const mapStateToProps = (state: RootState, props: Props) => ({
@@ -127,7 +228,9 @@ const mapStateToProps = (state: RootState, props: Props) => ({
   errorValidateSubscriptionReceipt: selectErrorValidateSubscriptionReceipt(state),
   errorUpdatePassword: selectErrorUpdatePassword(state),
   errorRequestResetPasswordToken: selectErrorRequestResetPasswordToken(state),
-  errorPlaylist: selectPlaylistError(state)
+  errorPlaylist: selectPlaylistError(state),
+  errorVoices: selectVoicesError(state),
+  errorUser: selectUserError(state)
 });
 
 const mapDispatchToProps = {
@@ -136,7 +239,9 @@ const mapDispatchToProps = {
   resetValidateSubscriptionReceiptError,
   resetErrorUpdatePassword,
   resetErrorRequestPasswordToken,
-  resetErrorPlaylist
+  resetErrorPlaylist,
+  resetUserError,
+  resetVoicesError
 };
 
 export const APIErrorAlertContainer = connect(
