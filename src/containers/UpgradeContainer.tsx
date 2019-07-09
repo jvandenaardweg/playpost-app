@@ -87,7 +87,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     });
 
     this.purchaseErrorSubscription = RNIap.purchaseErrorListener(async (error: RNIap.PurchaseError) => {
-      const errorMessage = JSON.stringify(error);
+      const errorMessage = error && error.debugMessage ? error.debugMessage : JSON.stringify(error);
 
       Analytics.trackEvent('Subscriptions upgrade error', {
         Status: 'error',
@@ -96,7 +96,10 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         UserId: analyticsUserId
       });
 
-      this.showErrorAlert('Oops!', `An error happened. Please contact our support with this information:\n\n ${errorMessage}`);
+      this.showErrorAlert(
+        'Oops!',
+        `If you canceled an upgrade, you can ignore this message.\n\nIf you tried to upgrade please contact our support with this error message:\n\n ${errorMessage}`
+      );
 
       this.setState({ isLoadingRestorePurchases: false, isLoadingBuySubscription: false, selectedProductId: '' });
     });
