@@ -80,14 +80,10 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
     if (isLoading) return null;
 
     if (errorMessage) {
-      return (
-        <Text style={{ color: 'red' }}>{errorMessage}</Text>
-      );
+      return <Text style={{ color: 'red' }}>{errorMessage}</Text>;
     }
 
-    return (
-      <Text>Article is added to your playlist!</Text>
-    );
+    return <Text>Article is added to your playlist!</Text>;
   }
 
   renderActivityIndicator = () => {
