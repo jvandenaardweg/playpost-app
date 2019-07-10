@@ -125,8 +125,9 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     // When we receive an API response when doing an upgrade...
     if (isLoadingBuySubscription && validationResult) {
       if (!isEqual(prevProps.validationResult, validationResult)) {
-        await this.fetchUpdatedUserData();
         Alert.alert('Upgrade success!', ALERT_SUBSCRIPTION_BUY_SUCCESS);
+
+        await this.fetchUpdatedUserData();
 
         return this.handleClose();
       }
@@ -144,10 +145,10 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
           );
         }
 
-        await this.fetchUpdatedUserData();
-
         // Success!
         Alert.alert('Restore Successful', ALERT_SUBSCRIPTION_RESTORE_SUCCESS);
+
+        await this.fetchUpdatedUserData();
 
         return this.handleClose();
       }
