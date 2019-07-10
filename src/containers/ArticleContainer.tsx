@@ -230,6 +230,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
           this.props.setIsCreatingAudiofile();
           await this.props.createAudiofile(article.id); // Create the audiofile using our API, this could take a little time
           await this.props.getPlaylist(); // Get the playlist, it contains the article with the newly created audiofile
+          // TODO: await this.props.getUser(); // Get the user, so we can show up to date usage data
           return this.handleSetTrack(); // Set the track. Upon track change, the track with automatically play.
         } catch (err) {
           return this.setState({ isLoading: false, isActive: false });

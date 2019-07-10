@@ -89,6 +89,7 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
       // Do things when app becomes active again
       if (stateChanged && nextAppState === 'active') {
         this.fetchUserPlaylist();
+        // TODO: fetch user (usage data)
         this.validateActiveSubscription();
       }
     });
