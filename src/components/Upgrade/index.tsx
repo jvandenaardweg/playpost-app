@@ -54,7 +54,7 @@ export const Upgrade: React.FC<Props> = React.memo(
     const snapToInterval = cardWidth + cardMargin * 2;
 
     const startOffset = {
-      free: 0,
+      free: snapToInterval,
       'com.aardwegmedia.playpost.premium': snapToInterval,
       'com.aardwegmedia.playpost.subscription.plus': snapToInterval * 2
     };
