@@ -9,7 +9,7 @@ interface Props {
   user: Api.User | null;
   activeSubscriptionProductId: string;
   activeSubscriptionName: string;
-  onPressUpgrade(): void;
+  onPressUpgrade(upgradeScreenCenteredSubscriptionProductId?: string): void;
 }
 
 export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProductId, onPressUpgrade, activeSubscriptionName }) => {
@@ -20,7 +20,21 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
   // const usageAvailableCurrentMonthInSeconds = user.available.audiofiles && user.available.audiofiles.currentMonthInSeconds;
   const percentageUsed = (usageUsedCurrentMonthInSeconds / limitSecondsPerMonth) * 100;
 
-  const showUpgradeButton = activeSubscriptionProductId === 'free' || activeSubscriptionProductId === 'com.aardwegmedia.playpost.subscription.plus';
+  const showUpgradeButton = activeSubscriptionProductId === 'free' || activeSubscriptionProductId === 'com.aardwegmedia.playpost.premium';
+
+  const upgradeButtonTitle =
+    activeSubscriptionProductId === 'com.aardwegmedia.playpost.premium'
+      ? 'Upgrade to Plus'
+      : activeSubscriptionProductId === 'free'
+      ? 'Upgrade to Premium or Plus'
+      : 'Upgrade';
+
+  const upgradeScreenCenteredSubscriptionProductId =
+    activeSubscriptionProductId === 'com.aardwegmedia.playpost.premium'
+      ? 'com.aardwegmedia.playpost.subscription.plus'
+      : activeSubscriptionProductId === 'free'
+      ? 'com.aardwegmedia.playpost.premium'
+      : 'com.aardwegmedia.playpost.premium';
 
   return (
     <View style={styles.container}>
@@ -52,10 +66,10 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
         {showUpgradeButton && (
           <View style={styles.upgradeContainer}>
             <Button
-              title="Upgrade to Premium or Plus"
+              title={upgradeButtonTitle}
               titleStyle={{ color: colors.white }}
               buttonStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}
-              onPress={onPressUpgrade}
+              onPress={() => onPressUpgrade(upgradeScreenCenteredSubscriptionProductId)}
             />
             <Text style={{ marginTop: 8, color: colors.white, opacity: 0.7, textAlign: 'center', fontSize: fonts.fontSize.small }}>
               Upgrade for more minutes and Premium quality voices.

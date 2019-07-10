@@ -21,6 +21,7 @@ describe('Upgrade', () => {
           isLoadingRestorePurchases={false}
           subscriptions={[]}
           activeSubscriptionProductId={'free'}
+          centeredSubscriptionProductId={'com.aardwegmedia.playpost.premium'}
           subscriptionFeatures={[]}
           onPressUpgrade={onPressUpgradeHandler}
           onPressRestore={onPressRestoreHandler}

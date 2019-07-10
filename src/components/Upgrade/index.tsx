@@ -20,6 +20,7 @@ interface Props {
   /* tslint:disable-next-line no-any */
   subscriptionFeatures: any[];
   activeSubscriptionProductId: string;
+  centeredSubscriptionProductId: string;
   onPressUpgrade(productId: string): void;
   onPressRestore(): void;
   onPressPrivacy(): void;
@@ -36,6 +37,7 @@ export const Upgrade: React.FC<Props> = React.memo(
     subscriptions,
     subscriptionFeatures,
     activeSubscriptionProductId,
+    centeredSubscriptionProductId,
     onPressUpgrade,
     onPressRestore,
     onPressPrivacy,
@@ -50,8 +52,16 @@ export const Upgrade: React.FC<Props> = React.memo(
 
     const cardWidth = windowWidth - cardFirstMarginLeft - cardLastMarginRight;
     const snapToInterval = cardWidth + cardMargin * 2;
-    const startOffset = snapToInterval;
-    const contentOffset = { x: startOffset, y: 0 };
+
+    const startOffset = {
+      free: 0,
+      'com.aardwegmedia.playpost.premium': snapToInterval,
+      'com.aardwegmedia.playpost.subscription.plus': snapToInterval * 2
+    };
+
+    const contentOffsetX = centeredSubscriptionProductId ? startOffset[centeredSubscriptionProductId] : snapToInterval;
+
+    const contentOffset = { x: contentOffsetX, y: 0 };
     const scrollEnabled = !isLoadingBuySubscription;
 
     return (

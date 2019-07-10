@@ -148,7 +148,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
 
   handleOnPressLogout = async () => this.props.navigation.navigate('Logout');
 
-  handleOnPressUpgrade = () => this.props.navigation.navigate('Upgrade');
+  handleOnPressUpgrade = (centeredSubscriptionProductId?: string) => this.props.navigation.navigate('Upgrade', { centeredSubscriptionProductId });
 
   handleOnPressLanguage = () => this.props.navigation.navigate('SettingsLanguages');
 

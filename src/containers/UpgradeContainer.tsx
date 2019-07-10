@@ -25,6 +25,7 @@ import { RootState } from '../reducers';
 import { validateSubscriptionReceipt } from '../reducers/subscriptions';
 import { URL_FEEDBACK, URL_PRIVACY_POLICY, URL_TERMS_OF_USE, URL_MANAGE_APPLE_SUBSCRIPTIONS } from '../constants/urls';
 import { selectUserDetails } from '../selectors/user';
+import { getUser } from '../reducers/user';
 
 interface State {
   readonly subscriptions: RNIap.Subscription<string>[];
@@ -61,8 +62,6 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
   async componentDidMount() {
     const { isConnected } = this.context;
-    const { userDetails } = this.props;
-    const analyticsUserId = `${userDetails && userDetails.id}`;
 
     // For now, just close the screen when there's no active internet connection
     // TODO: make more user friendly to show upgrade features when there's no internet connection
@@ -80,7 +79,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         // Validatation error is handeled in ErrorAlertContainer
         // The validation result is handled in componentDidUpdate
         await this.props.validateSubscriptionReceipt(selectedProductId, purchase.transactionReceipt);
-        Analytics.trackEvent('Subscriptions upgrade success', { Status: 'success', ProductId: purchase.productId, UserId: analyticsUserId });
+        Analytics.trackEvent('Subscriptions upgrade success', { Status: 'success', ProductId: purchase.productId, UserId: this.analyticsUserId });
       } finally {
         this.setState({ isLoadingRestorePurchases: false, isLoadingBuySubscription: false, selectedProductId: '' });
       }
@@ -93,7 +92,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         Status: 'error',
         Message: errorMessage,
         ProductId: this.state.selectedProductId,
-        UserId: analyticsUserId
+        UserId: this.analyticsUserId
       });
 
       this.showErrorAlert(
@@ -119,15 +118,17 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     RNIap.endConnectionAndroid();
   }
 
-  componentDidUpdate(prevProps: Props) {
+  async componentDidUpdate(prevProps: Props) {
     const { isLoadingBuySubscription, isLoadingRestorePurchases } = this.state;
     const { validationResult } = this.props;
 
     // When we receive an API response when doing an upgrade...
     if (isLoadingBuySubscription && validationResult) {
       if (!isEqual(prevProps.validationResult, validationResult)) {
-        this.handleClose();
-        return Alert.alert('Upgrade success!', ALERT_SUBSCRIPTION_BUY_SUCCESS);
+        await this.fetchUpdatedUserData();
+        Alert.alert('Upgrade success!', ALERT_SUBSCRIPTION_BUY_SUCCESS);
+
+        return this.handleClose();
       }
     }
 
@@ -143,14 +144,35 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
           );
         }
 
+        await this.fetchUpdatedUserData();
+
         // Success!
         Alert.alert('Restore Successful', ALERT_SUBSCRIPTION_RESTORE_SUCCESS);
+
         return this.handleClose();
       }
     }
   }
 
-  handleClose() {
+  fetchUpdatedUserData = async () => {
+    try {
+      // Get the user with up-to-date data about his account
+      const result = await this.props.getUser();
+      return result;
+    } catch (err) {
+      const errorMessage =
+        err && err.message ? err.message : 'An unknown error happened while getting the up-to-date user account data after upgrade or restore.';
+      Analytics.trackEvent('Subscriptions fetch updated user data error', {
+        Status: 'error',
+        Message: errorMessage,
+        ProductId: this.state.selectedProductId,
+        UserId: this.analyticsUserId
+      });
+      return err;
+    }
+  }
+
+  handleClose = async () => {
     // Normally we should put this in componentWillUnmount
     // But, since the upgrade screen is part of React Navigation, unmount is not called in this context
     // So we manually handle the removal of event listeners
@@ -193,14 +215,16 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     );
   }
 
-  showManageSubscriptionAlert = (title: string, message: string) => {
+  get analyticsUserId() {
     const { userDetails } = this.props;
-    const analyticsUserId = `${userDetails && userDetails.id}`;
+    return `${userDetails && userDetails.id}`;
+  }
 
+  showManageSubscriptionAlert = (title: string, message: string) => {
     let manageSubscriptionsButton: object = {
       text: 'Manage Subscriptions',
       onPress: () => {
-        Analytics.trackEvent('Subscriptions manage press', { ProductId: this.state.selectedProductId, UserId: analyticsUserId });
+        Analytics.trackEvent('Subscriptions manage press', { ProductId: this.state.selectedProductId, UserId: this.analyticsUserId });
         Linking.openURL(URL_MANAGE_APPLE_SUBSCRIPTIONS);
       }
     };
@@ -219,12 +243,9 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   }
 
   handleOnPressUpgrade = async (productId: string) => {
-    const { userDetails } = this.props;
-    const analyticsUserId = `${userDetails && userDetails.id}`;
-
     // If it's a downgrade to an other paid subscription
     if (this.isDowngradePaidSubscription(productId)) {
-      Analytics.trackEvent('Subscriptions downgrade', { Status: 'alert', ProductId: productId, UserId: analyticsUserId });
+      Analytics.trackEvent('Subscriptions downgrade', { Status: 'alert', ProductId: productId, UserId: this.analyticsUserId });
 
       return this.showManageSubscriptionAlert(
         'Downgrading Subscription?',
@@ -234,7 +255,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
     // If it's a downgrade to "free"
     if (this.isDowngradeFreeSubscription(productId)) {
-      Analytics.trackEvent('Subscriptions downgrade', { Status: 'alert', ProductId: productId, UserId: analyticsUserId });
+      Analytics.trackEvent('Subscriptions downgrade', { Status: 'alert', ProductId: productId, UserId: this.analyticsUserId });
 
       return this.showManageSubscriptionAlert(
         'Downgrade to Free?',
@@ -242,7 +263,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       );
     }
 
-    Analytics.trackEvent('Subscriptions upgrade', { Status: 'upgrading', ProductId: productId, UserId: analyticsUserId });
+    Analytics.trackEvent('Subscriptions upgrade', { Status: 'upgrading', ProductId: productId, UserId: this.analyticsUserId });
 
     return this.setState({ isLoadingBuySubscription: true, selectedProductId: productId }, async () => {
       try {
@@ -280,10 +301,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   }
 
   handleOnPressRestore = async () => {
-    const { userDetails } = this.props;
-    const analyticsUserId = `${userDetails && userDetails.id}`;
-
-    Analytics.trackEvent('Subscriptions restore', { Status: 'restoring', UserId: analyticsUserId });
+    Analytics.trackEvent('Subscriptions restore', { Status: 'restoring', UserId: this.analyticsUserId });
 
     return this.setState({ isLoadingRestorePurchases: true }, async () => {
       try {
@@ -296,12 +314,12 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         // Validate the receipt on our server
         await this.props.validateSubscriptionReceipt(productId, transactionReceipt);
 
-        Analytics.trackEvent('Subscriptions restore success', { Status: 'success', ProductId: productId, UserId: analyticsUserId });
+        Analytics.trackEvent('Subscriptions restore success', { Status: 'success', ProductId: productId, UserId: this.analyticsUserId });
 
         // The validation result is handled in componentDidUpdate
       } catch (err) {
         const errorMessage = err && err.message ? err.message : 'An unknown error happened while restoring a subscription.';
-        Analytics.trackEvent('Subscriptions restore error', { Status: 'error', Message: errorMessage, UserId: analyticsUserId });
+        Analytics.trackEvent('Subscriptions restore error', { Status: 'error', Message: errorMessage, UserId: this.analyticsUserId });
 
         this.showErrorAlert('Restore purchase error', errorMessage);
       } finally {
@@ -360,39 +378,21 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         productId: 'free',
         title: 'Free',
         price: '0',
-        body: [
-          'Basic quality voices',
-          'One voice per language',
-          'Max. 30 minutes per month',
-          'Unlimited playlist items',
-          'Some advertisements'
-        ],
+        body: ['Basic quality voices', 'One voice per language', 'Max. 30 minutes per month', 'Unlimited playlist items', 'Some advertisements'],
         footer: 'About 5 articles to audio, per month'
       },
       {
         productId: 'com.aardwegmedia.playpost.premium',
         title: 'Premium',
         price: null,
-        body: [
-          '30+ High Quality voices',
-          'Multiple voices per language',
-          'Max. 120 minutes per month',
-          'Unlimited playlist items',
-          'No advertisements'
-        ],
+        body: ['30+ High Quality voices', 'Multiple voices per language', 'Max. 120 minutes per month', 'Unlimited playlist items', 'No advertisements'],
         footer: 'About 25 articles to audio, per month'
       },
       {
         productId: 'com.aardwegmedia.playpost.subscription.plus',
         title: 'Plus',
         price: null,
-        body: [
-          '90+ High Quality voices',
-          'Multiple voices per language',
-          'Max. 300 minutes per month',
-          'Unlimited playlist items',
-          'No advertisements'
-        ],
+        body: ['90+ High Quality voices', 'Multiple voices per language', 'Max. 300 minutes per month', 'Unlimited playlist items', 'No advertisements'],
         footer: 'About 65 articles to audio, per month'
       }
     ];
@@ -401,6 +401,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   render() {
     const { isLoadingRestorePurchases, isLoadingBuySubscription, isLoadingSubscriptionItems, subscriptions } = this.state;
     const { activeSubscriptionProductId } = this.props;
+    const centeredSubscriptionProductId = this.props.navigation.getParam('centeredSubscriptionProductId', '');
 
     return (
       <Upgrade
@@ -409,6 +410,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         isLoadingRestorePurchases={isLoadingRestorePurchases}
         subscriptions={subscriptions}
         activeSubscriptionProductId={activeSubscriptionProductId}
+        centeredSubscriptionProductId={centeredSubscriptionProductId}
         subscriptionFeatures={this.subscriptionFeatures}
         onPressUpgrade={this.handleOnPressUpgrade}
         onPressRestore={this.handleOnPressRestore}
@@ -430,6 +432,7 @@ interface StateProps {
 
 interface DispatchProps {
   validateSubscriptionReceipt: typeof validateSubscriptionReceipt;
+  getUser: typeof getUser;
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
@@ -440,7 +443,8 @@ const mapStateToProps = (state: RootState): StateProps => ({
 });
 
 const mapDispatchToProps = {
-  validateSubscriptionReceipt
+  validateSubscriptionReceipt,
+  getUser
 };
 
 export const UpgradeContainer = withNavigation(

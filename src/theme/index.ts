@@ -5,11 +5,11 @@ import fonts from '../constants/fonts';
 export const reactNativeElementsTheme: Theme = {
   Button: {
     containerStyle: {
-      borderRadius: 10
+      borderRadius: 8
     },
     buttonStyle: {
       height: 54,
-      borderRadius: 10
+      borderRadius: 8
     },
     titleStyle: {
       fontWeight: fonts.fontWeight.bold,

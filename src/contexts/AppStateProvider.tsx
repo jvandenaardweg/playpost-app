@@ -9,6 +9,7 @@ import { selectAuthenticationStatus } from '../selectors/auth';
 import { selectSubscriptionsValidationResult, selectIsSubscribed, selectActiveSubscriptionProductId } from '../selectors/subscriptions';
 import { validateSubscriptionReceipt } from '../reducers/subscriptions';
 import { ALERT_SUBSCRIPTION_EXPIRED } from '../constants/messages';
+import { getUser } from '../reducers/user';
 // import { ALERT_SUBSCRIPTION_EXPIRED } from '../constants/messages';
 
 export const AppStateContext = React.createContext<{ appState: AppStateStatus; stateChanged: boolean; isSubscribed: boolean }>({
@@ -143,6 +144,7 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
           'User his subscription is expired locally. We validate his latest receipt on our server to check if the user still has a valid subscription.'
         );
         await validateSubscriptionReceipt(activeSubscriptionProductId, latestReceipt);
+        await this.props.getUser(); // Get the user with updated subscription data
       } catch (err) {
         console.log(err);
       }
@@ -166,6 +168,7 @@ interface StateProps {
 interface DispatchProps {
   getPlaylist: typeof getPlaylist;
   validateSubscriptionReceipt: typeof validateSubscriptionReceipt;
+  getUser: typeof getUser;
 }
 
 const mapStateToProps = (state: RootState, props: Props): StateProps => ({
@@ -177,7 +180,8 @@ const mapStateToProps = (state: RootState, props: Props): StateProps => ({
 
 const mapDispatchToProps = {
   getPlaylist,
-  validateSubscriptionReceipt
+  validateSubscriptionReceipt,
+  getUser
 };
 
 export const AppStateProvider = connect(
