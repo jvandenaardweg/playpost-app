@@ -1,7 +1,7 @@
 import React from 'react';
 import RNFS from 'react-native-fs';
 import VersionNumber from 'react-native-version-number';
-import { Text, Alert, ActivityIndicator, Linking } from 'react-native';
+import { Text, Alert, ActivityIndicator, Linking, View } from 'react-native';
 import { SettingsScreen as SettingsScreenComponent, SettingsData } from 'react-native-settings-screen';
 import { connect } from 'react-redux';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
@@ -28,7 +28,8 @@ import {
 import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE, URL_ABOUT, URL_FEEDBACK, URL_DONATE } from '../constants/urls';
 import colors from '../constants/colors';
 import spacing from '../constants/spacing';
-import { selectIsSubscribed, selectActiveSubscriptionName } from '../selectors/subscriptions';
+import { selectIsSubscribed, selectActiveSubscriptionName, selectActiveSubscriptionProductId } from '../selectors/subscriptions';
+import { Usage } from '../components/Usage';
 
 interface IProps extends NavigationInjectedProps {}
 
@@ -344,7 +345,17 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
       }
     ];
 
-    return <SettingsScreenComponent data={settingsData} style={{ paddingTop: spacing.default }} globalTextStyle={{ fontSize: fonts.fontSize.title }} />;
+    return (
+      <View style={{ flex: 1 }}>
+        <Usage
+          user={this.props.user}
+          activeSubscriptionProductId={this.props.activeSubscriptionProductId}
+          activeSubscriptionName={this.props.activeSubscriptionName}
+          onPressUpgrade={this.handleOnPressUpgrade}
+        />
+        <SettingsScreenComponent data={settingsData} style={{ paddingTop: spacing.default }} globalTextStyle={{ fontSize: fonts.fontSize.title }} />
+      </View>
+    );
   }
 }
 
@@ -360,12 +371,14 @@ interface StateProps {
   user: ReturnType<typeof selectUserDetails>;
   isSubscribed: ReturnType<typeof selectIsSubscribed>;
   activeSubscriptionName: ReturnType<typeof selectActiveSubscriptionName>;
+  activeSubscriptionProductId: ReturnType<typeof selectActiveSubscriptionProductId>;
 }
 
 const mapStateToProps = (state: RootState) => ({
   user: selectUserDetails(state),
   isSubscribed: selectIsSubscribed(state),
-  activeSubscriptionName: selectActiveSubscriptionName(state)
+  activeSubscriptionName: selectActiveSubscriptionName(state),
+  activeSubscriptionProductId: selectActiveSubscriptionProductId(state)
 });
 
 const mapDispatchToProps = {
