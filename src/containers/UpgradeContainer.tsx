@@ -363,7 +363,6 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         body: [
           'Basic quality voices',
           'One voice per language',
-          'Max. 5 minutes per article',
           'Max. 30 minutes per month',
           'Unlimited playlist items',
           'Some advertisements'
@@ -377,7 +376,6 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         body: [
           '30+ High Quality voices',
           'Multiple voices per language',
-          'Max. 15 minutes per article',
           'Max. 120 minutes per month',
           'Unlimited playlist items',
           'No advertisements'
@@ -391,7 +389,6 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         body: [
           '90+ High Quality voices',
           'Multiple voices per language',
-          'Max. 25 minutes per article',
           'Max. 300 minutes per month',
           'Unlimited playlist items',
           'No advertisements'
