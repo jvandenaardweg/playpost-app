@@ -3,10 +3,8 @@ import RNFS from 'react-native-fs';
 import VersionNumber from 'react-native-version-number';
 import { Text, Alert, ActivityIndicator, Linking, View } from 'react-native';
 import { connect } from 'react-redux';
-import { NavigationInjectedProps, withNavigation, SectionList } from 'react-navigation';
+import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import Config from 'react-native-config';
-
-import * as Icon from '../components/Icon';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 import fonts from '../constants/fonts';
@@ -31,9 +29,8 @@ import colors from '../constants/colors';
 import spacing from '../constants/spacing';
 import { selectIsSubscribed, selectActiveSubscriptionName, selectActiveSubscriptionProductId } from '../selectors/subscriptions';
 import { Usage } from '../components/Usage';
-import { ListItem } from 'react-native-elements';
-import { ListSeperator } from '../components/ListSeperator';
 import { selectTotalAvailableVoices } from '../selectors/voices';
+import { CustomSectionList } from '../components/CustomSectionList';
 
 interface IProps extends NavigationInjectedProps {}
 
@@ -359,54 +356,20 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
     ];
 
     return (
-      <View style={{ flex: 1, backgroundColor: colors.appBackground }}>
-        <SectionList
-          keyExtractor={(item, index) => item + index}
-          style={{ padding: spacing.default }}
-          ListHeaderComponent={
-            <View style={{ marginTop: spacing.default * -1, marginLeft: spacing.default * -1, marginRight: spacing.default * -1, marginBottom: spacing.small }}>
-              <Usage
-                user={this.props.user}
-                activeSubscriptionProductId={this.props.activeSubscriptionProductId}
-                activeSubscriptionName={this.props.activeSubscriptionName}
-                onPressUpgrade={this.handleOnPressUpgrade}
-              />
-            </View>
-          }
-          ListFooterComponent={this.renderFooter}
-          stickySectionHeadersEnabled={false}
-          ItemSeparatorComponent={() => <ListSeperator />}
-          SectionSeparatorComponent={() => <View style={{ height: 10 }} />}
-          renderItem={({ item, index, section }) => {
-            const totalSectionItems = section.data.length;
-            const lastIndex = totalSectionItems - 1;
-
-            return (
-              <ListItem
-                title={item.title}
-                onPress={item.onPress}
-                containerStyle={{
-                  ...(index === 0 ? { borderTopLeftRadius: 8, borderTopRightRadius: 8 } : undefined),
-                  ...(index === lastIndex ? { borderBottomLeftRadius: 8, borderBottomRightRadius: 8 } : undefined)
-                }}
-                // subtitle="Test subtitle"
-                leftIcon={item.icon ? <Icon.Feather name={item.icon} size={20} color={item.iconColor ? item.iconColor : colors.black} /> : undefined}
-                rightIcon={
-                  item.isLoading ? (
-                    <ActivityIndicator />
-                  ) : item.value ? (
-                    <Text style={{ color: colors.gray, fontSize: fonts.fontSize.body }}>{item.value}</Text>
-                  ) : (
-                    undefined
-                  )
-                }
-                rightElement={item.chevron ? <Icon.FontAwesome5 name="chevron-right" size={16} color={colors.gray} /> : undefined}
-              />
-            );
-          }}
-          sections={sectionListData}
-        />
-      </View>
+      <CustomSectionList
+        sectionListData={sectionListData}
+        ListHeaderComponent={
+          <View style={{ marginTop: spacing.default * -1, marginLeft: spacing.default * -1, marginRight: spacing.default * -1, marginBottom: spacing.small }}>
+            <Usage
+              user={this.props.user}
+              activeSubscriptionProductId={this.props.activeSubscriptionProductId}
+              activeSubscriptionName={this.props.activeSubscriptionName}
+              onPressUpgrade={this.handleOnPressUpgrade}
+            />
+          </View>
+        }
+        ListFooterComponent={this.renderFooter}
+      />
     );
   }
 }

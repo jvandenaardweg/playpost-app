@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, Alert } from 'react-native';
+import { Alert } from 'react-native';
 import { connect } from 'react-redux';
 import TrackPlayer from 'react-native-track-player';
 
@@ -21,8 +21,9 @@ import { selectIsSubscribed } from '../selectors/subscriptions';
 
 import { ALERT_SETTINGS_VOICE_CHANGE, ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE } from '../constants/messages';
 
-import { ListItemVoice } from '../components/ListItemVoice';
 import { withNavigation, NavigationInjectedProps } from 'react-navigation';
+import { CustomSectionList } from '../components/CustomSectionList';
+import { ButtonVoicePreview } from '../components/ButtonVoicePreview';
 
 type IProps = {
   languageName: string;
@@ -79,16 +80,20 @@ export class VoiceSelectContainerComponent extends React.PureComponent<Props, St
     // If it's a premium voice and the user is not subscribed
     // Show a warning
     if (voice.isPremium && !isSubscribed) {
-      return Alert.alert('Upgrade to Premium/Plus', 'This higher quality voice is only available for Premium and Plus users.', [
-        {
-          text: 'Cancel',
-          style: 'cancel'
-        },
-        {
-          text: 'Upgrade',
-          onPress: () => this.props.navigation.navigate('Upgrade')
-        }
-      ]);
+      return Alert.alert(
+        'Upgrade to Premium or Plus',
+        'This higher quality voice is only available for Premium and Plus users.\n\nYou can preview this voice by using the play button on the left.',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel'
+          },
+          {
+            text: 'Upgrade',
+            onPress: () => this.props.navigation.navigate('Upgrade')
+          }
+        ]
+      );
     }
 
     // Warn the user, it only applies to new articles
@@ -245,43 +250,67 @@ export class VoiceSelectContainerComponent extends React.PureComponent<Props, St
     return isSelected;
   }
 
-  renderItem = ({ item }: { item: Api.Voice }) => {
-    const { isLoadingSaveSelectedVoiceId, isLoadingPreviewVoiceId } = this.state;
+  getBadgeValue(isPremium: boolean, isHighestQuality: boolean) {
+    if (isPremium && isHighestQuality) {
+      return 'premium (hq)';
+    }
 
-    const isSelected = this.isSelected(item);
-    const isPlaying = this.isVoicePlayingInPlayer(item.id);
-    const isActive = this.isVoiceActiveInPlayer(item.id);
-    const isAvailable = !!item.exampleAudioUrl;
-    const isLoadingSaveSelected = isLoadingSaveSelectedVoiceId === item.id;
-    const isLoadingVoicePreview = isLoadingPreviewVoiceId === item.id;
+    if (isPremium) {
+      return 'premium';
+    }
 
-    return (
-      <ListItemVoice
-        voice={item}
-        isLoadingSaveSelected={isLoadingSaveSelected}
-        isLoadingVoicePreview={isLoadingVoicePreview}
-        isPlaying={isPlaying}
-        isActive={isActive}
-        isAvailable={isAvailable}
-        onPressSelect={this.handleOnListItemPress}
-        onPressPreview={this.handleOnPreviewPress}
-        isSelected={isSelected}
-      />
-    );
+    return 'free';
   }
 
   render() {
     const { availableVoicesByLanguageName } = this.props;
+    const { isLoadingSaveSelectedVoiceId, isLoadingPreviewVoiceId } = this.state;
 
-    return (
-      <FlatList
-        keyExtractor={this.keyExtractor}
-        data={availableVoicesByLanguageName}
-        renderItem={this.renderItem}
-        extraData={[this.props, this.state]} // So it re-renders when our props change
-        removeClippedSubviews // unmount components that are off of the window
-      />
-    );
+    const sectionListData = [
+      {
+        title: 'Lanuage',
+        data: availableVoicesByLanguageName.map((voice, index) => {
+          const isSelected = this.isSelected(voice);
+          const isPlaying = this.isVoicePlayingInPlayer(voice.id);
+          const isActive = this.isVoiceActiveInPlayer(voice.id);
+          const isAvailable = !!voice.exampleAudioUrl;
+          const isLoadingSaveSelected = isLoadingSaveSelectedVoiceId === voice.id;
+          const isLoadingVoicePreview = isLoadingPreviewVoiceId === voice.id;
+
+          const title = `${voice.label || voice.name}`;
+          const badgeValue = this.getBadgeValue(voice.isPremium, voice.isHighestQuality);
+          const defaultLabel = voice.isLanguageDefault ? '(Default) ' : '';
+          const gender = voice.gender === 'MALE' ? 'Male' : 'Female';
+          const subtitle = `${defaultLabel}${gender}, ${voice.language.name} (${voice.countryCode})`;
+
+          const label = voice.label ? voice.label : 'Unknown';
+          // const badgeStatus = (voice.isPremium) ? 'warning' : 'primary';
+
+          return {
+            title,
+            subtitle,
+            isSelected,
+            icon: 'play',
+            leftIcon: (
+              <ButtonVoicePreview
+                isPlaying={isPlaying}
+                isLoading={isLoadingVoicePreview}
+                isActive={isActive}
+                isAvailable={isAvailable}
+                onPress={() => this.handleOnPreviewPress(title, label, voice)}
+              />
+            ),
+            onPress: () => this.handleOnListItemPress(voice),
+            value: badgeValue,
+            chevron: false,
+            isLoading: isLoadingSaveSelected,
+            checkmark: true
+          };
+        })
+      }
+    ];
+
+    return <CustomSectionList sectionListData={sectionListData} />;
   }
 }
 

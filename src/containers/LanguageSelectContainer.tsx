@@ -1,5 +1,4 @@
 import React from 'react';
-import { FlatList } from 'react-native';
 import { connect } from 'react-redux';
 
 import { RootState } from '../reducers';
@@ -8,8 +7,9 @@ import { getLanguages } from '../reducers/voices';
 
 import { selectLanguagesWithActiveVoices } from '../selectors/voices';
 import { selectUserSelectedVoices } from '../selectors/user';
-import { ListItemLanguage } from '../components/ListItemLanguage';
 import { withNavigation, NavigationInjectedProps } from 'react-navigation';
+import colors from '../constants/colors';
+import { CustomSectionList } from '../components/CustomSectionList';
 
 interface IProps extends NavigationInjectedProps {}
 
@@ -38,30 +38,36 @@ export class LanguagesSelectComponent extends React.PureComponent<Props> {
 
     if (!voice) return '';
 
-    const defaultLabel = voice.isLanguageDefault ? '(Default) ' : '';
     const genderLabel = voice.gender === 'MALE' ? 'Male' : 'Female';
     const label = voice.label ? voice.label : '';
 
-    return `${defaultLabel}${label} (${voice.countryCode}) (${genderLabel})`;
-  }
-
-  renderItem = ({ item }: { item: Api.Language }) => {
-    const subtitle = this.getVoiceSubtitle(item);
-    const totalVoices = item.voices && item.voices.length ? item.voices.length : 0;
-
-    return <ListItemLanguage onPress={this.handleOnListItemPress} language={item} totalVoices={totalVoices} subtitle={subtitle} />;
+    return `${label} (${voice.countryCode}) (${genderLabel})`;
   }
 
   render() {
-    return (
-      <FlatList
-        keyExtractor={this.keyExtractor}
-        data={this.props.languagesWithActiveVoices}
-        renderItem={this.renderItem}
-        extraData={this.props} // So it re-renders when our props change
-        removeClippedSubviews // unmount components that are off of the window
-      />
-    );
+    const { languagesWithActiveVoices } = this.props;
+
+    const sectionListData = [
+      {
+        title: 'Lanuage',
+        data: languagesWithActiveVoices.map((language, index) => {
+          const totalVoices = language.voices && language.voices.length ? language.voices.length : 0;
+          const subtitle = this.getVoiceSubtitle(language);
+
+          return {
+            subtitle,
+            title: language.name,
+            icon: 'globe',
+            iconColor: colors.green,
+            onPress: () => this.handleOnListItemPress(language),
+            value: totalVoices,
+            chevron: true
+          };
+        })
+      }
+    ];
+
+    return <CustomSectionList sectionListData={sectionListData} />;
   }
 }
 

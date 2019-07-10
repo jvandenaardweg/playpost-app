@@ -197,7 +197,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
             style: 'cancel'
           },
           {
-            text: 'Upgrade to Premium/Plus',
+            text: 'Upgrade to Premium or Plus',
             onPress: () => this.props.navigation.navigate('Upgrade')
           },
           {
@@ -264,7 +264,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
         'Because you are on a free account, we will use the already available voice for this article. Which is a different voice. Premium users do not have this limitation.',
         [
           {
-            text: 'Upgrade to Premium/Plus',
+            text: 'Upgrade to Premium or Plus',
             onPress: () => this.props.navigation.navigate('Upgrade')
           },
           {

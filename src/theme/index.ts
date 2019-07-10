@@ -32,7 +32,8 @@ export const reactNativeElementsTheme: Theme = {
       fontSize: fonts.fontSize.title
     },
     subtitleStyle: {
-      color: colors.gray
+      color: colors.gray,
+      fontSize: fonts.fontSize.small
     }
   },
   colors: {
