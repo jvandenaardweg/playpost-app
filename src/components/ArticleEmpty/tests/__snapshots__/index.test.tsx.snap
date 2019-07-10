@@ -5,7 +5,7 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering default should render correct
   style={
     Array [
       Object {
-        "backgroundColor": "#F1F1F1",
+        "backgroundColor": "#EEEEEE",
         "flex": 1,
         "flexDirection": "row",
         "padding": 14,
@@ -118,7 +118,7 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering loading should render correct
   style={
     Array [
       Object {
-        "backgroundColor": "#F1F1F1",
+        "backgroundColor": "#EEEEEE",
         "flex": 1,
         "flexDirection": "row",
         "padding": 14,
@@ -230,7 +230,7 @@ exports[`ArticleEmpty ArticleEmptyNew rendering default should render correctly 
 <View
   style={
     Object {
-      "backgroundColor": "#F1F1F1",
+      "backgroundColor": "#EEEEEE",
       "flex": 1,
       "flexDirection": "row",
       "padding": 14,
@@ -335,7 +335,7 @@ exports[`ArticleEmpty ArticleEmptyNew rendering loading should render correctly 
 <View
   style={
     Object {
-      "backgroundColor": "#F1F1F1",
+      "backgroundColor": "#EEEEEE",
       "flex": 1,
       "flexDirection": "row",
       "padding": 14,
@@ -430,7 +430,7 @@ exports[`ArticleEmpty ArticleEmptyProcessing rendering default should render cor
 <View
   style={
     Object {
-      "backgroundColor": "#F1F1F1",
+      "backgroundColor": "#EEEEEE",
       "flex": 1,
       "flexDirection": "row",
       "padding": 14,
@@ -537,7 +537,7 @@ exports[`ArticleEmpty ArticleEmptyProcessing rendering loading should render cor
 <View
   style={
     Object {
-      "backgroundColor": "#F1F1F1",
+      "backgroundColor": "#EEEEEE",
       "flex": 1,
       "flexDirection": "row",
       "padding": 14,

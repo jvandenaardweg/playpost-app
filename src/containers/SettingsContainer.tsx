@@ -2,10 +2,11 @@ import React from 'react';
 import RNFS from 'react-native-fs';
 import VersionNumber from 'react-native-version-number';
 import { Text, Alert, ActivityIndicator, Linking, View } from 'react-native';
-import { SettingsScreen as SettingsScreenComponent, SettingsData } from 'react-native-settings-screen';
 import { connect } from 'react-redux';
-import { NavigationInjectedProps, withNavigation } from 'react-navigation';
+import { NavigationInjectedProps, withNavigation, SectionList } from 'react-navigation';
 import Config from 'react-native-config';
+
+import * as Icon from '../components/Icon';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 import fonts from '../constants/fonts';
@@ -30,6 +31,9 @@ import colors from '../constants/colors';
 import spacing from '../constants/spacing';
 import { selectIsSubscribed, selectActiveSubscriptionName, selectActiveSubscriptionProductId } from '../selectors/subscriptions';
 import { Usage } from '../components/Usage';
+import { ListItem } from 'react-native-elements';
+import { ListSeperator } from '../components/ListSeperator';
+import { selectTotalAvailableVoices } from '../selectors/voices';
 
 interface IProps extends NavigationInjectedProps {}
 
@@ -51,7 +55,9 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
   };
 
   componentDidMount() {
-    this.props.navigation.setParams({ handleOnPressUpgrade: this.handleOnPressUpgrade });
+    this.props.navigation.setParams({
+      handleOnPressUpgrade: this.handleOnPressUpgrade
+    });
 
     // TODO: Set cache size every time the settings screen becomes active
     this.setCacheSize();
@@ -148,7 +154,10 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
 
   handleOnPressLogout = async () => this.props.navigation.navigate('Logout');
 
-  handleOnPressUpgrade = (centeredSubscriptionProductId?: string) => this.props.navigation.navigate('Upgrade', { centeredSubscriptionProductId });
+  handleOnPressUpgrade = (centeredSubscriptionProductId?: string) =>
+    this.props.navigation.navigate('Upgrade', {
+      centeredSubscriptionProductId
+    })
 
   handleOnPressLanguage = () => this.props.navigation.navigate('SettingsLanguages');
 
@@ -170,190 +179,233 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
     ]);
   }
 
+  renderDeleteAccount = () => {
+    const { isDeletingAccount } = this.state;
+
+    if (isDeletingAccount) {
+      return <ActivityIndicator />;
+    }
+
+    return (
+      <Text
+        style={{
+          alignSelf: 'center',
+          fontSize: fonts.fontSize.title,
+          color: 'red',
+          marginBottom: 40
+        }}
+        onPress={this.handleOnPressAccountDelete}
+      >
+        Delete account
+      </Text>
+    );
+  }
+
+  renderVersionInfo = () => {
+    const environment = Config.NODE_ENV;
+    const environmentText = environment !== 'production' ? `(Env: ${environment})` : '';
+    const versionText = `Version: ${VersionNumber.appVersion} (Build: ${VersionNumber.buildVersion}) ${environmentText}`;
+
+    return (
+      <Text
+        style={{
+          alignSelf: 'center',
+          fontSize: fonts.fontSize.body,
+          color: colors.grayDark,
+          marginBottom: 40,
+          marginTop: spacing.large
+        }}
+      >
+        {versionText}
+      </Text>
+    );
+  }
+
+  renderFooter = () => {
+    return (
+      <View>
+        {this.renderVersionInfo()}
+        {this.renderDeleteAccount()}
+      </View>
+    );
+  }
+
   render() {
-    const settingsData: SettingsData = [
+    const { activeSubscriptionName, totalAvailableVoices } = this.props;
+    const { isClearingCache, cacheSize } = this.state;
+
+    const sectionListData = [
       {
-        type: 'SECTION',
-        header: 'Account'.toUpperCase(),
-        rows: [
+        title: 'Lanuage',
+        data: [
+          {
+            title: 'Voices & Languages',
+            icon: 'radio',
+            iconColor: colors.green,
+            onPress: this.handleOnPressLanguage,
+            value: totalAvailableVoices,
+            chevron: true
+          }
+        ]
+      },
+      {
+        title: 'User',
+        data: [
           {
             title: 'Subscription',
+            icon: 'star',
+            iconColor: colors.tintColor,
             onPress: this.handleOnPressUpgrade,
-            showDisclosureIndicator: true,
-            renderAccessory: () => {
-              const { activeSubscriptionName } = this.props;
-
-              return <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.title }}>{activeSubscriptionName}</Text>;
-            }
+            chevron: true,
+            value: activeSubscriptionName
           },
           {
             title: 'Change e-mail',
+            icon: 'mail',
+            iconColor: colors.tintColor,
             onPress: this.handleOnPressAccountEmail,
-            renderAccessory: () => {
-              const userEmail = this.props.user ? this.props.user.email : null;
-
-              return (
-                <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.title, width: 150 }} ellipsizeMode="tail" numberOfLines={1}>
-                  {userEmail}
-                </Text>
-              );
-            },
-            showDisclosureIndicator: true
+            chevron: true
           },
           {
             title: 'Change password',
+            icon: 'lock',
+            iconColor: colors.tintColor,
             onPress: this.handleOnPressAccountPassword,
-            showDisclosureIndicator: true
+            chevron: true
           },
           {
             title: 'Logout',
+            icon: 'log-out',
+            iconColor: colors.tintColor,
             onPress: this.handleOnPressLogout,
-            showDisclosureIndicator: true
+            chevron: true
           }
         ]
       },
       {
-        type: 'SECTION',
-        header: 'Audio'.toUpperCase(),
-        rows: [
-          {
-            title: 'Languages & voices',
-            onPress: this.handleOnPressLanguage,
-            showDisclosureIndicator: true
-          }
-          // {
-          //   title: 'Playback speed',
-          //   renderAccessory: () => (
-          //     <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.title }}>
-          //       Normal (1x)
-          //     </Text>
-          //   ),
-          //   onPress: this.handleOnPressRow,
-          //   showDisclosureIndicator: true
-          // },
-          // {
-          //   title: 'Auto play next article',
-          //   renderAccessory: () => <Switch value={false} onValueChange={() => this.handleOnPressRow()} />,
-          //   onPress: this.handleOnPressRow
-          // },
-          // {
-          //   title: 'Auto archive played articles',
-          //   renderAccessory: () => <Switch value={false} onValueChange={() => this.handleOnPressRow()} />,
-          //   onPress: this.handleOnPressRow
-          // }
-        ]
-      },
-      {
-        type: 'SECTION',
-        header: 'Advanced'.toUpperCase(),
-        rows: [
+        title: 'Advanced',
+        data: [
           {
             title: 'Clear cache',
-            renderAccessory: () => {
-              const { isClearingCache, cacheSize } = this.state;
-
-              if (isClearingCache) {
-                return <ActivityIndicator />;
-              }
-
-              return <Text style={{ color: colors.grayDark, marginRight: 6, fontSize: fonts.fontSize.title }}>{cacheSize} mb</Text>;
-            },
-            onPress: this.handleOnPressClearCache
+            icon: 'trash-2',
+            iconColor: colors.red,
+            onPress: this.handleOnPressClearCache,
+            isLoading: isClearingCache,
+            value: `${cacheSize} mb`
           }
         ]
       },
       {
-        type: 'SECTION',
-        header: 'About'.toUpperCase(),
-        rows: [
-          {
-            title: 'Donate ❤️',
-            onPress: () => Linking.openURL(URL_DONATE),
-            showDisclosureIndicator: true
-          },
+        title: 'About',
+        data: [
+          { title: 'Donate', icon: 'gift', iconColor: colors.grayDark, chevron: true, onPress: () => Linking.openURL(URL_DONATE) },
           {
             title: 'About',
-            onPress: () => this.props.navigation.navigate('Browser', { url: URL_ABOUT, title: 'About' }),
-            showDisclosureIndicator: true
+            icon: 'link',
+            iconColor: colors.grayDark,
+            chevron: true,
+            onPress: () =>
+              this.props.navigation.navigate('Browser', {
+                url: URL_ABOUT,
+                title: 'About'
+              })
           },
           {
             title: 'Privacy Policy',
-            onPress: () => this.props.navigation.navigate('Browser', { url: URL_PRIVACY_POLICY, title: 'Privacy Policy' }),
-            showDisclosureIndicator: true
+            icon: 'link',
+            iconColor: colors.grayDark,
+            chevron: true,
+            onPress: () =>
+              this.props.navigation.navigate('Browser', {
+                url: URL_PRIVACY_POLICY,
+                title: 'Privacy Policy'
+              })
           },
           {
             title: 'Terms of Use',
-            onPress: () => this.props.navigation.navigate('Browser', { url: URL_TERMS_OF_USE, title: 'Terms of Use' }),
-            showDisclosureIndicator: true
+            icon: 'link',
+            iconColor: colors.grayDark,
+            chevron: true,
+            onPress: () =>
+              this.props.navigation.navigate('Browser', {
+                url: URL_TERMS_OF_USE,
+                title: 'Terms of Use'
+              })
           },
           {
             title: 'Feedback',
-            onPress: () => this.props.navigation.navigate('Browser', { url: URL_FEEDBACK, title: 'Feedback' }),
-            showDisclosureIndicator: true
+            icon: 'message-square',
+            iconColor: colors.grayDark,
+            chevron: true,
+            onPress: () =>
+              this.props.navigation.navigate('Browser', {
+                url: URL_FEEDBACK,
+                title: 'Feedback'
+              })
           },
           {
             title: 'Support',
-            onPress: () => this.props.navigation.navigate('Browser', { url: URL_FEEDBACK, title: 'Support' }),
-            showDisclosureIndicator: true
+            icon: 'message-square',
+            iconColor: colors.grayDark,
+            chevron: true,
+            onPress: () =>
+              this.props.navigation.navigate('Browser', {
+                url: URL_FEEDBACK,
+                title: 'Support'
+              })
           }
         ]
-      },
-      {
-        type: 'CUSTOM_VIEW',
-        render: () => {
-          const environment = Config.NODE_ENV;
-          const environmentText = environment !== 'production' ? `(Env: ${environment})` : '';
-          const versionText = `Version: ${VersionNumber.appVersion} (Build: ${VersionNumber.buildVersion}) ${environmentText}`;
-
-          return (
-            <Text
-              style={{
-                alignSelf: 'center',
-                fontSize: fonts.fontSize.body,
-                color: colors.grayDark,
-                marginBottom: 40
-              }}
-            >
-              {versionText}
-            </Text>
-          );
-        }
-      },
-      {
-        type: 'CUSTOM_VIEW',
-        render: () => {
-          const { isDeletingAccount } = this.state;
-
-          if (isDeletingAccount) {
-            return <ActivityIndicator />;
-          }
-
-          return (
-            <Text
-              style={{
-                alignSelf: 'center',
-                fontSize: fonts.fontSize.title,
-                color: 'red',
-                marginBottom: 40
-              }}
-              onPress={this.handleOnPressAccountDelete}
-            >
-              Delete account
-            </Text>
-          );
-        }
       }
     ];
 
     return (
-      <View style={{ flex: 1 }}>
-        <Usage
-          user={this.props.user}
-          activeSubscriptionProductId={this.props.activeSubscriptionProductId}
-          activeSubscriptionName={this.props.activeSubscriptionName}
-          onPressUpgrade={this.handleOnPressUpgrade}
+      <View style={{ flex: 1, backgroundColor: colors.appBackground }}>
+        <SectionList
+          keyExtractor={(item, index) => item + index}
+          style={{ padding: spacing.default }}
+          ListHeaderComponent={
+            <View style={{ marginTop: spacing.default * -1, marginLeft: spacing.default * -1, marginRight: spacing.default * -1, marginBottom: spacing.small }}>
+              <Usage
+                user={this.props.user}
+                activeSubscriptionProductId={this.props.activeSubscriptionProductId}
+                activeSubscriptionName={this.props.activeSubscriptionName}
+                onPressUpgrade={this.handleOnPressUpgrade}
+              />
+            </View>
+          }
+          ListFooterComponent={this.renderFooter}
+          stickySectionHeadersEnabled={false}
+          ItemSeparatorComponent={() => <ListSeperator />}
+          SectionSeparatorComponent={() => <View style={{ height: 10 }} />}
+          renderItem={({ item, index, section }) => {
+            const totalSectionItems = section.data.length;
+            const lastIndex = totalSectionItems - 1;
+
+            return (
+              <ListItem
+                title={item.title}
+                onPress={item.onPress}
+                containerStyle={{
+                  ...(index === 0 ? { borderTopLeftRadius: 8, borderTopRightRadius: 8 } : undefined),
+                  ...(index === lastIndex ? { borderBottomLeftRadius: 8, borderBottomRightRadius: 8 } : undefined)
+                }}
+                // subtitle="Test subtitle"
+                leftIcon={item.icon ? <Icon.Feather name={item.icon} size={20} color={item.iconColor ? item.iconColor : colors.black} /> : undefined}
+                rightIcon={
+                  item.isLoading ? (
+                    <ActivityIndicator />
+                  ) : item.value ? (
+                    <Text style={{ color: colors.gray, fontSize: fonts.fontSize.body }}>{item.value}</Text>
+                  ) : (
+                    undefined
+                  )
+                }
+                rightElement={item.chevron ? <Icon.FontAwesome5 name="chevron-right" size={16} color={colors.gray} /> : undefined}
+              />
+            );
+          }}
+          sections={sectionListData}
         />
-        <SettingsScreenComponent data={settingsData} style={{ paddingTop: spacing.default }} globalTextStyle={{ fontSize: fonts.fontSize.title }} />
       </View>
     );
   }
@@ -372,13 +424,15 @@ interface StateProps {
   isSubscribed: ReturnType<typeof selectIsSubscribed>;
   activeSubscriptionName: ReturnType<typeof selectActiveSubscriptionName>;
   activeSubscriptionProductId: ReturnType<typeof selectActiveSubscriptionProductId>;
+  totalAvailableVoices: ReturnType<typeof selectTotalAvailableVoices>;
 }
 
 const mapStateToProps = (state: RootState) => ({
   user: selectUserDetails(state),
   isSubscribed: selectIsSubscribed(state),
   activeSubscriptionName: selectActiveSubscriptionName(state),
-  activeSubscriptionProductId: selectActiveSubscriptionProductId(state)
+  activeSubscriptionProductId: selectActiveSubscriptionProductId(state),
+  totalAvailableVoices: selectTotalAvailableVoices(state)
 });
 
 const mapDispatchToProps = {

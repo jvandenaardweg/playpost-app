@@ -5,7 +5,7 @@ exports[`EmptyState basic rendering should render correctly 1`] = `
   style={
     Object {
       "alignItems": "center",
-      "backgroundColor": "#F1F1F1",
+      "backgroundColor": "#EEEEEE",
       "flex": 1,
       "flexDirection": "row",
       "justifyContent": "center",
@@ -60,7 +60,7 @@ exports[`EmptyState full rendering should render correctly 1`] = `
   style={
     Object {
       "alignItems": "center",
-      "backgroundColor": "#F1F1F1",
+      "backgroundColor": "#EEEEEE",
       "flex": 1,
       "flexDirection": "row",
       "justifyContent": "center",

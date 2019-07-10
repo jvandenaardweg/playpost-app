@@ -6,7 +6,7 @@ exports[`SignupForm rendering should render correctly 1`] = `
   style={
     Array [
       Object {
-        "backgroundColor": "#F1F1F1",
+        "backgroundColor": "#EEEEEE",
         "flex": 1,
         "padding": 16,
       },

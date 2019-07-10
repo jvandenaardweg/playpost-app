@@ -19,6 +19,20 @@ export const selectVoicesError = createSelector(
   voices => voices.error
 );
 
+export const selectTotalAvailableVoices = createSelector(
+  [selectLanguages],
+  languages => {
+    return languages.reduce((prev, curr) => {
+      if (!curr.voices) return prev;
+      const activeVoices = curr.voices && curr.voices.filter(voice => voice.isActive);
+
+      /* tslint:disable-next-line no-parameter-reassignment */
+      prev = prev + activeVoices.length;
+      return prev;
+    }, 0);
+  }
+);
+
 export const selectLanguagesWithActiveVoices = createSelector(
   [selectLanguages],
   languages => {

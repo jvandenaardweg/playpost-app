@@ -183,7 +183,7 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "#F1F1F1",
+          "backgroundColor": "#EEEEEE",
           "bottom": 0,
           "flex": 1,
           "height": "100%",
@@ -393,7 +393,7 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "#F1F1F1",
+          "backgroundColor": "#EEEEEE",
           "bottom": 0,
           "flex": 1,
           "height": "100%",
@@ -597,7 +597,7 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "#F1F1F1",
+          "backgroundColor": "#EEEEEE",
           "bottom": 0,
           "flex": 1,
           "height": "100%",
@@ -801,7 +801,7 @@ exports[`ArticleReader rendering no author name should render no authorName when
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "#F1F1F1",
+          "backgroundColor": "#EEEEEE",
           "bottom": 0,
           "flex": 1,
           "height": "100%",
@@ -1005,7 +1005,7 @@ exports[`ArticleReader rendering no html should render a different HTML output w
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "#F1F1F1",
+          "backgroundColor": "#EEEEEE",
           "bottom": 0,
           "flex": 1,
           "height": "100%",

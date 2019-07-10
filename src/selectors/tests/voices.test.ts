@@ -5,7 +5,8 @@ import {
   selectDownloadedVoicePreviews,
   selectAvailableVoicesByLanguageName,
   selectDefaultVoiceByLanguageName,
-  selectVoicesError
+  selectVoicesError,
+  selectTotalAvailableVoices
 } from '../voices';
 import { createStore } from 'redux';
 
@@ -35,6 +36,18 @@ describe('voices selector', () => {
     };
 
     expect(selectLanguages(exampleState)).toMatchObject(languagesMock);
+  });
+
+  it('selectTotalAvailableVoices should return the languages', () => {
+    const exampleState = {
+      ...rootState,
+      voices: {
+        ...rootState.voices,
+        languages: languagesMock
+      }
+    };
+
+    expect(selectTotalAvailableVoices(exampleState)).toBe(43);
   });
 
   it('selectVoicesError should return the error', () => {

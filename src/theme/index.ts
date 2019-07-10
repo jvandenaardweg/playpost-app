@@ -1,6 +1,7 @@
 import { Theme } from 'react-native-elements';
 import colors from '../constants/colors';
 import fonts from '../constants/fonts';
+import spacing from '../constants/spacing';
 
 export const reactNativeElementsTheme: Theme = {
   Button: {
@@ -20,6 +21,18 @@ export const reactNativeElementsTheme: Theme = {
     style: {
       backgroundColor: colors.borderDefault,
       borderColor: colors.borderDefault
+    }
+  },
+  ListItem: {
+    containerStyle: {
+      padding: spacing.default
+    },
+    titleStyle: {
+      fontWeight: fonts.fontWeight.medium,
+      fontSize: fonts.fontSize.title
+    },
+    subtitleStyle: {
+      color: colors.gray
     }
   },
   colors: {

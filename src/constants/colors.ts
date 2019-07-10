@@ -6,7 +6,7 @@ const grayDark = '#888888';
 const gray = '#C5C5C5';
 const grayLight = '#e5e5e5';
 const grayLightest = '#EEEEEE';
-const appBackground = '#F1F1F1';
+const appBackground = '#EEEEEE';
 const white = '#ffffff';
 const blue = tintColor;
 const redLight = '#FF4F54';
@@ -56,5 +56,5 @@ export default {
   warningBackground: orange,
   warningText: orangeDark,
   noticeBackground: tintColor,
-  noticeText: white,
+  noticeText: white
 };
