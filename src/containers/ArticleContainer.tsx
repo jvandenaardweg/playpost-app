@@ -54,6 +54,7 @@ import { selectIsSubscribed } from '../selectors/subscriptions';
 import { selectUserSelectedVoiceByLanguageName } from '../selectors/user';
 import { selectIsDownloadedAudiofilesByArticleAudiofiles } from '../selectors/audiofiles';
 import { selectLanguagesWithActiveVoices, selectDefaultVoiceByLanguageName } from '../selectors/voices';
+import { getUser } from '../reducers/user';
 
 interface State {
   isLoading: boolean;
@@ -229,8 +230,13 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
         try {
           this.props.setIsCreatingAudiofile();
           await this.props.createAudiofile(article.id); // Create the audiofile using our API, this could take a little time
-          await this.props.getPlaylist(); // Get the playlist, it contains the article with the newly created audiofile
-          // TODO: await this.props.getUser(); // Get the user, so we can show up to date usage data
+
+          // Get the user's updated playlist and usage data
+          await Promise.all([
+            this.props.getPlaylist(), // Get the playlist, it contains the article with the newly created audiofile
+            this.props.getUser() // Get the user, so we can show up to date usage data
+          ]);
+
           return this.handleSetTrack(); // Set the track. Upon track change, the track with automatically play.
         } catch (err) {
           return this.setState({ isLoading: false, isActive: false });
@@ -588,6 +594,7 @@ interface DispatchProps {
   readonly resetIsCreatingAudiofile: typeof resetIsCreatingAudiofile;
   readonly setIsDownloadingAudiofile: typeof setIsDownloadingAudiofile;
   readonly resetIsDownloadingAudiofile: typeof resetIsDownloadingAudiofile;
+  readonly getUser: typeof getUser;
 }
 
 const mapStateToProps = (state: RootState, props: Props) => ({
@@ -615,7 +622,8 @@ const mapDispatchToProps: DispatchProps = {
   setIsCreatingAudiofile,
   resetIsCreatingAudiofile,
   setIsDownloadingAudiofile,
-  resetIsDownloadingAudiofile
+  resetIsDownloadingAudiofile,
+  getUser
 };
 
 export const ArticleContainer = connect(
