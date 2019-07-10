@@ -267,8 +267,17 @@ export class VoiceSelectContainerComponent extends React.PureComponent<Props, St
     const { isLoadingSaveSelectedVoiceId, isLoadingPreviewVoiceId } = this.state;
 
     const sectionListData = [
+      // {
+      //   title: 'Selected voice',
+      //   data: [
+      //     {
+      //       title: userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName.name,
+      //       subtitle: 'Something'
+      //     }
+      //   ]
+      // },
       {
-        title: 'Lanuage',
+        title: 'Available voices',
         data: availableVoicesByLanguageName.map((voice, index) => {
           const isSelected = this.isSelected(voice);
           const isPlaying = this.isVoicePlayingInPlayer(voice.id);

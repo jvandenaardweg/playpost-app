@@ -47,6 +47,7 @@ export const CustomSectionList: React.FC<Props> = ({ sectionListData, ListHeader
       stickySectionHeadersEnabled={false}
       ItemSeparatorComponent={() => <ListSeperator />}
       SectionSeparatorComponent={() => <View style={styles.seperator} />}
+      // renderSectionHeader={({ section }) => (!section.hideTitle ? <Text>{section.title}</Text> : null)}
       renderItem={({ item, index, section }) => {
         const totalSectionItems = section.data.length;
         const lastIndex = totalSectionItems - 1;
