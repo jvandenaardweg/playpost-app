@@ -17,8 +17,8 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
 
   const limitSecondsPerMonth = user.limits.audiofiles.limitSecondsPerMonth;
   const usageUsedCurrentMonthInSeconds = user.used.audiofiles && user.used.audiofiles.currentMonthInSeconds;
-  // const usageAvailableCurrentMonthInSeconds = user.available.audiofiles && user.available.audiofiles.currentMonthInSeconds;
-  const percentageUsed = (usageUsedCurrentMonthInSeconds / limitSecondsPerMonth) * 100;
+  const percentageUsedCurrentMonth = (usageUsedCurrentMonthInSeconds / limitSecondsPerMonth) * 100;
+  const percentageUsed = percentageUsedCurrentMonth >= 100 ? 100 : percentageUsedCurrentMonth;
 
   const showUpgradeButton = activeSubscriptionProductId === 'free' || activeSubscriptionProductId === 'com.aardwegmedia.playpost.premium';
 
