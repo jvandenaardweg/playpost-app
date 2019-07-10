@@ -1,22 +1,22 @@
 import React from 'react';
 import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
-import { ScrollView } from 'react-native';
 import { VoiceSelectContainer } from '../../containers/VoiceSelectContainer';
 import { ButtonUpgradeContainer } from '../../containers/ButtonUpgradeContainer';
+import { AppBackground } from '../../components/AppBackground';
 
 export class SettingsVoicesScreen extends React.PureComponent {
   static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: 'Voices',
-      headerRight: <ButtonUpgradeContainer />,
+      headerRight: <ButtonUpgradeContainer />
     };
   }
 
   render() {
     return (
-      <ScrollView>
+      <AppBackground>
         <VoiceSelectContainer />
-      </ScrollView>
+      </AppBackground>
     );
   }
 }
