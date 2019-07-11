@@ -313,14 +313,15 @@ export const getArticle = (articleId: string) => ({
   }
 });
 
-export const addArticleToPlaylistByUrl = (articleUrl: string) => ({
+export const addArticleToPlaylistByUrl = (articleUrl: string, documentHtml?: string) => ({
   type: CREATE_PLAYLIST_ITEM,
   payload: {
     request: {
       method: 'post',
       url: 'v1/playlist/articles',
       data: {
-        articleUrl
+        articleUrl,
+        documentHtml
       }
     }
   }
