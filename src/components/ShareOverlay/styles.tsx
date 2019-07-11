@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
   container: {
@@ -11,6 +12,6 @@ export default StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 24
+    padding: spacing.large
   }
 });

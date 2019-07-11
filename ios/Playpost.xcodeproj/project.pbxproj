@@ -12,7 +12,6 @@
 		00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302C01ABCB91800DB3ED1 /* libRCTImage.a */; };
 		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
-		00E356F31AD99517003FC87E /* PlaypostTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PlaypostTests.m */; };
 		05070F8112484BF891C52C39 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CDF1F5F159C4DECB5D04F34 /* libRNVectorIcons.a */; };
 		08C60CD04ABB4CB5B62085EA /* libAppCenterReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D26B6FB34F514B5BA57F3AAD /* libAppCenterReactNative.a */; };
 		0AD1D6512D7344B8BD6D6594 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49D936597B894FCEA212DD93 /* libRNGestureHandler.a */; };
@@ -25,7 +24,6 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		13DF75B16FAE4A09936FC905 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F8E8C00076E46B5B577BC36 /* Feather.ttf */; };
-		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		160817AA513B408B88B65B14 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A8BC5BF901745769E48F6CB /* MaterialIcons.ttf */; };
 		35D84407F6BA48A384BEC020 /* Merriweather-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1DEB3368EDE54C05BD4294E2 /* Merriweather-BoldItalic.ttf */; };
@@ -39,7 +37,6 @@
 		5D905B24A555412FB69367C3 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 07C3AF520686418DABBB26ED /* Foundation.ttf */; };
 		686893D645554C13996D9CCD /* libAppCenterReactNativeCrashes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48ED15BFDF1F4A899AD2926E /* libAppCenterReactNativeCrashes.a */; };
 		6980D35EFFB14D90B2D9A316 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A158EB63085341FB9AB6822F /* FontAwesome5_Brands.ttf */; };
-		70946F427DB337ADE57F082B /* libPods-PlaypostTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 247D47559962B0CAB54E69BC /* libPods-PlaypostTests.a */; };
 		73153140F51E4A83916440D1 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC4C9FB3C91949BC8C0030C5 /* Octicons.ttf */; };
 		7511265BB44A44218ED118E7 /* Merriweather-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD2F913E2FA64E8CB3D747F3 /* Merriweather-Bold.ttf */; };
 		79EA6E00569F10C9FA6A4049 /* libPods-Playpost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DCCC00F687607FC5D5D1F67 /* libPods-Playpost.a */; };
@@ -103,7 +100,6 @@
 		8C92A69C2243CA290057A1EE /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C92A69B2243CA210057A1EE /* libRNCWebView.a */; };
 		8C92A69D2243CA320057A1EE /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C92A69B2243CA210057A1EE /* libRNCWebView.a */; };
 		8C96C7BB22B3A1F9006E5704 /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF37A02FD9F246028F4091AF /* RNPlaceholder.swift */; };
-		8C96C7BC22B3A1F9006E5704 /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF37A02FD9F246028F4091AF /* RNPlaceholder.swift */; };
 		8CA3D2DA22900BC700516BF9 /* libRNReanimated.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA3D2D322900BBA00516BF9 /* libRNReanimated.a */; };
 		8CA3D2DB22900BD300516BF9 /* libRNReanimated.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA3D2D322900BBA00516BF9 /* libRNReanimated.a */; };
 		8CAA1198220F2FC3002741D6 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
@@ -177,13 +173,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 832C81801AAF6DEF007FA2F7;
 			remoteInfo = RCTVibration;
-		};
-		00E356F41AD99517003FC87E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = Playpost;
 		};
 		139105C01AF99BAD00B5F7CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -656,7 +645,6 @@
 		00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTImage.xcodeproj; path = "../node_modules/react-native/Libraries/Image/RCTImage.xcodeproj"; sourceTree = "<group>"; };
 		00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTNetwork.xcodeproj; path = "../node_modules/react-native/Libraries/Network/RCTNetwork.xcodeproj"; sourceTree = "<group>"; };
 		00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVibration.xcodeproj; path = "../node_modules/react-native/Libraries/Vibration/RCTVibration.xcodeproj"; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* PlaypostTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlaypostTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* PlaypostTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaypostTests.m; sourceTree = "<group>"; };
 		01E26A0EE8CF7C11556B619F /* Pods-Playpost-PlaypostShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Playpost-PlaypostShareExtension.release.xcconfig"; path = "Target Support Files/Pods-Playpost-PlaypostShareExtension/Pods-Playpost-PlaypostShareExtension.release.xcconfig"; sourceTree = "<group>"; };
@@ -751,15 +739,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		00E356EB1AD99517003FC87E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
-				70946F427DB337ADE57F082B /* libPods-PlaypostTests.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1108,7 +1087,6 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* Playpost.app */,
-				00E356EE1AD99517003FC87E /* PlaypostTests.xctest */,
 				8C5A7DC2220F224A00ECCC65 /* PlaypostShareExtension.appex */,
 			);
 			name = Products;
@@ -1316,25 +1294,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* PlaypostTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "PlaypostTests" */;
-			buildPhases = (
-				41BD4F12AD86330B912F888B /* [CP] Check Pods Manifest.lock */,
-				00E356EA1AD99517003FC87E /* Sources */,
-				00E356EB1AD99517003FC87E /* Frameworks */,
-				00E356EC1AD99517003FC87E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				00E356F51AD99517003FC87E /* PBXTargetDependency */,
-			);
-			name = PlaypostTests;
-			productName = PlaypostTests;
-			productReference = 00E356EE1AD99517003FC87E /* PlaypostTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		13B07F861A680F5B00A75B9A /* Playpost */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Playpost" */;
@@ -1386,11 +1345,6 @@
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Aardweg Media";
 				TargetAttributes = {
-					00E356ED1AD99517003FC87E = {
-						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = 8GH8GLAMTU;
-						TestTargetID = 13B07F861A680F5B00A75B9A;
-					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 8GH8GLAMTU;
 						LastSwiftMigration = 1010;
@@ -1569,7 +1523,6 @@
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* Playpost */,
-				00E356ED1AD99517003FC87E /* PlaypostTests */,
 				8C5A7DC1220F224A00ECCC65 /* PlaypostShareExtension */,
 			);
 		};
@@ -2041,13 +1994,6 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		00E356EC1AD99517003FC87E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8E1A680F5B00A75B9A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2133,28 +2079,6 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		41BD4F12AD86330B912F888B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PlaypostTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8CD3D195220F6ADD0030C131 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2220,15 +2144,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		00E356EA1AD99517003FC87E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00E356F31AD99517003FC87E /* PlaypostTests.m in Sources */,
-				8C96C7BC22B3A1F9006E5704 /* RNPlaceholder.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F871A680F5B00A75B9A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2254,11 +2169,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* Playpost */;
-			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
-		};
 		8C5A7DCC220F224A00ECCC65 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8C5A7DC1220F224A00ECCC65 /* PlaypostShareExtension */;
@@ -2297,73 +2207,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		00E356F61AD99517003FC87E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4F3D7B8FC4B48AEE1E2D96B1 /* Pods-PlaypostTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 8GH8GLAMTU;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
-					"$(SRCROOT)/../node_modules/appcenter/ios/AppCenterReactNative",
-					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
-					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
-					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-				);
-				INFOPLIST_FILE = PlaypostTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Playpost.app/Playpost";
-			};
-			name = Debug;
-		};
-		00E356F71AD99517003FC87E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 071427B8A979A222D497463A /* Pods-PlaypostTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 8GH8GLAMTU;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
-					"$(SRCROOT)/../node_modules/appcenter/ios/AppCenterReactNative",
-					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
-					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
-					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-				);
-				INFOPLIST_FILE = PlaypostTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Playpost.app/Playpost";
-			};
-			name = Release;
-		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 89F8ED4BACC4723F806AA210 /* Pods-Playpost.debug.xcconfig */;
@@ -2664,15 +2507,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "PlaypostTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00E356F61AD99517003FC87E /* Debug */,
-				00E356F71AD99517003FC87E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Playpost" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

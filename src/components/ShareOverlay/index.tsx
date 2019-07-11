@@ -7,12 +7,19 @@ import { ErrorModal } from '../../components/ErrorModal';
 
 import styles from './styles';
 
+type DocumentData = {
+  url: string;
+  html: string;
+  title: string;
+};
+
 interface State {
   isOpen: boolean;
   isLoading: boolean;
   type: string | null;
   url: string | null;
   errorMessage: string;
+  warningMessage: string;
   errorAction: string;
 }
 
@@ -27,6 +34,7 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
     type: null,
     url: null,
     errorMessage: '',
+    warningMessage: '',
     errorAction: ''
   };
 
@@ -51,6 +59,18 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
 
       // Wait for the extension data
       const { type, value }: { type: string; value: string } = await ShareExtension.data();
+
+      console.log('====== Got ===== ', type, value);
+
+      if (type === 'text/json') {
+        const documentData = JSON.parse(value) as DocumentData;
+
+        // If we have the document HTML, use that
+        // If not, keep using the URL
+        if (documentData.html) {
+          console.log(documentData.html);
+        }
+      }
 
       // It could be possible some app shares the URL with text, like: "This is an example article https://link.com/12312"
       // In that case, we want to get: https://link.com/12312

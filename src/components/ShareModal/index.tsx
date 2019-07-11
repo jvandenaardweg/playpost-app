@@ -10,6 +10,8 @@ import { selectPlaylistError } from '../../selectors/playlist';
 
 import styles from './styles';
 import { RootState } from '../../reducers';
+import fonts from '../../constants/fonts';
+import colors from '../../constants/colors';
 
 interface State {
   errorMessage: string;
@@ -83,7 +85,7 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
       return <Text style={{ color: 'red' }}>{errorMessage}</Text>;
     }
 
-    return <Text>Article is added to your playlist!</Text>;
+    return <Text style={{ fontSize: fonts.fontSize.body, color: colors.green, fontWeight: fonts.fontWeight.semibold }}>Article is added to your playlist!</Text>;
   }
 
   renderActivityIndicator = () => {
@@ -91,7 +93,7 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
 
     if (!isLoading) return null;
 
-    return <ActivityIndicator />;
+    return <ActivityIndicator size="small" />;
   }
 
   render() {
