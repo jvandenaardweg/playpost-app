@@ -16,8 +16,9 @@ type DocumentData = {
 interface State {
   isOpen: boolean;
   isLoading: boolean;
-  type: string | null;
-  url: string | null;
+  type: string | undefined;
+  url: string | undefined;
+  documentHtml: string | undefined;
   errorMessage: string;
   warningMessage: string;
   errorAction: string;
@@ -31,8 +32,9 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
   state = {
     isOpen: true,
     isLoading: true,
-    type: null,
-    url: null,
+    type: '',
+    url: '',
+    documentHtml: '',
     errorMessage: '',
     warningMessage: '',
     errorAction: ''
@@ -60,27 +62,26 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
       // Wait for the extension data
       const { type, value }: { type: string; value: string } = await ShareExtension.data();
 
-      console.log('====== Got ===== ', type, value);
+      let documentHtml: string = '';
+      let url: string = '';
 
+      // If we have text/json, we probably have the documentHtml and url
       if (type === 'text/json') {
         const documentData = JSON.parse(value) as DocumentData;
 
-        // If we have the document HTML, use that
-        // If not, keep using the URL
-        if (documentData.html) {
-          console.log(documentData.html);
-        }
+        if (documentData.html) documentHtml = documentData.html;
+        if (documentData.url) url = documentData.url;
+      } else {
+        // It could be possible some app shares the URL with text, like: "This is an example article https://link.com/12312"
+        // In that case, we want to get: https://link.com/12312
+        const urlMatchesInText = value.match(/\bhttps?:\/\/\S+/gi);
+        const urlFromText = urlMatchesInText && urlMatchesInText.length ? urlMatchesInText[0] : '';
+
+        url = urlFromText || value;
       }
 
-      // It could be possible some app shares the URL with text, like: "This is an example article https://link.com/12312"
-      // In that case, we want to get: https://link.com/12312
-      const urlMatchesInText = value.match(/\bhttps?:\/\/\S+/gi);
-      const urlFromText = urlMatchesInText && urlMatchesInText.length ? urlMatchesInText[0] : '';
-
-      const url = urlFromText || value;
-
       // Update the state so our modal can pick up the URL
-      return this.setState({ type, url, errorMessage: '' });
+      return this.setState({ type, url, documentHtml, errorMessage: '' });
     } catch (err) {
       const errorMessage = err.message ? err.message : 'An unknown error happened. Please try again.';
       return this.setState({ errorMessage });
@@ -132,10 +133,10 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
   }
 
   renderShareModal() {
-    const { type, url, errorMessage } = this.state;
+    const { url, errorMessage } = this.state;
     if (errorMessage) return;
 
-    return <ShareModal type={type} url={url} onPressSave={this.handleOnPressSave} onPressClose={this.handleOnPressClose} />;
+    return <ShareModal url={url} onPressSave={this.handleOnPressSave} onPressClose={this.handleOnPressClose} />;
   }
 
   renderModal() {

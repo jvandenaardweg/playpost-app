@@ -19,8 +19,8 @@ interface State {
 }
 
 interface IProps {
-  url: string;
-  type: string;
+  url?: string;
+  documentHtml?: string;
   playlistError: string;
   onPressClose(): void;
   onPressSave(): void;
@@ -35,17 +35,25 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
   };
 
   componentDidMount() {
-    const { url, type } = this.props;
+    const { url, documentHtml } = this.props;
 
-    // If it is no valid URL, we show an error message to the user
-    if (!validUrl.isUri(url)) {
+    // If we did not receive a URL, error
+    if (!url) {
       return this.setState({
-        errorMessage: `Could not add this article to your playlist, because it does not seem to be a valid URL: "${url}" (${type})`,
+        errorMessage: 'Could not add this article to your playlist, because did not receive a URL. Please contact support when this happens.',
         isLoading: false
       });
     }
 
-    this.addArticleToPlaylist();
+    // If there's a URL, but it's not a valid url, error
+    if (!validUrl.isUri(url)) {
+      return this.setState({
+        errorMessage: `Could not add this article to your playlist, because it does not seem to be a valid URL: "${url}"`,
+        isLoading: false
+      });
+    }
+
+    this.addArticleToPlaylist(url, documentHtml);
   }
 
   async componentDidUpdate(prevProps: Props) {
@@ -60,12 +68,10 @@ export class ShareModalContainer extends React.PureComponent<Props, State> {
     }
   }
 
-  addArticleToPlaylist = async () => {
-    const { url } = this.props;
-
+  addArticleToPlaylist = async (url: string, documentHtml?: string) => {
     try {
       // Do the API call to add the URL to the user's playlist
-      await this.props.addArticleToPlaylistByUrl(url);
+      await this.props.addArticleToPlaylistByUrl(url, documentHtml);
 
       // Automatically close the modal after X seconds
       setTimeout(() => this.props.onPressClose(), 2500);
