@@ -13,11 +13,16 @@ interface Props {
 }
 
 interface OnboardingSlideProps {
-  topSpacer: number;
-  width: number;
-  height: number;
-  title: string;
-  text: string;
+  item: {
+    key: string;
+    title: string;
+    text: string;
+  };
+  index: number;
+  dimensions: {
+    width: number;
+    height: number;
+  };
 }
 
 const OnboardingSliderComponent: React.FC<Props> = React.memo(({
@@ -79,25 +84,23 @@ const OnboardingSliderComponent: React.FC<Props> = React.memo(({
 });
 
 const OnboardingSlide: React.FC<OnboardingSlideProps> = React.memo(({
-  topSpacer,
-  width,
-  height,
-  title,
-  text
+  item,
+  index,
+  dimensions
 }) => (
   <View
     style={[
       styles.mainContent,
       {
-        width,
-        height,
-        paddingTop: topSpacer
+        width: dimensions.width,
+        height: dimensions.height,
+        paddingTop: '50%'
       },
     ]}
   >
-    <View>
-      <Text testID="onboarding-slider-item-title" style={styles.title}>{title}</Text>
-      <Text testID="onboarding-slider-item-text" style={styles.text}>{text}</Text>
+    <View key={index}>
+      <Text testID="onboarding-slider-item-title" style={styles.title}>{item.title}</Text>
+      <Text testID="onboarding-slider-item-text" style={styles.text}>{item.text}</Text>
     </View>
   </View>
 ));
