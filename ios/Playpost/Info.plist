@@ -36,17 +36,17 @@
 	<key>CFBundleVersion</key>
 	<string>24</string>
 	<key>LSRequiresIPhoneOS</key>
-	<true />
+	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
-		<true />
+		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>localhost</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true />
+				<true/>
 			</dict>
 		</dict>
 	</dict>
@@ -98,11 +98,9 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false />
+	<false/>
 </dict>
 </plist>
