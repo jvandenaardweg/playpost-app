@@ -55,6 +55,7 @@
 		8C4182FF22365409002F5B00 /* libRNKeychain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4182F7223653E3002F5B00 /* libRNKeychain.a */; };
 		8C437591220813CD000A15FE /* libRNTrackPlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C43758E220813C4000A15FE /* libRNTrackPlayer.a */; };
 		8C43759422081410000A15FE /* dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43759322081410000A15FE /* dummy.swift */; };
+		8C4F4D4722D69FA2001F126C /* GetDocumentData.js in Resources */ = {isa = PBXBuildFile; fileRef = 8C4F4D4622D69FA2001F126C /* GetDocumentData.js */; };
 		8C543255223641EE00AA0681 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C543254223641D600AA0681 /* libSplashScreen.a */; };
 		8C5A7DC9220F224A00ECCC65 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C5A7DC7220F224A00ECCC65 /* MainInterface.storyboard */; };
 		8C5A7DCD220F224A00ECCC65 /* PlaypostShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8C5A7DC2220F224A00ECCC65 /* PlaypostShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -705,6 +706,7 @@
 		8C43755F220813C4000A15FE /* RNTrackPlayer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNTrackPlayer.xcodeproj; path = "../node_modules/react-native-track-player/ios/RNTrackPlayer.xcodeproj"; sourceTree = "<group>"; };
 		8C43759222081410000A15FE /* Playpost-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Playpost-Bridging-Header.h"; sourceTree = "<group>"; };
 		8C43759322081410000A15FE /* dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dummy.swift; sourceTree = "<group>"; };
+		8C4F4D4622D69FA2001F126C /* GetDocumentData.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = GetDocumentData.js; sourceTree = "<group>"; };
 		8C543222223641D600AA0681 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		8C5A7DC2220F224A00ECCC65 /* PlaypostShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PlaypostShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C5A7DC8220F224A00ECCC65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -762,12 +764,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CBBA4FE22995C7D00C05945 /* libReactNativeConfig.a in Frameworks */,
 				8CD3D198220F6CF50030C131 /* libReactNativeShareExtension.a in Frameworks */,
 				8C437591220813CD000A15FE /* libRNTrackPlayer.a in Frameworks */,
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
 				8C92A69D2243CA320057A1EE /* libRNCWebView.a in Frameworks */,
 				8CBA9CD4227DA93800CE20A0 /* libRNCAsyncStorage.a in Frameworks */,
-				8CBBA4FE22995C7D00C05945 /* libReactNativeConfig.a in Frameworks */,
 				8C2A4DC12292A2CB00062B11 /* libRNIap.a in Frameworks */,
 				8C92A68D2243B7E20057A1EE /* libRNVersionNumber.a in Frameworks */,
 				8CA3D2DA22900BC700516BF9 /* libRNReanimated.a in Frameworks */,
@@ -804,11 +806,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CAA1198220F2FC3002741D6 /* JavaScriptCore.framework in Frameworks */,
+				8CBBA4FF22995C8A00C05945 /* libReactNativeConfig.a in Frameworks */,
 				8C5A7DF1220F23EC00ECCC65 /* libRCTWebSocket.a in Frameworks */,
 				8C5A7DF2220F23EC00ECCC65 /* libReact.a in Frameworks */,
 				8C92A69C2243CA290057A1EE /* libRNCWebView.a in Frameworks */,
 				8CBA9CD5227DA94500CE20A0 /* libRNCAsyncStorage.a in Frameworks */,
-				8CBBA4FF22995C8A00C05945 /* libReactNativeConfig.a in Frameworks */,
 				8C2A4DC22292A2D800062B11 /* libRNIap.a in Frameworks */,
 				8C92A68C2243B7D60057A1EE /* libRNVersionNumber.a in Frameworks */,
 				8CA3D2DB22900BD300516BF9 /* libRNReanimated.a in Frameworks */,
@@ -1157,6 +1159,7 @@
 		8C5A7DC3220F224A00ECCC65 /* PlaypostShareExtension */ = {
 			isa = PBXGroup;
 			children = (
+				8C4F4D4622D69FA2001F126C /* GetDocumentData.js */,
 				8CF6C610220F27B800A07384 /* PlaypostShareExtension.entitlements */,
 				8C5A7DC7220F224A00ECCC65 /* MainInterface.storyboard */,
 				8C5A7DCA220F224A00ECCC65 /* Info.plist */,
@@ -2095,6 +2098,7 @@
 				8C7A39FF2219D80700A9A9A7 /* Foundation.ttf in Resources */,
 				8C7A3A002219D80700A9A9A7 /* Ionicons.ttf in Resources */,
 				8C7A3A012219D80700A9A9A7 /* MaterialCommunityIcons.ttf in Resources */,
+				8C4F4D4722D69FA2001F126C /* GetDocumentData.js in Resources */,
 				8C7A3A022219D80700A9A9A7 /* MaterialIcons.ttf in Resources */,
 				8C7A3A032219D80700A9A9A7 /* Octicons.ttf in Resources */,
 				8C7A3A052219D80700A9A9A7 /* Zocial.ttf in Resources */,
@@ -2383,6 +2387,7 @@
 					"$(SRCROOT)/../node_modules/react-native/Libraries/LinkingIOS/**",
 				);
 				INFOPLIST_FILE = Playpost/Info.plist;
+				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -2422,6 +2427,7 @@
 					"$(SRCROOT)/../node_modules/react-native/Libraries/LinkingIOS/**",
 				);
 				INFOPLIST_FILE = Playpost/Info.plist;
+				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -2489,7 +2495,7 @@
 					"$(SRCROOT)/../../React",
 				);
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
-				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
+				INFOPLIST_PREFIX_HEADER = "${CONFIGURATION_BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -2543,7 +2549,7 @@
 					"$(SRCROOT)/../../React",
 				);
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
-				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
+				INFOPLIST_PREFIX_HEADER = "${CONFIGURATION_BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -2583,6 +2589,7 @@
 					"$(SRCROOT)/../node_modules/react-native-share-extension/ios/**",
 				);
 				INFOPLIST_FILE = PlaypostShareExtension/Info.plist;
+				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -2634,6 +2641,7 @@
 					"$(SRCROOT)/../node_modules/react-native-share-extension/ios/**",
 				);
 				INFOPLIST_FILE = PlaypostShareExtension/Info.plist;
+				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
