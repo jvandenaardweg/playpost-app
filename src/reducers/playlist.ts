@@ -80,7 +80,8 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
     case GET_PLAYLIST:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        error: ''
       };
 
     case GET_PLAYLIST_SUCCESS:
@@ -101,7 +102,8 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
     case GET_ARTICLE:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        error: ''
       };
 
     case GET_ARTICLE_SUCCESS:
@@ -144,7 +146,8 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
     case CREATE_PLAYLIST_ITEM:
       return {
         ...state,
-        isLoadingCreateItem: true
+        isLoadingCreateItem: true,
+        error: ''
       };
 
     case CREATE_PLAYLIST_ITEM_SUCCESS:
@@ -164,7 +167,8 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
     case FAVORITE_PLAYLIST_ITEM:
       return {
         ...state,
-        isLoadingFavoriteItem: true
+        isLoadingFavoriteItem: true,
+        error: ''
       };
 
     case FAVORITE_PLAYLIST_ITEM_SUCCESS:
@@ -184,7 +188,8 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
     case UNFAVORITE_PLAYLIST_ITEM:
       return {
         ...state,
-        isLoadingUnFavoriteItem: true
+        isLoadingUnFavoriteItem: true,
+        error: ''
       };
 
     case UNFAVORITE_PLAYLIST_ITEM_SUCCESS:
@@ -204,7 +209,8 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
     case ARCHIVE_PLAYLIST_ITEM:
       return {
         ...state,
-        isLoadingArchiveItem: true
+        isLoadingArchiveItem: true,
+        error: ''
       };
 
     case ARCHIVE_PLAYLIST_ITEM_SUCCESS:
@@ -224,7 +230,8 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
     case UNARCHIVE_PLAYLIST_ITEM:
       return {
         ...state,
-        isLoadingUnArchiveItem: true
+        isLoadingUnArchiveItem: true,
+        error: ''
       };
 
     case UNARCHIVE_PLAYLIST_ITEM_SUCCESS:
@@ -244,7 +251,8 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
     case REMOVE_PLAYLIST_ITEM:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        error: ''
       };
 
     case REMOVE_PLAYLIST_ITEM_SUCCESS:
@@ -264,7 +272,8 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
     case REORDER_PLAYLIST_ITEM:
       return {
         ...state,
-        isLoadingReOrderItem: true
+        isLoadingReOrderItem: true,
+        error: ''
       };
 
     case REORDER_PLAYLIST_ITEM_SUCCESS:

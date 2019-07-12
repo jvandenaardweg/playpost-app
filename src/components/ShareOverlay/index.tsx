@@ -2,8 +2,8 @@ import React from 'react';
 import { Animated, View, Modal } from 'react-native';
 import ShareExtension from 'react-native-share-extension';
 
-import { ShareModal } from '../../components/ShareModal';
 import { ErrorModal } from '../../components/ErrorModal';
+import { ShareModalContainer } from '../../containers/ShareModalContainer';
 
 import styles from './styles';
 
@@ -80,6 +80,8 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
         url = urlFromText || value;
       }
 
+      console.log('Using to share:', url, documentHtml);
+
       // Update the state so our modal can pick up the URL
       return this.setState({ type, url, documentHtml, errorMessage: '' });
     } catch (err) {
@@ -133,10 +135,10 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
   }
 
   renderShareModal() {
-    const { url, errorMessage } = this.state;
+    const { url, errorMessage, documentHtml } = this.state;
     if (errorMessage) return;
 
-    return <ShareModal url={url} onPressSave={this.handleOnPressSave} onPressClose={this.handleOnPressClose} />;
+    return <ShareModalContainer url={url} documentHtml={documentHtml} onPressSave={this.handleOnPressSave} onPressClose={this.handleOnPressClose} />;
   }
 
   renderModal() {

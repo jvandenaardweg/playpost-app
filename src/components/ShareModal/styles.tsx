@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
 import spacing from '../../constants/spacing';
+import fonts from '../../constants/fonts';
 
 export default StyleSheet.create({
   container: {
@@ -34,4 +35,12 @@ export default StyleSheet.create({
   footerRow: {
     flexDirection: 'row'
   },
+  errorMessage: {
+    color: 'red'
+  },
+  successMessage: {
+    fontSize: fonts.fontSize.body,
+    color: colors.green,
+    fontWeight: fonts.fontWeight.semibold
+  }
 });

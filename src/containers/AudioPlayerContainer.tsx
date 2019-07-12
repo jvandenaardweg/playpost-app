@@ -187,7 +187,12 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
 
     return (
       <View>
-        <Modal animationType="slide" presentationStyle="formSheet" transparent={false} visible={showModal}>
+        <Modal
+          animationType="slide"
+          presentationStyle="formSheet"
+          transparent={false}
+          visible={showModal}
+        >
           {this.renderAudioPlayerLarge()}
         </Modal>
         {this.renderAudioPlayerSmall()}
