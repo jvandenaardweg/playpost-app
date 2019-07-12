@@ -149,8 +149,13 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
     return (
       <Modal
         animationType="slide"
-        presentationStyle="overFullScreen"
+        presentationStyle="fullScreen"
         supportedOrientations={['portrait', 'landscape']}
+        // For this share extension the debugger will tell you:
+        // ExceptionsManager.js:82 Modal was presented with 0x2 orientations mask but the application only supports 0x0.Add more interface orientations to your app's Info.plist to fix this.
+        // NOTE: This will crash in non-dev mode
+        // Fun thing; this will NOT crash. You can ignore that error message
+        // It's related to the modal being active in a share extension: https://github.com/facebook/react-native/issues/13951#issuecomment-339395236
         transparent
         visible={isOpen}
         onDismiss={this.handleOnModalDissmiss}
