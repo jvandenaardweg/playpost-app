@@ -22,6 +22,7 @@ export const ButtonVoicePreview: React.FC<Props> = React.memo(({
 }) => (
   <TouchableOpacity
     style={[styles.container, (isPlaying || isActive) ? styles.containerActive : null, (isAvailable && !isActive) ? styles.isAvailable : null]}
+    disabled={isLoading}
     activeOpacity={1}
     onPress={onPress}
     hitSlop={{ top: 20, left: 20, right: 20, bottom: 20 }}>
