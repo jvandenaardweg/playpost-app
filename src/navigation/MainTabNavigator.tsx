@@ -16,6 +16,7 @@ import { UpdatePasswordScreen } from '../screens/settings/UpdatePasswordScreen';
 import { UpdateEmailScreen } from '../screens/settings/UpdateEmailScreen';
 
 import { ButtonUpgradeContainer } from '../containers/ButtonUpgradeContainer';
+import { ButtonVoices } from '../components/ButtonVoices';
 
 const PlaylistStack: StackNavigatorConfig = createStackNavigator(
   {
@@ -27,7 +28,8 @@ const PlaylistStack: StackNavigatorConfig = createStackNavigator(
     headerTransitionPreset: 'uikit',
     defaultNavigationOptions: ({ navigation }) => ({
       title: 'Playlist',
-      headerRight: <ButtonUpgradeContainer />
+      headerRight: <ButtonUpgradeContainer />,
+      headerLeft: <ButtonVoices onPress={() => navigation.navigate('SettingsLanguages')} />
     }),
     navigationOptions: {
       tabBarLabel: 'Playlist',
@@ -50,7 +52,8 @@ const ArchiveStack: StackNavigatorConfig = createStackNavigator(
     headerTransitionPreset: 'uikit',
     defaultNavigationOptions: ({ navigation }) => ({
       title: 'Archive',
-      headerRight: <ButtonUpgradeContainer />
+      headerRight: <ButtonUpgradeContainer />,
+      headerLeft: <ButtonVoices onPress={() => navigation.navigate('SettingsLanguages')} />
     }),
     navigationOptions: {
       tabBarLabel: 'Archive',
@@ -73,7 +76,8 @@ const FavoritesStack: StackNavigatorConfig = createStackNavigator(
     headerTransitionPreset: 'uikit',
     defaultNavigationOptions: ({ navigation }) => ({
       title: 'Favorites',
-      headerRight: <ButtonUpgradeContainer />
+      headerRight: <ButtonUpgradeContainer />,
+      headerLeft: <ButtonVoices onPress={() => navigation.navigate('SettingsLanguages')} />
     }),
     navigationOptions: {
       tabBarLabel: 'Favorites',
@@ -101,7 +105,7 @@ const SettingsStack: StackNavigatorConfig = createStackNavigator(
     headerTransitionPreset: 'uikit',
     defaultNavigationOptions: ({ navigation }) => ({
       title: 'Settings',
-      headerRight: <ButtonUpgradeContainer />
+      headerRight: <ButtonUpgradeContainer />,
     }),
     navigationOptions: {
       tabBarLabel: 'Settings',
