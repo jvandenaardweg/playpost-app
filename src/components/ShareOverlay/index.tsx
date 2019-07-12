@@ -13,12 +13,17 @@ type DocumentData = {
   title: string;
 };
 
+type ShareExtensionDocumentHtml = string | undefined;
+type ShareExtensionUrl = string | undefined;
+type ShareExtensionType = string | undefined;
+type ShareExtensionValue = string | undefined;
+
 interface State {
   isOpen: boolean;
   isLoading: boolean;
-  type: string | undefined;
-  url: string | undefined;
-  documentHtml: string | undefined;
+  type: ShareExtensionType;
+  url: ShareExtensionUrl;
+  documentHtml: ShareExtensionDocumentHtml;
   errorMessage: string;
   warningMessage: string;
   errorAction: string;
@@ -34,7 +39,7 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
     isLoading: true,
     type: '',
     url: '',
-    documentHtml: '',
+    documentHtml: undefined,
     errorMessage: '',
     warningMessage: '',
     errorAction: ''
@@ -60,10 +65,12 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
       }).start();
 
       // Wait for the extension data
-      const { type, value }: { type: string; value: string } = await ShareExtension.data();
+      const { type, value }: { type: ShareExtensionType; value: ShareExtensionValue } = await ShareExtension.data();
 
-      let documentHtml: string = '';
-      let url: string = '';
+      let documentHtml: ShareExtensionDocumentHtml;
+      let url: ShareExtensionUrl;
+
+      if (!value) throw new Error('Missing value from page data.');
 
       // If we have text/json, we probably have the documentHtml and url
       if (type === 'text/json') {

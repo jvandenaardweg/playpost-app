@@ -103,7 +103,7 @@ android {
         applicationId "com.aardwegmedia.playpost"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 26
+        versionCode 27
         versionName "1.0.20"
     }
     splits {
