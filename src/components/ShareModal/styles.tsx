@@ -16,18 +16,17 @@ export default StyleSheet.create({
       width: 0,
       height: 2,
     },
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.5,
     shadowRadius: 3.84,
 
-    elevation: 5,
+    elevation: 10,
   },
   articleContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: 70,
+    minHeight: 70,
     borderRadius: 6,
-    // borderWidth: 1,
-    // borderColor: colors.grayLightest
+    textAlign: 'center'
   },
   footer: {
     marginTop: 12
@@ -36,9 +35,13 @@ export default StyleSheet.create({
     flexDirection: 'row'
   },
   errorMessage: {
-    color: 'red'
+    textAlign: 'center',
+    fontSize: fonts.fontSize.body,
+    color: colors.red,
+    fontWeight: fonts.fontWeight.semibold
   },
   successMessage: {
+    textAlign: 'center',
     fontSize: fonts.fontSize.body,
     color: colors.green,
     fontWeight: fonts.fontWeight.semibold

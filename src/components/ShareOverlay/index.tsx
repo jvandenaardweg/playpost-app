@@ -149,7 +149,7 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
     return (
       <Modal
         animationType="slide"
-        presentationStyle="fullScreen"
+        presentationStyle="overFullScreen"
         supportedOrientations={['portrait', 'landscape']}
         // For this share extension the debugger will tell you:
         // ExceptionsManager.js:82 Modal was presented with 0x2 orientations mask but the application only supports 0x0.Add more interface orientations to your app's Info.plist to fix this.
