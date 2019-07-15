@@ -6,7 +6,7 @@ import styles from './styles';
 
 type State = TrackPlayer.ProgressComponentState;
 
-export class AudioPlayerSmallProgressBar extends ProgressComponent<State> {
+export class AudioPlayerSmallProgressBar extends ProgressComponent<any, State> {
   public render() {
     let percentage = 0;
     const { position, duration } = this.state;
