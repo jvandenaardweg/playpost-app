@@ -132,7 +132,8 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
 
     try {
       // Get the user's playlist
-      await this.props.getPlaylist();
+      const result = await this.props.getPlaylist();
+      return result;
     } catch (err) {
       if (!isConnected) { return; } // Don't show an error when there's no internet connection.
 
