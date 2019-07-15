@@ -1,40 +1,38 @@
 import React from 'react';
+import { ActivityIndicator, Alert, Linking, Text, View } from 'react-native';
+import Config from 'react-native-config';
 import RNFS from 'react-native-fs';
 import VersionNumber from 'react-native-version-number';
-import { Text, Alert, ActivityIndicator, Linking, View } from 'react-native';
-import { connect } from 'react-redux';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
-import Config from 'react-native-config';
+import { connect } from 'react-redux';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 import fonts from '../constants/fonts';
 
-import { getUser, deleteUser } from '../reducers/user';
 import { resetAudiofilesState } from '../reducers/audiofiles';
-import { resetVoicesState, resetDownloadedVoices } from '../reducers/voices';
+import { deleteUser, getUser } from '../reducers/user';
+import { resetDownloadedVoices, resetVoicesState } from '../reducers/voices';
 
 import { selectUserDetails } from '../selectors/user';
 
-import { RootState } from '../reducers';
+import { CustomSectionList } from '../components/CustomSectionList';
+import { Usage } from '../components/Usage';
+import colors from '../constants/colors';
 import {
-  ALERT_SETTINGS_SET_CACHE_SIZE_FAIL,
-  ALERT_SETTINGS_SETTING_UNAVAILABLE,
-  ALERT_SETTINGS_RESET_CACHE_FAIL,
   ALERT_SETTINGS_CLEAR_CACHE_WARNING,
   ALERT_SETTINGS_DELETE_USER,
-  ALERT_SETTINGS_DELETE_USER_FAIL
+  ALERT_SETTINGS_DELETE_USER_FAIL,
+  ALERT_SETTINGS_RESET_CACHE_FAIL,
+  ALERT_SETTINGS_SET_CACHE_SIZE_FAIL,
+  ALERT_SETTINGS_SETTING_UNAVAILABLE
 } from '../constants/messages';
-import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE, URL_ABOUT, URL_FEEDBACK, URL_DONATE } from '../constants/urls';
-import colors from '../constants/colors';
 import spacing from '../constants/spacing';
-import { selectIsSubscribed, selectActiveSubscriptionName, selectActiveSubscriptionProductId } from '../selectors/subscriptions';
-import { Usage } from '../components/Usage';
+import { URL_ABOUT, URL_DONATE, URL_FEEDBACK, URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../constants/urls';
+import { RootState } from '../reducers';
+import { selectActiveSubscriptionName, selectActiveSubscriptionProductId, selectIsSubscribed } from '../selectors/subscriptions';
 import { selectTotalAvailableVoices } from '../selectors/voices';
-import { CustomSectionList } from '../components/CustomSectionList';
 
-interface IProps extends NavigationInjectedProps {}
-
-type Props = IProps & DispatchProps & StateProps;
+type Props = NavigationInjectedProps & DispatchProps & StateProps;
 
 interface State {
   cacheSize: string;
@@ -44,14 +42,14 @@ interface State {
 }
 
 export class SettingsContainerComponent extends React.PureComponent<Props, State> {
-  state = {
+  public state = {
     cacheSize: '0',
     isClearingCache: false,
     isLoggingOut: false,
     isDeletingAccount: false
   };
 
-  componentDidMount() {
+  public componentDidMount() {
     this.props.navigation.setParams({
       handleOnPressUpgrade: this.handleOnPressUpgrade
     });
@@ -63,7 +61,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
     this.props.getUser();
   }
 
-  setCacheSize = async () => {
+  public setCacheSize = async () => {
     try {
       let combinedSize = 0;
 
@@ -98,11 +96,11 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
     }
   }
 
-  handleOnPressRow = () => {
+  public handleOnPressRow = () => {
     Alert.alert('Not available', ALERT_SETTINGS_SETTING_UNAVAILABLE);
   }
 
-  handleOnPressClearCache = async () => {
+  public handleOnPressClearCache = async () => {
     return Alert.alert('Are you sure?', ALERT_SETTINGS_CLEAR_CACHE_WARNING, [
       {
         text: 'Cancel',
@@ -116,19 +114,19 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
     ]);
   }
 
-  resetCache = async () => {
+  public resetCache = async () => {
     return this.setState({ isClearingCache: true }, async () => {
       try {
         await this.doResetCache();
       } catch (err) {
         return Alert.alert('Oops!', ALERT_SETTINGS_RESET_CACHE_FAIL);
       } finally {
-        return this.setState({ isClearingCache: false });
+        this.setState({ isClearingCache: false });
       }
     });
   }
 
-  doResetCache = async () => {
+  public doResetCache = async () => {
     this.props.resetAudiofilesState();
     this.props.resetDownloadedVoices();
     await RNFS.unlink(LOCAL_CACHE_AUDIOFILES_PATH);
@@ -136,7 +134,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
     return this.setCacheSize();
   }
 
-  deleteAccount = async () => {
+  public deleteAccount = async () => {
     return this.setState({ isDeletingAccount: true }, async () => {
       try {
         await this.props.deleteUser();
@@ -144,25 +142,25 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
       } catch (err) {
         return Alert.alert('Oops!', ALERT_SETTINGS_DELETE_USER_FAIL);
       } finally {
-        return this.setState({ isDeletingAccount: false });
+        this.setState({ isDeletingAccount: false });
       }
     });
   }
 
-  handleOnPressLogout = async () => this.props.navigation.navigate('Logout');
+  public handleOnPressLogout = async () => this.props.navigation.navigate('Logout');
 
-  handleOnPressUpgrade = (centeredSubscriptionProductId?: string) =>
+  public handleOnPressUpgrade = (centeredSubscriptionProductId?: string) =>
     this.props.navigation.navigate('Upgrade', {
       centeredSubscriptionProductId
     })
 
-  handleOnPressLanguage = () => this.props.navigation.navigate('SettingsLanguages');
+  public handleOnPressLanguage = () => this.props.navigation.navigate('SettingsLanguages');
 
-  handleOnPressAccountPassword = () => this.props.navigation.navigate('UpdatePassword');
+  public handleOnPressAccountPassword = () => this.props.navigation.navigate('UpdatePassword');
 
-  handleOnPressAccountEmail = () => this.props.navigation.navigate('UpdateEmail');
+  public handleOnPressAccountEmail = () => this.props.navigation.navigate('UpdateEmail');
 
-  handleOnPressAccountDelete = () => {
+  public handleOnPressAccountDelete = () => {
     return Alert.alert('Are you sure?', ALERT_SETTINGS_DELETE_USER, [
       {
         text: 'Cancel',
@@ -176,7 +174,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
     ]);
   }
 
-  renderDeleteAccount = () => {
+  public renderDeleteAccount = () => {
     const { isDeletingAccount } = this.state;
 
     if (isDeletingAccount) {
@@ -198,7 +196,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
     );
   }
 
-  renderVersionInfo = () => {
+  public renderVersionInfo = () => {
     const environment = Config.NODE_ENV;
     const environmentText = environment !== 'production' ? `(Env: ${environment})` : '';
     const versionText = `Version: ${VersionNumber.appVersion} (Build: ${VersionNumber.buildVersion}) ${environmentText}`;
@@ -218,7 +216,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
     );
   }
 
-  renderFooter = () => {
+  public renderFooter = () => {
     return (
       <View>
         {this.renderVersionInfo()}
@@ -227,7 +225,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
     );
   }
 
-  render() {
+  public render() {
     const { activeSubscriptionName, totalAvailableVoices } = this.props;
     const { isClearingCache, cacheSize } = this.state;
 

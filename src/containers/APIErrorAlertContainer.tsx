@@ -1,29 +1,29 @@
 import React from 'react';
+import { Alert } from 'react-native';
 import { NavigationInjectedProps } from 'react-navigation';
 import { connect } from 'react-redux';
-import { Alert } from 'react-native';
 
-import { selectUserErrorSaveSelectedVoice, selectUserError } from '../selectors/user';
 import { RootState } from '../reducers';
-import { resetSaveSelectedVoiceError, resetUserError } from '../reducers/user';
+import { resetErrorRequestPasswordToken, resetErrorUpdatePassword } from '../reducers/auth';
 import { resetCreateAudiofileError } from '../reducers/player';
-import { selectErrorCreateAudiofile } from '../selectors/player';
-import { resetValidateSubscriptionReceiptError } from '../reducers/subscriptions';
-import { selectErrorValidateSubscriptionReceipt } from '../selectors/subscriptions';
-import { selectErrorUpdatePassword, selectErrorRequestResetPasswordToken } from '../selectors/auth';
-import { resetErrorUpdatePassword, resetErrorRequestPasswordToken } from '../reducers/auth';
-import { selectPlaylistError } from '../selectors/playlist';
 import { resetErrorPlaylist } from '../reducers/playlist';
-import { selectVoicesError } from '../selectors/voices';
+import { resetValidateSubscriptionReceiptError } from '../reducers/subscriptions';
+import { resetSaveSelectedVoiceError, resetUserError } from '../reducers/user';
 import { resetVoicesError } from '../reducers/voices';
+import { selectErrorRequestResetPasswordToken, selectErrorUpdatePassword } from '../selectors/auth';
+import { selectErrorCreateAudiofile } from '../selectors/player';
+import { selectPlaylistError } from '../selectors/playlist';
+import { selectErrorValidateSubscriptionReceipt } from '../selectors/subscriptions';
+import { selectUserError, selectUserErrorSaveSelectedVoice } from '../selectors/user';
+import { selectVoicesError } from '../selectors/voices';
 
-type IProps = {
+interface IProps {
   languageName: string;
-};
+}
 
-type State = {
+interface State {
   hasOpenAlert: boolean;
-};
+}
 
 type Props = IProps & NavigationInjectedProps & StateProps & DispatchProps;
 
@@ -33,11 +33,11 @@ type Props = IProps & NavigationInjectedProps & StateProps & DispatchProps;
  * When creating errors in the API, make sure they will be understood by the end-user.
  */
 export class APIErrorAlertContainerComponent extends React.PureComponent<Props, State> {
-  state = {
+  public state = {
     hasOpenAlert: false // A way to prevent multiple alerts being thrown at the user
   };
 
-  shouldComponentUpdate(nextProps: Props, nextState: State) {
+  public shouldComponentUpdate(nextProps: Props, nextState: State) {
     // Just do not update the component when we already have an Alert open
     if (!nextState.hasOpenAlert) {
       return true;
@@ -46,7 +46,7 @@ export class APIErrorAlertContainerComponent extends React.PureComponent<Props, 
     return false;
   }
 
-  componentDidUpdate(prevProps: Props) {
+  public componentDidUpdate(prevProps: Props) {
     const {
       errorSaveSelectedVoice,
       errorCreateAudiofile,
@@ -195,7 +195,7 @@ export class APIErrorAlertContainerComponent extends React.PureComponent<Props, 
     }
   }
 
-  render() {
+  public render() {
     return this.props.children;
   }
 }

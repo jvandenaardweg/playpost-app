@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, RenderAPI } from 'react-native-testing-library';
 
-import { ArticleEmptyProcessing, ArticleEmptyFailed, ArticleEmptyNew } from '../index';
+import { ArticleEmptyFailed, ArticleEmptyNew, ArticleEmptyProcessing } from '../index';
 
 describe('ArticleEmpty', () => {
   let wrapper: RenderAPI;

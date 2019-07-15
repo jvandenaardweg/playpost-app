@@ -1,8 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Alert, Platform, Linking } from 'react-native';
-import { NavigationInjectedProps, withNavigation } from 'react-navigation';
+import { Alert, Linking, Platform } from 'react-native';
 import * as Keychain from 'react-native-keychain';
+import { NavigationInjectedProps, withNavigation } from 'react-navigation';
+import { connect } from 'react-redux';
 
 export const keychainArguments = Platform.select({
   ios: { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' },
@@ -11,13 +11,13 @@ export const keychainArguments = Platform.select({
 
 import { SignupForm } from '../components/SignupForm';
 
-import { createUser } from '../reducers/user';
 import { postAuth } from '../reducers/auth';
+import { createUser } from '../reducers/user';
 
+import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../constants/urls';
+import { RootState } from '../reducers';
 import { selectAuthError } from '../selectors/auth';
 import { selectUserError } from '../selectors/user';
-import { RootState } from '../reducers';
-import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../constants/urls';
 
 /* tslint:disable no-any */
 interface State {
@@ -27,17 +27,15 @@ interface State {
   validationError: string;
 }
 
-interface IProps extends NavigationInjectedProps {}
-
 interface StateProps {
   authError: string;
   userError: string;
 }
 
-type Props = IProps & StateProps & DispatchProps;
+type Props = NavigationInjectedProps & StateProps & DispatchProps;
 
 class SignupFormContainerComponent extends React.PureComponent<Props, State> {
-  state = {
+  public state = {
     isLoading: false,
     email: '',
     password: '',
@@ -47,7 +45,7 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
   /**
    * Saves the token in our secure storage and redirects to user to the success page
    */
-  saveToken = async (token: string) => {
+  public saveToken = async (token: string) => {
     try {
       await Keychain.setGenericPassword('token', token, keychainArguments);
       this.props.navigation.navigate('SignupSuccess');
@@ -57,7 +55,7 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
     }
   }
 
-  componentDidUpdate(prevProps: Props) {
+  public componentDidUpdate(prevProps: Props) {
     const { userError, authError } = this.props;
 
     if (authError && prevProps.authError !== authError) {
@@ -73,7 +71,7 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
    * Automatically logs the user in by using their given email and password
    * Providing some ease of use
    */
-  autoLogin = async () => {
+  public autoLogin = async () => {
     const { email, password } = this.state;
 
     try {
@@ -85,7 +83,7 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
     }
   }
 
-  handleOnPressSignup = async () => {
+  public handleOnPressSignup = async () => {
     const { email, password } = this.state;
 
     this.setState({ isLoading: true }, async () => {
@@ -99,16 +97,16 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
     });
   }
 
-  handleOnPressPrivacyPolicy = () => Linking.openURL(`${URL_PRIVACY_POLICY}?ref=playpost://signup`);
+  public handleOnPressPrivacyPolicy = () => Linking.openURL(`${URL_PRIVACY_POLICY}?ref=playpost://signup`);
 
-  handleOnPressTerms = () => Linking.openURL(`${URL_TERMS_OF_USE}?ref=playpost://signup`);
+  public handleOnPressTerms = () => Linking.openURL(`${URL_TERMS_OF_USE}?ref=playpost://signup`);
 
-  handleOnChangeText = (field: 'email' | 'password', value: string) => {
-    if (field === 'email') this.setState({ email: value });
-    if (field === 'password') this.setState({ password: value });
+  public handleOnChangeText = (field: 'email' | 'password', value: string) => {
+    if (field === 'email') { this.setState({ email: value }); }
+    if (field === 'password') { this.setState({ password: value }); }
   }
 
-  render() {
+  public render() {
     const { email, password, isLoading } = this.state;
 
     return (

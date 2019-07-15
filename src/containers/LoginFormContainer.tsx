@@ -1,8 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { Alert, Platform } from 'react-native';
 import * as Keychain from 'react-native-keychain';
+import { NavigationInjectedProps, withNavigation } from 'react-navigation';
+import { connect } from 'react-redux';
 
 export const keychainArguments = Platform.select({
   ios: { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' },
@@ -13,9 +13,9 @@ import { LoginForm } from '../components/LoginForm';
 
 import { getAuthToken } from '../reducers/auth';
 
-import { selectAuthError, selectAuthenticationToken } from '../selectors/auth';
-import { RootState } from '../reducers';
 import { ALERT_LOGIN_SAVE_TOKEN_FAIL } from '../constants/messages';
+import { RootState } from '../reducers';
+import { selectAuthenticationToken, selectAuthError } from '../selectors/auth';
 
 /* tslint:disable no-any */
 interface State {
@@ -25,23 +25,21 @@ interface State {
   error: any;
 }
 
-interface IProps extends NavigationInjectedProps {}
-
-type Props = IProps & StateProps & DispatchProps;
+type Props = NavigationInjectedProps & StateProps & DispatchProps;
 
 class LoginFormContainerComponent extends React.PureComponent<Props, State> {
-  state = {
+  public state = {
     isLoading: false,
     email: '',
     password: '',
     error: null
   };
 
-  componentDidMount() {
+  public componentDidMount() {
     this.props.navigation.setParams({ handleOnClose: this.handleOnClose });
   }
 
-  componentDidUpdate(prevProps: Props) {
+  public componentDidUpdate(prevProps: Props) {
     const { authError, token } = this.props;
 
     if (authError && prevProps.authError !== authError) {
@@ -56,7 +54,7 @@ class LoginFormContainerComponent extends React.PureComponent<Props, State> {
     }
   }
 
-  saveToken = async (token: string) => {
+  public saveToken = async (token: string) => {
     try {
       await Keychain.setGenericPassword('token', token, keychainArguments);
       this.props.navigation.navigate('App');
@@ -74,11 +72,11 @@ class LoginFormContainerComponent extends React.PureComponent<Props, State> {
     }
   }
 
-  handleOnClose = () => {
+  public handleOnClose = () => {
     this.props.navigation.goBack();
   }
 
-  handleOnPressLogin = async () => {
+  public handleOnPressLogin = async () => {
     const { email, password } = this.state;
 
     this.setState({ isLoading: true }, () => {
@@ -86,14 +84,14 @@ class LoginFormContainerComponent extends React.PureComponent<Props, State> {
     });
   }
 
-  handleOnChangeText = (field: 'email' | 'password', value: string) => {
-    if (field === 'email') this.setState({ email: value });
-    if (field === 'password') this.setState({ password: value });
+  public handleOnChangeText = (field: 'email' | 'password', value: string) => {
+    if (field === 'email') { this.setState({ email: value }); }
+    if (field === 'password') { this.setState({ password: value }); }
   }
 
-  handleOnPressForgotPassword = () => this.props.navigation.navigate('login/forgot-password');
+  public handleOnPressForgotPassword = () => this.props.navigation.navigate('login/forgot-password');
 
-  render() {
+  public render() {
     const { email, password, isLoading } = this.state;
 
     return (

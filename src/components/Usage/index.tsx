@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text, View } from 'react-native';
+import { Button } from 'react-native-elements';
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
-import { Button } from 'react-native-elements';
 import styles from './styles';
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProductId, onPressUpgrade, activeSubscriptionName }) => {
-  if (!user) return null;
+  if (!user) { return null; }
 
   const limitSecondsPerMonth = user.limits.audiofiles.limitSecondsPerMonth;
   const usageUsedCurrentMonthInSeconds = user.used.audiofiles && user.used.audiofiles.currentMonthInSeconds;

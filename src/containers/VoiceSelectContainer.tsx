@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert } from 'react-native';
-import { connect } from 'react-redux';
 import TrackPlayer from 'react-native-track-player';
+import { connect } from 'react-redux';
 
 import { LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 
@@ -11,23 +11,24 @@ import { NetworkContext } from '../contexts/NetworkProvider';
 
 import { RootState } from '../reducers';
 import { setTrack } from '../reducers/player';
+import { getUser, resetSaveSelectedVoiceError, saveSelectedVoice } from '../reducers/user';
 import { setDownloadedVoice } from '../reducers/voices';
-import { saveSelectedVoice, getUser, resetSaveSelectedVoiceError } from '../reducers/user';
 
 import { selectPlayerPlaybackState, selectPlayerTrack } from '../selectors/player';
-import { selectDownloadedVoicePreviews, selectAvailableVoicesByLanguageName, selectDefaultVoiceByLanguageName } from '../selectors/voices';
-import { selectUserSelectedVoiceByLanguageName, selectUserErrorSaveSelectedVoice } from '../selectors/user';
 import { selectIsSubscribed } from '../selectors/subscriptions';
+import { selectUserErrorSaveSelectedVoice, selectUserSelectedVoiceByLanguageName } from '../selectors/user';
+import { selectAvailableVoicesByLanguageName, selectDefaultVoiceByLanguageName, selectDownloadedVoicePreviews } from '../selectors/voices';
 
-import { ALERT_SETTINGS_VOICE_CHANGE, ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE } from '../constants/messages';
+import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_VOICE_CHANGE, ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE } from '../constants/messages';
 
-import { withNavigation, NavigationInjectedProps } from 'react-navigation';
-import { CustomSectionList } from '../components/CustomSectionList';
+import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { ButtonVoicePreview } from '../components/ButtonVoicePreview';
+import { CustomSectionList } from '../components/CustomSectionList';
+import colors from '../constants/colors';
 
-type IProps = {
+interface IProps {
   languageName: string;
-};
+}
 
 type Props = IProps & NavigationInjectedProps & StateProps & DispatchProps;
 
@@ -37,12 +38,12 @@ interface State {
 }
 
 export class VoiceSelectContainerComponent extends React.PureComponent<Props, State> {
-  state = {
+  public static contextType = NetworkContext;
+
+  public state = {
     isLoadingPreviewVoiceId: '',
     isLoadingSaveSelectedVoiceId: ''
   };
-
-  static contextType = NetworkContext;
 
   // componentDidUpdate(prevProps: Props) {
   //   const { errorSaveSelectedVoice } = this.props;
@@ -63,15 +64,15 @@ export class VoiceSelectContainerComponent extends React.PureComponent<Props, St
   //   }
   // }
 
-  keyExtractor = (item: Api.Voice, index: number) => index.toString();
+  public keyExtractor = (item: Api.Voice, index: number) => index.toString();
 
-  handleOnListItemPress = (voice: Api.Voice) => {
+  public handleOnListItemPress = (voice: Api.Voice) => {
     const { isConnected } = this.context;
     const { isSubscribed } = this.props;
     const isSelected = this.isSelected(voice);
 
     // If it's already selected, do nothing
-    if (isSelected) return;
+    if (isSelected) { return; }
 
     if (!isConnected) {
       return Alert.alert('Not connected', ALERT_GENERIC_INTERNET_REQUIRED);
@@ -113,7 +114,7 @@ export class VoiceSelectContainerComponent extends React.PureComponent<Props, St
    * Handles the saving of the selected voice to the database
    * Will also properly handle errors by showing an Alert to the user
    */
-  handleOnSaveSelectedVoice = async (item: Api.Voice) => {
+  public handleOnSaveSelectedVoice = async (item: Api.Voice) => {
     return this.setState({ isLoadingSaveSelectedVoiceId: item.id }, async () => {
       try {
         // Save the selected voice for the user
@@ -122,33 +123,33 @@ export class VoiceSelectContainerComponent extends React.PureComponent<Props, St
         // Get the updated settings
         await this.props.getUser();
       } finally {
-        return this.setState({ isLoadingSaveSelectedVoiceId: '' });
+        this.setState({ isLoadingSaveSelectedVoiceId: '' });
       }
     });
   }
 
-  handleOnPreviewPress = async (title: string, label: string, voice: Api.Voice) => {
+  public handleOnPreviewPress = async (title: string, label: string, voice: Api.Voice) => {
     const { downloadedVoices } = this.props;
     const isPlaying = this.isVoicePlayingInPlayer(voice.id);
 
     // If the preview of this voice is playing, pause it
-    if (isPlaying) return TrackPlayer.pause();
+    if (isPlaying) { return TrackPlayer.pause(); }
 
     // Check if the voice is already downloaded
     // If so, we can just play that locally downloaded voice preview
-    const downloadedVoice = downloadedVoices.find(downloadedVoice => downloadedVoice.id === voice.id);
+    const foundDownloadedVoice = downloadedVoices.find(downloadedVoice => downloadedVoice.id === voice.id);
 
     // If we have a downloaded voice preview, just play it
-    if (downloadedVoice && downloadedVoice.exampleAudioUrl) {
-      const localFilePath = await cache.getLocalFilePath(downloadedVoice.exampleAudioUrl, LOCAL_CACHE_VOICE_PREVIEWS_PATH);
+    if (foundDownloadedVoice && foundDownloadedVoice.exampleAudioUrl) {
+      const localFilePath = await cache.getLocalFilePath(foundDownloadedVoice.exampleAudioUrl, LOCAL_CACHE_VOICE_PREVIEWS_PATH);
       return this.playVoicePreview(title, localFilePath, label, voice);
     }
 
     // If we have no voice preview downloaded yet, download it
-    if (!downloadedVoice) return this.fetchVoicePreview(title, label, voice);
+    if (!foundDownloadedVoice) { return this.fetchVoicePreview(title, label, voice); }
   }
 
-  playVoicePreview = (title: string, localFilePath: string, label: string, voice: Api.Voice) => {
+  public playVoicePreview = (title: string, localFilePath: string, label: string, voice: Api.Voice) => {
     // Only add the track to the player when it's not in there yet
     if (!this.isVoiceActiveInPlayer(voice.id)) {
       this.props.setTrack(
@@ -166,7 +167,7 @@ export class VoiceSelectContainerComponent extends React.PureComponent<Props, St
     return TrackPlayer.play();
   }
 
-  fetchVoicePreview = (title: string, label: string, voice: Api.Voice) => {
+  public fetchVoicePreview = (title: string, label: string, voice: Api.Voice) => {
     const { isConnected } = this.context;
     const exampleAudioUrl = voice && voice.exampleAudioUrl;
 
@@ -205,22 +206,22 @@ export class VoiceSelectContainerComponent extends React.PureComponent<Props, St
           }
         ]);
       } finally {
-        return this.setState({ isLoadingPreviewVoiceId: '' });
+        this.setState({ isLoadingPreviewVoiceId: '' });
       }
     });
   }
 
-  isVoicePlayingInPlayer = (voiceId: string) => {
+  public isVoicePlayingInPlayer = (voiceId: string) => {
     const { playbackState } = this.props;
     return playbackState === 'playing' && this.isVoiceActiveInPlayer(voiceId);
   }
 
-  isVoiceActiveInPlayer = (voiceId: string) => {
+  public isVoiceActiveInPlayer = (voiceId: string) => {
     const { playerTrack } = this.props;
     return playerTrack && playerTrack.id === voiceId;
   }
 
-  isSelected = (item: Api.Voice) => {
+  public isSelected = (item: Api.Voice) => {
     // const { isLoadingSaveSelectedVoiceId } = this.state;
     const { defaultVoiceByLanguageName, userSelectedVoiceByLanguageName } = this.props;
     const isDefaultSelected = defaultVoiceByLanguageName ? defaultVoiceByLanguageName.id === item.id : false;
@@ -250,7 +251,7 @@ export class VoiceSelectContainerComponent extends React.PureComponent<Props, St
     return isSelected;
   }
 
-  getBadgeValue(isPremium: boolean, isHighestQuality: boolean) {
+  public getBadgeValue(isPremium: boolean, isHighestQuality: boolean) {
     if (isPremium && isHighestQuality) {
       return 'Premium (HQ)';
     }
@@ -262,7 +263,7 @@ export class VoiceSelectContainerComponent extends React.PureComponent<Props, St
     return 'Free';
   }
 
-  render() {
+  public render() {
     const { availableVoicesByLanguageName } = this.props;
     const { isLoadingSaveSelectedVoiceId, isLoadingPreviewVoiceId } = this.state;
 
@@ -293,7 +294,7 @@ export class VoiceSelectContainerComponent extends React.PureComponent<Props, St
           const subtitle = `${defaultLabel}${gender} (${voice.countryCode})`;
 
           const label = voice.label ? voice.label : 'Unknown';
-          // const badgeStatus = (voice.isPremium) ? 'warning' : 'primary';
+          const rightIconColor = voice.isPremium ? colors.orange : undefined;
 
           return {
             title,
@@ -313,7 +314,8 @@ export class VoiceSelectContainerComponent extends React.PureComponent<Props, St
             value: badgeValue,
             chevron: false,
             isLoading: isLoadingSaveSelected,
-            checkmark: true
+            checkmark: true,
+            rightIconColor
           };
         })
       }

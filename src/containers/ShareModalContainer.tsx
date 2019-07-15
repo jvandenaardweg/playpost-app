@@ -6,8 +6,8 @@ import { addArticleToPlaylistByUrl } from '../reducers/playlist';
 
 import { selectPlaylistError } from '../selectors/playlist';
 
-import { RootState } from '../reducers';
 import { ShareModal } from '../components/ShareModal';
+import { RootState } from '../reducers';
 
 interface State {
   errorMessage: string;
@@ -26,15 +26,15 @@ interface IProps {
 type Props = IProps & StateProps & DispatchProps;
 
 export class ShareModalContainerComponent extends React.PureComponent<Props, State> {
-  state = {
+  public state = {
     errorMessage: '',
     isSuccess: false,
     isLoading: true // Start in loading state
   };
 
-  timeout: NodeJS.Timeout | null = null;
+  public timeout: NodeJS.Timeout | null = null;
 
-  componentDidMount() {
+  public componentDidMount() {
     const { url, documentHtml } = this.props;
 
     // If we did not receive a URL, error
@@ -56,14 +56,14 @@ export class ShareModalContainerComponent extends React.PureComponent<Props, Sta
     this.addArticleToPlaylist(url, documentHtml);
   }
 
-  componentWillUnmount() {
+  public componentWillUnmount() {
     if (this.timeout) {
       clearTimeout(this.timeout);
       this.timeout = null;
     }
   }
 
-  componentDidUpdate(prevProps: Props) {
+  public componentDidUpdate(prevProps: Props) {
     const { playlistError } = this.props;
 
     // When a new API error happens, we show a message to the user
@@ -76,7 +76,7 @@ export class ShareModalContainerComponent extends React.PureComponent<Props, Sta
     }
   }
 
-  addArticleToPlaylist = async (url: string, documentHtml?: string) => {
+  public addArticleToPlaylist = async (url: string, documentHtml?: string) => {
     try {
       // Do the API call to add the URL to the user's playlist
       await this.props.addArticleToPlaylistByUrl(url, documentHtml);
@@ -86,16 +86,16 @@ export class ShareModalContainerComponent extends React.PureComponent<Props, Sta
       // Automatically close the modal after X seconds
       this.timeout = setTimeout(() => this.props.onPressClose(), 2500);
     } catch (err) {
-      console.log(err);
-
       this.setState({
         isLoading: false,
         isSuccess: false
       });
+
+      return err;
     }
   }
 
-  render() {
+  public render() {
     const { onPressClose } = this.props;
     const { isLoading, errorMessage, isSuccess } = this.state;
 

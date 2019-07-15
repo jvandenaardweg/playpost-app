@@ -1,14 +1,14 @@
 import React from 'react';
-import { View, TextInput, KeyboardAvoidingView } from 'react-native';
+import { KeyboardAvoidingView, TextInput, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import styles from './styles';
 
 interface Props {
-  onChangeText(field: string, text: string): void;
-  onPressUpdateEmail(): void;
   email: string;
   isLoading: boolean;
   isSuccess: boolean;
+  onChangeText(field: string, text: string): void;
+  onPressUpdateEmail(): void;
 }
 
 export const UpdateEmailForm: React.FC<Props> = React.memo(({ onChangeText, onPressUpdateEmail, email, isLoading, isSuccess }) => (

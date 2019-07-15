@@ -19,6 +19,7 @@ export interface ListItem {
   isSelected?: boolean;
   isLoading?: boolean;
   leftIcon?: React.ComponentType<any> | React.ReactElement;
+  rightIconColor?: string;
   onPress?(): void;
 }
 
@@ -77,7 +78,7 @@ export const CustomSectionList: React.FC<Props> = ({ sectionListData, ListHeader
               item.isLoading ? (
                 <ActivityIndicator />
               ) : item.value ? (
-                <Text style={[styles.rightIconText, item.isSelected ? { color: 'rgba(255, 255, 255, 0.5)' } : undefined]}>{item.value}</Text>
+                <Text style={[styles.rightIconText, item.isSelected ? { color: 'rgba(255, 255, 255, 0.5)' } : undefined, item.rightIconColor ? { color: item.rightIconColor } : undefined]}>{item.value}</Text>
               ) : (
                 undefined
               )

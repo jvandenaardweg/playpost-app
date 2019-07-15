@@ -2,9 +2,9 @@ import React from 'react';
 import { ActivityIndicator, TouchableOpacity, View } from 'react-native';
 import * as Icon from '../Icon';
 
-import styles from './styles';
 import { defaultHitslop } from '../../constants/buttons';
 import colors from '../../constants/colors';
+import styles from './styles';
 
 interface IProps {
   size?: number;
@@ -49,7 +49,7 @@ export const PlayPauseControlCircle: React.FC<Props> = React.memo(({ isPlaying, 
 });
 
 export const PlayPauseIcon: React.FC<PlayPauseIconProps> = React.memo(({ isPlaying, isLoading, size, color }) => {
-  if (isLoading) return <ActivityIndicator />;
-  if (isPlaying) return <Icon.FontAwesome5 name="pause" color={color ? color : colors.white} size={size ? size : 16} />;
+  if (isLoading) { return <ActivityIndicator />; }
+  if (isPlaying) { return <Icon.FontAwesome5 name="pause" color={color ? color : colors.white} size={size ? size : 16} />; }
   return <Icon.FontAwesome5 name="play" color={color ? color : colors.white} size={size ? size : 16} style={{ marginLeft: 3 }} />;
 });

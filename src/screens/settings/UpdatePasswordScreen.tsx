@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert } from 'react-native';
+import { NavigationInjectedProps, NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
 import { connect } from 'react-redux';
-import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions, NavigationInjectedProps } from 'react-navigation';
 
 import { ALERT_GENERIC_INTERNET_REQUIRED } from '../../constants/messages';
 
@@ -22,22 +22,22 @@ interface State {
   validationError: string;
 }
 
-interface IProps extends NavigationInjectedProps {}
-
 interface StateProps {
   userError: string;
 }
 
-type Props = IProps & StateProps & DispatchProps;
+type Props = NavigationInjectedProps & StateProps & DispatchProps;
 
 export class UpdatePasswordScreenContainer extends React.PureComponent<Props, State> {
-  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+
+  public static contextType = NetworkContext;
+  public static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: 'Change password'
     };
   }
 
-  state = {
+  public state = {
     isLoading: false,
     isSuccess: false,
     password: '',
@@ -45,11 +45,9 @@ export class UpdatePasswordScreenContainer extends React.PureComponent<Props, St
     validationError: '',
   };
 
-  navigationTimeout: NodeJS.Timeout | null = null;
+  public navigationTimeout: NodeJS.Timeout | null = null;
 
-  static contextType = NetworkContext;
-
-  componentDidUpdate(prevProps: Props) {
+  public componentDidUpdate(prevProps: Props) {
     const { userError } = this.props;
 
     if (userError && prevProps.userError !== userError) {
@@ -57,20 +55,20 @@ export class UpdatePasswordScreenContainer extends React.PureComponent<Props, St
     }
   }
 
-  componentWillUnmount() {
+  public componentWillUnmount() {
     if (this.navigationTimeout) {
       clearTimeout(this.navigationTimeout);
     }
   }
 
-  handleOnPressUpdatePassword = async () => {
+  public handleOnPressUpdatePassword = async () => {
     const { password, passwordValidation, isSuccess } = this.state;
     const { isConnected } = this.context;
 
-    if (!isConnected) return Alert.alert('Oops!', ALERT_GENERIC_INTERNET_REQUIRED);
+    if (!isConnected) { return Alert.alert('Oops!', ALERT_GENERIC_INTERNET_REQUIRED); }
 
     // Just navigate back to the settings screen
-    if (isSuccess) return this.props.navigation.navigate('Settings');
+    if (isSuccess) { return this.props.navigation.navigate('Settings'); }
 
     if (password !== passwordValidation) {
       return Alert.alert('Oops!', 'The given passwords do not match. Please make sure you typed your passwords correctly.');
@@ -90,12 +88,12 @@ export class UpdatePasswordScreenContainer extends React.PureComponent<Props, St
     });
   }
 
-  handleOnChangeText = (field: 'password' | 'passwordValidation', value: string) => {
-    if (field === 'password') this.setState({ password: value });
-    if (field === 'passwordValidation') this.setState({ passwordValidation: value });
+  public handleOnChangeText = (field: 'password' | 'passwordValidation', value: string) => {
+    if (field === 'password') { this.setState({ password: value }); }
+    if (field === 'passwordValidation') { this.setState({ passwordValidation: value }); }
   }
 
-  render() {
+  public render() {
     const { password, passwordValidation, isLoading, isSuccess } = this.state;
 
     return (

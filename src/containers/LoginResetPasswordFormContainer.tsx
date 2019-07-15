@@ -1,12 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
+import { connect } from 'react-redux';
 
 import { postUpdatePassword } from '../reducers/auth';
 
-import { selectErrorRequestResetPasswordToken } from '../selectors/auth';
-import { RootState } from '../reducers';
 import { LoginResetPasswordForm } from '../components/LoginResetPasswordForm';
+import { RootState } from '../reducers';
+import { selectErrorRequestResetPasswordToken } from '../selectors/auth';
 
 /* tslint:disable no-any */
 interface State {
@@ -17,12 +17,10 @@ interface State {
   error: any;
 }
 
-interface IProps extends NavigationInjectedProps {}
-
-type Props = IProps & StateProps & DispatchProps;
+type Props = NavigationInjectedProps & StateProps & DispatchProps;
 
 class LoginResetPasswordFormContainerComponent extends React.PureComponent<Props, State> {
-  state = {
+  public state = {
     isLoading: false,
     isSuccess: null,
     password: '',
@@ -30,42 +28,42 @@ class LoginResetPasswordFormContainerComponent extends React.PureComponent<Props
     error: null
   };
 
-  timeout: NodeJS.Timeout | null = null;
+  public timeout: NodeJS.Timeout | null = null;
 
-  componentDidMount() {
+  public componentDidMount() {
     this.props.navigation.setParams({ handleOnClose: this.handleOnClose });
 
     this.setResetPasswordTokenFromNavigationParams();
   }
 
-  componentWillUnmount() {
+  public componentWillUnmount() {
     if (this.timeout) {
       clearTimeout(this.timeout);
       this.timeout = null;
     }
   }
 
-  componentDidUpdate(prevProps: Props) {
+  public componentDidUpdate(prevProps: Props) {
     const { resetPasswordToken } = this.state;
 
-    if (!resetPasswordToken) this.setResetPasswordTokenFromNavigationParams();
+    if (!resetPasswordToken) { this.setResetPasswordTokenFromNavigationParams(); }
   }
 
-  setResetPasswordTokenFromNavigationParams = () => {
+  public setResetPasswordTokenFromNavigationParams = () => {
     const resetPasswordToken = this.props.navigation.getParam('resetPasswordToken', '');
     this.setState({ resetPasswordToken });
   }
 
-  handleOnClose = () => {
+  public handleOnClose = () => {
     this.props.navigation.goBack();
   }
 
-  handleOnChangeText = (field: 'password' | 'resetPasswordToken', value: string) => {
-    if (field === 'password') this.setState({ password: value });
-    if (field === 'resetPasswordToken') this.setState({ resetPasswordToken: value });
+  public handleOnChangeText = (field: 'password' | 'resetPasswordToken', value: string) => {
+    if (field === 'password') { this.setState({ password: value }); }
+    if (field === 'resetPasswordToken') { this.setState({ resetPasswordToken: value }); }
   }
 
-  handleOnPressUpdatePassword = () => {
+  public handleOnPressUpdatePassword = () => {
     const { password, resetPasswordToken } = this.state;
 
     return this.setState({ isLoading: true }, async () => {
@@ -79,14 +77,14 @@ class LoginResetPasswordFormContainerComponent extends React.PureComponent<Props
         }, 2000);
 
       } catch (err) {
-        console.log('Err', err);
+        return err;
       } finally {
         this.setState({ isLoading: false });
       }
     });
   }
 
-  render() {
+  public render() {
     const { password, isLoading, isSuccess, resetPasswordToken } = this.state;
 
     return (

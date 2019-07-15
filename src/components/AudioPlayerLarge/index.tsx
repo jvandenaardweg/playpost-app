@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 
-import * as Icon from '../Icon';
-import { AudioPlayerProgressBar } from '../AudioPlayerProgressBar';
-import { PlayPauseControlCircle } from '../PlayPauseControl';
 import { ArticleReader } from '../ArticleReader';
+import { AudioPlayerProgressBar } from '../AudioPlayerProgressBar';
+import * as Icon from '../Icon';
+import { PlayPauseControlCircle } from '../PlayPauseControl';
 
 import { defaultHitslop } from '../../constants/buttons';
 import colors from '../../constants/colors';

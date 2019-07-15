@@ -1,15 +1,15 @@
 import React from 'react';
-import { View, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { KeyboardAvoidingView, ScrollView, TextInput, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import styles from './styles';
 
 interface Props {
-  onChangeText(field: string, text: string): void;
-  onPressResetPassword(): void;
-  onPressResetPasswordCode(): void;
   email: string;
   isLoading: boolean;
   isSuccess: boolean | null;
+  onChangeText(field: string, text: string): void;
+  onPressResetPassword(): void;
+  onPressResetPasswordCode(): void;
 }
 
 export const LoginForgotPasswordForm: React.FC<Props> = React.memo(

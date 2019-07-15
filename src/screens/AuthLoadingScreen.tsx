@@ -1,9 +1,9 @@
+import AsyncStorage from '@react-native-community/async-storage';
+import NetInfo from '@react-native-community/netinfo';
 import React from 'react';
 import RNFS from 'react-native-fs';
 import * as Keychain from 'react-native-keychain';
-import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
-import NetInfo from '@react-native-community/netinfo';
-import AsyncStorage from '@react-native-community/async-storage';
+import { NavigationRoute, NavigationScreenProp } from 'react-navigation';
 
 import { persistor } from '../store';
 
@@ -21,12 +21,12 @@ interface Props {
 }
 
 export class AuthLoadingScreen extends React.PureComponent<Props> {
-  componentDidMount() {
+  public componentDidMount() {
     this.bootstrapAsync();
   }
 
   // Upon load of the app, do the following...
-  bootstrapAsync = async () => {
+  public bootstrapAsync = async () => {
 
     // Determine if this is the first run after install
     // If so, delete any API token we had from a previous install
@@ -76,7 +76,7 @@ export class AuthLoadingScreen extends React.PureComponent<Props> {
   }
 
   // Render any loading content that you like here
-  render() {
+  public render() {
     return null;
   }
 }

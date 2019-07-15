@@ -1,24 +1,24 @@
 import React from 'react';
+import isEqual from 'react-fast-compare';
 import { Alert } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
+import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
-import { withNavigation, NavigationInjectedProps } from 'react-navigation';
-import isEqual from 'react-fast-compare';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH } from '../constants/files';
 import {
-  ALERT_PLAYLIST_UNFAVORITE_ARTICLE_FAIL,
-  ALERT_PLAYLIST_UNARCHIVE_ARTICLE_FAIL,
-  ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL,
-  ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL,
-  ALERT_ARTICLE_PLAY_INTERNET_REQUIRED,
   ALERT_ARTICLE_AUDIOFILE_DOWNLOAD_FAIL,
-  ALERT_ARTICLE_PLAY_FAIL,
   ALERT_ARTICLE_DOWNLOAD_FAIL,
-  ALERT_PLAYLIST_UPDATE_FAIL,
-  ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL,
   ALERT_ARTICLE_LANGUAGE_UNSUPPORTED,
-  ALERT_ARTICLE_PLAY_DOWNLOAD_FAIL
+  ALERT_ARTICLE_PLAY_DOWNLOAD_FAIL,
+  ALERT_ARTICLE_PLAY_FAIL,
+  ALERT_ARTICLE_PLAY_INTERNET_REQUIRED,
+  ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL,
+  ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL,
+  ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL,
+  ALERT_PLAYLIST_UNARCHIVE_ARTICLE_FAIL,
+  ALERT_PLAYLIST_UNFAVORITE_ARTICLE_FAIL,
+  ALERT_PLAYLIST_UPDATE_FAIL
 } from '../constants/messages';
 
 import * as cache from '../cache';
@@ -26,35 +26,35 @@ import * as cache from '../cache';
 import { NetworkContext } from '../contexts/NetworkProvider';
 
 import { Article } from '../components/Article';
+import { ArticleEmptyFailed, ArticleEmptyNew, ArticleEmptyProcessing } from '../components/ArticleEmpty';
 import { SwipeableRow } from '../components/SwipeableRow';
-import { ArticleEmptyProcessing, ArticleEmptyFailed, ArticleEmptyNew } from '../components/ArticleEmpty';
 
 import { RootState } from '../reducers';
+import { setDownloadedAudiofile } from '../reducers/audiofiles';
 import {
-  getPlaylist,
-  removeArticleFromPlaylist,
+  createAudiofile,
+  resetIsCreatingAudiofile,
+  resetIsDownloadingAudiofile,
+  resetPlaybackStatus,
+  setIsCreatingAudiofile,
+  setIsDownloadingAudiofile,
+  setTrack
+} from '../reducers/player';
+import {
   archivePlaylistItem,
   favoritePlaylistItem,
+  getPlaylist,
+  removeArticleFromPlaylist,
   unArchivePlaylistItem,
   unFavoritePlaylistItem
 } from '../reducers/playlist';
-import {
-  setTrack,
-  createAudiofile,
-  resetPlaybackStatus,
-  setIsCreatingAudiofile,
-  resetIsCreatingAudiofile,
-  setIsDownloadingAudiofile,
-  resetIsDownloadingAudiofile
-} from '../reducers/player';
-import { setDownloadedAudiofile } from '../reducers/audiofiles';
 
-import { selectPlayerTrack, selectPlayerPlaybackState, selectPlayerArticleId } from '../selectors/player';
+import { getUser } from '../reducers/user';
+import { selectIsDownloadedAudiofilesByArticleAudiofiles } from '../selectors/audiofiles';
+import { selectPlayerArticleId, selectPlayerPlaybackState, selectPlayerTrack } from '../selectors/player';
 import { selectIsSubscribed } from '../selectors/subscriptions';
 import { selectUserSelectedVoiceByLanguageName } from '../selectors/user';
-import { selectIsDownloadedAudiofilesByArticleAudiofiles } from '../selectors/audiofiles';
-import { selectLanguagesWithActiveVoices, selectDefaultVoiceByLanguageName } from '../selectors/voices';
-import { getUser } from '../reducers/user';
+import { selectDefaultVoiceByLanguageName, selectLanguagesWithActiveVoices } from '../selectors/voices';
 
 interface State {
   isLoading: boolean;
@@ -70,8 +70,8 @@ interface IProps extends NavigationInjectedProps {
   isFavorited: boolean;
   isArchived: boolean;
   isMoving: boolean;
-  onLongPress(): void;
-  onPressOut(): void;
+  onLongPress?(): void;
+  onPressOut?(): void;
 }
 
 const initialState = {
@@ -85,11 +85,23 @@ const initialState = {
 type Props = IProps & StateProps & DispatchProps;
 
 export class ArticleContainerComponent extends React.PureComponent<Props, State> {
-  state = initialState;
 
-  static contextType = NetworkContext;
+  get audiofileToUse(): Api.Audiofile | undefined {
+    const { isSubscribed, article } = this.props;
+    const audiofile = isSubscribed ? this.getAudiofileByUserSelectedVoice() : article.audiofiles[0];
+    return audiofile;
+  }
 
-  componentDidUpdate(prevProps: Props, prevState: State) {
+  get listenTimeInSeconds(): number {
+    const { article } = this.props;
+    // Just get the listen time of the first audiofile, for now
+    return article.audiofiles[0] && article.audiofiles[0].length ? article.audiofiles[0].length : 0;
+  }
+
+  public static contextType = NetworkContext;
+  public state = initialState;
+
+  public componentDidUpdate(prevProps: Props, prevState: State) {
     const { playbackState, playerArticleId, article } = this.props;
     const { isLoading, isCreatingAudiofile, isDownloadingAudiofile } = this.state;
 
@@ -119,7 +131,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
   /**
    * Find the audiofile in this article using the user's selected voice
    */
-  getAudiofileByUserSelectedVoice(): Api.Audiofile | undefined {
+  public getAudiofileByUserSelectedVoice(): Api.Audiofile | undefined {
     const { article, userSelectedVoiceByLanguageName, defaultVoiceByLanguageName } = this.props;
 
     // If the user has no custom selected voice, return the audiofile of the default voice for this language
@@ -132,25 +144,19 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     return userSelectedVoiceByLanguageName && article.audiofiles.find(audiofile => audiofile.voice.id === userSelectedVoiceByLanguageName.id);
   }
 
-  get audiofileToUse(): Api.Audiofile | undefined {
-    const { isSubscribed, article } = this.props;
-    const audiofile = isSubscribed ? this.getAudiofileByUserSelectedVoice() : article.audiofiles[0];
-    return audiofile;
-  }
-
   /**
    * When a user tabs on the play button we:
    * 1. Play the audiofile if it's present
    * 2. Create an audiofile when there's none present
    * 3. Toggle play/pause
    */
-  handleOnPlayPress = async (): Promise<void> => {
+  public handleOnPlayPress = async (): Promise<void> => {
     const { isPlaying } = this.state;
     const { article, isSubscribed, playerArticleId } = this.props;
     const { isConnected } = this.context;
 
     // Toggle play/pause
-    if (isPlaying) return TrackPlayer.pause();
+    if (isPlaying) { return TrackPlayer.pause(); }
 
     // If there are no audiofiles and when there's no internet connection
     // Show the user he needs an active internet connection to listen to articles
@@ -160,7 +166,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
 
     // If we don't have an audiofile yet, we create it first
     // Which voice to use for this user is determined on the API
-    if (!article.audiofiles.length) return this.handleCreateAudiofile();
+    if (!article.audiofiles.length) { return this.handleCreateAudiofile(); }
 
     // When we end up here, it means the article already has an audiofile
 
@@ -170,17 +176,17 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     }
 
     // If the user is on a free account, check if available audiofile uses different voice. Show alert if it does.
-    if (!isSubscribed) this.alertIfDifferentSelectedVoice();
+    if (!isSubscribed) { this.alertIfDifferentSelectedVoice(); }
 
     // Only set a new track when it's a different one
     // handleSetTrack will also handle the download of the audio
-    if (playerArticleId !== article.id) return this.handleSetTrack();
+    if (playerArticleId !== article.id) { return this.handleSetTrack(); }
 
     // If we end up here, it means the audio is already in the player, we just play it then
     return TrackPlayer.play();
   }
 
-  handleCreateAudiofile = async (): Promise<void> => {
+  public handleCreateAudiofile = async (): Promise<void> => {
     const { article, languagesWithActiveVoices, userSelectedVoiceByLanguageName, isSubscribed } = this.props;
 
     // If the selected voice of the user, is a Premium voice, but the user has no Premium account active
@@ -242,13 +248,13 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
           return this.setState({ isLoading: false, isActive: false });
         } finally {
           this.props.resetIsCreatingAudiofile();
-          return this.setState({ isCreatingAudiofile: false });
+          this.setState({ isCreatingAudiofile: false });
         }
       }
     );
   }
 
-  alertIfDifferentSelectedVoice = (): void => {
+  public alertIfDifferentSelectedVoice = (): void => {
     const { article, playerArticleId } = this.props;
 
     const audiofileWithUsersSelectedVoice = this.getAudiofileByUserSelectedVoice();
@@ -276,7 +282,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  downloadAudiofile = async (url: string, audiofileId: string, filename: string): Promise<string | void> => {
+  public downloadAudiofile = async (url: string, audiofileId: string, filename: string): Promise<string | void> => {
     return new Promise((resolve, reject) => {
       return this.setState({ isActive: true, isLoading: true, isDownloadingAudiofile: true }, async () => {
         try {
@@ -306,7 +312,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     });
   }
 
-  handleSetTrack = async (): Promise<void> => {
+  public handleSetTrack = async (): Promise<void> => {
     const { isConnected } = this.context;
     const { article, isDownloaded } = this.props;
 
@@ -317,7 +323,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
 
     const audiofile = this.audiofileToUse ? this.audiofileToUse : null;
 
-    if (!audiofile) return Alert.alert('Err', 'no audio');
+    if (!audiofile) { return Alert.alert('Err', 'no audio'); }
 
     if (!isDownloaded && !isConnected) {
       return Alert.alert('No internet', ALERT_ARTICLE_PLAY_INTERNET_REQUIRED);
@@ -374,7 +380,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     });
   }
 
-  fetchPlaylist = async (): Promise<void> => {
+  public fetchPlaylist = async (): Promise<void> => {
     try {
       await this.props.getPlaylist();
     } catch (err) {
@@ -391,7 +397,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  handleRemoveArticle = async (): Promise<void> => {
+  public handleRemoveArticle = async (): Promise<void> => {
     const articleId = this.props.article.id;
 
     try {
@@ -411,7 +417,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  handleArchiveArticle = async (): Promise<void> => {
+  public handleArchiveArticle = async (): Promise<void> => {
     const articleId = this.props.article.id;
 
     try {
@@ -431,7 +437,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  handleFavoriteArticle = async (): Promise<void> => {
+  public handleFavoriteArticle = async (): Promise<void> => {
     const articleId = this.props.article.id;
 
     try {
@@ -451,7 +457,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  handleUnFavoriteArticle = async (): Promise<void> => {
+  public handleUnFavoriteArticle = async (): Promise<void> => {
     const articleId = this.props.article.id;
 
     try {
@@ -471,7 +477,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  handleUnArchiveArticle = async (): Promise<void> => {
+  public handleUnArchiveArticle = async (): Promise<void> => {
     const articleId = this.props.article.id;
 
     try {
@@ -491,19 +497,13 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  get listenTimeInSeconds(): number {
-    const { article } = this.props;
-    // Just get the listen time of the first audiofile, for now
-    return article.audiofiles[0] && article.audiofiles[0].length ? article.audiofiles[0].length : 0;
-  }
-
-  handleOnOpenUrl = (url: string) => {
+  public handleOnOpenUrl = (url: string) => {
     const { article } = this.props;
 
     return this.props.navigation.navigate('FullArticle', { article });
   }
 
-  handleOnPressUpdate = (): void => {
+  public handleOnPressUpdate = (): void => {
     this.setState({ isLoading: true }, async () => {
       try {
         await this.fetchPlaylist();
@@ -513,7 +513,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     });
   }
 
-  render() {
+  public render() {
     const { isCreatingAudiofile, isDownloadingAudiofile, isLoading, isPlaying, isActive } = this.state;
     const { article, isDownloaded, isFavorited, isArchived, isMoving, onLongPress, onPressOut, playlistItem } = this.props;
 

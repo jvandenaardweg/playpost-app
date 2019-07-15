@@ -4,13 +4,13 @@ import { NavigationStackScreenOptions } from 'react-navigation';
 import { SignupFormContainer } from '../../containers/SignupFormContainer';
 
 export class SignupScreen extends React.PureComponent {
-  static navigationOptions = (): NavigationStackScreenOptions => {
+  public static navigationOptions = (): NavigationStackScreenOptions => {
     return {
       title: 'Signup'
     };
   }
 
-  render() {
+  public render() {
     return (
       <SignupFormContainer />
     );

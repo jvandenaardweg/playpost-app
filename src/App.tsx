@@ -1,35 +1,37 @@
+import Analytics from 'appcenter-analytics';
 import React from 'react';
-import { Platform, NativeModules, Linking } from 'react-native';
+import { Alert, Linking, NativeModules, Platform } from 'react-native';
+import DeepLinking from 'react-native-deep-linking';
 import { ThemeProvider } from 'react-native-elements';
 import { Provider } from 'react-redux';
-import Analytics from 'appcenter-analytics';
+// tslint:disable-next-line:no-submodule-imports
 import { PersistGate } from 'redux-persist/integration/react';
-import DeepLinking from 'react-native-deep-linking';
 
-import { store, persistor } from './store';
+import { persistor, store } from './store';
 import { reactNativeElementsTheme } from './theme';
 
-import { AppNavigator } from './navigation/AppNavigator';
-import { NetworkProvider } from './contexts/NetworkProvider';
-import { AppStateProvider } from './contexts/AppStateProvider';
 import { APIErrorAlertContainer } from './containers/APIErrorAlertContainer';
+import { AppStateProvider } from './contexts/AppStateProvider';
+import { NetworkProvider } from './contexts/NetworkProvider';
+import { AppNavigator } from './navigation/AppNavigator';
 import NavigationService from './navigation/NavigationService';
 
 // import { whyDidYouUpdate } from 'why-did-you-update';
 // whyDidYouUpdate(React, { exclude: /^YellowBox|Icon|Swipeable/ });
 
+// tslint:disable-next-line:no-console
 console.disableYellowBox = true;
 
 async function setAnalytics(dev: boolean) {
-  if (dev) return;
+  if (dev) { return; }
 
   await Analytics.setEnabled(true);
 }
 
 function setRemoteDebugging(dev: boolean) {
-  if (Platform.OS !== 'ios') return;
+  if (Platform.OS !== 'ios') { return; }
 
-  if (!dev) return;
+  if (!dev) { return; }
 
   NativeModules.DevSettings.setIsDebuggingRemotely(true);
 }
@@ -40,7 +42,7 @@ setRemoteDebugging(__DEV__);
 // Important: Keep this App a Class component
 // Using a Functional Component as the root component breaks Hot Reloading (on a local device)
 export default class App extends React.PureComponent {
-  componentDidMount() {
+  public async componentDidMount() {
     Linking.addEventListener('url', this.handleUrl);
 
     DeepLinking.addScheme('playpost://');
@@ -48,7 +50,6 @@ export default class App extends React.PureComponent {
 
     DeepLinking.addRoute('/login/reset-password/:resetPasswordToken', ({ path, resetPasswordToken }: { path: string; resetPasswordToken: string }) => {
       // playpost://update-password/123ABC
-      console.log('Should navigate to: ', path, ' with resetPasswordToken: ', resetPasswordToken);
       NavigationService.navigate('login/reset-password', { resetPasswordToken });
     });
 
@@ -56,33 +57,27 @@ export default class App extends React.PureComponent {
       '/playpost.app/login/reset-password/:resetPasswordToken',
       ({ path, resetPasswordToken }: { path: string; resetPasswordToken: string }) => {
         // playpost://update-password/123ABC
-        console.log('http Should navigate to: ', path, ' with resetPasswordToken: ', resetPasswordToken);
         NavigationService.navigate('login/reset-password', { resetPasswordToken });
       }
     );
 
-    Linking.getInitialURL()
-      .then(url => {
-        if (url) {
-          Linking.openURL(url);
-        }
-      })
-      .catch(err => console.error('An error occurred on linking', err));
+    try {
+      const url = await Linking.getInitialURL();
+
+      if (url) {
+        Linking.openURL(url);
+      }
+    } catch (err) {
+      const errorMessage = (err && err.message) ? err.message : 'An uknown error happened while opening a URL.';
+      Alert.alert('Oops!', errorMessage);
+    }
   }
 
-  componentWillUnmount() {
+  public componentWillUnmount() {
     Linking.removeEventListener('url', this.handleUrl);
   }
 
-  handleUrl = ({ url }: { url: string }) => {
-    Linking.canOpenURL(url).then(supported => {
-      if (supported) {
-        DeepLinking.evaluateUrl(url);
-      }
-    });
-  }
-
-  render() {
+  public render() {
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
@@ -103,5 +98,13 @@ export default class App extends React.PureComponent {
         </PersistGate>
       </Provider>
     );
+  }
+
+  private handleUrl = ({ url }: { url: string }) => {
+    Linking.canOpenURL(url).then(supported => {
+      if (supported) {
+        DeepLinking.evaluateUrl(url);
+      }
+    });
   }
 }

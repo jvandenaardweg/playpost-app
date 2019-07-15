@@ -4,13 +4,13 @@ import { NavigationStackScreenOptions } from 'react-navigation';
 import { LoginFormContainer } from '../../containers/LoginFormContainer';
 
 export class LoginScreen extends React.PureComponent {
-  static navigationOptions = (): NavigationStackScreenOptions => {
+  public static navigationOptions = (): NavigationStackScreenOptions => {
     return {
       title: 'Login'
     };
   }
 
-  render() {
+  public render() {
     return (
       <LoginFormContainer />
     );

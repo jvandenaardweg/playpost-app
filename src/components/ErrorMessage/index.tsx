@@ -1,13 +1,13 @@
 import React from 'react';
-import { TouchableOpacity, View, Text } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 
 import * as Icon from '../Icon';
 
 import styles from './styles';
 
 interface Props {
-  onPressClose(): void;
   errorMessages: string;
+  onPressClose(): void;
 }
 
 export const ErrorMessage: React.FC<Props> = React.memo(({

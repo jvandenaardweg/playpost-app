@@ -1,15 +1,15 @@
 import React from 'react';
-import { View, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { KeyboardAvoidingView, ScrollView, TextInput, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import styles from './styles';
 
 interface Props {
-  onChangeText(field: string, text: string): void;
-  onPressLogin(): void;
-  onPressForgotPassword(): void;
   email: string;
   password: string;
   isLoading: boolean;
+  onChangeText(field: string, text: string): void;
+  onPressLogin(): void;
+  onPressForgotPassword(): void;
 }
 
 export const LoginForm: React.FC<Props> = React.memo(({ email, password, isLoading, onChangeText, onPressLogin, onPressForgotPassword }) => {
@@ -25,9 +25,7 @@ export const LoginForm: React.FC<Props> = React.memo(({ email, password, isLoadi
           value={email}
           onChangeText={text => onChangeText('email', text)}
           textContentType="username"
-          onSubmitEditing={() => {
-            passwordInput && passwordInput.focus();
-          }}
+          onSubmitEditing={() => passwordInput && passwordInput.focus()}
           editable={!isLoading}
           style={styles.textField}
           keyboardType="email-address"

@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
+import { NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
 import { LoginResetPasswordFormContainer } from '../../containers/LoginResetPasswordFormContainer';
 
 interface Props {
@@ -7,14 +7,14 @@ interface Props {
 }
 
 export class LoginResetPasswordScreen extends React.PureComponent<Props> {
-  static navigationOptions = (): NavigationStackScreenOptions => {
+  public static navigationOptions = (): NavigationStackScreenOptions => {
     return {
       title: 'Reset your password',
       // header: null
     };
   }
 
-  render() {
+  public render() {
     return (
       <LoginResetPasswordFormContainer />
     );

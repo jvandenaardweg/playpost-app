@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Linking, ActivityIndicator } from 'react-native';
+import { ActivityIndicator, Linking, Text, View } from 'react-native';
 import urlParse from 'url-parse';
 
 import colors from '../../constants/colors';

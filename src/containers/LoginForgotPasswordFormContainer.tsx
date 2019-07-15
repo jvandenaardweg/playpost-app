@@ -1,12 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
+import { connect } from 'react-redux';
 
 import { postRequestResetPasswordToken } from '../reducers/auth';
 
-import { selectErrorRequestResetPasswordToken } from '../selectors/auth';
-import { RootState } from '../reducers';
 import { LoginForgotPasswordForm } from '../components/LoginForgotPasswordForm';
+import { RootState } from '../reducers';
+import { selectErrorRequestResetPasswordToken } from '../selectors/auth';
 
 /* tslint:disable no-any */
 interface State {
@@ -16,23 +16,21 @@ interface State {
   error: any;
 }
 
-interface IProps extends NavigationInjectedProps {}
-
-type Props = IProps & StateProps & DispatchProps;
+type Props = NavigationInjectedProps & StateProps & DispatchProps;
 
 class LoginForgotPasswordFormContainerComponent extends React.PureComponent<Props, State> {
-  state = {
+  public state = {
     isLoading: false,
     isSuccess: null,
     email: '',
     error: null
   };
 
-  componentDidMount() {
+  public componentDidMount() {
     this.props.navigation.setParams({ handleOnClose: this.handleOnClose });
   }
 
-  componentDidUpdate(prevProps: Props) {
+  public componentDidUpdate(prevProps: Props) {
     // const { authError, token } = this.props;
 
     // if (authError && prevProps.authError !== authError) {
@@ -41,31 +39,31 @@ class LoginForgotPasswordFormContainerComponent extends React.PureComponent<Prop
     // }
   }
 
-  handleOnClose = () => {
+  public handleOnClose = () => {
     this.props.navigation.goBack();
   }
 
-  handleOnChangeText = (field: 'email', value: string) => {
-    if (field === 'email') this.setState({ email: value });
+  public handleOnChangeText = (field: 'email', value: string) => {
+    if (field === 'email') { this.setState({ email: value }); }
   }
 
-  handleOnPressResetPasswordCode = () => this.props.navigation.navigate('login/reset-password', { resetPasswordToken: '' });
+  public handleOnPressResetPasswordCode = () => this.props.navigation.navigate('login/reset-password', { resetPasswordToken: '' });
 
-  handleOnPressResetPassword = () => {
+  public handleOnPressResetPassword = () => {
     const { email } = this.state;
     return this.setState({ isLoading: true }, async () => {
       try {
         await this.props.postRequestResetPasswordToken(email);
         this.setState({ isSuccess: true }, () => this.props.navigation.navigate('login/reset-password', { resetPasswordToken: '' }));
       } catch (err) {
-        console.log('Error while resetting password', err);
+        return err;
       } finally {
-        return this.setState({ isLoading: false });
+        this.setState({ isLoading: false });
       }
     });
   }
 
-  render() {
+  public render() {
     const { email, isLoading, isSuccess } = this.state;
 
     return (

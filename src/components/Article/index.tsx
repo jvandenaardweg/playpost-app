@@ -1,8 +1,8 @@
+import dateFns from 'date-fns';
 import React from 'react';
-import { View, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'react-native-elements';
 import urlParse from 'url-parse';
-import dateFns from 'date-fns';
 
 import colors from '../../constants/colors';
 
@@ -30,8 +30,8 @@ interface Props {
   readingTime?: number | null;
   onPlayPress(): void;
   onOpenUrl(url: string): void;
-  onLongPress(): void;
-  onPressOut(): void;
+  onLongPress?(): void;
+  onPressOut?(): void;
 }
 
 export const Article: React.FC<Props> = React.memo(
@@ -113,7 +113,7 @@ export const Article: React.FC<Props> = React.memo(
   )
 );
 
-type SourceTextProps = { authorName: Props['authorName']; sourceName: Props['sourceName']; url: Props['url'] };
+interface SourceTextProps { authorName: Props['authorName']; sourceName: Props['sourceName']; url: Props['url'] }
 
 const SourceText: React.FC<SourceTextProps> = React.memo((props: SourceTextProps) => {
   let text;
@@ -135,10 +135,10 @@ const SourceText: React.FC<SourceTextProps> = React.memo((props: SourceTextProps
   );
 });
 
-type DurationProps = {
+interface DurationProps {
   listenTimeInSeconds?: number;
   readingTime?: number | null;
-};
+}
 
 const Duration: React.FC<DurationProps> = React.memo((props: DurationProps) => {
   // During our tests, it seems that it takes about 10-20% longer to listen to an article, then to read one
@@ -160,11 +160,11 @@ const Duration: React.FC<DurationProps> = React.memo((props: DurationProps) => {
   );
 });
 
-type PlayIconProps = {
+interface PlayIconProps {
   isPlaying?: boolean;
   isLoading?: boolean;
   isActive?: boolean;
-};
+}
 
 const PlayIcon: React.FC<PlayIconProps> = React.memo((props: PlayIconProps) => (
   <View style={[styles.controlButton, props.isPlaying || props.isActive ? styles.controlButtonActive : null]} testID="article-play-button">

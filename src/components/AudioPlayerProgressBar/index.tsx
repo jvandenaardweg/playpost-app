@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import TrackPlayer, { ProgressComponent } from 'react-native-track-player';
-import { Slider } from 'react-native-elements';
 import isEqual from 'react-fast-compare';
+import { Text, View } from 'react-native';
+import { Slider } from 'react-native-elements';
+import TrackPlayer, { ProgressComponent } from 'react-native-track-player';
 
 import colors from '../../constants/colors';
 
@@ -18,16 +18,16 @@ type State = TrackPlayer.ProgressComponentState;
 
 export class AudioPlayerProgressBar extends ProgressComponent<Props, State> {
 
-  static defaultProps = {
+  public static defaultProps = {
     color: colors.tintColor,
     backgroundColor: colors.white
   };
 
-  shouldComponentUpdate(nextProps: Props, nextState: State) {
+  public shouldComponentUpdate(nextProps: Props, nextState: State) {
     return !isEqual(nextProps, this.props) || !isEqual(nextState, this.state);
   }
 
-  displayTime (inputSeconds: number) {
+  public displayTime (inputSeconds: number) {
     // const hours = seconds / 3600;
     const minutes = (inputSeconds % 3600) / 60;
     const seconds = inputSeconds % 60;
@@ -35,11 +35,11 @@ export class AudioPlayerProgressBar extends ProgressComponent<Props, State> {
     return [minutes, seconds].map(this.formatTime).join(':');
   }
 
-  formatTime (val: number) {
+  public formatTime (val: number) {
     return (`0${Math.floor(val)}`).slice(-2);
   }
 
-  render() {
+  public render() {
     let percentage = 0;
     const { position, duration } = this.state;
 

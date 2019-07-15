@@ -1,18 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { NavigationInjectedProps, withNavigation } from 'react-navigation';
+import { ButtonUpgrade } from '../components/ButtonUpgrade';
 import { RootState } from '../reducers';
 import { selectIsSubscribed } from '../selectors/subscriptions';
-import { ButtonUpgrade } from '../components/ButtonUpgrade';
-import { withNavigation, NavigationInjectedProps } from 'react-navigation';
 
 type Props = StateProps & NavigationInjectedProps;
 
 export class ButtonUpgradeContainerComponent extends React.PureComponent<Props> {
-  render() {
+  public render() {
     const { isSubscribed } = this.props;
 
-    if (isSubscribed) return null;
+    if (isSubscribed) { return null; }
 
     return (
       <ButtonUpgrade onPress={() => this.props.navigation.navigate('Upgrade')} />

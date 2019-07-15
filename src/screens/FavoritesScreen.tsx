@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { PlaylistContainer } from '../containers/PlaylistContainer';
 import { AppBackground } from '../components/AppBackground';
+import { PlaylistContainer } from '../containers/PlaylistContainer';
 
 export class FavoritesScreen extends React.PureComponent {
-  render() {
+  public render() {
     return (
       <AppBackground>
         <PlaylistContainer isFavoriteScreen />

@@ -1,5 +1,5 @@
-import React from 'react';
 import NetInfo, { NetInfoSubscription } from '@react-native-community/netinfo';
+import React from 'react';
 
 export const NetworkContext = React.createContext<{ isConnected: boolean }>({ isConnected: false });
 
@@ -10,26 +10,26 @@ interface State {
 }
 
 export class NetworkProvider extends React.PureComponent<State> {
-  state = {
+  public state = {
     isConnected: false
   };
 
-  unsubscribe: NetInfoSubscription | null = null;
+  public unsubscribe: NetInfoSubscription | null = null;
 
-  componentDidMount() {
+  public componentDidMount() {
     this.unsubscribe = NetInfo.addEventListener((state) => {
       this.setState({ isConnected: state.isConnected });
     });
   }
 
-  componentWillUnmount() {
+  public componentWillUnmount() {
     if (this.unsubscribe) {
       this.unsubscribe();
       this.unsubscribe = null;
     }
   }
 
-  render() {
+  public render() {
     return (
       <NetworkContext.Provider value={this.state}>
         {this.props.children}

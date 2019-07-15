@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableHighlight } from 'react-native';
+import { Text, TouchableHighlight, View } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
 
 import styles from './styles';
@@ -8,11 +8,11 @@ import { AudioPlayerSmallProgressBar } from '../AudioPlayerSmallProgressBar';
 import { PlayPauseControl } from '../PlayPauseControl';
 
 interface Props {
-  onPressShowModal(): void;
-  onPressPlay(): void;
   isPlaying: boolean;
   isLoading: boolean;
   track: TrackPlayer.Track;
+  onPressShowModal(): void;
+  onPressPlay(): void;
 }
 
 export const AudioPlayerSmall: React.FC<Props> = React.memo(({

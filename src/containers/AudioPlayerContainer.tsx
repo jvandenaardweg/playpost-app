@@ -1,16 +1,17 @@
+// tslint:disable: no-console
 import React from 'react';
-import { View, Modal } from 'react-native';
-import { connect } from 'react-redux';
+import { Modal, View } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
+import { connect } from 'react-redux';
 
-import { setPlaybackStatus } from '../reducers/player';
+import { AudioPlayerLarge } from '../components/AudioPlayerLarge';
 import { AudioPlayerSmall } from '../components/AudioPlayerSmall';
 import { AudioPlayerSmallEmpty } from '../components/AudioPlayerSmallEmpty';
-import { AudioPlayerLarge } from '../components/AudioPlayerLarge';
+import { setPlaybackStatus } from '../reducers/player';
 
+import { RootState } from '../reducers';
 import { selectPlayerPlaybackState, selectPlayerTrack } from '../selectors/player';
 import { selectAllPlaylistArticles } from '../selectors/playlist';
-import { RootState } from '../reducers';
 
 interface State {
   isLoading: boolean;
@@ -21,21 +22,21 @@ interface State {
 type Props = StateProps & DispatchProps;
 
 class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
-  state = {
+  public state = {
     isLoading: true,
     isPlaying: false,
     showModal: false
   };
 
-  onTrackChange: TrackPlayer.EmitterSubscription | null = null;
-  onStateChanged: TrackPlayer.EmitterSubscription | null = null;
-  onStateError: TrackPlayer.EmitterSubscription | null = null;
+  public onTrackChange: TrackPlayer.EmitterSubscription | null = null;
+  public onStateChanged: TrackPlayer.EmitterSubscription | null = null;
+  public onStateError: TrackPlayer.EmitterSubscription | null = null;
 
-  componentDidMount() {
+  public componentDidMount() {
     this.setupTrackPlayer();
   }
 
-  setupTrackPlayer = async () => {
+  public setupTrackPlayer = async () => {
     await TrackPlayer.setupPlayer();
 
     await TrackPlayer.updateOptions({
@@ -86,7 +87,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     });
   }
 
-  async componentDidUpdate(prevProps: Props) {
+  public async componentDidUpdate(prevProps: Props) {
     const { playbackState, track } = this.props;
     const { isPlaying } = this.state;
 
@@ -106,7 +107,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     }
   }
 
-  handleTrackUpdate = async (track: TrackPlayer.Track) => {
+  public handleTrackUpdate = async (track: TrackPlayer.Track) => {
     await TrackPlayer.reset();
 
     await TrackPlayer.add(track);
@@ -114,13 +115,19 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     await TrackPlayer.play();
   }
 
-  componentWillUnmount() {
-    this.onTrackChange && this.onTrackChange.remove();
-    this.onStateChanged && this.onStateChanged.remove();
-    this.onStateError && this.onStateError.remove();
+  public componentWillUnmount() {
+    if(this.onTrackChange) {
+      this.onTrackChange.remove();
+    }
+    if(this.onStateChanged) {
+      this.onStateChanged.remove();
+    }
+    if(this.onStateError) {
+      this.onStateError.remove();
+    }
   }
 
-  handleOnPressPlay = async () => {
+  public handleOnPressPlay = async () => {
     const { playbackState } = this.props;
 
     // Toggle play/pause/stop
@@ -132,11 +139,11 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     await TrackPlayer.play();
   }
 
-  handleOnPressClose = () => this.setState({ showModal: false });
+  public handleOnPressClose = () => this.setState({ showModal: false });
 
-  handleOnShowModal = () => this.setState({ showModal: true });
+  public handleOnShowModal = () => this.setState({ showModal: true });
 
-  handleOnProgressChange = async (percentage: number) => {
+  public handleOnProgressChange = async (percentage: number) => {
     const trackId = await TrackPlayer.getCurrentTrack();
     const track = await TrackPlayer.getTrack(trackId);
 
@@ -149,25 +156,25 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   get article() {
     const { track, articles } = this.props;
 
-    if (!track || !track.id) return;
+    if (!track || !track.id) { return; }
 
     // Find the article based on the audiofile id
-    const article = articles.find(article => {
+    const foundArticle = articles.find(article => {
       if (article.audiofiles.length) {
-        const audiofile = article.audiofiles.find(audiofile => audiofile.id === track.id);
-        if (audiofile) return true;
+        const foundAudiofile = article.audiofiles.find(audiofile => audiofile.id === track.id);
+        if (foundAudiofile) { return true; }
       }
       return false;
     });
 
-    return article;
+    return foundArticle;
   }
 
-  renderAudioPlayerSmall() {
+  public renderAudioPlayerSmall() {
     const { track, articles } = this.props;
     const { isLoading, isPlaying } = this.state;
 
-    if (!articles.length) return null;
+    if (!articles.length) { return null; }
 
     if (!track.id) {
       return <AudioPlayerSmallEmpty />;
@@ -176,13 +183,13 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     return <AudioPlayerSmall track={track} isLoading={isLoading} isPlaying={isPlaying} onPressPlay={this.handleOnPressPlay} onPressShowModal={this.handleOnShowModal} />;
   }
 
-  renderAudioPlayerLarge() {
+  public renderAudioPlayerLarge() {
     const { isLoading, isPlaying } = this.state;
 
     return <AudioPlayerLarge article={this.article} isLoading={isLoading} isPlaying={isPlaying} onPressPlay={this.handleOnPressPlay} onPressClose={this.handleOnPressClose} onProgressChange={this.handleOnProgressChange} />;
   }
 
-  render() {
+  public render() {
     const { showModal } = this.state;
 
     return (

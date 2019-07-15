@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, NativeModules } from 'react-native';
+import { NativeModules, Platform } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
 import { Provider } from 'react-redux';
 
@@ -9,12 +9,13 @@ import { reactNativeElementsTheme } from './theme';
 import { ShareOverlay } from './components/ShareOverlay';
 import { NetworkProvider } from './contexts/NetworkProvider';
 
+// tslint:disable-next-line: no-console
 console.disableYellowBox = true;
 
 function setRemoteDebugging(dev: boolean) {
-  if (Platform.OS !== 'ios') return;
+  if (Platform.OS !== 'ios') { return; }
 
-  if (!dev) return;
+  if (!dev) { return; }
 
   NativeModules.DevSettings.setIsDebuggingRemotely(true);
 }
@@ -24,7 +25,7 @@ setRemoteDebugging(__DEV__);
 // Important: Keep this App a Class component
 // Using a Functional Component as the root component breaks Hot Reloading (on a local device)
 export default class ShareApp extends React.PureComponent {
-  render () {
+  public render () {
     return (
       <Provider store={store}>
         <ThemeProvider theme={reactNativeElementsTheme}>

@@ -1,34 +1,34 @@
-import React from 'react';
-import { Alert, Linking, Platform } from 'react-native';
-import { connect } from 'react-redux';
-import * as RNIap from 'react-native-iap';
-import isEqual from 'react-fast-compare';
 import Analytics from 'appcenter-analytics';
+import React from 'react';
+import isEqual from 'react-fast-compare';
+import { Alert, Linking, Platform } from 'react-native';
+import * as RNIap from 'react-native-iap';
+import { connect } from 'react-redux';
 
-import { withNavigation, NavigationScreenProp, NavigationRoute } from 'react-navigation';
+import { NavigationRoute, NavigationScreenProp, withNavigation } from 'react-navigation';
 
 import { Upgrade } from '../components/Upgrade';
 
 import { NetworkContext } from '../contexts/NetworkProvider';
 
+import { SUBSCRIPTION_PRODUCT_IDS } from '../constants/in-app-purchase';
 import {
   ALERT_GENERIC_INTERNET_REQUIRED,
   ALERT_SUBSCRIPTION_BUY_SUCCESS,
+  ALERT_SUBSCRIPTION_INIT_FAIL,
   ALERT_SUBSCRIPTION_RESTORE_PURCHASE_NOT_FOUND,
-  ALERT_SUBSCRIPTION_RESTORE_SUCCESS,
-  ALERT_SUBSCRIPTION_INIT_FAIL
+  ALERT_SUBSCRIPTION_RESTORE_SUCCESS
 } from '../constants/messages';
-import { SUBSCRIPTION_PRODUCT_IDS } from '../constants/in-app-purchase';
 
-import { selectSubscriptionsError, selectSubscriptionsValidationResult, selectActiveSubscriptionProductId } from '../selectors/subscriptions';
+import { URL_FEEDBACK, URL_MANAGE_APPLE_SUBSCRIPTIONS, URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../constants/urls';
 import { RootState } from '../reducers';
 import { validateSubscriptionReceipt } from '../reducers/subscriptions';
-import { URL_FEEDBACK, URL_PRIVACY_POLICY, URL_TERMS_OF_USE, URL_MANAGE_APPLE_SUBSCRIPTIONS } from '../constants/urls';
-import { selectUserDetails } from '../selectors/user';
 import { getUser } from '../reducers/user';
+import { selectActiveSubscriptionProductId, selectSubscriptionsError, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
+import { selectUserDetails } from '../selectors/user';
 
 interface State {
-  readonly subscriptions: RNIap.Subscription<string>[];
+  readonly subscriptions: Array<RNIap.Subscription<string>>;
   readonly isLoadingBuySubscription: boolean;
   readonly isLoadingRestorePurchases: boolean;
   readonly isLoadingSubscriptionItems: boolean;
@@ -36,15 +36,48 @@ interface State {
   readonly selectedProductId: string;
 }
 
-type IProps = {
+interface IProps {
   navigation: NavigationScreenProp<NavigationRoute>;
-};
+}
 
 type Props = IProps & StateProps & DispatchProps;
 
 export class UpgradeContainerComponent extends React.PureComponent<Props, State> {
-  state = {
-    subscriptions: [] as RNIap.Subscription<string>[],
+
+  get analyticsUserId() {
+    const { userDetails } = this.props;
+    return `${userDetails && userDetails.id}`;
+  }
+
+  get subscriptionFeatures() {
+    return [
+      {
+        productId: 'free',
+        title: 'Free',
+        price: '0',
+        body: ['Basic quality voices', 'One voice per language', 'Max. 30 minutes per month', 'Unlimited playlist items', 'Some advertisements'],
+        footer: 'About 5 articles to audio, per month'
+      },
+      {
+        productId: 'com.aardwegmedia.playpost.premium',
+        title: 'Premium',
+        price: null,
+        body: ['75+ High Quality voices', 'Multiple voices per language', 'Max. 120 minutes per month', 'Unlimited playlist items', 'No advertisements'],
+        footer: 'About 25 articles to audio, per month'
+      },
+      {
+        productId: 'com.aardwegmedia.playpost.subscription.plus',
+        title: 'Plus',
+        price: null,
+        body: ['75+ High Quality voices', 'Multiple voices per language', 'Max. 300 minutes per month', 'Unlimited playlist items', 'No advertisements'],
+        footer: 'About 65 articles to audio, per month'
+      }
+    ];
+  }
+
+  public static contextType = NetworkContext;
+  public state = {
+    subscriptions: [] as Array<RNIap.Subscription<string>>,
     isLoadingBuySubscription: false,
     isLoadingRestorePurchases: false,
     isLoadingSubscriptionItems: false,
@@ -52,15 +85,13 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     selectedProductId: ''
   };
 
-  static contextType = NetworkContext;
+  /* tslint:disable-next-line no-any */
+  public purchaseUpdateSubscription: any = null;
 
   /* tslint:disable-next-line no-any */
-  purchaseUpdateSubscription: any = null;
+  public purchaseErrorSubscription: any = null;
 
-  /* tslint:disable-next-line no-any */
-  purchaseErrorSubscription: any = null;
-
-  async componentDidMount() {
+  public async componentDidMount() {
     const { isConnected } = this.context;
 
     // For now, just close the screen when there's no active internet connection
@@ -104,7 +135,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     });
   }
 
-  componentWillUnmount() {
+  public componentWillUnmount() {
     if (this.purchaseUpdateSubscription) {
       this.purchaseUpdateSubscription.remove();
       this.purchaseUpdateSubscription = null;
@@ -118,7 +149,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     RNIap.endConnectionAndroid();
   }
 
-  async componentDidUpdate(prevProps: Props) {
+  public async componentDidUpdate(prevProps: Props) {
     const { isLoadingBuySubscription, isLoadingRestorePurchases } = this.state;
     const { validationResult } = this.props;
 
@@ -155,7 +186,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  fetchUpdatedUserData = async () => {
+  public fetchUpdatedUserData = async () => {
     try {
       // Get the user with up-to-date data about his account
       const result = await this.props.getUser();
@@ -173,7 +204,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  handleClose = async () => {
+  public handleClose = async () => {
     // Normally we should put this in componentWillUnmount
     // But, since the upgrade screen is part of React Navigation, unmount is not called in this context
     // So we manually handle the removal of event listeners
@@ -186,10 +217,10 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     this.props.navigation.goBack(null);
   }
 
-  handleOpenPrivacy = () => Linking.openURL(`${URL_PRIVACY_POLICY}?ref=playpost://upgrade`);
-  handleOpenTerms = () => Linking.openURL(`${URL_TERMS_OF_USE}?ref=playpost://upgrade`);
+  public handleOpenPrivacy = () => Linking.openURL(`${URL_PRIVACY_POLICY}?ref=playpost://upgrade`);
+  public handleOpenTerms = () => Linking.openURL(`${URL_TERMS_OF_USE}?ref=playpost://upgrade`);
 
-  showErrorAlert = (title: string, message: string) => {
+  public showErrorAlert = (title: string, message: string) => {
     return Alert.alert(title, message, [
       {
         text: 'Close',
@@ -202,7 +233,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     ]);
   }
 
-  handleOnPressCancel = () => {
+  public handleOnPressCancel = () => {
     if (Platform.OS === 'android') {
       return this.showManageSubscriptionAlert(
         'Cancel your subscription?',
@@ -216,12 +247,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     );
   }
 
-  get analyticsUserId() {
-    const { userDetails } = this.props;
-    return `${userDetails && userDetails.id}`;
-  }
-
-  showManageSubscriptionAlert = (title: string, message: string) => {
+  public showManageSubscriptionAlert = (title: string, message: string) => {
     let manageSubscriptionsButton: object = {
       text: 'Manage Subscriptions',
       onPress: () => {
@@ -243,7 +269,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     ]);
   }
 
-  handleOnPressUpgrade = async (productId: string) => {
+  public handleOnPressUpgrade = async (productId: string) => {
     // If it's a downgrade to an other paid subscription
     if (this.isDowngradePaidSubscription(productId)) {
       Analytics.trackEvent('Subscriptions downgrade', { Status: 'alert', ProductId: productId, UserId: this.analyticsUserId });
@@ -271,37 +297,32 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         const upgradeResult = await RNIap.requestSubscription(productId);
         return upgradeResult;
       } catch (err) {
-        const errorMessage = err && err.message ? err.message : 'An uknown error happened while upgrading.';
-
         // We don't do anything with this message, as errors are handled by: purchaseErrorListener
-
-        console.log(err);
-        console.log(errorMessage);
 
         return err;
       }
     });
   }
 
-  isDowngradePaidSubscription = (productId: string): boolean => {
+  public isDowngradePaidSubscription = (productId: string): boolean => {
     const { activeSubscriptionProductId } = this.props;
     const { subscriptions } = this.state;
 
     const subscriptionToUpgradeTo = subscriptions.find(subscription => subscription.productId === productId);
     const currentSubscription = subscriptions.find(subscription => subscription.productId === activeSubscriptionProductId);
 
-    if (!subscriptionToUpgradeTo) return false;
-    if (!currentSubscription) return false;
+    if (!subscriptionToUpgradeTo) { return false; }
+    if (!currentSubscription) { return false; }
 
     return Number(subscriptionToUpgradeTo.price) < Number(currentSubscription.price);
   }
 
-  isDowngradeFreeSubscription = (productId: string): boolean => {
+  public isDowngradeFreeSubscription = (productId: string): boolean => {
     const { activeSubscriptionProductId } = this.props;
     return productId === 'free' && activeSubscriptionProductId !== 'free';
   }
 
-  handleOnPressRestore = async () => {
+  public handleOnPressRestore = async () => {
     Analytics.trackEvent('Subscriptions restore', { Status: 'restoring', UserId: this.analyticsUserId });
 
     return this.setState({ isLoadingRestorePurchases: true }, async () => {
@@ -329,12 +350,12 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     });
   }
 
-  fetchAvailableSubscriptionItems = async (subscriptionProductIds: string[]) => {
+  public fetchAvailableSubscriptionItems = async (subscriptionProductIds: string[]) => {
     return this.setState({ isLoadingSubscriptionItems: true }, async () => {
       try {
         const result = await RNIap.initConnection();
 
-        if (!result) throw new Error(ALERT_SUBSCRIPTION_INIT_FAIL);
+        if (!result) { throw new Error(ALERT_SUBSCRIPTION_INIT_FAIL); }
 
         // Pre-populate the app with subscriptions and previous purchases of the user
         const subscriptions = await RNIap.getSubscriptions(subscriptionProductIds);
@@ -353,7 +374,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     });
   }
 
-  getLatestPurchase = (purchases: RNIap.ProductPurchase[]): RNIap.ProductPurchase => {
+  public getLatestPurchase = (purchases: RNIap.ProductPurchase[]): RNIap.ProductPurchase => {
     if (!purchases.length) {
       throw new Error(ALERT_SUBSCRIPTION_RESTORE_PURCHASE_NOT_FOUND);
     }
@@ -373,33 +394,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     return purchase;
   }
 
-  get subscriptionFeatures() {
-    return [
-      {
-        productId: 'free',
-        title: 'Free',
-        price: '0',
-        body: ['Basic quality voices', 'One voice per language', 'Max. 30 minutes per month', 'Unlimited playlist items', 'Some advertisements'],
-        footer: 'About 5 articles to audio, per month'
-      },
-      {
-        productId: 'com.aardwegmedia.playpost.premium',
-        title: 'Premium',
-        price: null,
-        body: ['75+ High Quality voices', 'Multiple voices per language', 'Max. 120 minutes per month', 'Unlimited playlist items', 'No advertisements'],
-        footer: 'About 25 articles to audio, per month'
-      },
-      {
-        productId: 'com.aardwegmedia.playpost.subscription.plus',
-        title: 'Plus',
-        price: null,
-        body: ['75+ High Quality voices', 'Multiple voices per language', 'Max. 300 minutes per month', 'Unlimited playlist items', 'No advertisements'],
-        footer: 'About 65 articles to audio, per month'
-      }
-    ];
-  }
-
-  render() {
+  public render() {
     const { isLoadingRestorePurchases, isLoadingBuySubscription, isLoadingSubscriptionItems, subscriptions } = this.state;
     const { activeSubscriptionProductId } = this.props;
     const centeredSubscriptionProductId = this.props.navigation.getParam('centeredSubscriptionProductId', '');

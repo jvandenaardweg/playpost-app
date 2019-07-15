@@ -32,6 +32,7 @@ describe('EmptyState', () => {
 
   describe('full rendering', () => {
     let wrapper: RenderAPI;
+    const actionButtonOnPressHandler = jest.fn();
 
     beforeAll(() => {
       wrapper = render(
@@ -40,7 +41,7 @@ describe('EmptyState', () => {
           description={['Test description']}
           // localVideo={require('../../../assets/video/help/enabling-sharing/enable-sharing-square.m4v')}
           actionButtonLabel="Test button"
-          actionButtonOnPress={() => {}}
+          actionButtonOnPress={actionButtonOnPressHandler}
          />
       );
     });

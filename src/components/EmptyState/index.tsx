@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text, View } from 'react-native';
 
-import styles from './styles';
 import { Button } from 'react-native-elements';
 import { VideoPlayer } from '../VideoPlayer';
+import styles from './styles';
 
 /* tslint:disable no-any */
 interface Props {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Animated, View, Modal } from 'react-native';
+import { Animated, Modal, View } from 'react-native';
 import ShareExtension from 'react-native-share-extension';
 
 import { ErrorModal } from '../../components/ErrorModal';
@@ -7,11 +7,11 @@ import { ShareModalContainer } from '../../containers/ShareModalContainer';
 
 import styles from './styles';
 
-type DocumentData = {
+interface DocumentData {
   url: string;
   html: string;
   title: string;
-};
+}
 
 type ShareExtensionDocumentHtml = string | undefined;
 type ShareExtensionUrl = string | undefined;
@@ -34,7 +34,11 @@ interface Props {
 }
 
 export class ShareOverlay extends React.PureComponent<Props, State> {
-  state = {
+
+  public static defaultProps = {
+    animationDuration: 200
+  };
+  public state = {
     isOpen: true,
     isLoading: true,
     type: '',
@@ -45,17 +49,13 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
     errorAction: ''
   };
 
-  static defaultProps = {
-    animationDuration: 200
-  };
+  public opacityAnim = new Animated.Value(0);
 
-  opacityAnim = new Animated.Value(0);
-
-  componentDidMount() {
+  public componentDidMount() {
     this.setup();
   }
 
-  setup = async () => {
+  public setup = async () => {
     try {
       // Start fade in animation of the overlay
       Animated.timing(this.opacityAnim, {
@@ -70,14 +70,14 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
       let documentHtml: ShareExtensionDocumentHtml;
       let url: ShareExtensionUrl;
 
-      if (!value) throw new Error('Missing value from page data.');
+      if (!value) { throw new Error('Missing value from page data.'); }
 
       // If we have text/json, we probably have the documentHtml and url
       if (type === 'text/json') {
         const documentData = JSON.parse(value) as DocumentData;
 
-        if (documentData.html) documentHtml = documentData.html;
-        if (documentData.url) url = documentData.url;
+        if (documentData.html) { documentHtml = documentData.html; }
+        if (documentData.url) { url = documentData.url; }
       } else {
         // It could be possible some app shares the URL with text, like: "This is an example article https://link.com/12312"
         // In that case, we want to get: https://link.com/12312
@@ -87,19 +87,17 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
         url = urlFromText || value;
       }
 
-      console.log('Using to share:', url, documentHtml);
-
       // Update the state so our modal can pick up the URL
       return this.setState({ type, url, documentHtml, errorMessage: '' });
     } catch (err) {
       const errorMessage = err.message ? err.message : 'An unknown error happened. Please try again.';
       return this.setState({ errorMessage });
     } finally {
-      return this.setState({ isLoading: false });
+      this.setState({ isLoading: false });
     }
   }
 
-  closeOverlay = () => {
+  public closeOverlay = () => {
     const { animationDuration } = this.props;
 
     this.setState({ isOpen: false }, () => {
@@ -117,7 +115,7 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
     });
   }
 
-  openUrlInMainApp = async (url: string) => {
+  public openUrlInMainApp = async (url: string) => {
     try {
       return ShareExtension.openURL(url);
     } catch (err) {
@@ -126,32 +124,32 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
     }
   }
 
-  handleOnPressSave = () => this.closeOverlay();
+  public handleOnPressSave = () => this.closeOverlay();
 
-  handleOnPressClose = () => this.closeOverlay();
+  public handleOnPressClose = () => this.closeOverlay();
 
-  handleOnModalDissmiss = () => this.closeOverlay();
+  public handleOnModalDissmiss = () => this.closeOverlay();
 
-  handleOnPressAction = (url: string) => this.openUrlInMainApp(url);
+  public handleOnPressAction = (url: string) => this.openUrlInMainApp(url);
 
-  renderErrorMessageModal() {
+  public renderErrorMessageModal() {
     const { errorMessage, errorAction } = this.state;
-    if (!errorMessage) return;
+    if (!errorMessage) { return; }
 
     return <ErrorModal message={errorMessage} action={errorAction} onPressAction={this.handleOnPressAction} />;
   }
 
-  renderShareModal() {
+  public renderShareModal() {
     const { url, errorMessage, documentHtml } = this.state;
-    if (errorMessage) return;
+    if (errorMessage) { return; }
 
     return <ShareModalContainer url={url} documentHtml={documentHtml} onPressSave={this.handleOnPressSave} onPressClose={this.handleOnPressClose} />;
   }
 
-  renderModal() {
+  public renderModal() {
     const { isLoading, isOpen } = this.state;
 
-    if (isLoading) return null;
+    if (isLoading) { return null; }
 
     return (
       <Modal
@@ -175,7 +173,7 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
     );
   }
 
-  render() {
+  public render() {
     return <Animated.View style={[styles.container, { opacity: this.opacityAnim }]}>{this.renderModal()}</Animated.View>;
   }
 }

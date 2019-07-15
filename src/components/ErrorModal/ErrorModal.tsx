@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import spacing from '../../constants/spacing';
 
 interface Props {
-  onPressAction(url: string): void;
   message: string;
   action: string;
+  onPressAction(url: string): void;
 }
 
 export const ErrorModal: React.FC<Props> = React.memo(({ message, action, onPressAction }) => (

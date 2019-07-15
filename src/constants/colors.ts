@@ -12,7 +12,7 @@ const blue = tintColor;
 const redLight = '#FF4F54';
 const red = '#E9110B';
 const redDark = '#b52424';
-const orange = '#EAEB5E';
+const orange = '#ffc107';
 const orangeDark = '#666804';
 const green = '#03A87C';
 

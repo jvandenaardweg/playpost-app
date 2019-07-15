@@ -1,12 +1,13 @@
 import React, { useRef } from 'react';
+import { Alert, Linking, StatusBar } from 'react-native';
 import WebView from 'react-native-webview';
-import urlParse from 'url-parse';
-import { StatusBar, Linking } from 'react-native';
+// tslint:disable-next-line: no-submodule-imports
 import { WebViewNavigation } from 'react-native-webview/lib/WebViewTypes';
+import urlParse from 'url-parse';
 
-import spacing from '../../constants/spacing';
-import fonts from '../../constants/fonts';
 import colors from '../../constants/colors';
+import fonts from '../../constants/fonts';
+import spacing from '../../constants/spacing';
 import { CenterLoadingIndicator } from '../CenterLoadingIndicator';
 
 interface Props {
@@ -30,10 +31,10 @@ export const ArticleReader: React.FC<Props> = React.memo(({
   const webViewRef = useRef<WebView>(null);
   const themeStyles = getThemeStyles(theme);
 
-  const handleWebViewNavigationStateChange = async (request: WebViewNavigation, webViewRef: React.RefObject<WebView>) => {
+  const handleWebViewNavigationStateChange = async (request: WebViewNavigation, webViewRefObj: React.RefObject<WebView>) => {
     const { url } = request;
 
-    if (!url || url.includes('file://')) return;
+    if (!url || url.includes('file://')) { return; }
 
     // It seems like when opening URL's from the WebView that the StatusBar turns white
     // We want to keep it the default style so we enforce that here.
@@ -41,9 +42,9 @@ export const ArticleReader: React.FC<Props> = React.memo(({
 
     try {
       await Linking.openURL(url);
-      return webViewRef.current && webViewRef.current.stopLoading();
+      return webViewRefObj.current && webViewRefObj.current.stopLoading();
     } catch (err) {
-      console.log('Error while opening url in webview', err);
+      Alert.alert('Oops!', 'Could not open the URL.');
     }
   };
 
@@ -63,7 +64,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
     />
   );
 
-  function getThemeStyles(theme?: string): ThemeStyles {
+  function getThemeStyles(themeProp?: string): ThemeStyles {
 
     // Light
     let backgroundColor = colors.white;
@@ -73,7 +74,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
     let metaColor = colors.paragraphGrayed;
     let titleColor = colors.black;
 
-    if (theme === 'dark') {
+    if (themeProp === 'dark') {
       backgroundColor = colors.grayDarkest;
       fontColor = colors.gray;
       paragraphColor = colors.gray;
@@ -92,7 +93,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
     };
   }
 
-  function getHtmlHeader(themeStyles: ThemeStyles) {
+  function getHtmlHeader(themeStyle: ThemeStyles) {
     return `
       <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -112,17 +113,17 @@ export const ArticleReader: React.FC<Props> = React.memo(({
             font-size: ${Math.ceil(fonts.fontSize.body * 1.1)}px;
             font-family: 'PT Serif', serif;
             line-height: 1.5;
-            color: ${themeStyles.fontColor};
+            color: ${themeStyle.fontColor};
             font-weight: normal;
             word-break: break-word;
-            background-color: ${themeStyles.backgroundColor};
+            background-color: ${themeStyle.backgroundColor};
           }
 
           h1, h2, h3, h4, h5, h6, h7, h8 {
             line-height: 1.2;
             margin-top: 0;
             margin-bottom: ${spacing.tiny}px;
-            color: ${themeStyles.titleColor};
+            color: ${themeStyle.titleColor};
             font-family: 'PT Sans', sans-serif;
           }
 
@@ -145,18 +146,18 @@ export const ArticleReader: React.FC<Props> = React.memo(({
           p {
             font-size: ${fonts.fontSize.title}px;
             margin-top: 1.5;
-            color: ${themeStyles.paragraphColor};
+            color: ${themeStyle.paragraphColor};
             line-height: 1.58;
             margin-bottom: 1.5;
           }
 
           a, strong {
-            color: ${themeStyles.highlightColor};
+            color: ${themeStyle.highlightColor};
           }
 
           blockquote {
             font-style: italic;
-            color: ${themeStyles.highlightColor};
+            color: ${themeStyle.highlightColor};
             margin-left: ${spacing.large}px;
             margin-right: ${spacing.large}px;
           }
@@ -208,12 +209,12 @@ export const ArticleReader: React.FC<Props> = React.memo(({
       </head>`;
   }
 
-  function getNoHtmlDocument(article: Api.Article | undefined, themeStyles: ThemeStyles) {
-    const articleUrlLink = (article && article.url) ? `<a href="${article.url}">View the original article</a>` : '';
+  function getNoHtmlDocument(articleProp: Api.Article | undefined, themeStyle: ThemeStyles) {
+    const articleUrlLink = (articleProp && articleProp.url) ? `<a href="${articleProp.url}">View the original article</a>` : '';
 
     return `
       <!DOCTYPE html>
-        ${getHtmlHeader(themeStyles)}
+        ${getHtmlHeader(themeStyle)}
         <body>
           <h1>Insufficient article data</h1>
           <p>The article did not return any sufficient content to show. This could happen when the article is behind a pay-wall or requires a login.</p>
@@ -223,22 +224,22 @@ export const ArticleReader: React.FC<Props> = React.memo(({
     `;
   }
 
-  function getHtmlDocument(article: Api.Article | undefined, themeStyles: ThemeStyles) {
+  function getHtmlDocument(articleProp: Api.Article | undefined, themeStyle: ThemeStyles) {
 
     // When we have no article or no html, show the user we don't have enough data
-    if (!article || !article.html) return getNoHtmlDocument(article, themeStyles);
+    if (!articleProp || !articleProp.html) { return getNoHtmlDocument(articleProp, themeStyles); }
 
-    const articleUrl = article.canonicalUrl || article.url;
-    const authorElement = (article.authorName) ? `<strong>${article.authorName}</strong>` : '';
-    const imageElement = (article.imageUrl) ? `<div class="image-header"><img src="${article.imageUrl}" /></div>` : '';
+    const articleUrl = articleProp.canonicalUrl || articleProp.url;
+    const authorElement = (articleProp.authorName) ? `<strong>${articleProp.authorName}</strong>` : '';
+    const imageElement = (articleProp.imageUrl) ? `<div class="image-header"><img src="${articleProp.imageUrl}" /></div>` : '';
 
     let htmlDocument = `
       <!DOCTYPE html>
-      ${getHtmlHeader(themeStyles)}
+      ${getHtmlHeader(themeStyle)}
         <body>
           ${imageElement}
           <div class="meta-header">
-            <h1>${article.title}</h1>
+            <h1>${articleProp.title}</h1>
             ${authorElement}
             <strong><a href="${articleUrl}">View on ${urlParse(articleUrl).hostname}</a></strong>
           </div>
@@ -249,7 +250,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
       </html>
     `;
 
-    htmlDocument = htmlDocument.replace('[ARTICLE_HTML_PLACEHOLDER]', article.html);
+    htmlDocument = htmlDocument.replace('[ARTICLE_HTML_PLACEHOLDER]', articleProp.html);
 
     return htmlDocument;
   }

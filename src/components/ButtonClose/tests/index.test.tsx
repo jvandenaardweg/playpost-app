@@ -7,9 +7,10 @@ describe('ButtonClose', () => {
 
   describe('rendering', () => {
     let wrapper: RenderAPI;
+    const onPressHandler = jest.fn();
 
     beforeAll(() => {
-      wrapper = render(<ButtonClose onPress={() => {}} />);
+      wrapper = render(<ButtonClose onPress={onPressHandler} />);
     });
 
     it('should render correctly', () => {

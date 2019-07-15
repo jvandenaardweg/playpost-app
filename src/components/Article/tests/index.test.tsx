@@ -3,17 +3,20 @@ import { render, RenderAPI } from 'react-native-testing-library';
 import { Article } from '../index';
 
 describe('Article', () => {
+  let wrapper: RenderAPI;
+  const onOpenUrlHandler = jest.fn();
+  const onPlayPressHandler = jest.fn();
+  const onLongPressHandler = jest.fn();
+  const onPressOutHandler = jest.fn();
 
   describe('minimal rendering', () => {
-    let wrapper: RenderAPI;
-
     beforeAll(() => {
       wrapper = render(
         <Article
-          onOpenUrl={() => {}}
-          onPlayPress={() => {}}
-          onLongPress={() => {}}
-          onPressOut={() => {}}
+          onOpenUrl={onOpenUrlHandler}
+          onPlayPress={onPlayPressHandler}
+          onLongPress={onLongPressHandler}
+          onPressOut={onPressOutHandler}
           url="https://www.google.nl"
           playlistItemCreatedAt={new Date()}
         />
@@ -38,15 +41,13 @@ describe('Article', () => {
   });
 
   describe('loading rendering', () => {
-    let wrapper: RenderAPI;
-
     beforeAll(() => {
       wrapper = render(
         <Article
-          onOpenUrl={() => {}}
-          onPlayPress={() => {}}
-          onLongPress={() => {}}
-          onPressOut={() => {}}
+          onOpenUrl={onOpenUrlHandler}
+          onPlayPress={onPlayPressHandler}
+          onLongPress={onLongPressHandler}
+          onPressOut={onPressOutHandler}
           url="https://www.google.nl"
           playlistItemCreatedAt={new Date()}
           isLoading
@@ -63,15 +64,13 @@ describe('Article', () => {
   });
 
   describe('active rendering', () => {
-    let wrapper: RenderAPI;
-
     beforeAll(() => {
       wrapper = render(
         <Article
-          onOpenUrl={() => {}}
-          onPlayPress={() => {}}
-          onLongPress={() => {}}
-          onPressOut={() => {}}
+          onOpenUrl={onOpenUrlHandler}
+          onPlayPress={onPlayPressHandler}
+          onLongPress={onLongPressHandler}
+          onPressOut={onPressOutHandler}
           url="https://www.google.nl"
           playlistItemCreatedAt={new Date()}
           isActive
@@ -88,15 +87,13 @@ describe('Article', () => {
   });
 
   describe('playing rendering', () => {
-    let wrapper: RenderAPI;
-
     beforeAll(() => {
       wrapper = render(
         <Article
-          onOpenUrl={() => {}}
-          onPlayPress={() => {}}
-          onLongPress={() => {}}
-          onPressOut={() => {}}
+          onOpenUrl={onOpenUrlHandler}
+          onPlayPress={onPlayPressHandler}
+          onLongPress={onLongPressHandler}
+          onPressOut={onPressOutHandler}
           url="https://www.google.nl"
           playlistItemCreatedAt={new Date()}
           isPlaying
@@ -114,15 +111,13 @@ describe('Article', () => {
   });
 
   describe('downloaded rendering', () => {
-    let wrapper: RenderAPI;
-
     beforeAll(() => {
       wrapper = render(
         <Article
-          onOpenUrl={() => {}}
-          onPlayPress={() => {}}
-          onLongPress={() => {}}
-          onPressOut={() => {}}
+          onOpenUrl={onOpenUrlHandler}
+          onPlayPress={onPlayPressHandler}
+          onLongPress={onLongPressHandler}
+          onPressOut={onPressOutHandler}
           url="https://www.google.nl"
           playlistItemCreatedAt={new Date()}
           isDownloaded
@@ -139,15 +134,13 @@ describe('Article', () => {
   });
 
   describe('full rendering', () => {
-    let wrapper: RenderAPI;
-
     beforeAll(() => {
       wrapper = render(
         <Article
-          onOpenUrl={() => {}}
-          onPlayPress={() => {}}
-          onLongPress={() => {}}
-          onPressOut={() => {}}
+          onOpenUrl={onOpenUrlHandler}
+          onPlayPress={onPlayPressHandler}
+          onLongPress={onLongPressHandler}
+          onPressOut={onPressOutHandler}
           url="https://www.google.nl"
           playlistItemCreatedAt={new Date()}
           title="Test title"

@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { SettingsContainer } from '../../containers/SettingsContainer';
 import { AppBackground } from '../../components/AppBackground';
+import { SettingsContainer } from '../../containers/SettingsContainer';
 
 export class SettingsScreen extends React.PureComponent {
-  render() {
+  public render() {
     return (
       <AppBackground>
         <SettingsContainer />

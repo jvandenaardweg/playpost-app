@@ -7,9 +7,10 @@ describe('ButtonUpgrade', () => {
 
   describe('rendering', () => {
     let wrapper: RenderAPI;
+    const onPressHandler = jest.fn();
 
     beforeAll(() => {
-      wrapper = render(<ButtonUpgrade onPress={() => {}} />);
+      wrapper = render(<ButtonUpgrade onPress={onPressHandler} />);
     });
 
     it('should render correctly', () => {

@@ -1,15 +1,15 @@
 import React from 'react';
-import { View, TextInput, KeyboardAvoidingView } from 'react-native';
+import { KeyboardAvoidingView, TextInput, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import styles from './styles';
 
 interface Props {
-  onChangeText(field: string, text: string): void;
-  onPressUpdatePassword(): void;
   password: string;
   passwordValidation: string;
   isLoading: boolean;
   isSuccess: boolean;
+  onChangeText(field: string, text: string): void;
+  onPressUpdatePassword(): void;
 }
 
 export const UpdatePasswordForm: React.FC<Props> = React.memo(({ onChangeText, onPressUpdatePassword, password, passwordValidation, isLoading, isSuccess }) => {
@@ -25,9 +25,7 @@ export const UpdatePasswordForm: React.FC<Props> = React.memo(({ onChangeText, o
           secureTextEntry
           value={password}
           onChangeText={text => onChangeText('password', text)}
-          onSubmitEditing={() => {
-            passwordInput && passwordInput.focus();
-          }}
+          onSubmitEditing={() => passwordInput && passwordInput.focus()}
           editable={!isLoading}
           textContentType="password"
           style={styles.textField}

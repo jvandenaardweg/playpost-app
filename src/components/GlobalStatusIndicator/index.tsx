@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, ActivityIndicator } from 'react-native';
+import { ActivityIndicator, Text, View } from 'react-native';
 
 import styles from './styles';
 

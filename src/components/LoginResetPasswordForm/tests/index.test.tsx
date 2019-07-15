@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, RenderAPI, fireEvent } from 'react-native-testing-library';
+import { fireEvent, render, RenderAPI } from 'react-native-testing-library';
 
 import { LoginResetPasswordForm } from '../index';
 

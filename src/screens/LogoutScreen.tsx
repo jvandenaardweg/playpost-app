@@ -1,45 +1,43 @@
 import React from 'react';
-import RNFS from 'react-native-fs';
 import { Platform } from 'react-native';
-import { connect } from 'react-redux';
-import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions, NavigationInjectedProps } from 'react-navigation';
+import RNFS from 'react-native-fs';
 import * as Keychain from 'react-native-keychain';
+import { NavigationInjectedProps, NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
+import { connect } from 'react-redux';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 
+import { resetAudiofilesState } from '../reducers/audiofiles';
 import { resetAuthState } from '../reducers/auth';
-import { resetUserState } from '../reducers/user';
 import { resetPlayerState } from '../reducers/player';
 import { resetPlaylistState } from '../reducers/playlist';
-import { resetAudiofilesState } from '../reducers/audiofiles';
-import { resetVoicesState, resetDownloadedVoices } from '../reducers/voices';
+import { resetUserState } from '../reducers/user';
+import { resetDownloadedVoices, resetVoicesState } from '../reducers/voices';
 
-import { persistor } from '../store';
-import { RootState } from '../reducers';
 import { CenterLoadingIndicator } from '../components/CenterLoadingIndicator';
+import { RootState } from '../reducers';
 import { resetSubscriptionsState } from '../reducers/subscriptions';
+import { persistor } from '../store';
 
 export const keychainArguments = Platform.select({
   ios: { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' },
   android: { service: 'com.aardwegmedia.playpost' }
 });
 
-interface IProps extends NavigationInjectedProps {}
-
-type Props = IProps & DispatchProps;
+type Props = NavigationInjectedProps & DispatchProps;
 
 class LogoutScreenContainer extends React.PureComponent<Props> {
-  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+  public static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: 'Logout'
     };
   }
 
-  componentDidMount() {
+  public componentDidMount() {
     this.logout();
   }
 
-  doResetCache = async () => {
+  public doResetCache = async () => {
     this.props.resetAudiofilesState();
     this.props.resetDownloadedVoices();
     await RNFS.unlink(LOCAL_CACHE_AUDIOFILES_PATH);
@@ -47,7 +45,7 @@ class LogoutScreenContainer extends React.PureComponent<Props> {
     return;
   }
 
-  logout = async () => {
+  public logout = async () => {
 
     await this.doResetCache();
 
@@ -69,7 +67,7 @@ class LogoutScreenContainer extends React.PureComponent<Props> {
     return this.props.navigation.navigate('Onboarding');
   }
 
-  render() {
+  public render() {
     return (
       <CenterLoadingIndicator />
     );

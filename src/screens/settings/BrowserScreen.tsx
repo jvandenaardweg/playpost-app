@@ -1,8 +1,8 @@
 // @ts-ignore
 import React from 'react';
-import { View, Animated } from 'react-native';
-import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
+import { Animated, View } from 'react-native';
 import { WebView } from 'react-native-webview';
+import { NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
 
 import { ButtonReload } from '../../components/ButtonReload';
 
@@ -18,42 +18,40 @@ interface State {
 
 export class BrowserScreen extends React.PureComponent<Props, State> {
 
-  /* tslint:disable-next-line no-any */
-  private webviewRef = React.createRef<any>();
-
-  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+  public static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: navigation.getParam('title', null),
       headerRight: <ButtonReload onPress={navigation.getParam('handleOnReload')} />
     };
   }
 
-  animatedWidth = new Animated.Value(0);
+  public animatedWidth = new Animated.Value(0);
 
-  interpolatedWidth = this.animatedWidth.interpolate({
+  public interpolatedWidth = this.animatedWidth.interpolate({
     inputRange: [0, 1],
     outputRange: ['0%', '100%']
   });
 
-  state = {
+  public state = {
     loadProgress: ''
   };
 
-  componentDidMount() {
+  /* tslint:disable-next-line no-any */
+  private webviewRef = React.createRef<any>();
+
+  public componentDidMount() {
     this.props.navigation.setParams({ handleOnReload: this.handleOnReload });
   }
 
-  handleOnReload = () => {
-    this.webviewRef.current && this.webviewRef.current.reload();
-  }
+  public handleOnReload = () => this.webviewRef.current && this.webviewRef.current.reload()
 
-  handleOnLoadEnd = () => {
+  public handleOnLoadEnd = () => {
     this.animatedWidth.setValue(0);
   }
 
   // TODO: fix no any
   /* tslint:disable no-any */
-  handleOnLoadProgress = (event: any) => {
+  public handleOnLoadProgress = (event: any) => {
     Animated.timing(
       this.animatedWidth,
       {
@@ -63,7 +61,7 @@ export class BrowserScreen extends React.PureComponent<Props, State> {
     ).start();
   }
 
-  render() {
+  public render() {
     const url = this.props.navigation.getParam('url', null);
 
     return (

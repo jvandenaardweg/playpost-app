@@ -1,16 +1,16 @@
 import React from 'react';
 import { Alert } from 'react-native';
+import { NavigationInjectedProps, NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
 import { connect } from 'react-redux';
-import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions, NavigationInjectedProps } from 'react-navigation';
 
 import { ALERT_GENERIC_INTERNET_REQUIRED } from '../../constants/messages';
 
 import { UpdateEmailForm } from '../../components/UpdateEmailForm';
 
 import { RootState } from '../../reducers';
-import { updateUserEmail, getUser } from '../../reducers/user';
+import { getUser, updateUserEmail } from '../../reducers/user';
 
-import { selectUserError, selectUserDetails } from '../../selectors/user';
+import { selectUserDetails, selectUserError } from '../../selectors/user';
 
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
@@ -22,22 +22,22 @@ interface State {
   validationError: string;
 }
 
-interface IProps extends NavigationInjectedProps {}
-
 interface StateProps {
   userError: string;
 }
 
-type Props = IProps & StateProps & DispatchProps;
+type Props = NavigationInjectedProps & StateProps & DispatchProps;
 
 export class UpdateEmailScreenContainer extends React.PureComponent<Props, State> {
-  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+
+  public static contextType = NetworkContext;
+  public static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: 'Change e-mail'
     };
   }
 
-  state = {
+  public state = {
     isLoading: false,
     isSuccess: false,
     email: '',
@@ -46,11 +46,9 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
     validationError: '',
   };
 
-  navigationTimeout: NodeJS.Timeout | null = null;
+  public navigationTimeout: NodeJS.Timeout | null = null;
 
-  static contextType = NetworkContext;
-
-  componentDidMount() {
+  public componentDidMount() {
     const { userDetails } = this.props;
 
     if (userDetails && userDetails.email) {
@@ -61,13 +59,13 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
     }
   }
 
-  componentWillUnmount() {
+  public componentWillUnmount() {
     if (this.navigationTimeout) {
       clearTimeout(this.navigationTimeout);
     }
   }
 
-  componentDidUpdate(prevProps: Props) {
+  public componentDidUpdate(prevProps: Props) {
     const { userError } = this.props;
 
     if (userError && prevProps.userError !== userError) {
@@ -75,18 +73,18 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
     }
   }
 
-  handleOnPressUpdateEmail = async () => {
+  public handleOnPressUpdateEmail = async () => {
     const { email, previousEmail, isSuccess } = this.state;
     const { isConnected } = this.context;
 
-    if (!isConnected) return Alert.alert('Oops!', ALERT_GENERIC_INTERNET_REQUIRED);
+    if (!isConnected) { return Alert.alert('Oops!', ALERT_GENERIC_INTERNET_REQUIRED); }
 
     if (email === previousEmail) {
       return Alert.alert('Nothing to update...', 'The e-mail address given is the same. No need to update :-)');
     }
 
     // If the user clicks on the button after a success
-    if (isSuccess) return this.props.navigation.navigate('Settings');
+    if (isSuccess) { return this.props.navigation.navigate('Settings'); }
 
     this.setState({ isLoading: true }, async () => {
       try {
@@ -105,11 +103,11 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
     });
   }
 
-  handleOnChangeText = (field: 'email', value: string) => {
-    if (field === 'email') this.setState({ email: value });
+  public handleOnChangeText = (field: 'email', value: string) => {
+    if (field === 'email') { this.setState({ email: value }); }
   }
 
-  render() {
+  public render() {
     const { email, isLoading, isSuccess } = this.state;
 
     return (

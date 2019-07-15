@@ -4,14 +4,14 @@ import { NavigationStackScreenOptions } from 'react-navigation';
 import { OnboardingSlider } from '../../components/OnboardingSlider';
 
 export class OnboardingScreen extends React.PureComponent {
-  static navigationOptions = (): NavigationStackScreenOptions => {
+  public static navigationOptions = (): NavigationStackScreenOptions => {
     return {
       title: 'Introduction',
       header: null
     };
   }
 
-  render() {
+  public render() {
     return (
       <OnboardingSlider />
     );

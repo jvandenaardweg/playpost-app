@@ -7,9 +7,10 @@ describe('ErrorModal', () => {
 
   describe('rendering', () => {
     let wrapper: RenderAPI;
+    const onPressActionHandler = jest.fn();
 
     beforeAll(() => {
-      wrapper = render(<ErrorModal onPressAction={() => {}} message="Test" action="Test" />);
+      wrapper = render(<ErrorModal onPressAction={onPressActionHandler} message="Test" action="Test" />);
     });
 
     it('should render correctly', () => {

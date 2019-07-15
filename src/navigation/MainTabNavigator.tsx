@@ -1,22 +1,22 @@
 import React from 'react';
-import { createStackNavigator, createBottomTabNavigator, StackNavigatorConfig, BottomTabNavigatorConfig, BottomTabBarProps } from 'react-navigation';
+import { BottomTabBarProps, BottomTabNavigatorConfig, createBottomTabNavigator, createStackNavigator, StackNavigatorConfig } from 'react-navigation';
 
 import { TabBar } from '../components/TabBar';
 import { TabBarIcon } from '../components/TabBarIcon';
 
-import { PlaylistScreen } from '../screens/PlaylistScreen';
 import { ArchiveScreen } from '../screens/ArchiveScreen';
 import { FavoritesScreen } from '../screens/FavoritesScreen';
-import { SettingsScreen } from '../screens/settings/SettingsScreen';
-import { BrowserScreen } from '../screens/settings/BrowserScreen';
-import { SettingsVoicesScreen } from '../screens/settings/VoicesScreen';
-import { SettingsLanguagesScreen } from '../screens/settings/LanguagesScreen';
 import { FullArticleScreen } from '../screens/FullArticleScreen';
-import { UpdatePasswordScreen } from '../screens/settings/UpdatePasswordScreen';
+import { PlaylistScreen } from '../screens/PlaylistScreen';
+import { BrowserScreen } from '../screens/settings/BrowserScreen';
+import { SettingsLanguagesScreen } from '../screens/settings/LanguagesScreen';
+import { SettingsScreen } from '../screens/settings/SettingsScreen';
 import { UpdateEmailScreen } from '../screens/settings/UpdateEmailScreen';
+import { UpdatePasswordScreen } from '../screens/settings/UpdatePasswordScreen';
+import { SettingsVoicesScreen } from '../screens/settings/VoicesScreen';
 
-import { ButtonUpgradeContainer } from '../containers/ButtonUpgradeContainer';
 import { ButtonVoices } from '../components/ButtonVoices';
+import { ButtonUpgradeContainer } from '../containers/ButtonUpgradeContainer';
 
 const PlaylistStack: StackNavigatorConfig = createStackNavigator(
   {

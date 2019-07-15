@@ -1,28 +1,29 @@
 import React from 'react';
-import { Animated, StyleSheet, View, Alert } from 'react-native';
+import { Alert, Animated, StyleSheet, View } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
+// tslint:disable-next-line: no-submodule-imports
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 import * as Icon from '../../components/Icon';
-import { NetworkContext } from '../../contexts/NetworkProvider';
-import fonts from '../../constants/fonts';
 import colors from '../../constants/colors';
+import fonts from '../../constants/fonts';
+import { NetworkContext } from '../../contexts/NetworkProvider';
 
 interface Props {
+  isFavorited: boolean;
+  isArchived: boolean;
   removeArticle(): void;
   archiveArticle(): void;
   favoriteArticle(): void;
   unArchiveArticle(): void;
   unFavoriteArticle(): void;
-  isFavorited: boolean;
-  isArchived: boolean;
 }
 export class SwipeableRow extends React.PureComponent<Props> {
+
+  public static contextType = NetworkContext;
   private swipeableRef: React.RefObject<Swipeable> = React.createRef();
 
-  static contextType = NetworkContext;
-
-  handleOnPressRightAction = (actionName: string) => {
+  public handleOnPressRightAction = (actionName: string) => {
     const { isConnected } = this.context;
     const { isFavorited, isArchived } = this.props;
 
@@ -58,7 +59,7 @@ export class SwipeableRow extends React.PureComponent<Props> {
     return this.close();
   }
 
-  renderRightAction = (action: string, icon: string, iconColor: string | null) => {
+  public renderRightAction = (action: string, icon: string, iconColor: string | null) => {
     return (
       <View style={styles.rightActionContainer}>
         <RectButton
@@ -75,7 +76,7 @@ export class SwipeableRow extends React.PureComponent<Props> {
     );
   }
 
-  renderRightActions = (progressAnimatedValue: Animated.Value | Animated.AnimatedInterpolation, dragAnimatedValue: Animated.Value | Animated.AnimatedInterpolation) => {
+  public renderRightActions = (progressAnimatedValue: Animated.Value | Animated.AnimatedInterpolation, dragAnimatedValue: Animated.Value | Animated.AnimatedInterpolation) => {
     const { isArchived, isFavorited } = this.props;
 
     return (
@@ -88,11 +89,9 @@ export class SwipeableRow extends React.PureComponent<Props> {
     );
   }
 
-  close = () => {
-    this.swipeableRef.current && this.swipeableRef.current.close();
-  }
+  public close = () => this.swipeableRef.current && this.swipeableRef.current.close()
 
-  render() {
+  public render() {
     return (
       <Swipeable
         ref={this.swipeableRef}

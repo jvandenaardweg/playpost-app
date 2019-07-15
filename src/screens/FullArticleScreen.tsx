@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
+import { NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
 
 import { ArticleReader } from '../components/ArticleReader';
 
@@ -8,7 +8,7 @@ interface Props {
 }
 
 export class FullArticleScreen extends React.PureComponent<Props> {
-  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+  public static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: ''
     };
@@ -18,7 +18,7 @@ export class FullArticleScreen extends React.PureComponent<Props> {
     return this.props.navigation.getParam('article', null);
   }
 
-  render() {
+  public render() {
     return (
       <ArticleReader article={this.article} />
     );

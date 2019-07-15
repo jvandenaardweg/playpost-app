@@ -12,9 +12,9 @@ import { BottomTabBar, BottomTabBarProps } from 'react-navigation';
 
 import { AudioPlayerContainer } from '../../containers/AudioPlayerContainer';
 
-import styles from './styles';
-import { OfflineNotice } from '../OfflineNotice';
 import { AudiofileStatusContainer } from '../../containers/AudiofileStatusContainer';
+import { OfflineNotice } from '../OfflineNotice';
+import styles from './styles';
 
 export const TabBar: React.FC<BottomTabBarProps> = (
   props: BottomTabBarProps

@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import { View, Text } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Text, View } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
-import { withNavigation, NavigationScreenProp, NavigationRoute } from 'react-navigation';
+import { Button } from 'react-native-elements';
 import SplashScreen from 'react-native-splash-screen';
+import { NavigationRoute, NavigationScreenProp, withNavigation } from 'react-navigation';
 
-import styles from './styles';
 import * as Icon from '../../components/Icon';
+import styles from './styles';
 
 interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;
