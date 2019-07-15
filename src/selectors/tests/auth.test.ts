@@ -1,8 +1,8 @@
-import { authSelector, selectAuthError, selectIsLoading, selectAuthenticationStatus, selectErrorRequestResetPasswordToken, selectErrorUpdatePassword } from '../auth';
 import { createStore } from 'redux';
+import { authSelector, selectAuthenticationStatus, selectAuthError, selectErrorRequestResetPasswordToken, selectErrorUpdatePassword, selectIsLoading } from '../auth';
 
-import { initialState } from '../../reducers/auth';
 import { rootReducer } from '../../reducers';
+import { initialState } from '../../reducers/auth';
 
 const store = createStore(rootReducer);
 

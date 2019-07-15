@@ -1,16 +1,16 @@
+import { createStore } from 'redux';
 import {
   playerSelector,
-  selectPlayerAudiofile,
-  selectPlayerPlaybackState,
-  selectPlayerTrack,
   selectErrorCreateAudiofile,
   selectPlayerArticleId,
-  selectPlayerAudiofileStatus
+  selectPlayerAudiofile,
+  selectPlayerAudiofileStatus,
+  selectPlayerPlaybackState,
+  selectPlayerTrack
 } from '../player';
-import { createStore } from 'redux';
 
-import { initialState } from '../../reducers/player';
 import { rootReducer } from '../../reducers';
+import { initialState } from '../../reducers/player';
 
 import audiofileMock from '../../../tests/__mocks__/audiofile';
 import trackMock from '../../../tests/__mocks__/track';

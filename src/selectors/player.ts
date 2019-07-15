@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
-import { PlayerState } from '../reducers/player';
 import { RootState } from '../reducers';
+import { PlayerState } from '../reducers/player';
 
 export const playerSelector = (state: RootState): PlayerState => state.player;
 
@@ -34,9 +34,9 @@ export const selectPlayerAudiofileStatus = createSelector(
       return 'Loading article audio...';
     }
 
-    if (isCreatingAudiofile) return 'Creating article audio...';
+    if (isCreatingAudiofile) { return 'Creating article audio...'; }
 
-    if (isDownloadingAudiofile) return 'Downloading article audio...';
+    if (isDownloadingAudiofile) { return 'Downloading article audio...'; }
 
     return null;
   }

@@ -1,5 +1,5 @@
-import { userReducer, initialState, RESET_USER_STATE, GET_USER_FAIL, RESET_USER_ERROR } from '../user';
 import { GET_USER_FAIL_MESSAGE } from '../../constants/messages';
+import { GET_USER_FAIL, initialState, RESET_USER_ERROR, RESET_USER_STATE, userReducer } from '../user';
 
 describe('user reducer', () => {
   it('should return the initial state', () => {

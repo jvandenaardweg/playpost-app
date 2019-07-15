@@ -18,7 +18,7 @@ export const selectDownloadedAudiofiles = createSelector(
 export const selectIsDownloadedAudiofilesByArticleAudiofiles = (state: RootState, compareAudiofiles?: Api.Audiofile[]) => createSelector(
   [selectDownloadedAudiofiles],
   (downloadedAudiofiles) => {
-    if (!compareAudiofiles || !compareAudiofiles.length) return false;
+    if (!compareAudiofiles || !compareAudiofiles.length) { return false; }
 
     const articleAudiofilesIds = compareAudiofiles.map(audiofile => audiofile.id);
 

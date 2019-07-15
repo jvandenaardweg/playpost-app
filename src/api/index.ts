@@ -1,7 +1,7 @@
 import axios from 'axios';
-import * as Keychain from 'react-native-keychain';
-import Config from 'react-native-config';
 import { Platform } from 'react-native';
+import Config from 'react-native-config';
+import * as Keychain from 'react-native-keychain';
 
 export const keychainArguments = Platform.select({
   ios: { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' },

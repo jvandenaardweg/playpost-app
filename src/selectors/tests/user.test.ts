@@ -1,8 +1,8 @@
-import { userSelector, selectUserError, selectUserIsLoading, selectUserDetails, selectUserSelectedVoices, selectUserSelectedVoiceByLanguageName, selectUserSubscriptions, selectUserIsPremium, selectUserErrorSaveSelectedVoice } from '../user';
 import { createStore } from 'redux';
+import { selectUserDetails, selectUserError, selectUserErrorSaveSelectedVoice, selectUserIsLoading, selectUserIsPremium, selectUserSelectedVoiceByLanguageName, selectUserSelectedVoices, selectUserSubscriptions, userSelector } from '../user';
 
-import { initialState } from '../../reducers/user';
 import { rootReducer } from '../../reducers';
+import { initialState } from '../../reducers/user';
 
 import exampleUser from '../../../tests/__mocks__/user';
 

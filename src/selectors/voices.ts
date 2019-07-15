@@ -2,10 +2,10 @@ import { createSelector } from 'reselect';
 import { RootState } from '../reducers';
 import { VoicesState } from '../reducers/voices';
 
-export type VoicesLanguages = {
+export interface VoicesLanguages {
   languageName: string;
   countryCode: string;
-};
+}
 
 export const voicesSelector = (state: RootState): VoicesState => state.voices;
 
@@ -23,7 +23,7 @@ export const selectTotalAvailableVoices = createSelector(
   [selectLanguages],
   languages => {
     return languages.reduce((prev, curr) => {
-      if (!curr.voices) return prev;
+      if (!curr.voices) { return prev; }
       const activeVoices = curr.voices && curr.voices.filter(voice => voice.isActive);
 
       /* tslint:disable-next-line no-parameter-reassignment */
@@ -59,13 +59,13 @@ export const selectAvailableVoicesByLanguageName = (state: RootState, languageNa
   createSelector(
     [selectLanguagesWithActiveVoices],
     languages => {
-      const language = languages.find(language => language.name === languageName);
-      if (!language) return [];
-      if (!language.voices) return [];
+      const languageByName = languages.find(language => language.name === languageName);
+      if (!languageByName) { return []; }
+      if (!languageByName.voices) { return []; }
 
       // Sort by label name
       // Create a copy of the array by using the spread syntax
-      const sortedVoices = [...language.voices].sort((a, b) => {
+      const sortedVoices = [...languageByName.voices].sort((a, b) => {
         const aLabel = a.label ? a.label : '';
         const bLabel = b.label ? b.label : '';
         return aLabel.localeCompare(bLabel);
@@ -79,11 +79,11 @@ export const selectDefaultVoiceByLanguageName = (state: RootState, languageName:
   createSelector(
     [selectLanguagesWithActiveVoices],
     languages => {
-      const language = languages.find(language => language.name === languageName);
+      const languageByName = languages.find(language => language.name === languageName);
 
-      if (!language) return null;
+      if (!languageByName) { return null; }
 
-      const defaultVoice = language.voices && language.voices.find(voice => !!voice.isLanguageDefault);
+      const defaultVoice = languageByName.voices && languageByName.voices.find(voice => !!voice.isLanguageDefault);
 
       return defaultVoice;
     }

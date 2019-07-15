@@ -1,13 +1,13 @@
-import { combineReducers, Action } from 'redux';
-import { AxiosResponse, AxiosRequestConfig } from 'axios';
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { Action, combineReducers } from 'redux';
 
-import { playerReducer } from './player';
-import { authReducer } from './auth';
-import { userReducer } from './user';
-import { playlistReducer } from './playlist';
 import { audiofilesReducer } from './audiofiles';
-import { voicesReducer } from './voices';
+import { authReducer } from './auth';
+import { playerReducer } from './player';
+import { playlistReducer } from './playlist';
 import { subscriptionsReducer } from './subscriptions';
+import { userReducer } from './user';
+import { voicesReducer } from './voices';
 
 /* tslint:disable no-any */
 export interface AxiosActionResponse extends AxiosResponse {

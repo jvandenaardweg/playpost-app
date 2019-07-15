@@ -73,7 +73,7 @@ declare namespace Api {
     updatedAt: string;
   }
 
-  export type PlaylistItem = {
+  export interface PlaylistItem {
     id: string;
     order: number;
     lastPlayedAt: string | null;
@@ -83,7 +83,7 @@ declare namespace Api {
     archivedAt: string | null;
     article: Article;
     user?: User;
-  };
+  }
 
   export interface Article {
     id: string;

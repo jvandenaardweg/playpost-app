@@ -1,17 +1,16 @@
 {
-  "extends": ["tslint-config-airbnb"],
+  "extends": [
+    "tslint:latest",
+    "tslint-config-prettier"
+  ],
   "rules": {
     "trailing-comma": false,
-    "max-line-length": false,
-    "variable-name": [
-      true,
-      "ban-keywords",
-      "check-format",
-      "allow-pascal-case"
-    ],
-    "import-name": [false],
-    "no-any": true,
+    "max-line-length": [false, 200],
+    "import-name": false,
     "align": false,
-    "ter-arrow-parens": false
+    "object-literal-sort-keys": false,
+    "no-namespace": false,
+    "no-string-literal": false,
+    "interface-name": false
   }
 }

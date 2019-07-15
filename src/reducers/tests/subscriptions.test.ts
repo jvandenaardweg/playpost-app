@@ -1,4 +1,4 @@
-import { subscriptionsReducer, initialState } from '../subscriptions';
+import { initialState, subscriptionsReducer } from '../subscriptions';
 
 describe('subscriptions reducer', () => {
   it('should return the initial state', () => {

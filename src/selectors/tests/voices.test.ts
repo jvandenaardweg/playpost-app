@@ -1,17 +1,17 @@
+import { createStore } from 'redux';
 import {
-  voicesSelector,
-  selectLanguages,
-  selectLanguagesWithActiveVoices,
-  selectDownloadedVoicePreviews,
   selectAvailableVoicesByLanguageName,
   selectDefaultVoiceByLanguageName,
+  selectDownloadedVoicePreviews,
+  selectLanguages,
+  selectLanguagesWithActiveVoices,
+  selectTotalAvailableVoices,
   selectVoicesError,
-  selectTotalAvailableVoices
+  voicesSelector
 } from '../voices';
-import { createStore } from 'redux';
 
-import { initialState } from '../../reducers/voices';
 import { rootReducer } from '../../reducers';
+import { initialState } from '../../reducers/voices';
 
 import languagesMock from '../../../tests/__mocks__/languages';
 import voicesMock from '../../../tests/__mocks__/voices';
@@ -107,12 +107,12 @@ describe('voices selector', () => {
     const languageName = 'English';
     const languages = selectLanguagesWithActiveVoices(exampleState);
 
-    const language = languages.find(language => language.name === languageName);
+    const languageByName = languages.find(language => language.name === languageName);
 
     const expected =
-      language &&
-      language.voices &&
-      [...language.voices].sort((a, b) => {
+      languageByName &&
+      languageByName.voices &&
+      [...languageByName.voices].sort((a, b) => {
         const aLabel = a.label ? a.label : '';
         const bLabel = b.label ? b.label : '';
         return aLabel.localeCompare(bLabel);
@@ -134,8 +134,8 @@ describe('voices selector', () => {
     const languageName = 'English';
     const languages = selectLanguagesWithActiveVoices(exampleState);
 
-    const language = languages.find(language => language.name === languageName);
-    const expected = language && language.voices && language.voices.find(voice => !!voice.isLanguageDefault);
+    const languageByName = languages.find(language => language.name === languageName);
+    const expected = languageByName && languageByName.voices && languageByName.voices.find(voice => !!voice.isLanguageDefault);
 
     expect(selectDefaultVoiceByLanguageName(exampleState, languageName)).toEqual(expected);
     expect(selectDefaultVoiceByLanguageName(exampleState, '')).toEqual(null);

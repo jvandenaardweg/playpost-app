@@ -1,22 +1,22 @@
+import { createStore } from 'redux';
 import {
-  subscriptionsSelector,
-  selectSubscriptions,
+  selectActiveSubscriptionProductId,
+  selectErrorValidateSubscriptionReceipt,
   selectIsLoadingSubscriptions,
+  selectIsSubscribed,
+  selectSubscriptionLatestReceipt,
+  selectSubscriptions,
   selectSubscriptionsError,
   selectSubscriptionsValidationResult,
-  selectSubscriptionLatestReceipt,
-  selectIsSubscribed,
-  selectErrorValidateSubscriptionReceipt,
-  selectActiveSubscriptionProductId
+  subscriptionsSelector
 } from '../subscriptions';
-import { createStore } from 'redux';
 
-import { initialState } from '../../reducers/subscriptions';
 import { rootReducer } from '../../reducers';
+import { initialState } from '../../reducers/subscriptions';
 
-import subscriptionsMock from '../../../tests/__mocks__/subscriptions';
-import subscriptionValidationResultExpiredMock from '../../../tests/__mocks__/subscription-validation-result-expired';
 import subscriptionValidationResultActiveMock from '../../../tests/__mocks__/subscription-validation-result-active';
+import subscriptionValidationResultExpiredMock from '../../../tests/__mocks__/subscription-validation-result-expired';
+import subscriptionsMock from '../../../tests/__mocks__/subscriptions';
 
 const store = createStore(rootReducer);
 

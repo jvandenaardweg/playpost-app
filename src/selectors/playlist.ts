@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
-import { PlaylistState } from '../reducers/playlist';
 import { RootState } from '../reducers';
+import { PlaylistState } from '../reducers/playlist';
 
 export const playlistSelector = (state: RootState): PlaylistState => state.playlist;
 
@@ -25,7 +25,7 @@ export const selectPlaylistIsLoadingCreateItem = createSelector(
 export const selectAllPlaylistArticles = createSelector(
   selectPlaylistItems,
   (playlistItems) => {
-    if (!playlistItems || !playlistItems.length) return [];
+    if (!playlistItems || !playlistItems.length) { return []; }
 
     // Create a copy of the array, to enforce immutability. Then sort it.
     const sortedPlaylistItems = [...playlistItems].sort((a: Api.PlaylistItem, b: Api.PlaylistItem) => a.order - b.order);
@@ -39,7 +39,7 @@ export const selectAllPlaylistArticles = createSelector(
 export const selectNewPlaylistItems = createSelector(
   selectPlaylistItems,
   (playlistItems) => {
-    if (!playlistItems || !playlistItems.length) return [];
+    if (!playlistItems || !playlistItems.length) { return []; }
 
     const articles = playlistItems
       .filter(playlistItem => !playlistItem.archivedAt)
@@ -52,7 +52,7 @@ export const selectNewPlaylistItems = createSelector(
 export const selectArchivedPlaylistItems = createSelector(
   selectPlaylistItems,
   (playlistItems) => {
-    if (!playlistItems || !playlistItems.length) return [];
+    if (!playlistItems || !playlistItems.length) { return []; }
 
     const archivedPlaylistItems = playlistItems
       .filter(playlistItem => !!playlistItem.archivedAt)
@@ -69,7 +69,7 @@ export const selectArchivedPlaylistItems = createSelector(
 export const selectFavoritedPlaylistItems = createSelector(
   selectPlaylistItems,
   (playlistItems) => {
-    if (!playlistItems || !playlistItems.length) return [];
+    if (!playlistItems || !playlistItems.length) { return []; }
 
     const favoritedPlaylistItems = playlistItems
       .filter(playlistItem => !!playlistItem.favoritedAt)

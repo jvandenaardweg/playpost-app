@@ -1,8 +1,8 @@
-import { audiofilesSelector, selectDownloadedAudiofiles, selectIsDownloadedAudiofilesByArticleAudiofiles } from '../audiofiles';
 import { createStore } from 'redux';
+import { audiofilesSelector, selectDownloadedAudiofiles, selectIsDownloadedAudiofilesByArticleAudiofiles } from '../audiofiles';
 
-import { initialState } from '../../reducers/audiofiles';
 import { rootReducer } from '../../reducers';
+import { initialState } from '../../reducers/audiofiles';
 
 import audiofilesMock from '../../../tests/__mocks__/audiofiles';
 

@@ -1,7 +1,7 @@
 import RNFS from 'react-native-fs';
 import RNFetchBlob from 'rn-fetch-blob';
 
-import { LOCAL_CACHE_VOICE_PREVIEWS_PATH, LOCAL_CACHE_AUDIOFILES_PATH } from '../constants/files';
+import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 
 export const getFileNameFromPath = (path: string) => {
   const pathParts = path.split('/');

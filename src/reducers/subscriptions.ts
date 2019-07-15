@@ -23,8 +23,8 @@ export type SubscriptionsState = Readonly<{
 export const initialState: SubscriptionsState = {
   isLoadingSubscriptions: false,
   isLoadingValidateSubscriptionReceipt: false,
-  subscriptions: [] as Api.InAppSubscription[],
-  validationResult: {} as Api.ReceiptValidationResponse,
+  subscriptions: [] as any as Api.InAppSubscription[],
+  validationResult: {} as any as Api.ReceiptValidationResponse,
   error: '',
   errorValidateSubscriptionReceipt: ''
 };

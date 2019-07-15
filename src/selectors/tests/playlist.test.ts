@@ -1,8 +1,8 @@
-import { playlistSelector, selectPlaylistError, selectPlaylistItems, selectPlaylistIsLoadingCreateItem, selectAllPlaylistArticles, selectNewPlaylistItems, selectArchivedPlaylistItems, selectFavoritedPlaylistItems } from '../playlist';
 import { createStore } from 'redux';
+import { playlistSelector, selectAllPlaylistArticles, selectArchivedPlaylistItems, selectFavoritedPlaylistItems, selectNewPlaylistItems, selectPlaylistError, selectPlaylistIsLoadingCreateItem, selectPlaylistItems } from '../playlist';
 
-import { initialState } from '../../reducers/playlist';
 import { rootReducer } from '../../reducers';
+import { initialState } from '../../reducers/playlist';
 
 import playlistMock from '../../../tests/__mocks__/playlist';
 

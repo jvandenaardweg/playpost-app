@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
-import { SubscriptionsState } from '../reducers/subscriptions';
 import { RootState } from '../reducers';
+import { SubscriptionsState } from '../reducers/subscriptions';
 
 export const subscriptionsSelector = (state: RootState): SubscriptionsState => state.subscriptions;
 
@@ -32,11 +32,11 @@ export const selectSubscriptionsValidationResult = createSelector(
 export const selectSubscriptionLatestReceipt = createSelector(
   [selectSubscriptionsValidationResult],
   (validationResult): string => {
-    if (!validationResult) return '';
+    if (!validationResult) { return ''; }
 
     const { latestReceipt } = validationResult;
 
-    if (!latestReceipt) return '';
+    if (!latestReceipt) { return ''; }
 
     return latestReceipt;
   }
@@ -46,7 +46,7 @@ export const selectIsSubscribed = createSelector(
   [selectSubscriptionsValidationResult],
   (validationResult): boolean => {
     const { status } = validationResult;
-    if (status !== 'active') return false;
+    if (status !== 'active') { return false; }
     return true;
   }
 );
@@ -54,8 +54,8 @@ export const selectIsSubscribed = createSelector(
 export const selectActiveSubscriptionProductId = createSelector(
   [selectSubscriptionsValidationResult, selectIsSubscribed],
   (validationResult, isSubscribed): string => {
-    if (!isSubscribed) return 'free';
-    if (!validationResult || !validationResult.inAppSubscription || !validationResult.inAppSubscription.productId) return 'free';
+    if (!isSubscribed) { return 'free'; }
+    if (!validationResult || !validationResult.inAppSubscription || !validationResult.inAppSubscription.productId) { return 'free'; }
     return validationResult.inAppSubscription.productId;
   }
 );
@@ -63,8 +63,8 @@ export const selectActiveSubscriptionProductId = createSelector(
 export const selectActiveSubscriptionName = createSelector(
   [selectSubscriptionsValidationResult, selectIsSubscribed],
   (validationResult, isSubscribed): string => {
-    if (!isSubscribed) return 'Free';
-    if (!validationResult || !validationResult.inAppSubscription || !validationResult.inAppSubscription.name) return 'Free';
+    if (!isSubscribed) { return 'Free'; }
+    if (!validationResult || !validationResult.inAppSubscription || !validationResult.inAppSubscription.name) { return 'Free'; }
     return validationResult.inAppSubscription.name;
   }
 );

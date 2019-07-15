@@ -111,7 +111,7 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
 
       // Find the default playlist so we can replace the article
       const updatedPlaylistItems = state.items.map(playlistItem => {
-        if (playlistItem.article.id !== article.id) return playlistItem;
+        if (playlistItem.article.id !== article.id) { return playlistItem; }
 
         // Replace the article
         playlistItem.article = article;

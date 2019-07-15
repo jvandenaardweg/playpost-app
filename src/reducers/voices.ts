@@ -11,9 +11,9 @@ export const SET_SELECTED_VOICE_OBJECT = 'voices/SET_SELECTED_VOICE_OBJECT';
 
 export const RESET_VOICES_ERROR = 'voices/RESET_VOICES_ERROR';
 
-export type SelectedVoice = {
+export interface SelectedVoice {
   readonly [key: string]: Api.Voice;
-};
+}
 
 export type VoicesState = Readonly<{
   isLoading: boolean;

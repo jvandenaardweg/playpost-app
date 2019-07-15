@@ -1,15 +1,16 @@
-import { put, all, call, takeLatest } from 'redux-saga/effects';
-import { AnyAction } from 'redux';
 // import * as Keychain from 'react-native-keychain';
 import { Platform } from 'react-native';
+import { AnyAction } from 'redux';
+// tslint:disable-next-line:no-submodule-imports
+import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 export const keychainArguments = Platform.select({
   ios: { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' },
   android: { service: 'com.aardwegmedia.playpost' }
 });
 
-import { setAuthToken, setAuthError, GET_AUTH_TOKEN, resetAuthError } from '../reducers/auth';
 import * as API from '../api/auth';
+import { GET_AUTH_TOKEN, resetAuthError, setAuthError, setAuthToken } from '../reducers/auth';
 
 export function* authorize({ email, password }: AnyAction) {
   try {

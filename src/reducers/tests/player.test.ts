@@ -1,12 +1,12 @@
 import {
-  playerReducer,
   initialState,
-  SET_IS_CREATING_AUDIOFILE,
+  playerReducer,
   RESET_IS_CREATING_AUDIOFILE,
   RESET_IS_DOWNLOADING_AUDIOFILE,
+  SET_IS_CREATING_AUDIOFILE,
   SET_IS_DOWNLOADING_AUDIOFILE,
-  SET_TRACK,
-  SET_PLAYBACK_STATUS
+  SET_PLAYBACK_STATUS,
+  SET_TRACK
 } from '../player';
 
 import exampleTrack from '../../../tests/__mocks__/track';

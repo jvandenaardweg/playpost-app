@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
-import { AuthState } from '../reducers/auth';
 import { RootState } from '../reducers';
+import { AuthState } from '../reducers/auth';
 
 export const authSelector = (state: RootState): AuthState => state.auth;
 
@@ -32,7 +32,7 @@ export const selectErrorUpdatePassword = createSelector(
 export const selectAuthenticationStatus = createSelector(
   [selectAuthenticationToken],
   (token) => {
-    if (token) return 'LOGGED_IN';
+    if (token) { return 'LOGGED_IN'; }
     return 'LOGGED_OUT';
   }
 );

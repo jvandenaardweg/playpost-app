@@ -1,5 +1,5 @@
-import { voicesReducer, initialState, GET_LANGUAGES_FAIL, RESET_VOICES_ERROR } from '../voices';
 import { GET_LANGUAGES_FAIL_MESSAGE } from '../../constants/messages';
+import { GET_LANGUAGES_FAIL, initialState, RESET_VOICES_ERROR, voicesReducer } from '../voices';
 
 describe('voices reducer', () => {
   it('should return the initial state', () => {

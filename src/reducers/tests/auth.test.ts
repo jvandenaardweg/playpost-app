@@ -1,6 +1,6 @@
-import { authReducer, initialState, RESET_AUTH_STATE, RESET_AUTH_ERROR, SET_AUTH_TOKEN, POST_AUTH, POST_AUTH_SUCCESS, SET_AUTH_ERROR, POST_AUTH_FAIL } from '../auth';
+import { authReducer, initialState, POST_AUTH, POST_AUTH_FAIL, POST_AUTH_SUCCESS, RESET_AUTH_ERROR, RESET_AUTH_STATE, SET_AUTH_ERROR, SET_AUTH_TOKEN } from '../auth';
 
-import { POST_AUTH_FAIL_MESSAGE, GENERIC_NETWORK_ERROR } from '../../constants/messages';
+import { GENERIC_NETWORK_ERROR, POST_AUTH_FAIL_MESSAGE } from '../../constants/messages';
 
 describe('auth reducer', () => {
   it('should return the initial state', () => {

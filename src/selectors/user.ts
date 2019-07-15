@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
-import { UserState } from '../reducers/user';
 import { RootState } from '../reducers';
+import { UserState } from '../reducers/user';
 
 export const userSelector = (state: RootState): UserState => state.user;
 
@@ -42,7 +42,7 @@ export const selectUserSelectedVoices = createSelector(
 export const selectUserSelectedVoiceByLanguageName = (state: RootState, languageName?: string) => createSelector(
   [selectUserSelectedVoices],
   (voices) => {
-    if (!languageName) return;
+    if (!languageName) { return; }
     return voices.find(voice => voice.language.name === languageName);
   }
 )(state);

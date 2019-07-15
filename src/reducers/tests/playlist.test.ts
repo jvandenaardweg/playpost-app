@@ -1,4 +1,4 @@
-import { playlistReducer, initialState } from '../playlist';
+import { initialState, playlistReducer } from '../playlist';
 
 describe('playlist reducer', () => {
   it('should return the initial state', () => {
