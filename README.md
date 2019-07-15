@@ -75,14 +75,22 @@ RN_API_URL="https://api.playpost.app"
 
 Distribute builds to: Store > Pre-Production
 
+## The development workflow
+- `master` is production. It's sacred. **Only** merge changes into `master` when a release is ready and fully tested.
+- Always make sure `develop` has the latest `master` changes in it. Merge `master` into `develop`.
+- When working on a feature, create `/feature/feature-name` branches off `master`. Merge them into `develop` when they are tested and done.
+- Always write tests for the feature you are building.
+- `develop` should always contain a working version.
+
 ## How to release a new version to the App Store
 
 1. Make changes in the `develop` branche
+2. Build a `develop` version for TestFlight. Test that version using TestFlight.
 2. When the changes are fully tested and working, merge them into `master`
 3. In the `master` branche, run `npm version patch` or `npm version minor` or `npm version major`. A changelog is now generated and the correct version is added to the required files.
 4. When that's done, push those changes to `master`
 5. Merge `master` back into `develop`, so the `develop` branche is up to date with the latest versioning and changelog
-6. A production build will now be created in AppCenter. Upon success, it's send to TestFlight.
+6. Go to AppCenter and run the `master` build. A production build will now be created in AppCenter. Upon success, it's send to TestFlight.
 7. Go to App Store Connect and find the production build in the TestFlight tab based on the build number from AppCenter. Wait for the status to go from `Processing` to `Ready to Submit`
 8. When the status is `Ready to Submit`, submit it to the TestFlight users.
 9. Test the App changes in TestFlight. If all is good, then it's ready to send to Apple for review.
