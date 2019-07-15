@@ -38,7 +38,7 @@ exports[`ButtonUpgrade rendering should render correctly 1`] = `
       Array [
         Object {
           "color": "#037DE2",
-          "fontSize": 18,
+          "fontSize": 16,
         },
         Object {
           "marginLeft": 6,
