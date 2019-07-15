@@ -27,9 +27,7 @@ const PlaylistStack: StackNavigatorConfig = createStackNavigator(
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
     defaultNavigationOptions: ({ navigation }) => ({
-      title: 'Playlist',
       headerRight: <ButtonUpgradeContainer />,
-      headerLeft: <ButtonVoices onPress={() => navigation.navigate('ModalLanguages')} />
     }),
     navigationOptions: {
       tabBarLabel: 'Playlist',
