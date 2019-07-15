@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
+import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
   container: {
-    marginRight: 12,
+    marginRight: spacing.default,
     height: 40,
     alignItems: 'center',
     flex: 1,
@@ -16,6 +17,7 @@ export default StyleSheet.create({
     fontSize: fonts.fontSize.body
   },
   icon: {
-    marginLeft: 6
+    marginLeft: 6,
+    marginRight: -1
   }
 });

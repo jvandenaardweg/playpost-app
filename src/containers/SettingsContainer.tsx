@@ -237,7 +237,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
         data: [
           {
             title: 'Voices & Languages',
-            icon: 'radio',
+            icon: 'globe',
             iconColor: colors.green,
             onPress: this.handleOnPressLanguage,
             value: totalAvailableVoices,

@@ -252,14 +252,14 @@ export class VoiceSelectContainerComponent extends React.PureComponent<Props, St
 
   getBadgeValue(isPremium: boolean, isHighestQuality: boolean) {
     if (isPremium && isHighestQuality) {
-      return 'premium (hq)';
+      return 'Premium (HQ)';
     }
 
     if (isPremium) {
-      return 'premium';
+      return 'Premium';
     }
 
-    return 'free';
+    return 'Free';
   }
 
   render() {
@@ -290,7 +290,7 @@ export class VoiceSelectContainerComponent extends React.PureComponent<Props, St
           const badgeValue = this.getBadgeValue(voice.isPremium, voice.isHighestQuality);
           const defaultLabel = voice.isLanguageDefault ? '(Default) ' : '';
           const gender = voice.gender === 'MALE' ? 'Male' : 'Female';
-          const subtitle = `${defaultLabel}${gender}, ${voice.language.name} (${voice.countryCode})`;
+          const subtitle = `${defaultLabel}${gender} (${voice.countryCode})`;
 
           const label = voice.label ? voice.label : 'Unknown';
           // const badgeStatus = (voice.isPremium) ? 'warning' : 'primary';

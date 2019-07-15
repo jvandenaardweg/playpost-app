@@ -1,8 +1,10 @@
 import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
-import spacing from '../../constants/spacing';
 import fonts from '../../constants/fonts';
+import spacing from '../../constants/spacing';
+
+const seperatorHeight = 10;
 
 export default StyleSheet.create({
   container: {
@@ -10,13 +12,14 @@ export default StyleSheet.create({
     backgroundColor: colors.appBackground
   },
   sectionList: {
-    padding: spacing.default
+    padding: spacing.default,
+    paddingTop: spacing.default - seperatorHeight
   },
   seperator: {
-    height: 10
+    height: seperatorHeight
   },
   rightIconText: {
-    color: colors.gray,
+    color: colors.grayDark,
     fontSize: fonts.fontSize.body
   }
 });

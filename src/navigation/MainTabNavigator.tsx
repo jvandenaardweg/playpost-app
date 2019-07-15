@@ -29,7 +29,7 @@ const PlaylistStack: StackNavigatorConfig = createStackNavigator(
     defaultNavigationOptions: ({ navigation }) => ({
       title: 'Playlist',
       headerRight: <ButtonUpgradeContainer />,
-      headerLeft: <ButtonVoices onPress={() => navigation.navigate('SettingsLanguages')} />
+      headerLeft: <ButtonVoices onPress={() => navigation.navigate('ModalLanguages')} />
     }),
     navigationOptions: {
       tabBarLabel: 'Playlist',
@@ -53,7 +53,7 @@ const ArchiveStack: StackNavigatorConfig = createStackNavigator(
     defaultNavigationOptions: ({ navigation }) => ({
       title: 'Archive',
       headerRight: <ButtonUpgradeContainer />,
-      headerLeft: <ButtonVoices onPress={() => navigation.navigate('SettingsLanguages')} />
+      headerLeft: <ButtonVoices onPress={() => navigation.navigate('ModalLanguages')} />
     }),
     navigationOptions: {
       tabBarLabel: 'Archive',
@@ -77,7 +77,7 @@ const FavoritesStack: StackNavigatorConfig = createStackNavigator(
     defaultNavigationOptions: ({ navigation }) => ({
       title: 'Favorites',
       headerRight: <ButtonUpgradeContainer />,
-      headerLeft: <ButtonVoices onPress={() => navigation.navigate('SettingsLanguages')} />
+      headerLeft: <ButtonVoices onPress={() => navigation.navigate('ModalLanguages')} />
     }),
     navigationOptions: {
       tabBarLabel: 'Favorites',
@@ -105,9 +105,9 @@ const SettingsStack: StackNavigatorConfig = createStackNavigator(
     headerTransitionPreset: 'uikit',
     defaultNavigationOptions: ({ navigation }) => ({
       title: 'Settings',
-      headerRight: <ButtonUpgradeContainer />,
+      headerRight: <ButtonUpgradeContainer />
     }),
-    navigationOptions: {
+    navigationOptions: ({ navigation }) => ({
       tabBarLabel: 'Settings',
       tabBarIcon: ({ focused }) => (
         <TabBarIcon
@@ -115,7 +115,7 @@ const SettingsStack: StackNavigatorConfig = createStackNavigator(
           name="settings"
         />
       )
-    }
+    })
   }
 );
 

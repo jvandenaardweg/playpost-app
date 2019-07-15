@@ -13,17 +13,17 @@ export class UpgradeScreen extends React.PureComponent<Props> {
     return {
       title: 'Upgrade subscription',
       headerLeft: null,
-      headerRight: <ButtonClose onPress={navigation.getParam('handleOnClose')} />
+      // headerRight: <ButtonClose onPress={navigation.getParam('handleOnClose')} />
     };
   }
 
-  componentDidMount() {
-    this.props.navigation.setParams({ handleOnClose: this.handleOnClose });
-  }
+  // componentDidMount() {
+  //   this.props.navigation.setParams({ handleOnClose: this.handleOnClose });
+  // }
 
-  handleOnClose = () => {
-    this.props.navigation.goBack(null);
-  }
+  // handleOnClose = () => {
+  //   this.props.navigation.goBack(null);
+  // }
 
   render() {
     return (

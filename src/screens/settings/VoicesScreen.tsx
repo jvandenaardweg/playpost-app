@@ -1,18 +1,16 @@
 import React from 'react';
-import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
-import { VoiceSelectContainer } from '../../containers/VoiceSelectContainer';
-import { ButtonUpgradeContainer } from '../../containers/ButtonUpgradeContainer';
+import { NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
 import { AppBackground } from '../../components/AppBackground';
+import { VoiceSelectContainer } from '../../containers/VoiceSelectContainer';
 
 export class SettingsVoicesScreen extends React.PureComponent {
-  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+  public static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
-      title: 'Voices',
-      headerRight: <ButtonUpgradeContainer />
+      title: 'Voices'
     };
   }
 
-  render() {
+  public render() {
     return (
       <AppBackground>
         <VoiceSelectContainer />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 
 import * as Icon from '../Icon';
 
@@ -14,7 +14,7 @@ interface Props {
 export const ButtonVoices: React.FC<Props> = React.memo(({ onPress }) => {
   return (
     <TouchableOpacity testID="ButtonVoices-button" onPress={onPress} style={styles.container}>
-      <Icon.Feather name="radio" size={24} color={colors.green} style={styles.icon} />
+      <Icon.Feather name="globe" size={20} color={colors.green} style={styles.icon} />
     </TouchableOpacity>
   );
 });

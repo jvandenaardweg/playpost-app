@@ -1,41 +1,37 @@
 import React from 'react';
-import { View, Text, SectionList, ActivityIndicator, SectionListData } from 'react-native';
+import { ActivityIndicator, SectionList, SectionListData, Text, View } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import styles from './styles';
 
 import colors from '../../constants/colors';
 
-import { ListSeperator } from '../ListSeperator';
 import * as Icon from '../../components/Icon';
+import { ListSeperator } from '../ListSeperator';
 
-export type ListItem = {
+export interface ListItem {
   subtitle?: string;
   title?: string;
   icon?: string;
   iconColor?: string;
-  onPress?(): void;
   value?: number;
   chevron?: boolean;
   checkmark?: boolean;
   isSelected?: boolean;
   isLoading?: boolean;
-  // tslint:disable-next-line: no-any
   leftIcon?: React.ComponentType<any> | React.ReactElement;
-};
+  onPress?(): void;
+}
 
-export type CustomSectionListSectionData = {
+export interface CustomSectionListSectionData {
   title?: string;
   data: ListItem[];
-};
+}
 
-type Props = {
-  // tslint:disable-next-line: no-any
+interface Props {
   sectionListData: ReadonlyArray<SectionListData<any>>;
-  // tslint:disable-next-line: no-any
   ListHeaderComponent?: React.ComponentType<any> | React.ReactElement | null;
-  // tslint:disable-next-line: no-any
   ListFooterComponent?: React.ComponentType<any> | React.ReactElement | null;
-};
+}
 
 export const CustomSectionList: React.FC<Props> = ({ sectionListData, ListHeaderComponent, ListFooterComponent }) => (
   <View style={styles.container}>

@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import { createAppContainer, createStackNavigator, NavigationContainer } from 'react-navigation';
+import { createAppContainer, createStackNavigator, NavigationContainer, NavigationActions } from 'react-navigation';
 import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
 
 import { MainTabNavigator } from './MainTabNavigator';
@@ -16,6 +16,8 @@ import { UpgradeScreen } from '../screens/modals/UpgradeScreen';
 import { LogoutScreen } from '../screens/LogoutScreen';
 import { ButtonClose } from '../components/ButtonClose';
 import { LoginForgotPasswordScreen } from '../screens/login/LoginForgotPasswordScreen';
+import { SettingsLanguagesScreen } from '../screens/settings/LanguagesScreen';
+import { SettingsVoicesScreen } from '../screens/settings/VoicesScreen';
 
 const LoginStack = createStackNavigator(
   {
@@ -45,6 +47,16 @@ const SignupStack = createStackNavigator(
   }
 );
 
+const SettingsLanguagesModalStack = createStackNavigator(
+  {
+    SettingsLanguages: SettingsLanguagesScreen
+  },
+  {
+    initialRouteName: 'SettingsLanguages',
+    headerMode: 'none',
+  }
+);
+
 export const AppNavigator: NavigationContainer = createAppContainer(
   createAnimatedSwitchNavigator(
     {
@@ -56,7 +68,28 @@ export const AppNavigator: NavigationContainer = createAppContainer(
               Upgrade: UpgradeScreen
             },
             {
-              headerMode: 'screen'
+              headerMode: 'float',
+              headerTransitionPreset: 'uikit',
+              defaultNavigationOptions: ({ navigation }) => ({
+                headerRight: <ButtonClose onPress={() => navigation.dismiss()} />
+              })
+            }
+          ),
+          ModalLanguages: createStackNavigator(
+            {
+              SettingsLanguages: SettingsLanguagesModalStack,
+              SettingsVoices: SettingsVoicesScreen,
+            },
+            {
+              headerMode: 'float',
+              headerTransitionPreset: 'uikit',
+              defaultNavigationOptions: ({ navigation }) => ({
+                title: 'Languages',
+                headerRight: <ButtonClose onPress={() => {
+                  navigation.popToTop()
+                  navigation.dismiss()
+                }} />
+              })
             }
           )
         },
@@ -79,6 +112,7 @@ export const AppNavigator: NavigationContainer = createAppContainer(
           initialRouteName: 'Onboarding',
           mode: 'modal',
           headerMode: 'screen',
+          headerTransitionPreset: 'uikit',
           defaultNavigationOptions: {
             header: null,
           }

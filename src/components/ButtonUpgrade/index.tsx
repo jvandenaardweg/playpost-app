@@ -15,7 +15,7 @@ export const ButtonUpgrade: React.FC<Props> = React.memo(({ onPress }) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
       <Text style={styles.label}>Upgrade</Text>
-      <Icon.FontAwesome5 name="star" solid size={16} color={colors.tintColor} style={styles.icon} />
+      <Icon.FontAwesome5 name="star" solid size={18} color={colors.tintColor} style={styles.icon} />
     </TouchableOpacity>
   );
 });

@@ -9,7 +9,7 @@ export const reactNativeElementsTheme: Theme = {
       borderRadius: 8
     },
     buttonStyle: {
-      height: 54,
+      height: 50,
       borderRadius: 8
     },
     titleStyle: {
@@ -32,8 +32,9 @@ export const reactNativeElementsTheme: Theme = {
       fontSize: fonts.fontSize.title
     },
     subtitleStyle: {
-      color: colors.gray,
-      fontSize: fonts.fontSize.small
+      color: colors.grayDark,
+      fontSize: fonts.fontSize.small,
+      marginTop: 2
     }
   },
   colors: {
