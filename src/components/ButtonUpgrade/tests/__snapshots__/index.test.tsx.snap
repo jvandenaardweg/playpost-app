@@ -16,7 +16,7 @@ exports[`ButtonUpgrade rendering should render correctly 1`] = `
       "flex": 1,
       "flexDirection": "row",
       "height": 40,
-      "marginRight": 12,
+      "marginRight": 16,
       "opacity": 1,
     }
   }
@@ -38,10 +38,11 @@ exports[`ButtonUpgrade rendering should render correctly 1`] = `
       Array [
         Object {
           "color": "#037DE2",
-          "fontSize": 16,
+          "fontSize": 18,
         },
         Object {
           "marginLeft": 6,
+          "marginRight": -1,
         },
         Object {
           "fontFamily": "FontAwesome5Free-Solid",

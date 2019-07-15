@@ -6,6 +6,7 @@ exports[`AppBackground rendering should render correctly 1`] = `
     Object {
       "backgroundColor": "#EEEEEE",
       "flex": 1,
+      "padding": 0,
     }
   }
 >

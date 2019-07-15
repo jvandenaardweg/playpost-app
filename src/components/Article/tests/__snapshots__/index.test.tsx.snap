@@ -55,7 +55,7 @@ exports[`Article active rendering should render active correctly 1`] = `
           numberOfLines={1}
           style={
             Object {
-              "color": "#888888",
+              "color": "#AAAAAA",
               "fontSize": 12,
               "fontWeight": "100",
               "paddingRight": 0,
@@ -192,7 +192,7 @@ exports[`Article active rendering should render active correctly 1`] = `
       <Text
         style={
           Object {
-            "color": "#888888",
+            "color": "#AAAAAA",
             "fontSize": 12,
             "fontWeight": "100",
             "paddingLeft": 2,
@@ -301,7 +301,7 @@ exports[`Article active rendering should render active correctly 1`] = `
     <Text
       style={
         Object {
-          "color": "#888888",
+          "color": "#AAAAAA",
           "fontSize": 12,
           "fontWeight": "100",
           "marginTop": 6,
@@ -371,7 +371,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
           numberOfLines={1}
           style={
             Object {
-              "color": "#888888",
+              "color": "#AAAAAA",
               "fontSize": 12,
               "fontWeight": "100",
               "paddingRight": 0,
@@ -508,7 +508,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
       <Text
         style={
           Object {
-            "color": "#888888",
+            "color": "#AAAAAA",
             "fontSize": 12,
             "fontWeight": "100",
             "paddingLeft": 2,
@@ -615,7 +615,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
     <Text
       style={
         Object {
-          "color": "#888888",
+          "color": "#AAAAAA",
           "fontSize": 12,
           "fontWeight": "100",
           "marginTop": 6,
@@ -685,7 +685,7 @@ exports[`Article full rendering should render full correctly 1`] = `
           numberOfLines={1}
           style={
             Object {
-              "color": "#888888",
+              "color": "#AAAAAA",
               "fontSize": 12,
               "fontWeight": "100",
               "paddingRight": 0,
@@ -824,7 +824,7 @@ exports[`Article full rendering should render full correctly 1`] = `
       <Text
         style={
           Object {
-            "color": "#888888",
+            "color": "#AAAAAA",
             "fontSize": 12,
             "fontWeight": "100",
             "paddingLeft": 2,
@@ -931,7 +931,7 @@ exports[`Article full rendering should render full correctly 1`] = `
     <Text
       style={
         Object {
-          "color": "#888888",
+          "color": "#AAAAAA",
           "fontSize": 12,
           "fontWeight": "100",
           "marginTop": 6,
@@ -1001,7 +1001,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
           numberOfLines={1}
           style={
             Object {
-              "color": "#888888",
+              "color": "#AAAAAA",
               "fontSize": 12,
               "fontWeight": "100",
               "paddingRight": 0,
@@ -1138,7 +1138,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
       <Text
         style={
           Object {
-            "color": "#888888",
+            "color": "#AAAAAA",
             "fontSize": 12,
             "fontWeight": "100",
             "paddingLeft": 2,
@@ -1227,7 +1227,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
     <Text
       style={
         Object {
-          "color": "#888888",
+          "color": "#AAAAAA",
           "fontSize": 12,
           "fontWeight": "100",
           "marginTop": 6,
@@ -1297,7 +1297,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
           numberOfLines={1}
           style={
             Object {
-              "color": "#888888",
+              "color": "#AAAAAA",
               "fontSize": 12,
               "fontWeight": "100",
               "paddingRight": 0,
@@ -1434,7 +1434,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
       <Text
         style={
           Object {
-            "color": "#888888",
+            "color": "#AAAAAA",
             "fontSize": 12,
             "fontWeight": "100",
             "paddingLeft": 2,
@@ -1541,7 +1541,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
     <Text
       style={
         Object {
-          "color": "#888888",
+          "color": "#AAAAAA",
           "fontSize": 12,
           "fontWeight": "100",
           "marginTop": 6,
@@ -1611,7 +1611,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
           numberOfLines={1}
           style={
             Object {
-              "color": "#888888",
+              "color": "#AAAAAA",
               "fontSize": 12,
               "fontWeight": "100",
               "paddingRight": 0,
@@ -1748,7 +1748,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
       <Text
         style={
           Object {
-            "color": "#888888",
+            "color": "#AAAAAA",
             "fontSize": 12,
             "fontWeight": "100",
             "paddingLeft": 2,
@@ -1855,7 +1855,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
     <Text
       style={
         Object {
-          "color": "#888888",
+          "color": "#AAAAAA",
           "fontSize": 12,
           "fontWeight": "100",
           "marginTop": 6,

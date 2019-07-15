@@ -1,23 +1,23 @@
 
 import React from 'react';
 
-import { createAppContainer, createStackNavigator, NavigationContainer, NavigationActions } from 'react-navigation';
+import { createAppContainer, createStackNavigator, NavigationContainer } from 'react-navigation';
 import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
 
 import { MainTabNavigator } from './MainTabNavigator';
 
-import { LoginScreen } from '../screens/onboarding/LoginScreen';
-import { LoginResetPasswordScreen } from '../screens/login/LoginResetPasswordScreen';
-import { SignupScreen } from '../screens/onboarding/SignupScreen';
-import { SignupSuccessScreen } from '../screens/SignupSuccessScreen';
-import { AuthLoadingScreen } from '../screens/AuthLoadingScreen';
-import { OnboardingScreen } from '../screens/onboarding/OnboardingScreen';
-import { UpgradeScreen } from '../screens/modals/UpgradeScreen';
-import { LogoutScreen } from '../screens/LogoutScreen';
 import { ButtonClose } from '../components/ButtonClose';
+import { AuthLoadingScreen } from '../screens/AuthLoadingScreen';
 import { LoginForgotPasswordScreen } from '../screens/login/LoginForgotPasswordScreen';
+import { LoginResetPasswordScreen } from '../screens/login/LoginResetPasswordScreen';
+import { LogoutScreen } from '../screens/LogoutScreen';
+import { UpgradeScreen } from '../screens/modals/UpgradeScreen';
+import { LoginScreen } from '../screens/onboarding/LoginScreen';
+import { OnboardingScreen } from '../screens/onboarding/OnboardingScreen';
+import { SignupScreen } from '../screens/onboarding/SignupScreen';
 import { SettingsLanguagesScreen } from '../screens/settings/LanguagesScreen';
 import { SettingsVoicesScreen } from '../screens/settings/VoicesScreen';
+import { SignupSuccessScreen } from '../screens/SignupSuccessScreen';
 
 const LoginStack = createStackNavigator(
   {

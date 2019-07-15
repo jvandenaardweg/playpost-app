@@ -136,7 +136,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#888888",
+                    "color": "#AAAAAA",
                     "fontSize": 15,
                     "lineHeight": 24,
                   }
@@ -209,7 +209,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#888888",
+                    "color": "#AAAAAA",
                     "fontSize": 15,
                     "lineHeight": 24,
                   }
@@ -282,7 +282,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#888888",
+                    "color": "#AAAAAA",
                     "fontSize": 15,
                     "lineHeight": 24,
                   }
@@ -355,7 +355,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#888888",
+                    "color": "#AAAAAA",
                     "fontSize": 15,
                     "lineHeight": 24,
                   }

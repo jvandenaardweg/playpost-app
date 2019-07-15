@@ -29,7 +29,7 @@ exports[`ButtonVoices rendering should render correctly 1`] = `
       Array [
         Object {
           "color": "#03A87C",
-          "fontSize": 24,
+          "fontSize": 20,
         },
         Object {},
         Object {
@@ -41,7 +41,7 @@ exports[`ButtonVoices rendering should render correctly 1`] = `
       ]
     }
   >
-    
+    
   </Text>
 </View>
 `;

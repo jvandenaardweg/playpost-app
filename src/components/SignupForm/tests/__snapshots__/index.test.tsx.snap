@@ -168,7 +168,7 @@ exports[`SignupForm rendering should render correctly 1`] = `
           <Text
             style={
               Object {
-                "color": "#888888",
+                "color": "#AAAAAA",
                 "fontSize": 15,
                 "lineHeight": 24,
                 "textAlign": "center",
@@ -182,7 +182,7 @@ exports[`SignupForm rendering should render correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#888888",
+                  "color": "#AAAAAA",
                   "fontSize": 15,
                   "lineHeight": 24,
                   "textAlign": "center",
@@ -199,7 +199,7 @@ exports[`SignupForm rendering should render correctly 1`] = `
           <Text
             style={
               Object {
-                "color": "#888888",
+                "color": "#AAAAAA",
                 "fontSize": 15,
                 "lineHeight": 24,
                 "textAlign": "center",
@@ -213,7 +213,7 @@ exports[`SignupForm rendering should render correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#888888",
+                  "color": "#AAAAAA",
                   "fontSize": 15,
                   "lineHeight": 24,
                   "textAlign": "center",

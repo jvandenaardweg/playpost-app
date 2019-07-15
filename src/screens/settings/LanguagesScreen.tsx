@@ -1,18 +1,16 @@
 import React from 'react';
-import { NavigationScreenProp, NavigationRoute, NavigationStackScreenOptions } from 'react-navigation';
-import { LanguagesSelectContainer } from '../../containers/LanguageSelectContainer';
+import { NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
 import { AppBackground } from '../../components/AppBackground';
-import { ButtonUpgradeContainer } from '../../containers/ButtonUpgradeContainer';
+import { LanguagesSelectContainer } from '../../containers/LanguageSelectContainer';
 
 export class SettingsLanguagesScreen extends React.PureComponent {
-  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+  public static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
-      title: 'Languages',
-      // headerRight: <ButtonUpgradeContainer />
+      title: 'Languages'
     };
   }
 
-  render() {
+  public render() {
     return (
       <AppBackground>
         <LanguagesSelectContainer />
