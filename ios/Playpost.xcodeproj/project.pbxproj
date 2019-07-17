@@ -440,20 +440,6 @@
 			remoteGlobalIDString = 83CBBA2D1A601D0E00E9B192;
 			remoteInfo = React;
 		};
-		8C92A6872243B7CD0057A1EE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8C92A64C2243B7CC0057A1EE /* RNVersionNumber.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RNVersionNumber;
-		};
-		8C92A6892243B7CD0057A1EE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8C92A64C2243B7CC0057A1EE /* RNVersionNumber.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2858ECD01F8B91B400610575;
-			remoteInfo = "RNVersionNumber-tvOS";
-		};
 		8C92A69A2243CA210057A1EE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8C92A6962243CA210057A1EE /* RNCWebView.xcodeproj */;
@@ -715,7 +701,6 @@
 		8C5A7DCA220F224A00ECCC65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C5A7DD2220F22A700ECCC65 /* PlaypostShareExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaypostShareExtension.m; sourceTree = "<group>"; };
 		8C5A7DD4220F230600ECCC65 /* ReactNativeShareExtension.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeShareExtension.xcodeproj; path = "../node_modules/react-native-share-extension/ios/ReactNativeShareExtension.xcodeproj"; sourceTree = "<group>"; };
-		8C92A64C2243B7CC0057A1EE /* RNVersionNumber.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNVersionNumber.xcodeproj; path = "../node_modules/react-native-version-number/ios/RNVersionNumber.xcodeproj"; sourceTree = "<group>"; };
 		8C92A6962243CA210057A1EE /* RNCWebView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCWebView.xcodeproj; path = "../node_modules/react-native-webview/ios/RNCWebView.xcodeproj"; sourceTree = "<group>"; };
 		8CA3D29922900BBA00516BF9 /* RNReanimated.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNReanimated.xcodeproj; path = "../node_modules/react-native-reanimated/ios/RNReanimated.xcodeproj"; sourceTree = "<group>"; };
 		8CBA9C90227DA93100CE20A0 /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCAsyncStorage.xcodeproj; path = "../node_modules/@react-native-community/async-storage/ios/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; };
@@ -1039,7 +1024,6 @@
 				8CA3D29922900BBA00516BF9 /* RNReanimated.xcodeproj */,
 				8CBA9C90227DA93100CE20A0 /* RNCAsyncStorage.xcodeproj */,
 				8C92A6962243CA210057A1EE /* RNCWebView.xcodeproj */,
-				8C92A64C2243B7CC0057A1EE /* RNVersionNumber.xcodeproj */,
 				8CD47BF92240D09E00D95B46 /* RCTVideo.xcodeproj */,
 				8C15AFFB223EB671001058F0 /* RNFetchBlob.xcodeproj */,
 				8CD2ED1B223E70AA00A054E6 /* RNFS.xcodeproj */,
@@ -1168,15 +1152,6 @@
 			isa = PBXGroup;
 			children = (
 				8C5A7DD9220F230600ECCC65 /* libReactNativeShareExtension.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		8C92A64D2243B7CC0057A1EE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8C92A6882243B7CD0057A1EE /* libRNVersionNumber.a */,
-				8C92A68A2243B7CD0057A1EE /* libRNVersionNumber-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1541,10 +1516,6 @@
 					ProjectRef = 8E2303C7C8C549689F8CFD7A /* RNVectorIcons.xcodeproj */;
 				},
 				{
-					ProductGroup = 8C92A64D2243B7CC0057A1EE /* Products */;
-					ProjectRef = 8C92A64C2243B7CC0057A1EE /* RNVersionNumber.xcodeproj */;
-				},
-				{
 					ProductGroup = 8C543223223641D600AA0681 /* Products */;
 					ProjectRef = 8C543222223641D600AA0681 /* SplashScreen.xcodeproj */;
 				},
@@ -1836,20 +1807,6 @@
 			fileType = archive.ar;
 			path = libReactNativeShareExtension.a;
 			remoteRef = 8C5A7DD8220F230600ECCC65 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		8C92A6882243B7CD0057A1EE /* libRNVersionNumber.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNVersionNumber.a;
-			remoteRef = 8C92A6872243B7CD0057A1EE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		8C92A68A2243B7CD0057A1EE /* libRNVersionNumber-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libRNVersionNumber-tvOS.a";
-			remoteRef = 8C92A6892243B7CD0057A1EE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		8C92A69B2243CA210057A1EE /* libRNCWebView.a */ = {
