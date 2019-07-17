@@ -2,6 +2,8 @@ import axios from 'axios';
 import { Platform } from 'react-native';
 import Config from 'react-native-config';
 import * as Keychain from 'react-native-keychain';
+import VersionNumber from 'react-native-version-number';
+import DeviceInfo from 'react-native-device-info';
 
 export const keychainArguments = Platform.select({
   ios: { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' },
@@ -26,8 +28,25 @@ apiClient.interceptors.request.use(async (config) => {
 
   if (credentials) {
     const token = credentials.password;
-    config.headers.Authorization =  token ? `Bearer ${token}` : '';
+    config.headers['Authorization'] =  token ? `Bearer ${token}` : '';
   }
+
+  // Add some additional, non user identifying, headers for debugging purposes
+  config.headers['App-Version'] = VersionNumber.appVersion;
+  config.headers['App-Build'] = VersionNumber.buildVersion;
+  config.headers['App-Environment'] = Config.NODE_ENV;
+  config.headers['App-Bundle-Id'] = DeviceInfo.getBundleId();
+  config.headers['Device-Brand'] = DeviceInfo.getBrand();
+  config.headers['Device-Manufacturer'] = DeviceInfo.getManufacturer();
+  config.headers['Device'] = DeviceInfo.getDevice();
+  config.headers['Device-Id'] = DeviceInfo.getDeviceId();
+  config.headers['Device-System-Name'] = DeviceInfo.getSystemName();
+  config.headers['Device-System-Version'] = DeviceInfo.getSystemVersion();
+  config.headers['Device-Locale'] = DeviceInfo.getDeviceLocale();
+  config.headers['Device-Is-Emulator'] = DeviceInfo.isEmulator();
+  config.headers['Device-Is-Tablet'] = DeviceInfo.isTablet();
+  config.headers['Device-Type'] = DeviceInfo.getDeviceType();
+
   return config;
 });
 

@@ -39,6 +39,8 @@ target 'Playpost' do
 
   # pod 'react-native-config', :path => '../node_modules/react-native-config'
 
+  # pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
+
   target 'PlaypostShareExtension' do
     inherit! :complete
   end
