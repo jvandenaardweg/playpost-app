@@ -19,9 +19,8 @@
     "upgrade-interactive": "npm-check --update",
     "tsc": "tsc -p ./ --noEmit",
     "tsc:watch": "tsc -p ./ --noEmit -w",
-    "postversion": "react-native-version",
-    "preversion": "npm run lint && npm run tsc && npm run test && react-native-version",
-    "version": "auto-changelog -p && git add CHANGELOG.md"
+    "version": "auto-changelog -p && git add CHANGELOG.md",
+    "postversion": "react-native-version && git push && git push --tags --no-verify"
   },
   "husky": {
     "hooks": {
