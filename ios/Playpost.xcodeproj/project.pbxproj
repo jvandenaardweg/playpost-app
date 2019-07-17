@@ -95,8 +95,6 @@
 		8C7A3A0D2219D80700A9A9A7 /* Merriweather-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4737CA2073746B38C3D16F0 /* Merriweather-Regular.ttf */; };
 		8C7A3A0E2219D80700A9A9A7 /* SpaceMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5C433349EFA4F739AE21096 /* SpaceMono-Regular.ttf */; };
 		8C7A3A0F2219D88D00A9A9A7 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEC11A77002D4D729CD3412A /* SimpleLineIcons.ttf */; };
-		8C92A68C2243B7D60057A1EE /* libRNVersionNumber.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C92A6882243B7CD0057A1EE /* libRNVersionNumber.a */; };
-		8C92A68D2243B7E20057A1EE /* libRNVersionNumber.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C92A6882243B7CD0057A1EE /* libRNVersionNumber.a */; };
 		8C92A69C2243CA290057A1EE /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C92A69B2243CA210057A1EE /* libRNCWebView.a */; };
 		8C92A69D2243CA320057A1EE /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C92A69B2243CA210057A1EE /* libRNCWebView.a */; };
 		8C96C7BB22B3A1F9006E5704 /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF37A02FD9F246028F4091AF /* RNPlaceholder.swift */; };
@@ -768,7 +766,6 @@
 				8C92A69D2243CA320057A1EE /* libRNCWebView.a in Frameworks */,
 				8CBA9CD4227DA93800CE20A0 /* libRNCAsyncStorage.a in Frameworks */,
 				8C2A4DC12292A2CB00062B11 /* libRNIap.a in Frameworks */,
-				8C92A68D2243B7E20057A1EE /* libRNVersionNumber.a in Frameworks */,
 				8CA3D2DA22900BC700516BF9 /* libRNReanimated.a in Frameworks */,
 				8CD47C382240D0BA00D95B46 /* libRCTVideo.a in Frameworks */,
 				8C15B036223EB688001058F0 /* libRNFetchBlob.a in Frameworks */,
@@ -810,7 +807,6 @@
 				8C92A69C2243CA290057A1EE /* libRNCWebView.a in Frameworks */,
 				8CBA9CD5227DA94500CE20A0 /* libRNCAsyncStorage.a in Frameworks */,
 				8C2A4DC22292A2D800062B11 /* libRNIap.a in Frameworks */,
-				8C92A68C2243B7D60057A1EE /* libRNVersionNumber.a in Frameworks */,
 				8CA3D2DB22900BD300516BF9 /* libRNReanimated.a in Frameworks */,
 				8CD47C372240D0A900D95B46 /* libRCTVideo.a in Frameworks */,
 				8C4182FF22365409002F5B00 /* libRNKeychain.a in Frameworks */,

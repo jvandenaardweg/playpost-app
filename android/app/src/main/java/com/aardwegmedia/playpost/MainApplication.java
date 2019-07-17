@@ -10,7 +10,6 @@ import com.swmansion.reanimated.ReanimatedPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 // import com.facebook.react.BuildConfig; // Commenting this fixed a problem where the Metro bundler was not doing anything
 import com.reactnativecommunity.webview.RNCWebViewPackage;
-import com.apsl.versionnumber.RNVersionNumberPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.rnfs.RNFSPackage;
@@ -50,7 +49,6 @@ public class MainApplication extends Application implements ReactApplication {
             new ReanimatedPackage(),
             new AsyncStoragePackage(),
             new RNCWebViewPackage(),
-            new RNVersionNumberPackage(),
             new ReactVideoPackage(),
             new RNFetchBlobPackage(),
             new RNFSPackage(),

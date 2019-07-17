@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { Platform } from 'react-native';
 import Config from 'react-native-config';
-import * as Keychain from 'react-native-keychain';
-import VersionNumber from 'react-native-version-number';
 import DeviceInfo from 'react-native-device-info';
+import * as Keychain from 'react-native-keychain';
 
 export const keychainArguments = Platform.select({
   ios: { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' },
@@ -32,10 +31,14 @@ apiClient.interceptors.request.use(async (config) => {
   }
 
   // Add some additional, non user identifying, headers for debugging purposes
-  config.headers['App-Version'] = VersionNumber.appVersion;
-  config.headers['App-Build'] = VersionNumber.buildVersion;
+
+  // App related
+  config.headers['App-Version'] = DeviceInfo.getVersion();
+  config.headers['App-Build-Number'] = DeviceInfo.getBuildNumber();
   config.headers['App-Environment'] = Config.NODE_ENV;
   config.headers['App-Bundle-Id'] = DeviceInfo.getBundleId();
+
+  // Device related
   config.headers['Device-Brand'] = DeviceInfo.getBrand();
   config.headers['Device-Manufacturer'] = DeviceInfo.getManufacturer();
   config.headers['Device'] = DeviceInfo.getDevice();

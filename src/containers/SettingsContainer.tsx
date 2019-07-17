@@ -1,8 +1,8 @@
 import React from 'react';
 import { ActivityIndicator, Alert, Linking, Text, View } from 'react-native';
 import Config from 'react-native-config';
+import DeviceInfo from 'react-native-device-info';
 import RNFS from 'react-native-fs';
-import VersionNumber from 'react-native-version-number';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 
@@ -199,7 +199,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
   public renderVersionInfo = () => {
     const environment = Config.NODE_ENV;
     const environmentText = environment !== 'production' ? `(Env: ${environment})` : '';
-    const versionText = `Version: ${VersionNumber.appVersion} (Build: ${VersionNumber.buildVersion}) ${environmentText}`;
+    const versionText = `Version: ${DeviceInfo.getVersion()} (Build: ${DeviceInfo.getBuildNumber()}) ${environmentText}`;
 
     return (
       <Text
