@@ -12,7 +12,7 @@ export default StyleSheet.create({
     backgroundColor: colors.tintColor,
     padding: spacing.default,
     paddingBottom: spacing.large,
-    // paddingTop: spacing.large,
+    marginBottom: spacing.tiny,
     borderRadius: 0
   },
   header: {

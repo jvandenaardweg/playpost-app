@@ -4,7 +4,7 @@ import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
 import spacing from '../../constants/spacing';
 
-const seperatorHeight = 10;
+const seperatorHeight = spacing.default;
 
 export default StyleSheet.create({
   container: {
@@ -13,7 +13,7 @@ export default StyleSheet.create({
   },
   sectionList: {
     padding: spacing.default,
-    paddingTop: spacing.default - seperatorHeight
+    // paddingTop: spacing.default - seperatorHeight
   },
   seperator: {
     height: seperatorHeight
