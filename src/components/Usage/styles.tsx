@@ -15,9 +15,6 @@ export default StyleSheet.create({
     marginBottom: spacing.tiny,
     borderRadius: 0
   },
-  header: {
-    marginBottom: spacing.default
-  },
   headerTitle: {
     color: colors.white,
     fontSize: fonts.fontSize.title,
@@ -40,7 +37,8 @@ export default StyleSheet.create({
   statsBigNumber: {
     color: colors.white,
     fontSize: 32,
-    fontWeight: fonts.fontWeight.bold
+    fontWeight: fonts.fontWeight.bold,
+    letterSpacing: -0.75
   },
   statsNumbersContainer: {
     flexDirection: 'row',
@@ -61,5 +59,17 @@ export default StyleSheet.create({
   },
   upgradeContainer: {
     paddingTop: spacing.default
+  },
+  progressContainer: {
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    height: 6,
+    borderRadius: 6,
+    overflow: 'hidden',
+    marginTop: 6
+  },
+  progress: {
+    backgroundColor: colors.white,
+    height: 6,
+    borderRadius: 6
   }
 });
