@@ -165,9 +165,9 @@ dependencies {
     implementation project(':appcenter')
     implementation project(':react-native-gesture-handler')
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation "com.facebook.react:react-native:+"  // From node_modules
-    implementation 'com.android.support:multidex:1.0.3' // To fix multidex error
+    implementation 'androidx.multidex:multidex:2.0.0' // To fix multidex error
 }
 
 // Run this once to be able to run the application with BUCK

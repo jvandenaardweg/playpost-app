@@ -1,7 +1,7 @@
 package com.aardwegmedia.playpost;
 
 // import android.app.Application;
-import android.support.multidex.MultiDexApplication;
+import androidx.multidex.MultiDexApplication;
 
 import com.facebook.react.ReactApplication;
 import com.swmansion.rnscreens.RNScreensPackage;
