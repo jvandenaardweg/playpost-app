@@ -251,3 +251,7 @@ To manually edit the mocked response:
 2. Open "Examples (1)" on the top right
 3. Edit the response
 4. Save the response
+
+
+# Android
+Key store alias: `playpost-upload-key.keystore`, password: `testtest`
