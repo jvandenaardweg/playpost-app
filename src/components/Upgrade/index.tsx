@@ -53,6 +53,8 @@ export const Upgrade: React.FC<Props> = React.memo(
     const cardWidth = windowWidth - cardFirstMarginLeft - cardLastMarginRight;
     const snapToInterval = cardWidth + cardMargin * 2;
 
+    console.log('subscriptiosn', subscriptions);
+
     const startOffset = {
       free: snapToInterval,
       'com.aardwegmedia.playpost.premium': snapToInterval,
@@ -92,7 +94,18 @@ export const Upgrade: React.FC<Props> = React.memo(
                 const localizedPrice = featureSubscription ? featureSubscription.localizedPrice : `${currencySymbol}${subscriptionFeature.price}`;
                 const title = subscriptionFeature.title; // Do not use the subscription.title, this appears to be missing on some localizations
 
-                const buttonLabel = isDowngradePaidSubscription(productId) || productId === 'free' ? `Downgrade to ${title}` : `Upgrade to ${title}`;
+
+                const hasTrial = featureSubscription && featureSubscription.introductoryPricePaymentModeIOS === 'FREETRIAL';
+                // const trialPrice = (hasTrial && featureSubscription) ? featureSubscription.introductoryPrice : ''; // €0,00, $0,00
+                const trialDurationNumber = (hasTrial && featureSubscription) ? featureSubscription.introductoryPriceNumberOfPeriodsIOS : ''; // 3, 7, 1, 14 etc...
+                const trialDurationPeriod = (hasTrial && featureSubscription) ? featureSubscription.introductoryPriceSubscriptionPeriodIOS : ''; // DAY, WEEK, MONTH, YEAR
+                const trialDurationPeriodLowercased = (trialDurationPeriod) ? trialDurationPeriod.toLowerCase() : ''; // day, week, month, year
+
+                const trialButtonTitle = (hasTrial) ? `Start free ${trialDurationNumber}-${trialDurationPeriodLowercased} trial` : '';
+                const defaultButtonTitle = `Upgrade to ${title}`;
+                const freeButtonTitle = `Downgrade to ${title}`;
+
+                const buttonLabel = isDowngradePaidSubscription(productId) || productId === 'free' ? freeButtonTitle : trialButtonTitle ? trialButtonTitle : defaultButtonTitle;
 
                 return (
                   <View
