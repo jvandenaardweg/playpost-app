@@ -45,6 +45,7 @@ export const selectSubscriptionLatestReceipt = createSelector(
 export const selectIsSubscribed = createSelector(
   [selectSubscriptionsValidationResult],
   (validationResult): boolean => {
+    if (!validationResult || !validationResult.status) { return false; }
     const { status } = validationResult;
     if (status !== 'active') { return false; }
     return true;

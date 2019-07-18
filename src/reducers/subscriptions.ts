@@ -14,8 +14,8 @@ export const RESET_VALIDATE_SUBSCRIPTION_RECEIPT_ERROR = 'subscriptions/RESET_VA
 export type SubscriptionsState = Readonly<{
   isLoadingSubscriptions: boolean;
   isLoadingValidateSubscriptionReceipt: boolean;
-  subscriptions: Api.InAppSubscription[];
-  validationResult: Api.ReceiptValidationResponse;
+  subscriptions: Api.InAppSubscription[] | null;
+  validationResult: Api.ReceiptValidationResponse | null;
   error: string;
   errorValidateSubscriptionReceipt: string;
 }>;
@@ -23,8 +23,8 @@ export type SubscriptionsState = Readonly<{
 export const initialState: SubscriptionsState = {
   isLoadingSubscriptions: false,
   isLoadingValidateSubscriptionReceipt: false,
-  subscriptions: [] as any as Api.InAppSubscription[],
-  validationResult: {} as any as Api.ReceiptValidationResponse,
+  subscriptions: null,
+  validationResult: null,
   error: '',
   errorValidateSubscriptionReceipt: ''
 };
