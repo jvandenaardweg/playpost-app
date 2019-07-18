@@ -32,7 +32,7 @@ type Props = IProps & NavigationInjectedProps & StateProps & DispatchProps;
  *
  * When creating errors in the API, make sure they will be understood by the end-user.
  */
-export class APIErrorAlertContainerComponent extends React.PureComponent<Props, State> {
+export class APIErrorAlertContainerComponent extends React.Component<Props, State> {
   public state = {
     hasOpenAlert: false // A way to prevent multiple alerts being thrown at the user
   };
