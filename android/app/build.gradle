@@ -189,26 +189,7 @@ android {
 }
 
 dependencies {
-    implementation project(':react-native-screens')
-    implementation project(':react-native-device-info')
     implementation project(':react-native-config')
-    implementation project(':react-native-iap')
-    implementation project(':react-native-reanimated')
-    implementation project(':@react-native-community_async-storage')
-    implementation project(':react-native-webview')
-    implementation project(':react-native-video')
-    implementation project(':rn-fetch-blob')
-    implementation project(':react-native-fs')
-    implementation project(':@react-native-community_netinfo')
-    implementation project(':react-native-keychain')
-    implementation project(':react-native-splash-screen')
-    implementation project(':react-native-share-extension')
-    implementation project(':react-native-track-player')
-    implementation project(':react-native-vector-icons')
-    implementation project(':appcenter-crashes')
-    implementation project(':appcenter-analytics')
-    implementation project(':appcenter')
-    implementation project(':react-native-gesture-handler')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'androidx.multidex:multidex:2.0.0' // To fix multidex error

@@ -27,11 +27,6 @@
       "pre-push": "npm test"
     }
   },
-  "rnpm": {
-    "assets": [
-      "./src/assets/fonts/"
-    ]
-  },
   "engines": {
     "node": "^10.15.0",
     "npm": "^6.8.0"
@@ -43,16 +38,16 @@
     "commitLimit": false
   },
   "dependencies": {
-    "@babel/core": "^7.5.4",
-    "@babel/runtime": "^7.5.4",
+    "@babel/core": "^7.5.5",
+    "@babel/runtime": "^7.5.5",
     "@react-native-community/async-storage": "^1.5.1",
     "@react-native-community/cli": "^2.7.0",
-    "@react-native-community/netinfo": "^3.2.1",
+    "@react-native-community/netinfo": "^4.1.1",
     "@types/date-fns": "^2.6.0",
     "@types/jest": "^24.0.15",
-    "@types/node": "^12.6.2",
+    "@types/node": "^12.6.8",
     "@types/react": "^16.8.23",
-    "@types/react-native": "^0.57.65",
+    "@types/react-native": "^0.60.2",
     "@types/react-native-restart": "0.0.0",
     "@types/react-native-vector-icons": "^6.4.1",
     "@types/react-native-video": "^3.1.4",
@@ -78,7 +73,7 @@
     "jest-fetch-mock": "^2.1.2",
     "jest-runner": "^24.8.0",
     "jest-runtime": "^24.8.0",
-    "metro-react-native-babel-preset": "^0.54.1",
+    "metro-react-native-babel-preset": "^0.55.0",
     "npm-check": "^5.9.0",
     "react": "16.8.6",
     "react-fast-compare": "^2.0.4",
@@ -98,13 +93,13 @@
     "react-native-share-extension": "git+https://github.com/jvandenaardweg/react-native-share-extension.git#8e1d3da9a988c973a7cef06391ca63bd23d70cbd",
     "react-native-splash-screen": "^3.2.0",
     "react-native-swift": "^1.2.2",
-    "react-native-testing-library": "^1.10.0",
-    "react-native-track-player": "^1.1.4",
+    "react-native-testing-library": "^1.11.1",
+    "react-native-track-player": "^1.1.8",
     "react-native-typescript-transformer": "^1.2.12",
     "react-native-vector-icons": "^6.6.0",
     "react-native-version": "^3.1.0",
     "react-native-video": "^4.4.4",
-    "react-native-webview": "5.8.2",
+    "react-native-webview": "^5.12.1",
     "react-navigation": "^3.11.1",
     "react-navigation-animated-switch": "^0.2.1",
     "react-redux": "^7.1.0",
@@ -115,7 +110,7 @@
     "redux-persist": "^5.10.0",
     "redux-saga": "^1.0.5",
     "reselect": "^4.0.0",
-    "rn-fetch-blob": "^0.10.15",
+    "rn-fetch-blob": "^0.10.16",
     "ts-jest": "^24.0.2",
     "tslib": "^1.10.0",
     "tslint": "^5.18.0",

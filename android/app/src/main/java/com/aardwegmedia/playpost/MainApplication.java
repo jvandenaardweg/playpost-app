@@ -9,27 +9,8 @@ import com.facebook.hermes.reactexecutor.HermesExecutorFactory;
 import com.facebook.react.bridge.JavaScriptExecutorFactory;
 
 import com.facebook.react.ReactApplication;
-import com.swmansion.rnscreens.RNScreensPackage;
-import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
-import com.dooboolab.RNIap.RNIapPackage;
-import com.swmansion.reanimated.ReanimatedPackage;
-import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 // import com.facebook.react.BuildConfig; // Commenting this fixed a problem where the Metro bundler was not doing anything
-import com.reactnativecommunity.webview.RNCWebViewPackage;
-import com.brentvatne.react.ReactVideoPackage;
-import com.RNFetchBlob.RNFetchBlobPackage;
-import com.rnfs.RNFSPackage;
-import com.reactnativecommunity.netinfo.NetInfoPackage;
-import com.oblador.keychain.KeychainPackage;
-import org.devio.rn.splashscreen.SplashScreenReactPackage;
-import com.alinz.parkerdan.shareextension.SharePackage;
-import com.guichaguri.trackplayer.TrackPlayer;
-import com.oblador.vectoricons.VectorIconsPackage;
-import com.microsoft.appcenter.reactnative.crashes.AppCenterReactNativeCrashesPackage;
-import com.microsoft.appcenter.reactnative.analytics.AppCenterReactNativeAnalyticsPackage;
-import com.microsoft.appcenter.reactnative.appcenter.AppCenterReactNativePackage;
-import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -56,6 +37,7 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
     }
       // return Arrays.<ReactPackage>asList(
       //     new MainReactPackage(),
+            new ReactNativeConfigPackage(),
       //       new RNScreensPackage(),
       //       new RNDeviceInfo(),
       //       new ReactNativeConfigPackage(),
