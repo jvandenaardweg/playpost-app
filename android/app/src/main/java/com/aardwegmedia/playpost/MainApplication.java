@@ -3,6 +3,11 @@ package com.aardwegmedia.playpost;
 // import android.app.Application;
 import androidx.multidex.MultiDexApplication;
 
+import android.util.Log;
+import com.facebook.react.PackageList;
+import com.facebook.hermes.reactexecutor.HermesExecutorFactory;
+import com.facebook.react.bridge.JavaScriptExecutorFactory;
+
 import com.facebook.react.ReactApplication;
 import com.swmansion.rnscreens.RNScreensPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
@@ -43,30 +48,36 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new RNScreensPackage(),
-            new RNDeviceInfo(),
-            new ReactNativeConfigPackage(),
-            new RNIapPackage(),
-            new ReanimatedPackage(),
-            new AsyncStoragePackage(),
-            new RNCWebViewPackage(),
-            new ReactVideoPackage(),
-            new RNFetchBlobPackage(),
-            new RNFSPackage(),
-            new NetInfoPackage(),
-            new KeychainPackage(),
-            new SplashScreenReactPackage(),
-            new SharePackage(),
-            new TrackPlayer(),
-            new VectorIconsPackage(),
-            new AppCenterReactNativeCrashesPackage(MainApplication.this, getResources().getString(R.string.appCenterCrashes_whenToSendCrashes)),
-            new AppCenterReactNativeAnalyticsPackage(MainApplication.this, getResources().getString(R.string.appCenterAnalytics_whenToEnableAnalytics)),
-            new AppCenterReactNativePackage(MainApplication.this),
-            new RNGestureHandlerPackage()
-      );
+      @SuppressWarnings("UnnecessaryLocalVariable")
+      List<ReactPackage> packages = new PackageList(this).getPackages();
+      // Packages that cannot be autolinked yet can be added manually here, for example:
+      // packages.add(new MyReactNativePackage());
+      return packages;
     }
+      // return Arrays.<ReactPackage>asList(
+      //     new MainReactPackage(),
+      //       new RNScreensPackage(),
+      //       new RNDeviceInfo(),
+      //       new ReactNativeConfigPackage(),
+      //       new RNIapPackage(),
+      //       new ReanimatedPackage(),
+      //       new AsyncStoragePackage(),
+      //       new RNCWebViewPackage(),
+      //       new ReactVideoPackage(),
+      //       new RNFetchBlobPackage(),
+      //       new RNFSPackage(),
+      //       new NetInfoPackage(),
+      //       new KeychainPackage(),
+      //       new SplashScreenReactPackage(),
+      //       new SharePackage(),
+      //       new TrackPlayer(),
+      //       new VectorIconsPackage(),
+      //       new AppCenterReactNativeCrashesPackage(MainApplication.this, getResources().getString(R.string.appCenterCrashes_whenToSendCrashes)),
+      //       new AppCenterReactNativeAnalyticsPackage(MainApplication.this, getResources().getString(R.string.appCenterAnalytics_whenToEnableAnalytics)),
+      //       new AppCenterReactNativePackage(MainApplication.this),
+      //       new RNGestureHandlerPackage()
+      // );
+    // }
 
     @Override
     protected String getJSMainModuleName() {

@@ -12,8 +12,8 @@ build/
 .env
 coverage/
 
-# Added Pods folder manually, got too big for version control
-#Pods/
+# CocoaPods
+/ios/Pods/
 
 *.pbxuser
 !default.pbxuser

@@ -3,7 +3,7 @@
   "version": "1.0.27",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start": "react-native start",
     "test": "concurrently \"npm run tsc\" \"npm run lint\" \"npm run jest\"",
     "test:typescript": "npm run tsc",
     "test:lint": "npm run lint",
