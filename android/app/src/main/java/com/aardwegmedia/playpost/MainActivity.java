@@ -1,8 +1,7 @@
 package com.aardwegmedia.playpost;
 
 import android.os.Bundle;
-// import com.facebook.react.ReactActivity;
-import com.facebook.react.ReactFragmentActivity; // react-native-screens
+import com.facebook.react.ReactActivity;
 import org.devio.rn.splashscreen.SplashScreen;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.guichaguri.trackplayer.TrackPlayer;
@@ -15,7 +14,7 @@ import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
 import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
 
-public class MainActivity extends ReactFragmentActivity {
+public class MainActivity extends ReactActivity {
 
     /**
      * Returns the name of the main component registered from JavaScript.
@@ -29,8 +28,7 @@ public class MainActivity extends ReactFragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
       SplashScreen.show(this);  // here
-      // super.onCreate(savedInstanceState);
-      super.onCreate(null); // react-native-screens
+      super.onCreate(savedInstanceState);
     }
 
     // Fix for build not working:
