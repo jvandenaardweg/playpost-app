@@ -1,7 +1,8 @@
 
 import React from 'react';
+import { Platform } from 'react-native';
 
-import { createAppContainer, createStackNavigator, NavigationContainer } from 'react-navigation';
+import { createAppContainer, createStackNavigator, createSwitchNavigator, NavigationContainer } from 'react-navigation';
 import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
 
 import { MainTabNavigator } from './MainTabNavigator';
@@ -18,6 +19,13 @@ import { SignupScreen } from '../screens/onboarding/SignupScreen';
 import { SettingsLanguagesScreen } from '../screens/settings/LanguagesScreen';
 import { SettingsVoicesScreen } from '../screens/settings/VoicesScreen';
 import { SignupSuccessScreen } from '../screens/SignupSuccessScreen';
+
+const customCreateSwitchNavigator = Platform.select({
+  // Because "createAnimatedSwitchNavigator" crashes on Android
+  // https://github.com/react-navigation/animated-switch/issues/6
+  ios: createAnimatedSwitchNavigator,
+  android: createSwitchNavigator
+});
 
 const LoginStack = createStackNavigator(
   {
@@ -58,7 +66,7 @@ const SettingsLanguagesModalStack = createStackNavigator(
 );
 
 export const AppNavigator: NavigationContainer = createAppContainer(
-  createAnimatedSwitchNavigator(
+  customCreateSwitchNavigator(
     {
       Root: createStackNavigator(
         {
