@@ -107,22 +107,22 @@ android {
         versionName "1.0.27"
         multiDexEnabled true
     }
-    signingConfigs {
-        releaseSigningConfig {
-            storeFile rootProject.file("app/playpost-upload-key.keystore")
-            storePassword System.getenv("APPCENTER_KEYSTORE_PASSWORD")
-            keyAlias System.getenv("APPCENTER_KEY_ALIAS")
-            keyPassword System.getenv("APPCENTER_KEY_PASSWORD")
-        }
-        // release {
-        //     if (project.hasProperty('PLAYPOST_UPLOAD_STORE_FILE')) {
-        //         storeFile file(PLAYPOST_UPLOAD_STORE_FILE)
-        //         storePassword PLAYPOST_UPLOAD_STORE_PASSWORD
-        //         keyAlias PLAYPOST_UPLOAD_KEY_ALIAS
-        //         keyPassword PLAYPOST_UPLOAD_KEY_PASSWORD
-        //     }
-        // }
-    }
+    // signingConfigs {
+    //     releaseSigningConfig {
+    //         storeFile rootProject.file("app/playpost-upload-key.keystore")
+    //         storePassword System.getenv("APPCENTER_KEYSTORE_PASSWORD")
+    //         keyAlias System.getenv("APPCENTER_KEY_ALIAS")
+    //         keyPassword System.getenv("APPCENTER_KEY_PASSWORD")
+    //     }
+    //     // release {
+    //     //     if (project.hasProperty('PLAYPOST_UPLOAD_STORE_FILE')) {
+    //     //         storeFile file(PLAYPOST_UPLOAD_STORE_FILE)
+    //     //         storePassword PLAYPOST_UPLOAD_STORE_PASSWORD
+    //     //         keyAlias PLAYPOST_UPLOAD_KEY_ALIAS
+    //     //         keyPassword PLAYPOST_UPLOAD_KEY_PASSWORD
+    //     //     }
+    //     // }
+    // }
     splits {
         abi {
             reset()
@@ -135,7 +135,7 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            signingConfig signingConfigs.releaseSigningConfig
+            // signingConfig signingConfigs.releaseSigningConfig
         }
     }
     // applicationVariants are e.g. debug, release
