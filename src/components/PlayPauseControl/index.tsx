@@ -49,7 +49,7 @@ export const PlayPauseControlCircle: React.FC<Props> = React.memo(({ isPlaying, 
 });
 
 export const PlayPauseIcon: React.FC<PlayPauseIconProps> = React.memo(({ isPlaying, isLoading, size, color }) => {
-  if (isLoading) { return <ActivityIndicator />; }
+  if (isLoading) { return <ActivityIndicator color="white" />; }
   if (isPlaying) { return <Icon.FontAwesome5 name="pause" color={color ? color : colors.white} size={size ? size : 16} />; }
   return <Icon.FontAwesome5 name="play" color={color ? color : colors.white} size={size ? size : 16} style={{ marginLeft: 3 }} />;
 });
