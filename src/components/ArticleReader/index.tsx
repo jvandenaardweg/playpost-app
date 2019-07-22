@@ -34,7 +34,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
   const handleWebViewNavigationStateChange = async (request: WebViewNavigation, webViewRefObj: React.RefObject<WebView>) => {
     const { url } = request;
 
-    if (!url || url.includes('file://')) { return; }
+    if (!url || url.includes('file://') || url === 'about:blank') { return; }
 
     // It seems like when opening URL's from the WebView that the StatusBar turns white
     // We want to keep it the default style so we enforce that here.
