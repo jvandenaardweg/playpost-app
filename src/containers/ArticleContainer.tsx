@@ -291,19 +291,6 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
           resolve(localFilePath);
         } catch (err) {
           this.setState({ isLoading: false, isDownloadingAudiofile: false });
-
-          return reject(
-            Alert.alert('Oops!', ALERT_ARTICLE_AUDIOFILE_DOWNLOAD_FAIL, [
-              {
-                text: 'Cancel',
-                style: 'cancel'
-              },
-              {
-                text: 'Try again',
-                onPress: () => this.downloadAudiofile(url, audiofileId, filename)
-              }
-            ])
-          );
         } finally {
           this.props.resetIsDownloadingAudiofile();
           this.setState({ isDownloadingAudiofile: false });
