@@ -1,5 +1,5 @@
 import React from 'react';
-import { KeyboardAvoidingView, ScrollView, Text, TextInput, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import styles from './styles';
 
@@ -16,8 +16,13 @@ export const LoginResetPasswordForm: React.FC<Props> = React.memo(
   ({ password, resetPasswordToken, isLoading, isSuccess, onChangeText, onPressUpdatePassword }) => {
     let passwordInput: TextInput | null = null;
 
+    // Android and iOS both interact with this prop differently.
+    // Android may behave better when given no behavior prop at all, whereas iOS is the opposite.
+    // https://facebook.github.io/react-native/docs/keyboardavoidingview#behavior
+    const behaviorOption = Platform.OS === 'ios' ? 'padding' : undefined;
+
     return (
-      <KeyboardAvoidingView testID="LoginResetPasswordForm" style={styles.container} behavior="padding" enabled>
+      <KeyboardAvoidingView testID="LoginResetPasswordForm" style={styles.container} behavior={behaviorOption} enabled>
         <ScrollView style={styles.form} contentContainerStyle={styles.formContent} keyboardShouldPersistTaps={'handled'}>
           <Text style={styles.subtitle}>Please check your e-mail's inbox for the password reset code and fill it in below.</Text>
 

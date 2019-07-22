@@ -1,5 +1,5 @@
 import React from 'react';
-import { KeyboardAvoidingView, ScrollView, Text, TextInput, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import styles from './styles';
 
@@ -16,8 +16,13 @@ interface Props {
 export const SignupForm: React.FC<Props> = React.memo(({ onChangeText, onPressSignup, onPressPrivacyPolicy, onPressTerms, email, password, isLoading }) => {
   let passwordInput: TextInput | null = null;
 
+  // Android and iOS both interact with this prop differently.
+  // Android may behave better when given no behavior prop at all, whereas iOS is the opposite.
+  // https://facebook.github.io/react-native/docs/keyboardavoidingview#behavior
+  const behaviorOption = Platform.OS === 'ios' ? 'padding' : undefined;
+
   return (
-    <KeyboardAvoidingView testID="signup-form" style={styles.container} behavior="padding" keyboardVerticalOffset={80} enabled>
+    <KeyboardAvoidingView testID="signup-form" style={styles.container} behavior={behaviorOption} keyboardVerticalOffset={80} enabled>
       <ScrollView style={styles.form} contentContainerStyle={styles.formContent} keyboardShouldPersistTaps={'handled'}>
         <TextInput
           testID="SignupForm-TextInput-email"
