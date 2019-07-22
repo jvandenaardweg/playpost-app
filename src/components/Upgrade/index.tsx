@@ -1,6 +1,6 @@
 import getSymbolFromCurrency from 'currency-symbol-map';
 import React from 'react';
-import { ActivityIndicator, Dimensions, ScrollView, Text, View } from 'react-native';
+import { ActivityIndicator, Dimensions, Platform, ScrollView, Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import * as RNIap from 'react-native-iap';
 
@@ -49,6 +49,7 @@ export const Upgrade: React.FC<Props> = React.memo(
     const cardMargin = 6;
     const cardFirstMarginLeft = spacing.default * 2;
     const cardLastMarginRight = spacing.default * 2;
+    const paymentAccountTitle = (Platform.OS === 'android') ? 'Google Play' : 'Apple ID';
 
     const cardWidth = windowWidth - cardFirstMarginLeft - cardLastMarginRight;
     const snapToInterval = cardWidth + cardMargin * 2;
@@ -212,11 +213,12 @@ export const Upgrade: React.FC<Props> = React.memo(
 
             <View style={styles.footer}>
               <Text style={styles.footerText}>
-                Payment will be charged to your Apple ID account at the confirmation of purchase. Subscription automatically renews unless it is canceled at
+                Payment will be charged to your {paymentAccountTitle} account at the confirmation of purchase. Subscription automatically renews unless it is canceled at
                 least 24 hours before the end of the current period. Your account will be charged for renewal within 24 hours prior to the end of the current
                 period. You can manage and cancel your subscriptions by going to your account settings on the App Store after purchase. Refunds are not
                 available for unused portions of a subscription.
               </Text>
+
               <View style={styles.footerLinks}>
                 <Text style={[styles.footerText, styles.textHighlight]} onPress={() => onPressPrivacy()}>
                   Privacy Policy
