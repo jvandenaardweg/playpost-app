@@ -213,7 +213,7 @@ export class VoiceSelectContainerComponent extends React.PureComponent<Props, St
 
   public isVoicePlayingInPlayer = (voiceId: string) => {
     const { playbackState } = this.props;
-    return playbackState === 'playing' && this.isVoiceActiveInPlayer(voiceId);
+    return playbackState === 'playing' && TrackPlayer.STATE_PLAYING && this.isVoiceActiveInPlayer(voiceId);
   }
 
   public isVoiceActiveInPlayer = (voiceId: string) => {

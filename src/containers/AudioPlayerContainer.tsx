@@ -131,7 +131,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     const { playbackState } = this.props;
 
     // Toggle play/pause/stop
-    if (playbackState === 'playing') {
+    if (playbackState === 'playing' || playbackState === TrackPlayer.STATE_PLAYING) {
       await TrackPlayer.pause();
       return;
     }
