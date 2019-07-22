@@ -63,6 +63,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
           <Text
             style={
               Object {
+                "color": "#000000",
                 "fontSize": 24,
                 "fontWeight": "700",
                 "marginBottom": 24,
@@ -124,6 +125,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
+                    "color": "#000000",
                     "fontSize": 17,
                     "fontWeight": "600",
                     "lineHeight": 21,
@@ -197,6 +199,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
+                    "color": "#000000",
                     "fontSize": 17,
                     "fontWeight": "600",
                     "lineHeight": 21,
@@ -270,6 +273,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
+                    "color": "#000000",
                     "fontSize": 17,
                     "fontWeight": "600",
                     "lineHeight": 21,
@@ -343,6 +347,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
+                    "color": "#000000",
                     "fontSize": 17,
                     "fontWeight": "600",
                     "lineHeight": 21,
@@ -382,7 +387,9 @@ exports[`Upgrade rendering should render correctly 1`] = `
               }
             }
           >
-            Payment will be charged to your Apple ID account at the confirmation of purchase. Subscription automatically renews unless it is canceled at least 24 hours before the end of the current period. Your account will be charged for renewal within 24 hours prior to the end of the current period. You can manage and cancel your subscriptions by going to your account settings on the App Store after purchase. Refunds are not available for unused portions of a subscription.
+            Payment will be charged to your 
+            Apple ID
+             account at the confirmation of purchase. Subscription automatically renews unless it is canceled at least 24 hours before the end of the current period. Your account will be charged for renewal within 24 hours prior to the end of the current period. You can manage and cancel your subscriptions by going to your account settings on the App Store after purchase. Refunds are not available for unused portions of a subscription.
           </Text>
           <View
             style={
