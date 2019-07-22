@@ -211,17 +211,18 @@ export class VoiceSelectContainerComponent extends React.PureComponent<Props, St
     });
   }
 
-  public isVoicePlayingInPlayer = (voiceId: string) => {
+  public isVoicePlayingInPlayer = (voiceId: string): boolean => {
     const { playbackState } = this.props;
-    return playbackState === 'playing' && TrackPlayer.STATE_PLAYING && this.isVoiceActiveInPlayer(voiceId);
+    const isPlaying = playbackState === 'playing' && TrackPlayer.STATE_PLAYING && this.isVoiceActiveInPlayer(voiceId);
+    return !!isPlaying;
   }
 
-  public isVoiceActiveInPlayer = (voiceId: string) => {
+  public isVoiceActiveInPlayer = (voiceId: string): boolean => {
     const { playerTrack } = this.props;
     return playerTrack && playerTrack.id === voiceId;
   }
 
-  public isSelected = (item: Api.Voice) => {
+  public isSelected = (item: Api.Voice): boolean => {
     // const { isLoadingSaveSelectedVoiceId } = this.state;
     const { defaultVoiceByLanguageName, userSelectedVoiceByLanguageName } = this.props;
     const isDefaultSelected = defaultVoiceByLanguageName ? defaultVoiceByLanguageName.id === item.id : false;
@@ -251,7 +252,7 @@ export class VoiceSelectContainerComponent extends React.PureComponent<Props, St
     return isSelected;
   }
 
-  public getBadgeValue(isPremium: boolean, isHighestQuality: boolean) {
+  public getBadgeValue(isPremium: boolean, isHighestQuality: boolean): string {
     if (isPremium && isHighestQuality) {
       return 'Premium (HQ)';
     }
