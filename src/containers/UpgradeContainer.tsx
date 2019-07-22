@@ -146,7 +146,9 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       this.purchaseErrorSubscription = null;
     }
 
-    RNIap.endConnectionAndroid();
+    if (Platform.OS === 'android') {
+      RNIap.endConnectionAndroid();
+    }
   }
 
   public async componentDidUpdate(prevProps: Props) {
@@ -354,6 +356,10 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     return this.setState({ isLoadingSubscriptionItems: true }, async () => {
       try {
         const result = await RNIap.initConnection();
+
+        if (Platform.OS === 'android') {
+          await RNIap.consumeAllItemsAndroid();
+        }
 
         if (!result) { throw new Error(ALERT_SUBSCRIPTION_INIT_FAIL); }
 
