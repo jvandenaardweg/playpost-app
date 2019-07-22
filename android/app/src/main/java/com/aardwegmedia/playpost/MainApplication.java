@@ -44,6 +44,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new SplashScreenReactPackage(),
             new RNScreensPackage(),
             new RNDeviceInfo(),
             new ReactNativeConfigPackage(),
@@ -56,7 +57,6 @@ public class MainApplication extends Application implements ReactApplication {
             new RNFSPackage(),
             new NetInfoPackage(),
             new KeychainPackage(),
-            new SplashScreenReactPackage(),
             new SharePackage(),
             new TrackPlayer(),
             new VectorIconsPackage(),
