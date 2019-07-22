@@ -109,7 +109,7 @@ android {
     }
     signingConfigs {
         releaseSigningConfig {
-            storeFile rootProject.file("app/playpost-upload-key.keystore")
+            storeFile rootProject.file("../playpost-upload-key.keystore")
             storePassword System.getenv("APPCENTER_KEYSTORE_PASSWORD")
             keyAlias System.getenv("APPCENTER_KEY_ALIAS")
             keyPassword System.getenv("APPCENTER_KEY_PASSWORD")
