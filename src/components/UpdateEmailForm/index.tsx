@@ -19,37 +19,38 @@ export const UpdateEmailForm: React.FC<Props> = React.memo(({ onChangeText, onPr
   const behaviorOption = Platform.OS === 'ios' ? 'padding' : undefined;
 
   return (
-  <KeyboardAvoidingView testID="UpdateEmailForm" style={styles.container} behavior={behaviorOption} keyboardVerticalOffset={100} enabled>
-    <View style={styles.form}>
-      <TextInput
-        testID="UpdateEmailForm-TextInput-email"
-        placeholder="Your new e-mail address"
-        autoCapitalize="none"
-        value={email}
-        onChangeText={text => onChangeText('email', text)}
-        onSubmitEditing={() => onPressUpdateEmail()}
-        textContentType="emailAddress"
-        style={styles.textField}
-        editable={!isLoading}
-        returnKeyType="done"
-        clearButtonMode="always"
-        blurOnSubmit={false}
-      />
-
-      <View>
-        <Button
-          testID="UpdateEmailForm-Button-update"
-          title={isSuccess ? 'Update success!' : 'Update e-mail address'}
-          loading={isLoading}
-          onPress={onPressUpdateEmail}
-          disabled={isLoading || isSuccess}
-          buttonStyle={isSuccess ? styles.buttonStyleSuccess : styles.buttonStyle}
-          titleStyle={isSuccess ? styles.buttonTitleStyleSuccess : {}}
-          activeOpacity={1}
-          disabledStyle={isSuccess ? styles.buttonStyleSuccess : styles.buttonStyle}
-          disabledTitleStyle={isSuccess ? styles.buttonTitleStyleSuccess : styles.buttonStyle}
+    <KeyboardAvoidingView testID="UpdateEmailForm" style={styles.container} behavior={behaviorOption} keyboardVerticalOffset={100} enabled>
+      <View style={styles.form}>
+        <TextInput
+          testID="UpdateEmailForm-TextInput-email"
+          placeholder="Your new e-mail address"
+          autoCapitalize="none"
+          value={email}
+          onChangeText={text => onChangeText('email', text)}
+          onSubmitEditing={() => onPressUpdateEmail()}
+          textContentType="emailAddress"
+          style={styles.textField}
+          editable={!isLoading}
+          returnKeyType="done"
+          clearButtonMode="always"
+          blurOnSubmit={false}
         />
+
+        <View>
+          <Button
+            testID="UpdateEmailForm-Button-update"
+            title={isSuccess ? 'Update success!' : 'Update e-mail address'}
+            loading={isLoading}
+            onPress={onPressUpdateEmail}
+            disabled={isLoading || isSuccess}
+            buttonStyle={isSuccess ? styles.buttonStyleSuccess : styles.buttonStyle}
+            titleStyle={isSuccess ? styles.buttonTitleStyleSuccess : {}}
+            activeOpacity={1}
+            disabledStyle={isSuccess ? styles.buttonStyleSuccess : styles.buttonStyle}
+            disabledTitleStyle={isSuccess ? styles.buttonTitleStyleSuccess : styles.buttonStyle}
+          />
+        </View>
       </View>
-    </View>
-  </KeyboardAvoidingView>
-));
+    </KeyboardAvoidingView>
+  )
+});
