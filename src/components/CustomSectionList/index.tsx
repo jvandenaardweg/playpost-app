@@ -29,23 +29,21 @@ export interface CustomSectionListSectionData {
 }
 
 interface Props {
+  paddingTop?: number;
   sectionListData: ReadonlyArray<SectionListData<any>>;
   ListHeaderComponent?: React.ComponentType<any> | React.ReactElement | null;
   ListFooterComponent?: React.ComponentType<any> | React.ReactElement | null;
 }
 
-export const CustomSectionList: React.FC<Props> = ({ sectionListData, ListHeaderComponent, ListFooterComponent }) => (
-  <View style={styles.container}>
+export const CustomSectionList: React.FC<Props> = ({ sectionListData, ListHeaderComponent, ListFooterComponent, paddingTop }) => (
+  <View style={[styles.container, (paddingTop !== undefined) ? { paddingTop } : undefined]}>
     <SectionList
       keyExtractor={(item, index) => item + index}
-      style={styles.sectionList}
       ListHeaderComponent={ListHeaderComponent}
       ListFooterComponent={ListFooterComponent}
       stickySectionHeadersEnabled={false}
       ItemSeparatorComponent={() => <ListSeperator />}
       renderSectionFooter={() => <View style={styles.seperator} />}
-      // SectionSeparatorComponent={() => <View style={styles.seperator}><Text>test</Text></View>}
-      // renderSectionHeader={({ section }) => (!section.hideTitle ? <Text>{section.title}</Text> : null)}
       renderItem={({ item, index, section }) => {
         const totalSectionItems = section.data.length;
         const lastIndex = totalSectionItems - 1;

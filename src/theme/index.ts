@@ -25,11 +25,13 @@ export const reactNativeElementsTheme: Theme = {
   },
   ListItem: {
     containerStyle: {
-      padding: spacing.default
+      marginLeft: spacing.default,
+      marginRight: spacing.default,
     },
     titleStyle: {
       fontWeight: fonts.fontWeight.medium,
-      fontSize: fonts.fontSize.title
+      fontSize: fonts.fontSize.title,
+      color: colors.black
     },
     subtitleStyle: {
       color: colors.grayDark,

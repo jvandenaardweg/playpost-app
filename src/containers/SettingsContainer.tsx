@@ -355,6 +355,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
 
     return (
       <CustomSectionList
+        paddingTop={0}
         sectionListData={sectionListData}
         ListHeaderComponent={
           <View style={{ marginTop: spacing.default * -1, marginLeft: spacing.default * -1, marginRight: spacing.default * -1, marginBottom: spacing.small }}>

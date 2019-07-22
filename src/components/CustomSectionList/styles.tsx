@@ -9,11 +9,8 @@ const seperatorHeight = spacing.default;
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.appBackground
-  },
-  sectionList: {
-    padding: spacing.default,
-    // paddingTop: spacing.default - seperatorHeight
+    backgroundColor: colors.appBackground,
+    paddingTop: spacing.default
   },
   seperator: {
     height: seperatorHeight
