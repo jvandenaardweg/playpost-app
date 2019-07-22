@@ -40,7 +40,7 @@ interface IProps {
   navigation: NavigationScreenProp<NavigationRoute>;
 }
 
-type Props = IProps & StateProps & DispatchProps;
+export type Props = IProps & StateProps & DispatchProps;
 
 export class UpgradeContainerComponent extends React.PureComponent<Props, State> {
 
@@ -76,6 +76,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   }
 
   public static contextType = NetworkContext;
+
   public state = {
     subscriptions: [] as Array<RNIap.Subscription<string>>,
     isLoadingBuySubscription: false,
@@ -220,6 +221,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   }
 
   public handleOpenPrivacy = () => Linking.openURL(`${URL_PRIVACY_POLICY}?ref=playpost://upgrade`);
+
   public handleOpenTerms = () => Linking.openURL(`${URL_TERMS_OF_USE}?ref=playpost://upgrade`);
 
   public showErrorAlert = (title: string, message: string) => {
@@ -296,7 +298,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
     return this.setState({ isLoadingBuySubscription: true, selectedProductId: productId }, async () => {
       try {
-        const upgradeResult = await RNIap.requestSubscription(productId);
+        const upgradeResult = await this.buySubscription(productId);
         return upgradeResult;
       } catch (err) {
         // We don't do anything with this message, as errors are handled by: purchaseErrorListener
@@ -304,6 +306,10 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         return err;
       }
     });
+  }
+
+  public buySubscription = (productId: string): Promise<string> => {
+    return RNIap.requestSubscription(productId);
   }
 
   public isDowngradePaidSubscription = (productId: string): boolean => {
@@ -330,7 +336,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     return this.setState({ isLoadingRestorePurchases: true }, async () => {
       try {
         // Get the previous purchases of the current user
-        const purchases = await RNIap.getAvailablePurchases();
+        const purchases = await this.getAvailablePurchases();
 
         // Get the latest receipt from the purchases to validate
         const { transactionReceipt, productId } = this.getLatestPurchase(purchases);
@@ -350,6 +356,10 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         this.setState({ isLoadingRestorePurchases: false });
       }
     });
+  }
+
+  public getAvailablePurchases = (): Promise<RNIap.Purchase[]> => {
+    return RNIap.getAvailablePurchases();
   }
 
   public fetchAvailableSubscriptionItems = async (subscriptionProductIds: string[]) => {
