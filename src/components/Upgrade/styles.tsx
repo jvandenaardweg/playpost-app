@@ -17,13 +17,15 @@ export default StyleSheet.create({
     textAlign: 'center',
     fontWeight: fonts.fontWeight.bold,
     marginTop: spacing.default,
-    marginBottom: spacing.large
+    marginBottom: spacing.large,
+    color: colors.black
   },
   title: {
     fontSize: fonts.fontSize.title,
     fontWeight: fonts.fontWeight.semibold,
     lineHeight: 21,
-    marginBottom: 4
+    marginBottom: 4,
+    color: colors.black
   },
   paragraph: {
     color: colors.paragraphGrayed,
@@ -124,7 +126,8 @@ export default StyleSheet.create({
     fontSize: fonts.fontSize.titleLarge,
     fontWeight: fonts.fontWeight.normal,
     marginBottom: 12,
-    marginTop: 12
+    marginTop: 12,
+    color: colors.black
   },
   cardPriceContainer: {
     height: 70,
@@ -133,7 +136,8 @@ export default StyleSheet.create({
   cardPrice: {
     fontSize: 48,
     fontWeight: '800',
-    letterSpacing: -2
+    letterSpacing: -2,
+    color: colors.black
   },
   cardMeta: {
     marginBottom: 8,
