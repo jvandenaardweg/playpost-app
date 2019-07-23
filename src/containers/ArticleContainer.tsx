@@ -83,7 +83,10 @@ const initialState = {
 
 type Props = IProps & StateProps & DispatchProps;
 
-export class ArticleContainerComponent extends React.PureComponent<Props, State> {
+export class ArticleContainerComponent extends React.Component<Props, State> {
+
+  public static contextType = NetworkContext;
+  public state = initialState;
 
   get audiofileToUse(): Api.Audiofile | undefined {
     const { isSubscribed, article } = this.props;
@@ -97,8 +100,10 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     return article.audiofiles[0] && article.audiofiles[0].length ? article.audiofiles[0].length : 0;
   }
 
-  public static contextType = NetworkContext;
-  public state = initialState;
+  public shouldComponentUpdate(nextProps: Props, nextState: State) {
+    // Only update when props or state change
+    return !isEqual(this.state, nextState) || !isEqual(this.props, nextProps);
+  }
 
   public componentDidUpdate(prevProps: Props, prevState: State): void {
     const { playbackState, playerArticleId, article } = this.props;
