@@ -4,10 +4,10 @@ import { Alert, Linking, NativeModules, Platform } from 'react-native';
 import DeepLinking from 'react-native-deep-linking';
 import { ThemeProvider } from 'react-native-elements';
 import { useScreens } from 'react-native-screens';
+import SplashScreen from 'react-native-splash-screen';
 import { Provider } from 'react-redux';
 // tslint:disable-next-line:no-submodule-imports
 import { PersistGate } from 'redux-persist/integration/react';
-import SplashScreen from 'react-native-splash-screen';
 
 import { persistor, store } from './store';
 import { reactNativeElementsTheme } from './theme';
