@@ -83,6 +83,34 @@ describe('voices selector', () => {
     expect(selectLanguagesWithActiveVoices(exampleState)).toMatchObject(expected);
   });
 
+  it('selectLanguagesWithActiveVoices with a userLanguageCode should return the languages with active voices with the users language on top', () => {
+    const exampleState = {
+      ...rootState,
+      voices: {
+        ...rootState.voices,
+        languages: languagesMock
+      }
+    };
+
+    const userLanguageCode = 'nl';
+
+    const expected = languagesMock
+      .map((language: Api.Language) => {
+        return {
+          ...language,
+          voices: language.voices && language.voices.filter(voice => voice.isActive)
+        };
+      })
+      .sort((a, b) => a.name.localeCompare(b.name)); // sort languages alphabetically
+
+    if (userLanguageCode) {
+      expected.some(language => language.code === userLanguageCode && expected.unshift(language))
+    }
+
+
+    expect(selectLanguagesWithActiveVoices(exampleState, 'nl')).toMatchObject(expected);
+  });
+
   it('selectDownloadedVoicePreviews should return the downloaded voice preview voices', () => {
     const exampleState = {
       ...rootState,

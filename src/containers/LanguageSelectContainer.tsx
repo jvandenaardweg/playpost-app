@@ -1,4 +1,5 @@
 import React from 'react';
+import DeviceInfo from 'react-native-device-info';
 import { connect } from 'react-redux';
 
 import { RootState } from '../reducers';
@@ -79,7 +80,7 @@ interface StateProps {
 }
 
 const mapStateToProps = (state: RootState) => ({
-  languagesWithActiveVoices: selectLanguagesWithActiveVoices(state),
+  languagesWithActiveVoices: selectLanguagesWithActiveVoices(state, DeviceInfo.getDeviceLocale()),
   userSelectedVoices: selectUserSelectedVoices(state)
 });
 

@@ -33,22 +33,45 @@ export const selectTotalAvailableVoices = createSelector(
   }
 );
 
-export const selectLanguagesWithActiveVoices = createSelector(
-  [selectLanguages],
-  languages => {
-    // Return languages with active voices
-    const languagesWithActiveVoices = languages
-      .map(language => {
-        return {
-          ...language,
-          voices: language.voices && language.voices.filter(voice => voice.isActive)
-        };
-      })
-      .sort((a, b) => a.name.localeCompare(b.name)); // sort languages alphabetically
+// export const selectLanguagesWithActiveVoices = createSelector(
+//   [selectLanguages],
+//   languages => {
+//     // Return languages with active voices
+//     const languagesWithActiveVoices = languages
+//       .map(language => {
+//         return {
+//           ...language,
+//           voices: language.voices && language.voices.filter(voice => voice.isActive)
+//         };
+//       })
+//       .sort((a, b) => a.name.localeCompare(b.name)); // sort languages alphabetically
 
-    return languagesWithActiveVoices;
-  }
-);
+//     return languagesWithActiveVoices;
+//   }
+// );
+
+export const selectLanguagesWithActiveVoices = (state: RootState, userLanguageCode?: string) =>
+  createSelector(
+    [selectLanguages],
+    languages => {
+      // Return languages with active voices
+      const languagesWithActiveVoices = languages
+        .map(language => {
+          return {
+            ...language,
+            voices: language.voices && language.voices.filter(voice => voice.isActive)
+          };
+        })
+        .sort((a, b) => a.name.localeCompare(b.name)); // sort languages alphabetically
+
+      // If we have a language code, find the language code and move that language to the top
+      if (userLanguageCode) {
+        languagesWithActiveVoices.some(language => language.code === userLanguageCode && languagesWithActiveVoices.unshift(language))
+      }
+
+      return languagesWithActiveVoices;
+    }
+  )(state);
 
 export const selectDownloadedVoicePreviews = createSelector(
   [voicesSelector],
@@ -73,7 +96,7 @@ export const selectAvailableVoicesByLanguageName = (state: RootState, languageNa
 
       return sortedVoices;
     }
-  )(state);
+  )(state, '');
 
 export const selectDefaultVoiceByLanguageName = (state: RootState, languageName: string) =>
   createSelector(
@@ -87,4 +110,4 @@ export const selectDefaultVoiceByLanguageName = (state: RootState, languageName:
 
       return defaultVoice;
     }
-  )(state);
+  )(state, '');
