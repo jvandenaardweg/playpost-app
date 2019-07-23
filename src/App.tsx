@@ -124,7 +124,7 @@ export default class App extends React.PureComponent<State> {
       ],
       { cancelable: false }
     );
-}
+  }
 
   public render(): JSX.Element {
     return (
