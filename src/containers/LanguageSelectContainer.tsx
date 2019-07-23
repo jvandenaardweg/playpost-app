@@ -1,4 +1,6 @@
 import React from 'react';
+import isEqual from 'react-fast-compare';
+import { InteractionManager } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 import { connect } from 'react-redux';
 
@@ -14,9 +16,16 @@ import { selectLanguagesWithActiveVoices } from '../selectors/voices';
 
 type Props = NavigationInjectedProps & StateProps & DispatchProps;
 
-export class LanguagesSelectComponent extends React.PureComponent<Props> {
+export class LanguagesSelectComponent extends React.Component<Props> {
   public componentDidMount(): void {
-    this.props.getLanguages();
+    InteractionManager.runAfterInteractions(() => {
+      this.props.getLanguages();
+    });
+  }
+
+  public shouldComponentUpdate(nextProps: Props): boolean {
+    // Only re-render if props change
+    return !isEqual(this.props, nextProps)
   }
 
   public keyExtractor = (item: Api.Language, index: number) => index.toString();
