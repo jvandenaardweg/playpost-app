@@ -1272,66 +1272,6 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
             <View
               style={
                 Object {
-                  "marginBottom": 18,
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "borderRadius": 3,
-                  }
-                }
-              >
-                <View
-                  accessible={true}
-                  isTVSelectable={true}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
-                  style={
-                    Object {
-                      "opacity": 1,
-                    }
-                  }
-                >
-                  <View
-                    style={
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "transparent",
-                        "borderColor": "#E9110B",
-                        "borderRadius": 3,
-                        "borderWidth": 0.5,
-                        "flexDirection": "row",
-                        "justifyContent": "center",
-                        "padding": 8,
-                      }
-                    }
-                  >
-                    <Text
-                      style={
-                        Object {
-                          "color": "#E9110B",
-                          "fontSize": 15,
-                          "paddingBottom": 1,
-                          "paddingTop": 2,
-                          "textAlign": "center",
-                        }
-                      }
-                    >
-                      Cancel active subscription?
-                    </Text>
-                  </View>
-                </View>
-              </View>
-            </View>
-            <View
-              style={
-                Object {
                   "borderRadius": 3,
                 }
               }
@@ -1378,6 +1318,66 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   >
                     Already upgraded? Restore purchase
                   </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "marginTop": 18,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "borderRadius": 3,
+                  }
+                }
+              >
+                <View
+                  accessible={true}
+                  isTVSelectable={true}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "opacity": 1,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "transparent",
+                        "borderColor": "#E9110B",
+                        "borderRadius": 3,
+                        "borderWidth": 0,
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                        "padding": 8,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "#E9110B",
+                          "fontSize": 15,
+                          "paddingBottom": 1,
+                          "paddingTop": 2,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      Cancel active subscription?
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
