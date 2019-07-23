@@ -69,7 +69,9 @@ exports[`CustomSectionList basic rendering should render correctly 1`] = `
         onLayout={[Function]}
         style={null}
       >
-        <View>
+        <View
+          underlayColor="transparent"
+        >
           <View
             style={
               Object {
