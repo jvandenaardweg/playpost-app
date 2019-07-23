@@ -33,23 +33,6 @@ export const selectTotalAvailableVoices = createSelector(
   }
 );
 
-// export const selectLanguagesWithActiveVoices = createSelector(
-//   [selectLanguages],
-//   languages => {
-//     // Return languages with active voices
-//     const languagesWithActiveVoices = languages
-//       .map(language => {
-//         return {
-//           ...language,
-//           voices: language.voices && language.voices.filter(voice => voice.isActive)
-//         };
-//       })
-//       .sort((a, b) => a.name.localeCompare(b.name)); // sort languages alphabetically
-
-//     return languagesWithActiveVoices;
-//   }
-// );
-
 export const selectLanguagesWithActiveVoices = (state: RootState, userLanguageCode?: string) =>
   createSelector(
     [selectLanguages],
