@@ -4,7 +4,7 @@ import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
 import spacing from '../../constants/spacing';
 
-const seperatorHeight = spacing.default;
+const sectionFooterHeight = spacing.default;
 
 export default StyleSheet.create({
   container: {
@@ -12,8 +12,12 @@ export default StyleSheet.create({
     backgroundColor: colors.appBackground,
     paddingTop: spacing.default
   },
-  seperator: {
-    height: seperatorHeight
+  sectionFooter: {
+    height: sectionFooterHeight
+  },
+  itemSeperator: {
+    marginLeft: spacing.default,
+    marginRight: spacing.default
   },
   rightIconText: {
     color: colors.grayDark,

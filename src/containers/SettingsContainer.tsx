@@ -358,7 +358,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
         paddingTop={0}
         sectionListData={sectionListData}
         ListHeaderComponent={
-          <View style={{ marginTop: spacing.default * -1, marginLeft: spacing.default * -1, marginRight: spacing.default * -1, marginBottom: spacing.small }}>
+          <View style={{ marginLeft: spacing.default * -1, marginRight: spacing.default * -1, marginBottom: spacing.small }}>
             <Usage
               user={this.props.user}
               activeSubscriptionProductId={this.props.activeSubscriptionProductId}

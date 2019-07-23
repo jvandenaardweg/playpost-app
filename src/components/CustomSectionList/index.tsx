@@ -38,12 +38,13 @@ interface Props {
 export const CustomSectionList: React.FC<Props> = ({ sectionListData, ListHeaderComponent, ListFooterComponent, paddingTop }) => (
   <View style={[styles.container, (paddingTop !== undefined) ? { paddingTop } : undefined]}>
     <SectionList
+      initialNumToRender={15}
       keyExtractor={(item, index) => item + index}
       ListHeaderComponent={ListHeaderComponent}
       ListFooterComponent={ListFooterComponent}
       stickySectionHeadersEnabled={false}
-      ItemSeparatorComponent={() => <ListSeperator />}
-      renderSectionFooter={() => <View style={styles.seperator} />}
+      ItemSeparatorComponent={() => <View style={styles.itemSeperator}><ListSeperator /></View>}
+      renderSectionFooter={() => <View style={styles.sectionFooter} />}
       renderItem={({ item, index, section }) => {
         const totalSectionItems = section.data.length;
         const lastIndex = totalSectionItems - 1;
