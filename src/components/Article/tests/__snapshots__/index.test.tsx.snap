@@ -57,7 +57,7 @@ exports[`Article active rendering should render active correctly 1`] = `
             Object {
               "color": "#AAAAAA",
               "fontSize": 12,
-              "fontWeight": "100",
+              "fontWeight": "300",
               "paddingRight": 0,
             }
           }
@@ -194,7 +194,7 @@ exports[`Article active rendering should render active correctly 1`] = `
           Object {
             "color": "#AAAAAA",
             "fontSize": 12,
-            "fontWeight": "100",
+            "fontWeight": "300",
             "paddingLeft": 2,
           }
         }
@@ -303,7 +303,7 @@ exports[`Article active rendering should render active correctly 1`] = `
         Object {
           "color": "#AAAAAA",
           "fontSize": 12,
-          "fontWeight": "100",
+          "fontWeight": "300",
           "marginTop": 6,
           "textAlign": "center",
         }
@@ -373,7 +373,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
             Object {
               "color": "#AAAAAA",
               "fontSize": 12,
-              "fontWeight": "100",
+              "fontWeight": "300",
               "paddingRight": 0,
             }
           }
@@ -510,7 +510,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
           Object {
             "color": "#AAAAAA",
             "fontSize": 12,
-            "fontWeight": "100",
+            "fontWeight": "300",
             "paddingLeft": 2,
           }
         }
@@ -617,7 +617,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
         Object {
           "color": "#AAAAAA",
           "fontSize": 12,
-          "fontWeight": "100",
+          "fontWeight": "300",
           "marginTop": 6,
           "textAlign": "center",
         }
@@ -687,7 +687,7 @@ exports[`Article full rendering should render full correctly 1`] = `
             Object {
               "color": "#AAAAAA",
               "fontSize": 12,
-              "fontWeight": "100",
+              "fontWeight": "300",
               "paddingRight": 0,
             }
           }
@@ -826,7 +826,7 @@ exports[`Article full rendering should render full correctly 1`] = `
           Object {
             "color": "#AAAAAA",
             "fontSize": 12,
-            "fontWeight": "100",
+            "fontWeight": "300",
             "paddingLeft": 2,
           }
         }
@@ -933,7 +933,7 @@ exports[`Article full rendering should render full correctly 1`] = `
         Object {
           "color": "#AAAAAA",
           "fontSize": 12,
-          "fontWeight": "100",
+          "fontWeight": "300",
           "marginTop": 6,
           "textAlign": "center",
         }
@@ -1003,7 +1003,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
             Object {
               "color": "#AAAAAA",
               "fontSize": 12,
-              "fontWeight": "100",
+              "fontWeight": "300",
               "paddingRight": 0,
             }
           }
@@ -1140,7 +1140,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
           Object {
             "color": "#AAAAAA",
             "fontSize": 12,
-            "fontWeight": "100",
+            "fontWeight": "300",
             "paddingLeft": 2,
           }
         }
@@ -1229,7 +1229,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
         Object {
           "color": "#AAAAAA",
           "fontSize": 12,
-          "fontWeight": "100",
+          "fontWeight": "300",
           "marginTop": 6,
           "textAlign": "center",
         }
@@ -1299,7 +1299,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
             Object {
               "color": "#AAAAAA",
               "fontSize": 12,
-              "fontWeight": "100",
+              "fontWeight": "300",
               "paddingRight": 0,
             }
           }
@@ -1436,7 +1436,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
           Object {
             "color": "#AAAAAA",
             "fontSize": 12,
-            "fontWeight": "100",
+            "fontWeight": "300",
             "paddingLeft": 2,
           }
         }
@@ -1543,7 +1543,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
         Object {
           "color": "#AAAAAA",
           "fontSize": 12,
-          "fontWeight": "100",
+          "fontWeight": "300",
           "marginTop": 6,
           "textAlign": "center",
         }
@@ -1613,7 +1613,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
             Object {
               "color": "#AAAAAA",
               "fontSize": 12,
-              "fontWeight": "100",
+              "fontWeight": "300",
               "paddingRight": 0,
             }
           }
@@ -1750,7 +1750,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
           Object {
             "color": "#AAAAAA",
             "fontSize": 12,
-            "fontWeight": "100",
+            "fontWeight": "300",
             "paddingLeft": 2,
           }
         }
@@ -1857,7 +1857,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
         Object {
           "color": "#AAAAAA",
           "fontSize": 12,
-          "fontWeight": "100",
+          "fontWeight": "300",
           "marginTop": 6,
           "textAlign": "center",
         }
