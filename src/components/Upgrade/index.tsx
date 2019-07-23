@@ -60,7 +60,10 @@ export const Upgrade: React.FC<Props> = React.memo(
       'com.aardwegmedia.playpost.subscription.plus': snapToInterval * 2
     };
 
-    const contentOffsetX = centeredSubscriptionProductId ? startOffset[centeredSubscriptionProductId] : snapToInterval;
+    // Center the subscription based on centeredSubscriptionProductId
+    // Else on activeSubscriptionProductId
+    // Else, show free
+    const contentOffsetX = centeredSubscriptionProductId ? startOffset[centeredSubscriptionProductId] : activeSubscriptionProductId ? startOffset[activeSubscriptionProductId] : snapToInterval;
 
     const contentOffset = { x: contentOffsetX, y: 0 };
     const scrollEnabled = !isLoadingBuySubscription;
@@ -104,7 +107,11 @@ export const Upgrade: React.FC<Props> = React.memo(
                 const defaultButtonTitle = `Upgrade to ${title}`;
                 const freeButtonTitle = `Downgrade to ${title}`;
 
-                const buttonLabel = isDowngradePaidSubscription(productId) || productId === 'free' ? freeButtonTitle : trialButtonTitle ? trialButtonTitle : defaultButtonTitle;
+                const buttonTitleAction = isDowngradePaidSubscription(productId) || productId === 'free' ? freeButtonTitle : trialButtonTitle ? trialButtonTitle : defaultButtonTitle;
+                const buttonTitle = activeSubscriptionProductId === productId ? 'Current subscription' : buttonTitleAction;
+
+                const isDisabled = isLoadingSubscriptionItems || isLoadingBuySubscription || isLoadingRestorePurchases || activeSubscriptionProductId === productId;
+                const isLoading = isLoadingSubscriptionItems || isLoadingBuySubscription;
 
                 return (
                   <View
@@ -125,12 +132,10 @@ export const Upgrade: React.FC<Props> = React.memo(
                     </View>
                     <View style={styles.cardButtonContainer}>
                       <Button
-                        title={activeSubscriptionProductId === productId ? 'Current subscription' : buttonLabel}
+                        title={buttonTitle}
                         onPress={() => onPressUpgrade(productId)}
-                        disabled={
-                          isLoadingSubscriptionItems || isLoadingBuySubscription || isLoadingRestorePurchases || activeSubscriptionProductId === productId
-                        }
-                        loading={isLoadingSubscriptionItems || isLoadingBuySubscription}
+                        disabled={isDisabled }
+                        loading={isLoading}
                         loadingProps={{ color: 'black' }}
                       />
                     </View>
@@ -229,18 +234,6 @@ export const Upgrade: React.FC<Props> = React.memo(
                 </Text>
               </View>
               <View style={{ marginTop: 18 }}>
-                {activeSubscriptionProductId !== 'free' && (
-                  <View style={{ marginBottom: 18 }}>
-                    <Button
-                      type="outline"
-                      titleStyle={{ color: colors.red, fontSize: fonts.fontSize.body }}
-                      buttonStyle={{ borderColor: colors.red }}
-                      onPress={() => onPressCancel()}
-                      title="Cancel active subscription?"
-                    />
-                  </View>
-                )}
-
                 <Button
                   title="Already upgraded? Restore purchase"
                   loading={isLoadingRestorePurchases}
@@ -249,6 +242,18 @@ export const Upgrade: React.FC<Props> = React.memo(
                   titleStyle={{ fontSize: fonts.fontSize.body }}
                   loadingProps={{ color: 'black' }}
                 />
+
+                {activeSubscriptionProductId !== 'free' && (
+                  <View style={{ marginTop: 18 }}>
+                    <Button
+                      type="clear"
+                      titleStyle={{ color: colors.red, fontSize: fonts.fontSize.body }}
+                      buttonStyle={{ borderColor: colors.red }}
+                      onPress={() => onPressCancel()}
+                      title="Cancel active subscription?"
+                    />
+                  </View>
+                )}
               </View>
             </View>
           </View>

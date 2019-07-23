@@ -250,7 +250,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
             title: 'Subscription',
             icon: 'star',
             iconColor: colors.tintColor,
-            onPress: this.handleOnPressUpgrade,
+            onPress: () => this.handleOnPressUpgrade(),
             chevron: true,
             value: activeSubscriptionName
           },
