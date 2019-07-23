@@ -106,7 +106,7 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
     if (field === 'password') { this.setState({ password: value }); }
   }
 
-  public render() {
+  public render(): JSX.Element {
     const { email, password, isLoading } = this.state;
 
     return (

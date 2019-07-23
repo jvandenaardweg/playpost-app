@@ -91,7 +91,7 @@ class LoginFormContainerComponent extends React.PureComponent<Props, State> {
 
   public handleOnPressForgotPassword = () => this.props.navigation.navigate('login/forgot-password');
 
-  public render() {
+  public render(): JSX.Element {
     const { email, password, isLoading } = this.state;
 
     return (

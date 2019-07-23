@@ -10,7 +10,7 @@ export class SignupScreen extends React.PureComponent {
     };
   }
 
-  public render() {
+  public render(): JSX.Element {
     return (
       <SignupFormContainer />
     );

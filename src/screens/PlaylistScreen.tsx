@@ -13,7 +13,7 @@ export class PlaylistScreen extends React.PureComponent {
     };
   }
 
-  public render() {
+  public render(): JSX.Element {
     return (
       <AppBackground>
         <PlaylistContainer />

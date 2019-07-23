@@ -225,7 +225,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
     );
   }
 
-  public render() {
+  public render(): JSX.Element {
     const { activeSubscriptionName, totalAvailableVoices } = this.props;
     const { isClearingCache, cacheSize } = this.state;
 

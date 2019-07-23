@@ -100,7 +100,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
   public static contextType = NetworkContext;
   public state = initialState;
 
-  public componentDidUpdate(prevProps: Props, prevState: State) {
+  public componentDidUpdate(prevProps: Props, prevState: State): void {
     const { playbackState, playerArticleId, article } = this.props;
     const { isLoading, isCreatingAudiofile, isDownloadingAudiofile } = this.state;
 
@@ -499,7 +499,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     });
   }
 
-  public render() {
+  public render(): JSX.Element {
     const { isCreatingAudiofile, isDownloadingAudiofile, isLoading, isPlaying, isActive } = this.state;
     const { article, isDownloaded, isFavorited, isArchived, isMoving, onLongPress, onPressOut, playlistItem } = this.props;
 

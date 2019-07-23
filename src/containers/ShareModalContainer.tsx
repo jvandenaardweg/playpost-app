@@ -95,7 +95,7 @@ export class ShareModalContainerComponent extends React.PureComponent<Props, Sta
     }
   }
 
-  public render() {
+  public render(): JSX.Element {
     const { onPressClose } = this.props;
     const { isLoading, errorMessage, isSuccess } = this.state;
 

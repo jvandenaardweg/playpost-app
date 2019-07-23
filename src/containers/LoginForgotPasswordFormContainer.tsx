@@ -26,17 +26,8 @@ class LoginForgotPasswordFormContainerComponent extends React.PureComponent<Prop
     error: null
   };
 
-  public componentDidMount() {
+  public componentDidMount(): void {
     this.props.navigation.setParams({ handleOnClose: this.handleOnClose });
-  }
-
-  public componentDidUpdate(prevProps: Props) {
-    // const { authError, token } = this.props;
-
-    // if (authError && prevProps.authError !== authError) {
-    //   this.setState({ isLoading: false });
-    //   return Alert.alert('Oops!', authError);
-    // }
   }
 
   public handleOnClose = () => {
@@ -63,7 +54,7 @@ class LoginForgotPasswordFormContainerComponent extends React.PureComponent<Prop
     });
   }
 
-  public render() {
+  public render(): JSX.Element {
     const { email, isLoading, isSuccess } = this.state;
 
     return (

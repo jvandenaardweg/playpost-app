@@ -52,7 +52,7 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
 
   public opacityAnim = new Animated.Value(0);
 
-  public componentDidMount() {
+  public componentDidMount(): void {
     this.setup();
   }
 
@@ -135,21 +135,21 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
 
   public handleOnModalDissmiss = () => this.closeOverlay();
 
-  public renderErrorMessageModal() {
+  public renderErrorMessageModal(): JSX.Element | null {
     const { errorMessage } = this.state;
     if (!errorMessage) { return null; }
 
     return <ErrorModal message={errorMessage} onPressClose={this.handleOnPressClose} />;
   }
 
-  public renderShareModal() {
+  public renderShareModal(): JSX.Element | undefined {
     const { url, errorMessage, documentHtml } = this.state;
     if (errorMessage) { return; }
 
     return <ShareModalContainer url={url} documentHtml={documentHtml} onPressSave={this.handleOnPressSave} onPressClose={this.handleOnPressClose} />;
   }
 
-  public renderModal() {
+  public renderModal(): JSX.Element | null {
     const { isLoading, isOpen } = this.state;
 
     if (isLoading) { return null; }
@@ -176,7 +176,7 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
     );
   }
 
-  public render() {
+  public render(): JSX.Element {
     return <Animated.View style={[styles.container, { opacity: this.opacityAnim }]}>{this.renderModal()}</Animated.View>;
   }
 }

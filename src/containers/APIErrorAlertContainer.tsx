@@ -37,7 +37,7 @@ export class APIErrorAlertContainerComponent extends React.Component<Props, Stat
     hasOpenAlert: false // A way to prevent multiple alerts being thrown at the user
   };
 
-  public shouldComponentUpdate(nextProps: Props, nextState: State) {
+  public shouldComponentUpdate(nextProps: Props, nextState: State): boolean {
     // Just do not update the component when we already have an Alert open
     if (!nextState.hasOpenAlert) {
       return true;
@@ -46,7 +46,7 @@ export class APIErrorAlertContainerComponent extends React.Component<Props, Stat
     return false;
   }
 
-  public componentDidUpdate(prevProps: Props) {
+  public componentDidUpdate(prevProps: Props): void {
     const {
       errorSaveSelectedVoice,
       errorCreateAudiofile,
@@ -195,7 +195,7 @@ export class APIErrorAlertContainerComponent extends React.Component<Props, Stat
     }
   }
 
-  public render() {
+  public render(): React.ReactNode {
     return this.props.children;
   }
 }

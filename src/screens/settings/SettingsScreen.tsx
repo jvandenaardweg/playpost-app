@@ -4,7 +4,7 @@ import { AppBackground } from '../../components/AppBackground';
 import { SettingsContainer } from '../../containers/SettingsContainer';
 
 export class SettingsScreen extends React.PureComponent {
-  public render() {
+  public render(): JSX.Element {
     return (
       <AppBackground>
         <SettingsContainer />

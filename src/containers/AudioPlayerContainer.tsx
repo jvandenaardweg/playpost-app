@@ -32,7 +32,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   public onStateChanged: TrackPlayer.EmitterSubscription | null = null;
   public onStateError: TrackPlayer.EmitterSubscription | null = null;
 
-  public componentDidMount() {
+  public componentDidMount(): void {
     this.setupTrackPlayer();
   }
 
@@ -87,7 +87,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     });
   }
 
-  public async componentDidUpdate(prevProps: Props) {
+  public async componentDidUpdate(prevProps: Props): Promise<void> {
     const { playbackState, track } = this.props;
     const { isPlaying } = this.state;
 
@@ -115,7 +115,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     await TrackPlayer.play();
   }
 
-  public componentWillUnmount() {
+  public componentWillUnmount(): void {
     if(this.onTrackChange) {
       this.onTrackChange.remove();
     }
@@ -153,7 +153,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     }
   }
 
-  get article() {
+  get article(): Api.Article | undefined {
     const { track, articles } = this.props;
 
     if (!track || !track.id) { return; }
@@ -170,7 +170,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     return foundArticle;
   }
 
-  public renderAudioPlayerSmall() {
+  public renderAudioPlayerSmall(): JSX.Element | null {
     const { track, articles } = this.props;
     const { isLoading, isPlaying } = this.state;
 
@@ -183,13 +183,13 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     return <AudioPlayerSmall track={track} isLoading={isLoading} isPlaying={isPlaying} onPressPlay={this.handleOnPressPlay} onPressShowModal={this.handleOnShowModal} />;
   }
 
-  public renderAudioPlayerLarge() {
+  public renderAudioPlayerLarge(): JSX.Element {
     const { isLoading, isPlaying } = this.state;
 
     return <AudioPlayerLarge article={this.article} isLoading={isLoading} isPlaying={isPlaying} onPressPlay={this.handleOnPressPlay} onPressClose={this.handleOnPressClose} onProgressChange={this.handleOnProgressChange} />;
   }
 
-  public render() {
+  public render(): JSX.Element {
     const { showModal } = this.state;
 
     return (

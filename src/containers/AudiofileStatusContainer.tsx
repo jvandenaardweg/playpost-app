@@ -9,7 +9,7 @@ import { selectPlayerAudiofileStatus } from '../selectors/player';
 type Props = StateProps;
 
 class AudiofileStatusComponent extends React.PureComponent<Props> {
-  public render() {
+  public render(): JSX.Element | null {
     const { audiofileStatus } = this.props;
 
     if (!audiofileStatus) { return null; }

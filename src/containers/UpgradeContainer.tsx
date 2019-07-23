@@ -44,12 +44,12 @@ export type Props = IProps & StateProps & DispatchProps;
 
 export class UpgradeContainerComponent extends React.PureComponent<Props, State> {
 
-  get analyticsUserId() {
+  get analyticsUserId(): string {
     const { userDetails } = this.props;
     return `${userDetails && userDetails.id}`;
   }
 
-  get subscriptionFeatures() {
+  get subscriptionFeatures(): object[] {
     return [
       {
         productId: 'free',
@@ -92,7 +92,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   /* tslint:disable-next-line no-any */
   public purchaseErrorSubscription: any = null;
 
-  public async componentDidMount() {
+  public async componentDidMount(): Promise<void> {
     const { isConnected } = this.context;
 
     // For now, just close the screen when there's no active internet connection
@@ -136,7 +136,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     });
   }
 
-  public componentWillUnmount() {
+  public componentWillUnmount(): void {
     if (this.purchaseUpdateSubscription) {
       this.purchaseUpdateSubscription.remove();
       this.purchaseUpdateSubscription = null;
@@ -152,7 +152,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  public async componentDidUpdate(prevProps: Props) {
+  public async componentDidUpdate(prevProps: Props): Promise<void> {
     const { isLoadingBuySubscription, isLoadingRestorePurchases } = this.state;
     const { validationResult } = this.props;
 
@@ -410,7 +410,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     return purchase;
   }
 
-  public render() {
+  public render(): JSX.Element {
     const { isLoadingRestorePurchases, isLoadingBuySubscription, isLoadingSubscriptionItems, subscriptions } = this.state;
     const { activeSubscriptionProductId } = this.props;
     const centeredSubscriptionProductId = this.props.navigation.getParam('centeredSubscriptionProductId', '');

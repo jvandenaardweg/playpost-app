@@ -15,7 +15,7 @@ export class UpgradeScreen extends React.PureComponent<Props> {
     };
   }
 
-  public render() {
+  public render(): JSX.Element {
     return (
       <AppBackground>
         <UpgradeContainer />

@@ -14,7 +14,7 @@ import { selectLanguagesWithActiveVoices } from '../selectors/voices';
 type Props = NavigationInjectedProps & StateProps & DispatchProps;
 
 export class LanguagesSelectComponent extends React.PureComponent<Props> {
-  public componentDidMount() {
+  public componentDidMount(): void {
     this.props.getLanguages();
   }
 
@@ -42,7 +42,7 @@ export class LanguagesSelectComponent extends React.PureComponent<Props> {
     return `${label} (${voice.countryCode}) (${genderLabel})`;
   }
 
-  public render() {
+  public render(): JSX.Element {
     const { languagesWithActiveVoices } = this.props;
 
     const sectionListData = [

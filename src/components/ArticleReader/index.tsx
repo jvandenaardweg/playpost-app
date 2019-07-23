@@ -93,7 +93,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
     };
   }
 
-  function getHtmlHeader(themeStyle: ThemeStyles) {
+  function getHtmlHeader(themeStyle: ThemeStyles): string {
     return `
       <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -209,7 +209,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
       </head>`;
   }
 
-  function getNoHtmlDocument(articleProp: Api.Article | undefined, themeStyle: ThemeStyles) {
+  function getNoHtmlDocument(articleProp: Api.Article | undefined, themeStyle: ThemeStyles): string {
     const articleUrlLink = (articleProp && articleProp.url) ? `<a href="${articleProp.url}">View the original article</a>` : '';
 
     return `
@@ -224,7 +224,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
     `;
   }
 
-  function getHtmlDocument(articleProp: Api.Article | undefined, themeStyle: ThemeStyles) {
+  function getHtmlDocument(articleProp: Api.Article | undefined, themeStyle: ThemeStyles): string {
 
     // When we have no article or no html, show the user we don't have enough data
     if (!articleProp || !articleProp.html) { return getNoHtmlDocument(articleProp, themeStyles); }

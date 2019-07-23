@@ -10,7 +10,7 @@ export class SettingsVoicesScreen extends React.PureComponent {
     };
   }
 
-  public render() {
+  public render(): JSX.Element {
     return (
       <AppBackground>
         <VoiceSelectContainer />

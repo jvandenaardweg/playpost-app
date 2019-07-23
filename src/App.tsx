@@ -25,13 +25,13 @@ useScreens();
 // tslint:disable-next-line:no-console
 console.disableYellowBox = true;
 
-async function setAnalytics(dev: boolean) {
+async function setAnalytics(dev: boolean): Promise<void> {
   if (dev) { return; }
 
   await Analytics.setEnabled(true);
 }
 
-function setRemoteDebugging(dev: boolean) {
+function setRemoteDebugging(dev: boolean): void {
   if (Platform.OS !== 'ios') { return; }
 
   if (!dev) { return; }
@@ -45,7 +45,7 @@ setRemoteDebugging(__DEV__);
 // Important: Keep this App a Class component
 // Using a Functional Component as the root component breaks Hot Reloading (on a local device)
 export default class App extends React.PureComponent {
-  public async componentDidMount() {
+  public async componentDidMount(): Promise<void> {
     Linking.addEventListener('url', this.handleUrl);
 
     DeepLinking.addScheme('playpost://');
@@ -76,11 +76,11 @@ export default class App extends React.PureComponent {
     }
   }
 
-  public componentWillUnmount() {
+  public componentWillUnmount(): void {
     Linking.removeEventListener('url', this.handleUrl);
   }
 
-  public render() {
+  public render(): JSX.Element {
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>

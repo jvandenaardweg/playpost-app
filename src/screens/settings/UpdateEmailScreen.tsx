@@ -107,7 +107,7 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
     if (field === 'email') { this.setState({ email: value }); }
   }
 
-  public render() {
+  public render(): JSX.Element {
     const { email, isLoading, isSuccess } = this.state;
 
     return (

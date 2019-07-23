@@ -4,7 +4,7 @@ import { AppBackground } from '../components/AppBackground';
 import { PlaylistContainer } from '../containers/PlaylistContainer';
 
 export class ArchiveScreen extends React.PureComponent {
-  public render() {
+  public render(): JSX.Element {
     return (
       <AppBackground>
         <PlaylistContainer isArchiveScreen />

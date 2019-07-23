@@ -10,7 +10,7 @@ export class LoginScreen extends React.PureComponent {
     };
   }
 
-  public render() {
+  public render(): JSX.Element {
     return (
       <LoginFormContainer />
     );

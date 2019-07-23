@@ -29,7 +29,7 @@ export class NetworkProvider extends React.PureComponent<State> {
     }
   }
 
-  public render() {
+  public render(): JSX.Element {
     return (
       <NetworkContext.Provider value={this.state}>
         {this.props.children}

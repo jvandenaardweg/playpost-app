@@ -9,7 +9,7 @@ import { selectIsSubscribed } from '../selectors/subscriptions';
 type Props = StateProps & NavigationInjectedProps;
 
 export class ButtonUpgradeContainerComponent extends React.PureComponent<Props> {
-  public render() {
+  public render(): JSX.Element | null {
     const { isSubscribed } = this.props;
 
     if (isSubscribed) { return null; }

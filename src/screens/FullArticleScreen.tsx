@@ -18,7 +18,7 @@ export class FullArticleScreen extends React.PureComponent<Props> {
     return this.props.navigation.getParam('article', null);
   }
 
-  public render() {
+  public render(): JSX.Element {
     return (
       <ArticleReader article={this.article} />
     );

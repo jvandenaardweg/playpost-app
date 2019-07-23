@@ -148,7 +148,7 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
     }
   }
 
-  public render() {
+  public render(): JSX.Element {
     return <AppStateContext.Provider value={this.state}>{this.props.children}</AppStateContext.Provider>;
   }
 }

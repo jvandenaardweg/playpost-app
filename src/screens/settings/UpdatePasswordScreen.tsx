@@ -93,7 +93,7 @@ export class UpdatePasswordScreenContainer extends React.PureComponent<Props, St
     if (field === 'passwordValidation') { this.setState({ passwordValidation: value }); }
   }
 
-  public render() {
+  public render(): JSX.Element {
     const { password, passwordValidation, isLoading, isSuccess } = this.state;
 
     return (

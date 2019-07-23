@@ -61,7 +61,7 @@ export class BrowserScreen extends React.PureComponent<Props, State> {
     ).start();
   }
 
-  public render() {
+  public render(): JSX.Element {
     const url = this.props.navigation.getParam('url', null);
 
     return (

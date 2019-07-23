@@ -264,7 +264,7 @@ export class VoiceSelectContainerComponent extends React.PureComponent<Props, St
     return 'Free';
   }
 
-  public render() {
+  public render(): JSX.Element {
     const { availableVoicesByLanguageName } = this.props;
     const { isLoadingSaveSelectedVoiceId, isLoadingPreviewVoiceId } = this.state;
 

@@ -84,7 +84,7 @@ class LoginResetPasswordFormContainerComponent extends React.PureComponent<Props
     });
   }
 
-  public render() {
+  public render(): JSX.Element {
     const { password, isLoading, isSuccess, resetPasswordToken } = this.state;
 
     return (
