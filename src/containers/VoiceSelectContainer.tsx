@@ -1,8 +1,8 @@
 import React from 'react';
+import isEqual from 'react-fast-compare';
 import { Alert } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
-import isEqual from 'react-fast-compare';
 
 import { LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 
