@@ -49,9 +49,14 @@ export const CustomSectionList: React.FC<Props> = ({ sectionListData, ListHeader
         const lastIndex = totalSectionItems - 1;
 
         return (
+          // @ts-ignore
+          // TODO: remove ts-ignore when react-native-elements is at version 1.2.0
+          // https://github.com/react-native-training/react-native-elements/pull/1961
+          // https://github.com/react-native-training/react-native-elements/issues/1842#issuecomment-511230772
           <ListItem
             title={item.title}
             onPress={item.onPress}
+            underlayColor={'transparent'}
             containerStyle={{
               ...(item.isSelected ? { backgroundColor: colors.tintColor } : undefined),
               ...(index === 0 ? { borderTopLeftRadius: 8, borderTopRightRadius: 8 } : undefined),
