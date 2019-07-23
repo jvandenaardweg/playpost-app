@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import NetInfo from '@react-native-community/netinfo';
 import Analytics from 'appcenter-analytics';
 import React from 'react';
-import { Alert, Platform, NativeModules } from 'react-native';
+import { Alert, Platform } from 'react-native';
 import RNFS from 'react-native-fs';
 import * as Keychain from 'react-native-keychain';
 import SplashScreen from 'react-native-splash-screen';
