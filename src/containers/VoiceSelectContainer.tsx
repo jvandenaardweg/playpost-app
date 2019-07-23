@@ -2,6 +2,7 @@ import React from 'react';
 import { Alert } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
+import isEqual from 'react-fast-compare';
 
 import { LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 
@@ -37,13 +38,18 @@ interface State {
   isLoadingSaveSelectedVoiceId: string;
 }
 
-export class VoiceSelectContainerComponent extends React.PureComponent<Props, State> {
+export class VoiceSelectContainerComponent extends React.Component<Props, State> {
   public static contextType = NetworkContext;
 
   public state = {
     isLoadingPreviewVoiceId: '',
     isLoadingSaveSelectedVoiceId: ''
   };
+
+  public shouldComponentUpdate(nextProps: Props, nextState: State): boolean {
+    // Only re-render if props change
+    return !isEqual(this.props, nextProps) || !isEqual(this.state, nextState);
+  }
 
   // componentDidUpdate(prevProps: Props) {
   //   const { errorSaveSelectedVoice } = this.props;
