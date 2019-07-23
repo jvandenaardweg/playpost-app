@@ -7,20 +7,8 @@ import { UpgradeContainerComponent } from '../UpgradeContainer';
 jest.mock('appcenter-analytics');
 jest.mock('react-native-iap');
 
-const mockedPurchases = [
-  {
-    id: 1,
-    transactionDate: 1532282068000, // 22-07-2018
-    transactionReceipt: 'asdasasdasdadadada',
-    productId: 'com.aardwegmedia.playpost.premium'
-  },
-  {
-    id: 2,
-    transactionDate: 1563818068000, // 22-07-2019
-    transactionReceipt: 'asdasasdasdadadada',
-    productId: 'com.aardwegmedia.playpost.premium'
-  }
-];
+import mockApplePurchases from '../../../tests/__mocks__/apple-purchases';
+import mockSubscriptions from '../../../tests/__mocks__/subscriptions';
 
 const validateSubscriptionReceiptHandler = jest.fn();
 const getUserHandler = jest.fn();
@@ -136,13 +124,14 @@ describe('UpgradeContainerComponent', () => {
     it('getLatestPurchase() should return the latest purchase from the array', () => {
       const testInstance = wrapper.root.instance;
 
-      expect(testInstance.getLatestPurchase(mockedPurchases)).toMatchObject(mockedPurchases[1]);
+      expect(testInstance.getLatestPurchase(mockApplePurchases)).toMatchObject(mockApplePurchases[1]);
     })
 
     it('isDowngradeFreeSubscription() should return true/false', () => {
       const mockProps = {
         ...props,
-        activeSubscriptionProductId: 'free'
+        activeSubscriptionProductId: 'free',
+        subscriptions: mockSubscriptions
       }
 
       wrapper.update(<UpgradeContainerComponent {...mockProps} />)
@@ -156,13 +145,12 @@ describe('UpgradeContainerComponent', () => {
     it('isDowngradePaidSubscription() should return true/false', () => {
       const mockProps = {
         ...props,
-        activeSubscriptionProductId: 'com.aardwegmedia.playpost.subscriptions.plus'
+        activeSubscriptionProductId: 'com.aardwegmedia.playpost.subscriptions.plus',
+        subscriptions: mockSubscriptions
       }
 
       wrapper.update(<UpgradeContainerComponent {...mockProps} />)
       const testInstance = wrapper.root.instance;
-
-      // TODO: use subscriptions mock in mockProps
 
       expect(testInstance.isDowngradePaidSubscription('free')).toBe(false)
       expect(testInstance.isDowngradePaidSubscription('com.aardwegmedia.playpost.premium')).toBe(false)
@@ -171,8 +159,8 @@ describe('UpgradeContainerComponent', () => {
     it('should correctly handle handleOnPressRestore()', async () => {
       const testInstance = wrapper.root.instance;
 
-      testInstance.getAvailablePurchases = jest.fn().mockResolvedValue(mockedPurchases)
-      testInstance.getLatestPurchase = jest.fn().mockReturnValue(mockedPurchases[1])
+      testInstance.getAvailablePurchases = jest.fn().mockResolvedValue(mockApplePurchases)
+      testInstance.getLatestPurchase = jest.fn().mockReturnValue(mockApplePurchases[1])
       // testInstance.validateSubscriptionReceipt = jest.fn().mockResolvedValue('');
 
       const spyGetAvailablePurchases = jest.spyOn(testInstance, 'getAvailablePurchases');
@@ -186,12 +174,12 @@ describe('UpgradeContainerComponent', () => {
       expect(spyGetAvailablePurchases).toHaveBeenCalledTimes(1);
 
       // Mock getLatestPurchase
-      // testInstance.getLatestPurchase(mockedPurchases)
+      // testInstance.getLatestPurchase(mockApplePurchases)
 
       // expect(testInstance.getLatestPurchase).toHaveBeenCalledTimes(1);
-      // expect(spyGetLatestPurchase).toHaveBeenCalledWith(mockedPurchases);
+      // expect(spyGetLatestPurchase).toHaveBeenCalledWith(mockApplePurchases);
 
-      // testInstance.getLatestPurchase(mockedPurchases)
+      // testInstance.getLatestPurchase(mockApplePurchases)
 
       // await testInstance.props.validateSubscriptionReceipt();
       // expect(spyValidateSubscriptionReceipt).toHaveBeenCalledTimes(1);

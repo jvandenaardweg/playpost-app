@@ -46,7 +46,10 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
   get analyticsUserId(): string {
     const { userDetails } = this.props;
-    return `${userDetails && userDetails.id}`;
+
+    if (!userDetails || !userDetails.id) { return '' };
+
+    return userDetails.id;
   }
 
   get subscriptionFeatures(): object[] {
