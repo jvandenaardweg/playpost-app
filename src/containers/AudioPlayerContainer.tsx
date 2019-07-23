@@ -196,7 +196,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
       <View>
         <Modal
           animationType="slide"
-          presentationStyle="formSheet"
+          presentationStyle="overFullScreen"
           transparent={false}
           visible={showModal}
         >
