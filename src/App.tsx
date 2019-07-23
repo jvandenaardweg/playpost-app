@@ -7,6 +7,7 @@ import { useScreens } from 'react-native-screens';
 import { Provider } from 'react-redux';
 // tslint:disable-next-line:no-submodule-imports
 import { PersistGate } from 'redux-persist/integration/react';
+import SplashScreen from 'react-native-splash-screen';
 
 import { persistor, store } from './store';
 import { reactNativeElementsTheme } from './theme';
@@ -42,9 +43,17 @@ function setRemoteDebugging(dev: boolean): void {
 setAnalytics(__DEV__);
 setRemoteDebugging(__DEV__);
 
+interface State {
+  errorShown: boolean;
+}
+
 // Important: Keep this App a Class component
 // Using a Functional Component as the root component breaks Hot Reloading (on a local device)
-export default class App extends React.PureComponent {
+export default class App extends React.PureComponent<State> {
+  public state = {
+    errorShown: false
+  }
+
   public async componentDidMount(): Promise<void> {
     Linking.addEventListener('url', this.handleUrl);
 
@@ -79,6 +88,43 @@ export default class App extends React.PureComponent {
   public componentWillUnmount(): void {
     Linking.removeEventListener('url', this.handleUrl);
   }
+
+  public componentDidCatch(error: any, info: any) {
+    // Do not show an alert when in develop mode
+    // Here we want to have React Native's red screen
+    if (__DEV__) {
+      return;
+    }
+
+    // to prevent multiple alerts shown to your users
+    if (this.state.errorShown) {
+      return;
+    }
+
+    this.setState({ errorShown: true });
+
+    // Always hide the splash screen
+    // An error could appear on startup
+    // When we do not hide the splashscreen, our Alert won't show
+    SplashScreen.hide();
+
+    // Track the error
+    Analytics.trackEvent('App catch error', { Error: `${error}`, Info: `${info}` });
+
+    // Show the alert to the user
+    Alert.alert(
+      'Oops!',
+      `An unexpected error has occurred. Please close and restart the app.\n\n${error}`,
+      [
+        {
+          style: 'cancel',
+          text: 'OK',
+          onPress: () => this.setState({ errorShown: false }),
+        },
+      ],
+      { cancelable: false }
+    );
+}
 
   public render(): JSX.Element {
     return (
