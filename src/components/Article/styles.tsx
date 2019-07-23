@@ -71,7 +71,7 @@ export default StyleSheet.create({
   bodyFooterText: {
     fontSize: fonts.fontSize.tiny,
     color: colors.paragraphGrayed,
-    fontWeight: fonts.fontWeight.thin,
+    fontWeight: fonts.fontWeight.light,
     paddingLeft: 2
   },
   bodySourceIcon: {
@@ -81,7 +81,7 @@ export default StyleSheet.create({
     fontSize: fonts.fontSize.tiny,
     color: colors.paragraphGrayed,
     paddingRight: 0,
-    fontWeight: fonts.fontWeight.thin
+    fontWeight: fonts.fontWeight.light
   },
   authorName: {
     color: colors.paragraphGrayed
@@ -114,7 +114,7 @@ export default StyleSheet.create({
     textAlign: 'center',
     marginTop: 6,
     fontSize: fonts.fontSize.tiny,
-    fontWeight: fonts.fontWeight.thin
+    fontWeight: fonts.fontWeight.light
   },
   imageContainer: {
     justifyContent: 'center',
