@@ -16,7 +16,7 @@ import { AudiofileStatusContainer } from '../../containers/AudiofileStatusContai
 import { OfflineNotice } from '../OfflineNotice';
 import styles from './styles';
 
-export const TabBar: React.FC<BottomTabBarProps> = (
+export const TabBar: React.FC<BottomTabBarProps> = React.memo((
   props: BottomTabBarProps
 ) => {
   const { isConnected } = useContext(NetworkContext);
@@ -29,4 +29,4 @@ export const TabBar: React.FC<BottomTabBarProps> = (
       <BottomTabBar {...props} />
     </View>
   );
-};
+});
