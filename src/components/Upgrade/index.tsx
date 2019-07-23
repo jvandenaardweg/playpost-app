@@ -1,5 +1,5 @@
 import getSymbolFromCurrency from 'currency-symbol-map';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ActivityIndicator, Dimensions, Platform, ScrollView, Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import * as RNIap from 'react-native-iap';
@@ -45,6 +45,8 @@ export const Upgrade: React.FC<Props> = React.memo(
     onPressCancel,
     isDowngradePaidSubscription
   }) => {
+    const horizontalScrollViewRef = useRef<ScrollView>(null);
+
     const windowWidth = Dimensions.get('window').width;
     const cardMargin = 6;
     const cardFirstMarginLeft = spacing.default * 2;
@@ -65,13 +67,25 @@ export const Upgrade: React.FC<Props> = React.memo(
     // Else, show free
     const contentOffsetX = centeredSubscriptionProductId ? startOffset[centeredSubscriptionProductId] : activeSubscriptionProductId ? startOffset[activeSubscriptionProductId] : snapToInterval;
 
-    const contentOffset = { x: contentOffsetX, y: 0 };
+    const contentOffset = { x: contentOffsetX, y: 0, animated: false };
     const scrollEnabled = !isLoadingBuySubscription;
+
+    useEffect(() => {
+      if (!horizontalScrollViewRef || !horizontalScrollViewRef.current) {
+        return;
+      }
+
+      // We use a simple scrollTo to center the correct subscription in the ScrollView
+      // This is because Android does not support "contentOffset" on the <ScrollView>
+      horizontalScrollViewRef.current.scrollTo(contentOffset)
+
+    }, [horizontalScrollViewRef, contentOffset])
 
     return (
       <View style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={{ ...styles.container, backgroundColor: colors.appBackground }}>
           <ScrollView
+            ref={horizontalScrollViewRef}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             style={styles.cardsScrollView}
@@ -79,7 +93,6 @@ export const Upgrade: React.FC<Props> = React.memo(
             snapToInterval={snapToInterval}
             scrollEnabled={scrollEnabled}
             decelerationRate={0}
-            contentOffset={contentOffset}
           >
             {subscriptionFeatures &&
               subscriptionFeatures.map((subscriptionFeature, index) => {

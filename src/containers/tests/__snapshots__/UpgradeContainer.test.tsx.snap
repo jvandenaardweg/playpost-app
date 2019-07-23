@@ -18,12 +18,6 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
   >
     <View>
       <RCTScrollView
-        contentOffset={
-          Object {
-            "x": 698,
-            "y": 0,
-          }
-        }
         decelerationRate={0}
         horizontal={true}
         pagingEnabled={true}
