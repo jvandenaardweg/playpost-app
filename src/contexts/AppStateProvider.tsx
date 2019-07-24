@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, AppState, AppStateStatus } from 'react-native';
+import { Alert, AppState, AppStateStatus, InteractionManager } from 'react-native';
 import { connect } from 'react-redux';
 
 import { RootState } from '../reducers';
@@ -43,16 +43,18 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
   public componentDidMount() {
     const { isSubscribed } = this.props;
 
-    AppState.addEventListener('change', this.handleAppStateChange);
+    InteractionManager.runAfterInteractions(() => {
+      AppState.addEventListener('change', this.handleAppStateChange);
 
-    this.setState({ isSubscribed }, () => {
-      this.validateActiveSubscription();
+      this.setState({ isSubscribed }, () => {
+        this.validateActiveSubscription();
+      });
+
+      // Check every minute if Subscription is still active
+      this.validateSubscriptionInterval = setInterval(() => {
+        this.validateActiveSubscription();
+      }, 1000 * 60); // Every 1 minute
     });
-
-    // Check every minute if Subscription is still active
-    this.validateSubscriptionInterval = setInterval(() => {
-      this.validateActiveSubscription();
-    }, 1000 * 60); // Every 1 minute
   }
 
   public componentWillUnmount() {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, Alert, Linking, Text, View } from 'react-native';
+import { ActivityIndicator, Alert, InteractionManager, Linking, Text, View } from 'react-native';
 import Config from 'react-native-config';
 import DeviceInfo from 'react-native-device-info';
 import RNFS from 'react-native-fs';
@@ -50,15 +50,18 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
   };
 
   public componentDidMount() {
-    this.props.navigation.setParams({
-      handleOnPressUpgrade: this.handleOnPressUpgrade
+    InteractionManager.runAfterInteractions(() => {
+      this.props.navigation.setParams({
+        handleOnPressUpgrade: this.handleOnPressUpgrade
+      });
+
+      // TODO: Set cache size every time the settings screen becomes active
+      this.setCacheSize();
+
+      // Getting the user details, but also the user's settings (for example: user selected voices)
+      this.props.getUser();
     });
 
-    // TODO: Set cache size every time the settings screen becomes active
-    this.setCacheSize();
-
-    // Getting the user details, but also the user's settings (for example: user selected voices)
-    this.props.getUser();
   }
 
   public setCacheSize = async () => {
