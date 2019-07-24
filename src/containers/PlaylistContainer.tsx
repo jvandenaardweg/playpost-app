@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import React from 'react';
-import { Alert, FlatList } from 'react-native';
+import { Alert, FlatList, InteractionManager } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import { connect } from 'react-redux';
 // import DraggableFlatList from 'react-native-draggable-flatlist';
@@ -92,23 +92,23 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
     const { isConnected } = this.context;
     const { isArchiveScreen, isFavoriteScreen } = this.props;
 
-    this.showOrHideHelpVideo();
+    InteractionManager.runAfterInteractions(() => {
+      this.showOrHideHelpVideo();
 
-    // If we mount this component, and we don't have any playlist items, fetch them
-    if (isConnected && (!isArchiveScreen || !isFavoriteScreen)) {
-      this.prePopulateApp();
+      // If we mount this component, and we don't have any playlist items, fetch them
+      if (isConnected && (!isArchiveScreen || !isFavoriteScreen)) {
+        this.prePopulateApp();
 
-      if (!this.hasPlaylistItems) {
-        this.setState({ isLoading: true }, () => {
-          this.fetchPlaylist();
-        });
+        if (!this.hasPlaylistItems) {
+          this.setState({ isLoading: true }, () => {
+            this.fetchPlaylist();
+          });
+        }
       }
-    }
 
-    // Wait a little longer, then hide the splash screen.
-    // So we don't have a "black" flash.
-    // TODO: remove timeout on unmount
-    setTimeout(() => SplashScreen.hide(), 100);
+      SplashScreen.hide();
+    });
+
   }
 
   /**
