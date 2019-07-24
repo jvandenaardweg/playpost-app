@@ -2,11 +2,12 @@ import { createStore } from 'redux';
 import {
   playerSelector,
   selectErrorCreateAudiofile,
-  selectPlayerArticleId,
+  selectPlayerCurrentArticleId,
   selectPlayerAudiofile,
   selectPlayerAudiofileStatus,
   selectPlayerPlaybackState,
-  selectPlayerTrack
+  selectPlayerTrack,
+  selectPlayerPreviousArticleId
 } from '../player';
 
 import { rootReducer } from '../../reducers';
@@ -48,6 +49,22 @@ describe('player selector', () => {
     expect(selectPlayerPlaybackState(exampleState)).toBe('playing');
   });
 
+  it('selectPlayerPlaybackState should return the player playback state for the given articleId', () => {
+    const exampleState = {
+      ...rootState,
+      player: {
+        ...rootState.player,
+        playbackState: 'playing',
+        currentArticleId: 'e102cb67-62cd-4d56-8d0f-2e4f7f1381af'
+      }
+    };
+
+    expect(selectPlayerPlaybackState(exampleState, 'e102cb67-62cd-4d56-8d0f-2e4f7f1381af')).toBe('playing');
+    expect(selectPlayerPlaybackState(exampleState, '')).toBe('playing');
+
+    expect(selectPlayerPlaybackState(exampleState, '76bc201e-62cd-4d56-8d0f-2e4f7f1381af')).toBe('none');
+  });
+
   it('selectPlayerTrack should return the player track', () => {
     const exampleState = {
       ...rootState,
@@ -60,17 +77,32 @@ describe('player selector', () => {
     expect(selectPlayerTrack(exampleState)).toEqual(trackMock);
   });
 
-  it('selectPlayerArticleId should return articleId of the currently playing audio', () => {
+  it('selectPlayerCurrentArticleId should return articleId of the currently playing audio', () => {
     const exampleState = {
       ...rootState,
       player: {
         ...rootState.player,
-        articleId: 'e102cb67-62cd-4d56-8d0f-2e4f7f1381af'
+        currentArticleId: 'e102cb67-62cd-4d56-8d0f-2e4f7f1381af'
       }
     };
 
-    expect(selectPlayerArticleId(exampleState)).toEqual(
+    expect(selectPlayerCurrentArticleId(exampleState)).toEqual(
       'e102cb67-62cd-4d56-8d0f-2e4f7f1381af'
+    );
+  });
+
+  it('selectPlayerPreviousArticleId should return articleId of the currently playing audio', () => {
+    const exampleState = {
+      ...rootState,
+      player: {
+        ...rootState.player,
+        currentArticleId: 'e102cb67-62cd-4d56-8d0f-2e4f7f1381af',
+        previousArticleId: '76bc201e-62cd-4d56-8d0f-2e4f7f1381af',
+      }
+    };
+
+    expect(selectPlayerPreviousArticleId(exampleState)).toEqual(
+      '76bc201e-62cd-4d56-8d0f-2e4f7f1381af'
     );
   });
 

@@ -26,7 +26,8 @@ const CREATE_AUDIOFILE_FAIL_MESSAGE =
 export type PlayerState = Readonly<{
   track: TrackPlayer.Track;
   audiofile: Api.Audiofile | null;
-  articleId: string;
+  previousArticleId: string;
+  currentArticleId: string;
   playbackState: string | number;
   playbackSpeed: number;
   error: string;
@@ -47,7 +48,8 @@ export const initialState: PlayerState = {
     duration: 0
   },
   audiofile: null,
-  articleId: '',
+  previousArticleId: '',
+  currentArticleId: '',
   playbackState: 'none',
   playbackSpeed: 1,
   error: '',
@@ -77,7 +79,8 @@ export function playerReducer(state = initialState, action: any): PlayerState {
         ...state,
         track: action.payload.track,
         playbackState: initialState.playbackState,
-        articleId: action.payload.articleId
+        currentArticleId: action.payload.articleId,
+        previousArticleId: state.currentArticleId, // Move the currentArticleId to the previous position
       };
 
     case SET_PLAYBACK_SPEED:

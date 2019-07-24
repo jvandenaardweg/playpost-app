@@ -50,7 +50,7 @@ import {
 
 import { getUser } from '../reducers/user';
 import { selectIsDownloadedAudiofilesByArticleAudiofiles } from '../selectors/audiofiles';
-import { selectPlayerArticleId, selectPlayerPlaybackState, selectPlayerTrack } from '../selectors/player';
+import { selectPlayerCurrentArticleId, selectPlayerPlaybackState, selectPlayerPreviousArticleId, selectPlayerTrack } from '../selectors/player';
 import { selectIsSubscribed } from '../selectors/subscriptions';
 import { selectUserSelectedVoiceByLanguageName } from '../selectors/user';
 import { selectDefaultVoiceByLanguageName, selectLanguagesWithActiveVoices } from '../selectors/voices';
@@ -101,15 +101,20 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   public shouldComponentUpdate(nextProps: Props, nextState: State) {
+    // Make sure we update the article that's active or was previously active in the player
+    // So we can update it' state (playing, paused, inactive etc...)
+    const isCurrentArticleId = this.props.playerCurrentArticleId === this.props.article.id;
+    const isPreviousArticleId = this.props.playerPreviousArticleId === this.props.article.id;
+
     // Only update when props or state change
-    return !isEqual(this.state, nextState) || !isEqual(this.props, nextProps);
+    return isCurrentArticleId || isPreviousArticleId || !isEqual(this.state, nextState) || !isEqual(this.props, nextProps) ;
   }
 
   public componentDidUpdate(prevProps: Props, prevState: State): void {
-    const { playbackState, playerArticleId, article } = this.props;
+    const { playbackState, playerCurrentArticleId, article } = this.props;
     const { isLoading, isCreatingAudiofile, isDownloadingAudiofile } = this.state;
 
-    const isActiveInPlayer = playerArticleId === article.id;
+    const isActiveInPlayer = playerCurrentArticleId === article.id;
     const hasSomethingLoading = isCreatingAudiofile || isDownloadingAudiofile;
 
     // If the article is not active in the player
@@ -156,7 +161,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
    */
   public handleOnPlayPress = async (): Promise<void> => {
     const { isPlaying } = this.state;
-    const { article, isSubscribed, playerArticleId } = this.props;
+    const { article, isSubscribed, playerCurrentArticleId } = this.props;
     const { isConnected } = this.context;
 
     // Toggle play/pause
@@ -184,7 +189,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
     // Only set a new track when it's a different one
     // handleSetTrack will also handle the download of the audio
-    if (playerArticleId !== article.id) { return this.handleSetTrack(); }
+    if (playerCurrentArticleId !== article.id) { return this.handleSetTrack(); }
 
     // If we end up here, it means the audio is already in the player, we just play it then
     return TrackPlayer.play();
@@ -259,13 +264,13 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   public alertIfDifferentSelectedVoice = (): void => {
-    const { article, playerArticleId } = this.props;
+    const { article, playerCurrentArticleId } = this.props;
 
     const audiofileWithUsersSelectedVoice = this.getAudiofileByUserSelectedVoice();
     const selectedVoiceId = audiofileWithUsersSelectedVoice && audiofileWithUsersSelectedVoice.voice.id;
     const audiofileVoiceId = this.audiofileToUse && this.audiofileToUse.voice.id;
     const isAudioWithSameVoice = selectedVoiceId === audiofileVoiceId;
-    const isArticlePlaying = playerArticleId === article.id;
+    const isArticlePlaying = playerCurrentArticleId === article.id;
 
     // Show an alert, only when the selected article is not playing yet
     if (!isAudioWithSameVoice && !isArticlePlaying) {
@@ -565,7 +570,8 @@ interface StateProps {
   readonly isSubscribed: ReturnType<typeof selectIsSubscribed>;
   readonly userSelectedVoiceByLanguageName: ReturnType<typeof selectUserSelectedVoiceByLanguageName>;
   readonly isDownloaded: ReturnType<typeof selectIsDownloadedAudiofilesByArticleAudiofiles>;
-  readonly playerArticleId: ReturnType<typeof selectPlayerArticleId>;
+  readonly playerCurrentArticleId: ReturnType<typeof selectPlayerCurrentArticleId>;
+  readonly playerPreviousArticleId: ReturnType<typeof selectPlayerPreviousArticleId>;
   readonly languagesWithActiveVoices: ReturnType<typeof selectLanguagesWithActiveVoices>;
   readonly defaultVoiceByLanguageName: ReturnType<typeof selectDefaultVoiceByLanguageName>;
 }
@@ -590,11 +596,12 @@ interface DispatchProps {
 
 const mapStateToProps = (state: RootState, props: Props) => ({
   track: selectPlayerTrack(state),
-  playbackState: selectPlayerPlaybackState(state),
+  playbackState: selectPlayerPlaybackState(state, props.article.id),
   isSubscribed: selectIsSubscribed(state),
   userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state, props.article.language ? props.article.language.name : ''),
   isDownloaded: selectIsDownloadedAudiofilesByArticleAudiofiles(state, props.article.audiofiles),
-  playerArticleId: selectPlayerArticleId(state),
+  playerCurrentArticleId: selectPlayerCurrentArticleId(state),
+  playerPreviousArticleId: selectPlayerPreviousArticleId(state),
   languagesWithActiveVoices: selectLanguagesWithActiveVoices(state),
   defaultVoiceByLanguageName: selectDefaultVoiceByLanguageName(state, props.article.language ? props.article.language.name : '')
 });
