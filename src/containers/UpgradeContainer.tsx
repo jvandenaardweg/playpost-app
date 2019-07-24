@@ -26,6 +26,7 @@ import { validateSubscriptionReceipt } from '../reducers/subscriptions';
 import { getUser } from '../reducers/user';
 import { selectActiveSubscriptionProductId, selectSubscriptionsError, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
 import { selectUserDetails } from '../selectors/user';
+import { selectTotalAvailableVoices } from '../selectors/voices';
 
 interface State {
   readonly subscriptions: Array<RNIap.Subscription<string>>;
@@ -53,6 +54,8 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   }
 
   get subscriptionFeatures(): object[] {
+    const { totalAvailableVoices } = this.props;
+
     return [
       {
         productId: 'free',
@@ -65,14 +68,14 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         productId: 'com.aardwegmedia.playpost.premium',
         title: 'Premium',
         price: null,
-        body: ['75+ High Quality voices', 'Multiple voices per language', 'Max. 120 minutes per month', 'Unlimited playlist items', 'No advertisements'],
+        body: [`${totalAvailableVoices}+ High Quality voices`, 'Multiple voices per language', 'Max. 120 minutes per month', 'Unlimited playlist items', 'No advertisements'],
         footer: 'About 25 articles to audio, per month'
       },
       {
         productId: 'com.aardwegmedia.playpost.subscription.plus',
         title: 'Plus',
         price: null,
-        body: ['75+ High Quality voices', 'Multiple voices per language', 'Max. 300 minutes per month', 'Unlimited playlist items', 'No advertisements'],
+        body: [`${totalAvailableVoices}+ High Quality voices`, 'Multiple voices per language', 'Max. 300 minutes per month', 'Unlimited playlist items', 'No advertisements'],
         footer: 'About 65 articles to audio, per month'
       }
     ];
@@ -443,6 +446,7 @@ interface StateProps {
   validationResult: ReturnType<typeof selectSubscriptionsValidationResult>;
   activeSubscriptionProductId: ReturnType<typeof selectActiveSubscriptionProductId>;
   userDetails: ReturnType<typeof selectUserDetails>;
+  totalAvailableVoices: ReturnType<typeof selectTotalAvailableVoices>;
 }
 
 interface DispatchProps {
@@ -454,7 +458,8 @@ const mapStateToProps = (state: RootState): StateProps => ({
   subscriptionsError: selectSubscriptionsError(state),
   validationResult: selectSubscriptionsValidationResult(state),
   activeSubscriptionProductId: selectActiveSubscriptionProductId(state),
-  userDetails: selectUserDetails(state)
+  userDetails: selectUserDetails(state),
+  totalAvailableVoices: selectTotalAvailableVoices(state)
 });
 
 const mapDispatchToProps = {
