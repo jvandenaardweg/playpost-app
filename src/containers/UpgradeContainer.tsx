@@ -1,7 +1,7 @@
 import Analytics from 'appcenter-analytics';
 import React from 'react';
 import isEqual from 'react-fast-compare';
-import { Alert, Linking, Platform } from 'react-native';
+import { Alert, Linking, Platform, InteractionManager } from 'react-native';
 import * as RNIap from 'react-native-iap';
 import { connect } from 'react-redux';
 
@@ -98,48 +98,51 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   /* tslint:disable-next-line no-any */
   purchaseErrorSubscription: any = null;
 
-  async componentDidMount(): Promise<void> {
+  componentDidMount() {
     const { isConnected } = this.context;
 
-    // For now, just close the screen when there's no active internet connection
-    // TODO: make more user friendly to show upgrade features when there's no internet connection
-    if (!isConnected) {
-      this.handleClose();
-      return Alert.alert('Upgrading requires internet', ALERT_GENERIC_INTERNET_REQUIRED);
-    }
-
-    this.fetchAvailableSubscriptionItems(SUBSCRIPTION_PRODUCT_IDS);
-
-    this.purchaseUpdateSubscription = RNIap.purchaseUpdatedListener(async (purchase: RNIap.ProductPurchase) => {
-      const { selectedProductId } = this.state;
-
-      try {
-        // Validatation error is handeled in ErrorAlertContainer
-        // The validation result is handled in componentDidUpdate
-        await this.props.validateSubscriptionReceipt(selectedProductId, purchase.transactionReceipt);
-        Analytics.trackEvent('Subscriptions upgrade success', { Status: 'success', ProductId: purchase.productId, UserId: this.analyticsUserId });
-      } finally {
-        this.setState({ isLoadingRestorePurchases: false, isLoadingBuySubscription: false, selectedProductId: '' });
+    InteractionManager.runAfterInteractions(async () => {
+      // For now, just close the screen when there's no active internet connection
+      // TODO: make more user friendly to show upgrade features when there's no internet connection
+      if (!isConnected) {
+        this.handleClose();
+        return Alert.alert('Upgrading requires internet', ALERT_GENERIC_INTERNET_REQUIRED);
       }
-    });
 
-    this.purchaseErrorSubscription = RNIap.purchaseErrorListener(async (error: RNIap.PurchaseError) => {
-      const errorMessage = error && error.debugMessage ? error.debugMessage : JSON.stringify(error);
+      this.fetchAvailableSubscriptionItems(SUBSCRIPTION_PRODUCT_IDS);
 
-      Analytics.trackEvent('Subscriptions upgrade error', {
-        Status: 'error',
-        Message: errorMessage,
-        ProductId: this.state.selectedProductId,
-        UserId: this.analyticsUserId
+      this.purchaseUpdateSubscription = RNIap.purchaseUpdatedListener(async (purchase: RNIap.ProductPurchase) => {
+        const { selectedProductId } = this.state;
+
+        try {
+          // Validatation error is handeled in ErrorAlertContainer
+          // The validation result is handled in componentDidUpdate
+          await this.props.validateSubscriptionReceipt(selectedProductId, purchase.transactionReceipt);
+          Analytics.trackEvent('Subscriptions upgrade success', { Status: 'success', ProductId: purchase.productId, UserId: this.analyticsUserId });
+        } finally {
+          this.setState({ isLoadingRestorePurchases: false, isLoadingBuySubscription: false, selectedProductId: '' });
+        }
       });
 
-      this.showErrorAlert(
-        'Oops!',
-        `If you canceled an upgrade, you can ignore this message.\n\nIf you tried to upgrade please contact our support with this error message:\n\n ${errorMessage}`
-      );
+      this.purchaseErrorSubscription = RNIap.purchaseErrorListener(async (error: RNIap.PurchaseError) => {
+        const errorMessage = error && error.debugMessage ? error.debugMessage : JSON.stringify(error);
 
-      this.setState({ isLoadingRestorePurchases: false, isLoadingBuySubscription: false, selectedProductId: '' });
+        Analytics.trackEvent('Subscriptions upgrade error', {
+          Status: 'error',
+          Message: errorMessage,
+          ProductId: this.state.selectedProductId,
+          UserId: this.analyticsUserId
+        });
+
+        this.showErrorAlert(
+          'Oops!',
+          `If you canceled an upgrade, you can ignore this message.\n\nIf you tried to upgrade please contact our support with this error message:\n\n ${errorMessage}`
+        );
+
+        this.setState({ isLoadingRestorePurchases: false, isLoadingBuySubscription: false, selectedProductId: '' });
+      });
     });
+
   }
 
   componentWillUnmount(): void {
