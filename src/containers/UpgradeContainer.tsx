@@ -1,7 +1,7 @@
 import Analytics from 'appcenter-analytics';
 import React from 'react';
 import isEqual from 'react-fast-compare';
-import { Alert, Linking, Platform, InteractionManager } from 'react-native';
+import { Alert, InteractionManager, Linking, Platform } from 'react-native';
 import * as RNIap from 'react-native-iap';
 import { connect } from 'react-redux';
 
