@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 import { RootState } from '../reducers';
-import { PlayerState, initialState } from '../reducers/player';
+import { initialState, PlayerState } from '../reducers/player';
 
 export const playerSelector = (state: RootState): PlayerState => state.player;
 

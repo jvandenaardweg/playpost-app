@@ -2,12 +2,12 @@ import { createStore } from 'redux';
 import {
   playerSelector,
   selectErrorCreateAudiofile,
-  selectPlayerCurrentArticleId,
   selectPlayerAudiofile,
   selectPlayerAudiofileStatus,
+  selectPlayerCurrentArticleId,
   selectPlayerPlaybackState,
-  selectPlayerTrack,
-  selectPlayerPreviousArticleId
+  selectPlayerPreviousArticleId,
+  selectPlayerTrack
 } from '../player';
 
 import { rootReducer } from '../../reducers';
