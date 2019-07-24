@@ -7,7 +7,8 @@ import spacing from '../../constants/spacing';
 export default StyleSheet.create({
   container: {
     paddingLeft: spacing.default,
-    paddingRight: spacing.default
+    paddingRight: spacing.default,
+    marginTop: spacing.default * -1,
   },
   wrapper: {
     backgroundColor: colors.tintColor,

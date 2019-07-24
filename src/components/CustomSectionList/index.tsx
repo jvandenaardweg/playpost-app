@@ -36,8 +36,9 @@ interface Props {
 }
 
 export const CustomSectionList: React.FC<Props> = ({ sectionListData, ListHeaderComponent, ListFooterComponent, paddingTop }) => (
-  <View style={[styles.container, (paddingTop !== undefined) ? { paddingTop } : undefined]}>
+  <View style={styles.container}>
     <SectionList
+      contentContainerStyle={styles.containerStyle}
       initialNumToRender={15}
       keyExtractor={(item, index) => item + index}
       ListHeaderComponent={ListHeaderComponent}

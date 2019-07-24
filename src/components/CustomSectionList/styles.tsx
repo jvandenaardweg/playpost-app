@@ -10,7 +10,10 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.appBackground,
-    paddingTop: spacing.default
+  },
+  containerStyle: {
+    paddingTop: spacing.default,
+    overflow: 'visible'
   },
   sectionFooter: {
     height: sectionFooterHeight

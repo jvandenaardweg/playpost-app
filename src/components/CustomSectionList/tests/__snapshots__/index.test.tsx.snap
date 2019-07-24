@@ -3,17 +3,19 @@
 exports[`CustomSectionList basic rendering should render correctly 1`] = `
 <View
   style={
-    Array [
-      Object {
-        "backgroundColor": "#EEEEEE",
-        "flex": 1,
-        "paddingTop": 16,
-      },
-      undefined,
-    ]
+    Object {
+      "backgroundColor": "#EEEEEE",
+      "flex": 1,
+    }
   }
 >
   <RCTScrollView
+    contentContainerStyle={
+      Object {
+        "overflow": "visible",
+        "paddingTop": 16,
+      }
+    }
     data={
       Array [
         Object {
