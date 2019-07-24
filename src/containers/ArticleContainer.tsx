@@ -493,7 +493,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     }
   }
 
-  public handleOnOpenUrl = (url: string) => {
+  public handleOnOpenUrl = () => {
     const { article } = this.props;
 
     return this.props.navigation.navigate('FullArticle', { article });

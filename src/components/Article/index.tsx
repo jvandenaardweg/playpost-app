@@ -29,7 +29,7 @@ interface Props {
   listenTimeInSeconds?: number;
   readingTime?: number | null;
   onPlayPress(): void;
-  onOpenUrl(url: string): void;
+  onOpenUrl(): void;
   onLongPress?(): void;
   onPressOut?(): void;
 }
@@ -59,7 +59,7 @@ export const Article: React.FC<Props> = React.memo(
     onPressOut
   }) => (
     <View style={[styles.container, isMoving ? styles.isMoving : null]}>
-      <TouchableOpacity style={styles.sectionBody} activeOpacity={1} onPress={() => onOpenUrl(url)} onLongPress={onLongPress} onPressOut={onPressOut}>
+      <TouchableOpacity style={styles.sectionBody} activeOpacity={1} onPress={onOpenUrl} onLongPress={onLongPress} onPressOut={onPressOut}>
         <View style={styles.bodyMeta}>
           <View style={styles.bodyMetaSource}>
             <SourceText authorName={authorName} sourceName={sourceName} url={url} />
@@ -110,8 +110,7 @@ export const Article: React.FC<Props> = React.memo(
         <Duration listenTimeInSeconds={listenTimeInSeconds} readingTime={readingTime} />
       </View>
     </View>
-  )
-);
+));
 
 interface SourceTextProps { authorName: Props['authorName']; sourceName: Props['sourceName']; url: Props['url'] }
 
