@@ -20,10 +20,10 @@ interface Props {
 }
 export class SwipeableRow extends React.PureComponent<Props> {
 
-  public static contextType = NetworkContext;
+  static contextType = NetworkContext;
   private swipeableRef: React.RefObject<Swipeable> = React.createRef();
 
-  public handleOnPressRightAction = (actionName: string) => {
+  handleOnPressRightAction = (actionName: string) => {
     const { isConnected } = this.context;
     const { isFavorited, isArchived } = this.props;
 
@@ -59,7 +59,7 @@ export class SwipeableRow extends React.PureComponent<Props> {
     return this.close();
   }
 
-  public renderRightAction = (action: string, icon: string, iconColor: string | null) => {
+  renderRightAction = (action: string, icon: string, iconColor: string | null) => {
     return (
       <View style={styles.rightActionContainer}>
         <RectButton
@@ -76,7 +76,7 @@ export class SwipeableRow extends React.PureComponent<Props> {
     );
   }
 
-  public renderRightActions = (progressAnimatedValue: Animated.Value | Animated.AnimatedInterpolation, dragAnimatedValue: Animated.Value | Animated.AnimatedInterpolation) => {
+  renderRightActions = (progressAnimatedValue: Animated.Value | Animated.AnimatedInterpolation, dragAnimatedValue: Animated.Value | Animated.AnimatedInterpolation) => {
     const { isArchived, isFavorited } = this.props;
 
     return (
@@ -89,9 +89,9 @@ export class SwipeableRow extends React.PureComponent<Props> {
     );
   }
 
-  public close = () => this.swipeableRef.current && this.swipeableRef.current.close()
+  close = () => this.swipeableRef.current && this.swipeableRef.current.close()
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     return (
       <Swipeable
         ref={this.swipeableRef}

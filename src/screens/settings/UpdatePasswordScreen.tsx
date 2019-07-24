@@ -30,14 +30,14 @@ type Props = NavigationInjectedProps & StateProps & DispatchProps;
 
 export class UpdatePasswordScreenContainer extends React.PureComponent<Props, State> {
 
-  public static contextType = NetworkContext;
-  public static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+  static contextType = NetworkContext;
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: 'Change password'
     };
   }
 
-  public state = {
+  state = {
     isLoading: false,
     isSuccess: false,
     password: '',
@@ -45,9 +45,9 @@ export class UpdatePasswordScreenContainer extends React.PureComponent<Props, St
     validationError: '',
   };
 
-  public navigationTimeout: NodeJS.Timeout | null = null;
+  navigationTimeout: NodeJS.Timeout | null = null;
 
-  public componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: Props) {
     const { userError } = this.props;
 
     if (userError && prevProps.userError !== userError) {
@@ -55,13 +55,13 @@ export class UpdatePasswordScreenContainer extends React.PureComponent<Props, St
     }
   }
 
-  public componentWillUnmount() {
+  componentWillUnmount() {
     if (this.navigationTimeout) {
       clearTimeout(this.navigationTimeout);
     }
   }
 
-  public handleOnPressUpdatePassword = async () => {
+  handleOnPressUpdatePassword = async () => {
     const { password, passwordValidation, isSuccess } = this.state;
     const { isConnected } = this.context;
 
@@ -88,12 +88,12 @@ export class UpdatePasswordScreenContainer extends React.PureComponent<Props, St
     });
   }
 
-  public handleOnChangeText = (field: 'password' | 'passwordValidation', value: string) => {
+  handleOnChangeText = (field: 'password' | 'passwordValidation', value: string) => {
     if (field === 'password') { this.setState({ password: value }); }
     if (field === 'passwordValidation') { this.setState({ passwordValidation: value }); }
   }
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     const { password, passwordValidation, isLoading, isSuccess } = this.state;
 
     return (

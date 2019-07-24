@@ -35,7 +35,7 @@ interface StateProps {
 type Props = NavigationInjectedProps & StateProps & DispatchProps;
 
 class SignupFormContainerComponent extends React.PureComponent<Props, State> {
-  public state = {
+  state = {
     isLoading: false,
     email: '',
     password: '',
@@ -45,7 +45,7 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
   /**
    * Saves the token in our secure storage and redirects to user to the success page
    */
-  public saveToken = async (token: string) => {
+  saveToken = async (token: string) => {
     try {
       await Keychain.setGenericPassword('token', token, keychainArguments);
       this.props.navigation.navigate('SignupSuccess');
@@ -55,7 +55,7 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
     }
   }
 
-  public componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: Props) {
     const { userError, authError } = this.props;
 
     if (authError && prevProps.authError !== authError) {
@@ -71,7 +71,7 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
    * Automatically logs the user in by using their given email and password
    * Providing some ease of use
    */
-  public autoLogin = async () => {
+  autoLogin = async () => {
     const { email, password } = this.state;
 
     try {
@@ -83,7 +83,7 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
     }
   }
 
-  public handleOnPressSignup = async () => {
+  handleOnPressSignup = async () => {
     const { email, password } = this.state;
 
     this.setState({ isLoading: true }, async () => {
@@ -97,16 +97,16 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
     });
   }
 
-  public handleOnPressPrivacyPolicy = () => Linking.openURL(`${URL_PRIVACY_POLICY}?ref=playpost://signup`);
+  handleOnPressPrivacyPolicy = () => Linking.openURL(`${URL_PRIVACY_POLICY}?ref=playpost://signup`);
 
-  public handleOnPressTerms = () => Linking.openURL(`${URL_TERMS_OF_USE}?ref=playpost://signup`);
+  handleOnPressTerms = () => Linking.openURL(`${URL_TERMS_OF_USE}?ref=playpost://signup`);
 
-  public handleOnChangeText = (field: 'email' | 'password', value: string) => {
+  handleOnChangeText = (field: 'email' | 'password', value: string) => {
     if (field === 'email') { this.setState({ email: value }); }
     if (field === 'password') { this.setState({ password: value }); }
   }
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     const { email, password, isLoading } = this.state;
 
     return (

@@ -78,9 +78,9 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     ];
   }
 
-  public static contextType = NetworkContext;
+  static contextType = NetworkContext;
 
-  public state = {
+  state = {
     subscriptions: [] as Array<RNIap.Subscription<string>>,
     isLoadingBuySubscription: false,
     isLoadingRestorePurchases: false,
@@ -90,12 +90,12 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   };
 
   /* tslint:disable-next-line no-any */
-  public purchaseUpdateSubscription: any = null;
+  purchaseUpdateSubscription: any = null;
 
   /* tslint:disable-next-line no-any */
-  public purchaseErrorSubscription: any = null;
+  purchaseErrorSubscription: any = null;
 
-  public async componentDidMount(): Promise<void> {
+  async componentDidMount(): Promise<void> {
     const { isConnected } = this.context;
 
     // For now, just close the screen when there's no active internet connection
@@ -139,7 +139,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     });
   }
 
-  public componentWillUnmount(): void {
+  componentWillUnmount(): void {
     if (this.purchaseUpdateSubscription) {
       this.purchaseUpdateSubscription.remove();
       this.purchaseUpdateSubscription = null;
@@ -155,7 +155,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  public async componentDidUpdate(prevProps: Props): Promise<void> {
+  async componentDidUpdate(prevProps: Props): Promise<void> {
     const { isLoadingBuySubscription, isLoadingRestorePurchases } = this.state;
     const { validationResult } = this.props;
 
@@ -192,7 +192,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  public fetchUpdatedUserData = async () => {
+  fetchUpdatedUserData = async () => {
     try {
       // Get the user with up-to-date data about his account
       const result = await this.props.getUser();
@@ -210,7 +210,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  public handleClose = async () => {
+  handleClose = async () => {
     // Normally we should put this in componentWillUnmount
     // But, since the upgrade screen is part of React Navigation, unmount is not called in this context
     // So we manually handle the removal of event listeners
@@ -223,11 +223,11 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     this.props.navigation.goBack(null);
   }
 
-  public handleOpenPrivacy = () => Linking.openURL(`${URL_PRIVACY_POLICY}?ref=playpost://upgrade`);
+  handleOpenPrivacy = () => Linking.openURL(`${URL_PRIVACY_POLICY}?ref=playpost://upgrade`);
 
-  public handleOpenTerms = () => Linking.openURL(`${URL_TERMS_OF_USE}?ref=playpost://upgrade`);
+  handleOpenTerms = () => Linking.openURL(`${URL_TERMS_OF_USE}?ref=playpost://upgrade`);
 
-  public showErrorAlert = (title: string, message: string) => {
+  showErrorAlert = (title: string, message: string) => {
     return Alert.alert(title, message, [
       {
         text: 'Close',
@@ -240,7 +240,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     ]);
   }
 
-  public handleOnPressCancel = () => {
+  handleOnPressCancel = () => {
     if (Platform.OS === 'android') {
       return this.showManageSubscriptionAlert(
         'Cancel your subscription?',
@@ -254,7 +254,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     );
   }
 
-  public showManageSubscriptionAlert = (title: string, message: string) => {
+  showManageSubscriptionAlert = (title: string, message: string) => {
     let manageSubscriptionsButton: object = {
       text: 'Manage Subscriptions',
       onPress: () => {
@@ -276,7 +276,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     ]);
   }
 
-  public handleOnPressUpgrade = async (productId: string) => {
+  handleOnPressUpgrade = async (productId: string) => {
     // If it's a downgrade to an other paid subscription
     if (this.isDowngradePaidSubscription(productId)) {
       Analytics.trackEvent('Subscriptions downgrade', { Status: 'alert', ProductId: productId, UserId: this.analyticsUserId });
@@ -311,11 +311,11 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     });
   }
 
-  public buySubscription = (productId: string): Promise<string> => {
+  buySubscription = (productId: string): Promise<string> => {
     return RNIap.requestSubscription(productId);
   }
 
-  public isDowngradePaidSubscription = (productId: string): boolean => {
+  isDowngradePaidSubscription = (productId: string): boolean => {
     const { activeSubscriptionProductId } = this.props;
     const { subscriptions } = this.state;
 
@@ -328,12 +328,12 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     return Number(subscriptionToUpgradeTo.price) < Number(currentSubscription.price);
   }
 
-  public isDowngradeFreeSubscription = (productId: string): boolean => {
+  isDowngradeFreeSubscription = (productId: string): boolean => {
     const { activeSubscriptionProductId } = this.props;
     return productId === 'free' && activeSubscriptionProductId !== 'free';
   }
 
-  public handleOnPressRestore = async () => {
+  handleOnPressRestore = async () => {
     Analytics.trackEvent('Subscriptions restore', { Status: 'restoring', UserId: this.analyticsUserId });
 
     return this.setState({ isLoadingRestorePurchases: true }, async () => {
@@ -361,11 +361,11 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     });
   }
 
-  public getAvailablePurchases = (): Promise<RNIap.Purchase[]> => {
+  getAvailablePurchases = (): Promise<RNIap.Purchase[]> => {
     return RNIap.getAvailablePurchases();
   }
 
-  public fetchAvailableSubscriptionItems = async (subscriptionProductIds: string[]) => {
+  fetchAvailableSubscriptionItems = async (subscriptionProductIds: string[]) => {
     return this.setState({ isLoadingSubscriptionItems: true }, async () => {
       try {
         const result = await RNIap.initConnection();
@@ -393,7 +393,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     });
   }
 
-  public getLatestPurchase = (purchases: RNIap.ProductPurchase[]): RNIap.ProductPurchase => {
+  getLatestPurchase = (purchases: RNIap.ProductPurchase[]): RNIap.ProductPurchase => {
     if (!purchases.length) {
       throw new Error(ALERT_SUBSCRIPTION_RESTORE_PURCHASE_NOT_FOUND);
     }
@@ -413,7 +413,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     return purchase;
   }
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     const { isLoadingRestorePurchases, isLoadingBuySubscription, isLoadingSubscriptionItems, subscriptions } = this.state;
     const { activeSubscriptionProductId } = this.props;
     const centeredSubscriptionProductId = this.props.navigation.getParam('centeredSubscriptionProductId', '');

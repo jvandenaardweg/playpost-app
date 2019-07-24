@@ -19,28 +19,28 @@ interface State {
 type Props = NavigationInjectedProps & StateProps & DispatchProps;
 
 class LoginForgotPasswordFormContainerComponent extends React.PureComponent<Props, State> {
-  public state = {
+  state = {
     isLoading: false,
     isSuccess: null,
     email: '',
     error: null
   };
 
-  public componentDidMount(): void {
+  componentDidMount(): void {
     this.props.navigation.setParams({ handleOnClose: this.handleOnClose });
   }
 
-  public handleOnClose = () => {
+  handleOnClose = () => {
     this.props.navigation.goBack();
   }
 
-  public handleOnChangeText = (field: 'email', value: string) => {
+  handleOnChangeText = (field: 'email', value: string) => {
     if (field === 'email') { this.setState({ email: value }); }
   }
 
-  public handleOnPressResetPasswordCode = () => this.props.navigation.navigate('login/reset-password', { resetPasswordToken: '' });
+  handleOnPressResetPasswordCode = () => this.props.navigation.navigate('login/reset-password', { resetPasswordToken: '' });
 
-  public handleOnPressResetPassword = () => {
+  handleOnPressResetPassword = () => {
     const { email } = this.state;
     return this.setState({ isLoading: true }, async () => {
       try {
@@ -54,7 +54,7 @@ class LoginForgotPasswordFormContainerComponent extends React.PureComponent<Prop
     });
   }
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     const { email, isLoading, isSuccess } = this.state;
 
     return (

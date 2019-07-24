@@ -25,7 +25,7 @@ setRemoteDebugging(__DEV__);
 // Important: Keep this App a Class component
 // Using a Functional Component as the root component breaks Hot Reloading (on a local device)
 export default class ShareApp extends React.PureComponent {
-  public render (): JSX.Element {
+  render (): JSX.Element {
     return (
       <Provider store={store}>
         <ThemeProvider theme={reactNativeElementsTheme}>

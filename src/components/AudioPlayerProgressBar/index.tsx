@@ -18,16 +18,16 @@ type State = TrackPlayer.ProgressComponentState;
 
 export class AudioPlayerProgressBar extends ProgressComponent<Props, State> {
 
-  public static defaultProps = {
+  static defaultProps = {
     color: colors.tintColor,
     backgroundColor: colors.white
   };
 
-  public shouldComponentUpdate(nextProps: Props, nextState: State): boolean {
+  shouldComponentUpdate(nextProps: Props, nextState: State): boolean {
     return !isEqual(nextProps, this.props) || !isEqual(nextState, this.state);
   }
 
-  public displayTime (inputSeconds: number): string {
+  displayTime (inputSeconds: number): string {
     // const hours = seconds / 3600;
     const minutes = (inputSeconds % 3600) / 60;
     const seconds = inputSeconds % 60;
@@ -35,11 +35,11 @@ export class AudioPlayerProgressBar extends ProgressComponent<Props, State> {
     return [minutes, seconds].map(this.formatTime).join(':');
   }
 
-  public formatTime (val: number): string {
+  formatTime (val: number): string {
     return (`0${Math.floor(val)}`).slice(-2);
   }
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     let percentage = 0;
     const { position, duration } = this.state;
 

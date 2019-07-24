@@ -39,14 +39,14 @@ interface State {
 }
 
 export class VoiceSelectContainerComponent extends React.Component<Props, State> {
-  public static contextType = NetworkContext;
+  static contextType = NetworkContext;
 
-  public state = {
+  state = {
     isLoadingPreviewVoiceId: '',
     isLoadingSaveSelectedVoiceId: ''
   };
 
-  public shouldComponentUpdate(nextProps: Props, nextState: State): boolean {
+  shouldComponentUpdate(nextProps: Props, nextState: State): boolean {
     // Only re-render if props change
     return !isEqual(this.props, nextProps) || !isEqual(this.state, nextState);
   }
@@ -70,9 +70,9 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
   //   }
   // }
 
-  public keyExtractor = (item: Api.Voice, index: number) => index.toString();
+  keyExtractor = (item: Api.Voice, index: number) => index.toString();
 
-  public handleOnListItemPress = (voice: Api.Voice) => {
+  handleOnListItemPress = (voice: Api.Voice) => {
     const { isConnected } = this.context;
     const { isSubscribed } = this.props;
     const isSelected = this.isSelected(voice);
@@ -120,7 +120,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
    * Handles the saving of the selected voice to the database
    * Will also properly handle errors by showing an Alert to the user
    */
-  public handleOnSaveSelectedVoice = async (item: Api.Voice) => {
+  handleOnSaveSelectedVoice = async (item: Api.Voice) => {
     return this.setState({ isLoadingSaveSelectedVoiceId: item.id }, async () => {
       try {
         // Save the selected voice for the user
@@ -134,7 +134,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     });
   }
 
-  public handleOnPreviewPress = async (title: string, label: string, voice: Api.Voice) => {
+  handleOnPreviewPress = async (title: string, label: string, voice: Api.Voice) => {
     const { downloadedVoices } = this.props;
     const isPlaying = this.isVoicePlayingInPlayer(voice.id);
 
@@ -155,7 +155,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     if (!foundDownloadedVoice) { return this.fetchVoicePreview(title, label, voice); }
   }
 
-  public playVoicePreview = (title: string, localFilePath: string, label: string, voice: Api.Voice) => {
+  playVoicePreview = (title: string, localFilePath: string, label: string, voice: Api.Voice) => {
     // Only add the track to the player when it's not in there yet
     if (!this.isVoiceActiveInPlayer(voice.id)) {
       this.props.setTrack(
@@ -173,7 +173,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     return TrackPlayer.play();
   }
 
-  public fetchVoicePreview = (title: string, label: string, voice: Api.Voice) => {
+  fetchVoicePreview = (title: string, label: string, voice: Api.Voice) => {
     const { isConnected } = this.context;
     const exampleAudioUrl = voice && voice.exampleAudioUrl;
 
@@ -217,18 +217,18 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     });
   }
 
-  public isVoicePlayingInPlayer = (voiceId: string): boolean => {
+  isVoicePlayingInPlayer = (voiceId: string): boolean => {
     const { playbackState } = this.props;
     const isPlaying = playbackState === 'playing' && TrackPlayer.STATE_PLAYING && this.isVoiceActiveInPlayer(voiceId);
     return !!isPlaying;
   }
 
-  public isVoiceActiveInPlayer = (voiceId: string): boolean => {
+  isVoiceActiveInPlayer = (voiceId: string): boolean => {
     const { playerTrack } = this.props;
     return playerTrack && playerTrack.id === voiceId;
   }
 
-  public isSelected = (item: Api.Voice): boolean => {
+  isSelected = (item: Api.Voice): boolean => {
     // const { isLoadingSaveSelectedVoiceId } = this.state;
     const { defaultVoiceByLanguageName, userSelectedVoiceByLanguageName } = this.props;
     const isDefaultSelected = defaultVoiceByLanguageName ? defaultVoiceByLanguageName.id === item.id : false;
@@ -258,7 +258,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     return isSelected;
   }
 
-  public getBadgeValue(isPremium: boolean, isHighestQuality: boolean): string {
+  getBadgeValue(isPremium: boolean, isHighestQuality: boolean): string {
     if (isPremium && isHighestQuality) {
       return 'Premium (HQ)';
     }
@@ -270,7 +270,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     return 'Free';
   }
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     const { availableVoicesByLanguageName } = this.props;
     const { isLoadingSaveSelectedVoiceId, isLoadingPreviewVoiceId } = this.state;
 

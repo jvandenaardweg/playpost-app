@@ -4,13 +4,13 @@ import { AppBackground } from '../../components/AppBackground';
 import { VoiceSelectContainer } from '../../containers/VoiceSelectContainer';
 
 export class SettingsVoicesScreen extends React.PureComponent {
-  public static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: 'Voices'
     };
   }
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     return (
       <AppBackground>
         <VoiceSelectContainer />

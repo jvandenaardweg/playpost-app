@@ -7,14 +7,14 @@ interface Props {
 }
 
 export class LoginForgotPasswordScreen extends React.PureComponent<Props> {
-  public static navigationOptions = (): NavigationStackScreenOptions => {
+  static navigationOptions = (): NavigationStackScreenOptions => {
     return {
       title: 'Forgot your password?',
       // header: null
     };
   }
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     return (
       <LoginForgotPasswordFormContainer />
     );

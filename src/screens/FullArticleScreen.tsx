@@ -8,7 +8,7 @@ interface Props {
 }
 
 export class FullArticleScreen extends React.PureComponent<Props> {
-  public static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: ''
     };
@@ -18,7 +18,7 @@ export class FullArticleScreen extends React.PureComponent<Props> {
     return this.props.navigation.getParam('article', null);
   }
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     return (
       <ArticleReader article={this.article} />
     );

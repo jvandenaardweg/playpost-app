@@ -50,11 +50,11 @@ interface State {
 // Important: Keep this App a Class component
 // Using a Functional Component as the root component breaks Hot Reloading (on a local device)
 export default class App extends React.PureComponent<State> {
-  public state = {
+  state = {
     errorShown: false
   }
 
-  public async componentDidMount(): Promise<void> {
+  async componentDidMount(): Promise<void> {
     Linking.addEventListener('url', this.handleUrl);
 
     DeepLinking.addScheme('playpost://');
@@ -85,11 +85,11 @@ export default class App extends React.PureComponent<State> {
     }
   }
 
-  public componentWillUnmount(): void {
+  componentWillUnmount(): void {
     Linking.removeEventListener('url', this.handleUrl);
   }
 
-  public componentDidCatch(error: any, info: any) {
+  componentDidCatch(error: any, info: any) {
     // Do not show an alert when in develop mode
     // Here we want to have React Native's red screen
     if (__DEV__) {
@@ -126,7 +126,7 @@ export default class App extends React.PureComponent<State> {
     );
   }
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>

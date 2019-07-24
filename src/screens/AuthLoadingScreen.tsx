@@ -20,12 +20,12 @@ interface Props {
 }
 
 export class AuthLoadingScreen extends React.PureComponent<Props> {
-  public componentDidMount() {
+  componentDidMount() {
     this.bootstrapAsync();
   }
 
   // Upon load of the app, do the following...
-  public bootstrapAsync = async () => {
+  bootstrapAsync = async () => {
     // Determine if this is the first run after install
     // If so, delete any API token we had from a previous install
     // This will make sure the user starts clean and will see the onboarding screen, instead of the app screen
@@ -74,7 +74,7 @@ export class AuthLoadingScreen extends React.PureComponent<Props> {
   }
 
   // Render any loading content that you like here
-  public render(): JSX.Element | null {
+  render(): JSX.Element | null {
     return null;
   }
 }

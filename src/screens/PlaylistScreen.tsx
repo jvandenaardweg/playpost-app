@@ -6,14 +6,14 @@ import { ButtonVoices } from '../components/ButtonVoices';
 import { PlaylistContainer } from '../containers/PlaylistContainer';
 
 export class PlaylistScreen extends React.PureComponent {
-  public static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: 'Playlist',
       headerLeft: <ButtonVoices onPress={() => navigation.navigate('ModalLanguages')} />
     };
   }
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     return (
       <AppBackground>
         <PlaylistContainer />

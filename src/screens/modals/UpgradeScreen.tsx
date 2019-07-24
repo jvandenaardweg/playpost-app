@@ -8,14 +8,14 @@ interface Props {
 }
 
 export class UpgradeScreen extends React.PureComponent<Props> {
-  public static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationScreenOptions => {
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationScreenOptions => {
     return {
       title: 'Upgrade subscription',
       headerLeft: null
     };
   }
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     return (
       <AppBackground>
         <UpgradeContainer />

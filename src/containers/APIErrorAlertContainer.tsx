@@ -33,11 +33,11 @@ type Props = IProps & NavigationInjectedProps & StateProps & DispatchProps;
  * When creating errors in the API, make sure they will be understood by the end-user.
  */
 export class APIErrorAlertContainerComponent extends React.Component<Props, State> {
-  public state = {
+  state = {
     hasOpenAlert: false // A way to prevent multiple alerts being thrown at the user
   };
 
-  public shouldComponentUpdate(nextProps: Props, nextState: State): boolean {
+  shouldComponentUpdate(nextProps: Props, nextState: State): boolean {
     // Just do not update the component when we already have an Alert open
     if (!nextState.hasOpenAlert) {
       return true;
@@ -46,7 +46,7 @@ export class APIErrorAlertContainerComponent extends React.Component<Props, Stat
     return false;
   }
 
-  public componentDidUpdate(prevProps: Props): void {
+  componentDidUpdate(prevProps: Props): void {
     const {
       errorSaveSelectedVoice,
       errorCreateAudiofile,
@@ -195,7 +195,7 @@ export class APIErrorAlertContainerComponent extends React.Component<Props, Stat
     }
   }
 
-  public render(): React.ReactNode {
+  render(): React.ReactNode {
     return this.props.children;
   }
 }

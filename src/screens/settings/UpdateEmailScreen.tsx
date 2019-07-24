@@ -30,14 +30,14 @@ type Props = NavigationInjectedProps & StateProps & DispatchProps;
 
 export class UpdateEmailScreenContainer extends React.PureComponent<Props, State> {
 
-  public static contextType = NetworkContext;
-  public static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+  static contextType = NetworkContext;
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: 'Change e-mail'
     };
   }
 
-  public state = {
+  state = {
     isLoading: false,
     isSuccess: false,
     email: '',
@@ -46,9 +46,9 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
     validationError: '',
   };
 
-  public navigationTimeout: NodeJS.Timeout | null = null;
+  navigationTimeout: NodeJS.Timeout | null = null;
 
-  public componentDidMount() {
+  componentDidMount() {
     const { userDetails } = this.props;
 
     if (userDetails && userDetails.email) {
@@ -59,13 +59,13 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
     }
   }
 
-  public componentWillUnmount() {
+  componentWillUnmount() {
     if (this.navigationTimeout) {
       clearTimeout(this.navigationTimeout);
     }
   }
 
-  public componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: Props) {
     const { userError } = this.props;
 
     if (userError && prevProps.userError !== userError) {
@@ -73,7 +73,7 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
     }
   }
 
-  public handleOnPressUpdateEmail = async () => {
+  handleOnPressUpdateEmail = async () => {
     const { email, previousEmail, isSuccess } = this.state;
     const { isConnected } = this.context;
 
@@ -103,11 +103,11 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
     });
   }
 
-  public handleOnChangeText = (field: 'email', value: string) => {
+  handleOnChangeText = (field: 'email', value: string) => {
     if (field === 'email') { this.setState({ email: value }); }
   }
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     const { email, isLoading, isSuccess } = this.state;
 
     return (

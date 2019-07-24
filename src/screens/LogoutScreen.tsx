@@ -27,17 +27,17 @@ export const keychainArguments = Platform.select({
 type Props = NavigationInjectedProps & DispatchProps;
 
 class LogoutScreenContainer extends React.PureComponent<Props> {
-  public static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: 'Logout'
     };
   }
 
-  public componentDidMount() {
+  componentDidMount() {
     this.logout();
   }
 
-  public doResetCache = async () => {
+  doResetCache = async () => {
     this.props.resetAudiofilesState();
     this.props.resetDownloadedVoices();
     await RNFS.unlink(LOCAL_CACHE_AUDIOFILES_PATH);
@@ -45,7 +45,7 @@ class LogoutScreenContainer extends React.PureComponent<Props> {
     return;
   }
 
-  public logout = async () => {
+  logout = async () => {
 
     await this.doResetCache();
 
@@ -67,7 +67,7 @@ class LogoutScreenContainer extends React.PureComponent<Props> {
     return this.props.navigation.navigate('Onboarding');
   }
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     return (
       <CenterLoadingIndicator />
     );

@@ -85,8 +85,8 @@ type Props = IProps & StateProps & DispatchProps;
 
 export class ArticleContainerComponent extends React.Component<Props, State> {
 
-  public static contextType = NetworkContext;
-  public state = initialState;
+  static contextType = NetworkContext;
+  state = initialState;
 
   get audiofileToUse(): Api.Audiofile | undefined {
     const { isSubscribed, article } = this.props;
@@ -100,7 +100,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     return article.audiofiles[0] && article.audiofiles[0].length ? article.audiofiles[0].length : 0;
   }
 
-  public shouldComponentUpdate(nextProps: Props, nextState: State) {
+  shouldComponentUpdate(nextProps: Props, nextState: State) {
     // Make sure we update the article that's active or was previously active in the player
     // So we can update it' state (playing, paused, inactive etc...)
     const isCurrentArticleId = this.props.playerCurrentArticleId === this.props.article.id;
@@ -110,7 +110,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     return isCurrentArticleId || isPreviousArticleId || !isEqual(this.state, nextState) || !isEqual(this.props, nextProps) ;
   }
 
-  public componentDidUpdate(prevProps: Props, prevState: State): void {
+  componentDidUpdate(prevProps: Props, prevState: State): void {
     const { playbackState, playerCurrentArticleId, article } = this.props;
     const { isLoading, isCreatingAudiofile, isDownloadingAudiofile } = this.state;
 
@@ -140,7 +140,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   /**
    * Find the audiofile in this article using the user's selected voice
    */
-  public getAudiofileByUserSelectedVoice(): Api.Audiofile | undefined {
+  getAudiofileByUserSelectedVoice(): Api.Audiofile | undefined {
     const { article, userSelectedVoiceByLanguageName, defaultVoiceByLanguageName } = this.props;
 
     // If the user has no custom selected voice, return the audiofile of the default voice for this language
@@ -159,7 +159,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
    * 2. Create an audiofile when there's none present
    * 3. Toggle play/pause
    */
-  public handleOnPlayPress = async (): Promise<void> => {
+  handleOnPlayPress = async (): Promise<void> => {
     const { isPlaying } = this.state;
     const { article, isSubscribed, playerCurrentArticleId } = this.props;
     const { isConnected } = this.context;
@@ -195,7 +195,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     return TrackPlayer.play();
   }
 
-  public handleCreateAudiofile = async (): Promise<void> => {
+  handleCreateAudiofile = async (): Promise<void> => {
     const { article, languagesWithActiveVoices, userSelectedVoiceByLanguageName, isSubscribed } = this.props;
 
     // If the selected voice of the user, is a Premium voice, but the user has no Premium account active
@@ -263,7 +263,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     );
   }
 
-  public alertIfDifferentSelectedVoice = (): void => {
+  alertIfDifferentSelectedVoice = (): void => {
     const { article, playerCurrentArticleId } = this.props;
 
     const audiofileWithUsersSelectedVoice = this.getAudiofileByUserSelectedVoice();
@@ -291,7 +291,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     }
   }
 
-  public downloadAudiofile = async (url: string, audiofileId: string, filename: string): Promise<string | void> => {
+  downloadAudiofile = async (url: string, audiofileId: string, filename: string): Promise<string | void> => {
     return new Promise((resolve, reject) => {
       return this.setState({ isActive: true, isLoading: true, isDownloadingAudiofile: true }, async () => {
         try {
@@ -308,7 +308,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     });
   }
 
-  public handleSetTrack = async (): Promise<void> => {
+  handleSetTrack = async (): Promise<void> => {
     const { isConnected } = this.context;
     const { article, isDownloaded } = this.props;
 
@@ -376,7 +376,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     });
   }
 
-  public fetchPlaylist = async (): Promise<void> => {
+  fetchPlaylist = async (): Promise<void> => {
     try {
       await this.props.getPlaylist();
     } catch (err) {
@@ -393,7 +393,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     }
   }
 
-  public handleRemoveArticle = async (): Promise<void> => {
+  handleRemoveArticle = async (): Promise<void> => {
     const articleId = this.props.article.id;
 
     try {
@@ -413,7 +413,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     }
   }
 
-  public handleArchiveArticle = async (): Promise<void> => {
+  handleArchiveArticle = async (): Promise<void> => {
     const articleId = this.props.article.id;
 
     try {
@@ -433,7 +433,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     }
   }
 
-  public handleFavoriteArticle = async (): Promise<void> => {
+  handleFavoriteArticle = async (): Promise<void> => {
     const articleId = this.props.article.id;
 
     try {
@@ -453,7 +453,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     }
   }
 
-  public handleUnFavoriteArticle = async (): Promise<void> => {
+  handleUnFavoriteArticle = async (): Promise<void> => {
     const articleId = this.props.article.id;
 
     try {
@@ -473,7 +473,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     }
   }
 
-  public handleUnArchiveArticle = async (): Promise<void> => {
+  handleUnArchiveArticle = async (): Promise<void> => {
     const articleId = this.props.article.id;
 
     try {
@@ -493,13 +493,13 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     }
   }
 
-  public handleOnOpenUrl = () => {
+  handleOnOpenUrl = () => {
     const { article } = this.props;
 
     return this.props.navigation.navigate('FullArticle', { article });
   }
 
-  public handleOnPressUpdate = (): void => {
+  handleOnPressUpdate = (): void => {
     this.setState({ isLoading: true }, async () => {
       try {
         await this.fetchPlaylist();
@@ -509,7 +509,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     });
   }
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     const { isCreatingAudiofile, isDownloadingAudiofile, isLoading, isPlaying, isActive } = this.state;
     const { article, isDownloaded, isFavorited, isArchived, isMoving, onLongPress, onPressOut, playlistItem } = this.props;
 

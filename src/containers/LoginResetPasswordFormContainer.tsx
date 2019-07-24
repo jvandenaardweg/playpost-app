@@ -20,7 +20,7 @@ interface State {
 type Props = NavigationInjectedProps & StateProps & DispatchProps;
 
 class LoginResetPasswordFormContainerComponent extends React.PureComponent<Props, State> {
-  public state = {
+  state = {
     isLoading: false,
     isSuccess: null,
     password: '',
@@ -28,42 +28,42 @@ class LoginResetPasswordFormContainerComponent extends React.PureComponent<Props
     error: null
   };
 
-  public timeout: NodeJS.Timeout | null = null;
+  timeout: NodeJS.Timeout | null = null;
 
-  public componentDidMount() {
+  componentDidMount() {
     this.props.navigation.setParams({ handleOnClose: this.handleOnClose });
 
     this.setResetPasswordTokenFromNavigationParams();
   }
 
-  public componentWillUnmount() {
+  componentWillUnmount() {
     if (this.timeout) {
       clearTimeout(this.timeout);
       this.timeout = null;
     }
   }
 
-  public componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: Props) {
     const { resetPasswordToken } = this.state;
 
     if (!resetPasswordToken) { this.setResetPasswordTokenFromNavigationParams(); }
   }
 
-  public setResetPasswordTokenFromNavigationParams = () => {
+  setResetPasswordTokenFromNavigationParams = () => {
     const resetPasswordToken = this.props.navigation.getParam('resetPasswordToken', '');
     this.setState({ resetPasswordToken });
   }
 
-  public handleOnClose = () => {
+  handleOnClose = () => {
     this.props.navigation.goBack();
   }
 
-  public handleOnChangeText = (field: 'password' | 'resetPasswordToken', value: string) => {
+  handleOnChangeText = (field: 'password' | 'resetPasswordToken', value: string) => {
     if (field === 'password') { this.setState({ password: value }); }
     if (field === 'resetPasswordToken') { this.setState({ resetPasswordToken: value }); }
   }
 
-  public handleOnPressUpdatePassword = () => {
+  handleOnPressUpdatePassword = () => {
     const { password, resetPasswordToken } = this.state;
 
     return this.setState({ isLoading: true }, async () => {
@@ -84,7 +84,7 @@ class LoginResetPasswordFormContainerComponent extends React.PureComponent<Props
     });
   }
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     const { password, isLoading, isSuccess, resetPasswordToken } = this.state;
 
     return (

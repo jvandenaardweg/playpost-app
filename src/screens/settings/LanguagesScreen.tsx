@@ -4,13 +4,13 @@ import { AppBackground } from '../../components/AppBackground';
 import { LanguagesSelectContainer } from '../../containers/LanguageSelectContainer';
 
 export class SettingsLanguagesScreen extends React.PureComponent {
-  public static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: 'Languages'
     };
   }
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     return (
       <AppBackground>
         <LanguagesSelectContainer />

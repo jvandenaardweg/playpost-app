@@ -36,11 +36,11 @@ interface Props {
 
 export class ShareOverlay extends React.PureComponent<Props, State> {
 
-  public static defaultProps = {
+  static defaultProps = {
     animationDuration: 200
   };
 
-  public state = {
+  state = {
     isOpen: true,
     isLoading: true,
     type: '',
@@ -50,13 +50,13 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
     warningMessage: ''
   };
 
-  public opacityAnim = new Animated.Value(0);
+  opacityAnim = new Animated.Value(0);
 
-  public componentDidMount(): void {
+  componentDidMount(): void {
     this.setup();
   }
 
-  public animateIn = (): Promise<void> => {
+  animateIn = (): Promise<void> => {
     return new Promise((resolve, reject) => {
       Animated.timing(this.opacityAnim, {
         toValue: 1,
@@ -66,7 +66,7 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
     })
   }
 
-  public animateOut = (): Promise<void> => {
+  animateOut = (): Promise<void> => {
     return new Promise((resolve, reject) => {
       Animated.timing(this.opacityAnim, {
         toValue: 0,
@@ -76,14 +76,14 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
     })
   }
 
-  public getShareData = (): Promise<ShareData> => {
+  getShareData = (): Promise<ShareData> => {
     return new Promise(async (resolve, reject) => {
       const shareData: ShareData = await ShareExtension.data();
       resolve(shareData);
     })
   }
 
-  public setup = async () => {
+  setup = async () => {
     try {
       // First, wait for the animation IN to be finished
       // It seems on Android we need this delay on order for the ShareExtension data to come in. So don't remove that delay.
@@ -121,7 +121,7 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
     }
   }
 
-  public closeOverlay = async () => {
+  closeOverlay = async () => {
     this.setState({ isOpen: false });
 
     await this.animateOut();
@@ -129,27 +129,27 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
     ShareExtension.close();
   }
 
-  public handleOnPressSave = () => this.closeOverlay();
+  handleOnPressSave = () => this.closeOverlay();
 
-  public handleOnPressClose = () => this.closeOverlay();
+  handleOnPressClose = () => this.closeOverlay();
 
-  public handleOnModalDissmiss = () => this.closeOverlay();
+  handleOnModalDissmiss = () => this.closeOverlay();
 
-  public renderErrorMessageModal(): JSX.Element | null {
+  renderErrorMessageModal(): JSX.Element | null {
     const { errorMessage } = this.state;
     if (!errorMessage) { return null; }
 
     return <ErrorModal message={errorMessage} onPressClose={this.handleOnPressClose} />;
   }
 
-  public renderShareModal(): JSX.Element | undefined {
+  renderShareModal(): JSX.Element | undefined {
     const { url, errorMessage, documentHtml } = this.state;
     if (errorMessage) { return; }
 
     return <ShareModalContainer url={url} documentHtml={documentHtml} onPressSave={this.handleOnPressSave} onPressClose={this.handleOnPressClose} />;
   }
 
-  public renderModal(): JSX.Element | null {
+  renderModal(): JSX.Element | null {
     const { isLoading, isOpen } = this.state;
 
     if (isLoading) { return null; }
@@ -176,7 +176,7 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
     );
   }
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     return <Animated.View style={[styles.container, { opacity: this.opacityAnim }]}>{this.renderModal()}</Animated.View>;
   }
 }

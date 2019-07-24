@@ -11,13 +11,13 @@ interface State {
 }
 
 export class NetworkProvider extends React.PureComponent<State> {
-  public state = {
+  state = {
     isConnected: false
   };
 
-  public unsubscribe: NetInfoSubscription | null = null;
+  unsubscribe: NetInfoSubscription | null = null;
 
-  public componentDidMount() {
+  componentDidMount() {
     InteractionManager.runAfterInteractions(() => {
       this.unsubscribe = NetInfo.addEventListener((state) => {
         this.setState({ isConnected: state.isConnected });
@@ -25,14 +25,14 @@ export class NetworkProvider extends React.PureComponent<State> {
     });
   }
 
-  public componentWillUnmount() {
+  componentWillUnmount() {
     if (this.unsubscribe) {
       this.unsubscribe();
       this.unsubscribe = null;
     }
   }
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     return (
       <NetworkContext.Provider value={this.state}>
         {this.props.children}

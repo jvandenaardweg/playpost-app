@@ -18,40 +18,40 @@ interface State {
 
 export class BrowserScreen extends React.PureComponent<Props, State> {
 
-  public static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: navigation.getParam('title', null),
       headerRight: <ButtonReload onPress={navigation.getParam('handleOnReload')} />
     };
   }
 
-  public animatedWidth = new Animated.Value(0);
+  animatedWidth = new Animated.Value(0);
 
-  public interpolatedWidth = this.animatedWidth.interpolate({
+  interpolatedWidth = this.animatedWidth.interpolate({
     inputRange: [0, 1],
     outputRange: ['0%', '100%']
   });
 
-  public state = {
+  state = {
     loadProgress: ''
   };
 
   /* tslint:disable-next-line no-any */
   private webviewRef = React.createRef<any>();
 
-  public componentDidMount() {
+  componentDidMount() {
     this.props.navigation.setParams({ handleOnReload: this.handleOnReload });
   }
 
-  public handleOnReload = () => this.webviewRef.current && this.webviewRef.current.reload()
+  handleOnReload = () => this.webviewRef.current && this.webviewRef.current.reload()
 
-  public handleOnLoadEnd = () => {
+  handleOnLoadEnd = () => {
     this.animatedWidth.setValue(0);
   }
 
   // TODO: fix no any
   /* tslint:disable no-any */
-  public handleOnLoadProgress = (event: any) => {
+  handleOnLoadProgress = (event: any) => {
     Animated.timing(
       this.animatedWidth,
       {
@@ -61,7 +61,7 @@ export class BrowserScreen extends React.PureComponent<Props, State> {
     ).start();
   }
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     const url = this.props.navigation.getParam('url', null);
 
     return (

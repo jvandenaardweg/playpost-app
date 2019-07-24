@@ -42,14 +42,14 @@ interface State {
 }
 
 export class SettingsContainerComponent extends React.PureComponent<Props, State> {
-  public state = {
+  state = {
     cacheSize: '0',
     isClearingCache: false,
     isLoggingOut: false,
     isDeletingAccount: false
   };
 
-  public componentDidMount() {
+  componentDidMount() {
     InteractionManager.runAfterInteractions(() => {
       this.props.navigation.setParams({
         handleOnPressUpgrade: this.handleOnPressUpgrade
@@ -64,7 +64,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
 
   }
 
-  public setCacheSize = async () => {
+  setCacheSize = async () => {
     try {
       let combinedSize = 0;
 
@@ -99,11 +99,11 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
     }
   }
 
-  public handleOnPressRow = () => {
+  handleOnPressRow = () => {
     Alert.alert('Not available', ALERT_SETTINGS_SETTING_UNAVAILABLE);
   }
 
-  public handleOnPressClearCache = async () => {
+  handleOnPressClearCache = async () => {
     return Alert.alert('Are you sure?', ALERT_SETTINGS_CLEAR_CACHE_WARNING, [
       {
         text: 'Cancel',
@@ -117,7 +117,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
     ]);
   }
 
-  public resetCache = async () => {
+  resetCache = async () => {
     return this.setState({ isClearingCache: true }, async () => {
       try {
         await this.doResetCache();
@@ -129,7 +129,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
     });
   }
 
-  public doResetCache = async () => {
+  doResetCache = async () => {
     this.props.resetAudiofilesState();
     this.props.resetDownloadedVoices();
     await RNFS.unlink(LOCAL_CACHE_AUDIOFILES_PATH);
@@ -137,7 +137,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
     return this.setCacheSize();
   }
 
-  public deleteAccount = async () => {
+  deleteAccount = async () => {
     return this.setState({ isDeletingAccount: true }, async () => {
       try {
         await this.props.deleteUser();
@@ -150,20 +150,20 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
     });
   }
 
-  public handleOnPressLogout = async () => this.props.navigation.navigate('Logout');
+  handleOnPressLogout = async () => this.props.navigation.navigate('Logout');
 
-  public handleOnPressUpgrade = (centeredSubscriptionProductId?: string) =>
+  handleOnPressUpgrade = (centeredSubscriptionProductId?: string) =>
     this.props.navigation.navigate('Upgrade', {
       centeredSubscriptionProductId
     })
 
-  public handleOnPressLanguage = () => this.props.navigation.navigate('SettingsLanguages');
+  handleOnPressLanguage = () => this.props.navigation.navigate('SettingsLanguages');
 
-  public handleOnPressAccountPassword = () => this.props.navigation.navigate('UpdatePassword');
+  handleOnPressAccountPassword = () => this.props.navigation.navigate('UpdatePassword');
 
-  public handleOnPressAccountEmail = () => this.props.navigation.navigate('UpdateEmail');
+  handleOnPressAccountEmail = () => this.props.navigation.navigate('UpdateEmail');
 
-  public handleOnPressAccountDelete = () => {
+  handleOnPressAccountDelete = () => {
     return Alert.alert('Are you sure?', ALERT_SETTINGS_DELETE_USER, [
       {
         text: 'Cancel',
@@ -177,7 +177,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
     ]);
   }
 
-  public renderDeleteAccount = () => {
+  renderDeleteAccount = () => {
     const { isDeletingAccount } = this.state;
 
     if (isDeletingAccount) {
@@ -199,7 +199,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
     );
   }
 
-  public renderVersionInfo = () => {
+  renderVersionInfo = () => {
     const environment = Config.NODE_ENV;
     const environmentText = environment !== 'production' ? `(Env: ${environment})` : '';
     const versionText = `Version: ${DeviceInfo.getVersion()} (Build: ${DeviceInfo.getBuildNumber()}) ${environmentText}`;
@@ -219,7 +219,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
     );
   }
 
-  public renderFooter = () => {
+  renderFooter = () => {
     return (
       <View>
         {this.renderVersionInfo()}
@@ -228,7 +228,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
     );
   }
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     const { activeSubscriptionName, totalAvailableVoices } = this.props;
     const { isClearingCache, cacheSize } = this.state;
 

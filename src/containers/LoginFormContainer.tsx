@@ -28,18 +28,18 @@ interface State {
 type Props = NavigationInjectedProps & StateProps & DispatchProps;
 
 class LoginFormContainerComponent extends React.PureComponent<Props, State> {
-  public state = {
+  state = {
     isLoading: false,
     email: '',
     password: '',
     error: null
   };
 
-  public componentDidMount() {
+  componentDidMount() {
     this.props.navigation.setParams({ handleOnClose: this.handleOnClose });
   }
 
-  public componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: Props) {
     const { authError, token } = this.props;
 
     if (authError && prevProps.authError !== authError) {
@@ -54,7 +54,7 @@ class LoginFormContainerComponent extends React.PureComponent<Props, State> {
     }
   }
 
-  public saveToken = async (token: string) => {
+  saveToken = async (token: string) => {
     try {
       await Keychain.setGenericPassword('token', token, keychainArguments);
       this.props.navigation.navigate('App');
@@ -72,11 +72,11 @@ class LoginFormContainerComponent extends React.PureComponent<Props, State> {
     }
   }
 
-  public handleOnClose = () => {
+  handleOnClose = () => {
     this.props.navigation.goBack();
   }
 
-  public handleOnPressLogin = async () => {
+  handleOnPressLogin = async () => {
     const { email, password } = this.state;
 
     this.setState({ isLoading: true }, () => {
@@ -84,14 +84,14 @@ class LoginFormContainerComponent extends React.PureComponent<Props, State> {
     });
   }
 
-  public handleOnChangeText = (field: 'email' | 'password', value: string) => {
+  handleOnChangeText = (field: 'email' | 'password', value: string) => {
     if (field === 'email') { this.setState({ email: value }); }
     if (field === 'password') { this.setState({ password: value }); }
   }
 
-  public handleOnPressForgotPassword = () => this.props.navigation.navigate('login/forgot-password');
+  handleOnPressForgotPassword = () => this.props.navigation.navigate('login/forgot-password');
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     const { email, password, isLoading } = this.state;
 
     return (

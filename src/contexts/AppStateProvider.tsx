@@ -32,15 +32,15 @@ interface State {
 type Props = IProps & StateProps & DispatchProps;
 
 export class AppStateProviderContainer extends React.PureComponent<Props, State> {
-  public state = {
+  state = {
     appState: AppState.currentState,
     stateChanged: false,
     isSubscribed: false
   };
 
-  public validateSubscriptionInterval: NodeJS.Timeout | null = null;
+  validateSubscriptionInterval: NodeJS.Timeout | null = null;
 
-  public componentDidMount() {
+  componentDidMount() {
     const { isSubscribed } = this.props;
 
     InteractionManager.runAfterInteractions(() => {
@@ -57,7 +57,7 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
     });
   }
 
-  public componentWillUnmount() {
+  componentWillUnmount() {
     AppState.removeEventListener('change', this.handleAppStateChange);
 
     if (this.validateSubscriptionInterval) {
@@ -66,7 +66,7 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
     }
   }
 
-  public componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: Props) {
     const { isSubscribed } = this.props;
 
     if (prevProps.isSubscribed !== isSubscribed) {
@@ -83,7 +83,7 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
    * Method to detect app state changes, like becoming active or inactive when the
    * app goes to the background or foreground.
    */
-  public handleAppStateChange = async (nextAppState: AppStateStatus) => {
+  handleAppStateChange = async (nextAppState: AppStateStatus) => {
     const stateChanged = nextAppState === 'active';
 
     this.setState({ stateChanged, appState: nextAppState }, () => {
@@ -100,7 +100,7 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
    * Fetch additional data when the app becomes active, so our user is always in sync with our API.
    * Without any additional action from the user.
    */
-  public fetchUserPlaylist = () => {
+  fetchUserPlaylist = () => {
     const { authenticationStatus } = this.props;
 
     if (authenticationStatus !== 'LOGGED_IN') { return; }
@@ -113,7 +113,7 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
    *
    * Only does an API call when the local receipt is expired.
    */
-  public validateActiveSubscription = async () => {
+  validateActiveSubscription = async () => {
     const { authenticationStatus, subscriptionsValidationResult, activeSubscriptionProductId } = this.props;
 
     if (authenticationStatus !== 'LOGGED_IN') { return; }
@@ -150,7 +150,7 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
     }
   }
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     return <AppStateContext.Provider value={this.state}>{this.props.children}</AppStateContext.Provider>;
   }
 }

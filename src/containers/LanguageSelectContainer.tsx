@@ -17,26 +17,26 @@ import { selectLanguagesWithActiveVoices } from '../selectors/voices';
 type Props = NavigationInjectedProps & StateProps & DispatchProps;
 
 export class LanguagesSelectComponent extends React.Component<Props> {
-  public componentDidMount(): void {
+  componentDidMount(): void {
     InteractionManager.runAfterInteractions(() => {
       this.props.getLanguages();
     });
   }
 
-  public shouldComponentUpdate(nextProps: Props): boolean {
+  shouldComponentUpdate(nextProps: Props): boolean {
     // Only re-render if props change
     return !isEqual(this.props, nextProps)
   }
 
-  public keyExtractor = (item: Api.Language, index: number) => index.toString();
+  keyExtractor = (item: Api.Language, index: number) => index.toString();
 
-  public handleOnListItemPress = (item: Api.Language) => this.props.navigation.navigate('SettingsVoices', { languageName: item.name });
+  handleOnListItemPress = (item: Api.Language) => this.props.navigation.navigate('SettingsVoices', { languageName: item.name });
 
-  public getDefaultVoice = (language: Api.Language) => {
+  getDefaultVoice = (language: Api.Language) => {
     return language.voices && language.voices.find(voice => !!voice.isLanguageDefault);
   }
 
-  public getVoiceSubtitle = (item: Api.Language) => {
+  getVoiceSubtitle = (item: Api.Language) => {
     const { userSelectedVoices } = this.props;
 
     const foundUserSelectedVoice = userSelectedVoices.find(userSelectedVoice => userSelectedVoice.language.id === item.id);
@@ -52,7 +52,7 @@ export class LanguagesSelectComponent extends React.Component<Props> {
     return `${label} (${voice.countryCode}) (${genderLabel})`;
   }
 
-  public render(): JSX.Element {
+  render(): JSX.Element {
     const { languagesWithActiveVoices } = this.props;
 
     const sectionListData = [
