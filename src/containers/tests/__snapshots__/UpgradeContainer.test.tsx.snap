@@ -461,7 +461,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   }
                 }
               >
-                75+ High Quality voices
+                10+ High Quality voices
               </Text>
               <Text
                 style={
@@ -731,7 +731,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   }
                 }
               >
-                75+ High Quality voices
+                10+ High Quality voices
               </Text>
               <Text
                 style={

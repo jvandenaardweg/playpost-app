@@ -21,6 +21,7 @@ const props: any = {
   validationResult: null,
   activeSubscriptionProductId: '',
   userDetails: null,
+  totalAvailableVoices: 10,
   validateSubscriptionReceipt: validateSubscriptionReceiptHandler,
   getUser: getUserHandler,
   navigation: {
