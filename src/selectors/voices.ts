@@ -64,7 +64,14 @@ export const selectLanguagesWithActiveVoices = createDeepEqualSelector(
 
     // If we have a language code, find the language code and move that language to the top
     if (deviceLocale) {
-      languagesWithActiveVoices.some(language => language.code === deviceLocale && languagesWithActiveVoices.unshift(language))
+      const languageIndex = languagesWithActiveVoices.findIndex(language =>  language.code === deviceLocale);
+
+      // Move language to first position in array
+      languagesWithActiveVoices.splice(
+        0, // new index,
+        0, // no removal
+        languagesWithActiveVoices.splice(languageIndex, 1)[0] // detach the item and return it
+      );
     }
 
     return languagesWithActiveVoices;
