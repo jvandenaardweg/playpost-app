@@ -234,9 +234,11 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
 
     const sectionListData = [
       {
+        key: 'language',
         title: 'Lanuage',
         data: [
           {
+            key: 'language-voices-and-languguages',
             title: 'Voices & Languages',
             icon: 'globe',
             iconColor: colors.green,
@@ -247,9 +249,11 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
         ]
       },
       {
+        key: 'user',
         title: 'User',
         data: [
           {
+            key: 'user-subscription',
             title: 'Subscription',
             icon: 'star',
             iconColor: colors.tintColor,
@@ -258,6 +262,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
             value: activeSubscriptionName
           },
           {
+            key: 'change-email',
             title: 'Change e-mail',
             icon: 'mail',
             iconColor: colors.tintColor,
@@ -265,6 +270,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
             chevron: true
           },
           {
+            key: 'change-password',
             title: 'Change password',
             icon: 'lock',
             iconColor: colors.tintColor,
@@ -272,6 +278,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
             chevron: true
           },
           {
+            key: 'logout',
             title: 'Logout',
             icon: 'log-out',
             iconColor: colors.tintColor,
@@ -281,6 +288,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
         ]
       },
       {
+        key: 'advanced',
         title: 'Advanced',
         data: [
           {
@@ -294,15 +302,18 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
         ]
       },
       {
+        key: 'about',
         title: 'About',
         data: [
           {
+            key: 'about-write-a-review',
             title: 'Write a review',
             icon: 'heart',
             iconColor: colors.green,
             chevron: true, onPress: () => Linking.openURL(URL_APP_APPLE_APP_STORE_REVIEW)
           },
           {
+            key: 'about-about',
             title: 'About',
             icon: 'link',
             iconColor: colors.grayDark,
@@ -314,6 +325,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
               })
           },
           {
+            key: 'about-privacy-policy',
             title: 'Privacy Policy',
             icon: 'link',
             iconColor: colors.grayDark,
@@ -325,6 +337,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
               })
           },
           {
+            key: 'about-terms-of-use',
             title: 'Terms of Use',
             icon: 'link',
             iconColor: colors.grayDark,
@@ -336,6 +349,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
               })
           },
           {
+            key: 'about-feedback',
             title: 'Feedback',
             icon: 'message-square',
             iconColor: colors.grayDark,
@@ -347,6 +361,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
               })
           },
           {
+            key: 'about-support',
             title: 'Support',
             icon: 'message-square',
             iconColor: colors.grayDark,

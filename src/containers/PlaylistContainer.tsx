@@ -263,7 +263,7 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
 
     return (
       <ArticleContainer
-        key={index}
+        key={item.id}
         // isMoving={(allowMove) ? isActive : false}
         isMoving={false}
         isFavorited={!!item.favoritedAt}

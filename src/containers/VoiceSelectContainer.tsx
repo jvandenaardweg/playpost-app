@@ -280,6 +280,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
       //   ]
       // },
       {
+        key: 'available-voices',
         title: 'Available voices',
         data: availableVoices.map((voice, index) => {
           const isSelected = this.isSelected(voice);
@@ -299,6 +300,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
           const rightIconColor = voice.isPremium ? colors.orange : undefined;
 
           return {
+            key: voice.id,
             title,
             subtitle,
             isSelected,

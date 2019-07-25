@@ -56,12 +56,14 @@ export class LanguagesSelectComponent extends React.Component<Props> {
 
     const sectionListData = [
       {
+        key: 'language',
         title: 'Lanuage',
         data: languagesWithActiveVoices.map((language, index) => {
           const totalVoices = language.voices && language.voices.length ? language.voices.length : 0;
           const subtitle = this.getVoiceSubtitle(language);
 
           return {
+            key: language.id,
             subtitle,
             title: language.name,
             icon: 'globe',

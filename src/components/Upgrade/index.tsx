@@ -128,7 +128,7 @@ export const Upgrade: React.FC<Props> = React.memo(
 
                 return (
                   <View
-                    key={index}
+                    key={subscriptionFeature.productId}
                     style={[
                       styles.card,
                       { width: cardWidth, marginLeft: isFirst ? cardFirstMarginLeft : cardMargin, marginRight: isLast ? cardLastMarginRight : cardMargin }

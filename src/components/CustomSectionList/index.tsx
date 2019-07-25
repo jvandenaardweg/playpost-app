@@ -40,7 +40,7 @@ export const CustomSectionList: React.FC<Props> = ({ sectionListData, ListHeader
     <SectionList
       contentContainerStyle={styles.containerStyle}
       initialNumToRender={15}
-      keyExtractor={(item, index) => item + index}
+      keyExtractor={(item, index) => item.key}
       ListHeaderComponent={ListHeaderComponent}
       ListFooterComponent={ListFooterComponent}
       stickySectionHeadersEnabled={false}
