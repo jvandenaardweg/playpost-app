@@ -50,10 +50,15 @@ jest.mock('react-native-keychain', () => ({
 
 jest.mock('@react-native-community/async-storage', () => mockAsyncStorage);
 
+jest.mock('rn-fetch-blob');
 jest.mock('react-native-video');
 jest.mock('react-native-splash-screen');
 jest.mock('react-native-app-intro-slider');
-jest.mock('react-native-fs');
+jest.mock('react-native-fs', () => {
+  return {
+    DocumentDirectoryPath: jest.fn().mockRejectedValue('/test/path')
+  }
+});
 jest.mock('react-native-device-info', () => {
   return {
     getDeviceLocale: jest.fn().mockReturnValue('en')
