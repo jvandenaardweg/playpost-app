@@ -13,7 +13,7 @@ export const reactNativeElementsTheme: Theme = {
       borderRadius: 8
     },
     titleStyle: {
-      fontWeight: fonts.fontWeight.bold,
+      fontWeight: fonts.fontWeight.semibold,
       fontSize: fonts.fontSize.button
     }
   },
@@ -29,7 +29,7 @@ export const reactNativeElementsTheme: Theme = {
       marginRight: spacing.default,
     },
     titleStyle: {
-      fontWeight: fonts.fontWeight.medium,
+      fontWeight: fonts.fontWeight.regular,
       fontSize: fonts.fontSize.title,
       color: colors.black
     },
