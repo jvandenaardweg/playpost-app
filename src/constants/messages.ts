@@ -67,3 +67,15 @@ export const ALERT_SUBSCRIPTION_RESTORE_SUCCESS = 'You successfully restored the
 export const ALERT_SUBSCRIPTION_NOT_FOUND = 'The subscription to upgrade to cannot be found. Please try again later.';
 
 export const ALERT_LOGIN_SAVE_TOKEN_FAIL = 'Failed to save authentication credentials. Please try again.';
+
+export const GET_PLAYLIST_FAIL_MESSAGE = 'An unknown error happened while getting your playlist. Please contact us when this happens all the time.';
+export const CREATE_PLAYLIST_ITEM_FAIL_MESSAGE =
+  'An unknown error happened while adding this article to your playlist. Please contact us when this happens all the time.';
+export const FAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while favoriting this article. Please contact us when this happens all the time.';
+export const UNFAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while unfavoriting this article. Please contact us when this happens all the time.';
+export const ARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while archiving this article. Please contact us when this happens all the time.';
+export const UNARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while unarchiving this article. Please contact us when this happens all the time.';
+export const REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE =
+  'An unknown error happened while removing this article from your playlist. Please contact us when this happens all the time.';
+export const REORDER_PLAYLIST_ITEM_FAIL_MESSAGE =
+  'An unknown error happened while re-ordering this article in your playlist. Please contact us when this happens all the time.';

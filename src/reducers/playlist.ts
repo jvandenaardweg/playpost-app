@@ -1,10 +1,8 @@
+import { ARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE, CREATE_PLAYLIST_ITEM_FAIL_MESSAGE, FAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE, GENERIC_NETWORK_ERROR, GET_PLAYLIST_FAIL_MESSAGE, REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE, REORDER_PLAYLIST_ITEM_FAIL_MESSAGE, UNARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE, UNFAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE } from '../constants/messages';
+
 export const GET_PLAYLIST = 'playlist/GET_PLAYLIST';
 export const GET_PLAYLIST_SUCCESS = 'playlist/GET_PLAYLIST_SUCCESS';
 export const GET_PLAYLIST_FAIL = 'playlist/GET_PLAYLIST_FAIL';
-
-export const GET_ARTICLE = 'playlist/GET_ARTICLE';
-export const GET_ARTICLE_SUCCESS = 'playlist/GET_ARTICLE_SUCCESS';
-export const GET_ARTICLE_FAIL = 'playlist/GET_ARTICLE_FAIL';
 
 export const CREATE_PLAYLIST_ITEM = 'playlist/CREATE_PLAYLIST_ITEM';
 export const CREATE_PLAYLIST_ITEM_SUCCESS = 'playlist/CREATE_PLAYLIST_ITEM_SUCCESS';
@@ -36,19 +34,6 @@ export const REORDER_PLAYLIST_ITEM_FAIL = 'playlist/REORDER_PLAYLIST_ITEM_FAIL';
 
 export const RESET_STATE = 'playlist/RESET_STATE';
 export const RESET_ERROR_PLAYLIST = 'playlist/RESET_ERROR_PLAYLIST';
-
-const GET_PLAYLIST_FAIL_MESSAGE = 'An unknown error happened while getting your playlist. Please contact us when this happens all the time.';
-const CREATE_PLAYLIST_ITEM_FAIL_MESSAGE =
-  'An unknown error happened while adding this article to your playlist. Please contact us when this happens all the time.';
-const FAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while favoriting this article. Please contact us when this happens all the time.';
-const UNFAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while unfavoriting this article. Please contact us when this happens all the time.';
-const ARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while archiving this article. Please contact us when this happens all the time.';
-const UNARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while unarchiving this article. Please contact us when this happens all the time.';
-const REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE =
-  'An unknown error happened while removing this article from your playlist. Please contact us when this happens all the time.';
-const REORDER_PLAYLIST_ITEM_FAIL_MESSAGE =
-  'An unknown error happened while re-ordering this article in your playlist. Please contact us when this happens all the time.';
-const GET_ARTICLE_FAIL_MESSAGE = 'An unknown error happened while fetching an article. Please contact us when this happens all the time.';
 
 export type PlaylistState = Readonly<{
   isLoading: boolean;
@@ -93,43 +78,24 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case GET_PLAYLIST_FAIL:
-      return {
-        ...state,
-        isLoading: false,
-        error: action.error.response ? action.error.response.data.message : GET_PLAYLIST_FAIL_MESSAGE
-      };
+      let getPlaylistFailMessage = '';
 
-    case GET_ARTICLE:
-      return {
-        ...state,
-        isLoading: true,
-        error: ''
-      };
-
-    case GET_ARTICLE_SUCCESS:
-      const article = action.payload.data;
-
-      // Find the default playlist so we can replace the article
-      const updatedPlaylistItems = state.items.map(playlistItem => {
-        if (playlistItem.article.id !== article.id) { return playlistItem; }
-
-        // Replace the article
-        playlistItem.article = article;
-        return playlistItem;
-      });
+      // Network error
+      if (action.error && action.error.status === 0) {
+        getPlaylistFailMessage = GENERIC_NETWORK_ERROR;
+      } else {
+        // Error, from the API
+        if (action.error && action.error.response && action.error.response.data && action.error.response.data.message) {
+          getPlaylistFailMessage = action.error.response.data.message;
+        } else {
+          getPlaylistFailMessage = GET_PLAYLIST_FAIL_MESSAGE;
+        }
+      }
 
       return {
         ...state,
         isLoading: false,
-        items: updatedPlaylistItems,
-        error: ''
-      };
-
-    case GET_ARTICLE_FAIL:
-      return {
-        ...state,
-        isLoading: false,
-        error: action.error.response ? action.error.response.data.message : GET_ARTICLE_FAIL_MESSAGE
+        error: getPlaylistFailMessage
       };
 
     case RESET_STATE:
@@ -158,10 +124,25 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case CREATE_PLAYLIST_ITEM_FAIL:
+
+      let createPlaylistFailMessage = '';
+
+      // Network error
+      if (action.error && action.error.status === 0) {
+        createPlaylistFailMessage = GENERIC_NETWORK_ERROR;
+      } else {
+        // Error, from the API
+        if (action.error && action.error.response && action.error.response.data && action.error.response.data.message) {
+          createPlaylistFailMessage = action.error.response.data.message;
+        } else {
+          createPlaylistFailMessage = CREATE_PLAYLIST_ITEM_FAIL_MESSAGE;
+        }
+      }
+
       return {
         ...state,
         isLoadingCreateItem: false,
-        error: action.error.response ? action.error.response.data.message : CREATE_PLAYLIST_ITEM_FAIL_MESSAGE
+        error: createPlaylistFailMessage
       };
 
     case FAVORITE_PLAYLIST_ITEM:
@@ -179,10 +160,25 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case FAVORITE_PLAYLIST_ITEM_FAIL:
+
+      let favoritePlaylistFailMessage = '';
+
+      // Network error
+      if (action.error && action.error.status === 0) {
+        favoritePlaylistFailMessage = GENERIC_NETWORK_ERROR;
+      } else {
+        // Error, from the API
+        if (action.error && action.error.response && action.error.response.data && action.error.response.data.message) {
+          favoritePlaylistFailMessage = action.error.response.data.message;
+        } else {
+          favoritePlaylistFailMessage = FAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE;
+        }
+      }
+
       return {
         ...state,
         isLoadingFavoriteItem: false,
-        error: action.error.response ? action.error.response.data.message : FAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE
+        error: favoritePlaylistFailMessage
       };
 
     case UNFAVORITE_PLAYLIST_ITEM:
@@ -200,10 +196,25 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case UNFAVORITE_PLAYLIST_ITEM_FAIL:
+
+      let unfavoritePlaylistFailMessage = '';
+
+      // Network error
+      if (action.error && action.error.status === 0) {
+        unfavoritePlaylistFailMessage = GENERIC_NETWORK_ERROR;
+      } else {
+        // Error, from the API
+        if (action.error && action.error.response && action.error.response.data && action.error.response.data.message) {
+          unfavoritePlaylistFailMessage = action.error.response.data.message;
+        } else {
+          unfavoritePlaylistFailMessage = UNFAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE;
+        }
+      }
+
       return {
         ...state,
         isLoadingUnFavoriteItem: false,
-        error: action.error.response ? action.error.response.data.message : UNFAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE
+        error: unfavoritePlaylistFailMessage
       };
 
     case ARCHIVE_PLAYLIST_ITEM:
@@ -221,10 +232,25 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case ARCHIVE_PLAYLIST_ITEM_FAIL:
+
+      let archivePlaylistFailMessage = '';
+
+      // Network error
+      if (action.error && action.error.status === 0) {
+        archivePlaylistFailMessage = GENERIC_NETWORK_ERROR;
+      } else {
+        // Error, from the API
+        if (action.error && action.error.response && action.error.response.data && action.error.response.data.message) {
+          archivePlaylistFailMessage = action.error.response.data.message;
+        } else {
+          archivePlaylistFailMessage = ARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE;
+        }
+      }
+
       return {
         ...state,
         isLoadingArchiveItem: false,
-        error: action.error.response ? action.error.response.data.message : ARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE
+        error: archivePlaylistFailMessage
       };
 
     case UNARCHIVE_PLAYLIST_ITEM:
@@ -242,10 +268,25 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case UNARCHIVE_PLAYLIST_ITEM_FAIL:
+
+      let unarchivePlaylistFailMessage = '';
+
+      // Network error
+      if (action.error && action.error.status === 0) {
+        unarchivePlaylistFailMessage = GENERIC_NETWORK_ERROR;
+      } else {
+        // Error, from the API
+        if (action.error && action.error.response && action.error.response.data && action.error.response.data.message) {
+          unarchivePlaylistFailMessage = action.error.response.data.message;
+        } else {
+          unarchivePlaylistFailMessage = UNARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE;
+        }
+      }
+
       return {
         ...state,
         isLoadingUnArchiveItem: false,
-        error: action.error.response ? action.error.response.data.message : UNARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE
+        error: unarchivePlaylistFailMessage
       };
 
     case REMOVE_PLAYLIST_ITEM:
@@ -263,10 +304,25 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case REMOVE_PLAYLIST_ITEM_FAIL:
+
+      let removePlaylistFailMessage = '';
+
+      // Network error
+      if (action.error && action.error.status === 0) {
+        removePlaylistFailMessage = GENERIC_NETWORK_ERROR;
+      } else {
+        // Error, from the API
+        if (action.error && action.error.response && action.error.response.data && action.error.response.data.message) {
+          removePlaylistFailMessage = action.error.response.data.message;
+        } else {
+          removePlaylistFailMessage = REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE;
+        }
+      }
+
       return {
         ...state,
         isLoading: false,
-        error: action.error.response ? action.error.response.data.message : REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE
+        error: removePlaylistFailMessage
       };
 
     case REORDER_PLAYLIST_ITEM:
@@ -284,10 +340,25 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       };
 
     case REORDER_PLAYLIST_ITEM_FAIL:
+
+      let reorderPlaylistFailMessage = '';
+
+      // Network error
+      if (action.error && action.error.status === 0) {
+        reorderPlaylistFailMessage = GENERIC_NETWORK_ERROR;
+      } else {
+        // Error, from the API
+        if (action.error && action.error.response && action.error.response.data && action.error.response.data.message) {
+          reorderPlaylistFailMessage = action.error.response.data.message;
+        } else {
+          reorderPlaylistFailMessage = REORDER_PLAYLIST_ITEM_FAIL_MESSAGE;
+        }
+      }
+
       return {
         ...state,
         isLoadingReOrderItem: false,
-        error: action.error.response ? action.error.response.data.message : REORDER_PLAYLIST_ITEM_FAIL_MESSAGE
+        error: reorderPlaylistFailMessage
       };
 
     default:
@@ -308,16 +379,6 @@ export const getPlaylist = () => ({
     request: {
       method: 'get',
       url: '/v1/playlist'
-    }
-  }
-});
-
-export const getArticle = (articleId: string) => ({
-  type: GET_ARTICLE,
-  payload: {
-    request: {
-      method: 'get',
-      url: `/v1/articles/${articleId}`
     }
   }
 });
