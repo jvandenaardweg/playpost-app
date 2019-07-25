@@ -1,10 +1,17 @@
 import { createSelector } from 'reselect';
+import { createDeepEqualSelector } from './index';
+
 import { RootState } from '../reducers';
 import { VoicesState } from '../reducers/voices';
+import { selectDeviceLocale } from './user';
 
 export interface VoicesLanguages {
   languageName: string;
   countryCode: string;
+}
+
+export interface AvailableVoicesByLanguageName {
+  [key: string]: Api.Language
 }
 
 export const voicesSelector = (state: RootState): VoicesState => state.voices;
@@ -19,7 +26,7 @@ export const selectVoicesError = createSelector(
   voices => voices.error
 );
 
-export const selectTotalAvailableVoices = createSelector(
+export const selectTotalAvailableVoices = createDeepEqualSelector(
   [selectLanguages],
   languages => {
     return languages.reduce((prev, curr) => {
@@ -33,64 +40,55 @@ export const selectTotalAvailableVoices = createSelector(
   }
 );
 
-export const selectLanguagesWithActiveVoices = (state: RootState, userLanguageCode?: string) =>
-  createSelector(
-    [selectLanguages],
-    languages => {
-      // Return languages with active voices
-      const languagesWithActiveVoices = languages
-        .map(language => {
-          return {
-            ...language,
-            voices: language.voices && language.voices.filter(voice => voice.isActive)
-          };
-        })
-        .sort((a, b) => a.name.localeCompare(b.name)); // sort languages alphabetically
+export const selectLanguagesWithActiveVoices = createDeepEqualSelector(
+  [selectLanguages, selectDeviceLocale],
+  (languages, deviceLocale) => {
+    // Return languages with active voices
+    const languagesWithActiveVoices = languages
+      .map(language => {
+        return {
+          ...language,
+          voices: language.voices && language.voices.filter(voice => voice.isActive)
+        };
+      })
+      .sort((a, b) => a.name.localeCompare(b.name)); // sort languages alphabetically
 
-      // If we have a language code, find the language code and move that language to the top
-      if (userLanguageCode) {
-        languagesWithActiveVoices.some(language => language.code === userLanguageCode && languagesWithActiveVoices.unshift(language))
-      }
-
-      return languagesWithActiveVoices;
+    // If we have a language code, find the language code and move that language to the top
+    if (deviceLocale) {
+      languagesWithActiveVoices.some(language => language.code === deviceLocale && languagesWithActiveVoices.unshift(language))
     }
-  )(state);
 
-export const selectDownloadedVoicePreviews = createSelector(
+    return languagesWithActiveVoices;
+  }
+)
+
+export const selectDownloadedVoicePreviews = createDeepEqualSelector(
   [voicesSelector],
   voices => voices.downloadedVoicePreviews
 );
 
-export const selectAvailableVoicesByLanguageName = (state: RootState, languageName: string) =>
-  createSelector(
-    [selectLanguagesWithActiveVoices],
-    languages => {
-      const languageByName = languages.find(language => language.name === languageName);
-      if (!languageByName) { return []; }
-      if (!languageByName.voices) { return []; }
+export const selectAvailableVoicesByLanguageName = createDeepEqualSelector(
+  [selectLanguagesWithActiveVoices],
+  languages => {
+    // Convert the array to an object
+    // So we can easily pick a language inside our components
+    const languageObjectWithVoices: AvailableVoicesByLanguageName = languages.reduce((prev, curr) => {
+      // Sort the voices alhabetically
+      if (curr.voices && curr.voices.length) {
+        const sortedVoices = [...curr.voices].sort((a, b) => {
+          const aLabel = a.label ? a.label : '';
+          const bLabel = b.label ? b.label : '';
+          return aLabel.localeCompare(bLabel);
+        });
 
-      // Sort by label name
-      // Create a copy of the array by using the spread syntax
-      const sortedVoices = [...languageByName.voices].sort((a, b) => {
-        const aLabel = a.label ? a.label : '';
-        const bLabel = b.label ? b.label : '';
-        return aLabel.localeCompare(bLabel);
-      });
+        curr.voices = sortedVoices;
+      }
 
-      return sortedVoices;
-    }
-  )(state, '');
+      prev[curr.name] = curr;
 
-export const selectDefaultVoiceByLanguageName = (state: RootState, languageName: string) =>
-  createSelector(
-    [selectLanguagesWithActiveVoices],
-    languages => {
-      const languageByName = languages.find(language => language.name === languageName);
+      return prev;
+    }, {})
 
-      if (!languageByName) { return null; }
-
-      const defaultVoice = languageByName.voices && languageByName.voices.find(voice => !!voice.isLanguageDefault);
-
-      return defaultVoice;
-    }
-  )(state, '');
+    return languageObjectWithVoices;
+  }
+);

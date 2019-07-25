@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import { RootState } from '../reducers';
 import { SubscriptionsState } from '../reducers/subscriptions';
+import { createDeepEqualSelector } from './index';
 
 export const subscriptionsSelector = (state: RootState): SubscriptionsState => state.subscriptions;
 
@@ -24,12 +25,12 @@ export const selectErrorValidateSubscriptionReceipt = createSelector(
   (state): string => state.errorValidateSubscriptionReceipt
 );
 
-export const selectSubscriptionsValidationResult = createSelector(
+export const selectSubscriptionsValidationResult = createDeepEqualSelector(
   [subscriptionsSelector],
   state => state.validationResult
 );
 
-export const selectSubscriptionLatestReceipt = createSelector(
+export const selectSubscriptionLatestReceipt = createDeepEqualSelector(
   [selectSubscriptionsValidationResult],
   (validationResult): string => {
     if (!validationResult) { return ''; }

@@ -22,7 +22,7 @@ export interface AxiosAction extends Action {
   };
 }
 
-const rootReducer = combineReducers({
+const rootState = {
   player: playerReducer,
   auth: authReducer,
   user: userReducer,
@@ -30,8 +30,10 @@ const rootReducer = combineReducers({
   audiofiles: audiofilesReducer,
   voices: voicesReducer,
   subscriptions: subscriptionsReducer
-});
+};
+
+const rootReducer = combineReducers(rootState);
 
 export type RootState = ReturnType<typeof rootReducer>;
 
-export { rootReducer };
+export { rootReducer, rootState };

@@ -1,3 +1,5 @@
+import DeviceInfo from 'react-native-device-info';
+
 import {
   CREATE_USER_FAIL_MESSAGE,
   DELETE_USER_FAIL_MESSAGE,
@@ -49,6 +51,7 @@ export type UserState = Readonly<{
   isPremium: boolean;
   error: string;
   errorSaveSelectedVoice: string;
+  deviceLocale: string;
 }>;
 
 export const initialState: UserState = {
@@ -60,7 +63,8 @@ export const initialState: UserState = {
   details: null,
   isPremium: false,
   error: '',
-  errorSaveSelectedVoice: ''
+  errorSaveSelectedVoice: '',
+  deviceLocale: DeviceInfo.getDeviceLocale()
 };
 
 /* tslint:disable no-any */

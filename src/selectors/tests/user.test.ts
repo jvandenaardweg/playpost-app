@@ -108,13 +108,7 @@ describe('user selector', () => {
       }
     };
 
-    const languageName = 'English';
-
-    const voices: Api.Voice[] = selectUserSelectedVoices(exampleUserDetailsState);
-
-    const expected = voices.find(voice => voice.language.name === languageName);
-
-    expect(selectUserSelectedVoiceByLanguageName(exampleUserDetailsState, languageName)).toEqual(expected);
+    expect(selectUserSelectedVoiceByLanguageName(exampleUserDetailsState)).toMatchSnapshot();
   });
 
   it('should return the user\'s subscriptions', () => {

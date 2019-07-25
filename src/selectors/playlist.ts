@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import { RootState } from '../reducers';
 import { PlaylistState } from '../reducers/playlist';
+import { createDeepEqualSelector } from './index';
 
 export const playlistSelector = (state: RootState): PlaylistState => state.playlist;
 
@@ -22,7 +23,7 @@ export const selectPlaylistIsLoadingCreateItem = createSelector(
 /**
  * Get's the articles of the default playlist.
  */
-export const selectAllPlaylistArticles = createSelector(
+export const selectAllPlaylistArticles = createDeepEqualSelector(
   selectPlaylistItems,
   (playlistItems) => {
     if (!playlistItems || !playlistItems.length) { return []; }
@@ -36,7 +37,7 @@ export const selectAllPlaylistArticles = createSelector(
   }
 );
 
-export const selectNewPlaylistItems = createSelector(
+export const selectNewPlaylistItems = createDeepEqualSelector(
   selectPlaylistItems,
   (playlistItems) => {
     if (!playlistItems || !playlistItems.length) { return []; }
@@ -49,7 +50,7 @@ export const selectNewPlaylistItems = createSelector(
   }
 );
 
-export const selectArchivedPlaylistItems = createSelector(
+export const selectArchivedPlaylistItems = createDeepEqualSelector(
   selectPlaylistItems,
   (playlistItems) => {
     if (!playlistItems || !playlistItems.length) { return []; }
@@ -66,7 +67,7 @@ export const selectArchivedPlaylistItems = createSelector(
   }
 );
 
-export const selectFavoritedPlaylistItems = createSelector(
+export const selectFavoritedPlaylistItems = createDeepEqualSelector(
   selectPlaylistItems,
   (playlistItems) => {
     if (!playlistItems || !playlistItems.length) { return []; }

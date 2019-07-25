@@ -18,7 +18,7 @@ import { setDownloadedVoice } from '../reducers/voices';
 import { selectPlayerPlaybackState, selectPlayerTrack } from '../selectors/player';
 import { selectIsSubscribed } from '../selectors/subscriptions';
 import { selectUserErrorSaveSelectedVoice, selectUserSelectedVoiceByLanguageName } from '../selectors/user';
-import { selectAvailableVoicesByLanguageName, selectDefaultVoiceByLanguageName, selectDownloadedVoicePreviews } from '../selectors/voices';
+import { selectAvailableVoicesByLanguageName, selectDownloadedVoicePreviews } from '../selectors/voices';
 
 import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_VOICE_CHANGE, ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE } from '../constants/messages';
 
@@ -229,10 +229,13 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
   }
 
   isSelected = (item: Api.Voice): boolean => {
-    // const { isLoadingSaveSelectedVoiceId } = this.state;
-    const { defaultVoiceByLanguageName, userSelectedVoiceByLanguageName } = this.props;
-    const isDefaultSelected = defaultVoiceByLanguageName ? defaultVoiceByLanguageName.id === item.id : false;
-    const isUserSelected = userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName.id === item.id;
+    const { availableVoicesByLanguageName, userSelectedVoiceByLanguageName } = this.props;
+    const selectedLanguageName = this.props.navigation.getParam('languageName', '');
+    const availableVoices = availableVoicesByLanguageName[selectedLanguageName];
+    const userSelectedVoice = userSelectedVoiceByLanguageName[selectedLanguageName];
+
+    const isDefaultSelected = availableVoices ? availableVoices.id === item.id : false;
+    const isUserSelected = userSelectedVoice && userSelectedVoice.id === item.id;
 
     let isSelected = false;
 
@@ -273,6 +276,9 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
   render(): JSX.Element {
     const { availableVoicesByLanguageName } = this.props;
     const { isLoadingSaveSelectedVoiceId, isLoadingPreviewVoiceId } = this.state;
+    const selectedLanguageName = this.props.navigation.getParam('languageName', '');
+
+    const availableVoices = availableVoicesByLanguageName[selectedLanguageName].voices || [];
 
     const sectionListData = [
       // {
@@ -286,7 +292,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
       // },
       {
         title: 'Available voices',
-        data: availableVoicesByLanguageName.map((voice, index) => {
+        data: availableVoices.map((voice, index) => {
           const isSelected = this.isSelected(voice);
           const isPlaying = this.isVoicePlayingInPlayer(voice.id);
           const isActive = this.isVoiceActiveInPlayer(voice.id);
@@ -345,7 +351,6 @@ interface StateProps {
   readonly playerTrack: ReturnType<typeof selectPlayerTrack>;
   readonly downloadedVoices: ReturnType<typeof selectDownloadedVoicePreviews>;
   readonly availableVoicesByLanguageName: ReturnType<typeof selectAvailableVoicesByLanguageName>;
-  readonly defaultVoiceByLanguageName: ReturnType<typeof selectDefaultVoiceByLanguageName>;
   readonly userSelectedVoiceByLanguageName: ReturnType<typeof selectUserSelectedVoiceByLanguageName>;
   readonly isSubscribed: ReturnType<typeof selectIsSubscribed>;
   readonly errorSaveSelectedVoice: ReturnType<typeof selectUserErrorSaveSelectedVoice>;
@@ -355,9 +360,8 @@ const mapStateToProps = (state: RootState, props: Props) => ({
   playbackState: selectPlayerPlaybackState(state),
   playerTrack: selectPlayerTrack(state),
   downloadedVoices: selectDownloadedVoicePreviews(state),
-  availableVoicesByLanguageName: selectAvailableVoicesByLanguageName(state, props.navigation.getParam('languageName', '')), // does not memoize correctly? // https://github.com/reduxjs/reselect#containersvisibletodolistjs-2
-  defaultVoiceByLanguageName: selectDefaultVoiceByLanguageName(state, props.navigation.getParam('languageName', '')),
-  userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state, props.navigation.getParam('languageName', '')),
+  availableVoicesByLanguageName: selectAvailableVoicesByLanguageName(state),
+  userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state),
   isSubscribed: selectIsSubscribed(state),
   errorSaveSelectedVoice: selectUserErrorSaveSelectedVoice(state)
 });

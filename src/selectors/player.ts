@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 import { RootState } from '../reducers';
-import { initialState, PlayerState } from '../reducers/player';
+import { PlayerState } from '../reducers/player';
 
 export const playerSelector = (state: RootState): PlayerState => state.player;
 
@@ -47,14 +47,7 @@ export const selectPlayerAudiofileStatus = createSelector(
   }
 );
 
-export const selectPlayerPlaybackState = (state: RootState, articleId?: string) =>
-  createSelector(
-    [playerSelector, selectPlayerCurrentArticleId],
-    (player, currentArticleId) => {
-      if (articleId && currentArticleId !== articleId) {
-        return initialState.playbackState
-      }
-
-      return player.playbackState
-    }
-  )(state);
+export const selectPlayerPlaybackState = createSelector(
+  [playerSelector],
+  player =>  player.playbackState
+)

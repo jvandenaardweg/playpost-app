@@ -44,6 +44,11 @@ jest.mock('react-native-video');
 jest.mock('react-native-splash-screen');
 jest.mock('react-native-app-intro-slider');
 jest.mock('react-native-fs');
+jest.mock('react-native-device-info', () => {
+  return {
+    getDeviceLocale: jest.fn().mockReturnValue('en')
+  }
+});
 
 // Below gives TS errors... So we uncomment it for now
 // jest.mock('react-navigation', ({

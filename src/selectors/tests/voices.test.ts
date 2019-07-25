@@ -1,7 +1,6 @@
 import { createStore } from 'redux';
 import {
   selectAvailableVoicesByLanguageName,
-  selectDefaultVoiceByLanguageName,
   selectDownloadedVoicePreviews,
   selectLanguages,
   selectLanguagesWithActiveVoices,
@@ -71,44 +70,7 @@ describe('voices selector', () => {
       }
     };
 
-    const expected = languagesMock
-      .map((language: Api.Language) => {
-        return {
-          ...language,
-          voices: language.voices && language.voices.filter(voice => voice.isActive)
-        };
-      })
-      .sort((a, b) => a.name.localeCompare(b.name)); // sort languages alphabetically
-
-    expect(selectLanguagesWithActiveVoices(exampleState)).toMatchObject(expected);
-  });
-
-  it('selectLanguagesWithActiveVoices with a userLanguageCode should return the languages with active voices with the users language on top', () => {
-    const exampleState = {
-      ...rootState,
-      voices: {
-        ...rootState.voices,
-        languages: languagesMock
-      }
-    };
-
-    const userLanguageCode = 'nl';
-
-    const expected = languagesMock
-      .map((language: Api.Language) => {
-        return {
-          ...language,
-          voices: language.voices && language.voices.filter(voice => voice.isActive)
-        };
-      })
-      .sort((a, b) => a.name.localeCompare(b.name)); // sort languages alphabetically
-
-    if (userLanguageCode) {
-      expected.some(language => language.code === userLanguageCode && expected.unshift(language))
-    }
-
-
-    expect(selectLanguagesWithActiveVoices(exampleState, 'nl')).toMatchObject(expected);
+    expect(selectLanguagesWithActiveVoices(exampleState)).toMatchSnapshot();
   });
 
   it('selectDownloadedVoicePreviews should return the downloaded voice preview voices', () => {
@@ -132,40 +94,6 @@ describe('voices selector', () => {
       }
     };
 
-    const languageName = 'English';
-    const languages = selectLanguagesWithActiveVoices(exampleState);
-
-    const languageByName = languages.find(language => language.name === languageName);
-
-    const expected =
-      languageByName &&
-      languageByName.voices &&
-      [...languageByName.voices].sort((a, b) => {
-        const aLabel = a.label ? a.label : '';
-        const bLabel = b.label ? b.label : '';
-        return aLabel.localeCompare(bLabel);
-      });
-
-    expect(selectAvailableVoicesByLanguageName(exampleState, languageName)).toEqual(expected);
-    expect(selectAvailableVoicesByLanguageName(exampleState, '')).toEqual([]);
-  });
-
-  it('selectDefaultVoiceByLanguageName should return the default voice by language name', () => {
-    const exampleState = {
-      ...rootState,
-      voices: {
-        ...rootState.voices,
-        languages: languagesMock
-      }
-    };
-
-    const languageName = 'English';
-    const languages = selectLanguagesWithActiveVoices(exampleState);
-
-    const languageByName = languages.find(language => language.name === languageName);
-    const expected = languageByName && languageByName.voices && languageByName.voices.find(voice => !!voice.isLanguageDefault);
-
-    expect(selectDefaultVoiceByLanguageName(exampleState, languageName)).toEqual(expected);
-    expect(selectDefaultVoiceByLanguageName(exampleState, '')).toEqual(null);
+    expect(selectAvailableVoicesByLanguageName(exampleState)).toMatchSnapshot();
   });
 });

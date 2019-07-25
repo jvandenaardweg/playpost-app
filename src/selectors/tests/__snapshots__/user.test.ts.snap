@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`user selector should return the user's selected voices by language name 1`] = `
+Object {
+  "English": Object {
+    "audioProfile": "default",
+    "countryCode": "US",
+    "createdAt": "2019-04-25T15:25:07.966Z",
+    "exampleAudioUrl": "https://storage-staging.playpost.app/voices/59784982-ba48-4372-80ce-406a138a0030.mp3",
+    "gender": "FEMALE",
+    "id": "59784982-ba48-4372-80ce-406a138a0030",
+    "isActive": true,
+    "isHighestQuality": false,
+    "isLanguageDefault": true,
+    "isPremium": false,
+    "label": "Joanna",
+    "language": Object {
+      "code": "en",
+      "createdAt": "2019-05-17T16:52:17.083Z",
+      "id": "432a8053-22da-4ca0-a33a-18e0581f17c0",
+      "isActive": true,
+      "name": "English",
+      "nativeName": "English",
+      "updatedAt": "2019-05-17T16:52:17.083Z",
+    },
+    "languageCode": "en-US",
+    "name": "Joanna",
+    "naturalSampleRateHertz": null,
+    "pitch": 0,
+    "speakingRate": 1,
+    "synthesizer": "AWS",
+    "updatedAt": "2019-07-02T08:55:34.628Z",
+  },
+}
+`;

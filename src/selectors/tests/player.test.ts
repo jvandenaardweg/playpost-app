@@ -49,20 +49,16 @@ describe('player selector', () => {
     expect(selectPlayerPlaybackState(exampleState)).toBe('playing');
   });
 
-  it('selectPlayerPlaybackState should return the player playback state for the given articleId', () => {
+  it('selectPlayerPlaybackState should return the player playback state', () => {
     const exampleState = {
       ...rootState,
       player: {
         ...rootState.player,
-        playbackState: 'playing',
-        currentArticleId: 'e102cb67-62cd-4d56-8d0f-2e4f7f1381af'
+        playbackState: 'playing'
       }
     };
 
-    expect(selectPlayerPlaybackState(exampleState, 'e102cb67-62cd-4d56-8d0f-2e4f7f1381af')).toBe('playing');
-    expect(selectPlayerPlaybackState(exampleState, '')).toBe('playing');
-
-    expect(selectPlayerPlaybackState(exampleState, '76bc201e-62cd-4d56-8d0f-2e4f7f1381af')).toBe('none');
+    expect(selectPlayerPlaybackState(exampleState)).toBe('playing');
   });
 
   it('selectPlayerTrack should return the player track', () => {
