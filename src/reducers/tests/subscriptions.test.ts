@@ -1,7 +1,7 @@
-import { initialState, RESET_SUBSCRIPTIONS_STATE, subscriptionsReducer, GET_ACTIVE_SUBSCRIPTIONS, GET_ACTIVE_SUBSCRIPTIONS_SUCCESS, GET_ACTIVE_SUBSCRIPTIONS_FAIL, POST_VALIDATE_SUBSCRIPTION_RECEIPT, POST_VALIDATE_SUBSCRIPTION_RECEIPT_SUCCESS, POST_VALIDATE_SUBSCRIPTION_RECEIPT_FAIL, RESET_VALIDATE_SUBSCRIPTION_RECEIPT_ERROR } from '../subscriptions';
+import subscriptionValidationResultActiveMock from '../../../tests/__mocks__/subscription-validation-result-active';
 import subscriptionsMock from '../../../tests/__mocks__/subscriptions';
 import { GET_ACTIVE_SUBSCRIPTIONS_FAIL_MESSAGE, POST_VALIDATE_SUBSCRIPTION_RECEIPT_FAIL_MESSAGE } from '../../constants/messages';
-import subscriptionValidationResultActiveMock from '../../../tests/__mocks__/subscription-validation-result-active';
+import { GET_ACTIVE_SUBSCRIPTIONS, GET_ACTIVE_SUBSCRIPTIONS_FAIL, GET_ACTIVE_SUBSCRIPTIONS_SUCCESS, initialState, POST_VALIDATE_SUBSCRIPTION_RECEIPT, POST_VALIDATE_SUBSCRIPTION_RECEIPT_FAIL, POST_VALIDATE_SUBSCRIPTION_RECEIPT_SUCCESS, RESET_SUBSCRIPTIONS_STATE, RESET_VALIDATE_SUBSCRIPTION_RECEIPT_ERROR, subscriptionsReducer } from '../subscriptions';
 
 describe('subscriptions reducer', () => {
   it('should return the initial state', () => {
