@@ -1,5 +1,6 @@
 import { createStore } from 'redux';
 import {
+  selectActiveSubscriptionName,
   selectActiveSubscriptionProductId,
   selectErrorValidateSubscriptionReceipt,
   selectIsLoadingSubscriptions,
@@ -8,8 +9,7 @@ import {
   selectSubscriptions,
   selectSubscriptionsError,
   selectSubscriptionsValidationResult,
-  subscriptionsSelector,
-  selectActiveSubscriptionName
+  subscriptionsSelector
 } from '../subscriptions';
 
 import { rootReducer } from '../../reducers';
