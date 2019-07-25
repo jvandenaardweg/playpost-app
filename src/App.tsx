@@ -3,7 +3,6 @@ import React from 'react';
 import { Alert, Linking, NativeModules, Platform } from 'react-native';
 import DeepLinking from 'react-native-deep-linking';
 import { ThemeProvider } from 'react-native-elements';
-import { useScreens } from 'react-native-screens';
 import SplashScreen from 'react-native-splash-screen';
 import { Provider } from 'react-redux';
 // tslint:disable-next-line:no-submodule-imports
@@ -20,11 +19,6 @@ import NavigationService from './navigation/NavigationService';
 
 // import { whyDidYouUpdate } from 'why-did-you-update';
 // whyDidYouUpdate(React, { exclude: /^YellowBox|Icon|Swipeable/ });
-
-useScreens();
-
-// tslint:disable-next-line:no-console
-console.disableYellowBox = true;
 
 async function setAnalytics(dev: boolean): Promise<void> {
   if (dev) { return; }
