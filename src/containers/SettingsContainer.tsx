@@ -27,7 +27,7 @@ import {
   ALERT_SETTINGS_SETTING_UNAVAILABLE
 } from '../constants/messages';
 import spacing from '../constants/spacing';
-import { URL_ABOUT, URL_DONATE, URL_FEEDBACK, URL_PRIVACY_POLICY, URL_TERMS_OF_USE, URL_APP_APPLE_APP_STORE_REVIEW } from '../constants/urls';
+import { URL_ABOUT, URL_APP_APPLE_APP_STORE_REVIEW, URL_FEEDBACK, URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../constants/urls';
 import { RootState } from '../reducers';
 import { selectActiveSubscriptionName, selectActiveSubscriptionProductId, selectIsSubscribed } from '../selectors/subscriptions';
 import { selectTotalAvailableVoices } from '../selectors/voices';
