@@ -38,7 +38,7 @@ exports[`AudioPlayerSmallEmpty rendering should render correctly 1`] = `
           Object {
             "color": "#ffffff",
             "fontSize": 15,
-            "fontWeight": "500",
+            "fontWeight": "600",
           }
         }
       >
