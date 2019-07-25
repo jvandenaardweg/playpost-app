@@ -18,7 +18,7 @@ import { setDownloadedVoice } from '../reducers/voices';
 import { selectPlayerPlaybackState, selectPlayerTrack } from '../selectors/player';
 import { selectIsSubscribed } from '../selectors/subscriptions';
 import { selectUserErrorSaveSelectedVoice, selectUserSelectedVoiceByLanguageName } from '../selectors/user';
-import { selectAvailableVoicesByLanguageName, selectDownloadedVoicePreviews } from '../selectors/voices';
+import { selectDownloadedVoicePreviews, selectLanguagesWithActiveVoicesByLanguageName } from '../selectors/voices';
 
 import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_VOICE_CHANGE, ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE } from '../constants/messages';
 
@@ -229,13 +229,13 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
   }
 
   isSelected = (item: Api.Voice): boolean => {
-    const { availableVoicesByLanguageName, userSelectedVoiceByLanguageName } = this.props;
+    const { languagesWithActiveVoicesByLanguageName, userSelectedVoiceByLanguageName } = this.props;
     const selectedLanguageName = this.props.navigation.getParam('languageName', '');
-    const availableVoices = availableVoicesByLanguageName[selectedLanguageName];
+    const languagewithActiveVoices = languagesWithActiveVoicesByLanguageName[selectedLanguageName];
     const userSelectedVoice = userSelectedVoiceByLanguageName[selectedLanguageName];
 
-    const isDefaultSelected = availableVoices ? availableVoices.id === item.id : false;
-    const isUserSelected = userSelectedVoice && userSelectedVoice.id === item.id;
+    const isDefaultSelected = !!languagewithActiveVoices && !!languagewithActiveVoices.voices && !!languagewithActiveVoices.voices.find(voice => voice.id === item.id && voice.isLanguageDefault);
+    const isUserSelected = !!userSelectedVoice && userSelectedVoice.id === item.id;
 
     let isSelected = false;
 
@@ -243,20 +243,9 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
       isSelected = isUserSelected;
     }
 
-    if (!userSelectedVoiceByLanguageName) {
+    if (!userSelectedVoice) {
       isSelected = isDefaultSelected;
     }
-
-    // When we are saving a selected voice, just show it as selected already
-    // So we give the user the impression the app is fast.
-    // if (isLoadingSaveSelectedVoiceId === item.id) {
-    //   return true;
-    // }
-
-    // // If there's a saving of the selected voice in progress, remove the selected status from the other items
-    // if (isLoadingSaveSelectedVoiceId && isLoadingSaveSelectedVoiceId !== item.id) {
-    //   return false;
-    // }
 
     return isSelected;
   }
@@ -274,11 +263,11 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
   }
 
   render(): JSX.Element {
-    const { availableVoicesByLanguageName } = this.props;
+    const { languagesWithActiveVoicesByLanguageName } = this.props;
     const { isLoadingSaveSelectedVoiceId, isLoadingPreviewVoiceId } = this.state;
     const selectedLanguageName = this.props.navigation.getParam('languageName', '');
 
-    const availableVoices = availableVoicesByLanguageName[selectedLanguageName].voices || [];
+    const availableVoices = languagesWithActiveVoicesByLanguageName[selectedLanguageName].voices || [];
 
     const sectionListData = [
       // {
@@ -350,7 +339,7 @@ interface StateProps {
   readonly playbackState: ReturnType<typeof selectPlayerPlaybackState>;
   readonly playerTrack: ReturnType<typeof selectPlayerTrack>;
   readonly downloadedVoices: ReturnType<typeof selectDownloadedVoicePreviews>;
-  readonly availableVoicesByLanguageName: ReturnType<typeof selectAvailableVoicesByLanguageName>;
+  readonly languagesWithActiveVoicesByLanguageName: ReturnType<typeof selectLanguagesWithActiveVoicesByLanguageName>;
   readonly userSelectedVoiceByLanguageName: ReturnType<typeof selectUserSelectedVoiceByLanguageName>;
   readonly isSubscribed: ReturnType<typeof selectIsSubscribed>;
   readonly errorSaveSelectedVoice: ReturnType<typeof selectUserErrorSaveSelectedVoice>;
@@ -360,7 +349,7 @@ const mapStateToProps = (state: RootState, props: Props) => ({
   playbackState: selectPlayerPlaybackState(state),
   playerTrack: selectPlayerTrack(state),
   downloadedVoices: selectDownloadedVoicePreviews(state),
-  availableVoicesByLanguageName: selectAvailableVoicesByLanguageName(state),
+  languagesWithActiveVoicesByLanguageName: selectLanguagesWithActiveVoicesByLanguageName(state),
   userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state),
   isSubscribed: selectIsSubscribed(state),
   errorSaveSelectedVoice: selectUserErrorSaveSelectedVoice(state)

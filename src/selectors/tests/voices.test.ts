@@ -1,9 +1,9 @@
 import { createStore } from 'redux';
 import {
-  selectAvailableVoicesByLanguageName,
   selectDownloadedVoicePreviews,
   selectLanguages,
   selectLanguagesWithActiveVoices,
+  selectLanguagesWithActiveVoicesByLanguageName,
   selectTotalAvailableVoices,
   selectVoicesError,
   voicesSelector
@@ -85,7 +85,7 @@ describe('voices selector', () => {
     expect(selectDownloadedVoicePreviews(exampleState)).toMatchObject(voicesMock);
   });
 
-  it('selectAvailableVoicesByLanguageName should return the available voices by language name', () => {
+  it('selectLanguagesWithActiveVoicesByLanguageName should return the available voices by language name', () => {
     const exampleState = {
       ...rootState,
       voices: {
@@ -94,6 +94,6 @@ describe('voices selector', () => {
       }
     };
 
-    expect(selectAvailableVoicesByLanguageName(exampleState)).toMatchSnapshot();
+    expect(selectLanguagesWithActiveVoicesByLanguageName(exampleState)).toMatchSnapshot();
   });
 });

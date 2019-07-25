@@ -53,7 +53,7 @@ import { selectDownloadedAudiofiles } from '../selectors/audiofiles';
 import { selectPlayerCurrentArticleId, selectPlayerPlaybackState, selectPlayerPreviousArticleId, selectPlayerTrack } from '../selectors/player';
 import { selectIsSubscribed } from '../selectors/subscriptions';
 import { selectUserSelectedVoiceByLanguageName } from '../selectors/user';
-import { selectAvailableVoicesByLanguageName, selectLanguagesWithActiveVoices } from '../selectors/voices';
+import { selectLanguagesWithActiveVoices, selectLanguagesWithActiveVoicesByLanguageName } from '../selectors/voices';
 
 interface State {
   isLoading: boolean;
@@ -588,7 +588,7 @@ interface StateProps {
   readonly playerCurrentArticleId: ReturnType<typeof selectPlayerCurrentArticleId>;
   readonly playerPreviousArticleId: ReturnType<typeof selectPlayerPreviousArticleId>;
   readonly languagesWithActiveVoices: ReturnType<typeof selectLanguagesWithActiveVoices>;
-  readonly availableVoicesByLanguageName: ReturnType<typeof selectAvailableVoicesByLanguageName>;
+  readonly availableVoicesByLanguageName: ReturnType<typeof selectLanguagesWithActiveVoicesByLanguageName>;
 }
 
 interface DispatchProps {
@@ -618,7 +618,7 @@ const mapStateToProps = (state: RootState, props: Props) => ({
   playerCurrentArticleId: selectPlayerCurrentArticleId(state),
   playerPreviousArticleId: selectPlayerPreviousArticleId(state),
   languagesWithActiveVoices: selectLanguagesWithActiveVoices(state),
-  availableVoicesByLanguageName: selectAvailableVoicesByLanguageName(state)
+  availableVoicesByLanguageName: selectLanguagesWithActiveVoicesByLanguageName(state)
 });
 
 const mapDispatchToProps: DispatchProps = {

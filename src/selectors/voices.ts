@@ -46,9 +46,18 @@ export const selectLanguagesWithActiveVoices = createDeepEqualSelector(
     // Return languages with active voices
     const languagesWithActiveVoices = languages
       .map(language => {
+        const voices = language.voices && language.voices;
+
+        // Sort alphabetically by label
+        const sortedVoices = voices && [...voices].sort((a, b) => {
+          const aLabel = a.label ? a.label : '';
+          const bLabel = b.label ? b.label : '';
+          return aLabel.localeCompare(bLabel);
+        })
+
         return {
           ...language,
-          voices: language.voices && language.voices.filter(voice => voice.isActive)
+          voices: sortedVoices && sortedVoices.filter(voice => voice.isActive)
         };
       })
       .sort((a, b) => a.name.localeCompare(b.name)); // sort languages alphabetically
@@ -67,28 +76,17 @@ export const selectDownloadedVoicePreviews = createDeepEqualSelector(
   voices => voices.downloadedVoicePreviews
 );
 
-export const selectAvailableVoicesByLanguageName = createDeepEqualSelector(
+export const selectLanguagesWithActiveVoicesByLanguageName = createDeepEqualSelector(
   [selectLanguagesWithActiveVoices],
   languages => {
     // Convert the array to an object
     // So we can easily pick a language inside our components
-    const languageObjectWithVoices: AvailableVoicesByLanguageName = languages.reduce((prev, curr) => {
-      // Sort the voices alhabetically
-      if (curr.voices && curr.voices.length) {
-        const sortedVoices = [...curr.voices].sort((a, b) => {
-          const aLabel = a.label ? a.label : '';
-          const bLabel = b.label ? b.label : '';
-          return aLabel.localeCompare(bLabel);
-        });
-
-        curr.voices = sortedVoices;
-      }
-
+    const languagesWithActiveVoicesByLanguageName: AvailableVoicesByLanguageName = languages.reduce((prev, curr) => {
       prev[curr.name] = curr;
 
       return prev;
     }, {})
 
-    return languageObjectWithVoices;
+    return languagesWithActiveVoicesByLanguageName;
   }
 );
