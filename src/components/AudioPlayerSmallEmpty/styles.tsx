@@ -16,7 +16,7 @@ export default StyleSheet.create({
   emptyText: {
     fontSize: fonts.fontSize.body,
     color: colors.white,
-    fontWeight: fonts.fontWeight.medium
+    fontWeight: fonts.fontWeight.semibold
   },
   placeHolder: {
     flex: 1,
