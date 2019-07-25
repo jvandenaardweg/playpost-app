@@ -27,7 +27,7 @@ import {
   ALERT_SETTINGS_SETTING_UNAVAILABLE
 } from '../constants/messages';
 import spacing from '../constants/spacing';
-import { URL_ABOUT, URL_DONATE, URL_FEEDBACK, URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../constants/urls';
+import { URL_ABOUT, URL_DONATE, URL_FEEDBACK, URL_PRIVACY_POLICY, URL_TERMS_OF_USE, URL_APP_APPLE_APP_STORE_REVIEW } from '../constants/urls';
 import { RootState } from '../reducers';
 import { selectActiveSubscriptionName, selectActiveSubscriptionProductId, selectIsSubscribed } from '../selectors/subscriptions';
 import { selectTotalAvailableVoices } from '../selectors/voices';
@@ -296,7 +296,12 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
       {
         title: 'About',
         data: [
-          { title: 'Donate', icon: 'gift', iconColor: colors.grayDark, chevron: true, onPress: () => Linking.openURL(URL_DONATE) },
+          {
+            title: 'Write a review',
+            icon: 'heart',
+            iconColor: colors.green,
+            chevron: true, onPress: () => Linking.openURL(URL_APP_APPLE_APP_STORE_REVIEW)
+          },
           {
             title: 'About',
             icon: 'link',
