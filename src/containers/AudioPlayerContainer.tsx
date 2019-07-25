@@ -103,7 +103,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
 
     // When a track is stopped or paused
     if (playbackState && [TrackPlayer.STATE_STOPPED, TrackPlayer.STATE_PAUSED].includes(playbackState) && isPlaying) {
-      this.setState({ isPlaying: false });
+      this.setState({ isPlaying: false, isLoading: false });
     }
   }
 
