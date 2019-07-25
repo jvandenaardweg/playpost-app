@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`store/index persistor.getState() should return the initial store state 1`] = `
+Object {
+  "bootstrapped": false,
+  "registry": Array [
+    "root",
+  ],
+}
+`;
+
+exports[`store/index store.getState() should return the initial store state 1`] = `
+Object {
+  "_persist": Object {
+    "rehydrated": false,
+    "version": 4,
+  },
+  "audiofiles": Object {
+    "downloaded": Array [],
+    "error": "",
+    "isLoading": false,
+  },
+  "auth": Object {
+    "error": "",
+    "errorRequestResetPasswordToken": "",
+    "errorUpdatePassword": "",
+    "isLoading": false,
+    "isLoadingResetPassword": false,
+    "isLoadingUpdatePassword": false,
+    "token": "",
+  },
+  "player": Object {
+    "audiofile": null,
+    "currentArticleId": "",
+    "error": "",
+    "errorCreateAudiofile": "",
+    "isCreatingAudiofile": false,
+    "isDownloadingAudiofile": false,
+    "isLoadingCreateAudiofile": false,
+    "playbackSpeed": 1,
+    "playbackState": "none",
+    "previousArticleId": "",
+    "track": Object {
+      "artist": "",
+      "contentType": "",
+      "description": "",
+      "duration": 0,
+      "id": "",
+      "title": "",
+      "url": "",
+    },
+  },
+  "playlist": Object {
+    "error": "",
+    "isLoading": false,
+    "isLoadingArchiveItem": false,
+    "isLoadingCreateItem": false,
+    "isLoadingFavoriteItem": false,
+    "isLoadingReOrderItem": false,
+    "isLoadingUnArchiveItem": false,
+    "isLoadingUnFavoriteItem": false,
+    "items": Array [],
+  },
+  "subscriptions": Object {
+    "error": "",
+    "errorValidateSubscriptionReceipt": "",
+    "isLoadingSubscriptions": false,
+    "isLoadingValidateSubscriptionReceipt": false,
+    "subscriptions": null,
+    "validationResult": null,
+  },
+  "user": Object {
+    "details": null,
+    "deviceLocale": "en",
+    "error": "",
+    "errorSaveSelectedVoice": "",
+    "isLoading": false,
+    "isLoadingDelete": false,
+    "isLoadingSaveSelectedVoice": false,
+    "isLoadingUpdateEmail": false,
+    "isLoadingUpdatePassword": false,
+    "isPremium": false,
+  },
+  "voices": Object {
+    "downloadedVoicePreviews": Array [],
+    "error": "",
+    "isLoading": false,
+    "isLoadingLanguages": false,
+    "languages": Array [],
+  },
+}
+`;
