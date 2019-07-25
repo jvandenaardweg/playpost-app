@@ -37,7 +37,7 @@ describe('voices selector', () => {
     expect(selectLanguages(exampleState)).toMatchObject(languagesMock);
   });
 
-  it('selectTotalAvailableVoices should return the languages', () => {
+  it('selectTotalAvailableVoices should return the available languages total', () => {
     const exampleState = {
       ...rootState,
       voices: {
@@ -47,6 +47,25 @@ describe('voices selector', () => {
     };
 
     expect(selectTotalAvailableVoices(exampleState)).toBe(43);
+  });
+
+  it('selectTotalAvailableVoices should return the available languages total when a language has no voices', () => {
+    const languagesMockWithoutVoices = languagesMock.map(language => {
+      return {
+        ...language,
+        voices: []
+      }
+    });
+
+    const exampleState = {
+      ...rootState,
+      voices: {
+        ...rootState.voices,
+        languages: languagesMockWithoutVoices
+      }
+    };
+
+    expect(selectTotalAvailableVoices(exampleState)).toBe(0);
   });
 
   it('selectVoicesError should return the error', () => {

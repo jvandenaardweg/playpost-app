@@ -8,7 +8,8 @@ import {
   selectSubscriptions,
   selectSubscriptionsError,
   selectSubscriptionsValidationResult,
-  subscriptionsSelector
+  subscriptionsSelector,
+  selectActiveSubscriptionName
 } from '../subscriptions';
 
 import { rootReducer } from '../../reducers';
@@ -137,5 +138,31 @@ describe('subscriptions selector', () => {
 
     // The mock data contains a unsubscribed/expired subscription
     expect(selectActiveSubscriptionProductId(exampleState)).toEqual('com.aardwegmedia.playpost.premium');
+  });
+
+  it('selectActiveSubscriptionName should return the active subscription name when the user has a validated subscription', () => {
+    const exampleState = {
+      ...rootState,
+      subscriptions: {
+        ...rootState.subscriptions,
+        validationResult: subscriptionValidationResultActiveMock
+      }
+    };
+
+    // The mock data contains a unsubscribed/expired subscription
+    expect(selectActiveSubscriptionName(exampleState)).toEqual('Premium');
+  });
+
+  it('selectActiveSubscriptionName should return "Free" if the user has no subscription', () => {
+    const exampleState = {
+      ...rootState,
+      subscriptions: {
+        ...rootState.subscriptions,
+        validationResult: null
+      }
+    };
+
+    // The mock data contains a unsubscribed/expired subscription
+    expect(selectActiveSubscriptionName(exampleState)).toEqual('Free');
   });
 });

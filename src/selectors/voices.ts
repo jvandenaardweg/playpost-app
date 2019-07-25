@@ -30,7 +30,7 @@ export const selectTotalAvailableVoices = createDeepEqualSelector(
   [selectLanguages],
   languages => {
     return languages.reduce((prev, curr) => {
-      if (!curr.voices) { return prev; }
+      if (!curr.voices || !curr.voices.length) { return prev; }
       const activeVoices = curr.voices && curr.voices.filter(voice => voice.isActive);
 
       /* tslint:disable-next-line no-parameter-reassignment */
