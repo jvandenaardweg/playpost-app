@@ -35,9 +35,6 @@ export const SAVE_SELECTED_VOICE_SUCCESS = 'user/SAVE_SELECTED_VOICE_SUCCESS';
 export const SAVE_SELECTED_VOICE_FAIL = 'user/SAVE_SELECTED_VOICE_FAIL';
 export const RESET_SAVE_SELECTED_VOICE_ERROR = 'user/RESET_SAVE_SELECTED_VOICE_ERROR';
 
-export const SET_USER_PREMIUM = 'user/SET_USER_PREMIUM';
-export const RESET_USER_PREMIUM = 'user/RESET_USER_PREMIUM';
-
 export const RESET_USER_STATE = 'user/RESET_USER_STATE';
 export const RESET_USER_ERROR = 'user/RESET_USER_ERROR';
 
@@ -288,18 +285,6 @@ export function userReducer(state = initialState, action: any): UserState {
       return {
         ...state,
         errorSaveSelectedVoice: ''
-      };
-
-    case SET_USER_PREMIUM:
-      return {
-        ...state,
-        isPremium: true
-      };
-
-    case RESET_USER_PREMIUM:
-      return {
-        ...state,
-        isPremium: initialState.isPremium
       };
 
     case RESET_USER_ERROR:

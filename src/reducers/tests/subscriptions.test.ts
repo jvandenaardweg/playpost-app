@@ -12,8 +12,8 @@ describe('subscriptions reducer', () => {
     const changedState = {
       ...initialState,
       error: 'An unknown error happened.'
-
     }
+
     const expectedState = {
       ...initialState,
       error: ''
