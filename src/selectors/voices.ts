@@ -16,7 +16,7 @@ export interface AvailableVoicesByLanguageName {
 
 export const voicesSelector = (state: RootState): VoicesState => state.voices;
 
-export const selectLanguages = createSelector(
+export const selectLanguages = createDeepEqualSelector(
   [voicesSelector],
   voices => voices.languages
 );
@@ -26,8 +26,32 @@ export const selectVoicesError = createSelector(
   voices => voices.error
 );
 
-export const selectTotalAvailableVoices = createDeepEqualSelector(
+export const selectSortedLanguages = createDeepEqualSelector(
   [selectLanguages],
+  languages => {
+    // First, sort the voices
+    const languagesWithSortedVoices = languages.map((language) => {
+      const sortedVoices = language.voices && [...language.voices].sort((a, b) => {
+        const aLabel = a.label ? a.label : '';
+        const bLabel = b.label ? b.label : '';
+        return aLabel.localeCompare(bLabel);
+      })
+
+      return {
+        ...language,
+        voices: sortedVoices
+      }
+    })
+
+    // Then, sort the languages
+    const sortedLanguages = languagesWithSortedVoices && [...languagesWithSortedVoices].sort((a, b) => a.name.localeCompare(b.name))
+
+    return sortedLanguages;
+  }
+);
+
+export const selectTotalAvailableVoices = createDeepEqualSelector(
+  [selectSortedLanguages],
   languages => {
     return languages.reduce((prev, curr) => {
       if (!curr.voices || !curr.voices.length) { return prev; }
@@ -41,26 +65,18 @@ export const selectTotalAvailableVoices = createDeepEqualSelector(
 );
 
 export const selectLanguagesWithActiveVoices = createDeepEqualSelector(
-  [selectLanguages, selectDeviceLocale],
+  [selectSortedLanguages, selectDeviceLocale],
   (languages, deviceLocale) => {
     // Return languages with active voices
     const languagesWithActiveVoices = languages
       .map(language => {
         const voices = language.voices && language.voices;
 
-        // Sort alphabetically by label
-        const sortedVoices = voices && [...voices].sort((a, b) => {
-          const aLabel = a.label ? a.label : '';
-          const bLabel = b.label ? b.label : '';
-          return aLabel.localeCompare(bLabel);
-        })
-
         return {
           ...language,
-          voices: sortedVoices && sortedVoices.filter(voice => voice.isActive)
+          voices: voices && voices.filter(voice => voice.isActive)
         };
       })
-      .sort((a, b) => a.name.localeCompare(b.name)); // sort languages alphabetically
 
     // If we have a language code, find the language code and move that language to the top
     if (deviceLocale) {

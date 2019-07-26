@@ -29,14 +29,24 @@ export const selectUserDetails = createSelector(
   user => user.details
 );
 
-export const selectUserIsPremium = createSelector(
-  [userSelector],
-  user => user.isPremium
-);
-
 export const selectDeviceLocale = createSelector(
   [userSelector],
-  user => user.deviceLocale
+  user => {
+    if (!user.deviceLocale) {
+      return '';
+    }
+
+    // device locale could be: "en-NL" or "en"
+    // So we always split the dash
+    // Even if the dash does not exist, we return the first in the array
+    const deviceLocaleSplitted = user.deviceLocale.split('-');
+
+    if (!deviceLocaleSplitted || !deviceLocaleSplitted[0]) {
+      return '';
+    }
+
+    return deviceLocaleSplitted[0];
+  }
 );
 
 export const selectUserSelectedVoices = createDeepEqualSelector(

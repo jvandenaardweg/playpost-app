@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import { selectUserDetails, selectUserError, selectUserErrorSaveSelectedVoice, selectUserIsLoading, selectUserIsPremium, selectUserSelectedVoiceByLanguageName, selectUserSelectedVoices, selectUserSubscriptions, userSelector } from '../user';
+import { selectDeviceLocale, selectUserDetails, selectUserError, selectUserErrorSaveSelectedVoice, selectUserIsLoading, selectUserSelectedVoiceByLanguageName, selectUserSelectedVoices, selectUserSubscriptions, userSelector } from '../user';
 
 import { rootReducer } from '../../reducers';
 import { initialState } from '../../reducers/user';
@@ -65,18 +65,6 @@ describe('user selector', () => {
     expect(selectUserDetails(exampleUserDetailsState)).toMatchObject(exampleUser);
   });
 
-  it('should return the premium status', () => {
-    const exampleLoadingState = {
-      ...rootState,
-      user: {
-        ...rootState.user,
-        isPremium: true
-      }
-    };
-
-    expect(selectUserIsPremium(exampleLoadingState)).toBe(true);
-  });
-
   it('should return the user\'s selected voices', () => {
     const exampleUserDetailsState = {
       ...rootState,
@@ -123,5 +111,35 @@ describe('user selector', () => {
     const expected = exampleUser.inAppSubscriptions;
 
     expect(selectUserSubscriptions(exampleUserState)).toEqual(expected);
+  });
+
+  it('selectDeviceLocale should return the user\'s subscriptions', () => {
+    const exampleUserStateOne = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        deviceLocale: 'en-NL'
+      }
+    };
+
+    const exampleUserStateTwo = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        deviceLocale: 'en'
+      }
+    };
+
+    const exampleUserStateThree = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        deviceLocale: ''
+      }
+    };
+
+    expect(selectDeviceLocale(exampleUserStateOne)).toEqual('en');
+    expect(selectDeviceLocale(exampleUserStateTwo)).toEqual('en');
+    expect(selectDeviceLocale(exampleUserStateThree)).toEqual('');
   });
 });
