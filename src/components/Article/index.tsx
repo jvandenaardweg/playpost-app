@@ -28,12 +28,12 @@ interface Props {
   authorName?: string | null;
   listenTimeInSeconds?: number;
   readingTime?: number | null;
+  isCompatible: boolean;
   onPlayPress(): void;
   onOpenUrl(): void;
   onLongPress?(): void;
   onPressOut?(): void;
   onPressArticleIncompatible?(): void;
-  isCompatible: boolean;
 }
 
 export const Article: React.FC<Props> = React.memo(

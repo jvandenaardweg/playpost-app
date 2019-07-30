@@ -6,211 +6,18 @@ exports[`Article active rendering should render active correctly 1`] = `
     Array [
       Object {
         "backgroundColor": "#ffffff",
-        "flex": 1,
-        "flexDirection": "row",
         "padding": 16,
-        "width": "100%",
       },
       null,
     ]
   }
 >
   <View
-    accessible={true}
-    isTVSelectable={true}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
     style={
       Object {
         "flex": 1,
-        "flexDirection": "column",
-        "opacity": 1,
-      }
-    }
-  >
-    <View
-      style={
-        Object {
-          "alignItems": "baseline",
-          "flexDirection": "row",
-          "height": 14,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "flexBasis": "auto",
-            "flexGrow": 1,
-            "flexShrink": 1,
-          }
-        }
-      >
-        <Text
-          ellipsizeMode="tail"
-          numberOfLines={1}
-          style={
-            Object {
-              "color": "#AAAAAA",
-              "fontSize": 12,
-              "fontWeight": "300",
-              "paddingRight": 0,
-            }
-          }
-          testID="article-source-name"
-        >
-          www.google.nl
-        </Text>
-      </View>
-    </View>
-    <View
-      style={
-        Object {
-          "flex": 1,
-          "flexBasis": "auto",
-          "flexGrow": 0,
-          "marginBottom": 6,
-          "marginTop": 6,
-        }
-      }
-    >
-      <Text
-        ellipsizeMode="tail"
-        numberOfLines={3}
-        style={
-          Object {
-            "color": "#000000",
-            "fontSize": 17,
-            "fontWeight": "600",
-            "lineHeight": 21,
-          }
-        }
-        testID="article-title"
-      />
-    </View>
-    <View
-      style={
-        Object {
-          "alignItems": "baseline",
-          "flex": 1,
-          "flexBasis": "auto",
-          "flexDirection": "row",
-          "flexGrow": 0,
-          "flexShrink": 1,
-          "height": 14,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "flexDirection": "row",
-            "width": 35,
-          }
-        }
-      >
-        <Text
-          allowFontScaling={false}
-          style={
-            Array [
-              Object {
-                "color": "#ddd",
-                "fontSize": 8,
-              },
-              Object {
-                "marginRight": 4,
-              },
-              Object {
-                "fontFamily": "FontAwesome5Free-Solid",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-              Object {
-                "fontWeight": "900",
-              },
-            ]
-          }
-          testID="article-icon-playable"
-        >
-          
-        </Text>
-        <Text
-          allowFontScaling={false}
-          style={
-            Array [
-              Object {
-                "color": "#ddd",
-                "fontSize": 8,
-              },
-              Object {
-                "marginRight": 4,
-              },
-              Object {
-                "fontFamily": "FontAwesome5Free-Solid",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-              Object {
-                "fontWeight": "900",
-              },
-            ]
-          }
-          testID="article-icon-downloaded"
-        >
-          
-        </Text>
-        <Text
-          allowFontScaling={false}
-          style={
-            Array [
-              Object {
-                "color": "#ddd",
-                "fontSize": 8,
-              },
-              Object {
-                "marginRight": 4,
-              },
-              Object {
-                "fontFamily": "FontAwesome5Free-Solid",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-              Object {
-                "fontWeight": "900",
-              },
-            ]
-          }
-          testID="article-icon-favorited"
-        >
-          
-        </Text>
-      </View>
-      <Text
-        style={
-          Object {
-            "color": "#AAAAAA",
-            "fontSize": 12,
-            "fontWeight": "300",
-            "paddingLeft": 2,
-          }
-        }
-      >
-        Added 
-        less than a minute
-         ago
-      </Text>
-    </View>
-  </View>
-  <View
-    style={
-      Object {
-        "marginLeft": 16,
-        "marginTop": 4,
-        "width": 75,
+        "flexDirection": "row",
+        "width": "100%",
       }
     }
   >
@@ -225,61 +32,103 @@ exports[`Article active rendering should render active correctly 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "alignItems": "center",
-          "backgroundColor": "#C5C5C5",
-          "borderRadius": 4,
-          "height": 75,
-          "justifyContent": "center",
+          "flex": 1,
+          "flexDirection": "column",
           "opacity": 1,
-          "width": 75,
         }
       }
     >
       <View
         style={
           Object {
-            "height": 32,
-            "position": "absolute",
-            "width": 32,
+            "alignItems": "baseline",
+            "flexDirection": "row",
+            "height": 14,
           }
         }
       >
         <View
           style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#ffffff",
-                "borderRadius": 32,
-                "elevation": 1,
-                "height": 32,
-                "justifyContent": "center",
-                "shadowColor": "#000000",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.2,
-                "shadowRadius": 1,
-                "width": 32,
-              },
-              Object {
-                "backgroundColor": "#037DE2",
-              },
-            ]
+            Object {
+              "flexBasis": "auto",
+              "flexGrow": 1,
+              "flexShrink": 1,
+            }
           }
-          testID="article-play-button"
+        >
+          <Text
+            ellipsizeMode="tail"
+            numberOfLines={1}
+            style={
+              Object {
+                "color": "#AAAAAA",
+                "fontSize": 12,
+                "fontWeight": "300",
+                "paddingRight": 0,
+              }
+            }
+            testID="article-source-name"
+          >
+            www.google.nl
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexBasis": "auto",
+            "flexGrow": 0,
+            "marginBottom": 6,
+            "marginTop": 6,
+          }
+        }
+      >
+        <Text
+          ellipsizeMode="tail"
+          numberOfLines={3}
+          style={
+            Object {
+              "color": "#000000",
+              "fontSize": 17,
+              "fontWeight": "600",
+              "lineHeight": 21,
+            }
+          }
+          testID="article-title"
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "baseline",
+            "flex": 1,
+            "flexBasis": "auto",
+            "flexDirection": "row",
+            "flexGrow": 0,
+            "flexShrink": 1,
+            "height": 14,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "width": 35,
+            }
+          }
         >
           <Text
             allowFontScaling={false}
             style={
               Array [
                 Object {
-                  "color": "#fff",
-                  "fontSize": 11,
+                  "color": "#ddd",
+                  "fontSize": 8,
                 },
                 Object {
-                  "marginLeft": 2,
+                  "marginRight": 4,
                 },
                 Object {
                   "fontFamily": "FontAwesome5Free-Solid",
@@ -291,27 +140,185 @@ exports[`Article active rendering should render active correctly 1`] = `
                 },
               ]
             }
-            testID="article-icon-play"
+            testID="article-icon-playable"
           >
-            
+            
+          </Text>
+          <Text
+            allowFontScaling={false}
+            style={
+              Array [
+                Object {
+                  "color": "#ddd",
+                  "fontSize": 8,
+                },
+                Object {
+                  "marginRight": 4,
+                },
+                Object {
+                  "fontFamily": "FontAwesome5Free-Solid",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {
+                  "fontWeight": "900",
+                },
+              ]
+            }
+            testID="article-icon-downloaded"
+          >
+            
+          </Text>
+          <Text
+            allowFontScaling={false}
+            style={
+              Array [
+                Object {
+                  "color": "#ddd",
+                  "fontSize": 8,
+                },
+                Object {
+                  "marginRight": 4,
+                },
+                Object {
+                  "fontFamily": "FontAwesome5Free-Solid",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {
+                  "fontWeight": "900",
+                },
+              ]
+            }
+            testID="article-icon-favorited"
+          >
+            
           </Text>
         </View>
+        <Text
+          style={
+            Object {
+              "color": "#AAAAAA",
+              "fontSize": 12,
+              "fontWeight": "300",
+              "paddingLeft": 2,
+            }
+          }
+        >
+          Added 
+          less than a minute
+           ago
+        </Text>
       </View>
     </View>
-    <Text
+    <View
       style={
         Object {
-          "color": "#AAAAAA",
-          "fontSize": 12,
-          "fontWeight": "300",
-          "marginTop": 6,
-          "textAlign": "center",
+          "marginLeft": 16,
+          "marginTop": 4,
+          "width": 75,
         }
       }
-      testID="article-duration"
     >
-      ? min.
-    </Text>
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#C5C5C5",
+            "borderRadius": 4,
+            "height": 75,
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": 75,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "height": 32,
+              "position": "absolute",
+              "width": 32,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#ffffff",
+                  "borderRadius": 32,
+                  "elevation": 1,
+                  "height": 32,
+                  "justifyContent": "center",
+                  "shadowColor": "#000000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
+                  "width": 32,
+                },
+                Object {
+                  "backgroundColor": "#037DE2",
+                },
+              ]
+            }
+            testID="article-play-button"
+          >
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#fff",
+                    "fontSize": 11,
+                  },
+                  Object {
+                    "marginLeft": 2,
+                  },
+                  Object {
+                    "fontFamily": "FontAwesome5Free-Solid",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {
+                    "fontWeight": "900",
+                  },
+                ]
+              }
+              testID="article-icon-play"
+            >
+              
+            </Text>
+          </View>
+        </View>
+      </View>
+      <Text
+        style={
+          Object {
+            "color": "#AAAAAA",
+            "fontSize": 12,
+            "fontWeight": "300",
+            "marginTop": 6,
+            "textAlign": "center",
+          }
+        }
+        testID="article-duration"
+      >
+        ? min.
+      </Text>
+    </View>
   </View>
 </View>
 `;
@@ -322,211 +329,18 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
     Array [
       Object {
         "backgroundColor": "#ffffff",
-        "flex": 1,
-        "flexDirection": "row",
         "padding": 16,
-        "width": "100%",
       },
       null,
     ]
   }
 >
   <View
-    accessible={true}
-    isTVSelectable={true}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
     style={
       Object {
         "flex": 1,
-        "flexDirection": "column",
-        "opacity": 1,
-      }
-    }
-  >
-    <View
-      style={
-        Object {
-          "alignItems": "baseline",
-          "flexDirection": "row",
-          "height": 14,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "flexBasis": "auto",
-            "flexGrow": 1,
-            "flexShrink": 1,
-          }
-        }
-      >
-        <Text
-          ellipsizeMode="tail"
-          numberOfLines={1}
-          style={
-            Object {
-              "color": "#AAAAAA",
-              "fontSize": 12,
-              "fontWeight": "300",
-              "paddingRight": 0,
-            }
-          }
-          testID="article-source-name"
-        >
-          www.google.nl
-        </Text>
-      </View>
-    </View>
-    <View
-      style={
-        Object {
-          "flex": 1,
-          "flexBasis": "auto",
-          "flexGrow": 0,
-          "marginBottom": 6,
-          "marginTop": 6,
-        }
-      }
-    >
-      <Text
-        ellipsizeMode="tail"
-        numberOfLines={3}
-        style={
-          Object {
-            "color": "#000000",
-            "fontSize": 17,
-            "fontWeight": "600",
-            "lineHeight": 21,
-          }
-        }
-        testID="article-title"
-      />
-    </View>
-    <View
-      style={
-        Object {
-          "alignItems": "baseline",
-          "flex": 1,
-          "flexBasis": "auto",
-          "flexDirection": "row",
-          "flexGrow": 0,
-          "flexShrink": 1,
-          "height": 14,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "flexDirection": "row",
-            "width": 35,
-          }
-        }
-      >
-        <Text
-          allowFontScaling={false}
-          style={
-            Array [
-              Object {
-                "color": "#ddd",
-                "fontSize": 8,
-              },
-              Object {
-                "marginRight": 4,
-              },
-              Object {
-                "fontFamily": "FontAwesome5Free-Solid",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-              Object {
-                "fontWeight": "900",
-              },
-            ]
-          }
-          testID="article-icon-playable"
-        >
-          
-        </Text>
-        <Text
-          allowFontScaling={false}
-          style={
-            Array [
-              Object {
-                "color": "#03A87C",
-                "fontSize": 8,
-              },
-              Object {
-                "marginRight": 4,
-              },
-              Object {
-                "fontFamily": "FontAwesome5Free-Solid",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-              Object {
-                "fontWeight": "900",
-              },
-            ]
-          }
-          testID="article-icon-downloaded"
-        >
-          
-        </Text>
-        <Text
-          allowFontScaling={false}
-          style={
-            Array [
-              Object {
-                "color": "#ddd",
-                "fontSize": 8,
-              },
-              Object {
-                "marginRight": 4,
-              },
-              Object {
-                "fontFamily": "FontAwesome5Free-Solid",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-              Object {
-                "fontWeight": "900",
-              },
-            ]
-          }
-          testID="article-icon-favorited"
-        >
-          
-        </Text>
-      </View>
-      <Text
-        style={
-          Object {
-            "color": "#AAAAAA",
-            "fontSize": 12,
-            "fontWeight": "300",
-            "paddingLeft": 2,
-          }
-        }
-      >
-        Added 
-        less than a minute
-         ago
-      </Text>
-    </View>
-  </View>
-  <View
-    style={
-      Object {
-        "marginLeft": 16,
-        "marginTop": 4,
-        "width": 75,
+        "flexDirection": "row",
+        "width": "100%",
       }
     }
   >
@@ -541,59 +355,103 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "alignItems": "center",
-          "backgroundColor": "#C5C5C5",
-          "borderRadius": 4,
-          "height": 75,
-          "justifyContent": "center",
+          "flex": 1,
+          "flexDirection": "column",
           "opacity": 1,
-          "width": 75,
         }
       }
     >
       <View
         style={
           Object {
-            "height": 32,
-            "position": "absolute",
-            "width": 32,
+            "alignItems": "baseline",
+            "flexDirection": "row",
+            "height": 14,
           }
         }
       >
         <View
           style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#ffffff",
-                "borderRadius": 32,
-                "elevation": 1,
-                "height": 32,
-                "justifyContent": "center",
-                "shadowColor": "#000000",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.2,
-                "shadowRadius": 1,
-                "width": 32,
-              },
-              null,
-            ]
+            Object {
+              "flexBasis": "auto",
+              "flexGrow": 1,
+              "flexShrink": 1,
+            }
           }
-          testID="article-play-button"
+        >
+          <Text
+            ellipsizeMode="tail"
+            numberOfLines={1}
+            style={
+              Object {
+                "color": "#AAAAAA",
+                "fontSize": 12,
+                "fontWeight": "300",
+                "paddingRight": 0,
+              }
+            }
+            testID="article-source-name"
+          >
+            www.google.nl
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexBasis": "auto",
+            "flexGrow": 0,
+            "marginBottom": 6,
+            "marginTop": 6,
+          }
+        }
+      >
+        <Text
+          ellipsizeMode="tail"
+          numberOfLines={3}
+          style={
+            Object {
+              "color": "#000000",
+              "fontSize": 17,
+              "fontWeight": "600",
+              "lineHeight": 21,
+            }
+          }
+          testID="article-title"
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "baseline",
+            "flex": 1,
+            "flexBasis": "auto",
+            "flexDirection": "row",
+            "flexGrow": 0,
+            "flexShrink": 1,
+            "height": 14,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "width": 35,
+            }
+          }
         >
           <Text
             allowFontScaling={false}
             style={
               Array [
                 Object {
-                  "color": "#000",
-                  "fontSize": 11,
+                  "color": "#ddd",
+                  "fontSize": 8,
                 },
                 Object {
-                  "marginLeft": 2,
+                  "marginRight": 4,
                 },
                 Object {
                   "fontFamily": "FontAwesome5Free-Solid",
@@ -605,27 +463,183 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
                 },
               ]
             }
-            testID="article-icon-play"
+            testID="article-icon-playable"
           >
-            
+            
+          </Text>
+          <Text
+            allowFontScaling={false}
+            style={
+              Array [
+                Object {
+                  "color": "#03A87C",
+                  "fontSize": 8,
+                },
+                Object {
+                  "marginRight": 4,
+                },
+                Object {
+                  "fontFamily": "FontAwesome5Free-Solid",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {
+                  "fontWeight": "900",
+                },
+              ]
+            }
+            testID="article-icon-downloaded"
+          >
+            
+          </Text>
+          <Text
+            allowFontScaling={false}
+            style={
+              Array [
+                Object {
+                  "color": "#ddd",
+                  "fontSize": 8,
+                },
+                Object {
+                  "marginRight": 4,
+                },
+                Object {
+                  "fontFamily": "FontAwesome5Free-Solid",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {
+                  "fontWeight": "900",
+                },
+              ]
+            }
+            testID="article-icon-favorited"
+          >
+            
           </Text>
         </View>
+        <Text
+          style={
+            Object {
+              "color": "#AAAAAA",
+              "fontSize": 12,
+              "fontWeight": "300",
+              "paddingLeft": 2,
+            }
+          }
+        >
+          Added 
+          less than a minute
+           ago
+        </Text>
       </View>
     </View>
-    <Text
+    <View
       style={
         Object {
-          "color": "#AAAAAA",
-          "fontSize": 12,
-          "fontWeight": "300",
-          "marginTop": 6,
-          "textAlign": "center",
+          "marginLeft": 16,
+          "marginTop": 4,
+          "width": 75,
         }
       }
-      testID="article-duration"
     >
-      ? min.
-    </Text>
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#C5C5C5",
+            "borderRadius": 4,
+            "height": 75,
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": 75,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "height": 32,
+              "position": "absolute",
+              "width": 32,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#ffffff",
+                  "borderRadius": 32,
+                  "elevation": 1,
+                  "height": 32,
+                  "justifyContent": "center",
+                  "shadowColor": "#000000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
+                  "width": 32,
+                },
+                null,
+              ]
+            }
+            testID="article-play-button"
+          >
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#000",
+                    "fontSize": 11,
+                  },
+                  Object {
+                    "marginLeft": 2,
+                  },
+                  Object {
+                    "fontFamily": "FontAwesome5Free-Solid",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {
+                    "fontWeight": "900",
+                  },
+                ]
+              }
+              testID="article-icon-play"
+            >
+              
+            </Text>
+          </View>
+        </View>
+      </View>
+      <Text
+        style={
+          Object {
+            "color": "#AAAAAA",
+            "fontSize": 12,
+            "fontWeight": "300",
+            "marginTop": 6,
+            "textAlign": "center",
+          }
+        }
+        testID="article-duration"
+      >
+        ? min.
+      </Text>
+    </View>
   </View>
 </View>
 `;
@@ -636,213 +650,18 @@ exports[`Article full rendering should render full correctly 1`] = `
     Array [
       Object {
         "backgroundColor": "#ffffff",
-        "flex": 1,
-        "flexDirection": "row",
         "padding": 16,
-        "width": "100%",
       },
       null,
     ]
   }
 >
   <View
-    accessible={true}
-    isTVSelectable={true}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
     style={
       Object {
         "flex": 1,
-        "flexDirection": "column",
-        "opacity": 1,
-      }
-    }
-  >
-    <View
-      style={
-        Object {
-          "alignItems": "baseline",
-          "flexDirection": "row",
-          "height": 14,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "flexBasis": "auto",
-            "flexGrow": 1,
-            "flexShrink": 1,
-          }
-        }
-      >
-        <Text
-          ellipsizeMode="tail"
-          numberOfLines={1}
-          style={
-            Object {
-              "color": "#AAAAAA",
-              "fontSize": 12,
-              "fontWeight": "300",
-              "paddingRight": 0,
-            }
-          }
-          testID="article-source-name"
-        >
-          Jordy on Test
-        </Text>
-      </View>
-    </View>
-    <View
-      style={
-        Object {
-          "flex": 1,
-          "flexBasis": "auto",
-          "flexGrow": 0,
-          "marginBottom": 6,
-          "marginTop": 6,
-        }
-      }
-    >
-      <Text
-        ellipsizeMode="tail"
-        numberOfLines={3}
-        style={
-          Object {
-            "color": "#000000",
-            "fontSize": 17,
-            "fontWeight": "600",
-            "lineHeight": 21,
-          }
-        }
-        testID="article-title"
-      >
-        Test title
-      </Text>
-    </View>
-    <View
-      style={
-        Object {
-          "alignItems": "baseline",
-          "flex": 1,
-          "flexBasis": "auto",
-          "flexDirection": "row",
-          "flexGrow": 0,
-          "flexShrink": 1,
-          "height": 14,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "flexDirection": "row",
-            "width": 35,
-          }
-        }
-      >
-        <Text
-          allowFontScaling={false}
-          style={
-            Array [
-              Object {
-                "color": "#ddd",
-                "fontSize": 8,
-              },
-              Object {
-                "marginRight": 4,
-              },
-              Object {
-                "fontFamily": "FontAwesome5Free-Solid",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-              Object {
-                "fontWeight": "900",
-              },
-            ]
-          }
-          testID="article-icon-playable"
-        >
-          
-        </Text>
-        <Text
-          allowFontScaling={false}
-          style={
-            Array [
-              Object {
-                "color": "#ddd",
-                "fontSize": 8,
-              },
-              Object {
-                "marginRight": 4,
-              },
-              Object {
-                "fontFamily": "FontAwesome5Free-Solid",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-              Object {
-                "fontWeight": "900",
-              },
-            ]
-          }
-          testID="article-icon-downloaded"
-        >
-          
-        </Text>
-        <Text
-          allowFontScaling={false}
-          style={
-            Array [
-              Object {
-                "color": "#ddd",
-                "fontSize": 8,
-              },
-              Object {
-                "marginRight": 4,
-              },
-              Object {
-                "fontFamily": "FontAwesome5Free-Solid",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-              Object {
-                "fontWeight": "900",
-              },
-            ]
-          }
-          testID="article-icon-favorited"
-        >
-          
-        </Text>
-      </View>
-      <Text
-        style={
-          Object {
-            "color": "#AAAAAA",
-            "fontSize": 12,
-            "fontWeight": "300",
-            "paddingLeft": 2,
-          }
-        }
-      >
-        Added 
-        less than a minute
-         ago
-      </Text>
-    </View>
-  </View>
-  <View
-    style={
-      Object {
-        "marginLeft": 16,
-        "marginTop": 4,
-        "width": 75,
+        "flexDirection": "row",
+        "width": "100%",
       }
     }
   >
@@ -857,59 +676,105 @@ exports[`Article full rendering should render full correctly 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "alignItems": "center",
-          "backgroundColor": "#C5C5C5",
-          "borderRadius": 4,
-          "height": 75,
-          "justifyContent": "center",
+          "flex": 1,
+          "flexDirection": "column",
           "opacity": 1,
-          "width": 75,
         }
       }
     >
       <View
         style={
           Object {
-            "height": 32,
-            "position": "absolute",
-            "width": 32,
+            "alignItems": "baseline",
+            "flexDirection": "row",
+            "height": 14,
           }
         }
       >
         <View
           style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#ffffff",
-                "borderRadius": 32,
-                "elevation": 1,
-                "height": 32,
-                "justifyContent": "center",
-                "shadowColor": "#000000",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.2,
-                "shadowRadius": 1,
-                "width": 32,
-              },
-              null,
-            ]
+            Object {
+              "flexBasis": "auto",
+              "flexGrow": 1,
+              "flexShrink": 1,
+            }
           }
-          testID="article-play-button"
+        >
+          <Text
+            ellipsizeMode="tail"
+            numberOfLines={1}
+            style={
+              Object {
+                "color": "#AAAAAA",
+                "fontSize": 12,
+                "fontWeight": "300",
+                "paddingRight": 0,
+              }
+            }
+            testID="article-source-name"
+          >
+            Jordy on Test
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexBasis": "auto",
+            "flexGrow": 0,
+            "marginBottom": 6,
+            "marginTop": 6,
+          }
+        }
+      >
+        <Text
+          ellipsizeMode="tail"
+          numberOfLines={3}
+          style={
+            Object {
+              "color": "#000000",
+              "fontSize": 17,
+              "fontWeight": "600",
+              "lineHeight": 21,
+            }
+          }
+          testID="article-title"
+        >
+          Test title
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "baseline",
+            "flex": 1,
+            "flexBasis": "auto",
+            "flexDirection": "row",
+            "flexGrow": 0,
+            "flexShrink": 1,
+            "height": 14,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "width": 35,
+            }
+          }
         >
           <Text
             allowFontScaling={false}
             style={
               Array [
                 Object {
-                  "color": "#000",
-                  "fontSize": 11,
+                  "color": "#ddd",
+                  "fontSize": 8,
                 },
                 Object {
-                  "marginLeft": 2,
+                  "marginRight": 4,
                 },
                 Object {
                   "fontFamily": "FontAwesome5Free-Solid",
@@ -921,27 +786,183 @@ exports[`Article full rendering should render full correctly 1`] = `
                 },
               ]
             }
-            testID="article-icon-play"
+            testID="article-icon-playable"
           >
-            
+            
+          </Text>
+          <Text
+            allowFontScaling={false}
+            style={
+              Array [
+                Object {
+                  "color": "#ddd",
+                  "fontSize": 8,
+                },
+                Object {
+                  "marginRight": 4,
+                },
+                Object {
+                  "fontFamily": "FontAwesome5Free-Solid",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {
+                  "fontWeight": "900",
+                },
+              ]
+            }
+            testID="article-icon-downloaded"
+          >
+            
+          </Text>
+          <Text
+            allowFontScaling={false}
+            style={
+              Array [
+                Object {
+                  "color": "#ddd",
+                  "fontSize": 8,
+                },
+                Object {
+                  "marginRight": 4,
+                },
+                Object {
+                  "fontFamily": "FontAwesome5Free-Solid",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {
+                  "fontWeight": "900",
+                },
+              ]
+            }
+            testID="article-icon-favorited"
+          >
+            
           </Text>
         </View>
+        <Text
+          style={
+            Object {
+              "color": "#AAAAAA",
+              "fontSize": 12,
+              "fontWeight": "300",
+              "paddingLeft": 2,
+            }
+          }
+        >
+          Added 
+          less than a minute
+           ago
+        </Text>
       </View>
     </View>
-    <Text
+    <View
       style={
         Object {
-          "color": "#AAAAAA",
-          "fontSize": 12,
-          "fontWeight": "300",
-          "marginTop": 6,
-          "textAlign": "center",
+          "marginLeft": 16,
+          "marginTop": 4,
+          "width": 75,
         }
       }
-      testID="article-duration"
     >
-      2 min.
-    </Text>
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#C5C5C5",
+            "borderRadius": 4,
+            "height": 75,
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": 75,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "height": 32,
+              "position": "absolute",
+              "width": 32,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#ffffff",
+                  "borderRadius": 32,
+                  "elevation": 1,
+                  "height": 32,
+                  "justifyContent": "center",
+                  "shadowColor": "#000000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
+                  "width": 32,
+                },
+                null,
+              ]
+            }
+            testID="article-play-button"
+          >
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#000",
+                    "fontSize": 11,
+                  },
+                  Object {
+                    "marginLeft": 2,
+                  },
+                  Object {
+                    "fontFamily": "FontAwesome5Free-Solid",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {
+                    "fontWeight": "900",
+                  },
+                ]
+              }
+              testID="article-icon-play"
+            >
+              
+            </Text>
+          </View>
+        </View>
+      </View>
+      <Text
+        style={
+          Object {
+            "color": "#AAAAAA",
+            "fontSize": 12,
+            "fontWeight": "300",
+            "marginTop": 6,
+            "textAlign": "center",
+          }
+        }
+        testID="article-duration"
+      >
+        2 min.
+      </Text>
+    </View>
   </View>
 </View>
 `;
@@ -952,211 +973,18 @@ exports[`Article loading rendering should render loading correctly 1`] = `
     Array [
       Object {
         "backgroundColor": "#ffffff",
-        "flex": 1,
-        "flexDirection": "row",
         "padding": 16,
-        "width": "100%",
       },
       null,
     ]
   }
 >
   <View
-    accessible={true}
-    isTVSelectable={true}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
     style={
       Object {
         "flex": 1,
-        "flexDirection": "column",
-        "opacity": 1,
-      }
-    }
-  >
-    <View
-      style={
-        Object {
-          "alignItems": "baseline",
-          "flexDirection": "row",
-          "height": 14,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "flexBasis": "auto",
-            "flexGrow": 1,
-            "flexShrink": 1,
-          }
-        }
-      >
-        <Text
-          ellipsizeMode="tail"
-          numberOfLines={1}
-          style={
-            Object {
-              "color": "#AAAAAA",
-              "fontSize": 12,
-              "fontWeight": "300",
-              "paddingRight": 0,
-            }
-          }
-          testID="article-source-name"
-        >
-          www.google.nl
-        </Text>
-      </View>
-    </View>
-    <View
-      style={
-        Object {
-          "flex": 1,
-          "flexBasis": "auto",
-          "flexGrow": 0,
-          "marginBottom": 6,
-          "marginTop": 6,
-        }
-      }
-    >
-      <Text
-        ellipsizeMode="tail"
-        numberOfLines={3}
-        style={
-          Object {
-            "color": "#000000",
-            "fontSize": 17,
-            "fontWeight": "600",
-            "lineHeight": 21,
-          }
-        }
-        testID="article-title"
-      />
-    </View>
-    <View
-      style={
-        Object {
-          "alignItems": "baseline",
-          "flex": 1,
-          "flexBasis": "auto",
-          "flexDirection": "row",
-          "flexGrow": 0,
-          "flexShrink": 1,
-          "height": 14,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "flexDirection": "row",
-            "width": 35,
-          }
-        }
-      >
-        <Text
-          allowFontScaling={false}
-          style={
-            Array [
-              Object {
-                "color": "#ddd",
-                "fontSize": 8,
-              },
-              Object {
-                "marginRight": 4,
-              },
-              Object {
-                "fontFamily": "FontAwesome5Free-Solid",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-              Object {
-                "fontWeight": "900",
-              },
-            ]
-          }
-          testID="article-icon-playable"
-        >
-          
-        </Text>
-        <Text
-          allowFontScaling={false}
-          style={
-            Array [
-              Object {
-                "color": "#ddd",
-                "fontSize": 8,
-              },
-              Object {
-                "marginRight": 4,
-              },
-              Object {
-                "fontFamily": "FontAwesome5Free-Solid",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-              Object {
-                "fontWeight": "900",
-              },
-            ]
-          }
-          testID="article-icon-downloaded"
-        >
-          
-        </Text>
-        <Text
-          allowFontScaling={false}
-          style={
-            Array [
-              Object {
-                "color": "#ddd",
-                "fontSize": 8,
-              },
-              Object {
-                "marginRight": 4,
-              },
-              Object {
-                "fontFamily": "FontAwesome5Free-Solid",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-              Object {
-                "fontWeight": "900",
-              },
-            ]
-          }
-          testID="article-icon-favorited"
-        >
-          
-        </Text>
-      </View>
-      <Text
-        style={
-          Object {
-            "color": "#AAAAAA",
-            "fontSize": 12,
-            "fontWeight": "300",
-            "paddingLeft": 2,
-          }
-        }
-      >
-        Added 
-        less than a minute
-         ago
-      </Text>
-    </View>
-  </View>
-  <View
-    style={
-      Object {
-        "marginLeft": 16,
-        "marginTop": 4,
-        "width": 75,
+        "flexDirection": "row",
+        "width": "100%",
       }
     }
   >
@@ -1171,73 +999,273 @@ exports[`Article loading rendering should render loading correctly 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "alignItems": "center",
-          "backgroundColor": "#C5C5C5",
-          "borderRadius": 4,
-          "height": 75,
-          "justifyContent": "center",
+          "flex": 1,
+          "flexDirection": "column",
           "opacity": 1,
-          "width": 75,
         }
       }
     >
       <View
         style={
           Object {
-            "height": 32,
-            "position": "absolute",
-            "width": 32,
+            "alignItems": "baseline",
+            "flexDirection": "row",
+            "height": 14,
           }
         }
       >
         <View
           style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#ffffff",
-                "borderRadius": 32,
-                "elevation": 1,
-                "height": 32,
-                "justifyContent": "center",
-                "shadowColor": "#000000",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.2,
-                "shadowRadius": 1,
-                "width": 32,
-              },
-              null,
-            ]
+            Object {
+              "flexBasis": "auto",
+              "flexGrow": 1,
+              "flexShrink": 1,
+            }
           }
-          testID="article-play-button"
         >
-          <ActivityIndicator
-            animating={true}
-            color="#000"
-            hidesWhenStopped={true}
-            size="small"
-            testID="article-activity-indicator"
-          />
+          <Text
+            ellipsizeMode="tail"
+            numberOfLines={1}
+            style={
+              Object {
+                "color": "#AAAAAA",
+                "fontSize": 12,
+                "fontWeight": "300",
+                "paddingRight": 0,
+              }
+            }
+            testID="article-source-name"
+          >
+            www.google.nl
+          </Text>
         </View>
       </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexBasis": "auto",
+            "flexGrow": 0,
+            "marginBottom": 6,
+            "marginTop": 6,
+          }
+        }
+      >
+        <Text
+          ellipsizeMode="tail"
+          numberOfLines={3}
+          style={
+            Object {
+              "color": "#000000",
+              "fontSize": 17,
+              "fontWeight": "600",
+              "lineHeight": 21,
+            }
+          }
+          testID="article-title"
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "baseline",
+            "flex": 1,
+            "flexBasis": "auto",
+            "flexDirection": "row",
+            "flexGrow": 0,
+            "flexShrink": 1,
+            "height": 14,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "width": 35,
+            }
+          }
+        >
+          <Text
+            allowFontScaling={false}
+            style={
+              Array [
+                Object {
+                  "color": "#ddd",
+                  "fontSize": 8,
+                },
+                Object {
+                  "marginRight": 4,
+                },
+                Object {
+                  "fontFamily": "FontAwesome5Free-Solid",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {
+                  "fontWeight": "900",
+                },
+              ]
+            }
+            testID="article-icon-playable"
+          >
+            
+          </Text>
+          <Text
+            allowFontScaling={false}
+            style={
+              Array [
+                Object {
+                  "color": "#ddd",
+                  "fontSize": 8,
+                },
+                Object {
+                  "marginRight": 4,
+                },
+                Object {
+                  "fontFamily": "FontAwesome5Free-Solid",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {
+                  "fontWeight": "900",
+                },
+              ]
+            }
+            testID="article-icon-downloaded"
+          >
+            
+          </Text>
+          <Text
+            allowFontScaling={false}
+            style={
+              Array [
+                Object {
+                  "color": "#ddd",
+                  "fontSize": 8,
+                },
+                Object {
+                  "marginRight": 4,
+                },
+                Object {
+                  "fontFamily": "FontAwesome5Free-Solid",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {
+                  "fontWeight": "900",
+                },
+              ]
+            }
+            testID="article-icon-favorited"
+          >
+            
+          </Text>
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "#AAAAAA",
+              "fontSize": 12,
+              "fontWeight": "300",
+              "paddingLeft": 2,
+            }
+          }
+        >
+          Added 
+          less than a minute
+           ago
+        </Text>
+      </View>
     </View>
-    <Text
+    <View
       style={
         Object {
-          "color": "#AAAAAA",
-          "fontSize": 12,
-          "fontWeight": "300",
-          "marginTop": 6,
-          "textAlign": "center",
+          "marginLeft": 16,
+          "marginTop": 4,
+          "width": 75,
         }
       }
-      testID="article-duration"
     >
-      ? min.
-    </Text>
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#C5C5C5",
+            "borderRadius": 4,
+            "height": 75,
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": 75,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "height": 32,
+              "position": "absolute",
+              "width": 32,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#ffffff",
+                  "borderRadius": 32,
+                  "elevation": 1,
+                  "height": 32,
+                  "justifyContent": "center",
+                  "shadowColor": "#000000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
+                  "width": 32,
+                },
+                null,
+              ]
+            }
+            testID="article-play-button"
+          >
+            <ActivityIndicator
+              animating={true}
+              color="#000"
+              hidesWhenStopped={true}
+              size="small"
+              testID="article-activity-indicator"
+            />
+          </View>
+        </View>
+      </View>
+      <Text
+        style={
+          Object {
+            "color": "#AAAAAA",
+            "fontSize": 12,
+            "fontWeight": "300",
+            "marginTop": 6,
+            "textAlign": "center",
+          }
+        }
+        testID="article-duration"
+      >
+        ? min.
+      </Text>
+    </View>
   </View>
 </View>
 `;
@@ -1248,211 +1276,18 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
     Array [
       Object {
         "backgroundColor": "#ffffff",
-        "flex": 1,
-        "flexDirection": "row",
         "padding": 16,
-        "width": "100%",
       },
       null,
     ]
   }
 >
   <View
-    accessible={true}
-    isTVSelectable={true}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
     style={
       Object {
         "flex": 1,
-        "flexDirection": "column",
-        "opacity": 1,
-      }
-    }
-  >
-    <View
-      style={
-        Object {
-          "alignItems": "baseline",
-          "flexDirection": "row",
-          "height": 14,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "flexBasis": "auto",
-            "flexGrow": 1,
-            "flexShrink": 1,
-          }
-        }
-      >
-        <Text
-          ellipsizeMode="tail"
-          numberOfLines={1}
-          style={
-            Object {
-              "color": "#AAAAAA",
-              "fontSize": 12,
-              "fontWeight": "300",
-              "paddingRight": 0,
-            }
-          }
-          testID="article-source-name"
-        >
-          www.google.nl
-        </Text>
-      </View>
-    </View>
-    <View
-      style={
-        Object {
-          "flex": 1,
-          "flexBasis": "auto",
-          "flexGrow": 0,
-          "marginBottom": 6,
-          "marginTop": 6,
-        }
-      }
-    >
-      <Text
-        ellipsizeMode="tail"
-        numberOfLines={3}
-        style={
-          Object {
-            "color": "#000000",
-            "fontSize": 17,
-            "fontWeight": "600",
-            "lineHeight": 21,
-          }
-        }
-        testID="article-title"
-      />
-    </View>
-    <View
-      style={
-        Object {
-          "alignItems": "baseline",
-          "flex": 1,
-          "flexBasis": "auto",
-          "flexDirection": "row",
-          "flexGrow": 0,
-          "flexShrink": 1,
-          "height": 14,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "flexDirection": "row",
-            "width": 35,
-          }
-        }
-      >
-        <Text
-          allowFontScaling={false}
-          style={
-            Array [
-              Object {
-                "color": "#ddd",
-                "fontSize": 8,
-              },
-              Object {
-                "marginRight": 4,
-              },
-              Object {
-                "fontFamily": "FontAwesome5Free-Solid",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-              Object {
-                "fontWeight": "900",
-              },
-            ]
-          }
-          testID="article-icon-playable"
-        >
-          
-        </Text>
-        <Text
-          allowFontScaling={false}
-          style={
-            Array [
-              Object {
-                "color": "#ddd",
-                "fontSize": 8,
-              },
-              Object {
-                "marginRight": 4,
-              },
-              Object {
-                "fontFamily": "FontAwesome5Free-Solid",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-              Object {
-                "fontWeight": "900",
-              },
-            ]
-          }
-          testID="article-icon-downloaded"
-        >
-          
-        </Text>
-        <Text
-          allowFontScaling={false}
-          style={
-            Array [
-              Object {
-                "color": "#ddd",
-                "fontSize": 8,
-              },
-              Object {
-                "marginRight": 4,
-              },
-              Object {
-                "fontFamily": "FontAwesome5Free-Solid",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-              Object {
-                "fontWeight": "900",
-              },
-            ]
-          }
-          testID="article-icon-favorited"
-        >
-          
-        </Text>
-      </View>
-      <Text
-        style={
-          Object {
-            "color": "#AAAAAA",
-            "fontSize": 12,
-            "fontWeight": "300",
-            "paddingLeft": 2,
-          }
-        }
-      >
-        Added 
-        less than a minute
-         ago
-      </Text>
-    </View>
-  </View>
-  <View
-    style={
-      Object {
-        "marginLeft": 16,
-        "marginTop": 4,
-        "width": 75,
+        "flexDirection": "row",
+        "width": "100%",
       }
     }
   >
@@ -1467,59 +1302,103 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "alignItems": "center",
-          "backgroundColor": "#C5C5C5",
-          "borderRadius": 4,
-          "height": 75,
-          "justifyContent": "center",
+          "flex": 1,
+          "flexDirection": "column",
           "opacity": 1,
-          "width": 75,
         }
       }
     >
       <View
         style={
           Object {
-            "height": 32,
-            "position": "absolute",
-            "width": 32,
+            "alignItems": "baseline",
+            "flexDirection": "row",
+            "height": 14,
           }
         }
       >
         <View
           style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#ffffff",
-                "borderRadius": 32,
-                "elevation": 1,
-                "height": 32,
-                "justifyContent": "center",
-                "shadowColor": "#000000",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.2,
-                "shadowRadius": 1,
-                "width": 32,
-              },
-              null,
-            ]
+            Object {
+              "flexBasis": "auto",
+              "flexGrow": 1,
+              "flexShrink": 1,
+            }
           }
-          testID="article-play-button"
+        >
+          <Text
+            ellipsizeMode="tail"
+            numberOfLines={1}
+            style={
+              Object {
+                "color": "#AAAAAA",
+                "fontSize": 12,
+                "fontWeight": "300",
+                "paddingRight": 0,
+              }
+            }
+            testID="article-source-name"
+          >
+            www.google.nl
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexBasis": "auto",
+            "flexGrow": 0,
+            "marginBottom": 6,
+            "marginTop": 6,
+          }
+        }
+      >
+        <Text
+          ellipsizeMode="tail"
+          numberOfLines={3}
+          style={
+            Object {
+              "color": "#000000",
+              "fontSize": 17,
+              "fontWeight": "600",
+              "lineHeight": 21,
+            }
+          }
+          testID="article-title"
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "baseline",
+            "flex": 1,
+            "flexBasis": "auto",
+            "flexDirection": "row",
+            "flexGrow": 0,
+            "flexShrink": 1,
+            "height": 14,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "width": 35,
+            }
+          }
         >
           <Text
             allowFontScaling={false}
             style={
               Array [
                 Object {
-                  "color": "#000",
-                  "fontSize": 11,
+                  "color": "#ddd",
+                  "fontSize": 8,
                 },
                 Object {
-                  "marginLeft": 2,
+                  "marginRight": 4,
                 },
                 Object {
                   "fontFamily": "FontAwesome5Free-Solid",
@@ -1531,27 +1410,183 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
                 },
               ]
             }
-            testID="article-icon-play"
+            testID="article-icon-playable"
           >
-            
+            
+          </Text>
+          <Text
+            allowFontScaling={false}
+            style={
+              Array [
+                Object {
+                  "color": "#ddd",
+                  "fontSize": 8,
+                },
+                Object {
+                  "marginRight": 4,
+                },
+                Object {
+                  "fontFamily": "FontAwesome5Free-Solid",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {
+                  "fontWeight": "900",
+                },
+              ]
+            }
+            testID="article-icon-downloaded"
+          >
+            
+          </Text>
+          <Text
+            allowFontScaling={false}
+            style={
+              Array [
+                Object {
+                  "color": "#ddd",
+                  "fontSize": 8,
+                },
+                Object {
+                  "marginRight": 4,
+                },
+                Object {
+                  "fontFamily": "FontAwesome5Free-Solid",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {
+                  "fontWeight": "900",
+                },
+              ]
+            }
+            testID="article-icon-favorited"
+          >
+            
           </Text>
         </View>
+        <Text
+          style={
+            Object {
+              "color": "#AAAAAA",
+              "fontSize": 12,
+              "fontWeight": "300",
+              "paddingLeft": 2,
+            }
+          }
+        >
+          Added 
+          less than a minute
+           ago
+        </Text>
       </View>
     </View>
-    <Text
+    <View
       style={
         Object {
-          "color": "#AAAAAA",
-          "fontSize": 12,
-          "fontWeight": "300",
-          "marginTop": 6,
-          "textAlign": "center",
+          "marginLeft": 16,
+          "marginTop": 4,
+          "width": 75,
         }
       }
-      testID="article-duration"
     >
-      ? min.
-    </Text>
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#C5C5C5",
+            "borderRadius": 4,
+            "height": 75,
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": 75,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "height": 32,
+              "position": "absolute",
+              "width": 32,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#ffffff",
+                  "borderRadius": 32,
+                  "elevation": 1,
+                  "height": 32,
+                  "justifyContent": "center",
+                  "shadowColor": "#000000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
+                  "width": 32,
+                },
+                null,
+              ]
+            }
+            testID="article-play-button"
+          >
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#000",
+                    "fontSize": 11,
+                  },
+                  Object {
+                    "marginLeft": 2,
+                  },
+                  Object {
+                    "fontFamily": "FontAwesome5Free-Solid",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {
+                    "fontWeight": "900",
+                  },
+                ]
+              }
+              testID="article-icon-play"
+            >
+              
+            </Text>
+          </View>
+        </View>
+      </View>
+      <Text
+        style={
+          Object {
+            "color": "#AAAAAA",
+            "fontSize": 12,
+            "fontWeight": "300",
+            "marginTop": 6,
+            "textAlign": "center",
+          }
+        }
+        testID="article-duration"
+      >
+        ? min.
+      </Text>
+    </View>
   </View>
 </View>
 `;
@@ -1562,211 +1597,18 @@ exports[`Article playing rendering should render playing correctly 1`] = `
     Array [
       Object {
         "backgroundColor": "#ffffff",
-        "flex": 1,
-        "flexDirection": "row",
         "padding": 16,
-        "width": "100%",
       },
       null,
     ]
   }
 >
   <View
-    accessible={true}
-    isTVSelectable={true}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
     style={
       Object {
         "flex": 1,
-        "flexDirection": "column",
-        "opacity": 1,
-      }
-    }
-  >
-    <View
-      style={
-        Object {
-          "alignItems": "baseline",
-          "flexDirection": "row",
-          "height": 14,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "flexBasis": "auto",
-            "flexGrow": 1,
-            "flexShrink": 1,
-          }
-        }
-      >
-        <Text
-          ellipsizeMode="tail"
-          numberOfLines={1}
-          style={
-            Object {
-              "color": "#AAAAAA",
-              "fontSize": 12,
-              "fontWeight": "300",
-              "paddingRight": 0,
-            }
-          }
-          testID="article-source-name"
-        >
-          www.google.nl
-        </Text>
-      </View>
-    </View>
-    <View
-      style={
-        Object {
-          "flex": 1,
-          "flexBasis": "auto",
-          "flexGrow": 0,
-          "marginBottom": 6,
-          "marginTop": 6,
-        }
-      }
-    >
-      <Text
-        ellipsizeMode="tail"
-        numberOfLines={3}
-        style={
-          Object {
-            "color": "#000000",
-            "fontSize": 17,
-            "fontWeight": "600",
-            "lineHeight": 21,
-          }
-        }
-        testID="article-title"
-      />
-    </View>
-    <View
-      style={
-        Object {
-          "alignItems": "baseline",
-          "flex": 1,
-          "flexBasis": "auto",
-          "flexDirection": "row",
-          "flexGrow": 0,
-          "flexShrink": 1,
-          "height": 14,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "flexDirection": "row",
-            "width": 35,
-          }
-        }
-      >
-        <Text
-          allowFontScaling={false}
-          style={
-            Array [
-              Object {
-                "color": "#ddd",
-                "fontSize": 8,
-              },
-              Object {
-                "marginRight": 4,
-              },
-              Object {
-                "fontFamily": "FontAwesome5Free-Solid",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-              Object {
-                "fontWeight": "900",
-              },
-            ]
-          }
-          testID="article-icon-playable"
-        >
-          
-        </Text>
-        <Text
-          allowFontScaling={false}
-          style={
-            Array [
-              Object {
-                "color": "#ddd",
-                "fontSize": 8,
-              },
-              Object {
-                "marginRight": 4,
-              },
-              Object {
-                "fontFamily": "FontAwesome5Free-Solid",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-              Object {
-                "fontWeight": "900",
-              },
-            ]
-          }
-          testID="article-icon-downloaded"
-        >
-          
-        </Text>
-        <Text
-          allowFontScaling={false}
-          style={
-            Array [
-              Object {
-                "color": "#ddd",
-                "fontSize": 8,
-              },
-              Object {
-                "marginRight": 4,
-              },
-              Object {
-                "fontFamily": "FontAwesome5Free-Solid",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-              Object {
-                "fontWeight": "900",
-              },
-            ]
-          }
-          testID="article-icon-favorited"
-        >
-          
-        </Text>
-      </View>
-      <Text
-        style={
-          Object {
-            "color": "#AAAAAA",
-            "fontSize": 12,
-            "fontWeight": "300",
-            "paddingLeft": 2,
-          }
-        }
-      >
-        Added 
-        less than a minute
-         ago
-      </Text>
-    </View>
-  </View>
-  <View
-    style={
-      Object {
-        "marginLeft": 16,
-        "marginTop": 4,
-        "width": 75,
+        "flexDirection": "row",
+        "width": "100%",
       }
     }
   >
@@ -1781,60 +1623,104 @@ exports[`Article playing rendering should render playing correctly 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "alignItems": "center",
-          "backgroundColor": "#C5C5C5",
-          "borderRadius": 4,
-          "height": 75,
-          "justifyContent": "center",
+          "flex": 1,
+          "flexDirection": "column",
           "opacity": 1,
-          "width": 75,
         }
       }
     >
       <View
         style={
           Object {
-            "height": 32,
-            "position": "absolute",
-            "width": 32,
+            "alignItems": "baseline",
+            "flexDirection": "row",
+            "height": 14,
           }
         }
       >
         <View
           style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#ffffff",
-                "borderRadius": 32,
-                "elevation": 1,
-                "height": 32,
-                "justifyContent": "center",
-                "shadowColor": "#000000",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.2,
-                "shadowRadius": 1,
-                "width": 32,
-              },
-              Object {
-                "backgroundColor": "#037DE2",
-              },
-            ]
+            Object {
+              "flexBasis": "auto",
+              "flexGrow": 1,
+              "flexShrink": 1,
+            }
           }
-          testID="article-play-button"
+        >
+          <Text
+            ellipsizeMode="tail"
+            numberOfLines={1}
+            style={
+              Object {
+                "color": "#AAAAAA",
+                "fontSize": 12,
+                "fontWeight": "300",
+                "paddingRight": 0,
+              }
+            }
+            testID="article-source-name"
+          >
+            www.google.nl
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexBasis": "auto",
+            "flexGrow": 0,
+            "marginBottom": 6,
+            "marginTop": 6,
+          }
+        }
+      >
+        <Text
+          ellipsizeMode="tail"
+          numberOfLines={3}
+          style={
+            Object {
+              "color": "#000000",
+              "fontSize": 17,
+              "fontWeight": "600",
+              "lineHeight": 21,
+            }
+          }
+          testID="article-title"
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "baseline",
+            "flex": 1,
+            "flexBasis": "auto",
+            "flexDirection": "row",
+            "flexGrow": 0,
+            "flexShrink": 1,
+            "height": 14,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "width": 35,
+            }
+          }
         >
           <Text
             allowFontScaling={false}
             style={
               Array [
                 Object {
-                  "color": "#fff",
-                  "fontSize": 11,
+                  "color": "#ddd",
+                  "fontSize": 8,
                 },
-                undefined,
+                Object {
+                  "marginRight": 4,
+                },
                 Object {
                   "fontFamily": "FontAwesome5Free-Solid",
                   "fontStyle": "normal",
@@ -1845,27 +1731,183 @@ exports[`Article playing rendering should render playing correctly 1`] = `
                 },
               ]
             }
-            testID="article-icon-pause"
+            testID="article-icon-playable"
           >
-            
+            
+          </Text>
+          <Text
+            allowFontScaling={false}
+            style={
+              Array [
+                Object {
+                  "color": "#ddd",
+                  "fontSize": 8,
+                },
+                Object {
+                  "marginRight": 4,
+                },
+                Object {
+                  "fontFamily": "FontAwesome5Free-Solid",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {
+                  "fontWeight": "900",
+                },
+              ]
+            }
+            testID="article-icon-downloaded"
+          >
+            
+          </Text>
+          <Text
+            allowFontScaling={false}
+            style={
+              Array [
+                Object {
+                  "color": "#ddd",
+                  "fontSize": 8,
+                },
+                Object {
+                  "marginRight": 4,
+                },
+                Object {
+                  "fontFamily": "FontAwesome5Free-Solid",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {
+                  "fontWeight": "900",
+                },
+              ]
+            }
+            testID="article-icon-favorited"
+          >
+            
           </Text>
         </View>
+        <Text
+          style={
+            Object {
+              "color": "#AAAAAA",
+              "fontSize": 12,
+              "fontWeight": "300",
+              "paddingLeft": 2,
+            }
+          }
+        >
+          Added 
+          less than a minute
+           ago
+        </Text>
       </View>
     </View>
-    <Text
+    <View
       style={
         Object {
-          "color": "#AAAAAA",
-          "fontSize": 12,
-          "fontWeight": "300",
-          "marginTop": 6,
-          "textAlign": "center",
+          "marginLeft": 16,
+          "marginTop": 4,
+          "width": 75,
         }
       }
-      testID="article-duration"
     >
-      ? min.
-    </Text>
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#C5C5C5",
+            "borderRadius": 4,
+            "height": 75,
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": 75,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "height": 32,
+              "position": "absolute",
+              "width": 32,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#ffffff",
+                  "borderRadius": 32,
+                  "elevation": 1,
+                  "height": 32,
+                  "justifyContent": "center",
+                  "shadowColor": "#000000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
+                  "width": 32,
+                },
+                Object {
+                  "backgroundColor": "#037DE2",
+                },
+              ]
+            }
+            testID="article-play-button"
+          >
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#fff",
+                    "fontSize": 11,
+                  },
+                  undefined,
+                  Object {
+                    "fontFamily": "FontAwesome5Free-Solid",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {
+                    "fontWeight": "900",
+                  },
+                ]
+              }
+              testID="article-icon-pause"
+            >
+              
+            </Text>
+          </View>
+        </View>
+      </View>
+      <Text
+        style={
+          Object {
+            "color": "#AAAAAA",
+            "fontSize": 12,
+            "fontWeight": "300",
+            "marginTop": 6,
+            "textAlign": "center",
+          }
+        }
+        testID="article-duration"
+      >
+        ? min.
+      </Text>
+    </View>
   </View>
 </View>
 `;

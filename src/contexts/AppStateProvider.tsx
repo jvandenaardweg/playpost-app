@@ -6,13 +6,13 @@ import { RootState } from '../reducers';
 import { getPlaylist } from '../reducers/playlist';
 
 import { ALERT_SUBSCRIPTION_EXPIRED } from '../constants/messages';
+import { setAuthToken } from '../reducers/auth';
 import { validateSubscriptionReceipt } from '../reducers/subscriptions';
 import { getUser } from '../reducers/user';
 import { selectAuthenticationStatus, selectAuthenticationToken } from '../selectors/auth';
 import { selectActiveSubscriptionProductId, selectIsSubscribed, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
-import * as keychain from '../utils/keychain';
 import { store } from '../store';
-import { setAuthToken } from '../reducers/auth';
+import * as keychain from '../utils/keychain';
 // import { ALERT_SUBSCRIPTION_EXPIRED } from '../constants/messages';
 
 export const AppStateContext = React.createContext<{ appState: AppStateStatus; stateChanged: boolean; isSubscribed: boolean }>({

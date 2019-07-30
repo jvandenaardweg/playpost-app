@@ -103,7 +103,6 @@ declare namespace Api {
     readingTime: number | null;
     canonicalUrl: string | null;
     status: ArticleStatus<string>;
-    isPublic: boolean | null;
     documentHtml?: string; // optional
     audiofiles: Audiofile[];
     language: Language;

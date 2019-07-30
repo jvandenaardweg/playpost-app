@@ -19,6 +19,7 @@ describe('Article', () => {
           onPressOut={onPressOutHandler}
           url="https://www.google.nl"
           playlistItemCreatedAt={new Date()}
+          isCompatible
         />
       );
     });
@@ -51,6 +52,7 @@ describe('Article', () => {
           url="https://www.google.nl"
           playlistItemCreatedAt={new Date()}
           isLoading
+          isCompatible
         />);
     });
 
@@ -74,6 +76,7 @@ describe('Article', () => {
           url="https://www.google.nl"
           playlistItemCreatedAt={new Date()}
           isActive
+          isCompatible
         />);
     });
 
@@ -98,6 +101,7 @@ describe('Article', () => {
           playlistItemCreatedAt={new Date()}
           isPlaying
           isActive
+          isCompatible
         />);
     });
 
@@ -121,6 +125,7 @@ describe('Article', () => {
           url="https://www.google.nl"
           playlistItemCreatedAt={new Date()}
           isDownloaded
+          isCompatible
         />);
     });
 
@@ -149,6 +154,7 @@ describe('Article', () => {
           authorName="Jordy"
           listenTimeInSeconds={120}
           readingTime={140}
+          isCompatible
         />);
     });
 
