@@ -1,3 +1,4 @@
+import Analytics from 'appcenter-analytics';
 import React from 'react';
 import { NavigationRoute, NavigationScreenOptions, NavigationScreenProp } from 'react-navigation';
 
@@ -15,7 +16,10 @@ export class ContentViewScreen extends React.PureComponent<Props> {
     };
   }
 
-  handleOnPressSupport = () => this.props.navigation.navigate('Browser', { url: URL_FEEDBACK, title: 'Support' })
+  handleOnPressSupport = () => {
+    Analytics.trackEvent('ContentView Support Pressed');
+    this.props.navigation.navigate('Browser', { url: URL_FEEDBACK, title: 'Support' });
+  }
 
   render() {
     return (

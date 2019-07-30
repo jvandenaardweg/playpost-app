@@ -1,3 +1,4 @@
+import Analytics from 'appcenter-analytics';
 import React from 'react';
 import isEqual from 'react-fast-compare';
 import { Alert } from 'react-native';
@@ -525,6 +526,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   handleOnPressArticleIncompatible = () => {
+    Analytics.trackEvent('Article Press Incompatible');
     return this.props.navigation.navigate('ContentView');
   }
 

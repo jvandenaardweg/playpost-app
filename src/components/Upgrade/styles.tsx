@@ -110,8 +110,6 @@ export default StyleSheet.create({
     padding: spacing.default,
     alignItems: 'center',
     borderRadius: 6,
-    borderWidth: 1,
-    borderColor: colors.grayLight,
     backgroundColor: colors.white,
     shadowColor: '#000',
     shadowOffset: {

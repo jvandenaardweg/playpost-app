@@ -17,6 +17,7 @@ import { SettingsVoicesScreen } from '../screens/settings/VoicesScreen';
 
 import { ButtonVoices } from '../components/ButtonVoices';
 import { ButtonUpgradeContainer } from '../containers/ButtonUpgradeContainer';
+import colors from '../constants/colors';
 
 const PlaylistStack: StackNavigatorConfig = createStackNavigator(
   {
@@ -28,6 +29,9 @@ const PlaylistStack: StackNavigatorConfig = createStackNavigator(
     headerTransitionPreset: 'uikit',
     defaultNavigationOptions: ({ navigation }) => ({
       headerRight: <ButtonUpgradeContainer />,
+      headerStyle: {
+        borderBottomColor: colors.borderDefault
+      }
     }),
     navigationOptions: {
       tabBarLabel: 'Playlist',
@@ -51,7 +55,10 @@ const ArchiveStack: StackNavigatorConfig = createStackNavigator(
     defaultNavigationOptions: ({ navigation }) => ({
       title: 'Archive',
       headerRight: <ButtonUpgradeContainer />,
-      headerLeft: <ButtonVoices onPress={() => navigation.navigate('ModalLanguages')} />
+      headerLeft: <ButtonVoices onPress={() => navigation.navigate('ModalLanguages')} />,
+      headerStyle: {
+        borderBottomColor: colors.borderDefault
+      }
     }),
     navigationOptions: {
       tabBarLabel: 'Archive',
@@ -75,7 +82,10 @@ const FavoritesStack: StackNavigatorConfig = createStackNavigator(
     defaultNavigationOptions: ({ navigation }) => ({
       title: 'Favorites',
       headerRight: <ButtonUpgradeContainer />,
-      headerLeft: <ButtonVoices onPress={() => navigation.navigate('ModalLanguages')} />
+      headerLeft: <ButtonVoices onPress={() => navigation.navigate('ModalLanguages')} />,
+      headerStyle: {
+        borderBottomColor: colors.borderDefault
+      }
     }),
     navigationOptions: {
       tabBarLabel: 'Favorites',
@@ -103,7 +113,10 @@ const SettingsStack: StackNavigatorConfig = createStackNavigator(
     headerTransitionPreset: 'uikit',
     defaultNavigationOptions: ({ navigation }) => ({
       title: 'Settings',
-      headerRight: <ButtonUpgradeContainer />
+      headerRight: <ButtonUpgradeContainer />,
+      headerStyle: {
+        borderBottomColor: colors.borderDefault
+      }
     }),
     navigationOptions: ({ navigation }) => ({
       tabBarLabel: 'Settings',

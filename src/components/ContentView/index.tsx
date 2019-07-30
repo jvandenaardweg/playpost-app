@@ -7,6 +7,8 @@ import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
 import spacing from '../../constants/spacing';
 
+import styles from './styles';
+
 interface Props {
   onPressSupport(): void;
 }
@@ -17,7 +19,6 @@ export class ContentView extends React.PureComponent<Props> {
       <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width">
-        <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i|PT+Serif:400,400i,700,700i" rel="stylesheet">
         <style type="text/css">
           html {
             box-sizing: border-box;
@@ -29,8 +30,8 @@ export class ContentView extends React.PureComponent<Props> {
           body {
             padding: 0 !important;
             margin: 0 !important;
-            font-size: ${Math.ceil(fonts.fontSize.body * 1.1)}px;
-            font-family: 'PT Serif', serif;
+            font-size: ${fonts.fontSize.body}px;
+            font-family: 'SF Pro Text', 'Roboto', 'Helvetica', serif;
             line-height: 1.5;
             color: ${colors.black};
             font-weight: normal;
@@ -43,7 +44,7 @@ export class ContentView extends React.PureComponent<Props> {
             margin-top: 0;
             margin-bottom: ${spacing.tiny}px;
             color: ${colors.black};
-            font-family: 'PT Sans', sans-serif;
+            font-family: 'SF Pro Display', 'Roboto', 'Helvetica', serif;
           }
 
           h1 {
@@ -53,14 +54,14 @@ export class ContentView extends React.PureComponent<Props> {
           }
 
           h2 {
-            margin-top: ${spacing.large}px;
+            margin-top: 46px;
             font-size: ${fonts.fontSize.headline}px;
           }
 
           h3, h4 {
             margin-top: ${spacing.large}px;
             font-size: ${fonts.fontSize.titleMedium}px;
-            font-weight: 600;
+            font-weight: bold;
           }
 
           h5, h6, h7, h8 {
@@ -188,17 +189,16 @@ export class ContentView extends React.PureComponent<Props> {
 
   render() {
     return (
-      <SafeAreaView style={{ flex: 1}}>
+      <SafeAreaView style={styles.container}>
         <WebView
           source={{ html: this.getHtmlDocument() }}
-          startInLoadingState={true}
           useWebKit
           originWhitelist={['*']}
           javaScriptEnabled={false}
           bounces
           decelerationRate="normal"
         />
-        <View style={{ paddingLeft: spacing.default, paddingRight: spacing.default }}>
+        <View style={styles.footer}>
           <Button title="Contact support" onPress={this.props.onPressSupport} />
         </View>
       </SafeAreaView>

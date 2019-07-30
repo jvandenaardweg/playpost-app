@@ -20,6 +20,7 @@ import { SignupScreen } from '../screens/onboarding/SignupScreen';
 import { SettingsLanguagesScreen } from '../screens/settings/LanguagesScreen';
 import { SettingsVoicesScreen } from '../screens/settings/VoicesScreen';
 import { SignupSuccessScreen } from '../screens/SignupSuccessScreen';
+import colors from '../constants/colors';
 
 const customCreateSwitchNavigator = Platform.select({
   // Because "createAnimatedSwitchNavigator" crashes on Android
@@ -38,7 +39,10 @@ const LoginStack = createStackNavigator(
     initialRouteName: 'login',
     headerMode: 'screen',
     defaultNavigationOptions: ({ navigation }) => ({
-      headerRight: <ButtonClose onPress={() => navigation.navigate('Onboarding')} />
+      headerRight: <ButtonClose onPress={() => navigation.navigate('Onboarding')} />,
+      headerStyle: {
+        borderBottomColor: colors.borderDefault
+      }
     })
   }
 );
@@ -51,7 +55,10 @@ const SignupStack = createStackNavigator(
     initialRouteName: 'Signup',
     headerMode: 'screen',
     defaultNavigationOptions: ({ navigation }) => ({
-      headerRight: <ButtonClose onPress={() => navigation.navigate('Onboarding')} />
+      headerRight: <ButtonClose onPress={() => navigation.navigate('Onboarding')} />,
+      headerStyle: {
+        borderBottomColor: colors.borderDefault
+      }
     })
   }
 );
@@ -81,7 +88,10 @@ export const AppNavigator: NavigationContainer = createAppContainer(
               headerMode: 'float',
               headerTransitionPreset: 'uikit',
               defaultNavigationOptions: ({ navigation }) => ({
-                headerRight: <ButtonClose onPress={() => navigation.dismiss()} />
+                headerRight: <ButtonClose onPress={() => navigation.dismiss()} />,
+                headerStyle: {
+                  borderBottomColor: colors.borderDefault
+                }
               })
             }
           ),
@@ -98,7 +108,10 @@ export const AppNavigator: NavigationContainer = createAppContainer(
                 headerRight: <ButtonClose onPress={() => {
                   navigation.popToTop()
                   navigation.dismiss()
-                }} />
+                }} />,
+                headerStyle: {
+                  borderBottomColor: colors.borderDefault
+                }
               })
             }
           )

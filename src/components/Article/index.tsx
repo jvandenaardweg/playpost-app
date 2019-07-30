@@ -116,14 +116,14 @@ export const Article: React.FC<Props> = React.memo(
         </View>
       </View>
       {!isCompatible && (
-        <View style={styles.warningContainer}>
+        <TouchableOpacity style={styles.warningContainer} activeOpacity={0.5} onPress={onPressArticleIncompatible}>
           <View style={styles.warningText}>
             <Text>This article</Text>
             <Text style={styles.warningHighlight}>{' '}might{' '}</Text>
             <Text>not be compatible for listening.</Text>
           </View>
-          <Text style={styles.warningLink} onPress={onPressArticleIncompatible}>Learn more</Text>
-        </View>
+          <Text style={styles.warningLink}>Learn more</Text>
+        </TouchableOpacity>
       )}
     </View>
 ));

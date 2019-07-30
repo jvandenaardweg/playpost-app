@@ -42,9 +42,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "#ffffff",
-                  "borderColor": "#e5e5e5",
                   "borderRadius": 6,
-                  "borderWidth": 1,
                   "elevation": 3,
                   "padding": 16,
                   "shadowColor": "#000",
@@ -312,9 +310,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "#ffffff",
-                  "borderColor": "#e5e5e5",
                   "borderRadius": 6,
-                  "borderWidth": 1,
                   "elevation": 3,
                   "padding": 16,
                   "shadowColor": "#000",
@@ -582,9 +578,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "#ffffff",
-                  "borderColor": "#e5e5e5",
                   "borderRadius": 6,
-                  "borderWidth": 1,
                   "elevation": 3,
                   "padding": 16,
                   "shadowColor": "#000",
