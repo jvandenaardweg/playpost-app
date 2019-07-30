@@ -33,7 +33,7 @@ interface Props {
   onOpenUrl(): void;
   onLongPress?(): void;
   onPressOut?(): void;
-  onPressArticleIncompatible?(): void;
+  onPressArticleIncompatible(): void;
 }
 
 export const Article: React.FC<Props> = React.memo(
@@ -64,14 +64,14 @@ export const Article: React.FC<Props> = React.memo(
   }) => (
     <View style={[styles.container, isMoving ? styles.isMoving : null]}>
       <View style={styles.wrapper}>
-        <TouchableOpacity style={styles.sectionBody} activeOpacity={1} onPress={onOpenUrl} onLongPress={onLongPress} onPressOut={onPressOut}>
+        <TouchableOpacity testID="Article-Button-section" style={styles.sectionBody} activeOpacity={1} onPress={onOpenUrl} onLongPress={onLongPress} onPressOut={onPressOut}>
           <View style={styles.bodyMeta}>
             <View style={styles.bodyMetaSource}>
               <SourceText authorName={authorName} sourceName={sourceName} url={url} />
             </View>
           </View>
           <View style={styles.bodyTitle}>
-            <Text style={styles.bodyTitleText} testID="article-title" ellipsizeMode="tail" numberOfLines={3}>
+            <Text style={styles.bodyTitleText} testID="Article-title" ellipsizeMode="tail" numberOfLines={3}>
               {title}
             </Text>
           </View>
@@ -83,7 +83,7 @@ export const Article: React.FC<Props> = React.memo(
                 solid
                 style={styles.bodySourceIcon}
                 color={hasAudiofile ? colors.green : '#ddd'}
-                testID="article-icon-playable"
+                testID="Article-PlayIcon-Icon-playable"
               />
               <Icon.FontAwesome5
                 name="arrow-alt-circle-down"
@@ -91,7 +91,7 @@ export const Article: React.FC<Props> = React.memo(
                 solid
                 style={styles.bodySourceIcon}
                 color={isDownloaded ? colors.green : '#ddd'}
-                testID="article-icon-downloaded"
+                testID="Article-icon-downloaded"
               />
               <Icon.FontAwesome5
                 name="heart"
@@ -99,14 +99,14 @@ export const Article: React.FC<Props> = React.memo(
                 solid
                 style={styles.bodySourceIcon}
                 color={isFavorited ? colors.favorite : '#ddd'}
-                testID="article-icon-favorited"
+                testID="Article-icon-favorited"
               />
             </View>
             <Text style={styles.bodyFooterText}>Added {dateFns.distanceInWords(new Date(), playlistItemCreatedAt)} ago</Text>
           </View>
         </TouchableOpacity>
         <View style={styles.sectionControl}>
-          <TouchableOpacity style={styles.imageContainer} onPress={onPlayPress} activeOpacity={1} disabled={isLoading}>
+          <TouchableOpacity testID="Article-Button-play" style={styles.imageContainer} onPress={onPlayPress} activeOpacity={1} disabled={isLoading}>
             {imageUrl && <Image style={styles.image} source={{ uri: imageUrl }} placeholderStyle={styles.imagePlaceholder} />}
             <View style={styles.playButtonContainer}>
               <PlayIcon isLoading={isLoading} isPlaying={isPlaying} isActive={isActive} />
@@ -116,7 +116,7 @@ export const Article: React.FC<Props> = React.memo(
         </View>
       </View>
       {!isCompatible && (
-        <TouchableOpacity style={styles.warningContainer} activeOpacity={0.5} onPress={onPressArticleIncompatible}>
+        <TouchableOpacity testID="Article-Button-incompatibility-warning" style={styles.warningContainer} activeOpacity={0.5} onPress={onPressArticleIncompatible}>
           <View style={styles.warningText}>
             <Text>This article</Text>
             <Text style={styles.warningHighlight}>{' '}might{' '}</Text>
@@ -144,7 +144,7 @@ const SourceText: React.FC<SourceTextProps> = React.memo((props: SourceTextProps
   }
 
   return (
-    <Text style={styles.bodySourceText} ellipsizeMode="tail" numberOfLines={1} testID="article-source-name">
+    <Text style={styles.bodySourceText} ellipsizeMode="tail" numberOfLines={1} testID="Article-source-name">
       {text}
     </Text>
   );
@@ -161,15 +161,15 @@ const Duration: React.FC<DurationProps> = React.memo((props: DurationProps) => {
   const readingTimeToListenTimeMargin = 1.1;
 
   if (props.listenTimeInSeconds) {
-    return <Text style={styles.duration} testID="article-duration">{`${Math.ceil(props.listenTimeInSeconds / 60)} min.`}</Text>;
+    return <Text style={styles.duration} testID="Article-duration">{`${Math.ceil(props.listenTimeInSeconds / 60)} min.`}</Text>;
   }
 
   if (props.readingTime) {
-    return <Text style={styles.duration} testID="article-duration">{`${Math.ceil((props.readingTime * readingTimeToListenTimeMargin) / 60)} min.`}</Text>;
+    return <Text style={styles.duration} testID="Article-duration">{`${Math.ceil((props.readingTime * readingTimeToListenTimeMargin) / 60)} min.`}</Text>;
   }
 
   return (
-    <Text style={styles.duration} testID="article-duration">
+    <Text style={styles.duration} testID="Article-duration">
       ? min.
     </Text>
   );
@@ -182,19 +182,19 @@ interface PlayIconProps {
 }
 
 const PlayIcon: React.FC<PlayIconProps> = React.memo((props: PlayIconProps) => (
-  <View style={[styles.controlButton, props.isPlaying || props.isActive ? styles.controlButtonActive : null]} testID="article-play-button">
-    {props.isLoading && <ActivityIndicator testID="article-activity-indicator" size="small" color={props.isPlaying || props.isActive ? '#fff' : '#000'} />}
+  <View style={[styles.controlButton, props.isPlaying || props.isActive ? styles.controlButtonActive : null]} testID="Article-PlayIcon-view">
+    {props.isLoading && <ActivityIndicator testID="Article-PlayIcon-ActivityIndicator" size="small" color={props.isPlaying || props.isActive ? '#fff' : '#000'} />}
     {!props.isLoading && !props.isPlaying && (
       <Icon.FontAwesome5
         name="play"
         size={11}
         color={props.isPlaying || props.isActive ? '#fff' : '#000'}
-        testID="article-icon-play"
+        testID="Article-PlayIcon-Icon-play"
         style={{ marginLeft: 2 }}
       />
     )}
     {!props.isLoading && props.isPlaying && (
-      <Icon.FontAwesome5 name="pause" size={11} color={props.isPlaying || props.isActive ? '#fff' : '#000'} testID="article-icon-pause" />
+      <Icon.FontAwesome5 name="pause" size={11} color={props.isPlaying || props.isActive ? '#fff' : '#000'} testID="Article-PlayIcon-Icon-pause" />
     )}
   </View>
 ));
