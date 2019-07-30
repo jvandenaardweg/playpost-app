@@ -107,6 +107,8 @@ declare namespace Api {
     documentHtml?: string; // optional
     audiofiles: Audiofile[];
     language: Language;
+    isCompatible: boolean;
+    compatibilityMessage: string | null;
   }
 
   export interface User {

@@ -32,6 +32,8 @@ interface Props {
   onOpenUrl(): void;
   onLongPress?(): void;
   onPressOut?(): void;
+  onPressArticleIncompatible?(): void;
+  isCompatible: boolean;
 }
 
 export const Article: React.FC<Props> = React.memo(
@@ -56,59 +58,73 @@ export const Article: React.FC<Props> = React.memo(
     onPlayPress,
     onOpenUrl,
     onLongPress,
-    onPressOut
+    onPressOut,
+    onPressArticleIncompatible,
+    isCompatible
   }) => (
     <View style={[styles.container, isMoving ? styles.isMoving : null]}>
-      <TouchableOpacity style={styles.sectionBody} activeOpacity={1} onPress={onOpenUrl} onLongPress={onLongPress} onPressOut={onPressOut}>
-        <View style={styles.bodyMeta}>
-          <View style={styles.bodyMetaSource}>
-            <SourceText authorName={authorName} sourceName={sourceName} url={url} />
+      <View style={styles.wrapper}>
+        <TouchableOpacity style={styles.sectionBody} activeOpacity={1} onPress={onOpenUrl} onLongPress={onLongPress} onPressOut={onPressOut}>
+          <View style={styles.bodyMeta}>
+            <View style={styles.bodyMetaSource}>
+              <SourceText authorName={authorName} sourceName={sourceName} url={url} />
+            </View>
           </View>
-        </View>
-        <View style={styles.bodyTitle}>
-          <Text style={styles.bodyTitleText} testID="article-title" ellipsizeMode="tail" numberOfLines={3}>
-            {title}
-          </Text>
-        </View>
-        <View style={styles.bodyFooter}>
-          <View style={styles.bodyFooterIcons}>
-            <Icon.FontAwesome5
-              name="circle"
-              size={8}
-              solid
-              style={styles.bodySourceIcon}
-              color={hasAudiofile ? colors.green : '#ddd'}
-              testID="article-icon-playable"
-            />
-            <Icon.FontAwesome5
-              name="arrow-alt-circle-down"
-              size={8}
-              solid
-              style={styles.bodySourceIcon}
-              color={isDownloaded ? colors.green : '#ddd'}
-              testID="article-icon-downloaded"
-            />
-            <Icon.FontAwesome5
-              name="heart"
-              size={8}
-              solid
-              style={styles.bodySourceIcon}
-              color={isFavorited ? colors.favorite : '#ddd'}
-              testID="article-icon-favorited"
-            />
+          <View style={styles.bodyTitle}>
+            <Text style={styles.bodyTitleText} testID="article-title" ellipsizeMode="tail" numberOfLines={3}>
+              {title}
+            </Text>
           </View>
-          <Text style={styles.bodyFooterText}>Added {dateFns.distanceInWords(new Date(), playlistItemCreatedAt)} ago</Text>
-        </View>
-      </TouchableOpacity>
-      <View style={styles.sectionControl}>
-        <TouchableOpacity style={styles.imageContainer} onPress={onPlayPress} activeOpacity={1} disabled={isLoading}>
-          {imageUrl && <Image style={styles.image} source={{ uri: imageUrl }} placeholderStyle={styles.imagePlaceholder} />}
-          <View style={styles.playButtonContainer}>
-            <PlayIcon isLoading={isLoading} isPlaying={isPlaying} isActive={isActive} />
+          <View style={styles.bodyFooter}>
+            <View style={styles.bodyFooterIcons}>
+              <Icon.FontAwesome5
+                name="circle"
+                size={8}
+                solid
+                style={styles.bodySourceIcon}
+                color={hasAudiofile ? colors.green : '#ddd'}
+                testID="article-icon-playable"
+              />
+              <Icon.FontAwesome5
+                name="arrow-alt-circle-down"
+                size={8}
+                solid
+                style={styles.bodySourceIcon}
+                color={isDownloaded ? colors.green : '#ddd'}
+                testID="article-icon-downloaded"
+              />
+              <Icon.FontAwesome5
+                name="heart"
+                size={8}
+                solid
+                style={styles.bodySourceIcon}
+                color={isFavorited ? colors.favorite : '#ddd'}
+                testID="article-icon-favorited"
+              />
+            </View>
+            <Text style={styles.bodyFooterText}>Added {dateFns.distanceInWords(new Date(), playlistItemCreatedAt)} ago</Text>
           </View>
         </TouchableOpacity>
-        <Duration listenTimeInSeconds={listenTimeInSeconds} readingTime={readingTime} />
+        <View style={styles.sectionControl}>
+          <TouchableOpacity style={styles.imageContainer} onPress={onPlayPress} activeOpacity={1} disabled={isLoading}>
+            {imageUrl && <Image style={styles.image} source={{ uri: imageUrl }} placeholderStyle={styles.imagePlaceholder} />}
+            <View style={styles.playButtonContainer}>
+              <PlayIcon isLoading={isLoading} isPlaying={isPlaying} isActive={isActive} />
+            </View>
+          </TouchableOpacity>
+          <Duration listenTimeInSeconds={listenTimeInSeconds} readingTime={readingTime} />
+        </View>
       </View>
+      {!isCompatible && (
+        <View style={styles.warningContainer}>
+          <View style={styles.warningText}>
+            <Text>This article</Text>
+            <Text style={styles.warningHighlight}>{' '}might{' '}</Text>
+            <Text>not be compatible for listening.</Text>
+          </View>
+          <Text style={styles.warningLink} onPress={onPressArticleIncompatible}>Learn more</Text>
+        </View>
+      )}
     </View>
 ));
 

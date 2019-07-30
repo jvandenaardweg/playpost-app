@@ -6,11 +6,13 @@ import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: colors.articleBackground,
     padding: spacing.default,
+  },
+  wrapper: {
+    flex: 1,
+    flexDirection: 'row',
     width: '100%',
-    flexDirection: 'row'
   },
   isMoving: {
     backgroundColor: colors.appBackground
@@ -137,5 +139,24 @@ export default StyleSheet.create({
   },
   imagePlaceholder: {
     backgroundColor: colors.grayLight
+  },
+  warningContainer: {
+    backgroundColor: colors.orangeDark,
+    padding: spacing.small,
+    borderRadius: 6,
+    marginTop: spacing.default,
+  },
+  warningHighlight: {
+    fontStyle: 'italic',
+    fontWeight: fonts.fontWeight.semibold
+  },
+  warningText: {
+    flex: 1,
+    flexDirection: 'row'
+  },
+  warningLink: {
+    textDecorationStyle: 'solid',
+    textDecorationLine: 'underline',
+    marginTop: 4
   }
 });

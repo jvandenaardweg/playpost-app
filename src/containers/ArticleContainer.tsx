@@ -524,6 +524,12 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     });
   }
 
+  handleOnPressArticleIncompatible = () => {
+    const { article } = this.props;
+
+    return this.props.navigation.navigate('ArticleIncompatible', { article });
+  }
+
   render(): JSX.Element {
     const { isCreatingAudiofile, isDownloadingAudiofile, isLoading, isPlaying, isActive } = this.state;
     const { article, isFavorited, isArchived, isMoving, onLongPress, onPressOut, playlistItem } = this.props;
@@ -572,6 +578,8 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
             onOpenUrl={this.handleOnOpenUrl}
             onLongPress={onLongPress}
             onPressOut={onPressOut}
+            onPressArticleIncompatible={this.handleOnPressArticleIncompatible}
+            isCompatible={article.isCompatible}
           />
         )}
       </SwipeableRow>
