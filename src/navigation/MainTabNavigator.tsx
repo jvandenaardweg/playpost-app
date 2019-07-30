@@ -16,8 +16,8 @@ import { UpdatePasswordScreen } from '../screens/settings/UpdatePasswordScreen';
 import { SettingsVoicesScreen } from '../screens/settings/VoicesScreen';
 
 import { ButtonVoices } from '../components/ButtonVoices';
-import { ButtonUpgradeContainer } from '../containers/ButtonUpgradeContainer';
 import colors from '../constants/colors';
+import { ButtonUpgradeContainer } from '../containers/ButtonUpgradeContainer';
 
 const PlaylistStack: StackNavigatorConfig = createStackNavigator(
   {

@@ -8,6 +8,7 @@ import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
 import { MainTabNavigator } from './MainTabNavigator';
 
 import { ButtonClose } from '../components/ButtonClose';
+import colors from '../constants/colors';
 import { AuthLoadingScreen } from '../screens/AuthLoadingScreen';
 import { LoginForgotPasswordScreen } from '../screens/login/LoginForgotPasswordScreen';
 import { LoginResetPasswordScreen } from '../screens/login/LoginResetPasswordScreen';
@@ -20,7 +21,6 @@ import { SignupScreen } from '../screens/onboarding/SignupScreen';
 import { SettingsLanguagesScreen } from '../screens/settings/LanguagesScreen';
 import { SettingsVoicesScreen } from '../screens/settings/VoicesScreen';
 import { SignupSuccessScreen } from '../screens/SignupSuccessScreen';
-import colors from '../constants/colors';
 
 const customCreateSwitchNavigator = Platform.select({
   // Because "createAnimatedSwitchNavigator" crashes on Android
