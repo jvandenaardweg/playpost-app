@@ -1,19 +1,15 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import NetInfo from '@react-native-community/netinfo';
 import React from 'react';
-import { Platform } from 'react-native';
 import RNFS from 'react-native-fs';
-import * as Keychain from 'react-native-keychain';
 import { NavigationRoute, NavigationScreenProp } from 'react-navigation';
 
-import { persistor } from '../store';
+import { persistor, store } from '../store';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
+import { setAuthToken } from '../reducers/auth';
+import * as keychain from '../utils/keychain';
 
-export const keychainArguments = Platform.select({
-  ios: { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' },
-  android: { service: 'com.aardwegmedia.playpost' }
-});
 
 interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;
@@ -33,7 +29,7 @@ export class AuthLoadingScreen extends React.PureComponent<Props> {
 
     if (!hasRunBefore) {
       // Delete any API token we had from a previous install
-      await Keychain.resetGenericPassword(keychainArguments);
+      await keychain.resetToken()
 
       // Reset the persisted store, so we start clean from previous installs
       await persistor.purge();
@@ -44,11 +40,11 @@ export class AuthLoadingScreen extends React.PureComponent<Props> {
 
     // Check if the user already has an API token
     // Important: Only rely on this token, so the user can use the app offline
-    const credentials = await Keychain.getGenericPassword(keychainArguments);
-    let token = null;
+    const token = await keychain.getToken();
 
-    if (credentials && credentials.password) {
-      token = credentials.password;
+    if (token) {
+      // Store the token in Redux, so we can determine if a user is logged in or not
+      store.dispatch(setAuthToken(token));
     }
 
     // Get the network connection status

@@ -8,8 +8,11 @@ import { getPlaylist } from '../reducers/playlist';
 import { ALERT_SUBSCRIPTION_EXPIRED } from '../constants/messages';
 import { validateSubscriptionReceipt } from '../reducers/subscriptions';
 import { getUser } from '../reducers/user';
-import { selectAuthenticationStatus } from '../selectors/auth';
+import { selectAuthenticationStatus, selectAuthenticationToken } from '../selectors/auth';
 import { selectActiveSubscriptionProductId, selectIsSubscribed, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
+import * as keychain from '../utils/keychain';
+import { store } from '../store';
+import { setAuthToken } from '../reducers/auth';
 // import { ALERT_SUBSCRIPTION_EXPIRED } from '../constants/messages';
 
 export const AppStateContext = React.createContext<{ appState: AppStateStatus; stateChanged: boolean; isSubscribed: boolean }>({
@@ -89,11 +92,38 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
     this.setState({ stateChanged, appState: nextAppState }, () => {
       // Do things when app becomes active again
       if (stateChanged && nextAppState === 'active') {
+        // Make sure the token from keychain is in our store
+        this.syncAuthToken()
+
         this.fetchUserPlaylist();
         // TODO: fetch user (usage data)
         this.validateActiveSubscription();
       }
     });
+  }
+
+  /**
+   * A method to sync the auth token.
+   * In previous versions we forgot to add it to the store
+   * This method makes sure that older users have their token in the store
+   */
+  syncAuthToken = async () => {
+    const { authToken } = this.props;
+
+    // If we have an auth token in the store, we don't need to sync it
+    if (authToken) {
+      return;
+    }
+
+    // Else, sync it
+
+    // Get the token from the keychain
+    const token = await keychain.getToken();
+
+    if (token) {
+      // Save it in Redux
+      store.dispatch(setAuthToken(token));
+    }
   }
 
   /**
@@ -160,6 +190,7 @@ interface StateProps {
   subscriptionsValidationResult: ReturnType<typeof selectSubscriptionsValidationResult>;
   isSubscribed: ReturnType<typeof selectIsSubscribed>;
   activeSubscriptionProductId: ReturnType<typeof selectActiveSubscriptionProductId>;
+  authToken: ReturnType<typeof selectAuthenticationToken>;
 }
 
 interface DispatchProps {
@@ -172,7 +203,8 @@ const mapStateToProps = (state: RootState, props: Props): StateProps => ({
   authenticationStatus: selectAuthenticationStatus(state),
   subscriptionsValidationResult: selectSubscriptionsValidationResult(state),
   isSubscribed: selectIsSubscribed(state),
-  activeSubscriptionProductId: selectActiveSubscriptionProductId(state)
+  activeSubscriptionProductId: selectActiveSubscriptionProductId(state),
+  authToken: selectAuthenticationToken(state)
 });
 
 const mapDispatchToProps = {

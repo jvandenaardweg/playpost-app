@@ -1,13 +1,7 @@
 import React from 'react';
-import { Alert, Platform } from 'react-native';
-import * as Keychain from 'react-native-keychain';
+import { Alert } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
-
-export const keychainArguments = Platform.select({
-  ios: { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' },
-  android: { service: 'com.aardwegmedia.playpost' }
-});
 
 import { LoginForm } from '../components/LoginForm';
 
@@ -16,6 +10,7 @@ import { getAuthToken } from '../reducers/auth';
 import { ALERT_LOGIN_SAVE_TOKEN_FAIL } from '../constants/messages';
 import { RootState } from '../reducers';
 import { selectAuthenticationToken, selectAuthError } from '../selectors/auth';
+import * as keychain from '../utils/keychain';
 
 /* tslint:disable no-any */
 interface State {
@@ -56,7 +51,7 @@ class LoginFormContainerComponent extends React.PureComponent<Props, State> {
 
   saveToken = async (token: string) => {
     try {
-      await Keychain.setGenericPassword('token', token, keychainArguments);
+      await keychain.setToken(token);
       this.props.navigation.navigate('App');
     } catch (err) {
       Alert.alert('Oops!', ALERT_LOGIN_SAVE_TOKEN_FAIL, [

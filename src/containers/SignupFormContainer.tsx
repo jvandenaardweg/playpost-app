@@ -1,13 +1,7 @@
 import React from 'react';
-import { Alert, Linking, Platform } from 'react-native';
-import * as Keychain from 'react-native-keychain';
+import { Alert, Linking } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
-
-export const keychainArguments = Platform.select({
-  ios: { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' },
-  android: { service: 'com.aardwegmedia.playpost' }
-});
 
 import { SignupForm } from '../components/SignupForm';
 
@@ -18,6 +12,7 @@ import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../constants/urls';
 import { RootState } from '../reducers';
 import { selectAuthError } from '../selectors/auth';
 import { selectUserError } from '../selectors/user';
+import * as keychain from '../utils/keychain';
 
 /* tslint:disable no-any */
 interface State {
@@ -47,7 +42,7 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
    */
   saveToken = async (token: string) => {
     try {
-      await Keychain.setGenericPassword('token', token, keychainArguments);
+      await keychain.setToken(token);
       this.props.navigation.navigate('SignupSuccess');
     } catch (err) {
       Alert.alert('Oops!', 'We have successfully created your account, but could not log you in. Please try logging in manually.');

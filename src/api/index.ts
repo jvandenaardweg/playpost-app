@@ -2,12 +2,7 @@ import axios from 'axios';
 import { Platform } from 'react-native';
 import Config from 'react-native-config';
 import DeviceInfo from 'react-native-device-info';
-import * as Keychain from 'react-native-keychain';
-
-export const keychainArguments = Platform.select({
-  ios: { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' },
-  android: { service: 'com.aardwegmedia.playpost' }
-});
+import * as keychain from '../utils/keychain';
 
 // Android emulator uses 10.0.2.2 as localhost map
 export const baseURL = Platform.select({
@@ -23,11 +18,10 @@ const apiClient = axios.create({
 
 // Set the AUTH token for any request
 apiClient.interceptors.request.use(async (config) => {
-  const credentials = await Keychain.getGenericPassword(keychainArguments);
+  const token = await keychain.getToken();
 
-  if (credentials) {
-    const token = credentials.password;
-    config.headers['Authorization'] =  token ? `Bearer ${token}` : '';
+  if (token) {
+    config.headers['Authorization'] =  `Bearer ${token}`;
   }
 
   // Add some additional, non user identifying, headers for debugging purposes
