@@ -12,7 +12,7 @@ import { AuthLoadingScreen } from '../screens/AuthLoadingScreen';
 import { LoginForgotPasswordScreen } from '../screens/login/LoginForgotPasswordScreen';
 import { LoginResetPasswordScreen } from '../screens/login/LoginResetPasswordScreen';
 import { LogoutScreen } from '../screens/LogoutScreen';
-import { ArticleIncompatibleScreen } from '../screens/modals/ArticleIncompatibleScreen';
+import { ContentViewScreen } from '../screens/modals/ContentViewScreen';
 import { UpgradeScreen } from '../screens/modals/UpgradeScreen';
 import { LoginScreen } from '../screens/onboarding/LoginScreen';
 import { OnboardingScreen } from '../screens/onboarding/OnboardingScreen';
@@ -75,7 +75,7 @@ export const AppNavigator: NavigationContainer = createAppContainer(
           Modals: createStackNavigator(
             {
               Upgrade: UpgradeScreen,
-              ArticleIncompatible: ArticleIncompatibleScreen
+              ContentView: ContentViewScreen
             },
             {
               headerMode: 'float',

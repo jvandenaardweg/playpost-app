@@ -525,9 +525,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   handleOnPressArticleIncompatible = () => {
-    const { article } = this.props;
-
-    return this.props.navigation.navigate('ArticleIncompatible', { article });
+    return this.props.navigation.navigate('ContentView');
   }
 
   render(): JSX.Element {

@@ -1,22 +1,17 @@
 import React from 'react';
+import { SafeAreaView, View } from 'react-native';
+import { Button } from 'react-native-elements';
 import WebView from 'react-native-webview';
-import { NavigationRoute, NavigationScreenOptions, NavigationScreenProp } from 'react-navigation';
+
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
 import spacing from '../../constants/spacing';
 
 interface Props {
-  navigation: NavigationScreenProp<NavigationRoute>;
+  onPressSupport(): void;
 }
 
-export class ArticleIncompatibleScreen extends React.PureComponent<Props> {
-  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationScreenOptions => {
-    return {
-      title: 'Article might not be compatible for listening',
-      headerLeft: null
-    };
-  }
-
+export class ContentView extends React.PureComponent<Props> {
   getHtmlHeader(): string {
     return `
       <head>
@@ -53,18 +48,19 @@ export class ArticleIncompatibleScreen extends React.PureComponent<Props> {
 
           h1 {
             font-size: ${fonts.fontSize.headline}px;
-            margin-bottom: ${spacing.default}px;
+            margin-bottom: 0;
             text-align: center;
           }
 
           h2 {
             margin-top: ${spacing.large}px;
-            font-size: ${fonts.fontSize.titleLarge}px;
+            font-size: ${fonts.fontSize.headline}px;
           }
 
           h3, h4 {
             margin-top: ${spacing.large}px;
             font-size: ${fonts.fontSize.titleMedium}px;
+            font-weight: 600;
           }
 
           h5, h6, h7, h8 {
@@ -152,6 +148,8 @@ export class ArticleIncompatibleScreen extends React.PureComponent<Props> {
           </div>
           <div class="content">
             <p>If you are seeing this message it means we <strong>probably</strong> could not process the article correctly.</p>
+            <p>To verify if that's really is the case, tap on the article's title in your playlist to see if Playpost extracted the correct article.</p>
+            <p>If the article is complete and correct, you can ignore the warning. If the article is incorrect you'll find possible reasons below.</p>
 
             <h2>Possible reasons</h2>
 
@@ -162,8 +160,9 @@ export class ArticleIncompatibleScreen extends React.PureComponent<Props> {
 
             <h3>2. Article's website could be too complex</h3>
             <p>It could also happen the website of the article is too complex to automatically extract the article from. If that's the case with your article, we would like to know more so we can improve the article extraction.</p>
+            <p>Contact our support chat and we'll do our best to support articles from your favorite websites.</p>
 
-            <h3>3. There might be a hickup in our service</h3>
+            <h3>3. There might be a hiccup in our service</h3>
             <p>You should try again. Remove the article from your playlist and try again.</p>
 
             <h2 id="what-to-do">What to do now?</h2>
@@ -171,10 +170,13 @@ export class ArticleIncompatibleScreen extends React.PureComponent<Props> {
             <p>You can verify this by just opening the article from your playlist by pressing on the title. You can then read the article Playpost has extracted. If you notice the article is correct, then you can just ignore the incompatibility warning. We were wrong then!</p>
 
             <h3>2. Use Safari on your iPhone to share the article</h3>
-            <p>Make sure you are logged in the website. Then just press Share from Safari and select the Playpost App. We can then extract the correct article from the webpage.</p>
+            <p>If the website from the article is known to have subscriber-only articles, make sure you are logged in the website in Safari. Then just press Share from Safari and select the Playpost App. We can then extract the correct article from the webpage.</p>
 
             <h3>3. Re-add the article</h3>
-            <p>First, remove the article from your playlist and then add it again like you did before.</p>
+            <p>First, remove the article from your playlist and then add it again as you did before. This will allow Playpost to retry.</p>
+
+            <h3>4. Contact our support</h3>
+            <p>If none of the above worked out for you feel free to contact our support. We are happy to help!</p>
 
             <!--<h3>3. Use our browser extension</h3>
             <p>Which will be available later. With that browser extension you can share those articles to the Playpost App.</p>-->
@@ -186,7 +188,20 @@ export class ArticleIncompatibleScreen extends React.PureComponent<Props> {
 
   render() {
     return (
-      <WebView source={{ html: this.getHtmlDocument() }} />
+      <SafeAreaView style={{ flex: 1}}>
+        <WebView
+          source={{ html: this.getHtmlDocument() }}
+          startInLoadingState={true}
+          useWebKit
+          originWhitelist={['*']}
+          javaScriptEnabled={false}
+          bounces
+          decelerationRate="normal"
+        />
+        <View style={{ paddingLeft: spacing.default, paddingRight: spacing.default }}>
+          <Button title="Contact support" onPress={this.props.onPressSupport} />
+        </View>
+      </SafeAreaView>
     );
   }
 }
