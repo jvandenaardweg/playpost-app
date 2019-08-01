@@ -151,8 +151,8 @@ export default StyleSheet.create({
     fontWeight: fonts.fontWeight.semibold
   },
   warningText: {
-    flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
   warningLink: {
     textDecorationStyle: 'solid',
