@@ -13,7 +13,7 @@ exports[`CustomSectionList basic rendering should render correctly 1`] = `
     contentContainerStyle={
       Object {
         "overflow": "visible",
-        "paddingTop": 16,
+        "paddingTop": 12,
       }
     }
     data={
@@ -156,7 +156,7 @@ exports[`CustomSectionList basic rendering should render correctly 1`] = `
         <View
           style={
             Object {
-              "height": 16,
+              "height": 12,
             }
           }
         />

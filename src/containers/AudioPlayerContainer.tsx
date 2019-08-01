@@ -93,7 +93,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     const { isPlaying } = this.state;
 
     // Detect if track changed
-    if (prevProps.track.id !== track.id) {
+    if (track && track.url && prevProps.track.url !== track.url) {
       this.handleTrackUpdate(track);
     }
 
@@ -109,6 +109,14 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   }
 
   handleTrackUpdate = async (track: TrackPlayer.Track) => {
+    // "Only the id, url, title and artist properties are required for basic playback"
+    // https://react-native-kit.github.io/react-native-track-player/documentation/#track-object
+
+    if (!track.id || !track.url || !track.title || !track.artist) {
+      console.warn('Cannot play track, missing a required track property.');
+      return;
+    }
+
     await TrackPlayer.reset();
 
     await TrackPlayer.add(track);

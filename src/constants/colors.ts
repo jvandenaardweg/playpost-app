@@ -45,7 +45,7 @@ export default {
 
   titleDefault: black,
   paragraphDefault: grayDarkest,
-  paragraphGrayed: grayDark,
+  paragraphGrayed: grayDarkest,
   borderDefault: grayLight,
 
   controlButtonDefault: white,

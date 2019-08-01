@@ -22,7 +22,7 @@ interface Props {
 
 export const AudioPlayerLarge: React.FC<Props> = React.memo((props: Props) => (
   <View style={styles.wrapper}>
-    <TouchableOpacity activeOpacity={1} onPress={props.onPressClose} style={styles.openCloseControl} hitSlop={defaultHitslop}>
+    <TouchableOpacity onPress={props.onPressClose} style={styles.openCloseControl} hitSlop={defaultHitslop}>
       <Icon.FontAwesome5 name="chevron-down" size={24} color="#fff" />
     </TouchableOpacity>
     <View style={styles.container}>

@@ -12,7 +12,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
     contentContainerStyle={
       Object {
         "backgroundColor": "#EEEEEE",
-        "paddingTop": 16,
+        "paddingTop": 12,
       }
     }
   >
@@ -23,15 +23,15 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
         pagingEnabled={true}
         scrollEnabled={true}
         showsHorizontalScrollIndicator={false}
-        snapToInterval={698}
+        snapToInterval={714}
         style={
           Object {
             "backgroundColor": "#EEEEEE",
-            "marginBottom": 16,
-            "paddingBottom": 16,
+            "marginBottom": 12,
+            "paddingBottom": 12,
             "paddingLeft": 0,
             "paddingRight": 0,
-            "paddingTop": 16,
+            "paddingTop": 12,
           }
         }
       >
@@ -44,7 +44,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   "backgroundColor": "#ffffff",
                   "borderRadius": 6,
                   "elevation": 3,
-                  "padding": 16,
+                  "padding": 12,
                   "shadowColor": "#000",
                   "shadowOffset": Object {
                     "height": 1,
@@ -54,9 +54,9 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   "shadowRadius": 5,
                 },
                 Object {
-                  "marginLeft": 32,
+                  "marginLeft": 24,
                   "marginRight": 6,
-                  "width": 686,
+                  "width": 702,
                 },
               ]
             }
@@ -101,7 +101,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#AAAAAA",
+                    "color": "#222222",
                     "marginBottom": 8,
                     "marginLeft": 4,
                     "marginTop": 6,
@@ -177,7 +177,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "paddingTop": 16,
+                  "paddingTop": 12,
                 }
               }
             >
@@ -312,7 +312,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   "backgroundColor": "#ffffff",
                   "borderRadius": 6,
                   "elevation": 3,
-                  "padding": 16,
+                  "padding": 12,
                   "shadowColor": "#000",
                   "shadowOffset": Object {
                     "height": 1,
@@ -324,7 +324,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                 Object {
                   "marginLeft": 6,
                   "marginRight": 6,
-                  "width": 686,
+                  "width": 702,
                 },
               ]
             }
@@ -369,7 +369,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#AAAAAA",
+                    "color": "#222222",
                     "marginBottom": 8,
                     "marginLeft": 4,
                     "marginTop": 6,
@@ -445,7 +445,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "paddingTop": 16,
+                  "paddingTop": 12,
                 }
               }
             >
@@ -580,7 +580,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   "backgroundColor": "#ffffff",
                   "borderRadius": 6,
                   "elevation": 3,
-                  "padding": 16,
+                  "padding": 12,
                   "shadowColor": "#000",
                   "shadowOffset": Object {
                     "height": 1,
@@ -591,8 +591,8 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                 },
                 Object {
                   "marginLeft": 6,
-                  "marginRight": 32,
-                  "width": 686,
+                  "marginRight": 24,
+                  "width": 702,
                 },
               ]
             }
@@ -637,7 +637,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#AAAAAA",
+                    "color": "#222222",
                     "marginBottom": 8,
                     "marginLeft": 4,
                     "marginTop": 6,
@@ -713,7 +713,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "paddingTop": 16,
+                  "paddingTop": 12,
                 }
               }
             >
@@ -848,14 +848,14 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
             "backgroundColor": "white",
             "borderTopColor": "#e5e5e5",
             "borderTopWidth": 1,
-            "padding": 16,
+            "padding": 12,
           }
         }
       >
         <View
           style={
             Object {
-              "marginBottom": 16,
+              "marginBottom": 12,
             }
           }
         >
@@ -866,7 +866,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                 "fontSize": 24,
                 "fontWeight": "700",
                 "marginBottom": 24,
-                "marginTop": 16,
+                "marginTop": 12,
                 "textAlign": "center",
               }
             }
@@ -897,7 +897,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   Object {
                     "color": "#037DE2",
                     "marginLeft": 8,
-                    "marginRight": 16,
+                    "marginRight": 12,
                     "width": 40,
                   },
                   Object {
@@ -937,7 +937,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#AAAAAA",
+                    "color": "#222222",
                     "fontSize": 15,
                     "lineHeight": 24,
                   }
@@ -971,7 +971,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   Object {
                     "color": "#037DE2",
                     "marginLeft": 8,
-                    "marginRight": 16,
+                    "marginRight": 12,
                     "width": 40,
                   },
                   Object {
@@ -1011,7 +1011,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#AAAAAA",
+                    "color": "#222222",
                     "fontSize": 15,
                     "lineHeight": 24,
                   }
@@ -1045,7 +1045,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   Object {
                     "color": "#037DE2",
                     "marginLeft": 8,
-                    "marginRight": 16,
+                    "marginRight": 12,
                     "width": 40,
                   },
                   Object {
@@ -1085,7 +1085,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#AAAAAA",
+                    "color": "#222222",
                     "fontSize": 15,
                     "lineHeight": 24,
                   }
@@ -1119,7 +1119,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   Object {
                     "color": "#037DE2",
                     "marginLeft": 8,
-                    "marginRight": 16,
+                    "marginRight": 12,
                     "width": 40,
                   },
                   Object {
@@ -1159,7 +1159,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#AAAAAA",
+                    "color": "#222222",
                     "fontSize": 15,
                     "lineHeight": 24,
                   }

@@ -62,7 +62,7 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
 
           h1 {
             font-size: 24px;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             text-align: center;
           }
 
@@ -104,7 +104,7 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
 
           .meta-header {
             text-align: center;
-            padding: 16px;
+            padding: 12px;
           }
 
           .meta-header strong {
@@ -127,14 +127,14 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
           }
 
           .content {
-            padding: 16px;
+            padding: 12px;
           }
 
           .content img,
           .content figure {
             max-width: 100%;
-            margin-bottom: 16px;
-            margin-top: 16px;
+            margin-bottom: 12px;
+            margin-top: 12px;
             display: none;
           }
 
@@ -272,7 +272,7 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
 
           h1 {
             font-size: 24px;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             text-align: center;
           }
 
@@ -314,7 +314,7 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
 
           .meta-header {
             text-align: center;
-            padding: 16px;
+            padding: 12px;
           }
 
           .meta-header strong {
@@ -337,14 +337,14 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
           }
 
           .content {
-            padding: 16px;
+            padding: 12px;
           }
 
           .content img,
           .content figure {
             max-width: 100%;
-            margin-bottom: 16px;
-            margin-top: 16px;
+            margin-bottom: 12px;
+            margin-top: 12px;
             display: none;
           }
 
@@ -482,7 +482,7 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
 
           h1 {
             font-size: 24px;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             text-align: center;
           }
 
@@ -524,7 +524,7 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
 
           .meta-header {
             text-align: center;
-            padding: 16px;
+            padding: 12px;
           }
 
           .meta-header strong {
@@ -547,14 +547,14 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
           }
 
           .content {
-            padding: 16px;
+            padding: 12px;
           }
 
           .content img,
           .content figure {
             max-width: 100%;
-            margin-bottom: 16px;
-            margin-top: 16px;
+            margin-bottom: 12px;
+            margin-top: 12px;
             display: none;
           }
 
@@ -686,7 +686,7 @@ exports[`ArticleReader rendering no author name should render no authorName when
 
           h1 {
             font-size: 24px;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             text-align: center;
           }
 
@@ -728,7 +728,7 @@ exports[`ArticleReader rendering no author name should render no authorName when
 
           .meta-header {
             text-align: center;
-            padding: 16px;
+            padding: 12px;
           }
 
           .meta-header strong {
@@ -751,14 +751,14 @@ exports[`ArticleReader rendering no author name should render no authorName when
           }
 
           .content {
-            padding: 16px;
+            padding: 12px;
           }
 
           .content img,
           .content figure {
             max-width: 100%;
-            margin-bottom: 16px;
-            margin-top: 16px;
+            margin-bottom: 12px;
+            margin-top: 12px;
             display: none;
           }
 
@@ -890,7 +890,7 @@ exports[`ArticleReader rendering no html should render a different HTML output w
 
           h1 {
             font-size: 24px;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             text-align: center;
           }
 
@@ -932,7 +932,7 @@ exports[`ArticleReader rendering no html should render a different HTML output w
 
           .meta-header {
             text-align: center;
-            padding: 16px;
+            padding: 12px;
           }
 
           .meta-header strong {
@@ -955,14 +955,14 @@ exports[`ArticleReader rendering no html should render a different HTML output w
           }
 
           .content {
-            padding: 16px;
+            padding: 12px;
           }
 
           .content img,
           .content figure {
             max-width: 100%;
-            margin-bottom: 16px;
-            margin-top: 16px;
+            margin-bottom: 12px;
+            margin-top: 12px;
             display: none;
           }
 

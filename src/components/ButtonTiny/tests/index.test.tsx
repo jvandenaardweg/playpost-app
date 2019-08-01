@@ -1,16 +1,16 @@
 import React from 'react';
 import { fireEvent, render, RenderAPI } from 'react-native-testing-library';
 
-import { ButtonUpgrade } from '../index';
+import { ButtonTiny } from '../index';
 
-describe('ButtonUpgrade', () => {
+describe('ButtonTiny', () => {
 
   describe('rendering', () => {
     let wrapper: RenderAPI;
     const onPressHandler = jest.fn();
 
     beforeAll(() => {
-      wrapper = render(<ButtonUpgrade onPress={onPressHandler} />);
+      wrapper = render(<ButtonTiny onPress={onPressHandler} label="Test" />);
     });
 
     it('should render correctly', () => {

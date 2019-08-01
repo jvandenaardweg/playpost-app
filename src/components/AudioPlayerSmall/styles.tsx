@@ -60,7 +60,7 @@ export default StyleSheet.create({
   },
   trackInfoArtist: {
     fontSize: fonts.fontSize.tiny,
-    color: colors.paragraphGrayed,
+    color: colors.grayDark,
   },
   controls: {
     marginTop: 20,

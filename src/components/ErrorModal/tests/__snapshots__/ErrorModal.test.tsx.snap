@@ -6,7 +6,7 @@ exports[`ErrorModal rendering should render correctly 1`] = `
     Object {
       "backgroundColor": "white",
       "borderRadius": 10,
-      "padding": 16,
+      "padding": 12,
     }
   }
 >
@@ -24,7 +24,7 @@ exports[`ErrorModal rendering should render correctly 1`] = `
   <View
     style={
       Object {
-        "marginTop": 16,
+        "marginTop": 12,
       }
     }
   >

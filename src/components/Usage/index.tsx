@@ -30,7 +30,7 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
     activeSubscriptionProductId === 'com.aardwegmedia.playpost.premium'
       ? 'Upgrade to Plus'
       : activeSubscriptionProductId === 'free'
-      ? 'Upgrade to Premium or Plus'
+      ? 'Start free Premium or Plus trial'
       : 'Upgrade';
 
   const upgradeScreenCenteredSubscriptionProductId =

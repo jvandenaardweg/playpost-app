@@ -12,7 +12,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
     contentContainerStyle={
       Object {
         "backgroundColor": "#EEEEEE",
-        "paddingTop": 16,
+        "paddingTop": 12,
       }
     }
   >
@@ -23,15 +23,15 @@ exports[`Upgrade rendering should render correctly 1`] = `
         pagingEnabled={true}
         scrollEnabled={true}
         showsHorizontalScrollIndicator={false}
-        snapToInterval={698}
+        snapToInterval={714}
         style={
           Object {
             "backgroundColor": "#EEEEEE",
-            "marginBottom": 16,
-            "paddingBottom": 16,
+            "marginBottom": 12,
+            "paddingBottom": 12,
             "paddingLeft": 0,
             "paddingRight": 0,
-            "paddingTop": 16,
+            "paddingTop": 12,
           }
         }
       >
@@ -43,14 +43,14 @@ exports[`Upgrade rendering should render correctly 1`] = `
             "backgroundColor": "white",
             "borderTopColor": "#e5e5e5",
             "borderTopWidth": 1,
-            "padding": 16,
+            "padding": 12,
           }
         }
       >
         <View
           style={
             Object {
-              "marginBottom": 16,
+              "marginBottom": 12,
             }
           }
         >
@@ -61,7 +61,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 "fontSize": 24,
                 "fontWeight": "700",
                 "marginBottom": 24,
-                "marginTop": 16,
+                "marginTop": 12,
                 "textAlign": "center",
               }
             }
@@ -92,7 +92,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#037DE2",
                     "marginLeft": 8,
-                    "marginRight": 16,
+                    "marginRight": 12,
                     "width": 40,
                   },
                   Object {
@@ -132,7 +132,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#AAAAAA",
+                    "color": "#222222",
                     "fontSize": 15,
                     "lineHeight": 24,
                   }
@@ -166,7 +166,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#037DE2",
                     "marginLeft": 8,
-                    "marginRight": 16,
+                    "marginRight": 12,
                     "width": 40,
                   },
                   Object {
@@ -206,7 +206,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#AAAAAA",
+                    "color": "#222222",
                     "fontSize": 15,
                     "lineHeight": 24,
                   }
@@ -240,7 +240,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#037DE2",
                     "marginLeft": 8,
-                    "marginRight": 16,
+                    "marginRight": 12,
                     "width": 40,
                   },
                   Object {
@@ -280,7 +280,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#AAAAAA",
+                    "color": "#222222",
                     "fontSize": 15,
                     "lineHeight": 24,
                   }
@@ -314,7 +314,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#037DE2",
                     "marginLeft": 8,
-                    "marginRight": 16,
+                    "marginRight": 12,
                     "width": 40,
                   },
                   Object {
@@ -354,7 +354,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#AAAAAA",
+                    "color": "#222222",
                     "fontSize": 15,
                     "lineHeight": 24,
                   }

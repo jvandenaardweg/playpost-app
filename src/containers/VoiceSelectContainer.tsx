@@ -92,12 +92,12 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
         'This higher quality voice is only available for Premium and Plus users.\n\nYou can preview this voice by using the play button on the left.',
         [
           {
-            text: 'Cancel',
-            style: 'cancel'
+            text: 'Start free trial',
+            style: 'cancel',
+            onPress: () => this.props.navigation.navigate('Upgrade')
           },
           {
-            text: 'Upgrade',
-            onPress: () => this.props.navigation.navigate('Upgrade')
+            text: 'Cancel'
           }
         ]
       );

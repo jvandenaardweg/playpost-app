@@ -64,7 +64,7 @@ export const Article: React.FC<Props> = React.memo(
   }) => (
     <View style={[styles.container, isMoving ? styles.isMoving : null]}>
       <View style={styles.wrapper}>
-        <TouchableOpacity testID="Article-Button-section" style={styles.sectionBody} activeOpacity={1} onPress={onOpenUrl} onLongPress={onLongPress} onPressOut={onPressOut}>
+        <TouchableOpacity testID="Article-Button-section" style={styles.sectionBody} onPress={onOpenUrl} onLongPress={onLongPress} onPressOut={onPressOut}>
           <View style={styles.bodyMeta}>
             <View style={styles.bodyMetaSource}>
               <SourceText authorName={authorName} sourceName={sourceName} url={url} />
@@ -106,7 +106,7 @@ export const Article: React.FC<Props> = React.memo(
           </View>
         </TouchableOpacity>
         <View style={styles.sectionControl}>
-          <TouchableOpacity testID="Article-Button-play" style={styles.imageContainer} onPress={onPlayPress} activeOpacity={1} disabled={isLoading}>
+          <TouchableOpacity testID="Article-Button-play" style={styles.imageContainer} onPress={onPlayPress} disabled={isLoading}>
             {imageUrl && <Image style={styles.image} source={{ uri: imageUrl }} placeholderStyle={styles.imagePlaceholder} />}
             <View style={styles.playButtonContainer}>
               <PlayIcon isLoading={isLoading} isPlaying={isPlaying} isActive={isActive} />
@@ -116,7 +116,7 @@ export const Article: React.FC<Props> = React.memo(
         </View>
       </View>
       {!isCompatible && (
-        <TouchableOpacity testID="Article-Button-incompatibility-warning" style={styles.warningContainer} activeOpacity={0.5} onPress={onPressArticleIncompatible}>
+        <TouchableOpacity testID="Article-Button-incompatibility-warning" style={styles.warningContainer} onPress={onPressArticleIncompatible}>
           <View style={styles.warningText}>
             <Text>This article</Text>
             <Text style={styles.warningHighlight}>{' '}might{' '}</Text>

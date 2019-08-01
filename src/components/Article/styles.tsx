@@ -31,7 +31,7 @@ export default StyleSheet.create({
   },
   author: {
     fontSize: fonts.fontSize.tiny,
-    color: colors.paragraphGrayed,
+    color: colors.grayDark,
     lineHeight: 18
   },
   bodyMeta: {
@@ -72,7 +72,7 @@ export default StyleSheet.create({
   },
   bodyFooterText: {
     fontSize: fonts.fontSize.tiny,
-    color: colors.paragraphGrayed,
+    color: colors.grayDark,
     fontWeight: fonts.fontWeight.light,
     paddingLeft: 2
   },
@@ -81,15 +81,15 @@ export default StyleSheet.create({
   },
   bodySourceText: {
     fontSize: fonts.fontSize.tiny,
-    color: colors.paragraphGrayed,
+    color: colors.grayDark,
     paddingRight: 0,
     fontWeight: fonts.fontWeight.light
   },
   authorName: {
-    color: colors.paragraphGrayed
+    color: colors.grayDark
   },
   publicationName: {
-    color: colors.paragraphGrayed
+    color: colors.grayDark
   },
   controlButton: {
     backgroundColor: colors.controlButtonDefault,
@@ -112,7 +112,7 @@ export default StyleSheet.create({
     backgroundColor: colors.controlButtonActive
   },
   duration: {
-    color: colors.paragraphGrayed,
+    color: colors.grayDark,
     textAlign: 'center',
     marginTop: 6,
     fontSize: fonts.fontSize.tiny,

@@ -6,7 +6,7 @@ exports[`Article active rendering should render active correctly 1`] = `
     Array [
       Object {
         "backgroundColor": "#ffffff",
-        "padding": 16,
+        "padding": 12,
       },
       null,
     ]
@@ -215,7 +215,7 @@ exports[`Article active rendering should render active correctly 1`] = `
     <View
       style={
         Object {
-          "marginLeft": 16,
+          "marginLeft": 12,
           "marginTop": 4,
           "width": 75,
         }
@@ -331,7 +331,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
     Array [
       Object {
         "backgroundColor": "#ffffff",
-        "padding": 16,
+        "padding": 12,
       },
       null,
     ]
@@ -540,7 +540,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
     <View
       style={
         Object {
-          "marginLeft": 16,
+          "marginLeft": 12,
           "marginTop": 4,
           "width": 75,
         }
@@ -654,7 +654,7 @@ exports[`Article full rendering should render full correctly 1`] = `
     Array [
       Object {
         "backgroundColor": "#ffffff",
-        "padding": 16,
+        "padding": 12,
       },
       null,
     ]
@@ -865,7 +865,7 @@ exports[`Article full rendering should render full correctly 1`] = `
     <View
       style={
         Object {
-          "marginLeft": 16,
+          "marginLeft": 12,
           "marginTop": 4,
           "width": 75,
         }
@@ -979,7 +979,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
     Array [
       Object {
         "backgroundColor": "#ffffff",
-        "padding": 16,
+        "padding": 12,
       },
       null,
     ]
@@ -1188,7 +1188,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
     <View
       style={
         Object {
-          "marginLeft": 16,
+          "marginLeft": 12,
           "marginTop": 4,
           "width": 75,
         }
@@ -1306,7 +1306,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
       Object {
         "backgroundColor": "#ffc107",
         "borderRadius": 6,
-        "marginTop": 16,
+        "marginTop": 12,
         "opacity": 1,
         "padding": 12,
       }
@@ -1361,7 +1361,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
     Array [
       Object {
         "backgroundColor": "#ffffff",
-        "padding": 16,
+        "padding": 12,
       },
       null,
     ]
@@ -1570,7 +1570,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
     <View
       style={
         Object {
-          "marginLeft": 16,
+          "marginLeft": 12,
           "marginTop": 4,
           "width": 75,
         }
@@ -1666,7 +1666,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
     Array [
       Object {
         "backgroundColor": "#ffffff",
-        "padding": 16,
+        "padding": 12,
       },
       null,
     ]
@@ -1875,7 +1875,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
     <View
       style={
         Object {
-          "marginLeft": 16,
+          "marginLeft": 12,
           "marginTop": 4,
           "width": 75,
         }
@@ -1989,7 +1989,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
     Array [
       Object {
         "backgroundColor": "#ffffff",
-        "padding": 16,
+        "padding": 12,
       },
       null,
     ]
@@ -2198,7 +2198,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
     <View
       style={
         Object {
-          "marginLeft": 16,
+          "marginLeft": 12,
           "marginTop": 4,
           "width": 75,
         }

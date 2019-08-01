@@ -1,16 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ButtonClose rendering should render correctly 1`] = `
+exports[`ButtonTiny rendering should render correctly 1`] = `
 <View
   accessible={true}
-  hitSlop={
-    Object {
-      "bottom": 10,
-      "left": 10,
-      "right": 10,
-      "top": 10,
-    }
-  }
   isTVSelectable={true}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
@@ -21,34 +13,31 @@ exports[`ButtonClose rendering should render correctly 1`] = `
   style={
     Object {
       "alignItems": "center",
-      "height": 40,
-      "justifyContent": "center",
-      "marginRight": 6,
+      "backgroundColor": undefined,
+      "borderRadius": 28,
+      "flexDirection": "row",
+      "height": 28,
       "opacity": 1,
-      "width": 40,
+      "paddingLeft": 12,
+      "paddingRight": 12,
     }
   }
-  testID="button-close"
+  testID="ButtonTiny-Button"
 >
   <Text
-    allowFontScaling={false}
     style={
       Array [
         Object {
-          "color": "#000000",
-          "fontSize": 26,
+          "fontSize": 13,
+          "fontWeight": "600",
         },
-        undefined,
         Object {
-          "fontFamily": "Feather",
-          "fontStyle": "normal",
-          "fontWeight": "normal",
+          "color": undefined,
         },
-        Object {},
       ]
     }
   >
-    
+    Test
   </Text>
 </View>
 `;

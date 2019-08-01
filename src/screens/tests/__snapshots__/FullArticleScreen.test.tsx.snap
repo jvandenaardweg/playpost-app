@@ -1,3 +1,205 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FullArticleScreen rendering should render correctly 1`] = `null`;
+exports[`FullArticleScreen rendering should render correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "overflow": "hidden",
+    }
+  }
+>
+  <RNCWKWebView
+    bounces={true}
+    cacheEnabled={true}
+    decelerationRate={0.998}
+    javaScriptEnabled={false}
+    messagingEnabled={false}
+    onLoadingError={[Function]}
+    onLoadingFinish={[Function]}
+    onLoadingProgress={[Function]}
+    onLoadingStart={[Function]}
+    onMessage={[Function]}
+    onNavigationStateChange={[Function]}
+    onShouldStartLoadWithRequest={[Function]}
+    source={
+      Object {
+        "baseUrl": "",
+        "html": "
+      <!DOCTYPE html>
+        
+      <head>
+        <meta http-equiv=\\"content-type\\" content=\\"text/html; charset=utf-8\\">
+        <meta name=\\"viewport\\" content=\\"width=device-width\\">
+        <link href=\\"https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i|PT+Serif:400,400i,700,700i\\" rel=\\"stylesheet\\">
+        <style type=\\"text/css\\">
+          html {
+            box-sizing: border-box;
+          }
+          *, *:before, *:after {
+            box-sizing: inherit;
+          }
+
+          body {
+            padding: 0 !important;
+            margin: 0 !important;
+            font-size: 17px;
+            font-family: 'PT Serif', serif;
+            line-height: 1.5;
+            color: #000000;
+            font-weight: normal;
+            word-break: break-word;
+            background-color: #ffffff;
+          }
+
+          h1, h2, h3, h4, h5, h6, h7, h8 {
+            line-height: 1.2;
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #000000;
+            font-family: 'PT Sans', sans-serif;
+          }
+
+          h1 {
+            font-size: 24px;
+            margin-bottom: 12px;
+            text-align: center;
+          }
+
+          h2, h3, h4 {
+            margin-top: 24px;
+            font-size: 21px;
+          }
+
+          h5, h6, h7, h8 {
+            margin-top: 24px;
+            font-size 18px
+          }
+
+          p {
+            font-size: 17px;
+            margin-top: 1.5;
+            color: #444444;
+            line-height: 1.58;
+            margin-bottom: 1.5;
+          }
+
+          a, strong {
+            color: #000000;
+          }
+
+          blockquote {
+            font-style: italic;
+            color: #000000;
+            margin-left: 24px;
+            margin-right: 24px;
+          }
+          blockquote p {
+            font-style: italic;
+          }
+
+          figcaption {
+            display: none;
+          }
+
+          .meta-header {
+            text-align: center;
+            padding: 12px;
+          }
+
+          .meta-header strong {
+            display: block;
+            font-weight: normal;
+          }
+
+          .meta-header a {
+            color: #037DE2;
+          }
+
+          .image-header {
+            margin-bottom: 10px
+          }
+
+          .image-header img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+          }
+
+          .content {
+            padding: 12px;
+          }
+
+          .content img,
+          .content figure {
+            max-width: 100%;
+            margin-bottom: 12px;
+            margin-top: 12px;
+            display: none;
+          }
+
+        </style>
+      </head>
+        <body>
+          <h1>Insufficient article data</h1>
+          <p>The article did not return any sufficient content to show. This could happen when the article is behind a pay-wall or requires a login.</p>
+          
+        </body>
+      </html>
+    ",
+      }
+    }
+    startInLoadingState={true}
+    style={
+      Array [
+        Object {
+          "flex": 1,
+          "overflow": "hidden",
+        },
+        Object {
+          "backgroundColor": "#ffffff",
+        },
+        Object {
+          "backgroundColor": "#ffffff",
+          "margin": 0,
+          "padding": 0,
+        },
+        Object {
+          "flex": 0,
+          "height": 0,
+        },
+      ]
+    }
+    useSharedProcessPool={true}
+  />
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#EEEEEE",
+          "bottom": 0,
+          "flex": 1,
+          "height": "100%",
+          "justifyContent": "center",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "width": "100%",
+        },
+        Object {
+          "backgroundColor": "#ffffff",
+        },
+      ]
+    }
+  >
+    <ActivityIndicator
+      animating={true}
+      color="#999999"
+      hidesWhenStopped={true}
+      size="small"
+    />
+  </View>
+</View>
+`;
