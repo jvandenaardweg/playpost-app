@@ -291,6 +291,7 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
         keyExtractor={(item: Api.PlaylistItem) => item.id.toString()}
         ItemSeparatorComponent={this.renderSeperatorComponent}
         ListEmptyComponent={this.renderEmptyComponent}
+        initialNumToRender={7}
         // onMoveEnd={this.handleOnMoveEnd}
         // scrollPercent={5}
         renderItem={this.renderItem}
