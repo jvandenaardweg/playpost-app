@@ -31,6 +31,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   onTrackChange: TrackPlayer.EmitterSubscription | null = null;
   onStateChanged: TrackPlayer.EmitterSubscription | null = null;
   onStateError: TrackPlayer.EmitterSubscription | null = null;
+  onPlaybackQueueEnded: TrackPlayer.EmitterSubscription | null = null;
 
   componentDidMount(): void {
     this.setupTrackPlayer();
@@ -81,7 +82,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
       console.log('Event', 'playback-error', code, message);
     });
 
-    this.onTrackChange = TrackPlayer.addEventListener('playback-queue-ended', async ({ track, position }) => {
+    this.onPlaybackQueueEnded = TrackPlayer.addEventListener('playback-queue-ended', async ({ track, position }) => {
       console.log('Event', 'playback-queue-ended', track, position);
       TrackPlayer.stop();
     });
@@ -124,6 +125,9 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     }
     if(this.onStateError) {
       this.onStateError.remove();
+    }
+    if(this.onPlaybackQueueEnded) {
+      this.onPlaybackQueueEnded.remove();
     }
   }
 

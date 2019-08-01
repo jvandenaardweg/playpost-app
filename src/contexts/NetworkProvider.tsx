@@ -15,20 +15,20 @@ export class NetworkProvider extends React.PureComponent<State> {
     isConnected: false
   };
 
-  unsubscribe: NetInfoSubscription | null = null;
+  unsubscribeListener: NetInfoSubscription | null = null;
 
   componentDidMount() {
     InteractionManager.runAfterInteractions(() => {
-      this.unsubscribe = NetInfo.addEventListener((state) => {
+      this.unsubscribeListener = NetInfo.addEventListener((state) => {
         this.setState({ isConnected: state.isConnected });
       });
     });
   }
 
   componentWillUnmount() {
-    if (this.unsubscribe) {
-      this.unsubscribe();
-      this.unsubscribe = null;
+    if (this.unsubscribeListener) {
+      this.unsubscribeListener();
+      this.unsubscribeListener = null;
     }
   }
 

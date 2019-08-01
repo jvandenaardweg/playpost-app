@@ -42,12 +42,13 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
   };
 
   validateSubscriptionInterval: NodeJS.Timeout | null = null;
+  appStateChangeListener: void | null = null;
 
   componentDidMount() {
     const { isSubscribed } = this.props;
 
     InteractionManager.runAfterInteractions(() => {
-      AppState.addEventListener('change', this.handleAppStateChange);
+      this.appStateChangeListener = AppState.addEventListener('change', this.handleAppStateChange);
 
       this.setState({ isSubscribed }, () => {
         this.validateActiveSubscription();
@@ -66,6 +67,10 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
     if (this.validateSubscriptionInterval) {
       clearInterval(this.validateSubscriptionInterval);
       this.validateSubscriptionInterval = null;
+    }
+
+    if (this.appStateChangeListener) {
+      this.appStateChangeListener = null;
     }
   }
 
