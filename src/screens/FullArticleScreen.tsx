@@ -2,6 +2,7 @@ import React from 'react';
 import { NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
 
 import { ArticleReader } from '../components/ArticleReader';
+import { InteractionManaged } from '../components/InteractionManaged';
 
 interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;
@@ -20,7 +21,9 @@ export class FullArticleScreen extends React.PureComponent<Props> {
 
   render(): JSX.Element {
     return (
-      <ArticleReader article={this.article} />
+      <InteractionManaged>
+        <ArticleReader article={this.article} />
+      </InteractionManaged>
     );
   }
 }

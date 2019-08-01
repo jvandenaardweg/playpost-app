@@ -73,74 +73,82 @@ const SettingsLanguagesModalStack = createStackNavigator(
   }
 );
 
+const ModalsStack = createStackNavigator(
+  {
+    Upgrade: UpgradeScreen,
+    ContentView: ContentViewScreen
+  },
+  {
+    headerMode: 'float',
+    headerTransitionPreset: 'uikit',
+    defaultNavigationOptions: ({ navigation }) => ({
+      headerRight: <ButtonClose onPress={() => navigation.dismiss()} />,
+      headerStyle: {
+        borderBottomColor: colors.borderDefault
+      }
+    })
+  }
+);
+
+const ModalLanguagesStack = createStackNavigator(
+  {
+    SettingsLanguages: SettingsLanguagesModalStack,
+    SettingsVoices: SettingsVoicesScreen,
+  },
+  {
+    headerMode: 'float',
+    headerTransitionPreset: 'uikit',
+    defaultNavigationOptions: ({ navigation }) => ({
+      title: 'Languages',
+      headerRight: <ButtonClose onPress={() => {
+        navigation.popToTop()
+        navigation.dismiss()
+      }} />,
+      headerStyle: {
+        borderBottomColor: colors.borderDefault
+      }
+    })
+  }
+)
+
+const OnboardingStack = createStackNavigator(
+  {
+    Onboarding: OnboardingScreen,
+    Login: LoginStack,
+    Signup: SignupStack
+  },
+  {
+    initialRouteName: 'Onboarding',
+    mode: 'modal',
+    headerMode: 'screen',
+    headerTransitionPreset: 'uikit',
+    defaultNavigationOptions: {
+      header: null,
+    }
+  }
+)
+
+const RootStack = createStackNavigator(
+  {
+    App: MainTabNavigator,
+    Modals: ModalsStack,
+    ModalLanguages: ModalLanguagesStack,
+  },
+  {
+    mode: 'modal',
+    initialRouteName: 'App',
+    headerMode: 'none'
+  }
+)
+
 export const AppNavigator: NavigationContainer = createAppContainer(
   customCreateSwitchNavigator(
     {
-      Root: createStackNavigator(
-        {
-          App: MainTabNavigator,
-          Modals: createStackNavigator(
-            {
-              Upgrade: UpgradeScreen,
-              ContentView: ContentViewScreen
-            },
-            {
-              headerMode: 'float',
-              headerTransitionPreset: 'uikit',
-              defaultNavigationOptions: ({ navigation }) => ({
-                headerRight: <ButtonClose onPress={() => navigation.dismiss()} />,
-                headerStyle: {
-                  borderBottomColor: colors.borderDefault
-                }
-              })
-            }
-          ),
-          ModalLanguages: createStackNavigator(
-            {
-              SettingsLanguages: SettingsLanguagesModalStack,
-              SettingsVoices: SettingsVoicesScreen,
-            },
-            {
-              headerMode: 'float',
-              headerTransitionPreset: 'uikit',
-              defaultNavigationOptions: ({ navigation }) => ({
-                title: 'Languages',
-                headerRight: <ButtonClose onPress={() => {
-                  navigation.popToTop()
-                  navigation.dismiss()
-                }} />,
-                headerStyle: {
-                  borderBottomColor: colors.borderDefault
-                }
-              })
-            }
-          )
-        },
-        {
-          mode: 'modal',
-          initialRouteName: 'App',
-          headerMode: 'none'
-        }
-      ),
+      Root: RootStack,
       AuthLoading: AuthLoadingScreen,
       Logout: LogoutScreen,
       SignupSuccess: SignupSuccessScreen, // We place this screen outside the onboarding, so we got a nice animation to it (cross-fade)
-      Onboarding: createStackNavigator(
-        {
-          Onboarding: OnboardingScreen,
-          Login: LoginStack,
-          Signup: SignupStack
-        },
-        {
-          initialRouteName: 'Onboarding',
-          mode: 'modal',
-          headerMode: 'screen',
-          headerTransitionPreset: 'uikit',
-          defaultNavigationOptions: {
-            header: null,
-          }
-        }
-      )
+      Onboarding: OnboardingStack
     },
     {
       initialRouteName: 'AuthLoading'

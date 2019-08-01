@@ -9,6 +9,7 @@ import { getLanguages } from '../reducers/voices';
 
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { CustomSectionList } from '../components/CustomSectionList';
+import { InteractionManaged } from '../components/InteractionManaged';
 import colors from '../constants/colors';
 import { selectUserSelectedVoices } from '../selectors/user';
 import { selectLanguagesWithActiveVoices } from '../selectors/voices';
@@ -76,7 +77,11 @@ export class LanguagesSelectComponent extends React.Component<Props> {
       }
     ];
 
-    return <CustomSectionList sectionListData={sectionListData} />;
+    return (
+      <InteractionManaged>
+        <CustomSectionList sectionListData={sectionListData} />
+      </InteractionManaged>
+    );
   }
 }
 

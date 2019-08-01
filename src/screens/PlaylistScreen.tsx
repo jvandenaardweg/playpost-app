@@ -3,6 +3,7 @@ import React from 'react';
 import { NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
 import { AppBackground } from '../components/AppBackground';
 import { ButtonVoices } from '../components/ButtonVoices';
+import { InteractionManaged } from '../components/InteractionManaged';
 import { PlaylistContainer } from '../containers/PlaylistContainer';
 
 export class PlaylistScreen extends React.PureComponent {
@@ -15,9 +16,11 @@ export class PlaylistScreen extends React.PureComponent {
 
   render(): JSX.Element {
     return (
-      <AppBackground>
-        <PlaylistContainer />
-      </AppBackground>
+      <InteractionManaged>
+        <AppBackground>
+          <PlaylistContainer />
+        </AppBackground>
+      </InteractionManaged>
     );
   }
 }
