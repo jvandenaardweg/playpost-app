@@ -294,7 +294,7 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
         // onMoveEnd={this.handleOnMoveEnd}
         // scrollPercent={5}
         renderItem={this.renderItem}
-        removeClippedSubviews={false} // unmount components that are off of the window, keep this false, as it sometimes renders no items when true
+        removeClippedSubviews={true}
       />
       // DraggableFlatList temporary disabled
       // There seems to be a problem with the list dissapearing when archiving/favoriting
