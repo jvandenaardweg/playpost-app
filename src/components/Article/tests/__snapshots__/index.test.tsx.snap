@@ -1316,8 +1316,8 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
     <View
       style={
         Object {
-          "flex": 1,
           "flexDirection": "row",
+          "flexWrap": "wrap",
         }
       }
     >
