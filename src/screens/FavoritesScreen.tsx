@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { AppBackground } from '../components/AppBackground';
-import { PlaylistContainer } from '../containers/PlaylistContainer';
 import { InteractionManaged } from '../components/InteractionManaged';
+import { PlaylistContainer } from '../containers/PlaylistContainer';
 
 export class FavoritesScreen extends React.PureComponent {
   render(): JSX.Element {
