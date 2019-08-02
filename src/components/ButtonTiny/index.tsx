@@ -9,12 +9,11 @@ interface Props {
   labelColor?: string;
   IconElement?: React.ComponentType<any> | React.ReactElement;
   onPress(): void;
-  style?: object;
 }
 
-export const ButtonTiny: React.FC<Props> = React.memo(({ onPress, label, IconElement, backgroundColor, labelColor, style }) => {
+export const ButtonTiny: React.FC<Props> = React.memo(({ onPress, label, IconElement, backgroundColor, labelColor }) => {
   return (
-    <TouchableOpacity testID="ButtonTiny-Button" onPress={onPress} style={[styles.container, { backgroundColor }, style]}>
+    <TouchableOpacity testID="ButtonTiny-Button" onPress={onPress} style={[styles.container, { backgroundColor }]}>
       <>
         <Text style={[styles.label, { color: labelColor }]}>{label}</Text>
         {IconElement && (

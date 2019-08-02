@@ -1,6 +1,6 @@
 import React from 'react';
 import isEqual from 'react-fast-compare';
-import { Alert, View, Text, StyleSheet, ScrollView, SectionListData } from 'react-native';
+import { Alert, SectionListData } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
 
@@ -23,16 +23,11 @@ import { selectDownloadedVoicePreviews, selectLanguagesWithActiveVoicesByLanguag
 import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_VOICE_CHANGE, ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE } from '../constants/messages';
 
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
+import { AppBackground } from '../components/AppBackground';
 import { ButtonVoicePreview } from '../components/ButtonVoicePreview';
 import { CustomSectionList } from '../components/CustomSectionList';
-import colors from '../constants/colors';
-import fonts from '../constants/fonts';
-import spacing from '../constants/spacing';
-import { ButtonTiny } from '../components/ButtonTiny';
-import * as Icon from '../components/Icon';
 import { TopFilter } from '../components/TopFilter';
-import { AppBackground } from '../components/AppBackground';
-import { EmptyState } from '../components/EmptyState';
+import colors from '../constants/colors';
 
 interface IProps {
   languageName: string;
@@ -307,7 +302,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     return [{
       key: 'available-voices',
       title: 'Available voices',
-      data: this.filteredVoices.map((voice, index) => {
+      data: this.filteredVoices.map((voice) => {
         const isSelected = this.isSelected(voice);
         const isPlaying = this.isVoicePlayingInPlayer(voice.id);
         const isActive = this.isVoiceActiveInPlayer(voice.id);
@@ -405,7 +400,7 @@ interface StateProps {
   readonly errorSaveSelectedVoice: ReturnType<typeof selectUserErrorSaveSelectedVoice>;
 }
 
-const mapStateToProps = (state: RootState, props: Props) => ({
+const mapStateToProps = (state: RootState) => ({
   playbackState: selectPlayerPlaybackState(state),
   playerTrack: selectPlayerTrack(state),
   downloadedVoices: selectDownloadedVoicePreviews(state),

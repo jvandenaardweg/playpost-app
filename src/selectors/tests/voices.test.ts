@@ -46,7 +46,7 @@ describe('voices selector', () => {
       }
     };
 
-    expect(selectTotalAvailableVoices(exampleState)).toBe(43);
+    expect(selectTotalAvailableVoices(exampleState)).toBe(118);
   });
 
   it('selectTotalAvailableVoices should return the available languages total when a language has no voices', () => {

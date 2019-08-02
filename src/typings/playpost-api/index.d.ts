@@ -90,24 +90,23 @@ declare namespace Api {
     title: string | null;
     description: string | null;
     url: string;
-    language?: Language;
     sourceName: string | null;
     imageUrl: string | null;
     authorName: string | null;
     html: string | null;
-    ssml?: string | null; // optional
-    text?: string | null; // optional
     createdAt: string;
     updatedAt: string;
-    user?: User; // optional
     readingTime: number | null;
     canonicalUrl: string | null;
     status: ArticleStatus<string>;
-    documentHtml?: string; // optional
     audiofiles: Audiofile[];
-    language: Language;
+    language: Language | null;
     isCompatible: boolean;
     compatibilityMessage: string | null;
+    ssml?: string | null; // optional
+    text?: string | null; // optional
+    user?: User | null; // optional
+    documentHtml?: string | null; // optional
   }
 
   export interface User {

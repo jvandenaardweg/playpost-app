@@ -61,7 +61,7 @@ exports[`FullArticleScreen rendering should render correctly 1`] = `
           }
 
           h1 {
-            font-size: 24px;
+            font-size: 30px;
             margin-bottom: 12px;
             text-align: center;
           }

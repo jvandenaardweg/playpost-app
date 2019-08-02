@@ -58,7 +58,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
             style={
               Object {
                 "color": "#000000",
-                "fontSize": 24,
+                "fontSize": 21,
                 "fontWeight": "700",
                 "marginBottom": 24,
                 "marginTop": 12,
@@ -134,7 +134,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#222222",
                     "fontSize": 15,
-                    "lineHeight": 24,
+                    "lineHeight": 23,
                   }
                 }
               >
@@ -208,7 +208,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#222222",
                     "fontSize": 15,
-                    "lineHeight": 24,
+                    "lineHeight": 23,
                   }
                 }
               >
@@ -282,7 +282,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#222222",
                     "fontSize": 15,
-                    "lineHeight": 24,
+                    "lineHeight": 23,
                   }
                 }
               >
@@ -356,7 +356,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#222222",
                     "fontSize": 15,
-                    "lineHeight": 24,
+                    "lineHeight": 23,
                   }
                 }
               >
@@ -376,7 +376,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
             style={
               Object {
                 "fontSize": 13,
-                "lineHeight": 18,
+                "lineHeight": 20,
                 "opacity": 0.5,
               }
             }
@@ -401,7 +401,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 Array [
                   Object {
                     "fontSize": 13,
-                    "lineHeight": 18,
+                    "lineHeight": 20,
                     "opacity": 0.5,
                   },
                   Object {
@@ -418,7 +418,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               style={
                 Object {
                   "fontSize": 13,
-                  "lineHeight": 18,
+                  "lineHeight": 20,
                   "opacity": 0.5,
                 }
               }
@@ -431,7 +431,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 Array [
                   Object {
                     "fontSize": 13,
-                    "lineHeight": 18,
+                    "lineHeight": 20,
                     "opacity": 0.5,
                   },
                   Object {

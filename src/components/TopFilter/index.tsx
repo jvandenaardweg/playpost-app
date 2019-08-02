@@ -4,9 +4,9 @@ import { ScrollView, Text, View } from 'react-native';
 
 import styles from './styles';
 
-import * as Icon from '../Icon';
 import colors from '../../constants/colors';
 import { ButtonTiny } from '../ButtonTiny';
+import * as Icon from '../Icon';
 
 interface Filter {
   label: string;

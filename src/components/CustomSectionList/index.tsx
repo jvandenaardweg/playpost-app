@@ -6,9 +6,9 @@ import styles from './styles';
 import colors from '../../constants/colors';
 
 import * as Icon from '../../components/Icon';
-import { ListSeperator } from '../ListSeperator';
 import fonts from '../../constants/fonts';
 import { EmptyState } from '../EmptyState';
+import { ListSeperator } from '../ListSeperator';
 
 export interface ListItem {
   subtitle?: string;

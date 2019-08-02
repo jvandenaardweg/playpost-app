@@ -61,7 +61,7 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
           }
 
           h1 {
-            font-size: 24px;
+            font-size: 30px;
             margin-bottom: 12px;
             text-align: center;
           }
@@ -271,7 +271,7 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
           }
 
           h1 {
-            font-size: 24px;
+            font-size: 30px;
             margin-bottom: 12px;
             text-align: center;
           }
@@ -481,7 +481,7 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
           }
 
           h1 {
-            font-size: 24px;
+            font-size: 30px;
             margin-bottom: 12px;
             text-align: center;
           }
@@ -685,7 +685,7 @@ exports[`ArticleReader rendering no author name should render no authorName when
           }
 
           h1 {
-            font-size: 24px;
+            font-size: 30px;
             margin-bottom: 12px;
             text-align: center;
           }
@@ -889,7 +889,7 @@ exports[`ArticleReader rendering no html should render a different HTML output w
           }
 
           h1 {
-            font-size: 24px;
+            font-size: 30px;
             margin-bottom: 12px;
             text-align: center;
           }

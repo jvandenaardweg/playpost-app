@@ -10,6 +10,16 @@ exports[`CustomSectionList basic rendering should render correctly 1`] = `
   }
 >
   <RCTScrollView
+    ListEmptyComponent={
+      <Memo
+        description={
+          Array [
+            "It seems like this list is empty...",
+          ]
+        }
+        title="No items to show"
+      />
+    }
     contentContainerStyle={
       Object {
         "overflow": "visible",

@@ -1,12 +1,1347 @@
 export default [
   {
-    id: '54f58d4f-0445-4b90-88aa-971dcaa83596',
+    id: '24061781-2e4f-4a0d-abea-1bc3c50428d7',
     order: 0,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
+    createdAt: '2019-07-29T07:19:15.525Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
+    article: {
+      id: '90849252-20d6-408e-96f4-ed83bca3bbd6',
+      title: null,
+      description: null,
+      url: 'https://www.nu.nl/gezondheid/5971704/erasmus-mc-preventieve-borstamputatie-niet-noodzakelijk-voor-dragers-brca2-gen.html',
+      canonicalUrl: null,
+      status: 'failed',
+      sourceName: null,
+      imageUrl: null,
+      readingTime: null,
+      authorName: null,
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: null,
+      createdAt: '2019-07-29T07:19:14.829Z',
+      updatedAt: '2019-07-29T07:19:55.939Z',
+      language: null,
+      audiofiles: []
+    }
+  },
+  {
+    id: '0f6d3be8-98f6-4ed4-8c52-4c6d17a92d51',
+    order: 1,
+    lastPlayedAt: null,
+    archivedAt: '2019-07-23T19:41:39.182Z',
+    favoritedAt: null,
+    createdAt: '2019-07-22T11:53:16.711Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
+    article: {
+      id: '09b1dfc0-8841-42f0-adea-6492d35376b5',
+      title: 'Tbs voor volledig ontoerekeningsvatbare dader van steekpartij Den Haag',
+      description: 'De man die op 5 mei 2018 in Den Haag drie mensen heeft neergestoken, was volgens de rechtbank volledig ontoerekeningsvatbaar. Er was geen sprake van een terroristische daad. Malek F. krijgt tbs met...',
+      url: 'https://www.nu.nl/binnenland/5968639/tbs-voor-volledig-ontoerekeningsvatbare-dader-van-steekpartij-den-haag.html',
+      canonicalUrl: 'https://www.nu.nl/binnenland/5968639/tbs-voor-volledig-ontoerekeningsvatbare-dader-van-steekpartij-den-haag.html',
+      status: 'finished',
+      sourceName: 'NU',
+      imageUrl: 'https://media.nu.nl/m/olexkygaf242_wd1280.jpg/tbs-voor-volledig-ontoerekeningsvatbare-dader-van-steekpartij-den-haag.jpg',
+      readingTime: 134.70000000000002,
+      authorName: 'NU.nl',
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div id="block-288873"><div><div><p>De man die op 5 mei 2018 in Den Haag drie mensen heeft neergestoken, was volgens de rechtbank volledig ontoerekeningsvatbaar. Er was geen sprake van een terroristische daad. Malek F. krijgt tbs met dwangverpleging opgelegd.</p><p>Volgens de rechter is de "persoon van de verdachte essentieel" bij de veroordeling. Uit verklaring van deskundigen is volgens de rechter duidelijk gebleken dat de man "ernstige paranoïde wanen" had tijdens zijn daad.</p><p>"Hoewel de man afschuwelijke strafbare feiten heeft gepleegd, is hij geen strafbare dader", verduidelijkte de rechtbank. "Hij wordt daarom ontslagen van alle rechtsvervolging."</p><p>De uit Syrië gevluchte F. stak vorig jaar op 5 mei op het Johanna Westerdijkplein in Den Haag willekeurig drie mensen neer. Zij raakten levensgevaarlijk gewond, maar overleefden alle drie. In verklaringen lieten de slachtoffers weten nog steeds te lijden.</p><p>F. had volgens de rechter niet het doel om mensen vrees aan te jagen en daarom is er geen sprake van een terroristisch oogmerk. "Ook al zijn door zijn daad mensen wel angstig geworden", aldus de rechter.</p><h2>Rechtbank: Man wilde duivelsaanbidders doden</h2><p>Wel was er sprake van voorbedachten rade en dus drievoudige poging tot moord. Het kan de man namelijk worden aangerekend dat hij al langer het plan had om mensen te doden en op 2 mei 2018 met dat doel een mes kocht.</p><p>De man verklaarde zelf dat hij op de dag van zijn daad van een vogel de opdracht kreeg om mensen neer te steken. Het ging volgens F. om duivelsaanbidders.</p><p>De rechtbank neemt deze verklaring over en ziet zich gesteund door de eerder genoemde getuigenissen van de deskundigen. "De man deed voor zijn daad zelfs aangifte van achtervolging door duivelsaanbidders."</p><p>De rechtbank erkende dat de man er extremistische en radicale ideeën op na hield, maar dat dit het gevolg was van zijn "paranoïde psychose".</p><h2>Advocaat F. waarschuwt cliënt voor kans op hoger beroep</h2><p>Job Knoester, een van de advocaten van F., laat in een reactie aan NU.nl weten het vonnis goed te zullen bestuderen, omdat er tbs is opgelegd en geen behandeling in een psychiatrisch ziekenhuis (zoals door de verdediging werd verzocht).</p><p>De veroordeling leidt volgens Knoester tot het intrekken van de verblijfsvergunning van de man en dat maakt verlof onmogelijk. F. reageerde zelf opgelucht op het vonnis, maar Knoester heeft hem proberen duidelijk te maken dat het Openbaar Ministerie (OM) nog in hoger beroep kan gaan.</p><h2>OM gaat wel van uit van terroristisch oogmerk</h2><p>Het OM eiste vijftien jaar en tbs in de overtuiging dat F. wel met een terroristisch oogmerk handelde. Hoewel hij deels ontoerekeningsvatbaar zou zijn geweest, was de man volgens justitie niet zo ziek als hij deed voorkomen.</p><p>Het OM komt desgevraagd later maandag nog met een reactie op het vonnis.</p></div></div></div></div>',
+      createdAt: '2019-07-22T11:53:15.959Z',
+      updatedAt: '2019-07-22T11:53:22.475Z',
+      language: {
+        id: 'cd72f71c-dc59-4be7-8a40-0143fe6f0ad9',
+        name: 'Dutch',
+        nativeName: 'Nederlands',
+        code: 'nl',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:52:08.217Z',
+        updatedAt: '2019-08-01T14:13:01.760Z'
+      },
+      audiofiles: []
+    }
+  },
+  {
+    id: '29d3cc7c-7dde-4e7d-b972-de3707254609',
+    order: 2,
+    lastPlayedAt: null,
+    archivedAt: '2019-07-25T10:21:32.453Z',
+    favoritedAt: null,
+    createdAt: '2019-07-12T05:33:41.826Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
+    article: {
+      id: '067fcc13-b9b0-4fd4-a11c-26eaeb537fbf',
+      title: 'How to keep focus in the office',
+      description: 'Most of our workplaces are cluttered with distractions of many different kinds. These distractions are especially present in a popular open-office settings, which are proving to be more and more...',
+      url: 'https://thenextweb.com/podium/2019/07/12/how-to-keep-focus-in-the-office',
+      canonicalUrl: 'https://thenextweb.com/podium/2019/07/12/how-to-keep-focus-in-the-office/',
+      status: 'finished',
+      sourceName: 'Podium | The Next Web',
+      imageUrl: 'https://img-cdn.tnwcdn.com/image/podium?filter_last=1&fit=1280%2C640&url=https%3A%2F%2Fcdn0.tnwcdn.com%2Fwp-content%2Fblogs.dir%2F1%2Ffiles%2F2019%2F07%2Frocket.png&signature=693076b69614e3498f500a683a413162',
+      readingTime: 220.5,
+      authorName: 'Alexander Maasik',
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div><p>Most of our workplaces are cluttered with distractions of many different kinds. These distractions are especially present in a popular open-office settings, which are<a href="https://techcrunch.com/2018/07/13/yes-open-office-plans-are-the-worst/"> proving to be more and more disruptive to the general productivity of teams</a>. From meetings to co-workers looking for a chat, it’s hard to get any meaningful work done in a modern office. Keeping focus is hard and productivity suffers. So, what can you do to actually get some work done every day?</p><p>There is no one single formula that makes you better at work. However, if you find out what works for you, you’ll be able to get more done in less time. Here are a few tips you can try to boost your focus.</p><h2>Just ignore people to keep the focus.</h2><p>There is a time for work and there is a time for socializing. To keep focused, you need to block out distraction free time. This means closing out of social media, turning a blind eye to the office drama unfolding in the corner, and putting any calls or requests from colleagues on hold. While everyone else may think that their problem is the biggest crisis in the world and demand your attention, there are very few things that can not wait an hour.</p><p>Personally, I like to work in blocks of 55 minutes and then dedicate 5 minutes to stretching, getting coffee, or checking out anything I’ve missed. For some people <a href="https://blog.weekdone.com/weekdone-helps-focus-work/">the longest they can focus effectively is 25 minutes.</a> Find the rhythm that works for you. If you have an office, closing the door helps. If you are working in an open office, a pair of good headphones is usually the best way to signal your unwillingness to talk.</p><h2>Manage your email and Slack.</h2><p>I once had a manager who never looked at his email before noon. His reasoning was that this way he could make sure that he gets meaningful work done before opening himself up to distractions. While many of us don’t have such luxury, it is still possible to regulate the way you get information online. You must set rules on when you read emails and who’s letters you open right away. Like face-to-face talks with co-workers, urgent emails are hardly ever urgent. Personally, unless it is an email of high-importance, I usually get to my emails the following morning. And, I only check my <a href="https://slack.com/">Slack</a> conversions when I’m not in my 55-minute work sprint.</p><h2>Say “no” to meetings.</h2><p>While I don’t share the idea that meetings are the source of all evil, they often waste more resources than they are worth.</p><p>When I run a <a href="https://teammeetingchecklist.com/">meeting</a>, I make sure to have a very strict agenda and only the right people in the room. Due to that, I can usually keep my meetings under 30 minutes. However, many managers like to have a lot of them. So, you must be critical and learn to say “no”, if you feel you will not contribute anything to the meeting. If possible, it is also a good idea to schedule all your weekly meetings on one day. Then they won’t clutter up other days and allow you to have greater focus 4 days a week.</p><h2>Don’t go to the office.</h2><p>If you are lucky enough that your workplace allows some form of remote work, use it. Working from home allows you to focus your time better. You’ll save time on commuting and people will not come by your table to talk. I usually work at home a few days a week. This saves me about four hours of time from traveling and getting ready. Time, I can then spend on my family and hobbies. Work-life balance matters, so finding a way to do your work as well and as quickly as possible is important!</p><h2>Better to be drastic than useless.</h2><p>Yes, some of these may seem drastic, but it is the only way you can actually<a href="https://thenextweb.com/insights/2016/12/29/how-to-work-less-get-better-results/"> get work done</a>. Since I started working at Weekdone, I have tried all of these methods over the last 4 years. And while it might seem weird to start doing some of them, in time people will accept these behaviors. Especially, if they see how much more productive you’ll be.</p><p>This post is part of our contributor series. The views expressed are the author\'s own and not necessarily shared by TNW.</p><p>Published July 12, 2019 — 06:22 UTC</p></div></div>',
+      createdAt: '2019-07-12T05:33:41.335Z',
+      updatedAt: '2019-07-12T05:33:42.804Z',
+      language: {
+        id: '95f01039-fe8e-412d-a542-7089303b84c8',
+        name: 'English',
+        nativeName: 'English',
+        code: 'en',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:51:57.546Z',
+        updatedAt: '2019-08-01T14:13:01.327Z'
+      },
+      audiofiles: []
+    }
+  },
+  {
+    id: '3dff13a9-a240-45ce-b0e9-5196c83b4ccc',
+    order: 3,
+    lastPlayedAt: null,
+    archivedAt: '2019-07-24T09:35:56.073Z',
+    favoritedAt: null,
+    createdAt: '2019-07-12T05:32:45.046Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
+    article: {
+      id: '0ae2fcf6-4d8e-475b-9909-ea0b1ca289b9',
+      title: 'Canadees bedrijf zou veel meer gas winnen uit veld Diever dan toegestaan',
+      description: 'Het Openbaar Ministerie (OM) blijkt al maanden strafrechtelijk onderzoek te doen naar de winning van gas uit kleinere velden in Nederland. Het onderzoek zou zich concentreren op het Canadese bedrijf...',
+      url: 'https://nos.nl/l/2293119',
+      canonicalUrl: 'https://nos.nl/l/2293119',
+      status: 'finished',
+      sourceName: 'nos.nl',
+      imageUrl: 'https://nos.nl/data/image/2019/07/12/562876/xxl.jpg',
+      readingTime: 114,
+      authorName: null,
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div id="content"><div><div><div><figure><img src="https://nos.nl/data/image/2019/07/12/562876/2048x1152.jpg"><figcaption><span>Een gaswinningsinstallatie </span><span>RTV Noord</span></figcaption></figure></div></div></div><div><div><p>Het Openbaar Ministerie (OM) blijkt al maanden strafrechtelijk onderzoek te doen naar de winning van gas uit kleinere velden in Nederland. Het onderzoek zou zich concentreren op het Canadese bedrijf Vermilion, dat onder meer in het Drentse dorp Diever meer dan drie keer de toegestane maximale productiehoeveelheid uit de grond haalde, blijkt uit gezamenlijk onderzoek van RTV Noord, RTV Oost, <a href="https://www.rtvdrenthe.nl/nieuws/149766/Strafrechtelijk-onderzoek-naar-versnelde-gaswinning-kleine-velden">RTV Drenthe</a> en Omrop Fryslân.</p><p>Het OM bevestigt dat er een strafrechtelijk onderzoek loopt, maar wil niet zeggen of het om Vermilion gaat. "We kunnen altijd pas melden dat we iets onderzoeken, indien verdachten daarvan ook op de hoogte zijn. Anders zouden ze in de krant moeten lezen dat ze als verdachte zijn aangemerkt en dat is niet netjes", zegt een woordvoerder.</p><h2>Aardbeving en bodemdaling</h2><p>Omwonenden zijn bang voor aardbevingen en bodemdaling. "De rechter in Den Haag heeft al gezegd dat er geen aanleiding is om te denken dat de risico\'s bij een klein gasveld kleiner zijn dan bij het Groningenveld", zegt Alie Eiting uit Diever.</p><p>Ook iets verderop, op de grens van Friesland, Groningen en Drenthe, vragen bewoners zich af wat de versnelde gaswinning in de buurt van hun huizen betekent. "Uit openbaar toegankelijke cijfers op internet is al gebleken dat de maatschappijen meer gas winnen dan in de vergunning is toegestaan", zegt Jeanette van der Velde van de stichting Gas Drenthe, Overijssel, Friesland (GasDrOvF). "Voor de duidelijkheid, die openbaar toegankelijke cijfers zijn afkomstig van de gasconcerns zelf."</p><h2>Wiebes voert productie op</h2><p>Gasbedrijven zijn bij alle velden die ze exploiteren verplicht om een winningsplan op te stellen. Als de minister instemt formuleert hij ook de voorwaarden. Die voorwaarden, zoals een maximale productiehoeveelheid, worden opgenomen in de omgevingsvergunning.</p><p>Omdat de gaswinning in het Groningenveld versneld wordt teruggebracht, heeft minister Wiebes afgelopen jaar meerdere vergunningen afgegeven voor kleinere velden in het noorden van het land. Hij voert daar de productie op. <a href="https://www.rtvdrenthe.nl/nieuws/149738/Tweede-Kamerleden-voelen-minister-Wiebes-aan-de-tand-over-opvoering-gaswinnning">Gisteren</a> zeiden de Tweede Kamerleden Henk Nijboer (PvdA) en Sandra Beckerman (SP) dat ze minister Wiebes daarover aan de tand gaan voelen.</p><h2>Lekkages</h2><p>Het OM doet niet alleen onderzoek naar de productie uit kleinere velden. Er loopt ook een onderzoek naar de NAM wegens verontreiniging in Collendoorn (Hardenberg) en Farmsum (Groningen). In Collendoorn was in januari dit jaar een lekkage. Ook in Farmsum zijn chemische stoffen in de bodem gelekt.</p></div></div></div></div>',
+      createdAt: '2019-07-12T05:32:44.528Z',
+      updatedAt: '2019-07-12T05:33:14.780Z',
+      language: {
+        id: 'cd72f71c-dc59-4be7-8a40-0143fe6f0ad9',
+        name: 'Dutch',
+        nativeName: 'Nederlands',
+        code: 'nl',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:52:08.217Z',
+        updatedAt: '2019-08-01T14:13:01.760Z'
+      },
+      audiofiles: [
+        {
+          id: 'e1d30f32-7f27-4379-a7c3-7e1016adffb8',
+          url: 'https://storage-development.playpost.app/articles/0ae2fcf6-4d8e-475b-9909-ea0b1ca289b9/audiofiles/e1d30f32-7f27-4379-a7c3-7e1016adffb8.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/0ae2fcf6-4d8e-475b-9909-ea0b1ca289b9/audiofiles/e1d30f32-7f27-4379-a7c3-7e1016adffb8.mp3',
+          length: 141.1134693877551,
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-07-16T10:03:38.026Z',
+          updatedAt: '2019-07-16T10:03:38.026Z',
+          voice: {
+            id: 'd4c0973c-5a36-4950-afe1-3e2224592c20',
+            languageCode: 'nl-NL',
+            countryCode: 'NL',
+            name: 'Ruben',
+            label: 'Ruben',
+            gender: 'MALE',
+            synthesizer: 'AWS',
+            quality: 'Normal',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: null,
+            isActive: true,
+            isPremium: false,
+            isHighestQuality: false,
+            isLanguageDefault: true,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/d4c0973c-5a36-4950-afe1-3e2224592c20.mp3',
+            createdAt: '2019-04-25T11:35:03.293Z',
+            updatedAt: '2019-08-01T14:13:05.559Z',
+            language: {
+              id: 'cd72f71c-dc59-4be7-8a40-0143fe6f0ad9',
+              name: 'Dutch',
+              nativeName: 'Nederlands',
+              code: 'nl',
+              rightToLeft: false,
+              isActive: true,
+              createdAt: '2019-05-16T12:52:08.217Z',
+              updatedAt: '2019-08-01T14:13:01.760Z'
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    id: 'ea390a32-7347-4970-bdec-e04487d4c420',
+    order: 4,
+    lastPlayedAt: null,
+    archivedAt: '2019-07-24T09:36:07.461Z',
+    favoritedAt: null,
+    createdAt: '2019-07-12T05:02:14.317Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
+    article: {
+      id: '13b3cc87-0ba1-4f69-a0da-4a29325f2826',
+      title: 'RIP Backgammon -- Microsoft to shutter its Internet Games service',
+      description: 'Pour one out for another gaming legend we’re losing. Microsoft revealed last week it’s no longer supporting its suite of Internet Games that have been a staple of Windows for 19 years. Games Services...',
+      url: 'https://thenextweb.com/gaming/2019/07/11/microsoft-internet-games-service-shut-down',
+      canonicalUrl: 'https://thenextweb.com/gaming/2019/07/11/microsoft-internet-games-service-shut-down/',
+      status: 'finished',
+      sourceName: 'The Next Web',
+      imageUrl: 'https://img-cdn.tnwcdn.com/image/tnw?filter_last=1&fit=1280%2C640&url=https%3A%2F%2Fcdn0.tnwcdn.com%2Fwp-content%2Fblogs.dir%2F1%2Ffiles%2F2019%2F07%2FMicrosoft-Card-Games.jpg&signature=4eeccf6530fc8d8411afbb486c03caab',
+      readingTime: 122.69999999999999,
+      authorName: 'Rachel Kaser',
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div><p>Pour one out for another gaming legend we’re losing. Microsoft revealed last week it’s no longer supporting its suite of Internet Games that have been a staple of Windows for 19 years.</p><p>Games Services for Windows XP and ME will end later this month, while the same service for Windows 7 will end next January. <a href="https://answers.microsoft.com/en-us/windows/forum/all/farewell-to-microsoft-internet-games-on-windows-xp/035d5144-6c1b-49bb-b3d5-37f6355fec39?auth=1&amp;ranMID=24542&amp;ranEAID=kXQk6*ivFEQ&amp;ranSiteID=kXQk6.ivFEQ-OjnympcD2G6Jb8_HOvu9BQ&amp;epi=kXQk6.ivFEQ-OjnympcD2G6Jb8_HOvu9BQ&amp;irgwc=1&amp;OCID=AID2000142_aff_7593_1243925&amp;tduid=(ir__9ovikb9ftokfrwwc0j1ncsypsu2xjjjnihwjkeny00)(7593)(1243925)(kXQk6.ivFEQ-OjnympcD2G6Jb8_HOvu9BQ)()&amp;irclickid=_9ovikb9ftokfrwwc0j1ncsypsu2xjjjnihwjkeny00">A statement</a> from a spokesperson lists the casualties as Backgammon, Checkers, Spades, Hearts, and Reversi. The company thanks the “great community” that existed for these games, but says:</p><blockquote><p>However, the time has come for us, along with our hardware and software partners, to invest our resources towards more recent technologies so that we can continue to deliver great new experiences. Current players may enjoy the games until the dates above, when game services will cease, and the games listed will no longer be playable.</p></blockquote><p>I’m sure this is most likely to effect those running Windows 7, which is still a fairly popular OS. Windows 10 only edged it out in market share earlier this year. As of <a href="https://netmarketshare.com/operating-system-market-share.aspx?options=%7B%22filter%22%3A%7B%22%24and%22%3A%5B%7B%22deviceType%22%3A%7B%22%24in%22%3A%5B%22Desktop%2Flaptop%22%5D%7D%7D%5D%7D%2C%22dateLabel%22%3A%22Trend%22%2C%22attributes%22%3A%22share%22%2C%22group%22%3A%22platformVersion%22%2C%22sort%22%3A%7B%22share%22%3A-1%7D%2C%22id%22%3A%22platformsDesktopVersions%22%2C%22dateInterval%22%3A%22Monthly%22%2C%22dateStart%22%3A%222018-07%22%2C%22dateEnd%22%3A%222019-06%22%2C%22segments%22%3A%22-1000%22%7D">Net Applications’ latest report</a>, Windows 7 holds about 38 percent of the market share, and Windows 10 about 41 percent. Windows XP, meanwhile, holds just over 3 percent. I couldn’t find any data on how many people still use Windows ME, but I’m going to guess it’s fewer than that.</p><p>It’s kind of sad to see such a staple of the gaming world — a somewhat understated, casual staple, but a staple nonetheless — get shut down. For many, this was the original casual gaming experience, the non-threatening addictive game pre-<em>Candy Crush</em>. But it’s understandable — all things come to an end, and a 19-year run is nothing to sneeze at.</p><p>That’s not to say we’ll never see checkers or backgammon on Windows again. The team closes out the goodbye with, “<span>While we’re saddened to leave this chapter behind, we continue to be committed to delivering engaging, delightful gaming experiences.” That makes me wonder if </span>some variation on these casual games will make a comeback later — perhaps Microsoft will include an upgraded Internet Games package with whatever the next version of Windows is.</p><p>If nothing else, we’ll always have our old friend, <a href="https://thenextweb.com/gaming/2019/02/21/arkadium-ceo-jessica-rovello-solitaire-enduring-appeal/">Arkadium’s Solitaire</a>. Out of every game I’ve played, I’ll put money on that one being around <em>forever</em>.</p><p><a href="https://answers.microsoft.com/en-us/windows/forum/all/farewell-to-microsoft-internet-games-on-windows-xp/035d5144-6c1b-49bb-b3d5-37f6355fec39?auth=1&amp;ranMID=24542&amp;ranEAID=kXQk6*ivFEQ&amp;ranSiteID=kXQk6.ivFEQ-OjnympcD2G6Jb8_HOvu9BQ&amp;epi=kXQk6.ivFEQ-OjnympcD2G6Jb8_HOvu9BQ&amp;irgwc=1&amp;OCID=AID2000142_aff_7593_1243925&amp;tduid=(ir__9ovikb9ftokfrwwc0j1ncsypsu2xjjjnihwjkeny00)(7593)(1243925)(kXQk6.ivFEQ-OjnympcD2G6Jb8_HOvu9BQ)()&amp;irclickid=_9ovikb9ftokfrwwc0j1ncsypsu2xjjjnihwjkeny00"><span>Farewell to Microsoft Internet Games on Windows XP, Windows ME, and Windows 7</span> <span>on Microsoft</span></a></p><p><b>Read next:</b> <a href="https://thenextweb.com/gaming/2019/07/11/steam-sequesters-strange-ai-experiments-into-a-new-lab/">Steam sequesters strange AI experiments into a new \'Lab\'</a></p></div></div>',
+      createdAt: '2019-07-12T04:56:59.423Z',
+      updatedAt: '2019-07-12T04:57:01.522Z',
+      language: {
+        id: '95f01039-fe8e-412d-a542-7089303b84c8',
+        name: 'English',
+        nativeName: 'English',
+        code: 'en',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:51:57.546Z',
+        updatedAt: '2019-08-01T14:13:01.327Z'
+      },
+      audiofiles: [
+        {
+          id: 'fc5518d2-80f0-487e-b95b-fbd55a7c84c0',
+          url: 'https://storage-development.playpost.app/articles/13b3cc87-0ba1-4f69-a0da-4a29325f2826/audiofiles/fc5518d2-80f0-487e-b95b-fbd55a7c84c0.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/13b3cc87-0ba1-4f69-a0da-4a29325f2826/audiofiles/fc5518d2-80f0-487e-b95b-fbd55a7c84c0.mp3',
+          length: 148.66285714285715,
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-07-16T10:03:51.054Z',
+          updatedAt: '2019-07-16T10:03:51.054Z',
+          voice: {
+            id: 'd2ede165-9dc0-4969-af8c-f4ff3716da53',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'Joanna',
+            label: 'Joanna',
+            gender: 'FEMALE',
+            synthesizer: 'AWS',
+            quality: 'Normal',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: null,
+            isActive: true,
+            isPremium: false,
+            isHighestQuality: false,
+            isLanguageDefault: true,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
+            createdAt: '2019-04-25T11:35:03.678Z',
+            updatedAt: '2019-08-01T14:13:06.094Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              code: 'en',
+              rightToLeft: false,
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-08-01T14:13:01.327Z'
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    id: '85aedb9c-b39b-4d1d-94b3-a11f75c54550',
+    order: 5,
+    lastPlayedAt: null,
+    archivedAt: '2019-07-25T19:00:21.818Z',
+    favoritedAt: null,
+    createdAt: '2019-07-11T15:49:04.982Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
+    article: {
+      id: 'affbaab2-b8b4-4090-b573-099c84b86178',
+      title: '‘Nederlands belastinglek kost wereldwijd tot 10 miljard euro per jaar’',
+      description: 'Door één specifiek Nederlands belastinglek lopen overheden wereldwijd jaarlijks 5 tot 10 miljard euro mis, tenzij er voor 2020 wordt ingegrepen. De Nederlandse overheid helpt multinationals...',
+      url: 'https://www.nu.nl/economie/5913018/nederlands-belastinglek-kost-wereldwijd-tot-10-miljard-euro-per-jaar.html',
+      canonicalUrl: 'https://www.nu.nl/economie/5913018/nederlands-belastinglek-kost-wereldwijd-tot-10-miljard-euro-per-jaar.html',
+      status: 'finished',
+      sourceName: 'NU',
+      imageUrl: 'https://media.nu.nl/m/m1nx9q7a3tyq_wd1280.jpg/nederlands-belastinglek-kost-wereldwijd-tot-10-miljard-euro-per-jaar.jpg',
+      readingTime: 79.2,
+      authorName: 'Door: NU.nl',
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div id="block-288803"><div><div><p>Door één specifiek Nederlands belastinglek lopen overheden wereldwijd jaarlijks 5 tot 10 miljard euro mis, tenzij er voor 2020 wordt ingegrepen. De Nederlandse overheid helpt multinationals grootschalig belasting te ontwijken, stelt Oxfam Novib dinsdag in een nieuw <a href="https://www.oxfamnovib.nl/Files/rapporten/2019/20190528%20Rapport%20belastinglek%20Nederland.pdf">rapport</a>.</p><p>Het gaat om een belastingconstructie die multinationals kunnen gebruiken om in Nederland fictieve kosten af te trekken. Zo hoeft over een deel van de winst geen belasting te worden geheven. Deze specifieke constructie heet een \'infokapstructuur\'.</p><p>"Omdat er nu maatregelen zijn aangekondigd tegen andere belastingtrucs, is het zeer aannemelijk dat meer multinationals gebruik gaan maken van een infokapstructuur", stelt Oxfam Novib.</p><p>De afgelopen jaren zouden bedrijven als brouwerij SABMiller, van onder meer Grolsch en Peroni, en modemerk G-Star de structuur al hebben gebruikt, waardoor "arme en rijke landen al honderden miljoenen euro\'s zijn misgelopen".</p><h2>Belastingparadijzen: Nederland op vierde plaats</h2><p>Nederland belandt volgens Oxfam mede hierdoor op vierde plek van de nieuwe <a href="https://www.taxjustice.net/2019/05/28/new-ranking-reveals-corporate-tax-havens-behind-breakdown-of-global-corporate-tax-system-toll-of-uks-tax-war-exposed/">ranglijst</a> met 64 belastingparadijzen wereldwijd, die onderzoeksnetwerk Tax Justice Network ook op dinsdag publiceert. Alleen de Britse Maagdeneilanden, Bermuda en de Kaaimaneilanden staan hoger.</p><p>"Om van het imago van belastingparadijs af te komen, moet Nederland op een overtuigende manier alle belastinglekken dichten", zegt Francis Weyzig, belastingexpert bij Oxfam Novib. Ook zou er meer publieke transparantie over belastingsafspraken met bedrijven moeten komen.</p><p>"Bovendien zouden grote multinationals moeten worden verplicht om voor elk land afzonderlijk gegevens te publiceren over de omvang van hun activiteiten, hun winst of verlies, en de bijbehorende belasting", aldus Weyzig.</p><p>Ontwikkelingslanden lopen volgens het onderzoek jaarlijks zo\'n 100 miljard dollar (ruim 89 miljard euro) aan belastinginkomsten mis door internationale belastingontwijking van bedrijven.</p></div></div></div></div>',
+      createdAt: '2019-07-11T15:49:04.489Z',
+      updatedAt: '2019-07-11T15:49:08.127Z',
+      language: {
+        id: 'cd72f71c-dc59-4be7-8a40-0143fe6f0ad9',
+        name: 'Dutch',
+        nativeName: 'Nederlands',
+        code: 'nl',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:52:08.217Z',
+        updatedAt: '2019-08-01T14:13:01.760Z'
+      },
+      audiofiles: []
+    }
+  },
+  {
+    id: 'e9eed1a9-4f2d-482d-ae06-6ebc92c76462',
+    order: 6,
+    lastPlayedAt: null,
+    archivedAt: '2019-07-24T09:38:03.274Z',
+    favoritedAt: null,
+    createdAt: '2019-07-11T12:26:57.942Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
+    article: {
+      id: '33a28094-1965-497e-be04-63cc8dbdfd49',
+      title: 'Iranian boats attempted to impede British tanker in the Gulf: UK',
+      description: 'TheUnited Kingdom \'s government has said three Iranian vessels unsuccessfully tried to impede the passage of a British commercial vessel through the Strait of Hormuz. In a statement on Thursday, the...',
+      url: 'https://aje.io/3vaeq',
+      canonicalUrl: 'https://www.aljazeera.com/news/2019/07/iranian-boats-bid-seize-uk-tanker-gulf-officials-190711020919585.html',
+      status: 'finished',
+      sourceName: 'www.aljazeera.com',
+      imageUrl: 'https://www.aljazeera.com/mritems/Images/2019/7/11/5d75e3b24dac443f9199899416c027c4_18.jpg',
+      readingTime: 212.7,
+      authorName: 'Al Jazeera',
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div id="body-200771816342556199"><p><span>The </span><a href="https://www.aljazeera.com/topics/country/united-kingdom.html">United Kingdom</a>\'s government has said three Iranian vessels unsuccessfully tried to impede the passage of a British commercial vessel through the Strait of Hormuz. </p><p>In a statement on Thursday, the UK government said that the Iranian ships on Wednesday only turned away after receiving "verbal warnings" from a UK navy vessel accompanying the commercial vessel British Heritage.</p><p>"We are concerned by this action and continue to urge the Iranian authorities to deescalate the situation in the region," the statement said.</p><p><a href="https://www.aljazeera.com/topics/country/iran.html">Iran</a><span>\'s </span>Foreign Minister Mohammad Javad Zarif rejected the accusation, according to Fars news agency.</p><p>"Apparently the British tanker has passed. What they have said themselves and the claims that have been made are for creating tension and these claims have no value," he said.</p><div><table><tbody><tr></tr><tr><td><p>Laurence Lee in London and Zein Basravi in Tehran report on the alleged confrontation</p></td></tr></tbody></table></div><p>The Iranian Revolutionary Guard Corps (IRGC) also denied involvement in the incident, according to a statement issued on Thursday.</p><p>Earlier on Thursday, two US officials told Reuters news agency that five boats believed to belong to the Guards were involved in the incident.</p><p>"The Royal Navy HMS Montrose, which was also there, pointed its guns at the boats and warned them over radio, at which point they dispersed," one of the officials with the knowledge of the incident said.</p><p>"It was harassment and an attempt to interfere with the passage," the other official said.</p><p>The US military confirmed the incident in a statement but did not share any further details.</p><p>Al Jazeera\'s Zein Basravi, reporting from Tehran, said it was not clear whether Iran was carrying out a probing attack or "a rogue group of military on the ground".</p><p>"The fact is that while this is possible, it is unlikely," he said.</p><p>"Commanding control structures not only in the civilian government but especially in the military government and especially in the IRGC is very linear and it is unlikely that anything like this would have happened without clear directives through commanding officers, through linear lines of ranks," he added.</p><div><div><p><img src="/mritems/Images/2019/7/11/003ca2b2f37540bfb3b36ce6548409d5_18.jpg"></p><p>A British Royal Navy patrol vessel guards the Iranian oil tanker seized <span>off the coast of Gibraltar</span> [Jon Nazca/Reuters]</p></div></div><h2>Tensions in the region</h2><p>The incident came after Iranian President <a href="https://www.aljazeera.com/topics/people/hassan-rouhani.html">Hassan Rouhani</a> on Wednesday warned that the UK would face "repercussions" for seizing an Iranian oil tanker last week off the coast of Gibraltar.</p><p>The British government said the tanker was believed to be carrying two million barrels of crude oil to Syria in breach of European Union sanctions against the government of Syrian President Bashar al-Assad.</p><p>Tehran denied that the tanker was bound for Syria and its seizure as "piracy". It also summoned the British envoy in Iran to protest against the action.</p><p><span><a href="https://www.aljazeera.com/topics/country/iran.html">Iran</a> denied the tanker was headed to Syria, a close ally of Tehran, while Iranian President <a href="https://www.aljazeera.com/topics/people/hassan-rouhani.html"> </a>said Britain would face "consequences" over the tanker seizure.</span></p><p>Tensions between Iran and the US and its allies have risen sharply since Washington last year unilaterally withdrew from a landmark nuclear deal signed between Tehran  and world powers in 2015.</p><p>Since then, the administration of US President <a href="https://www.aljazeera.com/topics/people/donald-trump.html">Donald Trump</a> has <a href="https://www.aljazeera.com/news/2019/07/sanctions-iran-blasts-iaea-confrontation-190710121556195.html">stepped up</a> economic sanctions against Iran and moved to bring the country\'s oil exports to zero as part of a "maximum pressure" policy to make it halt actions that it said undermined regional security.</p><p>Iran has responded to the sanctions by starting to exceed limits put on its nuclear activities under the 2015 deal.</p><div><table><tbody><tr></tr><tr><td><p>Iran: World powers won\'t get a better nuclear deal</p></td></tr></tbody></table></div><p>Trump, who has said he will not allow Tehran to acquire nuclear weapons, said on Wednesday that "Iran has long been secretly enriching uranium".</p><p>Tehran, which denies seeking nuclear weapons, says its latest measures were within the framework of the deal and dubbed the US sanctions "economic terrorism".</p><p>Several oil tankers were attacked in waters near Iran\'s southern coast in May and June, for which the US blamed Iran. Tehran denied any involvement.</p><p>Last month, Iran shot down a US drone near the Strait of Hormuz, prompting Trump to order retaliatory air raid, only to call them off at the last minute.</p><p>On Tuesday, the US said it was working to form a military coalition to safeguard strategic waters off Iran and Yemen.</p><p>Squeezed by sanctions, Iran has delivered threats to disrupt oil flow through the strategic Strait. Last year, an IRGC commander had threatened to block all exports through the Strait if their exports were stopped.</p></div></div>',
+      createdAt: '2019-07-11T12:26:57.372Z',
+      updatedAt: '2019-07-11T12:27:02.363Z',
+      language: {
+        id: '95f01039-fe8e-412d-a542-7089303b84c8',
+        name: 'English',
+        nativeName: 'English',
+        code: 'en',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:51:57.546Z',
+        updatedAt: '2019-08-01T14:13:01.327Z'
+      },
+      audiofiles: []
+    }
+  },
+  {
+    id: '553b1736-1fd1-42dc-ba5a-ab3fcda2ff31',
+    order: 7,
+    lastPlayedAt: null,
+    archivedAt: '2019-07-25T19:01:11.212Z',
+    favoritedAt: null,
+    createdAt: '2019-07-11T12:26:37.899Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
+    article: {
+      id: 'f97cfbe2-a0ba-43cc-b632-04354a262c6c',
+      title: 'Geen vermist meisje in geopende eeuwenoude Vaticaanse graven',
+      description: 'Twee eeuwenoude graven in Vaticaanstad die werden geopend om te kijken of in een van de twee een vermist meisje ligt begraven, blijken leeg te zijn. Het is al 36 jaar een van de beruchtste zaken van...',
+      url: 'https://nos.nl/l/2293012',
+      canonicalUrl: 'https://nos.nl/l/2293012',
+      status: 'finished',
+      sourceName: 'nos.nl',
+      imageUrl: 'https://nos.nl/data/image/2019/07/11/562692/xxl.jpg',
+      readingTime: 122.10000000000001,
+      authorName: null,
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div id="content"><div><div><div><figure><img src="https://nos.nl/data/image/2019/07/11/562692/2048x1152.jpg"><figcaption><span>Emanuela Orlandi </span><span>Hollandse Hoogte</span></figcaption></figure></div></div></div><div><div><p>Twee eeuwenoude graven in Vaticaanstad die werden geopend om te kijken of in een van de twee een vermist meisje ligt begraven, blijken leeg te zijn.</p><p>Het is al 36 jaar een van de beruchtste zaken van Italië: de vermissing van de 15-jarige Emanuela Orlandi uit het Vaticaan. Zonder een spoor verdween ze op weg naar muziekles in Rome. Vanochtend werden er twee eeuwenoude graven geopend in de zoektocht naar haar.</p><p>Familie van Orlandi kreeg in maart een brief met een tip binnen: een foto van een engelenbeeld met de opdracht \'zoek waar de engel naar wijst\'. Het bleek te gaan om een standbeeld op de Teutoonse Begraafplaats in het Vaticaan, waar vroeger Duitsers begraven werden.</p><p>De engel wees naar twee graven, dat van prinses Sophie van Hohenlohe uit de achttiende eeuw, en het graf van prinses Charlotta Frederika van Mecklenburg, die in 1840 overleed. Beide tombes werden vandaag geopend voor onderzoek.</p><p><em>Zo ging dat in zijn werk:</em></p></div></div><div><div><p>Verwacht werd dat het onderzoek enkele weken zou duren, maar het Vaticaan kon aan het begin van de middag al duidelijkheid geven: de graven waren beide leeg. Botten van de prinsessen waren al vergaan, ook het meisje werd niet aangetroffen.</p><p>Emanuela\'s broer hoopte de zoektocht eindelijk af te sluiten, maar zet zijn werk nu door. "Het is mijn plicht haar te blijven zoeken totdat ik haar lichaam vind", legde hij vooraf uit. "Ook als er niks gevonden wordt, is dit niet het einde van het verhaal."</p><h2>Openheid van Vaticaan</h2><p>De begraafplaats ligt op een steenworp afstand van de woning waar Emanuela\'s moeder nog altijd woont. Omdat haar vader werkte bij de Vaticaanbank, woonde het gezin in de katholieke stadstaat.</p><p>Volgens de broer van Emanuela, die nog altijd zoekt naar zijn zus, is het voor het eerst dat het Vaticaan actief meewerkt aan het onderzoek. "Ze hebben nooit samengewerkt met onderzoekers of met ons", zei hij tegen CNN. "Ze hebben altijd ontkend dat er een band is met het Vaticaan."</p><p>Correspondent Mustafa Marghadi denkt dat het Vaticaan onder paus Franciscus een nieuwe benadering probeert. "Het Vaticaan wil zich transparant tonen in de hoop duidelijk te maken dat het zelf geen rol speelt in het toedekken van een sinister Vaticaancomplot."</p><p>"In de verdwijningszaak is vaak betrokkenheid van het Vaticaan gesuggereerd. Van seksfeesten in het Vaticaan die hiertoe geleid zouden hebben tot maffia-afpersing van de Vaticaanbank, of zelfs een kidnapping om de Turkse aanslagpleger op paus Johannes Paulus II vrij te krijgen."</p></div></div></div></div>',
+      createdAt: '2019-07-11T12:26:37.484Z',
+      updatedAt: '2019-07-11T12:26:40.536Z',
+      language: {
+        id: 'cd72f71c-dc59-4be7-8a40-0143fe6f0ad9',
+        name: 'Dutch',
+        nativeName: 'Nederlands',
+        code: 'nl',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:52:08.217Z',
+        updatedAt: '2019-08-01T14:13:01.760Z'
+      },
+      audiofiles: []
+    }
+  },
+  {
+    id: 'a1b1db6b-9807-4145-ac6c-46dc45005183',
+    order: 8,
+    lastPlayedAt: null,
+    archivedAt: '2019-07-25T07:25:26.994Z',
+    favoritedAt: null,
+    createdAt: '2019-07-11T12:26:11.658Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
+    article: {
+      id: 'f06d9a02-4518-4a7b-943b-a1ed9c777ead',
+      title: 'Twintig jaar cel voor moord op Friese man die in weiland werd gevonden',
+      description: 'De rechtbank in Leeuwarden legt donderdag een celstraf van twintig jaar op aan Jessica B. voor de moord op haar man Tjeerd van Seggeren. Het lichaam van Van Seggeren werd in juli 2017 gevonden in een...',
+      url: 'https://www.nu.nl/binnenland/5963882/twintig-jaar-cel-voor-moord-op-friese-man-die-in-weiland-werd-gevonden.html',
+      canonicalUrl: 'https://www.nu.nl/binnenland/5963882/twintig-jaar-cel-voor-moord-op-friese-man-die-in-weiland-werd-gevonden.html',
+      status: 'finished',
+      sourceName: 'NU',
+      imageUrl: 'https://media.nu.nl/m/7jaxgo3a0krt_wd1280.jpg/twintig-jaar-cel-voor-moord-op-friese-man-die-in-weiland-werd-gevonden.jpg',
+      readingTime: 81.60000000000001,
+      authorName: 'NU.nl',
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div id="block-288873"><div><div><p>De rechtbank in Leeuwarden legt donderdag een celstraf van twintig jaar op aan Jessica B. voor de moord op haar man Tjeerd van Seggeren. Het lichaam van Van Seggeren werd in juli 2017 gevonden in een weiland in de Friese plaats De Westereen.</p><p>De rechtbank acht bewezen dat Jessica B. (35) haar man naar het weiland heeft gelokt nadat hij bij een festival was geweest. Daar is hij afgeleid en vermoord.</p><p>Het wapen waarmee Van Seggeren werd gedood, is nooit gevonden. De rechtbank baseert zich onder meer op DNA-sporen, getuigen en inconsistente verklaringen van de weduwe. Telefoondata wijzen uit dat het stel in elkaars buurt was rond het moment van overlijden.</p><p>Van Seggeren (foto) is om het leven gekomen als gevolg van hersenfunctiestoornissen en het daarop uitvallen van organen. Hij had zwaar hoofdletsel en meerdere grote verwondingen.</p><p>Zijn familie en anderen wezen al snel naar B. als dader. Het stel zou relatieproblemen hebben.</p><h2>Justitie denkt dat B. hulp heeft gekregen</h2><p>Justitie denkt dat B. niet alleen gehandeld heeft. Onder anderen haar moeder is eerder gehoord als verdachte. Bij het uitspreken van de strafeis liet de officier van justitie weten dat in een later stadium wordt besloten over de vervolging van deze vrouw.</p><p>Volgens de rechter zijn er aanwijzingen dat B. niet alleen heeft gehandeld, maar ontbreken concrete aanwijzingen.</p><p>B. heeft altijd volgehouden dat het juist Van Seggeren was die haar vroeg hem te ontmoeten in het weiland. Ze zei tijdens een eerdere zitting in de zaak dat ze hem die bewuste avond niet had aangetroffen en naar huis is gegaan. Haar telefoon zou zijn uitgevallen, waardoor ze haar man niet kon bellen.</p></div></div></div></div>',
+      createdAt: '2019-07-11T12:26:10.634Z',
+      updatedAt: '2019-07-11T12:26:15.478Z',
+      language: {
+        id: 'cd72f71c-dc59-4be7-8a40-0143fe6f0ad9',
+        name: 'Dutch',
+        nativeName: 'Nederlands',
+        code: 'nl',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:52:08.217Z',
+        updatedAt: '2019-08-01T14:13:01.760Z'
+      },
+      audiofiles: []
+    }
+  },
+  {
+    id: 'a92fd941-04b2-415b-af9c-45bd91137cd4',
+    order: 9,
+    lastPlayedAt: null,
+    archivedAt: '2019-07-25T19:01:20.156Z',
+    favoritedAt: null,
+    createdAt: '2019-07-11T10:52:08.853Z',
+    updatedAt: '2019-08-02T09:44:16.952Z',
+    article: {
+      id: 'afd934af-216f-4db1-b5e1-93ada75fef31',
+      title: 'Woningmarkt koelt af, meer huizen in de verkoop',
+      description: 'De woningmarkt is in het tweede kwartaal van 2019 verder afgekoeld. De huizenprijzen stijgen minder hard en het woningaanbod is toegenomen, schrijft de Nederlandse Vereniging van Makelaars (NVM)...',
+      url: 'https://www.nu.nl/economie/5963586/woningmarkt-koelt-af-meer-huizen-in-de-verkoop.html',
+      canonicalUrl: 'https://www.nu.nl/economie/5963586/woningmarkt-koelt-af-meer-huizen-in-de-verkoop.html',
+      status: 'finished',
+      sourceName: 'NU',
+      imageUrl: 'https://media.nu.nl/m/z1ex3k9ahbku_wd1280.jpg/woningmarkt-koelt-af-meer-huizen-in-de-verkoop.jpg',
+      readingTime: 88.5,
+      authorName: 'NU.nl',
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div id="block-288803"><div><div><p>De woningmarkt is in het tweede kwartaal van 2019 verder afgekoeld. De huizenprijzen stijgen minder hard en het woningaanbod is toegenomen, schrijft de Nederlandse Vereniging van Makelaars (NVM) donderdag bij de publicatie van de woningmarktcijfers over het tweede kwartaal.</p><p>Het aantal verkochte woningen is in het tweede kwartaal iets toegenomen ten opzichte van een jaar eerder. Dat is voor het eerst in twee jaar.</p><p>In totaal wisselden een krappe 39.200 woningen van eigenaar bij NVM-makelaars, goed voor een stijging van 1,8 procent in vergelijking met een jaar eerder. Het is voor het eerst in twee jaar dat het aantal verkochte woningen stijgt. De gemiddelde verkoopprijs is nu 308.000 euro, 7,4 procent hoger dan vorig jaar.</p><p>De NVM ziet vooral een stijging in de prijsklasse tussen 300.000 en 750.000 euro. In deze klasse zijn 20 procent meer woningen verkocht dan in hetzelfde kwartaal een jaar eerder.</p><p>In Amsterdam is de gemiddelde verkoopprijs gedaald met 4 procent. Dat komt volgens de NVM niet doordat de woningen in waarde zijn gedaald, maar doordat er vooral woningen buiten de ring zijn verkocht, waar de prijzen een stuk lager liggen.</p><h2>Juist minder nieuwbouw verkocht</h2><p>In tegenstelling tot het aantal verkochte bestaande woningen is het aantal nieuwbouwwoningen dat is verkocht juist gedaald, met 13 procent. NVM-voorzitter Ger Jaarsma wijt de daling aan de hoge prijzen.</p><p>De prijs voor een gemiddelde nieuwbouwwoning steeg naar 387.000 euro; een toename van 17 procent: "De gemiddelde nieuwbouwwoning is al twee kwartalen op rij 80.000 euro duurder dan een gemiddelde bestaande woning en dat is echt een probleem", aldus Jaarsma.</p><p>Die prijzen zijn volgens hem op hun beurt weer het gevolg van hoge personeels-, bouw- en grondkosten. Ook beleidsmaatregelen zoals gasloos bouwen hebben invloed. "Het stapelen van overheidsbeleid werkt prijsopdrijvend en daarmee averechts voor de woningmarkt."</p></div></div></div></div>',
+      createdAt: '2019-07-11T10:52:07.920Z',
+      updatedAt: '2019-07-11T10:52:12.349Z',
+      language: {
+        id: 'cd72f71c-dc59-4be7-8a40-0143fe6f0ad9',
+        name: 'Dutch',
+        nativeName: 'Nederlands',
+        code: 'nl',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:52:08.217Z',
+        updatedAt: '2019-08-01T14:13:01.760Z'
+      },
+      audiofiles: []
+    }
+  },
+  {
+    id: '138c247b-194b-4067-89d5-fbf7e1e60bd7',
+    order: 10,
+    lastPlayedAt: null,
+    archivedAt: null,
+    favoritedAt: null,
+    createdAt: '2019-07-10T18:30:28.229Z',
+    updatedAt: '2019-08-01T07:06:38.388Z',
+    article: {
+      id: 'c7ab00c1-6a0c-4a8a-a4b3-b338988ada16',
+      title: '‘Nederlandse steden hebben in 2050 het warme klimaat van Parijs’',
+      description: 'Het klimaat in Amsterdam, Den Haag en Rotterdam is in 2050 vergelijkbaar met dat in het hedendaagse Parijs. Dat blijkt uit een analyse van wetenschappers van Crowther Lab, dat onderdeel uitmaakt van...',
+      url: 'https://www.nu.nl/klimaat/5963627/nederlandse-steden-hebben-in-2050-het-warme-klimaat-van-parijs.html',
+      canonicalUrl: 'https://www.nu.nl/klimaat/5963627/nederlandse-steden-hebben-in-2050-het-warme-klimaat-van-parijs.html',
+      status: 'finished',
+      sourceName: 'NU',
+      imageUrl: 'https://media.nu.nl/m/3qextx9av6oa_wd1280.jpg/nederlandse-steden-hebben-in-2050-het-warme-klimaat-van-parijs.jpg',
+      readingTime: 94.80000000000001,
+      authorName: 'NU.nl',
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div id="block-288803"><div><div><p>Het klimaat in Amsterdam, Den Haag en Rotterdam is in 2050 vergelijkbaar met dat in het hedendaagse Parijs. Dat blijkt uit een analyse van wetenschappers van Crowther Lab, dat onderdeel uitmaakt van de Zwitserse universiteit ETH Zürich.</p><p>De onderzoekers melden dat 77 procent van de steden in de wereld tegen 2050 te maken krijgt met een "opvallende verandering" in klimaatomstandigheden.</p><p>Het gaat in sommige gevallen zelfs om omstandigheden die momenteel niet worden ervaren in bestaande grote steden, stellen ze in een verklaring.</p><p>In Europa wordt het in zowel de zomer als winter warmer, waarschuwen de wetenschappers. Ze willen het voor mensen tastbaarder maken wat klimaatverandering voor hun eigen leefomgeving betekent. Er is onder meer een interactieve kaart gemaakt, waarop te zien is hoe het klimaat in steden naar verwachting zal veranderen.</p><h2>\'Temperatuur in Amsterdam meer dan 3 graden hoger\'</h2><p>"Het klimaat in Londen zal in 2050 vergelijkbaar zijn met het klimaat nu in Barcelona, Madrid met Marrakesh, Moskou met Sofia", sommen ze op. Uit de kaart blijkt dat de maximale temperatuur tijdens de warmste maand in Amsterdam in 2050 waarschijnlijk 3,4 graden hoger ligt dan nu het geval is.</p><p>Wetenschapper Tom Crowther zegt dat precies meten wat de gevolgen van klimaatverandering zijn niet langer de grootste uitdaging in klimaatwetenschap is: het gaat er volgens hem nu vooral om mensen zo ver te krijgen dat ze de concrete gevolgen ervan visualiseren zodat ze in actie komen.</p><h2>\'Mensen te weinig doordrongen van acute klimaatprobleem\'</h2><p>"De geschiedenis heeft herhaaldelijk uitgewezen dat alleen data en feiten onvoldoende zijn om mensen van gedachten te doen veranderen of ze ertoe aan te zetten in actie te komen", zegt hoofdonderzoeker Jean-François Bastin. Uit berichten over klimaatverandering zou momenteel onvoldoende naar voren komen hoe acuut het probleem is.</p><p>"Het is bijvoorbeeld moeilijk om te visualiseren hoe een temperatuurstijging van 2 graden, of veranderingen in de gemiddelde temperatuur in 2100, het dagelijks leven kunnen beïnvloeden."</p></div></div></div></div>',
+      createdAt: '2019-07-10T18:30:25.694Z',
+      updatedAt: '2019-07-10T18:30:34.855Z',
+      language: {
+        id: 'cd72f71c-dc59-4be7-8a40-0143fe6f0ad9',
+        name: 'Dutch',
+        nativeName: 'Nederlands',
+        code: 'nl',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:52:08.217Z',
+        updatedAt: '2019-08-01T14:13:01.760Z'
+      },
+      audiofiles: []
+    }
+  },
+  {
+    id: 'e9d47128-84ab-4cc5-8c79-36bd5e0e1758',
+    order: 11,
+    lastPlayedAt: null,
+    archivedAt: '2019-08-01T07:04:30.796Z',
+    favoritedAt: null,
+    createdAt: '2019-07-09T07:39:38.009Z',
+    updatedAt: '2019-08-02T09:44:14.987Z',
+    article: {
+      id: '74eb93b6-11ff-445c-8e0d-0d1a96fe5000',
+      title: 'Personalization of Mobile Apps and Ways to do It - ReadWrite - Medium',
+      description: 'Personalizing a mobile app is the key to its effectiveness and success ; the personalization lends focus and beauty to your app design. There are a few specific ways to implement personalization into...',
+      url: 'https://link.medium.com/v7XnRdsabY',
+      canonicalUrl: 'https://readwrite.com/2019/07/05/personalization-of-mobile-apps-and-ways-to-do-it/',
+      status: 'finished',
+      sourceName: 'Medium',
+      imageUrl: 'https://miro.medium.com/max/1200/1*INe3gkSJ-jA12Jjz6jKXpw.jpeg',
+      readingTime: 247.79999999999998,
+      authorName: 'ReadWrite',
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div><div><figure><div><div><p><img src="https://miro.medium.com/max/30/1*INe3gkSJ-jA12Jjz6jKXpw.jpeg?q=20"></p><p><img></p></div></div></figure><div><div><div><p><a href="/@RWW"><img src="https://miro.medium.com/fit/c/48/48/0*jR2dI8fezO9-Ndbf.jpg"></a></p></div></div></div><p>Personalizing a mobile app is the key to its <a href="https://readwrite.com/2019/05/08/top-14-iot-mobile-app-development-trends-to-expect-in-2019-and-beyond/">effectiveness and success</a>; the personalization lends focus and beauty to your app design. There are a few specific ways to implement personalization into your app, making it appealing, beneficial and most of all — sought after. Marketing strategies always do better when you are not fighting the mobile app. Make sure that the personalization of your mobile app is ready when you are.</p><h2>The way to personalize your mobile app need not be difficult. These are the things to consider and get right:</h2><ul><li>The modern generation knows precisely how <strong>they want to interact.</strong></li><li>The modern generation knows exactly how <strong>they want it to happen.</strong></li><li>They also know what available channels there are.</li><li>Everyone knows the best channel one prefers for communication.</li><li>All people today buy a product online by researching first.</li><li>People like to read reviews and testimonials.</li><li>You will not find anyone taking out a loan without looking at all of the sources.</li><li>Even when it comes to looking for debt relief options, modern consumers go through different reviews and debt consolidation <a href="https://www.toptenreviews.com/money/debt/best-debt-consolidation-companies/">ratings</a> before the final choice.</li></ul><p>Many marketers still struggle with personalization of email <a href="https://readwrite.com/2019/04/09/android-or-ios-how-to-choose-on-a-limited-marketing-budget/">marketing campaigns</a> and web experiences. You can fix your efforts through correct personalization of the mobile app.</p><h2>Reasons to invest your time, effort, and money into making the customer experience great.</h2><ul><li>Personalization is not only because smartphones are incredibly personal devices. Your target audience will <a href="https://readwrite.com/2019/05/13/how-ar-will-transform-the-way-we-use-our-smartphones/">likely be using their phone most of the time</a>, whether it for personal or for professional use.</li><li>The phone use will provide you, as a marketer, with a more significant opportunity to promote the value proposition of your business and brand more effectively and efficiently.</li><li>A personalized phone app will also enable you to stay in the competition. Hundreds if not thousands of apps are being added to the stores such as Google and iOSon a daily basis.</li><li>A personalized mobile app will increase the average retention rates of your users.</li><li>Smartphone users now have multiple options for just about everything; ease of use makes a difference — make your app easy to use and fully optimized.</li><li>The average user churn rate and retention will also be affected by a reduced churn of users abandoning the app.</li><li>Make your user experience the best.</li></ul><h2>Personalization of apps is crucial to drop or eliminate the churn rate.</h2><ul><li>Industries are at present, experiencing a low churn of about 75% only on an average by the third month after the app has been downloaded. Great news, until you consider that you’ve just lost more than 50% of your user base.</li><li>The primary reason behind such an alarming figure. Users drop, switch, and abandon if they don’t feel anything significant that encourages them to stay hooked to your apps.</li></ul><p>Lack of engagement with your customer is a suck point — and happens when your app is not optimized. The way to fix a high churn rate is to focus on personalization and implement better features that will eventually improve engagement rates for your app.</p><h2>Mobile apps ideally leverage personalization and help in defining the experience of the person using the app.</h2><ul><li>Personalize and enhance the experience, level of engagement, as well as the retention rates.</li><li>Facilitate word of mouth marketing and implement a few referral campaigns for your loyal users.</li><li>There are a few specific ways in which you can personalize your mobile app for the users.</li><li>Start by Personalization of Mobile Apps, improving the onboarding experience of the users.</li><li>Consider the data points of the installer. Ask: what is the source of the user? What is my customer base looking for? Why did this user download this app?</li></ul><h2>With the help of such data, you will be able to create a more customized journey for the users within the app by reinforcing the offers in your app.</h2><ul><li>Make the users feel that their preferences are considered and being taken into account by you.</li><li>Focus on push and in-app notifications, ensuring that uninterrupted and consistent communication is maintained with the app users.</li><li>Help the users to use the app in a better and easier way. Make your app appealing, prolonging the app session of the user. If they love it, they will return for a longer session.</li><li>Create an in-app community of your users. They will love this — an in-app community is one of the best ways to personalize your app.</li></ul><h2>Conclusion</h2><p>Keep your clients and customers and users motivated to interact more with one another and share their experiences. Help your user base find easy and effective solutions to common problems.</p><p>In addition to the above, you can also be incentivizing a few activities. Boost motivation of the user of your app by asking them to get involved in the app improvement. Ask their opinion, and they will tell you. Have a place where they can respond to you and they will pick your app every time.</p></div><hr></div></div>',
+      createdAt: '2019-07-09T07:39:37.605Z',
+      updatedAt: '2019-07-09T07:39:44.281Z',
+      language: {
+        id: '95f01039-fe8e-412d-a542-7089303b84c8',
+        name: 'English',
+        nativeName: 'English',
+        code: 'en',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:51:57.546Z',
+        updatedAt: '2019-08-01T14:13:01.327Z'
+      },
+      audiofiles: []
+    }
+  },
+  {
+    id: '02c6fa5a-e8ef-474a-9056-c2d14b67f519',
+    order: 12,
+    lastPlayedAt: null,
+    archivedAt: '2019-07-22T05:34:02.177Z',
+    favoritedAt: null,
+    createdAt: '2019-07-09T07:39:21.389Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
+    article: {
+      id: '58b389e6-92da-4eb7-9a96-c7db927eda0e',
+      title: 'Vliegtuigen KLM en Easyjet botsen bij gate Schiphol',
+      description: 'Een vliegtuig van Easyjet en een toestel van KLM zijn vanmorgen op Schiphol gebotst. De toestellen stonden op de grond toen het ongeluk gebeurde. Beide vliegtuigen zijn beschadigd geraakt. Voor zover...',
+      url: 'https://nos.nl/l/2292694',
+      canonicalUrl: 'https://nos.nl/l/2292694',
+      status: 'finished',
+      sourceName: 'nos.nl',
+      imageUrl: 'https://nos.nl/data/image/2019/07/09/562204/xxl.jpg',
+      readingTime: 44.7,
+      authorName: null,
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div id="content"><div><div><p>Een vliegtuig van Easyjet en een toestel van KLM zijn vanmorgen op Schiphol gebotst. De toestellen stonden op de grond toen het ongeluk gebeurde. Beide vliegtuigen zijn beschadigd geraakt. Voor zover bekend is er niemand gewond.</p><p>De toestellen raakten elkaar tijdens de \'pushback\'; het moment dat een vliegtuig vanaf de gate naar achteren wordt geduwd om te vertrekken. "Het vliegtuig gaat nog heel langzaam dan", zegt een woordvoerder van KLM.</p><p>Het KLM-toestel stond klaar om te vertrekken naar Madrid. Mensen aan boord zijn uit de Boeing gehaald. KLM probeert een ander toestel te regelen zodat de passagiers alsnog snel naar Spanje kunnen vliegen. Het vliegtuig van Easyjet was op weg naar Londen, meldt <a href="https://www.nhnieuws.nl/nieuws/249143/vliegtuigen-botsen-bij-gate-op-schiphol-passagiers-opgevangen">NH Nieuws</a>. Het is onduidelijk of die luchtvaartmaatschappij ook een ander toestel inzet.</p><p>Waar het precies fout ging tijdens het taxiën, wordt uitgezocht. Het is nog onduidelijk hoe groot de schade aan de toestellen is.</p></div></div></div></div>',
+      createdAt: '2019-07-09T07:39:20.416Z',
+      updatedAt: '2019-07-09T07:39:25.195Z',
+      language: {
+        id: 'cd72f71c-dc59-4be7-8a40-0143fe6f0ad9',
+        name: 'Dutch',
+        nativeName: 'Nederlands',
+        code: 'nl',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:52:08.217Z',
+        updatedAt: '2019-08-01T14:13:01.760Z'
+      },
+      audiofiles: []
+    }
+  },
+  {
+    id: 'a438a074-6a11-4cd7-80f5-13b02c756c5b',
+    order: 13,
+    lastPlayedAt: null,
+    archivedAt: null,
+    favoritedAt: null,
+    createdAt: '2019-07-09T07:37:47.031Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
+    article: {
+      id: '79d5e205-1ed3-4e83-badb-7b5374657052',
+      title: 'Afghan talks: Rival sides agree on ‘road map for peace’',
+      description: 'Doha, Qatar - Two-day peace talks, attended by Afghan delegates and Taliban representatives in the Qatari capital of Doha, have ended with both sides calling to reduce civilian casualties to "zero"...',
+      url: 'https://aje.io/5fqgc',
+      canonicalUrl: 'https://www.aljazeera.com/news/2019/07/afghan-peace-talks-rival-sides-agree-roadmap-peace-190709012150435.html',
+      status: 'finished',
+      sourceName: 'www.aljazeera.com',
+      imageUrl: 'https://www.aljazeera.com/mritems/Images/2019/7/9/241ab25d513944bf93d08567e0872f38_18.jpg',
+      readingTime: 240.29999999999998,
+      authorName: 'Shereena Qazi',
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div id="body-200771816342556199"><p><strong>Doha, Qatar -</strong> Two-day peace talks, attended by Afghan delegates and Taliban representatives in the Qatari capital of Doha, have ended with both sides calling to reduce civilian casualties to "zero" amid the rising death toll in the war-torn country.</p><p>The so-called intra-Afghan dialogue, sponsored by Qatar and Germany, between Afghan politicians, civil society members, including women, and the Taliban is seen as a substantive step towards peace in Afghanistan.</p><p><span>"… Committed to respect and protect the dignity of people, their life and property and to minimise the civilian casualties to zero," a joint statement released at the end of the talks in Doha said late on Monday.</span></p><blockquote>We have all agreed to the fact that the civilians should not be affected, war continues, but our aim is to reduce civilian casualties to zero<p>Qari Din Mohammad Hanif, a member of the Taliban delegation</p></blockquote><p>The statement also pledged to guarantee the security of public institutions.</p><p>"Ensuring the security of public institutions, such as schools, religious madrassas, hospitals, markets, water dams and other working locations," the statement said.</p><p>Qari Din Mohammad Hanif, a member of the Taliban delegation, said the group of Afghan delegates which also included members from the Afghan government, was on the same page on civilian casualties.</p><p>"Afghan people will be protected, we have always wanted this, they are never the target," he told Al Jazeera.</p><p>"We have all agreed to the fact that the civilians should not be affected, war continues, but our aim is to reduce civilian casualties to zero."</p><h2><span>Direct US-Taliban talks</span></h2><p>The promises came a day after at least 18 people were killed and more than 180 wounded, including scores of children, in a car bomb attack claimed by the Taliban which has been running a bloody armed rebellion since it was removed from power in 2001.</p><div><div><p><img src="/mritems/imagecache/mbdresplarge/mritems/Images/2019/7/9/149b396471cc4865909372fa3cf7a23b_19.jpg"></p><p>Taliban chief negotiator, Sher Mohammad Abbas Stanikzai, defended Sunday\'s <span>car bomb attack in Ghazni saying it was a "fight for freedom" </span>[Sorin Furkoi/Al Jazeera]</p></div></div><p>The so-called intra-Afghan meetings, which follow six days of direct <a href="https://www.aljazeera.com/news/2019/05/taliban-talks-peace-afghanistan-190510062940394.html">United States-Taliban talks,</a> also in Doha, saw the participation of about 50 Afghan politicians and activists, including 10 female delegates.</p><p>The gathering was organised in a bid to initiate direct dialogue between the rival sides that have been at constant war with each other since the US-led invasion in the wake of September 11, 2001 attacks in the US.</p><p>The talks were also aimed at sustaining peace after the expected withdrawal of US-led NATO troops.</p><p>US special envoy for Afghanistan, Zalmay Khalilzad, has held several rounds of talks with the Taliban in Doha to ink a peace deal with the armed group, which wields considerable influence in the country.</p><p>The Taliban, which has repeatedly refused to negotiate with the Western-backed Kabul government, agreed to join the meeting on the condition that the attendees do so in a personal capacity.</p><p>The armed group consider Afghan President Ashraf Ghani\'s administration a puppet regime, which has also been excluded from the direct US-Taliban talks.</p><div><div><p><img src="/mritems/Images/2019/7/9/241ab25d513944bf93d08567e0872f38_18.jpg"></p><p><span>The so-called intra-Afghan dialogue is seen as a substantive step towards peace in Afghanistan.</span> [Sorin Furcoi/Al Jazeera]<span> </span></p></div></div><h2><span>Details of joint statement</span></h2><p>Following the press briefing on Monday, several delegates and diplomats differed on details of the joint statement.</p><p>Some said the statement was not an agreement but recommendations for peace, while others said it is "a call for peace and stability" or "a road map for peace".</p><blockquote>It is a first step in the right direction in reducing hostilities and an important one. This was more than what I expected from these talks<p>Anwar-ul-haq Ahadi, a former minister of finance</p></blockquote><p>"We can\'t call it a peace agreement, it is just a call for reduction of civilian casualties and protection of public places and institutions," Anwar-ul-haq Ahadi, a former minister of finance, told Al Jazeera.</p><p>"It is a first step in the right direction in reducing hostilities and an important one. This was more than what I expected from these talks."</p><p>Markus Potzel, Germany’s Afghanistan envoy who co-hosted the talks with Qatar, said the joint statement contained an "appeal and promise to reduce violence in Afghanistan\'.</p><p>Sher Mohammad Abbas Stanikzai, the Taliban\'s chief negotiator, said it was a "conference where everybody was expressing his or her views regarding peace in Afghanistan".</p><p>He defended Sunday\'s car bomb attack in Ghazni saying it was a "fight for freedom" against "foreign occupation".</p><p>"Our target is not civilians, those who were killed in the attack were intelligence forces, only nearby houses were affected by the blast which injured civilians."</p><p>The US-Taliban talks are set to resume on Tuesday, which are aimed at hammering out details of a framework agreement reached in January.</p><p>The agreement includes a timeline for US troop withdrawal from Afghanistan, a ceasefire and a Taliban guarantee to not allow foreign forces to use the country as a staging ground for foreign attacks.</p></div></div>',
+      createdAt: '2019-07-09T07:37:46.257Z',
+      updatedAt: '2019-07-09T07:38:21.108Z',
+      language: {
+        id: '95f01039-fe8e-412d-a542-7089303b84c8',
+        name: 'English',
+        nativeName: 'English',
+        code: 'en',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:51:57.546Z',
+        updatedAt: '2019-08-01T14:13:01.327Z'
+      },
+      audiofiles: []
+    }
+  },
+  {
+    id: 'a294f2c9-46cf-408a-bc49-6100430d7530',
+    order: 14,
+    lastPlayedAt: null,
+    archivedAt: '2019-08-01T07:02:31.915Z',
+    favoritedAt: null,
+    createdAt: '2019-07-04T04:02:38.335Z',
+    updatedAt: '2019-08-01T05:02:31.943Z',
+    article: {
+      id: '7ced338e-ec59-41cd-8a03-7c4cab4f2234',
+      title: 'How to Launch Without Launching — Advice From the Founder of Superhuman | Product Hunt',
+      description: '"Our main challenge then became this: how do you find product-market fit when you are not yet launched?" About two years ago, the Product Hunt community got a first look at Superhuman, an app that...',
+      url: 'https://t.co/5iTQTRRRKD?ssr=true',
+      canonicalUrl: 'https://www.producthunt.com/stories/how-to-launch-without-launching-advice-from-the-founder-of-superhuman',
+      status: 'finished',
+      sourceName: 'Product Hunt',
+      imageUrl: 'https://ph-files.imgix.net/8588c2b2-42d9-4ff1-8bc8-a72698bd00c7?auto=format&bf=max&bh=512&bm=normal&bw=512&fit=crop&h=512&w=1024',
+      readingTime: 163.20000000000002,
+      authorName: 'WRITTEN BYTaylor MajewskiHead of Editorial, Product Hunt',
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><p>"Our main challenge then became this: how do you find product-market fit when you are not yet launched?"</p><div><p>About two years ago, the Product Hunt community <a href="https://www.producthunt.com/newsletter/392">got a first look</a> at Superhuman, an app that promised to be the “fastest email experience in the world.” 60,000 people subscribed to get access.</p><p>Today, Superhuman remains invitation-only and its larger waiting list is 180,000 people long. How? There’s evidently a demand for a faster and more sophisticated email client than the 15-year-old Gmail.</p><p>So what happens when you <em>do</em> get that coveted Superhuman invitation (and pay the $30/month price tag for access)?</p><p>Superhuman plugs into your existing email account, but only works with Gmail and Google G Suite addresses right now.</p><p>Some of the app’s features: Superhuman lets users undo sending an email, track email opens and send follow-up reminders. It’s more ~unique~ features include keyboard shortcuts for everything, “instant intro” for moving introductory email senders to bcc and a scheduling tool that automatically pulls up your calendar when you’re typing out a day of the week.</p><p>Today, Superhuman announced a $33M investment by Andreessen Horowitz, bringing the company’s total funding raised to $51M. The company is valued at roughly $260M.</p><p>We spoke with Superhuman founder, Rahul Vohra — who previously founded Rapportive (another email startup that sold to LinkedIn in 2012) — about the news, as well as the lessons he’s learning building a product that hasn’t actually launched yet.</p><p><strong>On raising capital (in stealth):</strong> If you are raising money, raise significantly more than you think you\'ll need. Ideally, raise one whole round ahead of your current level of traction. This means that you raise your pre-seed when you would normally have nothing, that you raise your seed when you would normally have your pre-seed, that you raise your Series A when you would normally have your seed, and so on. This will give you the time it takes — and it does take time — to build a truly remarkable product.</p><p><strong>On the non-traditional launch (or lack thereof):</strong> The Product Hunt community absolutely adores productivity tools. We could see this by looking at the most upvoted submissions — almost all of them are for productivity. <a href="https://www.producthunt.com/ship">Ship</a> was perfect for us — it is a very fast way to grow an early and enthusiastic audience without having to prepare the buzz and materials for a traditional Product Hunt launch.</p><p><strong>On finding product-market fit:</strong> Fortunately, we were able to raise a lot of money. Our main challenge then became this: how do you find product-market fit when you are not yet launched? To solve this, I created our now infamous <a href="https://firstround.com/review/how-superhuman-built-an-engine-to-find-product-market-fit/">Product-Market Fit Engine</a>. It gives you a way to define product-market fit, a metric to measure product-market fit, and a methodology to systematically increase product-market fit. It can even generate your roadmap for you!</p><p><strong>On why Superhuman works:</strong> You\'ll see that folks love Superhuman for three main reasons: they get through their inbox twice as fast as before, they respond to important emails faster, and many see Inbox Zero for the first time in years. The funding will be used to double down on all three. Superhuman is already the fastest email experience in the world, but we are going to make it even faster.</p></div></div>',
+      createdAt: '2019-07-04T04:02:37.146Z',
+      updatedAt: '2019-07-04T04:02:40.767Z',
+      language: {
+        id: '95f01039-fe8e-412d-a542-7089303b84c8',
+        name: 'English',
+        nativeName: 'English',
+        code: 'en',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:51:57.546Z',
+        updatedAt: '2019-08-01T14:13:01.327Z'
+      },
+      audiofiles: []
+    }
+  },
+  {
+    id: 'd4d05e70-043c-4017-8c49-a2c2ea8d54f2',
+    order: 15,
+    lastPlayedAt: null,
+    archivedAt: null,
+    favoritedAt: null,
+    createdAt: '2019-07-04T03:30:55.589Z',
+    updatedAt: '2019-08-02T09:44:12.933Z',
+    article: {
+      id: '056959d8-ccdb-4b2b-b809-c5aed5baf39d',
+      title: 'A Day of Sorrow for American Democracy',
+      description: 'The Supreme Court’s contorted reasoning in a gerrymandering case leaves a fundamental flaw in our constitutional democracy without hope of a judicial remedy. The usual form for a justice who...',
+      url: 'https://www.theatlantic.com/ideas/archive/2019/07/rucho-v-common-cause-occasion-sorrow/593227',
+      canonicalUrl: 'https://www.theatlantic.com/ideas/archive/2019/07/rucho-v-common-cause-occasion-sorrow/593227/',
+      status: 'finished',
+      sourceName: 'The Atlantic',
+      imageUrl: 'https://cdn.theatlantic.com/assets/media/img/mt/2019/07/RTS2JVRX/facebook.jpg?1562105083',
+      readingTime: 469.20000000000005,
+      authorName: 'Charles Fried',
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div><p>The Supreme Court’s contorted reasoning in a gerrymandering case leaves a fundamental flaw in our constitutional democracy without hope of a judicial remedy.</p></div><div><div><div><figure><img src="https://cdn.theatlantic.com/assets/media/img/mt/2019/07/RTS2JVRX/lead_720_405.jpg?mod=1562105083"><figcaption><span>Jim Young / Reuters</span></figcaption></figure><p>The usual form for a justice who disagrees, no matter how fundamentally, with a decision of the Supreme Court is to end the opinion with the formula “I respectfully dissent.” Justice Antonin Scalia, in particularly high dudgeon, would sometimes drop the adverb. Last week, though, Justice Elena Kagan, writing for the four justices who disagreed with Chief Justice John Roberts’s opinion in <em>Rucho v. Common Cause </em>purporting to withdraw the Court once and for all from passing judgment on the constitutionality of partisan gerrymanders, ended thus:</p><blockquote><p>Of all times to abandon the Court’s duty to declare the law, this was not the one. The practices challenged in these cases imperil our system of government. Part of the Court’s role in that system is to defend its foundations. None is more important than free and fair elections. With respect but deep sadness, I dissent.</p></blockquote><p>Kagan’s occasion for sorrow is deep not only because the chief justice left a fundamental flaw in our constitutional democracy without hope of a judicial remedy, but because of the defective reasoning by which he came to that conclusion.</p><p>Roberts is clear and emphatic that extreme partisan gerrymanders are wrongs—wrongs of constitutional dimensions. In North Carolina, for example, voters split more or less down the middle, yet the congressional delegation consists of 10 Republicans and just three Democrats. The disfavored voters were treated unequally, their unequal treatment was due to their political commitments, and so they were given an unequal voice in the legislature. This violated not only the Fourteenth Amendment’s norms of equality, but the norms of the First Amendment, as well. Indeed, it was contrary to the most basic political premise of our government: that the people choose their representatives, not the other way around.</p></div></div><div><div><p>Not only the chief but other justices as well have said as much in past decisions, but hesitated to offer a remedy. All this the chief recounts in his opinion. Yet he concludes—and now, after 40 years of temporizing, hopes to conclude definitively—that these are wrongs that are beyond judicial reparation. If there are to be remedies, they must lie elsewhere: in the states or in Congress.</p><p>Why? Roberts offers an argument with three simple steps. First, he claims that some departure from equality of voice—the notion that every voter should have an equal say—is not only inevitable, but constitutionally, and as a matter of political morality, quite justifiable. Next, he admits that the case may be an extreme deprivation of a constitutional right, an extreme gerrymander—acknowledged, deliberately engineered and frankly avowed, and arranged so as to persist though many election cycles. But, he concludes, it is not possible to draw a precise line that separates an extreme gerrymander such as this one from a less extreme one, or between a less extreme gerrymander and one that is perfectly proper. If splitting North Carolina’s seats 10 to three is extreme, perhaps a nine-to-four split is, as well. But what of eight to five, or seven to six?</p><p>The courts can act, the remedy is a judicial remedy, Roberts concludes, only if the line of demarcation is “precise,” to use the word he invokes six times. If one cannot say where the precise borderline of the extreme lies, everything must be allowed. But applying that argument to other questions illustrates its absurdity. <em>If one cannot say how many hairs a man may have to still count as bald, there are no bald men. If one cannot draw the exact line between venal and mortal sin, then there is no mortal sin.</em></p><p>This is not a logical principle, and it is certainly not a juridical one. The law is replete with conclusions that depend on judgments that something is extreme, unusual, or outrageous, without offering the precise boundaries of that judgment. Take two examples from the chief justice’s own corpus. In his dissent in the 2012 case of <em>Armour v. Indianapolis</em>, he wrote:</p><blockquote><p>Our precedents do not ask for much from government in this area [of property taxation]—only “rough equality in tax treatment” … We give great leeway to taxing authorities in this area, for good and sufficient reasons. But every generation or so a case comes along when this Court needs to say enough is enough, if the Equal Protection Clause is to retain any force in this context.”</p></blockquote><p>And, similarly, in the 2007 case of <em>Federal Election Commission v. </em><em>Wisconsin Right To Life</em>, he argued:</p><blockquote><p>[Our prior precedents] … applied [the] … interest in combatting corruption or the appearance of corruption … to ads that were the “functional equivalent” of express advocacy. But to justify regulation of WRTL’s ads, this interest must be stretched yet another step to ads that are not the functional equivalent of express advocacy. Enough is enough. Issue ads like WRTL’s are by no means equivalent to contributions, and the quid-pro-quo corruption interest cannot justify regulating them.</p></blockquote><p>Enough is enough, indeed.</p></div></div><div><div><p>But, as Kagan argues in her dissent, this case should be easier than many in which gathering outrage tips over into judicial condemnation. This issue has firmer bones than that.</p><p>Roberts’s faulty reasoning is built on the premise that pure equality of voice cannot and need not be demanded. And in some ways, he is correct. Proportional representation may be a possible end of apportioning representatives but it is not a necessary one, and the Court has no business making it one in the name of the Constitution. An apportioning legislature may take into account many legitimate ideals in drawing district lines: political or other historic boundaries, economic commonalities, even the desire not to pit incumbents against one another.</p><p>Drawing new lines, in other words, allows many legitimate political judgments—but disadvantaging racial minorities is not one of them, and neither should be freezing one party in and the other party out, no matter what their voting strength. Sometimes politicians are brazen enough to declare that one or the other of these forbidden ends is what they are striving to pursue, but usually they are not. They just do it.</p><p>In such a case, you can still smoke out the legitimate from the illegitimate. As the mathematician and genome scientist Eric Lander argued in an amicus brief on this issue, there are literally thousands of ways of drawing equipopulous legislative districts for any given state, arrived at either randomly or pursuant to some congeries of legitimate criteria. If only legitimate criteria are used, then political preferences are likely to be more or less evenly distributed—a normal distribution or bell curve. The farther out on the curve you get, the more likely something fishy is going on. It could be chance, or it could be the influence of some unsuspected factor, but if you are way out on the tail—as in North Carolina—you are staring at extreme partisanship, and you should be able to call it like it is and condemn it. Enough is enough.</p><p>Ah, but how small, how far out on the tail? This is not a question unique to gerrymandering; in other fields, we have settled upon practical answers and used them in practical ways: In medicine, in approving new drugs, in statistics generally, a 95 percent confidence level is usually thought to be quite enough to show causation. One hundred percent is absolute certainty and 50 is mere random chance, no causation at all. But why not set the standard at something closer to 100 percent? Aristotle explained in the <em>Nicomachean Ethics</em>:</p><blockquote><p>It is the mark of an educated mind to expect only that amount of exactness which the nature of the particular subject admits. It is equally unreasonable to accept merely probable conclusions from a mathematician and to demand strict demonstration from an orator.</p></blockquote><p>In a myriad of less consequential decisions, Roberts has shown himself to be an eminently reasonable person, an “educated mind.” But in <em>Rucho </em>he leads the sticklers to produce a hyper-partisan political result.</p></div></div><div><div><p>Nor should anyone find consolation in the chief’s profession of judicial modesty and abstinence, his insistence that this is just a job for other organs of government—legislatures, the states. How can you rely on gerrymandered legislatures to remedy gerrymandering? Remember, it is Roberts who wrote the devastating decision in <em>Shelby County v. Holder</em>, declaring unconstitutional Section 4 of the recently reenacted Voting Rights Act, thereby unleashing an immediate, utterly predictable, and devastating wave of partisan voting-rights suppression all over the South. And it was Roberts who wrote for four dissenters who found that Arizona’s independent redistricting commission was unconstitutional based on a hyper-literal reading of the Constitution’s elections clause. But for the lack of a single vote (which today he probably has), he would have closed off one of the few ways to break the vicious circle of gerrymandering.</p><p><em>Rucho </em>was indeed an occasion of deep sorrow—for the Court and its chief, for the rational development of doctrine, but most of all for American democracy. Read it and weep.</p><p>We want to hear what you think about this article. <a href="https://www.theatlantic.com/contact/letters/">Submit a letter</a> to the editor or write to letters@theatlantic.com.</p><div><p><a href="https://www.theatlantic.com/author/charles-fried/">Charles Fried</a> is the Beneficial Professor of Law at Harvard Law School. He served as solicitor general during the presidency of Ronald Reagan, and was an associate justice of the Supreme Judicial Court of Massachusetts from 1995 to 1999.</p></div></div></div></div></div>',
+      createdAt: '2019-07-04T03:30:55.200Z',
+      updatedAt: '2019-07-04T03:30:57.318Z',
+      language: {
+        id: '95f01039-fe8e-412d-a542-7089303b84c8',
+        name: 'English',
+        nativeName: 'English',
+        code: 'en',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:51:57.546Z',
+        updatedAt: '2019-08-01T14:13:01.327Z'
+      },
+      audiofiles: []
+    }
+  },
+  {
+    id: '7442e206-a9c0-4b0d-a73e-7c6a4fee7a54',
+    order: 16,
+    lastPlayedAt: null,
+    archivedAt: null,
+    favoritedAt: null,
+    createdAt: '2019-07-04T03:30:15.406Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
+    article: {
+      id: '09e78332-5cfa-4c2d-9288-656503e02df9',
+      title: 'Top Signs Of An Over-Experienced Programmer - Better Programming - Medium',
+      description: 'Software engineers seem to have a natural progression. They go from inexperienced, to mid-level, to over-experienced engineers. Once software engineers hit the over-experienced stage, they become...',
+      url: 'https://link.medium.com/5GmjB86z2X',
+      canonicalUrl: 'https://medium.com/better-programming/top-signs-of-an-over-experienced-programmer-22bbe0b57663',
+      status: 'finished',
+      sourceName: 'Medium',
+      imageUrl: 'https://miro.medium.com/max/1200/1*3IOiLzDX6iodlR9dhgd02g.jpeg',
+      readingTime: 332.7,
+      authorName: 'SeattleDataGuy',
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div><div><div><div><p><a href="/@SeattleDataGuy"><img src="https://miro.medium.com/fit/c/48/48/0*yQUyY8JtXeDsGnPR.jpg"></a></p></div></div><figure><div><div><p><img src="https://miro.medium.com/max/30/1*3IOiLzDX6iodlR9dhgd02g.jpeg?q=20"></p><p><img></p></div></div><figcaption>Photo by <a href="https://unsplash.com/@nesabymakers?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">NESA by Makers</a> on <a href="https://unsplash.com/search/photos/coding?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></figcaption></figure><p>Software engineers seem to have a natural progression.</p><p>They go from inexperienced, to mid-level, to over-experienced engineers. Once software engineers hit the over-experienced stage, they become less interested in the code. Instead, they get distracted by design documents and refactoring old code.</p><p>It is strange that most over-experienced engineers will exhibit the same set of characteristics no matter what company you work for. Their lack of focus on code slows down lines of code per engineer because more time is wasted thinking through designs vs. just writing code.</p><p>This shift from a new engineer to over-experienced doesn’t happen overnight. However, gradually over a few years or maybe even decades, these engineers make a shift into the over-experienced category.</p><p>They seem to be the same in every single company and it’s just frustrating to constantly deal with all their demands and unnecessary busy work.</p><p>If you’re a Jr. engineer or even an over-experienced engineer, this post will help point out the traits you might be exhibiting that inhibit development.</p></div><hr><div><p>In a recent Twitter post, the <a href="https://twitter.com/techleadhd"><strong>@</strong>techleadhd</a>, arguably one of the most over-experienced engineers currently alive, revealed his true thoughts about writing code.</p><p>He clearly doesn’t believe in writing code. Instead, he seems to insinuate that there is value in deleting and refactoring code.</p><p>But it’s not called software cleaning. It’s called software engineering.</p><figure></figure><p>That means you need to engineer code, not maintain it.</p><p>Maintaining code is someone else’s job. Maybe the intern can do it.</p><p>Software engineers should be spending their time coding around old inefficient code rather than trying to improve old infrastructure. It’s OK to use duct tape code as long as things work. Some future engineer will have to code around our work. It’s not like we can do anything about it. Yet, over-experienced engineers seem to believe that there is some importance in maintaining old code.</p></div><hr><div><p>Let’s be clear: the big picture and business side of things are not important, only the code!</p><p>Over-experienced software engineers have a bad habit of focusing on the big picture vs the code itself. They like to ask questions like “who will this project impact”, “how will the end-user interact with the code”, and “how will we maintain it?”</p><p>They waste a lot of time trying to understand the scope of the project and how it will impact the company. Sometimes they will even challenge leadership with what they believe are “superior solutions”. We are not even sure how they even find time to finish all their coding when they are focused on such trivial matters, like “impact” and “prioritization”.</p><p>Spending all that time in meetings, stand-ups, metrics tracking and on code-reviews cause the purity of just writing code gets lost.</p><p>We are not surprised that over-experienced engineers sometimes lose that glimmer of hope that exists in inexperienced engineers. Inexperienced engineers focus only on the code and doing what they are told, even when the scope might be overly complex.</p><p>This is because good programmers shouldn’t question what they are doing. Instead, they should just put their heads down and code no matter the request. The business knows exactly what will impact the company at all times. Our job as programmers is to make it happen, not to figure out whether what we could do is worth doing or how it fits into company strategy.</p><p>We need to help over-experienced engineers remember that they are programmers, not leaders.</p></div><hr><div><p>For some reason, over experienced software engineers always want a <a href="https://en.wikipedia.org/wiki/Software_design_description">design document</a>.</p><p>It would be much faster to just start programming any project no matter the size without thinking through a design document. It’s OK to skip through thinking about what objects you need or what operational scenarios your code will be put through.</p><p>From our perspective, we find it is much easier just to keep track of everything in our heads. Even with thousands of lines of code, it’s not so hard to manage.</p><p>It’s not like we would repeat functionality with a slightly different object or anything.</p><p>We aren’t going to create duplicate functionality with multiple objects.</p><p>So why do over-experience software engineers care so much?</p><p>In the end, we would write code ten times faster and be able to provide impact much more efficiently if we didn’t need to spend time thinking through a design document.</p></div><hr><div><figure><div><div><p><img src="https://miro.medium.com/max/19/1*SsWEz-V9tEpXOYk8njMSwA.png?q=20"></p><p><img></p></div></div></figure><p>At a certain point, I think some engineers no longer want to think about other people’s code.</p><p>So when you create a module that utilizes everything you learned at school all in one amalgamation of object-oriented memoization, they like to claim that the code is <em>over-engineered</em>.</p><p>Personally, we just think that they don’t want to think through the brilliance of someone else’s masterpiece.</p><p>How hard would it be to take the time to understand the how object A inherits from object B, which calls function C, which then calls function D and sometimes options F or G that pulls in information from config file E, which uses function F to parse data from database G that then stores logs in Hadoop, CouchDB, and S3.</p><p>They start to complain and say that the code is too elegant and or over-engineered. Their laziness keeps well-designed code that is really easy to maintain out of production. Instead, they attempt to push younger engineers to write code that is too simple.</p><p>Sure, it might seem like it’s easy to look at and understand. But as engineers, we aren’t focused on simplification. We take complicated problems and create complicated solutions.</p><p>The frameworks I know now are the only frameworks I will need to know from now until I die.</p><p>Yet, over-experienced engineers seem to spend a lot of time learning new frameworks and languages or at the very least, reading up on new design principles.</p><p>It all seems like a waste of time. As an engineer, you should be smart enough to know everything you need to know after you finish college. Anything after the fact is clearly not important. Some of them even still <a href="/better-programming/the-software-engineering-study-guide-bac25b8b61eb">practice leet code problems and study</a>, as if they might have an interview coming up. It’s not like software engineers have to worry about being let go.</p><p>Doesn’t everyone still program in the language they learned in college?</p></div><hr><div><p>Over-experienced software engineers hold society back.</p><p>With their constant need for code-refactoring, design documents and learning they keep major software advancements from moving forward. We’re pretty sure we would already have flying cars and robots that are smarter than us right now if it wasn’t for over-experienced engineers. Instead, we’re stuck with 280-character Tweets and Amazon ads that keep trying to sell me the same toilet seat cover I bought last week.</p></div></div></div>',
+      createdAt: '2019-07-04T03:30:15.139Z',
+      updatedAt: '2019-07-04T03:30:19.115Z',
+      language: {
+        id: '95f01039-fe8e-412d-a542-7089303b84c8',
+        name: 'English',
+        nativeName: 'English',
+        code: 'en',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:51:57.546Z',
+        updatedAt: '2019-08-01T14:13:01.327Z'
+      },
+      audiofiles: []
+    }
+  },
+  {
+    id: 'c311ffc6-78b6-4248-aeba-a73791fb868c',
+    order: 17,
+    lastPlayedAt: null,
+    archivedAt: null,
+    favoritedAt: null,
+    createdAt: '2019-07-04T03:29:28.773Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
+    article: {
+      id: '2e1a99ea-8af7-4b5e-a08e-a0ec0850e641',
+      title: 'A long-term fund wouldn’t prevent another Woodford scandal – it completely misses the point - CityAM',
+      description: 'When you don’t think it could get much worse for Neil Woodford, it does. And now it seems that the scandal around Britain’s most famous fund manager could pave the way for a new type of investment...',
+      url: 'https://www.cityam.com/a-long-term-fund-wouldnt-prevent-another-woodford-scandal-it-completely-misses-the-point',
+      canonicalUrl: 'https://www.cityam.com/a-long-term-fund-wouldnt-prevent-another-woodford-scandal-it-completely-misses-the-point/',
+      status: 'finished',
+      sourceName: 'CityAM',
+      imageUrl: 'https://www.cityam.com/wp-content/uploads/2019/07/GettyImages-1127350424.jpg',
+      readingTime: 307.8,
+      authorName: 'Katherine Denham',
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div><p>When you don’t think it could get much worse for Neil Woodford, it does. And now it seems that the scandal around Britain’s most famous fund manager could pave the way for a new type of investment fund. </p><p>While a new fund had technically been in the pipeline for a while, the timing of the announcement – coming shortly after the Woodford fund suspension – is poignant.</p><p>Last week, the Bank of England governor Mark Carney waded into the debate about Woodford-style funds, saying that they are “built on a lie” – referring of course to the paradox of funds that hold hard-to-sell illiquid assets but which also claim to allow investors to take their money out whenever they like. </p><p>As we have seen with Woodford’s equity income fund, which is currently suspended until at least 29 July, it’s really not that simple. In fact, if lots of people flock to cash-in all at once, the reality is that your money could end up being locked in for months. </p><p>While Woodford’s certainly isn’t first fund to ever suspend (think back to the Brexit vote when several property funds suspended for months), the former star manager has really highlighted the conflict between the structure of open-ended funds and the underlying assets. </p><p>Carney warned that half of investment funds have this structural mismatch. “Under stress, they may need to fire-sell assets, magnifying market adjustments and triggering further redemptions – a vicious feedback loop that can ultimately disrupt market functioning.”</p><p>Over recent weeks, the rallying call for regulators to take action to prevent another Woodford debacle has grown louder, though the launch of a whole new investment fund was perhaps not what most people had in mind. </p><p>Last week, the Investment Association published a report containing details of a new so-called “long-term asset fund”. A more detailed blueprint will be published later this year, but it’s thought that the fund would only allow investors to trade on a monthly or quarterly basis, rather than daily. </p><p>The industry seems less than enthusiastic about the idea, with some arguing that this tries to turn open-ended funds into something that they are not. </p><p>It also seems to ignore the fact that we already have a vehicle perfectly suited to holding long-term, illiquid assets in the form of investment trusts. Investment trusts do not have this inherent liquidity mismatch because they do not offer redemption. Instead, investors buy and sell their shares on the stock market, which means that trading has no impact on the underlying portfolio. </p><p>Ian Sayers, chief executive of the Association of Investment Companies (AIC), says that the proposals do not address the fundamental issues raised by the recent suspension of the Woodford fund. “We appear to be heading towards a world with less frequent redemption opportunities, more frequent suspensions, and the likelihood that open-ended managers will hold ever greater amounts of cash, reducing investment returns,” he says.</p><p>The AIC suggests that asset managers which offer open-ended funds holding illiquid assets should publish reasons why the structure chosen is in the best interest of consumers.</p><p>As Sayers adds: “There are many commercial reasons why asset managers favour open-ended funds over closed-ended funds, even when it is clear that the closed-ended structure is better suited to illiquid assets. We believe that the time has come to put consumers’ interests first.”</p><p>It’s strange that attention has focused on creating something new, rather than looking at how we can better utilise what is already available. And in fact, launching a new type of fund could create more problems than it solves.</p><p>For one, there are questions around how popular this long-term fund would actually be, as it fails to address the fact that investors want easy access to their own cash.</p><p>Adrian Lowcock, head of personal investing at Willis Owen, warns that he would be very cautious about recommending the fund, because many clients expect to be able to sell their investments and get their money back quickly. “Execution-only platforms are designed around this convenience, and for many of those investors, having some funds with monthly dealing makes the investment experience more complex.”</p><p>The worry is that investors could get confused by all the various rules that apply to different types of fund, and only really be reminded when they want to cash-in.</p><p>Meanwhile, monthly dealing doesn’t necessarily remove the issue of liquidity, because in extreme circumstances, the fund manager could still be forced to sell. And of course, a fund doesn’t have to hold a significant amount of illiquid assets to run into trouble.</p><p>It’s understandable that regulators want to be seen to be taking action, but perhaps the question is not whether we need more rules, but whether existing regulation is being properly enforced. Note that the FCA started investigating Woodford over his breach of the unquoted cap as early as February 2018.</p><p>Shaun Port, chief investment officer at Nutmeg, does not think that a new fund is the answer: “The Woodford crisis was avoidable through more appropriate liquidity and risk analysis by the fund manager, and through robust due diligence by those promoting the fund,” he says.</p><p>“It is not the fund structure that is at fault here, rather the way that the portfolio was structured and managed.” </p><p>But there is another way that creating a new fund misses the point. </p><p>Woodford has damaged investors’ trust in the industry, so for many people, the prospect of having your savings locked away in a long-term fund is unlikely to sound very appealing. </p><p>Indeed, Holly Mackay, founder of Boring Money, thinks that this is the bigger issue that needs resolving. </p><p>“Fund managers are very good at thinking that the answer to everything can be found by an engineer or an actuary, but a new product structure should be a secondary consideration,” she says. “The bigger problem is to sort out people’s mistrust of the industry. This means being clearer about what a fund is trying to do, and precisely how much it costs.”</p><p>At the moment, the launch of a long-term fund seems like an unhelpful knee-jerk reaction. For the investment industry and its regulator, it’s really time to reassess their priorities.</p></div></div>',
+      createdAt: '2019-07-04T03:29:28.353Z',
+      updatedAt: '2019-07-04T03:29:33.657Z',
+      language: {
+        id: '95f01039-fe8e-412d-a542-7089303b84c8',
+        name: 'English',
+        nativeName: 'English',
+        code: 'en',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:51:57.546Z',
+        updatedAt: '2019-08-01T14:13:01.327Z'
+      },
+      audiofiles: []
+    }
+  },
+  {
+    id: '78907270-d41f-48d9-ba9e-51427b23f659',
+    order: 18,
+    lastPlayedAt: null,
+    archivedAt: null,
+    favoritedAt: null,
+    createdAt: '2019-07-04T03:28:15.789Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
+    article: {
+      id: '41f82084-5604-4148-b603-bd55a9a2c6c4',
+      title: null,
+      description: null,
+      url: 'https://nos.nl/l/2291907',
+      canonicalUrl: null,
+      status: 'failed',
+      sourceName: null,
+      imageUrl: null,
+      readingTime: null,
+      authorName: null,
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: null,
+      createdAt: '2019-07-04T03:28:14.880Z',
+      updatedAt: '2019-07-04T03:28:55.368Z',
+      language: null,
+      audiofiles: []
+    }
+  },
+  {
+    id: '7a8b60bd-c313-4e38-b7fb-b85424cbf8bc',
+    order: 19,
+    lastPlayedAt: null,
+    archivedAt: null,
+    favoritedAt: null,
+    createdAt: '2019-07-04T02:56:18.448Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
+    article: {
+      id: '5e0c2c96-10df-46dd-9247-98c3373e9bfa',
+      title: null,
+      description: null,
+      url: 'https://thenextweb.com/artificial-intelligence/2019/07/04/ibms-call-for-code-starter-kits-are-a-perfect-intro-to-coding-and-ai',
+      canonicalUrl: null,
+      status: 'failed',
+      sourceName: null,
+      imageUrl: null,
+      readingTime: null,
+      authorName: null,
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: null,
+      createdAt: '2019-07-04T02:56:17.978Z',
+      updatedAt: '2019-07-04T02:56:57.594Z',
+      language: null,
+      audiofiles: []
+    }
+  },
+  {
+    id: '64bcbe1e-f0e7-4468-b665-4506706440c4',
+    order: 20,
+    lastPlayedAt: null,
+    archivedAt: '2019-07-02T17:32:19.698Z',
+    favoritedAt: null,
+    createdAt: '2019-06-26T07:14:04.645Z',
+    updatedAt: '2019-08-02T09:44:11.369Z',
+    article: {
+      id: '7e8ca9e6-fa1c-414a-a2e9-ddd89c8cd1b6',
+      title: 'Vivo claims its new 120W tech can charge your phone in just 13 minutes',
+      description: 'Vivo said it just showed off its new charging tech at Mobile World Congress Shangai that can juice up your phone in just 13 minutes. The Chinese phone maker said that phones with this technology can...',
+      url: 'https://thenextweb.com/plugged/2019/06/26/vivo-claims-its-new-120w-tech-can-charge-your-phone-in-just-13-minutes',
+      canonicalUrl: 'https://thenextweb.com/plugged/2019/06/26/vivo-claims-its-new-120w-tech-can-charge-your-phone-in-just-13-minutes/',
+      status: 'finished',
+      sourceName: 'thenextweb.com',
+      imageUrl: 'https://img-cdn.tnwcdn.com/image/plugged?filter_last=1&fit=1280%2C640&url=https%3A%2F%2Fcdn0.tnwcdn.com%2Fwp-content%2Fblogs.dir%2F1%2Ffiles%2F2019%2F06%2FVivo-charging-hed.jpg&signature=cb69b65affe67df1fc2ed645f2d4278f',
+      readingTime: 54.6,
+      authorName: 'Ivan Mehta',
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div><p>Vivo said it just showed off its new charging tech at Mobile World Congress Shangai that can juice up your phone in just 13 minutes. The Chinese phone maker said that phones with this technology can support charging at <span>120W. </span></p><p>The new method, called<span> Super FlashCharge 120W, uses Vivo‘s custom USB-C cable and travel charger. </span>The company tested this method with a 4,000 mAh battery in the lab and was able to charge from 0 to 50 percent in just five minutes – and subsequently 100 percent in another eight minutes.</p><p>This technology beats <a href="https://thenextweb.com/plugged/2019/03/26/xiaomis-new-100w-charger-will-charge-your-phone-in-just-17-minutes/">Xiaomi’s previous record</a> of charging a phone with 4,000 mAh battery with a 100W charger in 17 minutes.</p><p>While Xiaomi announced that its battery tech will soon go into mass production, there’s no word on when Vivo‘s technology will make it to phones we can buy. Nonetheless, it’s an exciting development, and we can’t wait to see this in action.</p><p><i>For more gear, gadget, and hardware news and reviews, follow Plugged on <a href="https://twitter.com/plugged">Twitter</a> and <a href="https://flipboard.com/@thenextweb/plugged-54nihknvy">Flipboard</a>.</i></p><p>Published June 26, 2019 — 05:55 UTC</p></div><div><p><a href="https://thenextweb.com/author/ivanmehta"><img></a></p><div><h5><a href="https://thenextweb.com/author/ivanmehta">Ivan Mehta</a></h5><p>June 26, 2019 — 05:55 UTC</p></div></div></div>',
+      createdAt: '2019-06-26T07:14:04.225Z',
+      updatedAt: '2019-06-26T07:14:06.929Z',
+      language: {
+        id: '95f01039-fe8e-412d-a542-7089303b84c8',
+        name: 'English',
+        nativeName: 'English',
+        code: 'en',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:51:57.546Z',
+        updatedAt: '2019-08-01T14:13:01.327Z'
+      },
+      audiofiles: [
+        {
+          id: '826d72d8-45f8-46f4-b836-9fae6b72ed32',
+          url: 'https://storage-development.playpost.app/articles/7e8ca9e6-fa1c-414a-a2e9-ddd89c8cd1b6/audiofiles/826d72d8-45f8-46f4-b836-9fae6b72ed32.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/7e8ca9e6-fa1c-414a-a2e9-ddd89c8cd1b6/audiofiles/826d72d8-45f8-46f4-b836-9fae6b72ed32.mp3',
+          length: 76.43428571428572,
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-06-29T09:12:58.545Z',
+          updatedAt: '2019-06-29T09:12:58.545Z',
+          voice: {
+            id: 'd2ede165-9dc0-4969-af8c-f4ff3716da53',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'Joanna',
+            label: 'Joanna',
+            gender: 'FEMALE',
+            synthesizer: 'AWS',
+            quality: 'Normal',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: null,
+            isActive: true,
+            isPremium: false,
+            isHighestQuality: false,
+            isLanguageDefault: true,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
+            createdAt: '2019-04-25T11:35:03.678Z',
+            updatedAt: '2019-08-01T14:13:06.094Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              code: 'en',
+              rightToLeft: false,
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-08-01T14:13:01.327Z'
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    id: 'e86757c3-23f7-456e-9dd1-84126c583c9a',
+    order: 21,
+    lastPlayedAt: null,
+    archivedAt: '2019-07-02T17:32:26.273Z',
+    favoritedAt: null,
+    createdAt: '2019-06-26T07:13:51.056Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
+    article: {
+      id: '8378087b-cf9c-42dc-a888-827ba7243230',
+      title: 'This Hiring Decision Is One of the Most Important Choices You’ll Ever Make, Research Says',
+      description: '"I don\'t care if it\'s a man or woman, I just want someone who\'s qualified for the job," one entrepreneur said. It\'s time to stop thinking about your job candidates\' qualifications as they are...',
+      url: 'https://www.inc.com/marla-tabaka/this-hiring-decision-is-one-of-most-important-choices-youll-ever-make-research-says.html?cid=hmside4',
+      canonicalUrl: 'https://www.inc.com/marla-tabaka/this-hiring-decision-is-one-of-most-important-choices-youll-ever-make-research-says.html',
+      status: 'finished',
+      sourceName: 'Inc.com',
+      imageUrl: 'https://www.incimages.com/uploaded_files/image/970x450/getty_580088046_395584.jpg',
+      readingTime: 225.9,
+      authorName: 'Marla Tabaka',
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div><p>"I don\'t care if it\'s a man or woman, I just want someone who\'s qualified for the job," one entrepreneur said.</p><p>It\'s time to stop thinking about your job candidates\' qualifications as they are reported on paper. <a href="https://www.inc.com/marla-tabaka/its-an-employees-market-now-this-is-actually-good-news-for-small-business-owners.html">Entrepreneurs in search of new hires</a> also need to consider their existing team\'s collective intelligence to create a diverse balance of creativity, empathy, logic, experience, and skill.</p><p>Studies dating back into the 90s reveal that a diverse workforce is more productive, creative, and profitable. Today, I\'m specifically addressing gender diversity. It\'s clear that <a href="https://www.inc.com/marla-tabaka/no-women-on-your-team-you-may-be-missing-some-of-best-talent-according-to-walmartcom-ceo.html">having both men and women on your team</a> will take your company further and faster. A hiring decision that includes consideration of gender diversity is simply a smarter decision for entrepreneurs. </p><p>This is not strictly about equality; mixed gender groups simply make better decisions. The teams that take social sensitivity, as well as other substantive issues, into consideration come up with ideas and solutions that promise the most beneficial outcome.</p><p><a href="https://www.gallup.com/workplace/236543/business-benefits-gender-diversity.aspx">This Gallup study</a> of more than 800 business units in retail and hospitality found that gender-diverse companies have better financial outcomes than those dominated by one gender. The study found that retail units that are diverse and engaged have a 46% higher increase in comparable revenue. Similarly, diverse and engaged units in the hospitality company have a 58% higher net profit than single-gender and less-engaged units, the study says.</p><p>Whether your company is comprised of mostly (or exclusively) men or women can have a significant impact on its future. Finding the sweet spot in gender balance holds greater promise of profitability, innovative expression, and growth. The fact is, <a href="https://hbr.org/2017/06/does-diversity-actually-increase-creativity">diverse teams can develop more innovative ideas</a>. When people from different contexts work together, their unique perspectives often lead to better results.</p><h2>How to balance your culture successfully.</h2><p>The entrepreneur, a woman, to whom I referred in the first paragraph of this article has a company of eight employees: seven men and one woman, who is in a clerical role. In a situation like this, hiring a woman for another clerical position will not achieve the balance that entrepreneurs should look for. Overall diversity is important, but it must be throughout the company, including higher-level positions, to offer a significant impact.</p><p>As you evaluate the position you are filling be sure to consider how high levels of emotional intelligence could benefit your company. Many of the qualities responsible for creating the winning balance are found in women. This includes, but is not limited to, social sensitivity, <a href="https://www.inc.com/marla-tabaka/tim-ferriss-jeff-bezos-other-entrepreneurial-icons-swear-by-this-secret-weapon-you-have-it-too.html">intuition</a>, an ability to read non-verbal cues, and an understanding of what the female consumer or customer is most attracted to. Men are exceptionally good at focusing, getting rid of extraneous data, taking greater risks, and pushing full steam ahead.</p><p>This is not to say that both sexes cannot bring these qualities to the table. However, the differences between men and women are strongly shaped by socialization and the way we are raised. Men and women have vastly different life experiences to draw upon. Too few, or too many, members of either sex on your team will not give <a href="https://www.inc.com/marla-tabaka/give-your-customer-what-they-want-not-just-what-they-need-its-a-game-changer.html">your customers</a> or your team a complete experience. In my opinion, this is especially true in marketing. I marvel at how many ads completely lack feminine appeal; an important quality considering the purchasing power of the female demographic.</p><h2>Develop a culture of inclusion.</h2><p>According to <a href="https://www.gallup.com/workplace/242138/requirements-diverse-inclusive-culture.aspx">this Gallup study</a>, employees in inclusive environments feel appreciated for their unique characteristics and are therefore comfortable sharing their ideas and other aspects of their true and authentic selves.</p><p>To create a thriving culture, give equal consideration to everyone\'s opinions and input, even if at first you are tempted to reject them. Oftentimes, an entrepreneur\'s judgment comes from <a href="https://www.inc.com/marla-tabaka/7-devastating-startup-mistakes-that-you-dont-have-to-make.html">preconceptions of their own</a>, this is a great opportunity to expand your mind.</p><h2>Bonus: Overall diversity will attract more applicants.</h2><p>In a survey of 1,000 respondents, Glassdoor found that 67% of job seekers look at workforce diversity when evaluating an offer. In today\'s world, a culture of gender diversity and inclusion makes your company more appealing to both sexes. The survey found that 72 percent of women and 62 percent of men consider workforce diversity important.</p><p>The next time you review the qualifications you\'ve included in your job descriptions include these soft skills. It may take a bit longer to find your ideal candidate, but if you don\'t, it may take much longer to achieve your next level of success.</p></div><p>The opinions expressed here by Inc.com columnists are their own, not those of Inc.com.</p></div>',
+      createdAt: '2019-06-26T07:13:50.589Z',
+      updatedAt: '2019-06-26T07:20:42.994Z',
+      language: {
+        id: '95f01039-fe8e-412d-a542-7089303b84c8',
+        name: 'English',
+        nativeName: 'English',
+        code: 'en',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:51:57.546Z',
+        updatedAt: '2019-08-01T14:13:01.327Z'
+      },
+      audiofiles: [
+        {
+          id: 'ebaba2ae-4310-4af4-bd8a-bc6446fd8c4e',
+          url: 'https://storage-development.playpost.app/articles/8378087b-cf9c-42dc-a888-827ba7243230/audiofiles/ebaba2ae-4310-4af4-bd8a-bc6446fd8c4e.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/8378087b-cf9c-42dc-a888-827ba7243230/audiofiles/ebaba2ae-4310-4af4-bd8a-bc6446fd8c4e.mp3',
+          length: 284.1077551020408,
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-06-26T07:28:36.387Z',
+          updatedAt: '2019-06-26T07:28:36.387Z',
+          voice: {
+            id: 'd2ede165-9dc0-4969-af8c-f4ff3716da53',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'Joanna',
+            label: 'Joanna',
+            gender: 'FEMALE',
+            synthesizer: 'AWS',
+            quality: 'Normal',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: null,
+            isActive: true,
+            isPremium: false,
+            isHighestQuality: false,
+            isLanguageDefault: true,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
+            createdAt: '2019-04-25T11:35:03.678Z',
+            updatedAt: '2019-08-01T14:13:06.094Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              code: 'en',
+              rightToLeft: false,
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-08-01T14:13:01.327Z'
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    id: '59cb2e7a-79fe-48f0-ab68-7ffe2bf70c34',
+    order: 22,
+    lastPlayedAt: null,
+    archivedAt: null,
+    favoritedAt: null,
+    createdAt: '2019-06-26T07:12:46.270Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
+    article: {
+      id: '8c18d9d2-e5bb-487a-bc34-380ba666d1b9',
+      title: 'A Principles-First Approach To Success',
+      description: 'FOUR THEMES THAT HAVE CONSISTENTLY WORKED FOR ME IN BUSINESS Have you ever wondered why, no matter how hard you ‘grind’, no matter how much you ‘hustle’, you aren’t achieving the success you want? I...',
+      url: 'https://medium.com/better-marketing/a-principles-first-approach-to-success-258b90abaf7f',
+      canonicalUrl: 'https://medium.com/better-marketing/a-principles-first-approach-to-success-258b90abaf7f',
+      status: 'finished',
+      sourceName: 'Medium',
+      imageUrl: 'https://miro.medium.com/max/1200/1*UJziNb5mJ4OEd5mroJeBHw.png',
+      readingTime: 384.9,
+      authorName: 'Stephen Moore',
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div><div><h2>Four themes that have consistently worked for me in business</h2><div><div><div><a href="/@sjmoore3"><p><img src="https://miro.medium.com/fit/c/96/96/1*SeuhJx8ZR_U21mkJfdPT1g.jpeg"></p></a></div></div></div><figure><div><div><p><img src="https://miro.medium.com/max/60/1*UJziNb5mJ4OEd5mroJeBHw.png?q=20"></p><p><img></p></div></div><figcaption>Photo by <a href="https://unsplash.com/@najnudge?utm_source=medium&amp;utm_medium=referral">Aishath Naj</a> on <a href="https://unsplash.com/?utm_source=medium&amp;utm_medium=referral">Unsplash</a></figcaption></figure><p>Have you ever wondered why, no matter how hard you ‘grind’, no matter how much you ‘hustle’, you aren’t achieving the success you want?</p><p>I used to think about this question a lot. I was doing what I thought were the right things. I was pumping out content. I was pushing my business onto anyone who was listening. I was taking on work from anyone who offered it.</p><p>But I wasn’t getting anywhere.</p><p>Turns out, I hadn’t done any of the necessary groundwork. I hadn’t built the foundation of my business properly. What reputation does my business have? What relationships am I developing? What I am doing this for? Am I taking the right opportunities?</p><p>I was failing because I was focused purely on the destination, and not on building the best possible path to it.</p><p>So what can you do to help you achieve the success you want so bad?</p><p><strong>You can start by taking the time to get crystal clear on your principles.</strong></p><p>You need to introduce principles that make you a better person and improve your own work. Principles that when applied, increase the chances of ‘making it’. Principles that will help to build a brilliant reputation for your business, find the right clients, and increase your work satisfaction.</p><p>Since growing my business, four principles have served me well and if implemented can do the same for you.</p></div><hr><div><p>Humility is a vital part of success. Being able to appreciate what you have, and what you don’t have, helps keep your feet firmly planted on the ground, no matter what heady heights you are reaching.</p><p>Humility is also being grateful for the opportunities and the jobs you get, the people you meet, and the chances that come your way.</p><p>Humility and gratitude will carry you very far in your journey to success. As Gary Vaynerchuck says, “One is greater than zero.”</p><p>You should never expect anything, but you should expect to earn everything.</p><p>These are the<em> </em>‘humble beginnings’<em> </em>for a reason, and you should take nothing for granted.</p><h2>How can you be more humble?</h2><ul><li><strong>Accept that you don’t know everything</strong>. Once you come to terms with this, you can start to ask the right questions. You can start listening to others. And this will help you learn, and improve.</li><li><strong>Accept that you have weaknesses.</strong> Acknowledging these weak points, and being willing to listen to other’s advice, or asking for their feedback, can turn them into strengths.</li><li><strong>Appreciate that others are putting their neck out for you. </strong>If you are new to the game, and people are taking chances on you, you should be eternally grateful to them. Catching your big break is so hard, so thank your lucky stars someone is taking a chance on you.</li></ul></div><hr><div><p>Be honest with yourself. There are limitations to what you can do right off the bat. You haven’t developed all the skills required to achieve everything. So know your limits, and set realistic targets, goals and ambitions.</p><p>Be honest with the people you work with or around. They’re your support network. Trust is a two-way street and you’ll need their trust to make anything of your new venture — so prioritise earning theirs first.</p><p>Be honest with clients. They’re the be all and end of business—without them you are and will be nothing. Honesty between you and your clients will help you to form strong relationships, and good relations with good clients is a hallmark of a successful business.</p><h2>How can you be more honest?</h2><ul><li><strong>You need to keep your word</strong>. If you make promises, you sure as hell better keep them. More importantly, make sure your actions match your words. Don’t practice this ‘do as I say, not as I do’ bullshit.</li><li><strong>Take responsibility.</strong> This means being willing to accept responsibility when things go wrong, and admitting a mistake or an error in judgment</li><li><strong>Develop a culture of openness</strong>. There is nothing worse than bad-mouthing someone behind their back. So get it out in the open. Just be sure to think before you speak because once it’s out, it’s out.</li></ul></div><hr><div><p>Jim Carrey hit the nail on the head with the following truth bomb: “You can fail at what you don’t want, so you might as well take a chance on doing what you love.”</p><p>Don’t turn down great opportunities because of doubt, fear, or insecurity. Don’t hold back from new friendships, new business partnerships, and new clients. In the end, when the dust settles, you’ll only live to regret the missed possibilities.</p><p>When chasing success, risk is always going to be a huge part. It takes real guts to make the moves and decisions required to earn success, and sometimes you will have to bet big to get what you want.</p><p>So buckle up and throw down your chips. Fortune favours the brave.</p><p>Push your projects and ideas to the limit. Take on challenges that seem unsurpassable. Charge head first into the unknown. When you reach the outcomes, you will be surprised by what lies beyond there.</p><h2>How can you be braver?</h2><ul><li><strong>Acknowledge your fears.</strong> Identifying what is actually scaring you is the first step to overcoming them. Don’t hide them away. Bring them out in the open and begin to deal with them.</li><li><strong>Change your mindset</strong>. We spend too much time worrying about screwing up. But what about what could have been? Don’t fear failure. Fear regret.</li><li><strong>Find role models.</strong> At times in your journey, your head will drop and your spirits will be tested. It is important to have people you aspire to be like to help you motivate in those moments where you feel like giving up.</li></ul></div><hr><div><p>Life isn’t always rosy, and it isn’t always full of wins. So when you achieve goals, be sure to celebrate (at least a little bit).</p><p>Step back and reflect upon the accomplishments you make along the way. Every small step is really a big step, just on a really long ladder. Be amazed at your work. Allow yourself to feel that warm, proud feeling rise from your body.</p><p>It is such a simple thing to do, yet it’s constantly ignored as everyone pushes relentlessly towards their next objective. Of course momentum is necessary for success, but so is the occasional beer and revelling in self-glory.</p><p>This is great for your moral and your mental health. It will also help to motivate you and encourage you to push on towards the next objective.</p><p>And really, if you can’t enjoy your achievements, what’s the point in grafting so hard for them?</p><h2><strong>How to be more proud?</strong></h2><ul><li><strong>Break your goals down</strong>. Learn to take a big task, and make it many smaller tasks. Use these smaller tasks to build up confidence, and momentum. Then you can see notable progress and think, “Whoa, I am doing bloody great!”</li><li><strong>Stop comparing yourself to others.</strong> If you constantly measure yourself against others, and others who are undoubtedly further ahead in their journey than you, then how are you ever going to feel proud of what you achieve?</li><li><strong>Don’t let others talk down your wins</strong>. There is always someone out there with a big mouth who will try to bring you down. You’ve just got to say <em>fuck them</em> and continue to believe in yourself.</li></ul></div><hr><div><p>And there you have it — my four principles: <strong>humility, honesty, bravery, </strong>and<strong> pride</strong>. Build these principles into your life and not only will you grow—but so will your approach, attitude, and ultimately your opportunities.</p><p>They will also help you to be happier.</p><p>That sounds pretty freakin’ great, doesn’t it?</p><p>Start developing these foundations today, and build a solid platform to begin your journey to success.</p></div></div></div>',
+      createdAt: '2019-06-26T07:12:45.802Z',
+      updatedAt: '2019-06-26T07:12:49.999Z',
+      language: {
+        id: '95f01039-fe8e-412d-a542-7089303b84c8',
+        name: 'English',
+        nativeName: 'English',
+        code: 'en',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:51:57.546Z',
+        updatedAt: '2019-08-01T14:13:01.327Z'
+      },
+      audiofiles: [
+        {
+          id: 'aff5d481-d5a5-4c11-81ea-639f95e3d928',
+          url: 'https://storage-development.playpost.app/articles/8c18d9d2-e5bb-487a-bc34-380ba666d1b9/audiofiles/aff5d481-d5a5-4c11-81ea-639f95e3d928.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/8c18d9d2-e5bb-487a-bc34-380ba666d1b9/audiofiles/aff5d481-d5a5-4c11-81ea-639f95e3d928.mp3',
+          length: 427.2326530612245,
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-06-29T09:09:02.331Z',
+          updatedAt: '2019-06-29T09:09:02.331Z',
+          voice: {
+            id: 'd2ede165-9dc0-4969-af8c-f4ff3716da53',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'Joanna',
+            label: 'Joanna',
+            gender: 'FEMALE',
+            synthesizer: 'AWS',
+            quality: 'Normal',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: null,
+            isActive: true,
+            isPremium: false,
+            isHighestQuality: false,
+            isLanguageDefault: true,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
+            createdAt: '2019-04-25T11:35:03.678Z',
+            updatedAt: '2019-08-01T14:13:06.094Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              code: 'en',
+              rightToLeft: false,
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-08-01T14:13:01.327Z'
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    id: '3c1b997b-b495-4610-a208-7b4e241c8887',
+    order: 23,
+    lastPlayedAt: null,
+    archivedAt: null,
+    favoritedAt: null,
+    createdAt: '2019-06-26T07:12:17.763Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
+    article: {
+      id: '1492ef34-5ca7-406d-b98e-6bbffc40e1e8',
+      title: 'The Link Between Psychedelics, God Encounters, and Mental Health',
+      description: 'NEW RESEARCH SUGGESTS HAVING A MYSTICAL EXPERIENCE MAY HAVE LONG-LASTING BENEFITS On the subreddit r/LSD, a user recently posed a question to the 249,000-strong community of dedicated psychonauts:...',
+      url: 'https://elemental.medium.com/the-link-between-psychedelics-god-encounters-and-mental-health-87090d8a56b1',
+      canonicalUrl: 'https://elemental.medium.com/the-link-between-psychedelics-god-encounters-and-mental-health-87090d8a56b1',
+      status: 'finished',
+      sourceName: 'Elemental',
+      imageUrl: 'https://cdn-images-1.medium.com/max/1200/1*REmpPZZSkDbd2TIKM72sDQ.jpeg',
+      readingTime: 402.6,
+      authorName: 'Tessa Love',
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div><h2>New research suggests having a mystical experience may have long-lasting benefits</h2><div><div><a href="https://elemental.medium.com/@tessamlove?source=post_header_lockup"><div><p><img src="https://cdn-images-1.medium.com/fit/c/100/100/1*hOOsrEIscRJyi0Tec8C4SQ.jpeg"></p></div></a></div></div></div><div><p>On the subreddit r/LSD, a user recently posed a question to the 249,000-strong community of dedicated psychonauts: “Is God real?”</p><p>“It’s nearly 5 a.m. If you’re still up and reading this you’re probably tripping as well,” writes u/deftones_lover. “Anyway, is God real? What happens when we die?”</p><p>The post garnered a slew of responses from users who used the forum not so much to answer the questions, but to recount their own encounters with God — or some version of a higher power — while under the influence of psychedelics. Throwawayuser626, for instance, chimes in with, “Personally, I don’t believe in God still, but the experiences I’ve had on heavy doses of acid and shrooms are something beyond human comprehension. It does make me ask myself if this is the afterlife that I’m seeing.”</p><p>Inf4nticide, who identifies as “agnostic-leaning-toward-atheist,” says that during one trip, God revealed himself and forced the user to make an unexplained life-changing choice. “I realize that I was tripping,” Inf4nticide writes, “but certain aspects of it were simply too real to dismiss.”</p><p>Another user, Neosapian, describes meeting a “warm female presence” who dispensed some truths about human nature that shifted the user’s perspective long after the trip ended: “For months, I felt a calm glow of acceptance.”</p><p>It’s easy to dismiss these stories as nothing more than the philosophizing of high people. But as it turns out, encounters with the divine while using psychedelics could be more than just fleeting hallucinations; they might actually have something to do with the therapeutic benefits of tripping.</p><blockquote>“One basic implication of this study is that this link between perceived oneness and life satisfaction occurs independent of your religious affiliation.”</blockquote><p>Research into psychedelics has ramped up in recent years as scientists study the potential of long-illicit drugs such as LSD, psilocybin, and MDMA to treat everything from <a href="https://elemental.medium.com/whats-the-best-way-to-use-ketamine-for-depression-29a94af6d3c0">depression</a> and <a href="https://www.theatlantic.com/health/archive/2019/03/psychedelic-microdosing-depression-anxiety/584119/">anxiety</a> to <a href="https://www.nytimes.com/2012/04/22/magazine/how-psychedelic-drugs-can-help-patients-face-death.html">fear of death</a> and <a href="https://www.ncbi.nlm.nih.gov/pubmed/25563446">addiction</a>. In the course of this research, psychologists and neuroscientists have noticed a pattern when cataloging people’s experiences in these altered states: A large portion of people describe mystical encounters similar to those found on r/LSD. And like Reddit user Neosapian, many say they are also left with a lasting glow.</p><p>Researchers at the Johns Hopkins University School of Medicine wanted to know how these experiences might affect people in the long term. Were these encounters with spirituality just fleeting apparitions, or could they actually be life-altering? With this in mind, the researchers conducted an anonymous online survey with over 4,000 participants who said they had experienced their own brush with the divine whether under the influence of drugs or not, which the researchers described as “the God of your understanding,” a “higher power,” an “ultimate reality,” or an “aspect or emissary of God.”</p><p>The resulting <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0214377">study</a>, published in April in the journal <em>PLOS One</em>, looked at both drug-induced and non-drug induced encounters — 3,476 people surveyed reported having a mystical experience while under the influence of LSD, psilocybin, ayahuasca, or DMT, and another 809 people reported such encounters unprompted by psychedelics, though the study did not specify what may have been the trigger in these cases. The researchers recruited the participants through internet ads, private email invitations, and social media.</p><p>In both groups, the researchers found that a majority of respondents cited lasting positive changes in their psychological health following their experience — such as life satisfaction and increased purpose and meaning — sometimes even decades later.</p><p>What’s more, over two-thirds of the people in the psychedelics group who said they were atheists before their trip-induced encounter with God no longer identified that way afterward. Specifically, 21% of psychedelics users called themselves non-believers before and just 8% identified as such after.</p><p>On the whole, over two-thirds of the people in the study reported that their encounters involved communication with some entity having the attributes of consciousness, benevolence, intelligence, sacredness, or eternal existence. In fact, about 70% said that, although this mystical entity existed in another dimension or reality, they believed it continued to exist after the encounter, which could help explain their newfound spiritual identities as well as the lasting psychological benefits.</p><p>“Although modern Western medicine doesn’t typically consider ‘spiritual’ or ‘religious’ experiences as one of the tools in the arsenal against sickness, our findings suggest that these encounters often lead to improvements in mental health,” the study’s lead researcher, Roland Griffiths, PhD, said in a press release.</p><p>This study isn’t the first to look at the relationship between psychedelics and spirituality. The first major study of psychedelics and spirituality took place on Good Friday in 1962 in the basement of Marsh Chapel at Boston University. There, Harvard researchers (who were under the supervision of the famous psychologist Timothy Leary) gave LSD to 10 divinity students in hopes that it would trigger a mystical experience. Nine of those students said it did, and that it had a lasting impact.</p><p>“I had believed in God… but until the Good Friday experiment, I had no personal encounter with God,” one of those students, the late historian Huston Smith, later wrote. “The experience was powerful for me, and it left a permanent mark on my experienced worldview.” Smith eventually penned the philosophical text <em>Cleansing the Doors of Perception</em>, which explores the potential of psychedelic drugs as entheogens, a.k.a. “God-revealing chemicals.”</p><p>After the Good Friday experiment, other researchers began studying this phenomenon, too, but by the 1970s, psychedelics were banned and this mystical research ended altogether.</p><p>Griffiths, the lead author of this most recent study, has been paramount to reviving this area of study. In 2009, he conducted the <a href="https://www.npr.org/templates/story/story.php?storyId=104240746">first major study</a> of drugs and spirituality since the 1970s and has launched several more since. In a <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5772431/">2018 study</a> looking at the use of psilocybin to treat addiction, depression, and anxiety in terminally ill people, Griffiths and his team found that study participants who reported having a mystical experience while on the drug were more likely to reap long-lasting psychological benefits, including life satisfaction, social relationships, spiritual awareness in everyday life, attitudes about life, self, mood, and behavior.</p><p>For that study, researchers gave psilocybin to people who also agreed to take on a spiritual practice such as meditation. The men and women were divided into three groups and were given different combinations of a high or low dose of psilocybin along with “moderate” to “high” support for their spiritual practice. After six months, the people who were given higher doses of the drug showed the most positive changes, including “interpersonal closeness, gratitude, life meaning/purpose, forgiveness, death transcendence, daily spiritual experiences, religious faith and coping, and community observer ratings,” according to the study.</p><p>While the results suggest that psychedelics could have a greater impact on the spirituality-happiness connection, <a href="https://www.apa.org/pubs/journals/releases/rel-rel0000259.pdf">another April 2019 study</a> recently found that, beyond the use of psychedelics, people who feel a sense of “oneness,” or a connection to “a divine principle, life, the world, other persons, or even activities,” report higher levels of satisfaction in their lives than those who don’t. According to the study, these findings are regardless of religious affiliation. In fact, some religious affiliations had an insignificant or even negative impact on oneness feelings.</p><p>“I always felt that there is this relationship between feeling that everything is one, and being more satisfied with the state of the world or accepting how life is and understanding also why it is this way,” says the study’s author, Laura Edinger-Schons, a professor of corporate social responsibility at the University of Mannheim. “And one basic implication of this study is that this link between perceived oneness and life satisfaction occurs independent of your religious affiliation. That means that you could also just learn something about philosophy or take part in yoga classes or do some meditation.”</p><p>While the reasons are still unknown, the researchers argue that having a spiritual experience appears to improve people’s mental health, and the connection should be further studied. For now, the psychedelic-curious can join u/deftones_lover for some late-night mystical musing.</p></div></div>',
+      createdAt: '2019-06-26T07:12:17.344Z',
+      updatedAt: '2019-06-26T07:12:46.150Z',
+      language: {
+        id: '95f01039-fe8e-412d-a542-7089303b84c8',
+        name: 'English',
+        nativeName: 'English',
+        code: 'en',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:51:57.546Z',
+        updatedAt: '2019-08-01T14:13:01.327Z'
+      },
+      audiofiles: []
+    }
+  },
+  {
+    id: '877e028b-d1f4-468e-bc7c-4579396d90da',
+    order: 24,
+    lastPlayedAt: null,
+    archivedAt: null,
+    favoritedAt: null,
+    createdAt: '2019-06-26T07:12:51.988Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
+    article: {
+      id: '391ef216-b784-436b-ba7b-64b08bd919c4',
+      title: 'How Do You Know If Your Great Startup Idea Is A Winner?',
+      description: '“You want to do what?” The investor said to me. “It seems like financial engineering. Why don’t you just skip that phase and get right to the unique products?” The investor didn’t get it. We had a...',
+      url: 'https://medium.com/@brett_28716/how-do-you-know-if-your-great-startup-idea-is-a-winner-f368a1debdfe',
+      canonicalUrl: 'https://medium.com/@brett_28716/how-do-you-know-if-your-great-startup-idea-is-a-winner-f368a1debdfe',
+      status: 'finished',
+      sourceName: 'Medium',
+      imageUrl: 'https://miro.medium.com/max/1200/1*O4fOuDAUlroPRD0QEoc9oQ.jpeg',
+      readingTime: 344.40000000000003,
+      authorName: 'brett fox',
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div><div><div><div><div><div><a href="/@brett_28716"><p><img src="https://miro.medium.com/fit/c/96/96/2*buo8KRTNdKmYNPo7pRMHtg.jpeg"></p></a></div></div></div></div><p>“You want to do what?” The investor said to me. “It seems like financial engineering. Why don’t you just skip that phase and get right to the unique products?”</p><p>The investor didn’t get it. We had a two part strategy that had proven to be successful previously.</p><figure><div><div><div><p><img src="https://miro.medium.com/max/60/1*O4fOuDAUlroPRD0QEoc9oQ.jpeg?q=20"></p><p><img></p></div></div></div></figure><p>I didn’t need to wait for the rejection email. I knew we weren’t getting his money.</p><p>A week later I presented our plan to another investor. He said, “Your strategy is brilliant, Brett. It turns everything on it sides. I love it.”</p><p>The next week he called me and said, “I can’t get my partnership behind the idea, so I’m going to have to pass.”</p><p>My favorite rejection was from the late Paul Allen of Microsoft fame. Allen had a fund called Vulcan Ventures. We presented to one of Allen’s partners when we were raising our Series B funding.</p><p>The meeting went well, and I was excited to hear what the next steps were. The partner called me a few days later and said, “Paul just can’t get excited about the possibility of investing in low power analog ICs.”</p><p>Paul Allen wasn’t alone. A lot of investors couldn’t get excited about the possibility of investing in low power analog ICs.</p><p>The fact that many people didn’t believe in our idea doesn’t mean it was a bad idea. We were attacking a multi billion dollar market with a unique strategy and product set.</p><p>Beauty is in the eye of the beholder.</p><p>You will find the same thing too. There will be some people that get your idea, and there will be many others that don’t get your idea.</p><p>The point is you have to have conviction about what you’re doing. If you don’t have conviction then nobody else will have conviction.</p><p>However, you can’t live in a bubble where you don’t listen to what the market or other knowledgable people are telling you. From day one we were hearing from investors a strong objection to the second source strategy we were using to get started.</p><p>On the one hand, we believed the strategy was the right way to start. On the other hand, it was also clear that we needed to make the long term vision of the company crystal clear.</p><p>The feedback made us better. We improved our messaging, and that helped us secure funding. Improving our messaging also helped us when started selling.</p><p>You’ll likely go through the same thing. The trick is determining what feedback to listen to, and what feedback to ignore. A simple rule that I find helpful is the more detailed the feedback, the more you should listen to the feedback.</p><p>There are very few businesses that don’t need to make some tweaks along the way to their strategy. We certainly were no exception.</p><p>We had two core assumptions that proved to be wrong. The first core assumption was that our second source products would sell quickly and pave the way for our proprietary products. The second source products sold slowly at the start. It was only when we announced proprietary products that the second source products started selling.</p><p>The second core assumption we got wrong was that the we needed the second source products to have credibility with our customers to sell our proprietary products. It turned out that our customers didn’t care whether we had a track record or not.</p><p>So we adjusted our strategy on only focused on highly differentiated proprietary products going forward. Again, the key for us, as it will be for you, was listening to the market, and looking at the cold hard facts.</p><p>I was talking with an entrepreneur the other day about his company. He said to me, “I’ve asked customers if they would buy my product and they said they would. That counts as validation, doesn’t it?”</p><p>I laughed and said, “No it doesn’t count as validation for your idea.”</p><p>He seemed taken aback. He asked, “Why doesn’t it?”</p><p>So, I told him, “The only true way to determine if you customers will pay for your product or service is for customers to actually pay for your product or service.”</p><p>There literally is no substitute for this step.</p><p>Let’s be honest. You’ve probably told someone yes to the, “Would you buy it at this price” question (or some form of it) at some point in your life.</p><p>For example, you probably told your kids (or your parents told you) you did a good job on something when the reality was quite different. Most people don’t want to hurt someone’s feelings.</p><p>But let’s say it costs money you don’t have to build your product, and you want to verify demand ahead of spending the money. One way you can get validation is by asking people to buy the product (at a discount) or provide a deposit.</p><p>It’s when a customer actually has to dig into their wallet that you know they’re serious. Even if the deposit is just $1.</p><p>The pre-revenue phase of building a company is a stage full of hope and excitement. You just know that customers are going to love what you’re building.</p><p>And if there is one thing that most of us fear as first time entrepreneurs, it’s asking to be paid. And the reason you fear asking to be paid is what if the customer says no.</p><p>That’s why asking to be paid is so scary. Reality hits you right in the face at the point.</p><p>Yeah, it sucks if your idea is worthless. It’s like the world is telling you that you’re not worthy. I get it.</p><p>However, you need to look at hearing that rejection in a totally different way. The question you need to be asking is, “What can we learn from what we are hearing?”</p><p>For example:</p><ul><li>Maybe your price is too high?</li><li>Maybe your product is not differentiated enough?</li><li>Maybe your emphasizing the wrong product benefits?</li><li>Maybe your pricing structure is wrong?</li><li>Maybe you’re trying to market and sell to the wrong set of customers?</li></ul><p>I’ve had all of these happen to me during my career. The key is trying to learn from what customers are telling you.</p><p>Sometimes you can make a minor adjustment and your business will take off. Other times, you need to move on to another opportunity.</p><p>The worst thing you can do is ignore what you’re hearing. Then you deserve everything that’s coming to you.</p><p>The reality is you only know whether your idea is good when, as the saying goes, “the dogs start eating the dog food.” So listen to the market, and make adjustments based on data. However, you only know if you have a great idea when customers actually start buying your products.</p><p>For more, read: <a href="http://www.brettjfox.com/what-are-the-five-skills-you-need-to-be-a-great-ceo/">What Are The Five Skills You Need To Be A Great CEO?</a>. Take special note of Difference Number 2: Confront the brutal facts.</p></div></div></div>',
+      createdAt: '2019-06-26T07:12:51.689Z',
+      updatedAt: '2019-06-26T07:12:54.269Z',
+      language: {
+        id: '95f01039-fe8e-412d-a542-7089303b84c8',
+        name: 'English',
+        nativeName: 'English',
+        code: 'en',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:51:57.546Z',
+        updatedAt: '2019-08-01T14:13:01.327Z'
+      },
+      audiofiles: []
+    }
+  },
+  {
+    id: 'c5eaa288-f985-44c6-98ba-39c7fedecbc6',
+    order: 25,
+    lastPlayedAt: null,
+    archivedAt: null,
+    favoritedAt: null,
+    createdAt: '2019-06-26T07:13:07.846Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
+    article: {
+      id: '360a387c-b593-4715-b974-0ebb16035125',
+      title: 'How to Harness the Power of Your Pillars of Intelligence',
+      description: 'OUT-COMPETE AND OUT-CREATE THE COMPETITION BY STRENGTHENING EACH KIND OF INTELLIGENCE YOU POSSESS. Your body is a high performance race car, and your brain is the driver. The two, at their peak,...',
+      url: 'https://theascent.pub/how-to-harness-the-power-of-your-pillars-of-intelligence-eeaa5b498ee9',
+      canonicalUrl: 'https://theascent.pub/how-to-harness-the-power-of-your-pillars-of-intelligence-eeaa5b498ee9',
+      status: 'finished',
+      sourceName: 'The Ascent',
+      imageUrl: 'https://cdn-images-1.medium.com/max/1200/1*0leGvR9RULxTeJswtNP83Q.jpeg',
+      readingTime: 382.8,
+      authorName: 'A. S. Deller',
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div><h2>Out-compete and out-create the competition by strengthening each kind of intelligence you possess.</h2><div><div><a href="https://theascent.pub/@tdeller"><div><p><img src="https://cdn-images-1.medium.com/fit/c/100/100/1*V7WbozaDJLlN5mtQGi2zHA.jpeg"></p></div></a></div></div></div><div><p>Your body is a high performance race car, and your brain is the driver.</p><p>The two, at their peak, become one, and can only achieve at the highest levels when working together.</p><p>I’ve never driven a Formula One car (though I might try that someday), but I’ve driven half a dozen pickup trucks and SUVs, three models years of Chevy Nova, a Saturn, two model years of Corvette, an H2, a Lexus, a Mustang, a semi, a Suzuki Drz 400e and an Oldsmobile minivan. The closer you get to the road and the faster you go, the more important it is that you keep your senses focused on what is happening with the interface between the vehicle and the road. You need to understand the connection intimately.</p><p>Driving is a very modern activity that people have only been doing for a little over a century. It uses many parts of the brain as well as several different types of intelligence.</p><p>Several types? Yes. There isn’t just one. Intelligence isn’t just a number you get from taking an IQ test, or your GPA.</p><p><a href="https://howardgardner.com/multiple-intelligences/">Howard Gardener</a>, a developmental psychologist, described 7 types of intelligence in 1983. Over the years, he’s added a couple more (Naturalistic and Existential).</p><h4>What are they and how do I “train” them?</h4><p>Each intelligence is based on one unique way that we experience the world. While a traditional intelligence test only tries to measure a couple of these (usually some combination of Linguistic-Verbal, Logical-Mathematical and sometimes Visual-Spatial), what Gardener wants us to realize is that being smart is a much broader trait than we’ve imagined it to be.</p><p>You might be a genius in a few other categories of intelligence even if you find it a struggle to score in the 50% percentile of a written test.</p><p>This also means that there are more ways to increase your overall intelligence than we thought.</p><p><strong>Visual-Spatial</strong>: How well we relate to and interact with the three-dimensional world around us. I make a point to practice some still life drawing or work with 3D design software on a regular basis, and visit new places whenever I can in order to experience the world at a greater scale.</p><p><strong>Bodily-Kinesthetic</strong>: How well we manipulate objects and our own body. For this, I spend as much time as I can being physically active, and be sure to do so across multiple different activities that use a wide range of motor skills. I have children and energetic dogs which make it rather easy to join in on activities daily. I also try to work out several times a week, and vary this between running, swimming and strength training. I’ve never been much of an athlete, but if you are then you might even more challenging ways to improve this kind of intelligence. Rock climbing or gymnastics, anyone?</p><p><strong>Musical-Rhythmic</strong>: How well we recognize, reproduce and create pitch, rhythms, timbre and tone. I listen to music of many categories and hum (or drum) along. It’s very important to listen to both recorded and live music, as both experiences engage your mind and body in different ways. I’ve never seriously tried to compose music of my own, however, and I would expect that to be quite rewarding as well.</p><p><strong>Linguistic-Verbal</strong>: How well we think with and use words to describe complex thought and expression. I consider myself a writer and I do so about different subjects and have other people read and comment on my articles. I also write fiction and engage with other writers to help improve my skills. And whenever I have some opportunity to speak to new acquaintances or in front of groups of people, I do my best to be active and responsive in the conversation. Also falling under this category would be learning other languages aside from your native tongue. I try to stay conversant in Spanish, which I studied during high school and college, while also utilizing excellent tools like Duolingo to learn some useful words and phrases in other languages that I might have an opportunity to use at some point.</p><p><strong>Intrapersonal</strong>: How well we understand and describe our own thoughts and behaviors. For this particular type of intelligence, I keep a semi-regular journal and analyze my goals and feelings. I also try to read first-person literature, memoirs, and nonfiction (like <em>The Perks of Being a Wallflower</em> and <em>The Alchemist</em>).</p><p><strong>Existential</strong>: How well we are able to ponder and express thoughts about philosophical questions. I love to spark up conversations about complex matters and big question topics with friendly debaters who are up for a challenge. And I particularly enjoy studying topics like philosophy, religion, physics, astronomy and anthropology to keep up with new developments and understandings in those fields.</p><p><strong>Logical-Mathematical</strong>: How well we can quantify, understand logical operations, devise appropriate formulas and calculate answers to such problems. I’ve found that apps like Peak, Lumosity and Elevate are great for boosting this type of intelligence, as well as games like Sudoku. I also learn a lot of concepts for free on Khan Academy and then challenge myself every day by trying to solve for various everyday physics problems (like how fast you need to travel to get from point A to point B by a certain time). I’ve also made a point of learning the basics of a new programming language ever few months — I’m currently doing some GoLang tutorials.</p><p><strong>Interpersonal</strong>: How well we interact and empathize with other people. How to train: This is all about focusing on other people. Whenever I’m with other people, whether they are friends and family, new acquaintances, or work colleagues, I make a concerted effort to be an active listener, show that I care, promote a calm and rational conversation and try to fully understand other points of view.</p><p><strong>Naturalistic</strong>: How well we recognize differences, similarities and usefulness among natural objects, including animals, plants and geographic features. As animals, we have millions of years of inherited traits that make us well suited to living in the natural world, but most of us don’t use these instincts on a regular basis. To increase my own naturalistic intelligence, then, I spend time outdoors and among nature, focusing on using my senses to observe and investigate the world around me. Again, having my children and dogs is an added encouragement to get outside often. And when the weather is too rough, I can curl up on the couch with one of the many wonderful Peterson Field Guide or Falcon Nature Guide books.</p><p>It’s all too easy to fall into a rut in which you might only be using a few types of intelligence. Years of doing so is bound to dull those intelligences that are being ignored, so it takes some conscious planning to make sure you are always allowing time to exercise all nine of Gardener’s pillars. Once you do make this a part of your life, though, you will find that every type of intelligence reinforces the others:</p><p>Bodily-Kinesthetic and Musical-Rhythmic, together, will help you be a better dancer.</p><p>Intrapersonal and Interpersonal, combined, will make you a better manager or leader.</p><p>A great lawyer needs to be well-practiced in Logical-Mathematical, Linguistic-Verbal and Interpersonal skills.</p><p>A paleontologist must rely on Naturalistic and Visual-Spatial intelligence in their excavations, and needs the Logical-Mathematical and Linguistic-Verbal skills to analyze and communicate findings.</p><p>If there is one lesson to be learned from this, it’s that we shouldn’t ignore any of our nine intelligences, and we shouldn’t favor only a few at the expense of others.</p><p>Thank you for reading and sharing!</p></div></div>',
+      createdAt: '2019-06-26T07:13:07.319Z',
+      updatedAt: '2019-06-26T07:13:11.389Z',
+      language: {
+        id: '95f01039-fe8e-412d-a542-7089303b84c8',
+        name: 'English',
+        nativeName: 'English',
+        code: 'en',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:51:57.546Z',
+        updatedAt: '2019-08-01T14:13:01.327Z'
+      },
+      audiofiles: []
+    }
+  },
+  {
+    id: '9fc0df4c-1a0d-4373-bd44-83053d86f359',
+    order: 26,
+    lastPlayedAt: null,
+    archivedAt: null,
+    favoritedAt: null,
+    createdAt: '2019-06-26T07:12:10.091Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
+    article: {
+      id: 'cb7529ff-b553-4213-8ec5-f057b61add2b',
+      title: 'Why Machines Need to Dream',
+      description: 'THE INGENIOUS NEUROBIOLOGY OF MAMMALIAN SLEEP HAS BEEN MATHEMATICALLY MODELED TO STREAMLINE A.I. MEMORY AND STORAGE CAPACITY Dreams are, for the most part, delightful. As we sleep, visual and audio...',
+      url: 'https://onezero.medium.com/why-machines-need-to-dream-68bb2ae10e2a',
+      canonicalUrl: 'https://onezero.medium.com/why-machines-need-to-dream-68bb2ae10e2a',
+      status: 'finished',
+      sourceName: 'OneZero',
+      imageUrl: 'https://cdn-images-1.medium.com/max/1200/1*GgAx2GlKCnTTKnKozCOa0A.jpeg',
+      readingTime: 356.09999999999997,
+      authorName: 'Karen Emslie',
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div><h2>The ingenious neurobiology of mammalian sleep has been mathematically modeled to streamline A.I. memory and storage capacity</h2><div><p><a href="https://onezero.medium.com/@DamnRebelBitch?source=post_header_lockup"><img src="https://cdn-images-1.medium.com/fit/c/100/100/0*AXUrRFbm80ee_7Xq.jpeg"></a></p></div></div><div><p><span><span><img src="https://cdn-images-1.medium.com/max/800/1*noIBU36qtPWTyxf8gaOwFg.png"></span><span>D</span></span>reams are, for the most part, delightful. As we sleep, visual and audio fragments combine into nonsensical snippets and epic narratives. Loosely recalled moments merge with vivid, imagined scenes; we interact with characters known and characters conjured up; we explore our fantasies and, sometimes, face our fears. Yet sleeping and dreaming do not exist for our nocturnal pleasure alone.</p><p>As we slumber, our brains filter information collected in waking hours. Neurological processes spring into action. They discard what is irrelevant and consolidate what is important; they form and store memories. These mechanisms — found throughout the mammal world — are so effective that a team of Italian researchers have mathematically modeled them for use in artificial intelligence.</p><p>The result is an algorithm that expands the storage capacity of artificial networks by forcing them into an off-line sleep phase during which they reinforce relevant memories (pure states) and erase irrelevant ones (spurious states).</p><h3><strong>When math meets mammals</strong></h3><p>Adriano Barra is a theoretical physicist at the University of Salento in Italy. Barra is eager and animated when he speaks to me, frequently using a pack of Marlboro cigarettes as an unlikely prop to illustrate the finer points of A.I.</p><p>Along with his colleagues Elena Agliari and Alberto Fachechi, Barra studies complex systems, such as brains, and makes mathematical models of their neurobiology. “We theoretical physicists have a teeny advantage over engineers,” says Barra. “As the mathematics is the same, almost for free, we can apply our results in artificial intelligence. We are a bridge between neurobiology and engineering.”</p><p>The classic blueprint for artificial neural networks is the Hopfield model. Developed by John Hopfield in 1982, it describes how artificial networks learn and retrieve information using mechanisms, such as pattern recognition, that mimic real brains. The most popular learning rule for a Hopfield network is Hebbian learning, which proposes how the synapses between neurons are strengthened during the learning process.</p><p>There is a drawback, however. The Hopfield model is now decades old, and can only store a limited amount of information. Expressed mathematically, the maximum storage capacity for this symmetric network<strong> </strong>is α∼0.14. However, the theoretical limit is 1, or α=1.</p><blockquote>Networks in an awake, or online, state are always learning new patterns of information. As well as desirable patterns, however, they collect irrelevant, even fake patterns.</blockquote><p>A network’s capacity is determined by the number of neurons (<em>n</em>) it contains. Each bit of information, such as a digital pixel, is a distinct pattern (<em>p</em>) of information. “You can store, at maximum, a number of patterns that is <em>p</em> equal to 0.14 times <em>n</em>,” says Barra.</p><p>Why, then, is the storage capacity only a fraction of what is theoretically possible? Why is it 0.14, rather than 1?</p><figure><div><p><img src="https://cdn-images-1.medium.com/freeze/max/60/1*O0brPUhO7ZmYhc24QEY-BQ.jpeg?q=20"><img src="https://cdn-images-1.medium.com/max/1200/1*O0brPUhO7ZmYhc24QEY-BQ.jpeg"></p></div></figure><p>Networks in an awake, or online, state are always learning new patterns of information. As well as desirable patterns, however, they collect irrelevant, even fake patterns. “You get the network to store these important patterns but unavoidably it will also store mistakes,” says Barra. “You cannot avoid them. They are automatically generated.”</p><p>He grabs his Marlboros and compares them to a pack of Camel cigarettes. “If you keep storing details about these packets of cigarettes — the blue one is Camel and the red one is Marlboro, etc. — but you also take in all the redundant information, the network eventually gets stuck.” Jammed with irrelevant and spurious information, maximum capacity is reached at 0.14.</p><p>This limited capacity<strong> </strong>does not stop A.I. from carrying out specific tasks, but clogging up valuable space with useless data is wasteful and inefficient.<strong> </strong>The Italian team’s solution is an algorithm that forces networks into an off-line phase that echoes mammal sleep, which is used to reinforce important memories and erase irrelevant ones.</p><p>“It is deeply related to sleep,” says Barra, “because if you don’t get rid of all these spurious mistakes, they become too much, and the network is no longer able to discriminate between what is a Marlboro and what is a Camel.”</p><h3><strong>Freeing up space</strong></h3><p>Mammalian brains are also constantly collecting new patterns of information. But like a fishing boat indiscriminately trawling the seabed, along with relevant information\u00ad, they also suck up unimportant details.</p><p>“When you are awake, you store a lot of information passively; you don’t really need it and don’t really want to store it,” says Barra. “We also produce spurious and fake patterns of information. We want to get rid of that. We do this by sleeping.”</p><p>During rapid eye movement (REM) sleep, the phase of sleep in which we usually dream, our brains are busy erasing irrelevant memories. This makes room for storing new ones. In slow-wave (SW) sleep, important memories are reinforced. While most dreaming occurs during REM, we may experience indistinct dreams that are harder to recall during SW sleep.</p><p>The research team knew that mammalian brains use highly efficient mechanisms to clear out storage space during sleep. Their analysis of this fact was the starting point for their algorithm.</p><p>“We said, okay, let’s go through the neurobiological paper that explains this phenomenon in a real brain and try to model it mathematically,” says Barra. “Then we asked: What can happen if we apply this mathematical backbone to the Hopfield model?”</p><blockquote>Evolution has provided the criteria mammalian brains rely upon to determine what should be consolidated and what should be erased, but artificial networks need people to take on the task.</blockquote><p>Their answer is presented in a paper published in<a href="https://www.sciencedirect.com/science/article/pii/S0893608019300176"> <em>Neural Networks</em></a><em> </em>in April<em>.</em> Under the new framework, artificial networks continue to learn and store patterns of information (as memories) during standard online, or awake, sessions. However, when storage capacity hits 0.14, the network is forced into an off-line, or sleep, session. This sleep phase is used to delete irrelevant information and consolidate the important stuff, or more technically, for “spurious-pattern removal and pure-pattern reinforcement.” By implementing a new off-line regimen, the team was able to free up storage space and increase capacity to 1.</p><p>Evolution has provided the criteria mammalian brains rely upon to determine what should be consolidated and what should be erased, but artificial networks need people to take on the task. “They [networks] are absolute slaves of our perception, so we have to say to them, ‘This is important, pay attention to it. This is not important,’” says Barra. “They don’t have the concept of importance.”</p><p>There are other technical differences too. For instance, in human brains, erasing and consolidation occur during two distinct stages of sleep (REM and SW); when networks sleep, both tasks happen simultaneously. Perhaps the thing that most distinguishes human from machine sleep is that we have autonomy over our slumber and naps. Artificial networks’ sleep sessions are triggered by math — no cozy blanket required.</p><p>With the new framework in the public sphere, Barra’s job is over. “I am a theoretical physicist; I develop the mathematical backbone,” he says. “Now it is a matter for the engineers to implement it.” And maybe he — and artificial networks — can take a well-deserved nap.</p></div></div>',
+      createdAt: '2019-06-26T07:12:09.640Z',
+      updatedAt: '2019-06-26T07:12:39.641Z',
+      language: {
+        id: '95f01039-fe8e-412d-a542-7089303b84c8',
+        name: 'English',
+        nativeName: 'English',
+        code: 'en',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:51:57.546Z',
+        updatedAt: '2019-08-01T14:13:01.327Z'
+      },
+      audiofiles: []
+    }
+  },
+  {
+    id: '3f78bdf0-d1cb-4bfc-8f93-d4ce8b69c58d',
+    order: 27,
+    lastPlayedAt: null,
+    archivedAt: null,
+    favoritedAt: null,
+    createdAt: '2019-06-26T07:12:59.437Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
+    article: {
+      id: '2bfd4fc1-b76e-4e4d-bdc3-1b15079c3817',
+      title: 'Failure is the new success: find inspiration by embracing your missteps',
+      description: 'In 1975, now-legendary Vogue editor-in-chief Anna Wintour was a junior editor at Harper’s Bazaar. And then she got herself fired . It can be hard to imagine someone like Wintour — perfectly polished,...',
+      url: 'https://medium.com/swlh/failure-is-the-new-success-find-inspiration-by-embracing-your-missteps-1f93963fc6a7',
+      canonicalUrl: 'https://www.jotform.com/blog/failure-new-success/',
+      status: 'finished',
+      sourceName: 'Medium',
+      imageUrl: 'https://miro.medium.com/max/1200/1*AKV9fAca5fACzx_Vkx8E_A.jpeg',
+      readingTime: 393.29999999999995,
+      authorName: 'Aytekin Tank',
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div><div><div><div><div><div><a href="/@aytekintank"><p><img src="https://miro.medium.com/fit/c/96/96/1*Dssy7DsMuw7Xqa5m8HUE3A.jpeg"></p></a></div></div></div></div><figure><div><div><p><img src="https://miro.medium.com/max/60/1*AKV9fAca5fACzx_Vkx8E_A.jpeg?q=20"></p><p><img></p></div></div><figcaption>Originally published on <a href="http://jotform.com/"><strong>JOTFORM.COM</strong></a></figcaption></figure><p>In 1975, now-legendary Vogue editor-in-chief Anna Wintour was a junior editor at Harper’s Bazaar. And then she <a href="https://www.glamour.com/story/famous-women-failure-quotes">got herself fired</a>.</p><p>It can be hard to imagine someone like Wintour — perfectly polished, perceived as the best in her field, respected to the point of being feared — ever making a misstep. But the photo shoots that Wintour arranged were deemed by senior editorial staff to be too “edgy,” a sign of poor judgment and lack of fit.</p><p>Wintour’s signature eye for edgy fashion spreads is, of course, a huge part of her present-day reputation. Her failure almost 50 years ago is directly connected to her enormous success today. And, as she told Alistair Campbell for his book <em>Winners: And How They Succeed</em>, everyone should be fired at least once in his or her career, and setbacks are important “because that is the reality of life.”</p><p>Not everyone has a failure story as public as the world’s top fashion editor. In other professions, people fail a lot more quietly — over email, for example, or in papers that get buried in a bottom drawer. Failure can be a source of shame, a sign that someone isn’t good enough or smart enough or can’t get on the right track.</p><p>But it’s not just Anna Wintour who has learned to value setbacks. I’ve <a href="https://www.jotform.com/blog/everything-learned-about-failure/">learned a lot</a> about failure over the last 13 years as I’ve built <a href="https://www.jotform.com/">JotForm</a>, a business with over 4.9 million users. As a CEO, I have long valued failure as the flipside of risk: If you’re committed to a big vision, you’re going to occasionally have big letdowns.</p><p>But CEOs aren’t the only ones who have learned to think more constructively about failure. The paths taken by scientists, writers, educators and entrepreneurs can also provide ways to view failure as a form of inspiration instead of a black mark on your permanent record.</p><blockquote><p>“Failure is the greatest teacher.” — Udai Yadla</p></blockquote><p>Capable educators do something crucial that we can all learn from: They turn failure into a teachable moment. After all, if you learn from an experience, if it makes you better or stronger or faster, if it clarifies your direction or refines your purpose, then how can anything truly be perceived as a failure?</p><figure><div><div><p><img src="https://miro.medium.com/max/60/1*0-T1W3j1c61zT0zxWL_u-A.jpeg?q=20"></p><p><img></p></div></div></figure><p>Leaders learn this lesson early: <a href="https://www.jotform.com/blog/how-to-approach-failure/">Make failure productive</a>.</p><p>I’ve learned to implement this idea and look at failure as a chance to do things better. What did we miss the first time around, how can we improve, and what other blind spots exist?</p><p>The very idea that failure can have an educational purpose has even inspired a new interdisciplinary facility at Columbia University: <a href="https://www.theatlantic.com/education/archive/2018/04/the-value-of-failing/558848/">Education for Persistence and Innovation Center</a>, part of the Teachers College.</p><p>We need to drag failure out of the dark. One professor wrote <a href="https://www.nature.com/naturejobs/science/articles/10.1038/nj7322-467a">a journal article</a> recommending that academics keep a “CV of failures” to “log every unsuccessful application, refused grant proposal and rejected paper” — and make it public in a bid to help normalize failure as a key part of the path to success.</p><p>Receptiveness to this perspective should start early. <a href="https://www.apa.org/pubs/journals/releases/edu-edu0000092.pdf">Research</a> has also shown that when students are taught that success isn’t linear, when they see that even Albert Einstein tripped up on occasion, their grades and motivation improve.</p><p>And when parents have <a href="https://www.npr.org/sections/health-shots/2016/05/06/476884049/how-to-teach-children-that-failure-is-the-secret-to-success">a more positive attitude</a> towards failure — seeing failure as an opportunity instead of a sign of limitations — then their children have an expanded sense of possibility and are less likely to believe that intelligence is fixed.</p><blockquote><p>“I have not failed; I’ve just found 10,000 ways that won’t work.” — Thomas Edison</p></blockquote><p><span>I</span>magine if Thomas Edison had given up on any of his early attempts to create a light bulb? Edison famously failed — over and over and over. And then he found a way that worked. And then he changed the world.</p><p>Failure is at the very root of scientific inquiry. Long before the breakthrough, dotting the path to medical innovations and technological advances, failure is a crucial part of the process. Scientists accept failure not as some grand sign that they are doomed to mediocrity but rather as a way to refine the way forward.</p><p>For scientists, failing is normal. After all, the failure rate for secondary clinical drug trials is said to be <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3974547/#R5">over 80 percent</a>. And a whopping <a href="https://psmag.com/environment/science-needs-to-fail">90 percent</a> of experimental drugs and therapies fail to complete the process from early development to Food &amp; Drug Administration approval.</p><p>We spend too much time celebrating success and not enough time appreciating failure. A little more transparency might help — which is exactly what many scientists are advocating for.</p><p>If we could see the first, second and hundredth attempts at eventual success, the hypotheses that proved wrong, it might serve as an encouragement to keep on track with our own world-changing ideas.</p><blockquote><p>“Failure is so important. We speak about success all the time. It is the ability to resist failure or use failure that often leads to greater success. I’ve met people who don’t want to try for fear of failing.” — J.K. Rowling</p></blockquote><p>The story of author J.K. Rowling and her Harry Potter series is now something of a legend: She was an impoverished single parent with a wild imagination who persevered to write some of the modern world’s most beloved books.</p><figure><div><div><p><img src="https://miro.medium.com/max/60/1*98L1OgiCzg8fy0DUiXjBZw.jpeg?q=20"></p><p><img></p></div></div></figure><p>Rowling started writing the Harry Potter series when she had a newborn baby and was living off of welfare benefits. There can be no doubt that she has always been both smart and talented, but her life had taken an undesirable turn.</p><p>But Rowling didn’t internalize her situation and simply decide to give up. She accepted her setback but knew she could do better. And so she got to work, eventually overcoming her circumstances in an almost unimaginable way.</p><p>Rowling is now one of the richest women in the world.</p><p>Despite her failings, she decided to keep reaching. Rowling decided to treat failure as a temporary condition — one that could be overcome with some determination. She applied her imagination not simply to the stories she was writing, but also to her own potential.</p><p>And if she could envision a big, extraordinary world for Harry Potter, then she could do the same for her own life.</p><blockquote><p>“Achievement seems to be connected with action. Successful men and women keep moving. They make mistakes but they don’t quit.” — Conrad Hilton</p></blockquote><p><span>F</span>ear of failure can be so powerful that many people lead their lives to minimize risk. With every step, they calculate the safest possible move. They watch money grow slowly in a savings account, hold onto jobs that are unfulfilling but steady, and never say no to a sure thing.</p><p>I can understand the caution that underpins that perspective, but it can also limit potential. For many entrepreneurs, the bottom is this: If you’re not willing to take some pretty big risks, then you won’t ever see the big rewards.</p><p>The risk-reward relationship isn’t new, and it’s certainly not exclusive to entrepreneurs. (You might run into some high rollers in Vegas who like to make the same argument.)</p><p>But here’s another, complementary insight from people who build their own businesses from the ground up, including me: Accomplishing something that was immensely challenging and doing the seemingly impossible is far more rewarding than simply humming along and never having to make any hard choices or admit you made a mistake.</p><p>And that’s a lesson that entrepreneurs learn over and over about failure: Failure is a sign that you’re trying. It’s a sign that you want more and that you’re willing to fight for it. You won’t always get it right, and the payoff won’t always be clear. But if you hang in there, and you get back up, your sense of accomplishment will triumph over any rewards a sense of certainty can offer.</p></div></div></div>',
+      createdAt: '2019-06-26T07:12:59.151Z',
+      updatedAt: '2019-06-26T07:13:02.575Z',
+      language: {
+        id: '95f01039-fe8e-412d-a542-7089303b84c8',
+        name: 'English',
+        nativeName: 'English',
+        code: 'en',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:51:57.546Z',
+        updatedAt: '2019-08-01T14:13:01.327Z'
+      },
+      audiofiles: []
+    }
+  },
+  {
+    id: '708d1bcd-ddd7-461e-8f93-77e1a4ae2181',
+    order: 28,
+    lastPlayedAt: null,
+    archivedAt: null,
+    favoritedAt: null,
+    createdAt: '2019-06-26T07:12:03.429Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
+    article: {
+      id: '1785d197-79b0-4ed1-a484-4849bfbefbea',
+      title: 'Are Quick-Fix Therapies for Trauma and Stress too Good to be True?',
+      description: 'UNCONVENTIONAL THERAPIES PROMISING RAPID RELIEF — LIKE EYE MOVEMENT DESENSITIZATION AND REPROCESSING — ARE BECOMING MORE POPULAR. WHETHER THEY WORK IS UP FOR DEBATE. Traci Powell experienced a...',
+      url: 'https://elemental.medium.com/are-quick-fix-therapies-for-trauma-and-stress-too-good-to-be-true-e97d8a09edca',
+      canonicalUrl: 'https://elemental.medium.com/are-quick-fix-therapies-for-trauma-and-stress-too-good-to-be-true-e97d8a09edca',
+      status: 'finished',
+      sourceName: 'Elemental',
+      imageUrl: 'https://cdn-images-1.medium.com/focal/1200/632/59/42/1*enw6k-sfBPfC90j0fG2cdQ.jpeg',
+      readingTime: 1038.9,
+      authorName: 'Kelsey Osgood',
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div><div><div><h2>Unconventional therapies promising rapid relief — like Eye Movement Desensitization and Reprocessing — are becoming more popular. Whether they work is up for debate.</h2><div><p><a href="https://elemental.medium.com/@kelsey.osgood?source=post_header_lockup"><img src="https://cdn-images-1.medium.com/fit/c/100/100/1*eKwg3FHF-4UgtiyJZzPZsQ.png"></a></p></div></div><div><figure><div><p><img src="https://cdn-images-1.medium.com/freeze/max/60/1*enw6k-sfBPfC90j0fG2cdQ.jpeg?q=20"><img src="https://cdn-images-1.medium.com/max/2400/1*enw6k-sfBPfC90j0fG2cdQ.jpeg"></p></div><figcaption>Photo: Katiuscia Noseda/Moment/Getty Images</figcaption></figure></div><div><p>Traci Powell experienced a personal epiphany while watching the Disney movie <em>Frozen</em>.</p><p>A nurse practitioner from Florida, Powell had long struggled to keep memories of her childhood abuse at bay. As a way to cope, she organized her life so that she never had to develop intimate relationships: She conceived her children via an anonymous donor and padded her schedule with nonstop work, further graduate school, and volunteering. But it didn’t help.</p><p>Powell was increasingly plagued by flashbacks, and began having panic attacks. When on a tram entering the park at Disney World with her best friend, she was seated next to a man who reeked of beer and stale cigarettes, an aroma that reminded her of her abuser; the smell so unnerved her that her heart began racing, and she had to leap off the train at the park’s entrance and collect herself. She was so triggered by her teenage daughter’s deadbeat boyfriend — he had been caught doing drugs, which reminded her of the unstable environment in her childhood home — that she began screaming and cursing at the young lovers one day when she caught them on the phone, only to look up and see the tear-stained face of her terrified younger son. “I realized I was parenting them from the place of a frightened child,” she told me.</p><p>She assumed something was wrong with her. “I thought I had some genetic defect,” she says. But it was the movie <em>Frozen</em>, which features a heroine forced to hide a magical power (“Conceal, don’t feel, don’t let them know…<em>”</em>), that made Powell realize what was happening: The trauma she had tried to bury for decades was negatively impacting every aspect of her life.</p><p>Not long after viewing the movie, Powell visited an internet forum for sexual abuse survivors. The other users encouraged her to find a therapist who specialized in trauma. Some suggested she specifically look into Eye Movement Desensitization and Reprocessing Therapy, or EMDR, which involves therapist-led eye movements to help lessen the impact of traumatic memories. “It seemed crazy that moving my eyes back on forth was going to change anything,” she said, but considering the talk therapy she’d undergone in the past hadn’t helped, she was willing to give something unconventional a try.</p><p>EMDR is one of a growing number of therapeutic methods that promise faster relief from everyday ruts to diagnosed mental illness, and everything in between. Multiple hospitals and research centers across the country are now offering short, intensive treatment <a href="https://www.nytimes.com/2018/08/13/health/ocd-concentrated-therapy-cbt.html">programs</a> lasting anywhere from two days to two weeks, most catering to people with trauma-related issues, phobias, Obsessive-Compulsive Disorder (OCD), or anxiety disorders. Some other short-term therapies, including Accelerated Resolution Therapy and hypnosis-based protocols, are also gaining traction among those with more everyday worries. Proponents say the limited time commitments enable more people to access help, allowing them to get back to their jobs, schooling, and families faster. But are treatments that prize brevity inherently more accommodating and patient-friendly, or are they just playing into our contemporary obsession with optimization at the expense of long-lasting healing and growth?</p></div></div><div><div><p>EMDR was created by a woman named Francine Shapiro in the late 1980s, when she was a graduate student in psychology studying stress. As she tells it, EMDR was discovered by accident: She was out for a walk one day, and she began thinking of distressing things. She says she doesn’t remember what those distressing thoughts were anymore, but in her book <em>EMDR: The Breakthrough Therapy for Overcoming Anxiety, Stress, and Trauma, </em>she describes them as “just one of those nagging negative thoughts that the mind keeps chewing over.”</p><p>Simultaneously Shapiro says she noticed that while ruminating, her eyes were “making rapid repetitive movements on a diagonal from lower left to upper right.” Her thoughts quickly “shifted from consciousness” — another way of saying she mentally moved on. She was curious as to what had happened, so she purposely brought the thoughts back, but she discovered that they no longer had the same impact as they did before.</p><p>Eager to explore her discovery further, Shapiro experimented on 22 people with Post Traumatic Stress Disorder (PTSD), which had just years earlier been formally recognized by the American Psychiatric Association. She told her subjects to think of a traumatic memory and then to follow her fingers as she moved them in front of their faces, mimicking the way she felt her eyes moved in the park. When her findings were later published in the <em>Journal of Traumatic Stress</em> in 1989, she asserted that 100% of her test subjects reported they were no longer anguished by a traumatic memory after a single session of EMDR.</p><p>Modern EMDR sessions have a similar format. A trained therapist takes the patient’s history and explains the treatment protocol, a process can last for more than one session. Then, the therapist will ask the patient to describe a single traumatic memory, image, or a negative feeling (for example, someone who suffered abuse as a child might tackle the belief that they are fundamentally unlovable). As the person is talking, the therapist moves his or her finger bilaterally in the person’s field of vision while the patient tracks it (other types of stimuli, including finger taps on the knee or pulsating handheld apparatuses, are sometimes used). A session usually lasts around 45–75 minutes, with the ocular tracking often done in 15 or 30-second increments, depending on the severity of the trauma (there are a number of demonstrations you can watch on YouTube, including <a href="https://www.youtube.com/watch?v=B122emzNPSU">this</a> one.)</p><p>Why EMDR might be effective is very unclear. In a 2018 <a href="https://psychcentral.com/lib/using-emdr-therapy-to-heal-your-past-interview-with-creator-francine-shapiro/">interview</a>, Shapiro’s own explanations of why rapid eye movement works are vague — “during [a session] the brain makes the needed connections that transform the ‘stuck memory’ into a learning experience and take it to an adaptive resolution.”</p><p>One popular theory — that’s bolstered by <a href="https://www.ncbi.nlm.nih.gov/pubmed/11748597">research</a> conducted by psychiatrist Robert Stickgold at Harvard University — is that the eye movements induced during EMDR mimic what happens during deep sleep when the brain is believed to sift through the day’s events and process them, serving as a kind of digestive system for the psyche. Molly Bahr, a licensed mental health counselor who practices EMDR in Miami, Florida, believes that “[The ocular tracking] helps the brain take what it needs (lessons, skills), and leave the rest. [It’s] part of why we can go to bed angry and wake up feeling much better.”</p><p>Another hypothesis is that the eye movements tax the brain’s working memory, essentially distracting the patient, thereby diminishing the impact of the recalled memory and allowing the patient to revisit it without as much fear and panic.</p><p>Studies have shown EMDR can yield positive results in a few sessions: One, funded by HMO Kaiser Permanente, found that 100% of the single-trauma victims and 77% of multiple-trauma victims no longer met the criteria PTSD after six 50-minute sessions — and all without the patient having to talk about the trauma at length or do substantial homework, as in conventional exposure therapy. Powell says her first experience with EMDR was nothing short of “miraculous;” another EMDR patient, Ryan Nelson of South Carolina — who sought treatment after the brutal murder of her best friend — says she quickly lost her fear of knives and of being alone thanks to the therapy. “At the end of each session, you come out and you’ve come to a better end,” she says.</p><p>Though EMDR was formulated with PTSD in mind, Shapiro and other EMDR practitioners have widened the pool of potential beneficiaries. Shapiro has said that EMDR might be effective for people with chronic pain, autism, fibromyalgia, bipolar disorder, anxiety, addiction, relationship problems, and even proclivities towards sexual violence. In her self-help book <em>Getting Past Your Past</em>, Shapiro contends that EMDR and EMDR-adjacent relaxation exercises can help “Olympic athletes to achieve peak performance and… people prepare for challenges like presentations, job interviews, and social situations.” Up until now, a sizable majority of the research on EMDR has focused on straightforward PTSD or cases where trauma has preceded another diagnosis like depression or Borderline Personality Disorder, so most of the other benefits touted are either based in anecdote or conjecture.</p></div></div><div><div><p>Other short therapies like EMDR include Accelerated Resolution Therapy, or ART. Like EMDR, ART was originally designed to treat trauma, but is also said to help depression, OCD, codependency, work stress, low self-esteem, and more. After undergoing EMDR training, Laney Rosenzweig, a marriage and family counselor, developed ART as her own protocol. Like EMDR, ART uses therapist-led eye movements, but incorporates elements of Gestalt and Cognitive Behavioral Therapy, among other modalities. It differs from EMDR in a few ways, including that it is a more somatically focused (patients are asked to focus on how their body feels during therapy) and a more rigidly structured protocol, which proponents <a href="https://acceleratedresolutiontherapy.com/wp-content/uploads/2016/08/ART-vs-EMDR_by-Hoge.pdf">say</a> results in a “more rapid desensitization.” EMDR is marketed as the gentler option to exposure therapy because patients spend minimal time revisiting their trauma, but ART takes that to a new level by not requiring patients to describe their traumas. The practice <a href="http://acceleratedresolutiontherapy.com/how-art-works/">is said to</a> reprogram the ways in which traumatic memories are stored in the brain so that “they no longer trigger strong physical and emotional reactions.”</p><p>According to the Rosenzweig Center for Rapid Recovery, a professional organization based in Orlando, Florida, people can experience relief from symptoms after one to five sessions using ART. And they can do it without having to do homework, take any medication, or even talk about the trauma at all. All that being said, there have only been three studies on the therapy to date. “The most difficult aspect of discussing ART,” Rosenzweig has said, “is that it sounds too good to be true.” The research thus far is minimal: as of 2018, just a handful of case studies had been done on ART, and the only one to feature a control group <a href="https://academic.oup.com/milmed/article/178/12/1298/4267504">concluded</a> that “ART appears to be a safe and effective treatment for symptoms of combat-related PTSD.”</p><p>Another therapy gaining traction — at least in my area of Brooklyn — is Rapid Transformational Therapy, a type of hypnotherapy that “aims to deliver permanent change in 1–3 sessions,” according to the <a href="https://rapidtransformationaltherapy.com/whatisrtt/?_ga=2.177863717.1211590574.1558901395-470467729.1529073182">website</a> of founder Marisa Peer, a British hypnotherapist and author. RTT is more explicitly a panacea than EMDR and ART: a promotional video on Peer’s site states RTT helps “improve overall well-being,” and testimonials credit it with a range of results from clearing up skin acne to alleviating depression to curing fear of public speaking. On a recent Monday afternoon in May I left my husband juggling my two young sons and a conference call to undergo a session.</p><p>In RTT, after the practitioner takes a basic history, you’re put into a state of hypnosis in order to “access the subconscious.” The practitioner then prompts you to see key scenes from your childhood, probes you about how those scenes contributed to your problematic current-day worldview, and instructs you on how to let go of them, using a combination of free dialog (much like traditional talk therapy) and scripted verbal exercises in which you renounce your past beliefs.</p><p>When I arrived at my therapist’s house for my own RTT session, I practically collapsed onto the couch while unleashing a torrent of worries: the difficulties of parenting two small children with a largely absent husband, the fear of failing (at work, at motherhood, at life), the residual anxiety leftover from the difficult and premature birth of my second son, the feeling that I’m constantly deprived of time to do basically anything. I breathed in the pleasant lavender aroma as the therapist sympathetically nodded along, then coaxed me into a dream-like state. I was told to lie down, close my eyes and envision that I was walking slowly down a flight of stairs. By the time I was at the bottom, I felt awake, but less inhibited and a bit woozy, almost a little drunk. When I left to make my way home, I tripped over a large garbage bag and into the street in an attempt to hail a taxi, probably prompting some bystanders to think I was drunk.</p><p>At the session’s conclusion, the practitioner sends you home with a personalized recording — mine is just over 15 minutes long, and functions as a kind of miniature version of the session, reminding me that I’ve moved on from my childhood and that I’m now operating in my “zone of genius,” which might be my new favorite empowering aphorism. You’re meant to listen to the recording daily for at least 21 days.</p></div></div><div><div><p>Short-term therapy methods, especially EMDR, have their detractors. Critics call into question everything from Shapiro’s schooling — her degree is from a never-accredited, now-defunct graduate school — to experimenter bias prevalent in early EMDR research studies. A 1999 <a href="https://www.skeptic.com/eskeptic/14-05-21/#feature">article</a> by three psychologists in <em>Skeptic</em> magazine outlined how Shapiro and EMDR advocates tended to tweak the definitions of good EMDR practices over time: When studies began showing less-than-stellar results for EMDR, proponents claimed the practitioners needed further training, or that they had recently determined that other forms of stimulation such as knee-tapping could also be efficacious. “The shifting procedures and training requirements for EMDR have created a seemingly endless catch-up game for scientists,” the psychologists wrote. “How can scientists test a method whose proponents insist on treatment fidelity for the induction of eye movements, then state that alternate tapping strategies are possible, next argue that various protocols must be followed, and then switch the decision rules for those protocols?”</p><p>Doubters and champions have also argued incessantly over whether the eye movements are a necessary component or just a neat parlor trick employed solely to distinguish EMDR from more conventional exposure-based therapies. A 2001 <a href="https://www.ncbi.nlm.nih.gov/pubmed/11393607">study</a> in the Journal of Consulting and Clinical Psychology — just one of a number of early studies to zero in on the eye movements themselves — concluded bluntly that “EMDR appears to be no more effective than other exposure techniques, and evidence suggests that the eye movements integral to the treatment, and to its name, are unnecessary.” When a 2013 <a href="https://www.ncbi.nlm.nih.gov/pubmed/23266601">meta-analysis</a> published in the Journal of Behavior Therapy and Experimental Psychiatry indicated that the addition of eye movements did further desensitize patients to traumatic memories, a trio of prominent psychologists published a <a href="https://www.sciencedirect.com/sdfe/pdf/download/eid/1-s2.0-S0005791613000785/first-page-pdf">critique</a> in the same journal accusing the meta-analysis authors of, among other infractions, including studies that used students instead of actual PTSD sufferers, counting two favorable study more than once and “cherry-picking” the studies that had favorable outcomes. “Having set-up the meta-analysis exclusion criteria,” the psychologists write, “[the meta-analysis authors] accordingly exclude large numbers of studies which tested this exact phenomenon for various reasons of technicality or preference.”</p><p>There is also an ideological concern, mostly held by classical psychoanalysts and psychotherapists, over the brevity of treatment itself, the fact that studies often don’t follow patients long-term (this is a problem in most psychological and psychiatric studies), and the way EMDR tackles single memories at a time rather than view the patient holistically. Beneath this discussion lies another critical one, about whether painful emotions serve a purpose, and about whether we should be attempting to hack our way to mental health in ever-more expeditious ways.</p><p>Jonathan Shedler, PhD, a psychologist who has <a href="https://www.psychologytoday.com/us/blog/psychologically-minded/201711/selling-bad-therapy-trauma-victims">written</a> about the false promise of short-term therapies for trauma, objects to the idea that you can spot-treat in counseling. “The kind of problems that bring people to therapy — with rare exceptions — are really woven into the person’s way of experiencing the world,” he says. “So when you say, ‘I’m going to treat this problem in isolation,’ you’re already saying something that doesn’t fit the reality.”</p><p>For Shedler, a therapist offering an accelerated cure is like a trainer offering to transform a slouch into a pro-weightlifter in a snap: “If you were physically out of shape and in poor health and overweight, and I said, ‘I’m going to get you fit and trim and muscular and you’re going to be in peak physical condition,’ people ought to understand this is going to take serious hard work over time.” He cites <a href="http://www.personal.kent.edu/~dfresco/CBT_Readings/JCCP_Lambert_2001.pdf">research</a> that pooled information from 10,000 therapy patients, who presented with a variety of ailments including anxiety, mood disorders, and personal stress, that showed it takes more than 40 sessions of treatment — at a standard one session a week, that’s a little over nine months — for 75% of patients to show “meaningful improvement,” which doesn’t necessarily mean they were “cured.”</p><p>“The moment somebody makes a claim and it falls pretty far outside those general parameters, I think there’s really good reason to be suspicious,” he says.</p><p>Why should we expect healing to take that long? One reason might be because the driving force behind healing in therapy is what’s known as the “therapeutic alliance” — the trust patients have that the therapist likes them and has their best interests at heart. Numerous <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3198542/">studies</a> have shown the strength of the therapeutic alliance to be the number one indicator of treatment outcome, with the type of therapy mattering little if at all (this conclusion has been contested when it comes to certain problems, such as <a href="https://www.theguardian.com/science/blog/2014/jan/23/psychological-therapies-mental-illness-dodo-bird-verdict">bulimia</a> or specific phobias).</p><p>Simply put, people do better when they have a strong relationship with their therapist. And like most good relationships, this one often takes time to develop. The venerable psychoanalyst Irvin Yalom, in his recent book <em>The Gift of Therapy: An Open Letter to a New Generation of Therapists and Their Patient</em>s, bemoans rigid treatment methodologies — those taught from manuals or in short certification courses, like EMDR — because they tend to stunt the development of a bond between patient and therapist: “Therapists must convey to the patient that their paramount tasks is to build a relationship together that will itself become the agent of change. It is extremely difficult to teach this skill in a crash course using a protocol.”</p><p>EMDR advocates say people who decry the therapy as a quick fix have mischaracterized it, and that Dr. Shapiro herself has never claimed that a patient could be cured in a single session, that five sessions was the average amount of time it took for most patients to recover. But that is still significantly faster than the traditional therapies studied in the analysis of 10,000 cases. Although many of the published studies on EMDR focus on short courses of treatment, most of the consumers I spoke to had been doing it off and on longer than five sessions.</p><p>Despite the criticism, EMDR continues to make inroads into the institutions that set the standards for treating mental illness. In the past 20 years, EMDR has been recognized as an effective treatment for trauma by the American Psychiatric Association and the World Health Organization; the United States Department of Defense classifies it as a “first-line” treatment for trauma, meaning it’s “recommended for all trauma populations at all times,” according to the EMDR Institute in Watsonville, California, a professional organization founded by Francine Shapiro. Despite this endorsement, the VA still <a href="https://www.military.com/daily-news/2016/05/31/alternate-ptsd-therapy-vets-ruffles-va-feathers-shows-results.html">prefers</a> to employ more conventional exposure therapy.</p></div></div><div><div><p>It’s been four years since her first EMDR session, but Traci Powell continues to get the treatment. On average, she attends therapy twice a week, and does EMDR at one of those sessions. She had hoped for the quick relief she had read about in the research, but she says that she often self-sabotaged early on in the process. She’d be so anxious about revisiting traumatic memories that she’d sometimes refuse to do the eye movements themselves. She chalks up her early resistance to the fact that her PTSD is complex and the result of trauma sustained in childhood.</p><p>Though the process has been longer for her than for many of the test subjects EMDR proponents cite, Powell says she’s made more progress in the last six months than in the preceding five years. In fact, she’s become comfortable enough talking about her abuse that she’s built a side career as a mental health <a href="https://www.therebuiltwoman.com/">advocate</a> and vocal sex abuse survivor, for which she credits EMDR. “You have to work up the courage to step into it,” she told me. “Fear is what holds us back.”</p><p>As for me, I’m not a meditation person, but in the days after my RTT session, I diligently listened to my recording. Hearing the practitioner’s voice assure me I was endlessly capable must have clicked some switch, because I did find myself feeling more resilient and energetic. Was it just the collateral benefit of unburdening myself to someone kind and understanding, or some mysterious, fast-acting component of RTT? Like Powell, I may never know for sure.</p></div></div></div></div>',
+      createdAt: '2019-06-26T07:12:02.452Z',
+      updatedAt: '2019-06-26T07:12:46.176Z',
+      language: {
+        id: '95f01039-fe8e-412d-a542-7089303b84c8',
+        name: 'English',
+        nativeName: 'English',
+        code: 'en',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:51:57.546Z',
+        updatedAt: '2019-08-01T14:13:01.327Z'
+      },
+      audiofiles: [
+        {
+          id: 'f57e9e82-b4a6-4313-be43-e22236c9b418',
+          url: 'https://storage-development.playpost.app/articles/1785d197-79b0-4ed1-a484-4849bfbefbea/audiofiles/f57e9e82-b4a6-4313-be43-e22236c9b418.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/1785d197-79b0-4ed1-a484-4849bfbefbea/audiofiles/f57e9e82-b4a6-4313-be43-e22236c9b418.mp3',
+          length: 1267.536,
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-07-02T14:36:41.723Z',
+          updatedAt: '2019-07-02T14:36:41.723Z',
+          voice: {
+            id: '3675e6db-307e-48de-b5ff-13b38470632f',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'en-US-Wavenet-F',
+            label: 'Emily',
+            gender: 'FEMALE',
+            synthesizer: 'Google',
+            quality: 'Very High',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: 24000,
+            isActive: true,
+            isPremium: true,
+            isHighestQuality: true,
+            isLanguageDefault: null,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/3675e6db-307e-48de-b5ff-13b38470632f.wav',
+            createdAt: '2019-04-25T07:27:13.250Z',
+            updatedAt: '2019-08-01T14:13:05.671Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              code: 'en',
+              rightToLeft: false,
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-08-01T14:13:01.327Z'
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    id: '15b643b8-6962-4eb8-a72b-6e880114ef7b',
+    order: 29,
+    lastPlayedAt: null,
+    archivedAt: null,
+    favoritedAt: null,
+    createdAt: '2019-06-26T04:27:39.910Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
+    article: {
+      id: '39d02eaa-8d10-4d58-a7bb-17759baca6f5',
+      title: 'Is Angular dying because of React?',
+      description: 'WHAT’S HAPPENING WITH THE FUTURE OF WEB DEVELOPMENT As local market trends begin to skew towards React, it’s easy to question the future of demand for Angular. It’s a one or the other kind of game...',
+      url: 'https://link.medium.com/y0UE4iI5sW',
+      canonicalUrl: 'https://itnext.io/is-angular-dying-because-of-react-a8e885f09421',
+      status: 'finished',
+      sourceName: 'ITNEXT',
+      imageUrl: 'https://cdn-images-1.medium.com/max/1200/1*uzHaYbFG1tcO0CYtiO9QBA.png',
+      readingTime: 354.3,
+      authorName: 'Aphinya Dechalert',
+      isCompatible: true,
+      compatibilityMessage: null,
+      html: '<div id="page-1" class="page"><div><h2>What’s happening with the future of web development</h2><div><div><a href="https://itnext.io/@PurpleGreenLemon?source=post_header_lockup"><div><p><img src="https://cdn-images-1.medium.com/fit/c/100/100/1*Ap0cL-mIXt1wVV-Iti6Bdg.jpeg"></p></div></a></div></div><p>As local market trends begin to skew towards React, it’s easy to question the future of demand for Angular. It’s a one or the other kind of game and makes you wonder which once you should pick up, especially when you’re just entering the fray.</p><p>Since Facebook changed React’s BSD licensing to MIT, the library appears to be exploding in every corner of the global development market. However, what a lot of entrepreneurs and startups don’t realize until later down the line is that React isn’t a complete front end system — it is just one library, one building block of many to help quickly scale a small application into larger, compartmentalized and component based system.</p><h3>The React vs Angular debate</h3><p>Facebook is often used as the prime example of its success. But React is only a tiny drop in the multitude of technologies the tech giant employs. It is after all, just a JavaScript UI library.</p><p>Angular, however, is a collection of libraries that work together a cohesive unit.</p><p>There are things that Angular do well that React omits, while other theoretical implementations of the latter is much better executed. Developers will always be biased towards what they know best and as a result, refuse to look into other paradigms that may be better suited for the situation — or perhaps this kind of thinking is often regulated to those who sits at the junior and intermediate levels.</p><p>Despite React’s rise in popular, Angular still continues to have strong support from an equally, if not larger, tech giant known as Google. Conferences and developer advocates are equally strong for both JavaScript based front end methodologies. However, we may have another rising underdog that sits in between Angular and React in terms of offerings.</p><h3>We need to talk about Vue</h3><figure><div><p><img src="https://cdn-images-1.medium.com/freeze/max/60/1*rXBv1VkquEDsyIlglq0V4g.jpeg?q=20"><img src="https://cdn-images-1.medium.com/max/1600/1*rXBv1VkquEDsyIlglq0V4g.jpeg"></p></div><figcaption>Data from Google Trends. Red = Angular. Blue = React. Yellow = Vue.</figcaption></figure><p>Vue is the newest kid on the block and is gently creeping up in popularity, turning React into the popular middle child of the trio. While the community is much smaller than Angular and React, it is gaining in popularity due to it being lightweight, not as complicated as Angular but offers more than React’s core functionalities.</p><p>The creator of Vue actually has a background in AngularJS, which is much more aligned with the principles of React than the current version and methodologies of Angular we know.</p><h3>Ease of adoption and developer avocation</h3><p>React is undisputedly easy to pick up and transform into a fully fleshed out application that is native mobile app conversion friendly and is popular in the newbie developers circle.</p><p>Angular requires a bit more heavy lifting and overhead learning to get started, borrowing concepts and ideologies from Java, a predominantly backend technology that dominates Google’s code infrastructure. Facebook, however, is PHP based and as a result, injects a good measure of component framework from the language.</p><p>It’s not hard to spend an entire day comparing React and Angular, the main point is that both have good developer avocation with strong community backing. Startups however, are leaning more towards React because they want the lowest form of overhead possible. Their survival depends on how quick they can go to market and pivot to demands and trends.</p><p>But what a lot of startups tend to miss is that with easier barrier to entry, the lower the potential quality. As more and more developers become self taught and community driven, certain topics such as programming paradigms and clean code get lost in the sea of beginners. That’s not to say that Angular developers are any better — but there is a certain enforced structure that Angular brings that React does not have.</p><p>Vue lives in its own little space and exists to solve the React vs Angular debate for those who don’t want to be part of the controversially biased towards a developer’s first encounter with the front end topic.</p><h3>What’s Netflix using?</h3><p>It turns out Netflix is using React — among a host of other backend and infrastructure technologies. If we actually look into the big picture of an entire application’s ecosystem, front end technologies only make up a small proportion of what is used.</p><p>PayPal uses Angular, as shown in the tell tale signs of <code>ng</code> here and there in the rendered HTML.</p><figure><div><p><img src="https://cdn-images-1.medium.com/freeze/max/60/1*6MdNOknb-FafAVA8f5KGEw.jpeg?q=20"><img src="https://cdn-images-1.medium.com/max/1600/1*6MdNOknb-FafAVA8f5KGEw.jpeg"></p></div><figcaption>Screen capture from PayPal’s HTML.</figcaption></figure><p>Both Netflix and PayPal are equally gigantic in their own right and both are completely unrelated to Angular and React the way Google and Facebook are. Both have chosen React and Angular, respectively, as a solution for their front ends.</p><p>One could argue legacy code and whatever else, but both companies have more than enough money to hire an excess of developers to deal with their code base in the manner they want it to be dealt with.</p><p>On a side note, <a href="https://about.gitlab.com/2016/10/20/why-we-chose-vue/">GitLab uses Vue </a>and has been using it since 2016.</p><h3>It’s all about the solution, not the tools</h3><p>As the debate rages on what which framework or library is better than the other, no one seems to be asking the question — which is the best solution for what we’re trying to achieve?</p><p>If it’s speed of development on a tight budget then React is probably your best bet. If you want something meatier and much more robust due to the learning curve required, then Angular is the choice. Want the best of both worlds? Vue advocates will certainly put their hands up for this category.</p><p>Angular is not dying in popularity. Rather, the attention has just been diverted. While React might be eating up more of the development ecosystem and demand pie, Angular is still going steady despite React’s rising fame.</p><figure><div><p><img src="https://cdn-images-1.medium.com/freeze/max/60/1*Y1oM7fyseJ81snTsX3AufA.jpeg?q=20"><img src="https://cdn-images-1.medium.com/max/1600/1*Y1oM7fyseJ81snTsX3AufA.jpeg"></p></div><figcaption>Angular — Red. React — Blue. Google trends for worldwide search results for Angular and React over a 5 year period.</figcaption></figure><p>It is also worthy to note that Angular had to semi rebuild their community from scratch after it’s transformation from AngularJS. While they had a ready audience, everyone had to relearn everything when Angular 2 came out.</p><p>If we look at it this way, Angular as we know it today is actually younger than React by a good 3 years. The original Angular doesn’t really count because of how different it is from Angular 2+.</p><h3>Final words</h3><p>If you’re a new developer trying to figure out what to learn — don’t overthink it too much. At the end of the day it’s all just JavaScript so it might be better to actually learn how that works first before jumping into the ‘fun’ stuff and make things happen.</p><p>Whatever framework or library you end up with, you’re going to come into contact with transferable paradigms that makes it easier to pick up another framework or library. The key is to learn your first framework well and go beyond the proverbial ToDo list app.</p><p>Learn to be a developer that is well versed in programming paradigm and don’t get too hung up or attached to any one thing. Dig deep into architecture structures, designing and developing components, understanding how data flows through the application and state management, among other things.</p><p>Being able to recognize and transfer these skills is what separates those who get stuck in the junior and intermediate levels from the real seniors.</p></div></div>',
+      createdAt: '2019-06-26T04:27:38.876Z',
+      updatedAt: '2019-06-26T04:49:40.624Z',
+      language: {
+        id: '95f01039-fe8e-412d-a542-7089303b84c8',
+        name: 'English',
+        nativeName: 'English',
+        code: 'en',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:51:57.546Z',
+        updatedAt: '2019-08-01T14:13:01.327Z'
+      },
+      audiofiles: []
+    }
+  },
+  {
+    id: '54f58d4f-0445-4b90-88aa-971dcaa83596',
+    order: 30,
+    lastPlayedAt: null,
+    archivedAt: null,
+    favoritedAt: null,
     createdAt: '2019-06-17T16:11:01.418Z',
-    updatedAt: '2019-06-17T16:11:01.775Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
     article: {
       id: '7db7e805-61b9-4b01-a841-2909f465dddd',
       title: 'Incorporating Apple Maps with Autocomplete in a React Native Application',
@@ -28,9 +1363,10 @@ export default [
         name: 'English',
         nativeName: 'English',
         code: 'en',
+        rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-05-16T12:51:57.546Z'
+        updatedAt: '2019-08-01T14:13:01.327Z'
       },
       audiofiles: [
         {
@@ -50,6 +1386,7 @@ export default [
             label: 'Amelia',
             gender: 'FEMALE',
             synthesizer: 'Google',
+            quality: 'Very High',
             audioProfile: 'default',
             speakingRate: 1,
             pitch: 0,
@@ -58,17 +1395,18 @@ export default [
             isPremium: true,
             isHighestQuality: true,
             isLanguageDefault: null,
-            exampleAudioUrl: null,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/2534d51a-11c4-446f-a4da-a3f946305c44.wav',
             createdAt: '2019-04-25T07:27:13.114Z',
-            updatedAt: '2019-06-20T12:38:50.540Z',
+            updatedAt: '2019-08-01T14:13:06.239Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
               nativeName: 'English',
               code: 'en',
+              rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-05-16T12:51:57.546Z'
+              updatedAt: '2019-08-01T14:13:01.327Z'
             }
           }
         }
@@ -77,12 +1415,12 @@ export default [
   },
   {
     id: 'a697a679-24d8-4b70-938c-72047941e0f8',
-    order: 1,
+    order: 31,
     lastPlayedAt: null,
     archivedAt: '2019-06-14T10:04:04.463Z',
     favoritedAt: null,
     createdAt: '2019-06-13T12:36:04.878Z',
-    updatedAt: '2019-06-17T16:11:01.775Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
     article: {
       id: '2870630d-e056-424c-88a2-8f220b428e6d',
       title: 'Customer Due Diligence - Werken bij Rabobank',
@@ -104,9 +1442,10 @@ export default [
         name: 'Dutch',
         nativeName: 'Nederlands',
         code: 'nl',
+        rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:52:08.217Z',
-        updatedAt: '2019-05-16T12:52:08.217Z'
+        updatedAt: '2019-08-01T14:13:01.760Z'
       },
       audiofiles: [
         {
@@ -126,6 +1465,7 @@ export default [
             label: 'Ruben',
             gender: 'MALE',
             synthesizer: 'AWS',
+            quality: 'Normal',
             audioProfile: 'default',
             speakingRate: 1,
             pitch: 0,
@@ -136,15 +1476,16 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d4c0973c-5a36-4950-afe1-3e2224592c20.mp3',
             createdAt: '2019-04-25T11:35:03.293Z',
-            updatedAt: '2019-06-20T12:38:50.916Z',
+            updatedAt: '2019-08-01T14:13:05.559Z',
             language: {
               id: 'cd72f71c-dc59-4be7-8a40-0143fe6f0ad9',
               name: 'Dutch',
               nativeName: 'Nederlands',
               code: 'nl',
+              rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:52:08.217Z',
-              updatedAt: '2019-05-16T12:52:08.217Z'
+              updatedAt: '2019-08-01T14:13:01.760Z'
             }
           }
         }
@@ -153,12 +1494,12 @@ export default [
   },
   {
     id: '588ccaf6-fd69-454e-93c3-758359caa2e6',
-    order: 2,
+    order: 32,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-03-27T09:23:08.554Z',
-    updatedAt: '2019-06-18T05:55:00.176Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
     article: {
       id: '3f9898cf-ef99-4730-994d-d47ad40baa00',
       title: 'How listening to our 4.1 million users inspired a new product idea',
@@ -180,21 +1521,64 @@ export default [
         name: 'English',
         nativeName: 'English',
         code: 'en',
+        rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-05-16T12:51:57.546Z'
+        updatedAt: '2019-08-01T14:13:01.327Z'
       },
-      audiofiles: []
+      audiofiles: [
+        {
+          id: 'a8113340-8357-409c-b503-d5bf50da78e7',
+          url: 'https://storage-development.playpost.app/articles/3f9898cf-ef99-4730-994d-d47ad40baa00/audiofiles/a8113340-8357-409c-b503-d5bf50da78e7.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/3f9898cf-ef99-4730-994d-d47ad40baa00/audiofiles/a8113340-8357-409c-b503-d5bf50da78e7.mp3',
+          length: 518.208,
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-06-20T13:31:13.379Z',
+          updatedAt: '2019-06-20T13:31:13.379Z',
+          voice: {
+            id: '3675e6db-307e-48de-b5ff-13b38470632f',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'en-US-Wavenet-F',
+            label: 'Emily',
+            gender: 'FEMALE',
+            synthesizer: 'Google',
+            quality: 'Very High',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: 24000,
+            isActive: true,
+            isPremium: true,
+            isHighestQuality: true,
+            isLanguageDefault: null,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/3675e6db-307e-48de-b5ff-13b38470632f.wav',
+            createdAt: '2019-04-25T07:27:13.250Z',
+            updatedAt: '2019-08-01T14:13:05.671Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              code: 'en',
+              rightToLeft: false,
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-08-01T14:13:01.327Z'
+            }
+          }
+        }
+      ]
     }
   },
   {
     id: '7b7ab845-ba29-4b70-bfe9-4a9f1f046df9',
-    order: 3,
+    order: 33,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-03-27T13:03:17.781Z',
-    updatedAt: '2019-06-19T09:03:30.001Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
     article: {
       id: 'a7d08dbe-ba5c-4699-a11d-c1155e30ec3a',
       title: 'What if Mark Zuckerberg Had Stayed in School?',
@@ -216,9 +1600,10 @@ export default [
         name: 'English',
         nativeName: 'English',
         code: 'en',
+        rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-05-16T12:51:57.546Z'
+        updatedAt: '2019-08-01T14:13:01.327Z'
       },
       audiofiles: [
         {
@@ -238,6 +1623,7 @@ export default [
             label: 'Amy',
             gender: 'FEMALE',
             synthesizer: 'AWS',
+            quality: 'Normal',
             audioProfile: 'default',
             speakingRate: 1,
             pitch: 0,
@@ -246,17 +1632,18 @@ export default [
             isPremium: true,
             isHighestQuality: false,
             isLanguageDefault: null,
-            exampleAudioUrl: null,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/1a6136d5-fb0d-4543-a6f2-68feb020a31f.mp3',
             createdAt: '2019-04-25T11:35:03.758Z',
-            updatedAt: '2019-05-16T15:01:14.571Z',
+            updatedAt: '2019-08-01T14:13:05.588Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
               nativeName: 'English',
               code: 'en',
+              rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-05-16T12:51:57.546Z'
+              updatedAt: '2019-08-01T14:13:01.327Z'
             }
           }
         }
@@ -265,12 +1652,12 @@ export default [
   },
   {
     id: '5caf9c7c-66bd-4659-a4d7-6d91ee5e159b',
-    order: 4,
+    order: 34,
     lastPlayedAt: null,
     archivedAt: null,
-    favoritedAt: '2019-06-19T11:03:39.123Z',
+    favoritedAt: null,
     createdAt: '2019-04-03T04:49:39.349Z',
-    updatedAt: '2019-06-19T09:03:39.127Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
     article: {
       id: '6d5f84e5-efa2-41cf-a0c1-de65fecbaa45',
       title: 'Women are only 24% of the infosec workforce. Now go follow them on Twitter',
@@ -292,9 +1679,10 @@ export default [
         name: 'English',
         nativeName: 'English',
         code: 'en',
+        rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-05-16T12:51:57.546Z'
+        updatedAt: '2019-08-01T14:13:01.327Z'
       },
       audiofiles: [
         {
@@ -314,6 +1702,7 @@ export default [
             label: 'Joanna',
             gender: 'FEMALE',
             synthesizer: 'AWS',
+            quality: 'Normal',
             audioProfile: 'default',
             speakingRate: 1,
             pitch: 0,
@@ -324,15 +1713,16 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
             createdAt: '2019-04-25T11:35:03.678Z',
-            updatedAt: '2019-06-20T12:38:50.913Z',
+            updatedAt: '2019-08-01T14:13:06.094Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
               nativeName: 'English',
               code: 'en',
+              rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-05-16T12:51:57.546Z'
+              updatedAt: '2019-08-01T14:13:01.327Z'
             }
           }
         }
@@ -341,12 +1731,12 @@ export default [
   },
   {
     id: '62facbe3-6686-4f49-ac25-3993e09b2062',
-    order: 5,
+    order: 35,
     lastPlayedAt: null,
     archivedAt: '2019-06-14T10:05:44.880Z',
     favoritedAt: null,
     createdAt: '2019-03-27T13:24:34.427Z',
-    updatedAt: '2019-06-17T16:11:01.775Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
     article: {
       id: '308f67a1-3606-4e9b-9cfe-b6e28f361901',
       title: 'How to read the news like a scientist',
@@ -368,9 +1758,10 @@ export default [
         name: 'English',
         nativeName: 'English',
         code: 'en',
+        rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-05-16T12:51:57.546Z'
+        updatedAt: '2019-08-01T14:13:01.327Z'
       },
       audiofiles: [
         {
@@ -390,6 +1781,7 @@ export default [
             label: 'Matthew',
             gender: 'MALE',
             synthesizer: 'AWS',
+            quality: 'Normal',
             audioProfile: 'default',
             speakingRate: 1,
             pitch: 0,
@@ -400,15 +1792,16 @@ export default [
             isLanguageDefault: null,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/6e4c1ec7-98a0-464b-b6e9-53e00629df6c.mp3',
             createdAt: '2019-04-25T11:35:03.611Z',
-            updatedAt: '2019-05-16T15:01:14.598Z',
+            updatedAt: '2019-08-01T14:13:05.951Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
               nativeName: 'English',
               code: 'en',
+              rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-05-16T12:51:57.546Z'
+              updatedAt: '2019-08-01T14:13:01.327Z'
             }
           }
         }
@@ -417,12 +1810,12 @@ export default [
   },
   {
     id: '4fdda0ae-78f1-443f-ad66-914107731788',
-    order: 6,
+    order: 36,
     lastPlayedAt: null,
     archivedAt: '2019-06-14T10:06:30.560Z',
     favoritedAt: null,
     createdAt: '2019-04-01T18:26:00.580Z',
-    updatedAt: '2019-06-17T16:11:01.775Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
     article: {
       id: '596a3649-35b1-4c7a-b59f-593b6b0a8a96',
       title: 'The Dawn of the Deep Tech Ecosystem',
@@ -444,21 +1837,22 @@ export default [
         name: 'English',
         nativeName: 'English',
         code: 'en',
+        rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-05-16T12:51:57.546Z'
+        updatedAt: '2019-08-01T14:13:01.327Z'
       },
       audiofiles: []
     }
   },
   {
     id: 'c2535ecf-6d78-48bf-80b8-6556c3e0bcb9',
-    order: 7,
+    order: 37,
     lastPlayedAt: null,
     archivedAt: '2019-05-02T16:13:48.794Z',
     favoritedAt: null,
     createdAt: '2019-04-30T09:41:56.153Z',
-    updatedAt: '2019-06-17T16:11:01.775Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
     article: {
       id: '9f81736c-6815-4cfc-af0f-08031a3e9252',
       title: 'Why Is the Internet Obsessed With This Cult Toothpaste?',
@@ -480,21 +1874,22 @@ export default [
         name: 'English',
         nativeName: 'English',
         code: 'en',
+        rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-05-16T12:51:57.546Z'
+        updatedAt: '2019-08-01T14:13:01.327Z'
       },
       audiofiles: []
     }
   },
   {
     id: '9b811db1-b404-4fea-bcd2-bdde49005c8e',
-    order: 8,
+    order: 38,
     lastPlayedAt: null,
     archivedAt: '2019-06-14T10:07:55.320Z',
     favoritedAt: null,
     createdAt: '2019-04-01T18:41:19.375Z',
-    updatedAt: '2019-06-17T16:11:01.775Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
     article: {
       id: '3e8134b1-d395-4e8a-8c52-f93716a1c572',
       title: 'Your Network Determines Success More than You Realize',
@@ -516,21 +1911,22 @@ export default [
         name: 'English',
         nativeName: 'English',
         code: 'en',
+        rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-05-16T12:51:57.546Z'
+        updatedAt: '2019-08-01T14:13:01.327Z'
       },
       audiofiles: []
     }
   },
   {
     id: '716a9107-3a41-421b-9b56-b75a04d0d18d',
-    order: 9,
+    order: 39,
     lastPlayedAt: null,
     archivedAt: '2019-05-02T16:25:46.908Z',
     favoritedAt: null,
     createdAt: '2019-04-30T09:04:37.833Z',
-    updatedAt: '2019-06-17T16:11:01.775Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
     article: {
       id: '8f103d1a-53e6-4b9a-9f47-b529ddc76ece',
       title: 'Facing obstacles as an entrepreneur',
@@ -552,9 +1948,10 @@ export default [
         name: 'English',
         nativeName: 'English',
         code: 'en',
+        rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-05-16T12:51:57.546Z'
+        updatedAt: '2019-08-01T14:13:01.327Z'
       },
       audiofiles: [
         {
@@ -574,6 +1971,7 @@ export default [
             label: 'Joanna',
             gender: 'FEMALE',
             synthesizer: 'AWS',
+            quality: 'Normal',
             audioProfile: 'default',
             speakingRate: 1,
             pitch: 0,
@@ -584,15 +1982,16 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
             createdAt: '2019-04-25T11:35:03.678Z',
-            updatedAt: '2019-06-20T12:38:50.913Z',
+            updatedAt: '2019-08-01T14:13:06.094Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
               nativeName: 'English',
               code: 'en',
+              rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-05-16T12:51:57.546Z'
+              updatedAt: '2019-08-01T14:13:01.327Z'
             }
           }
         }
@@ -601,12 +2000,12 @@ export default [
   },
   {
     id: 'a2f5dab1-2c7e-4ea0-9376-e2ce646efa12',
-    order: 10,
+    order: 40,
     lastPlayedAt: null,
     archivedAt: '2019-05-02T16:13:59.483Z',
     favoritedAt: null,
     createdAt: '2019-04-04T06:35:31.155Z',
-    updatedAt: '2019-06-17T16:11:01.775Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
     article: {
       id: 'f6ba1546-8b36-4c92-b336-8239660e25a5',
       title: 'Facing obstacles as an entrepreneur',
@@ -628,9 +2027,10 @@ export default [
         name: 'English',
         nativeName: 'English',
         code: 'en',
+        rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-05-16T12:51:57.546Z'
+        updatedAt: '2019-08-01T14:13:01.327Z'
       },
       audiofiles: [
         {
@@ -650,6 +2050,7 @@ export default [
             label: 'Joanna',
             gender: 'FEMALE',
             synthesizer: 'AWS',
+            quality: 'Normal',
             audioProfile: 'default',
             speakingRate: 1,
             pitch: 0,
@@ -660,15 +2061,16 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
             createdAt: '2019-04-25T11:35:03.678Z',
-            updatedAt: '2019-06-20T12:38:50.913Z',
+            updatedAt: '2019-08-01T14:13:06.094Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
               nativeName: 'English',
               code: 'en',
+              rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-05-16T12:51:57.546Z'
+              updatedAt: '2019-08-01T14:13:01.327Z'
             }
           }
         }
@@ -677,12 +2079,12 @@ export default [
   },
   {
     id: '9a2eb2f4-bfa7-47ac-8fda-47e5ebca94a9',
-    order: 11,
+    order: 41,
     lastPlayedAt: null,
     archivedAt: '2019-05-06T06:52:13.238Z',
     favoritedAt: null,
     createdAt: '2019-04-03T07:55:27.164Z',
-    updatedAt: '2019-06-17T16:11:01.775Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
     article: {
       id: 'f1884b99-7730-4798-849a-851ebf01f8cb',
       title: 'How To Get Free Labor For Your Startup',
@@ -704,9 +2106,10 @@ export default [
         name: 'English',
         nativeName: 'English',
         code: 'en',
+        rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-05-16T12:51:57.546Z'
+        updatedAt: '2019-08-01T14:13:01.327Z'
       },
       audiofiles: [
         {
@@ -726,6 +2129,7 @@ export default [
             label: 'Richard',
             gender: 'MALE',
             synthesizer: 'Google',
+            quality: 'Very High',
             audioProfile: 'default',
             speakingRate: 1,
             pitch: 0,
@@ -736,15 +2140,16 @@ export default [
             isLanguageDefault: null,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/701be98d-3eb3-4c38-a504-d70d706f5d37.wav',
             createdAt: '2019-04-25T07:27:13.226Z',
-            updatedAt: '2019-06-20T12:38:50.179Z',
+            updatedAt: '2019-08-01T14:13:05.530Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
               nativeName: 'English',
               code: 'en',
+              rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-05-16T12:51:57.546Z'
+              updatedAt: '2019-08-01T14:13:01.327Z'
             }
           }
         }
@@ -753,12 +2158,12 @@ export default [
   },
   {
     id: 'c12b03c5-1304-4f9a-8d8d-375ff83ed89a',
-    order: 12,
+    order: 42,
     lastPlayedAt: null,
     archivedAt: '2019-06-14T10:08:56.396Z',
     favoritedAt: null,
     createdAt: '2019-03-30T16:10:00.452Z',
-    updatedAt: '2019-06-17T16:11:01.775Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
     article: {
       id: '98e0c749-3945-45d4-980b-0e5756339de5',
       title: 'Strategies to Pull Yourself Out of a Bad Mood',
@@ -780,9 +2185,10 @@ export default [
         name: 'English',
         nativeName: 'English',
         code: 'en',
+        rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-05-16T12:51:57.546Z'
+        updatedAt: '2019-08-01T14:13:01.327Z'
       },
       audiofiles: [
         {
@@ -802,6 +2208,7 @@ export default [
             label: 'Amy',
             gender: 'FEMALE',
             synthesizer: 'AWS',
+            quality: 'Normal',
             audioProfile: 'default',
             speakingRate: 1,
             pitch: 0,
@@ -810,17 +2217,18 @@ export default [
             isPremium: true,
             isHighestQuality: false,
             isLanguageDefault: null,
-            exampleAudioUrl: null,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/1a6136d5-fb0d-4543-a6f2-68feb020a31f.mp3',
             createdAt: '2019-04-25T11:35:03.758Z',
-            updatedAt: '2019-05-16T15:01:14.571Z',
+            updatedAt: '2019-08-01T14:13:05.588Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
               nativeName: 'English',
               code: 'en',
+              rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-05-16T12:51:57.546Z'
+              updatedAt: '2019-08-01T14:13:01.327Z'
             }
           }
         }
@@ -829,12 +2237,12 @@ export default [
   },
   {
     id: 'c0245119-bb6f-4fc9-a575-b92e38bf856c',
-    order: 13,
+    order: 43,
     lastPlayedAt: null,
     archivedAt: '2019-06-14T10:09:31.777Z',
     favoritedAt: null,
     createdAt: '2019-03-27T14:16:23.412Z',
-    updatedAt: '2019-06-17T16:11:01.775Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
     article: {
       id: 'b6290d2d-6f08-4b7d-965c-5a87a63bb3f3',
       title: 'The Slack AI assistant automating creative tasks and driving data-driven decision making',
@@ -856,9 +2264,10 @@ export default [
         name: 'English',
         nativeName: 'English',
         code: 'en',
+        rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-05-16T12:51:57.546Z'
+        updatedAt: '2019-08-01T14:13:01.327Z'
       },
       audiofiles: [
         {
@@ -878,6 +2287,7 @@ export default [
             label: 'Jacob',
             gender: 'MALE',
             synthesizer: 'Google',
+            quality: 'Very High',
             audioProfile: 'default',
             speakingRate: 1,
             pitch: 0,
@@ -888,15 +2298,16 @@ export default [
             isLanguageDefault: null,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/b735e14e-33ad-4ce9-9985-b868c822c554.wav',
             createdAt: '2019-04-25T07:27:13.130Z',
-            updatedAt: '2019-06-20T12:38:50.549Z',
+            updatedAt: '2019-08-01T14:13:06.091Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
               nativeName: 'English',
               code: 'en',
+              rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-05-16T12:51:57.546Z'
+              updatedAt: '2019-08-01T14:13:01.327Z'
             }
           }
         }
@@ -905,12 +2316,12 @@ export default [
   },
   {
     id: '178bf14d-2128-4507-a40d-00f7cf0b907c',
-    order: 14,
+    order: 44,
     lastPlayedAt: null,
-    archivedAt: '2019-06-14T10:14:06.964Z',
+    archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-03-26T14:29:00.615Z',
-    updatedAt: '2019-06-17T16:11:01.775Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
     article: {
       id: 'b13a3868-d161-4463-b6eb-b1f0942788ea',
       title: 'You Need To Master Every Role In Your Startup.',
@@ -932,9 +2343,10 @@ export default [
         name: 'English',
         nativeName: 'English',
         code: 'en',
+        rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-05-16T12:51:57.546Z'
+        updatedAt: '2019-08-01T14:13:01.327Z'
       },
       audiofiles: [
         {
@@ -954,6 +2366,7 @@ export default [
             label: 'Joanna',
             gender: 'FEMALE',
             synthesizer: 'AWS',
+            quality: 'Normal',
             audioProfile: 'default',
             speakingRate: 1,
             pitch: 0,
@@ -964,15 +2377,16 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
             createdAt: '2019-04-25T11:35:03.678Z',
-            updatedAt: '2019-06-20T12:38:50.913Z',
+            updatedAt: '2019-08-01T14:13:06.094Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
               nativeName: 'English',
               code: 'en',
+              rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-05-16T12:51:57.546Z'
+              updatedAt: '2019-08-01T14:13:01.327Z'
             }
           }
         }
@@ -981,12 +2395,12 @@ export default [
   },
   {
     id: '76e31dec-c6d4-4dc3-927d-bbd5f1f164b8',
-    order: 15,
+    order: 45,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-03-26T09:21:48.104Z',
-    updatedAt: '2019-06-17T16:11:01.775Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
     article: {
       id: '4671b44f-b361-40e6-8dfd-8f389e1febe0',
       title: 'No Man’s Sky’s next update will let you explore infinite space in virtual reality – TechCrunch',
@@ -1008,9 +2422,10 @@ export default [
         name: 'English',
         nativeName: 'English',
         code: 'en',
+        rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-05-16T12:51:57.546Z'
+        updatedAt: '2019-08-01T14:13:01.327Z'
       },
       audiofiles: [
         {
@@ -1030,6 +2445,7 @@ export default [
             label: 'Joanna',
             gender: 'FEMALE',
             synthesizer: 'AWS',
+            quality: 'Normal',
             audioProfile: 'default',
             speakingRate: 1,
             pitch: 0,
@@ -1040,15 +2456,16 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
             createdAt: '2019-04-25T11:35:03.678Z',
-            updatedAt: '2019-06-20T12:38:50.913Z',
+            updatedAt: '2019-08-01T14:13:06.094Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
               nativeName: 'English',
               code: 'en',
+              rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-05-16T12:51:57.546Z'
+              updatedAt: '2019-08-01T14:13:01.327Z'
             }
           }
         }
@@ -1057,12 +2474,12 @@ export default [
   },
   {
     id: 'b7a4eef7-b63a-4300-af24-af79122a8fb7',
-    order: 16,
+    order: 46,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-03-26T08:38:59.466Z',
-    updatedAt: '2019-06-17T16:11:01.775Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
     article: {
       id: '7bfb03de-3be8-4167-baa4-e1d9ea5c8cd5',
       title: 'Uber is paying $3.1BN to pick up Middle East rival Careem – TechCrunch',
@@ -1084,21 +2501,64 @@ export default [
         name: 'English',
         nativeName: 'English',
         code: 'en',
+        rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-05-16T12:51:57.546Z'
+        updatedAt: '2019-08-01T14:13:01.327Z'
       },
-      audiofiles: []
+      audiofiles: [
+        {
+          id: '9a95a904-513e-4abe-bf91-0a47d5b5553f',
+          url: 'https://storage-development.playpost.app/articles/7bfb03de-3be8-4167-baa4-e1d9ea5c8cd5/audiofiles/9a95a904-513e-4abe-bf91-0a47d5b5553f.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/7bfb03de-3be8-4167-baa4-e1d9ea5c8cd5/audiofiles/9a95a904-513e-4abe-bf91-0a47d5b5553f.mp3',
+          length: 517.8775510204082,
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-06-20T13:30:44.362Z',
+          updatedAt: '2019-06-20T13:30:44.362Z',
+          voice: {
+            id: 'd2ede165-9dc0-4969-af8c-f4ff3716da53',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'Joanna',
+            label: 'Joanna',
+            gender: 'FEMALE',
+            synthesizer: 'AWS',
+            quality: 'Normal',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: null,
+            isActive: true,
+            isPremium: false,
+            isHighestQuality: false,
+            isLanguageDefault: true,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
+            createdAt: '2019-04-25T11:35:03.678Z',
+            updatedAt: '2019-08-01T14:13:06.094Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              code: 'en',
+              rightToLeft: false,
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-08-01T14:13:01.327Z'
+            }
+          }
+        }
+      ]
     }
   },
   {
     id: 'ff2c7145-4412-4652-85be-ff1e7103b365',
-    order: 17,
+    order: 47,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-03-25T17:44:37.608Z',
-    updatedAt: '2019-06-17T16:11:01.775Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
     article: {
       id: 'd337fe4d-c588-4db7-9b1d-d3bcca3ed31e',
       title: 'Apple Card will make credit card fraud a lot more difficult – TechCrunch',
@@ -1120,9 +2580,10 @@ export default [
         name: 'English',
         nativeName: 'English',
         code: 'en',
+        rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-05-16T12:51:57.546Z'
+        updatedAt: '2019-08-01T14:13:01.327Z'
       },
       audiofiles: [
         {
@@ -1142,6 +2603,7 @@ export default [
             label: 'Joanna',
             gender: 'FEMALE',
             synthesizer: 'AWS',
+            quality: 'Normal',
             audioProfile: 'default',
             speakingRate: 1,
             pitch: 0,
@@ -1152,15 +2614,57 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
             createdAt: '2019-04-25T11:35:03.678Z',
-            updatedAt: '2019-06-20T12:38:50.913Z',
+            updatedAt: '2019-08-01T14:13:06.094Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
               nativeName: 'English',
               code: 'en',
+              rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-05-16T12:51:57.546Z'
+              updatedAt: '2019-08-01T14:13:01.327Z'
+            }
+          }
+        },
+        {
+          id: '5bfb5c31-671b-43b8-9008-3ea6ae2d3c48',
+          url: 'https://storage-development.playpost.app/articles/d337fe4d-c588-4db7-9b1d-d3bcca3ed31e/audiofiles/5bfb5c31-671b-43b8-9008-3ea6ae2d3c48.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/d337fe4d-c588-4db7-9b1d-d3bcca3ed31e/audiofiles/5bfb5c31-671b-43b8-9008-3ea6ae2d3c48.mp3',
+          length: 157.464,
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-06-25T10:22:14.288Z',
+          updatedAt: '2019-06-25T10:22:14.288Z',
+          voice: {
+            id: '1b188f84-9d15-4a5a-85c6-f27ac44699fc',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'en-US-Wavenet-C',
+            label: 'Isabella',
+            gender: 'FEMALE',
+            synthesizer: 'Google',
+            quality: 'Very High',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: 24000,
+            isActive: true,
+            isPremium: true,
+            isHighestQuality: true,
+            isLanguageDefault: null,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/1b188f84-9d15-4a5a-85c6-f27ac44699fc.wav',
+            createdAt: '2019-04-25T07:27:13.215Z',
+            updatedAt: '2019-08-01T14:13:06.136Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              code: 'en',
+              rightToLeft: false,
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-08-01T14:13:01.327Z'
             }
           }
         }
@@ -1169,12 +2673,12 @@ export default [
   },
   {
     id: 'e69e8fd2-0adf-49bb-b724-cb1dea7071b3',
-    order: 18,
+    order: 48,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-03-18T17:09:10.128Z',
-    updatedAt: '2019-06-17T16:11:01.775Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
     article: {
       id: 'b9334781-6a2d-4c78-82e0-7a1bba4f278c',
       title: 'These 4 Questions Might Be Preventing You From Starting a Side Hustle',
@@ -1196,21 +2700,64 @@ export default [
         name: 'English',
         nativeName: 'English',
         code: 'en',
+        rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-05-16T12:51:57.546Z'
+        updatedAt: '2019-08-01T14:13:01.327Z'
       },
-      audiofiles: []
+      audiofiles: [
+        {
+          id: '599a167b-d3f9-4015-a142-4444ee886f39',
+          url: 'https://storage-development.playpost.app/articles/b9334781-6a2d-4c78-82e0-7a1bba4f278c/audiofiles/599a167b-d3f9-4015-a142-4444ee886f39.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/b9334781-6a2d-4c78-82e0-7a1bba4f278c/audiofiles/599a167b-d3f9-4015-a142-4444ee886f39.mp3',
+          length: 3.7877551020408164,
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-06-25T10:13:58.305Z',
+          updatedAt: '2019-06-25T10:13:58.305Z',
+          voice: {
+            id: 'd2ede165-9dc0-4969-af8c-f4ff3716da53',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'Joanna',
+            label: 'Joanna',
+            gender: 'FEMALE',
+            synthesizer: 'AWS',
+            quality: 'Normal',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: null,
+            isActive: true,
+            isPremium: false,
+            isHighestQuality: false,
+            isLanguageDefault: true,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
+            createdAt: '2019-04-25T11:35:03.678Z',
+            updatedAt: '2019-08-01T14:13:06.094Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              code: 'en',
+              rightToLeft: false,
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-08-01T14:13:01.327Z'
+            }
+          }
+        }
+      ]
     }
   },
   {
     id: '18c1a18d-bb78-4e4b-ae87-ec27ea0188fb',
-    order: 19,
+    order: 49,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-03-18T09:59:30.861Z',
-    updatedAt: '2019-06-17T16:11:01.775Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
     article: {
       id: 'ba6042fc-9a96-4cc9-afa5-9a22c4c297ba',
       title: 'Why Instagram Made Multi-Photo Posts More Annoying',
@@ -1232,9 +2779,10 @@ export default [
         name: 'English',
         nativeName: 'English',
         code: 'en',
+        rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-05-16T12:51:57.546Z'
+        updatedAt: '2019-08-01T14:13:01.327Z'
       },
       audiofiles: [
         {
@@ -1254,6 +2802,7 @@ export default [
             label: 'Joanna',
             gender: 'FEMALE',
             synthesizer: 'AWS',
+            quality: 'Normal',
             audioProfile: 'default',
             speakingRate: 1,
             pitch: 0,
@@ -1264,15 +2813,16 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
             createdAt: '2019-04-25T11:35:03.678Z',
-            updatedAt: '2019-06-20T12:38:50.913Z',
+            updatedAt: '2019-08-01T14:13:06.094Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
               nativeName: 'English',
               code: 'en',
+              rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-05-16T12:51:57.546Z'
+              updatedAt: '2019-08-01T14:13:01.327Z'
             }
           }
         }
@@ -1281,12 +2831,12 @@ export default [
   },
   {
     id: 'e775be7b-7976-48b2-b254-279522933b3f',
-    order: 20,
+    order: 50,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-03-11T10:37:15.681Z',
-    updatedAt: '2019-06-17T16:11:01.775Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
     article: {
       id: '0cdb6a24-db69-4d0b-8efc-281d6e7c1306',
       title: 'The Sharing Economy Was Always a Scam',
@@ -1308,21 +2858,22 @@ export default [
         name: 'English',
         nativeName: 'English',
         code: 'en',
+        rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-05-16T12:51:57.546Z'
+        updatedAt: '2019-08-01T14:13:01.327Z'
       },
       audiofiles: []
     }
   },
   {
     id: '0d06eeb0-3597-48b9-bfbf-a80b9eeb85f5',
-    order: 21,
+    order: 51,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-04-30T09:39:59.195Z',
-    updatedAt: '2019-06-17T16:11:01.775Z',
+    updatedAt: '2019-07-29T07:19:15.746Z',
     article: {
       id: '1125480a-a077-4960-aed9-4e16cfe2affb',
       title: 'Facebook’s Plan to Fuse Its Messaging Apps Is Not About Your Privacy',
@@ -1344,9 +2895,10 @@ export default [
         name: 'English',
         nativeName: 'English',
         code: 'en',
+        rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-05-16T12:51:57.546Z'
+        updatedAt: '2019-08-01T14:13:01.327Z'
       },
       audiofiles: [
         {
@@ -1366,6 +2918,7 @@ export default [
             label: 'Joanna',
             gender: 'FEMALE',
             synthesizer: 'AWS',
+            quality: 'Normal',
             audioProfile: 'default',
             speakingRate: 1,
             pitch: 0,
@@ -1376,15 +2929,16 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
             createdAt: '2019-04-25T11:35:03.678Z',
-            updatedAt: '2019-06-20T12:38:50.913Z',
+            updatedAt: '2019-08-01T14:13:06.094Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
               nativeName: 'English',
               code: 'en',
+              rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-05-16T12:51:57.546Z'
+              updatedAt: '2019-08-01T14:13:01.327Z'
             }
           }
         }
