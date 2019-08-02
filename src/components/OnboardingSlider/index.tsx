@@ -41,7 +41,7 @@ const OnboardingSliderComponent: React.FC<Props> = React.memo(({
     },
     {
       key: 'slide2',
-      title: 'High quality voices',
+      title: 'Over 100 high quality voices',
       text: 'Industry leading high quality voices are used to automatically transform text into speech.\n\nChoose between a variety of high quality male and female voices with accents like American, British or Australian English.',
     },
     {

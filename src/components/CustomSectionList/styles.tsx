@@ -24,6 +24,7 @@ export default StyleSheet.create({
   },
   rightIconText: {
     color: colors.grayDark,
-    fontSize: fonts.fontSize.body
+    fontSize: fonts.fontSize.small,
+    fontWeight: fonts.fontWeight.medium
   }
 });

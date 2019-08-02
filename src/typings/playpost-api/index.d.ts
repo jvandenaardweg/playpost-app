@@ -171,6 +171,7 @@ declare namespace Api {
     isLanguageDefault: boolean | null;
     createdAt: string;
     updatedAt: string;
+    quality: string;
   }
 
   export interface Language {

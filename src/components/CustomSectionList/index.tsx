@@ -7,6 +7,8 @@ import colors from '../../constants/colors';
 
 import * as Icon from '../../components/Icon';
 import { ListSeperator } from '../ListSeperator';
+import fonts from '../../constants/fonts';
+import { EmptyState } from '../EmptyState';
 
 export interface ListItem {
   subtitle?: string;
@@ -33,11 +35,14 @@ interface Props {
   sectionListData: ReadonlyArray<SectionListData<any>>;
   ListHeaderComponent?: React.ComponentType<any> | React.ReactElement | null;
   ListFooterComponent?: React.ComponentType<any> | React.ReactElement | null;
+  emptyTitle?: string;
+  emptyDescription?: string[];
 }
 
-export const CustomSectionList: React.FC<Props> = ({ sectionListData, ListHeaderComponent, ListFooterComponent, paddingTop }) => (
+export const CustomSectionList: React.FC<Props> = ({ sectionListData, ListHeaderComponent, ListFooterComponent, paddingTop, emptyTitle, emptyDescription }) => (
   <View style={styles.container}>
     <SectionList
+      ListEmptyComponent={<EmptyState title={emptyTitle ? emptyTitle : "No items to show"} description={emptyDescription ? emptyDescription : ['It seems like this list is empty...']} />}
       contentContainerStyle={styles.containerStyle}
       initialNumToRender={15}
       keyExtractor={(item, index) => item.key}
@@ -65,10 +70,10 @@ export const CustomSectionList: React.FC<Props> = ({ sectionListData, ListHeader
               ...(index === lastIndex ? { borderBottomLeftRadius: 8, borderBottomRightRadius: 8 } : undefined)
             }}
             titleStyle={{
-              ...(item.isSelected ? { color: colors.white } : undefined)
+              ...(item.isSelected ? { color: colors.white } : { fontSize: fonts.fontSize.title })
             }}
             subtitleStyle={{
-              ...(item.isSelected ? { color: 'rgba(255, 255, 255, 0.5)' } : undefined)
+              ...(item.isSelected ? { color: 'rgba(255, 255, 255, 0.7)' } : { fontSize: fonts.fontSize.small })
             }}
             subtitle={item.subtitle ? item.subtitle : undefined}
             leftIcon={
@@ -84,7 +89,7 @@ export const CustomSectionList: React.FC<Props> = ({ sectionListData, ListHeader
               item.isLoading ? (
                 <ActivityIndicator />
               ) : item.value ? (
-                <Text style={[styles.rightIconText, item.isSelected ? { color: 'rgba(255, 255, 255, 0.5)' } : undefined, item.rightIconColor ? { color: item.rightIconColor } : undefined]}>{item.value}</Text>
+                <Text style={[styles.rightIconText, item.isSelected ? { color: colors.white } : undefined, item.rightIconColor ? { color: item.rightIconColor } : undefined]}>{item.value}</Text>
               ) : (
                 undefined
               )

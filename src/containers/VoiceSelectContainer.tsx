@@ -1,6 +1,6 @@
 import React from 'react';
 import isEqual from 'react-fast-compare';
-import { Alert } from 'react-native';
+import { Alert, View, Text, StyleSheet, ScrollView, SectionListData } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
 
@@ -26,6 +26,13 @@ import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { ButtonVoicePreview } from '../components/ButtonVoicePreview';
 import { CustomSectionList } from '../components/CustomSectionList';
 import colors from '../constants/colors';
+import fonts from '../constants/fonts';
+import spacing from '../constants/spacing';
+import { ButtonTiny } from '../components/ButtonTiny';
+import * as Icon from '../components/Icon';
+import { TopFilter } from '../components/TopFilter';
+import { AppBackground } from '../components/AppBackground';
+import { EmptyState } from '../components/EmptyState';
 
 interface IProps {
   languageName: string;
@@ -36,6 +43,8 @@ type Props = IProps & NavigationInjectedProps & StateProps & DispatchProps;
 interface State {
   isLoadingPreviewVoiceId: string;
   isLoadingSaveSelectedVoiceId: string;
+  selectedQuality: string;
+  selectedGender: string;
 }
 
 export class VoiceSelectContainerComponent extends React.Component<Props, State> {
@@ -43,8 +52,13 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
 
   state = {
     isLoadingPreviewVoiceId: '',
-    isLoadingSaveSelectedVoiceId: ''
+    isLoadingSaveSelectedVoiceId: '',
+    selectedQuality: 'All',
+    selectedGender: 'All'
   };
+
+  qualities = ['All', 'Normal', 'High', 'Very High'];
+  genders = ['All', 'Male', 'Female'];
 
   shouldComponentUpdate(nextProps: Props, nextState: State): boolean {
     // Only re-render if props change
@@ -86,13 +100,13 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
 
     // If it's a premium voice and the user is not subscribed
     // Show a warning
-    if (voice.isPremium && !isSubscribed) {
+    if (!isSubscribed) {
       return Alert.alert(
-        'Upgrade to Premium or Plus',
-        'This higher quality voice is only available for Premium and Plus users.\n\nYou can preview this voice by using the play button on the left.',
+        'Start your free trial',
+        'Changing voices is only available for Premium and Plus users. Start a Free trial to experience these voices.\n\nYou can preview this voice by using the play button on the left.',
         [
           {
-            text: 'Start free trial',
+            text: 'Start Free trial',
             style: 'cancel',
             onPress: () => this.props.navigation.navigate('Upgrade')
           },
@@ -250,11 +264,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     return isSelected;
   }
 
-  getBadgeValue(isPremium: boolean, isHighestQuality: boolean): string {
-    if (isPremium && isHighestQuality) {
-      return 'Premium (HQ)';
-    }
-
+  getBadgeValue(isPremium: boolean): string {
     if (isPremium) {
       return 'Premium';
     }
@@ -262,70 +272,118 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     return 'Free';
   }
 
-  render(): JSX.Element {
-    const { languagesWithActiveVoicesByLanguageName } = this.props;
-    const { isLoadingSaveSelectedVoiceId, isLoadingPreviewVoiceId } = this.state;
+  handleSelectQuality = (quality: string) => this.setState({ selectedQuality: quality });
+  handleSelectGender = (gender: string) => this.setState({ selectedGender: gender });
+
+  get filteredVoices(): Api.Voice[] {
     const selectedLanguageName = this.props.navigation.getParam('languageName', '');
+    const { languagesWithActiveVoicesByLanguageName } = this.props;
+    const { selectedQuality, selectedGender } = this.state;
 
     const availableVoices = languagesWithActiveVoicesByLanguageName[selectedLanguageName].voices || [];
 
-    const sectionListData = [
-      // {
-      //   title: 'Selected voice',
-      //   data: [
-      //     {
-      //       title: userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName.name,
-      //       subtitle: 'Something'
-      //     }
-      //   ]
-      // },
+    const filteredVoices = availableVoices.filter(voice => {
+      if (selectedGender.toUpperCase() !== voice.gender && selectedGender !== 'All') {
+        return false;
+      }
+
+      if (selectedQuality !== voice.quality && selectedQuality !== 'All') {
+        return false;
+      }
+
+      return true;
+    })
+
+    return filteredVoices;
+  }
+
+  get sectionListData(): ReadonlyArray<SectionListData<any>> {
+    const { isLoadingSaveSelectedVoiceId, isLoadingPreviewVoiceId } = this.state;
+
+    if (!this.filteredVoices.length) {
+      return [];
+    }
+
+    return [{
+      key: 'available-voices',
+      title: 'Available voices',
+      data: this.filteredVoices.map((voice, index) => {
+        const isSelected = this.isSelected(voice);
+        const isPlaying = this.isVoicePlayingInPlayer(voice.id);
+        const isActive = this.isVoiceActiveInPlayer(voice.id);
+        const isAvailable = !!voice.exampleAudioUrl;
+        const isLoadingSaveSelected = isLoadingSaveSelectedVoiceId === voice.id;
+        const isLoadingVoicePreview = isLoadingPreviewVoiceId === voice.id;
+
+        // const defaultLabel = voice.isLanguageDefault ? '(Default) ' : '';
+        const title = `${voice.label || voice.name}`;
+        // const badgeValue = this.getBadgeValue(voice.isPremium, voice.isHighestQuality);
+        const badgeValue = `Quality: ${voice.quality}`;
+        const gender = voice.gender === 'MALE' ? 'Male' : 'Female';
+        const subtitle = `${gender} (${voice.countryCode})`;
+
+        const label = voice.label ? voice.label : 'Unknown';
+        const rightIconColor = voice.isPremium ? colors.grayDark : undefined;
+
+        return {
+          key: voice.id,
+          title,
+          subtitle,
+          isSelected,
+          icon: 'play',
+          leftIcon: (
+            <ButtonVoicePreview
+              isPlaying={isPlaying}
+              isLoading={isLoadingVoicePreview}
+              isActive={isActive}
+              isAvailable={isAvailable}
+              onPress={() => this.handleOnPreviewPress(title, label, voice)}
+            />
+          ),
+          onPress: () => this.handleOnListItemPress(voice),
+          value: badgeValue,
+          chevron: false,
+          isLoading: isLoadingSaveSelected,
+          checkmark: true,
+          rightIconColor
+        };
+      })
+    }]
+  }
+
+  get topFilterOptions() {
+    const { selectedQuality, selectedGender } = this.state;
+
+    return [
       {
-        key: 'available-voices',
-        title: 'Available voices',
-        data: availableVoices.map((voice, index) => {
-          const isSelected = this.isSelected(voice);
-          const isPlaying = this.isVoicePlayingInPlayer(voice.id);
-          const isActive = this.isVoiceActiveInPlayer(voice.id);
-          const isAvailable = !!voice.exampleAudioUrl;
-          const isLoadingSaveSelected = isLoadingSaveSelectedVoiceId === voice.id;
-          const isLoadingVoicePreview = isLoadingPreviewVoiceId === voice.id;
-
-          const title = `${voice.label || voice.name}`;
-          const badgeValue = this.getBadgeValue(voice.isPremium, voice.isHighestQuality);
-          const defaultLabel = voice.isLanguageDefault ? '(Default) ' : '';
-          const gender = voice.gender === 'MALE' ? 'Male' : 'Female';
-          const subtitle = `${defaultLabel}${gender} (${voice.countryCode})`;
-
-          const label = voice.label ? voice.label : 'Unknown';
-          const rightIconColor = voice.isPremium ? colors.orange : undefined;
-
-          return {
-            key: voice.id,
-            title,
-            subtitle,
-            isSelected,
-            icon: 'play',
-            leftIcon: (
-              <ButtonVoicePreview
-                isPlaying={isPlaying}
-                isLoading={isLoadingVoicePreview}
-                isActive={isActive}
-                isAvailable={isAvailable}
-                onPress={() => this.handleOnPreviewPress(title, label, voice)}
-              />
-            ),
-            onPress: () => this.handleOnListItemPress(voice),
-            value: badgeValue,
-            chevron: false,
-            isLoading: isLoadingSaveSelected,
-            checkmark: true,
-            rightIconColor
-          };
-        })
+        label: 'Quality',
+        options: this.qualities,
+        selectedOption: selectedQuality,
+        onSelect: this.handleSelectQuality
+      },
+      {
+        label: 'Gender',
+        options: this.genders,
+        selectedOption: selectedGender,
+        onSelect: this.handleSelectGender
       }
     ];
+  }
 
-    return <CustomSectionList sectionListData={sectionListData} />;
+  render(): JSX.Element {
+
+    return (
+      <AppBackground>
+        <TopFilter
+          filters={this.topFilterOptions}
+        />
+        <CustomSectionList
+          sectionListData={this.sectionListData}
+          emptyTitle="No voices found"
+          emptyDescription={['There are no voices matching your filters. Change your filters to see if there are any other voices!']}
+        />
+      </AppBackground>
+    );
   }
 }
 
