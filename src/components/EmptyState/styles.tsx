@@ -29,7 +29,7 @@ export default StyleSheet.create({
   description: {
     textAlign: 'center',
     fontSize: fonts.fontSize.body,
-    lineHeight: 24,
+    lineHeight: Math.ceil(fonts.fontSize.body * 1.5),
     color: colors.paragraphGrayed,
     paddingRight: spacing.large,
     paddingLeft: spacing.large,

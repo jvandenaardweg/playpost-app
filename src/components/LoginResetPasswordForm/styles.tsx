@@ -54,6 +54,6 @@ export default StyleSheet.create({
     fontSize: fonts.fontSize.body,
     color: colors.paragraphDefault,
     marginBottom: spacing.large,
-    lineHeight: 24
+    lineHeight: Math.ceil(fonts.fontSize.body * 1.5)
   }
 });

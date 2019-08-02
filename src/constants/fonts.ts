@@ -3,7 +3,7 @@
 
 export default {
   fontSize: {
-    headline: 24,
+    headline: 30,
     titleLarge: 21,
     titleMedium: 18,
     title: 17, // page titles, modal

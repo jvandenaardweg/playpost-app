@@ -48,13 +48,13 @@ export default StyleSheet.create({
   contentText: {
     color: colors.white,
     fontSize: fonts.fontSize.body,
-    lineHeight: 24,
+    lineHeight: Math.ceil(fonts.fontSize.body * 1.5),
     marginBottom: spacing.large
   },
   title: {
     color: colors.white,
     fontSize: fonts.fontSize.titleLarge,
-    lineHeight: 26,
+    lineHeight: Math.ceil(fonts.fontSize.titleLarge * 1.2),
     fontWeight: fonts.fontWeight.semibold,
     marginBottom: 6
   },

@@ -31,8 +31,8 @@ export default StyleSheet.create({
   },
   author: {
     fontSize: fonts.fontSize.tiny,
-    color: colors.grayDark,
-    lineHeight: 18
+    lineHeight: Math.ceil(fonts.fontSize.tiny * 1.5),
+    color: colors.grayDark
   },
   bodyMeta: {
     flexDirection: 'row',
@@ -66,9 +66,9 @@ export default StyleSheet.create({
   },
   bodyTitleText: {
     fontSize: fonts.fontSize.title,
+    lineHeight: Math.ceil(fonts.fontSize.title * 1.2),
     fontWeight: fonts.fontWeight.semibold,
-    color: colors.titleDefault,
-    lineHeight: 21
+    color: colors.titleDefault
   },
   bodyFooterText: {
     fontSize: fonts.fontSize.tiny,

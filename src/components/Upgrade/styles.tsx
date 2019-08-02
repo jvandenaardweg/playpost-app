@@ -13,7 +13,7 @@ export default StyleSheet.create({
     marginBottom: spacing.default
   },
   headerTitle: {
-    fontSize: fonts.fontSize.headline,
+    fontSize: fonts.fontSize.titleLarge,
     textAlign: 'center',
     fontWeight: fonts.fontWeight.bold,
     marginTop: spacing.default,
@@ -23,13 +23,13 @@ export default StyleSheet.create({
   title: {
     fontSize: fonts.fontSize.title,
     fontWeight: fonts.fontWeight.semibold,
-    lineHeight: 21,
+    lineHeight: Math.ceil(fonts.fontSize.title * 1.2),
     marginBottom: 4,
     color: colors.black
   },
   paragraph: {
     color: colors.paragraphGrayed,
-    lineHeight: 24,
+    lineHeight: Math.ceil(fonts.fontSize.body * 1.5),
     fontSize: fonts.fontSize.body
   },
   featuresContainer: {
@@ -65,7 +65,7 @@ export default StyleSheet.create({
   },
   footerText: {
     fontSize: fonts.fontSize.small,
-    lineHeight: 18,
+    lineHeight: Math.ceil(fonts.fontSize.small * 1.5),
     opacity: 0.5
   },
   footerLinks: {
