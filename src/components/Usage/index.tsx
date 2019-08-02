@@ -21,8 +21,8 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
   const percentageUsedCurrentMonth = (usageUsedCurrentMonthInSeconds / limitSecondsPerMonth) * 100;
   const percentageUsed = percentageUsedCurrentMonth >= 100 ? 100 : percentageUsedCurrentMonth;
 
-  const currentUsageLocalized = Math.ceil(usageUsedCurrentMonthInSeconds).toLocaleString('nl-NL'); // So we have 5.000 (with a dot)
-  const currentLimitLocalized = Math.ceil(limitSecondsPerMonth).toLocaleString('nl-NL'); // So we have 5.000 (with a dot)
+  const currentUsageLocalized = Math.ceil(usageUsedCurrentMonthInSeconds / 60).toLocaleString('nl-NL'); // So we have 5.000 (with a dot)
+  const currentLimitLocalized = Math.ceil(limitSecondsPerMonth / 60).toLocaleString('nl-NL'); // So we have 5.000 (with a dot)
 
   const showUpgradeButton = activeSubscriptionProductId === 'free' || activeSubscriptionProductId === 'com.aardwegmedia.playpost.premium';
 
