@@ -22,8 +22,8 @@ interface Props {
 export const TopFilter: React.FC<Props> = React.memo(({ filters }) => (
 <View>
   <View>
-    {filters.map(filter => (
-      <View style={styles.filterContainer}>
+    {filters.map((filter, filterIndex) => (
+      <View style={styles.filterContainer} key={filterIndex}>
         <Text style={styles.filterLabel}>{filter.label}</Text>
         <ScrollView
           contentContainerStyle={styles.scrollView}
@@ -39,7 +39,7 @@ export const TopFilter: React.FC<Props> = React.memo(({ filters }) => (
             const iconElement = (isSelected) ? <Icon.FontAwesome5 name="check" solid size={10} color={colors.white} /> : undefined;
 
             return (
-              <View style={styles.filterOption}>
+              <View style={styles.filterOption} key={optionLabel}>
                 <ButtonTiny
                   label={optionLabel}
                   backgroundColor={backgroundColor}
