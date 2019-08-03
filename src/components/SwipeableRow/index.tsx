@@ -92,7 +92,6 @@ export class SwipeableRow extends React.PureComponent<Props> {
   close = () => this.swipeableRef.current && this.swipeableRef.current.close()
 
   render() {
-    console.log('render')
     return (
       <Swipeable
         ref={this.swipeableRef}

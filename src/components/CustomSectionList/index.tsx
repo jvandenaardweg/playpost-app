@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, SectionList, SectionListData, Text, View, TouchableHighlight } from 'react-native';
+import { ActivityIndicator, SectionList, SectionListData, Text, TouchableHighlight, View } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import styles from './styles';
 
@@ -7,9 +7,9 @@ import colors from '../../constants/colors';
 
 import * as Icon from '../../components/Icon';
 import fonts from '../../constants/fonts';
+import spacing from '../../constants/spacing';
 import { EmptyState } from '../EmptyState';
 import { ListSeperator } from '../ListSeperator';
-import spacing from '../../constants/spacing';
 
 export interface ListItem {
   subtitle?: string;
