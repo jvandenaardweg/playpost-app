@@ -6,6 +6,7 @@ import { UpgradeContainerComponent } from '../UpgradeContainer';
 
 jest.mock('appcenter-analytics');
 jest.mock('react-native-iap');
+jest.mock('../../navigation/NavigationService');
 
 import mockApplePurchases from '../../../tests/__mocks__/apple-purchases';
 import mockSubscriptions from '../../../tests/__mocks__/subscriptions';

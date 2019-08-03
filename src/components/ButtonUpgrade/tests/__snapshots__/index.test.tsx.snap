@@ -18,16 +18,20 @@ exports[`ButtonUpgrade rendering should render correctly 1`] = `
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "#037DE2",
-        "borderRadius": 28,
-        "flexDirection": "row",
-        "height": 28,
-        "opacity": 1,
-        "paddingLeft": 12,
-        "paddingRight": 12,
-      }
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#e5e5e5",
+          "borderRadius": 28,
+          "flexDirection": "row",
+          "height": 28,
+          "paddingLeft": 12,
+          "paddingRight": 12,
+        },
+        Object {
+          "backgroundColor": "#037DE2",
+        },
+      ]
     }
     testID="ButtonTiny-Button"
   >
