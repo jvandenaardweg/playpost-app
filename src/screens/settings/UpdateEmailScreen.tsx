@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert } from 'react-native';
+import { Alert, InteractionManager } from 'react-native';
 import { NavigationInjectedProps, NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
 import { connect } from 'react-redux';
 
@@ -12,6 +12,8 @@ import { getUser, updateUserEmail } from '../../reducers/user';
 
 import { selectUserDetails, selectUserError } from '../../selectors/user';
 
+import { AppBackground } from '../../components/AppBackground';
+import { InteractionManaged } from '../../components/InteractionManaged';
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
 interface State {
@@ -49,14 +51,16 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
   navigationTimeout: NodeJS.Timeout | null = null;
 
   componentDidMount() {
-    const { userDetails } = this.props;
+    InteractionManager.runAfterInteractions(() => {
+      const { userDetails } = this.props;
 
-    if (userDetails && userDetails.email) {
-      this.setState({
-        email: userDetails.email,
-        previousEmail: userDetails.email
-      });
-    }
+      if (userDetails && userDetails.email) {
+        this.setState({
+          email: userDetails.email,
+          previousEmail: userDetails.email
+        });
+      }
+    })
   }
 
   componentWillUnmount() {
@@ -107,17 +111,21 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
     if (field === 'email') { this.setState({ email: value }); }
   }
 
-  render(): JSX.Element {
+  render() {
     const { email, isLoading, isSuccess } = this.state;
 
     return (
-      <UpdateEmailForm
-        email={email}
-        isLoading={isLoading}
-        isSuccess={isSuccess}
-        onChangeText={this.handleOnChangeText}
-        onPressUpdateEmail={this.handleOnPressUpdateEmail}
-      />
+      <AppBackground>
+        <InteractionManaged>
+          <UpdateEmailForm
+            email={email}
+            isLoading={isLoading}
+            isSuccess={isSuccess}
+            onChangeText={this.handleOnChangeText}
+            onPressUpdateEmail={this.handleOnPressUpdateEmail}
+          />
+        </InteractionManaged>
+      </AppBackground>
     );
   }
 }

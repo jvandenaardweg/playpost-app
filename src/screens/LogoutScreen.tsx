@@ -61,7 +61,7 @@ class LogoutScreenContainer extends React.PureComponent<Props> {
     return this.props.navigation.navigate('Onboarding');
   }
 
-  render(): JSX.Element {
+  render() {
     return (
       <CenterLoadingIndicator />
     );

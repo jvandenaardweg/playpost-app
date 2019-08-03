@@ -70,7 +70,7 @@ export class AuthLoadingScreen extends React.PureComponent<Props> {
   }
 
   // Render any loading content that you like here
-  render(): JSX.Element | null {
+  render() {
     return null;
   }
 }

@@ -23,7 +23,6 @@ import { selectDownloadedVoicePreviews, selectLanguagesWithActiveVoicesByLanguag
 import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_VOICE_CHANGE, ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE } from '../constants/messages';
 
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
-import { AppBackground } from '../components/AppBackground';
 import { ButtonVoicePreview } from '../components/ButtonVoicePreview';
 import { CustomSectionList } from '../components/CustomSectionList';
 import { TopFilter } from '../components/TopFilter';
@@ -365,10 +364,10 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     ];
   }
 
-  render(): JSX.Element {
+  render() {
 
     return (
-      <AppBackground>
+      <>
         <TopFilter
           filters={this.topFilterOptions}
         />
@@ -377,7 +376,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
           emptyTitle="No voices found"
           emptyDescription={['There are no voices matching your filters. Change your filters to see if there are any other voices!']}
         />
-      </AppBackground>
+      </>
     );
   }
 }

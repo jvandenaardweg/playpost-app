@@ -14,7 +14,7 @@ export class LoginForgotPasswordScreen extends React.PureComponent<Props> {
     };
   }
 
-  render(): JSX.Element {
+  render() {
     return (
       <LoginForgotPasswordFormContainer />
     );

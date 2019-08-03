@@ -278,7 +278,7 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
     );
   }
 
-  render(): JSX.Element {
+  render() {
     const { isRefreshing, playlistItems } = this.state;
 
     return (

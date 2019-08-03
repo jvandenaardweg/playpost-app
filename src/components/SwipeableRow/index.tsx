@@ -80,24 +80,26 @@ export class SwipeableRow extends React.PureComponent<Props> {
     const { isArchived, isFavorited } = this.props;
 
     return (
-      <Animated.View style={styles.rightActionsContainer}>
+      <View style={styles.rightActionsContainer}>
         {/* {this.renderRightAction('download', 'download', null)} */}
         {this.renderRightAction('archive', 'archive', (isArchived) ? colors.black : null)}
         {this.renderRightAction('favorite', 'heart', (isFavorited) ? colors.black : null)}
         {this.renderRightAction('delete', 'trash-2', null)}
-      </Animated.View>
+      </View>
     );
   }
 
   close = () => this.swipeableRef.current && this.swipeableRef.current.close()
 
-  render(): JSX.Element {
+  render() {
+    console.log('render')
     return (
       <Swipeable
         ref={this.swipeableRef}
         friction={2}
-        rightThreshold={40}
+        rightThreshold={50}
         renderRightActions={this.renderRightActions}
+        useNativeAnimations
       >
         {this.props.children}
       </Swipeable>

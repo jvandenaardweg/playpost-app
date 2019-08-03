@@ -1,8 +1,11 @@
 import React from 'react';
-import { InteractionManager } from 'react-native';
+import { Animated, InteractionManager } from 'react-native';
+import { CenterLoadingIndicator } from '../CenterLoadingIndicator';
 
 interface Props {
-  children?: React.ReactElement
+  children?: React.ReactElement;
+  isAnimated?: boolean;
+  showActivityIndicator?: boolean;
 }
 
 interface State {
@@ -10,23 +13,55 @@ interface State {
 }
 
 export class InteractionManaged extends React.PureComponent<Props, State> {
+  static defaultProps = {
+    isAnimated: true,
+    showActivityIndicator: false
+  }
+
   state = {
     isMounted: false,
   };
 
+  opacityAnim = new Animated.Value(0);
+
+  timeout: NodeJS.Timeout | null = null;
+
   componentDidMount() {
+    const { isAnimated } = this.props;
+
     InteractionManager.runAfterInteractions(() => {
-      this.setState({ isMounted: true });
+      requestAnimationFrame(() => {
+        this.setState({ isMounted: true }, () => {
+          if (!isAnimated) {
+            return
+          }
+
+          Animated.timing(this.opacityAnim, {
+            toValue: 1,
+            duration: 200,
+            useNativeDriver: true
+          }).start();
+        });
+      });
     });
   }
 
   render() {
     const { isMounted } = this.state;
+    const { showActivityIndicator } = this.props;
 
-    if (!isMounted) {
+    if (!isMounted && !showActivityIndicator) {
       return null;
     }
 
-    return this.props.children;
+    if (!isMounted && showActivityIndicator) {
+      return <CenterLoadingIndicator />;
+    }
+
+    return (
+      <Animated.View style={{ flex: 1, opacity: this.opacityAnim }}>
+        {this.props.children}
+      </Animated.View>
+    )
   }
 }

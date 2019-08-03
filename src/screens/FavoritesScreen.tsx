@@ -5,14 +5,13 @@ import { InteractionManaged } from '../components/InteractionManaged';
 import { PlaylistContainer } from '../containers/PlaylistContainer';
 
 export class FavoritesScreen extends React.PureComponent {
-  render(): JSX.Element {
+  render() {
     return (
-      <InteractionManaged>
-        <AppBackground>
+      <AppBackground>
+        <InteractionManaged showActivityIndicator>
           <PlaylistContainer isFavoriteScreen />
-        </AppBackground>
-      </InteractionManaged>
-
+        </InteractionManaged>
+      </AppBackground>
     );
   }
 }

@@ -6,6 +6,7 @@ import { NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } f
 
 import { ButtonReload } from '../../components/ButtonReload';
 
+import { InteractionManaged } from '../../components/InteractionManaged';
 import colors from '../../constants/colors';
 
 interface Props {
@@ -61,25 +62,26 @@ export class BrowserScreen extends React.PureComponent<Props, State> {
     ).start();
   }
 
-  render(): JSX.Element {
+  render() {
     const url = this.props.navigation.getParam('url', null);
 
     return (
-      <View style={{ flex: 1, backgroundColor: colors.appBackground }}>
-        <Animated.View style={{ position: 'absolute', top: 0, left: 0, width: this.interpolatedWidth, backgroundColor: colors.tintColor, height: 5 }}></Animated.View>
-        <WebView
-          ref={this.webviewRef}
-          source={{ uri: url }}
-          startInLoadingState={true}
-          // onLoadProgress={this.handleOnLoadProgress}
-          // onLoadEnd={this.handleOnLoadEnd}
-          sharedCookiesEnabled={true}
-          thirdPartyCookiesEnabled={true}
-          incognito={false}
-          decelerationRate="normal"
-        />
-      </View>
-
+      <InteractionManaged>
+        <View style={{ flex: 1, backgroundColor: colors.appBackground }}>
+          <Animated.View style={{ position: 'absolute', top: 0, left: 0, width: this.interpolatedWidth, backgroundColor: colors.tintColor, height: 5 }}></Animated.View>
+          <WebView
+            ref={this.webviewRef}
+            source={{ uri: url }}
+            startInLoadingState={true}
+            // onLoadProgress={this.handleOnLoadProgress}
+            // onLoadEnd={this.handleOnLoadEnd}
+            sharedCookiesEnabled={true}
+            thirdPartyCookiesEnabled={true}
+            incognito={false}
+            decelerationRate="normal"
+          />
+        </View>
+      </InteractionManaged>
     );
   }
 }

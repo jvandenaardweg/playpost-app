@@ -14,7 +14,7 @@ export class LoginResetPasswordScreen extends React.PureComponent<Props> {
     };
   }
 
-  render(): JSX.Element {
+  render() {
     return (
       <LoginResetPasswordFormContainer />
     );

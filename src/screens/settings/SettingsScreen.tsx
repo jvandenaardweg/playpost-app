@@ -1,17 +1,23 @@
 import React from 'react';
 
+import { NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
 import { AppBackground } from '../../components/AppBackground';
-import { InteractionManaged } from '../../components/InteractionManaged';
+import { ButtonUpgradeContainer } from '../../containers/ButtonUpgradeContainer';
 import { SettingsContainer } from '../../containers/SettingsContainer';
 
 export class SettingsScreen extends React.PureComponent {
-  render(): JSX.Element {
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+    return {
+      title: 'Settings',
+      headerRight: <ButtonUpgradeContainer />
+    };
+  }
+
+  render() {
     return (
-      <InteractionManaged>
-        <AppBackground>
-          <SettingsContainer />
-        </AppBackground>
-      </InteractionManaged>
+      <AppBackground>
+        <SettingsContainer />
+      </AppBackground>
     );
   }
 }

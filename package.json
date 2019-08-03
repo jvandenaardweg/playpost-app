@@ -11,6 +11,7 @@
     "jest": "jest",
     "jest:coverage": "jest --coverage",
     "device": "ENVFILE=.env.local react-native run-ios --device",
+    "device:release": "ENVFILE=.env.local react-native run-ios --device --configuration Release",
     "test:watch": "jest --watch --silent --verbose --coverage",
     "lint": "tslint -c tslint.json 'src/**/*.ts{,x}'",
     "lint:fix": "tslint -c tslint.json 'src/**/*.ts{,x}' --fix",
@@ -176,6 +177,7 @@
   "devDependencies": {
     "auto-changelog": "^1.14.1",
     "concurrently": "^4.1.1",
+    "deep-object-diff": "^1.1.0",
     "husky": "^3.0.1",
     "tslint-config-prettier": "^1.18.0"
   }

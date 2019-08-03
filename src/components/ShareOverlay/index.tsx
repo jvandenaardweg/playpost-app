@@ -176,7 +176,7 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
     );
   }
 
-  render(): JSX.Element {
+  render() {
     return <Animated.View style={[styles.container, { opacity: this.opacityAnim }]}>{this.renderModal()}</Animated.View>;
   }
 }

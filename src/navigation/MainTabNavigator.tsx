@@ -28,7 +28,6 @@ const PlaylistStack: StackNavigatorConfig = createStackNavigator(
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
     defaultNavigationOptions: ({ navigation }) => ({
-      headerRight: <ButtonUpgradeContainer />,
       headerStyle: {
         borderBottomColor: colors.borderDefault
       }
@@ -113,7 +112,6 @@ const SettingsStack: StackNavigatorConfig = createStackNavigator(
     headerTransitionPreset: 'uikit',
     defaultNavigationOptions: ({ navigation }) => ({
       title: 'Settings',
-      headerRight: <ButtonUpgradeContainer />,
       headerStyle: {
         borderBottomColor: colors.borderDefault
       }
@@ -138,6 +136,7 @@ export const MainTabNavigator: BottomTabNavigatorConfig = createBottomTabNavigat
     SettingsStack,
   },
   {
+    // lazy: false, // pre-render all screens
     tabBarComponent: (props: BottomTabBarProps) => <TabBar {...props} />,
     tabBarOptions: {
       showLabel: false

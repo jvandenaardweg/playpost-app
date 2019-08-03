@@ -5,7 +5,7 @@ import { Alert, Linking, Platform } from 'react-native';
 import * as RNIap from 'react-native-iap';
 import { connect } from 'react-redux';
 
-import { NavigationRoute, NavigationScreenProp, withNavigation } from 'react-navigation';
+import { NavigationRoute, NavigationScreenProp } from 'react-navigation';
 
 import { Upgrade } from '../components/Upgrade';
 
@@ -21,6 +21,7 @@ import {
 } from '../constants/messages';
 
 import { URL_FEEDBACK, URL_MANAGE_APPLE_SUBSCRIPTIONS, URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../constants/urls';
+import NavigationService from '../navigation/NavigationService';
 import { RootState } from '../reducers';
 import { validateSubscriptionReceipt } from '../reducers/subscriptions';
 import { getUser } from '../reducers/user';
@@ -39,6 +40,7 @@ interface State {
 
 interface IProps {
   navigation: NavigationScreenProp<NavigationRoute>;
+  centeredSubscriptionProductId: string;
 }
 
 export type Props = IProps & StateProps & DispatchProps;
@@ -224,7 +226,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     }
 
     // Close the modal
-    this.props.navigation.goBack(null);
+    NavigationService.goBack({ key: null });
   }
 
   handleOpenPrivacy = () => Linking.openURL(`${URL_PRIVACY_POLICY}?ref=playpost://upgrade`);
@@ -239,7 +241,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       },
       {
         text: 'Contact support',
-        onPress: () => this.props.navigation.navigate('Browser', { url: URL_FEEDBACK, title: 'Support' })
+        onPress: () => NavigationService.navigate('Browser', { url: URL_FEEDBACK, title: 'Support' })
       }
     ]);
   }
@@ -417,10 +419,9 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     return purchase;
   }
 
-  render(): JSX.Element {
+  render() {
     const { isLoadingRestorePurchases, isLoadingBuySubscription, isLoadingSubscriptionItems, subscriptions } = this.state;
-    const { activeSubscriptionProductId } = this.props;
-    const centeredSubscriptionProductId = this.props.navigation.getParam('centeredSubscriptionProductId', '');
+    const { activeSubscriptionProductId, centeredSubscriptionProductId } = this.props;
 
     return (
       <Upgrade
@@ -468,9 +469,7 @@ const mapDispatchToProps = {
   getUser
 };
 
-export const UpgradeContainer = withNavigation(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(UpgradeContainerComponent)
-);
+export const UpgradeContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UpgradeContainerComponent);

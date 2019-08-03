@@ -24,10 +24,10 @@ export const reactNativeElementsTheme: Theme = {
     }
   },
   ListItem: {
-    containerStyle: {
-      marginLeft: spacing.default,
-      marginRight: spacing.default,
-    },
+    // containerStyle: {
+    //   marginLeft: spacing.default,
+    //   marginRight: spacing.default,
+    // },
     titleStyle: {
       fontWeight: fonts.fontWeight.regular,
       fontSize: fonts.fontSize.title,

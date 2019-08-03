@@ -6,13 +6,13 @@ import { PlaylistContainer } from '../containers/PlaylistContainer';
 
 
 export class ArchiveScreen extends React.PureComponent {
-  render(): JSX.Element {
+  render() {
     return (
-      <InteractionManaged>
-        <AppBackground>
+      <AppBackground>
+        <InteractionManaged showActivityIndicator>
           <PlaylistContainer isArchiveScreen />
-        </AppBackground>
-      </InteractionManaged>
+        </InteractionManaged>
+      </AppBackground>
     );
   }
 }

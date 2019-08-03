@@ -54,7 +54,7 @@ class LoginForgotPasswordFormContainerComponent extends React.PureComponent<Prop
     });
   }
 
-  render(): JSX.Element {
+  render() {
     const { email, isLoading, isSuccess } = this.state;
 
     return (

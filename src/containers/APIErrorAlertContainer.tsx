@@ -195,7 +195,7 @@ export class APIErrorAlertContainerComponent extends React.Component<Props, Stat
     }
   }
 
-  render(): React.ReactNode {
+  render() {
     return this.props.children;
   }
 }

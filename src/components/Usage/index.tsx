@@ -26,12 +26,8 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
 
   const showUpgradeButton = activeSubscriptionProductId === 'free' || activeSubscriptionProductId === 'com.aardwegmedia.playpost.premium';
 
-  const upgradeButtonTitle =
-    activeSubscriptionProductId === 'com.aardwegmedia.playpost.premium'
-      ? 'Upgrade to Plus'
-      : activeSubscriptionProductId === 'free'
-      ? 'Start free Premium or Plus trial'
-      : 'Upgrade';
+  const upgradeButtonTitle = getUpgradeButtonTitle(activeSubscriptionProductId);
+  const upgradeMessage = getUpgradeMessage(activeSubscriptionProductId);
 
   const upgradeScreenCenteredSubscriptionProductId =
     activeSubscriptionProductId === 'com.aardwegmedia.playpost.premium'
@@ -39,8 +35,6 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
       : activeSubscriptionProductId === 'free'
       ? 'com.aardwegmedia.playpost.premium'
       : 'com.aardwegmedia.playpost.premium';
-
-
 
   return (
     <View style={styles.container}>
@@ -73,7 +67,7 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
               onPress={() => onPressUpgrade(upgradeScreenCenteredSubscriptionProductId)}
             />
             <Text style={{ marginTop: 8, color: colors.white, opacity: 0.7, textAlign: 'center', fontSize: fonts.fontSize.small }}>
-              Upgrade for more minutes and Premium quality voices.
+              {upgradeMessage}
             </Text>
           </View>
         )}
@@ -81,3 +75,27 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
     </View>
   );
 });
+
+function getUpgradeMessage(activeSubscriptionProductId: string): string {
+  if (activeSubscriptionProductId === 'free') {
+    return 'Upgrade for more minutes and Premium quality voices.';
+  }
+
+  if (activeSubscriptionProductId === 'com.aardwegmedia.playpost.premium') {
+    return 'Upgrade for nearly unlimited minutes.'
+  }
+
+  return ''
+}
+
+function getUpgradeButtonTitle(activeSubscriptionProductId: string): string {
+  if (activeSubscriptionProductId === 'free') {
+    return 'Start free Premium or Plus trial'
+  }
+
+  if (activeSubscriptionProductId === 'com.aardwegmedia.playpost.premium') {
+    return 'Upgrade to Plus'
+  }
+
+  return ''
+}

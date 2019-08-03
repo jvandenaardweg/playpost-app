@@ -51,7 +51,7 @@ export class LanguagesSelectComponent extends React.Component<Props> {
     return `${label} (${voice.countryCode}) (${genderLabel})`;
   }
 
-  render(): JSX.Element {
+  render() {
     const { languagesWithActiveVoices } = this.props;
 
     const sectionListData = [

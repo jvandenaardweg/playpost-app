@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableHighlight, View } from 'react-native';
 
 import styles from './styles';
 
@@ -13,7 +13,7 @@ interface Props {
 
 export const ButtonTiny: React.FC<Props> = React.memo(({ onPress, label, IconElement, backgroundColor, labelColor }) => {
   return (
-    <TouchableOpacity testID="ButtonTiny-Button" onPress={onPress} style={[styles.container, { backgroundColor }]}>
+    <TouchableHighlight testID="ButtonTiny-Button" onPress={onPress} style={[styles.container, { backgroundColor }]}>
       <>
         <Text style={[styles.label, { color: labelColor }]}>{label}</Text>
         {IconElement && (
@@ -22,6 +22,6 @@ export const ButtonTiny: React.FC<Props> = React.memo(({ onPress, label, IconEle
           </View>
         )}
       </>
-    </TouchableOpacity>
+    </TouchableHighlight>
   );
 });

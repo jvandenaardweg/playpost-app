@@ -1,9 +1,10 @@
 import React from 'react';
+import isEqual from 'react-fast-compare';
 import { ActivityIndicator, Alert, InteractionManager, Linking, Text, View } from 'react-native';
 import Config from 'react-native-config';
 import DeviceInfo from 'react-native-device-info';
 import RNFS from 'react-native-fs';
-import { NavigationInjectedProps, withNavigation } from 'react-navigation';
+import { NavigationInjectedProps } from 'react-navigation';
 import { connect } from 'react-redux';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
@@ -28,6 +29,7 @@ import {
 } from '../constants/messages';
 import spacing from '../constants/spacing';
 import { URL_ABOUT, URL_APP_APPLE_APP_STORE_REVIEW, URL_FEEDBACK, URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../constants/urls';
+import NavigationService from '../navigation/NavigationService';
 import { RootState } from '../reducers';
 import { selectActiveSubscriptionName, selectActiveSubscriptionProductId, selectIsSubscribed } from '../selectors/subscriptions';
 import { selectTotalAvailableVoices } from '../selectors/voices';
@@ -41,7 +43,7 @@ interface State {
   isDeletingAccount: boolean;
 }
 
-export class SettingsContainerComponent extends React.PureComponent<Props, State> {
+export class SettingsContainerComponent extends React.Component<Props, State> {
   state = {
     cacheSize: '0',
     isClearingCache: false,
@@ -51,17 +53,26 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
 
   componentDidMount() {
     InteractionManager.runAfterInteractions(() => {
-      this.props.navigation.setParams({
-        handleOnPressUpgrade: this.handleOnPressUpgrade
-      });
-
       // TODO: Set cache size every time the settings screen becomes active
       this.setCacheSize();
 
       // Getting the user details, but also the user's settings (for example: user selected voices)
       this.props.getUser();
     });
+  }
 
+  shouldComponentUpdate(nextProps: Props, nextState: State) {
+    // If there's a state change inside the component, always update it
+    if (!isEqual(this.state, nextState)) {
+      return true;
+    }
+
+    // Only update this component when we have new playlist items
+    if (!isEqual(this.props, nextProps)) {
+      return true;
+    }
+
+    return false;
   }
 
   setCacheSize = async () => {
@@ -141,7 +152,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
     return this.setState({ isDeletingAccount: true }, async () => {
       try {
         await this.props.deleteUser();
-        return this.props.navigation.navigate('Logout');
+        return NavigationService.navigate('Logout');
       } catch (err) {
         return Alert.alert('Oops!', ALERT_SETTINGS_DELETE_USER_FAIL);
       } finally {
@@ -150,18 +161,20 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
     });
   }
 
-  handleOnPressLogout = async () => this.props.navigation.navigate('Logout');
+  handleOnPressLogout = async () => NavigationService.navigate('Logout');
 
   handleOnPressUpgrade = (centeredSubscriptionProductId?: string) =>
-    this.props.navigation.navigate('Upgrade', {
+    NavigationService.navigate('Upgrade', {
       centeredSubscriptionProductId
     })
 
-  handleOnPressLanguage = () => this.props.navigation.navigate('SettingsLanguages');
+  handleOnPressLanguage = () => {
+    requestAnimationFrame(() => NavigationService.navigate('SettingsLanguages'));
+  }
 
-  handleOnPressAccountPassword = () => this.props.navigation.navigate('UpdatePassword');
+  handleOnPressAccountPassword = () => NavigationService.navigate('UpdatePassword');
 
-  handleOnPressAccountEmail = () => this.props.navigation.navigate('UpdateEmail');
+  handleOnPressAccountEmail = () => NavigationService.navigate('UpdateEmail');
 
   handleOnPressAccountDelete = () => {
     return Alert.alert('Are you sure?', ALERT_SETTINGS_DELETE_USER, [
@@ -228,7 +241,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
     );
   }
 
-  render(): JSX.Element {
+  render() {
     const { activeSubscriptionName, totalAvailableVoices } = this.props;
     const { isClearingCache, cacheSize } = this.state;
 
@@ -257,7 +270,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
             title: 'Subscription',
             icon: 'star',
             iconColor: colors.tintColor,
-            onPress: () => this.handleOnPressUpgrade(),
+            onPress: this.handleOnPressUpgrade,
             chevron: true,
             value: activeSubscriptionName
           },
@@ -319,7 +332,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
             iconColor: colors.grayDark,
             chevron: true,
             onPress: () =>
-              this.props.navigation.navigate('Browser', {
+              NavigationService.navigate('Browser', {
                 url: URL_ABOUT,
                 title: 'About'
               })
@@ -331,7 +344,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
             iconColor: colors.grayDark,
             chevron: true,
             onPress: () =>
-              this.props.navigation.navigate('Browser', {
+              NavigationService.navigate('Browser', {
                 url: URL_PRIVACY_POLICY,
                 title: 'Privacy Policy'
               })
@@ -343,7 +356,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
             iconColor: colors.grayDark,
             chevron: true,
             onPress: () =>
-              this.props.navigation.navigate('Browser', {
+              NavigationService.navigate('Browser', {
                 url: URL_TERMS_OF_USE,
                 title: 'Terms of Use'
               })
@@ -355,7 +368,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
             iconColor: colors.grayDark,
             chevron: true,
             onPress: () =>
-              this.props.navigation.navigate('Browser', {
+              NavigationService.navigate('Browser', {
                 url: URL_FEEDBACK,
                 title: 'Feedback'
               })
@@ -367,7 +380,7 @@ export class SettingsContainerComponent extends React.PureComponent<Props, State
             iconColor: colors.grayDark,
             chevron: true,
             onPress: () =>
-              this.props.navigation.navigate('Browser', {
+              NavigationService.navigate('Browser', {
                 url: URL_FEEDBACK,
                 title: 'Support'
               })
@@ -428,9 +441,7 @@ const mapDispatchToProps = {
   deleteUser
 };
 
-export const SettingsContainer = withNavigation(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(SettingsContainerComponent)
-);
+export const SettingsContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SettingsContainerComponent)

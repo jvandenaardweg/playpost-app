@@ -1,6 +1,6 @@
 // tslint:disable: no-console
 import React from 'react';
-import { Modal, View } from 'react-native';
+import { InteractionManager, Modal, View } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
 
@@ -34,7 +34,9 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   onPlaybackQueueEnded: TrackPlayer.EmitterSubscription | null = null;
 
   componentDidMount(): void {
-    this.setupTrackPlayer();
+    InteractionManager.runAfterInteractions(() => {
+      this.setupTrackPlayer();
+    })
   }
 
   setupTrackPlayer = async () => {
@@ -139,21 +141,27 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     }
   }
 
-  handleOnPressPlay = async () => {
+  handleOnPressPlay = () => {
     const { playbackState } = this.props;
 
-    // Toggle play/pause/stop
-    if (playbackState === 'playing' || playbackState === TrackPlayer.STATE_PLAYING) {
-      await TrackPlayer.pause();
-      return;
-    }
+    requestAnimationFrame(async () => {
+      // Toggle play/pause/stop
+      if (playbackState === 'playing' || playbackState === TrackPlayer.STATE_PLAYING) {
+        await TrackPlayer.pause();
+        return;
+      }
 
-    await TrackPlayer.play();
+      await TrackPlayer.play();
+    });
   }
 
-  handleOnPressClose = () => this.setState({ showModal: false });
+  handleOnPressClose = () => {
+    requestAnimationFrame(() => this.setState({ showModal: false }));
+  }
 
-  handleOnShowModal = () => this.setState({ showModal: true });
+  handleOnShowModal = () => {
+    requestAnimationFrame(() => this.setState({ showModal: true }));
+  }
 
   handleOnProgressChange = async (percentage: number) => {
     const trackId = await TrackPlayer.getCurrentTrack();
@@ -201,7 +209,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     return <AudioPlayerLarge article={this.article} isLoading={isLoading} isPlaying={isPlaying} onPressPlay={this.handleOnPressPlay} onPressClose={this.handleOnPressClose} onProgressChange={this.handleOnProgressChange} />;
   }
 
-  render(): JSX.Element {
+  render() {
     const { showModal } = this.state;
 
     return (

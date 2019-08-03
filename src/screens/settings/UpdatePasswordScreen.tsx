@@ -12,6 +12,7 @@ import { updateUserPassword } from '../../reducers/user';
 
 import { selectUserError } from '../../selectors/user';
 
+import { InteractionManaged } from '../../components/InteractionManaged';
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
 interface State {
@@ -93,18 +94,20 @@ export class UpdatePasswordScreenContainer extends React.PureComponent<Props, St
     if (field === 'passwordValidation') { this.setState({ passwordValidation: value }); }
   }
 
-  render(): JSX.Element {
+  render() {
     const { password, passwordValidation, isLoading, isSuccess } = this.state;
 
     return (
-      <UpdatePasswordForm
-        password={password}
-        passwordValidation={passwordValidation}
-        isLoading={isLoading}
-        isSuccess={isSuccess}
-        onChangeText={this.handleOnChangeText}
-        onPressUpdatePassword={this.handleOnPressUpdatePassword}
-      />
+      <InteractionManaged>
+        <UpdatePasswordForm
+          password={password}
+          passwordValidation={passwordValidation}
+          isLoading={isLoading}
+          isSuccess={isSuccess}
+          onChangeText={this.handleOnChangeText}
+          onPressUpdatePassword={this.handleOnPressUpdatePassword}
+        />
+      </InteractionManaged>
     );
   }
 }

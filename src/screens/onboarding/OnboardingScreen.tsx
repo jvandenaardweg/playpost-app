@@ -11,7 +11,7 @@ export class OnboardingScreen extends React.PureComponent {
     };
   }
 
-  render(): JSX.Element {
+  render() {
     return (
       <OnboardingSlider />
     );

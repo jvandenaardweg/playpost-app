@@ -1,12 +1,15 @@
 import Analytics from 'appcenter-analytics';
 import React from 'react';
-import { Alert, Linking, NativeModules, Platform } from 'react-native';
+import { Alert, InteractionManager, Linking } from 'react-native';
 import DeepLinking from 'react-native-deep-linking';
 import { ThemeProvider } from 'react-native-elements';
+import { useScreens } from 'react-native-screens';
 import SplashScreen from 'react-native-splash-screen';
 import { Provider } from 'react-redux';
 // tslint:disable-next-line:no-submodule-imports
 import { PersistGate } from 'redux-persist/integration/react';
+
+useScreens();
 
 import { persistor, store } from './store';
 import { reactNativeElementsTheme } from './theme';
@@ -26,16 +29,7 @@ async function setAnalytics(dev: boolean): Promise<void> {
   await Analytics.setEnabled(true);
 }
 
-function setRemoteDebugging(dev: boolean): void {
-  if (Platform.OS !== 'ios') { return; }
-
-  if (!dev) { return; }
-
-  NativeModules.DevSettings.setIsDebuggingRemotely(true);
-}
-
 setAnalytics(__DEV__);
-setRemoteDebugging(__DEV__);
 
 interface State {
   errorShown: boolean;
@@ -48,35 +42,38 @@ export default class App extends React.PureComponent<State> {
     errorShown: false
   }
 
-  async componentDidMount(): Promise<void> {
-    Linking.addEventListener('url', this.handleUrl);
+  componentDidMount() {
+    InteractionManager.runAfterInteractions(async () => {
+      Linking.addEventListener('url', this.handleUrl);
 
-    DeepLinking.addScheme('playpost://');
-    DeepLinking.addScheme('https://');
+      DeepLinking.addScheme('playpost://');
+      DeepLinking.addScheme('https://');
 
-    DeepLinking.addRoute('/login/reset-password/:resetPasswordToken', ({ path, resetPasswordToken }: { path: string; resetPasswordToken: string }) => {
-      // playpost://update-password/123ABC
-      NavigationService.navigate('login/reset-password', { resetPasswordToken });
-    });
-
-    DeepLinking.addRoute(
-      '/playpost.app/login/reset-password/:resetPasswordToken',
-      ({ path, resetPasswordToken }: { path: string; resetPasswordToken: string }) => {
+      DeepLinking.addRoute('/login/reset-password/:resetPasswordToken', ({ path, resetPasswordToken }: { path: string; resetPasswordToken: string }) => {
         // playpost://update-password/123ABC
         NavigationService.navigate('login/reset-password', { resetPasswordToken });
-      }
-    );
+      });
 
-    try {
-      const url = await Linking.getInitialURL();
+      DeepLinking.addRoute(
+        '/playpost.app/login/reset-password/:resetPasswordToken',
+        ({ path, resetPasswordToken }: { path: string; resetPasswordToken: string }) => {
+          // playpost://update-password/123ABC
+          NavigationService.navigate('login/reset-password', { resetPasswordToken });
+        }
+      );
 
-      if (url) {
-        Linking.openURL(url);
+      try {
+        const url = await Linking.getInitialURL();
+
+        if (url) {
+          Linking.openURL(url);
+        }
+      } catch (err) {
+        const errorMessage = (err && err.message) ? err.message : 'An uknown error happened while opening a URL.';
+        Alert.alert('Oops!', errorMessage);
       }
-    } catch (err) {
-      const errorMessage = (err && err.message) ? err.message : 'An uknown error happened while opening a URL.';
-      Alert.alert('Oops!', errorMessage);
-    }
+    })
+
   }
 
   componentWillUnmount(): void {
@@ -120,7 +117,7 @@ export default class App extends React.PureComponent<State> {
     );
   }
 
-  render(): JSX.Element {
+  render() {
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
@@ -128,7 +125,6 @@ export default class App extends React.PureComponent<State> {
             <NetworkProvider>
               <AppStateProvider>
                 <APIErrorAlertContainer>
-                  {/* Below a method to have the Navigator available everywhere. Just import NavigationService and use: NavigationService.navigate(routeName)  */}
                   <AppNavigator
                     ref={navigatorRef => {
                       NavigationService.setTopLevelNavigator(navigatorRef);

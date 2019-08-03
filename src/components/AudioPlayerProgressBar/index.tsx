@@ -39,7 +39,7 @@ export class AudioPlayerProgressBar extends ProgressComponent<Props, State> {
     return (`0${Math.floor(val)}`).slice(-2);
   }
 
-  render(): JSX.Element {
+  render() {
     let percentage = 0;
     const { position, duration } = this.state;
 
