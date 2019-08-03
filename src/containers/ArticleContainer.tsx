@@ -216,10 +216,10 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         [
           {
             text: 'Cancel',
-            style: 'cancel'
           },
           {
-            text: 'Upgrade to Premium or Plus',
+            text: 'Start free trial',
+            style: 'cancel',
             onPress: () => this.props.navigation.navigate('Upgrade')
           },
           {
@@ -295,12 +295,12 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         'Because you are on a free account, we will use the already available voice for this article. Which is a different voice. Premium users do not have this limitation.',
         [
           {
-            text: 'Upgrade to Premium or Plus',
+            text: 'Start free trial',
+            style: 'cancel',
             onPress: () => this.props.navigation.navigate('Upgrade')
           },
           {
-            text: 'OK',
-            style: 'cancel'
+            text: 'OK'
           }
         ]
       );
