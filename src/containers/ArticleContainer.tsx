@@ -53,7 +53,7 @@ import { getUser } from '../reducers/user';
 import { selectDownloadedAudiofiles } from '../selectors/audiofiles';
 import { selectPlayerCurrentArticleId, selectPlayerPlaybackState, selectPlayerPreviousArticleId, selectPlayerTrack } from '../selectors/player';
 import { selectIsSubscribed } from '../selectors/subscriptions';
-import { selectUserSelectedVoiceByLanguageName, selectUserHasSubscribedBefore } from '../selectors/user';
+import { selectUserHasSubscribedBefore, selectUserSelectedVoiceByLanguageName } from '../selectors/user';
 import { selectLanguagesWithActiveVoices, selectLanguagesWithActiveVoicesByLanguageName } from '../selectors/voices';
 
 interface State {

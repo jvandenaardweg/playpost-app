@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import { selectDeviceLocale, selectUserDetails, selectUserError, selectUserErrorSaveSelectedVoice, selectUserIsLoading, selectUserSelectedVoiceByLanguageName, selectUserSelectedVoices, selectUserSubscriptions, userSelector, selectUserHasSubscribedBefore } from '../user';
+import { selectDeviceLocale, selectUserDetails, selectUserError, selectUserErrorSaveSelectedVoice, selectUserHasSubscribedBefore, selectUserIsLoading, selectUserSelectedVoiceByLanguageName, selectUserSelectedVoices, selectUserSubscriptions, userSelector } from '../user';
 
 import { rootReducer } from '../../reducers';
 import { initialState } from '../../reducers/user';
