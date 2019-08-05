@@ -115,4 +115,16 @@ describe('voices selector', () => {
 
     expect(selectLanguagesWithActiveVoicesByLanguageName(exampleState)).toMatchSnapshot();
   });
+
+  it('selectLanguagesWithActiveVoicesByLanguageName should return an empty object when there are none', () => {
+    const exampleState = {
+      ...rootState,
+      voices: {
+        ...rootState.voices,
+        languages: []
+      }
+    };
+
+    expect(selectLanguagesWithActiveVoicesByLanguageName(exampleState)).toMatchObject({});
+  });
 });

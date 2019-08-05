@@ -29,6 +29,10 @@ export const selectVoicesError = createSelector(
 export const selectSortedLanguages = createDeepEqualSelector(
   [selectLanguages],
   languages => {
+    if (!languages.length) {
+      return [];
+    }
+
     // First, sort the voices
     const languagesWithSortedVoices = languages.map((language) => {
       const sortedVoices = language.voices && [...language.voices].sort((a, b) => {
@@ -53,6 +57,10 @@ export const selectSortedLanguages = createDeepEqualSelector(
 export const selectTotalAvailableVoices = createDeepEqualSelector(
   [selectSortedLanguages],
   languages => {
+    if (!languages.length) {
+      return 0;
+    }
+
     return languages.reduce((prev, curr) => {
       if (!curr.voices || !curr.voices.length) { return prev; }
       const activeVoices = curr.voices && curr.voices.filter(voice => voice.isActive);
@@ -67,6 +75,10 @@ export const selectTotalAvailableVoices = createDeepEqualSelector(
 export const selectLanguagesWithActiveVoices = createDeepEqualSelector(
   [selectSortedLanguages, selectDeviceLocale],
   (languages, deviceLocale) => {
+    if (!languages.length) {
+      return [];
+    }
+
     // Return languages with active voices
     const languagesWithActiveVoices = languages
       .map(language => {
@@ -102,6 +114,10 @@ export const selectDownloadedVoicePreviews = createDeepEqualSelector(
 export const selectLanguagesWithActiveVoicesByLanguageName = createDeepEqualSelector(
   [selectLanguagesWithActiveVoices],
   languages => {
+    if (!languages.length) {
+      return {};
+    }
+
     // Convert the array to an object
     // So we can easily pick a language inside our components
     const languagesWithActiveVoicesByLanguageName: AvailableVoicesByLanguageName = languages.reduce((prev, curr) => {
