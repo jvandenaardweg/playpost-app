@@ -50,12 +50,12 @@ export const selectDeviceLocale = createSelector(
 );
 
 export const selectUserSelectedVoices = createDeepEqualSelector(
-  [userSelector],
-  (user) => {
-    if (!user.details || !user.details.voiceSettings.length) {
+  [selectUserDetails],
+  (userDetails) => {
+    if (!userDetails || !userDetails.voiceSettings || !userDetails.voiceSettings.length) {
       return [];
     }
-    return user.details.voiceSettings.map(userVoiceSetting => userVoiceSetting.voice);
+    return userDetails.voiceSettings.map(userVoiceSetting => userVoiceSetting.voice);
   }
 );
 

@@ -81,7 +81,7 @@ describe('user selector', () => {
     const exampleUserDetailsState2 = {
       ...rootState,
       user: {
-        ...rootState.user
+        ...initialState
       }
     };
     expect(selectUserSelectedVoices(exampleUserDetailsState2)).toEqual([]);
