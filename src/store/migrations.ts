@@ -12,5 +12,12 @@ export const migrations = {
       ...state.voices,
       deviceLocale: undefined
     }
+  }),
+  5: (state: RootState) => ({
+    ...state,
+    user: {
+      ...state.user,
+      isPremium: undefined // Remove isPremium from user reducer
+    },
   })
 }

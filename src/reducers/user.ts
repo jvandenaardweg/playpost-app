@@ -45,7 +45,6 @@ export type UserState = Readonly<{
   isLoadingUpdateEmail: boolean;
   isLoadingSaveSelectedVoice: boolean;
   details: Api.User | null;
-  isPremium: boolean;
   error: string;
   errorSaveSelectedVoice: string;
   deviceLocale: string;
@@ -58,7 +57,6 @@ export const initialState: UserState = {
   isLoadingUpdateEmail: false,
   isLoadingSaveSelectedVoice: false,
   details: null,
-  isPremium: false,
   error: '',
   errorSaveSelectedVoice: '',
   deviceLocale: DeviceInfo.getDeviceLocale()
