@@ -4,10 +4,10 @@ import {
   selectLanguages,
   selectLanguagesWithActiveVoices,
   selectLanguagesWithActiveVoicesByLanguageName,
+  selectSortedLanguages,
   selectTotalAvailableVoices,
   selectVoicesError,
-  voicesSelector,
-  selectSortedLanguages
+  voicesSelector
 } from '../voices';
 
 import { rootReducer } from '../../reducers';
