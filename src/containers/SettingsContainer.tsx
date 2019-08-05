@@ -14,7 +14,7 @@ import { resetAudiofilesState } from '../reducers/audiofiles';
 import { deleteUser, getUser } from '../reducers/user';
 import { resetDownloadedVoices, resetVoicesState } from '../reducers/voices';
 
-import { selectUserDetails } from '../selectors/user';
+import { selectUserDetails, selectUserHasSubscribedBefore } from '../selectors/user';
 
 import { CustomSectionList } from '../components/CustomSectionList';
 import { Usage } from '../components/Usage';
@@ -242,7 +242,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
   }
 
   render() {
-    const { activeSubscriptionName, totalAvailableVoices } = this.props;
+    const { activeSubscriptionName, totalAvailableVoices, user, activeSubscriptionProductId, userHasSubscribedBefore } = this.props;
     const { isClearingCache, cacheSize } = this.state;
 
     const sectionListData = [
@@ -396,10 +396,10 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
         ListHeaderComponent={
           <View style={{ marginLeft: spacing.default * -1, marginRight: spacing.default * -1, marginBottom: spacing.small }}>
             <Usage
-              user={this.props.user}
-              activeSubscriptionProductId={this.props.activeSubscriptionProductId}
-              activeSubscriptionName={this.props.activeSubscriptionName}
+              user={user}
+              activeSubscriptionProductId={activeSubscriptionProductId}
               onPressUpgrade={this.handleOnPressUpgrade}
+              userHasSubscribedBefore={userHasSubscribedBefore}
             />
           </View>
         }
@@ -423,6 +423,7 @@ interface StateProps {
   activeSubscriptionName: ReturnType<typeof selectActiveSubscriptionName>;
   activeSubscriptionProductId: ReturnType<typeof selectActiveSubscriptionProductId>;
   totalAvailableVoices: ReturnType<typeof selectTotalAvailableVoices>;
+  userHasSubscribedBefore: ReturnType<typeof selectUserHasSubscribedBefore>;
 }
 
 const mapStateToProps = (state: RootState) => ({
@@ -430,7 +431,8 @@ const mapStateToProps = (state: RootState) => ({
   isSubscribed: selectIsSubscribed(state),
   activeSubscriptionName: selectActiveSubscriptionName(state),
   activeSubscriptionProductId: selectActiveSubscriptionProductId(state),
-  totalAvailableVoices: selectTotalAvailableVoices(state)
+  totalAvailableVoices: selectTotalAvailableVoices(state),
+  userHasSubscribedBefore: selectUserHasSubscribedBefore(state),
 });
 
 const mapDispatchToProps = {

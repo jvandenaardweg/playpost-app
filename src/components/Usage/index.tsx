@@ -9,11 +9,11 @@ import styles from './styles';
 interface Props {
   user: Api.User | null;
   activeSubscriptionProductId: string;
-  activeSubscriptionName: string;
+  userHasSubscribedBefore: boolean;
   onPressUpgrade(upgradeScreenCenteredSubscriptionProductId?: string): void;
 }
 
-export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProductId, onPressUpgrade, activeSubscriptionName }) => {
+export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProductId, onPressUpgrade, userHasSubscribedBefore }) => {
   if (!user) { return null; }
 
   const limitSecondsPerMonth = user.limits.audiofiles.limitSecondsPerMonth;
@@ -26,7 +26,7 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
 
   const showUpgradeButton = activeSubscriptionProductId === 'free' || activeSubscriptionProductId === 'com.aardwegmedia.playpost.premium';
 
-  const upgradeButtonTitle = getUpgradeButtonTitle(activeSubscriptionProductId);
+  const upgradeButtonTitle = getUpgradeButtonTitle(activeSubscriptionProductId, userHasSubscribedBefore);
   const upgradeMessage = getUpgradeMessage(activeSubscriptionProductId);
 
   const upgradeScreenCenteredSubscriptionProductId =
@@ -88,9 +88,13 @@ function getUpgradeMessage(activeSubscriptionProductId: string): string {
   return ''
 }
 
-function getUpgradeButtonTitle(activeSubscriptionProductId: string): string {
-  if (activeSubscriptionProductId === 'free') {
+function getUpgradeButtonTitle(activeSubscriptionProductId: string, userHasSubscribedBefore: boolean): string {
+  if (activeSubscriptionProductId === 'free' && !userHasSubscribedBefore) {
     return 'Start free Premium or Plus trial'
+  }
+
+  if (activeSubscriptionProductId === 'free') {
+    return 'Upgrade to Premium or Plus'
   }
 
   if (activeSubscriptionProductId === 'com.aardwegmedia.playpost.premium') {
