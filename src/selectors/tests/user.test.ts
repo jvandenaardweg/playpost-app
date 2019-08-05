@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import { selectDeviceLocale, selectUserDetails, selectUserError, selectUserErrorSaveSelectedVoice, selectUserIsLoading, selectUserSelectedVoiceByLanguageName, selectUserSelectedVoices, selectUserSubscriptions, userSelector } from '../user';
+import { selectDeviceLocale, selectUserDetails, selectUserError, selectUserErrorSaveSelectedVoice, selectUserIsLoading, selectUserSelectedVoiceByLanguageName, selectUserSelectedVoices, selectUserSubscriptions, userSelector, selectUserHasSubscribedBefore } from '../user';
 
 import { rootReducer } from '../../reducers';
 import { initialState } from '../../reducers/user';
@@ -141,5 +141,33 @@ describe('user selector', () => {
     expect(selectDeviceLocale(exampleUserStateOne)).toEqual('en');
     expect(selectDeviceLocale(exampleUserStateTwo)).toEqual('en');
     expect(selectDeviceLocale(exampleUserStateThree)).toEqual('');
+  });
+
+  it('selectUserHasSubscribedBefore should return true when the user has previous subscriptions', () => {
+    const exampleUserState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: exampleUser
+      }
+    };
+
+    expect(selectUserHasSubscribedBefore(exampleUserState)).toEqual(true);
+  });
+
+  it('selectUserHasSubscribedBefore should return false when the user has no previous subscriptions', () => {
+    const exampleUserCopy = {...exampleUser};
+
+    exampleUserCopy.inAppSubscriptions = [];
+
+    const exampleUserStateWithoutSubscriptions = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: exampleUserCopy
+      }
+    };
+
+    expect(selectUserHasSubscribedBefore(exampleUserStateWithoutSubscriptions)).toEqual(false);
   });
 });

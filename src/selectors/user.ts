@@ -80,13 +80,13 @@ export const selectUserSubscriptions = createDeepEqualSelector(
 );
 
 export const selectUserHasSubscribedBefore = createDeepEqualSelector(
-  [selectUserDetails],
-  userDetails => {
-    if (!userDetails || !userDetails.inAppSubscriptions || !userDetails.inAppSubscriptions.length) {
+  [selectUserSubscriptions],
+  userInAppSubscriptions => {
+    if (!userInAppSubscriptions || !userInAppSubscriptions.length) {
       return false;
     }
 
     // If the user has a previous in app subscription record, return true
-    return !!userDetails.inAppSubscriptions.length;
+    return !!userInAppSubscriptions.length;
   }
 );
