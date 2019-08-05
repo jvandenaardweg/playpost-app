@@ -26,7 +26,7 @@ import { RootState } from '../reducers';
 import { validateSubscriptionReceipt } from '../reducers/subscriptions';
 import { getUser } from '../reducers/user';
 import { selectActiveSubscriptionProductId, selectSubscriptionsError, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
-import { selectUserDetails } from '../selectors/user';
+import { selectUserDetails, selectUserHasSubscribedBefore } from '../selectors/user';
 import { selectTotalAvailableVoices } from '../selectors/voices';
 
 interface State {
@@ -34,14 +34,27 @@ interface State {
   readonly isLoadingBuySubscription: boolean;
   readonly isLoadingRestorePurchases: boolean;
   readonly isLoadingSubscriptionItems: boolean;
+  readonly isLoadingPurchases: boolean;
   readonly isPurchased: boolean;
   readonly selectedProductId: string;
+  readonly purchases: RNIap.Purchase[];
+  readonly centeredSubscriptionProductId: string;
 }
 
 interface IProps {
   navigation: NavigationScreenProp<NavigationRoute>;
   centeredSubscriptionProductId: string;
 }
+
+export interface SubscriptionFeature {
+  productId: string;
+  title: string;
+  price: string | null;
+  body: string[];
+  footer: string;
+}
+
+export type SubscriptionFeatures = SubscriptionFeature[];
 
 export type Props = IProps & StateProps & DispatchProps;
 
@@ -55,7 +68,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     return userDetails.id;
   }
 
-  get subscriptionFeatures(): object[] {
+  get subscriptionFeatures(): SubscriptionFeatures {
     const { totalAvailableVoices } = this.props;
 
     return [
@@ -90,8 +103,11 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     isLoadingBuySubscription: false,
     isLoadingRestorePurchases: false,
     isLoadingSubscriptionItems: false,
+    isLoadingPurchases: false,
     isPurchased: false,
-    selectedProductId: ''
+    purchases: [] as RNIap.Purchase[],
+    selectedProductId: '',
+    centeredSubscriptionProductId: ''
   };
 
   /* tslint:disable-next-line no-any */
@@ -109,6 +125,8 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       this.handleClose();
       return Alert.alert('Upgrading requires internet', ALERT_GENERIC_INTERNET_REQUIRED);
     }
+
+    this.setState({ centeredSubscriptionProductId: this.props.centeredSubscriptionProductId });
 
     this.fetchAvailableSubscriptionItems(SUBSCRIPTION_PRODUCT_IDS);
 
@@ -305,7 +323,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
     Analytics.trackEvent('Subscriptions upgrade', { Status: 'upgrading', ProductId: productId, UserId: this.analyticsUserId });
 
-    return this.setState({ isLoadingBuySubscription: true, selectedProductId: productId }, async () => {
+    return this.setState({ isLoadingBuySubscription: true, selectedProductId: productId, centeredSubscriptionProductId: productId }, async () => {
       try {
         const upgradeResult = await this.buySubscription(productId);
         return upgradeResult;
@@ -368,7 +386,18 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   }
 
   getAvailablePurchases = (): Promise<RNIap.Purchase[]> => {
-    return RNIap.getAvailablePurchases();
+    return new Promise(async (resolve, reject) => {
+      this.setState({ isLoadingPurchases: true }, async () => {
+        try {
+          const purchases = await RNIap.getAvailablePurchases();
+          resolve(purchases);
+        } catch (err) {
+          reject(err);
+        } finally {
+          this.setState({ isLoadingPurchases: false })
+        }
+      });
+    });
   }
 
   fetchAvailableSubscriptionItems = async (subscriptionProductIds: string[]) => {
@@ -379,6 +408,8 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         if (Platform.OS === 'android') {
           await RNIap.consumeAllItemsAndroid();
         }
+
+        await this.getAvailablePurchases();
 
         if (!result) { throw new Error(ALERT_SUBSCRIPTION_INIT_FAIL); }
 
@@ -419,15 +450,28 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     return purchase;
   }
 
+  /**
+   * A method to check if a user has previously already used a subscription,
+   * if so, it is not eligible for a trial and we should not show "Start free trial" button
+   *
+   * Technically this is already handled by Apple so a user cannot start a trial twice
+   */
+  get isEligibleForTrial() {
+    const { userHasSubscribedBefore } = this.props;
+
+    return !userHasSubscribedBefore;
+  }
+
   render() {
-    const { isLoadingRestorePurchases, isLoadingBuySubscription, isLoadingSubscriptionItems, subscriptions } = this.state;
-    const { activeSubscriptionProductId, centeredSubscriptionProductId } = this.props;
+    const { isLoadingRestorePurchases, isLoadingBuySubscription, isLoadingSubscriptionItems, subscriptions, centeredSubscriptionProductId } = this.state;
+    const { activeSubscriptionProductId } = this.props;
 
     return (
       <Upgrade
         isLoadingSubscriptionItems={isLoadingSubscriptionItems}
         isLoadingBuySubscription={isLoadingBuySubscription}
         isLoadingRestorePurchases={isLoadingRestorePurchases}
+        isEligibleForTrial={this.isEligibleForTrial}
         subscriptions={subscriptions}
         activeSubscriptionProductId={activeSubscriptionProductId}
         centeredSubscriptionProductId={centeredSubscriptionProductId}
@@ -449,6 +493,7 @@ interface StateProps {
   activeSubscriptionProductId: ReturnType<typeof selectActiveSubscriptionProductId>;
   userDetails: ReturnType<typeof selectUserDetails>;
   totalAvailableVoices: ReturnType<typeof selectTotalAvailableVoices>;
+  userHasSubscribedBefore: ReturnType<typeof selectUserHasSubscribedBefore>;
 }
 
 interface DispatchProps {
@@ -461,7 +506,8 @@ const mapStateToProps = (state: RootState): StateProps => ({
   validationResult: selectSubscriptionsValidationResult(state),
   activeSubscriptionProductId: selectActiveSubscriptionProductId(state),
   userDetails: selectUserDetails(state),
-  totalAvailableVoices: selectTotalAvailableVoices(state)
+  totalAvailableVoices: selectTotalAvailableVoices(state),
+  userHasSubscribedBefore: selectUserHasSubscribedBefore(state)
 });
 
 const mapDispatchToProps = {

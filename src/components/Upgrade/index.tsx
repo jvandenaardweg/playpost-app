@@ -16,6 +16,7 @@ interface Props {
   isLoadingSubscriptionItems: boolean;
   isLoadingBuySubscription: boolean;
   isLoadingRestorePurchases: boolean;
+  isEligibleForTrial: boolean;
   subscriptions?: Array<RNIap.Subscription<string>>;
   /* tslint:disable-next-line no-any */
   subscriptionFeatures: any[];
@@ -34,6 +35,7 @@ export const Upgrade: React.FC<Props> = React.memo(
     isLoadingSubscriptionItems,
     isLoadingBuySubscription,
     isLoadingRestorePurchases,
+    isEligibleForTrial,
     subscriptions,
     subscriptionFeatures,
     activeSubscriptionProductId,
@@ -110,7 +112,7 @@ export const Upgrade: React.FC<Props> = React.memo(
                 const title = subscriptionFeature.title; // Do not use the subscription.title, this appears to be missing on some localizations
 
 
-                const hasTrial = featureSubscription && featureSubscription.introductoryPricePaymentModeIOS === 'FREETRIAL';
+                const hasTrial = featureSubscription && featureSubscription.introductoryPricePaymentModeIOS === 'FREETRIAL' && isEligibleForTrial;
                 // const trialPrice = (hasTrial && featureSubscription) ? featureSubscription.introductoryPrice : ''; // €0,00, $0,00
                 const trialDurationNumber = (hasTrial && featureSubscription) ? featureSubscription.introductoryPriceNumberOfPeriodsIOS : ''; // 3, 7, 1, 14 etc...
                 const trialDurationPeriod = (hasTrial && featureSubscription) ? featureSubscription.introductoryPriceSubscriptionPeriodIOS : ''; // DAY, WEEK, MONTH, YEAR
