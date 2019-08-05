@@ -53,7 +53,7 @@ import { getUser } from '../reducers/user';
 import { selectDownloadedAudiofiles } from '../selectors/audiofiles';
 import { selectPlayerCurrentArticleId, selectPlayerPlaybackState, selectPlayerPreviousArticleId, selectPlayerTrack } from '../selectors/player';
 import { selectIsSubscribed } from '../selectors/subscriptions';
-import { selectUserSelectedVoiceByLanguageName } from '../selectors/user';
+import { selectUserSelectedVoiceByLanguageName, selectUserHasSubscribedBefore } from '../selectors/user';
 import { selectLanguagesWithActiveVoices, selectLanguagesWithActiveVoicesByLanguageName } from '../selectors/voices';
 
 interface State {
@@ -201,7 +201,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   handleCreateAudiofile = async (): Promise<void> => {
-    const { article, languagesWithActiveVoices, userSelectedVoiceByLanguageName, isSubscribed } = this.props;
+    const { article, languagesWithActiveVoices, userSelectedVoiceByLanguageName, isSubscribed, userHasSubscribedBefore } = this.props;
     const articleLanguageName = article.language ? article.language.name : '';
     const userSelectedVoice = userSelectedVoiceByLanguageName[articleLanguageName];
 
@@ -218,7 +218,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
             text: 'Cancel',
           },
           {
-            text: 'Start free trial',
+            text: (userHasSubscribedBefore) ? 'Upgrade to Premium or Plus' : 'Start free trial',
             style: 'cancel',
             onPress: () => this.props.navigation.navigate('Upgrade')
           },
@@ -280,7 +280,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   alertIfDifferentSelectedVoice = (): void => {
-    const { article, playerCurrentArticleId } = this.props;
+    const { article, playerCurrentArticleId, userHasSubscribedBefore } = this.props;
 
     const audiofileWithUsersSelectedVoice = this.getAudiofileByUserSelectedVoice();
     const selectedVoiceId = audiofileWithUsersSelectedVoice && audiofileWithUsersSelectedVoice.voice.id;
@@ -295,7 +295,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         'Because you are on a free account, we will use the already available voice for this article. Which is a different voice. Premium users do not have this limitation.',
         [
           {
-            text: 'Start free trial',
+            text: (userHasSubscribedBefore) ? 'Upgrade to Premium or Plus' : 'Start free trial',
             style: 'cancel',
             onPress: () => this.props.navigation.navigate('Upgrade')
           },
@@ -597,6 +597,7 @@ interface StateProps {
   readonly playerPreviousArticleId: ReturnType<typeof selectPlayerPreviousArticleId>;
   readonly languagesWithActiveVoices: ReturnType<typeof selectLanguagesWithActiveVoices>;
   readonly availableVoicesByLanguageName: ReturnType<typeof selectLanguagesWithActiveVoicesByLanguageName>;
+  readonly userHasSubscribedBefore: ReturnType<typeof selectUserHasSubscribedBefore>;
 }
 
 interface DispatchProps {
@@ -626,7 +627,8 @@ const mapStateToProps = (state: RootState, props: Props) => ({
   playerCurrentArticleId: selectPlayerCurrentArticleId(state),
   playerPreviousArticleId: selectPlayerPreviousArticleId(state),
   languagesWithActiveVoices: selectLanguagesWithActiveVoices(state),
-  availableVoicesByLanguageName: selectLanguagesWithActiveVoicesByLanguageName(state)
+  availableVoicesByLanguageName: selectLanguagesWithActiveVoicesByLanguageName(state),
+  userHasSubscribedBefore: selectUserHasSubscribedBefore(state),
 });
 
 const mapDispatchToProps: DispatchProps = {

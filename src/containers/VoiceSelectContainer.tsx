@@ -17,7 +17,7 @@ import { setDownloadedVoice } from '../reducers/voices';
 
 import { selectPlayerPlaybackState, selectPlayerTrack } from '../selectors/player';
 import { selectIsSubscribed } from '../selectors/subscriptions';
-import { selectUserErrorSaveSelectedVoice, selectUserSelectedVoiceByLanguageName } from '../selectors/user';
+import { selectUserErrorSaveSelectedVoice, selectUserSelectedVoiceByLanguageName, selectUserHasSubscribedBefore } from '../selectors/user';
 import { selectDownloadedVoicePreviews, selectLanguagesWithActiveVoicesByLanguageName } from '../selectors/voices';
 
 import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_VOICE_CHANGE, ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE } from '../constants/messages';
@@ -82,7 +82,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
 
   handleOnListItemPress = (voice: Api.Voice) => {
     const { isConnected } = this.context;
-    const { isSubscribed } = this.props;
+    const { isSubscribed, userHasSubscribedBefore } = this.props;
     const isSelected = this.isSelected(voice);
 
     // If it's already selected, do nothing
@@ -96,11 +96,11 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     // Show a warning
     if (!isSubscribed) {
       return Alert.alert(
-        'Start your free trial',
+        (userHasSubscribedBefore) ? 'Upgrade to Premium or Plus' : 'Start your free trial',
         'Changing voices is only available for Premium and Plus users. Start a Free trial to experience these voices.\n\nYou can preview this voice by using the play button on the left.',
         [
           {
-            text: 'Start Free trial',
+            text: (userHasSubscribedBefore) ? 'Upgrade' : 'Start Free trial',
             style: 'cancel',
             onPress: () => this.props.navigation.navigate('Upgrade')
           },
@@ -397,6 +397,7 @@ interface StateProps {
   readonly userSelectedVoiceByLanguageName: ReturnType<typeof selectUserSelectedVoiceByLanguageName>;
   readonly isSubscribed: ReturnType<typeof selectIsSubscribed>;
   readonly errorSaveSelectedVoice: ReturnType<typeof selectUserErrorSaveSelectedVoice>;
+  readonly userHasSubscribedBefore: ReturnType<typeof selectUserHasSubscribedBefore>;
 }
 
 const mapStateToProps = (state: RootState) => ({
@@ -406,7 +407,8 @@ const mapStateToProps = (state: RootState) => ({
   languagesWithActiveVoicesByLanguageName: selectLanguagesWithActiveVoicesByLanguageName(state),
   userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state),
   isSubscribed: selectIsSubscribed(state),
-  errorSaveSelectedVoice: selectUserErrorSaveSelectedVoice(state)
+  errorSaveSelectedVoice: selectUserErrorSaveSelectedVoice(state),
+  userHasSubscribedBefore: selectUserHasSubscribedBefore(state)
 });
 
 const mapDispatchToProps = {
