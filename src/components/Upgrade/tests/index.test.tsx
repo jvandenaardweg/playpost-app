@@ -19,6 +19,7 @@ describe('Upgrade', () => {
           isLoadingSubscriptionItems={false}
           isLoadingBuySubscription={false}
           isLoadingRestorePurchases={false}
+          isEligibleForTrial={true}
           subscriptions={[]}
           activeSubscriptionProductId={'free'}
           centeredSubscriptionProductId={'com.aardwegmedia.playpost.premium'}
