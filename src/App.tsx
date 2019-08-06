@@ -99,8 +99,11 @@ export default class App extends React.PureComponent<State> {
     // When we do not hide the splashscreen, our Alert won't show
     SplashScreen.hide();
 
+    const Info = (info) ? JSON.stringify(info) : '';
+    const Error = (error) ? JSON.stringify(error) : '';
+
     // Track the error
-    Analytics.trackEvent('App catch error', { Error: `${error}`, Info: `${info}` });
+    Analytics.trackEvent('App catch error', { Error, Info });
 
     // Show the alert to the user
     Alert.alert(
