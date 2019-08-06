@@ -206,7 +206,9 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     const userSelectedVoice = userSelectedVoiceByLanguageName[articleLanguageName];
 
     // If the selected voice of the user, is a Premium voice, but the user has no Premium account active
-    if (userSelectedVoice && userSelectedVoice.isPremium && !isSubscribed) {
+    // On free accounts, voices with isLanguageDefault are "free" voices
+    // So, if the user has not selected a default voice and is not subscribed, he cannot use this voice
+    if (!userSelectedVoice.isLanguageDefault && !isSubscribed) {
       // Show an Alert he needs to change his default voice for the "userSelectedVoice.name" language
       const selectedVoiceLanguageName = userSelectedVoice.language.name;
 
