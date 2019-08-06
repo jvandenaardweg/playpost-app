@@ -26,5 +26,16 @@ export default StyleSheet.create({
     color: colors.grayDark,
     fontSize: fonts.fontSize.small,
     fontWeight: fonts.fontWeight.medium
+  },
+  listItemContainer: {
+    overflow: 'hidden',
+    marginLeft: spacing.default,
+    marginRight: spacing.default
+  },
+  listItemContainerBorderTopRadius: {
+    borderTopLeftRadius: 8, borderTopRightRadius: 8
+  },
+  listItemContainerBorderBottomRadius: {
+    borderBottomLeftRadius: 8, borderBottomRightRadius: 8
   }
 });
