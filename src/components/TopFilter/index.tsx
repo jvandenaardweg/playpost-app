@@ -34,9 +34,9 @@ export const TopFilter: React.FC<Props> = React.memo(({ filters }) => (
 
           {filter.options.map(optionLabel => {
             const isSelected = filter.selectedOption === optionLabel;
-            const backgroundColor = (isSelected) ? colors.tintColor : colors.grayLightest;
-            const labelColor = (isSelected) ? colors.white : colors.black;
-            const iconElement = (isSelected) ? <Icon.FontAwesome5 name="check" solid size={10} color={colors.white} /> : undefined;
+            const backgroundColor = (isSelected) ? colors.tintColorLight : colors.grayLightest;
+            const labelColor = (isSelected) ? colors.tintColor : colors.black;
+            const iconElement = (isSelected) ? <Icon.FontAwesome5 name="check" solid size={10} color={colors.tintColor} /> : undefined;
 
             return (
               <View style={styles.filterOption} key={optionLabel}>

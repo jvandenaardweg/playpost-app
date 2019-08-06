@@ -1,4 +1,6 @@
 const tintColor = '#037DE2';
+const tintColorLight = '#D9E9FD';
+const tintColorDark = '#004A87';
 const black = '#000000';
 const grayDarkest = '#222222';
 const grayDarker = '#444444';
@@ -18,6 +20,8 @@ const green = '#03A87C';
 
 export default {
   tintColor,
+  tintColorLight,
+  tintColorDark,
   black,
   grayDarkest,
   grayDarker,

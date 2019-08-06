@@ -11,7 +11,7 @@ type Props = StateProps & NavigationInjectedProps;
 
 export class ButtonUpgradeContainerComponent extends React.PureComponent<Props> {
   handleOnPressUpgrade = () => {
-    NavigationService.navigate('Upgrade')
+    requestAnimationFrame(() => NavigationService.navigate('Upgrade'))
   }
 
   render() {

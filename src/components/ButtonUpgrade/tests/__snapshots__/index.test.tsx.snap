@@ -20,13 +20,8 @@ exports[`ButtonUpgrade rendering should render correctly 1`] = `
     style={
       Array [
         Object {
-          "alignItems": "center",
-          "backgroundColor": "#e5e5e5",
           "borderRadius": 28,
-          "flexDirection": "row",
           "height": 28,
-          "paddingLeft": 12,
-          "paddingRight": 12,
         },
         Object {
           "backgroundColor": "#037DE2",
@@ -35,51 +30,69 @@ exports[`ButtonUpgrade rendering should render correctly 1`] = `
     }
     testID="ButtonTiny-Button"
   >
-    <Text
+    <View
       style={
         Array [
           Object {
-            "fontSize": 13,
-            "fontWeight": "600",
+            "alignItems": "center",
+            "borderRadius": 28,
+            "flexDirection": "row",
+            "height": 28,
+            "paddingLeft": 12,
+            "paddingRight": 12,
           },
           Object {
-            "color": "#ffffff",
+            "backgroundColor": "#037DE2",
           },
         ]
       }
     >
-      Upgrade
-    </Text>
-    <View
-      style={
-        Object {
-          "marginLeft": 6,
-          "marginRight": -1,
-        }
-      }
-    >
       <Text
-        allowFontScaling={false}
         style={
           Array [
             Object {
+              "fontSize": 13,
+              "fontWeight": "600",
+            },
+            Object {
               "color": "#ffffff",
-              "fontSize": 12,
-            },
-            undefined,
-            Object {
-              "fontFamily": "FontAwesome5Free-Solid",
-              "fontStyle": "normal",
-              "fontWeight": "normal",
-            },
-            Object {
-              "fontWeight": "900",
             },
           ]
         }
       >
-        
+        Upgrade
       </Text>
+      <View
+        style={
+          Object {
+            "marginLeft": 6,
+            "marginRight": -1,
+          }
+        }
+      >
+        <Text
+          allowFontScaling={false}
+          style={
+            Array [
+              Object {
+                "color": "#ffffff",
+                "fontSize": 12,
+              },
+              undefined,
+              Object {
+                "fontFamily": "FontAwesome5Free-Solid",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+              Object {
+                "fontWeight": "900",
+              },
+            ]
+          }
+        >
+          
+        </Text>
+      </View>
     </View>
   </View>
 </View>

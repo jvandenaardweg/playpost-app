@@ -95,12 +95,18 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     // If it's a premium voice and the user is not subscribed
     // Show a warning
     if (!isSubscribed) {
+      const defaultText = 'Changing voices is only available for Premium and Plus users.\n\nYou can preview this voice by using the play button on the left.';
+      const trialText = 'Changing voices is only available for Premium and Plus users. Start a Free trial to experience these voices.\n\nYou can preview this voice by using the play button on the left.';
+      const title = (userHasSubscribedBefore) ? 'Upgrade to Premium or Plus' : 'Start your free trial';
+      const description = (userHasSubscribedBefore) ? defaultText : trialText;
+      const buttonText = (userHasSubscribedBefore) ? 'Upgrade' : 'Start Free trial';
+
       return Alert.alert(
-        (userHasSubscribedBefore) ? 'Upgrade to Premium or Plus' : 'Start your free trial',
-        'Changing voices is only available for Premium and Plus users. Start a Free trial to experience these voices.\n\nYou can preview this voice by using the play button on the left.',
+        title,
+        description,
         [
           {
-            text: (userHasSubscribedBefore) ? 'Upgrade' : 'Start Free trial',
+            text: buttonText,
             style: 'cancel',
             onPress: () => this.props.navigation.navigate('Upgrade')
           },
@@ -266,8 +272,9 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     return 'Free';
   }
 
-  handleSelectQuality = (quality: string) => this.setState({ selectedQuality: quality });
-  handleSelectGender = (gender: string) => this.setState({ selectedGender: gender });
+  handleSelectQuality = (quality: string) => requestAnimationFrame(() => this.setState({ selectedQuality: quality }));
+
+  handleSelectGender = (gender: string) => requestAnimationFrame(() => this.setState({ selectedGender: gender }));
 
   get filteredVoices(): Api.Voice[] {
     const selectedLanguageName = this.props.navigation.getParam('languageName', '');

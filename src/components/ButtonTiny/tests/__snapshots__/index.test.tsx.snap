@@ -13,13 +13,8 @@ exports[`ButtonTiny rendering should render correctly 1`] = `
   style={
     Array [
       Object {
-        "alignItems": "center",
-        "backgroundColor": "#e5e5e5",
         "borderRadius": 28,
-        "flexDirection": "row",
         "height": 28,
-        "paddingLeft": 12,
-        "paddingRight": 12,
       },
       Object {
         "backgroundColor": undefined,
@@ -28,20 +23,38 @@ exports[`ButtonTiny rendering should render correctly 1`] = `
   }
   testID="ButtonTiny-Button"
 >
-  <Text
+  <View
     style={
       Array [
         Object {
-          "fontSize": 13,
-          "fontWeight": "600",
+          "alignItems": "center",
+          "borderRadius": 28,
+          "flexDirection": "row",
+          "height": 28,
+          "paddingLeft": 12,
+          "paddingRight": 12,
         },
         Object {
-          "color": undefined,
+          "backgroundColor": undefined,
         },
       ]
     }
   >
-    Test
-  </Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "fontSize": 13,
+            "fontWeight": "600",
+          },
+          Object {
+            "color": undefined,
+          },
+        ]
+      }
+    >
+      Test
+    </Text>
+  </View>
 </View>
 `;

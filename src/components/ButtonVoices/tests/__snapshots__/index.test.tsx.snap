@@ -20,13 +20,8 @@ exports[`ButtonVoices rendering should render correctly 1`] = `
     style={
       Array [
         Object {
-          "alignItems": "center",
-          "backgroundColor": "#e5e5e5",
           "borderRadius": 28,
-          "flexDirection": "row",
           "height": 28,
-          "paddingLeft": 12,
-          "paddingRight": 12,
         },
         Object {
           "backgroundColor": "#e5e5e5",
@@ -35,21 +30,39 @@ exports[`ButtonVoices rendering should render correctly 1`] = `
     }
     testID="ButtonTiny-Button"
   >
-    <Text
+    <View
       style={
         Array [
           Object {
-            "fontSize": 13,
-            "fontWeight": "600",
+            "alignItems": "center",
+            "borderRadius": 28,
+            "flexDirection": "row",
+            "height": 28,
+            "paddingLeft": 12,
+            "paddingRight": 12,
           },
           Object {
-            "color": "#000000",
+            "backgroundColor": "#e5e5e5",
           },
         ]
       }
     >
-      Voices
-    </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "fontSize": 13,
+              "fontWeight": "600",
+            },
+            Object {
+              "color": "#000000",
+            },
+          ]
+        }
+      >
+        Voices
+      </Text>
+    </View>
   </View>
 </View>
 `;

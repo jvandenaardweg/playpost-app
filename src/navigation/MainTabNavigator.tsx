@@ -54,7 +54,7 @@ const ArchiveStack: StackNavigatorConfig = createStackNavigator(
     defaultNavigationOptions: ({ navigation }) => ({
       title: 'Archive',
       headerRight: <ButtonUpgradeContainer />,
-      headerLeft: <ButtonVoices onPress={() => navigation.navigate('ModalLanguages')} />,
+      headerLeft: <ButtonVoices onPress={() => requestAnimationFrame(() => navigation.navigate('ModalLanguages'))} />,
       headerStyle: {
         borderBottomColor: colors.borderDefault
       }
@@ -81,7 +81,7 @@ const FavoritesStack: StackNavigatorConfig = createStackNavigator(
     defaultNavigationOptions: ({ navigation }) => ({
       title: 'Favorites',
       headerRight: <ButtonUpgradeContainer />,
-      headerLeft: <ButtonVoices onPress={() => navigation.navigate('ModalLanguages')} />,
+      headerLeft: <ButtonVoices onPress={() => requestAnimationFrame(() => navigation.navigate('ModalLanguages'))} />,
       headerStyle: {
         borderBottomColor: colors.borderDefault
       }
