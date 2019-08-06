@@ -6,6 +6,8 @@ import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
   container: {
+  },
+  contentContainer: {
     backgroundColor: colors.articleBackground,
     padding: spacing.default,
   },
@@ -141,10 +143,13 @@ export default StyleSheet.create({
     backgroundColor: colors.grayLight
   },
   warningContainer: {
-    backgroundColor: colors.orangeDark,
-    padding: spacing.small,
     borderRadius: 6,
     marginTop: spacing.default,
+  },
+  warningWrapper: {
+    padding: spacing.small,
+    borderRadius: 6,
+    backgroundColor: colors.orangeDark,
   },
   warningHighlight: {
     fontStyle: 'italic',

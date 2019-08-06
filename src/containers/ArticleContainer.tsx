@@ -164,40 +164,42 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
    * 2. Create an audiofile when there's none present
    * 3. Toggle play/pause
    */
-  handleOnPlayPress = async (): Promise<void> => {
-    const { isPlaying } = this.state;
-    const { article, isSubscribed, playerCurrentArticleId } = this.props;
-    const { isConnected } = this.context;
+  handleOnPlayPress = () => {
+    requestAnimationFrame(() => {
+      const { isPlaying } = this.state;
+      const { article, isSubscribed, playerCurrentArticleId } = this.props;
+      const { isConnected } = this.context;
 
-    // Toggle play/pause
-    if (isPlaying) { return TrackPlayer.pause(); }
+      // Toggle play/pause
+      if (isPlaying) { return TrackPlayer.pause(); }
 
-    // If there are no audiofiles and when there's no internet connection
-    // Show the user he needs an active internet connection to listen to articles
-    if (!article.audiofiles.length && !isConnected) {
-      return Alert.alert('No internet', ALERT_ARTICLE_PLAY_INTERNET_REQUIRED);
-    }
+      // If there are no audiofiles and when there's no internet connection
+      // Show the user he needs an active internet connection to listen to articles
+      if (!article.audiofiles.length && !isConnected) {
+        return Alert.alert('No internet', ALERT_ARTICLE_PLAY_INTERNET_REQUIRED);
+      }
 
-    // If we don't have an audiofile yet, we create it first
-    // Which voice to use for this user is determined on the API
-    if (!article.audiofiles.length) { return this.handleCreateAudiofile(); }
+      // If we don't have an audiofile yet, we create it first
+      // Which voice to use for this user is determined on the API
+      if (!article.audiofiles.length) { return this.handleCreateAudiofile(); }
 
-    // When we end up here, it means the article already has an audiofile
+      // When we end up here, it means the article already has an audiofile
 
-    // If he user is subscribed, but it has no audio for it's selected voice, we create an audiofile
-    if (isSubscribed && !this.getAudiofileByUserSelectedVoice()) {
-      return this.handleCreateAudiofile();
-    }
+      // If he user is subscribed, but it has no audio for it's selected voice, we create an audiofile
+      if (isSubscribed && !this.getAudiofileByUserSelectedVoice()) {
+        return this.handleCreateAudiofile();
+      }
 
-    // If the user is on a free account, check if available audiofile uses different voice. Show alert if it does.
-    if (!isSubscribed) { this.alertIfDifferentSelectedVoice(); }
+      // If the user is on a free account, check if available audiofile uses different voice. Show alert if it does.
+      if (!isSubscribed) { this.alertIfDifferentSelectedVoice(); }
 
-    // Only set a new track when it's a different one
-    // handleSetTrack will also handle the download of the audio
-    if (playerCurrentArticleId !== article.id) { return this.handleSetTrack(); }
+      // Only set a new track when it's a different one
+      // handleSetTrack will also handle the download of the audio
+      if (playerCurrentArticleId !== article.id) { return this.handleSetTrack(); }
 
-    // If we end up here, it means the audio is already in the player, we just play it then
-    return TrackPlayer.play();
+      // If we end up here, it means the audio is already in the player, we just play it then
+      return TrackPlayer.play();
+    });
   }
 
   handleCreateAudiofile = async (): Promise<void> => {
@@ -512,24 +514,29 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   handleOnOpenUrl = () => {
-    const { article } = this.props;
-
-    return this.props.navigation.navigate('FullArticle', { article });
+    requestAnimationFrame(() => {
+      const { article } = this.props;
+      this.props.navigation.navigate('FullArticle', { article })
+    });
   }
 
   handleOnPressUpdate = (): void => {
-    this.setState({ isLoading: true }, async () => {
-      try {
-        await this.fetchPlaylist();
-      } finally {
-        this.setState({ isLoading: false });
-      }
+    requestAnimationFrame(() => {
+      this.setState({ isLoading: true }, async () => {
+        try {
+          await this.fetchPlaylist();
+        } finally {
+          this.setState({ isLoading: false });
+        }
+      });
     });
   }
 
   handleOnPressArticleIncompatible = () => {
-    Analytics.trackEvent('Article Press Incompatible');
-    return this.props.navigation.navigate('ContentView');
+    requestAnimationFrame(() => {
+      Analytics.trackEvent('Article Press Incompatible');
+      return this.props.navigation.navigate('ContentView');
+    });
   }
 
   render(): JSX.Element {
