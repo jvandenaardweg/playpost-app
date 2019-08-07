@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+
 import { createDeepEqualSelector } from './index';
 
 import { RootState } from '../reducers';
@@ -127,5 +128,69 @@ export const selectLanguagesWithActiveVoicesByLanguageName = createDeepEqualSele
     }, {})
 
     return languagesWithActiveVoicesByLanguageName;
+  }
+);
+
+/**
+ * Returns an array with available quality options of all languages
+ * So we can create a filter for it
+ */
+export const selectQualityOptions = createDeepEqualSelector(
+  [selectLanguagesWithActiveVoices],
+  languages => {
+    if (!languages.length) {
+      return [];
+    }
+
+    return ['All', 'Normal', 'High', 'Very High'];
+  }
+);
+
+export const selectGenderOptions = createDeepEqualSelector(
+  [selectLanguagesWithActiveVoices],
+  languages => {
+    if (!languages.length) {
+      return [];
+    }
+
+    return ['All', 'Male', 'Female'];
+  }
+);
+
+export const selectCountryOptions = createDeepEqualSelector(
+  [selectLanguagesWithActiveVoices],
+  languages => {
+    if (!languages.length) {
+      return [];
+    }
+
+    // Convert the array to an object
+    // So we can easily pick a language inside our components
+    const countryCodeOptions = languages.reduce((prev, curr) => {
+      prev[curr.name] = [];
+
+      // Extract the gender options from the voices
+      const voiceCountryCodeOptions = curr.voices && curr.voices.reduce((prevVoice, currVoice) => {
+        prevVoice.push(currVoice.countryCode);
+        return prevVoice;
+      }, [] as string[]);
+
+      // Map through the genders of the voices and add them all
+      if (voiceCountryCodeOptions && voiceCountryCodeOptions.length) {
+
+        voiceCountryCodeOptions.map((countryCode) => {
+          prev[curr.name].push(countryCode);
+        })
+      }
+
+      // Finally, create a unique array and sort it
+      prev[curr.name] = ['All', ...[...new Set(prev[curr.name])].sort()];
+
+      return prev;
+    }, {});
+
+
+
+    return countryCodeOptions;
   }
 );

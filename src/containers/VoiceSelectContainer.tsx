@@ -18,7 +18,7 @@ import { setDownloadedVoice } from '../reducers/voices';
 import { selectPlayerPlaybackState, selectPlayerTrack } from '../selectors/player';
 import { selectIsSubscribed } from '../selectors/subscriptions';
 import { selectUserErrorSaveSelectedVoice, selectUserHasSubscribedBefore, selectUserSelectedVoiceByLanguageName } from '../selectors/user';
-import { selectDownloadedVoicePreviews, selectLanguagesWithActiveVoicesByLanguageName } from '../selectors/voices';
+import { selectCountryOptions, selectDownloadedVoicePreviews, selectGenderOptions, selectLanguagesWithActiveVoicesByLanguageName, selectQualityOptions } from '../selectors/voices';
 
 import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_VOICE_CHANGE, ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE } from '../constants/messages';
 
@@ -39,6 +39,7 @@ interface State {
   isLoadingSaveSelectedVoiceId: string;
   selectedQuality: string;
   selectedGender: string;
+  selectedRegion: string;
 }
 
 export class VoiceSelectContainerComponent extends React.Component<Props, State> {
@@ -48,35 +49,14 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     isLoadingPreviewVoiceId: '',
     isLoadingSaveSelectedVoiceId: '',
     selectedQuality: 'All',
-    selectedGender: 'All'
+    selectedGender: 'All',
+    selectedRegion: 'All'
   };
-
-  qualities = ['All', 'Normal', 'High', 'Very High'];
-  genders = ['All', 'Male', 'Female'];
 
   shouldComponentUpdate(nextProps: Props, nextState: State): boolean {
     // Only re-render if props change
     return !isEqual(this.props, nextProps) || !isEqual(this.state, nextState);
   }
-
-  // componentDidUpdate(prevProps: Props) {
-  //   const { errorSaveSelectedVoice } = this.props;
-  //   const { isLoadingSaveSelectedVoiceId } = this.state;
-
-  //   // If we have an while saving the selected voice
-  //   if (isLoadingSaveSelectedVoiceId && errorSaveSelectedVoice && prevProps.errorSaveSelectedVoice !== errorSaveSelectedVoice) {
-  //     return Alert.alert(
-  //       'Oops!',
-  //       errorSaveSelectedVoice,
-  //       [
-  //         {
-  //           text: 'OK',
-  //           onPress: () => this.props.resetSaveSelectedVoiceError()
-  //         }
-  //       ]
-  //     );
-  //   }
-  // }
 
   keyExtractor = (item: Api.Voice, index: number) => index.toString();
 
@@ -276,10 +256,12 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
 
   handleSelectGender = (gender: string) => requestAnimationFrame(() => this.setState({ selectedGender: gender }));
 
+  handleSelectRegion = (region: string) => requestAnimationFrame(() => this.setState({ selectedRegion: region }));
+
   get filteredVoices(): Api.Voice[] {
     const selectedLanguageName = this.props.navigation.getParam('languageName', '');
     const { languagesWithActiveVoicesByLanguageName } = this.props;
-    const { selectedQuality, selectedGender } = this.state;
+    const { selectedQuality, selectedGender, selectedRegion } = this.state;
 
     const availableVoices = languagesWithActiveVoicesByLanguageName[selectedLanguageName].voices || [];
 
@@ -289,6 +271,10 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
       }
 
       if (selectedQuality !== voice.quality && selectedQuality !== 'All') {
+        return false;
+      }
+
+      if (selectedRegion !== voice.countryCode && selectedRegion !== 'All') {
         return false;
       }
 
@@ -353,20 +339,28 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
   }
 
   get topFilterOptions() {
-    const { selectedQuality, selectedGender } = this.state;
+    const { selectedQuality, selectedGender, selectedRegion } = this.state;
+    const { qualityOptions, genderOptions, countryOptions } = this.props;
+    const selectedLanguageName = this.props.navigation.getParam('languageName', '');
 
     return [
       {
         label: 'Quality',
-        options: this.qualities,
+        options: qualityOptions,
         selectedOption: selectedQuality,
         onSelect: this.handleSelectQuality
       },
       {
         label: 'Gender',
-        options: this.genders,
+        options: genderOptions,
         selectedOption: selectedGender,
         onSelect: this.handleSelectGender
+      },
+      {
+        label: 'Country',
+        options: countryOptions[selectedLanguageName],
+        selectedOption: selectedRegion,
+        onSelect: this.handleSelectRegion
       }
     ];
   }
@@ -405,6 +399,9 @@ interface StateProps {
   readonly isSubscribed: ReturnType<typeof selectIsSubscribed>;
   readonly errorSaveSelectedVoice: ReturnType<typeof selectUserErrorSaveSelectedVoice>;
   readonly userHasSubscribedBefore: ReturnType<typeof selectUserHasSubscribedBefore>;
+  readonly qualityOptions: ReturnType<typeof selectQualityOptions>;
+  readonly genderOptions: ReturnType<typeof selectGenderOptions>;
+  readonly countryOptions: ReturnType<typeof selectCountryOptions>;
 }
 
 const mapStateToProps = (state: RootState) => ({
@@ -415,7 +412,10 @@ const mapStateToProps = (state: RootState) => ({
   userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state),
   isSubscribed: selectIsSubscribed(state),
   errorSaveSelectedVoice: selectUserErrorSaveSelectedVoice(state),
-  userHasSubscribedBefore: selectUserHasSubscribedBefore(state)
+  userHasSubscribedBefore: selectUserHasSubscribedBefore(state),
+  qualityOptions: selectQualityOptions(state),
+  genderOptions: selectGenderOptions(state),
+  countryOptions: selectCountryOptions(state)
 });
 
 const mapDispatchToProps = {

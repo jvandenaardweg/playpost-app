@@ -1,9 +1,12 @@
 import { createStore } from 'redux';
 import {
+  selectCountryOptions,
   selectDownloadedVoicePreviews,
+  selectGenderOptions,
   selectLanguages,
   selectLanguagesWithActiveVoices,
   selectLanguagesWithActiveVoicesByLanguageName,
+  selectQualityOptions,
   selectSortedLanguages,
   selectTotalAvailableVoices,
   selectVoicesError,
@@ -178,5 +181,57 @@ describe('voices selector', () => {
     };
 
     expect(selectSortedLanguages(exampleState)).toHaveLength(0);
+  });
+
+  it('selectQualityOptions should return an array with voice quality filter options', () => {
+    const exampleState = {
+      ...rootState,
+      voices: {
+        ...rootState.voices,
+        languages: languagesMock
+      }
+    };
+
+    const expected = ['All', 'Normal', 'High', 'Very High'];
+
+    expect(selectQualityOptions(exampleState)).toMatchObject(expected);
+  });
+
+  it('selectGenderOptions should return an array with voice gender filter options', () => {
+    const exampleState = {
+      ...rootState,
+      voices: {
+        ...rootState.voices,
+        languages: languagesMock
+      }
+    };
+
+    const expected = ['All', 'Male', 'Female'];
+
+    expect(selectGenderOptions(exampleState)).toMatchObject(expected);
+  });
+
+  it('selectCountryOptions should return an array with voice languageCode filter options', () => {
+    const exampleState = {
+      ...rootState,
+      voices: {
+        ...rootState.voices,
+        languages: languagesMock
+      }
+    };
+
+    const expected = {
+      Dutch: ['All', 'NL'],
+      English: ['All', 'AU', 'GB', 'US'],
+      French: ['All', 'FR'],
+      German: ['All', 'DE'],
+      Hindi: ['All', 'IN'],
+      Polish: ['All', 'PL'],
+      Portuguese: ['All', 'BR', 'PT'],
+      Russian: ['All', 'RU'],
+      Spanish: ['All', 'ES']
+    }
+
+    expect(selectCountryOptions(exampleState)).toMatchObject(expected);
   });
 });

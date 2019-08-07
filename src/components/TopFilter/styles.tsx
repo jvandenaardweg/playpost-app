@@ -20,7 +20,10 @@ export default StyleSheet.create({
     borderBottomColor: colors.borderDefault
   },
   filterLabel: {
-    fontWeight: fonts.fontWeight.semibold, marginRight: spacing.default, width: 50, marginLeft: spacing.default
+    fontWeight: fonts.fontWeight.semibold,
+    marginRight: spacing.default,
+    width: 55,
+    marginLeft: spacing.default
   },
   scrollView: {
     flexDirection: 'row', alignItems: 'center'
