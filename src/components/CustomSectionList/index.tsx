@@ -10,7 +10,7 @@ import fonts from '../../constants/fonts';
 import { EmptyState } from '../EmptyState';
 import { ListSeperator } from '../ListSeperator';
 
-export interface ListItem {
+export interface IListItem {
   subtitle?: string;
   title?: string;
   icon?: string;
@@ -20,14 +20,14 @@ export interface ListItem {
   checkmark?: boolean;
   isSelected?: boolean;
   isLoading?: boolean;
-  leftIcon?: React.ComponentType<any> | React.ReactElement;
+  leftIcon?: React.ReactElement;
   rightIconColor?: string;
   onPress?(): void;
 }
 
-export interface CustomSectionListSectionData {
+export interface ICustomSectionListSectionData {
   title?: string;
-  data: ListItem[];
+  data: IListItem[];
 }
 
 interface Props {
@@ -51,7 +51,7 @@ export const CustomSectionList: React.FC<Props> = React.memo(({ sectionListData,
       stickySectionHeadersEnabled={false}
       ItemSeparatorComponent={() => <View style={styles.itemSeperator}><ListSeperator /></View>}
       renderSectionFooter={() => <View style={styles.sectionFooter} />}
-      renderItem={({ item, index, section }) => {
+      renderItem={({ item, index, section }: { item: IListItem, index: number, section: any }) => {
         const totalSectionItems = section.data.length;
         const lastIndex = totalSectionItems - 1;
 
@@ -65,15 +65,15 @@ export const CustomSectionList: React.FC<Props> = React.memo(({ sectionListData,
 
         // colors
         const leftIconColor = item.iconColor ? item.iconColor : colors.black;
-        const rightElementIconColor = item.isSelected ? colors.white : colors.grayLight;
+        const checkmarkColor = item.isSelected ? colors.white : colors.grayLight;
 
         // props
         const subtitle = (item.subtitle) ? item.subtitle : undefined;
 
         // elements
         const leftIcon = (item.leftIcon) ? (item.leftIcon) : (item.icon) ? <Icon.Feather name={item.icon} size={20} color={leftIconColor} /> : undefined;
-        const rightIcon = (item.isLoading) ? <ActivityIndicator /> : (item.value) ? <Text style={rightIconTextStyles}>{item.value}</Text> : undefined;
-        const rightElement = (item.chevron) ? <Icon.FontAwesome5 name="chevron-right" size={16} color={colors.gray} /> : (item.checkmark) ? <Icon.FontAwesome5 name="check" size={16} color={rightElementIconColor} /> : undefined;
+        const rightIcon = (item.value) ? <Text style={rightIconTextStyles}>{item.value}</Text> : undefined;
+        const rightElement = getRightElement(item, checkmarkColor);
 
         return (
           <View style={[styles.listItemContainer, firstItemStyles, lastItemStyles]}>
@@ -100,3 +100,21 @@ export const CustomSectionList: React.FC<Props> = React.memo(({ sectionListData,
     />
   </View>
 ));
+
+
+
+const getRightElement = (item: IListItem, checkmarkColor: string) => {
+  if (item.isLoading) {
+    return <ActivityIndicator color="black" />;
+  }
+
+  if (item.chevron) {
+    return <Icon.FontAwesome5 name="chevron-right" size={16} color={colors.gray} />;
+  }
+
+  if (item.checkmark) {
+    return <Icon.FontAwesome5 name="check" size={16} color={checkmarkColor} />
+  }
+
+  return undefined;
+}

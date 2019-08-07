@@ -310,7 +310,8 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             iconColor: colors.red,
             onPress: this.handleOnPressClearCache,
             isLoading: isClearingCache,
-            value: `${cacheSize} mb`
+            value: `${cacheSize} mb`,
+            chevron: true
           }
         ]
       },
@@ -323,7 +324,8 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             title: 'Write a review',
             icon: 'heart',
             iconColor: colors.green,
-            chevron: true, onPress: () => Linking.openURL(URL_APP_APPLE_APP_STORE_REVIEW)
+            chevron: true,
+            onPress: () => Linking.openURL(URL_APP_APPLE_APP_STORE_REVIEW)
           },
           {
             key: 'about-about',
