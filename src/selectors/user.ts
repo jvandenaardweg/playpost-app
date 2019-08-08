@@ -90,3 +90,8 @@ export const selectUserHasSubscribedBefore = createDeepEqualSelector(
     return !!userInAppSubscriptions.length;
   }
 );
+
+export const selectUserPlaybackSpeed = createSelector(
+  [userSelector],
+  user =>  user.playbackSpeed
+)

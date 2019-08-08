@@ -255,3 +255,7 @@ To manually edit the mocked response:
 
 # Android
 Key store alias: `playpost-upload-key.keystore`, password: `testtest`
+
+# Known Issues
+## App Crashes when changing playback speed
+This is a known issue and should not happen in the Release build. It's is fixed in newer versions of React Native Track Player: https://github.com/react-native-kit/react-native-track-player/issues/516

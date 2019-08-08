@@ -57,9 +57,10 @@ export class AudioPlayerProgressBar extends ProgressComponent<Props, State> {
           <Slider
             minimumValue={0}
             maximumValue={1}
+            step={0.001}
             value={percentage}
             minimumTrackTintColor={colors.white}
-            maximumTrackTintColor={colors.grayDarkest}
+            maximumTrackTintColor={colors.grayDarker}
             thumbTintColor={colors.white}
             thumbStyle={styles.thumbStyle}
             trackStyle={styles.trackStyle}

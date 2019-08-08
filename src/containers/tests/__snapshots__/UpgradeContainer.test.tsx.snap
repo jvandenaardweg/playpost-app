@@ -199,7 +199,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   }
                 }
               >
-                One voice per language
+                One voice option per language
               </Text>
               <Text
                 style={
@@ -210,6 +210,16 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                 }
               >
                 Max. 30 minutes per month
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "fontSize": 15,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                Fixed playback speed
               </Text>
               <Text
                 style={
@@ -467,7 +477,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   }
                 }
               >
-                Multiple voices per language
+                Multiple voice options per language
               </Text>
               <Text
                 style={
@@ -478,6 +488,16 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                 }
               >
                 Max. 120 minutes per month
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "fontSize": 15,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                Customize the playback speed
               </Text>
               <Text
                 style={
@@ -735,7 +755,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   }
                 }
               >
-                Multiple voices per language
+                Multiple voice options per language
               </Text>
               <Text
                 style={
@@ -746,6 +766,16 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                 }
               >
                 Max. 300 minutes per month
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "fontSize": 15,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                Customize the playback speed
               </Text>
               <Text
                 style={

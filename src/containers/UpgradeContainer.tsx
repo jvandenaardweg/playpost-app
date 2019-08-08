@@ -76,21 +76,21 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         productId: 'free',
         title: 'Free',
         price: '0',
-        body: ['Basic quality voices', 'One voice per language', 'Max. 30 minutes per month', 'Unlimited playlist items', 'Some advertisements'],
+        body: ['Basic quality voices', 'One voice option per language', 'Max. 30 minutes per month', 'Fixed playback speed', 'Unlimited playlist items', 'Some advertisements'],
         footer: 'About 5 articles to audio, per month'
       },
       {
         productId: 'com.aardwegmedia.playpost.premium',
         title: 'Premium',
         price: null,
-        body: [`${totalAvailableVoices}+ High Quality voices`, 'Multiple voices per language', 'Max. 120 minutes per month', 'Unlimited playlist items', 'No advertisements'],
+        body: [`${totalAvailableVoices}+ High Quality voices`, 'Multiple voice options per language', 'Max. 120 minutes per month', 'Customize the playback speed', 'Unlimited playlist items', 'No advertisements'],
         footer: 'About 25 articles to audio, per month'
       },
       {
         productId: 'com.aardwegmedia.playpost.subscription.plus',
         title: 'Plus',
         price: null,
-        body: [`${totalAvailableVoices}+ High Quality voices`, 'Multiple voices per language', 'Max. 300 minutes per month', 'Unlimited playlist items', 'No advertisements'],
+        body: [`${totalAvailableVoices}+ High Quality voices`, 'Multiple voice options per language', 'Max. 300 minutes per month', 'Customize the playback speed', 'Unlimited playlist items', 'No advertisements'],
         footer: 'About 65 articles to audio, per month'
       }
     ];

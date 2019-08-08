@@ -50,4 +50,4 @@ export const selectPlayerAudiofileStatus = createSelector(
 export const selectPlayerPlaybackState = createSelector(
   [playerSelector],
   player =>  player.playbackState
-)
+);

@@ -50,32 +50,29 @@ export const ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE = 'No voice preview availa
 export const ALERT_SETTINGS_LANGUAGES_VOICE_SAVE = 'Saving the selected voice for this language failed. Please try again.';
 export const ALERT_SETTINGS_LOGOUT_FAIL = 'We failed to log you out. Please try again.';
 export const ALERT_SETTINGS_DELETE_USER = 'Deleting your account cannot be undone. All your data will be deleted from our systems.';
-export const ALERT_SETTINGS_DELETE_USER_FAIL =
-  'An error happened while trying to delete your account. Please try again or contact us when this happens all the time.';
+export const ALERT_SETTINGS_DELETE_USER_FAIL = 'An error happened while trying to delete your account. Please try again or contact us when this happens all the time.';
 
-export const ALERT_SETTINGS_UPDATE_EMAIL_WARNING =
-  'For security reasons, after updating your e-mail address, you need to login again with your new e-mail address.';
+export const ALERT_SETTINGS_UPDATE_EMAIL_WARNING = 'For security reasons, after updating your e-mail address, you need to login again with your new e-mail address.';
 export const ALERT_SETTINGS_UPDATE_EMAIL_INVALID_MATCH = 'The given e-mail addresses do not match. Please make sure you typed your e-mail address correctly.';
 
 export const ALERT_SUBSCRIPTION_INIT_FAIL = 'Could not set up a connection to the App Store. Please try again later.';
 export const ALERT_SUBSCRIPTION_PURCHASE_SUBSCRIPTION_NOT_FOUND = 'We could not get the subscription to purchase. Please try again later.';
 export const ALERT_SUBSCRIPTION_EXPIRED = 'Your subscription is expired. To use our Premium or Plus features again, re-subscribe by using the Upgrade button.';
 export const ALERT_SUBSCRIPTION_BUY_SUCCESS = 'You can now use the extra features.';
-export const ALERT_SUBSCRIPTION_RESTORE_PURCHASE_NOT_FOUND =
-  'We could not find a subscription purchase to restore. If you had a subscription before, it might be expired. If you think this is incorrect, contact our support.';
+export const ALERT_SUBSCRIPTION_RESTORE_PURCHASE_NOT_FOUND = 'We could not find a subscription purchase to restore. If you had a subscription before, it might be expired. If you think this is incorrect, contact our support.';
 export const ALERT_SUBSCRIPTION_RESTORE_SUCCESS = 'You successfully restored the subscription! You can now use the extra features.';
 export const ALERT_SUBSCRIPTION_NOT_FOUND = 'The subscription to upgrade to cannot be found. Please try again later.';
+
+export const ALERT_TITLE_SUBSCRIPTION_ONLY = 'Available on Premium or Plus';
+export const ALERT_PLAYBACK_SPEED_SUBSCRIPTION_ONLY = 'Changing the voice\'s speaking rate is only available for Premium and Plus users.';
 
 export const ALERT_LOGIN_SAVE_TOKEN_FAIL = 'Failed to save authentication credentials. Please try again.';
 
 export const GET_PLAYLIST_FAIL_MESSAGE = 'An unknown error happened while getting your playlist. Please contact us when this happens all the time.';
-export const CREATE_PLAYLIST_ITEM_FAIL_MESSAGE =
-  'An unknown error happened while adding this article to your playlist. Please contact us when this happens all the time.';
+export const CREATE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while adding this article to your playlist. Please contact us when this happens all the time.';
 export const FAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while favoriting this article. Please contact us when this happens all the time.';
 export const UNFAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while unfavoriting this article. Please contact us when this happens all the time.';
 export const ARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while archiving this article. Please contact us when this happens all the time.';
 export const UNARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while unarchiving this article. Please contact us when this happens all the time.';
-export const REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE =
-  'An unknown error happened while removing this article from your playlist. Please contact us when this happens all the time.';
-export const REORDER_PLAYLIST_ITEM_FAIL_MESSAGE =
-  'An unknown error happened while re-ordering this article in your playlist. Please contact us when this happens all the time.';
+export const REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while removing this article from your playlist. Please contact us when this happens all the time.';
+export const REORDER_PLAYLIST_ITEM_FAIL_MESSAGE = 'An unknown error happened while re-ordering this article in your playlist. Please contact us when this happens all the time.';

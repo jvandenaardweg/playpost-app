@@ -3,7 +3,6 @@ import TrackPlayer from 'react-native-track-player';
 export const SET_PLAYBACK_STATUS = 'player/SET_PLAYBACK_STATUS';
 export const RESET_PLAYBACK_STATUS = 'player/RESET_PLAYBACK_STATUS';
 export const SET_TRACK = 'player/SET_TRACK';
-export const SET_PLAYBACK_SPEED = 'player/SET_PLAYBACK_SPEED';
 
 export const CREATE_AUDIOFILE = 'player/CREATE_AUDIOFILE';
 export const CREATE_AUDIOFILE_SUCCESS = 'player/CREATE_AUDIOFILE_SUCCESS';
@@ -29,7 +28,6 @@ export type PlayerState = Readonly<{
   previousArticleId: string;
   currentArticleId: string;
   playbackState: string | number;
-  playbackSpeed: number;
   error: string;
   errorCreateAudiofile: string;
   isLoadingCreateAudiofile: boolean;
@@ -51,7 +49,6 @@ export const initialState: PlayerState = {
   previousArticleId: '',
   currentArticleId: '',
   playbackState: 'none',
-  playbackSpeed: 1,
   error: '',
   errorCreateAudiofile: '',
   isLoadingCreateAudiofile: false,
@@ -81,12 +78,6 @@ export function playerReducer(state = initialState, action: any): PlayerState {
         playbackState: initialState.playbackState,
         currentArticleId: action.payload.articleId,
         previousArticleId: state.currentArticleId, // Move the currentArticleId to the previous position
-      };
-
-    case SET_PLAYBACK_SPEED:
-      return {
-        ...state,
-        playbackSpeed: action.payload
       };
 
     case RESET_PLAYER_STATE:

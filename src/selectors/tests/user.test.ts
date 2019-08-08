@@ -1,5 +1,17 @@
 import { createStore } from 'redux';
-import { selectDeviceLocale, selectUserDetails, selectUserError, selectUserErrorSaveSelectedVoice, selectUserHasSubscribedBefore, selectUserIsLoading, selectUserSelectedVoiceByLanguageName, selectUserSelectedVoices, selectUserSubscriptions, userSelector } from '../user';
+
+import { selectDeviceLocale,
+  selectUserDetails,
+  selectUserError,
+  selectUserErrorSaveSelectedVoice,
+  selectUserHasSubscribedBefore,
+  selectUserIsLoading,
+  selectUserPlaybackSpeed,
+  selectUserSelectedVoiceByLanguageName,
+  selectUserSelectedVoices,
+  selectUserSubscriptions,
+  userSelector
+} from '../user';
 
 import { rootReducer } from '../../reducers';
 import { initialState } from '../../reducers/user';
@@ -169,5 +181,17 @@ describe('user selector', () => {
     };
 
     expect(selectUserHasSubscribedBefore(exampleUserStateWithoutSubscriptions)).toEqual(false);
+  });
+
+  it('selectUserPlaybackSpeed should return a number', () => {
+    const exampleUserState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        playbackSpeed: 0.95
+      }
+    };
+
+    expect(selectUserPlaybackSpeed(exampleUserState)).toEqual(0.95);
   });
 });

@@ -35,6 +35,9 @@ export const SAVE_SELECTED_VOICE_SUCCESS = 'user/SAVE_SELECTED_VOICE_SUCCESS';
 export const SAVE_SELECTED_VOICE_FAIL = 'user/SAVE_SELECTED_VOICE_FAIL';
 export const RESET_SAVE_SELECTED_VOICE_ERROR = 'user/RESET_SAVE_SELECTED_VOICE_ERROR';
 
+
+export const SET_PLAYBACK_SPEED = 'user/SET_PLAYBACK_SPEED';
+
 export const RESET_USER_STATE = 'user/RESET_USER_STATE';
 export const RESET_USER_ERROR = 'user/RESET_USER_ERROR';
 
@@ -48,6 +51,7 @@ export type UserState = Readonly<{
   error: string;
   errorSaveSelectedVoice: string;
   deviceLocale: string;
+  playbackSpeed: number;
 }>;
 
 export const initialState: UserState = {
@@ -59,7 +63,8 @@ export const initialState: UserState = {
   details: null,
   error: '',
   errorSaveSelectedVoice: '',
-  deviceLocale: DeviceInfo.getDeviceLocale()
+  deviceLocale: DeviceInfo.getDeviceLocale(),
+  playbackSpeed: 1
 };
 
 /* tslint:disable no-any */
@@ -279,6 +284,12 @@ export function userReducer(state = initialState, action: any): UserState {
         errorSaveSelectedVoice: saveSelectedVoiceFailMessage
       };
 
+    case SET_PLAYBACK_SPEED:
+      return {
+        ...state,
+        playbackSpeed: action.payload
+      };
+
     case RESET_SAVE_SELECTED_VOICE_ERROR:
       return {
         ...state,
@@ -406,5 +417,12 @@ export function saveSelectedVoice(voiceId: string) {
         }
       }
     }
+  };
+}
+
+export function setPlaybackSpeed(speed: number) {
+  return {
+    type: SET_PLAYBACK_SPEED,
+    payload: speed
   };
 }

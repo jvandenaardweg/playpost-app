@@ -7,32 +7,36 @@ import RNFS from 'react-native-fs';
 import { NavigationInjectedProps } from 'react-navigation';
 import { connect } from 'react-redux';
 
+import colors from '../constants/colors';
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 import fonts from '../constants/fonts';
-
-import { resetAudiofilesState } from '../reducers/audiofiles';
-import { deleteUser, getUser } from '../reducers/user';
-import { resetDownloadedVoices, resetVoicesState } from '../reducers/voices';
-
-import { selectUserDetails, selectUserHasSubscribedBefore } from '../selectors/user';
-
-import { CustomSectionList } from '../components/CustomSectionList';
-import { Usage } from '../components/Usage';
-import colors from '../constants/colors';
 import {
+  ALERT_PLAYBACK_SPEED_SUBSCRIPTION_ONLY,
   ALERT_SETTINGS_CLEAR_CACHE_WARNING,
   ALERT_SETTINGS_DELETE_USER,
   ALERT_SETTINGS_DELETE_USER_FAIL,
   ALERT_SETTINGS_RESET_CACHE_FAIL,
   ALERT_SETTINGS_SET_CACHE_SIZE_FAIL,
-  ALERT_SETTINGS_SETTING_UNAVAILABLE
+  ALERT_SETTINGS_SETTING_UNAVAILABLE,
+  ALERT_TITLE_SUBSCRIPTION_ONLY
 } from '../constants/messages';
 import spacing from '../constants/spacing';
 import { URL_ABOUT, URL_APP_APPLE_APP_STORE_REVIEW, URL_FEEDBACK, URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../constants/urls';
-import NavigationService from '../navigation/NavigationService';
+
 import { RootState } from '../reducers';
+import { resetAudiofilesState } from '../reducers/audiofiles';
+import { deleteUser, getUser } from '../reducers/user';
+import { resetDownloadedVoices, resetVoicesState } from '../reducers/voices';
+
 import { selectActiveSubscriptionName, selectActiveSubscriptionProductId, selectIsSubscribed } from '../selectors/subscriptions';
+import { selectUserDetails, selectUserHasSubscribedBefore, selectUserPlaybackSpeed } from '../selectors/user';
 import { selectTotalAvailableVoices } from '../selectors/voices';
+
+import { CustomSectionList } from '../components/CustomSectionList';
+import { Usage } from '../components/Usage';
+
+import NavigationService from '../navigation/NavigationService';
+
 
 type Props = NavigationInjectedProps & DispatchProps & StateProps;
 
@@ -190,6 +194,27 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
     ]);
   }
 
+  handleOnPressPlaybackSpeed = () => {
+    const { isSubscribed, userHasSubscribedBefore } = this.props;
+
+    if (!isSubscribed) {
+      return Alert.alert(
+        ALERT_TITLE_SUBSCRIPTION_ONLY,
+        ALERT_PLAYBACK_SPEED_SUBSCRIPTION_ONLY,
+        [
+          {
+            text: 'OK',
+          },
+          {
+            text: (userHasSubscribedBefore) ? 'Upgrade to Premium or Plus' : 'Start free trial',
+            style: 'cancel',
+            onPress: () => NavigationService.navigate('Upgrade')
+          }
+        ]
+      );
+    }
+  }
+
   renderDeleteAccount = () => {
     const { isDeletingAccount } = this.state;
 
@@ -242,7 +267,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
   }
 
   render() {
-    const { activeSubscriptionName, totalAvailableVoices, user, activeSubscriptionProductId, userHasSubscribedBefore } = this.props;
+    const { activeSubscriptionName, totalAvailableVoices, user, activeSubscriptionProductId, userHasSubscribedBefore, userPlaybackSpeed } = this.props;
     const { isClearingCache, cacheSize } = this.state;
 
     const sectionListData = [
@@ -257,6 +282,16 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             iconColor: colors.green,
             onPress: this.handleOnPressLanguage,
             value: totalAvailableVoices,
+            chevron: true
+          },
+          {
+            key: 'playback-speed',
+            title: 'Voice speaking rate',
+            icon: 'chevrons-right',
+            iconColor: colors.green,
+            onPress: this.handleOnPressPlaybackSpeed,
+            // isLoading: isClearingCache,
+            value: `${userPlaybackSpeed.toFixed(2)}x`,
             chevron: true
           }
         ]
@@ -305,6 +340,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
         title: 'Advanced',
         data: [
           {
+            key: 'clear-cache',
             title: 'Clear cache',
             icon: 'trash-2',
             iconColor: colors.red,
@@ -426,6 +462,7 @@ interface StateProps {
   activeSubscriptionProductId: ReturnType<typeof selectActiveSubscriptionProductId>;
   totalAvailableVoices: ReturnType<typeof selectTotalAvailableVoices>;
   userHasSubscribedBefore: ReturnType<typeof selectUserHasSubscribedBefore>;
+  userPlaybackSpeed: ReturnType<typeof selectUserPlaybackSpeed>;
 }
 
 const mapStateToProps = (state: RootState) => ({
@@ -435,6 +472,7 @@ const mapStateToProps = (state: RootState) => ({
   activeSubscriptionProductId: selectActiveSubscriptionProductId(state),
   totalAvailableVoices: selectTotalAvailableVoices(state),
   userHasSubscribedBefore: selectUserHasSubscribedBefore(state),
+  userPlaybackSpeed: selectUserPlaybackSpeed(state),
 });
 
 const mapDispatchToProps = {

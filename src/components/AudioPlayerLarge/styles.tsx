@@ -17,7 +17,8 @@ export default StyleSheet.create({
   },
   openCloseControl: {
     alignItems: 'flex-end',
-    marginBottom: 10,
+    marginTop: spacing.default,
+    marginBottom: spacing.default,
     paddingRight: spacing.large,
     paddingLeft: spacing.large
   },
@@ -66,13 +67,40 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    paddingBottom: 42
+    marginTop: spacing.large,
   },
   progressBarRow: {
     flex: 1,
     alignItems: 'stretch',
     justifyContent: 'center',
-    marginBottom: spacing.default,
-    backgroundColor: 'red'
+    marginBottom: spacing.default
+  },
+  controlContainer: {
+    width: 48
+  },
+  footer: {
+    paddingTop: spacing.default,
+    paddingBottom: spacing.large,
+    paddingLeft: spacing.large,
+    paddingRight: spacing.large,
+    height: 80
+  },
+  footerAnimatedView: {
+    flexGrow: 1,
+    width: '100%'
+  },
+  buttonControl: {
+    borderWidth: 1,
+    borderColor: colors.gray,
+    height: 48,
+    width: 48,
+    borderRadius: 48,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  buttonControlText: {
+    color: colors.white,
+    fontSize: fonts.fontSize.tiny,
+    fontWeight: fonts.fontWeight.semibold
   }
 });

@@ -381,7 +381,8 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
               artwork: require('../assets/images/logo-1024.png'),
               // contentType
               contentType: 'audio/mpeg',
-              key: audiofile.id
+              key: audiofile.id,
+              pitchAlgorithm: TrackPlayer.PITCH_ALGORITHM_VOICE
             },
             article.id
           );
