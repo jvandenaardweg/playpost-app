@@ -1,3 +1,4 @@
+import TrackPlayer from 'react-native-track-player';
 import { createSelector } from 'reselect';
 
 import { RootState } from '../reducers';
@@ -50,4 +51,19 @@ export const selectPlayerAudiofileStatus = createSelector(
 export const selectPlayerPlaybackState = createSelector(
   [playerSelector],
   player =>  player.playbackState
+);
+
+export const selectPlayerIsPlaying = createSelector(
+  [selectPlayerPlaybackState],
+  playbackState => [TrackPlayer.STATE_PLAYING].includes(playbackState)
+);
+
+export const selectPlayerIsStopped = createSelector(
+  [selectPlayerPlaybackState],
+  playbackState => [TrackPlayer.STATE_STOPPED, TrackPlayer.STATE_PAUSED, TrackPlayer.STATE_NONE, TrackPlayer.STATE_READY].includes(playbackState)
+);
+
+export const selectPlayerIsLoading = createSelector(
+  [selectPlayerIsPlaying, selectPlayerIsStopped],
+  (playerIsPlaying, playerIsStopped) => !playerIsPlaying && !playerIsStopped
 );

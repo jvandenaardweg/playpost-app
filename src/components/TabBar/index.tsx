@@ -25,7 +25,7 @@ export const TabBar: React.FC<BottomTabBarProps> = React.memo((
     <View style={styles.container}>
       {!isConnected && <OfflineNotice />}
       <AudiofileStatusContainer />
-      <AudioPlayerContainer />
+      <AudioPlayerContainer isSmall />
       <BottomTabBar {...props} />
     </View>
   );

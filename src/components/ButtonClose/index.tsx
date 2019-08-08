@@ -8,13 +8,14 @@ import { mediumHitslop } from '../../constants/buttons';
 import styles from './styles';
 
 interface Props {
+  iconColor?: string;
   onPress(): void;
 }
 
-export const ButtonClose: React.FC<Props> = React.memo(({ onPress }) => {
+export const ButtonClose: React.FC<Props> = React.memo(({ onPress, iconColor }) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container} testID="button-close" hitSlop={mediumHitslop}>
-      <Icon.Feather name="x" size={26} color={colors.black} />
+      <Icon.Feather name="x" size={26} color={(iconColor) ? iconColor : colors.black} />
     </TouchableOpacity>
   );
 });

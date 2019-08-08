@@ -1,6 +1,6 @@
 // tslint:disable: no-console
 import React from 'react';
-import { Alert, InteractionManager, Modal, View } from 'react-native';
+import { Alert } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
 
@@ -13,7 +13,7 @@ import { setPlaybackSpeed } from '../reducers/user';
 import { ALERT_PLAYBACK_SPEED_SUBSCRIPTION_ONLY, ALERT_TITLE_SUBSCRIPTION_ONLY } from '../constants/messages';
 import NavigationService from '../navigation/NavigationService';
 import { RootState } from '../reducers';
-import { selectPlayerPlaybackState, selectPlayerTrack } from '../selectors/player';
+import { selectPlayerIsLoading, selectPlayerIsPlaying, selectPlayerIsStopped, selectPlayerTrack } from '../selectors/player';
 import { selectAllPlaylistArticles } from '../selectors/playlist';
 import { selectIsSubscribed } from '../selectors/subscriptions';
 import { selectUserHasSubscribedBefore, selectUserPlaybackSpeed } from '../selectors/user';
@@ -21,17 +21,45 @@ import { selectUserHasSubscribedBefore, selectUserPlaybackSpeed } from '../selec
 interface State {
   isLoading: boolean;
   isPlaying: boolean;
-  showModal: boolean;
   isPlaybackSpeedVisible: boolean;
 }
 
-type Props = StateProps & DispatchProps;
+interface IProps {
+  isSmall?: boolean;
+  isLarge?: boolean;
+}
+
+type Props = IProps & StateProps & DispatchProps;
 
 class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
+
+  get article(): Api.Article | undefined {
+    const { track, articles } = this.props;
+
+    if (!track || !track.id) { return; }
+
+    // Find the article based on the audiofile id
+    const foundArticle = articles.find(article => {
+      if (article.audiofiles.length) {
+        const foundAudiofile = article.audiofiles.find(audiofile => audiofile.id === track.id);
+        if (foundAudiofile) { return true; }
+      }
+      return false;
+    });
+
+    return foundArticle;
+  }
+
+  static getDerivedStateFromProps(props: Props, state: State) {
+    return {
+      isPlaying: props.playerIsPlaying,
+      isLoading: props.playerIsLoading
+    };
+  }
+
   state = {
-    isLoading: true,
+    isLoading: false,
     isPlaying: false,
-    showModal: false,
     isPlaybackSpeedVisible: false
   };
 
@@ -40,14 +68,12 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   onStateError: TrackPlayer.EmitterSubscription | null = null;
   onPlaybackQueueEnded: TrackPlayer.EmitterSubscription | null = null;
 
-  componentDidMount(): void {
-    InteractionManager.runAfterInteractions(() => {
-      this.setupTrackPlayer();
-    })
+  componentDidMount() {
+    this.setupTrackPlayer();
   }
 
   setupTrackPlayer = async () => {
-    const { userPlaybackSpeed } = this.props;
+    // const { userPlaybackSpeed } = this.props;
 
     await TrackPlayer.setupPlayer();
 
@@ -79,7 +105,9 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
       ]
     });
 
-    await this.setTrackPlayerPlaybackSpeed(userPlaybackSpeed);
+    // Do not set the playback speed/rate upon load, this might cause some crashes
+    // Only set it right after "play"
+    // await this.setTrackPlayerPlaybackSpeed(userPlaybackSpeed);
 
     // Adds an event handler for the playback-track-changed event
     this.onTrackChange = TrackPlayer.addEventListener('playback-track-changed', async ({ track, position, nextTrack }) => {
@@ -102,31 +130,27 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   }
 
   setTrackPlayerPlaybackSpeed = (speed: number) => {
-    console.log('setRate', speed);
+    const { isSubscribed } = this.props;
+
+    // If a user is not subscribed, always set the speaking rate back to the default
+    if (!isSubscribed) {
+      this.props.setPlaybackSpeed(1);
+      return TrackPlayer.setRate(1);
+    }
+
     return TrackPlayer.setRate(speed);
   }
 
   async componentDidUpdate(prevProps: Props): Promise<void> {
-    const { playbackState, userPlaybackSpeed, track } = this.props;
-    const { isPlaying } = this.state;
+    const { userPlaybackSpeed, track, isSubscribed } = this.props;
 
     // Detect if track changed
     if (track && track.url && prevProps.track.url !== track.url) {
       this.handleTrackUpdate(track);
     }
 
-    if (prevProps.userPlaybackSpeed !== userPlaybackSpeed) {
+    if (isSubscribed && prevProps.userPlaybackSpeed !== userPlaybackSpeed) {
       await this.setTrackPlayerPlaybackSpeed(userPlaybackSpeed);
-    }
-
-    // When a track is playing
-    if (playbackState && [TrackPlayer.STATE_PLAYING].includes(playbackState) && !isPlaying) {
-      this.setState({ isPlaying: true, isLoading: false });
-    }
-
-    // When a track is stopped or paused
-    if (playbackState && [TrackPlayer.STATE_STOPPED, TrackPlayer.STATE_PAUSED].includes(playbackState) && isPlaying) {
-      this.setState({ isPlaying: false, isLoading: false });
     }
   }
 
@@ -147,7 +171,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
 
     await TrackPlayer.play();
 
-    await TrackPlayer.setRate(userPlaybackSpeed);
+    await this.setTrackPlayerPlaybackSpeed(userPlaybackSpeed);
   }
 
   componentWillUnmount(): void {
@@ -166,55 +190,27 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   }
 
   handleOnPressPlay = () => {
-    const { playbackState } = this.props;
+    const { userPlaybackSpeed, playerIsPlaying } = this.props;
 
     requestAnimationFrame(async () => {
       // Toggle play/pause/stop
-      if (playbackState === 'playing' || playbackState === TrackPlayer.STATE_PLAYING) {
+      if (playerIsPlaying) {
         await TrackPlayer.pause();
         return;
       }
 
       await TrackPlayer.play();
+
+      await this.setTrackPlayerPlaybackSpeed(userPlaybackSpeed);
     });
   }
 
-  handleOnPressClose = () => {
-    requestAnimationFrame(() => this.setState({ showModal: false }));
-  }
-
-  handleOnShowModal = () => {
-    requestAnimationFrame(() => this.setState({ showModal: true }));
+  handleOnPressShowFullPlayer = () => {
+    requestAnimationFrame(() => NavigationService.navigate('FullAudioPlayer'));
   }
 
   handleOnSetPlaybackSpeed = (speed: number) => {
-    const { isSubscribed, userHasSubscribedBefore } = this.props;
-
-    if (!isSubscribed) {
-      return Alert.alert(
-        ALERT_TITLE_SUBSCRIPTION_ONLY,
-        ALERT_PLAYBACK_SPEED_SUBSCRIPTION_ONLY,
-        [
-          {
-            text: 'OK',
-          },
-          {
-            text: (userHasSubscribedBefore) ? 'Upgrade to Premium or Plus' : 'Start free trial',
-            style: 'cancel',
-            onPress: () => {
-              this.handleOnPressClose();
-
-              requestAnimationFrame(() => {
-                NavigationService.navigate('Upgrade')
-              });
-            }
-          }
-        ]
-      );
-    }
-
     requestAnimationFrame(() => this.props.setPlaybackSpeed(speed));
-
   }
 
   handleOnProgressChange = async (percentage: number) => {
@@ -227,62 +223,50 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     }
   }
 
-  get article(): Api.Article | undefined {
-    const { track, articles } = this.props;
+  handleOnTogglePlaybackSpeedVisibility = () => {
+    const { isSubscribed, userHasSubscribedBefore } = this.props;
 
-    if (!track || !track.id) { return; }
+    if (!isSubscribed) {
+      // Awalys reset it when the user clicks on it when not subscribed
+      // So we can be sure the user always defaults back to 1 when his subscription expires
+      this.props.setPlaybackSpeed(1);
 
-    // Find the article based on the audiofile id
-    const foundArticle = articles.find(article => {
-      if (article.audiofiles.length) {
-        const foundAudiofile = article.audiofiles.find(audiofile => audiofile.id === track.id);
-        if (foundAudiofile) { return true; }
-      }
-      return false;
-    });
+      return Alert.alert(
+        ALERT_TITLE_SUBSCRIPTION_ONLY,
+        ALERT_PLAYBACK_SPEED_SUBSCRIPTION_ONLY,
+        [
+          {
+            text: 'OK',
+          },
+          {
+            text: (userHasSubscribedBefore) ? 'Upgrade to Premium or Plus' : 'Start free trial',
+            style: 'cancel',
+            onPress: () => {
+              // Close the modal
+              NavigationService.goBack({ key: null })
 
-    return foundArticle;
-  }
-
-  renderAudioPlayerSmall(): JSX.Element | null {
-    const { track, articles } = this.props;
-    const { isLoading, isPlaying } = this.state;
-
-    if (!articles.length) { return null; }
-
-    if (!track.id) {
-      return <AudioPlayerSmallEmpty />;
+              requestAnimationFrame(() => {
+                NavigationService.navigate('Upgrade')
+              });
+            }
+          }
+        ]
+      );
     }
 
-    return <AudioPlayerSmall track={track} isLoading={isLoading} isPlaying={isPlaying} onPressPlay={this.handleOnPressPlay} onPressShowModal={this.handleOnShowModal} />;
-  }
-
-  handleOnTogglePlaybackSpeedVisibility = () => {
     requestAnimationFrame(() => this.setState({ isPlaybackSpeedVisible: !this.state.isPlaybackSpeedVisible }))
   }
 
-  renderAudioPlayerLarge(): JSX.Element {
+  render() {
     const { isLoading, isPlaying, isPlaybackSpeedVisible } = this.state;
-    const { userPlaybackSpeed } = this.props;
+    const { isSmall, isLarge, userPlaybackSpeed, track, articles } = this.props;
 
-    return (
-      <View style={{ flex: 1 }}>
-        {/* <Modal
-          animationType="slide"
-          presentationStyle="overFullScreen"
-          supportedOrientations={['portrait', 'landscape']}
-          // For this share extension the debugger will tell you:
-          // ExceptionsManager.js:82 Modal was presented with 0x2 orientations mask but the application only supports 0x0.Add more interface orientations to your app's Info.plist to fix this.
-          // NOTE: This will crash in non-dev mode
-          // Fun thing; this will NOT crash. You can ignore that error message
-          // It's related to the modal being active in a share extension: https://github.com/facebook/react-native/issues/13951#issuecomment-339395236
-          transparent
-          visible={true}
-        >
-          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0, 0, 0, 0.85)', padding: spacing.large }}>
-            <PlaybackSpeedSlider playbackSpeed={userPlaybackSpeed} onSetPlaybackSpeed={this.handleOnSetPlaybackSpeed} />
-          </View>
-        </Modal> */}
+    console.log('render audioplayercontainer');
+
+    if (!articles.length) { return null; }
+
+    if (isLarge) {
+      return (
         <AudioPlayerLarge
           article={this.article}
           isLoading={isLoading}
@@ -290,42 +274,43 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
           playbackSpeed={userPlaybackSpeed}
           isPlaybackSpeedVisible={isPlaybackSpeedVisible}
           onPressPlay={this.handleOnPressPlay}
-          onPressClose={this.handleOnPressClose}
           onProgressChange={this.handleOnProgressChange}
           onSetPlaybackSpeed={this.handleOnSetPlaybackSpeed}
           onTogglePlaybackSpeedVisibility={this.handleOnTogglePlaybackSpeedVisibility}
         />
-      </View>
+      );
+    }
 
-    );
-  }
+    if (isSmall) {
+      if (!track.id) {
+        return <AudioPlayerSmallEmpty />;
+      }
 
-  render() {
-    const { showModal } = this.state;
+      return (
+        <AudioPlayerSmall
+          track={track}
+          isLoading={isLoading}
+          isPlaying={isPlaying}
+          onPressPlay={this.handleOnPressPlay}
+          onPressShowFullPlayer={this.handleOnPressShowFullPlayer}
+        />
+      );
+    }
 
-    return (
-      <View>
-        <Modal
-          animationType="slide"
-          presentationStyle="overFullScreen"
-          transparent={false}
-          visible={showModal}
-        >
-          {this.renderAudioPlayerLarge()}
-        </Modal>
-        {this.renderAudioPlayerSmall()}
-      </View>
-    );
+    return null;
+
   }
 }
 
 interface StateProps {
   readonly track: ReturnType<typeof selectPlayerTrack>;
-  readonly playbackState: ReturnType<typeof selectPlayerPlaybackState>;
   readonly userPlaybackSpeed: ReturnType<typeof selectUserPlaybackSpeed>;
   readonly userHasSubscribedBefore: ReturnType<typeof selectUserHasSubscribedBefore>;
   readonly articles: ReturnType<typeof selectAllPlaylistArticles>;
   readonly isSubscribed: ReturnType<typeof selectIsSubscribed>;
+  readonly playerIsPlaying: ReturnType<typeof selectPlayerIsPlaying>;
+  readonly playerIsLoading: ReturnType<typeof selectPlayerIsLoading>;
+  readonly playerIsStopped: ReturnType<typeof selectPlayerIsStopped>;
 }
 
 interface DispatchProps {
@@ -335,11 +320,13 @@ interface DispatchProps {
 
 const mapStateToProps = (state: RootState): StateProps => ({
   track: selectPlayerTrack(state),
-  playbackState: selectPlayerPlaybackState(state),
   userPlaybackSpeed: selectUserPlaybackSpeed(state),
   userHasSubscribedBefore: selectUserHasSubscribedBefore(state),
   articles: selectAllPlaylistArticles(state),
   isSubscribed: selectIsSubscribed(state),
+  playerIsPlaying: selectPlayerIsPlaying(state),
+  playerIsLoading: selectPlayerIsLoading(state),
+  playerIsStopped: selectPlayerIsStopped(state),
 });
 
 const mapDispatchToProps: DispatchProps = {

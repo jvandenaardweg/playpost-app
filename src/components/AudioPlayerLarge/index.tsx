@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Animated, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Text, TouchableOpacity, View } from 'react-native';
 
 import { ArticleReader } from '../ArticleReader';
 import { AudioPlayerProgressBar } from '../AudioPlayerProgressBar';
@@ -19,7 +19,6 @@ interface Props {
   article: Api.Article | undefined;
   playbackSpeed: number;
   onPressPlay(): void;
-  onPressClose(): void;
   onProgressChange(value: number): void;
   onSetPlaybackSpeed(speed: number): void;
   onTogglePlaybackSpeedVisibility(): void;
@@ -54,15 +53,7 @@ export const AudioPlayerLarge: React.FC<Props> = React.memo((props: Props) => {
   }, [props.isPlaybackSpeedVisible])
 
   return (
-    <SafeAreaView style={styles.wrapper}>
-      <TouchableOpacity
-        testID="AudioPlayerLarge-TouchableOpacity-close"
-        onPress={props.onPressClose}
-        style={styles.openCloseControl}
-        hitSlop={defaultHitslop}
-      >
-        <Icon.FontAwesome5 name="chevron-down" size={24} color="#fff" />
-      </TouchableOpacity>
+    <View style={styles.wrapper}>
       <View style={styles.container}>
         <View style={styles.scrollableContainer}>
           <ArticleReader article={props.article} theme="dark" />
@@ -108,6 +99,6 @@ export const AudioPlayerLarge: React.FC<Props> = React.memo((props: Props) => {
           </Animated.View>
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   )
 });

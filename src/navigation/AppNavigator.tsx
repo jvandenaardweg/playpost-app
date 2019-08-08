@@ -14,6 +14,7 @@ import { LoginForgotPasswordScreen } from '../screens/login/LoginForgotPasswordS
 import { LoginResetPasswordScreen } from '../screens/login/LoginResetPasswordScreen';
 import { LogoutScreen } from '../screens/LogoutScreen';
 import { ContentViewScreen } from '../screens/modals/ContentViewScreen';
+import { FullAudioPlayerScreen } from '../screens/modals/FullAudioPlayerScreen';
 import { UpgradeScreen } from '../screens/modals/UpgradeScreen';
 import { LoginScreen } from '../screens/onboarding/LoginScreen';
 import { OnboardingScreen } from '../screens/onboarding/OnboardingScreen';
@@ -73,7 +74,7 @@ const SettingsLanguagesModalStack = createStackNavigator(
   }
 );
 
-const ModalsStack = createStackNavigator(
+const UpgradeStack = createStackNavigator(
   {
     Upgrade: UpgradeScreen,
     ContentView: ContentViewScreen
@@ -81,10 +82,46 @@ const ModalsStack = createStackNavigator(
   {
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
+
     defaultNavigationOptions: ({ navigation }) => ({
       headerRight: <ButtonClose onPress={() => navigation.dismiss()} />,
       headerStyle: {
         borderBottomColor: colors.borderDefault
+      }
+    })
+  }
+);
+
+const ContentViewStack = createStackNavigator(
+  {
+    ContentView: ContentViewScreen
+  },
+  {
+    headerMode: 'float',
+    headerTransitionPreset: 'uikit',
+
+    defaultNavigationOptions: ({ navigation }) => ({
+      headerRight: <ButtonClose onPress={() => navigation.dismiss()} />,
+      headerStyle: {
+        borderBottomColor: colors.borderDefault
+      }
+    })
+  }
+);
+
+const FullAudioPlayerStack = createStackNavigator(
+  {
+    FullAudioPlayer: FullAudioPlayerScreen
+  },
+  {
+    headerMode: 'float',
+    headerTransitionPreset: 'uikit',
+    defaultNavigationOptions: ({ navigation }) => ({
+      headerRight: <ButtonClose iconColor="white" onPress={() => navigation.dismiss()} />,
+      headerLeft: null,
+      headerStyle: {
+        backgroundColor: colors.black,
+        borderBottomWidth: 0
       }
     })
   }
@@ -131,7 +168,9 @@ const OnboardingStack = createStackNavigator(
 const RootStack = createStackNavigator(
   {
     App: MainTabNavigator,
-    Modals: ModalsStack,
+    Upgrade: UpgradeStack,
+    ContentView: ContentViewStack,
+    FullAudioPlayer: FullAudioPlayerStack,
     ModalLanguages: ModalLanguagesStack,
   },
   {

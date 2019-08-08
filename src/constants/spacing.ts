@@ -4,5 +4,6 @@ export default {
   medium: 14,
   small: 12,
   tiny: 10,
-  micro: 8
+  micro: 8,
+  nano: 4
 };

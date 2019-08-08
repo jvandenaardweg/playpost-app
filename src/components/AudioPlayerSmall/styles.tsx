@@ -6,8 +6,7 @@ import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
   wrapper: {
-    height: 55,
-    // marginBottom: spacing.default,
+    height: 55
   },
   container: {
     flexDirection: 'row',
@@ -19,9 +18,6 @@ export default StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 8,
     height: 55,
-    // marginLeft: spacing.default,
-    // marginRight: spacing.default,
-    // borderRadius: 4
   },
   leftIcon: {
     width: 20,
@@ -37,7 +33,8 @@ export default StyleSheet.create({
     flexShrink: 0,
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: spacing.default
+    marginLeft: spacing.default,
+    marginRight: spacing.nano
   },
   emptyText: {
     fontSize: fonts.fontSize.body,

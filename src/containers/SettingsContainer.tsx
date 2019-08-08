@@ -25,7 +25,7 @@ import { URL_ABOUT, URL_APP_APPLE_APP_STORE_REVIEW, URL_FEEDBACK, URL_PRIVACY_PO
 
 import { RootState } from '../reducers';
 import { resetAudiofilesState } from '../reducers/audiofiles';
-import { deleteUser, getUser } from '../reducers/user';
+import { deleteUser, getUser, setPlaybackSpeed } from '../reducers/user';
 import { resetDownloadedVoices, resetVoicesState } from '../reducers/voices';
 
 import { selectActiveSubscriptionName, selectActiveSubscriptionProductId, selectIsSubscribed } from '../selectors/subscriptions';
@@ -198,6 +198,10 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
     const { isSubscribed, userHasSubscribedBefore } = this.props;
 
     if (!isSubscribed) {
+      // Awalys reset it when the user clicks on it when not subscribed
+      // So we can be sure the user always defaults back to 1 when his subscription expires
+      this.props.setPlaybackSpeed(1);
+
       return Alert.alert(
         ALERT_TITLE_SUBSCRIPTION_ONLY,
         ALERT_PLAYBACK_SPEED_SUBSCRIPTION_ONLY,
@@ -213,6 +217,10 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
         ]
       );
     }
+
+    NavigationService.navigate('FullAudioPlayer');
+
+    // return Alert.alert('Play an article first', 'You can change the voice speaking rate in the audio player. Tap on the article in the player to open it full-screen.')
   }
 
   renderDeleteAccount = () => {
@@ -290,7 +298,6 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             icon: 'chevrons-right',
             iconColor: colors.green,
             onPress: this.handleOnPressPlaybackSpeed,
-            // isLoading: isClearingCache,
             value: `${userPlaybackSpeed.toFixed(2)}x`,
             chevron: true
           }
@@ -453,6 +460,7 @@ interface DispatchProps {
   resetDownloadedVoices: typeof resetDownloadedVoices;
   getUser: typeof getUser;
   deleteUser: typeof deleteUser;
+  setPlaybackSpeed: typeof setPlaybackSpeed;
 }
 
 interface StateProps {
@@ -480,7 +488,8 @@ const mapDispatchToProps = {
   resetVoicesState,
   resetDownloadedVoices,
   getUser,
-  deleteUser
+  deleteUser,
+  setPlaybackSpeed
 };
 
 export const SettingsContainer = connect(

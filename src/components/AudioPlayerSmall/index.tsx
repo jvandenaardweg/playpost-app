@@ -4,6 +4,7 @@ import TrackPlayer from 'react-native-track-player';
 
 import styles from './styles';
 
+import colors from '../../constants/colors';
 import { AudioPlayerSmallProgressBar } from '../AudioPlayerSmallProgressBar';
 import { PlayPauseControl } from '../PlayPauseControl';
 
@@ -11,12 +12,12 @@ interface Props {
   isPlaying: boolean;
   isLoading: boolean;
   track: TrackPlayer.Track;
-  onPressShowModal(): void;
+  onPressShowFullPlayer(): void;
   onPressPlay(): void;
 }
 
 export const AudioPlayerSmall: React.FC<Props> = React.memo(({
-  onPressShowModal,
+  onPressShowFullPlayer,
   onPressPlay,
   isPlaying,
   isLoading,
@@ -24,7 +25,7 @@ export const AudioPlayerSmall: React.FC<Props> = React.memo(({
 }) => (
   <View style={styles.wrapper}>
     <View style={styles.container}>
-      <TouchableHighlight style={styles.trackInfoButton} onPress={onPressShowModal}>
+      <TouchableHighlight style={styles.trackInfoButton} onPress={onPressShowFullPlayer}>
         <View style={styles.trackInfo}>
           <View>
             <Text style={styles.trackInfoTitle} ellipsizeMode="tail" numberOfLines={1}>{(title) ? title : 'Select an article'}</Text>
@@ -38,7 +39,7 @@ export const AudioPlayerSmall: React.FC<Props> = React.memo(({
         </View>
       </TouchableHighlight>
       <View style={styles.rightIcon}>
-        <PlayPauseControl size={16} isLoading={isLoading} isPlaying={isPlaying} onPressPlay={onPressPlay} />
+        <PlayPauseControl size={16} isLoading={isLoading} isPlaying={isPlaying} onPressPlay={onPressPlay} iconColor={colors.white} />
       </View>
     </View>
     <View style={styles.progressBarContainer} pointerEvents="none">

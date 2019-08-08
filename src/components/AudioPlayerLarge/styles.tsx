@@ -7,7 +7,6 @@ import spacing from '../../constants/spacing';
 export default StyleSheet.create({
   wrapper: {
     flex: 1,
-    paddingTop: 46,
     backgroundColor: colors.black
   },
   container: {
@@ -80,10 +79,9 @@ export default StyleSheet.create({
   },
   footer: {
     paddingTop: spacing.default,
-    paddingBottom: spacing.large,
     paddingLeft: spacing.large,
     paddingRight: spacing.large,
-    height: 80
+    height: 60
   },
   footerAnimatedView: {
     flexGrow: 1,

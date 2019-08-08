@@ -1,43 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AudioPlayerLarge rendering should render correctly 1`] = `
-<SafeAreaView
+<View
   style={
     Object {
       "backgroundColor": "#000000",
       "flex": 1,
-      "paddingTop": 46,
     }
   }
 >
-  <TouchableOpacity
-    activeOpacity={0.2}
-    hitSlop={
-      Object {
-        "bottom": 20,
-        "left": 20,
-        "right": 20,
-        "top": 20,
-      }
-    }
-    onPress={[MockFunction]}
-    style={
-      Object {
-        "alignItems": "flex-end",
-        "marginBottom": 12,
-        "marginTop": 12,
-        "paddingLeft": 24,
-        "paddingRight": 24,
-      }
-    }
-    testID="AudioPlayerLarge-TouchableOpacity-close"
-  >
-    <Memo
-      color="#fff"
-      name="chevron-down"
-      size={24}
-    />
-  </TouchableOpacity>
   <View
     style={
       Object {
@@ -238,8 +209,7 @@ exports[`AudioPlayerLarge rendering should render correctly 1`] = `
     <View
       style={
         Object {
-          "height": 80,
-          "paddingBottom": 24,
+          "height": 60,
           "paddingLeft": 24,
           "paddingRight": 24,
           "paddingTop": 12,
@@ -270,5 +240,5 @@ exports[`AudioPlayerLarge rendering should render correctly 1`] = `
       </AnimatedComponent>
     </View>
   </View>
-</SafeAreaView>
+</View>
 `;
