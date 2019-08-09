@@ -8,10 +8,10 @@ import {
   selectSubscriptionLatestReceipt,
   selectSubscriptions,
   selectSubscriptionsError,
-  selectSubscriptionsValidationResult,
-  subscriptionsSelector,
+  selectSubscriptionsIsLoadingRestore,
   selectSubscriptionsIsLoadingUpgrade,
-  selectSubscriptionsIsLoadingRestore
+  selectSubscriptionsValidationResult,
+  subscriptionsSelector
 } from '../subscriptions';
 
 import { rootReducer } from '../../reducers';

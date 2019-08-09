@@ -16,11 +16,11 @@ import { reactNativeElementsTheme } from './theme';
 
 import { ALERT_TITLE_ERROR } from './constants/messages';
 import { APIErrorAlertContainer } from './containers/APIErrorAlertContainer';
+import { SubscriptionHandlerContainer } from './containers/SubscriptionHandlerContainer';
 import { AppStateProvider } from './contexts/AppStateProvider';
 import { NetworkProvider } from './contexts/NetworkProvider';
 import { AppNavigator } from './navigation/AppNavigator';
 import NavigationService from './navigation/NavigationService';
-import { SubscriptionHandlerContainer } from './containers/SubscriptionHandlerContainer';
 
 // import { whyDidYouUpdate } from 'why-did-you-update';
 // whyDidYouUpdate(React, { exclude: /^YellowBox|Icon|Swipeable/ });

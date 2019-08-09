@@ -72,6 +72,7 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
         Analytics.trackEvent('Subscriptions upgrade success', { Status: 'success', ProductId: purchase.productId, UserId: this.analyticsUserId });
       } catch (err) {
         // The error from validateSubscriptionReceipt is handled in APIErrorAlertContainer
+        // tslint:disable-next-line: no-console
         console.error('err purchaseupdatelistener', err);
       } finally {
         this.props.setIsLoadingUpgrade(false);
