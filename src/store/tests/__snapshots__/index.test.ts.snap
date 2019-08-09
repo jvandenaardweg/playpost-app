@@ -63,7 +63,9 @@ Object {
   "subscriptions": Object {
     "error": "",
     "errorValidateSubscriptionReceipt": "",
+    "isLoadingRestore": false,
     "isLoadingSubscriptions": false,
+    "isLoadingUpgrade": false,
     "isLoadingValidateSubscriptionReceipt": false,
     "subscriptions": null,
     "validationResult": null,

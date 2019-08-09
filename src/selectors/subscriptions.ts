@@ -15,6 +15,16 @@ export const selectIsLoadingSubscriptions = createSelector(
   (state): boolean => state.isLoadingSubscriptions
 );
 
+export const selectSubscriptionsIsLoadingUpgrade = createSelector(
+  [subscriptionsSelector],
+  (state): boolean => state.isLoadingUpgrade
+);
+
+export const selectSubscriptionsIsLoadingRestore = createSelector(
+  [subscriptionsSelector],
+  (state): boolean => state.isLoadingRestore
+);
+
 export const selectSubscriptionsError = createSelector(
   [subscriptionsSelector],
   (state): string => state.error

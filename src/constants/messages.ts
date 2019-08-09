@@ -7,6 +7,8 @@ export const ALERT_TITLE_REQUEST_CONFIRM = 'Are you sure?';
 export const ALERT_TITLE_SUBSCRIPTION_UPGRADE_SUCCESS = 'Upgrade success!';
 export const ALERT_TITLE_SUBSCRIPTION_RESTORE_SUCCESS = 'Restore successful!';
 export const ALERT_TITLE_SUBSCRIPTION_RESTORE_ERROR = 'Restore purchase error';
+export const ALERT_TITLE_SUBSCRIPTION_UPGRADE_ERROR = 'Upgrade error';
+export const ALERT_TITLE_SUBSCRIPTION_RESTORE_NOTHING = 'Nothing to restore';
 export const ALERT_TITLE_SUBSCRIPTION_EXPIRED = 'Subscription expired';
 export const ALERT_TITLE_VOICE_CHANGE_REQUEST = 'Only applies to new articles';
 export const ALERT_TITLE_NO_UPDATE = 'Nothing to update';
@@ -45,6 +47,7 @@ export const ALERT_SUBSCRIPTION_INIT_FAIL = 'Could not set up a connection to th
 export const ALERT_SUBSCRIPTION_EXPIRED = 'Your subscription is expired. To use our Premium or Plus features again, re-subscribe by using the Upgrade button.';
 export const ALERT_SUBSCRIPTION_BUY_SUCCESS = 'You can now use the extra features.';
 export const ALERT_SUBSCRIPTION_RESTORE_PURCHASE_NOT_FOUND = 'We could not find a subscription purchase to restore. If you had a subscription before, it might be expired. If you think this is incorrect, contact our support.';
+export const ALERT_SUBSCRIPTION_RESTORE_NOTHING = 'There are no previous purchases to restore.';
 export const ALERT_SUBSCRIPTION_RESTORE_SUCCESS = 'You successfully restored the subscription! You can now use the extra features.';
 
 export const ALERT_PLAYBACK_SPEED_SUBSCRIPTION_ONLY = 'Changing the voice\'s speaking rate is only available for Premium and Plus users.';

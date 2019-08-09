@@ -1,45 +1,40 @@
 import Analytics from 'appcenter-analytics';
 import React from 'react';
-import isEqual from 'react-fast-compare';
 import { Alert, Linking, Platform } from 'react-native';
-import * as RNIap from 'react-native-iap';
-import { connect } from 'react-redux';
-
+import RNIap from 'react-native-iap';
 import { NavigationRoute, NavigationScreenProp } from 'react-navigation';
+import { connect } from 'react-redux';
 
 import { Upgrade } from '../components/Upgrade';
 
 import { NetworkContext } from '../contexts/NetworkProvider';
+import NavigationService from '../navigation/NavigationService';
 
 import { SUBSCRIPTION_PRODUCT_IDS } from '../constants/in-app-purchase';
 import {
   ALERT_GENERIC_INTERNET_REQUIRED,
-  ALERT_SUBSCRIPTION_BUY_SUCCESS,
   ALERT_SUBSCRIPTION_INIT_FAIL,
   ALERT_SUBSCRIPTION_RESTORE_PURCHASE_NOT_FOUND,
-  ALERT_SUBSCRIPTION_RESTORE_SUCCESS,
   ALERT_TITLE_ERROR_NO_INTERNET,
   ALERT_TITLE_SUBSCRIPTION_RESTORE_ERROR,
-  ALERT_TITLE_SUBSCRIPTION_RESTORE_SUCCESS,
-  ALERT_TITLE_SUBSCRIPTION_UPGRADE_SUCCESS
-} from '../constants/messages';
-
-import { URL_FEEDBACK, URL_MANAGE_APPLE_SUBSCRIPTIONS, URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../constants/urls';
-import NavigationService from '../navigation/NavigationService';
+  ALERT_TITLE_SUBSCRIPTION_UPGRADE_ERROR} from '../constants/messages';
+import {
+  URL_FEEDBACK,
+  URL_MANAGE_APPLE_SUBSCRIPTIONS,
+  URL_PRIVACY_POLICY,
+  URL_TERMS_OF_USE
+} from '../constants/urls';
 import { RootState } from '../reducers';
-import { validateSubscriptionReceipt } from '../reducers/subscriptions';
+import { setIsLoadingRestore, setIsLoadingUpgrade, validateSubscriptionReceipt } from '../reducers/subscriptions';
 import { getUser } from '../reducers/user';
-import { selectActiveSubscriptionProductId, selectSubscriptionsError, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
+import { selectActiveSubscriptionProductId, selectIsSubscribed, selectSubscriptionsError, selectSubscriptionsIsLoadingRestore, selectSubscriptionsIsLoadingUpgrade, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
 import { selectUserDetails, selectUserHasSubscribedBefore } from '../selectors/user';
 import { selectTotalAvailableVoices } from '../selectors/voices';
 
 interface State {
   readonly subscriptions: Array<RNIap.Subscription<string>>;
-  readonly isLoadingBuySubscription: boolean;
-  readonly isLoadingRestorePurchases: boolean;
   readonly isLoadingSubscriptionItems: boolean;
   readonly isLoadingPurchases: boolean;
-  readonly isPurchased: boolean;
   readonly selectedProductId: string;
   readonly purchases: RNIap.Purchase[];
   readonly centeredSubscriptionProductId: string;
@@ -100,27 +95,30 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     ];
   }
 
+  /**
+   * A method to check if a user has previously already used a subscription,
+   * if so, it is not eligible for a trial and we should not show "Start free trial" button
+   *
+   * Technically this is already handled by Apple so a user cannot start a trial twice
+   */
+  get isEligibleForTrial() {
+    const { userHasSubscribedBefore } = this.props;
+
+    return !userHasSubscribedBefore;
+  }
+
   static contextType = NetworkContext;
 
   state = {
     subscriptions: [] as Array<RNIap.Subscription<string>>,
-    isLoadingBuySubscription: false,
-    isLoadingRestorePurchases: false,
     isLoadingSubscriptionItems: false,
     isLoadingPurchases: false,
-    isPurchased: false,
     purchases: [] as RNIap.Purchase[],
     selectedProductId: '',
     centeredSubscriptionProductId: ''
   };
 
-  /* tslint:disable-next-line no-any */
-  purchaseUpdateSubscription: any = null;
-
-  /* tslint:disable-next-line no-any */
-  purchaseErrorSubscription: any = null;
-
-  componentDidMount() {
+  async componentDidMount() {
     const { isConnected } = this.context;
 
     // For now, just close the screen when there's no active internet connection
@@ -130,94 +128,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       return Alert.alert(ALERT_TITLE_ERROR_NO_INTERNET, ALERT_GENERIC_INTERNET_REQUIRED);
     }
 
-    this.setState({ centeredSubscriptionProductId: this.props.centeredSubscriptionProductId });
-
-    this.fetchAvailableSubscriptionItems(SUBSCRIPTION_PRODUCT_IDS);
-
-    this.purchaseUpdateSubscription = RNIap.purchaseUpdatedListener(async (purchase: RNIap.ProductPurchase) => {
-      const { selectedProductId } = this.state;
-
-      try {
-        // Validatation error is handeled in ErrorAlertContainer
-        // The validation result is handled in componentDidUpdate
-        await this.props.validateSubscriptionReceipt(selectedProductId, purchase.transactionReceipt);
-        Analytics.trackEvent('Subscriptions upgrade success', { Status: 'success', ProductId: purchase.productId, UserId: this.analyticsUserId });
-      } finally {
-        this.setState({ isLoadingRestorePurchases: false, isLoadingBuySubscription: false, selectedProductId: '' });
-      }
-    });
-
-    this.purchaseErrorSubscription = RNIap.purchaseErrorListener(async (error: RNIap.PurchaseError) => {
-      const errorMessage = error && error.debugMessage ? error.debugMessage : JSON.stringify(error);
-
-      Analytics.trackEvent('Subscriptions upgrade error', {
-        Status: 'error',
-        Message: errorMessage,
-        ProductId: this.state.selectedProductId,
-        UserId: this.analyticsUserId
-      });
-
-      this.showErrorAlert(
-        'Oops!',
-        `If you canceled an upgrade, you can ignore this message.\n\nIf you tried to upgrade please contact our support with this error message:\n\n ${errorMessage}`
-      );
-
-      this.setState({ isLoadingRestorePurchases: false, isLoadingBuySubscription: false, selectedProductId: '' });
-    });
-
-  }
-
-  componentWillUnmount(): void {
-    if (this.purchaseUpdateSubscription) {
-      this.purchaseUpdateSubscription.remove();
-      this.purchaseUpdateSubscription = null;
-    }
-
-    if (this.purchaseErrorSubscription) {
-      this.purchaseErrorSubscription.remove();
-      this.purchaseErrorSubscription = null;
-    }
-
-    if (Platform.OS === 'android') {
-      RNIap.endConnectionAndroid();
-    }
-  }
-
-  async componentDidUpdate(prevProps: Props): Promise<void> {
-    const { isLoadingBuySubscription, isLoadingRestorePurchases } = this.state;
-    const { validationResult } = this.props;
-
-    // When we receive an API response when doing an upgrade...
-    if (isLoadingBuySubscription && validationResult) {
-      if (!isEqual(prevProps.validationResult, validationResult)) {
-        Alert.alert(ALERT_TITLE_SUBSCRIPTION_UPGRADE_SUCCESS, ALERT_SUBSCRIPTION_BUY_SUCCESS);
-
-        await this.fetchUpdatedUserData();
-
-        return this.handleClose();
-      }
-    }
-
-    // When we receive an API response when doing a restore...
-    if (isLoadingRestorePurchases && validationResult) {
-      // If we try to restore a previous purchase...
-      if (!isEqual(prevProps.validationResult, validationResult)) {
-        // Error!
-        if (validationResult.status !== 'active') {
-          return this.showErrorAlert(
-            ALERT_TITLE_SUBSCRIPTION_RESTORE_ERROR,
-            `Your previous subscription is ${validationResult.status}. In order to use our Premium features, you need to buy a new subscription.`
-          );
-        }
-
-        // Success!
-        Alert.alert(ALERT_TITLE_SUBSCRIPTION_RESTORE_SUCCESS, ALERT_SUBSCRIPTION_RESTORE_SUCCESS);
-
-        await this.fetchUpdatedUserData();
-
-        return this.handleClose();
-      }
-    }
+    this.getAvailableSubscriptionItems(SUBSCRIPTION_PRODUCT_IDS);
   }
 
   fetchUpdatedUserData = async () => {
@@ -239,14 +150,6 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   }
 
   handleClose = async () => {
-    // Normally we should put this in componentWillUnmount
-    // But, since the upgrade screen is part of React Navigation, unmount is not called in this context
-    // So we manually handle the removal of event listeners
-    if (this.purchaseUpdateSubscription) {
-      this.purchaseUpdateSubscription.remove();
-      this.purchaseUpdateSubscription = null;
-    }
-
     // Close the modal
     NavigationService.goBack({ key: null });
   }
@@ -325,18 +228,25 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       );
     }
 
+    this.props.setIsLoadingUpgrade(true);
+
     Analytics.trackEvent('Subscriptions upgrade', { Status: 'upgrading', ProductId: productId, UserId: this.analyticsUserId });
 
-    return this.setState({ isLoadingBuySubscription: true, selectedProductId: productId, centeredSubscriptionProductId: productId }, async () => {
+    this.setState({ selectedProductId: productId }, async () => {
       try {
         const upgradeResult = await this.buySubscription(productId);
+
+        // The result of buySubscription is handled in SubscriptionHandlerContainer
         return upgradeResult;
       } catch (err) {
-        // We don't do anything with this message, as errors are handled by: purchaseErrorListener
+        const errorMessage = err && err.message ? err.message : 'An unknown error happened while upgrading a subscription.';
+        Analytics.trackEvent('Subscriptions upgrade error', { Status: 'error', Message: errorMessage, UserId: this.analyticsUserId });
 
-        return err;
+        this.props.setIsLoadingUpgrade(false);
+
+        return this.showErrorAlert(ALERT_TITLE_SUBSCRIPTION_UPGRADE_ERROR, errorMessage);
       }
-    });
+    })
   }
 
   buySubscription = (productId: string): Promise<string> => {
@@ -362,50 +272,49 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   }
 
   handleOnPressRestore = async () => {
-    Analytics.trackEvent('Subscriptions restore', { Status: 'restoring', UserId: this.analyticsUserId });
+    this.props.setIsLoadingRestore(true);
 
-    return this.setState({ isLoadingRestorePurchases: true }, async () => {
-      try {
-        // Get the previous purchases of the current user
-        const purchases = await this.getAvailablePurchases();
+    try {
+      Analytics.trackEvent('Subscriptions restore', { Status: 'restoring', UserId: this.analyticsUserId });
 
-        // Get the latest receipt from the purchases to validate
-        const { transactionReceipt, productId } = this.getLatestPurchase(purchases);
+      // Get the previous purchases of the current user
+      const purchases = await this.getAvailablePurchases();
 
-        // Validate the receipt on our server
-        await this.props.validateSubscriptionReceipt(productId, transactionReceipt);
-
-        Analytics.trackEvent('Subscriptions restore success', { Status: 'success', ProductId: productId, UserId: this.analyticsUserId });
-
-        // The validation result is handled in componentDidUpdate
-      } catch (err) {
-        const errorMessage = err && err.message ? err.message : 'An unknown error happened while restoring a subscription.';
-        Analytics.trackEvent('Subscriptions restore error', { Status: 'error', Message: errorMessage, UserId: this.analyticsUserId });
-
-        this.showErrorAlert(ALERT_TITLE_SUBSCRIPTION_RESTORE_ERROR, errorMessage);
-      } finally {
-        this.setState({ isLoadingRestorePurchases: false });
+      // If there are no previous purchases, there's nothing to restore...
+      if (!purchases.length) {
+        this.props.setIsLoadingRestore(false);
+        Analytics.trackEvent('Subscriptions restore nothing', { Status: 'nothing', UserId: this.analyticsUserId });
+        return this.showErrorAlert(`Nothing to restore`, `We could not find any previous purchase to restore. If you think this is incorrect, please contact our support.`);
       }
-    });
+
+      // If we end up here, the user has previous purchases in our app.
+      // Let's get the latest purchase receipt and validate that on the server
+
+      // Get the latest receipt from the purchases to validate
+      const { transactionReceipt, productId } = this.getLatestPurchase(purchases);
+
+      // Validate the receipt on our server
+      await this.props.validateSubscriptionReceipt(productId, transactionReceipt);
+
+      // The validation result is handled in SubscriptionHandlerContainer
+    } catch (err) {
+      const errorMessage = err && err.message ? err.message : 'An unknown error happened while restoring a subscription.';
+      Analytics.trackEvent('Subscriptions restore error', { Status: 'error', Message: errorMessage, UserId: this.analyticsUserId });
+
+      this.props.setIsLoadingRestore(false);
+
+      this.showErrorAlert(ALERT_TITLE_SUBSCRIPTION_RESTORE_ERROR, errorMessage);
+    }
   }
 
   getAvailablePurchases = (): Promise<RNIap.Purchase[]> => {
-    return new Promise(async (resolve, reject) => {
-      this.setState({ isLoadingPurchases: true }, async () => {
-        try {
-          const purchases = await RNIap.getAvailablePurchases();
-          resolve(purchases);
-        } catch (err) {
-          reject(err);
-        } finally {
-          this.setState({ isLoadingPurchases: false })
-        }
-      });
-    });
+    return RNIap.getAvailablePurchases();
   }
 
-  fetchAvailableSubscriptionItems = async (subscriptionProductIds: string[]) => {
-    return this.setState({ isLoadingSubscriptionItems: true }, async () => {
+  getAvailableSubscriptionItems = async (subscriptionProductIds: string[]) => {
+    const { centeredSubscriptionProductId } = this.props;
+
+    return this.setState({ centeredSubscriptionProductId, isLoadingSubscriptionItems: true }, async () => {
       try {
         const result = await RNIap.initConnection();
 
@@ -440,7 +349,8 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     }
 
     // First, sort the array, so the latest purchase is on top
-    const sortedPurchases = [...purchases].sort((a, b) => b.transactionDate - a.transactionDate);
+    // https://github.com/dooboolab/react-native-iap/issues/532#issuecomment-503174711
+    const sortedPurchases = purchases.sort((a, b) => b.transactionDate - a.transactionDate);
 
     // Find the latest purchase based on the subscription productId
     const purchase = sortedPurchases[0];
@@ -454,27 +364,15 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     return purchase;
   }
 
-  /**
-   * A method to check if a user has previously already used a subscription,
-   * if so, it is not eligible for a trial and we should not show "Start free trial" button
-   *
-   * Technically this is already handled by Apple so a user cannot start a trial twice
-   */
-  get isEligibleForTrial() {
-    const { userHasSubscribedBefore } = this.props;
-
-    return !userHasSubscribedBefore;
-  }
-
   render() {
-    const { isLoadingRestorePurchases, isLoadingBuySubscription, isLoadingSubscriptionItems, subscriptions, centeredSubscriptionProductId } = this.state;
-    const { activeSubscriptionProductId } = this.props;
+    const { isLoadingSubscriptionItems, subscriptions, centeredSubscriptionProductId } = this.state;
+    const { activeSubscriptionProductId, isLoadingUpgrade, isLoadingRestore } = this.props;
 
     return (
       <Upgrade
         isLoadingSubscriptionItems={isLoadingSubscriptionItems}
-        isLoadingBuySubscription={isLoadingBuySubscription}
-        isLoadingRestorePurchases={isLoadingRestorePurchases}
+        isLoadingBuySubscription={isLoadingUpgrade}
+        isLoadingRestorePurchases={isLoadingRestore}
         isEligibleForTrial={this.isEligibleForTrial}
         subscriptions={subscriptions}
         activeSubscriptionProductId={activeSubscriptionProductId}
@@ -494,29 +392,39 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 interface StateProps {
   subscriptionsError: ReturnType<typeof selectSubscriptionsError>;
   validationResult: ReturnType<typeof selectSubscriptionsValidationResult>;
+  isSubscribed: ReturnType<typeof selectIsSubscribed>;
   activeSubscriptionProductId: ReturnType<typeof selectActiveSubscriptionProductId>;
   userDetails: ReturnType<typeof selectUserDetails>;
   totalAvailableVoices: ReturnType<typeof selectTotalAvailableVoices>;
   userHasSubscribedBefore: ReturnType<typeof selectUserHasSubscribedBefore>;
+  isLoadingUpgrade: ReturnType<typeof selectSubscriptionsIsLoadingUpgrade>;
+  isLoadingRestore: ReturnType<typeof selectSubscriptionsIsLoadingRestore>;
 }
 
 interface DispatchProps {
   validateSubscriptionReceipt: typeof validateSubscriptionReceipt;
   getUser: typeof getUser;
+  setIsLoadingUpgrade: typeof setIsLoadingUpgrade;
+  setIsLoadingRestore: typeof setIsLoadingRestore;
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
   subscriptionsError: selectSubscriptionsError(state),
   validationResult: selectSubscriptionsValidationResult(state),
+  isSubscribed: selectIsSubscribed(state),
   activeSubscriptionProductId: selectActiveSubscriptionProductId(state),
   userDetails: selectUserDetails(state),
   totalAvailableVoices: selectTotalAvailableVoices(state),
-  userHasSubscribedBefore: selectUserHasSubscribedBefore(state)
+  userHasSubscribedBefore: selectUserHasSubscribedBefore(state),
+  isLoadingUpgrade: selectSubscriptionsIsLoadingUpgrade(state),
+  isLoadingRestore: selectSubscriptionsIsLoadingRestore(state),
 });
 
 const mapDispatchToProps = {
   validateSubscriptionReceipt,
-  getUser
+  getUser,
+  setIsLoadingUpgrade,
+  setIsLoadingRestore
 };
 
 export const UpgradeContainer = connect(

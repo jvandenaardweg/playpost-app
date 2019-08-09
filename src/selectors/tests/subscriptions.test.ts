@@ -9,7 +9,9 @@ import {
   selectSubscriptions,
   selectSubscriptionsError,
   selectSubscriptionsValidationResult,
-  subscriptionsSelector
+  subscriptionsSelector,
+  selectSubscriptionsIsLoadingUpgrade,
+  selectSubscriptionsIsLoadingRestore
 } from '../subscriptions';
 
 import { rootReducer } from '../../reducers';
@@ -164,5 +166,29 @@ describe('subscriptions selector', () => {
 
     // The mock data contains a unsubscribed/expired subscription
     expect(selectActiveSubscriptionName(exampleState)).toEqual('Free');
+  });
+
+  it('selectSubscriptionsIsLoadingUpgrade should return true when isLoadingUpgrade is true', () => {
+    const exampleState = {
+      ...rootState,
+      subscriptions: {
+        ...rootState.subscriptions,
+        isLoadingUpgrade: true
+      }
+    };
+
+    expect(selectSubscriptionsIsLoadingUpgrade(exampleState)).toEqual(true);
+  });
+
+  it('selectSubscriptionsIsLoadingRestore should return true when isLoadingRestore is true', () => {
+    const exampleState = {
+      ...rootState,
+      subscriptions: {
+        ...rootState.subscriptions,
+        isLoadingRestore: true
+      }
+    };
+
+    expect(selectSubscriptionsIsLoadingRestore(exampleState)).toEqual(true);
   });
 });

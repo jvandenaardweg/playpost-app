@@ -6,6 +6,9 @@ export const GET_ACTIVE_SUBSCRIPTIONS = 'subscriptions/GET_ACTIVE_SUBSCRIPTIONS'
 export const GET_ACTIVE_SUBSCRIPTIONS_SUCCESS = 'subscriptions/GET_ACTIVE_SUBSCRIPTIONS_SUCCESS';
 export const GET_ACTIVE_SUBSCRIPTIONS_FAIL = 'subscriptions/GET_ACTIVE_SUBSCRIPTIONS_FAIL';
 
+export const SET_IS_LOADING_UPGRADE = 'subscriptions/SET_IS_LOADING_UPGRADE';
+export const SET_IS_LOADING_RESTORE = 'subscriptions/SET_IS_LOADING_RESTORE';
+
 export const POST_VALIDATE_SUBSCRIPTION_RECEIPT = 'subscriptions/POST_VALIDATE_SUBSCRIPTION_RECEIPT';
 export const POST_VALIDATE_SUBSCRIPTION_RECEIPT_SUCCESS = 'subscriptions/POST_VALIDATE_SUBSCRIPTION_RECEIPT_SUCCESS';
 export const POST_VALIDATE_SUBSCRIPTION_RECEIPT_FAIL = 'subscriptions/POST_VALIDATE_SUBSCRIPTION_RECEIPT_FAIL';
@@ -14,6 +17,8 @@ export const RESET_VALIDATE_SUBSCRIPTION_RECEIPT_ERROR = 'subscriptions/RESET_VA
 export type SubscriptionsState = Readonly<{
   isLoadingSubscriptions: boolean;
   isLoadingValidateSubscriptionReceipt: boolean;
+  isLoadingUpgrade: boolean;
+  isLoadingRestore: boolean;
   subscriptions: Api.InAppSubscription[] | null;
   validationResult: Api.ReceiptValidationResponse | null;
   error: string;
@@ -23,6 +28,8 @@ export type SubscriptionsState = Readonly<{
 export const initialState: SubscriptionsState = {
   isLoadingSubscriptions: false,
   isLoadingValidateSubscriptionReceipt: false,
+  isLoadingUpgrade: false,
+  isLoadingRestore: false,
   subscriptions: null,
   validationResult: null,
   error: '',
@@ -32,6 +39,18 @@ export const initialState: SubscriptionsState = {
 /* tslint:disable-next-line no-any */
 export function subscriptionsReducer(state = initialState, action: any): SubscriptionsState {
   switch (action.type) {
+    case SET_IS_LOADING_UPGRADE:
+      return {
+        ...state,
+        isLoadingUpgrade: action.payload,
+      };
+
+    case SET_IS_LOADING_RESTORE:
+      return {
+        ...state,
+        isLoadingRestore: action.payload,
+      };
+
     case GET_ACTIVE_SUBSCRIPTIONS:
       return {
         ...state,
@@ -119,6 +138,16 @@ export function subscriptionsReducer(state = initialState, action: any): Subscri
       return state;
   }
 }
+
+export const setIsLoadingUpgrade = (isLoading: boolean) => ({
+  type: SET_IS_LOADING_UPGRADE,
+  payload: isLoading
+});
+
+export const setIsLoadingRestore = (isLoading: boolean) => ({
+  type: SET_IS_LOADING_RESTORE,
+  payload: isLoading
+});
 
 export const resetSubscriptionsState = () => ({
   type: RESET_SUBSCRIPTIONS_STATE

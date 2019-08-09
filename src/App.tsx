@@ -20,6 +20,7 @@ import { AppStateProvider } from './contexts/AppStateProvider';
 import { NetworkProvider } from './contexts/NetworkProvider';
 import { AppNavigator } from './navigation/AppNavigator';
 import NavigationService from './navigation/NavigationService';
+import { SubscriptionHandlerContainer } from './containers/SubscriptionHandlerContainer';
 
 // import { whyDidYouUpdate } from 'why-did-you-update';
 // whyDidYouUpdate(React, { exclude: /^YellowBox|Icon|Swipeable/ });
@@ -129,11 +130,13 @@ export default class App extends React.PureComponent<State> {
             <NetworkProvider>
               <AppStateProvider>
                 <APIErrorAlertContainer>
-                  <AppNavigator
-                    ref={navigatorRef => {
-                      NavigationService.setTopLevelNavigator(navigatorRef);
-                    }}
-                  />
+                  <SubscriptionHandlerContainer>
+                    <AppNavigator
+                      ref={navigatorRef => {
+                        NavigationService.setTopLevelNavigator(navigatorRef);
+                      }}
+                    />
+                  </SubscriptionHandlerContainer>
                 </APIErrorAlertContainer>
               </AppStateProvider>
             </NetworkProvider>
