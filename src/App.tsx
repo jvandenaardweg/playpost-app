@@ -14,6 +14,7 @@ useScreens();
 import { persistor, store } from './store';
 import { reactNativeElementsTheme } from './theme';
 
+import { ALERT_TITLE_ERROR } from './constants/messages';
 import { APIErrorAlertContainer } from './containers/APIErrorAlertContainer';
 import { AppStateProvider } from './contexts/AppStateProvider';
 import { NetworkProvider } from './contexts/NetworkProvider';
@@ -70,7 +71,7 @@ export default class App extends React.PureComponent<State> {
         }
       } catch (err) {
         const errorMessage = (err && err.message) ? err.message : 'An uknown error happened while opening a URL.';
-        Alert.alert('Oops!', errorMessage);
+        Alert.alert(ALERT_TITLE_ERROR, errorMessage);
       }
     })
 
@@ -107,7 +108,7 @@ export default class App extends React.PureComponent<State> {
 
     // Show the alert to the user
     Alert.alert(
-      'Oops!',
+      ALERT_TITLE_ERROR,
       `An unexpected error has occurred. Please close and restart the app.\n\n${error}`,
       [
         {

@@ -17,7 +17,8 @@ import {
   ALERT_SETTINGS_DELETE_USER_FAIL,
   ALERT_SETTINGS_RESET_CACHE_FAIL,
   ALERT_SETTINGS_SET_CACHE_SIZE_FAIL,
-  ALERT_SETTINGS_SETTING_UNAVAILABLE,
+  ALERT_TITLE_ERROR,
+  ALERT_TITLE_REQUEST_CONFIRM,
   ALERT_TITLE_SUBSCRIPTION_ONLY
 } from '../constants/messages';
 import spacing from '../constants/spacing';
@@ -110,16 +111,12 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
       const sizeInMb = (combinedSize / 1000000).toFixed(2);
       return this.setState({ cacheSize: sizeInMb });
     } catch (err) {
-      return Alert.alert('Oops!', ALERT_SETTINGS_SET_CACHE_SIZE_FAIL);
+      return Alert.alert(ALERT_TITLE_ERROR, ALERT_SETTINGS_SET_CACHE_SIZE_FAIL);
     }
   }
 
-  handleOnPressRow = () => {
-    Alert.alert('Not available', ALERT_SETTINGS_SETTING_UNAVAILABLE);
-  }
-
   handleOnPressClearCache = async () => {
-    return Alert.alert('Are you sure?', ALERT_SETTINGS_CLEAR_CACHE_WARNING, [
+    return Alert.alert(ALERT_TITLE_REQUEST_CONFIRM, ALERT_SETTINGS_CLEAR_CACHE_WARNING, [
       {
         text: 'Cancel',
         style: 'cancel'
@@ -137,7 +134,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
       try {
         await this.doResetCache();
       } catch (err) {
-        return Alert.alert('Oops!', ALERT_SETTINGS_RESET_CACHE_FAIL);
+        return Alert.alert(ALERT_TITLE_ERROR, ALERT_SETTINGS_RESET_CACHE_FAIL);
       } finally {
         this.setState({ isClearingCache: false });
       }
@@ -158,7 +155,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
         await this.props.deleteUser();
         return NavigationService.navigate('Logout');
       } catch (err) {
-        return Alert.alert('Oops!', ALERT_SETTINGS_DELETE_USER_FAIL);
+        return Alert.alert(ALERT_TITLE_ERROR, ALERT_SETTINGS_DELETE_USER_FAIL);
       } finally {
         this.setState({ isDeletingAccount: false });
       }
@@ -181,7 +178,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
   handleOnPressAccountEmail = () => NavigationService.navigate('UpdateEmail');
 
   handleOnPressAccountDelete = () => {
-    return Alert.alert('Are you sure?', ALERT_SETTINGS_DELETE_USER, [
+    return Alert.alert(ALERT_TITLE_REQUEST_CONFIRM, ALERT_SETTINGS_DELETE_USER, [
       {
         text: 'Cancel',
         style: 'cancel'
@@ -210,7 +207,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             text: 'OK',
           },
           {
-            text: (userHasSubscribedBefore) ? 'Upgrade to Premium or Plus' : 'Start free trial',
+            text: (userHasSubscribedBefore) ? 'Upgrade' : 'Start free trial',
             style: 'cancel',
             onPress: () => NavigationService.navigate('Upgrade')
           }
@@ -219,8 +216,6 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
     }
 
     NavigationService.navigate('FullAudioPlayer');
-
-    // return Alert.alert('Play an article first', 'You can change the voice speaking rate in the audio player. Tap on the article in the player to open it full-screen.')
   }
 
   renderDeleteAccount = () => {

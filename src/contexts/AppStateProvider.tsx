@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { RootState } from '../reducers';
 import { getPlaylist } from '../reducers/playlist';
 
-import { ALERT_SUBSCRIPTION_EXPIRED } from '../constants/messages';
+import { ALERT_SUBSCRIPTION_EXPIRED, ALERT_TITLE_SUBSCRIPTION_EXPIRED } from '../constants/messages';
 import { setAuthToken } from '../reducers/auth';
 import { validateSubscriptionReceipt } from '../reducers/subscriptions';
 import { getUser } from '../reducers/user';
@@ -80,7 +80,7 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
     if (prevProps.isSubscribed !== isSubscribed) {
       // If the state changes from subscribed, to unsubscribed, notify the user, so the user can re-subscribe again if he wants to.
       if (!isSubscribed) {
-        Alert.alert('Subscription expired', ALERT_SUBSCRIPTION_EXPIRED);
+        Alert.alert(ALERT_TITLE_SUBSCRIPTION_EXPIRED, ALERT_SUBSCRIPTION_EXPIRED);
       }
 
       this.setState({ isSubscribed });

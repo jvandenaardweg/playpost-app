@@ -18,7 +18,10 @@ import {
   ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL,
   ALERT_PLAYLIST_UNARCHIVE_ARTICLE_FAIL,
   ALERT_PLAYLIST_UNFAVORITE_ARTICLE_FAIL,
-  ALERT_PLAYLIST_UPDATE_FAIL
+  ALERT_PLAYLIST_UPDATE_FAIL,
+  ALERT_TITLE_ERROR,
+  ALERT_TITLE_ERROR_NO_INTERNET,
+  ALERT_TITLE_LANGUAGE_UNSUPPORTED
 } from '../constants/messages';
 
 import * as cache from '../cache';
@@ -176,7 +179,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       // If there are no audiofiles and when there's no internet connection
       // Show the user he needs an active internet connection to listen to articles
       if (!article.audiofiles.length && !isConnected) {
-        return Alert.alert('No internet', ALERT_ARTICLE_PLAY_INTERNET_REQUIRED);
+        return Alert.alert(ALERT_TITLE_ERROR_NO_INTERNET, ALERT_ARTICLE_PLAY_INTERNET_REQUIRED);
       }
 
       // If we don't have an audiofile yet, we create it first
@@ -222,7 +225,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
             text: 'Cancel',
           },
           {
-            text: (userHasSubscribedBefore) ? 'Upgrade to Premium or Plus' : 'Start free trial',
+            text: (userHasSubscribedBefore) ? 'Upgrade' : 'Start free trial',
             style: 'cancel',
             onPress: () => this.props.navigation.navigate('Upgrade')
           },
@@ -241,7 +244,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     const isLanguageSupported = !!languagesWithActiveVoices.find(language => language.code === articleLanguageCode);
 
     if (!articleLanguageCode || !isLanguageSupported) {
-      return Alert.alert('Language not supported', `${ALERT_ARTICLE_LANGUAGE_UNSUPPORTED}. This article seems to have the language: ${articleLanguageCode}.`);
+      return Alert.alert(ALERT_TITLE_LANGUAGE_UNSUPPORTED, `${ALERT_ARTICLE_LANGUAGE_UNSUPPORTED}.\n\nArticle language: ${articleLanguageCode}.`);
     }
 
     // Create the audiofile using our API...
@@ -299,7 +302,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         'Because you are on a free account, we will use the already available voice for this article. Which is a different voice. Premium users do not have this limitation.',
         [
           {
-            text: (userHasSubscribedBefore) ? 'Upgrade to Premium or Plus' : 'Start free trial',
+            text: (userHasSubscribedBefore) ? 'Upgrade' : 'Start free trial',
             style: 'cancel',
             onPress: () => this.props.navigation.navigate('Upgrade')
           },
@@ -334,15 +337,15 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
     if (!article || !article.audiofiles.length) {
       this.setState({ isActive: false, isLoading: false });
-      return Alert.alert('Oops!', ALERT_ARTICLE_PLAY_FAIL);
+      return Alert.alert(ALERT_TITLE_ERROR, ALERT_ARTICLE_PLAY_FAIL);
     }
 
     const audiofile = this.audiofileToUse ? this.audiofileToUse : null;
 
-    if (!audiofile) { return Alert.alert('Err', 'no audio'); }
+    if (!audiofile) { return Alert.alert(ALERT_TITLE_ERROR, 'no audio'); }
 
     if (!this.isDownloaded && !isConnected) {
-      return Alert.alert('No internet', ALERT_ARTICLE_PLAY_INTERNET_REQUIRED);
+      return Alert.alert(ALERT_TITLE_ERROR_NO_INTERNET, ALERT_ARTICLE_PLAY_INTERNET_REQUIRED);
     }
 
     return this.setState({ isActive: true, isLoading: true }, async () => {
@@ -364,7 +367,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
             localAudiofilePath = downloadedLocalAudiofilePath;
           } else {
             return this.setState({ isLoading: false }, () => {
-              Alert.alert('Oops!', ALERT_ARTICLE_DOWNLOAD_FAIL);
+              Alert.alert(ALERT_TITLE_ERROR, ALERT_ARTICLE_DOWNLOAD_FAIL);
             });
           }
         }
@@ -389,10 +392,10 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         }
 
         // IF we end up here, something above failed
-        return Alert.alert('Oops!', ALERT_ARTICLE_PLAY_FAIL);
+        return Alert.alert(ALERT_TITLE_ERROR, ALERT_ARTICLE_PLAY_FAIL);
       } catch (err) {
         this.setState({ isActive: false, isLoading: false });
-        return Alert.alert('Oops!', ALERT_ARTICLE_PLAY_DOWNLOAD_FAIL);
+        return Alert.alert(ALERT_TITLE_ERROR, ALERT_ARTICLE_PLAY_DOWNLOAD_FAIL);
       }
     });
   }
@@ -401,7 +404,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     try {
       await this.props.getPlaylist();
     } catch (err) {
-      Alert.alert('Oops!', ALERT_PLAYLIST_UPDATE_FAIL, [
+      Alert.alert(ALERT_TITLE_ERROR, ALERT_PLAYLIST_UPDATE_FAIL, [
         {
           text: 'Cancel',
           style: 'cancel'
@@ -421,7 +424,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       await this.props.removeArticleFromPlaylist(articleId);
       this.fetchPlaylist();
     } catch (err) {
-      Alert.alert('Oops!', ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL, [
+      Alert.alert(ALERT_TITLE_ERROR, ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL, [
         {
           text: 'Cancel',
           style: 'cancel'
@@ -441,7 +444,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       await this.props.archivePlaylistItem(articleId);
       this.fetchPlaylist();
     } catch (err) {
-      Alert.alert('Oops!', ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL, [
+      Alert.alert(ALERT_TITLE_ERROR, ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL, [
         {
           text: 'Cancel',
           style: 'cancel'
@@ -461,7 +464,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       await this.props.favoritePlaylistItem(articleId);
       this.fetchPlaylist();
     } catch (err) {
-      Alert.alert('Oops!', ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL, [
+      Alert.alert(ALERT_TITLE_ERROR, ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL, [
         {
           text: 'Cancel',
           style: 'cancel'
@@ -481,7 +484,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       await this.props.unFavoritePlaylistItem(articleId);
       this.fetchPlaylist();
     } catch (err) {
-      Alert.alert('Oops!', ALERT_PLAYLIST_UNFAVORITE_ARTICLE_FAIL, [
+      Alert.alert(ALERT_TITLE_ERROR, ALERT_PLAYLIST_UNFAVORITE_ARTICLE_FAIL, [
         {
           text: 'Cancel',
           style: 'cancel'
@@ -501,7 +504,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       await this.props.unArchivePlaylistItem(articleId);
       this.fetchPlaylist();
     } catch (err) {
-      Alert.alert('Oops!', ALERT_PLAYLIST_UNARCHIVE_ARTICLE_FAIL, [
+      Alert.alert(ALERT_TITLE_ERROR, ALERT_PLAYLIST_UNARCHIVE_ARTICLE_FAIL, [
         {
           text: 'Cancel',
           style: 'cancel'

@@ -7,7 +7,7 @@ import { LoginForm } from '../components/LoginForm';
 
 import { getAuthToken } from '../reducers/auth';
 
-import { ALERT_LOGIN_SAVE_TOKEN_FAIL } from '../constants/messages';
+import { ALERT_LOGIN_SAVE_TOKEN_FAIL, ALERT_TITLE_ERROR } from '../constants/messages';
 import { RootState } from '../reducers';
 import { selectAuthenticationToken, selectAuthError } from '../selectors/auth';
 import * as keychain from '../utils/keychain';
@@ -39,7 +39,7 @@ class LoginFormContainerComponent extends React.PureComponent<Props, State> {
 
     if (authError && prevProps.authError !== authError) {
       this.setState({ isLoading: false });
-      return Alert.alert('Oops!', authError);
+      return Alert.alert(ALERT_TITLE_ERROR, authError);
     }
 
     // If we have a token, the user is logged in successfully!
@@ -54,7 +54,7 @@ class LoginFormContainerComponent extends React.PureComponent<Props, State> {
       await keychain.setToken(token);
       this.props.navigation.navigate('App');
     } catch (err) {
-      Alert.alert('Oops!', ALERT_LOGIN_SAVE_TOKEN_FAIL, [
+      Alert.alert(ALERT_TITLE_ERROR, ALERT_LOGIN_SAVE_TOKEN_FAIL, [
         {
           text: 'Cancel',
           style: 'cancel'

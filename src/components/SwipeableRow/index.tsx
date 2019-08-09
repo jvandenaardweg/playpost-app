@@ -7,6 +7,7 @@ import Swipeable from 'react-native-gesture-handler/Swipeable';
 import * as Icon from '../../components/Icon';
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
+import { ALERT_TITLE_ERROR_NO_INTERNET } from '../../constants/messages';
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
 interface Props {
@@ -29,7 +30,7 @@ export class SwipeableRow extends React.PureComponent<Props> {
 
     if (!isConnected) {
       this.close();
-      return Alert.alert('No internet', 'You need an active internet connection to do this.');
+      return Alert.alert(ALERT_TITLE_ERROR_NO_INTERNET, 'You need an active internet connection to do this.');
     }
 
     if (actionName === 'delete') {
@@ -50,10 +51,6 @@ export class SwipeableRow extends React.PureComponent<Props> {
       } else {
         this.props.unArchiveArticle();
       }
-    }
-
-    if (actionName === 'download') {
-      return Alert.alert('Not available yet', 'This feature is not available yet.');
     }
 
     return this.close();
@@ -81,7 +78,6 @@ export class SwipeableRow extends React.PureComponent<Props> {
 
     return (
       <View style={styles.rightActionsContainer}>
-        {/* {this.renderRightAction('download', 'download', null)} */}
         {this.renderRightAction('archive', 'archive', (isArchived) ? colors.black : null)}
         {this.renderRightAction('favorite', 'heart', (isFavorited) ? colors.black : null)}
         {this.renderRightAction('delete', 'trash-2', null)}

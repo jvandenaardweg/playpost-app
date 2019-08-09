@@ -3,7 +3,7 @@ import { Alert } from 'react-native';
 import { NavigationInjectedProps, NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
 import { connect } from 'react-redux';
 
-import { ALERT_GENERIC_INTERNET_REQUIRED } from '../../constants/messages';
+import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_UPDATE_PASSWORD_DIFF_VALIDATION_FAIL, ALERT_TITLE_ERROR } from '../../constants/messages';
 
 import { UpdatePasswordForm } from '../../components/UpdatePasswordForm';
 
@@ -52,7 +52,7 @@ export class UpdatePasswordScreenContainer extends React.PureComponent<Props, St
     const { userError } = this.props;
 
     if (userError && prevProps.userError !== userError) {
-      return Alert.alert('Oops!', userError);
+      return Alert.alert(ALERT_TITLE_ERROR, userError);
     }
   }
 
@@ -66,13 +66,13 @@ export class UpdatePasswordScreenContainer extends React.PureComponent<Props, St
     const { password, passwordValidation, isSuccess } = this.state;
     const { isConnected } = this.context;
 
-    if (!isConnected) { return Alert.alert('Oops!', ALERT_GENERIC_INTERNET_REQUIRED); }
+    if (!isConnected) { return Alert.alert(ALERT_TITLE_ERROR, ALERT_GENERIC_INTERNET_REQUIRED); }
 
     // Just navigate back to the settings screen
     if (isSuccess) { return this.props.navigation.navigate('Settings'); }
 
     if (password !== passwordValidation) {
-      return Alert.alert('Oops!', 'The given passwords do not match. Please make sure you typed your passwords correctly.');
+      return Alert.alert(ALERT_TITLE_ERROR, ALERT_SETTINGS_UPDATE_PASSWORD_DIFF_VALIDATION_FAIL);
     }
 
     this.setState({ isLoading: true }, async () => {

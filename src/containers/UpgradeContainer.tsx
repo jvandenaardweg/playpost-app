@@ -17,7 +17,11 @@ import {
   ALERT_SUBSCRIPTION_BUY_SUCCESS,
   ALERT_SUBSCRIPTION_INIT_FAIL,
   ALERT_SUBSCRIPTION_RESTORE_PURCHASE_NOT_FOUND,
-  ALERT_SUBSCRIPTION_RESTORE_SUCCESS
+  ALERT_SUBSCRIPTION_RESTORE_SUCCESS,
+  ALERT_TITLE_ERROR_NO_INTERNET,
+  ALERT_TITLE_SUBSCRIPTION_RESTORE_ERROR,
+  ALERT_TITLE_SUBSCRIPTION_RESTORE_SUCCESS,
+  ALERT_TITLE_SUBSCRIPTION_UPGRADE_SUCCESS
 } from '../constants/messages';
 
 import { URL_FEEDBACK, URL_MANAGE_APPLE_SUBSCRIPTIONS, URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../constants/urls';
@@ -123,7 +127,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     // TODO: make more user friendly to show upgrade features when there's no internet connection
     if (!isConnected) {
       this.handleClose();
-      return Alert.alert('Upgrading requires internet', ALERT_GENERIC_INTERNET_REQUIRED);
+      return Alert.alert(ALERT_TITLE_ERROR_NO_INTERNET, ALERT_GENERIC_INTERNET_REQUIRED);
     }
 
     this.setState({ centeredSubscriptionProductId: this.props.centeredSubscriptionProductId });
@@ -186,7 +190,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     // When we receive an API response when doing an upgrade...
     if (isLoadingBuySubscription && validationResult) {
       if (!isEqual(prevProps.validationResult, validationResult)) {
-        Alert.alert('Upgrade success!', ALERT_SUBSCRIPTION_BUY_SUCCESS);
+        Alert.alert(ALERT_TITLE_SUBSCRIPTION_UPGRADE_SUCCESS, ALERT_SUBSCRIPTION_BUY_SUCCESS);
 
         await this.fetchUpdatedUserData();
 
@@ -201,13 +205,13 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         // Error!
         if (validationResult.status !== 'active') {
           return this.showErrorAlert(
-            'Restore purchase error',
+            ALERT_TITLE_SUBSCRIPTION_RESTORE_ERROR,
             `Your previous subscription is ${validationResult.status}. In order to use our Premium features, you need to buy a new subscription.`
           );
         }
 
         // Success!
-        Alert.alert('Restore Successful', ALERT_SUBSCRIPTION_RESTORE_SUCCESS);
+        Alert.alert(ALERT_TITLE_SUBSCRIPTION_RESTORE_SUCCESS, ALERT_SUBSCRIPTION_RESTORE_SUCCESS);
 
         await this.fetchUpdatedUserData();
 
@@ -378,7 +382,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         const errorMessage = err && err.message ? err.message : 'An unknown error happened while restoring a subscription.';
         Analytics.trackEvent('Subscriptions restore error', { Status: 'error', Message: errorMessage, UserId: this.analyticsUserId });
 
-        this.showErrorAlert('Restore purchase error', errorMessage);
+        this.showErrorAlert(ALERT_TITLE_SUBSCRIPTION_RESTORE_ERROR, errorMessage);
       } finally {
         this.setState({ isLoadingRestorePurchases: false });
       }

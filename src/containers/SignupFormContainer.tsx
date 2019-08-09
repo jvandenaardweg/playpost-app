@@ -8,6 +8,7 @@ import { SignupForm } from '../components/SignupForm';
 import { postAuth } from '../reducers/auth';
 import { createUser } from '../reducers/user';
 
+import { ALERT_TITLE_ERROR } from '../constants/messages';
 import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../constants/urls';
 import { RootState } from '../reducers';
 import { selectAuthError } from '../selectors/auth';
@@ -45,7 +46,7 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
       await keychain.setToken(token);
       this.props.navigation.navigate('SignupSuccess');
     } catch (err) {
-      Alert.alert('Oops!', 'We have successfully created your account, but could not log you in. Please try logging in manually.');
+      Alert.alert(ALERT_TITLE_ERROR, 'We have successfully created your account, but could not log you in. Please try logging in manually.');
       this.setState({ isLoading: false });
     }
   }
@@ -54,11 +55,11 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
     const { userError, authError } = this.props;
 
     if (authError && prevProps.authError !== authError) {
-      return Alert.alert('Oops!', authError);
+      return Alert.alert(ALERT_TITLE_ERROR, authError);
     }
 
     if (userError && prevProps.userError !== userError) {
-      return Alert.alert('Oops!', userError);
+      return Alert.alert(ALERT_TITLE_ERROR, userError);
     }
   }
 

@@ -3,7 +3,7 @@ import { Alert, InteractionManager } from 'react-native';
 import { NavigationInjectedProps, NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
 import { connect } from 'react-redux';
 
-import { ALERT_GENERIC_INTERNET_REQUIRED } from '../../constants/messages';
+import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_UPDATE_EMAIL_DIFF, ALERT_TITLE_ERROR, ALERT_TITLE_NO_UPDATE } from '../../constants/messages';
 
 import { UpdateEmailForm } from '../../components/UpdateEmailForm';
 
@@ -73,7 +73,7 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
     const { userError } = this.props;
 
     if (userError && prevProps.userError !== userError) {
-      return Alert.alert('Oops!', userError);
+      return Alert.alert(ALERT_TITLE_ERROR, userError);
     }
   }
 
@@ -81,10 +81,10 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
     const { email, previousEmail, isSuccess } = this.state;
     const { isConnected } = this.context;
 
-    if (!isConnected) { return Alert.alert('Oops!', ALERT_GENERIC_INTERNET_REQUIRED); }
+    if (!isConnected) { return Alert.alert(ALERT_TITLE_ERROR, ALERT_GENERIC_INTERNET_REQUIRED); }
 
     if (email === previousEmail) {
-      return Alert.alert('Nothing to update...', 'The e-mail address given is the same. No need to update :-)');
+      return Alert.alert(ALERT_TITLE_NO_UPDATE, ALERT_SETTINGS_UPDATE_EMAIL_DIFF);
     }
 
     // If the user clicks on the button after a success

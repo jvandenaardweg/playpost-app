@@ -20,6 +20,7 @@ import isEqual from 'react-fast-compare';
 import { RootState } from '../reducers';
 
 import { ListSeperator } from '../components/ListSeperator';
+import { ALERT_TITLE_ERROR } from '../constants/messages';
 import { selectDownloadedAudiofiles } from '../selectors/audiofiles';
 
 interface State {
@@ -246,7 +247,7 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
         // Get the newly ordered playlist
         await this.props.getPlaylist();
       } catch (err) {
-        Alert.alert('Oops!', 'An error happened while re-ordering your playlist. Please try again.');
+        Alert.alert(ALERT_TITLE_ERROR, 'An error happened while re-ordering your playlist. Please try again.');
       } finally {
         this.setState({ isReOrdering: false });
       }

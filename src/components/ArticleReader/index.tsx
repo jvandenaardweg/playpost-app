@@ -7,6 +7,7 @@ import urlParse from 'url-parse';
 
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
+import { ALERT_TITLE_ERROR } from '../../constants/messages';
 import spacing from '../../constants/spacing';
 import { CenterLoadingIndicator } from '../CenterLoadingIndicator';
 
@@ -44,7 +45,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
       await Linking.openURL(url);
       return webViewRefObj.current && webViewRefObj.current.stopLoading();
     } catch (err) {
-      Alert.alert('Oops!', 'Could not open the URL.');
+      Alert.alert(ALERT_TITLE_ERROR, 'Could not open the URL.');
     }
   };
 

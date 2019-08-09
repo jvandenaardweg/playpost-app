@@ -239,7 +239,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
             text: 'OK',
           },
           {
-            text: (userHasSubscribedBefore) ? 'Upgrade to Premium or Plus' : 'Start free trial',
+            text: (userHasSubscribedBefore) ? 'Upgrade' : 'Start free trial',
             style: 'cancel',
             onPress: () => {
               // Close the modal

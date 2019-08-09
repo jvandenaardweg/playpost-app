@@ -20,7 +20,7 @@ import { selectIsSubscribed } from '../selectors/subscriptions';
 import { selectUserErrorSaveSelectedVoice, selectUserHasSubscribedBefore, selectUserSelectedVoiceByLanguageName } from '../selectors/user';
 import { selectCountryOptions, selectDownloadedVoicePreviews, selectGenderOptions, selectLanguagesWithActiveVoicesByLanguageName, selectQualityOptions } from '../selectors/voices';
 
-import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_VOICE_CHANGE, ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE } from '../constants/messages';
+import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_VOICE_CHANGE, ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE, ALERT_TITLE_ERROR, ALERT_TITLE_ERROR_NO_INTERNET, ALERT_TITLE_SUBSCRIPTION_ONLY, ALERT_TITLE_VOICE_CHANGE_REQUEST } from '../constants/messages';
 
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { ButtonVoicePreview } from '../components/ButtonVoicePreview';
@@ -69,7 +69,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     if (isSelected) { return; }
 
     if (!isConnected) {
-      return Alert.alert('Not connected', ALERT_GENERIC_INTERNET_REQUIRED);
+      return Alert.alert(ALERT_TITLE_ERROR_NO_INTERNET, ALERT_GENERIC_INTERNET_REQUIRED);
     }
 
     // If it's a premium voice and the user is not subscribed
@@ -77,7 +77,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     if (!isSubscribed) {
       const defaultText = 'Changing voices is only available for Premium and Plus users.\n\nYou can preview this voice by using the play button on the left.';
       const trialText = 'Changing voices is only available for Premium and Plus users. Start a Free trial to experience these voices.\n\nYou can preview this voice by using the play button on the left.';
-      const title = (userHasSubscribedBefore) ? 'Upgrade to Premium or Plus' : 'Start your free trial';
+      const title = (userHasSubscribedBefore) ? ALERT_TITLE_SUBSCRIPTION_ONLY : 'Start your free trial';
       const description = (userHasSubscribedBefore) ? defaultText : trialText;
       const buttonText = (userHasSubscribedBefore) ? 'Upgrade' : 'Start Free trial';
 
@@ -98,7 +98,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     }
 
     // Warn the user, it only applies to new articles
-    Alert.alert('Only applies to new articles', ALERT_SETTINGS_VOICE_CHANGE, [
+    Alert.alert(ALERT_TITLE_VOICE_CHANGE_REQUEST, ALERT_SETTINGS_VOICE_CHANGE, [
       {
         text: 'Cancel',
         style: 'cancel'
@@ -172,11 +172,11 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     const exampleAudioUrl = voice && voice.exampleAudioUrl;
 
     if (!isConnected) {
-      return Alert.alert('Not connected', ALERT_GENERIC_INTERNET_REQUIRED);
+      return Alert.alert(ALERT_TITLE_ERROR_NO_INTERNET, ALERT_GENERIC_INTERNET_REQUIRED);
     }
 
     if (!exampleAudioUrl) {
-      return Alert.alert('Oops!', ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE);
+      return Alert.alert(ALERT_TITLE_ERROR, ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE);
     }
 
     return this.setState({ isLoadingPreviewVoiceId: voice.id }, async () => {
@@ -195,7 +195,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
           ? `An error happened while downloading the voice preview: "${message}".`
           : 'An error happened while downloading the voice preview.';
 
-        Alert.alert('Oops!', alertMessage, [
+        Alert.alert(ALERT_TITLE_ERROR, alertMessage, [
           {
             text: 'Cancel',
             style: 'cancel'
