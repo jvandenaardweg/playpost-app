@@ -56,7 +56,7 @@ export const AudioPlayerLarge: React.FC<Props> = React.memo((props: Props) => {
     <View style={styles.wrapper}>
       <View style={styles.container}>
         <View style={styles.scrollableContainer}>
-          <ArticleReader article={props.article} theme="dark" />
+          {props.article && <ArticleReader article={props.article} theme="dark" />}
         </View>
         <View style={styles.controlsContainer}>
           <AudioPlayerProgressBar onProgressChange={props.onProgressChange} />
