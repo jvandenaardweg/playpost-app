@@ -73,5 +73,12 @@ export default StyleSheet.create({
     backgroundColor: colors.white,
     height: 6,
     borderRadius: 6
+  },
+  messageText: {
+    marginTop: 8,
+    color: colors.white,
+    opacity: 0.7,
+    textAlign: 'center',
+    fontSize: fonts.fontSize.small
   }
 });

@@ -2,7 +2,6 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import colors from '../../constants/colors';
-import fonts from '../../constants/fonts';
 import styles from './styles';
 
 
@@ -28,6 +27,9 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
 
   const upgradeButtonTitle = getUpgradeButtonTitle(activeSubscriptionProductId, userHasSubscribedBefore);
   const upgradeMessage = getUpgradeMessage(activeSubscriptionProductId);
+  const usedText = `of ${currentLimitLocalized} minutes used`;
+  const usedPercentageText = `${Math.ceil(percentageUsed)}%`;
+  const progressWidth = `${percentageUsed}%`;
 
   const upgradeScreenCenteredSubscriptionProductId =
     activeSubscriptionProductId === 'com.aardwegmedia.playpost.premium'
@@ -46,27 +48,28 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
             </View>
             <View style={styles.statsNumbersContainer}>
               <View>
-                <Text style={styles.statsMeta}>of {currentLimitLocalized} minutes used</Text>
+                <Text testID="Usage-Text-minutes-used" style={styles.statsMeta}>{usedText}</Text>
               </View>
               <View>
-                <Text style={styles.statsPercentage}>{Math.ceil(percentageUsed)}%</Text>
+                <Text testID="Usage-Text-percentage" style={styles.statsPercentage}>{usedPercentageText}</Text>
               </View>
             </View>
           </View>
           <View style={styles.progressContainer}>
-            <View style={[styles.progress, { width: `${percentageUsed}%` }]} />
+            <View testID="Usage-View-progress" style={[styles.progress, { width: progressWidth }]} />
           </View>
         </View>
 
         {showUpgradeButton && (
           <View style={styles.upgradeContainer}>
             <Button
+              testID="Usage-Button-upgrade"
               title={upgradeButtonTitle}
               titleStyle={{ color: colors.white }}
               buttonStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}
               onPress={() => onPressUpgrade(upgradeScreenCenteredSubscriptionProductId)}
             />
-            <Text style={{ marginTop: 8, color: colors.white, opacity: 0.7, textAlign: 'center', fontSize: fonts.fontSize.small }}>
+            <Text testID="Usage-Text-upgrade-message" style={styles.messageText}>
               {upgradeMessage}
             </Text>
           </View>
@@ -76,7 +79,7 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
   );
 });
 
-function getUpgradeMessage(activeSubscriptionProductId: string): string {
+export function getUpgradeMessage(activeSubscriptionProductId: string): string {
   if (activeSubscriptionProductId === 'free') {
     return 'Upgrade for more minutes and Premium quality voices.';
   }
@@ -88,7 +91,7 @@ function getUpgradeMessage(activeSubscriptionProductId: string): string {
   return ''
 }
 
-function getUpgradeButtonTitle(activeSubscriptionProductId: string, userHasSubscribedBefore: boolean): string {
+export function getUpgradeButtonTitle(activeSubscriptionProductId: string, userHasSubscribedBefore: boolean): string {
   if (activeSubscriptionProductId === 'free' && !userHasSubscribedBefore) {
     return 'Start free Premium or Plus trial'
   }
