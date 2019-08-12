@@ -80,8 +80,8 @@ class SmallAudioPlayerContainerComponent extends React.PureComponent<Props, Stat
       this.props.setPlaybackStatus(state);
     });
 
-    this.onStateError = TrackPlayer.addEventListener('playback-error', ({ code, message }) => {
-      console.log('Event', 'playback-error', code, message);
+    this.onStateError = TrackPlayer.addEventListener('playback-error', (data) => {
+      console.log('Event', 'playback-error', data);
     });
 
     this.onPlaybackQueueEnded = TrackPlayer.addEventListener('playback-queue-ended', async (data) => {

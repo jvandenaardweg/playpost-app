@@ -1,4 +1,5 @@
 // tslint:disable: no-console
+import debounce from 'lodash.debounce';
 import React from 'react';
 import { Alert } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
@@ -25,6 +26,8 @@ class LargeAudioPlayerContainerComponent extends React.PureComponent<Props, Stat
   state = {
     isPlaybackSpeedVisible: false
   };
+
+  handleOnSetPlaybackSpeed = debounce(this.props.setPlaybackSpeed, 200);
 
   setTrackPlayerPlaybackSpeed = (speed: number) => {
     const { isSubscribed } = this.props;
@@ -54,10 +57,6 @@ class LargeAudioPlayerContainerComponent extends React.PureComponent<Props, Stat
       // Make sure the playback speed is always in sync with the users setting
       await this.setTrackPlayerPlaybackSpeed(userPlaybackSpeed);
     });
-  }
-
-  handleOnSetPlaybackSpeed = (speed: number) => {
-    requestAnimationFrame(() => this.props.setPlaybackSpeed(speed));
   }
 
   handleOnProgressChange = async (percentage: number) => {

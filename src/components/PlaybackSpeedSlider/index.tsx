@@ -25,7 +25,11 @@ export const PlaybackSpeedSlider: React.FC<Props> = React.memo(({ onSetPlaybackS
     <View style={styles.container}>
       <View style={styles.labelContainer}>
         <TouchableOpacity
-          onPress={() => onSetPlaybackSpeed(1)}
+          onPress={() => {
+            const newSpeed = 1;
+            setLocalPlaybackSpeed(newSpeed) // instant, just visual
+            onSetPlaybackSpeed(newSpeed)
+          }}
           testID="PlaybackSpeedSlider-TouchableOpacity-label"
         >
           <Text
@@ -40,7 +44,11 @@ export const PlaybackSpeedSlider: React.FC<Props> = React.memo(({ onSetPlaybackS
         <TouchableHighlight
           testID="PlaybackSpeedSlider-TouchableHighlight-minus"
           hitSlop={mediumHitslop}
-          onPress={() => onSetPlaybackSpeed(localPlaybackSpeed - 0.01)}
+          onPress={() => {
+            const newSpeed = localPlaybackSpeed - 0.01;
+            setLocalPlaybackSpeed(newSpeed) // instant, just visual
+            onSetPlaybackSpeed(newSpeed) // debounced
+          }}
           style={styles.controlButton}
         >
           <Icon.FontAwesome5 name="minus" size={14} color={colors.white} />
@@ -50,9 +58,9 @@ export const PlaybackSpeedSlider: React.FC<Props> = React.memo(({ onSetPlaybackS
             maximumValue={2}
             minimumValue={0.1}
             step={0.01}
-            value={playbackSpeed}
-            onValueChange={value => setLocalPlaybackSpeed(value)}
-            onSlidingComplete={value => onSetPlaybackSpeed(value)}
+            value={localPlaybackSpeed}
+            onValueChange={value => setLocalPlaybackSpeed(value)} // instant, just visual
+            onSlidingComplete={value => onSetPlaybackSpeed(value)} // debounced
             minimumTrackTintColor={colors.tintColorDark}
             maximumTrackTintColor={colors.tintColorDark}
             thumbStyle={styles.sliderThumbStyle}
@@ -62,7 +70,11 @@ export const PlaybackSpeedSlider: React.FC<Props> = React.memo(({ onSetPlaybackS
         <TouchableHighlight
           testID="PlaybackSpeedSlider-TouchableHighlight-plus"
           hitSlop={mediumHitslop}
-          onPress={() => onSetPlaybackSpeed(localPlaybackSpeed + 0.01)}
+          onPress={() => {
+            const newSpeed = localPlaybackSpeed + 0.01;
+            setLocalPlaybackSpeed(newSpeed) // instant, just visual
+            onSetPlaybackSpeed(newSpeed) // debounced
+          }}
           style={styles.controlButton}
         >
           <Icon.FontAwesome5 name="plus" size={14} color={colors.white} />
