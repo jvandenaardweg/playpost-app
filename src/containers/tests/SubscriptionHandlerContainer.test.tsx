@@ -303,6 +303,8 @@ describe('SubscriptionHandlerContainer', () => {
     });
 
     it('should correctly handle an restore purchase error message in componentDidUpdate when a user has no active subscriptions anymore', async () => {
+      const isSubscribed = defaultProps.isSubscribed;
+
       const propsDefault = {
         ...defaultProps,
         isLoadingRestore: false,
@@ -324,6 +326,7 @@ describe('SubscriptionHandlerContainer', () => {
       wrapper.update(<SubscriptionHandlerContainerComponent {...propsExpired}><Text>Container test</Text></SubscriptionHandlerContainerComponent>);
 
       expect(spyHandleRestoreSubscriptionStatus).toHaveBeenCalledTimes(1);
+      expect(spyHandleRestoreSubscriptionStatus).toHaveBeenCalledWith(subscriptionValidationResultExpiredMock, isSubscribed);
 
       expect(testInstance.props.setIsLoadingRestore).toHaveBeenCalledTimes(1);
       expect(testInstance.props.setIsLoadingRestore).toHaveBeenCalledWith(false);

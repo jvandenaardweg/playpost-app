@@ -192,7 +192,7 @@ describe('UpgradeContainerComponent', () => {
     it('should correctly handle handleOnPressRestore() when a user has previous purchases', async () => {
       const testInstance = wrapper.root.instance;
 
-      const spyGetAvailablePurchases = jest.spyOn(testInstance, 'getAvailablePurchases').mockReturnValueOnce(mockApplePurchases)
+      const spyGetPurchaseHistory = jest.spyOn(testInstance, 'getPurchaseHistory').mockReturnValueOnce(mockApplePurchases)
       const spyGetLatestPurchase = jest.spyOn(testInstance, 'getLatestPurchase').mockReturnValueOnce(mockApplePurchases[0]);
       const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert');
 
@@ -202,8 +202,8 @@ describe('UpgradeContainerComponent', () => {
       expect(setIsLoadingRestoreHandler).toHaveBeenCalledTimes(1);
       expect(setIsLoadingRestoreHandler).toHaveBeenCalledWith(true);
 
-      expect(spyGetAvailablePurchases).toHaveBeenCalledTimes(1);
-      expect(spyGetAvailablePurchases).toHaveReturnedWith(mockApplePurchases)
+      expect(spyGetPurchaseHistory).toHaveBeenCalledTimes(1);
+      expect(spyGetPurchaseHistory).toHaveReturnedWith(mockApplePurchases)
 
       expect(spyShowErrorAlert).toHaveBeenCalledTimes(0);
 
@@ -217,7 +217,7 @@ describe('UpgradeContainerComponent', () => {
     it('should correctly handle handleOnPressRestore() when a user has no previous purchases', async () => {
       const testInstance = wrapper.root.instance;
 
-      const spyGetAvailablePurchases = jest.spyOn(testInstance, 'getAvailablePurchases').mockReturnValueOnce([]);
+      const spyGetPurchaseHistory = jest.spyOn(testInstance, 'getPurchaseHistory').mockReturnValueOnce([]);
       const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert');
 
       // Simulate a click on "Restore previous purchase"
@@ -226,8 +226,8 @@ describe('UpgradeContainerComponent', () => {
       expect(setIsLoadingRestoreHandler).toHaveBeenCalledTimes(2);
       expect(setIsLoadingRestoreHandler).toHaveBeenLastCalledWith(false);
 
-      expect(spyGetAvailablePurchases).toHaveBeenCalledTimes(1);
-      expect(spyGetAvailablePurchases).toHaveReturnedWith([])
+      expect(spyGetPurchaseHistory).toHaveBeenCalledTimes(1);
+      expect(spyGetPurchaseHistory).toHaveReturnedWith([])
 
       expect(spyShowErrorAlert).toHaveBeenCalledTimes(1);
       expect(spyShowErrorAlert).toHaveBeenCalledWith('Nothing to restore', `We could not find any previous purchase to restore. If you think this is incorrect, please contact our support.`);
@@ -237,7 +237,7 @@ describe('UpgradeContainerComponent', () => {
     it('should show an error alert when an error throws inside handleOnPressRestore()', async () => {
       const testInstance = wrapper.root.instance;
 
-      jest.spyOn(testInstance, 'getAvailablePurchases').mockRejectedValueOnce(new Error('Some error!'));
+      jest.spyOn(testInstance, 'getPurchaseHistory').mockRejectedValueOnce(new Error('Some error!'));
       const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert');
 
       // Simulate a click on "Restore previous purchase"

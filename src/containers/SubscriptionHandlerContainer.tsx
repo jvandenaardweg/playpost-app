@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 import { NetworkContext } from '../contexts/NetworkProvider';
 
-import { ALERT_SUBSCRIPTION_EXPIRED, ALERT_TITLE_ERROR, ALERT_TITLE_SUBSCRIPTION_EXPIRED } from '../constants/messages';
+import { ALERT_SUBSCRIPTION_EXPIRED, ALERT_TITLE_ERROR, ALERT_TITLE_SUBSCRIPTION_EXPIRED, ALERT_SUBSCRIPTION_RESTORE_SUCCESS, ALERT_TITLE_SUBSCRIPTION_RESTORE_SUCCESS } from '../constants/messages';
 import { URL_FEEDBACK } from '../constants/urls';
 import NavigationService from '../navigation/NavigationService';
 import { RootState } from '../reducers';
@@ -87,7 +87,7 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
 
     if (isLoadingRestore) {
       if(validationResult && !isEqual(prevProps.validationResult, validationResult)) {
-        return this.handleRestoreSubscriptionStatus(validationResult);
+        return this.handleRestoreSubscriptionStatus(validationResult, isSubscribed);
       }
     }
   }
@@ -96,13 +96,18 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
     return Alert.alert(ALERT_TITLE_SUBSCRIPTION_EXPIRED, ALERT_SUBSCRIPTION_EXPIRED);
   }
 
-  handleRestoreSubscriptionStatus = (validationResult: Api.ReceiptValidationResponse) => {
+  handleRestoreSubscriptionStatus = (validationResult: Api.ReceiptValidationResponse, isSubscribed: boolean) => {
     this.props.setIsLoadingRestore(false);
 
-    return this.showErrorAlert(
-      `Subscription is ${validationResult.status}`,
-      `In order to use our Premium features, you need to buy a new subscription.\n\nIf you think this is incorrect, please contact support.`
-    );
+    // If the user is still not subscribed, show why
+    if (!isSubscribed) {
+      return this.showErrorAlert(
+        `Subscription is ${validationResult.status}`,
+        `In order to use our Premium features, you need to buy a new subscription.\n\nIf you think this is incorrect, please contact support.`
+      );
+    } else {
+      return Alert.alert(ALERT_TITLE_SUBSCRIPTION_RESTORE_SUCCESS, ALERT_SUBSCRIPTION_RESTORE_SUCCESS);
+    }
   }
 
   handlePurchaseUpdateListener = async (purchase: RNIap.ProductPurchase) => {
@@ -132,6 +137,7 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
 
       Analytics.trackEvent('Subscriptions upgrade success', { Status: 'success', ProductId: purchase.productId, UserId: this.analyticsUserId });
     } catch (err) {
+      // show an alert, an error happened
       this.props.setIsLoadingUpgrade(false);
     }
   }

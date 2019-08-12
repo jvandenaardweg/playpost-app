@@ -243,7 +243,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       Analytics.trackEvent('Subscriptions restore', { Status: 'restoring', UserId: this.analyticsUserId });
 
       // Get the previous purchases of the current user
-      const purchases = await this.getAvailablePurchases();
+      const purchases = await this.getPurchaseHistory();
 
       // If there are no previous purchases, there's nothing to restore...
       if (!purchases.length) {
@@ -256,10 +256,17 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       // Let's get the latest purchase receipt and validate that on the server
 
       // Get the latest receipt from the purchases to validate
-      const { transactionReceipt, productId } = this.getLatestPurchase(purchases);
+      const { transactionReceipt, productId, transactionId } = this.getLatestPurchase(purchases);
+
+      if (!transactionId) {
+        throw new Error('transactionId is not found in latest purchase.');
+      }
 
       // Validate the receipt on our server
       await this.props.validateSubscriptionReceipt(productId, transactionReceipt);
+
+      // Finish the transaction, if it was not finished yet
+      await this.finishTransaction(transactionId);
 
       // The validation result is handled in SubscriptionHandlerContainer
     } catch (err) {
@@ -270,6 +277,10 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
       this.showErrorAlert(ALERT_TITLE_SUBSCRIPTION_RESTORE_ERROR, errorMessage);
     }
+  }
+
+  finishTransaction = async (transactionId: string) => {
+    return RNIap.finishTransactionIOS(transactionId);
   }
 
   requestSubscription = (productId: string): Promise<string> => {
@@ -294,6 +305,10 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     return productId === 'free' && activeSubscriptionProductId !== 'free';
   }
 
+  getPurchaseHistory = (): Promise<RNIap.Purchase[]> => {
+    return RNIap.getPurchaseHistory();
+  }
+
   getAvailablePurchases = (): Promise<RNIap.Purchase[]> => {
     return RNIap.getAvailablePurchases();
   }
@@ -308,8 +323,6 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         if (Platform.OS === 'android') {
           await RNIap.consumeAllItemsAndroid();
         }
-
-        await this.getAvailablePurchases();
 
         if (!result) { throw new Error(ALERT_SUBSCRIPTION_INIT_FAIL); }
 
