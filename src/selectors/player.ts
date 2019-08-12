@@ -3,6 +3,7 @@ import { createSelector } from 'reselect';
 
 import { RootState } from '../reducers';
 import { PlayerState } from '../reducers/player';
+import { selectAllPlaylistArticles } from './playlist';
 
 export const playerSelector = (state: RootState): PlayerState => state.player;
 
@@ -29,6 +30,27 @@ export const selectErrorCreateAudiofile = createSelector(
 export const selectPlayerAudiofile = createSelector(
   [playerSelector],
   player => player.audiofile
+);
+
+export const selectPlayerArticleFromAudiofileId = createSelector(
+  [selectPlayerTrack, selectAllPlaylistArticles],
+  (track, articles): Api.Article | undefined => {
+    const audiofileId = track.id;
+
+    if (!track || !audiofileId) { return undefined; }
+
+    // Find the article based on the audiofile id
+    const foundArticle = articles.find(article => {
+      if (article.audiofiles.length) {
+        const foundAudiofile = article.audiofiles.find(audiofile => audiofile.id === audiofileId);
+        if (foundAudiofile) { return true; }
+      }
+      return false;
+    });
+
+    return foundArticle;
+
+  }
 );
 
 export const selectPlayerAudiofileStatus = createSelector(
@@ -61,6 +83,11 @@ export const selectPlayerIsPlaying = createSelector(
 export const selectPlayerIsStopped = createSelector(
   [selectPlayerPlaybackState],
   playbackState => [TrackPlayer.STATE_STOPPED, TrackPlayer.STATE_PAUSED, TrackPlayer.STATE_NONE, TrackPlayer.STATE_READY].includes(playbackState)
+);
+
+export const selectPlayerIsIdle = createSelector(
+  [selectPlayerPlaybackState],
+  playbackState => [TrackPlayer.STATE_NONE, TrackPlayer.STATE_READY].includes(playbackState)
 );
 
 export const selectPlayerIsLoading = createSelector(

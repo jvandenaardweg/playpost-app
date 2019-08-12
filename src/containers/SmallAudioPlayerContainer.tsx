@@ -1,65 +1,28 @@
 // tslint:disable: no-console
 import React from 'react';
-import { Alert } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
 
-import { AudioPlayerLarge } from '../components/AudioPlayerLarge';
 import { AudioPlayerSmall } from '../components/AudioPlayerSmall';
 import { AudioPlayerSmallEmpty } from '../components/AudioPlayerSmallEmpty';
 import { setPlaybackStatus } from '../reducers/player';
 import { setPlaybackSpeed } from '../reducers/user';
 
-import { ALERT_PLAYBACK_SPEED_SUBSCRIPTION_ONLY, ALERT_TITLE_SUBSCRIPTION_ONLY } from '../constants/messages';
 import NavigationService from '../navigation/NavigationService';
 import { RootState } from '../reducers';
-import { selectPlayerIsLoading, selectPlayerIsPlaying, selectPlayerIsStopped, selectPlayerTrack } from '../selectors/player';
+import { selectPlayerIsIdle, selectPlayerIsLoading, selectPlayerIsPlaying, selectPlayerIsStopped, selectPlayerTrack } from '../selectors/player';
 import { selectAllPlaylistArticles } from '../selectors/playlist';
 import { selectIsSubscribed } from '../selectors/subscriptions';
 import { selectUserHasSubscribedBefore, selectUserPlaybackSpeed } from '../selectors/user';
 
 interface State {
-  isLoading: boolean;
-  isPlaying: boolean;
   isPlaybackSpeedVisible: boolean;
 }
 
-interface IProps {
-  isSmall?: boolean;
-  isLarge?: boolean;
-}
+type Props = StateProps & DispatchProps;
 
-type Props = IProps & StateProps & DispatchProps;
-
-class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
-
-  get article(): Api.Article | undefined {
-    const { track, articles } = this.props;
-
-    if (!track || !track.id) { return; }
-
-    // Find the article based on the audiofile id
-    const foundArticle = articles.find(article => {
-      if (article.audiofiles.length) {
-        const foundAudiofile = article.audiofiles.find(audiofile => audiofile.id === track.id);
-        if (foundAudiofile) { return true; }
-      }
-      return false;
-    });
-
-    return foundArticle;
-  }
-
-  static getDerivedStateFromProps(props: Props, state: State) {
-    return {
-      isPlaying: props.playerIsPlaying,
-      isLoading: props.playerIsLoading
-    };
-  }
-
+class SmallAudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   state = {
-    isLoading: false,
-    isPlaying: false,
     isPlaybackSpeedVisible: false
   };
 
@@ -73,8 +36,6 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   }
 
   setupTrackPlayer = async () => {
-    // const { userPlaybackSpeed } = this.props;
-
     await TrackPlayer.setupPlayer();
 
     await TrackPlayer.updateOptions({
@@ -110,8 +71,8 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     // await this.setTrackPlayerPlaybackSpeed(userPlaybackSpeed);
 
     // Adds an event handler for the playback-track-changed event
-    this.onTrackChange = TrackPlayer.addEventListener('playback-track-changed', async ({ track, position, nextTrack }) => {
-      console.log('Event', 'playback-track-changed', track, position, nextTrack);
+    this.onTrackChange = TrackPlayer.addEventListener('playback-track-changed', async (data) => {
+      console.log('Event', 'playback-track-changed', data);
     });
 
     this.onStateChanged = TrackPlayer.addEventListener('playback-state', async ({ state }) => {
@@ -123,9 +84,15 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
       console.log('Event', 'playback-error', code, message);
     });
 
-    this.onPlaybackQueueEnded = TrackPlayer.addEventListener('playback-queue-ended', async ({ track, position }) => {
-      console.log('Event', 'playback-queue-ended', track, position);
-      TrackPlayer.stop();
+    this.onPlaybackQueueEnded = TrackPlayer.addEventListener('playback-queue-ended', async (data) => {
+      const { track } = this.props;
+
+      console.log('Event', 'playback-queue-ended', data);
+
+      await TrackPlayer.stop();
+
+      // Add the track to the player again, so the user can press "play" again when a track is finished
+      await TrackPlayer.add(track);
     });
   }
 
@@ -149,6 +116,7 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
       this.handleTrackUpdate(track);
     }
 
+    // Change the playback speed when the user changed that setting
     if (isSubscribed && prevProps.userPlaybackSpeed !== userPlaybackSpeed) {
       await this.setTrackPlayerPlaybackSpeed(userPlaybackSpeed);
     }
@@ -199,8 +167,10 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
         return;
       }
 
+      // Else, we just play it from pause
       await TrackPlayer.play();
 
+      // Make sure the playback speed is always in sync with the users setting
       await this.setTrackPlayerPlaybackSpeed(userPlaybackSpeed);
     });
   }
@@ -209,96 +179,24 @@ class AudioPlayerContainerComponent extends React.PureComponent<Props, State> {
     requestAnimationFrame(() => NavigationService.navigate('FullAudioPlayer'));
   }
 
-  handleOnSetPlaybackSpeed = (speed: number) => {
-    requestAnimationFrame(() => this.props.setPlaybackSpeed(speed));
-  }
-
-  handleOnProgressChange = async (percentage: number) => {
-    const trackId = await TrackPlayer.getCurrentTrack();
-    const track = await TrackPlayer.getTrack(trackId);
-
-    if (track && track.duration) {
-      const seekToSeconds = track.duration * percentage;
-      await TrackPlayer.seekTo(seekToSeconds);
-    }
-  }
-
-  handleOnTogglePlaybackSpeedVisibility = () => {
-    const { isSubscribed, userHasSubscribedBefore } = this.props;
-
-    if (!isSubscribed) {
-      // Awalys reset it when the user clicks on it when not subscribed
-      // So we can be sure the user always defaults back to 1 when his subscription expires
-      this.props.setPlaybackSpeed(1);
-
-      return Alert.alert(
-        ALERT_TITLE_SUBSCRIPTION_ONLY,
-        ALERT_PLAYBACK_SPEED_SUBSCRIPTION_ONLY,
-        [
-          {
-            text: 'OK',
-          },
-          {
-            text: (userHasSubscribedBefore) ? 'Upgrade' : 'Start free trial',
-            style: 'cancel',
-            onPress: () => {
-              // Close the modal
-              NavigationService.goBack({ key: null })
-
-              requestAnimationFrame(() => {
-                NavigationService.navigate('Upgrade')
-              });
-            }
-          }
-        ]
-      );
-    }
-
-    requestAnimationFrame(() => this.setState({ isPlaybackSpeedVisible: !this.state.isPlaybackSpeedVisible }))
-  }
-
   render() {
-    const { isLoading, isPlaying, isPlaybackSpeedVisible } = this.state;
-    const { isSmall, isLarge, userPlaybackSpeed, track, articles } = this.props;
-
-    console.log('render audioplayercontainer');
+    const { track, articles, playerIsLoading, playerIsPlaying } = this.props;
 
     if (!articles.length) { return null; }
 
-    if (isLarge) {
-      return (
-        <AudioPlayerLarge
-          article={this.article}
-          isLoading={isLoading}
-          isPlaying={isPlaying}
-          playbackSpeed={userPlaybackSpeed}
-          isPlaybackSpeedVisible={isPlaybackSpeedVisible}
-          onPressPlay={this.handleOnPressPlay}
-          onProgressChange={this.handleOnProgressChange}
-          onSetPlaybackSpeed={this.handleOnSetPlaybackSpeed}
-          onTogglePlaybackSpeedVisibility={this.handleOnTogglePlaybackSpeedVisibility}
-        />
-      );
+    if (!track.id) {
+      return <AudioPlayerSmallEmpty />;
     }
 
-    if (isSmall) {
-      if (!track.id) {
-        return <AudioPlayerSmallEmpty />;
-      }
-
-      return (
-        <AudioPlayerSmall
-          track={track}
-          isLoading={isLoading}
-          isPlaying={isPlaying}
-          onPressPlay={this.handleOnPressPlay}
-          onPressShowFullPlayer={this.handleOnPressShowFullPlayer}
-        />
-      );
-    }
-
-    return null;
-
+    return (
+      <AudioPlayerSmall
+        track={track}
+        isLoading={playerIsLoading}
+        isPlaying={playerIsPlaying}
+        onPressPlay={this.handleOnPressPlay}
+        onPressShowFullPlayer={this.handleOnPressShowFullPlayer}
+      />
+    );
   }
 }
 
@@ -311,6 +209,7 @@ interface StateProps {
   readonly playerIsPlaying: ReturnType<typeof selectPlayerIsPlaying>;
   readonly playerIsLoading: ReturnType<typeof selectPlayerIsLoading>;
   readonly playerIsStopped: ReturnType<typeof selectPlayerIsStopped>;
+  readonly playerIsIdle: ReturnType<typeof selectPlayerIsIdle>;
 }
 
 interface DispatchProps {
@@ -327,6 +226,7 @@ const mapStateToProps = (state: RootState): StateProps => ({
   playerIsPlaying: selectPlayerIsPlaying(state),
   playerIsLoading: selectPlayerIsLoading(state),
   playerIsStopped: selectPlayerIsStopped(state),
+  playerIsIdle: selectPlayerIsIdle(state)
 });
 
 const mapDispatchToProps: DispatchProps = {
@@ -334,7 +234,7 @@ const mapDispatchToProps: DispatchProps = {
   setPlaybackSpeed
 };
 
-export const AudioPlayerContainer = connect(
+export const SmallAudioPlayerContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(AudioPlayerContainerComponent);
+)(SmallAudioPlayerContainerComponent);

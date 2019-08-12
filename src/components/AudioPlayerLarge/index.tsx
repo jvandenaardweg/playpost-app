@@ -16,7 +16,7 @@ interface Props {
   isPlaying: boolean;
   isLoading: boolean;
   isPlaybackSpeedVisible: boolean;
-  article: Api.Article | undefined;
+  article?: Api.Article;
   playbackSpeed: number;
   onPressPlay(): void;
   onProgressChange(value: number): void;

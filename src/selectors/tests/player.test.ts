@@ -2,6 +2,7 @@ import { createStore } from 'redux';
 import {
   playerSelector,
   selectErrorCreateAudiofile,
+  selectPlayerArticleFromAudiofileId,
   selectPlayerAudiofile,
   selectPlayerAudiofileStatus,
   selectPlayerCurrentArticleId,
@@ -13,7 +14,9 @@ import {
 import { rootReducer } from '../../reducers';
 import { initialState } from '../../reducers/player';
 
+import articleMock from '../../../tests/__mocks__/article';
 import audiofileMock from '../../../tests/__mocks__/audiofile';
+import playlistMock from '../../../tests/__mocks__/playlist';
 import trackMock from '../../../tests/__mocks__/track';
 
 const store = createStore(rootReducer);
@@ -162,4 +165,22 @@ describe('player selector', () => {
       'Loading article audio...'
     );
   });
+
+  it('selectPlayerArticleFromAudiofileId should return the article based on an audiofile id', () => {
+    const exampleState = {
+      ...rootState,
+      player: {
+        ...rootState.player,
+        track: trackMock
+      },
+      playlist: {
+        ...rootState.playlist,
+      items: playlistMock
+      }
+    };
+
+    expect(selectPlayerArticleFromAudiofileId(exampleState)).toMatchObject(articleMock);
+  });
+
+
 });
