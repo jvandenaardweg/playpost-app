@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import colors from '../../constants/colors';
-import { SUBSCRIPTION_FREE_SKU, SUBSCRIPTION_PLUS_SKU, SUBSCRIPTION_PREMIUM_SKU } from '../../constants/in-app-purchase';
+import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../constants/in-app-purchase';
 import styles from './styles';
 
 
@@ -24,7 +24,7 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
   const currentUsageLocalized = Math.ceil(usageUsedCurrentMonthInSeconds / 60).toLocaleString('nl-NL'); // So we have 5.000 (with a dot)
   const currentLimitLocalized = Math.ceil(limitSecondsPerMonth / 60).toLocaleString('nl-NL'); // So we have 5.000 (with a dot)
 
-  const showUpgradeButton = activeSubscriptionProductId === SUBSCRIPTION_FREE_SKU || activeSubscriptionProductId === SUBSCRIPTION_PREMIUM_SKU;
+  const showUpgradeButton = activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE || activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_PREMIUM;
 
   const upgradeButtonTitle = getUpgradeButtonTitle(activeSubscriptionProductId, userHasSubscribedBefore);
   const upgradeMessage = getUpgradeMessage(activeSubscriptionProductId);
@@ -33,11 +33,11 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
   const progressWidth = `${percentageUsed}%`;
 
   const upgradeScreenCenteredSubscriptionProductId =
-    activeSubscriptionProductId === SUBSCRIPTION_PREMIUM_SKU
-      ? SUBSCRIPTION_PLUS_SKU
-      : activeSubscriptionProductId === SUBSCRIPTION_FREE_SKU
-      ? SUBSCRIPTION_PREMIUM_SKU
-      : SUBSCRIPTION_PREMIUM_SKU;
+    activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_PREMIUM
+      ? SUBSCRIPTION_PRODUCT_ID_PLUS
+      : activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE
+      ? SUBSCRIPTION_PRODUCT_ID_PREMIUM
+      : SUBSCRIPTION_PRODUCT_ID_PREMIUM;
 
   return (
     <View style={styles.container}>
@@ -81,11 +81,11 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
 });
 
 export function getUpgradeMessage(activeSubscriptionProductId: string): string {
-  if (activeSubscriptionProductId === SUBSCRIPTION_FREE_SKU) {
+  if (activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE) {
     return 'Upgrade for more minutes and Premium quality voices.';
   }
 
-  if (activeSubscriptionProductId === SUBSCRIPTION_PREMIUM_SKU) {
+  if (activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_PREMIUM) {
     return 'Upgrade for nearly unlimited minutes.'
   }
 
@@ -93,15 +93,15 @@ export function getUpgradeMessage(activeSubscriptionProductId: string): string {
 }
 
 export function getUpgradeButtonTitle(activeSubscriptionProductId: string, userHasSubscribedBefore: boolean): string {
-  if (activeSubscriptionProductId === SUBSCRIPTION_FREE_SKU && !userHasSubscribedBefore) {
+  if (activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE && !userHasSubscribedBefore) {
     return 'Start free Premium or Plus trial'
   }
 
-  if (activeSubscriptionProductId === SUBSCRIPTION_FREE_SKU) {
+  if (activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE) {
     return 'Upgrade to Premium or Plus'
   }
 
-  if (activeSubscriptionProductId === SUBSCRIPTION_PREMIUM_SKU) {
+  if (activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_PREMIUM) {
     return 'Upgrade to Plus'
   }
 

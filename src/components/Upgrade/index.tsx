@@ -10,7 +10,7 @@ import styles from './styles';
 
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
-import { SUBSCRIPTION_FREE_SKU } from '../../constants/in-app-purchase';
+import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../constants/in-app-purchase';
 import spacing from '../../constants/spacing';
 
 interface Props {
@@ -60,9 +60,9 @@ export const Upgrade: React.FC<Props> = React.memo(
     const snapToInterval = cardWidth + cardMargin * 2;
 
     const startOffset = {
-      free: snapToInterval,
-      'com.aardwegmedia.playpost.premium': snapToInterval,
-      'com.aardwegmedia.playpost.subscription.plus': snapToInterval * 2
+      [SUBSCRIPTION_PRODUCT_ID_FREE]: snapToInterval,
+      [SUBSCRIPTION_PRODUCT_ID_PREMIUM]: snapToInterval,
+      [SUBSCRIPTION_PRODUCT_ID_PLUS]: snapToInterval * 2
     };
 
     // Center the subscription based on centeredSubscriptionProductId
@@ -123,7 +123,7 @@ export const Upgrade: React.FC<Props> = React.memo(
                 const defaultButtonTitle = `Upgrade to ${title}`;
                 const freeButtonTitle = `Downgrade to ${title}`;
 
-                const buttonTitleAction = isDowngradePaidSubscription(productId) || productId === SUBSCRIPTION_FREE_SKU ? freeButtonTitle : trialButtonTitle ? trialButtonTitle : defaultButtonTitle;
+                const buttonTitleAction = isDowngradePaidSubscription(productId) || productId === SUBSCRIPTION_PRODUCT_ID_FREE ? freeButtonTitle : trialButtonTitle ? trialButtonTitle : defaultButtonTitle;
                 const buttonTitle = activeSubscriptionProductId === productId ? 'Current subscription' : buttonTitleAction;
 
                 const isDisabled = isLoadingSubscriptionItems || isLoadingBuySubscription || isLoadingRestorePurchases || activeSubscriptionProductId === productId;
@@ -259,7 +259,7 @@ export const Upgrade: React.FC<Props> = React.memo(
                   loadingProps={{ color: 'black' }}
                 />
 
-                {activeSubscriptionProductId !== SUBSCRIPTION_FREE_SKU && (
+                {activeSubscriptionProductId !== SUBSCRIPTION_PRODUCT_ID_FREE && (
                   <View style={{ marginTop: 18 }}>
                     <Button
                       type="clear"

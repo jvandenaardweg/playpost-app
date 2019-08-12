@@ -20,7 +20,7 @@ import { initialState } from '../../reducers/subscriptions';
 import subscriptionValidationResultActiveMock from '../../../tests/__mocks__/subscription-validation-result-active';
 import subscriptionValidationResultExpiredMock from '../../../tests/__mocks__/subscription-validation-result-expired';
 import subscriptionsMock from '../../../tests/__mocks__/subscriptions';
-import { SUBSCRIPTION_FREE_SKU, SUBSCRIPTION_PREMIUM_SKU } from '../../constants/in-app-purchase';
+import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../constants/in-app-purchase';
 
 const store = createStore(rootReducer);
 
@@ -139,7 +139,7 @@ describe('subscriptions selector', () => {
     };
 
     // The mock data contains a unsubscribed/expired subscription
-    expect(selectActiveSubscriptionProductId(exampleState)).toEqual(SUBSCRIPTION_FREE_SKU);
+    expect(selectActiveSubscriptionProductId(exampleState)).toEqual(SUBSCRIPTION_PRODUCT_ID_FREE);
   });
 
   it('selectActiveSubscriptionProductId should return the active subscription productId', () => {
@@ -152,7 +152,7 @@ describe('subscriptions selector', () => {
     };
 
     // The mock data contains a unsubscribed/expired subscription
-    expect(selectActiveSubscriptionProductId(exampleState)).toEqual(SUBSCRIPTION_PREMIUM_SKU);
+    expect(selectActiveSubscriptionProductId(exampleState)).toEqual(SUBSCRIPTION_PRODUCT_ID_PREMIUM);
   });
 
   it('selectActiveSubscriptionProductId should return the default productId "free" when there is not validation result', () => {
@@ -165,7 +165,7 @@ describe('subscriptions selector', () => {
     };
 
     // The mock data contains a unsubscribed/expired subscription
-    expect(selectActiveSubscriptionProductId(exampleState)).toEqual(SUBSCRIPTION_FREE_SKU);
+    expect(selectActiveSubscriptionProductId(exampleState)).toEqual(SUBSCRIPTION_PRODUCT_ID_FREE);
   });
 
   it('selectActiveSubscriptionName should return the active subscription name when the user has a validated subscription', () => {
