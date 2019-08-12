@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import colors from '../../constants/colors';
+import { SUBSCRIPTION_FREE_SKU, SUBSCRIPTION_PLUS_SKU, SUBSCRIPTION_PREMIUM_SKU } from '../../constants/in-app-purchase';
 import styles from './styles';
 
 
@@ -23,7 +24,7 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
   const currentUsageLocalized = Math.ceil(usageUsedCurrentMonthInSeconds / 60).toLocaleString('nl-NL'); // So we have 5.000 (with a dot)
   const currentLimitLocalized = Math.ceil(limitSecondsPerMonth / 60).toLocaleString('nl-NL'); // So we have 5.000 (with a dot)
 
-  const showUpgradeButton = activeSubscriptionProductId === 'free' || activeSubscriptionProductId === 'com.aardwegmedia.playpost.premium';
+  const showUpgradeButton = activeSubscriptionProductId === SUBSCRIPTION_FREE_SKU || activeSubscriptionProductId === SUBSCRIPTION_PREMIUM_SKU;
 
   const upgradeButtonTitle = getUpgradeButtonTitle(activeSubscriptionProductId, userHasSubscribedBefore);
   const upgradeMessage = getUpgradeMessage(activeSubscriptionProductId);
@@ -32,11 +33,11 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
   const progressWidth = `${percentageUsed}%`;
 
   const upgradeScreenCenteredSubscriptionProductId =
-    activeSubscriptionProductId === 'com.aardwegmedia.playpost.premium'
-      ? 'com.aardwegmedia.playpost.subscription.plus'
-      : activeSubscriptionProductId === 'free'
-      ? 'com.aardwegmedia.playpost.premium'
-      : 'com.aardwegmedia.playpost.premium';
+    activeSubscriptionProductId === SUBSCRIPTION_PREMIUM_SKU
+      ? SUBSCRIPTION_PLUS_SKU
+      : activeSubscriptionProductId === SUBSCRIPTION_FREE_SKU
+      ? SUBSCRIPTION_PREMIUM_SKU
+      : SUBSCRIPTION_PREMIUM_SKU;
 
   return (
     <View style={styles.container}>
@@ -80,11 +81,11 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
 });
 
 export function getUpgradeMessage(activeSubscriptionProductId: string): string {
-  if (activeSubscriptionProductId === 'free') {
+  if (activeSubscriptionProductId === SUBSCRIPTION_FREE_SKU) {
     return 'Upgrade for more minutes and Premium quality voices.';
   }
 
-  if (activeSubscriptionProductId === 'com.aardwegmedia.playpost.premium') {
+  if (activeSubscriptionProductId === SUBSCRIPTION_PREMIUM_SKU) {
     return 'Upgrade for nearly unlimited minutes.'
   }
 
@@ -92,15 +93,15 @@ export function getUpgradeMessage(activeSubscriptionProductId: string): string {
 }
 
 export function getUpgradeButtonTitle(activeSubscriptionProductId: string, userHasSubscribedBefore: boolean): string {
-  if (activeSubscriptionProductId === 'free' && !userHasSubscribedBefore) {
+  if (activeSubscriptionProductId === SUBSCRIPTION_FREE_SKU && !userHasSubscribedBefore) {
     return 'Start free Premium or Plus trial'
   }
 
-  if (activeSubscriptionProductId === 'free') {
+  if (activeSubscriptionProductId === SUBSCRIPTION_FREE_SKU) {
     return 'Upgrade to Premium or Plus'
   }
 
-  if (activeSubscriptionProductId === 'com.aardwegmedia.playpost.premium') {
+  if (activeSubscriptionProductId === SUBSCRIPTION_PREMIUM_SKU) {
     return 'Upgrade to Plus'
   }
 

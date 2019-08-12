@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { SUBSCRIPTION_FREE_SKU } from '../constants/in-app-purchase';
 import { RootState } from '../reducers';
 import { SubscriptionsState } from '../reducers/subscriptions';
 import { createDeepEqualSelector } from './index';
@@ -66,8 +67,8 @@ export const selectIsSubscribed = createSelector(
 export const selectActiveSubscriptionProductId = createSelector(
   [selectSubscriptionsValidationResult, selectIsSubscribed],
   (validationResult, isSubscribed): string => {
-    if (!isSubscribed) { return 'free'; }
-    if (!validationResult || !validationResult.inAppSubscription || !validationResult.inAppSubscription.productId) { return 'free'; }
+    if (!isSubscribed) { return SUBSCRIPTION_FREE_SKU; }
+    if (!validationResult || !validationResult.inAppSubscription || !validationResult.inAppSubscription.productId) { return SUBSCRIPTION_FREE_SKU; }
     return validationResult.inAppSubscription.productId;
   }
 );

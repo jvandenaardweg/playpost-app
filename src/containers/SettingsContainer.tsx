@@ -33,6 +33,7 @@ import { selectTotalAvailableVoices } from '../selectors/voices';
 import { CustomSectionList } from '../components/CustomSectionList';
 import { Usage } from '../components/Usage';
 
+import { SUBSCRIPTION_FREE_SKU, SUBSCRIPTION_PLUS_SKU, SUBSCRIPTION_PREMIUM_SKU } from '../constants/in-app-purchase';
 import NavigationService from '../navigation/NavigationService';
 
 
@@ -161,10 +162,15 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
 
   handleOnPressLogout = async () => NavigationService.navigate('Logout');
 
-  handleOnPressUpgrade = (centeredSubscriptionProductId?: string) =>
+  handleOnPressUpgrade = () => {
+    const { activeSubscriptionProductId } = this.props;
+
+    const centeredSubscriptionProductId = (activeSubscriptionProductId === SUBSCRIPTION_FREE_SKU) ? SUBSCRIPTION_PREMIUM_SKU : SUBSCRIPTION_PLUS_SKU;
+
     NavigationService.navigate('Upgrade', {
       centeredSubscriptionProductId
     })
+  }
 
   handleOnPressLanguage = () => {
     requestAnimationFrame(() => NavigationService.navigate('SettingsLanguages'));

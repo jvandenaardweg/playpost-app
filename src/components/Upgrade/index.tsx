@@ -10,6 +10,7 @@ import styles from './styles';
 
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
+import { SUBSCRIPTION_FREE_SKU } from '../../constants/in-app-purchase';
 import spacing from '../../constants/spacing';
 
 interface Props {
@@ -122,7 +123,7 @@ export const Upgrade: React.FC<Props> = React.memo(
                 const defaultButtonTitle = `Upgrade to ${title}`;
                 const freeButtonTitle = `Downgrade to ${title}`;
 
-                const buttonTitleAction = isDowngradePaidSubscription(productId) || productId === 'free' ? freeButtonTitle : trialButtonTitle ? trialButtonTitle : defaultButtonTitle;
+                const buttonTitleAction = isDowngradePaidSubscription(productId) || productId === SUBSCRIPTION_FREE_SKU ? freeButtonTitle : trialButtonTitle ? trialButtonTitle : defaultButtonTitle;
                 const buttonTitle = activeSubscriptionProductId === productId ? 'Current subscription' : buttonTitleAction;
 
                 const isDisabled = isLoadingSubscriptionItems || isLoadingBuySubscription || isLoadingRestorePurchases || activeSubscriptionProductId === productId;
@@ -258,7 +259,7 @@ export const Upgrade: React.FC<Props> = React.memo(
                   loadingProps={{ color: 'black' }}
                 />
 
-                {activeSubscriptionProductId !== 'free' && (
+                {activeSubscriptionProductId !== SUBSCRIPTION_FREE_SKU && (
                   <View style={{ marginTop: 18 }}>
                     <Button
                       type="clear"

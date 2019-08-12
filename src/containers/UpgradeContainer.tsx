@@ -10,7 +10,7 @@ import { Upgrade } from '../components/Upgrade';
 import { NetworkContext } from '../contexts/NetworkProvider';
 import NavigationService from '../navigation/NavigationService';
 
-import { SUBSCRIPTION_PRODUCT_IDS } from '../constants/in-app-purchase';
+import { SUBSCRIPTION_FREE_SKU, SUBSCRIPTION_PLUS_SKU, SUBSCRIPTION_PREMIUM_SKU, SUBSCRIPTION_PRODUCT_IDS } from '../constants/in-app-purchase';
 import {
   ALERT_GENERIC_INTERNET_REQUIRED,
   ALERT_SUBSCRIPTION_INIT_FAIL,
@@ -71,21 +71,21 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
     return [
       {
-        productId: 'free',
+        productId: SUBSCRIPTION_FREE_SKU,
         title: 'Free',
         price: '0',
         body: ['Basic quality voices', 'One voice option per language', 'Max. 30 minutes per month', 'Unlimited playlist items', 'Some advertisements'],
         footer: 'About 5 articles to audio, per month'
       },
       {
-        productId: 'com.aardwegmedia.playpost.premium',
+        productId: SUBSCRIPTION_PREMIUM_SKU,
         title: 'Premium',
         price: null,
         body: [`${totalAvailableVoices}+ High Quality voices`, 'Multiple voice options per language', 'Max. 120 minutes per month', 'Unlimited playlist items', 'No advertisements'],
         footer: 'About 25 articles to audio, per month'
       },
       {
-        productId: 'com.aardwegmedia.playpost.subscription.plus',
+        productId: SUBSCRIPTION_PLUS_SKU,
         title: 'Plus',
         price: null,
         body: [`${totalAvailableVoices}+ High Quality voices`, 'Multiple voice options per language', 'Max. 300 minutes per month', 'Unlimited playlist items', 'No advertisements'],
@@ -302,7 +302,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
   isDowngradeFreeSubscription = (productId: string): boolean => {
     const { activeSubscriptionProductId } = this.props;
-    return productId === 'free' && activeSubscriptionProductId !== 'free';
+    return productId === SUBSCRIPTION_FREE_SKU && activeSubscriptionProductId !== SUBSCRIPTION_FREE_SKU;
   }
 
   getPurchaseHistory = (): Promise<RNIap.Purchase[]> => {
