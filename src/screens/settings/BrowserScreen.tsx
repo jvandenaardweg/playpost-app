@@ -1,7 +1,7 @@
 // @ts-ignore
 import React from 'react';
 import { Animated, View } from 'react-native';
-import { WebView } from 'react-native-webview';
+import WebView from 'react-native-webview';
 import { NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
 
 import { ButtonReload } from '../../components/ButtonReload';
@@ -44,6 +44,10 @@ export class BrowserScreen extends React.PureComponent<Props, State> {
     this.props.navigation.setParams({ handleOnReload: this.handleOnReload });
   }
 
+  componentWillUnmount() {
+
+  }
+
   handleOnReload = () => this.webviewRef.current && this.webviewRef.current.reload()
 
   handleOnLoadEnd = () => {
@@ -72,6 +76,7 @@ export class BrowserScreen extends React.PureComponent<Props, State> {
           <WebView
             ref={this.webviewRef}
             source={{ uri: url }}
+            useWebKit
             startInLoadingState={true}
             // onLoadProgress={this.handleOnLoadProgress}
             // onLoadEnd={this.handleOnLoadEnd}
