@@ -219,16 +219,6 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   }
                 }
               >
-                Fixed playback speed
-              </Text>
-              <Text
-                style={
-                  Object {
-                    "fontSize": 15,
-                    "marginBottom": 8,
-                  }
-                }
-              >
                 Unlimited playlist items
               </Text>
               <Text
@@ -497,16 +487,6 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   }
                 }
               >
-                Customize the playback speed
-              </Text>
-              <Text
-                style={
-                  Object {
-                    "fontSize": 15,
-                    "marginBottom": 8,
-                  }
-                }
-              >
                 Unlimited playlist items
               </Text>
               <Text
@@ -766,16 +746,6 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                 }
               >
                 Max. 300 minutes per month
-              </Text>
-              <Text
-                style={
-                  Object {
-                    "fontSize": 15,
-                    "marginBottom": 8,
-                  }
-                }
-              >
-                Customize the playback speed
               </Text>
               <Text
                 style={

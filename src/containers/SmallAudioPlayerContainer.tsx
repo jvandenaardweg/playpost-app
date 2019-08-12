@@ -10,9 +10,8 @@ import { setPlaybackSpeed } from '../reducers/user';
 
 import NavigationService from '../navigation/NavigationService';
 import { RootState } from '../reducers';
-import { selectPlayerIsIdle, selectPlayerIsLoading, selectPlayerIsPlaying, selectPlayerIsStopped, selectPlayerTrack } from '../selectors/player';
+import { selectPlayerIsLoading, selectPlayerIsPlaying, selectPlayerTrack } from '../selectors/player';
 import { selectAllPlaylistArticles } from '../selectors/playlist';
-import { selectIsSubscribed } from '../selectors/subscriptions';
 import { selectUserHasSubscribedBefore, selectUserPlaybackSpeed } from '../selectors/user';
 
 interface State {
@@ -66,10 +65,6 @@ class SmallAudioPlayerContainerComponent extends React.PureComponent<Props, Stat
       ]
     });
 
-    // Do not set the playback speed/rate upon load, this might cause some crashes
-    // Only set it right after "play"
-    // await this.setTrackPlayerPlaybackSpeed(userPlaybackSpeed);
-
     // Adds an event handler for the playback-track-changed event
     this.onTrackChange = TrackPlayer.addEventListener('playback-track-changed', async (data) => {
       console.log('Event', 'playback-track-changed', data);
@@ -96,20 +91,8 @@ class SmallAudioPlayerContainerComponent extends React.PureComponent<Props, Stat
     });
   }
 
-  setTrackPlayerPlaybackSpeed = (speed: number) => {
-    const { isSubscribed } = this.props;
-
-    // If a user is not subscribed, always set the speaking rate back to the default
-    if (!isSubscribed) {
-      this.props.setPlaybackSpeed(1);
-      return TrackPlayer.setRate(1);
-    }
-
-    return TrackPlayer.setRate(speed);
-  }
-
   async componentDidUpdate(prevProps: Props): Promise<void> {
-    const { userPlaybackSpeed, track, isSubscribed } = this.props;
+    const { userPlaybackSpeed, track } = this.props;
 
     // Detect if track changed
     if (track && track.url && prevProps.track.url !== track.url) {
@@ -117,8 +100,8 @@ class SmallAudioPlayerContainerComponent extends React.PureComponent<Props, Stat
     }
 
     // Change the playback speed when the user changed that setting
-    if (isSubscribed && prevProps.userPlaybackSpeed !== userPlaybackSpeed) {
-      await this.setTrackPlayerPlaybackSpeed(userPlaybackSpeed);
+    if (prevProps.userPlaybackSpeed !== userPlaybackSpeed) {
+      await TrackPlayer.setRate(userPlaybackSpeed);
     }
   }
 
@@ -139,7 +122,7 @@ class SmallAudioPlayerContainerComponent extends React.PureComponent<Props, Stat
 
     await TrackPlayer.play();
 
-    await this.setTrackPlayerPlaybackSpeed(userPlaybackSpeed);
+    await TrackPlayer.setRate(userPlaybackSpeed);
   }
 
   componentWillUnmount(): void {
@@ -171,7 +154,7 @@ class SmallAudioPlayerContainerComponent extends React.PureComponent<Props, Stat
       await TrackPlayer.play();
 
       // Make sure the playback speed is always in sync with the users setting
-      await this.setTrackPlayerPlaybackSpeed(userPlaybackSpeed);
+      await TrackPlayer.setRate(userPlaybackSpeed);
     });
   }
 
@@ -205,11 +188,8 @@ interface StateProps {
   readonly userPlaybackSpeed: ReturnType<typeof selectUserPlaybackSpeed>;
   readonly userHasSubscribedBefore: ReturnType<typeof selectUserHasSubscribedBefore>;
   readonly articles: ReturnType<typeof selectAllPlaylistArticles>;
-  readonly isSubscribed: ReturnType<typeof selectIsSubscribed>;
   readonly playerIsPlaying: ReturnType<typeof selectPlayerIsPlaying>;
   readonly playerIsLoading: ReturnType<typeof selectPlayerIsLoading>;
-  readonly playerIsStopped: ReturnType<typeof selectPlayerIsStopped>;
-  readonly playerIsIdle: ReturnType<typeof selectPlayerIsIdle>;
 }
 
 interface DispatchProps {
@@ -222,11 +202,8 @@ const mapStateToProps = (state: RootState): StateProps => ({
   userPlaybackSpeed: selectUserPlaybackSpeed(state),
   userHasSubscribedBefore: selectUserHasSubscribedBefore(state),
   articles: selectAllPlaylistArticles(state),
-  isSubscribed: selectIsSubscribed(state),
   playerIsPlaying: selectPlayerIsPlaying(state),
-  playerIsLoading: selectPlayerIsLoading(state),
-  playerIsStopped: selectPlayerIsStopped(state),
-  playerIsIdle: selectPlayerIsIdle(state)
+  playerIsLoading: selectPlayerIsLoading(state)
 });
 
 const mapDispatchToProps: DispatchProps = {
