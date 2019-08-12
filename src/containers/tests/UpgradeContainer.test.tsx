@@ -10,7 +10,6 @@ jest.mock('../../navigation/NavigationService');
 
 import mockApplePurchases from '../../../tests/__mocks__/apple-purchases';
 import mockSubscriptions from '../../../tests/__mocks__/subscriptions';
-import { ALERT_TITLE_SUBSCRIPTION_UPGRADE_ERROR } from '../../constants/messages';
 
 const validateSubscriptionReceiptHandler = jest.fn();
 const getUserHandler = jest.fn();
@@ -150,7 +149,7 @@ describe('UpgradeContainerComponent', () => {
       expect(setIsLoadingUpgradeHandler).toHaveBeenCalledTimes(2);
       expect(setIsLoadingUpgradeHandler).toHaveBeenLastCalledWith(false);
       expect(spyRequestSubscription).toHaveBeenCalledWith(testProductId);
-      expect(spyShowErrorAlert).toHaveBeenCalledWith(ALERT_TITLE_SUBSCRIPTION_UPGRADE_ERROR, 'Some error!');
+      expect(spyShowErrorAlert).toHaveBeenCalledTimes(0); // The error is handled in SubscriptionHandlerContainer
 
     });
 

@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 import { NetworkContext } from '../contexts/NetworkProvider';
 
-import { ALERT_SUBSCRIPTION_EXPIRED, ALERT_SUBSCRIPTION_RESTORE_SUCCESS, ALERT_TITLE_ERROR, ALERT_TITLE_SUBSCRIPTION_EXPIRED, ALERT_TITLE_SUBSCRIPTION_RESTORE_SUCCESS } from '../constants/messages';
+import { ALERT_SUBSCRIPTION_EXPIRED, ALERT_SUBSCRIPTION_RESTORE_SUCCESS, ALERT_TITLE_ERROR, ALERT_TITLE_SUBSCRIPTION_EXPIRED, ALERT_TITLE_SUBSCRIPTION_RESTORE_SUCCESS, ALERT_TITLE_SUBSCRIPTION_UPGRADE_ERROR } from '../constants/messages';
 import { URL_FEEDBACK } from '../constants/urls';
 import NavigationService from '../navigation/NavigationService';
 import { RootState } from '../reducers';
@@ -133,12 +133,18 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
       // Finish the transaction after we validated the receipt
       await this.finishTransaction(transactionId);
 
+      Analytics.trackEvent('Subscriptions upgrade success', { Status: 'success', ProductId: purchase.productId, UserId: this.analyticsUserId });
+
+      return this.props.setIsLoadingUpgrade(false);
+    } catch (err) {
+      const errorMessage = (err && err.message) ? err.message : 'An unknown error happened while upgrading.';
+
       this.props.setIsLoadingUpgrade(false);
 
-      Analytics.trackEvent('Subscriptions upgrade success', { Status: 'success', ProductId: purchase.productId, UserId: this.analyticsUserId });
-    } catch (err) {
-      // show an alert, an error happened
-      this.props.setIsLoadingUpgrade(false);
+      return this.showErrorAlert(
+        ALERT_TITLE_SUBSCRIPTION_UPGRADE_ERROR,
+        `There was an error while upgrading.Please try the "Restore Purchase" button. If that does not help, please contact our support so we can make it right for you. Error message:\n\n${errorMessage}`
+      );
     }
   }
 

@@ -16,8 +16,7 @@ import {
   ALERT_SUBSCRIPTION_INIT_FAIL,
   ALERT_SUBSCRIPTION_RESTORE_PURCHASE_NOT_FOUND,
   ALERT_TITLE_ERROR_NO_INTERNET,
-  ALERT_TITLE_SUBSCRIPTION_RESTORE_ERROR,
-  ALERT_TITLE_SUBSCRIPTION_UPGRADE_ERROR} from '../constants/messages';
+  ALERT_TITLE_SUBSCRIPTION_RESTORE_ERROR} from '../constants/messages';
 import {
   URL_FEEDBACK,
   URL_MANAGE_APPLE_SUBSCRIPTIONS,
@@ -229,9 +228,10 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         const errorMessage = err && err.message ? err.message : 'An unknown error happened while upgrading a subscription.';
         Analytics.trackEvent('Subscriptions upgrade error', { Status: 'error', Message: errorMessage, UserId: this.analyticsUserId });
 
-        this.props.setIsLoadingUpgrade(false);
+        return this.props.setIsLoadingUpgrade(false);
 
-        return this.showErrorAlert(ALERT_TITLE_SUBSCRIPTION_UPGRADE_ERROR, errorMessage);
+        // An error with requestSubscription is handled in SubscriptionHandlerContainer on handlePurchaseErrorListener
+        // return this.showErrorAlert(ALERT_TITLE_SUBSCRIPTION_UPGRADE_ERROR, errorMessage);
       }
     })
   }
