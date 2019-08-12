@@ -44,10 +44,6 @@ export class BrowserScreen extends React.PureComponent<Props, State> {
     this.props.navigation.setParams({ handleOnReload: this.handleOnReload });
   }
 
-  componentWillUnmount() {
-
-  }
-
   handleOnReload = () => this.webviewRef.current && this.webviewRef.current.reload()
 
   handleOnLoadEnd = () => {
