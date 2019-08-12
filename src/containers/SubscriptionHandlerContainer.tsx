@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 import { NetworkContext } from '../contexts/NetworkProvider';
 
-import { ALERT_SUBSCRIPTION_EXPIRED, ALERT_TITLE_SUBSCRIPTION_EXPIRED } from '../constants/messages';
+import { ALERT_SUBSCRIPTION_EXPIRED, ALERT_TITLE_SUBSCRIPTION_EXPIRED, ALERT_TITLE_ERROR } from '../constants/messages';
 import { URL_FEEDBACK } from '../constants/urls';
 import NavigationService from '../navigation/NavigationService';
 import { RootState } from '../reducers';
@@ -48,54 +48,11 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
     // TODO: only run this component when user is logged in
 
     // Check every minute if Subscription is still active
-    this.validateSubscriptionInterval = setInterval(() => {
-      this.validateActiveSubscriptionAtInterval();
-    }, 1000 * 60); // Every 1 minute
+    this.validateSubscriptionInterval = setInterval(() => this.validateActiveSubscriptionAtInterval(), 1000 * 60); // Every 1 minute
 
-    this.purchaseUpdateSubscription = RNIap.purchaseUpdatedListener(async (purchase: RNIap.ProductPurchase) => {
-      try {
-        const { productId, transactionReceipt, transactionId } = purchase;
+    this.purchaseUpdateSubscription = RNIap.purchaseUpdatedListener(this.handlePurchaseUpdateListener);
 
-        if (!transactionId) {
-          return this.showErrorAlert('Purchase failed', 'No transactionId present in purchase.');
-        }
-
-        // Make sure it's loading
-        this.props.setIsLoadingUpgrade(true);
-
-        // Validatation error is handeled in APIErrorAlertContainer
-        await this.props.validateSubscriptionReceipt(productId, transactionReceipt);
-
-        // Finish the transaction after we validated the receipt
-        await RNIap.finishTransactionIOS(transactionId);
-
-        Analytics.trackEvent('Subscriptions upgrade success', { Status: 'success', ProductId: purchase.productId, UserId: this.analyticsUserId });
-      } catch (err) {
-        // The error from validateSubscriptionReceipt is handled in APIErrorAlertContainer
-        // tslint:disable-next-line: no-console
-        console.error('err purchaseupdatelistener', err);
-      } finally {
-        this.props.setIsLoadingUpgrade(false);
-      }
-    });
-
-    this.purchaseErrorSubscription = RNIap.purchaseErrorListener(async (error: RNIap.PurchaseError) => {
-      const errorMessage = error && error.debugMessage ? error.debugMessage : JSON.stringify(error);
-
-      this.props.setIsLoadingUpgrade(false);
-
-      Analytics.trackEvent('Subscriptions upgrade error', {
-        Status: 'error',
-        Message: errorMessage,
-        UserId: this.analyticsUserId
-      });
-
-      this.showErrorAlert(
-        'Oops!',
-        `If you canceled an upgrade, you can ignore this message.\n\nIf you tried to upgrade please contact our support with this error message:\n\n ${errorMessage}`
-      );
-
-    });
+    this.purchaseErrorSubscription = RNIap.purchaseErrorListener(this.handlePurchaseErrorListener);
 
   }
 
@@ -125,21 +82,81 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
 
     // If the state changes from subscribed, to unsubscribed, notify the user, so the user can re-subscribe again if he wants to.
     if (!isSubscribed && prevProps.isSubscribed) {
-      Alert.alert(ALERT_TITLE_SUBSCRIPTION_EXPIRED, ALERT_SUBSCRIPTION_EXPIRED);
+      return this.handleSubscriptionStatusExpired();
     }
 
     if (isLoadingRestore) {
-
       if(validationResult && !isEqual(prevProps.validationResult, validationResult)) {
-        this.props.setIsLoadingRestore(false);
-
-        return this.showErrorAlert(
-          `Subscription is ${validationResult.status}`,
-          `In order to use our Premium features, you need to buy a new subscription.\n\nIf you think this is incorrect, please contact support.`
-        );
+        return this.handleRestoreSubscriptionStatus(validationResult);
       }
     }
   }
+
+  handleSubscriptionStatusExpired = () => {
+    return Alert.alert(ALERT_TITLE_SUBSCRIPTION_EXPIRED, ALERT_SUBSCRIPTION_EXPIRED);
+  }
+
+  handleRestoreSubscriptionStatus = (validationResult: Api.ReceiptValidationResponse) => {
+    this.props.setIsLoadingRestore(false);
+
+    return this.showErrorAlert(
+      `Subscription is ${validationResult.status}`,
+      `In order to use our Premium features, you need to buy a new subscription.\n\nIf you think this is incorrect, please contact support.`
+    );
+  }
+
+  handlePurchaseUpdateListener = async (purchase: RNIap.ProductPurchase) => {
+    try {
+      const { productId, transactionReceipt, transactionId } = purchase;
+
+      if (!transactionId) {
+        this.props.setIsLoadingUpgrade(false);
+        return this.showErrorAlert('Purchase failed', 'No transactionId present in purchase.');
+      }
+
+      if (!productId) {
+        this.props.setIsLoadingUpgrade(false);
+        return this.showErrorAlert('Purchase failed', 'No productId present in purchase.');
+      }
+
+      // Make sure it's loading
+      this.props.setIsLoadingUpgrade(true);
+
+      // Validatation error is handeled in APIErrorAlertContainer
+      await this.props.validateSubscriptionReceipt(productId, transactionReceipt);
+
+      // Finish the transaction after we validated the receipt
+      await this.finishTransaction(transactionId);
+
+      this.props.setIsLoadingUpgrade(false);
+
+      Analytics.trackEvent('Subscriptions upgrade success', { Status: 'success', ProductId: purchase.productId, UserId: this.analyticsUserId });
+    } catch (err) {
+      this.props.setIsLoadingUpgrade(false);
+    }
+  }
+
+  handlePurchaseErrorListener = async (error: RNIap.PurchaseError) => {
+    const errorMessage = error && error.debugMessage ? error.debugMessage : JSON.stringify(error);
+
+    this.props.setIsLoadingUpgrade(false);
+
+    Analytics.trackEvent('Subscriptions upgrade error', {
+      Status: 'error',
+      Message: errorMessage,
+      UserId: this.analyticsUserId
+    });
+
+    this.showErrorAlert(
+      ALERT_TITLE_ERROR,
+      `If you canceled an upgrade, you can ignore this message.\n\nIf you tried to upgrade please contact our support with this error message:\n\n ${errorMessage}`
+    );
+  }
+
+  finishTransaction = async (transactionId: string) => {
+    return RNIap.finishTransactionIOS(transactionId);
+  }
+
 
   /**
    * Method to check if the user still has an active subscription when he/she opens the app again.
