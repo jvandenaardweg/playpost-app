@@ -11,26 +11,23 @@ import colors from '../constants/colors';
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 import fonts from '../constants/fonts';
 import {
-  ALERT_PLAYBACK_SPEED_SUBSCRIPTION_ONLY,
   ALERT_SETTINGS_CLEAR_CACHE_WARNING,
   ALERT_SETTINGS_DELETE_USER,
   ALERT_SETTINGS_DELETE_USER_FAIL,
   ALERT_SETTINGS_RESET_CACHE_FAIL,
   ALERT_SETTINGS_SET_CACHE_SIZE_FAIL,
   ALERT_TITLE_ERROR,
-  ALERT_TITLE_REQUEST_CONFIRM,
-  ALERT_TITLE_SUBSCRIPTION_ONLY
-} from '../constants/messages';
+  ALERT_TITLE_REQUEST_CONFIRM} from '../constants/messages';
 import spacing from '../constants/spacing';
 import { URL_ABOUT, URL_APP_APPLE_APP_STORE_REVIEW, URL_FEEDBACK, URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../constants/urls';
 
 import { RootState } from '../reducers';
 import { resetAudiofilesState } from '../reducers/audiofiles';
-import { deleteUser, getUser, setPlaybackSpeed } from '../reducers/user';
+import { deleteUser, getUser } from '../reducers/user';
 import { resetDownloadedVoices, resetVoicesState } from '../reducers/voices';
 
 import { selectActiveSubscriptionName, selectActiveSubscriptionProductId, selectIsSubscribed } from '../selectors/subscriptions';
-import { selectUserDetails, selectUserHasSubscribedBefore, selectUserPlaybackSpeed } from '../selectors/user';
+import { selectUserDetails, selectUserHasSubscribedBefore } from '../selectors/user';
 import { selectTotalAvailableVoices } from '../selectors/voices';
 
 import { CustomSectionList } from '../components/CustomSectionList';
@@ -191,33 +188,6 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
     ]);
   }
 
-  handleOnPressPlaybackSpeed = () => {
-    const { isSubscribed, userHasSubscribedBefore } = this.props;
-
-    if (!isSubscribed) {
-      // Awalys reset it when the user clicks on it when not subscribed
-      // So we can be sure the user always defaults back to 1 when his subscription expires
-      this.props.setPlaybackSpeed(1);
-
-      return Alert.alert(
-        ALERT_TITLE_SUBSCRIPTION_ONLY,
-        ALERT_PLAYBACK_SPEED_SUBSCRIPTION_ONLY,
-        [
-          {
-            text: 'OK',
-          },
-          {
-            text: (userHasSubscribedBefore) ? 'Upgrade' : 'Start free trial',
-            style: 'cancel',
-            onPress: () => NavigationService.navigate('Upgrade')
-          }
-        ]
-      );
-    }
-
-    NavigationService.navigate('FullAudioPlayer');
-  }
-
   renderDeleteAccount = () => {
     const { isDeletingAccount } = this.state;
 
@@ -270,7 +240,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
   }
 
   render() {
-    const { activeSubscriptionName, totalAvailableVoices, user, activeSubscriptionProductId, userHasSubscribedBefore, userPlaybackSpeed } = this.props;
+    const { activeSubscriptionName, totalAvailableVoices, user, activeSubscriptionProductId, userHasSubscribedBefore } = this.props;
     const { isClearingCache, cacheSize } = this.state;
 
     const sectionListData = [
@@ -285,15 +255,6 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             iconColor: colors.green,
             onPress: this.handleOnPressLanguage,
             value: totalAvailableVoices,
-            chevron: true
-          },
-          {
-            key: 'playback-speed',
-            title: 'Voice speaking rate',
-            icon: 'chevrons-right',
-            iconColor: colors.green,
-            onPress: this.handleOnPressPlaybackSpeed,
-            value: `${userPlaybackSpeed.toFixed(2)}x`,
             chevron: true
           }
         ]
@@ -455,7 +416,6 @@ interface DispatchProps {
   resetDownloadedVoices: typeof resetDownloadedVoices;
   getUser: typeof getUser;
   deleteUser: typeof deleteUser;
-  setPlaybackSpeed: typeof setPlaybackSpeed;
 }
 
 interface StateProps {
@@ -465,7 +425,6 @@ interface StateProps {
   activeSubscriptionProductId: ReturnType<typeof selectActiveSubscriptionProductId>;
   totalAvailableVoices: ReturnType<typeof selectTotalAvailableVoices>;
   userHasSubscribedBefore: ReturnType<typeof selectUserHasSubscribedBefore>;
-  userPlaybackSpeed: ReturnType<typeof selectUserPlaybackSpeed>;
 }
 
 const mapStateToProps = (state: RootState) => ({
@@ -475,7 +434,6 @@ const mapStateToProps = (state: RootState) => ({
   activeSubscriptionProductId: selectActiveSubscriptionProductId(state),
   totalAvailableVoices: selectTotalAvailableVoices(state),
   userHasSubscribedBefore: selectUserHasSubscribedBefore(state),
-  userPlaybackSpeed: selectUserPlaybackSpeed(state),
 });
 
 const mapDispatchToProps = {
@@ -483,8 +441,7 @@ const mapDispatchToProps = {
   resetVoicesState,
   resetDownloadedVoices,
   getUser,
-  deleteUser,
-  setPlaybackSpeed
+  deleteUser
 };
 
 export const SettingsContainer = connect(
