@@ -103,6 +103,18 @@ describe('subscriptions selector', () => {
     expect(selectSubscriptionLatestReceipt(exampleState)).toEqual(subscriptionValidationResultExpiredMock.latestReceipt);
   });
 
+  it('selectSubscriptionLatestReceipt should return an empty string when there is no validation result', () => {
+    const exampleState = {
+      ...rootState,
+      subscriptions: {
+        ...rootState.subscriptions,
+        validationResult: null
+      }
+    };
+
+    expect(selectSubscriptionLatestReceipt(exampleState)).toEqual('');
+  });
+
   it('selectIsSubscribed should return the subscription latest receipt', () => {
     const exampleState = {
       ...rootState,
@@ -140,6 +152,19 @@ describe('subscriptions selector', () => {
 
     // The mock data contains a unsubscribed/expired subscription
     expect(selectActiveSubscriptionProductId(exampleState)).toEqual('com.aardwegmedia.playpost.premium');
+  });
+
+  it('selectActiveSubscriptionProductId should return the default productId "free" when there is not validation result', () => {
+    const exampleState = {
+      ...rootState,
+      subscriptions: {
+        ...rootState.subscriptions,
+        validationResult: null
+      }
+    };
+
+    // The mock data contains a unsubscribed/expired subscription
+    expect(selectActiveSubscriptionProductId(exampleState)).toEqual('free');
   });
 
   it('selectActiveSubscriptionName should return the active subscription name when the user has a validated subscription', () => {

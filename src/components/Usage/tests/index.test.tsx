@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render, RenderAPI } from 'react-native-testing-library';
 
-import { Usage, getUpgradeMessage, getUpgradeButtonTitle } from '../index';
+import { getUpgradeButtonTitle, getUpgradeMessage, Usage } from '../index';
 
 import userMock from '../../../../tests/__mocks__/user';
 

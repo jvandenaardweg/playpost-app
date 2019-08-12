@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 import { NetworkContext } from '../contexts/NetworkProvider';
 
-import { ALERT_SUBSCRIPTION_EXPIRED, ALERT_TITLE_SUBSCRIPTION_EXPIRED, ALERT_TITLE_ERROR } from '../constants/messages';
+import { ALERT_SUBSCRIPTION_EXPIRED, ALERT_TITLE_ERROR, ALERT_TITLE_SUBSCRIPTION_EXPIRED } from '../constants/messages';
 import { URL_FEEDBACK } from '../constants/urls';
 import NavigationService from '../navigation/NavigationService';
 import { RootState } from '../reducers';
