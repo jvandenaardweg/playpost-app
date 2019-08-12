@@ -109,7 +109,7 @@ describe('UpgradeContainerComponent', () => {
       const testInstance = wrapper.root.instance;
 
       const spySubscriptionAlert = jest.spyOn(testInstance, 'showManageSubscriptionAlert');
-      const spyBuySubscription = jest.spyOn(testInstance, 'buySubscription');
+      const spyRequestSubscription = jest.spyOn(testInstance, 'requestSubscription');
 
       // User is not downgrading from a paid subscription
       testInstance.isDowngradePaidSubscription = jest.fn().mockReturnValue(false)
@@ -121,10 +121,10 @@ describe('UpgradeContainerComponent', () => {
       await testInstance.handleOnPressUpgrade(testProductId);
 
       expect(spySubscriptionAlert).toHaveBeenCalledTimes(0);
-      expect(spyBuySubscription).toHaveBeenCalledTimes(1);
+      expect(spyRequestSubscription).toHaveBeenCalledTimes(1);
       expect(setIsLoadingUpgradeHandler).toHaveBeenCalledTimes(1);
       expect(setIsLoadingUpgradeHandler).toHaveBeenCalledWith(true);
-      expect(spyBuySubscription).toHaveBeenCalledWith(testProductId);
+      expect(spyRequestSubscription).toHaveBeenCalledWith(testProductId);
       expect(testInstance.state.selectedProductId).toBe(testProductId);
 
     });
@@ -134,7 +134,7 @@ describe('UpgradeContainerComponent', () => {
 
       const testInstance = wrapper.root.instance;
 
-      const spyBuySubscription = jest.spyOn(testInstance, 'buySubscription').mockRejectedValueOnce(new Error('Some error!'));
+      const spyRequestSubscription = jest.spyOn(testInstance, 'requestSubscription').mockRejectedValueOnce(new Error('Some error!'));
       const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert');
 
       // User is not downgrading from a paid subscription
@@ -146,10 +146,10 @@ describe('UpgradeContainerComponent', () => {
       // Test an upgrade to a higher subscription level
       await testInstance.handleOnPressUpgrade(testProductId);
 
-      expect(spyBuySubscription).toHaveBeenCalledTimes(1);
+      expect(spyRequestSubscription).toHaveBeenCalledTimes(1);
       expect(setIsLoadingUpgradeHandler).toHaveBeenCalledTimes(2);
       expect(setIsLoadingUpgradeHandler).toHaveBeenLastCalledWith(false);
-      expect(spyBuySubscription).toHaveBeenCalledWith(testProductId);
+      expect(spyRequestSubscription).toHaveBeenCalledWith(testProductId);
       expect(spyShowErrorAlert).toHaveBeenCalledWith(ALERT_TITLE_SUBSCRIPTION_UPGRADE_ERROR, 'Some error!');
 
     });

@@ -158,19 +158,6 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
   handleOpenTerms = () => Linking.openURL(`${URL_TERMS_OF_USE}?ref=playpost://upgrade`);
 
-  showErrorAlert = (title: string, message: string) => {
-    return Alert.alert(title, message, [
-      {
-        text: 'Close',
-        style: 'cancel'
-      },
-      {
-        text: 'Contact support',
-        onPress: () => NavigationService.navigate('Browser', { url: URL_FEEDBACK, title: 'Support' })
-      }
-    ]);
-  }
-
   handleOnPressCancel = () => {
     if (Platform.OS === 'android') {
       return this.showManageSubscriptionAlert(
@@ -234,9 +221,9 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
     this.setState({ selectedProductId: productId }, async () => {
       try {
-        const upgradeResult = await this.buySubscription(productId);
+        const upgradeResult = await this.requestSubscription(productId);
 
-        // The result of buySubscription is handled in SubscriptionHandlerContainer
+        // The result of requestSubscription is handled in SubscriptionHandlerContainer
         return upgradeResult;
       } catch (err) {
         const errorMessage = err && err.message ? err.message : 'An unknown error happened while upgrading a subscription.';
@@ -247,28 +234,6 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         return this.showErrorAlert(ALERT_TITLE_SUBSCRIPTION_UPGRADE_ERROR, errorMessage);
       }
     })
-  }
-
-  buySubscription = (productId: string): Promise<string> => {
-    return RNIap.requestSubscription(productId);
-  }
-
-  isDowngradePaidSubscription = (productId: string): boolean => {
-    const { activeSubscriptionProductId } = this.props;
-    const { subscriptions } = this.state;
-
-    const subscriptionToUpgradeTo = subscriptions.find(subscription => subscription.productId === productId);
-    const currentSubscription = subscriptions.find(subscription => subscription.productId === activeSubscriptionProductId);
-
-    if (!subscriptionToUpgradeTo) { return false; }
-    if (!currentSubscription) { return false; }
-
-    return Number(subscriptionToUpgradeTo.price) < Number(currentSubscription.price);
-  }
-
-  isDowngradeFreeSubscription = (productId: string): boolean => {
-    const { activeSubscriptionProductId } = this.props;
-    return productId === 'free' && activeSubscriptionProductId !== 'free';
   }
 
   handleOnPressRestore = async () => {
@@ -305,6 +270,28 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
       this.showErrorAlert(ALERT_TITLE_SUBSCRIPTION_RESTORE_ERROR, errorMessage);
     }
+  }
+
+  requestSubscription = (productId: string): Promise<string> => {
+    return RNIap.requestSubscription(productId);
+  }
+
+  isDowngradePaidSubscription = (productId: string): boolean => {
+    const { activeSubscriptionProductId } = this.props;
+    const { subscriptions } = this.state;
+
+    const subscriptionToUpgradeTo = subscriptions.find(subscription => subscription.productId === productId);
+    const currentSubscription = subscriptions.find(subscription => subscription.productId === activeSubscriptionProductId);
+
+    if (!subscriptionToUpgradeTo) { return false; }
+    if (!currentSubscription) { return false; }
+
+    return Number(subscriptionToUpgradeTo.price) < Number(currentSubscription.price);
+  }
+
+  isDowngradeFreeSubscription = (productId: string): boolean => {
+    const { activeSubscriptionProductId } = this.props;
+    return productId === 'free' && activeSubscriptionProductId !== 'free';
   }
 
   getAvailablePurchases = (): Promise<RNIap.Purchase[]> => {
@@ -362,6 +349,19 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     }
 
     return purchase;
+  }
+
+  showErrorAlert = (title: string, message: string) => {
+    return Alert.alert(title, message, [
+      {
+        text: 'Close',
+        style: 'cancel'
+      },
+      {
+        text: 'Contact support',
+        onPress: () => NavigationService.navigate('Browser', { url: URL_FEEDBACK, title: 'Support' })
+      }
+    ]);
   }
 
   render() {
