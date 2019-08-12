@@ -118,12 +118,8 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     centeredSubscriptionProductId: ''
   };
 
-  isMounted = false;
-
   async componentDidMount() {
     const { isConnected } = this.context;
-
-    this.isMounted = true;
 
     // For now, just close the screen when there's no active internet connection
     // TODO: make more user friendly to show upgrade features when there's no internet connection
@@ -133,10 +129,6 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     }
 
     this.getAvailableSubscriptionItems(SUBSCRIPTION_PRODUCT_IDS);
-  }
-
-  componentWillUnmount() {
-    this.isMounted = false;
   }
 
   fetchUpdatedUserData = async () => {
@@ -340,19 +332,9 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         // Re-order the subscriptions
         // const cheapestSubscriptionFirst = subscriptions.sort((a, b) => Number(a.price) - Number(b.price));
 
-        // Make sure we are still mounted here, if not, we don't need to update our state
-        if (!this.isMounted) {
-          return;
-        }
-
         return this.setState({ subscriptions, isLoadingSubscriptionItems: false }, () => subscriptions);
       } catch (err) {
         const errorMessage = err && err.message ? err.message : 'An unknown error happened while fetching the available subscriptions';
-
-        // Make sure we are still mounted here, if not, we don't need to update our state
-        if (!this.isMounted) {
-          return;
-        }
 
         return this.setState({ isLoadingSubscriptionItems: false }, () => {
           return this.showErrorAlert('Oops!', errorMessage);
