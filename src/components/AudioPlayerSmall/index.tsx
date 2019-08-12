@@ -23,15 +23,15 @@ export const AudioPlayerSmall: React.FC<Props> = React.memo(({
   isLoading,
   track: { title, artist, album }
 }) => (
-  <View style={styles.wrapper}>
+  <View testID="AudioPlayerSmall" style={styles.wrapper}>
     <View style={styles.container}>
       <TouchableHighlight style={styles.trackInfoButton} onPress={onPressShowFullPlayer}>
         <View style={styles.trackInfo}>
           <View>
-            <Text style={styles.trackInfoTitle} ellipsizeMode="tail" numberOfLines={1}>{(title) ? title : 'Select an article'}</Text>
+            <Text testID="AudioPlayerSmall-Text-title" style={styles.trackInfoTitle} ellipsizeMode="tail" numberOfLines={1}>{(title) ? title : 'Select an article'}</Text>
           </View>
           <View>
-            <Text style={styles.trackInfoArtist} ellipsizeMode="tail" numberOfLines={1}>
+            <Text testID="AudioPlayerSmall-Text-meta" style={styles.trackInfoArtist} ellipsizeMode="tail" numberOfLines={1}>
               {(artist) ? artist : '-'}
               {(album) ? `, ${album}` : null}
             </Text>

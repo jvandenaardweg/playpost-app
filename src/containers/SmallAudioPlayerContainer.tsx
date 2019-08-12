@@ -20,7 +20,7 @@ interface State {
 
 type Props = StateProps & DispatchProps;
 
-class SmallAudioPlayerContainerComponent extends React.PureComponent<Props, State> {
+export class SmallAudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   state = {
     isPlaybackSpeedVisible: false
   };
