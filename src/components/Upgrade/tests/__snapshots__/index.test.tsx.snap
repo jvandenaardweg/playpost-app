@@ -275,7 +275,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   }
                 }
               >
-                Higher article limits
+                More listening limits
               </Text>
               <Text
                 style={
@@ -286,7 +286,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   }
                 }
               >
-                99.9% of the articles on the internet are within the limitations of our Premium and Plus subscription. So you'll probably never hit that limit!
+                With our Premium and Plus subscription you can enjoy higher listening minutes. You'll probably never hit that limit!
               </Text>
             </View>
           </View>

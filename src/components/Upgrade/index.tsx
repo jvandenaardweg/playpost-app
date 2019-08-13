@@ -212,10 +212,9 @@ export const Upgrade: React.FC<Props> = React.memo(
               <View style={styles.feature}>
                 <Icon.FontAwesome5 name="clock" size={34} style={styles.featureIcon} />
                 <View style={styles.featureContent}>
-                  <Text style={styles.title}>Higher article limits</Text>
+                  <Text style={styles.title}>More listening limits</Text>
                   <Text style={styles.paragraph}>
-                    99.9% of the articles on the internet are within the limitations of our Premium and Plus subscription. So you'll probably never hit that
-                    limit!
+                    With our Premium and Plus subscription you can enjoy higher listening minutes. You'll probably never hit that limit!
                   </Text>
                 </View>
               </View>
