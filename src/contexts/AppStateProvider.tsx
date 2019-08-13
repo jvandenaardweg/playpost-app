@@ -8,7 +8,7 @@ import { getPlaylist } from '../reducers/playlist';
 import { setAuthToken } from '../reducers/auth';
 import { validateSubscriptionReceipt } from '../reducers/subscriptions';
 import { getUser } from '../reducers/user';
-import { selectAuthenticationStatus, selectAuthenticationToken } from '../selectors/auth';
+import { selectAuthenticationToken, selectIsLoggedIn } from '../selectors/auth';
 import { selectActiveSubscriptionProductId, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
 import { store } from '../store';
 import * as keychain from '../utils/keychain';
@@ -99,16 +99,16 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
    * Without any additional action from the user.
    */
   fetchUserPlaylist = () => {
-    const { authenticationStatus } = this.props;
+    const { isLoggedIn } = this.props;
 
-    if (authenticationStatus !== 'LOGGED_IN') { return; }
+    if (!isLoggedIn) { return; }
     this.props.getPlaylist();
   }
 
   fetchUser = () => {
-    const { authenticationStatus } = this.props;
+    const { isLoggedIn } = this.props;
 
-    if (authenticationStatus !== 'LOGGED_IN') { return; }
+    if (!isLoggedIn) { return; }
     this.props.getUser();
   }
 
@@ -118,7 +118,7 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
 }
 
 interface StateProps {
-  authenticationStatus: ReturnType<typeof selectAuthenticationStatus>;
+  isLoggedIn: ReturnType<typeof selectIsLoggedIn>;
   subscriptionsValidationResult: ReturnType<typeof selectSubscriptionsValidationResult>;
   activeSubscriptionProductId: ReturnType<typeof selectActiveSubscriptionProductId>;
   authToken: ReturnType<typeof selectAuthenticationToken>;
@@ -131,7 +131,7 @@ interface DispatchProps {
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
-  authenticationStatus: selectAuthenticationStatus(state),
+  isLoggedIn: selectIsLoggedIn(state),
   subscriptionsValidationResult: selectSubscriptionsValidationResult(state),
   activeSubscriptionProductId: selectActiveSubscriptionProductId(state),
   authToken: selectAuthenticationToken(state)

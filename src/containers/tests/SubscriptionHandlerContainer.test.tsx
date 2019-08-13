@@ -32,7 +32,7 @@ const defaultProps: any = {
   userHasSubscribedBefore: false,
   isLoadingUpgrade: false,
   isLoadingRestore: false,
-  authenticationStatus: 'LOGGED_IN',
+  isLoggedIn: true,
   validateSubscriptionReceipt: validateSubscriptionReceiptHandler,
   getUser: getUserHandler,
   setIsLoadingUpgrade: setIsLoadingUpgradeHandler,
@@ -173,7 +173,7 @@ describe('SubscriptionHandlerContainer', () => {
 
       const props = {
         ...defaultProps,
-        authenticationStatus: 'LOGGED_OUT'
+        isLoggedIn: false
       }
 
       wrapper.update(<SubscriptionHandlerContainerComponent {...props}><Text>Container test</Text></SubscriptionHandlerContainerComponent>)
@@ -198,7 +198,7 @@ describe('SubscriptionHandlerContainer', () => {
     it('should not run handlePurchaseErrorListener when a user is not logged in', async () => {
       const props = {
         ...defaultProps,
-        authenticationStatus: 'LOGGED_OUT'
+        isLoggedIn: false
       }
 
       wrapper.update(<SubscriptionHandlerContainerComponent {...props}><Text>Container test</Text></SubscriptionHandlerContainerComponent>)

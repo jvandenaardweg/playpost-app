@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import { authSelector, selectAuthenticationStatus, selectAuthError, selectErrorRequestResetPasswordToken, selectErrorUpdatePassword, selectIsLoading } from '../auth';
+import { authSelector, selectAuthError, selectErrorRequestResetPasswordToken, selectErrorUpdatePassword, selectIsLoading, selectIsLoggedIn } from '../auth';
 
 import { rootReducer } from '../../reducers';
 import { initialState } from '../../reducers/auth';
@@ -61,7 +61,7 @@ describe('auth selector', () => {
     expect(selectIsLoading(exampleState)).toBe(true);
   });
 
-  it('selectAuthenticationStatus should return the authentication status', () => {
+  it('selectIsLoggedIn should return the true when there is a token', () => {
     const exampleState = {
       ...rootState,
       auth: {
@@ -70,6 +70,18 @@ describe('auth selector', () => {
       }
     };
 
-    expect(selectAuthenticationStatus(exampleState)).toBe('LOGGED_IN');
+    expect(selectIsLoggedIn(exampleState)).toBe(true);
+  });
+
+  it('selectIsLoggedIn should return false when there is no token', () => {
+    const exampleState = {
+      ...rootState,
+      auth: {
+        ...rootState.auth,
+        token: ''
+      }
+    };
+
+    expect(selectIsLoggedIn(exampleState)).toBe(false);
   });
 });

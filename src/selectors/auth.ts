@@ -29,10 +29,7 @@ export const selectErrorUpdatePassword = createSelector(
   auth => auth.errorUpdatePassword
 );
 
-export const selectAuthenticationStatus = createSelector(
+export const selectIsLoggedIn = createSelector(
   [selectAuthenticationToken],
-  (token) => {
-    if (token) { return 'LOGGED_IN'; }
-    return 'LOGGED_OUT';
-  }
+  (token): boolean => !!token
 );
