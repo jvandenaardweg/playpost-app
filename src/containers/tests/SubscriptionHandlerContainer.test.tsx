@@ -28,7 +28,7 @@ const defaultProps: any = {
   validationResult: null,
   isSubscribed: false,
   activeSubscriptionProductId: SUBSCRIPTION_PRODUCT_ID_FREE,
-  userDetails: null,
+  userDetails: userMock,
   userHasSubscribedBefore: false,
   isLoadingUpgrade: false,
   isLoadingRestore: false,
@@ -173,6 +173,7 @@ describe('SubscriptionHandlerContainer', () => {
 
       const props = {
         ...defaultProps,
+        userDetails: null,
         isLoggedIn: false
       }
 
@@ -198,6 +199,7 @@ describe('SubscriptionHandlerContainer', () => {
     it('should not run handlePurchaseErrorListener when a user is not logged in', async () => {
       const props = {
         ...defaultProps,
+        userDetails: null,
         isLoggedIn: false
       }
 
