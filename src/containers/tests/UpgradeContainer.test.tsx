@@ -10,6 +10,7 @@ jest.mock('../../navigation/NavigationService');
 
 import mockApplePurchases from '../../../tests/__mocks__/apple-purchases';
 import mockSubscriptions from '../../../tests/__mocks__/subscriptions';
+import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../constants/in-app-purchase';
 
 const validateSubscriptionReceiptHandler = jest.fn();
 const getUserHandler = jest.fn();
@@ -63,7 +64,7 @@ describe('UpgradeContainerComponent', () => {
     });
 
     it('should correctly handle handleOnPressUpgrade() on an downgrade to free', async () => {
-      const testProductId = 'free';
+      const testProductId = SUBSCRIPTION_PRODUCT_ID_FREE;
       const testInstance = wrapper.root.instance;
 
       const spySubscriptionAlert = jest.spyOn(testInstance, 'showManageSubscriptionAlert');
@@ -83,7 +84,7 @@ describe('UpgradeContainerComponent', () => {
     });
 
     it('should correctly handle handleOnPressUpgrade() on an downgrade from a higher subscription', async () => {
-      const testProductId = 'com.aardwegmedia.playpost.premium';
+      const testProductId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
       const testInstance = wrapper.root.instance;
 
       const spySubscriptionAlert = jest.spyOn(testInstance, 'showManageSubscriptionAlert');
@@ -103,7 +104,7 @@ describe('UpgradeContainerComponent', () => {
     });
 
     it('should correctly handle handleOnPressUpgrade() on an upgrade', async () => {
-      const testProductId = 'com.aardwegmedia.playpost.premium';
+      const testProductId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
 
       const testInstance = wrapper.root.instance;
 
@@ -129,7 +130,7 @@ describe('UpgradeContainerComponent', () => {
     });
 
     it('should correctly handle an error inside handleOnPressUpgrade() on an upgrade', async () => {
-      const testProductId = 'com.aardwegmedia.playpost.premium';
+      const testProductId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
 
       const testInstance = wrapper.root.instance;
 
@@ -162,15 +163,15 @@ describe('UpgradeContainerComponent', () => {
     it('isDowngradeFreeSubscription() should return true/false', () => {
       const mockProps = {
         ...props,
-        activeSubscriptionProductId: 'free',
+        activeSubscriptionProductId: SUBSCRIPTION_PRODUCT_ID_FREE,
         subscriptions: mockSubscriptions
       }
 
       wrapper.update(<UpgradeContainerComponent {...mockProps} />)
       const testInstance = wrapper.root.instance;
 
-      expect(testInstance.isDowngradeFreeSubscription('free')).toBe(false)
-      expect(testInstance.isDowngradeFreeSubscription('com.aardwegmedia.playpost.premium')).toBe(false)
+      expect(testInstance.isDowngradeFreeSubscription(SUBSCRIPTION_PRODUCT_ID_FREE)).toBe(false)
+      expect(testInstance.isDowngradeFreeSubscription(SUBSCRIPTION_PRODUCT_ID_PREMIUM)).toBe(false)
       expect(testInstance.isDowngradeFreeSubscription('com.aardwegmedia.playpost.subscriptions.plus')).toBe(false)
     })
 
@@ -184,8 +185,8 @@ describe('UpgradeContainerComponent', () => {
       wrapper.update(<UpgradeContainerComponent {...mockProps} />)
       const testInstance = wrapper.root.instance;
 
-      expect(testInstance.isDowngradePaidSubscription('free')).toBe(false)
-      expect(testInstance.isDowngradePaidSubscription('com.aardwegmedia.playpost.premium')).toBe(false)
+      expect(testInstance.isDowngradePaidSubscription(SUBSCRIPTION_PRODUCT_ID_FREE)).toBe(false)
+      expect(testInstance.isDowngradePaidSubscription(SUBSCRIPTION_PRODUCT_ID_PREMIUM)).toBe(false)
     })
 
     it('should correctly handle handleOnPressRestore() when a user has previous purchases', async () => {

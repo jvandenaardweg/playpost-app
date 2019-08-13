@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, RenderAPI } from 'react-native-testing-library';
 
+import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../../constants/in-app-purchase';
 import { Upgrade } from '../index';
 
 describe('Upgrade', () => {
@@ -21,8 +22,8 @@ describe('Upgrade', () => {
           isLoadingRestorePurchases={false}
           isEligibleForTrial={true}
           subscriptions={[]}
-          activeSubscriptionProductId={'free'}
-          centeredSubscriptionProductId={'com.aardwegmedia.playpost.premium'}
+          activeSubscriptionProductId={SUBSCRIPTION_PRODUCT_ID_FREE}
+          centeredSubscriptionProductId={SUBSCRIPTION_PRODUCT_ID_PREMIUM}
           subscriptionFeatures={[]}
           onPressUpgrade={onPressUpgradeHandler}
           onPressRestore={onPressRestoreHandler}

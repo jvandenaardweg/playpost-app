@@ -13,6 +13,7 @@ jest.useFakeTimers();
 import subscriptionValidationResultActiveMock from '../../../tests/__mocks__/subscription-validation-result-active';
 import subscriptionValidationResultExpiredMock from '../../../tests/__mocks__/subscription-validation-result-expired';
 import userMock from '../../../tests/__mocks__/user';
+import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../constants/in-app-purchase';
 
 const validateSubscriptionReceiptHandler = jest.fn();
 const getUserHandler = jest.fn();
@@ -26,7 +27,7 @@ const defaultProps: any = {
   subscriptionsError: '',
   validationResult: null,
   isSubscribed: false,
-  activeSubscriptionProductId: 'free',
+  activeSubscriptionProductId: SUBSCRIPTION_PRODUCT_ID_FREE,
   userDetails: null,
   userHasSubscribedBefore: false,
   isLoadingUpgrade: false,
@@ -93,7 +94,7 @@ describe('SubscriptionHandlerContainer', () => {
     });
 
     it('should correctly run validateActiveSubscriptionAtInterval when the user his subscription is expired locally', async () => {
-      const activeSubscriptionProductId = 'com.aardwegmedia.playpost.premium';
+      const activeSubscriptionProductId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
 
       const props = {
         ...defaultProps,
@@ -118,7 +119,7 @@ describe('SubscriptionHandlerContainer', () => {
     });
 
     it('should not run validateActiveSubscriptionAtInterval when the user his subscription is not expired locally', async () => {
-      const activeSubscriptionProductId = 'com.aardwegmedia.playpost.premium';
+      const activeSubscriptionProductId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
 
       // Set expires date to tomorrow
       const expiresAt = new Date().setDate(new Date().getDate() + 1);
@@ -145,7 +146,7 @@ describe('SubscriptionHandlerContainer', () => {
     });
 
     it('should not run validateActiveSubscriptionAtInterval when the user is not subscribed', async () => {
-      const activeSubscriptionProductId = 'free';
+      const activeSubscriptionProductId = SUBSCRIPTION_PRODUCT_ID_FREE;
 
       const props = {
         ...defaultProps,
@@ -165,7 +166,7 @@ describe('SubscriptionHandlerContainer', () => {
     });
 
     it('should correctly finish a transaction using handlePurchaseUpdateListener', async () => {
-      const productId = 'com.aardwegmedia.playpost.premium';
+      const productId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
       const transactionReceipt = '[REDACTED]';
       const transactionId = '150000534161208';
       const mockPurchase = { productId, transactionReceipt, transactionId }
@@ -229,7 +230,7 @@ describe('SubscriptionHandlerContainer', () => {
     });
 
     it('should correctly handle an error inside handlePurchaseUpdateListener when transactionId is empty', async () => {
-      const productId = 'com.aardwegmedia.playpost.premium';
+      const productId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
       const transactionReceipt = '[REDACTED]';
       const transactionId = '';
       const mockPurchase = { productId, transactionReceipt, transactionId }
