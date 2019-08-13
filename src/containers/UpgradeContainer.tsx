@@ -34,7 +34,6 @@ interface State {
   readonly subscriptions: Array<RNIap.Subscription<string>>;
   readonly isLoadingSubscriptionItems: boolean;
   readonly isLoadingPurchases: boolean;
-  readonly selectedProductId: string;
   readonly purchases: RNIap.Purchase[];
   readonly centeredSubscriptionProductId: string;
 }
@@ -113,7 +112,6 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     isLoadingSubscriptionItems: false,
     isLoadingPurchases: false,
     purchases: [] as RNIap.Purchase[],
-    selectedProductId: '',
     centeredSubscriptionProductId: ''
   };
 
@@ -141,7 +139,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       Analytics.trackEvent('Subscriptions fetch updated user data error', {
         Status: 'error',
         Message: errorMessage,
-        ProductId: this.state.selectedProductId,
+        ProductId: this.state.centeredSubscriptionProductId,
         UserId: this.analyticsUserId
       });
       return err;
@@ -175,7 +173,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     let manageSubscriptionsButton: object = {
       text: 'Manage Subscriptions',
       onPress: () => {
-        Analytics.trackEvent('Subscriptions manage press', { ProductId: this.state.selectedProductId, UserId: this.analyticsUserId });
+        Analytics.trackEvent('Subscriptions manage press', { ProductId: this.state.centeredSubscriptionProductId, UserId: this.analyticsUserId });
         Linking.openURL(URL_MANAGE_APPLE_SUBSCRIPTIONS);
       }
     };
@@ -218,7 +216,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
     Analytics.trackEvent('Subscriptions upgrade', { Status: 'upgrading', ProductId: productId, UserId: this.analyticsUserId });
 
-    this.setState({ selectedProductId: productId }, async () => {
+    this.setState({ centeredSubscriptionProductId: productId }, async () => {
       try {
         const upgradeResult = await this.requestSubscription(productId);
 

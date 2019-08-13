@@ -125,7 +125,7 @@ describe('UpgradeContainerComponent', () => {
       expect(setIsLoadingUpgradeHandler).toHaveBeenCalledTimes(1);
       expect(setIsLoadingUpgradeHandler).toHaveBeenCalledWith(true);
       expect(spyRequestSubscription).toHaveBeenCalledWith(testProductId);
-      expect(testInstance.state.selectedProductId).toBe(testProductId);
+      expect(testInstance.state.centeredSubscriptionProductId).toBe(testProductId);
 
     });
 
