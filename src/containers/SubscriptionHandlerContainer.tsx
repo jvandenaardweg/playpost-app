@@ -45,8 +45,6 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
   validateSubscriptionInterval: NodeJS.Timeout | null = null;
 
   componentDidMount() {
-    // TODO: only run this component when user is logged in
-
     // Check every minute if Subscription is still active
     this.validateSubscriptionInterval = setInterval(() => this.validateActiveSubscriptionAtInterval(), 1000 * 60); // Every 1 minute
 
@@ -78,18 +76,21 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
   }
 
   componentDidUpdate(prevProps: Props) {
-    const { isSubscribed, isLoadingRestore, validationResult } = this.props;
+    const { isSubscribed, isLoadingRestore, validationResult, authenticationStatus } = this.props;
 
-    // If the state changes from subscribed, to unsubscribed, notify the user, so the user can re-subscribe again if he wants to.
-    if (!isSubscribed && prevProps.isSubscribed) {
-      return this.handleSubscriptionStatusExpired();
-    }
+    if (authenticationStatus === 'LOGGED_IN') {
+      // If the state changes from subscribed, to unsubscribed, notify the user, so the user can re-subscribe again if he wants to.
+      if (!isSubscribed && prevProps.isSubscribed) {
+        return this.handleSubscriptionStatusExpired();
+      }
 
-    if (isLoadingRestore) {
-      if(validationResult && !isEqual(prevProps.validationResult, validationResult)) {
-        return this.handleRestoreSubscriptionStatus(validationResult, isSubscribed);
+      if (isLoadingRestore) {
+        if(validationResult && !isEqual(prevProps.validationResult, validationResult)) {
+          return this.handleRestoreSubscriptionStatus(validationResult, isSubscribed);
+        }
       }
     }
+
   }
 
   handleSubscriptionStatusExpired = () => {
@@ -111,6 +112,11 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
   }
 
   handlePurchaseUpdateListener = async (purchase: RNIap.ProductPurchase) => {
+    const { authenticationStatus } = this.props;
+
+    // Just do not run anything when the user is not logged in yet
+    if (authenticationStatus !== 'LOGGED_IN') { return; }
+
     try {
       const { productId, transactionReceipt, transactionId } = purchase;
 
@@ -149,6 +155,11 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
   }
 
   handlePurchaseErrorListener = async (error: RNIap.PurchaseError) => {
+    const { authenticationStatus } = this.props;
+
+    // Just do not run anything when the user is not logged in yet
+    if (authenticationStatus !== 'LOGGED_IN') { return; }
+
     const errorMessage = error && error.debugMessage ? error.debugMessage : JSON.stringify(error);
 
     this.props.setIsLoadingUpgrade(false);

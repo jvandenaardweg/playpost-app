@@ -165,6 +165,57 @@ describe('SubscriptionHandlerContainer', () => {
       expect(testInstance.props.getUser).toHaveBeenCalledTimes(0);
     });
 
+    it('should not run handlePurchaseUpdateListener when a user is not logged in', async () => {
+      const productId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
+      const transactionReceipt = '[REDACTED]';
+      const transactionId = '150000534161208';
+      const mockPurchase = { productId, transactionReceipt, transactionId }
+
+      const props = {
+        ...defaultProps,
+        authenticationStatus: 'LOGGED_OUT'
+      }
+
+      wrapper.update(<SubscriptionHandlerContainerComponent {...props}><Text>Container test</Text></SubscriptionHandlerContainerComponent>)
+      const testInstance = wrapper.root.instance;
+
+      testInstance.context.isConnected = true;
+
+      const spyValidateSubscriptionReceipt = jest.spyOn(testInstance.props, 'validateSubscriptionReceipt');
+      const spyFinishTransaction = jest.spyOn(testInstance, 'finishTransaction');
+      const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert');
+      const spySetIsLoadingUpgrade = jest.spyOn(testInstance.props, 'setIsLoadingUpgrade');
+
+      // Run the handler with mock data to simulate a purchase
+      await testInstance.handlePurchaseUpdateListener(mockPurchase)
+
+      expect(spySetIsLoadingUpgrade).toHaveBeenCalledTimes(0);
+      expect(spyShowErrorAlert).toHaveBeenCalledTimes(0);
+      expect(spyValidateSubscriptionReceipt).toHaveBeenCalledTimes(0);
+      expect(spyFinishTransaction).toHaveBeenCalledTimes(0);
+    });
+
+    it('should not run handlePurchaseErrorListener when a user is not logged in', async () => {
+      const props = {
+        ...defaultProps,
+        authenticationStatus: 'LOGGED_OUT'
+      }
+
+      wrapper.update(<SubscriptionHandlerContainerComponent {...props}><Text>Container test</Text></SubscriptionHandlerContainerComponent>)
+      const testInstance = wrapper.root.instance;
+
+      testInstance.context.isConnected = true;
+
+      const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert');
+      const spySetIsLoadingUpgrade = jest.spyOn(testInstance.props, 'setIsLoadingUpgrade');
+
+      // Run the handler with mock data to simulate a purchase
+      await testInstance.handlePurchaseErrorListener()
+
+      expect(spySetIsLoadingUpgrade).toHaveBeenCalledTimes(0);
+      expect(spyShowErrorAlert).toHaveBeenCalledTimes(0);
+    });
+
     it('should correctly finish a transaction using handlePurchaseUpdateListener', async () => {
       const productId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
       const transactionReceipt = '[REDACTED]';
@@ -183,14 +234,15 @@ describe('SubscriptionHandlerContainer', () => {
 
       const spyValidateSubscriptionReceipt = jest.spyOn(testInstance.props, 'validateSubscriptionReceipt').mockResolvedValueOnce(subscriptionValidationResultActiveMock);
       const spyFinishTransaction = jest.spyOn(testInstance, 'finishTransaction').mockResolvedValueOnce(true);
-      const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert')
+      const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert');
+      const spySetIsLoadingUpgrade = jest.spyOn(testInstance.props, 'setIsLoadingUpgrade');
 
       // Run the handler with mock data to simulate a purchase
       await testInstance.handlePurchaseUpdateListener(mockPurchase)
 
-      expect(testInstance.props.setIsLoadingUpgrade).toHaveBeenCalledTimes(2);
-      expect(testInstance.props.setIsLoadingUpgrade).toHaveBeenNthCalledWith(1, true);
-      expect(testInstance.props.setIsLoadingUpgrade).toHaveBeenNthCalledWith(2, false); // in finally
+      expect(spySetIsLoadingUpgrade).toHaveBeenCalledTimes(2);
+      expect(spySetIsLoadingUpgrade).toHaveBeenNthCalledWith(1, true);
+      expect(spySetIsLoadingUpgrade).toHaveBeenNthCalledWith(2, false); // in finally
 
       expect(spyShowErrorAlert).toHaveBeenCalledTimes(0);
 
