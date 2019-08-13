@@ -110,6 +110,7 @@ describe('UpgradeContainerComponent', () => {
 
       const spySubscriptionAlert = jest.spyOn(testInstance, 'showManageSubscriptionAlert');
       const spyRequestSubscription = jest.spyOn(testInstance, 'requestSubscription');
+      const spySetIsLoadingUpgrade = jest.spyOn(testInstance.props, 'setIsLoadingUpgrade');
 
       // User is not downgrading from a paid subscription
       testInstance.isDowngradePaidSubscription = jest.fn().mockReturnValue(false)
@@ -122,8 +123,8 @@ describe('UpgradeContainerComponent', () => {
 
       expect(spySubscriptionAlert).toHaveBeenCalledTimes(0);
       expect(spyRequestSubscription).toHaveBeenCalledTimes(1);
-      expect(setIsLoadingUpgradeHandler).toHaveBeenCalledTimes(1);
-      expect(setIsLoadingUpgradeHandler).toHaveBeenCalledWith(true);
+      expect(spySetIsLoadingUpgrade).toHaveBeenCalledTimes(1);
+      expect(spySetIsLoadingUpgrade).toHaveBeenCalledWith(true);
       expect(spyRequestSubscription).toHaveBeenCalledWith(testProductId);
       expect(testInstance.state.centeredSubscriptionProductId).toBe(testProductId);
 
@@ -136,6 +137,7 @@ describe('UpgradeContainerComponent', () => {
 
       const spyRequestSubscription = jest.spyOn(testInstance, 'requestSubscription').mockRejectedValueOnce(new Error('Some error!'));
       const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert');
+      const spySetIsLoadingUpgrade = jest.spyOn(testInstance.props, 'setIsLoadingUpgrade');
 
       // User is not downgrading from a paid subscription
       testInstance.isDowngradePaidSubscription = jest.fn().mockReturnValue(false)
@@ -147,8 +149,8 @@ describe('UpgradeContainerComponent', () => {
       await testInstance.handleOnPressUpgrade(testProductId);
 
       expect(spyRequestSubscription).toHaveBeenCalledTimes(1);
-      expect(setIsLoadingUpgradeHandler).toHaveBeenCalledTimes(2);
-      expect(setIsLoadingUpgradeHandler).toHaveBeenLastCalledWith(false);
+      expect(spySetIsLoadingUpgrade).toHaveBeenCalledTimes(2);
+      expect(spySetIsLoadingUpgrade).toHaveBeenLastCalledWith(false);
       expect(spyRequestSubscription).toHaveBeenCalledWith(testProductId);
       expect(spyShowErrorAlert).toHaveBeenCalledTimes(0); // The error is handled in SubscriptionHandlerContainer
 
@@ -195,12 +197,15 @@ describe('UpgradeContainerComponent', () => {
       const spyGetPurchaseHistory = jest.spyOn(testInstance, 'getPurchaseHistory').mockReturnValueOnce(mockApplePurchases)
       const spyGetLatestPurchase = jest.spyOn(testInstance, 'getLatestPurchase').mockReturnValueOnce(mockApplePurchases[0]);
       const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert');
+      const spySetIsLoadingRestore = jest.spyOn(testInstance.props, 'setIsLoadingRestore');
+      const spyValidateSubscriptionReceipt = jest.spyOn(testInstance.props, 'validateSubscriptionReceipt');
+
 
       // Simulate a click on "Restore previous purchase"
       await testInstance.handleOnPressRestore();
 
-      expect(setIsLoadingRestoreHandler).toHaveBeenCalledTimes(1);
-      expect(setIsLoadingRestoreHandler).toHaveBeenCalledWith(true);
+      expect(spySetIsLoadingRestore).toHaveBeenCalledTimes(1);
+      expect(spySetIsLoadingRestore).toHaveBeenCalledWith(true);
 
       expect(spyGetPurchaseHistory).toHaveBeenCalledTimes(1);
       expect(spyGetPurchaseHistory).toHaveReturnedWith(mockApplePurchases)
@@ -210,8 +215,8 @@ describe('UpgradeContainerComponent', () => {
       expect(spyGetLatestPurchase).toHaveBeenCalledTimes(1);
       expect(spyGetLatestPurchase).toHaveReturnedWith(mockApplePurchases[0]);
 
-      expect(validateSubscriptionReceiptHandler).toHaveBeenCalledTimes(1);
-      expect(validateSubscriptionReceiptHandler).toHaveBeenCalledWith(mockApplePurchases[0].productId, mockApplePurchases[0].transactionReceipt);
+      expect(spyValidateSubscriptionReceipt).toHaveBeenCalledTimes(1);
+      expect(spyValidateSubscriptionReceipt).toHaveBeenCalledWith(mockApplePurchases[0].productId, mockApplePurchases[0].transactionReceipt);
     });
 
     it('should correctly handle handleOnPressRestore() when a user has no previous purchases', async () => {
@@ -219,12 +224,13 @@ describe('UpgradeContainerComponent', () => {
 
       const spyGetPurchaseHistory = jest.spyOn(testInstance, 'getPurchaseHistory').mockReturnValueOnce([]);
       const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert');
+      const spySetIsLoadingRestore = jest.spyOn(testInstance.props, 'setIsLoadingRestore');
 
       // Simulate a click on "Restore previous purchase"
       await testInstance.handleOnPressRestore();
 
-      expect(setIsLoadingRestoreHandler).toHaveBeenCalledTimes(2);
-      expect(setIsLoadingRestoreHandler).toHaveBeenLastCalledWith(false);
+      expect(spySetIsLoadingRestore).toHaveBeenCalledTimes(2);
+      expect(spySetIsLoadingRestore).toHaveBeenLastCalledWith(false);
 
       expect(spyGetPurchaseHistory).toHaveBeenCalledTimes(1);
       expect(spyGetPurchaseHistory).toHaveReturnedWith([])
@@ -239,12 +245,13 @@ describe('UpgradeContainerComponent', () => {
 
       jest.spyOn(testInstance, 'getPurchaseHistory').mockRejectedValueOnce(new Error('Some error!'));
       const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert');
+      const spySetIsLoadingRestore = jest.spyOn(testInstance.props, 'setIsLoadingRestore');
 
       // Simulate a click on "Restore previous purchase"
       await testInstance.handleOnPressRestore();
 
-      expect(setIsLoadingRestoreHandler).toHaveBeenCalledTimes(2);
-      expect(setIsLoadingRestoreHandler).toHaveBeenLastCalledWith(false);
+      expect(spySetIsLoadingRestore).toHaveBeenCalledTimes(2);
+      expect(spySetIsLoadingRestore).toHaveBeenLastCalledWith(false);
 
       expect(spyShowErrorAlert).toHaveBeenCalledTimes(1);
       expect(spyShowErrorAlert).toHaveBeenCalledWith('Restore purchase error', `Some error!`);
