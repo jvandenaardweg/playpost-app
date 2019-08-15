@@ -1,4 +1,4 @@
-export default {
+const article: Api.Article = {
   id: '98e0c749-3945-45d4-980b-0e5756339de5',
   title: 'Strategies to Pull Yourself Out of a Bad Mood',
   description: 'The incident that ruined my day happened early in the morning: I was in my car and inadvertently cut off another driver, who then zoomed up next to me and yelled, “Idiot!” outside my window before...',
@@ -22,7 +22,7 @@ export default {
     rightToLeft: false,
     isActive: true,
     createdAt: '2019-05-16T12:51:57.546Z',
-    updatedAt: '2019-08-01T14:13:01.327Z'
+    updatedAt: '2019-08-15T13:28:48.797Z'
   },
   audiofiles: [
     {
@@ -53,7 +53,7 @@ export default {
         isLanguageDefault: null,
         exampleAudioUrl: 'https://storage-development.playpost.app/voices/1a6136d5-fb0d-4543-a6f2-68feb020a31f.mp3',
         createdAt: '2019-04-25T11:35:03.758Z',
-        updatedAt: '2019-08-01T14:13:05.588Z',
+        updatedAt: '2019-08-15T15:30:05.003Z',
         language: {
           id: '95f01039-fe8e-412d-a542-7089303b84c8',
           name: 'English',
@@ -62,9 +62,21 @@ export default {
           rightToLeft: false,
           isActive: true,
           createdAt: '2019-05-16T12:51:57.546Z',
-          updatedAt: '2019-08-01T14:13:01.327Z'
+          updatedAt: '2019-08-15T13:28:48.797Z'
+        },
+        country: {
+          id: 'fa29b8cc-76cd-4c46-9817-d7dcd28c46e4',
+          name: 'United Kingdom',
+          code: 'GB',
+          nativeName: 'United Kingdom',
+          continent: 'EU',
+          currency: 'GBP',
+          createdAt: '2019-08-15T12:26:32.337Z',
+          updatedAt: '2019-08-15T12:26:32.337Z'
         }
       }
     }
   ]
 };
+
+export default article;

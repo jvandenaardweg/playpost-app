@@ -32,15 +32,15 @@ describe('Usage', () => {
     });
 
     it('should render the used minutes correctly', () => {
-      expect(wrapper.getByTestId('Usage-Text-minutes-used').props.children).toBe('of 30 minutes used');
+      expect(wrapper.getByTestId('Usage-Text-minutes-used').props.children).toBe('of 300 minutes used');
     });
 
     it('should render the used percentage correctly', () => {
-      expect(wrapper.getByTestId('Usage-Text-percentage').props.children).toBe('0%');
+      expect(wrapper.getByTestId('Usage-Text-percentage').props.children).toBe('27%');
     });
 
     it('should render the progress width correctly', () => {
-      expect(wrapper.getByTestId('Usage-View-progress').props.style[1].width).toBe('0%');
+      expect(wrapper.getByTestId('Usage-View-progress').props.style[1].width).toBe('26.450219501133788%');
     });
 
     it('should render the progress width correctly when usage is above 100%', () => {

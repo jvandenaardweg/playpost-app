@@ -1,4 +1,6 @@
-export default [
+// import RNIap from 'react-native-iap';
+
+const purchases = [
   {
     originalTransactionDateIOS: 1561801324000,
     productId: 'com.aardwegmedia.playpost.premium',
@@ -80,3 +82,5 @@ export default [
     originalTransactionIdentifierIOS: '1000000541965803'
   },
 ]
+
+export default purchases;

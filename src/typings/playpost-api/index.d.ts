@@ -7,19 +7,6 @@ declare namespace Api {
     token: string;
   }
 
-  export interface InAppSubscription {
-    id: string;
-    productId: string;
-    description: string;
-    price: number;
-    currency: string;
-    duration: string;
-    service: string;
-    isActive: boolean;
-    createdAt: string;
-    updatedAt: string;
-  }
-
   export interface ReceiptValidationResponse {
     id: string;
     startedAt: string;
@@ -49,6 +36,8 @@ declare namespace Api {
     duration: string;
     service: string;
     isActive: boolean;
+    limitSecondsPerMonth: number;
+    limitSecondsPerArticle: number;
     createdAt: string;
     updatedAt: string;
   }
@@ -116,6 +105,7 @@ declare namespace Api {
     authenticatedAt: string | null;
     voiceSettings: UserVoiceSetting[];
     inAppSubscriptions: UserInAppSubscriptions[];
+    isSubscribed: boolean;
     used: {
       audiofiles: {
         currentMonthInSeconds: number;
@@ -182,6 +172,7 @@ declare namespace Api {
     isActive: boolean;
     voices?: Voice[];
     countries?: Country[];
+    rightToLeft: boolean;
     createdAt: string;
     updatedAt: string;
   }

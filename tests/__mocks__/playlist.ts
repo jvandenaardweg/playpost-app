@@ -1,29 +1,38 @@
-export default [
+const playlist: Api.PlaylistItem[] = [
   {
-    id: '24061781-2e4f-4a0d-abea-1bc3c50428d7',
+    id: '4c08158b-8d95-4959-8b38-60763997221f',
     order: 0,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
-    createdAt: '2019-07-29T07:19:15.525Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    createdAt: '2019-08-14T08:42:19.454Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
-      id: '90849252-20d6-408e-96f4-ed83bca3bbd6',
-      title: null,
-      description: null,
-      url: 'https://www.nu.nl/gezondheid/5971704/erasmus-mc-preventieve-borstamputatie-niet-noodzakelijk-voor-dragers-brca2-gen.html',
-      canonicalUrl: null,
-      status: 'failed',
-      sourceName: null,
-      imageUrl: null,
-      readingTime: null,
-      authorName: null,
+      id: 'c8b7a72a-b711-47ff-8fb3-ef25271f1472',
+      title: 'Justitie en politie weerspreken ‘doofpot’ rond aanhouding zoon Halsema',
+      description: 'De politie en het Openbaar Ministerie (OM) weerspreken woensdag dat er sprake is van een doofpot rond de aanhouding van de zoon van de Amsterdamse burgemeester Femke Halsema. Anonieme agenten...',
+      url: 'https://www.nu.nl/binnenland/5978444/justitie-en-politie-weerspreken-doofpot-rond-aanhouding-zoon-halsema.html',
+      canonicalUrl: 'https://www.nu.nl/binnenland/5978444/justitie-en-politie-weerspreken-doofpot-rond-aanhouding-zoon-halsema.html',
+      status: 'finished',
+      sourceName: 'NU',
+      imageUrl: 'https://media.nu.nl/m/axqxrmta8ax5_wd1280.jpg/justitie-en-politie-weerspreken-doofpot-rond-aanhouding-zoon-halsema.jpg',
+      readingTime: 103.2,
+      authorName: 'NU.nl',
       isCompatible: true,
-      compatibilityMessage: null,
-      html: null,
-      createdAt: '2019-07-29T07:19:14.829Z',
-      updatedAt: '2019-07-29T07:19:55.939Z',
-      language: null,
+      compatibilityMessage: 'All checks passed successfully! It is probably an article.',
+      html: '<div id="page-1" class="page"><div id="block-288873"><div><div><p>De politie en het Openbaar Ministerie (OM) weerspreken woensdag dat er sprake is van een doofpot rond de aanhouding van de zoon van de Amsterdamse burgemeester Femke Halsema. Anonieme agenten suggereren in <em>De Telegraaf </em>dat deze aanhouding, die vorige maand plaatsvond, onder de pet is gehouden.</p><p>"Bij voorlichting over het werk van de politie en het OM gaat het om de balans tussen openheid en transparantie enerzijds en de belangen van een eerlijke procesgang en de privacy van de betrokkenen anderzijds", aldus de autoriteiten in een gezamenlijk persbericht.</p><p>"Het algemene beleid dat geldt voor elke vijftienjarige jongen in Nederland is gehanteerd. Er is dan ook helemaal geen sprake van dat een aanhouding \'onder de pet\' is gehouden", zo schrijven politie en justitie.</p><p>De politie is gestart met een integriteitsonderzoek naar wie informatie over de aanhouding heeft gelekt naar <em>De Telegraaf.</em></p><h2>Krant schreef over gewapende inbraak</h2><p><em>De Telegraaf </em>meldde woensdag groots in de krant dat de zoon van Halsema in juli een gewapende inbraak zou hebben gepleegd. Dit is door de burgemeester én de advocaat van de jongen, Peter Plasman, direct genuanceerd.</p><p>De tiener zou samen met een leeftijdsgenoot een verlaten woonboot hebben betreden. De deur van de woonboot zou open hebben gestaan. Daar hebben ze met een brandblusser gespoten.</p><p>Iemand heeft tijdens dit rumoer de politie gebeld. De zoon van Halsema rende weg en ontdeed zich hierbij ook van een nepwapen. De raadsman en de burgemeester beschrijven het voorval als puberaal gedrag, waar hij volgens zijn moeder "wel verantwoording voor moet afleggen".</p><h2>OM buigt zich nog over dossier</h2><p>De officier van justitie heeft vorige week het dossier over de vijftienjarige zoon van Halsema gekregen en moet zich dus nog buigen over de zaak, zo wordt gemeld aan NU.nl. De zaak is, voor deze in de publiciteit kwam, al overgedragen aan het OM in Haarlem om elke schijn van belangenverstrengeling te voorkomen.</p><p>Naar verwachting kan er pas in september iets iets over het incident gemeld worden. Dan is bijvoorbeeld pas duidelijk of er nader onderzoek moet plaatsvinden en of het überhaupt tot een zaak komt.</p></div></div></div></div>',
+      createdAt: '2019-08-14T08:42:17.982Z',
+      updatedAt: '2019-08-14T08:42:21.268Z',
+      language: {
+        id: 'cd72f71c-dc59-4be7-8a40-0143fe6f0ad9',
+        name: 'Dutch',
+        nativeName: 'Nederlands',
+        code: 'nl',
+        rightToLeft: false,
+        isActive: true,
+        createdAt: '2019-05-16T12:52:08.217Z',
+        updatedAt: '2019-08-15T13:28:49.359Z'
+      },
       audiofiles: []
     }
   },
@@ -34,7 +43,7 @@ export default [
     archivedAt: '2019-07-23T19:41:39.182Z',
     favoritedAt: null,
     createdAt: '2019-07-22T11:53:16.711Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '09b1dfc0-8841-42f0-adea-6492d35376b5',
       title: 'Tbs voor volledig ontoerekeningsvatbare dader van steekpartij Den Haag',
@@ -59,7 +68,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:52:08.217Z',
-        updatedAt: '2019-08-01T14:13:01.760Z'
+        updatedAt: '2019-08-15T13:28:49.359Z'
       },
       audiofiles: []
     }
@@ -71,7 +80,7 @@ export default [
     archivedAt: '2019-07-25T10:21:32.453Z',
     favoritedAt: null,
     createdAt: '2019-07-12T05:33:41.826Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '067fcc13-b9b0-4fd4-a11c-26eaeb537fbf',
       title: 'How to keep focus in the office',
@@ -96,7 +105,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: []
     }
@@ -108,7 +117,7 @@ export default [
     archivedAt: '2019-07-24T09:35:56.073Z',
     favoritedAt: null,
     createdAt: '2019-07-12T05:32:45.046Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '0ae2fcf6-4d8e-475b-9909-ea0b1ca289b9',
       title: 'Canadees bedrijf zou veel meer gas winnen uit veld Diever dan toegestaan',
@@ -133,7 +142,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:52:08.217Z',
-        updatedAt: '2019-08-01T14:13:01.760Z'
+        updatedAt: '2019-08-15T13:28:49.359Z'
       },
       audiofiles: [
         {
@@ -164,7 +173,7 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d4c0973c-5a36-4950-afe1-3e2224592c20.mp3',
             createdAt: '2019-04-25T11:35:03.293Z',
-            updatedAt: '2019-08-01T14:13:05.559Z',
+            updatedAt: '2019-08-15T15:30:05.096Z',
             language: {
               id: 'cd72f71c-dc59-4be7-8a40-0143fe6f0ad9',
               name: 'Dutch',
@@ -173,7 +182,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:52:08.217Z',
-              updatedAt: '2019-08-01T14:13:01.760Z'
+              updatedAt: '2019-08-15T13:28:49.359Z'
+            },
+            country: {
+              id: 'b1290d9e-8c56-43c3-b301-6960b316fec9',
+              name: 'Netherlands',
+              code: 'NL',
+              nativeName: 'Nederland',
+              continent: 'EU',
+              currency: 'EUR',
+              createdAt: '2019-08-15T12:26:32.846Z',
+              updatedAt: '2019-08-15T12:26:32.846Z'
             }
           }
         }
@@ -187,7 +206,7 @@ export default [
     archivedAt: '2019-07-24T09:36:07.461Z',
     favoritedAt: null,
     createdAt: '2019-07-12T05:02:14.317Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '13b3cc87-0ba1-4f69-a0da-4a29325f2826',
       title: 'RIP Backgammon -- Microsoft to shutter its Internet Games service',
@@ -212,7 +231,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: [
         {
@@ -243,7 +262,7 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
             createdAt: '2019-04-25T11:35:03.678Z',
-            updatedAt: '2019-08-01T14:13:06.094Z',
+            updatedAt: '2019-08-15T15:30:05.483Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
@@ -252,7 +271,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-08-01T14:13:01.327Z'
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
             }
           }
         }
@@ -266,7 +295,7 @@ export default [
     archivedAt: '2019-07-25T19:00:21.818Z',
     favoritedAt: null,
     createdAt: '2019-07-11T15:49:04.982Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: 'affbaab2-b8b4-4090-b573-099c84b86178',
       title: '‘Nederlands belastinglek kost wereldwijd tot 10 miljard euro per jaar’',
@@ -291,7 +320,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:52:08.217Z',
-        updatedAt: '2019-08-01T14:13:01.760Z'
+        updatedAt: '2019-08-15T13:28:49.359Z'
       },
       audiofiles: []
     }
@@ -303,7 +332,7 @@ export default [
     archivedAt: '2019-07-24T09:38:03.274Z',
     favoritedAt: null,
     createdAt: '2019-07-11T12:26:57.942Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '33a28094-1965-497e-be04-63cc8dbdfd49',
       title: 'Iranian boats attempted to impede British tanker in the Gulf: UK',
@@ -328,7 +357,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: []
     }
@@ -340,7 +369,7 @@ export default [
     archivedAt: '2019-07-25T19:01:11.212Z',
     favoritedAt: null,
     createdAt: '2019-07-11T12:26:37.899Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: 'f97cfbe2-a0ba-43cc-b632-04354a262c6c',
       title: 'Geen vermist meisje in geopende eeuwenoude Vaticaanse graven',
@@ -365,7 +394,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:52:08.217Z',
-        updatedAt: '2019-08-01T14:13:01.760Z'
+        updatedAt: '2019-08-15T13:28:49.359Z'
       },
       audiofiles: []
     }
@@ -377,7 +406,7 @@ export default [
     archivedAt: '2019-07-25T07:25:26.994Z',
     favoritedAt: null,
     createdAt: '2019-07-11T12:26:11.658Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: 'f06d9a02-4518-4a7b-943b-a1ed9c777ead',
       title: 'Twintig jaar cel voor moord op Friese man die in weiland werd gevonden',
@@ -402,7 +431,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:52:08.217Z',
-        updatedAt: '2019-08-01T14:13:01.760Z'
+        updatedAt: '2019-08-15T13:28:49.359Z'
       },
       audiofiles: []
     }
@@ -414,7 +443,7 @@ export default [
     archivedAt: '2019-07-25T19:01:20.156Z',
     favoritedAt: null,
     createdAt: '2019-07-11T10:52:08.853Z',
-    updatedAt: '2019-08-02T09:44:16.952Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: 'afd934af-216f-4db1-b5e1-93ada75fef31',
       title: 'Woningmarkt koelt af, meer huizen in de verkoop',
@@ -439,7 +468,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:52:08.217Z',
-        updatedAt: '2019-08-01T14:13:01.760Z'
+        updatedAt: '2019-08-15T13:28:49.359Z'
       },
       audiofiles: []
     }
@@ -448,10 +477,10 @@ export default [
     id: '138c247b-194b-4067-89d5-fbf7e1e60bd7',
     order: 10,
     lastPlayedAt: null,
-    archivedAt: null,
+    archivedAt: '2019-08-02T17:23:00.292Z',
     favoritedAt: null,
     createdAt: '2019-07-10T18:30:28.229Z',
-    updatedAt: '2019-08-01T07:06:38.388Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: 'c7ab00c1-6a0c-4a8a-a4b3-b338988ada16',
       title: '‘Nederlandse steden hebben in 2050 het warme klimaat van Parijs’',
@@ -476,7 +505,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:52:08.217Z',
-        updatedAt: '2019-08-01T14:13:01.760Z'
+        updatedAt: '2019-08-15T13:28:49.359Z'
       },
       audiofiles: []
     }
@@ -488,7 +517,7 @@ export default [
     archivedAt: '2019-08-01T07:04:30.796Z',
     favoritedAt: null,
     createdAt: '2019-07-09T07:39:38.009Z',
-    updatedAt: '2019-08-02T09:44:14.987Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '74eb93b6-11ff-445c-8e0d-0d1a96fe5000',
       title: 'Personalization of Mobile Apps and Ways to do It - ReadWrite - Medium',
@@ -513,9 +542,61 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
-      audiofiles: []
+      audiofiles: [
+        {
+          id: '7643980c-15a5-40d8-a478-ed6f842f08c5',
+          url: 'https://storage-development.playpost.app/articles/74eb93b6-11ff-445c-8e0d-0d1a96fe5000/audiofiles/7643980c-15a5-40d8-a478-ed6f842f08c5.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/74eb93b6-11ff-445c-8e0d-0d1a96fe5000/audiofiles/7643980c-15a5-40d8-a478-ed6f842f08c5.mp3',
+          length: 302.736,
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-08-05T11:25:02.306Z',
+          updatedAt: '2019-08-05T11:25:02.306Z',
+          voice: {
+            id: '3675e6db-307e-48de-b5ff-13b38470632f',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'en-US-Wavenet-F',
+            label: 'Emily',
+            gender: 'FEMALE',
+            synthesizer: 'Google',
+            quality: 'Very High',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: 24000,
+            isActive: true,
+            isPremium: true,
+            isHighestQuality: true,
+            isLanguageDefault: null,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/3675e6db-307e-48de-b5ff-13b38470632f.wav',
+            createdAt: '2019-04-25T07:27:13.250Z',
+            updatedAt: '2019-08-15T15:30:05.018Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              code: 'en',
+              rightToLeft: false,
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
+            }
+          }
+        }
+      ]
     }
   },
   {
@@ -525,7 +606,7 @@ export default [
     archivedAt: '2019-07-22T05:34:02.177Z',
     favoritedAt: null,
     createdAt: '2019-07-09T07:39:21.389Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '58b389e6-92da-4eb7-9a96-c7db927eda0e',
       title: 'Vliegtuigen KLM en Easyjet botsen bij gate Schiphol',
@@ -550,7 +631,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:52:08.217Z',
-        updatedAt: '2019-08-01T14:13:01.760Z'
+        updatedAt: '2019-08-15T13:28:49.359Z'
       },
       audiofiles: []
     }
@@ -559,10 +640,10 @@ export default [
     id: 'a438a074-6a11-4cd7-80f5-13b02c756c5b',
     order: 13,
     lastPlayedAt: null,
-    archivedAt: null,
+    archivedAt: '2019-08-03T09:40:14.042Z',
     favoritedAt: null,
     createdAt: '2019-07-09T07:37:47.031Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '79d5e205-1ed3-4e83-badb-7b5374657052',
       title: 'Afghan talks: Rival sides agree on ‘road map for peace’',
@@ -587,9 +668,61 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
-      audiofiles: []
+      audiofiles: [
+        {
+          id: '2c29e9c7-e367-45f2-9582-43168e38b7bb',
+          url: 'https://storage-development.playpost.app/articles/79d5e205-1ed3-4e83-badb-7b5374657052/audiofiles/2c29e9c7-e367-45f2-9582-43168e38b7bb.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/79d5e205-1ed3-4e83-badb-7b5374657052/audiofiles/2c29e9c7-e367-45f2-9582-43168e38b7bb.mp3',
+          length: 314.64,
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-08-05T11:18:41.004Z',
+          updatedAt: '2019-08-05T11:18:41.004Z',
+          voice: {
+            id: '3675e6db-307e-48de-b5ff-13b38470632f',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'en-US-Wavenet-F',
+            label: 'Emily',
+            gender: 'FEMALE',
+            synthesizer: 'Google',
+            quality: 'Very High',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: 24000,
+            isActive: true,
+            isPremium: true,
+            isHighestQuality: true,
+            isLanguageDefault: null,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/3675e6db-307e-48de-b5ff-13b38470632f.wav',
+            createdAt: '2019-04-25T07:27:13.250Z',
+            updatedAt: '2019-08-15T15:30:05.018Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              code: 'en',
+              rightToLeft: false,
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
+            }
+          }
+        }
+      ]
     }
   },
   {
@@ -599,7 +732,7 @@ export default [
     archivedAt: '2019-08-01T07:02:31.915Z',
     favoritedAt: null,
     createdAt: '2019-07-04T04:02:38.335Z',
-    updatedAt: '2019-08-01T05:02:31.943Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '7ced338e-ec59-41cd-8a03-7c4cab4f2234',
       title: 'How to Launch Without Launching — Advice From the Founder of Superhuman | Product Hunt',
@@ -624,7 +757,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: []
     }
@@ -636,7 +769,7 @@ export default [
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-07-04T03:30:55.589Z',
-    updatedAt: '2019-08-02T09:44:12.933Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '056959d8-ccdb-4b2b-b809-c5aed5baf39d',
       title: 'A Day of Sorrow for American Democracy',
@@ -648,7 +781,7 @@ export default [
       imageUrl: 'https://cdn.theatlantic.com/assets/media/img/mt/2019/07/RTS2JVRX/facebook.jpg?1562105083',
       readingTime: 469.20000000000005,
       authorName: 'Charles Fried',
-      isCompatible: true,
+      isCompatible: false,
       compatibilityMessage: null,
       html: '<div id="page-1" class="page"><div><p>The Supreme Court’s contorted reasoning in a gerrymandering case leaves a fundamental flaw in our constitutional democracy without hope of a judicial remedy.</p></div><div><div><div><figure><img src="https://cdn.theatlantic.com/assets/media/img/mt/2019/07/RTS2JVRX/lead_720_405.jpg?mod=1562105083"><figcaption><span>Jim Young / Reuters</span></figcaption></figure><p>The usual form for a justice who disagrees, no matter how fundamentally, with a decision of the Supreme Court is to end the opinion with the formula “I respectfully dissent.” Justice Antonin Scalia, in particularly high dudgeon, would sometimes drop the adverb. Last week, though, Justice Elena Kagan, writing for the four justices who disagreed with Chief Justice John Roberts’s opinion in <em>Rucho v. Common Cause </em>purporting to withdraw the Court once and for all from passing judgment on the constitutionality of partisan gerrymanders, ended thus:</p><blockquote><p>Of all times to abandon the Court’s duty to declare the law, this was not the one. The practices challenged in these cases imperil our system of government. Part of the Court’s role in that system is to defend its foundations. None is more important than free and fair elections. With respect but deep sadness, I dissent.</p></blockquote><p>Kagan’s occasion for sorrow is deep not only because the chief justice left a fundamental flaw in our constitutional democracy without hope of a judicial remedy, but because of the defective reasoning by which he came to that conclusion.</p><p>Roberts is clear and emphatic that extreme partisan gerrymanders are wrongs—wrongs of constitutional dimensions. In North Carolina, for example, voters split more or less down the middle, yet the congressional delegation consists of 10 Republicans and just three Democrats. The disfavored voters were treated unequally, their unequal treatment was due to their political commitments, and so they were given an unequal voice in the legislature. This violated not only the Fourteenth Amendment’s norms of equality, but the norms of the First Amendment, as well. Indeed, it was contrary to the most basic political premise of our government: that the people choose their representatives, not the other way around.</p></div></div><div><div><p>Not only the chief but other justices as well have said as much in past decisions, but hesitated to offer a remedy. All this the chief recounts in his opinion. Yet he concludes—and now, after 40 years of temporizing, hopes to conclude definitively—that these are wrongs that are beyond judicial reparation. If there are to be remedies, they must lie elsewhere: in the states or in Congress.</p><p>Why? Roberts offers an argument with three simple steps. First, he claims that some departure from equality of voice—the notion that every voter should have an equal say—is not only inevitable, but constitutionally, and as a matter of political morality, quite justifiable. Next, he admits that the case may be an extreme deprivation of a constitutional right, an extreme gerrymander—acknowledged, deliberately engineered and frankly avowed, and arranged so as to persist though many election cycles. But, he concludes, it is not possible to draw a precise line that separates an extreme gerrymander such as this one from a less extreme one, or between a less extreme gerrymander and one that is perfectly proper. If splitting North Carolina’s seats 10 to three is extreme, perhaps a nine-to-four split is, as well. But what of eight to five, or seven to six?</p><p>The courts can act, the remedy is a judicial remedy, Roberts concludes, only if the line of demarcation is “precise,” to use the word he invokes six times. If one cannot say where the precise borderline of the extreme lies, everything must be allowed. But applying that argument to other questions illustrates its absurdity. <em>If one cannot say how many hairs a man may have to still count as bald, there are no bald men. If one cannot draw the exact line between venal and mortal sin, then there is no mortal sin.</em></p><p>This is not a logical principle, and it is certainly not a juridical one. The law is replete with conclusions that depend on judgments that something is extreme, unusual, or outrageous, without offering the precise boundaries of that judgment. Take two examples from the chief justice’s own corpus. In his dissent in the 2012 case of <em>Armour v. Indianapolis</em>, he wrote:</p><blockquote><p>Our precedents do not ask for much from government in this area [of property taxation]—only “rough equality in tax treatment” … We give great leeway to taxing authorities in this area, for good and sufficient reasons. But every generation or so a case comes along when this Court needs to say enough is enough, if the Equal Protection Clause is to retain any force in this context.”</p></blockquote><p>And, similarly, in the 2007 case of <em>Federal Election Commission v. </em><em>Wisconsin Right To Life</em>, he argued:</p><blockquote><p>[Our prior precedents] … applied [the] … interest in combatting corruption or the appearance of corruption … to ads that were the “functional equivalent” of express advocacy. But to justify regulation of WRTL’s ads, this interest must be stretched yet another step to ads that are not the functional equivalent of express advocacy. Enough is enough. Issue ads like WRTL’s are by no means equivalent to contributions, and the quid-pro-quo corruption interest cannot justify regulating them.</p></blockquote><p>Enough is enough, indeed.</p></div></div><div><div><p>But, as Kagan argues in her dissent, this case should be easier than many in which gathering outrage tips over into judicial condemnation. This issue has firmer bones than that.</p><p>Roberts’s faulty reasoning is built on the premise that pure equality of voice cannot and need not be demanded. And in some ways, he is correct. Proportional representation may be a possible end of apportioning representatives but it is not a necessary one, and the Court has no business making it one in the name of the Constitution. An apportioning legislature may take into account many legitimate ideals in drawing district lines: political or other historic boundaries, economic commonalities, even the desire not to pit incumbents against one another.</p><p>Drawing new lines, in other words, allows many legitimate political judgments—but disadvantaging racial minorities is not one of them, and neither should be freezing one party in and the other party out, no matter what their voting strength. Sometimes politicians are brazen enough to declare that one or the other of these forbidden ends is what they are striving to pursue, but usually they are not. They just do it.</p><p>In such a case, you can still smoke out the legitimate from the illegitimate. As the mathematician and genome scientist Eric Lander argued in an amicus brief on this issue, there are literally thousands of ways of drawing equipopulous legislative districts for any given state, arrived at either randomly or pursuant to some congeries of legitimate criteria. If only legitimate criteria are used, then political preferences are likely to be more or less evenly distributed—a normal distribution or bell curve. The farther out on the curve you get, the more likely something fishy is going on. It could be chance, or it could be the influence of some unsuspected factor, but if you are way out on the tail—as in North Carolina—you are staring at extreme partisanship, and you should be able to call it like it is and condemn it. Enough is enough.</p><p>Ah, but how small, how far out on the tail? This is not a question unique to gerrymandering; in other fields, we have settled upon practical answers and used them in practical ways: In medicine, in approving new drugs, in statistics generally, a 95 percent confidence level is usually thought to be quite enough to show causation. One hundred percent is absolute certainty and 50 is mere random chance, no causation at all. But why not set the standard at something closer to 100 percent? Aristotle explained in the <em>Nicomachean Ethics</em>:</p><blockquote><p>It is the mark of an educated mind to expect only that amount of exactness which the nature of the particular subject admits. It is equally unreasonable to accept merely probable conclusions from a mathematician and to demand strict demonstration from an orator.</p></blockquote><p>In a myriad of less consequential decisions, Roberts has shown himself to be an eminently reasonable person, an “educated mind.” But in <em>Rucho </em>he leads the sticklers to produce a hyper-partisan political result.</p></div></div><div><div><p>Nor should anyone find consolation in the chief’s profession of judicial modesty and abstinence, his insistence that this is just a job for other organs of government—legislatures, the states. How can you rely on gerrymandered legislatures to remedy gerrymandering? Remember, it is Roberts who wrote the devastating decision in <em>Shelby County v. Holder</em>, declaring unconstitutional Section 4 of the recently reenacted Voting Rights Act, thereby unleashing an immediate, utterly predictable, and devastating wave of partisan voting-rights suppression all over the South. And it was Roberts who wrote for four dissenters who found that Arizona’s independent redistricting commission was unconstitutional based on a hyper-literal reading of the Constitution’s elections clause. But for the lack of a single vote (which today he probably has), he would have closed off one of the few ways to break the vicious circle of gerrymandering.</p><p><em>Rucho </em>was indeed an occasion of deep sorrow—for the Court and its chief, for the rational development of doctrine, but most of all for American democracy. Read it and weep.</p><p>We want to hear what you think about this article. <a href="https://www.theatlantic.com/contact/letters/">Submit a letter</a> to the editor or write to letters@theatlantic.com.</p><div><p><a href="https://www.theatlantic.com/author/charles-fried/">Charles Fried</a> is the Beneficial Professor of Law at Harvard Law School. He served as solicitor general during the presidency of Ronald Reagan, and was an associate justice of the Supreme Judicial Court of Massachusetts from 1995 to 1999.</p></div></div></div></div></div>',
       createdAt: '2019-07-04T03:30:55.200Z',
@@ -661,9 +794,112 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
-      audiofiles: []
+      audiofiles: [
+        {
+          id: '7b9b0eaa-cad1-4236-8dac-5813c829a538',
+          url: 'https://storage-development.playpost.app/articles/056959d8-ccdb-4b2b-b809-c5aed5baf39d/audiofiles/7b9b0eaa-cad1-4236-8dac-5813c829a538.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/056959d8-ccdb-4b2b-b809-c5aed5baf39d/audiofiles/7b9b0eaa-cad1-4236-8dac-5813c829a538.mp3',
+          length: 553.0644897959183,
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-08-03T12:31:33.011Z',
+          updatedAt: '2019-08-03T12:31:33.011Z',
+          voice: {
+            id: 'd2ede165-9dc0-4969-af8c-f4ff3716da53',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'Joanna',
+            label: 'Joanna',
+            gender: 'FEMALE',
+            synthesizer: 'AWS',
+            quality: 'Normal',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: null,
+            isActive: true,
+            isPremium: false,
+            isHighestQuality: false,
+            isLanguageDefault: true,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
+            createdAt: '2019-04-25T11:35:03.678Z',
+            updatedAt: '2019-08-15T15:30:05.483Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              code: 'en',
+              rightToLeft: false,
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
+            }
+          }
+        },
+        {
+          id: '50a777bf-bb85-4db0-b6e1-670023ed194a',
+          url: 'https://storage-development.playpost.app/articles/056959d8-ccdb-4b2b-b809-c5aed5baf39d/audiofiles/50a777bf-bb85-4db0-b6e1-670023ed194a.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/056959d8-ccdb-4b2b-b809-c5aed5baf39d/audiofiles/50a777bf-bb85-4db0-b6e1-670023ed194a.mp3',
+          length: 580.128,
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-08-03T16:53:38.732Z',
+          updatedAt: '2019-08-03T16:53:38.732Z',
+          voice: {
+            id: '3675e6db-307e-48de-b5ff-13b38470632f',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'en-US-Wavenet-F',
+            label: 'Emily',
+            gender: 'FEMALE',
+            synthesizer: 'Google',
+            quality: 'Very High',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: 24000,
+            isActive: true,
+            isPremium: true,
+            isHighestQuality: true,
+            isLanguageDefault: null,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/3675e6db-307e-48de-b5ff-13b38470632f.wav',
+            createdAt: '2019-04-25T07:27:13.250Z',
+            updatedAt: '2019-08-15T15:30:05.018Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              code: 'en',
+              rightToLeft: false,
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
+            }
+          }
+        }
+      ]
     }
   },
   {
@@ -673,7 +909,7 @@ export default [
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-07-04T03:30:15.406Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '09e78332-5cfa-4c2d-9288-656503e02df9',
       title: 'Top Signs Of An Over-Experienced Programmer - Better Programming - Medium',
@@ -698,9 +934,61 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
-      audiofiles: []
+      audiofiles: [
+        {
+          id: 'c3332c2b-b505-4071-95a7-8a6451ae510b',
+          url: 'https://storage-development.playpost.app/articles/09e78332-5cfa-4c2d-9288-656503e02df9/audiofiles/c3332c2b-b505-4071-95a7-8a6451ae510b.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/09e78332-5cfa-4c2d-9288-656503e02df9/audiofiles/c3332c2b-b505-4071-95a7-8a6451ae510b.mp3',
+          length: 408.36,
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-08-03T16:43:41.839Z',
+          updatedAt: '2019-08-03T16:43:41.839Z',
+          voice: {
+            id: '3675e6db-307e-48de-b5ff-13b38470632f',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'en-US-Wavenet-F',
+            label: 'Emily',
+            gender: 'FEMALE',
+            synthesizer: 'Google',
+            quality: 'Very High',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: 24000,
+            isActive: true,
+            isPremium: true,
+            isHighestQuality: true,
+            isLanguageDefault: null,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/3675e6db-307e-48de-b5ff-13b38470632f.wav',
+            createdAt: '2019-04-25T07:27:13.250Z',
+            updatedAt: '2019-08-15T15:30:05.018Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              code: 'en',
+              rightToLeft: false,
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
+            }
+          }
+        }
+      ]
     }
   },
   {
@@ -710,7 +998,7 @@ export default [
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-07-04T03:29:28.773Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '2e1a99ea-8af7-4b5e-a08e-a0ec0850e641',
       title: 'A long-term fund wouldn’t prevent another Woodford scandal – it completely misses the point - CityAM',
@@ -735,47 +1023,71 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
-      audiofiles: []
-    }
-  },
-  {
-    id: '78907270-d41f-48d9-ba9e-51427b23f659',
-    order: 18,
-    lastPlayedAt: null,
-    archivedAt: null,
-    favoritedAt: null,
-    createdAt: '2019-07-04T03:28:15.789Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
-    article: {
-      id: '41f82084-5604-4148-b603-bd55a9a2c6c4',
-      title: null,
-      description: null,
-      url: 'https://nos.nl/l/2291907',
-      canonicalUrl: null,
-      status: 'failed',
-      sourceName: null,
-      imageUrl: null,
-      readingTime: null,
-      authorName: null,
-      isCompatible: true,
-      compatibilityMessage: null,
-      html: null,
-      createdAt: '2019-07-04T03:28:14.880Z',
-      updatedAt: '2019-07-04T03:28:55.368Z',
-      language: null,
-      audiofiles: []
+      audiofiles: [
+        {
+          id: 'f77a5b3a-039a-4673-8dd9-8698ff5d15be',
+          url: 'https://storage-development.playpost.app/articles/2e1a99ea-8af7-4b5e-a08e-a0ec0850e641/audiofiles/f77a5b3a-039a-4673-8dd9-8698ff5d15be.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/2e1a99ea-8af7-4b5e-a08e-a0ec0850e641/audiofiles/f77a5b3a-039a-4673-8dd9-8698ff5d15be.mp3',
+          length: 367.056,
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-08-05T11:42:31.858Z',
+          updatedAt: '2019-08-05T11:42:31.858Z',
+          voice: {
+            id: '3675e6db-307e-48de-b5ff-13b38470632f',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'en-US-Wavenet-F',
+            label: 'Emily',
+            gender: 'FEMALE',
+            synthesizer: 'Google',
+            quality: 'Very High',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: 24000,
+            isActive: true,
+            isPremium: true,
+            isHighestQuality: true,
+            isLanguageDefault: null,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/3675e6db-307e-48de-b5ff-13b38470632f.wav',
+            createdAt: '2019-04-25T07:27:13.250Z',
+            updatedAt: '2019-08-15T15:30:05.018Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              code: 'en',
+              rightToLeft: false,
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
+            }
+          }
+        }
+      ]
     }
   },
   {
     id: '7a8b60bd-c313-4e38-b7fb-b85424cbf8bc',
-    order: 19,
+    order: 18,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-07-04T02:56:18.448Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '5e0c2c96-10df-46dd-9247-98c3373e9bfa',
       title: null,
@@ -798,12 +1110,12 @@ export default [
   },
   {
     id: '64bcbe1e-f0e7-4468-b665-4506706440c4',
-    order: 20,
+    order: 19,
     lastPlayedAt: null,
     archivedAt: '2019-07-02T17:32:19.698Z',
     favoritedAt: null,
     createdAt: '2019-06-26T07:14:04.645Z',
-    updatedAt: '2019-08-02T09:44:11.369Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '7e8ca9e6-fa1c-414a-a2e9-ddd89c8cd1b6',
       title: 'Vivo claims its new 120W tech can charge your phone in just 13 minutes',
@@ -828,7 +1140,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: [
         {
@@ -859,7 +1171,7 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
             createdAt: '2019-04-25T11:35:03.678Z',
-            updatedAt: '2019-08-01T14:13:06.094Z',
+            updatedAt: '2019-08-15T15:30:05.483Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
@@ -868,7 +1180,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-08-01T14:13:01.327Z'
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
             }
           }
         }
@@ -877,12 +1199,12 @@ export default [
   },
   {
     id: 'e86757c3-23f7-456e-9dd1-84126c583c9a',
-    order: 21,
+    order: 20,
     lastPlayedAt: null,
     archivedAt: '2019-07-02T17:32:26.273Z',
     favoritedAt: null,
     createdAt: '2019-06-26T07:13:51.056Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '8378087b-cf9c-42dc-a888-827ba7243230',
       title: 'This Hiring Decision Is One of the Most Important Choices You’ll Ever Make, Research Says',
@@ -907,7 +1229,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: [
         {
@@ -938,7 +1260,7 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
             createdAt: '2019-04-25T11:35:03.678Z',
-            updatedAt: '2019-08-01T14:13:06.094Z',
+            updatedAt: '2019-08-15T15:30:05.483Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
@@ -947,7 +1269,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-08-01T14:13:01.327Z'
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
             }
           }
         }
@@ -956,12 +1288,12 @@ export default [
   },
   {
     id: '59cb2e7a-79fe-48f0-ab68-7ffe2bf70c34',
-    order: 22,
+    order: 21,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-06-26T07:12:46.270Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '8c18d9d2-e5bb-487a-bc34-380ba666d1b9',
       title: 'A Principles-First Approach To Success',
@@ -986,7 +1318,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: [
         {
@@ -1017,7 +1349,7 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
             createdAt: '2019-04-25T11:35:03.678Z',
-            updatedAt: '2019-08-01T14:13:06.094Z',
+            updatedAt: '2019-08-15T15:30:05.483Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
@@ -1026,7 +1358,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-08-01T14:13:01.327Z'
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
             }
           }
         }
@@ -1035,12 +1377,12 @@ export default [
   },
   {
     id: '3c1b997b-b495-4610-a208-7b4e241c8887',
-    order: 23,
+    order: 22,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-06-26T07:12:17.763Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '1492ef34-5ca7-406d-b98e-6bbffc40e1e8',
       title: 'The Link Between Psychedelics, God Encounters, and Mental Health',
@@ -1065,19 +1407,71 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
-      audiofiles: []
+      audiofiles: [
+        {
+          id: '1b4fce99-53a1-41a3-8941-396dbfc76626',
+          url: 'https://storage-development.playpost.app/articles/1492ef34-5ca7-406d-b98e-6bbffc40e1e8/audiofiles/1b4fce99-53a1-41a3-8941-396dbfc76626.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/1492ef34-5ca7-406d-b98e-6bbffc40e1e8/audiofiles/1b4fce99-53a1-41a3-8941-396dbfc76626.mp3',
+          length: 511.60816326530613,
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-08-03T13:06:46.493Z',
+          updatedAt: '2019-08-03T13:06:46.493Z',
+          voice: {
+            id: 'd2ede165-9dc0-4969-af8c-f4ff3716da53',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'Joanna',
+            label: 'Joanna',
+            gender: 'FEMALE',
+            synthesizer: 'AWS',
+            quality: 'Normal',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: null,
+            isActive: true,
+            isPremium: false,
+            isHighestQuality: false,
+            isLanguageDefault: true,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
+            createdAt: '2019-04-25T11:35:03.678Z',
+            updatedAt: '2019-08-15T15:30:05.483Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              code: 'en',
+              rightToLeft: false,
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
+            }
+          }
+        }
+      ]
     }
   },
   {
     id: '877e028b-d1f4-468e-bc7c-4579396d90da',
-    order: 24,
+    order: 23,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-06-26T07:12:51.988Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '391ef216-b784-436b-ba7b-64b08bd919c4',
       title: 'How Do You Know If Your Great Startup Idea Is A Winner?',
@@ -1102,19 +1496,71 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
-      audiofiles: []
+      audiofiles: [
+        {
+          id: 'c339bcb7-5cb4-435d-bf98-71195cb6f25b',
+          url: 'https://storage-development.playpost.app/articles/391ef216-b784-436b-ba7b-64b08bd919c4/audiofiles/c339bcb7-5cb4-435d-bf98-71195cb6f25b.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/391ef216-b784-436b-ba7b-64b08bd919c4/audiofiles/c339bcb7-5cb4-435d-bf98-71195cb6f25b.mp3',
+          length: 362.7885714285714,
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-08-03T13:08:10.807Z',
+          updatedAt: '2019-08-03T13:08:10.807Z',
+          voice: {
+            id: 'd2ede165-9dc0-4969-af8c-f4ff3716da53',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'Joanna',
+            label: 'Joanna',
+            gender: 'FEMALE',
+            synthesizer: 'AWS',
+            quality: 'Normal',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: null,
+            isActive: true,
+            isPremium: false,
+            isHighestQuality: false,
+            isLanguageDefault: true,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
+            createdAt: '2019-04-25T11:35:03.678Z',
+            updatedAt: '2019-08-15T15:30:05.483Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              code: 'en',
+              rightToLeft: false,
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
+            }
+          }
+        }
+      ]
     }
   },
   {
     id: 'c5eaa288-f985-44c6-98ba-39c7fedecbc6',
-    order: 25,
+    order: 24,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-06-26T07:13:07.846Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '360a387c-b593-4715-b974-0ebb16035125',
       title: 'How to Harness the Power of Your Pillars of Intelligence',
@@ -1139,19 +1585,71 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
-      audiofiles: []
+      audiofiles: [
+        {
+          id: 'b2dba09b-bb2b-4089-a04e-f40c732fb712',
+          url: 'https://storage-development.playpost.app/articles/360a387c-b593-4715-b974-0ebb16035125/audiofiles/b2dba09b-bb2b-4089-a04e-f40c732fb712.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/360a387c-b593-4715-b974-0ebb16035125/audiofiles/b2dba09b-bb2b-4089-a04e-f40c732fb712.mp3',
+          length: 439.3534693877551,
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-08-03T13:31:48.916Z',
+          updatedAt: '2019-08-03T13:31:48.916Z',
+          voice: {
+            id: 'd2ede165-9dc0-4969-af8c-f4ff3716da53',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'Joanna',
+            label: 'Joanna',
+            gender: 'FEMALE',
+            synthesizer: 'AWS',
+            quality: 'Normal',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: null,
+            isActive: true,
+            isPremium: false,
+            isHighestQuality: false,
+            isLanguageDefault: true,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
+            createdAt: '2019-04-25T11:35:03.678Z',
+            updatedAt: '2019-08-15T15:30:05.483Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              code: 'en',
+              rightToLeft: false,
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
+            }
+          }
+        }
+      ]
     }
   },
   {
     id: '9fc0df4c-1a0d-4373-bd44-83053d86f359',
-    order: 26,
+    order: 25,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-06-26T07:12:10.091Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: 'cb7529ff-b553-4213-8ec5-f057b61add2b',
       title: 'Why Machines Need to Dream',
@@ -1176,19 +1674,71 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
-      audiofiles: []
+      audiofiles: [
+        {
+          id: '8fbfad05-d424-4eb7-af65-b4077aca6d88',
+          url: 'https://storage-development.playpost.app/articles/cb7529ff-b553-4213-8ec5-f057b61add2b/audiofiles/8fbfad05-d424-4eb7-af65-b4077aca6d88.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/cb7529ff-b553-4213-8ec5-f057b61add2b/audiofiles/8fbfad05-d424-4eb7-af65-b4077aca6d88.mp3',
+          length: 460.1208163265306,
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-08-03T13:33:06.309Z',
+          updatedAt: '2019-08-03T13:33:06.309Z',
+          voice: {
+            id: 'd2ede165-9dc0-4969-af8c-f4ff3716da53',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'Joanna',
+            label: 'Joanna',
+            gender: 'FEMALE',
+            synthesizer: 'AWS',
+            quality: 'Normal',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: null,
+            isActive: true,
+            isPremium: false,
+            isHighestQuality: false,
+            isLanguageDefault: true,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
+            createdAt: '2019-04-25T11:35:03.678Z',
+            updatedAt: '2019-08-15T15:30:05.483Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              code: 'en',
+              rightToLeft: false,
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
+            }
+          }
+        }
+      ]
     }
   },
   {
     id: '3f78bdf0-d1cb-4bfc-8f93-d4ce8b69c58d',
-    order: 27,
+    order: 26,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-06-26T07:12:59.437Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '2bfd4fc1-b76e-4e4d-bdc3-1b15079c3817',
       title: 'Failure is the new success: find inspiration by embracing your missteps',
@@ -1213,19 +1763,71 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
-      audiofiles: []
+      audiofiles: [
+        {
+          id: 'c2f57ffc-8d54-4518-afae-973d3bcf41fc',
+          url: 'https://storage-development.playpost.app/articles/2bfd4fc1-b76e-4e4d-bdc3-1b15079c3817/audiofiles/c2f57ffc-8d54-4518-afae-973d3bcf41fc.mp3',
+          bucket: 'storage-development.playpost.app',
+          filename: 'articles/2bfd4fc1-b76e-4e4d-bdc3-1b15079c3817/audiofiles/c2f57ffc-8d54-4518-afae-973d3bcf41fc.mp3',
+          length: 461.184,
+          mimeType: 'audio/mpeg',
+          createdAt: '2019-08-03T13:36:10.563Z',
+          updatedAt: '2019-08-03T13:36:10.563Z',
+          voice: {
+            id: '3675e6db-307e-48de-b5ff-13b38470632f',
+            languageCode: 'en-US',
+            countryCode: 'US',
+            name: 'en-US-Wavenet-F',
+            label: 'Emily',
+            gender: 'FEMALE',
+            synthesizer: 'Google',
+            quality: 'Very High',
+            audioProfile: 'default',
+            speakingRate: 1,
+            pitch: 0,
+            naturalSampleRateHertz: 24000,
+            isActive: true,
+            isPremium: true,
+            isHighestQuality: true,
+            isLanguageDefault: null,
+            exampleAudioUrl: 'https://storage-development.playpost.app/voices/3675e6db-307e-48de-b5ff-13b38470632f.wav',
+            createdAt: '2019-04-25T07:27:13.250Z',
+            updatedAt: '2019-08-15T15:30:05.018Z',
+            language: {
+              id: '95f01039-fe8e-412d-a542-7089303b84c8',
+              name: 'English',
+              nativeName: 'English',
+              code: 'en',
+              rightToLeft: false,
+              isActive: true,
+              createdAt: '2019-05-16T12:51:57.546Z',
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
+            }
+          }
+        }
+      ]
     }
   },
   {
     id: '708d1bcd-ddd7-461e-8f93-77e1a4ae2181',
-    order: 28,
+    order: 27,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-06-26T07:12:03.429Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '1785d197-79b0-4ed1-a484-4849bfbefbea',
       title: 'Are Quick-Fix Therapies for Trauma and Stress too Good to be True?',
@@ -1250,7 +1852,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: [
         {
@@ -1281,7 +1883,7 @@ export default [
             isLanguageDefault: null,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/3675e6db-307e-48de-b5ff-13b38470632f.wav',
             createdAt: '2019-04-25T07:27:13.250Z',
-            updatedAt: '2019-08-01T14:13:05.671Z',
+            updatedAt: '2019-08-15T15:30:05.018Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
@@ -1290,7 +1892,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-08-01T14:13:01.327Z'
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
             }
           }
         }
@@ -1299,12 +1911,12 @@ export default [
   },
   {
     id: '15b643b8-6962-4eb8-a72b-6e880114ef7b',
-    order: 29,
+    order: 28,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-06-26T04:27:39.910Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '39d02eaa-8d10-4d58-a7bb-17759baca6f5',
       title: 'Is Angular dying because of React?',
@@ -1329,19 +1941,19 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: []
     }
   },
   {
     id: '54f58d4f-0445-4b90-88aa-971dcaa83596',
-    order: 30,
+    order: 29,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-06-17T16:11:01.418Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '7db7e805-61b9-4b01-a841-2909f465dddd',
       title: 'Incorporating Apple Maps with Autocomplete in a React Native Application',
@@ -1366,7 +1978,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: [
         {
@@ -1397,7 +2009,7 @@ export default [
             isLanguageDefault: null,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/2534d51a-11c4-446f-a4da-a3f946305c44.wav',
             createdAt: '2019-04-25T07:27:13.114Z',
-            updatedAt: '2019-08-01T14:13:06.239Z',
+            updatedAt: '2019-08-15T15:30:05.371Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
@@ -1406,7 +2018,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-08-01T14:13:01.327Z'
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: 'fa29b8cc-76cd-4c46-9817-d7dcd28c46e4',
+              name: 'United Kingdom',
+              code: 'GB',
+              nativeName: 'United Kingdom',
+              continent: 'EU',
+              currency: 'GBP',
+              createdAt: '2019-08-15T12:26:32.337Z',
+              updatedAt: '2019-08-15T12:26:32.337Z'
             }
           }
         }
@@ -1415,12 +2037,12 @@ export default [
   },
   {
     id: 'a697a679-24d8-4b70-938c-72047941e0f8',
-    order: 31,
+    order: 30,
     lastPlayedAt: null,
     archivedAt: '2019-06-14T10:04:04.463Z',
     favoritedAt: null,
     createdAt: '2019-06-13T12:36:04.878Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '2870630d-e056-424c-88a2-8f220b428e6d',
       title: 'Customer Due Diligence - Werken bij Rabobank',
@@ -1445,7 +2067,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:52:08.217Z',
-        updatedAt: '2019-08-01T14:13:01.760Z'
+        updatedAt: '2019-08-15T13:28:49.359Z'
       },
       audiofiles: [
         {
@@ -1476,7 +2098,7 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d4c0973c-5a36-4950-afe1-3e2224592c20.mp3',
             createdAt: '2019-04-25T11:35:03.293Z',
-            updatedAt: '2019-08-01T14:13:05.559Z',
+            updatedAt: '2019-08-15T15:30:05.096Z',
             language: {
               id: 'cd72f71c-dc59-4be7-8a40-0143fe6f0ad9',
               name: 'Dutch',
@@ -1485,7 +2107,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:52:08.217Z',
-              updatedAt: '2019-08-01T14:13:01.760Z'
+              updatedAt: '2019-08-15T13:28:49.359Z'
+            },
+            country: {
+              id: 'b1290d9e-8c56-43c3-b301-6960b316fec9',
+              name: 'Netherlands',
+              code: 'NL',
+              nativeName: 'Nederland',
+              continent: 'EU',
+              currency: 'EUR',
+              createdAt: '2019-08-15T12:26:32.846Z',
+              updatedAt: '2019-08-15T12:26:32.846Z'
             }
           }
         }
@@ -1494,12 +2126,12 @@ export default [
   },
   {
     id: '588ccaf6-fd69-454e-93c3-758359caa2e6',
-    order: 32,
+    order: 31,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-03-27T09:23:08.554Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '3f9898cf-ef99-4730-994d-d47ad40baa00',
       title: 'How listening to our 4.1 million users inspired a new product idea',
@@ -1524,7 +2156,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: [
         {
@@ -1555,7 +2187,7 @@ export default [
             isLanguageDefault: null,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/3675e6db-307e-48de-b5ff-13b38470632f.wav',
             createdAt: '2019-04-25T07:27:13.250Z',
-            updatedAt: '2019-08-01T14:13:05.671Z',
+            updatedAt: '2019-08-15T15:30:05.018Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
@@ -1564,7 +2196,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-08-01T14:13:01.327Z'
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
             }
           }
         }
@@ -1573,12 +2215,12 @@ export default [
   },
   {
     id: '7b7ab845-ba29-4b70-bfe9-4a9f1f046df9',
-    order: 33,
+    order: 32,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-03-27T13:03:17.781Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: 'a7d08dbe-ba5c-4699-a11d-c1155e30ec3a',
       title: 'What if Mark Zuckerberg Had Stayed in School?',
@@ -1603,7 +2245,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: [
         {
@@ -1634,7 +2276,7 @@ export default [
             isLanguageDefault: null,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/1a6136d5-fb0d-4543-a6f2-68feb020a31f.mp3',
             createdAt: '2019-04-25T11:35:03.758Z',
-            updatedAt: '2019-08-01T14:13:05.588Z',
+            updatedAt: '2019-08-15T15:30:05.003Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
@@ -1643,7 +2285,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-08-01T14:13:01.327Z'
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: 'fa29b8cc-76cd-4c46-9817-d7dcd28c46e4',
+              name: 'United Kingdom',
+              code: 'GB',
+              nativeName: 'United Kingdom',
+              continent: 'EU',
+              currency: 'GBP',
+              createdAt: '2019-08-15T12:26:32.337Z',
+              updatedAt: '2019-08-15T12:26:32.337Z'
             }
           }
         }
@@ -1652,12 +2304,12 @@ export default [
   },
   {
     id: '5caf9c7c-66bd-4659-a4d7-6d91ee5e159b',
-    order: 34,
+    order: 33,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-04-03T04:49:39.349Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '6d5f84e5-efa2-41cf-a0c1-de65fecbaa45',
       title: 'Women are only 24% of the infosec workforce. Now go follow them on Twitter',
@@ -1682,7 +2334,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: [
         {
@@ -1713,7 +2365,7 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
             createdAt: '2019-04-25T11:35:03.678Z',
-            updatedAt: '2019-08-01T14:13:06.094Z',
+            updatedAt: '2019-08-15T15:30:05.483Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
@@ -1722,7 +2374,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-08-01T14:13:01.327Z'
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
             }
           }
         }
@@ -1731,12 +2393,12 @@ export default [
   },
   {
     id: '62facbe3-6686-4f49-ac25-3993e09b2062',
-    order: 35,
+    order: 34,
     lastPlayedAt: null,
     archivedAt: '2019-06-14T10:05:44.880Z',
     favoritedAt: null,
     createdAt: '2019-03-27T13:24:34.427Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '308f67a1-3606-4e9b-9cfe-b6e28f361901',
       title: 'How to read the news like a scientist',
@@ -1761,7 +2423,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: [
         {
@@ -1792,7 +2454,7 @@ export default [
             isLanguageDefault: null,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/6e4c1ec7-98a0-464b-b6e9-53e00629df6c.mp3',
             createdAt: '2019-04-25T11:35:03.611Z',
-            updatedAt: '2019-08-01T14:13:05.951Z',
+            updatedAt: '2019-08-15T15:30:05.208Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
@@ -1801,7 +2463,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-08-01T14:13:01.327Z'
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
             }
           }
         }
@@ -1810,12 +2482,12 @@ export default [
   },
   {
     id: '4fdda0ae-78f1-443f-ad66-914107731788',
-    order: 36,
+    order: 35,
     lastPlayedAt: null,
     archivedAt: '2019-06-14T10:06:30.560Z',
     favoritedAt: null,
     createdAt: '2019-04-01T18:26:00.580Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '596a3649-35b1-4c7a-b59f-593b6b0a8a96',
       title: 'The Dawn of the Deep Tech Ecosystem',
@@ -1840,19 +2512,19 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: []
     }
   },
   {
     id: 'c2535ecf-6d78-48bf-80b8-6556c3e0bcb9',
-    order: 37,
+    order: 36,
     lastPlayedAt: null,
     archivedAt: '2019-05-02T16:13:48.794Z',
     favoritedAt: null,
     createdAt: '2019-04-30T09:41:56.153Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '9f81736c-6815-4cfc-af0f-08031a3e9252',
       title: 'Why Is the Internet Obsessed With This Cult Toothpaste?',
@@ -1877,19 +2549,19 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: []
     }
   },
   {
     id: '9b811db1-b404-4fea-bcd2-bdde49005c8e',
-    order: 38,
+    order: 37,
     lastPlayedAt: null,
     archivedAt: '2019-06-14T10:07:55.320Z',
     favoritedAt: null,
     createdAt: '2019-04-01T18:41:19.375Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '3e8134b1-d395-4e8a-8c52-f93716a1c572',
       title: 'Your Network Determines Success More than You Realize',
@@ -1914,19 +2586,19 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: []
     }
   },
   {
     id: '716a9107-3a41-421b-9b56-b75a04d0d18d',
-    order: 39,
+    order: 38,
     lastPlayedAt: null,
     archivedAt: '2019-05-02T16:25:46.908Z',
     favoritedAt: null,
     createdAt: '2019-04-30T09:04:37.833Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '8f103d1a-53e6-4b9a-9f47-b529ddc76ece',
       title: 'Facing obstacles as an entrepreneur',
@@ -1951,7 +2623,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: [
         {
@@ -1982,7 +2654,7 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
             createdAt: '2019-04-25T11:35:03.678Z',
-            updatedAt: '2019-08-01T14:13:06.094Z',
+            updatedAt: '2019-08-15T15:30:05.483Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
@@ -1991,7 +2663,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-08-01T14:13:01.327Z'
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
             }
           }
         }
@@ -2000,12 +2682,12 @@ export default [
   },
   {
     id: 'a2f5dab1-2c7e-4ea0-9376-e2ce646efa12',
-    order: 40,
+    order: 39,
     lastPlayedAt: null,
     archivedAt: '2019-05-02T16:13:59.483Z',
     favoritedAt: null,
     createdAt: '2019-04-04T06:35:31.155Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: 'f6ba1546-8b36-4c92-b336-8239660e25a5',
       title: 'Facing obstacles as an entrepreneur',
@@ -2030,7 +2712,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: [
         {
@@ -2061,7 +2743,7 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
             createdAt: '2019-04-25T11:35:03.678Z',
-            updatedAt: '2019-08-01T14:13:06.094Z',
+            updatedAt: '2019-08-15T15:30:05.483Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
@@ -2070,7 +2752,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-08-01T14:13:01.327Z'
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
             }
           }
         }
@@ -2079,12 +2771,12 @@ export default [
   },
   {
     id: '9a2eb2f4-bfa7-47ac-8fda-47e5ebca94a9',
-    order: 41,
+    order: 40,
     lastPlayedAt: null,
     archivedAt: '2019-05-06T06:52:13.238Z',
     favoritedAt: null,
     createdAt: '2019-04-03T07:55:27.164Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: 'f1884b99-7730-4798-849a-851ebf01f8cb',
       title: 'How To Get Free Labor For Your Startup',
@@ -2109,7 +2801,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: [
         {
@@ -2140,7 +2832,7 @@ export default [
             isLanguageDefault: null,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/701be98d-3eb3-4c38-a504-d70d706f5d37.wav',
             createdAt: '2019-04-25T07:27:13.226Z',
-            updatedAt: '2019-08-01T14:13:05.530Z',
+            updatedAt: '2019-08-15T15:30:05.357Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
@@ -2149,7 +2841,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-08-01T14:13:01.327Z'
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
             }
           }
         }
@@ -2158,12 +2860,12 @@ export default [
   },
   {
     id: 'c12b03c5-1304-4f9a-8d8d-375ff83ed89a',
-    order: 42,
+    order: 41,
     lastPlayedAt: null,
     archivedAt: '2019-06-14T10:08:56.396Z',
     favoritedAt: null,
     createdAt: '2019-03-30T16:10:00.452Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '98e0c749-3945-45d4-980b-0e5756339de5',
       title: 'Strategies to Pull Yourself Out of a Bad Mood',
@@ -2188,7 +2890,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: [
         {
@@ -2219,7 +2921,7 @@ export default [
             isLanguageDefault: null,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/1a6136d5-fb0d-4543-a6f2-68feb020a31f.mp3',
             createdAt: '2019-04-25T11:35:03.758Z',
-            updatedAt: '2019-08-01T14:13:05.588Z',
+            updatedAt: '2019-08-15T15:30:05.003Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
@@ -2228,7 +2930,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-08-01T14:13:01.327Z'
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: 'fa29b8cc-76cd-4c46-9817-d7dcd28c46e4',
+              name: 'United Kingdom',
+              code: 'GB',
+              nativeName: 'United Kingdom',
+              continent: 'EU',
+              currency: 'GBP',
+              createdAt: '2019-08-15T12:26:32.337Z',
+              updatedAt: '2019-08-15T12:26:32.337Z'
             }
           }
         }
@@ -2237,12 +2949,12 @@ export default [
   },
   {
     id: 'c0245119-bb6f-4fc9-a575-b92e38bf856c',
-    order: 43,
+    order: 42,
     lastPlayedAt: null,
     archivedAt: '2019-06-14T10:09:31.777Z',
     favoritedAt: null,
     createdAt: '2019-03-27T14:16:23.412Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: 'b6290d2d-6f08-4b7d-965c-5a87a63bb3f3',
       title: 'The Slack AI assistant automating creative tasks and driving data-driven decision making',
@@ -2267,7 +2979,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: [
         {
@@ -2298,7 +3010,7 @@ export default [
             isLanguageDefault: null,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/b735e14e-33ad-4ce9-9985-b868c822c554.wav',
             createdAt: '2019-04-25T07:27:13.130Z',
-            updatedAt: '2019-08-01T14:13:06.091Z',
+            updatedAt: '2019-08-15T15:30:05.161Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
@@ -2307,7 +3019,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-08-01T14:13:01.327Z'
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: 'fa29b8cc-76cd-4c46-9817-d7dcd28c46e4',
+              name: 'United Kingdom',
+              code: 'GB',
+              nativeName: 'United Kingdom',
+              continent: 'EU',
+              currency: 'GBP',
+              createdAt: '2019-08-15T12:26:32.337Z',
+              updatedAt: '2019-08-15T12:26:32.337Z'
             }
           }
         }
@@ -2316,12 +3038,12 @@ export default [
   },
   {
     id: '178bf14d-2128-4507-a40d-00f7cf0b907c',
-    order: 44,
+    order: 43,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-03-26T14:29:00.615Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: 'b13a3868-d161-4463-b6eb-b1f0942788ea',
       title: 'You Need To Master Every Role In Your Startup.',
@@ -2346,7 +3068,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: [
         {
@@ -2377,7 +3099,7 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
             createdAt: '2019-04-25T11:35:03.678Z',
-            updatedAt: '2019-08-01T14:13:06.094Z',
+            updatedAt: '2019-08-15T15:30:05.483Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
@@ -2386,7 +3108,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-08-01T14:13:01.327Z'
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
             }
           }
         }
@@ -2395,12 +3127,12 @@ export default [
   },
   {
     id: '76e31dec-c6d4-4dc3-927d-bbd5f1f164b8',
-    order: 45,
+    order: 44,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-03-26T09:21:48.104Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '4671b44f-b361-40e6-8dfd-8f389e1febe0',
       title: 'No Man’s Sky’s next update will let you explore infinite space in virtual reality – TechCrunch',
@@ -2425,7 +3157,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: [
         {
@@ -2456,7 +3188,7 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
             createdAt: '2019-04-25T11:35:03.678Z',
-            updatedAt: '2019-08-01T14:13:06.094Z',
+            updatedAt: '2019-08-15T15:30:05.483Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
@@ -2465,7 +3197,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-08-01T14:13:01.327Z'
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
             }
           }
         }
@@ -2474,12 +3216,12 @@ export default [
   },
   {
     id: 'b7a4eef7-b63a-4300-af24-af79122a8fb7',
-    order: 46,
+    order: 45,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-03-26T08:38:59.466Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '7bfb03de-3be8-4167-baa4-e1d9ea5c8cd5',
       title: 'Uber is paying $3.1BN to pick up Middle East rival Careem – TechCrunch',
@@ -2504,7 +3246,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: [
         {
@@ -2535,7 +3277,7 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
             createdAt: '2019-04-25T11:35:03.678Z',
-            updatedAt: '2019-08-01T14:13:06.094Z',
+            updatedAt: '2019-08-15T15:30:05.483Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
@@ -2544,7 +3286,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-08-01T14:13:01.327Z'
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
             }
           }
         }
@@ -2553,12 +3305,12 @@ export default [
   },
   {
     id: 'ff2c7145-4412-4652-85be-ff1e7103b365',
-    order: 47,
+    order: 46,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-03-25T17:44:37.608Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: 'd337fe4d-c588-4db7-9b1d-d3bcca3ed31e',
       title: 'Apple Card will make credit card fraud a lot more difficult – TechCrunch',
@@ -2583,7 +3335,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: [
         {
@@ -2614,7 +3366,7 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
             createdAt: '2019-04-25T11:35:03.678Z',
-            updatedAt: '2019-08-01T14:13:06.094Z',
+            updatedAt: '2019-08-15T15:30:05.483Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
@@ -2623,7 +3375,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-08-01T14:13:01.327Z'
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
             }
           }
         },
@@ -2655,7 +3417,7 @@ export default [
             isLanguageDefault: null,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/1b188f84-9d15-4a5a-85c6-f27ac44699fc.wav',
             createdAt: '2019-04-25T07:27:13.215Z',
-            updatedAt: '2019-08-01T14:13:06.136Z',
+            updatedAt: '2019-08-15T15:30:05.477Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
@@ -2664,7 +3426,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-08-01T14:13:01.327Z'
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
             }
           }
         }
@@ -2673,12 +3445,12 @@ export default [
   },
   {
     id: 'e69e8fd2-0adf-49bb-b724-cb1dea7071b3',
-    order: 48,
+    order: 47,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-03-18T17:09:10.128Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: 'b9334781-6a2d-4c78-82e0-7a1bba4f278c',
       title: 'These 4 Questions Might Be Preventing You From Starting a Side Hustle',
@@ -2692,7 +3464,7 @@ export default [
       authorName: 'Arianna O’Dell',
       isCompatible: true,
       compatibilityMessage: null,
-      html: '<!doctype html>\n<html>\n<head>\n  <title data-react-helmet="true">These 4 Questions Might Be Preventing You From Starting a Side Hustle | Inc.com</title>\n  <meta data-react-helmet="true" name="title" content="These 4 Questions Might Be Preventing You From Starting a Side Hustle"/><meta data-react-helmet="true" name="description" content="With over 50% of millennials side hustling, you might be asking how you can get your own slice of the gig economy pie. Here&#x27;s how. "/><meta data-react-helmet="true" name="syndication-source" content="https://www.inc.com/arianna-odell/half-of-millennials-are-side-hustling-here-are-4-of-most-common-questions-new-hustlers-have.html"/><meta data-react-helmet="true" name="news_keywords" content="millennial, hustle, gig, job, online"/><meta data-react-helmet="true" property="og:title" content="These 4 Questions Might Be Preventing You From Starting a Side Hustle"/><meta data-react-helmet="true" property="og:description" content="With over 50% of millennials side hustling, you might be asking how you can get your own slice of the gig economy pie. Here&#x27;s how. "/><meta data-react-helmet="true" property="og:type" content="article"/><meta data-react-helmet="true" property="og:url" content="https://www.inc.com/arianna-odell/half-of-millennials-are-side-hustling-here-are-4-of-most-common-questions-new-hustlers-have.html"/><meta data-react-helmet="true" property="og:image" content="https://www.incimages.com/uploaded_files/image/970x450/getty_651138524_384024.jpg"/><meta data-react-helmet="true" property="og:site_name" content="Inc.com"/><meta data-react-helmet="true" name="twitter:card" content="summary_large_image"/><meta data-react-helmet="true" name="twitter:image" content="https://www.incimages.com/uploaded_files/image/1940x900/getty_651138524_384024.jpg"/><meta data-react-helmet="true" name="twitter:site" content="@Inc"/><meta data-react-helmet="true" name="twitter:creator" content="@arianna"/><meta data-react-helmet="true" name="twitter:url" content="https://www.inc.com/arianna-odell/half-of-millennials-are-side-hustling-here-are-4-of-most-common-questions-new-hustlers-have.html"/><meta data-react-helmet="true" name="twitter:title" content="These 4 Questions Might Be Preventing You From Starting a Side Hustle"/><meta data-react-helmet="true" name="twitter:description" content="With over 50 percent of millennials side hustling, you might be asking how you can get your own slice of the gig economy pie. Here&#x27;s how."/><meta data-react-helmet="true" property="fb:app_id" content="139291179414843"/><meta data-react-helmet="true" property="article:published_time" content="2019-02-22 09:51:44"/><meta data-react-helmet="true" property="article:section" content="Strategy"/><meta data-react-helmet="true" property="article:author" content="Arianna O&#x27;Dell"/><meta data-react-helmet="true" property="og:image" content="https://www.incimages.com/uploaded_files/image/970x450/getty_651138524_384024.jpg"/>\n  <script data-react-helmet="true" src="https://assets.fastcompany.com/assets/js/vendor/prebid/prebid1.40.0-pre.js" async="true"></script><script data-react-helmet="true" src="https://z.moatads.com/mansuetoprebidheader15141606144/yi.js" async="true"></script><script data-react-helmet="true" type="application/ld+json">{"@context":"http://schema.org","@type":"NewsArticle","headline":"These 4 Questions Might Be Preventing You From Starting a Side Hustle","url":"https://www.inc.com/arianna-odell/half-of-millennials-are-side-hustling-here-are-4-of-most-common-questions-new-hustlers-have.html","mainEntityOfPage":"https://www.inc.com/arianna-odell/half-of-millennials-are-side-hustling-here-are-4-of-most-common-questions-new-hustlers-have.html","identifier":"inc226487","thumbnailUrl":"https://www.incimages.com/uploaded_files/image/970x450/getty_651138524_384024.jpg","dateCreated":"2019-02-22 09:51:44","datePublished":"2019-02-22 09:51:44","dateModified":"2019-03-03 06:00:01","articleSection":"Strategy","publisher":{"@type":"Organization","name":"Inc.","logo":{"@type":"ImageObject","url":"https://www.incimages.com/topnav/inc-logo.png","width":170,"height":59}},"image":{"@type":"ImageObject","url":"https://www.incimages.com/uploaded_files/image/970x450/getty_651138524_384024.jpg","height":450,"width":970},"keywords":["Strategy","Creativity","Home-Based Business","Arianna O\'Dell","Columnist"],"creator":"Arianna O\'Dell","author":{"@type":"Person","name":"Arianna O\'Dell"}}</script>\n  <link data-react-helmet="true" rel="canonical" href="https://www.inc.com/arianna-odell/half-of-millennials-are-side-hustling-here-are-4-of-most-common-questions-new-hustlers-have.html"/><link data-react-helmet="true" rel="image_src" href="https://www.incimages.com/uploaded_files/image/970x450/getty_651138524_384024.jpg"/><link data-react-helmet="true" rel="preload" href="https://z.moatads.com/mansuetoprebidheader15141606144/yi.js" as="script"/><link data-react-helmet="true" rel="preconnect" href="https://mb.moatads.com" crossOrigin="true"/><link data-react-helmet="true" rel="preload" href="https://assets.fastcompany.com/assets/js/vendor/prebid/prebid1.40.0-pre.js" as="script"/><link data-react-helmet="true" rel="preload" href="https://www.googletagservices.com/tag/js/gpt.js" as="script"/>\n  <meta charset="utf-8" />\n  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">\n  <meta name="robots" content="noarchive">\n  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width height=device-height" />\n  <meta name="format-detection" content = "telephone=no">\n\n  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">\n  <link type="text/css" rel="stylesheet" href="https://assets.inc.com/_/inc/ffae3fe009c3cf7b46a921d016706d0e9179cc25/app.57f7b1dd8624c8f177553d7296b19155.css" />\n  \n  \n</head>\n<body>\n  <div id="app"><div data-reactroot=""><header class="Header__globalHeader__3xt4W Header__globalHeaderStuck__3nTRK "><div><div class="adElement AdContainer__adContainer__3lfQm AdContainer__topFullWidthFlex__2bECD"><div style="width:0;height:0"></div></div></div><div class="barnav-container"><nav class="BarNav__barNav__2k5ZH "><div class="BarNav__container__1WfQj container"><div class="SectionLeft__sectionLeft__2rlvG"><div class="IconLists__iconlist__1VaG8"><div><div class="topnav-item IconLists__navItem__1I5H1"><svg aria-hidden="true" data-prefix="fas" data-icon="bars" class="svg-inline--fa fa-bars fa-w-14 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="color:black"><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg></div><div class="topnav-item IconLists__navItem__1I5H1"><svg aria-hidden="true" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="color:black"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg></div><div class="topnav-item IconLists__navItem__1I5H1"><svg aria-hidden="true" data-prefix="fas" data-icon="user" class="svg-inline--fa fa-user fa-w-14 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="color:black"><path fill="currentColor" d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"></path></svg></div></div></div></div><div class="SectionCenter__sectionCenter__1XXUL"><div class="nav-logo SectionCenter__logo__yBr-x  "><a href="https://www.inc.com/"><img src="https://www.incimages.com/inc-logo-black.png"/></a></div><div class="SectionCenter__barNavHeadline__3yXTy "><div class="SectionCenter__text___tD7L">These 4 Questions Might Be Preventing You From Starting a Side Hustle</div></div></div><div class="SectionRight__sectionRight__3V7G0"><div></div></div></div></nav></div></header><div style="margin-top:0" class="bigWrapper"><div class="trackingPixelContainer" style="display:none"></div><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/><div class="articlesHolder"><div><span style="font-size:0"></span><div class="undefined "><header class="ArticleFrame__articleHeader__38aOc"><header class="ArticleHeaderMainView__articleHeader__1zYxW"><div class="container"><div class="row"><div class="ArticleHeaderMainView__headerCopy__2ylL_ col-sm-10"><h4 class="Eyebrow__eyebrow__DZqz6"><a href="https://www.inc.com/strategy"><span>Strategy</span></a></h4><h1 class="ArticleTitle__primaryTitle__2l_VZ ArticleHeaderMainView__fullWidthLanderPrimaryTitle__1jNnD"><span class="editableWrapper" style="display:block"></span></h1></div></div><div class="row"><div class="col-sm-12"></div></div><div class="row"><div class="ArticleHeaderMainView__headerCopy__2ylL_ col-sm-10 offset-sm-1 col-md-8 offset-md-2 header-copy"><h2 class="ArticleDeck__articleDeck__1uDMg"><span class="editableWrapper" style="display:block"></span></h2></div></div><div class="row"><div class="ArticlePage__articleShareBar__2zuc9"><div class="ShareButton__shareButton__1Yps-"><a target="_blank" rel="noopener noreferrer" class="ShareButtonAnchor" href=""></a></div><div class="ShareButton__shareButton__1Yps-"><a target="_blank" rel="noopener noreferrer" class="ShareButtonAnchor" href=""></a></div><div class="ShareButton__shareButton__1Yps-"><a target="_blank" rel="noopener noreferrer" class="ShareButtonAnchor" href=""></a></div></div></div><div class="author"><div class="AuthorBox__authorBox__XrT5x"><div class="inner"><a href="/author/arianna-odell"><img src="https://www.incimages.com/uploaded_files/image/100x100/nullnullauthorphoto_333228.jpg" class="AuthorBox__authorPhoto__39snX"/></a><a href="/author/arianna-odell"><span class="AuthorBox__authorName__2YZqy">By <!-- -->Arianna O&#x27;Dell</span></a><span class="AuthorBox__authorTitle__2WEIc">Founder, Airlink Design </span><span class="AuthorBox__authorTwitter__2Xvhe"><svg aria-hidden="true" data-prefix="fab" data-icon="twitter" class="svg-inline--fa fa-twitter fa-w-16 AuthorBox__twitterIcon__3FrRL" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg><a target="_blank" rel="noreferrer noopener" href="https://www.twitter.com/arianna">@<!-- -->arianna</a></span></div></div></div><div class="row"><div class="ArticleHeaderMainView__headerCopy__2ylL_ ArticleHeaderMainView__sponsorLogo__33DkV col-sm-10"><div class="adElement AdContainer__adContainer__3lfQm " style="background-color:#FFFFFF"><div style="width:220px;height:50px"></div></div></div></div></div><div class="featureitem"><div class="AddClickableBox__wrapper__2x-1L"><div><div class="FeatureImage__pano__2KnBv"><div class="FeatureImage__photo__25HtL"><img class="" draggable="false" src="https://www.incimages.com/uploaded_files/image/970x450/getty_651138524_384024.jpg" style="cursor:"/></div></div><div class="FeatureImage__imageCredit__1Zh90"></div></div></div></div></header></header><span style="font-size:0"></span><div><div class="ArticleFrame__articleContainer__2HV3L container"><div class="row hmmm"><div class="article-body col-md-8 offset-md-0 col-lg-7 offset-lg-2" data-id="226487"><div data-id="226487"><div class="editableWrapper"></div><div class="ArticlePubdate__pubdate__3kWwF">Published on: Feb 22, 2019</div></div></div><div class="undefined article-sidebar d-none d-md-block col-md-3"></div></div><span style="font-size:0"></span><div class="row"><div class="col-md-8 offset-md-0 col-lg-8 offset-lg-1"><div><div class="ArticleFooterLayout__moduleTitle__2uEHY">More from Inc.</div><div class="row"></div></div><div><div class="ArticleFooterLayout__moduleTitle__2uEHY">Sponsored Business Content<span class="ArticleFooterLayout__sponsoredBy__N-wmo"><a href="https://www.dianomi.com/whatsthis.pl?id=3778" target="_blank" rel="noreferrer noopener"><img src="//www.dianomi.com/img/uploads/WGP9Y4waycyxN5KEBJ69CQAAABM.png" alt="Dianomi" width="55" height="10"/></a></span></div><div class="row"><div class="dianomiTrackingPixels"></div></div></div></div></div></div><div class="bottom-ad-holder"><div class="adElement AdContainer__adContainer__3lfQm AdContainer__flexbillboard__23y9N"><div style="width:300px;height:250px"></div></div></div></div></div></div></div><div class="initialTracking"><div><!-- START OMNITURE //-->      <script language="JavaScript" type="text/javascript" src="https://www.inc.com/js/lib/s_code.js"></script>      <script language="JavaScript" type="text/javascript"><!--      if(navigator.appVersion.indexOf(\'MSIE\')>=0)document.write(unescape(\'%3C\')+\'!-\'+\'-\')      //--></script><noscript><img src="https://grunerandjahr.112.2o7.net/b/ss/gjinccomprod/1/H.24.1--NS/0"      height="1" width="1" border="0" alt="" /></noscript>      <script language="JavaScript" type="text/javascript" src="https://tempo.inc.com/js/trk.js" async></script>      <!-- END OMNITURE //--></div><div><!-- START COMSCORE //-->      <script>      var _comscore = _comscore || [];      _comscore.push({ c1: "2", c2: "6916907" });      (function() {      var s = document.createElement("script"), el =      document.getElementsByTagName("script")[0]; s.async = true;      s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") +      ".scorecardresearch.com/beacon.js";      el.parentNode.insertBefore(s, el);      })();      </script>      <noscript><img src="https://b.scorecardresearch.com/p?c1=2&c2=6916907&c4=https://www.inc.com/steve-blank/steve-blank-to-fix-startup-culture-ceos-venture-capitalists-must-lead-by-example.html" /></noscript>      <!-- END COMSCORE //--></div><div><!-- START CHARTBEAT //-->      <script>      var _sf_async_config = _sf_async_config || {};      _sf_async_config.domain = "inc.com";      _sf_async_config.sections = "Strategy";      _sf_async_config.authors = "Arianna O\'Dell";      _sf_async_config.path = "https://www.inc.com/arianna-odell/half-of-millennials-are-side-hustling-here-are-4-of-most-common-questions-new-hustlers-have.html";      (function(){          window._sf_endpt=(new Date()).getTime();          var e = document.createElement(\'script\');          e.setAttribute(\'language\', \'javascript\');          e.setAttribute(\'type\', \'text/javascript\');          e.setAttribute(\'src\',              (("https:" == document.location.protocol) ? "https://s3.amazonaws.com/" : "http://") +              "static.chartbeat.com/js/chartbeat_video.js");          document.body.appendChild(e);        })();      </script>      <!-- END CHARTBEAT //--></div><div><div id="parsely-root" style="display: none"><span id="parsely-cfg" data-parsely-site="inc.com"></span></div><script>      var parselyPreload = {eventQueue: [], loaded: false};      PARSELY = {      autotrack: false,       onload: function() {           parselyPreload.loaded = true;           for (var i = 0; i < parselyPreload.eventQueue.length; i++) {                 PARSELY.beacon.trackPageView(parselyPreload.eventQueue[i]);           }       }      };      (function(s, p, d) {      var h=d.location.protocol, i=p+"-"+s,      e=d.getElementById(i), r=d.getElementById(p+"-root"),      u=h==="https:"?"d1z2jf7jlzjs58.cloudfront.net"      :"static."+p+".com";      if (e) return;      e = d.createElement(s); e.id = i; e.async = true;      e.src = h+"//"+u+"/p.js"; r.appendChild(e);      })("script", "parsely", document);      </script></div><div><!-- START GA //-->      <script type="text/javascript">          var _gaq = _gaq || [];          _gaq.push([\'_setAccount\', \'UA-98096820-1\']);          _gaq.push([\'_setAllowLinker\', true]);          _gaq.push([\'_trackPageview\']);          (function() {              var ga = document.createElement(\'script\'); ga.type = \'text/javascript\'; ga.async = true;              ga.src = (\'https:\' == document.location.protocol ? \'https://ssl\' : \'http://www\') + \'.google-analytics.com/ga.js\';              var s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(ga, s);          })();      </script>      <!-- END GA //--></div><div><script>    (function (w,d,t) {      _ml = w._ml || {};      _ml.eid = \'50190\';      _ml.ef = [\'#cds_email\',\'.cds_email\',\'.email\',\'.inputEmail\',\'.newsletters\'];      var s, cd, tag; s = d.getElementsByTagName(t)[0]; cd = new Date();      tag = d.createElement(t); tag.async = 1;      tag.src = \'https://ml314.com/tag.aspx?\' + cd.getDate() + cd.getMonth();      s.parentNode.insertBefore(tag, s);    })(window,document,\'script\');    </script></div><div><!--START Lightbox Javascript-->  <script type="text/javascript">    /*<![CDATA[*/ window.lightboxjs || function (c) { function g(b, d) { d && (d += (/\\?/.test(d) ? "&" : "?") + "lv=1"); c[b] || function () { var i = window, h = document, j = b, g = h.location.protocol, l = "load", k = 0; (function () { function b() { a.P(l); a.w = 1; c[j]("_load") } c[j] = function () { function m() { m.id = e; return c[j].apply(m, arguments) } var b, e = ++k; b = this && this != i ? this.id || 0 : 0; (a.s = a.s || []).push([e, b, arguments]); m.then = function (b, c, h) { var d = a.fh[e] = a.fh[e] || [], j = a.eh[e] = a.eh[e] || [], f = a.ph[e] = a.ph[e] || []; b && d.push(b); c && j.push(c); h && f.push(h); return m }; return m }; var a = c[j]._ = {}; a.fh = {}; a.eh = {}; a.ph = {}; a.l = d ? d.replace(/^\\/\\//, (g == "https:" ? g : "http:") + "//") : d; a.p = { 0: +new Date }; a.P = function (b) { a.p[b] = new Date - a.p[0] }; a.w && b(); i.addEventListener ? i.addEventListener(l, b, !1) : i.attachEvent("on" + l, b); var q = function () { function b() { return ["<head></head><", c, \' onload="var d=\', n, ";d.getElementsByTagName(\'head\')[0].", d, "(d.", g, "(\'script\')).", i, "=\'", a.l, "\'\\"></", c, ">"].join("") } var c = "body", e = h[c]; if (!e) return setTimeout(q, 100); a.P(1); var d = "appendChild", g = "createElement",    i = "src", k = h[g]("div"), l = k[d](h[g]("div")), f = h[g]("iframe"), n = "document", p; k.style.display = "none"; e.insertBefore(k, e.firstChild).id = o + "-" + j; f.frameBorder = "0"; f.id = o + "-frame-" + j; /MSIE[ ]+6/.test(navigator.userAgent) && (f[i] = "javascript:false"); f.allowTransparency = "true"; l[d](f); try { f.contentWindow[n].open() } catch (s) { a.domain = h.domain, p = "javascript:var d=" + n + ".open();d.domain=\'" + h.domain + "\';", f[i] = p + "void(0);" } try { var r = f.contentWindow[n]; r.write(b()); r.close() } catch (t) { f[i] = p + \'d.write("\' + b().replace(/"/g, String.fromCharCode(92) + \'"\') + \'");d.close();\' } a.P(2) }; a.l && q() })() }(); c[b].lv = "1"; return c[b] } var o = "lightboxjs", k = window[o] = g(o); k.require = g; k.modules = c }({}); /*]]>*/  </script>  <script type="text/javascript">window.lightboxlib = lightboxjs.require("lightboxlib", "//www.lightboxcdn.com/vendor/55ecb6d7-3a26-4842-a19b-853a7835fd15/lightbox.js?mb=" + (new Date().getTime()));</script>  <!--END Lightbox Javascript--></div></div><div class="adElement AdContainer__adContainer__3lfQm AdContainer__adhesiveBanner__o6YE-"><div style="width:320px;height:50px"></div></div></div><footer class="Footer__footerContainer__13mvl"><div class="container"><div class="row"><div class="col-10 offset-1 col-sm-4 offset-sm-0"><div class="Footer__brandLogo__1T6Nt"><img src="https://www.incimages.com/logos/inc_logo_footer_223x76_e0e0e0.png"/></div></div><div class="col-10 offset-1 col-sm-8 offset-sm-0"><div class="row"><div class="col-6 col-sm-3"><div class="Footer__listItemTitle__2c4Vw Footer__listItem__3Wo1h">CHANNELS</div><div class="Footer__listItem__3Wo1h"><a href="/startup">STARTUP</a></div><div class="Footer__listItem__3Wo1h"><a href="/grow">GROW</a></div><div class="Footer__listItem__3Wo1h"><a href="/lead">LEAD</a></div><div class="Footer__listItem__3Wo1h"><a href="/innovate">INNOVATE</a></div><div class="Footer__listItem__3Wo1h"><a href="/technology">TECHNOLOGY</a></div><div class="Footer__listItem__3Wo1h"><a href="/money">MONEY</a></div><div class="Footer__listItem__3Wo1h"><a href="/inc5000">INC. 5000</a></div><div class="Footer__listItem__3Wo1h"><a href="/video">VIDEO</a></div></div><div class="col-6 col-sm-3"><div class="Footer__listItemTitle__2c4Vw Footer__listItem__3Wo1h">MORE INC.</div><div class="Footer__listItem__3Wo1h"><a href="/events">EVENTS</a></div><div class="Footer__listItem__3Wo1h"><a href="/newsletter">NEWSLETTERS</a></div><div class="Footer__listItem__3Wo1h"><a href="/magazine">MAGAZINE</a></div><div class="Footer__listItem__3Wo1h"><a href="http://www.ernlive.com/show/inc-radio/15335">INC. RADIO</a></div><div class="Footer__listItem__3Wo1h"><a href="/brandview">BRANDVIEW</a></div><div class="Footer__listItem__3Wo1h"><a href="/podcasts">PODCASTS</a></div><div class="Footer__listItem__3Wo1h"><a href="/subscribe">SUBSCRIBE</a></div></div><div class="Footer__columnSeparator__3iDVO col-sm-12 d-sm-none"><hr/></div><div class="col-6 col-sm-3"><div class="Footer__listItemTitle__2c4Vw Footer__listItem__3Wo1h">SUBSCRIBE</div><div class="Footer__listItem__3Wo1h"><img src="https://www.inc.com/images/currentcover.jpg?1552647773603"/></div><div class="Footer__listItem__3Wo1h"><a href="/magazine">MAGAZINE</a></div><div class="Footer__listItem__3Wo1h"><a href="/digital">DIGITAL EDITION</a></div></div><div class="Footer__centerSocial__1iUQH col-6 col-sm-3"><div class="Footer__listItemTitle__2c4Vw Footer__listItem__3Wo1h">FOLLOW INC.</div><div class="Footer__listItem__3Wo1h Footer__socialIcon__3dk78"><a href="#"><svg aria-hidden="true" data-prefix="fab" data-icon="facebook-f" class="svg-inline--fa fa-facebook-f fa-w-9 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 512"><path fill="currentColor" d="M76.7 512V283H0v-91h76.7v-71.7C76.7 42.4 124.3 0 193.8 0c33.3 0 61.9 2.5 70.2 3.6V85h-48.2c-37.8 0-45.1 18-45.1 44.3V192H256l-11.7 91h-73.6v229"></path></svg></a></div><div class="Footer__listItem__3Wo1h Footer__socialIcon__3dk78"><a href="#"><svg aria-hidden="true" data-prefix="fab" data-icon="twitter" class="svg-inline--fa fa-twitter fa-w-16 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg></a></div><div class="Footer__listItem__3Wo1h Footer__socialIcon__3dk78"><a href="#"><svg aria-hidden="true" data-prefix="fab" data-icon="linkedin-in" class="svg-inline--fa fa-linkedin-in fa-w-14 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M100.3 480H7.4V180.9h92.9V480zM53.8 140.1C24.1 140.1 0 115.5 0 85.8 0 56.1 24.1 32 53.8 32c29.7 0 53.8 24.1 53.8 53.8 0 29.7-24.1 54.3-53.8 54.3zM448 480h-92.7V334.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V480h-92.8V180.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V480z"></path></svg></a></div><div class="Footer__listItem__3Wo1h Footer__socialIcon__3dk78"><a href="#"><svg aria-hidden="true" data-prefix="fab" data-icon="google-plus-g" class="svg-inline--fa fa-google-plus-g fa-w-20 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M386.061 228.496c1.834 9.692 3.143 19.384 3.143 31.956C389.204 370.205 315.599 448 204.8 448c-106.084 0-192-85.915-192-192s85.916-192 192-192c51.864 0 95.083 18.859 128.611 50.292l-52.126 50.03c-14.145-13.621-39.028-29.599-76.485-29.599-65.484 0-118.92 54.221-118.92 121.277 0 67.056 53.436 121.277 118.92 121.277 75.961 0 104.513-54.745 108.965-82.773H204.8v-66.009h181.261zm185.406 6.437V179.2h-56.001v55.733h-55.733v56.001h55.733v55.733h56.001v-55.733H627.2v-56.001h-55.733z"></path></svg></a></div><div class="Footer__listItem__3Wo1h Footer__socialIcon__3dk78"><a href="#"><svg aria-hidden="true" data-prefix="fab" data-icon="youtube" class="svg-inline--fa fa-youtube fa-w-18 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg></a></div></div></div><div class="Footer__bottomRow__1jL7v row"><div class="col-sm-12"><div class="Footer__bottomItems__M0qmX"><div class="Footer__bottomMenu__1ctpa Footer__listItemTitle__2c4Vw"><span class="Footer__listItem__3Wo1h">© 2018 Manuseto Ventures</span></div><div class="Footer__subItems__1BBdL"><div><span class="Footer__listItem__3Wo1h"><a href="https://incmagazine.zendesk.com/hc/en-us" target="_blank" rel="noreferrer noopener">Help Center</a></span></div><div><span class="Footer__listItem__3Wo1h"><a href="/advertise">Advertise</a></span></div><div><span class="Footer__listItem__3Wo1h"><a href="/about/privacy.html">Privacy</a></span></div><div><span class="Footer__listItem__3Wo1h"><a href="/sitemap">Sitemap</a></span></div></div></div></div></div></div></div></div></footer></div></div>\n  <script>window.__INITIAL_STATE__ = {"responsive":{"phone":false,"tablet":false,"mobile":false,"desktop":true,"fakeWidth":1200},"routing":{"location":null},"ARTICLE":{"articles":{},"videos":{},"infiniteScrollArticles":[],"loadedArticleBundles":[],"isFetching":false,"isFetched":false,"error":null,"meta":true},"articleHash":{"server698192":{"id":226487,"inc_headline":"These 4 Questions Might Be Preventing You From Starting a Side Hustle","inc_homepage_headline":"These 4 Questions Might Be Preventing You From Starting a Side Hustle","inc_homepage_headline_ab_test":null,"inc_test_before_social_promotionflag":false,"inc_twitter_headline":"With 50% of millennial side hustling, here\'s how you can also get a piece of the gig economy pie @arianna","inc_rubric":null,"inc_title":"These 4 Questions Might Be Preventing You From Starting a Side Hustle","inc_custom_byline":null,"inc_deck":"With over 50 percent of millennials side hustling, you might be asking how you can get your own slice of the gig economy pie. Here\'s how.","inc_homepage_deck":"With over 50% of millennials side hustling, you might be asking how you can get your own slice of the gig economy pie. Here\'s how. ","inc_sharing_deck":null,"inc_clean_text":"<p><a href=\\"https://www.inc.com/arianna-odell/6-side-hustles-you-can-start-from-your-couch.html\\">Side hustling</a> is on the rise and it\'s estimated that 4 out of 10 Americans&nbsp;are supplementing their primary incomes with side gigs and freelance work.&nbsp;&nbsp;Looking to the US millennial generation, it\'s estimated that <a target=\\"_blank\\" href=\\"https://www.bankrate.com/personal-finance/smart-money/side-hustles-survey-june-2018/\\">50 percent&nbsp;</a>of this demographic have now joined the freelance and gig economy.</p>\\r\\n<p>I\'ve been <a href=\\"https://www.inc.com/arianna-odell/how-to-start-3d-printing-your-own-products.html\\">side hustling for as long as I can remember</a>. From working 3 jobs in high school, to selling on Etsy&nbsp;today, I\'ve been able to build up secondary income streams in a variety of ways. When I tell people about my pursuits in <a href=\\"https://www.inc.com/arianna-odell/heres-how-you-can-start-a-side-business-in-10-minutes-per-day.html\\">passive income and side hustling</a>, I\'m met with a barrage of questions. Here are the most common that can help you overcome your hesitations and get started today:&nbsp;</p>\\r\\n<h2>1.&nbsp;How can I get started?</h2>\\r\\n<p>I\'ve always loved making gifts for friends and always thought there was need in the market for funny quirky gifts when I was shopping. I began creating my own products for fun and to my surprise others wanted them too.&nbsp;</p>\\r\\n<p>There are so many ways you can get started with a side hustle. Whether you pick up a second job for the weekends, or sell a product to consumers, there are many ways to generate additional income streams.</p>\\r\\n<p>To get started, think about a skill that you have that provides value to others and see how you can turn it into a business. Are you an amazing pie maker? Sell pies to those in your community. Do you know how to code? On the weekends, use your skills to build websites for clients. The first step in side hustling is to take a step back to see what you\'re good at. Then you can figure out a way to monetize it.</p>\\r\\n<h2>2. What about taxes and licenses?&nbsp;</h2>\\r\\n<p>Taxes can be intimidating and prevent new entrepreneurs&nbsp;from ever getting started with their side hustle. Though I don\'t have a background in business logistics, I learned everything I needed to know about taxes and licensing from Google searches and talking to seasoned enraptures.</p>\\r\\n<p>It might feel scary to wade into uncharted regulatory&nbsp;waters,&nbsp;you can find many digestible articles online that can help you break down the legalities of running a business. And you\'d be surprised how easy it is to get started. In most states, you can form a sole proprietorship&nbsp;for around $50 or register an LLC for around $200.</p>\\r\\n<p>While I did all of this myself, if you\'re still feeling hesitant about starting a business, a tax professional and consultant can often get you on the right track when you\'re just starting off.&nbsp;</p>\\r\\n<h2>3. What are some easy side hustles to start?&nbsp;</h2>\\r\\n<p>Some common side hustles that are easy to start including, writing, website creation, social media management, teaching a language, and selling products online. For my side hustle, I use print-on demand technology to sell a wide range of products from yoga mats to t-shirts.</p>\\r\\n<p>Think about a skill that would benefit others or an activity you love doing. Then you can work backwards to think about what kinds of people would pay for the service and how it could provide value to others. From writing eBooks, to showing others how to organize, there are many ways you can turn your expertise into education that people would gladly pay for.&nbsp;</p>\\r\\n<h2>4. How can I find the time?</h2>\\r\\n<p>You don\'t need an entire day of the week to get started with side hustling. In fact, you can get started in as little as 10 minutes a day. Simply starting small and building over time can help you create lucrative future income streams.</p>\\r\\n<p>For over two years, I worked on my store for 10-15 minutes a day when I was done with my client work. Now it\'s providing me a steady stream of income.&nbsp;</p>\\r\\n<p>If you have time to watch Netflix, you have time to start a business. Get started today and reap the benefits tomorrow.&nbsp;</p>","inc_code_only_text":null,"inc_pubdate":"2019-02-22 09:51:44","inc_promo_date":"2019-02-22 09:51:44","inc_custom_pubdate":null,"inc_feature_image_override":"","inc_feature_image_background_color_override":null,"inc_feature_image_override_position":null,"inc_show_feature_imageflag":true,"inc_feature_image_style":"pano","inc_image_caption_override":null,"inc_autid":0,"inc_typid":1,"inc_staid":7,"inc_serid":0,"inc_prtid":0,"inc_activeflag":true,"inc_copyeditedflag":false,"inc_flag_for_reviewflag":false,"inc_lock_articleflag":true,"inc_react_displayflag":true,"inc_filelocation":"arianna-odell/half-of-millennials-are-side-hustling-here-are-4-of-most-common-questions-new-hustlers-have.html","inc_override_url":null,"inc_hide_article_sidebarflag":false,"inc_custom_sidebar":null,"inc_show_read_moreflag":true,"inc_display_video_at_bottomflag":false,"inc_autoplay_videoflag":true,"inc_full_width_read_moreflag":false,"inc_custom_footer":null,"inc_custom_teaser":null,"inc_hide_video_prerollflag":false,"inc_custom_css":null,"inc_custom_javascript":"","inc_canonical_url":null,"inc_meta_keywords":"millennial, hustle, gig, job, online","inc_column_name_override":null,"inc_newsworthyflag":false,"inc_notepad":null,"inc_track_changesflag":false,"time_updated":"2019-03-03 06:00:01","channels":[{"id":40,"cnl_name":"Strategy","cnl_filelocation":"strategy","cnl_featuretype":"None","cnl_custom_color":null,"cnl_calculated_color":"F6861F","cnl_contributor_accessflag":true,"cnl_custom_article_footer":null,"cnl_global_nav_background_color":null,"cnl_global_nav_background_gradient_start":null,"cnl_global_nav_background_gradient_end":null,"sortorder":null},{"id":256,"cnl_name":"Creativity","cnl_filelocation":"creativity","cnl_featuretype":"None","cnl_custom_color":null,"cnl_calculated_color":"9DC786","cnl_contributor_accessflag":true,"cnl_custom_article_footer":null,"cnl_global_nav_background_color":null,"cnl_global_nav_background_gradient_start":null,"cnl_global_nav_background_gradient_end":null,"sortorder":1},{"id":9,"cnl_name":"Home-Based Business","cnl_filelocation":"home-based-business","cnl_featuretype":"None","cnl_custom_color":null,"cnl_calculated_color":"F7CE00","cnl_contributor_accessflag":false,"cnl_custom_article_footer":null,"cnl_global_nav_background_color":null,"cnl_global_nav_background_gradient_start":null,"cnl_global_nav_background_gradient_end":null,"sortorder":2}],"categories":[],"primarychannelarray":null,"authors":[{"id":7322,"aut_name":"Arianna O\'Dell","aut_usrid":4408991,"aut_base_filelocation":"arianna-odell","aut_imgid":333228,"aut_twitter_id":"arianna","aut_title":"Founder, Airlink Design ","aut_blurb":"Arianna O\'Dell is the founder of  <a href=\\"http://airlinkdesign.com/\\"> Airlink Design</a>, a digital agency helping clients create beautiful graphic design, collateral, and websites. When she\'s not working with clients or traveling, you\'ll find her making fun gifts at  <a href=\\"https://ideasbyarianna.com/\\"> Ideas By Arianna</a>.","aut_footer_blurb":"Arianna O\'Dell is the founder of Airlink Design, a digital agency helping clients create beautiful graphic design, collateral, and websites.","aut_column_name":"Outside The Cubicle","aut_atyid":2,"aut_newsletter_location":null,"authorimage":"https://www.incimages.com/uploaded_files/image/100x100/nullnullauthorphoto_333228.jpg","sortorder":null}],"images":[{"id":384024,"sortorder":null}],"inlineimages":[],"photoEssaySlides":null,"readMoreArticles":null,"slideshows":[],"videos":[],"bzwidgets":null,"relatedarticles":null,"comparisongrids":[],"products":[],"keys":["Strategy","Creativity","Home-Based Business","Arianna O\'Dell","Columnist"],"meta_description":"With over 50% of millennials side hustling, you might be asking how you can get your own slice of the gig economy pie. Here\'s how. ","brandview":null,"internationalversion":[],"imagemodels":[{"id":384024,"img_foreignkey":"651138524","img_gettyflag":true,"img_reusableflag":false,"img_rightsflag":false,"img_usrid":0,"img_pan_crop":null,"img_tags":null,"img_reference_name":"getty_651138524.jpg","img_caption":null,"img_custom_credit":null,"img_bucketref":null,"img_panoramicref":"getty_651138524.jpg","img_tile_override_imageref":null,"img_skyscraperref":null,"img_gallery_imageref":null,"credit":"Getty Images","sizes":{"panoramic":{"original":"uploaded_files/image/getty_651138524.jpg","1230x1672":"uploaded_files/image/1230x1672/getty_651138524_384024.jpg","1940x900":"uploaded_files/image/1940x900/getty_651138524_384024.jpg","1270x734":"uploaded_files/image/1270x734/getty_651138524_384024.jpg","0x734":"uploaded_files/image/0x734/getty_651138524_384024.jpg","1150x540":"uploaded_files/image/1150x540/getty_651138524_384024.jpg","970x450":"uploaded_files/image/970x450/getty_651138524_384024.jpg","640x290":"uploaded_files/image/640x290/getty_651138524_384024.jpg","635x367":"uploaded_files/image/635x367/getty_651138524_384024.jpg","0x367":"uploaded_files/image/0x367/getty_651138524_384024.jpg","575x270":"uploaded_files/image/575x270/getty_651138524_384024.jpg","385x240":"uploaded_files/image/385x240/getty_651138524_384024.jpg","336x336":"uploaded_files/image/336x336/getty_651138524_384024.jpg","300x520":"uploaded_files/image/300x520/getty_651138524_384024.jpg","300x200":"uploaded_files/image/300x200/getty_651138524_384024.jpg","284x160":"uploaded_files/image/284x160/getty_651138524_384024.jpg","155x90":"uploaded_files/image/155x90/getty_651138524_384024.jpg","100x100":"uploaded_files/image/100x100/getty_651138524_384024.jpg","50x50":"uploaded_files/image/50x50/getty_651138524_384024.jpg"}}}],"formatted_text":"&lt;p&gt;&lt;a href=&quot;https://www.inc.com/arianna-odell/6-side-hustles-you-can-start-from-your-couch.html&quot;&gt;Side hustling&lt;/a&gt; is on the rise and it&apos;s estimated that 4 out of 10 Americans&amp;nbsp;are supplementing their primary incomes with side gigs and freelance work.&amp;nbsp;&amp;nbsp;Looking to the US millennial generation, it&apos;s estimated that &lt;a target=&quot;_blank&quot; href=&quot;https://www.bankrate.com/personal-finance/smart-money/side-hustles-survey-june-2018/&quot;&gt;50 percent&amp;nbsp;&lt;/a&gt;of this demographic have now joined the freelance and gig economy.&lt;/p&gt;\\r\\n&lt;p&gt;I&apos;ve been &lt;a href=&quot;https://www.inc.com/arianna-odell/how-to-start-3d-printing-your-own-products.html&quot;&gt;side hustling for as long as I can remember&lt;/a&gt;. From working 3 jobs in high school, to selling on Etsy&amp;nbsp;today, I&apos;ve been able to build up secondary income streams in a variety of ways. When I tell people about my pursuits in &lt;a href=&quot;https://www.inc.com/arianna-odell/heres-how-you-can-start-a-side-business-in-10-minutes-per-day.html&quot;&gt;passive income and side hustling&lt;/a&gt;, I&apos;m met with a barrage of questions. Here are the most common that can help you overcome your hesitations and get started today:&amp;nbsp;&lt;/p&gt;\\r\\n&lt;h2&gt;1.&amp;nbsp;How can I get started?&lt;/h2&gt;\\r\\n&lt;p&gt;I&apos;ve always loved making gifts for friends and always thought there was need in the market for funny quirky gifts when I was shopping. I began creating my own products for fun and to my surprise others wanted them too.&amp;nbsp;&lt;/p&gt;\\r\\n&lt;p&gt;There are so many ways you can get started with a side hustle. Whether you pick up a second job for the weekends, or sell a product to consumers, there are many ways to generate additional income streams.&lt;/p&gt;\\r\\n&lt;p&gt;To get started, think about a skill that you have that provides value to others and see how you can turn it into a business. Are you an amazing pie maker? Sell pies to those in your community. Do you know how to code? On the weekends, use your skills to build websites for clients. The first step in side hustling is to take a step back to see what you&apos;re good at. Then you can figure out a way to monetize it.&lt;/p&gt;\\r\\n&lt;h2&gt;2. What about taxes and licenses?&amp;nbsp;&lt;/h2&gt;\\r\\n&lt;p&gt;Taxes can be intimidating and prevent new entrepreneurs&amp;nbsp;from ever getting started with their side hustle. Though I don&apos;t have a background in business logistics, I learned everything I needed to know about taxes and licensing from Google searches and talking to seasoned enraptures.&lt;/p&gt;\\r\\n&lt;p&gt;It might feel scary to wade into uncharted regulatory&amp;nbsp;waters,&amp;nbsp;you can find many digestible articles online that can help you break down the legalities of running a business. And you&apos;d be surprised how easy it is to get started. In most states, you can form a sole proprietorship&amp;nbsp;for around $50 or register an LLC for around $200.&lt;/p&gt;\\r\\n&lt;p&gt;While I did all of this myself, if you&apos;re still feeling hesitant about starting a business, a tax professional and consultant can often get you on the right track when you&apos;re just starting off.&amp;nbsp;&lt;/p&gt;\\r\\n&lt;h2&gt;3. What are some easy side hustles to start?&amp;nbsp;&lt;/h2&gt;\\r\\n&lt;p&gt;Some common side hustles that are easy to start including, writing, website creation, social media management, teaching a language, and selling products online. For my side hustle, I use print-on demand technology to sell a wide range of products from yoga mats to t-shirts.&lt;/p&gt;\\r\\n&lt;p&gt;Think about a skill that would benefit others or an activity you love doing. Then you can work backwards to think about what kinds of people would pay for the service and how it could provide value to others. From writing eBooks, to showing others how to organize, there are many ways you can turn your expertise into education that people would gladly pay for.&amp;nbsp;&lt;/p&gt;\\r\\n&lt;h2&gt;4. How can I find the time?&lt;/h2&gt;\\r\\n&lt;p&gt;You don&apos;t need an entire day of the week to get started with side hustling. In fact, you can get started in as little as 10 minutes a day. Simply starting small and building over time can help you create lucrative future income streams.&lt;/p&gt;\\r\\n&lt;p&gt;For over two years, I worked on my store for 10-15 minutes a day when I was done with my client work. Now it&apos;s providing me a steady stream of income.&amp;nbsp;&lt;/p&gt;\\r\\n&lt;p&gt;If you have time to watch Netflix, you have time to start a business. Get started today and reap the benefits tomorrow.&amp;nbsp;&lt;/p&gt;","adinfo":{"c_type":"article","showlogo":true,"cms":"inc226487","video":"no","aut":["arianna-odell"],"channelArray":{"topid":"40","topfilelocation":"strategy","primary":["grow","innovate","startup"],"primaryFilelocation":["grow","innovate","startup"],"primaryname":["Grow","Innovate","Startup"],"sub":["strategy","creativity","homebased"],"subFilelocation":["strategy","creativity","home-based-business"],"subname":["Strategy","Creativity","Home-Based Business"]},"adzone":"/4160/mv.inc/grow/strategy/strategy"},"seriesname":null,"editorname":null,"commentcount":null,"inc5000companies":[],"companies":[],"buyerzonewidgets":[],"photoEssaySlideModels":null,"custom_article_footer":null,"ser_footer_blurb":null,"dayssincepubdate":20,"trackingpixel":"","promotions":null,"inline_script_tags":[],"loadedFully":true,"promoimage":"https://www.incimages.com/uploaded_files/image/970x450/getty_651138524_384024.jpg","largepromoimage":"https://www.incimages.com/uploaded_files/image/1940x900/getty_651138524_384024.jpg","pubdate":"2019-02-22T09:51:44.000Z","author":"Arianna O\'Dell","authortwitter":"@arianna","articlesection":"Grow"},"server698193":{"id":227288,"inc_homepage_headline":"Is Your Perfectionism Killing Your Success? This Quiz Will Tell You","inc_homepage_headline_ab_test":"Exactly How Much of a Perfectionist Are You? This Quiz Will Tell You","inc_headline":"Is Your Perfectionism Killing Your Success? This Quiz Will Tell You","inc_filelocation":"https://www.inc.com/jessica-stillman/are-you-a-perfectionist-quiz.html?cid=readmoretext_ab_pretest","tilefeatureimage":"https://www.incimages.com/uploaded_files/image/300x200/getty_465649558_2000128320009280285_385411.jpg","tilefeatureimageX2":"https://www.incimages.com/uploaded_files/image/600x400/getty_465649558_2000128320009280285_385411.jpg","brandview":null,"loadedFully":false},"server698194":{"id":227557,"inc_homepage_headline":"100 Books to Read Before You Die (According to the BBC)","inc_homepage_headline_ab_test":"100 Books You Should Read Before You Die","inc_headline":"100 Books to Read Before You Die","inc_filelocation":"https://www.inc.com/melanie-curtin/100-books-to-read-before-you-die.html?cid=readmoretext_ab","tilefeatureimage":"https://www.incimages.com/uploaded_files/image/300x200/getty_909045284_385964.jpg","tilefeatureimageX2":"https://www.incimages.com/uploaded_files/image/600x400/getty_909045284_385964.jpg","brandview":null,"loadedFully":false},"server698195":{"id":226430,"inc_homepage_headline":"Sabbaticals Might Be Just What Your Employees Need. Here\'s Why","inc_homepage_headline_ab_test":"Why the Sabbatical Should Be Common Fare in Every Business","inc_headline":"Sabbaticals Might Be Just What Your Employees Need. Here\'s Why","inc_filelocation":"https://www.inc.com/wanda-thibodeaux/sabbaticals-might-be-just-what-your-employees-need-heres-why.html?cid=readmoretext_ab","tilefeatureimage":"https://www.incimages.com/uploaded_files/image/300x200/getty_542107444_2000133420009280386_383841.jpg","tilefeatureimageX2":"https://www.incimages.com/uploaded_files/image/600x400/getty_542107444_2000133420009280386_383841.jpg","brandview":null,"loadedFully":false},"server698196":{"id":227698,"inc_homepage_headline":"7 Things to Say When You\'re Asked \'What Is Your Current Salary?\'","inc_homepage_headline_ab_test":"","inc_headline":"7 Things to Say When You\'re Asked \'What Is Your Current Salary?\'","inc_filelocation":"https://www.inc.com/marcel-schwantes/job-applicants-1-question-youll-hear-in-an-interview-is-now-illegal-dont-answer-it.html?cid=readmoretext0","slideshow":false,"tilefeatureimage":"https://www.incimages.com/uploaded_files/image/300x200/getty_874031176_2000136320009280380_386338.jpg","tilefeatureimageX2":"https://www.incimages.com/uploaded_files/image/600x400/getty_874031176_2000136320009280380_386338.jpg","brandview":null,"loadedFully":false}},"videoHash":{"server698197":{"id":225967,"inc_homepage_headline":null,"inc_homepage_headline_ab_test":null,"inc_headline":"9 Successful Founders on How They Spent Their First Big Paycheck","inc_deck":"We asked 9 founders from the Inc. 5000 list of fastest-growing companies what they did with their first paycheck. Spoiler: no one reinvested it.","inc_filelocation":"https://www.inc.com/video/9-successful-founders-on-how-they-spent-their-first-big-paycheck.html","video":true,"vidid":"15593","tilefeatureimage":"https://www.incimages.com/uploaded_files/image/300x200/Paycheck_POSTER_900_383005.jpg","tilefeatureimageX2":"https://www.incimages.com/uploaded_files/image/600x400/Paycheck_POSTER_900_383005.jpg"}},"gridHash":{},"productHash":{},"user":{"loggedIn":false},"mustReadArticles":{"articles":[],"videos":[],"desktoplogo":null,"mobilelogo":null,"logolink":null,"containedInList":null},"articleBundleHash":{"server698203":{"articleId":"server698192","videos":[],"grids":[],"slideshows":[],"slides":[],"readmorearticles":[227288,227557,226430,227698],"images":["server698198"],"channels":["server698199","server698200","server698201"],"authors":["server698202"]}},"articlePage":{"infiniteArticleCollection":[{"articleBundleId":"server698203"}]},"imageHash":{"server698198":{"id":384024,"img_foreignkey":"651138524","img_gettyflag":true,"img_reusableflag":false,"img_rightsflag":false,"img_usrid":0,"img_pan_crop":null,"img_tags":null,"img_reference_name":"getty_651138524.jpg","img_caption":null,"img_custom_credit":null,"img_bucketref":null,"img_panoramicref":"getty_651138524.jpg","img_tile_override_imageref":null,"img_skyscraperref":null,"img_gallery_imageref":null,"credit":"Getty Images","sizes":{"panoramic":{"original":"uploaded_files/image/getty_651138524.jpg","1230x1672":"uploaded_files/image/1230x1672/getty_651138524_384024.jpg","1940x900":"uploaded_files/image/1940x900/getty_651138524_384024.jpg","1270x734":"uploaded_files/image/1270x734/getty_651138524_384024.jpg","0x734":"uploaded_files/image/0x734/getty_651138524_384024.jpg","1150x540":"uploaded_files/image/1150x540/getty_651138524_384024.jpg","970x450":"uploaded_files/image/970x450/getty_651138524_384024.jpg","640x290":"uploaded_files/image/640x290/getty_651138524_384024.jpg","635x367":"uploaded_files/image/635x367/getty_651138524_384024.jpg","0x367":"uploaded_files/image/0x367/getty_651138524_384024.jpg","575x270":"uploaded_files/image/575x270/getty_651138524_384024.jpg","385x240":"uploaded_files/image/385x240/getty_651138524_384024.jpg","336x336":"uploaded_files/image/336x336/getty_651138524_384024.jpg","300x520":"uploaded_files/image/300x520/getty_651138524_384024.jpg","300x200":"uploaded_files/image/300x200/getty_651138524_384024.jpg","284x160":"uploaded_files/image/284x160/getty_651138524_384024.jpg","155x90":"uploaded_files/image/155x90/getty_651138524_384024.jpg","100x100":"uploaded_files/image/100x100/getty_651138524_384024.jpg","50x50":"uploaded_files/image/50x50/getty_651138524_384024.jpg"}}}},"channelHash":{"server698199":{"id":40,"cnl_name":"Strategy","cnl_filelocation":"strategy","cnl_featuretype":"None","cnl_custom_color":null,"cnl_calculated_color":"F6861F","cnl_contributor_accessflag":true,"cnl_custom_article_footer":null,"cnl_global_nav_background_color":null,"cnl_global_nav_background_gradient_start":null,"cnl_global_nav_background_gradient_end":null,"sortorder":null},"server698200":{"id":256,"cnl_name":"Creativity","cnl_filelocation":"creativity","cnl_featuretype":"None","cnl_custom_color":null,"cnl_calculated_color":"9DC786","cnl_contributor_accessflag":true,"cnl_custom_article_footer":null,"cnl_global_nav_background_color":null,"cnl_global_nav_background_gradient_start":null,"cnl_global_nav_background_gradient_end":null,"sortorder":1},"server698201":{"id":9,"cnl_name":"Home-Based Business","cnl_filelocation":"home-based-business","cnl_featuretype":"None","cnl_custom_color":null,"cnl_calculated_color":"F7CE00","cnl_contributor_accessflag":false,"cnl_custom_article_footer":null,"cnl_global_nav_background_color":null,"cnl_global_nav_background_gradient_start":null,"cnl_global_nav_background_gradient_end":null,"sortorder":2}},"authorHash":{"server698202":{"id":7322,"aut_name":"Arianna O\'Dell","aut_usrid":4408991,"aut_base_filelocation":"arianna-odell","aut_imgid":333228,"aut_twitter_id":"arianna","aut_title":"Founder, Airlink Design ","aut_blurb":"Arianna O\'Dell is the founder of  <a href=\\"http://airlinkdesign.com/\\"> Airlink Design</a>, a digital agency helping clients create beautiful graphic design, collateral, and websites. When she\'s not working with clients or traveling, you\'ll find her making fun gifts at  <a href=\\"https://ideasbyarianna.com/\\"> Ideas By Arianna</a>.","aut_footer_blurb":"Arianna O\'Dell is the founder of Airlink Design, a digital agency helping clients create beautiful graphic design, collateral, and websites.","aut_column_name":"Outside The Cubicle","aut_atyid":2,"aut_newsletter_location":null,"authorimage":"https://www.incimages.com/uploaded_files/image/100x100/nullnullauthorphoto_333228.jpg","sortorder":null}}};</script>\n  <script src="https://assets.inc.com/_/inc/ffae3fe009c3cf7b46a921d016706d0e9179cc25/app.9af4f45d37e05b57b906.js"></script>\n  \n  <script>window.main();</script>\n  <!-- es6 polyfills (Implemented for GDRP) -->\n  <script type="text/javascript" src="https://cdn.polyfill.io/v2/polyfill.js?features=es6"></script>\n  <!-- Launch -->\n\n  <!-- Conversant Begin -->\n  <script src="https://cdn.conversant.mgr.consensu.org/gdpr/cmp/config/i/n/inc.com/config.js"></script>\n  <script src="https://secure-cdn.mplxtms.com/gdpr/cmp/gdpr-cmp-bootstrap.js"></script>\n  <!-- Conversant End -->\n  <!-- Skimlinks -->\n  <script type="text/javascript" src="https://s.skimresources.com/js/122276X1582760.skimlinks.js"></script>\n</body>\n</html>\n',
+      html: '<!doctype html>\n<html>\n<head>\n  <title data-react-helmet="true">These 4 Questions Might Be Preventing You From Starting a Side Hustle | Inc.com</title>\n  <meta data-react-helmet="true" name="title" content="These 4 Questions Might Be Preventing You From Starting a Side Hustle"/><meta data-react-helmet="true" name="description" content="With over 50% of millennials side hustling, you might be asking how you can get your own slice of the gig economy pie. Here&#x27;s how. "/><meta data-react-helmet="true" name="syndication-source" content="https://www.inc.com/arianna-odell/half-of-millennials-are-side-hustling-here-are-4-of-most-common-questions-new-hustlers-have.html"/><meta data-react-helmet="true" name="news_keywords" content="millennial, hustle, gig, job, online"/><meta data-react-helmet="true" property="og:title" content="These 4 Questions Might Be Preventing You From Starting a Side Hustle"/><meta data-react-helmet="true" property="og:description" content="With over 50% of millennials side hustling, you might be asking how you can get your own slice of the gig economy pie. Here&#x27;s how. "/><meta data-react-helmet="true" property="og:type" content="article"/><meta data-react-helmet="true" property="og:url" content="https://www.inc.com/arianna-odell/half-of-millennials-are-side-hustling-here-are-4-of-most-common-questions-new-hustlers-have.html"/><meta data-react-helmet="true" property="og:image" content="https://www.incimages.com/uploaded_files/image/970x450/getty_651138524_384024.jpg"/><meta data-react-helmet="true" property="og:site_name" content="Inc.com"/><meta data-react-helmet="true" name="twitter:card" content="summary_large_image"/><meta data-react-helmet="true" name="twitter:image" content="https://www.incimages.com/uploaded_files/image/1940x900/getty_651138524_384024.jpg"/><meta data-react-helmet="true" name="twitter:site" content="@Inc"/><meta data-react-helmet="true" name="twitter:creator" content="@arianna"/><meta data-react-helmet="true" name="twitter:url" content="https://www.inc.com/arianna-odell/half-of-millennials-are-side-hustling-here-are-4-of-most-common-questions-new-hustlers-have.html"/><meta data-react-helmet="true" name="twitter:title" content="These 4 Questions Might Be Preventing You From Starting a Side Hustle"/><meta data-react-helmet="true" name="twitter:description" content="With over 50 percent of millennials side hustling, you might be asking how you can get your own slice of the gig economy pie. Here&#x27;s how."/><meta data-react-helmet="true" property="fb:app_id" content="139291179414843"/><meta data-react-helmet="true" property="article:published_time" content="2019-02-22 09:51:44"/><meta data-react-helmet="true" property="article:section" content="Strategy"/><meta data-react-helmet="true" property="article:author" content="Arianna O&#x27;Dell"/><meta data-react-helmet="true" property="og:image" content="https://www.incimages.com/uploaded_files/image/970x450/getty_651138524_384024.jpg"/>\n  <script data-react-helmet="true" src="https://assets.fastcompany.com/assets/js/vendor/prebid/prebid1.40.0-pre.js" async="true"></script><script data-react-helmet="true" src="https://z.moatads.com/mansuetoprebidheader15141606144/yi.js" async="true"></script><script data-react-helmet="true" type="application/ld+json">{"@context":"http://schema.org","@type":"NewsArticle","headline":"These 4 Questions Might Be Preventing You From Starting a Side Hustle","url":"https://www.inc.com/arianna-odell/half-of-millennials-are-side-hustling-here-are-4-of-most-common-questions-new-hustlers-have.html","mainEntityOfPage":"https://www.inc.com/arianna-odell/half-of-millennials-are-side-hustling-here-are-4-of-most-common-questions-new-hustlers-have.html","identifier":"inc226487","thumbnailUrl":"https://www.incimages.com/uploaded_files/image/970x450/getty_651138524_384024.jpg","dateCreated":"2019-02-22 09:51:44","datePublished":"2019-02-22 09:51:44","dateModified":"2019-03-03 06:00:01","articleSection":"Strategy","publisher":{"@type":"Organization","name":"Inc.","logo":{"@type":"ImageObject","url":"https://www.incimages.com/topnav/inc-logo.png","width":170,"height":59}},"image":{"@type":"ImageObject","url":"https://www.incimages.com/uploaded_files/image/970x450/getty_651138524_384024.jpg","height":450,"width":970},"keywords":["Strategy","Creativity","Home-Based Business","Arianna O\'Dell","Columnist"],"creator":"Arianna O\'Dell","author":{"@type":"Person","name":"Arianna O\'Dell"}}</script>\n  <link data-react-helmet="true" rel="canonical" href="https://www.inc.com/arianna-odell/half-of-millennials-are-side-hustling-here-are-4-of-most-common-questions-new-hustlers-have.html"/><link data-react-helmet="true" rel="image_src" href="https://www.incimages.com/uploaded_files/image/970x450/getty_651138524_384024.jpg"/><link data-react-helmet="true" rel="preload" href="https://z.moatads.com/mansuetoprebidheader15141606144/yi.js" as="script"/><link data-react-helmet="true" rel="preconnect" href="https://mb.moatads.com" crossOrigin="true"/><link data-react-helmet="true" rel="preload" href="https://assets.fastcompany.com/assets/js/vendor/prebid/prebid1.40.0-pre.js" as="script"/><link data-react-helmet="true" rel="preload" href="https://www.googletagservices.com/tag/js/gpt.js" as="script"/>\n  <meta charset="utf-8" />\n  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">\n  <meta name="robots" content="noarchive">\n  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width height=device-height" />\n  <meta name="format-detection" content = "telephone=no">\n\n  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">\n  <link type="text/css" rel="stylesheet" href="https://assets.inc.com/_/inc/ffae3fe009c3cf7b46a921d016706d0e9179cc25/app.57f7b1dd8624c8f177553d7296b19155.css" />\n  \n  \n</head>\n<body>\n  <div id="app"><div data-reactroot=""><header class="Header__globalHeader__3xt4W Header__globalHeaderStuck__3nTRK "><div><div class="adElement AdContainer__adContainer__3lfQm AdContainer__topFullWidthFlex__2bECD"><div style="width:0;height:0"></div></div></div><div class="barnav-container"><nav class="BarNav__barNav__2k5ZH "><div class="BarNav__container__1WfQj container"><div class="SectionLeft__sectionLeft__2rlvG"><div class="IconLists__iconlist__1VaG8"><div><div class="topnav-item IconLists__navItem__1I5H1"><svg aria-hidden="true" data-prefix="fas" data-icon="bars" class="svg-inline--fa fa-bars fa-w-14 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="color:black"><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg></div><div class="topnav-item IconLists__navItem__1I5H1"><svg aria-hidden="true" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="color:black"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg></div><div class="topnav-item IconLists__navItem__1I5H1"><svg aria-hidden="true" data-prefix="fas" data-icon="user" class="svg-inline--fa fa-user fa-w-14 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="color:black"><path fill="currentColor" d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"></path></svg></div></div></div></div><div class="SectionCenter__sectionCenter__1XXUL"><div class="nav-logo SectionCenter__logo__yBr-x  "><a href="https://www.inc.com/"><img src="https://www.incimages.com/inc-logo-black.png"/></a></div><div class="SectionCenter__barNavHeadline__3yXTy "><div class="SectionCenter__text___tD7L">These 4 Questions Might Be Preventing You From Starting a Side Hustle</div></div></div><div class="SectionRight__sectionRight__3V7G0"><div></div></div></div></nav></div></header><div style="margin-top:0" class="bigWrapper"><div class="trackingPixelContainer" style="display:none"></div><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/><div class="articlesHolder"><div><span style="font-size:0"></span><div class="undefined "><header class="ArticleFrame__articleHeader__38aOc"><header class="ArticleHeaderMainView__articleHeader__1zYxW"><div class="container"><div class="row"><div class="ArticleHeaderMainView__headerCopy__2ylL_ col-sm-10"><h4 class="Eyebrow__eyebrow__DZqz6"><a href="https://www.inc.com/strategy"><span>Strategy</span></a></h4><h1 class="ArticleTitle__primaryTitle__2l_VZ ArticleHeaderMainView__fullWidthLanderPrimaryTitle__1jNnD"><span class="editableWrapper" style="display:block"></span></h1></div></div><div class="row"><div class="col-sm-12"></div></div><div class="row"><div class="ArticleHeaderMainView__headerCopy__2ylL_ col-sm-10 offset-sm-1 col-md-8 offset-md-2 header-copy"><h2 class="ArticleDeck__articleDeck__1uDMg"><span class="editableWrapper" style="display:block"></span></h2></div></div><div class="row"><div class="ArticlePage__articleShareBar__2zuc9"><div class="ShareButton__shareButton__1Yps-"><a target="_blank" rel="noopener noreferrer" class="ShareButtonAnchor" href=""></a></div><div class="ShareButton__shareButton__1Yps-"><a target="_blank" rel="noopener noreferrer" class="ShareButtonAnchor" href=""></a></div><div class="ShareButton__shareButton__1Yps-"><a target="_blank" rel="noopener noreferrer" class="ShareButtonAnchor" href=""></a></div></div></div><div class="author"><div class="AuthorBox__authorBox__XrT5x"><div class="inner"><a href="/author/arianna-odell"><img src="https://www.incimages.com/uploaded_files/image/100x100/nullnullauthorphoto_333228.jpg" class="AuthorBox__authorPhoto__39snX"/></a><a href="/author/arianna-odell"><span class="AuthorBox__authorName__2YZqy">By <!-- -->Arianna O&#x27;Dell</span></a><span class="AuthorBox__authorTitle__2WEIc">Founder, Airlink Design </span><span class="AuthorBox__authorTwitter__2Xvhe"><svg aria-hidden="true" data-prefix="fab" data-icon="twitter" class="svg-inline--fa fa-twitter fa-w-16 AuthorBox__twitterIcon__3FrRL" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg><a target="_blank" rel="noreferrer noopener" href="https://www.twitter.com/arianna">@<!-- -->arianna</a></span></div></div></div><div class="row"><div class="ArticleHeaderMainView__headerCopy__2ylL_ ArticleHeaderMainView__sponsorLogo__33DkV col-sm-10"><div class="adElement AdContainer__adContainer__3lfQm " style="background-color:#FFFFFF"><div style="width:220px;height:50px"></div></div></div></div></div><div class="featureitem"><div class="AddClickableBox__wrapper__2x-1L"><div><div class="FeatureImage__pano__2KnBv"><div class="FeatureImage__photo__25HtL"><img class="" draggable="false" src="https://www.incimages.com/uploaded_files/image/970x450/getty_651138524_384024.jpg" style="cursor:"/></div></div><div class="FeatureImage__imageCredit__1Zh90"></div></div></div></div></header></header><span style="font-size:0"></span><div><div class="ArticleFrame__articleContainer__2HV3L container"><div class="row hmmm"><div class="article-body col-md-8 offset-md-0 col-lg-7 offset-lg-2" data-id="226487"><div data-id="226487"><div class="editableWrapper"></div><div class="ArticlePubdate__pubdate__3kWwF">Published on: Feb 22, 2019</div></div></div><div class="undefined article-sidebar d-none d-md-block col-md-3"></div></div><span style="font-size:0"></span><div class="row"><div class="col-md-8 offset-md-0 col-lg-8 offset-lg-1"><div><div class="ArticleFooterLayout__moduleTitle__2uEHY">More from Inc.</div><div class="row"></div></div><div><div class="ArticleFooterLayout__moduleTitle__2uEHY">Sponsored Business Content<span class="ArticleFooterLayout__sponsoredBy__N-wmo"><a href="https://www.dianomi.com/whatsthis.pl?id=3778" target="_blank" rel="noreferrer noopener"><img src="//www.dianomi.com/img/uploads/WGP9Y4waycyxN5KEBJ69CQAAABM.png" alt="Dianomi" width="55" height="10"/></a></span></div><div class="row"><div class="dianomiTrackingPixels"></div></div></div></div></div></div><div class="bottom-ad-holder"><div class="adElement AdContainer__adContainer__3lfQm AdContainer__flexbillboard__23y9N"><div style="width:300px;height:250px"></div></div></div></div></div></div></div><div class="initialTracking"><div><!-- START OMNITURE //-->      <script language="JavaScript" type="text/javascript" src="https://www.inc.com/js/lib/s_code.js"></script>      <script language="JavaScript" type="text/javascript"><!--      if(navigator.appVersion.indexOf(\'MSIE\')>=0)document.write(unescape(\'%3C\')+\'!-\'+\'-\')      //--></script><noscript><img src="https://grunerandjahr.112.2o7.net/b/ss/gjinccomprod/1/H.24.1--NS/0"      height="1" width="1" border="0" alt="" /></noscript>      <script language="JavaScript" type="text/javascript" src="https://tempo.inc.com/js/trk.js" async></script>      <!-- END OMNITURE //--></div><div><!-- START COMSCORE //-->      <script>      var _comscore = _comscore || [];      _comscore.push({ c1: "2", c2: "6916907" });      (function() {      var s = document.createElement("script"), el =      document.getElementsByTagName("script")[0]; s.async = true;      s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") +      ".scorecardresearch.com/beacon.js";      el.parentNode.insertBefore(s, el);      })();      </script>      <noscript><img src="https://b.scorecardresearch.com/p?c1=2&c2=6916907&c4=https://www.inc.com/steve-blank/steve-blank-to-fix-startup-culture-ceos-venture-capitalists-must-lead-by-example.html" /></noscript>      <!-- END COMSCORE //--></div><div><!-- START CHARTBEAT //-->      <script>      var _sf_async_config = _sf_async_config || {};      _sf_async_config.domain = "inc.com";      _sf_async_config.sections = "Strategy";      _sf_async_config.authors = "Arianna O\'Dell";      _sf_async_config.path = "https://www.inc.com/arianna-odell/half-of-millennials-are-side-hustling-here-are-4-of-most-common-questions-new-hustlers-have.html";      (function(){          window._sf_endpt=(new Date()).getTime();          var e = document.createElement(\'script\');          e.setAttribute(\'language\', \'javascript\');          e.setAttribute(\'type\', \'text/javascript\');          e.setAttribute(\'src\',              (("https:" == document.location.protocol) ? "https://s3.amazonaws.com/" : "http://") +              "static.chartbeat.com/js/chartbeat_video.js");          document.body.appendChild(e);        })();      </script>      <!-- END CHARTBEAT //--></div><div><div id="parsely-root" style="display: none"><span id="parsely-cfg" data-parsely-site="inc.com"></span></div><script>      var parselyPreload = {eventQueue: [], loaded: false};      PARSELY = {      autotrack: false,       onload: function() {           parselyPreload.loaded = true;           for (var i = 0; i < parselyPreload.eventQueue.length; i++) {                 PARSELY.beacon.trackPageView(parselyPreload.eventQueue[i]);           }       }      };      (function(s, p, d) {      var h=d.location.protocol, i=p+"-"+s,      e=d.getElementById(i), r=d.getElementById(p+"-root"),      u=h==="https:"?"d1z2jf7jlzjs58.cloudfront.net"      :"static."+p+".com";      if (e) return;      e = d.createElement(s); e.id = i; e.async = true;      e.src = h+"//"+u+"/p.js"; r.appendChild(e);      })("script", "parsely", document);      </script></div><div><!-- START GA //-->      <script type="text/javascript">          var _gaq = _gaq || [];          _gaq.push([\'_setAccount\', \'UA-98096820-1\']);          _gaq.push([\'_setAllowLinker\', true]);          _gaq.push([\'_trackPageview\']);          (function() {              var ga = document.createElement(\'script\'); ga.type = \'text/javascript\'; ga.async = true;              ga.src = (\'https:\' == document.location.protocol ? \'https://ssl\' : \'http://www\') + \'.google-analytics.com/ga.js\';              var s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(ga, s);          })();      </script>      <!-- END GA //--></div><div><script>    (function (w,d,t) {      _ml = w._ml || {};      _ml.eid = \'50190\';      _ml.ef = [\'#cds_email\',\'.cds_email\',\'.email\',\'.inputEmail\',\'.newsletters\'];      var s, cd, tag; s = d.getElementsByTagName(t)[0]; cd = new Date();      tag = d.createElement(t); tag.async = 1;      tag.src = \'https://ml314.com/tag.aspx?\' + cd.getDate() + cd.getMonth();      s.parentNode.insertBefore(tag, s);    })(window,document,\'script\');    </script></div><div><!--START Lightbox Javascript-->  <script type="text/javascript">    /*<![CDATA[*/ window.lightboxjs || function (c) { function g(b, d) { d && (d += (/\\?/.test(d) ? "&" : "?") + "lv=1"); c[b] || function () { var i = window, h = document, j = b, g = h.location.protocol, l = "load", k = 0; (function () { function b() { a.P(l); a.w = 1; c[j]("_load") } c[j] = function () { function m() { m.id = e; return c[j].apply(m, arguments) } var b, e = ++k; b = this && this != i ? this.id || 0 : 0; (a.s = a.s || []).push([e, b, arguments]); m.then = function (b, c, h) { var d = a.fh[e] = a.fh[e] || [], j = a.eh[e] = a.eh[e] || [], f = a.ph[e] = a.ph[e] || []; b && d.push(b); c && j.push(c); h && f.push(h); return m }; return m }; var a = c[j]._ = {}; a.fh = {}; a.eh = {}; a.ph = {}; a.l = d ? d.replace(/^///, (g == "https:" ? g : "http:") + "//") : d; a.p = { 0: +new Date }; a.P = function (b) { a.p[b] = new Date - a.p[0] }; a.w && b(); i.addEventListener ? i.addEventListener(l, b, !1) : i.attachEvent("on" + l, b); var q = function () { function b() { return ["<head></head><", c, \' onload="var d=\', n, ";d.getElementsByTagName(\'head\')[0].", d, "(d.", g, "(\'script\')).", i, "=\'", a.l, "\'\\"></", c, ">"].join("") } var c = "body", e = h[c]; if (!e) return setTimeout(q, 100); a.P(1); var d = "appendChild", g = "createElement",    i = "src", k = h[g]("div"), l = k[d](h[g]("div")), f = h[g]("iframe"), n = "document", p; k.style.display = "none"; e.insertBefore(k, e.firstChild).id = o + "-" + j; f.frameBorder = "0"; f.id = o + "-frame-" + j; /MSIE[ ]+6/.test(navigator.userAgent) && (f[i] = "javascript:false"); f.allowTransparency = "true"; l[d](f); try { f.contentWindow[n].open() } catch (s) { a.domain = h.domain, p = "javascript:var d=" + n + ".open();d.domain=\'" + h.domain + "\';", f[i] = p + "void(0);" } try { var r = f.contentWindow[n]; r.write(b()); r.close() } catch (t) { f[i] = p + \'d.write("\' + b().replace(/"/g, String.fromCharCode(92) + \'"\') + \'");d.close();\' } a.P(2) }; a.l && q() })() }(); c[b].lv = "1"; return c[b] } var o = "lightboxjs", k = window[o] = g(o); k.require = g; k.modules = c }({}); /*]]>*/  </script>  <script type="text/javascript">window.lightboxlib = lightboxjs.require("lightboxlib", "//www.lightboxcdn.com/vendor/55ecb6d7-3a26-4842-a19b-853a7835fd15/lightbox.js?mb=" + (new Date().getTime()));</script>  <!--END Lightbox Javascript--></div></div><div class="adElement AdContainer__adContainer__3lfQm AdContainer__adhesiveBanner__o6YE-"><div style="width:320px;height:50px"></div></div></div><footer class="Footer__footerContainer__13mvl"><div class="container"><div class="row"><div class="col-10 offset-1 col-sm-4 offset-sm-0"><div class="Footer__brandLogo__1T6Nt"><img src="https://www.incimages.com/logos/inc_logo_footer_223x76_e0e0e0.png"/></div></div><div class="col-10 offset-1 col-sm-8 offset-sm-0"><div class="row"><div class="col-6 col-sm-3"><div class="Footer__listItemTitle__2c4Vw Footer__listItem__3Wo1h">CHANNELS</div><div class="Footer__listItem__3Wo1h"><a href="/startup">STARTUP</a></div><div class="Footer__listItem__3Wo1h"><a href="/grow">GROW</a></div><div class="Footer__listItem__3Wo1h"><a href="/lead">LEAD</a></div><div class="Footer__listItem__3Wo1h"><a href="/innovate">INNOVATE</a></div><div class="Footer__listItem__3Wo1h"><a href="/technology">TECHNOLOGY</a></div><div class="Footer__listItem__3Wo1h"><a href="/money">MONEY</a></div><div class="Footer__listItem__3Wo1h"><a href="/inc5000">INC. 5000</a></div><div class="Footer__listItem__3Wo1h"><a href="/video">VIDEO</a></div></div><div class="col-6 col-sm-3"><div class="Footer__listItemTitle__2c4Vw Footer__listItem__3Wo1h">MORE INC.</div><div class="Footer__listItem__3Wo1h"><a href="/events">EVENTS</a></div><div class="Footer__listItem__3Wo1h"><a href="/newsletter">NEWSLETTERS</a></div><div class="Footer__listItem__3Wo1h"><a href="/magazine">MAGAZINE</a></div><div class="Footer__listItem__3Wo1h"><a href="http://www.ernlive.com/show/inc-radio/15335">INC. RADIO</a></div><div class="Footer__listItem__3Wo1h"><a href="/brandview">BRANDVIEW</a></div><div class="Footer__listItem__3Wo1h"><a href="/podcasts">PODCASTS</a></div><div class="Footer__listItem__3Wo1h"><a href="/subscribe">SUBSCRIBE</a></div></div><div class="Footer__columnSeparator__3iDVO col-sm-12 d-sm-none"><hr/></div><div class="col-6 col-sm-3"><div class="Footer__listItemTitle__2c4Vw Footer__listItem__3Wo1h">SUBSCRIBE</div><div class="Footer__listItem__3Wo1h"><img src="https://www.inc.com/images/currentcover.jpg?1552647773603"/></div><div class="Footer__listItem__3Wo1h"><a href="/magazine">MAGAZINE</a></div><div class="Footer__listItem__3Wo1h"><a href="/digital">DIGITAL EDITION</a></div></div><div class="Footer__centerSocial__1iUQH col-6 col-sm-3"><div class="Footer__listItemTitle__2c4Vw Footer__listItem__3Wo1h">FOLLOW INC.</div><div class="Footer__listItem__3Wo1h Footer__socialIcon__3dk78"><a href="#"><svg aria-hidden="true" data-prefix="fab" data-icon="facebook-f" class="svg-inline--fa fa-facebook-f fa-w-9 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 512"><path fill="currentColor" d="M76.7 512V283H0v-91h76.7v-71.7C76.7 42.4 124.3 0 193.8 0c33.3 0 61.9 2.5 70.2 3.6V85h-48.2c-37.8 0-45.1 18-45.1 44.3V192H256l-11.7 91h-73.6v229"></path></svg></a></div><div class="Footer__listItem__3Wo1h Footer__socialIcon__3dk78"><a href="#"><svg aria-hidden="true" data-prefix="fab" data-icon="twitter" class="svg-inline--fa fa-twitter fa-w-16 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg></a></div><div class="Footer__listItem__3Wo1h Footer__socialIcon__3dk78"><a href="#"><svg aria-hidden="true" data-prefix="fab" data-icon="linkedin-in" class="svg-inline--fa fa-linkedin-in fa-w-14 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M100.3 480H7.4V180.9h92.9V480zM53.8 140.1C24.1 140.1 0 115.5 0 85.8 0 56.1 24.1 32 53.8 32c29.7 0 53.8 24.1 53.8 53.8 0 29.7-24.1 54.3-53.8 54.3zM448 480h-92.7V334.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V480h-92.8V180.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V480z"></path></svg></a></div><div class="Footer__listItem__3Wo1h Footer__socialIcon__3dk78"><a href="#"><svg aria-hidden="true" data-prefix="fab" data-icon="google-plus-g" class="svg-inline--fa fa-google-plus-g fa-w-20 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M386.061 228.496c1.834 9.692 3.143 19.384 3.143 31.956C389.204 370.205 315.599 448 204.8 448c-106.084 0-192-85.915-192-192s85.916-192 192-192c51.864 0 95.083 18.859 128.611 50.292l-52.126 50.03c-14.145-13.621-39.028-29.599-76.485-29.599-65.484 0-118.92 54.221-118.92 121.277 0 67.056 53.436 121.277 118.92 121.277 75.961 0 104.513-54.745 108.965-82.773H204.8v-66.009h181.261zm185.406 6.437V179.2h-56.001v55.733h-55.733v56.001h55.733v55.733h56.001v-55.733H627.2v-56.001h-55.733z"></path></svg></a></div><div class="Footer__listItem__3Wo1h Footer__socialIcon__3dk78"><a href="#"><svg aria-hidden="true" data-prefix="fab" data-icon="youtube" class="svg-inline--fa fa-youtube fa-w-18 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg></a></div></div></div><div class="Footer__bottomRow__1jL7v row"><div class="col-sm-12"><div class="Footer__bottomItems__M0qmX"><div class="Footer__bottomMenu__1ctpa Footer__listItemTitle__2c4Vw"><span class="Footer__listItem__3Wo1h">© 2018 Manuseto Ventures</span></div><div class="Footer__subItems__1BBdL"><div><span class="Footer__listItem__3Wo1h"><a href="https://incmagazine.zendesk.com/hc/en-us" target="_blank" rel="noreferrer noopener">Help Center</a></span></div><div><span class="Footer__listItem__3Wo1h"><a href="/advertise">Advertise</a></span></div><div><span class="Footer__listItem__3Wo1h"><a href="/about/privacy.html">Privacy</a></span></div><div><span class="Footer__listItem__3Wo1h"><a href="/sitemap">Sitemap</a></span></div></div></div></div></div></div></div></div></footer></div></div>\n  <script>window.__INITIAL_STATE__ = {"responsive":{"phone":false,"tablet":false,"mobile":false,"desktop":true,"fakeWidth":1200},"routing":{"location":null},"ARTICLE":{"articles":{},"videos":{},"infiniteScrollArticles":[],"loadedArticleBundles":[],"isFetching":false,"isFetched":false,"error":null,"meta":true},"articleHash":{"server698192":{"id":226487,"inc_headline":"These 4 Questions Might Be Preventing You From Starting a Side Hustle","inc_homepage_headline":"These 4 Questions Might Be Preventing You From Starting a Side Hustle","inc_homepage_headline_ab_test":null,"inc_test_before_social_promotionflag":false,"inc_twitter_headline":"With 50% of millennial side hustling, here\'s how you can also get a piece of the gig economy pie @arianna","inc_rubric":null,"inc_title":"These 4 Questions Might Be Preventing You From Starting a Side Hustle","inc_custom_byline":null,"inc_deck":"With over 50 percent of millennials side hustling, you might be asking how you can get your own slice of the gig economy pie. Here\'s how.","inc_homepage_deck":"With over 50% of millennials side hustling, you might be asking how you can get your own slice of the gig economy pie. Here\'s how. ","inc_sharing_deck":null,"inc_clean_text":"<p><a href=\\"https://www.inc.com/arianna-odell/6-side-hustles-you-can-start-from-your-couch.html\\">Side hustling</a> is on the rise and it\'s estimated that 4 out of 10 Americans&nbsp;are supplementing their primary incomes with side gigs and freelance work.&nbsp;&nbsp;Looking to the US millennial generation, it\'s estimated that <a target=\\"_blank\\" href=\\"https://www.bankrate.com/personal-finance/smart-money/side-hustles-survey-june-2018/\\">50 percent&nbsp;</a>of this demographic have now joined the freelance and gig economy.</p>\\r\\n<p>I\'ve been <a href=\\"https://www.inc.com/arianna-odell/how-to-start-3d-printing-your-own-products.html\\">side hustling for as long as I can remember</a>. From working 3 jobs in high school, to selling on Etsy&nbsp;today, I\'ve been able to build up secondary income streams in a variety of ways. When I tell people about my pursuits in <a href=\\"https://www.inc.com/arianna-odell/heres-how-you-can-start-a-side-business-in-10-minutes-per-day.html\\">passive income and side hustling</a>, I\'m met with a barrage of questions. Here are the most common that can help you overcome your hesitations and get started today:&nbsp;</p>\\r\\n<h2>1.&nbsp;How can I get started?</h2>\\r\\n<p>I\'ve always loved making gifts for friends and always thought there was need in the market for funny quirky gifts when I was shopping. I began creating my own products for fun and to my surprise others wanted them too.&nbsp;</p>\\r\\n<p>There are so many ways you can get started with a side hustle. Whether you pick up a second job for the weekends, or sell a product to consumers, there are many ways to generate additional income streams.</p>\\r\\n<p>To get started, think about a skill that you have that provides value to others and see how you can turn it into a business. Are you an amazing pie maker? Sell pies to those in your community. Do you know how to code? On the weekends, use your skills to build websites for clients. The first step in side hustling is to take a step back to see what you\'re good at. Then you can figure out a way to monetize it.</p>\\r\\n<h2>2. What about taxes and licenses?&nbsp;</h2>\\r\\n<p>Taxes can be intimidating and prevent new entrepreneurs&nbsp;from ever getting started with their side hustle. Though I don\'t have a background in business logistics, I learned everything I needed to know about taxes and licensing from Google searches and talking to seasoned enraptures.</p>\\r\\n<p>It might feel scary to wade into uncharted regulatory&nbsp;waters,&nbsp;you can find many digestible articles online that can help you break down the legalities of running a business. And you\'d be surprised how easy it is to get started. In most states, you can form a sole proprietorship&nbsp;for around $50 or register an LLC for around $200.</p>\\r\\n<p>While I did all of this myself, if you\'re still feeling hesitant about starting a business, a tax professional and consultant can often get you on the right track when you\'re just starting off.&nbsp;</p>\\r\\n<h2>3. What are some easy side hustles to start?&nbsp;</h2>\\r\\n<p>Some common side hustles that are easy to start including, writing, website creation, social media management, teaching a language, and selling products online. For my side hustle, I use print-on demand technology to sell a wide range of products from yoga mats to t-shirts.</p>\\r\\n<p>Think about a skill that would benefit others or an activity you love doing. Then you can work backwards to think about what kinds of people would pay for the service and how it could provide value to others. From writing eBooks, to showing others how to organize, there are many ways you can turn your expertise into education that people would gladly pay for.&nbsp;</p>\\r\\n<h2>4. How can I find the time?</h2>\\r\\n<p>You don\'t need an entire day of the week to get started with side hustling. In fact, you can get started in as little as 10 minutes a day. Simply starting small and building over time can help you create lucrative future income streams.</p>\\r\\n<p>For over two years, I worked on my store for 10-15 minutes a day when I was done with my client work. Now it\'s providing me a steady stream of income.&nbsp;</p>\\r\\n<p>If you have time to watch Netflix, you have time to start a business. Get started today and reap the benefits tomorrow.&nbsp;</p>","inc_code_only_text":null,"inc_pubdate":"2019-02-22 09:51:44","inc_promo_date":"2019-02-22 09:51:44","inc_custom_pubdate":null,"inc_feature_image_override":"","inc_feature_image_background_color_override":null,"inc_feature_image_override_position":null,"inc_show_feature_imageflag":true,"inc_feature_image_style":"pano","inc_image_caption_override":null,"inc_autid":0,"inc_typid":1,"inc_staid":7,"inc_serid":0,"inc_prtid":0,"inc_activeflag":true,"inc_copyeditedflag":false,"inc_flag_for_reviewflag":false,"inc_lock_articleflag":true,"inc_react_displayflag":true,"inc_filelocation":"arianna-odell/half-of-millennials-are-side-hustling-here-are-4-of-most-common-questions-new-hustlers-have.html","inc_override_url":null,"inc_hide_article_sidebarflag":false,"inc_custom_sidebar":null,"inc_show_read_moreflag":true,"inc_display_video_at_bottomflag":false,"inc_autoplay_videoflag":true,"inc_full_width_read_moreflag":false,"inc_custom_footer":null,"inc_custom_teaser":null,"inc_hide_video_prerollflag":false,"inc_custom_css":null,"inc_custom_javascript":"","inc_canonical_url":null,"inc_meta_keywords":"millennial, hustle, gig, job, online","inc_column_name_override":null,"inc_newsworthyflag":false,"inc_notepad":null,"inc_track_changesflag":false,"time_updated":"2019-03-03 06:00:01","channels":[{"id":40,"cnl_name":"Strategy","cnl_filelocation":"strategy","cnl_featuretype":"None","cnl_custom_color":null,"cnl_calculated_color":"F6861F","cnl_contributor_accessflag":true,"cnl_custom_article_footer":null,"cnl_global_nav_background_color":null,"cnl_global_nav_background_gradient_start":null,"cnl_global_nav_background_gradient_end":null,"sortorder":null},{"id":256,"cnl_name":"Creativity","cnl_filelocation":"creativity","cnl_featuretype":"None","cnl_custom_color":null,"cnl_calculated_color":"9DC786","cnl_contributor_accessflag":true,"cnl_custom_article_footer":null,"cnl_global_nav_background_color":null,"cnl_global_nav_background_gradient_start":null,"cnl_global_nav_background_gradient_end":null,"sortorder":1},{"id":9,"cnl_name":"Home-Based Business","cnl_filelocation":"home-based-business","cnl_featuretype":"None","cnl_custom_color":null,"cnl_calculated_color":"F7CE00","cnl_contributor_accessflag":false,"cnl_custom_article_footer":null,"cnl_global_nav_background_color":null,"cnl_global_nav_background_gradient_start":null,"cnl_global_nav_background_gradient_end":null,"sortorder":2}],"categories":[],"primarychannelarray":null,"authors":[{"id":7322,"aut_name":"Arianna O\'Dell","aut_usrid":4408991,"aut_base_filelocation":"arianna-odell","aut_imgid":333228,"aut_twitter_id":"arianna","aut_title":"Founder, Airlink Design ","aut_blurb":"Arianna O\'Dell is the founder of  <a href=\\"http://airlinkdesign.com/\\"> Airlink Design</a>, a digital agency helping clients create beautiful graphic design, collateral, and websites. When she\'s not working with clients or traveling, you\'ll find her making fun gifts at  <a href=\\"https://ideasbyarianna.com/\\"> Ideas By Arianna</a>.","aut_footer_blurb":"Arianna O\'Dell is the founder of Airlink Design, a digital agency helping clients create beautiful graphic design, collateral, and websites.","aut_column_name":"Outside The Cubicle","aut_atyid":2,"aut_newsletter_location":null,"authorimage":"https://www.incimages.com/uploaded_files/image/100x100/nullnullauthorphoto_333228.jpg","sortorder":null}],"images":[{"id":384024,"sortorder":null}],"inlineimages":[],"photoEssaySlides":null,"readMoreArticles":null,"slideshows":[],"videos":[],"bzwidgets":null,"relatedarticles":null,"comparisongrids":[],"products":[],"keys":["Strategy","Creativity","Home-Based Business","Arianna O\'Dell","Columnist"],"meta_description":"With over 50% of millennials side hustling, you might be asking how you can get your own slice of the gig economy pie. Here\'s how. ","brandview":null,"internationalversion":[],"imagemodels":[{"id":384024,"img_foreignkey":"651138524","img_gettyflag":true,"img_reusableflag":false,"img_rightsflag":false,"img_usrid":0,"img_pan_crop":null,"img_tags":null,"img_reference_name":"getty_651138524.jpg","img_caption":null,"img_custom_credit":null,"img_bucketref":null,"img_panoramicref":"getty_651138524.jpg","img_tile_override_imageref":null,"img_skyscraperref":null,"img_gallery_imageref":null,"credit":"Getty Images","sizes":{"panoramic":{"original":"uploaded_files/image/getty_651138524.jpg","1230x1672":"uploaded_files/image/1230x1672/getty_651138524_384024.jpg","1940x900":"uploaded_files/image/1940x900/getty_651138524_384024.jpg","1270x734":"uploaded_files/image/1270x734/getty_651138524_384024.jpg","0x734":"uploaded_files/image/0x734/getty_651138524_384024.jpg","1150x540":"uploaded_files/image/1150x540/getty_651138524_384024.jpg","970x450":"uploaded_files/image/970x450/getty_651138524_384024.jpg","640x290":"uploaded_files/image/640x290/getty_651138524_384024.jpg","635x367":"uploaded_files/image/635x367/getty_651138524_384024.jpg","0x367":"uploaded_files/image/0x367/getty_651138524_384024.jpg","575x270":"uploaded_files/image/575x270/getty_651138524_384024.jpg","385x240":"uploaded_files/image/385x240/getty_651138524_384024.jpg","336x336":"uploaded_files/image/336x336/getty_651138524_384024.jpg","300x520":"uploaded_files/image/300x520/getty_651138524_384024.jpg","300x200":"uploaded_files/image/300x200/getty_651138524_384024.jpg","284x160":"uploaded_files/image/284x160/getty_651138524_384024.jpg","155x90":"uploaded_files/image/155x90/getty_651138524_384024.jpg","100x100":"uploaded_files/image/100x100/getty_651138524_384024.jpg","50x50":"uploaded_files/image/50x50/getty_651138524_384024.jpg"}}}],"formatted_text":"&lt;p&gt;&lt;a href=&quot;https://www.inc.com/arianna-odell/6-side-hustles-you-can-start-from-your-couch.html&quot;&gt;Side hustling&lt;/a&gt; is on the rise and it&apos;s estimated that 4 out of 10 Americans&amp;nbsp;are supplementing their primary incomes with side gigs and freelance work.&amp;nbsp;&amp;nbsp;Looking to the US millennial generation, it&apos;s estimated that &lt;a target=&quot;_blank&quot; href=&quot;https://www.bankrate.com/personal-finance/smart-money/side-hustles-survey-june-2018/&quot;&gt;50 percent&amp;nbsp;&lt;/a&gt;of this demographic have now joined the freelance and gig economy.&lt;/p&gt;\\r\\n&lt;p&gt;I&apos;ve been &lt;a href=&quot;https://www.inc.com/arianna-odell/how-to-start-3d-printing-your-own-products.html&quot;&gt;side hustling for as long as I can remember&lt;/a&gt;. From working 3 jobs in high school, to selling on Etsy&amp;nbsp;today, I&apos;ve been able to build up secondary income streams in a variety of ways. When I tell people about my pursuits in &lt;a href=&quot;https://www.inc.com/arianna-odell/heres-how-you-can-start-a-side-business-in-10-minutes-per-day.html&quot;&gt;passive income and side hustling&lt;/a&gt;, I&apos;m met with a barrage of questions. Here are the most common that can help you overcome your hesitations and get started today:&amp;nbsp;&lt;/p&gt;\\r\\n&lt;h2&gt;1.&amp;nbsp;How can I get started?&lt;/h2&gt;\\r\\n&lt;p&gt;I&apos;ve always loved making gifts for friends and always thought there was need in the market for funny quirky gifts when I was shopping. I began creating my own products for fun and to my surprise others wanted them too.&amp;nbsp;&lt;/p&gt;\\r\\n&lt;p&gt;There are so many ways you can get started with a side hustle. Whether you pick up a second job for the weekends, or sell a product to consumers, there are many ways to generate additional income streams.&lt;/p&gt;\\r\\n&lt;p&gt;To get started, think about a skill that you have that provides value to others and see how you can turn it into a business. Are you an amazing pie maker? Sell pies to those in your community. Do you know how to code? On the weekends, use your skills to build websites for clients. The first step in side hustling is to take a step back to see what you&apos;re good at. Then you can figure out a way to monetize it.&lt;/p&gt;\\r\\n&lt;h2&gt;2. What about taxes and licenses?&amp;nbsp;&lt;/h2&gt;\\r\\n&lt;p&gt;Taxes can be intimidating and prevent new entrepreneurs&amp;nbsp;from ever getting started with their side hustle. Though I don&apos;t have a background in business logistics, I learned everything I needed to know about taxes and licensing from Google searches and talking to seasoned enraptures.&lt;/p&gt;\\r\\n&lt;p&gt;It might feel scary to wade into uncharted regulatory&amp;nbsp;waters,&amp;nbsp;you can find many digestible articles online that can help you break down the legalities of running a business. And you&apos;d be surprised how easy it is to get started. In most states, you can form a sole proprietorship&amp;nbsp;for around $50 or register an LLC for around $200.&lt;/p&gt;\\r\\n&lt;p&gt;While I did all of this myself, if you&apos;re still feeling hesitant about starting a business, a tax professional and consultant can often get you on the right track when you&apos;re just starting off.&amp;nbsp;&lt;/p&gt;\\r\\n&lt;h2&gt;3. What are some easy side hustles to start?&amp;nbsp;&lt;/h2&gt;\\r\\n&lt;p&gt;Some common side hustles that are easy to start including, writing, website creation, social media management, teaching a language, and selling products online. For my side hustle, I use print-on demand technology to sell a wide range of products from yoga mats to t-shirts.&lt;/p&gt;\\r\\n&lt;p&gt;Think about a skill that would benefit others or an activity you love doing. Then you can work backwards to think about what kinds of people would pay for the service and how it could provide value to others. From writing eBooks, to showing others how to organize, there are many ways you can turn your expertise into education that people would gladly pay for.&amp;nbsp;&lt;/p&gt;\\r\\n&lt;h2&gt;4. How can I find the time?&lt;/h2&gt;\\r\\n&lt;p&gt;You don&apos;t need an entire day of the week to get started with side hustling. In fact, you can get started in as little as 10 minutes a day. Simply starting small and building over time can help you create lucrative future income streams.&lt;/p&gt;\\r\\n&lt;p&gt;For over two years, I worked on my store for 10-15 minutes a day when I was done with my client work. Now it&apos;s providing me a steady stream of income.&amp;nbsp;&lt;/p&gt;\\r\\n&lt;p&gt;If you have time to watch Netflix, you have time to start a business. Get started today and reap the benefits tomorrow.&amp;nbsp;&lt;/p&gt;","adinfo":{"c_type":"article","showlogo":true,"cms":"inc226487","video":"no","aut":["arianna-odell"],"channelArray":{"topid":"40","topfilelocation":"strategy","primary":["grow","innovate","startup"],"primaryFilelocation":["grow","innovate","startup"],"primaryname":["Grow","Innovate","Startup"],"sub":["strategy","creativity","homebased"],"subFilelocation":["strategy","creativity","home-based-business"],"subname":["Strategy","Creativity","Home-Based Business"]},"adzone":"/4160/mv.inc/grow/strategy/strategy"},"seriesname":null,"editorname":null,"commentcount":null,"inc5000companies":[],"companies":[],"buyerzonewidgets":[],"photoEssaySlideModels":null,"custom_article_footer":null,"ser_footer_blurb":null,"dayssincepubdate":20,"trackingpixel":"","promotions":null,"inline_script_tags":[],"loadedFully":true,"promoimage":"https://www.incimages.com/uploaded_files/image/970x450/getty_651138524_384024.jpg","largepromoimage":"https://www.incimages.com/uploaded_files/image/1940x900/getty_651138524_384024.jpg","pubdate":"2019-02-22T09:51:44.000Z","author":"Arianna O\'Dell","authortwitter":"@arianna","articlesection":"Grow"},"server698193":{"id":227288,"inc_homepage_headline":"Is Your Perfectionism Killing Your Success? This Quiz Will Tell You","inc_homepage_headline_ab_test":"Exactly How Much of a Perfectionist Are You? This Quiz Will Tell You","inc_headline":"Is Your Perfectionism Killing Your Success? This Quiz Will Tell You","inc_filelocation":"https://www.inc.com/jessica-stillman/are-you-a-perfectionist-quiz.html?cid=readmoretext_ab_pretest","tilefeatureimage":"https://www.incimages.com/uploaded_files/image/300x200/getty_465649558_2000128320009280285_385411.jpg","tilefeatureimageX2":"https://www.incimages.com/uploaded_files/image/600x400/getty_465649558_2000128320009280285_385411.jpg","brandview":null,"loadedFully":false},"server698194":{"id":227557,"inc_homepage_headline":"100 Books to Read Before You Die (According to the BBC)","inc_homepage_headline_ab_test":"100 Books You Should Read Before You Die","inc_headline":"100 Books to Read Before You Die","inc_filelocation":"https://www.inc.com/melanie-curtin/100-books-to-read-before-you-die.html?cid=readmoretext_ab","tilefeatureimage":"https://www.incimages.com/uploaded_files/image/300x200/getty_909045284_385964.jpg","tilefeatureimageX2":"https://www.incimages.com/uploaded_files/image/600x400/getty_909045284_385964.jpg","brandview":null,"loadedFully":false},"server698195":{"id":226430,"inc_homepage_headline":"Sabbaticals Might Be Just What Your Employees Need. Here\'s Why","inc_homepage_headline_ab_test":"Why the Sabbatical Should Be Common Fare in Every Business","inc_headline":"Sabbaticals Might Be Just What Your Employees Need. Here\'s Why","inc_filelocation":"https://www.inc.com/wanda-thibodeaux/sabbaticals-might-be-just-what-your-employees-need-heres-why.html?cid=readmoretext_ab","tilefeatureimage":"https://www.incimages.com/uploaded_files/image/300x200/getty_542107444_2000133420009280386_383841.jpg","tilefeatureimageX2":"https://www.incimages.com/uploaded_files/image/600x400/getty_542107444_2000133420009280386_383841.jpg","brandview":null,"loadedFully":false},"server698196":{"id":227698,"inc_homepage_headline":"7 Things to Say When You\'re Asked \'What Is Your Current Salary?\'","inc_homepage_headline_ab_test":"","inc_headline":"7 Things to Say When You\'re Asked \'What Is Your Current Salary?\'","inc_filelocation":"https://www.inc.com/marcel-schwantes/job-applicants-1-question-youll-hear-in-an-interview-is-now-illegal-dont-answer-it.html?cid=readmoretext0","slideshow":false,"tilefeatureimage":"https://www.incimages.com/uploaded_files/image/300x200/getty_874031176_2000136320009280380_386338.jpg","tilefeatureimageX2":"https://www.incimages.com/uploaded_files/image/600x400/getty_874031176_2000136320009280380_386338.jpg","brandview":null,"loadedFully":false}},"videoHash":{"server698197":{"id":225967,"inc_homepage_headline":null,"inc_homepage_headline_ab_test":null,"inc_headline":"9 Successful Founders on How They Spent Their First Big Paycheck","inc_deck":"We asked 9 founders from the Inc. 5000 list of fastest-growing companies what they did with their first paycheck. Spoiler: no one reinvested it.","inc_filelocation":"https://www.inc.com/video/9-successful-founders-on-how-they-spent-their-first-big-paycheck.html","video":true,"vidid":"15593","tilefeatureimage":"https://www.incimages.com/uploaded_files/image/300x200/Paycheck_POSTER_900_383005.jpg","tilefeatureimageX2":"https://www.incimages.com/uploaded_files/image/600x400/Paycheck_POSTER_900_383005.jpg"}},"gridHash":{},"productHash":{},"user":{"loggedIn":false},"mustReadArticles":{"articles":[],"videos":[],"desktoplogo":null,"mobilelogo":null,"logolink":null,"containedInList":null},"articleBundleHash":{"server698203":{"articleId":"server698192","videos":[],"grids":[],"slideshows":[],"slides":[],"readmorearticles":[227288,227557,226430,227698],"images":["server698198"],"channels":["server698199","server698200","server698201"],"authors":["server698202"]}},"articlePage":{"infiniteArticleCollection":[{"articleBundleId":"server698203"}]},"imageHash":{"server698198":{"id":384024,"img_foreignkey":"651138524","img_gettyflag":true,"img_reusableflag":false,"img_rightsflag":false,"img_usrid":0,"img_pan_crop":null,"img_tags":null,"img_reference_name":"getty_651138524.jpg","img_caption":null,"img_custom_credit":null,"img_bucketref":null,"img_panoramicref":"getty_651138524.jpg","img_tile_override_imageref":null,"img_skyscraperref":null,"img_gallery_imageref":null,"credit":"Getty Images","sizes":{"panoramic":{"original":"uploaded_files/image/getty_651138524.jpg","1230x1672":"uploaded_files/image/1230x1672/getty_651138524_384024.jpg","1940x900":"uploaded_files/image/1940x900/getty_651138524_384024.jpg","1270x734":"uploaded_files/image/1270x734/getty_651138524_384024.jpg","0x734":"uploaded_files/image/0x734/getty_651138524_384024.jpg","1150x540":"uploaded_files/image/1150x540/getty_651138524_384024.jpg","970x450":"uploaded_files/image/970x450/getty_651138524_384024.jpg","640x290":"uploaded_files/image/640x290/getty_651138524_384024.jpg","635x367":"uploaded_files/image/635x367/getty_651138524_384024.jpg","0x367":"uploaded_files/image/0x367/getty_651138524_384024.jpg","575x270":"uploaded_files/image/575x270/getty_651138524_384024.jpg","385x240":"uploaded_files/image/385x240/getty_651138524_384024.jpg","336x336":"uploaded_files/image/336x336/getty_651138524_384024.jpg","300x520":"uploaded_files/image/300x520/getty_651138524_384024.jpg","300x200":"uploaded_files/image/300x200/getty_651138524_384024.jpg","284x160":"uploaded_files/image/284x160/getty_651138524_384024.jpg","155x90":"uploaded_files/image/155x90/getty_651138524_384024.jpg","100x100":"uploaded_files/image/100x100/getty_651138524_384024.jpg","50x50":"uploaded_files/image/50x50/getty_651138524_384024.jpg"}}}},"channelHash":{"server698199":{"id":40,"cnl_name":"Strategy","cnl_filelocation":"strategy","cnl_featuretype":"None","cnl_custom_color":null,"cnl_calculated_color":"F6861F","cnl_contributor_accessflag":true,"cnl_custom_article_footer":null,"cnl_global_nav_background_color":null,"cnl_global_nav_background_gradient_start":null,"cnl_global_nav_background_gradient_end":null,"sortorder":null},"server698200":{"id":256,"cnl_name":"Creativity","cnl_filelocation":"creativity","cnl_featuretype":"None","cnl_custom_color":null,"cnl_calculated_color":"9DC786","cnl_contributor_accessflag":true,"cnl_custom_article_footer":null,"cnl_global_nav_background_color":null,"cnl_global_nav_background_gradient_start":null,"cnl_global_nav_background_gradient_end":null,"sortorder":1},"server698201":{"id":9,"cnl_name":"Home-Based Business","cnl_filelocation":"home-based-business","cnl_featuretype":"None","cnl_custom_color":null,"cnl_calculated_color":"F7CE00","cnl_contributor_accessflag":false,"cnl_custom_article_footer":null,"cnl_global_nav_background_color":null,"cnl_global_nav_background_gradient_start":null,"cnl_global_nav_background_gradient_end":null,"sortorder":2}},"authorHash":{"server698202":{"id":7322,"aut_name":"Arianna O\'Dell","aut_usrid":4408991,"aut_base_filelocation":"arianna-odell","aut_imgid":333228,"aut_twitter_id":"arianna","aut_title":"Founder, Airlink Design ","aut_blurb":"Arianna O\'Dell is the founder of  <a href=\\"http://airlinkdesign.com/\\"> Airlink Design</a>, a digital agency helping clients create beautiful graphic design, collateral, and websites. When she\'s not working with clients or traveling, you\'ll find her making fun gifts at  <a href=\\"https://ideasbyarianna.com/\\"> Ideas By Arianna</a>.","aut_footer_blurb":"Arianna O\'Dell is the founder of Airlink Design, a digital agency helping clients create beautiful graphic design, collateral, and websites.","aut_column_name":"Outside The Cubicle","aut_atyid":2,"aut_newsletter_location":null,"authorimage":"https://www.incimages.com/uploaded_files/image/100x100/nullnullauthorphoto_333228.jpg","sortorder":null}}};</script>\n  <script src="https://assets.inc.com/_/inc/ffae3fe009c3cf7b46a921d016706d0e9179cc25/app.9af4f45d37e05b57b906.js"></script>\n  \n  <script>window.main();</script>\n  <!-- es6 polyfills (Implemented for GDRP) -->\n  <script type="text/javascript" src="https://cdn.polyfill.io/v2/polyfill.js?features=es6"></script>\n  <!-- Launch -->\n\n  <!-- Conversant Begin -->\n  <script src="https://cdn.conversant.mgr.consensu.org/gdpr/cmp/config/i/n/inc.com/config.js"></script>\n  <script src="https://secure-cdn.mplxtms.com/gdpr/cmp/gdpr-cmp-bootstrap.js"></script>\n  <!-- Conversant End -->\n  <!-- Skimlinks -->\n  <script type="text/javascript" src="https://s.skimresources.com/js/122276X1582760.skimlinks.js"></script>\n</body>\n</html>\n',
       createdAt: '2019-03-18T17:09:10.092Z',
       updatedAt: '2019-03-18T17:09:11.095Z',
       language: {
@@ -2703,7 +3475,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: [
         {
@@ -2734,7 +3506,7 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
             createdAt: '2019-04-25T11:35:03.678Z',
-            updatedAt: '2019-08-01T14:13:06.094Z',
+            updatedAt: '2019-08-15T15:30:05.483Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
@@ -2743,7 +3515,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-08-01T14:13:01.327Z'
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
             }
           }
         }
@@ -2752,12 +3534,12 @@ export default [
   },
   {
     id: '18c1a18d-bb78-4e4b-ae87-ec27ea0188fb',
-    order: 49,
+    order: 48,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-03-18T09:59:30.861Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: 'ba6042fc-9a96-4cc9-afa5-9a22c4c297ba',
       title: 'Why Instagram Made Multi-Photo Posts More Annoying',
@@ -2782,7 +3564,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: [
         {
@@ -2813,7 +3595,7 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
             createdAt: '2019-04-25T11:35:03.678Z',
-            updatedAt: '2019-08-01T14:13:06.094Z',
+            updatedAt: '2019-08-15T15:30:05.483Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
@@ -2822,7 +3604,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-08-01T14:13:01.327Z'
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
             }
           }
         }
@@ -2831,12 +3623,12 @@ export default [
   },
   {
     id: 'e775be7b-7976-48b2-b254-279522933b3f',
-    order: 50,
+    order: 49,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-03-11T10:37:15.681Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '0cdb6a24-db69-4d0b-8efc-281d6e7c1306',
       title: 'The Sharing Economy Was Always a Scam',
@@ -2861,19 +3653,19 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: []
     }
   },
   {
     id: '0d06eeb0-3597-48b9-bfbf-a80b9eeb85f5',
-    order: 51,
+    order: 50,
     lastPlayedAt: null,
     archivedAt: null,
     favoritedAt: null,
     createdAt: '2019-04-30T09:39:59.195Z',
-    updatedAt: '2019-07-29T07:19:15.746Z',
+    updatedAt: '2019-08-14T08:42:19.555Z',
     article: {
       id: '1125480a-a077-4960-aed9-4e16cfe2affb',
       title: 'Facebook’s Plan to Fuse Its Messaging Apps Is Not About Your Privacy',
@@ -2898,7 +3690,7 @@ export default [
         rightToLeft: false,
         isActive: true,
         createdAt: '2019-05-16T12:51:57.546Z',
-        updatedAt: '2019-08-01T14:13:01.327Z'
+        updatedAt: '2019-08-15T13:28:48.797Z'
       },
       audiofiles: [
         {
@@ -2929,7 +3721,7 @@ export default [
             isLanguageDefault: true,
             exampleAudioUrl: 'https://storage-development.playpost.app/voices/d2ede165-9dc0-4969-af8c-f4ff3716da53.mp3',
             createdAt: '2019-04-25T11:35:03.678Z',
-            updatedAt: '2019-08-01T14:13:06.094Z',
+            updatedAt: '2019-08-15T15:30:05.483Z',
             language: {
               id: '95f01039-fe8e-412d-a542-7089303b84c8',
               name: 'English',
@@ -2938,7 +3730,17 @@ export default [
               rightToLeft: false,
               isActive: true,
               createdAt: '2019-05-16T12:51:57.546Z',
-              updatedAt: '2019-08-01T14:13:01.327Z'
+              updatedAt: '2019-08-15T13:28:48.797Z'
+            },
+            country: {
+              id: '3bc87ff6-f1c1-4bb7-b8b3-22555e07957b',
+              name: 'United States',
+              code: 'US',
+              nativeName: 'United States',
+              continent: 'NA',
+              currency: 'USD,USN,USS',
+              createdAt: '2019-08-15T12:26:33.233Z',
+              updatedAt: '2019-08-15T12:26:33.233Z'
             }
           }
         }
@@ -2946,3 +3748,5 @@ export default [
     }
   }
 ];
+
+export default playlist;
