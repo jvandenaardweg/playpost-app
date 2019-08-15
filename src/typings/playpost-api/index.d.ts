@@ -167,6 +167,7 @@ declare namespace Api {
     isHighestQuality: boolean;
     exampleAudioUrl: string | null;
     language: Language;
+    country: Country;
     isLanguageDefault: boolean | null;
     createdAt: string;
     updatedAt: string;
@@ -180,6 +181,18 @@ declare namespace Api {
     nativeName: string | null;
     isActive: boolean;
     voices?: Voice[];
+    countries?: Country[];
+    createdAt: string;
+    updatedAt: string;
+  }
+
+  export interface Country {
+    id: string;
+    name: string;
+    code: string;
+    nativeName: string;
+    continent: string;
+    currency: string;
     createdAt: string;
     updatedAt: string;
   }
