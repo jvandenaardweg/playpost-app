@@ -225,8 +225,8 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
   isSelected = (item: Api.Voice): boolean => {
     const { languagesWithActiveVoicesByLanguageName, userSelectedVoiceByLanguageName } = this.props;
     const selectedLanguageName = this.props.navigation.getParam('languageName', '');
-    const languagewithActiveVoices = languagesWithActiveVoicesByLanguageName[selectedLanguageName];
-    const userSelectedVoice = userSelectedVoiceByLanguageName[selectedLanguageName];
+    const languagewithActiveVoices = languagesWithActiveVoicesByLanguageName && languagesWithActiveVoicesByLanguageName[selectedLanguageName];
+    const userSelectedVoice = userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName[selectedLanguageName];
 
     const isDefaultSelected = !!languagewithActiveVoices && !!languagewithActiveVoices.voices && !!languagewithActiveVoices.voices.find(voice => voice.id === item.id && voice.isLanguageDefault);
     const isUserSelected = !!userSelectedVoice && userSelectedVoice.id === item.id;
@@ -263,7 +263,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     const { languagesWithActiveVoicesByLanguageName } = this.props;
     const { selectedQuality, selectedGender, selectedRegion } = this.state;
 
-    const availableVoices = languagesWithActiveVoicesByLanguageName[selectedLanguageName].voices || [];
+    const availableVoices = languagesWithActiveVoicesByLanguageName && languagesWithActiveVoicesByLanguageName[selectedLanguageName].voices || [];
 
     const filteredVoices = availableVoices.filter(voice => {
       if (selectedGender.toUpperCase() !== voice.gender && selectedGender !== 'All') {

@@ -114,7 +114,7 @@ export const selectDownloadedVoicePreviews = createDeepEqualSelector(
 
 export const selectLanguagesWithActiveVoicesByLanguageName = createDeepEqualSelector(
   [selectLanguagesWithActiveVoices],
-  languages => {
+  (languages): AvailableVoicesByLanguageName | null => {
     if (!languages.length) {
       return {};
     }
@@ -126,6 +126,10 @@ export const selectLanguagesWithActiveVoicesByLanguageName = createDeepEqualSele
 
       return prev;
     }, {})
+
+    if (!Object.keys(languagesWithActiveVoicesByLanguageName).length) {
+      return null;
+    }
 
     return languagesWithActiveVoicesByLanguageName;
   }
@@ -188,8 +192,6 @@ export const selectCountryOptions = createDeepEqualSelector(
 
       return prev;
     }, {});
-
-
 
     return countryCodeOptions;
   }

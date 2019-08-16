@@ -147,9 +147,13 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   getAudiofileByUserSelectedVoice(): Api.Audiofile | undefined {
     const { article, userSelectedVoiceByLanguageName, availableVoicesByLanguageName } = this.props;
     const articleLanguageName = article.language ? article.language.name : '';
-    const articleLanguage = availableVoicesByLanguageName[articleLanguageName];
-    const userSelectedVoice = userSelectedVoiceByLanguageName[articleLanguageName];
+    const articleLanguage = availableVoicesByLanguageName && availableVoicesByLanguageName[articleLanguageName];
+    const userSelectedVoice = userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName[articleLanguageName];
     const defaultVoice = (articleLanguage && articleLanguage.voices) ? articleLanguage.voices.find(voice => voice.isLanguageDefault) : null;
+
+    if (!articleLanguage || !defaultVoice) {
+      return undefined;
+    }
 
     // If the user has no custom selected voice, return the audiofile of the default voice for this language
     if (!userSelectedVoice && defaultVoice) {
@@ -157,8 +161,13 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       return audiofileOfDefaultVoice;
     }
 
-    // Else, we get the audiofile based on the user's selected voice
-    return userSelectedVoice && article.audiofiles.find(audiofile => audiofile.voice.id === userSelectedVoice.id);
+    if (userSelectedVoice) {
+      // We get the audiofile based on the user's selected voice
+      return userSelectedVoice && article.audiofiles.find(audiofile => audiofile.voice.id === userSelectedVoice.id);
+    }
+
+    // Else, just return the default voice audio
+    return article.audiofiles.find(audiofile => audiofile.voice.id === defaultVoice.id);
   }
 
   /**
@@ -208,12 +217,12 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   handleCreateAudiofile = async (): Promise<void> => {
     const { article, languagesWithActiveVoices, userSelectedVoiceByLanguageName, isSubscribed, userHasSubscribedBefore } = this.props;
     const articleLanguageName = article.language ? article.language.name : '';
-    const userSelectedVoice = userSelectedVoiceByLanguageName[articleLanguageName];
+    const userSelectedVoice = userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName[articleLanguageName];
 
     // If the selected voice of the user, is a Premium voice, but the user has no Premium account active
     // On free accounts, voices with isLanguageDefault are "free" voices
     // So, if the user has not selected a default voice and is not subscribed, he cannot use this voice
-    if (!userSelectedVoice.isLanguageDefault && !isSubscribed) {
+    if ((userSelectedVoice && !userSelectedVoice.isLanguageDefault) && !isSubscribed) {
       // Show an Alert he needs to change his default voice for the "userSelectedVoice.name" language
       const selectedVoiceLanguageName = userSelectedVoice.language.name;
 

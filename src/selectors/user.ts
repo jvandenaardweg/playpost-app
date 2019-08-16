@@ -61,7 +61,7 @@ export const selectUserSelectedVoices = createDeepEqualSelector(
 
 export const selectUserSelectedVoiceByLanguageName = createDeepEqualSelector(
   [selectUserSelectedVoices],
-  voices => {
+  (voices): UserSelectedVoiceByLanguageName | null => {
     // Convert the array to an object
     // So we can easily pick a language inside our components
     const voicesObjectWithLanguageNameKeys: UserSelectedVoiceByLanguageName = voices.reduce((prev, curr) => {
@@ -69,6 +69,10 @@ export const selectUserSelectedVoiceByLanguageName = createDeepEqualSelector(
 
       return prev;
     }, {})
+
+    if (!Object.keys(voicesObjectWithLanguageNameKeys).length) {
+      return null;
+    }
 
     return voicesObjectWithLanguageNameKeys;
   }
