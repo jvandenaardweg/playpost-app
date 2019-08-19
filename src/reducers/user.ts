@@ -103,7 +103,6 @@ export function userReducer(state = initialState, action: any): UserState {
       return {
         ...state,
         isLoading: false,
-        details: null,
         error: getUserFailMessage
       };
 
