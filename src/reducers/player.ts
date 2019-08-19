@@ -35,16 +35,18 @@ export type PlayerState = Readonly<{
   isDownloadingAudiofile: boolean;
 }>;
 
+export const initialTrackState: TrackPlayer.Track = {
+  id: '',
+  url: '',
+  title: '',
+  artist: '',
+  contentType: '',
+  description: '',
+  duration: 0
+}
+
 export const initialState: PlayerState = {
-  track: {
-    id: '',
-    url: '',
-    title: '',
-    artist: '',
-    contentType: '',
-    description: '',
-    duration: 0
-  },
+  track: initialTrackState,
   audiofile: null,
   previousArticleId: '',
   currentArticleId: '',

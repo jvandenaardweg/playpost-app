@@ -2,7 +2,6 @@
 export const ALERT_TITLE_ERROR_NO_INTERNET = 'No internet availalbe';
 export const ALERT_TITLE_ERROR = 'Oops!';
 export const ALERT_TITLE_SUBSCRIPTION_ONLY = 'Available on Premium or Plus';
-export const ALERT_TITLE_LANGUAGE_UNSUPPORTED = 'Language not supported';
 export const ALERT_TITLE_REQUEST_CONFIRM = 'Are you sure?';
 export const ALERT_TITLE_SUBSCRIPTION_UPGRADE_SUCCESS = 'Upgrade success!';
 export const ALERT_TITLE_SUBSCRIPTION_RESTORE_SUCCESS = 'Restore successful!';
@@ -21,7 +20,6 @@ export const ALERT_ARTICLE_PLAY_INTERNET_REQUIRED = 'You need an active internet
 export const ALERT_ARTICLE_DOWNLOAD_FAIL = 'We could not download this article. Please try again.';
 export const ALERT_ARTICLE_PLAY_FAIL = 'We could not play this article. Please try again.';
 export const ALERT_ARTICLE_PLAY_DOWNLOAD_FAIL = 'We could not play or download this article. Please try again.';
-export const ALERT_ARTICLE_LANGUAGE_UNSUPPORTED = 'The language of this article is currently not supported.';
 
 // Alerts related to the playlist
 export const ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL = 'We could not remove this article from your playlist. Please try again later.';
