@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text } from 'react-native';
+import { ProductPurchase } from 'react-native-iap';
 import renderer from 'react-test-renderer';
 
 import { SubscriptionHandlerContainerComponent } from '../SubscriptionHandlerContainer';
@@ -12,6 +13,7 @@ import subscriptionValidationResultActiveMock from '../../../tests/__mocks__/sub
 import subscriptionValidationResultExpiredMock from '../../../tests/__mocks__/subscription-validation-result-expired';
 import userMock from '../../../tests/__mocks__/user';
 import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../constants/in-app-purchase';
+
 
 const validateSubscriptionReceiptHandler = jest.fn();
 const getUserHandler = jest.fn();
@@ -78,7 +80,7 @@ describe('SubscriptionHandlerContainer', () => {
     });
 
     it('should run validateActiveSubscriptionAtInterval when interval time passes', () => {
-      const testInstance = wrapper.root.instance;
+      const testInstance: SubscriptionHandlerContainerComponent = wrapper.root.instance;
 
       testInstance.validateActiveSubscriptionAtInterval = jest.fn();
 
@@ -102,12 +104,12 @@ describe('SubscriptionHandlerContainer', () => {
       }
 
       wrapper.update(<SubscriptionHandlerContainerComponent {...props}><Text>Container test</Text></SubscriptionHandlerContainerComponent>)
-      const testInstance = wrapper.root.instance;
+      const testInstance: SubscriptionHandlerContainerComponent = wrapper.root.instance;
 
       testInstance.context.isConnected = true;
 
-      const spyValidateSubscriptionReceipt = jest.spyOn(testInstance.props, 'validateSubscriptionReceipt').mockResolvedValueOnce(subscriptionValidationResultExpiredMock);
-      const spyGetUser = jest.spyOn(testInstance.props, 'getUser').mockResolvedValueOnce(userMock);
+      const spyValidateSubscriptionReceipt = jest.spyOn(testInstance.props, 'validateSubscriptionReceipt');
+      const spyGetUser = jest.spyOn(testInstance.props, 'getUser');
 
       await testInstance.validateActiveSubscriptionAtInterval();
 
@@ -133,7 +135,7 @@ describe('SubscriptionHandlerContainer', () => {
       }
 
       wrapper.update(<SubscriptionHandlerContainerComponent {...props}><Text>Container test</Text></SubscriptionHandlerContainerComponent>)
-      const testInstance = wrapper.root.instance;
+      const testInstance: SubscriptionHandlerContainerComponent = wrapper.root.instance;
 
       testInstance.context.isConnected = true;
 
@@ -153,7 +155,7 @@ describe('SubscriptionHandlerContainer', () => {
       }
 
       wrapper.update(<SubscriptionHandlerContainerComponent {...props}><Text>Container test</Text></SubscriptionHandlerContainerComponent>)
-      const testInstance = wrapper.root.instance;
+      const testInstance: SubscriptionHandlerContainerComponent = wrapper.root.instance;
 
       testInstance.context.isConnected = true;
 
@@ -167,7 +169,8 @@ describe('SubscriptionHandlerContainer', () => {
       const productId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
       const transactionReceipt = '[REDACTED]';
       const transactionId = '150000534161208';
-      const mockPurchase = { productId, transactionReceipt, transactionId }
+      const transactionDate = 1566204171000;
+      const mockPurchase: ProductPurchase = { productId, transactionReceipt, transactionId, transactionDate }
 
       const props = {
         ...defaultProps,
@@ -176,7 +179,7 @@ describe('SubscriptionHandlerContainer', () => {
       }
 
       wrapper.update(<SubscriptionHandlerContainerComponent {...props}><Text>Container test</Text></SubscriptionHandlerContainerComponent>)
-      const testInstance = wrapper.root.instance;
+      const testInstance: SubscriptionHandlerContainerComponent = wrapper.root.instance;
 
       testInstance.context.isConnected = true;
 
@@ -202,7 +205,7 @@ describe('SubscriptionHandlerContainer', () => {
       }
 
       wrapper.update(<SubscriptionHandlerContainerComponent {...props}><Text>Container test</Text></SubscriptionHandlerContainerComponent>)
-      const testInstance = wrapper.root.instance;
+      const testInstance: SubscriptionHandlerContainerComponent = wrapper.root.instance;
 
       testInstance.context.isConnected = true;
 
@@ -210,7 +213,7 @@ describe('SubscriptionHandlerContainer', () => {
       const spySetIsLoadingUpgrade = jest.spyOn(testInstance.props, 'setIsLoadingUpgrade');
 
       // Run the handler with mock data to simulate a purchase
-      await testInstance.handlePurchaseErrorListener()
+      await testInstance.handlePurchaseErrorListener({})
 
       expect(spySetIsLoadingUpgrade).toHaveBeenCalledTimes(0);
       expect(spyShowErrorAlert).toHaveBeenCalledTimes(0);
@@ -220,7 +223,8 @@ describe('SubscriptionHandlerContainer', () => {
       const productId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
       const transactionReceipt = '[REDACTED]';
       const transactionId = '150000534161208';
-      const mockPurchase = { productId, transactionReceipt, transactionId }
+      const transactionDate = 1566204171000;
+      const mockPurchase = { productId, transactionReceipt, transactionId, transactionDate }
 
       const props = {
         ...defaultProps,
@@ -228,12 +232,12 @@ describe('SubscriptionHandlerContainer', () => {
       }
 
       wrapper.update(<SubscriptionHandlerContainerComponent {...props}><Text>Container test</Text></SubscriptionHandlerContainerComponent>)
-      const testInstance = wrapper.root.instance;
+      const testInstance: SubscriptionHandlerContainerComponent = wrapper.root.instance;
 
       testInstance.context.isConnected = true;
 
-      const spyValidateSubscriptionReceipt = jest.spyOn(testInstance.props, 'validateSubscriptionReceipt').mockResolvedValueOnce(subscriptionValidationResultActiveMock);
-      const spyFinishTransaction = jest.spyOn(testInstance, 'finishTransaction').mockResolvedValueOnce(true);
+      const spyValidateSubscriptionReceipt = jest.spyOn(testInstance.props, 'validateSubscriptionReceipt');
+      const spyFinishTransaction = jest.spyOn(testInstance, 'finishTransaction').mockResolvedValueOnce();
       const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert');
       const spySetIsLoadingUpgrade = jest.spyOn(testInstance.props, 'setIsLoadingUpgrade');
 
@@ -257,7 +261,8 @@ describe('SubscriptionHandlerContainer', () => {
       const productId = '';
       const transactionReceipt = '[REDACTED]';
       const transactionId = '150000534161208';
-      const mockPurchase = { productId, transactionReceipt, transactionId }
+      const transactionDate = 1566204171000;
+      const mockPurchase = { productId, transactionReceipt, transactionId, transactionDate }
 
       const props = {
         ...defaultProps,
@@ -265,7 +270,7 @@ describe('SubscriptionHandlerContainer', () => {
       }
 
       wrapper.update(<SubscriptionHandlerContainerComponent {...props}><Text>Container test</Text></SubscriptionHandlerContainerComponent>)
-      const testInstance = wrapper.root.instance;
+      const testInstance: SubscriptionHandlerContainerComponent = wrapper.root.instance;
 
       testInstance.context.isConnected = true;
 
@@ -285,7 +290,8 @@ describe('SubscriptionHandlerContainer', () => {
       const productId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
       const transactionReceipt = '[REDACTED]';
       const transactionId = '';
-      const mockPurchase = { productId, transactionReceipt, transactionId }
+      const transactionDate = 1566204171000;
+      const mockPurchase = { productId, transactionReceipt, transactionId, transactionDate }
 
       const props = {
         ...defaultProps,
@@ -293,7 +299,7 @@ describe('SubscriptionHandlerContainer', () => {
       }
 
       wrapper.update(<SubscriptionHandlerContainerComponent {...props}><Text>Container test</Text></SubscriptionHandlerContainerComponent>)
-      const testInstance = wrapper.root.instance;
+      const testInstance: SubscriptionHandlerContainerComponent = wrapper.root.instance;
 
       testInstance.context.isConnected = true;
 
@@ -319,7 +325,7 @@ describe('SubscriptionHandlerContainer', () => {
       }
 
       wrapper.update(<SubscriptionHandlerContainerComponent {...props}><Text>Container test</Text></SubscriptionHandlerContainerComponent>)
-      const testInstance = wrapper.root.instance;
+      const testInstance: SubscriptionHandlerContainerComponent = wrapper.root.instance;
 
       testInstance.context.isConnected = true;
 
@@ -347,7 +353,7 @@ describe('SubscriptionHandlerContainer', () => {
 
       wrapper.update(<SubscriptionHandlerContainerComponent {...propsSubscribed}><Text>Container test</Text></SubscriptionHandlerContainerComponent>);
 
-      const testInstance = wrapper.root.instance;
+      const testInstance: SubscriptionHandlerContainerComponent = wrapper.root.instance;
       const spyHandleSubscriptionStatusExpired = jest.spyOn(testInstance, 'handleSubscriptionStatusExpired')
 
       wrapper.update(<SubscriptionHandlerContainerComponent {...propsUnSubscribed}><Text>Container test</Text></SubscriptionHandlerContainerComponent>);
@@ -372,7 +378,7 @@ describe('SubscriptionHandlerContainer', () => {
 
       wrapper.update(<SubscriptionHandlerContainerComponent {...propsDefault}><Text>Container test</Text></SubscriptionHandlerContainerComponent>);
 
-      const testInstance = wrapper.root.instance;
+      const testInstance: SubscriptionHandlerContainerComponent = wrapper.root.instance;
       const spyHandleRestoreSubscriptionStatus = jest.spyOn(testInstance, 'handleRestoreSubscriptionStatus');
       const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert');
 
