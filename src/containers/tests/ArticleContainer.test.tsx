@@ -13,7 +13,7 @@ import playlistItemMock from '../../../tests/__mocks__/playlist-item';
 import voiceLanguageDefaultEN from '../../../tests/__mocks__/voice-language-default-en';
 import voicePremium from '../../../tests/__mocks__/voice-premium';
 
-import { ALERT_ARTICLE_PLAY_INTERNET_REQUIRED, ALERT_TITLE_ERROR_NO_INTERNET, ALERT_TITLE_ERROR, ALERT_ARTICLE_DOWNLOAD_FAIL, ALERT_ARTICLE_PLAY_FAIL } from '../../constants/messages';
+import { ALERT_ARTICLE_DOWNLOAD_FAIL, ALERT_ARTICLE_PLAY_FAIL, ALERT_ARTICLE_PLAY_INTERNET_REQUIRED, ALERT_TITLE_ERROR, ALERT_TITLE_ERROR_NO_INTERNET } from '../../constants/messages';
 import { initialTrackState } from '../../reducers/player';
 
 jest.mock('../../navigation/NavigationService');
