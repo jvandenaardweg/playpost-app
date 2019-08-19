@@ -116,7 +116,7 @@ export const selectLanguagesWithActiveVoicesByLanguageName = createDeepEqualSele
   [selectLanguagesWithActiveVoices],
   (languages): AvailableVoicesByLanguageName | null => {
     if (!languages.length) {
-      return {};
+      return null;
     }
 
     // Convert the array to an object

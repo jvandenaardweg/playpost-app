@@ -154,7 +154,7 @@ describe('voices selector', () => {
       }
     };
 
-    expect(selectLanguagesWithActiveVoicesByLanguageName(exampleState)).toMatchObject({});
+    expect(selectLanguagesWithActiveVoicesByLanguageName(exampleState)).toBe(null);
   });
 
   it('selectSortedLanguages should return the languages sorted by name', () => {
