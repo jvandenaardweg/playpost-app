@@ -4,8 +4,6 @@ import renderer from 'react-test-renderer';
 
 import { SubscriptionHandlerContainerComponent } from '../SubscriptionHandlerContainer';
 
-jest.mock('appcenter-analytics');
-jest.mock('react-native-iap');
 jest.mock('../../navigation/NavigationService');
 
 jest.useFakeTimers();

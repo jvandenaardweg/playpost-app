@@ -5,7 +5,6 @@ import { SmallAudioPlayerContainerComponent } from '../SmallAudioPlayerContainer
 
 import articleMock from '../../../tests/__mocks__/article';
 
-jest.mock('appcenter-analytics');
 jest.mock('../../navigation/NavigationService');
 
 const setPlaybackStatusHandler = jest.fn();

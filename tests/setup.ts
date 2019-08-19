@@ -50,7 +50,18 @@ jest.mock('react-native-keychain', () => ({
 
 jest.mock('@react-native-community/async-storage', () => mockAsyncStorage);
 
-jest.mock('rn-fetch-blob');
+jest.mock('rn-fetch-blob', () => {
+  return {
+    fs: {
+      dirs: {
+        DocumentDir: ''
+      },
+      writeFile: () => Promise.resolve()
+    }
+  }
+})
+
+jest.mock('react-native-iap');
 jest.mock('react-native-video');
 jest.mock('react-native-splash-screen');
 jest.mock('react-native-app-intro-slider');
@@ -64,6 +75,8 @@ jest.mock('react-native-device-info', () => {
     getDeviceLocale: jest.fn().mockReturnValue('en')
   }
 });
+
+jest.mock('appcenter-analytics');
 
 // Below gives TS errors... So we uncomment it for now
 // jest.mock('react-navigation', ({
