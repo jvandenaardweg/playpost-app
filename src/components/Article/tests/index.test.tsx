@@ -17,7 +17,7 @@ describe('Article', () => {
     onPressOut: onPressOutHandler,
     onPressArticleIncompatible: onPressArticleIncompatibleHandler,
     url: "https://www.google.nl",
-    playlistItemCreatedAt: new Date(),
+    playlistItemCreatedAt: new Date().toISOString(),
     isCompatible: true
   }
 
