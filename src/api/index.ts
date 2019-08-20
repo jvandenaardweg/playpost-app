@@ -10,8 +10,6 @@ export const baseURL = Platform.select({
   android: (Config.NODE_ENV === 'development') ? Config.API_URL.replace('localhost', '10.0.2.2') : Config.API_URL
 });
 
-console.log(Config)
-
 const apiClient = axios.create({
   baseURL,
   responseType: 'json',
