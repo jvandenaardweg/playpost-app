@@ -102,7 +102,9 @@ exports[`CustomSectionList basic rendering should render correctly 1`] = `
         >
           <View
             accessible={true}
+            clickable={false}
             isTVSelectable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
