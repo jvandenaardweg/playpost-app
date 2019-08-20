@@ -3,6 +3,8 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 target 'Playpost' do
   # Pods for playpost
+
+  # Basic React Native pods
   pod 'React', :path => '../node_modules/react-native/'
   pod 'React-Core', :path => '../node_modules/react-native/React'
   pod 'React-DevSupport', :path => '../node_modules/react-native/React'
@@ -16,94 +18,69 @@ target 'Playpost' do
   pod 'React-RCTText', :path => '../node_modules/react-native/Libraries/Text'
   pod 'React-RCTVibration', :path => '../node_modules/react-native/Libraries/Vibration'
   pod 'React-RCTWebSocket', :path => '../node_modules/react-native/Libraries/WebSocket'
-
   pod 'React-cxxreact', :path => '../node_modules/react-native/ReactCommon/cxxreact'
   pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi'
   pod 'React-jsiexecutor', :path => '../node_modules/react-native/ReactCommon/jsiexecutor'
   pod 'React-jsinspector', :path => '../node_modules/react-native/ReactCommon/jsinspector'
   pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
-
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  pod 'AppCenter/Crashes', '~> 2.0.1'
-  pod 'AppCenter/Analytics', '~> 2.0.1'
-  pod 'AppCenterReactNativeShared', '~> 2.0.0'
+  # Custom App specific pods
+  # pod 'AppCenter/Crashes', '~> 2.0.1'
+  # pod 'AppCenter/Analytics', '~> 2.0.1'
+  # pod 'AppCenterReactNativeShared', '~> 2.0.0'
+  # pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+  # pod 'RNKeychain', :path => '../node_modules/react-native-keychain'
+  # pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
+  # pod 'RNFS', :path => '../node_modules/react-native-fs'
+  # pod 'rn-fetch-blob', :path => '../node_modules/rn-fetch-blob'
+  # pod 'react-native-video', :path => '../node_modules/react-native-video'
+  # pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+  # pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+  # pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+  # pod 'RNIap', :path => '../node_modules/react-native-iap'
+  # pod 'react-native-config', :path => '../node_modules/react-native-config'
+  # pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
+  # pod 'RNScreens', :path => '../node_modules/react-native-screens'
+  # pod 'react-native-track-player', :path => '../node_modules/react-native-track-player'
 
-  pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
-  pod 'RNKeychain', :path => '../node_modules/react-native-keychain'
-  pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
-  pod 'RNFS', :path => '../node_modules/react-native-fs'
-  pod 'rn-fetch-blob', :path => '../node_modules/rn-fetch-blob'
-  pod 'react-native-video', :path => '../node_modules/react-native-video'
-  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
-  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
-  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
-  pod 'RNIap', :path => '../node_modules/react-native-iap'
-  pod 'react-native-config', :path => '../node_modules/react-native-config'
-  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
-  pod 'RNScreens', :path => '../node_modules/react-native-screens'
 
+  use_native_modules!
   # target 'playpostTests' do
   #   inherit! :search_paths
   #   # Pods for testing
   # end
 
   target 'PlaypostShareExtension' do
-    # inherit! :search_paths
-    pod 'React', :path => '../node_modules/react-native/'
-  pod 'React-Core', :path => '../node_modules/react-native/React'
-  pod 'React-DevSupport', :path => '../node_modules/react-native/React'
-  # pod 'React-fishhook', :path => '../node_modules/react-native/Libraries/fishhook'
-  pod 'React-RCTActionSheet', :path => '../node_modules/react-native/Libraries/ActionSheetIOS'
-  pod 'React-RCTAnimation', :path => '../node_modules/react-native/Libraries/NativeAnimation'
-  pod 'React-RCTBlob', :path => '../node_modules/react-native/Libraries/Blob'
-  pod 'React-RCTImage', :path => '../node_modules/react-native/Libraries/Image'
-  pod 'React-RCTLinking', :path => '../node_modules/react-native/Libraries/LinkingIOS'
-  pod 'React-RCTNetwork', :path => '../node_modules/react-native/Libraries/Network'
-  pod 'React-RCTSettings', :path => '../node_modules/react-native/Libraries/Settings'
-  pod 'React-RCTText', :path => '../node_modules/react-native/Libraries/Text'
-  pod 'React-RCTVibration', :path => '../node_modules/react-native/Libraries/Vibration'
-  pod 'React-RCTWebSocket', :path => '../node_modules/react-native/Libraries/WebSocket'
-
-  pod 'React-cxxreact', :path => '../node_modules/react-native/ReactCommon/cxxreact'
-  pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi'
-  pod 'React-jsiexecutor', :path => '../node_modules/react-native/ReactCommon/jsiexecutor'
-  pod 'React-jsinspector', :path => '../node_modules/react-native/ReactCommon/jsinspector'
-  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
-
-  pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
-  pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
-  pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
-
+    use_native_modules!
+    inherit! :complete
   end
-
-  use_native_modules!
 end
 
+
+
+# post_install do |installer|
+#   installer.pods_project.targets.each do |target|
+#     if target.name == 'react-native-config'
+#       phase = target.project.new(Xcodeproj::Project::Object::PBXShellScriptBuildPhase)
+#       phase.shell_script = "cd ../../"\
+#       " && RNC_ROOT=./node_modules/react-native-config/"\
+#       " && export SYMROOT=$RNC_ROOT/ios/ReactNativeConfig"\
+#       " && ruby $RNC_ROOT/ios/ReactNativeConfig/BuildDotenvConfig.rb"
+
+#       target.build_phases << phase
+#       target.build_phases.move(phase,0)
+#     end
+#   end
+#  end
+
+# https://github.com/facebook/react-native/issues/25792#issuecomment-517295859
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'No'
-    end
-
-    targets_to_ignore = %w(React)
-
-    if targets_to_ignore.include? target.name
-      target.remove_from_project
-    end
-
-    if target.name == 'react-native-config'
-      phase = target.project.new(Xcodeproj::Project::Object::PBXShellScriptBuildPhase)
-      phase.shell_script = "cd ../../"\
-                           " && RNC_ROOT=./node_modules/react-native-config/"\
-                           " && export SYMROOT=$RNC_ROOT/ios/ReactNativeConfig"\
-                           " && export BUILD_DIR=$RNC_ROOT/ios/ReactNativeConfig"\
-                           " && ruby $RNC_ROOT/ios/ReactNativeConfig/BuildDotenvConfig.ruby"
-
-      target.build_phases << phase
-      target.build_phases.move(phase,0)
+      config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'NO'
     end
   end
 end

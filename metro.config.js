@@ -6,6 +6,9 @@
  */
 
 module.exports = {
+  resolver: {
+    sourceExts: ['jsx', 'js', 'ts', 'tsx'], // https://github.com/react-native-community/react-native-netinfo/issues/108#issuecomment-513718723
+  },
   transformer: {
     getTransformOptions: async () => ({
       transform: {
@@ -13,5 +16,6 @@ module.exports = {
         inlineRequires: false,
       },
     }),
+    babelTransformerPath: require.resolve('react-native-typescript-transformer'),
   },
 };
