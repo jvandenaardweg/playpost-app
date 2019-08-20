@@ -3,19 +3,24 @@ import { applyMiddleware, createStore } from 'redux';
 import reduxAxiosMiddleware from 'redux-axios-middleware';
 // tslint:disable-next-line:no-submodule-imports
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
-import { persistReducer, persistStore } from 'redux-persist';
+import { createMigrate, PersistConfig, persistReducer, persistStore } from 'redux-persist';
+
+// tslint:disable-next-line:no-submodule-imports
 import createSagaMiddleware from 'redux-saga';
 
 import { rootReducer } from '../reducers';
 import { initSagas } from '../sagas';
 
 import { apiClient } from '../api';
+import { migrations } from './migrations';
 
 // Setup persist
-const persistConfig = {
+const persistConfig: PersistConfig = {
   storage: AsyncStorage,
   key: 'root',
-  blacklist: ['player']
+  blacklist: ['player'],
+  version: 7, // up the version if store structure changes and create a migration for that
+  migrate: createMigrate(migrations as any)
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -39,4 +44,4 @@ initSagas(sagaMiddleware);
 
 const persistor = persistStore(store);
 
-export { store, persistor };
+export { store, persistor, persistConfig };

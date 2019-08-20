@@ -43,7 +43,7 @@ export default StyleSheet.create({
   },
   footerText: {
     fontSize: fonts.fontSize.body,
-    lineHeight: 24,
+    lineHeight: Math.ceil(fonts.fontSize.body * 1.5),
     color: colors.paragraphGrayed,
     textAlign: 'center'
   },

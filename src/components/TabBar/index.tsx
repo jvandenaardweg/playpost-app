@@ -10,13 +10,13 @@ import { NetworkContext } from '../../contexts/NetworkProvider';
 // @ts-ignore
 import { BottomTabBar, BottomTabBarProps } from 'react-navigation';
 
-import { AudioPlayerContainer } from '../../containers/AudioPlayerContainer';
+import { SmallAudioPlayerContainer } from '../../containers/SmallAudioPlayerContainer';
 
 import { AudiofileStatusContainer } from '../../containers/AudiofileStatusContainer';
 import { OfflineNotice } from '../OfflineNotice';
 import styles from './styles';
 
-export const TabBar: React.FC<BottomTabBarProps> = (
+export const TabBar: React.FC<BottomTabBarProps> = React.memo((
   props: BottomTabBarProps
 ) => {
   const { isConnected } = useContext(NetworkContext);
@@ -25,8 +25,8 @@ export const TabBar: React.FC<BottomTabBarProps> = (
     <View style={styles.container}>
       {!isConnected && <OfflineNotice />}
       <AudiofileStatusContainer />
-      <AudioPlayerContainer />
+      <SmallAudioPlayerContainer />
       <BottomTabBar {...props} />
     </View>
   );
-};
+});

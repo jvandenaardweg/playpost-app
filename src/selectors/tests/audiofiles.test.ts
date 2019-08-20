@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import { audiofilesSelector, selectDownloadedAudiofiles, selectIsDownloadedAudiofilesByArticleAudiofiles } from '../audiofiles';
+import { audiofilesSelector, selectDownloadedAudiofiles } from '../audiofiles';
 
 import { rootReducer } from '../../reducers';
 import { initialState } from '../../reducers/audiofiles';
@@ -26,29 +26,6 @@ describe('audiofiles selector', () => {
     };
 
     expect(selectDownloadedAudiofiles(exampleState)).toMatchObject(audiofilesMock);
-  });
-
-  it('selectIsDownloadedAudiofilesByArticleAudiofiles should return true or false', () => {
-    const exampleStateWithDownloads = {
-      ...rootState,
-      audiofiles: {
-        ...rootState.audiofiles,
-        downloaded: audiofilesMock
-      }
-    };
-
-    const exampleStateWithoutDownloads = {
-      ...rootState,
-      audiofiles: {
-        ...rootState.audiofiles,
-        downloaded: []
-      }
-    };
-
-    const audiofilesToCompareWith = audiofilesMock;
-
-    expect(selectIsDownloadedAudiofilesByArticleAudiofiles(exampleStateWithDownloads, audiofilesToCompareWith)).toEqual(true);
-    expect(selectIsDownloadedAudiofilesByArticleAudiofiles(exampleStateWithoutDownloads, audiofilesToCompareWith)).toEqual(false);
   });
 
 });

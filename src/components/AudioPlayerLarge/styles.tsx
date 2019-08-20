@@ -7,7 +7,6 @@ import spacing from '../../constants/spacing';
 export default StyleSheet.create({
   wrapper: {
     flex: 1,
-    paddingTop: 46,
     backgroundColor: colors.black
   },
   container: {
@@ -17,7 +16,8 @@ export default StyleSheet.create({
   },
   openCloseControl: {
     alignItems: 'flex-end',
-    marginBottom: 10,
+    marginTop: spacing.default,
+    marginBottom: spacing.default,
     paddingRight: spacing.large,
     paddingLeft: spacing.large
   },
@@ -48,13 +48,13 @@ export default StyleSheet.create({
   contentText: {
     color: colors.white,
     fontSize: fonts.fontSize.body,
-    lineHeight: 24,
+    lineHeight: Math.ceil(fonts.fontSize.body * 1.5),
     marginBottom: spacing.large
   },
   title: {
     color: colors.white,
     fontSize: fonts.fontSize.titleLarge,
-    lineHeight: 26,
+    lineHeight: Math.ceil(fonts.fontSize.titleLarge * 1.2),
     fontWeight: fonts.fontWeight.semibold,
     marginBottom: 6
   },
@@ -66,13 +66,39 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    paddingBottom: 42
+    marginTop: spacing.large,
   },
   progressBarRow: {
     flex: 1,
     alignItems: 'stretch',
     justifyContent: 'center',
-    marginBottom: spacing.default,
-    backgroundColor: 'red'
+    marginBottom: spacing.default
+  },
+  controlContainer: {
+    width: 48
+  },
+  footer: {
+    paddingTop: spacing.default,
+    paddingLeft: spacing.large,
+    paddingRight: spacing.large,
+    height: 60
+  },
+  footerAnimatedView: {
+    flexGrow: 1,
+    width: '100%'
+  },
+  buttonControl: {
+    borderWidth: 1,
+    borderColor: colors.gray,
+    height: 48,
+    width: 48,
+    borderRadius: 48,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  buttonControlText: {
+    color: colors.white,
+    fontSize: fonts.fontSize.tiny,
+    fontWeight: fonts.fontWeight.semibold
   }
 });

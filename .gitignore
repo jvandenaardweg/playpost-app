@@ -49,7 +49,7 @@ yarn-error.log
 # BUCK
 buck-out/
 \.buckd/
-*.keystore
+# *.keystore # We uncomment this because we use AppCenter for signing it, so we can safely put it in the repo
 
 # fastlane
 #

@@ -1,13 +1,16 @@
 import React from 'react';
 
 import { AppBackground } from '../components/AppBackground';
+import { InteractionManaged } from '../components/InteractionManaged';
 import { PlaylistContainer } from '../containers/PlaylistContainer';
 
 export class FavoritesScreen extends React.PureComponent {
-  public render() {
+  render() {
     return (
       <AppBackground>
-        <PlaylistContainer isFavoriteScreen />
+        <InteractionManaged showActivityIndicator>
+          <PlaylistContainer isFavoriteScreen />
+        </InteractionManaged>
       </AppBackground>
     );
   }

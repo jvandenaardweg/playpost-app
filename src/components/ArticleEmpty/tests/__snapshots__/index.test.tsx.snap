@@ -62,7 +62,7 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering default should render correct
             "color": "#000000",
             "fontSize": 15,
             "fontWeight": "600",
-            "lineHeight": 21,
+            "lineHeight": 18,
             "marginBottom": 10,
           },
           Object {
@@ -175,7 +175,7 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering loading should render correct
             "color": "#000000",
             "fontSize": 15,
             "fontWeight": "600",
-            "lineHeight": 21,
+            "lineHeight": 18,
             "marginBottom": 10,
           },
           Object {
@@ -282,7 +282,7 @@ exports[`ArticleEmpty ArticleEmptyNew rendering default should render correctly 
           "color": "#000000",
           "fontSize": 15,
           "fontWeight": "600",
-          "lineHeight": 21,
+          "lineHeight": 18,
           "marginBottom": 10,
         }
       }
@@ -387,7 +387,7 @@ exports[`ArticleEmpty ArticleEmptyNew rendering loading should render correctly 
           "color": "#000000",
           "fontSize": 15,
           "fontWeight": "600",
-          "lineHeight": 21,
+          "lineHeight": 18,
           "marginBottom": 10,
         }
       }
@@ -482,7 +482,7 @@ exports[`ArticleEmpty ArticleEmptyProcessing rendering default should render cor
           "color": "#000000",
           "fontSize": 15,
           "fontWeight": "600",
-          "lineHeight": 21,
+          "lineHeight": 18,
           "marginBottom": 10,
         }
       }
@@ -589,7 +589,7 @@ exports[`ArticleEmpty ArticleEmptyProcessing rendering loading should render cor
           "color": "#000000",
           "fontSize": 15,
           "fontWeight": "600",
-          "lineHeight": 21,
+          "lineHeight": 18,
           "marginBottom": 10,
         }
       }

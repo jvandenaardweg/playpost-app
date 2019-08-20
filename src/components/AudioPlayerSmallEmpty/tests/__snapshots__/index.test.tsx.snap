@@ -7,6 +7,7 @@ exports[`AudioPlayerSmallEmpty rendering should render correctly 1`] = `
       "height": 55,
     }
   }
+  testID="AudioPlayerSmallEmpty"
 >
   <View
     style={
@@ -17,8 +18,8 @@ exports[`AudioPlayerSmallEmpty rendering should render correctly 1`] = `
         "height": 55,
         "justifyContent": "space-around",
         "paddingBottom": 8,
-        "paddingLeft": 16,
-        "paddingRight": 16,
+        "paddingLeft": 12,
+        "paddingRight": 12,
         "paddingTop": 8,
       }
     }
@@ -38,9 +39,10 @@ exports[`AudioPlayerSmallEmpty rendering should render correctly 1`] = `
           Object {
             "color": "#ffffff",
             "fontSize": 15,
-            "fontWeight": "500",
+            "fontWeight": "600",
           }
         }
+        testID="AudioPlayerSmallEmpty-Text-empty"
       >
         Select an article to listen
       </Text>

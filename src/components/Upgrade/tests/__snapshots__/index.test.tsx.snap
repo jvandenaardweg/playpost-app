@@ -12,32 +12,26 @@ exports[`Upgrade rendering should render correctly 1`] = `
     contentContainerStyle={
       Object {
         "backgroundColor": "#EEEEEE",
-        "paddingTop": 16,
+        "paddingTop": 12,
       }
     }
   >
     <View>
       <RCTScrollView
-        contentOffset={
-          Object {
-            "x": 698,
-            "y": 0,
-          }
-        }
         decelerationRate={0}
         horizontal={true}
         pagingEnabled={true}
         scrollEnabled={true}
         showsHorizontalScrollIndicator={false}
-        snapToInterval={698}
+        snapToInterval={714}
         style={
           Object {
             "backgroundColor": "#EEEEEE",
-            "marginBottom": 16,
-            "paddingBottom": 16,
+            "marginBottom": 12,
+            "paddingBottom": 12,
             "paddingLeft": 0,
             "paddingRight": 0,
-            "paddingTop": 16,
+            "paddingTop": 12,
           }
         }
       >
@@ -49,24 +43,25 @@ exports[`Upgrade rendering should render correctly 1`] = `
             "backgroundColor": "white",
             "borderTopColor": "#e5e5e5",
             "borderTopWidth": 1,
-            "padding": 16,
+            "padding": 12,
           }
         }
       >
         <View
           style={
             Object {
-              "marginBottom": 16,
+              "marginBottom": 12,
             }
           }
         >
           <Text
             style={
               Object {
-                "fontSize": 24,
+                "color": "#000000",
+                "fontSize": 21,
                 "fontWeight": "700",
                 "marginBottom": 24,
-                "marginTop": 16,
+                "marginTop": 12,
                 "textAlign": "center",
               }
             }
@@ -97,7 +92,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#037DE2",
                     "marginLeft": 8,
-                    "marginRight": 16,
+                    "marginRight": 12,
                     "width": 40,
                   },
                   Object {
@@ -124,6 +119,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
+                    "color": "#000000",
                     "fontSize": 17,
                     "fontWeight": "600",
                     "lineHeight": 21,
@@ -136,9 +132,9 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#AAAAAA",
+                    "color": "#222222",
                     "fontSize": 15,
-                    "lineHeight": 24,
+                    "lineHeight": 23,
                   }
                 }
               >
@@ -170,7 +166,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#037DE2",
                     "marginLeft": 8,
-                    "marginRight": 16,
+                    "marginRight": 12,
                     "width": 40,
                   },
                   Object {
@@ -197,6 +193,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
+                    "color": "#000000",
                     "fontSize": 17,
                     "fontWeight": "600",
                     "lineHeight": 21,
@@ -209,9 +206,9 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#AAAAAA",
+                    "color": "#222222",
                     "fontSize": 15,
-                    "lineHeight": 24,
+                    "lineHeight": 23,
                   }
                 }
               >
@@ -243,7 +240,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#037DE2",
                     "marginLeft": 8,
-                    "marginRight": 16,
+                    "marginRight": 12,
                     "width": 40,
                   },
                   Object {
@@ -270,6 +267,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
+                    "color": "#000000",
                     "fontSize": 17,
                     "fontWeight": "600",
                     "lineHeight": 21,
@@ -277,18 +275,18 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   }
                 }
               >
-                Higher article limits
+                More listening limits
               </Text>
               <Text
                 style={
                   Object {
-                    "color": "#AAAAAA",
+                    "color": "#222222",
                     "fontSize": 15,
-                    "lineHeight": 24,
+                    "lineHeight": 23,
                   }
                 }
               >
-                99.9% of the articles on the internet are within the limitations of our Premium and Plus subscription. So you'll probably never hit that limit!
+                With our Premium and Plus subscription you can enjoy higher listening minutes. You'll probably never hit that limit!
               </Text>
             </View>
           </View>
@@ -316,7 +314,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#037DE2",
                     "marginLeft": 8,
-                    "marginRight": 16,
+                    "marginRight": 12,
                     "width": 40,
                   },
                   Object {
@@ -343,6 +341,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
+                    "color": "#000000",
                     "fontSize": 17,
                     "fontWeight": "600",
                     "lineHeight": 21,
@@ -355,9 +354,9 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#AAAAAA",
+                    "color": "#222222",
                     "fontSize": 15,
-                    "lineHeight": 24,
+                    "lineHeight": 23,
                   }
                 }
               >
@@ -377,12 +376,14 @@ exports[`Upgrade rendering should render correctly 1`] = `
             style={
               Object {
                 "fontSize": 13,
-                "lineHeight": 18,
+                "lineHeight": 20,
                 "opacity": 0.5,
               }
             }
           >
-            Payment will be charged to your Apple ID account at the confirmation of purchase. Subscription automatically renews unless it is canceled at least 24 hours before the end of the current period. Your account will be charged for renewal within 24 hours prior to the end of the current period. You can manage and cancel your subscriptions by going to your account settings on the App Store after purchase. Refunds are not available for unused portions of a subscription.
+            Payment will be charged to your 
+            Apple ID
+             account at the confirmation of purchase. Subscription automatically renews unless it is canceled at least 24 hours before the end of the current period. Your account will be charged for renewal within 24 hours prior to the end of the current period. You can manage and cancel your subscriptions by going to your account settings on the App Store after purchase. Refunds are not available for unused portions of a subscription.
           </Text>
           <View
             style={
@@ -400,7 +401,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 Array [
                   Object {
                     "fontSize": 13,
-                    "lineHeight": 18,
+                    "lineHeight": 20,
                     "opacity": 0.5,
                   },
                   Object {
@@ -417,7 +418,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               style={
                 Object {
                   "fontSize": 13,
-                  "lineHeight": 18,
+                  "lineHeight": 20,
                   "opacity": 0.5,
                 }
               }
@@ -430,7 +431,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 Array [
                   Object {
                     "fontSize": 13,
-                    "lineHeight": 18,
+                    "lineHeight": 20,
                     "opacity": 0.5,
                   },
                   Object {

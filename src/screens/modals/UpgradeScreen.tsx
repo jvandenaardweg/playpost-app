@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationRoute, NavigationScreenOptions, NavigationScreenProp } from 'react-navigation';
 import { AppBackground } from '../../components/AppBackground';
+import { InteractionManaged } from '../../components/InteractionManaged';
 import { UpgradeContainer } from '../../containers/UpgradeContainer';
 
 interface Props {
@@ -8,17 +9,21 @@ interface Props {
 }
 
 export class UpgradeScreen extends React.PureComponent<Props> {
-  public static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationScreenOptions => {
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationScreenOptions => {
     return {
       title: 'Upgrade subscription',
       headerLeft: null
     };
   }
 
-  public render() {
+  render() {
+    const centeredSubscriptionProductId = this.props.navigation.getParam('centeredSubscriptionProductId', '')
+
     return (
       <AppBackground>
-        <UpgradeContainer />
+        <InteractionManaged>
+          <UpgradeContainer centeredSubscriptionProductId={centeredSubscriptionProductId} />
+        </InteractionManaged>
       </AppBackground>
     );
   }

@@ -1,6 +1,11 @@
 import { createSelector } from 'reselect';
 import { RootState } from '../reducers';
 import { UserState } from '../reducers/user';
+import { createDeepEqualSelector } from './index';
+
+export interface UserSelectedVoiceByLanguageName {
+  [key: string]: Api.Voice
+}
 
 export const userSelector = (state: RootState): UserState => state.user;
 
@@ -24,30 +29,73 @@ export const selectUserDetails = createSelector(
   user => user.details
 );
 
-export const selectUserIsPremium = createSelector(
+export const selectDeviceLocale = createSelector(
   [userSelector],
-  user => user.isPremium
+  user => {
+    if (!user.deviceLocale) {
+      return '';
+    }
+
+    // device locale could be: "en-NL" or "en"
+    // So we always split the dash
+    // Even if the dash does not exist, we return the first in the array
+    const deviceLocaleSplitted = user.deviceLocale.split('-');
+
+    if (!deviceLocaleSplitted || !deviceLocaleSplitted[0]) {
+      return '';
+    }
+
+    return deviceLocaleSplitted[0];
+  }
 );
 
-export const selectUserSelectedVoices = createSelector(
-  [userSelector],
-  (user) => {
-    if (!user.details || !user.details.voiceSettings.length) {
+export const selectUserSelectedVoices = createDeepEqualSelector(
+  [selectUserDetails],
+  (userDetails) => {
+    if (!userDetails || !userDetails.voiceSettings || !userDetails.voiceSettings.length) {
       return [];
     }
-    return user.details.voiceSettings.map(userVoiceSetting => userVoiceSetting.voice);
+    return userDetails.voiceSettings.map(userVoiceSetting => userVoiceSetting.voice);
   }
 );
 
-export const selectUserSelectedVoiceByLanguageName = (state: RootState, languageName?: string) => createSelector(
+export const selectUserSelectedVoiceByLanguageName = createDeepEqualSelector(
   [selectUserSelectedVoices],
-  (voices) => {
-    if (!languageName) { return; }
-    return voices.find(voice => voice.language.name === languageName);
-  }
-)(state);
+  (voices): UserSelectedVoiceByLanguageName | null => {
+    // Convert the array to an object
+    // So we can easily pick a language inside our components
+    const voicesObjectWithLanguageNameKeys: UserSelectedVoiceByLanguageName = voices.reduce((prev, curr) => {
+      prev[curr.language.name] = curr;
 
-export const selectUserSubscriptions = createSelector(
+      return prev;
+    }, {})
+
+    if (!Object.keys(voicesObjectWithLanguageNameKeys).length) {
+      return null;
+    }
+
+    return voicesObjectWithLanguageNameKeys;
+  }
+);
+
+export const selectUserSubscriptions = createDeepEqualSelector(
   [selectUserDetails],
   userDetails => userDetails && userDetails.inAppSubscriptions
 );
+
+export const selectUserHasSubscribedBefore = createDeepEqualSelector(
+  [selectUserSubscriptions],
+  userInAppSubscriptions => {
+    if (!userInAppSubscriptions || !userInAppSubscriptions.length) {
+      return false;
+    }
+
+    // If the user has a previous in app subscription record, return true
+    return !!userInAppSubscriptions.length;
+  }
+);
+
+export const selectUserPlaybackSpeed = createSelector(
+  [userSelector],
+  user =>  user.playbackSpeed
+)

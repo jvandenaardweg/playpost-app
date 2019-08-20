@@ -7,19 +7,6 @@ declare namespace Api {
     token: string;
   }
 
-  export interface InAppSubscription {
-    id: string;
-    productId: string;
-    description: string;
-    price: number;
-    currency: string;
-    duration: string;
-    service: string;
-    isActive: boolean;
-    createdAt: string;
-    updatedAt: string;
-  }
-
   export interface ReceiptValidationResponse {
     id: string;
     startedAt: string;
@@ -49,6 +36,8 @@ declare namespace Api {
     duration: string;
     service: string;
     isActive: boolean;
+    limitSecondsPerMonth: number;
+    limitSecondsPerArticle: number;
     createdAt: string;
     updatedAt: string;
   }
@@ -90,23 +79,23 @@ declare namespace Api {
     title: string | null;
     description: string | null;
     url: string;
-    language?: Language;
     sourceName: string | null;
     imageUrl: string | null;
     authorName: string | null;
     html: string | null;
-    ssml?: string | null; // optional
-    text?: string | null; // optional
     createdAt: string;
     updatedAt: string;
-    user?: User; // optional
     readingTime: number | null;
     canonicalUrl: string | null;
     status: ArticleStatus<string>;
-    isPublic: boolean | null;
-    documentHtml?: string; // optional
     audiofiles: Audiofile[];
-    language: Language;
+    language: Language | null;
+    isCompatible: boolean;
+    compatibilityMessage: string | null;
+    ssml?: string | null; // optional
+    text?: string | null; // optional
+    user?: User | null; // optional
+    documentHtml?: string | null; // optional
   }
 
   export interface User {
@@ -116,6 +105,7 @@ declare namespace Api {
     authenticatedAt: string | null;
     voiceSettings: UserVoiceSetting[];
     inAppSubscriptions: UserInAppSubscriptions[];
+    isSubscribed: boolean;
     used: {
       audiofiles: {
         currentMonthInSeconds: number;
@@ -167,9 +157,11 @@ declare namespace Api {
     isHighestQuality: boolean;
     exampleAudioUrl: string | null;
     language: Language;
+    country: Country;
     isLanguageDefault: boolean | null;
     createdAt: string;
     updatedAt: string;
+    quality: string;
   }
 
   export interface Language {
@@ -179,6 +171,19 @@ declare namespace Api {
     nativeName: string | null;
     isActive: boolean;
     voices?: Voice[];
+    countries?: Country[];
+    rightToLeft: boolean;
+    createdAt: string;
+    updatedAt: string;
+  }
+
+  export interface Country {
+    id: string;
+    name: string;
+    code: string;
+    nativeName: string;
+    continent: string;
+    currency: string;
     createdAt: string;
     updatedAt: string;
   }

@@ -1,3 +1,6 @@
+// tslint:disable-next-line: no-submodule-imports
+import mockAsyncStorage from '@react-native-community/async-storage/jest/async-storage-mock';
+
 // Mock the track player depedency: https://github.com/react-native-kit/react-native-track-player/issues/501#issuecomment-474693116
 jest.mock('react-native-track-player', () => ({
   addEventListener: jest.fn(),
@@ -39,11 +42,41 @@ jest.mock('@react-native-community/netinfo', () => {
   };
 });
 
-jest.mock('@react-native-community/async-storage');
+jest.mock('react-native-keychain', () => ({
+  setGenericPassword: jest.fn(),
+  getGenericPassword: jest.fn(),
+  resetGenericPassword: jest.fn()
+}));
+
+jest.mock('@react-native-community/async-storage', () => mockAsyncStorage);
+
+jest.mock('rn-fetch-blob', () => {
+  return {
+    fs: {
+      dirs: {
+        DocumentDir: ''
+      },
+      writeFile: () => Promise.resolve()
+    }
+  }
+})
+
+jest.mock('react-native-iap');
 jest.mock('react-native-video');
 jest.mock('react-native-splash-screen');
 jest.mock('react-native-app-intro-slider');
-jest.mock('react-native-fs');
+jest.mock('react-native-fs', () => {
+  return {
+    DocumentDirectoryPath: jest.fn().mockRejectedValue('/test/path')
+  }
+});
+jest.mock('react-native-device-info', () => {
+  return {
+    getDeviceLocale: jest.fn().mockReturnValue('en')
+  }
+});
+
+jest.mock('appcenter-analytics');
 
 // Below gives TS errors... So we uncomment it for now
 // jest.mock('react-navigation', ({

@@ -7,6 +7,8 @@ import { ShareModalContainer } from '../../containers/ShareModalContainer';
 
 import styles from './styles';
 
+interface ShareData { type: ShareExtensionType; value: ShareExtensionValue }
+
 interface DocumentData {
   url: string;
   html: string;
@@ -26,7 +28,6 @@ interface State {
   documentHtml: ShareExtensionDocumentHtml;
   errorMessage: string;
   warningMessage: string;
-  errorAction: string;
 }
 
 interface Props {
@@ -35,42 +36,65 @@ interface Props {
 
 export class ShareOverlay extends React.PureComponent<Props, State> {
 
-  public static defaultProps = {
+  static defaultProps = {
     animationDuration: 200
   };
-  public state = {
+
+  state = {
     isOpen: true,
     isLoading: true,
     type: '',
     url: '',
     documentHtml: undefined,
     errorMessage: '',
-    warningMessage: '',
-    errorAction: ''
+    warningMessage: ''
   };
 
-  public opacityAnim = new Animated.Value(0);
+  opacityAnim = new Animated.Value(0);
 
-  public componentDidMount() {
+  componentDidMount(): void {
     this.setup();
   }
 
-  public setup = async () => {
-    try {
-      // Start fade in animation of the overlay
+  animateIn = (): Promise<void> => {
+    return new Promise((resolve, reject) => {
       Animated.timing(this.opacityAnim, {
         toValue: 1,
-        duration: 300,
+        duration: this.props.animationDuration,
         useNativeDriver: true
-      }).start();
+      }).start(() => resolve());
+    })
+  }
 
-      // Wait for the extension data
-      const { type, value }: { type: ShareExtensionType; value: ShareExtensionValue } = await ShareExtension.data();
+  animateOut = (): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      Animated.timing(this.opacityAnim, {
+        toValue: 0,
+        duration: this.props.animationDuration,
+        useNativeDriver: true
+      }).start(() => resolve());
+    })
+  }
+
+  getShareData = (): Promise<ShareData> => {
+    return new Promise(async (resolve, reject) => {
+      const shareData: ShareData = await ShareExtension.data();
+      resolve(shareData);
+    })
+  }
+
+  setup = async () => {
+    try {
+      // First, wait for the animation IN to be finished
+      // It seems on Android we need this delay on order for the ShareExtension data to come in. So don't remove that delay.
+      await this.animateIn();
+
+      const { type, value }: { type: ShareExtensionType; value: ShareExtensionValue } = await this.getShareData();
 
       let documentHtml: ShareExtensionDocumentHtml;
       let url: ShareExtensionUrl;
 
-      if (!value) { throw new Error('Missing value from page data.'); }
+      if (!value) { throw new Error('Did not receive anything to share to Playpost. Please try again.'); }
 
       // If we have text/json, we probably have the documentHtml and url
       if (type === 'text/json') {
@@ -88,65 +112,44 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
       }
 
       // Update the state so our modal can pick up the URL
-      return this.setState({ type, url, documentHtml, errorMessage: '' });
+      this.setState({ type, url, documentHtml, errorMessage: '' });
     } catch (err) {
       const errorMessage = err.message ? err.message : 'An unknown error happened. Please try again.';
-      return this.setState({ errorMessage });
+      this.setState({ errorMessage });
     } finally {
       this.setState({ isLoading: false });
     }
   }
 
-  public closeOverlay = () => {
-    const { animationDuration } = this.props;
+  closeOverlay = async () => {
+    this.setState({ isOpen: false });
 
-    this.setState({ isOpen: false }, () => {
-      // Use a simple timeout so the animation is done nicely
-      setTimeout(() => {
-        Animated.timing(this.opacityAnim, {
-          toValue: 0,
-          duration: animationDuration,
-          useNativeDriver: true
-        }).start(() => {
-          // Close the share extension after our animation
-          ShareExtension.close();
-        });
-      }, animationDuration);
-    });
+    await this.animateOut();
+
+    ShareExtension.close();
   }
 
-  public openUrlInMainApp = async (url: string) => {
-    try {
-      return ShareExtension.openURL(url);
-    } catch (err) {
-      const errorMessage = err.message ? err.message : 'An unknown error happened while opening the app. Please try again.';
-      return this.setState({ errorMessage });
-    }
+  handleOnPressSave = () => this.closeOverlay();
+
+  handleOnPressClose = () => this.closeOverlay();
+
+  handleOnModalDissmiss = () => this.closeOverlay();
+
+  renderErrorMessageModal(): JSX.Element | null {
+    const { errorMessage } = this.state;
+    if (!errorMessage) { return null; }
+
+    return <ErrorModal message={errorMessage} onPressClose={this.handleOnPressClose} />;
   }
 
-  public handleOnPressSave = () => this.closeOverlay();
-
-  public handleOnPressClose = () => this.closeOverlay();
-
-  public handleOnModalDissmiss = () => this.closeOverlay();
-
-  public handleOnPressAction = (url: string) => this.openUrlInMainApp(url);
-
-  public renderErrorMessageModal() {
-    const { errorMessage, errorAction } = this.state;
-    if (!errorMessage) { return; }
-
-    return <ErrorModal message={errorMessage} action={errorAction} onPressAction={this.handleOnPressAction} />;
-  }
-
-  public renderShareModal() {
+  renderShareModal(): JSX.Element | undefined {
     const { url, errorMessage, documentHtml } = this.state;
     if (errorMessage) { return; }
 
     return <ShareModalContainer url={url} documentHtml={documentHtml} onPressSave={this.handleOnPressSave} onPressClose={this.handleOnPressClose} />;
   }
 
-  public renderModal() {
+  renderModal(): JSX.Element | null {
     const { isLoading, isOpen } = this.state;
 
     if (isLoading) { return null; }
@@ -173,7 +176,7 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
     );
   }
 
-  public render() {
+  render() {
     return <Animated.View style={[styles.container, { opacity: this.opacityAnim }]}>{this.renderModal()}</Animated.View>;
   }
 }

@@ -20,7 +20,7 @@ export default StyleSheet.create({
   },
   image: {
     width: 320,
-    height: 320,
+    // height: 320,
   },
   text: {
     color: colors.white,
@@ -28,17 +28,17 @@ export default StyleSheet.create({
     backgroundColor: 'transparent',
     textAlign: 'center',
     paddingHorizontal: spacing.default,
-    fontSize: fonts.fontSize.body,
-    lineHeight: 24,
+    fontSize: fonts.fontSize.paragraph,
+    lineHeight: Math.ceil(fonts.fontSize.paragraph * 1.5),
   },
   title: {
     fontSize: fonts.fontSize.headline,
-    lineHeight: 28,
+    lineHeight: Math.ceil(fonts.fontSize.headline * 1.2),
     color: colors.white,
     backgroundColor: 'transparent',
     textAlign: 'center',
     marginBottom: spacing.default,
-    fontWeight: fonts.fontWeight.semibold
+    fontWeight: fonts.fontWeight.bold
   },
   footerContainer: {
     marginBottom: 22,

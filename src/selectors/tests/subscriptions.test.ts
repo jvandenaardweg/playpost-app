@@ -1,5 +1,6 @@
 import { createStore } from 'redux';
 import {
+  selectActiveSubscriptionName,
   selectActiveSubscriptionProductId,
   selectErrorValidateSubscriptionReceipt,
   selectIsLoadingSubscriptions,
@@ -7,6 +8,8 @@ import {
   selectSubscriptionLatestReceipt,
   selectSubscriptions,
   selectSubscriptionsError,
+  selectSubscriptionsIsLoadingRestore,
+  selectSubscriptionsIsLoadingUpgrade,
   selectSubscriptionsValidationResult,
   subscriptionsSelector
 } from '../subscriptions';
@@ -17,6 +20,7 @@ import { initialState } from '../../reducers/subscriptions';
 import subscriptionValidationResultActiveMock from '../../../tests/__mocks__/subscription-validation-result-active';
 import subscriptionValidationResultExpiredMock from '../../../tests/__mocks__/subscription-validation-result-expired';
 import subscriptionsMock from '../../../tests/__mocks__/subscriptions';
+import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../constants/in-app-purchase';
 
 const store = createStore(rootReducer);
 
@@ -100,6 +104,18 @@ describe('subscriptions selector', () => {
     expect(selectSubscriptionLatestReceipt(exampleState)).toEqual(subscriptionValidationResultExpiredMock.latestReceipt);
   });
 
+  it('selectSubscriptionLatestReceipt should return an empty string when there is no validation result', () => {
+    const exampleState = {
+      ...rootState,
+      subscriptions: {
+        ...rootState.subscriptions,
+        validationResult: null
+      }
+    };
+
+    expect(selectSubscriptionLatestReceipt(exampleState)).toEqual('');
+  });
+
   it('selectIsSubscribed should return the subscription latest receipt', () => {
     const exampleState = {
       ...rootState,
@@ -123,7 +139,7 @@ describe('subscriptions selector', () => {
     };
 
     // The mock data contains a unsubscribed/expired subscription
-    expect(selectActiveSubscriptionProductId(exampleState)).toEqual('free');
+    expect(selectActiveSubscriptionProductId(exampleState)).toEqual(SUBSCRIPTION_PRODUCT_ID_FREE);
   });
 
   it('selectActiveSubscriptionProductId should return the active subscription productId', () => {
@@ -136,6 +152,69 @@ describe('subscriptions selector', () => {
     };
 
     // The mock data contains a unsubscribed/expired subscription
-    expect(selectActiveSubscriptionProductId(exampleState)).toEqual('com.aardwegmedia.playpost.premium');
+    expect(selectActiveSubscriptionProductId(exampleState)).toEqual(SUBSCRIPTION_PRODUCT_ID_PREMIUM);
+  });
+
+  it('selectActiveSubscriptionProductId should return the default productId "free" when there is not validation result', () => {
+    const exampleState = {
+      ...rootState,
+      subscriptions: {
+        ...rootState.subscriptions,
+        validationResult: null
+      }
+    };
+
+    // The mock data contains a unsubscribed/expired subscription
+    expect(selectActiveSubscriptionProductId(exampleState)).toEqual(SUBSCRIPTION_PRODUCT_ID_FREE);
+  });
+
+  it('selectActiveSubscriptionName should return the active subscription name when the user has a validated subscription', () => {
+    const exampleState = {
+      ...rootState,
+      subscriptions: {
+        ...rootState.subscriptions,
+        validationResult: subscriptionValidationResultActiveMock
+      }
+    };
+
+    // The mock data contains a unsubscribed/expired subscription
+    expect(selectActiveSubscriptionName(exampleState)).toEqual('Premium');
+  });
+
+  it('selectActiveSubscriptionName should return "Free" if the user has no subscription', () => {
+    const exampleState = {
+      ...rootState,
+      subscriptions: {
+        ...rootState.subscriptions,
+        validationResult: null
+      }
+    };
+
+    // The mock data contains a unsubscribed/expired subscription
+    expect(selectActiveSubscriptionName(exampleState)).toEqual('Free');
+  });
+
+  it('selectSubscriptionsIsLoadingUpgrade should return true when isLoadingUpgrade is true', () => {
+    const exampleState = {
+      ...rootState,
+      subscriptions: {
+        ...rootState.subscriptions,
+        isLoadingUpgrade: true
+      }
+    };
+
+    expect(selectSubscriptionsIsLoadingUpgrade(exampleState)).toEqual(true);
+  });
+
+  it('selectSubscriptionsIsLoadingRestore should return true when isLoadingRestore is true', () => {
+    const exampleState = {
+      ...rootState,
+      subscriptions: {
+        ...rootState.subscriptions,
+        isLoadingRestore: true
+      }
+    };
+
+    expect(selectSubscriptionsIsLoadingRestore(exampleState)).toEqual(true);
   });
 });

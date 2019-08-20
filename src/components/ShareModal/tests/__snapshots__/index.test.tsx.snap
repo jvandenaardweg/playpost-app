@@ -8,7 +8,7 @@ exports[`ShareModal interacting should fire onPressClose when pressing the close
       "borderRadius": 10,
       "elevation": 10,
       "height": 168,
-      "padding": 16,
+      "padding": 12,
       "shadowColor": "#000",
       "shadowOffset": Object {
         "height": 2,
@@ -105,7 +105,7 @@ exports[`ShareModal rendering should render correctly 1`] = `
       "borderRadius": 10,
       "elevation": 10,
       "height": 168,
-      "padding": 16,
+      "padding": 12,
       "shadowColor": "#000",
       "shadowOffset": Object {
         "height": 2,

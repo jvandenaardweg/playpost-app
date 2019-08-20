@@ -38,9 +38,9 @@ exports[`EmptyState basic rendering should render correctly 1`] = `
     <Text
       style={
         Object {
-          "color": "#AAAAAA",
+          "color": "#222222",
           "fontSize": 15,
-          "lineHeight": 24,
+          "lineHeight": 23,
           "marginBottom": 14,
           "paddingLeft": 24,
           "paddingRight": 24,
@@ -93,9 +93,9 @@ exports[`EmptyState full rendering should render correctly 1`] = `
     <Text
       style={
         Object {
-          "color": "#AAAAAA",
+          "color": "#222222",
           "fontSize": 15,
-          "lineHeight": 24,
+          "lineHeight": 23,
           "marginBottom": 14,
           "paddingLeft": 24,
           "paddingRight": 24,

@@ -1,11 +1,12 @@
 // @ts-ignore
 import React from 'react';
 import { Animated, View } from 'react-native';
-import { WebView } from 'react-native-webview';
+import WebView from 'react-native-webview';
 import { NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
 
 import { ButtonReload } from '../../components/ButtonReload';
 
+import { InteractionManaged } from '../../components/InteractionManaged';
 import colors from '../../constants/colors';
 
 interface Props {
@@ -18,40 +19,40 @@ interface State {
 
 export class BrowserScreen extends React.PureComponent<Props, State> {
 
-  public static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: navigation.getParam('title', null),
       headerRight: <ButtonReload onPress={navigation.getParam('handleOnReload')} />
     };
   }
 
-  public animatedWidth = new Animated.Value(0);
+  animatedWidth = new Animated.Value(0);
 
-  public interpolatedWidth = this.animatedWidth.interpolate({
+  interpolatedWidth = this.animatedWidth.interpolate({
     inputRange: [0, 1],
     outputRange: ['0%', '100%']
   });
 
-  public state = {
+  state = {
     loadProgress: ''
   };
 
   /* tslint:disable-next-line no-any */
   private webviewRef = React.createRef<any>();
 
-  public componentDidMount() {
+  componentDidMount() {
     this.props.navigation.setParams({ handleOnReload: this.handleOnReload });
   }
 
-  public handleOnReload = () => this.webviewRef.current && this.webviewRef.current.reload()
+  handleOnReload = () => this.webviewRef.current && this.webviewRef.current.reload()
 
-  public handleOnLoadEnd = () => {
+  handleOnLoadEnd = () => {
     this.animatedWidth.setValue(0);
   }
 
   // TODO: fix no any
   /* tslint:disable no-any */
-  public handleOnLoadProgress = (event: any) => {
+  handleOnLoadProgress = (event: any) => {
     Animated.timing(
       this.animatedWidth,
       {
@@ -61,25 +62,27 @@ export class BrowserScreen extends React.PureComponent<Props, State> {
     ).start();
   }
 
-  public render() {
+  render() {
     const url = this.props.navigation.getParam('url', null);
 
     return (
-      <View style={{ flex: 1, backgroundColor: colors.appBackground }}>
-        <Animated.View style={{ position: 'absolute', top: 0, left: 0, width: this.interpolatedWidth, backgroundColor: colors.tintColor, height: 5 }}></Animated.View>
-        <WebView
-          ref={this.webviewRef}
-          source={{ uri: url }}
-          startInLoadingState={true}
-          // onLoadProgress={this.handleOnLoadProgress}
-          // onLoadEnd={this.handleOnLoadEnd}
-          sharedCookiesEnabled={true}
-          thirdPartyCookiesEnabled={true}
-          incognito={false}
-          decelerationRate="normal"
-        />
-      </View>
-
+      <InteractionManaged>
+        <View style={{ flex: 1, backgroundColor: colors.appBackground }}>
+          <Animated.View style={{ position: 'absolute', top: 0, left: 0, width: this.interpolatedWidth, backgroundColor: colors.tintColor, height: 5 }}></Animated.View>
+          <WebView
+            ref={this.webviewRef}
+            source={{ uri: url }}
+            useWebKit
+            startInLoadingState={true}
+            // onLoadProgress={this.handleOnLoadProgress}
+            // onLoadEnd={this.handleOnLoadEnd}
+            sharedCookiesEnabled={true}
+            thirdPartyCookiesEnabled={true}
+            incognito={false}
+            decelerationRate="normal"
+          />
+        </View>
+      </InteractionManaged>
     );
   }
 }

@@ -1,9 +1,8 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
-
-import * as Icon from '../Icon';
+import { View } from 'react-native';
 
 import colors from '../../constants/colors';
+import { ButtonTiny } from '../ButtonTiny';
 
 import styles from './styles';
 
@@ -13,8 +12,8 @@ interface Props {
 
 export const ButtonVoices: React.FC<Props> = React.memo(({ onPress }) => {
   return (
-    <TouchableOpacity testID="ButtonVoices-button" onPress={onPress} style={styles.container}>
-      <Icon.Feather name="globe" size={20} color={colors.green} style={styles.icon} />
-    </TouchableOpacity>
+    <View style={styles.container}>
+      <ButtonTiny label="Voices" labelColor={colors.black} backgroundColor={colors.grayLight} onPress={onPress} />
+    </View>
   );
 });

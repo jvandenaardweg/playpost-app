@@ -1,14 +1,16 @@
 import React from 'react';
-import { ActivityIndicator, SectionList, SectionListData, Text, View } from 'react-native';
+import { ActivityIndicator, SectionList, SectionListData, Text, TouchableHighlight, View } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import styles from './styles';
 
 import colors from '../../constants/colors';
 
 import * as Icon from '../../components/Icon';
+import fonts from '../../constants/fonts';
+import { EmptyState } from '../EmptyState';
 import { ListSeperator } from '../ListSeperator';
 
-export interface ListItem {
+export interface IListItem {
   subtitle?: string;
   title?: string;
   icon?: string;
@@ -18,85 +20,101 @@ export interface ListItem {
   checkmark?: boolean;
   isSelected?: boolean;
   isLoading?: boolean;
-  leftIcon?: React.ComponentType<any> | React.ReactElement;
+  leftIcon?: React.ReactElement;
   rightIconColor?: string;
   onPress?(): void;
 }
 
-export interface CustomSectionListSectionData {
+export interface ICustomSectionListSectionData {
   title?: string;
-  data: ListItem[];
+  data: IListItem[];
 }
 
 interface Props {
+  paddingTop?: number;
   sectionListData: ReadonlyArray<SectionListData<any>>;
   ListHeaderComponent?: React.ComponentType<any> | React.ReactElement | null;
   ListFooterComponent?: React.ComponentType<any> | React.ReactElement | null;
+  emptyTitle?: string;
+  emptyDescription?: string[];
 }
 
-export const CustomSectionList: React.FC<Props> = ({ sectionListData, ListHeaderComponent, ListFooterComponent }) => (
+export const CustomSectionList: React.FC<Props> = React.memo(({ sectionListData, ListHeaderComponent, ListFooterComponent, paddingTop, emptyTitle, emptyDescription }) => (
   <View style={styles.container}>
     <SectionList
-      keyExtractor={(item, index) => item + index}
-      style={styles.sectionList}
+      ListEmptyComponent={<EmptyState title={emptyTitle ? emptyTitle : "No items to show"} description={emptyDescription ? emptyDescription : ['It seems like this list is empty...']} />}
+      contentContainerStyle={styles.containerStyle}
+      initialNumToRender={15}
+      keyExtractor={(item, index) => item.key}
       ListHeaderComponent={ListHeaderComponent}
       ListFooterComponent={ListFooterComponent}
       stickySectionHeadersEnabled={false}
-      ItemSeparatorComponent={() => <ListSeperator />}
-      renderSectionFooter={() => <View style={styles.seperator} />}
-      // SectionSeparatorComponent={() => <View style={styles.seperator}><Text>test</Text></View>}
-      // renderSectionHeader={({ section }) => (!section.hideTitle ? <Text>{section.title}</Text> : null)}
-      renderItem={({ item, index, section }) => {
+      ItemSeparatorComponent={() => <View style={styles.itemSeperator}><ListSeperator /></View>}
+      renderSectionFooter={() => <View style={styles.sectionFooter} />}
+      renderItem={({ item, index, section }: { item: IListItem, index: number, section: any }) => {
         const totalSectionItems = section.data.length;
         const lastIndex = totalSectionItems - 1;
 
+        // styles
+        const firstItemStyles = (index === 0) ? styles.listItemContainerBorderTopRadius : undefined;
+        const lastItemStyles = (index === lastIndex) ? styles.listItemContainerBorderBottomRadius : undefined;
+        const containerStyle = (item.isSelected) ? { backgroundColor: colors.tintColor } : undefined;
+        const titleStyle = (item.isSelected) ? { color: colors.white } : { fontSize: fonts.fontSize.title };
+        const subtitleStyle = (item.isSelected) ? { color: 'rgba(255, 255, 255, 0.7)' } : { fontSize: fonts.fontSize.small };
+        const rightIconTextStyles = [styles.rightIconText, item.isSelected ? { color: colors.white } : undefined, item.rightIconColor && !item.isSelected ? { color: item.rightIconColor } : undefined];
+
+        // colors
+        const leftIconColor = item.iconColor ? item.iconColor : colors.black;
+        const checkmarkColor = item.isSelected ? colors.white : colors.grayLight;
+
+        // props
+        const subtitle = (item.subtitle) ? item.subtitle : undefined;
+
+        // elements
+        const leftIcon = (item.leftIcon) ? (item.leftIcon) : (item.icon) ? <Icon.Feather name={item.icon} size={20} color={leftIconColor} /> : undefined;
+        const rightIcon = (item.value) ? <Text style={rightIconTextStyles}>{item.value}</Text> : undefined;
+        const rightElement = getRightElement(item, checkmarkColor);
+
         return (
-          <ListItem
-            title={item.title}
-            onPress={item.onPress}
-            containerStyle={{
-              ...(item.isSelected ? { backgroundColor: colors.tintColor } : undefined),
-              ...(index === 0 ? { borderTopLeftRadius: 8, borderTopRightRadius: 8 } : undefined),
-              ...(index === lastIndex ? { borderBottomLeftRadius: 8, borderBottomRightRadius: 8 } : undefined)
-            }}
-            titleStyle={{
-              ...(item.isSelected ? { color: colors.white } : undefined)
-            }}
-            subtitleStyle={{
-              ...(item.isSelected ? { color: 'rgba(255, 255, 255, 0.5)' } : undefined)
-            }}
-            subtitle={item.subtitle ? item.subtitle : undefined}
-            leftIcon={
-              item.leftIcon ? (
-                item.leftIcon
-              ) : item.icon ? (
-                <Icon.Feather name={item.icon} size={20} color={item.iconColor ? item.iconColor : colors.black} />
-              ) : (
-                undefined
-              )
-            }
-            rightIcon={
-              item.isLoading ? (
-                <ActivityIndicator />
-              ) : item.value ? (
-                <Text style={[styles.rightIconText, item.isSelected ? { color: 'rgba(255, 255, 255, 0.5)' } : undefined, item.rightIconColor ? { color: item.rightIconColor } : undefined]}>{item.value}</Text>
-              ) : (
-                undefined
-              )
-            }
-            rightElement={
-              item.chevron ? (
-                <Icon.FontAwesome5 name="chevron-right" size={16} color={colors.gray} />
-              ) : item.checkmark ? (
-                <Icon.FontAwesome5 name="check" size={16} color={item.isSelected ? colors.white : colors.grayLight} />
-              ) : (
-                undefined
-              )
-            }
-          />
+          <View style={[styles.listItemContainer, firstItemStyles, lastItemStyles]}>
+            {/* // @ts-ignore
+            // TODO: remove ts-ignore when react-native-elements is at version 1.2.0
+            // https://github.com/react-native-training/react-native-elements/pull/1961
+            // https://github.com/react-native-training/react-native-elements/issues/1842#issuecomment-511230772 */}
+            <ListItem
+              Component={TouchableHighlight}
+              title={item.title}
+              onPress={item.onPress}
+              containerStyle={containerStyle}
+              titleStyle={titleStyle}
+              subtitleStyle={subtitleStyle}
+              subtitle={subtitle}
+              leftIcon={leftIcon}
+              rightIcon={rightIcon}
+              rightElement={rightElement}
+            />
+          </View>
         );
       }}
       sections={sectionListData}
     />
   </View>
-);
+));
+
+
+
+const getRightElement = (item: IListItem, checkmarkColor: string) => {
+  if (item.isLoading) {
+    return <ActivityIndicator color="black" />;
+  }
+
+  if (item.chevron) {
+    return <Icon.FontAwesome5 name="chevron-right" size={16} color={colors.gray} />;
+  }
+
+  if (item.checkmark) {
+    return <Icon.FontAwesome5 name="check" size={16} color={checkmarkColor} />
+  }
+
+  return undefined;
+}

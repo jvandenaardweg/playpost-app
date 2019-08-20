@@ -38,7 +38,7 @@ export default StyleSheet.create({
     fontSize: fonts.fontSize.body,
     fontWeight: fonts.fontWeight.semibold,
     color: colors.black,
-    lineHeight: 21,
+    lineHeight: Math.ceil(fonts.fontSize.body * 1.2),
     marginBottom: spacing.tiny
   },
   articleEmptyText: {

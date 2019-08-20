@@ -6,12 +6,81 @@ exports[`ErrorModal rendering should render correctly 1`] = `
     Object {
       "backgroundColor": "white",
       "borderRadius": 10,
-      "padding": 16,
+      "padding": 12,
     }
   }
 >
-  <Text>
-    Test
-  </Text>
+  <View>
+    <Text
+      style={
+        Object {
+          "color": "#000000",
+        }
+      }
+    >
+      Test
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "marginTop": 12,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "borderRadius": 3,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+        testID="ErrorModal-Button-close"
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#2089dc",
+              "borderColor": "#2089dc",
+              "borderRadius": 3,
+              "borderWidth": 0,
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "padding": 8,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 18,
+                "paddingBottom": 1,
+                "paddingTop": 2,
+                "textAlign": "center",
+              }
+            }
+          >
+            Close
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
 </View>
 `;

@@ -23,7 +23,7 @@ describe('ButtonVoices', () => {
     });
 
     it('should fire onPress when the button is pressed', () => {
-      fireEvent.press(wrapper.getByTestId('ButtonVoices-button'));
+      fireEvent.press(wrapper.getByTestId('ButtonTiny-Button'));
       expect(onPressHandler).toHaveBeenCalledTimes(1);
     });
   });

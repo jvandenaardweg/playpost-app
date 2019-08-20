@@ -1,19 +1,22 @@
 import React from 'react';
 import { NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
 import { AppBackground } from '../../components/AppBackground';
+import { InteractionManaged } from '../../components/InteractionManaged';
 import { LanguagesSelectContainer } from '../../containers/LanguageSelectContainer';
 
 export class SettingsLanguagesScreen extends React.PureComponent {
-  public static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: 'Languages'
     };
   }
 
-  public render() {
+  render() {
     return (
       <AppBackground>
-        <LanguagesSelectContainer />
+        <InteractionManaged>
+          <LanguagesSelectContainer />
+        </InteractionManaged>
       </AppBackground>
     );
   }

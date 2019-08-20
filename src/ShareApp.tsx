@@ -12,7 +12,7 @@ import { NetworkProvider } from './contexts/NetworkProvider';
 // tslint:disable-next-line: no-console
 console.disableYellowBox = true;
 
-function setRemoteDebugging(dev: boolean) {
+function setRemoteDebugging(dev: boolean): void {
   if (Platform.OS !== 'ios') { return; }
 
   if (!dev) { return; }
@@ -25,7 +25,7 @@ setRemoteDebugging(__DEV__);
 // Important: Keep this App a Class component
 // Using a Functional Component as the root component breaks Hot Reloading (on a local device)
 export default class ShareApp extends React.PureComponent {
-  public render () {
+  render (): JSX.Element {
     return (
       <Provider store={store}>
         <ThemeProvider theme={reactNativeElementsTheme}>

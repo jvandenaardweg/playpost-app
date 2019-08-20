@@ -20,11 +20,11 @@ interface IProps {
 type Props = IProps & StateProps & DispatchProps;
 
 class ErrorMessageContainerComponent extends React.PureComponent<Props, State> {
-  public state = {
+  state = {
     forceClose: false
   };
 
-  public errorMessages() {
+  errorMessages() {
     const { userError, authError } = this.props;
 
     const errors = [];
@@ -35,7 +35,7 @@ class ErrorMessageContainerComponent extends React.PureComponent<Props, State> {
     return errors.join(',');
   }
 
-  public handleOnPressClose = () => {
+  handleOnPressClose = () => {
     const { userError, authError } = this.props;
 
     this.setState({ forceClose: true }, () => {
@@ -45,7 +45,7 @@ class ErrorMessageContainerComponent extends React.PureComponent<Props, State> {
     });
   }
 
-  public render () {
+  render () {
     const { forceClose } = this.state;
 
     // Don't render when we do not have a message to display

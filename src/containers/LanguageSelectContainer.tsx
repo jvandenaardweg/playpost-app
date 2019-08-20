@@ -1,4 +1,6 @@
 import React from 'react';
+import isEqual from 'react-fast-compare';
+import { InteractionManager } from 'react-native';
 import { connect } from 'react-redux';
 
 import { RootState } from '../reducers';
@@ -13,20 +15,27 @@ import { selectLanguagesWithActiveVoices } from '../selectors/voices';
 
 type Props = NavigationInjectedProps & StateProps & DispatchProps;
 
-export class LanguagesSelectComponent extends React.PureComponent<Props> {
-  public componentDidMount() {
-    this.props.getLanguages();
+export class LanguagesSelectComponent extends React.Component<Props> {
+  componentDidMount(): void {
+    InteractionManager.runAfterInteractions(() => {
+      this.props.getLanguages();
+    });
   }
 
-  public keyExtractor = (item: Api.Language, index: number) => index.toString();
+  shouldComponentUpdate(nextProps: Props): boolean {
+    // Only re-render if props change
+    return !isEqual(this.props, nextProps)
+  }
 
-  public handleOnListItemPress = (item: Api.Language) => this.props.navigation.navigate('SettingsVoices', { languageName: item.name });
+  keyExtractor = (item: Api.Language, index: number) => index.toString();
 
-  public getDefaultVoice = (language: Api.Language) => {
+  handleOnListItemPress = (item: Api.Language) => this.props.navigation.navigate('SettingsVoices', { languageName: item.name });
+
+  getDefaultVoice = (language: Api.Language) => {
     return language.voices && language.voices.find(voice => !!voice.isLanguageDefault);
   }
 
-  public getVoiceSubtitle = (item: Api.Language) => {
+  getVoiceSubtitle = (item: Api.Language) => {
     const { userSelectedVoices } = this.props;
 
     const foundUserSelectedVoice = userSelectedVoices.find(userSelectedVoice => userSelectedVoice.language.id === item.id);
@@ -42,17 +51,19 @@ export class LanguagesSelectComponent extends React.PureComponent<Props> {
     return `${label} (${voice.countryCode}) (${genderLabel})`;
   }
 
-  public render() {
+  render() {
     const { languagesWithActiveVoices } = this.props;
 
     const sectionListData = [
       {
+        key: 'language',
         title: 'Lanuage',
         data: languagesWithActiveVoices.map((language, index) => {
           const totalVoices = language.voices && language.voices.length ? language.voices.length : 0;
           const subtitle = this.getVoiceSubtitle(language);
 
           return {
+            key: language.id,
             subtitle,
             title: language.name,
             icon: 'globe',

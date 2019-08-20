@@ -1,4 +1,4 @@
-export default [
+const subscriptions: Api.InAppSubscription[] = [
   {
     id: '7e31ec53-b7c0-4795-83ea-98432ac7754b',
     productId: 'com.aardwegmedia.playpost.premium',
@@ -45,3 +45,5 @@ export default [
     updatedAt: '2019-07-02T05:32:35.040Z'
   }
 ];
+
+export default subscriptions;

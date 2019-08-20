@@ -22,7 +22,8 @@ describe('player reducer', () => {
     const expectedState = {
       ...initialState,
       track: exampleTrack,
-      articleId: exampleArticleId
+      currentArticleId: exampleArticleId,
+      previousArticleId: ''
     };
 
     expect(
@@ -31,6 +32,28 @@ describe('player reducer', () => {
         payload: {
           track: exampleTrack,
           articleId: exampleArticleId
+        }
+      })
+    ).toEqual(expectedState);
+  });
+
+  it('should handle SET_TRACK with correct previousArticleId', () => {
+    const exampleArticleId = '448d9d05-93e9-4756-a82d-1505597acf7d';
+    const newArticleId = '50d9d844-93e9-4756-a82d-1505597acf7d';
+
+    const expectedState = {
+      ...initialState,
+      track: exampleTrack,
+      currentArticleId: newArticleId,
+      previousArticleId: exampleArticleId
+    };
+
+    expect(
+      playerReducer({...initialState, currentArticleId: exampleArticleId}, {
+        type: SET_TRACK,
+        payload: {
+          track: exampleTrack,
+          articleId: newArticleId
         }
       })
     ).toEqual(expectedState);

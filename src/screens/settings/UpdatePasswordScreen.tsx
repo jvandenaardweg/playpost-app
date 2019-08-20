@@ -3,7 +3,7 @@ import { Alert } from 'react-native';
 import { NavigationInjectedProps, NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
 import { connect } from 'react-redux';
 
-import { ALERT_GENERIC_INTERNET_REQUIRED } from '../../constants/messages';
+import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_UPDATE_PASSWORD_DIFF_VALIDATION_FAIL, ALERT_TITLE_ERROR } from '../../constants/messages';
 
 import { UpdatePasswordForm } from '../../components/UpdatePasswordForm';
 
@@ -12,6 +12,7 @@ import { updateUserPassword } from '../../reducers/user';
 
 import { selectUserError } from '../../selectors/user';
 
+import { InteractionManaged } from '../../components/InteractionManaged';
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
 interface State {
@@ -30,14 +31,14 @@ type Props = NavigationInjectedProps & StateProps & DispatchProps;
 
 export class UpdatePasswordScreenContainer extends React.PureComponent<Props, State> {
 
-  public static contextType = NetworkContext;
-  public static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+  static contextType = NetworkContext;
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: 'Change password'
     };
   }
 
-  public state = {
+  state = {
     isLoading: false,
     isSuccess: false,
     password: '',
@@ -45,33 +46,33 @@ export class UpdatePasswordScreenContainer extends React.PureComponent<Props, St
     validationError: '',
   };
 
-  public navigationTimeout: NodeJS.Timeout | null = null;
+  navigationTimeout: NodeJS.Timeout | null = null;
 
-  public componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: Props) {
     const { userError } = this.props;
 
     if (userError && prevProps.userError !== userError) {
-      return Alert.alert('Oops!', userError);
+      return Alert.alert(ALERT_TITLE_ERROR, userError);
     }
   }
 
-  public componentWillUnmount() {
+  componentWillUnmount() {
     if (this.navigationTimeout) {
       clearTimeout(this.navigationTimeout);
     }
   }
 
-  public handleOnPressUpdatePassword = async () => {
+  handleOnPressUpdatePassword = async () => {
     const { password, passwordValidation, isSuccess } = this.state;
     const { isConnected } = this.context;
 
-    if (!isConnected) { return Alert.alert('Oops!', ALERT_GENERIC_INTERNET_REQUIRED); }
+    if (!isConnected) { return Alert.alert(ALERT_TITLE_ERROR, ALERT_GENERIC_INTERNET_REQUIRED); }
 
     // Just navigate back to the settings screen
     if (isSuccess) { return this.props.navigation.navigate('Settings'); }
 
     if (password !== passwordValidation) {
-      return Alert.alert('Oops!', 'The given passwords do not match. Please make sure you typed your passwords correctly.');
+      return Alert.alert(ALERT_TITLE_ERROR, ALERT_SETTINGS_UPDATE_PASSWORD_DIFF_VALIDATION_FAIL);
     }
 
     this.setState({ isLoading: true }, async () => {
@@ -88,23 +89,25 @@ export class UpdatePasswordScreenContainer extends React.PureComponent<Props, St
     });
   }
 
-  public handleOnChangeText = (field: 'password' | 'passwordValidation', value: string) => {
+  handleOnChangeText = (field: 'password' | 'passwordValidation', value: string) => {
     if (field === 'password') { this.setState({ password: value }); }
     if (field === 'passwordValidation') { this.setState({ passwordValidation: value }); }
   }
 
-  public render() {
+  render() {
     const { password, passwordValidation, isLoading, isSuccess } = this.state;
 
     return (
-      <UpdatePasswordForm
-        password={password}
-        passwordValidation={passwordValidation}
-        isLoading={isLoading}
-        isSuccess={isSuccess}
-        onChangeText={this.handleOnChangeText}
-        onPressUpdatePassword={this.handleOnPressUpdatePassword}
-      />
+      <InteractionManaged>
+        <UpdatePasswordForm
+          password={password}
+          passwordValidation={passwordValidation}
+          isLoading={isLoading}
+          isSuccess={isSuccess}
+          onChangeText={this.handleOnChangeText}
+          onPressUpdatePassword={this.handleOnPressUpdatePassword}
+        />
+      </InteractionManaged>
     );
   }
 }

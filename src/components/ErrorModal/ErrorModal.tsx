@@ -1,35 +1,20 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
-import spacing from '../../constants/spacing';
+import styles from './styles';
 
 interface Props {
   message: string;
-  action: string;
-  onPressAction(url: string): void;
+  onPressClose(): void;
 }
 
-export const ErrorModal: React.FC<Props> = React.memo(({ message, action, onPressAction }) => (
-  <View style={{
-    backgroundColor: 'white',
-    padding: spacing.default,
-    borderRadius: 10
-  }}>
-    <Text>{message}</Text>
-
-    {action === 'login' && (
-      <View>
-        <Button title="Close" type="outline" onPress={() => onPressAction('playpost://Onboarding')} />
-        <Button title="Login" onPress={() => onPressAction('playpost://Onboarding')} />
-      </View>
-    )}
-
-    {action === 'playlist' && (
-      <View>
-        <Button title="Close" type="outline" onPress={() => onPressAction('playpost://Onboarding')} />
-        <Button title="Login" onPress={() => onPressAction('playpost://Onboarding')} />
-      </View>
-    )}
-
+export const ErrorModal: React.FC<Props> = React.memo(({ message, onPressClose }) => (
+  <View style={styles.container}>
+    <View>
+      <Text style={styles.messageText}>{message}</Text>
+    </View>
+    <View style={styles.footer}>
+      <Button testID="ErrorModal-Button-close" title="Close" onPress={onPressClose} />
+    </View>
   </View>
 ));

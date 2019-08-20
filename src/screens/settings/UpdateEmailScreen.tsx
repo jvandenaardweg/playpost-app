@@ -1,9 +1,9 @@
 import React from 'react';
-import { Alert } from 'react-native';
+import { Alert, InteractionManager } from 'react-native';
 import { NavigationInjectedProps, NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
 import { connect } from 'react-redux';
 
-import { ALERT_GENERIC_INTERNET_REQUIRED } from '../../constants/messages';
+import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_UPDATE_EMAIL_DIFF, ALERT_TITLE_ERROR, ALERT_TITLE_NO_UPDATE } from '../../constants/messages';
 
 import { UpdateEmailForm } from '../../components/UpdateEmailForm';
 
@@ -12,6 +12,8 @@ import { getUser, updateUserEmail } from '../../reducers/user';
 
 import { selectUserDetails, selectUserError } from '../../selectors/user';
 
+import { AppBackground } from '../../components/AppBackground';
+import { InteractionManaged } from '../../components/InteractionManaged';
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
 interface State {
@@ -30,14 +32,14 @@ type Props = NavigationInjectedProps & StateProps & DispatchProps;
 
 export class UpdateEmailScreenContainer extends React.PureComponent<Props, State> {
 
-  public static contextType = NetworkContext;
-  public static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+  static contextType = NetworkContext;
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: 'Change e-mail'
     };
   }
 
-  public state = {
+  state = {
     isLoading: false,
     isSuccess: false,
     email: '',
@@ -46,41 +48,43 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
     validationError: '',
   };
 
-  public navigationTimeout: NodeJS.Timeout | null = null;
+  navigationTimeout: NodeJS.Timeout | null = null;
 
-  public componentDidMount() {
-    const { userDetails } = this.props;
+  componentDidMount() {
+    InteractionManager.runAfterInteractions(() => {
+      const { userDetails } = this.props;
 
-    if (userDetails && userDetails.email) {
-      this.setState({
-        email: userDetails.email,
-        previousEmail: userDetails.email
-      });
-    }
+      if (userDetails && userDetails.email) {
+        this.setState({
+          email: userDetails.email,
+          previousEmail: userDetails.email
+        });
+      }
+    })
   }
 
-  public componentWillUnmount() {
+  componentWillUnmount() {
     if (this.navigationTimeout) {
       clearTimeout(this.navigationTimeout);
     }
   }
 
-  public componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: Props) {
     const { userError } = this.props;
 
     if (userError && prevProps.userError !== userError) {
-      return Alert.alert('Oops!', userError);
+      return Alert.alert(ALERT_TITLE_ERROR, userError);
     }
   }
 
-  public handleOnPressUpdateEmail = async () => {
+  handleOnPressUpdateEmail = async () => {
     const { email, previousEmail, isSuccess } = this.state;
     const { isConnected } = this.context;
 
-    if (!isConnected) { return Alert.alert('Oops!', ALERT_GENERIC_INTERNET_REQUIRED); }
+    if (!isConnected) { return Alert.alert(ALERT_TITLE_ERROR, ALERT_GENERIC_INTERNET_REQUIRED); }
 
     if (email === previousEmail) {
-      return Alert.alert('Nothing to update...', 'The e-mail address given is the same. No need to update :-)');
+      return Alert.alert(ALERT_TITLE_NO_UPDATE, ALERT_SETTINGS_UPDATE_EMAIL_DIFF);
     }
 
     // If the user clicks on the button after a success
@@ -103,21 +107,25 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
     });
   }
 
-  public handleOnChangeText = (field: 'email', value: string) => {
+  handleOnChangeText = (field: 'email', value: string) => {
     if (field === 'email') { this.setState({ email: value }); }
   }
 
-  public render() {
+  render() {
     const { email, isLoading, isSuccess } = this.state;
 
     return (
-      <UpdateEmailForm
-        email={email}
-        isLoading={isLoading}
-        isSuccess={isSuccess}
-        onChangeText={this.handleOnChangeText}
-        onPressUpdateEmail={this.handleOnPressUpdateEmail}
-      />
+      <AppBackground>
+        <InteractionManaged>
+          <UpdateEmailForm
+            email={email}
+            isLoading={isLoading}
+            isSuccess={isSuccess}
+            onChangeText={this.handleOnChangeText}
+            onPressUpdateEmail={this.handleOnPressUpdateEmail}
+          />
+        </InteractionManaged>
+      </AppBackground>
     );
   }
 }

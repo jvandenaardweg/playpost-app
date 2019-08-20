@@ -2,18 +2,18 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import colors from '../../constants/colors';
-import fonts from '../../constants/fonts';
+import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../constants/in-app-purchase';
 import styles from './styles';
 
 
 interface Props {
   user: Api.User | null;
   activeSubscriptionProductId: string;
-  activeSubscriptionName: string;
+  userHasSubscribedBefore: boolean;
   onPressUpgrade(upgradeScreenCenteredSubscriptionProductId?: string): void;
 }
 
-export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProductId, onPressUpgrade, activeSubscriptionName }) => {
+export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProductId, onPressUpgrade, userHasSubscribedBefore }) => {
   if (!user) { return null; }
 
   const limitSecondsPerMonth = user.limits.audiofiles.limitSecondsPerMonth;
@@ -21,26 +21,23 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
   const percentageUsedCurrentMonth = (usageUsedCurrentMonthInSeconds / limitSecondsPerMonth) * 100;
   const percentageUsed = percentageUsedCurrentMonth >= 100 ? 100 : percentageUsedCurrentMonth;
 
-  const currentUsageLocalized = Math.ceil(usageUsedCurrentMonthInSeconds).toLocaleString('nl-NL'); // So we have 5.000 (with a dot)
-  const currentLimitLocalized = Math.ceil(limitSecondsPerMonth).toLocaleString('nl-NL'); // So we have 5.000 (with a dot)
+  const currentUsageLocalized = Math.ceil(usageUsedCurrentMonthInSeconds / 60).toLocaleString('nl-NL'); // So we have 5.000 (with a dot)
+  const currentLimitLocalized = Math.ceil(limitSecondsPerMonth / 60).toLocaleString('nl-NL'); // So we have 5.000 (with a dot)
 
-  const showUpgradeButton = activeSubscriptionProductId === 'free' || activeSubscriptionProductId === 'com.aardwegmedia.playpost.premium';
+  const showUpgradeButton = activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE || activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_PREMIUM;
 
-  const upgradeButtonTitle =
-    activeSubscriptionProductId === 'com.aardwegmedia.playpost.premium'
-      ? 'Upgrade to Plus'
-      : activeSubscriptionProductId === 'free'
-      ? 'Upgrade to Premium or Plus'
-      : 'Upgrade';
+  const upgradeButtonTitle = getUpgradeButtonTitle(activeSubscriptionProductId, userHasSubscribedBefore);
+  const upgradeMessage = getUpgradeMessage(activeSubscriptionProductId);
+  const usedText = `of ${currentLimitLocalized} minutes used`;
+  const usedPercentageText = `${Math.ceil(percentageUsed)}%`;
+  const progressWidth = `${percentageUsed}%`;
 
   const upgradeScreenCenteredSubscriptionProductId =
-    activeSubscriptionProductId === 'com.aardwegmedia.playpost.premium'
-      ? 'com.aardwegmedia.playpost.subscription.plus'
-      : activeSubscriptionProductId === 'free'
-      ? 'com.aardwegmedia.playpost.premium'
-      : 'com.aardwegmedia.playpost.premium';
-
-
+    activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_PREMIUM
+      ? SUBSCRIPTION_PRODUCT_ID_PLUS
+      : activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE
+      ? SUBSCRIPTION_PRODUCT_ID_PREMIUM
+      : SUBSCRIPTION_PRODUCT_ID_PREMIUM;
 
   return (
     <View style={styles.container}>
@@ -52,28 +49,29 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
             </View>
             <View style={styles.statsNumbersContainer}>
               <View>
-                <Text style={styles.statsMeta}>of {currentLimitLocalized} minutes used</Text>
+                <Text testID="Usage-Text-minutes-used" style={styles.statsMeta}>{usedText}</Text>
               </View>
               <View>
-                <Text style={styles.statsPercentage}>{Math.ceil(percentageUsed)}%</Text>
+                <Text testID="Usage-Text-percentage" style={styles.statsPercentage}>{usedPercentageText}</Text>
               </View>
             </View>
           </View>
           <View style={styles.progressContainer}>
-            <View style={[styles.progress, { width: `${percentageUsed}%` }]} />
+            <View testID="Usage-View-progress" style={[styles.progress, { width: progressWidth }]} />
           </View>
         </View>
 
         {showUpgradeButton && (
           <View style={styles.upgradeContainer}>
             <Button
+              testID="Usage-Button-upgrade"
               title={upgradeButtonTitle}
               titleStyle={{ color: colors.white }}
               buttonStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}
               onPress={() => onPressUpgrade(upgradeScreenCenteredSubscriptionProductId)}
             />
-            <Text style={{ marginTop: 8, color: colors.white, opacity: 0.7, textAlign: 'center', fontSize: fonts.fontSize.small }}>
-              Upgrade for more minutes and Premium quality voices.
+            <Text testID="Usage-Text-upgrade-message" style={styles.messageText}>
+              {upgradeMessage}
             </Text>
           </View>
         )}
@@ -81,3 +79,31 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
     </View>
   );
 });
+
+export function getUpgradeMessage(activeSubscriptionProductId: string): string {
+  if (activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE) {
+    return 'Upgrade for more minutes and Premium quality voices.';
+  }
+
+  if (activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_PREMIUM) {
+    return 'Upgrade for nearly unlimited minutes.'
+  }
+
+  return ''
+}
+
+export function getUpgradeButtonTitle(activeSubscriptionProductId: string, userHasSubscribedBefore: boolean): string {
+  if (activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE && !userHasSubscribedBefore) {
+    return 'Start free Premium or Plus trial'
+  }
+
+  if (activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE) {
+    return 'Upgrade to Premium or Plus'
+  }
+
+  if (activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_PREMIUM) {
+    return 'Upgrade to Plus'
+  }
+
+  return ''
+}

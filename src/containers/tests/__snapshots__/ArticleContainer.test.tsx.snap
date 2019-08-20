@@ -1,0 +1,684 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArticleContainer rendering should render correctly 1`] = `
+<View
+  collapsable={false}
+  onGestureHandlerEvent={[Function]}
+  onGestureHandlerStateChange={[Function]}
+  onLayout={[Function]}
+  style={
+    Object {
+      "overflow": "hidden",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "bottom": 0,
+        "flexDirection": "row-reverse",
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "transform": Array [
+          Object {
+            "translateX": -10000,
+          },
+        ],
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "width": 250,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <RNGestureHandlerButton
+          activeOpacity={0.105}
+          collapsable={false}
+          onActiveStateChange={[Function]}
+          onGestureEvent={[Function]}
+          onGestureHandlerEvent={[Function]}
+          onGestureHandlerStateChange={[Function]}
+          onHandlerStateChange={[Function]}
+          onPress={[Function]}
+          style={
+            Array [
+              Object {
+                "overflow": "hidden",
+              },
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "justifyContent": "center",
+                "width": 54,
+              },
+            ]
+          }
+          underlayColor="black"
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "black",
+                "bottom": 0,
+                "left": 0,
+                "opacity": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          />
+          <Text
+            allowFontScaling={false}
+            style={
+              Array [
+                Object {
+                  "color": "#C5C5C5",
+                  "fontSize": 22,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Feather",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {},
+              ]
+            }
+          >
+            
+          </Text>
+        </RNGestureHandlerButton>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <RNGestureHandlerButton
+          activeOpacity={0.105}
+          collapsable={false}
+          onActiveStateChange={[Function]}
+          onGestureEvent={[Function]}
+          onGestureHandlerEvent={[Function]}
+          onGestureHandlerStateChange={[Function]}
+          onHandlerStateChange={[Function]}
+          onPress={[Function]}
+          style={
+            Array [
+              Object {
+                "overflow": "hidden",
+              },
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "justifyContent": "center",
+                "width": 54,
+              },
+            ]
+          }
+          underlayColor="black"
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "black",
+                "bottom": 0,
+                "left": 0,
+                "opacity": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          />
+          <Text
+            allowFontScaling={false}
+            style={
+              Array [
+                Object {
+                  "color": "#C5C5C5",
+                  "fontSize": 22,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Feather",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {},
+              ]
+            }
+          >
+            
+          </Text>
+        </RNGestureHandlerButton>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <RNGestureHandlerButton
+          activeOpacity={0.105}
+          collapsable={false}
+          onActiveStateChange={[Function]}
+          onGestureEvent={[Function]}
+          onGestureHandlerEvent={[Function]}
+          onGestureHandlerStateChange={[Function]}
+          onHandlerStateChange={[Function]}
+          onPress={[Function]}
+          style={
+            Array [
+              Object {
+                "overflow": "hidden",
+              },
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "justifyContent": "center",
+                "width": 54,
+              },
+            ]
+          }
+          underlayColor="black"
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "black",
+                "bottom": 0,
+                "left": 0,
+                "opacity": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          />
+          <Text
+            allowFontScaling={false}
+            style={
+              Array [
+                Object {
+                  "color": "#C5C5C5",
+                  "fontSize": 22,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "Feather",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {},
+              ]
+            }
+          >
+            
+          </Text>
+        </RNGestureHandlerButton>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+    />
+  </View>
+  <View
+    collapsable={false}
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
+    pointerEvents="auto"
+    style={
+      Object {
+        "transform": Array [
+          Object {
+            "translateX": -0,
+          },
+        ],
+      }
+    }
+  >
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {},
+          null,
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "backgroundColor": "#ffffff",
+            "padding": 12,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+              }
+            }
+            testID="Article-Button-section"
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "baseline",
+                  "flexDirection": "row",
+                  "height": 14,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "flexBasis": "auto",
+                    "flexGrow": 1,
+                    "flexShrink": 1,
+                  }
+                }
+              >
+                <Text
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={
+                    Object {
+                      "color": "#AAAAAA",
+                      "fontSize": 12,
+                      "fontWeight": "300",
+                      "paddingRight": 0,
+                    }
+                  }
+                  testID="Article-source-name"
+                >
+                  Cindy Lamothe on Medium
+                </Text>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                  "marginBottom": 6,
+                  "marginTop": 6,
+                }
+              }
+            >
+              <Text
+                ellipsizeMode="tail"
+                numberOfLines={3}
+                style={
+                  Object {
+                    "color": "#000000",
+                    "fontSize": 17,
+                    "fontWeight": "600",
+                    "lineHeight": 21,
+                  }
+                }
+                testID="Article-title"
+              >
+                Strategies to Pull Yourself Out of a Bad Mood
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "alignItems": "baseline",
+                  "flex": 1,
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexGrow": 0,
+                  "flexShrink": 1,
+                  "height": 14,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "flexDirection": "row",
+                    "width": 35,
+                  }
+                }
+              >
+                <Text
+                  allowFontScaling={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#03A87C",
+                        "fontSize": 8,
+                      },
+                      Object {
+                        "marginRight": 4,
+                      },
+                      Object {
+                        "fontFamily": "FontAwesome5Free-Solid",
+                        "fontStyle": "normal",
+                        "fontWeight": "normal",
+                      },
+                      Object {
+                        "fontWeight": "900",
+                      },
+                    ]
+                  }
+                  testID="Article-PlayIcon-Icon-playable"
+                >
+                  
+                </Text>
+                <Text
+                  allowFontScaling={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#ddd",
+                        "fontSize": 8,
+                      },
+                      Object {
+                        "marginRight": 4,
+                      },
+                      Object {
+                        "fontFamily": "FontAwesome5Free-Solid",
+                        "fontStyle": "normal",
+                        "fontWeight": "normal",
+                      },
+                      Object {
+                        "fontWeight": "900",
+                      },
+                    ]
+                  }
+                  testID="Article-icon-downloaded"
+                >
+                  
+                </Text>
+                <Text
+                  allowFontScaling={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#ddd",
+                        "fontSize": 8,
+                      },
+                      Object {
+                        "marginRight": 4,
+                      },
+                      Object {
+                        "fontFamily": "FontAwesome5Free-Solid",
+                        "fontStyle": "normal",
+                        "fontWeight": "normal",
+                      },
+                      Object {
+                        "fontWeight": "900",
+                      },
+                    ]
+                  }
+                  testID="Article-icon-favorited"
+                >
+                  
+                </Text>
+              </View>
+              <Text
+                style={
+                  Object {
+                    "color": "#AAAAAA",
+                    "fontSize": 12,
+                    "fontWeight": "300",
+                    "paddingLeft": 2,
+                  }
+                }
+              >
+                Added 
+                5 months
+                 ago
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "marginLeft": 12,
+                "marginTop": 4,
+                "width": 75,
+              }
+            }
+          >
+            <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#C5C5C5",
+                  "borderRadius": 4,
+                  "height": 75,
+                  "justifyContent": "center",
+                  "opacity": 1,
+                  "width": 75,
+                }
+              }
+              testID="Article-Button-play"
+            >
+              <View
+                style={
+                  Object {
+                    "backgroundColor": "transparent",
+                    "position": "relative",
+                  }
+                }
+              >
+                <Image
+                  onLoadEnd={[Function]}
+                  source={
+                    Object {
+                      "uri": "https://cdn-images-1.medium.com/max/1200/1*7bkLMEixJ8jnTn4E2JJe5A.jpeg",
+                    }
+                  }
+                  style={
+                    Object {
+                      "borderRadius": 4,
+                      "height": 75,
+                      "opacity": 0.9,
+                      "width": 75,
+                    }
+                  }
+                  theme={
+                    Object {
+                      "colors": Object {
+                        "disabled": "hsl(208, 8%, 90%)",
+                        "divider": "#bcbbc1",
+                        "error": "#ff190c",
+                        "grey0": "#393e42",
+                        "grey1": "#43484d",
+                        "grey2": "#5e6977",
+                        "grey3": "#86939e",
+                        "grey4": "#bdc6cf",
+                        "grey5": "#e1e8ee",
+                        "greyOutline": "#bbb",
+                        "platform": Object {
+                          "android": Object {
+                            "error": "#f44336",
+                            "primary": "#2196f3",
+                            "secondary": "#9C27B0",
+                            "success": "#4caf50",
+                            "warning": "#ffeb3b",
+                          },
+                          "ios": Object {
+                            "error": "#ff3b30",
+                            "primary": "#007aff",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                        },
+                        "primary": "#2089dc",
+                        "searchBg": "#303337",
+                        "secondary": "#8F0CE8",
+                        "success": "#52c41a",
+                        "warning": "#faad14",
+                      },
+                    }
+                  }
+                />
+                <View
+                  style={
+                    Object {
+                      "bottom": 0,
+                      "left": 0,
+                      "opacity": 1,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#e5e5e5",
+                        "borderRadius": 4,
+                        "height": 75,
+                        "justifyContent": "center",
+                        "opacity": 0.9,
+                        "width": 75,
+                      }
+                    }
+                    testID="RNE__Image__placeholder"
+                  />
+                </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "height": 32,
+                    "position": "absolute",
+                    "width": 32,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#ffffff",
+                        "borderRadius": 32,
+                        "elevation": 1,
+                        "height": 32,
+                        "justifyContent": "center",
+                        "shadowColor": "#000000",
+                        "shadowOffset": Object {
+                          "height": 1,
+                          "width": 0,
+                        },
+                        "shadowOpacity": 0.2,
+                        "shadowRadius": 1,
+                        "width": 32,
+                      },
+                      null,
+                    ]
+                  }
+                  testID="Article-PlayIcon-view"
+                >
+                  <Text
+                    allowFontScaling={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#000",
+                          "fontSize": 11,
+                        },
+                        Object {
+                          "marginLeft": 2,
+                        },
+                        Object {
+                          "fontFamily": "FontAwesome5Free-Solid",
+                          "fontStyle": "normal",
+                          "fontWeight": "normal",
+                        },
+                        Object {
+                          "fontWeight": "900",
+                        },
+                      ]
+                    }
+                    testID="Article-PlayIcon-Icon-play"
+                  >
+                    
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <Text
+              style={
+                Object {
+                  "color": "#AAAAAA",
+                  "fontSize": 12,
+                  "fontWeight": "300",
+                  "marginTop": 6,
+                  "textAlign": "center",
+                }
+              }
+              testID="Article-duration"
+            >
+              7 min.
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

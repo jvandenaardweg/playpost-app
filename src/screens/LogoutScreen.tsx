@@ -1,7 +1,5 @@
 import React from 'react';
-import { Platform } from 'react-native';
 import RNFS from 'react-native-fs';
-import * as Keychain from 'react-native-keychain';
 import { NavigationInjectedProps, NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
 import { connect } from 'react-redux';
 
@@ -18,26 +16,22 @@ import { CenterLoadingIndicator } from '../components/CenterLoadingIndicator';
 import { RootState } from '../reducers';
 import { resetSubscriptionsState } from '../reducers/subscriptions';
 import { persistor } from '../store';
-
-export const keychainArguments = Platform.select({
-  ios: { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' },
-  android: { service: 'com.aardwegmedia.playpost' }
-});
+import * as keychain from '../utils/keychain';
 
 type Props = NavigationInjectedProps & DispatchProps;
 
 class LogoutScreenContainer extends React.PureComponent<Props> {
-  public static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: 'Logout'
     };
   }
 
-  public componentDidMount() {
+  componentDidMount() {
     this.logout();
   }
 
-  public doResetCache = async () => {
+  doResetCache = async () => {
     this.props.resetAudiofilesState();
     this.props.resetDownloadedVoices();
     await RNFS.unlink(LOCAL_CACHE_AUDIOFILES_PATH);
@@ -45,12 +39,12 @@ class LogoutScreenContainer extends React.PureComponent<Props> {
     return;
   }
 
-  public logout = async () => {
+  logout = async () => {
 
     await this.doResetCache();
 
     // Remove the API token from secure store
-    await Keychain.resetGenericPassword(keychainArguments);
+    await keychain.resetToken();
 
     // Remove the persisted state
     await persistor.purge();
@@ -67,7 +61,7 @@ class LogoutScreenContainer extends React.PureComponent<Props> {
     return this.props.navigation.navigate('Onboarding');
   }
 
-  public render() {
+  render() {
     return (
       <CenterLoadingIndicator />
     );

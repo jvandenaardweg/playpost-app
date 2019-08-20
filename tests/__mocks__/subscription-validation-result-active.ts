@@ -1,4 +1,4 @@
-export default {
+const subscriptionValidationResult: Api.ReceiptValidationResponse = {
   id: 'e3901c8f-5a61-46bb-bebf-e7ed9f936922',
   startedAt: '2019-06-10T18:50:08.000Z',
   expiresAt: '2019-06-10T18:56:06.000Z',
@@ -18,13 +18,17 @@ export default {
     id: '7e31ec53-b7c0-4795-83ea-98432ac7754b',
     productId: 'com.aardwegmedia.playpost.premium',
     name: 'Premium',
-    description: 'Monthly Subscription',
+    description: 'Monthly Premium Subscription',
     price: 4.99,
     currency: 'eur',
     duration: '1m',
     service: 'apple',
+    limitSecondsPerMonth: 7200,
+    limitSecondsPerArticle: 900,
     isActive: true,
     createdAt: '2019-06-01T08:16:42.873Z',
-    updatedAt: '2019-06-01T08:16:42.873Z'
+    updatedAt: '2019-07-02T05:32:35.020Z'
   }
 };
+
+export default subscriptionValidationResult;

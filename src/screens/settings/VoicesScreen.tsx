@@ -1,19 +1,22 @@
 import React from 'react';
 import { NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
 import { AppBackground } from '../../components/AppBackground';
+import { InteractionManaged } from '../../components/InteractionManaged';
 import { VoiceSelectContainer } from '../../containers/VoiceSelectContainer';
 
 export class SettingsVoicesScreen extends React.PureComponent {
-  public static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: 'Voices'
     };
   }
 
-  public render() {
+  render() {
     return (
       <AppBackground>
-        <VoiceSelectContainer />
+        <InteractionManaged>
+          <VoiceSelectContainer />
+        </InteractionManaged>
       </AppBackground>
     );
   }

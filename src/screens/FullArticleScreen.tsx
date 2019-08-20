@@ -2,13 +2,14 @@ import React from 'react';
 import { NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
 
 import { ArticleReader } from '../components/ArticleReader';
+import { InteractionManaged } from '../components/InteractionManaged';
 
 interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;
 }
 
 export class FullArticleScreen extends React.PureComponent<Props> {
-  public static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
     return {
       title: ''
     };
@@ -18,9 +19,11 @@ export class FullArticleScreen extends React.PureComponent<Props> {
     return this.props.navigation.getParam('article', null);
   }
 
-  public render() {
+  render() {
     return (
-      <ArticleReader article={this.article} />
+      <InteractionManaged>
+        <ArticleReader article={this.article} />
+      </InteractionManaged>
     );
   }
 }

@@ -1,5 +1,17 @@
 import { createStore } from 'redux';
-import { selectUserDetails, selectUserError, selectUserErrorSaveSelectedVoice, selectUserIsLoading, selectUserIsPremium, selectUserSelectedVoiceByLanguageName, selectUserSelectedVoices, selectUserSubscriptions, userSelector } from '../user';
+
+import { selectDeviceLocale,
+  selectUserDetails,
+  selectUserError,
+  selectUserErrorSaveSelectedVoice,
+  selectUserHasSubscribedBefore,
+  selectUserIsLoading,
+  selectUserPlaybackSpeed,
+  selectUserSelectedVoiceByLanguageName,
+  selectUserSelectedVoices,
+  selectUserSubscriptions,
+  userSelector
+} from '../user';
 
 import { rootReducer } from '../../reducers';
 import { initialState } from '../../reducers/user';
@@ -65,18 +77,6 @@ describe('user selector', () => {
     expect(selectUserDetails(exampleUserDetailsState)).toMatchObject(exampleUser);
   });
 
-  it('should return the premium status', () => {
-    const exampleLoadingState = {
-      ...rootState,
-      user: {
-        ...rootState.user,
-        isPremium: true
-      }
-    };
-
-    expect(selectUserIsPremium(exampleLoadingState)).toBe(true);
-  });
-
   it('should return the user\'s selected voices', () => {
     const exampleUserDetailsState = {
       ...rootState,
@@ -93,7 +93,7 @@ describe('user selector', () => {
     const exampleUserDetailsState2 = {
       ...rootState,
       user: {
-        ...rootState.user
+        ...initialState
       }
     };
     expect(selectUserSelectedVoices(exampleUserDetailsState2)).toEqual([]);
@@ -108,13 +108,7 @@ describe('user selector', () => {
       }
     };
 
-    const languageName = 'English';
-
-    const voices: Api.Voice[] = selectUserSelectedVoices(exampleUserDetailsState);
-
-    const expected = voices.find(voice => voice.language.name === languageName);
-
-    expect(selectUserSelectedVoiceByLanguageName(exampleUserDetailsState, languageName)).toEqual(expected);
+    expect(selectUserSelectedVoiceByLanguageName(exampleUserDetailsState)).toMatchSnapshot();
   });
 
   it('should return the user\'s subscriptions', () => {
@@ -129,5 +123,75 @@ describe('user selector', () => {
     const expected = exampleUser.inAppSubscriptions;
 
     expect(selectUserSubscriptions(exampleUserState)).toEqual(expected);
+  });
+
+  it('selectDeviceLocale should return the user\'s subscriptions', () => {
+    const exampleUserStateOne = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        deviceLocale: 'en-NL'
+      }
+    };
+
+    const exampleUserStateTwo = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        deviceLocale: 'en'
+      }
+    };
+
+    const exampleUserStateThree = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        deviceLocale: ''
+      }
+    };
+
+    expect(selectDeviceLocale(exampleUserStateOne)).toEqual('en');
+    expect(selectDeviceLocale(exampleUserStateTwo)).toEqual('en');
+    expect(selectDeviceLocale(exampleUserStateThree)).toEqual('');
+  });
+
+  it('selectUserHasSubscribedBefore should return true when the user has previous subscriptions', () => {
+    const exampleUserState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: exampleUser
+      }
+    };
+
+    expect(selectUserHasSubscribedBefore(exampleUserState)).toEqual(true);
+  });
+
+  it('selectUserHasSubscribedBefore should return false when the user has no previous subscriptions', () => {
+    const exampleUserCopy = {...exampleUser};
+
+    exampleUserCopy.inAppSubscriptions = [];
+
+    const exampleUserStateWithoutSubscriptions = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: exampleUserCopy
+      }
+    };
+
+    expect(selectUserHasSubscribedBefore(exampleUserStateWithoutSubscriptions)).toEqual(false);
+  });
+
+  it('selectUserPlaybackSpeed should return a number', () => {
+    const exampleUserState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        playbackSpeed: 0.95
+      }
+    };
+
+    expect(selectUserPlaybackSpeed(exampleUserState)).toEqual(0.95);
   });
 });

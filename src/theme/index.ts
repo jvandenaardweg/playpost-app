@@ -1,7 +1,6 @@
 import { Theme } from 'react-native-elements';
 import colors from '../constants/colors';
 import fonts from '../constants/fonts';
-import spacing from '../constants/spacing';
 
 export const reactNativeElementsTheme: Theme = {
   Button: {
@@ -13,7 +12,7 @@ export const reactNativeElementsTheme: Theme = {
       borderRadius: 8
     },
     titleStyle: {
-      fontWeight: fonts.fontWeight.bold,
+      fontWeight: fonts.fontWeight.semibold,
       fontSize: fonts.fontSize.button
     }
   },
@@ -24,12 +23,10 @@ export const reactNativeElementsTheme: Theme = {
     }
   },
   ListItem: {
-    containerStyle: {
-      padding: spacing.default
-    },
     titleStyle: {
-      fontWeight: fonts.fontWeight.medium,
-      fontSize: fonts.fontSize.title
+      fontWeight: fonts.fontWeight.regular,
+      fontSize: fonts.fontSize.title,
+      color: colors.black
     },
     subtitleStyle: {
       color: colors.grayDark,

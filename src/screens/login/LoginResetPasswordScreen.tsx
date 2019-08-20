@@ -7,14 +7,14 @@ interface Props {
 }
 
 export class LoginResetPasswordScreen extends React.PureComponent<Props> {
-  public static navigationOptions = (): NavigationStackScreenOptions => {
+  static navigationOptions = (): NavigationStackScreenOptions => {
     return {
       title: 'Reset your password',
       // header: null
     };
   }
 
-  public render() {
+  render() {
     return (
       <LoginResetPasswordFormContainer />
     );

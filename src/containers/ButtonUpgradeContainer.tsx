@@ -1,21 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { NavigationInjectedProps, withNavigation } from 'react-navigation';
+import { NavigationInjectedProps } from 'react-navigation';
 import { ButtonUpgrade } from '../components/ButtonUpgrade';
+import NavigationService from '../navigation/NavigationService';
 import { RootState } from '../reducers';
 import { selectIsSubscribed } from '../selectors/subscriptions';
 
 type Props = StateProps & NavigationInjectedProps;
 
 export class ButtonUpgradeContainerComponent extends React.PureComponent<Props> {
-  public render() {
+  handleOnPressUpgrade = () => {
+    requestAnimationFrame(() => NavigationService.navigate('Upgrade'))
+  }
+
+  render() {
     const { isSubscribed } = this.props;
 
     if (isSubscribed) { return null; }
 
     return (
-      <ButtonUpgrade onPress={() => this.props.navigation.navigate('Upgrade')} />
+      <ButtonUpgrade onPress={this.handleOnPressUpgrade} />
     );
   }
 }
@@ -28,12 +33,7 @@ const mapStateToProps = (state: RootState, props: Props): StateProps => ({
   isSubscribed: selectIsSubscribed(state),
 });
 
-const mapDispatchToProps = {};
-
 export const ButtonUpgradeContainer =
-  withNavigation(
-    connect(
-      mapStateToProps,
-      mapDispatchToProps
-    )(ButtonUpgradeContainerComponent)
-  );
+  connect(
+    mapStateToProps
+  )(ButtonUpgradeContainerComponent)

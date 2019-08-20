@@ -1,3 +1,4 @@
+import Analytics from 'appcenter-analytics';
 import React from 'react';
 import isEqual from 'react-fast-compare';
 import { Alert } from 'react-native';
@@ -7,9 +8,7 @@ import { connect } from 'react-redux';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH } from '../constants/files';
 import {
-  ALERT_ARTICLE_AUDIOFILE_DOWNLOAD_FAIL,
   ALERT_ARTICLE_DOWNLOAD_FAIL,
-  ALERT_ARTICLE_LANGUAGE_UNSUPPORTED,
   ALERT_ARTICLE_PLAY_DOWNLOAD_FAIL,
   ALERT_ARTICLE_PLAY_FAIL,
   ALERT_ARTICLE_PLAY_INTERNET_REQUIRED,
@@ -18,7 +17,9 @@ import {
   ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL,
   ALERT_PLAYLIST_UNARCHIVE_ARTICLE_FAIL,
   ALERT_PLAYLIST_UNFAVORITE_ARTICLE_FAIL,
-  ALERT_PLAYLIST_UPDATE_FAIL
+  ALERT_PLAYLIST_UPDATE_FAIL,
+  ALERT_TITLE_ERROR,
+  ALERT_TITLE_ERROR_NO_INTERNET
 } from '../constants/messages';
 
 import * as cache from '../cache';
@@ -50,11 +51,11 @@ import {
 } from '../reducers/playlist';
 
 import { getUser } from '../reducers/user';
-import { selectIsDownloadedAudiofilesByArticleAudiofiles } from '../selectors/audiofiles';
-import { selectPlayerArticleId, selectPlayerPlaybackState, selectPlayerTrack } from '../selectors/player';
+import { selectDownloadedAudiofiles } from '../selectors/audiofiles';
+import { selectPlayerCurrentArticleId, selectPlayerPlaybackState, selectPlayerPreviousArticleId, selectPlayerTrack } from '../selectors/player';
 import { selectIsSubscribed } from '../selectors/subscriptions';
-import { selectUserSelectedVoiceByLanguageName } from '../selectors/user';
-import { selectDefaultVoiceByLanguageName, selectLanguagesWithActiveVoices } from '../selectors/voices';
+import { selectUserHasSubscribedBefore, selectUserSelectedVoiceByLanguageName } from '../selectors/user';
+import { selectLanguagesWithActiveVoicesByLanguageName } from '../selectors/voices';
 
 interface State {
   isLoading: boolean;
@@ -84,7 +85,10 @@ const initialState = {
 
 type Props = IProps & StateProps & DispatchProps;
 
-export class ArticleContainerComponent extends React.PureComponent<Props, State> {
+export class ArticleContainerComponent extends React.Component<Props, State> {
+
+  static contextType = NetworkContext;
+  state = initialState;
 
   get audiofileToUse(): Api.Audiofile | undefined {
     const { isSubscribed, article } = this.props;
@@ -98,24 +102,31 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     return article.audiofiles[0] && article.audiofiles[0].length ? article.audiofiles[0].length : 0;
   }
 
-  public static contextType = NetworkContext;
-  public state = initialState;
+  shouldComponentUpdate(nextProps: Props, nextState: State) {
+    // Make sure we update the article that's active or was previously active in the player
+    // So we can update it' state (playing, paused, inactive etc...)
+    const isCurrentArticleId = this.props.playerCurrentArticleId === this.props.article.id;
+    const isPreviousArticleId = this.props.playerPreviousArticleId === this.props.article.id;
 
-  public componentDidUpdate(prevProps: Props, prevState: State) {
-    const { playbackState, playerArticleId, article } = this.props;
+    // Only update when props or state change
+    return isCurrentArticleId || isPreviousArticleId || !isEqual(this.state, nextState) || !isEqual(this.props, nextProps) ;
+  }
+
+  componentDidUpdate(prevProps: Props, prevState: State): void {
+    const { playbackState, playerCurrentArticleId, article } = this.props;
     const { isLoading, isCreatingAudiofile, isDownloadingAudiofile } = this.state;
 
-    const isActiveInPlayer = playerArticleId === article.id;
+    const isCurrentArticleId = playerCurrentArticleId === article.id;
     const hasSomethingLoading = isCreatingAudiofile || isDownloadingAudiofile;
 
     // If the article is not active in the player
     // And if the state is different from the initial state
     // Reset it, because the track became inactive
-    if (!isActiveInPlayer && !hasSomethingLoading && !isLoading && !isEqual(this.state, initialState)) {
+    if (!isCurrentArticleId && !hasSomethingLoading && !isLoading && !isEqual(this.state, initialState)) {
       return this.setState(initialState);
     }
 
-    if (!hasSomethingLoading) {
+    if (!hasSomethingLoading && isCurrentArticleId) {
       // When a track is playing
       if (playbackState && [TrackPlayer.STATE_PLAYING].includes(playbackState) && !prevState.isPlaying) {
         this.setState({ isPlaying: true, isActive: true, isLoading: false });
@@ -131,17 +142,31 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
   /**
    * Find the audiofile in this article using the user's selected voice
    */
-  public getAudiofileByUserSelectedVoice(): Api.Audiofile | undefined {
-    const { article, userSelectedVoiceByLanguageName, defaultVoiceByLanguageName } = this.props;
+  getAudiofileByUserSelectedVoice(): Api.Audiofile | undefined {
+    const { article, userSelectedVoiceByLanguageName, availableVoicesByLanguageName } = this.props;
+    const articleLanguageName = article.language ? article.language.name : '';
+    const articleLanguage = availableVoicesByLanguageName && availableVoicesByLanguageName[articleLanguageName];
+    const userSelectedVoice = userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName[articleLanguageName];
+    const defaultVoice = (articleLanguage && articleLanguage.voices) ? articleLanguage.voices.find(voice => voice.isLanguageDefault) : null;
+
+
+    if (!articleLanguage || !defaultVoice) {
+      return undefined;
+    }
 
     // If the user has no custom selected voice, return the audiofile of the default voice for this language
-    if (!userSelectedVoiceByLanguageName && defaultVoiceByLanguageName) {
-      const audiofileOfDefaultVoice = article.audiofiles.find(audiofile => audiofile.voice.id === defaultVoiceByLanguageName.id);
+    if (!userSelectedVoice && defaultVoice) {
+      const audiofileOfDefaultVoice = article.audiofiles.find(audiofile => audiofile.voice.id === defaultVoice.id);
       return audiofileOfDefaultVoice;
     }
 
-    // Else, we get the audiofile based on the user's selected voice
-    return userSelectedVoiceByLanguageName && article.audiofiles.find(audiofile => audiofile.voice.id === userSelectedVoiceByLanguageName.id);
+    if (userSelectedVoice) {
+      // We get the audiofile based on the user's selected voice
+      return userSelectedVoice && article.audiofiles.find(audiofile => audiofile.voice.id === userSelectedVoice.id);
+    }
+
+    // Else, just return the default voice audio
+    return article.audiofiles.find(audiofile => audiofile.voice.id === defaultVoice.id);
   }
 
   /**
@@ -150,49 +175,61 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
    * 2. Create an audiofile when there's none present
    * 3. Toggle play/pause
    */
-  public handleOnPlayPress = async (): Promise<void> => {
-    const { isPlaying } = this.state;
-    const { article, isSubscribed, playerArticleId } = this.props;
-    const { isConnected } = this.context;
+  handleOnPlayPress = async () => {
+    // requestAnimationFrame(() => {
+      const { isPlaying } = this.state;
+      const { article, isSubscribed, playerCurrentArticleId } = this.props;
+      const { isConnected } = this.context;
 
-    // Toggle play/pause
-    if (isPlaying) { return TrackPlayer.pause(); }
+      // Toggle play/pause
+      if (isPlaying) { return TrackPlayer.pause(); }
 
-    // If there are no audiofiles and when there's no internet connection
-    // Show the user he needs an active internet connection to listen to articles
-    if (!article.audiofiles.length && !isConnected) {
-      return Alert.alert('No internet', ALERT_ARTICLE_PLAY_INTERNET_REQUIRED);
-    }
+      // If there are no audiofiles and when there's no internet connection
+      // Show the user he needs an active internet connection to listen to articles
+      if (!article.audiofiles.length && !isConnected) {
+        return Alert.alert(ALERT_TITLE_ERROR_NO_INTERNET, ALERT_ARTICLE_PLAY_INTERNET_REQUIRED);
+      }
 
-    // If we don't have an audiofile yet, we create it first
-    // Which voice to use for this user is determined on the API
-    if (!article.audiofiles.length) { return this.handleCreateAudiofile(); }
+      // If we don't have an audiofile yet, we create it first
+      // Which voice to use for this user is determined on the API
+      if (!article.audiofiles.length) {
+        return this.handleCreateAudiofile();
+      }
 
-    // When we end up here, it means the article already has an audiofile
+      // When we end up here, it means the article already has an audiofile
 
-    // If he user is subscribed, but it has no audio for it's selected voice, we create an audiofile
-    if (isSubscribed && !this.getAudiofileByUserSelectedVoice()) {
-      return this.handleCreateAudiofile();
-    }
+      // If he user is subscribed, but it has no audio for it's selected voice, we create an audiofile
+      if (isSubscribed && !this.getAudiofileByUserSelectedVoice()) {
+        return this.handleCreateAudiofile();
+      }
 
-    // If the user is on a free account, check if available audiofile uses different voice. Show alert if it does.
-    if (!isSubscribed) { this.alertIfDifferentSelectedVoice(); }
+      // If the user is on a free account, check if available audiofile uses different voice. Show alert if it does.
+      if (!isSubscribed) {
+        this.alertIfDifferentSelectedVoice();
+      }
 
-    // Only set a new track when it's a different one
-    // handleSetTrack will also handle the download of the audio
-    if (playerArticleId !== article.id) { return this.handleSetTrack(); }
+      // Only set a new track when it's a different one
+      // handleSetTrack will also handle the download of the audio
+      if (playerCurrentArticleId !== article.id) {
+        return this.handleSetTrack();
+      }
 
-    // If we end up here, it means the audio is already in the player, we just play it then
-    return TrackPlayer.play();
+      // If we end up here, it means the audio is already in the player, we just play it then
+      return TrackPlayer.play();
+    // });
   }
 
-  public handleCreateAudiofile = async (): Promise<void> => {
-    const { article, languagesWithActiveVoices, userSelectedVoiceByLanguageName, isSubscribed } = this.props;
+  handleCreateAudiofile = async (): Promise<void> => {
+    const { article, userSelectedVoiceByLanguageName, isSubscribed, userHasSubscribedBefore } = this.props;
+    const articleLanguageName = article.language ? article.language.name : '';
+    const userSelectedVoice = userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName[articleLanguageName];
 
     // If the selected voice of the user, is a Premium voice, but the user has no Premium account active
-    if (userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName.isPremium && !isSubscribed) {
-      // Show an Alert he needs to change his default voice for the "userSelectedVoiceByLanguageName.name" language
-      const selectedVoiceLanguageName = userSelectedVoiceByLanguageName.language.name;
+    // On free accounts, voices with isLanguageDefault are "free" voices
+    // So, if the user has not selected a default voice and is not subscribed, he cannot use this voice
+    if ((userSelectedVoice && !userSelectedVoice.isLanguageDefault) && !isSubscribed) {
+      // Show an Alert he needs to change his default voice for the "userSelectedVoice.name" language
+      const selectedVoiceLanguageName = userSelectedVoice.language.name;
 
       return Alert.alert(
         'Cannot use selected voice',
@@ -200,10 +237,10 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
         [
           {
             text: 'Cancel',
-            style: 'cancel'
           },
           {
-            text: 'Upgrade to Premium or Plus',
+            text: (userHasSubscribedBefore) ? 'Upgrade' : 'Start free trial',
+            style: 'cancel',
             onPress: () => this.props.navigation.navigate('Upgrade')
           },
           {
@@ -217,51 +254,51 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
       );
     }
 
-    const articleLanguageCode = article.language && article.language.code;
-    const isLanguageSupported = !!languagesWithActiveVoices.find(language => language.code === articleLanguageCode);
-
-    if (!articleLanguageCode || !isLanguageSupported) {
-      return Alert.alert('Language not supported', `${ALERT_ARTICLE_LANGUAGE_UNSUPPORTED}. This article seems to have the language: ${articleLanguageCode}.`);
-    }
-
     // Create the audiofile using our API...
-    return this.setState(
-      {
-        isPlaying: false,
-        isLoading: true,
-        isActive: true,
-        isCreatingAudiofile: true
-      },
-      async () => {
-        try {
-          this.props.setIsCreatingAudiofile();
-          await this.props.createAudiofile(article.id); // Create the audiofile using our API, this could take a little time
+    this.setState({
+      isPlaying: false,
+      isLoading: true,
+      isActive: true,
+      isCreatingAudiofile: true
+    });
 
-          // Get the user's updated playlist and usage data
-          await Promise.all([
-            this.props.getPlaylist(), // Get the playlist, it contains the article with the newly created audiofile
-            this.props.getUser() // Get the user, so we can show up to date usage data
-          ]);
+    try {
+      this.props.setIsCreatingAudiofile();
 
-          return this.handleSetTrack(); // Set the track. Upon track change, the track with automatically play.
-        } catch (err) {
-          return this.setState({ isLoading: false, isActive: false });
-        } finally {
-          this.props.resetIsCreatingAudiofile();
-          this.setState({ isCreatingAudiofile: false });
-        }
-      }
-    );
+      await this.props.createAudiofile(article.id); // Create the audiofile using our API, this could take a little time
+
+      // Get the user's updated playlist and usage data
+      await Promise.all([
+        this.props.getPlaylist(), // Get the playlist, it contains the article with the newly created audiofile
+        this.props.getUser() // Get the user, so we can show up to date usage data
+      ]);
+
+      return this.handleSetTrack(); // Set the track. Upon track change, the track with automatically play.
+    } catch (err) {
+      this.setState({ isLoading: false, isActive: false });
+    } finally {
+      this.props.resetIsCreatingAudiofile();
+      this.setState({ isCreatingAudiofile: false });
+    }
   }
 
-  public alertIfDifferentSelectedVoice = (): void => {
-    const { article, playerArticleId } = this.props;
+  get isDownloaded() {
+    const { article, downloadedAudiofiles } = this.props;
+    if (!article.audiofiles || !article.audiofiles.length) { return false; }
+
+    const articleAudiofilesIds = article.audiofiles.map(audiofile => audiofile.id);
+
+    return !!downloadedAudiofiles.find(audiofile => articleAudiofilesIds.includes(audiofile.id));
+  }
+
+  alertIfDifferentSelectedVoice = (): void => {
+    const { article, playerCurrentArticleId, userHasSubscribedBefore } = this.props;
 
     const audiofileWithUsersSelectedVoice = this.getAudiofileByUserSelectedVoice();
     const selectedVoiceId = audiofileWithUsersSelectedVoice && audiofileWithUsersSelectedVoice.voice.id;
     const audiofileVoiceId = this.audiofileToUse && this.audiofileToUse.voice.id;
     const isAudioWithSameVoice = selectedVoiceId === audiofileVoiceId;
-    const isArticlePlaying = playerArticleId === article.id;
+    const isArticlePlaying = playerCurrentArticleId === article.id;
 
     // Show an alert, only when the selected article is not playing yet
     if (!isAudioWithSameVoice && !isArticlePlaying) {
@@ -270,19 +307,19 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
         'Because you are on a free account, we will use the already available voice for this article. Which is a different voice. Premium users do not have this limitation.',
         [
           {
-            text: 'Upgrade to Premium or Plus',
+            text: (userHasSubscribedBefore) ? 'Upgrade' : 'Start free trial',
+            style: 'cancel',
             onPress: () => this.props.navigation.navigate('Upgrade')
           },
           {
-            text: 'OK',
-            style: 'cancel'
+            text: 'OK'
           }
         ]
       );
     }
   }
 
-  public downloadAudiofile = async (url: string, audiofileId: string, filename: string): Promise<string | void> => {
+  downloadAudiofile = async (url: string, audiofileId: string, filename: string): Promise<string | void> => {
     return new Promise((resolve, reject) => {
       return this.setState({ isActive: true, isLoading: true, isDownloadingAudiofile: true }, async () => {
         try {
@@ -290,20 +327,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
           const localFilePath = await cache.downloadArticleAudiofile(url, filename);
           resolve(localFilePath);
         } catch (err) {
-          this.setState({ isLoading: false, isDownloadingAudiofile: false });
-
-          return reject(
-            Alert.alert('Oops!', ALERT_ARTICLE_AUDIOFILE_DOWNLOAD_FAIL, [
-              {
-                text: 'Cancel',
-                style: 'cancel'
-              },
-              {
-                text: 'Try again',
-                onPress: () => this.downloadAudiofile(url, audiofileId, filename)
-              }
-            ])
-          );
+          this.setState({ isLoading: false, isDownloadingAudiofile: false }, () => reject(err));
         } finally {
           this.props.resetIsDownloadingAudiofile();
           this.setState({ isDownloadingAudiofile: false });
@@ -312,21 +336,21 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     });
   }
 
-  public handleSetTrack = async (): Promise<void> => {
+  handleSetTrack = async (): Promise<void> => {
     const { isConnected } = this.context;
-    const { article, isDownloaded } = this.props;
+    const { article } = this.props;
 
     if (!article || !article.audiofiles.length) {
       this.setState({ isActive: false, isLoading: false });
-      return Alert.alert('Oops!', ALERT_ARTICLE_PLAY_FAIL);
+      return Alert.alert(ALERT_TITLE_ERROR, ALERT_ARTICLE_PLAY_FAIL);
     }
 
     const audiofile = this.audiofileToUse ? this.audiofileToUse : null;
 
-    if (!audiofile) { return Alert.alert('Err', 'no audio'); }
+    if (!audiofile) { return Alert.alert(ALERT_TITLE_ERROR, 'no audio'); }
 
-    if (!isDownloaded && !isConnected) {
-      return Alert.alert('No internet', ALERT_ARTICLE_PLAY_INTERNET_REQUIRED);
+    if (!this.isDownloaded && !isConnected) {
+      return Alert.alert(ALERT_TITLE_ERROR_NO_INTERNET, ALERT_ARTICLE_PLAY_INTERNET_REQUIRED);
     }
 
     return this.setState({ isActive: true, isLoading: true }, async () => {
@@ -338,7 +362,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
 
         let localAudiofilePath = cache.getLocalFilePath(audiofile.filename, LOCAL_CACHE_AUDIOFILES_PATH);
 
-        if (!isDownloaded) {
+        if (!this.isDownloaded) {
           const downloadedLocalAudiofilePath = await this.downloadAudiofile(audiofile.url, audiofile.id, audiofile.filename);
 
           // Save the audiofile in store, so we can track which article has downloaded articles
@@ -348,7 +372,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
             localAudiofilePath = downloadedLocalAudiofilePath;
           } else {
             return this.setState({ isLoading: false }, () => {
-              Alert.alert('Oops!', ALERT_ARTICLE_DOWNLOAD_FAIL);
+              Alert.alert(ALERT_TITLE_ERROR, ALERT_ARTICLE_DOWNLOAD_FAIL);
             });
           }
         }
@@ -365,26 +389,27 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
               artwork: require('../assets/images/logo-1024.png'),
               // contentType
               contentType: 'audio/mpeg',
-              key: audiofile.id
+              key: audiofile.id,
+              pitchAlgorithm: TrackPlayer.PITCH_ALGORITHM_VOICE
             },
             article.id
           );
         }
 
         // IF we end up here, something above failed
-        return Alert.alert('Oops!', ALERT_ARTICLE_PLAY_FAIL);
+        this.setState({ isActive: false, isLoading: false }, () => Alert.alert(ALERT_TITLE_ERROR, ALERT_ARTICLE_PLAY_FAIL))
       } catch (err) {
         this.setState({ isActive: false, isLoading: false });
-        return Alert.alert('Oops!', ALERT_ARTICLE_PLAY_DOWNLOAD_FAIL);
+        return Alert.alert(ALERT_TITLE_ERROR, ALERT_ARTICLE_PLAY_DOWNLOAD_FAIL);
       }
     });
   }
 
-  public fetchPlaylist = async (): Promise<void> => {
+  fetchPlaylist = async (): Promise<void> => {
     try {
       await this.props.getPlaylist();
     } catch (err) {
-      Alert.alert('Oops!', ALERT_PLAYLIST_UPDATE_FAIL, [
+      Alert.alert(ALERT_TITLE_ERROR, ALERT_PLAYLIST_UPDATE_FAIL, [
         {
           text: 'Cancel',
           style: 'cancel'
@@ -397,14 +422,14 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  public handleRemoveArticle = async (): Promise<void> => {
+  handleRemoveArticle = async (): Promise<void> => {
     const articleId = this.props.article.id;
 
     try {
       await this.props.removeArticleFromPlaylist(articleId);
       this.fetchPlaylist();
     } catch (err) {
-      Alert.alert('Oops!', ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL, [
+      Alert.alert(ALERT_TITLE_ERROR, ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL, [
         {
           text: 'Cancel',
           style: 'cancel'
@@ -417,14 +442,14 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  public handleArchiveArticle = async (): Promise<void> => {
+  handleArchiveArticle = async (): Promise<void> => {
     const articleId = this.props.article.id;
 
     try {
       await this.props.archivePlaylistItem(articleId);
       this.fetchPlaylist();
     } catch (err) {
-      Alert.alert('Oops!', ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL, [
+      Alert.alert(ALERT_TITLE_ERROR, ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL, [
         {
           text: 'Cancel',
           style: 'cancel'
@@ -437,14 +462,14 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  public handleFavoriteArticle = async (): Promise<void> => {
+  handleFavoriteArticle = async (): Promise<void> => {
     const articleId = this.props.article.id;
 
     try {
       await this.props.favoritePlaylistItem(articleId);
       this.fetchPlaylist();
     } catch (err) {
-      Alert.alert('Oops!', ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL, [
+      Alert.alert(ALERT_TITLE_ERROR, ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL, [
         {
           text: 'Cancel',
           style: 'cancel'
@@ -457,14 +482,14 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  public handleUnFavoriteArticle = async (): Promise<void> => {
+  handleUnFavoriteArticle = async (): Promise<void> => {
     const articleId = this.props.article.id;
 
     try {
       await this.props.unFavoritePlaylistItem(articleId);
       this.fetchPlaylist();
     } catch (err) {
-      Alert.alert('Oops!', ALERT_PLAYLIST_UNFAVORITE_ARTICLE_FAIL, [
+      Alert.alert(ALERT_TITLE_ERROR, ALERT_PLAYLIST_UNFAVORITE_ARTICLE_FAIL, [
         {
           text: 'Cancel',
           style: 'cancel'
@@ -477,14 +502,14 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  public handleUnArchiveArticle = async (): Promise<void> => {
+  handleUnArchiveArticle = async (): Promise<void> => {
     const articleId = this.props.article.id;
 
     try {
       await this.props.unArchivePlaylistItem(articleId);
       this.fetchPlaylist();
     } catch (err) {
-      Alert.alert('Oops!', ALERT_PLAYLIST_UNARCHIVE_ARTICLE_FAIL, [
+      Alert.alert(ALERT_TITLE_ERROR, ALERT_PLAYLIST_UNARCHIVE_ARTICLE_FAIL, [
         {
           text: 'Cancel',
           style: 'cancel'
@@ -497,25 +522,35 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  public handleOnOpenUrl = (url: string) => {
-    const { article } = this.props;
-
-    return this.props.navigation.navigate('FullArticle', { article });
-  }
-
-  public handleOnPressUpdate = (): void => {
-    this.setState({ isLoading: true }, async () => {
-      try {
-        await this.fetchPlaylist();
-      } finally {
-        this.setState({ isLoading: false });
-      }
+  handleOnOpenUrl = () => {
+    requestAnimationFrame(() => {
+      const { article } = this.props;
+      this.props.navigation.navigate('FullArticle', { article })
     });
   }
 
-  public render() {
+  handleOnPressUpdate = (): void => {
+    requestAnimationFrame(() => {
+      this.setState({ isLoading: true }, async () => {
+        try {
+          await this.fetchPlaylist();
+        } finally {
+          this.setState({ isLoading: false });
+        }
+      });
+    });
+  }
+
+  handleOnPressArticleIncompatible = () => {
+    requestAnimationFrame(() => {
+      Analytics.trackEvent('Article Press Incompatible');
+      return this.props.navigation.navigate('ContentView');
+    });
+  }
+
+  render(): JSX.Element {
     const { isCreatingAudiofile, isDownloadingAudiofile, isLoading, isPlaying, isActive } = this.state;
-    const { article, isDownloaded, isFavorited, isArchived, isMoving, onLongPress, onPressOut, playlistItem } = this.props;
+    const { article, isFavorited, isArchived, isMoving, onLongPress, onPressOut, playlistItem } = this.props;
 
     // Use the canonicalUrl if we have it, else fall back to the normal url
     const articleUrl = article.canonicalUrl ? article.canonicalUrl : article.url;
@@ -544,7 +579,7 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
             isLoading={isLoading || isCreatingAudiofile || isDownloadingAudiofile}
             isPlaying={isPlaying}
             isActive={isActive}
-            isDownloaded={isDownloaded}
+            isDownloaded={this.isDownloaded}
             isFavorited={isFavorited}
             isArchived={isArchived}
             hasAudiofile={hasAudiofile}
@@ -561,6 +596,8 @@ export class ArticleContainerComponent extends React.PureComponent<Props, State>
             onOpenUrl={this.handleOnOpenUrl}
             onLongPress={onLongPress}
             onPressOut={onPressOut}
+            onPressArticleIncompatible={this.handleOnPressArticleIncompatible}
+            isCompatible={article.isCompatible}
           />
         )}
       </SwipeableRow>
@@ -573,10 +610,11 @@ interface StateProps {
   readonly playbackState: ReturnType<typeof selectPlayerPlaybackState>;
   readonly isSubscribed: ReturnType<typeof selectIsSubscribed>;
   readonly userSelectedVoiceByLanguageName: ReturnType<typeof selectUserSelectedVoiceByLanguageName>;
-  readonly isDownloaded: ReturnType<typeof selectIsDownloadedAudiofilesByArticleAudiofiles>;
-  readonly playerArticleId: ReturnType<typeof selectPlayerArticleId>;
-  readonly languagesWithActiveVoices: ReturnType<typeof selectLanguagesWithActiveVoices>;
-  readonly defaultVoiceByLanguageName: ReturnType<typeof selectDefaultVoiceByLanguageName>;
+  readonly downloadedAudiofiles: ReturnType<typeof selectDownloadedAudiofiles>;
+  readonly playerCurrentArticleId: ReturnType<typeof selectPlayerCurrentArticleId>;
+  readonly playerPreviousArticleId: ReturnType<typeof selectPlayerPreviousArticleId>;
+  readonly availableVoicesByLanguageName: ReturnType<typeof selectLanguagesWithActiveVoicesByLanguageName>;
+  readonly userHasSubscribedBefore: ReturnType<typeof selectUserHasSubscribedBefore>;
 }
 
 interface DispatchProps {
@@ -601,11 +639,12 @@ const mapStateToProps = (state: RootState, props: Props) => ({
   track: selectPlayerTrack(state),
   playbackState: selectPlayerPlaybackState(state),
   isSubscribed: selectIsSubscribed(state),
-  userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state, props.article.language ? props.article.language.name : ''),
-  isDownloaded: selectIsDownloadedAudiofilesByArticleAudiofiles(state, props.article.audiofiles),
-  playerArticleId: selectPlayerArticleId(state),
-  languagesWithActiveVoices: selectLanguagesWithActiveVoices(state),
-  defaultVoiceByLanguageName: selectDefaultVoiceByLanguageName(state, props.article.language ? props.article.language.name : '')
+  userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state),
+  downloadedAudiofiles: selectDownloadedAudiofiles(state),
+  playerCurrentArticleId: selectPlayerCurrentArticleId(state),
+  playerPreviousArticleId: selectPlayerPreviousArticleId(state),
+  availableVoicesByLanguageName: selectLanguagesWithActiveVoicesByLanguageName(state),
+  userHasSubscribedBefore: selectUserHasSubscribedBefore(state),
 });
 
 const mapDispatchToProps: DispatchProps = {

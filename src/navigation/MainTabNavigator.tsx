@@ -16,6 +16,7 @@ import { UpdatePasswordScreen } from '../screens/settings/UpdatePasswordScreen';
 import { SettingsVoicesScreen } from '../screens/settings/VoicesScreen';
 
 import { ButtonVoices } from '../components/ButtonVoices';
+import colors from '../constants/colors';
 import { ButtonUpgradeContainer } from '../containers/ButtonUpgradeContainer';
 
 const PlaylistStack: StackNavigatorConfig = createStackNavigator(
@@ -27,7 +28,9 @@ const PlaylistStack: StackNavigatorConfig = createStackNavigator(
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
     defaultNavigationOptions: ({ navigation }) => ({
-      headerRight: <ButtonUpgradeContainer />,
+      headerStyle: {
+        borderBottomColor: colors.borderDefault
+      }
     }),
     navigationOptions: {
       tabBarLabel: 'Playlist',
@@ -51,7 +54,10 @@ const ArchiveStack: StackNavigatorConfig = createStackNavigator(
     defaultNavigationOptions: ({ navigation }) => ({
       title: 'Archive',
       headerRight: <ButtonUpgradeContainer />,
-      headerLeft: <ButtonVoices onPress={() => navigation.navigate('ModalLanguages')} />
+      headerLeft: <ButtonVoices onPress={() => requestAnimationFrame(() => navigation.navigate('ModalLanguages'))} />,
+      headerStyle: {
+        borderBottomColor: colors.borderDefault
+      }
     }),
     navigationOptions: {
       tabBarLabel: 'Archive',
@@ -75,7 +81,10 @@ const FavoritesStack: StackNavigatorConfig = createStackNavigator(
     defaultNavigationOptions: ({ navigation }) => ({
       title: 'Favorites',
       headerRight: <ButtonUpgradeContainer />,
-      headerLeft: <ButtonVoices onPress={() => navigation.navigate('ModalLanguages')} />
+      headerLeft: <ButtonVoices onPress={() => requestAnimationFrame(() => navigation.navigate('ModalLanguages'))} />,
+      headerStyle: {
+        borderBottomColor: colors.borderDefault
+      }
     }),
     navigationOptions: {
       tabBarLabel: 'Favorites',
@@ -103,7 +112,9 @@ const SettingsStack: StackNavigatorConfig = createStackNavigator(
     headerTransitionPreset: 'uikit',
     defaultNavigationOptions: ({ navigation }) => ({
       title: 'Settings',
-      headerRight: <ButtonUpgradeContainer />
+      headerStyle: {
+        borderBottomColor: colors.borderDefault
+      }
     }),
     navigationOptions: ({ navigation }) => ({
       tabBarLabel: 'Settings',
@@ -125,6 +136,7 @@ export const MainTabNavigator: BottomTabNavigatorConfig = createBottomTabNavigat
     SettingsStack,
   },
   {
+    // lazy: false, // pre-render all screens
     tabBarComponent: (props: BottomTabBarProps) => <TabBar {...props} />,
     tabBarOptions: {
       showLabel: false

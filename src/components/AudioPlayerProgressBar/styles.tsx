@@ -2,10 +2,11 @@ import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
+import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
   container: {
-    marginBottom: 8
+    marginBottom: spacing.tiny
   },
   sliderContainer: {
     flex: 1,
@@ -20,14 +21,15 @@ export default StyleSheet.create({
   },
   timeText: {
     color: colors.white,
-    fontSize: fonts.fontSize.small
+    fontSize: fonts.fontSize.small,
+    fontWeight: fonts.fontWeight.medium
   },
   thumbStyle: {
-    width: 24,
-    height: 24,
-    borderRadius: 24,
-    borderWidth: 4,
-    borderColor: colors.black,
+    width: 18,
+    height: 18,
+    borderRadius: 18,
+    // borderWidth: 4,
+    // borderColor: colors.black,
     backgroundColor: colors.white
   },
   trackStyle: {

@@ -1,6 +1,8 @@
 import { createSelector } from 'reselect';
+import { SUBSCRIPTION_PRODUCT_ID_FREE } from '../constants/in-app-purchase';
 import { RootState } from '../reducers';
 import { SubscriptionsState } from '../reducers/subscriptions';
+import { createDeepEqualSelector } from './index';
 
 export const subscriptionsSelector = (state: RootState): SubscriptionsState => state.subscriptions;
 
@@ -14,6 +16,16 @@ export const selectIsLoadingSubscriptions = createSelector(
   (state): boolean => state.isLoadingSubscriptions
 );
 
+export const selectSubscriptionsIsLoadingUpgrade = createSelector(
+  [subscriptionsSelector],
+  (state): boolean => state.isLoadingUpgrade
+);
+
+export const selectSubscriptionsIsLoadingRestore = createSelector(
+  [subscriptionsSelector],
+  (state): boolean => state.isLoadingRestore
+);
+
 export const selectSubscriptionsError = createSelector(
   [subscriptionsSelector],
   (state): string => state.error
@@ -24,12 +36,12 @@ export const selectErrorValidateSubscriptionReceipt = createSelector(
   (state): string => state.errorValidateSubscriptionReceipt
 );
 
-export const selectSubscriptionsValidationResult = createSelector(
+export const selectSubscriptionsValidationResult = createDeepEqualSelector(
   [subscriptionsSelector],
   state => state.validationResult
 );
 
-export const selectSubscriptionLatestReceipt = createSelector(
+export const selectSubscriptionLatestReceipt = createDeepEqualSelector(
   [selectSubscriptionsValidationResult],
   (validationResult): string => {
     if (!validationResult) { return ''; }
@@ -45,6 +57,7 @@ export const selectSubscriptionLatestReceipt = createSelector(
 export const selectIsSubscribed = createSelector(
   [selectSubscriptionsValidationResult],
   (validationResult): boolean => {
+    if (!validationResult || !validationResult.status) { return false; }
     const { status } = validationResult;
     if (status !== 'active') { return false; }
     return true;
@@ -54,8 +67,8 @@ export const selectIsSubscribed = createSelector(
 export const selectActiveSubscriptionProductId = createSelector(
   [selectSubscriptionsValidationResult, selectIsSubscribed],
   (validationResult, isSubscribed): string => {
-    if (!isSubscribed) { return 'free'; }
-    if (!validationResult || !validationResult.inAppSubscription || !validationResult.inAppSubscription.productId) { return 'free'; }
+    if (!isSubscribed) { return SUBSCRIPTION_PRODUCT_ID_FREE; }
+    if (!validationResult || !validationResult.inAppSubscription || !validationResult.inAppSubscription.productId) { return SUBSCRIPTION_PRODUCT_ID_FREE; }
     return validationResult.inAppSubscription.productId;
   }
 );

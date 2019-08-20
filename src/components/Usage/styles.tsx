@@ -6,7 +6,9 @@ import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
   container: {
-    padding: 0
+    paddingLeft: spacing.default,
+    paddingRight: spacing.default,
+    marginTop: spacing.default * -1,
   },
   wrapper: {
     backgroundColor: colors.tintColor,
@@ -71,5 +73,12 @@ export default StyleSheet.create({
     backgroundColor: colors.white,
     height: 6,
     borderRadius: 6
+  },
+  messageText: {
+    marginTop: 8,
+    color: colors.white,
+    opacity: 0.7,
+    textAlign: 'center',
+    fontSize: fonts.fontSize.small
   }
 });

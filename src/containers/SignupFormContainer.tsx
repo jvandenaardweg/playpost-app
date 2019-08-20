@@ -1,23 +1,19 @@
 import React from 'react';
-import { Alert, Linking, Platform } from 'react-native';
-import * as Keychain from 'react-native-keychain';
+import { Alert, Linking } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
-
-export const keychainArguments = Platform.select({
-  ios: { accessGroup: 'group.playpost', service: 'com.aardwegmedia.playpost' },
-  android: { service: 'com.aardwegmedia.playpost' }
-});
 
 import { SignupForm } from '../components/SignupForm';
 
 import { postAuth } from '../reducers/auth';
 import { createUser } from '../reducers/user';
 
+import { ALERT_TITLE_ERROR } from '../constants/messages';
 import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../constants/urls';
 import { RootState } from '../reducers';
 import { selectAuthError } from '../selectors/auth';
 import { selectUserError } from '../selectors/user';
+import * as keychain from '../utils/keychain';
 
 /* tslint:disable no-any */
 interface State {
@@ -35,7 +31,7 @@ interface StateProps {
 type Props = NavigationInjectedProps & StateProps & DispatchProps;
 
 class SignupFormContainerComponent extends React.PureComponent<Props, State> {
-  public state = {
+  state = {
     isLoading: false,
     email: '',
     password: '',
@@ -45,25 +41,25 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
   /**
    * Saves the token in our secure storage and redirects to user to the success page
    */
-  public saveToken = async (token: string) => {
+  saveToken = async (token: string) => {
     try {
-      await Keychain.setGenericPassword('token', token, keychainArguments);
+      await keychain.setToken(token);
       this.props.navigation.navigate('SignupSuccess');
     } catch (err) {
-      Alert.alert('Oops!', 'We have successfully created your account, but could not log you in. Please try logging in manually.');
+      Alert.alert(ALERT_TITLE_ERROR, 'We have successfully created your account, but could not log you in. Please try logging in manually.');
       this.setState({ isLoading: false });
     }
   }
 
-  public componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: Props) {
     const { userError, authError } = this.props;
 
     if (authError && prevProps.authError !== authError) {
-      return Alert.alert('Oops!', authError);
+      return Alert.alert(ALERT_TITLE_ERROR, authError);
     }
 
     if (userError && prevProps.userError !== userError) {
-      return Alert.alert('Oops!', userError);
+      return Alert.alert(ALERT_TITLE_ERROR, userError);
     }
   }
 
@@ -71,7 +67,7 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
    * Automatically logs the user in by using their given email and password
    * Providing some ease of use
    */
-  public autoLogin = async () => {
+  autoLogin = async () => {
     const { email, password } = this.state;
 
     try {
@@ -83,7 +79,7 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
     }
   }
 
-  public handleOnPressSignup = async () => {
+  handleOnPressSignup = async () => {
     const { email, password } = this.state;
 
     this.setState({ isLoading: true }, async () => {
@@ -97,16 +93,16 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
     });
   }
 
-  public handleOnPressPrivacyPolicy = () => Linking.openURL(`${URL_PRIVACY_POLICY}?ref=playpost://signup`);
+  handleOnPressPrivacyPolicy = () => Linking.openURL(`${URL_PRIVACY_POLICY}?ref=playpost://signup`);
 
-  public handleOnPressTerms = () => Linking.openURL(`${URL_TERMS_OF_USE}?ref=playpost://signup`);
+  handleOnPressTerms = () => Linking.openURL(`${URL_TERMS_OF_USE}?ref=playpost://signup`);
 
-  public handleOnChangeText = (field: 'email' | 'password', value: string) => {
+  handleOnChangeText = (field: 'email' | 'password', value: string) => {
     if (field === 'email') { this.setState({ email: value }); }
     if (field === 'password') { this.setState({ password: value }); }
   }
 
-  public render() {
+  render() {
     const { email, password, isLoading } = this.state;
 
     return (

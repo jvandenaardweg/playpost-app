@@ -1,7 +1,9 @@
+import TrackPlayer from 'react-native-track-player';
 import { createSelector } from 'reselect';
 
 import { RootState } from '../reducers';
 import { PlayerState } from '../reducers/player';
+import { selectAllPlaylistArticles } from './playlist';
 
 export const playerSelector = (state: RootState): PlayerState => state.player;
 
@@ -10,9 +12,14 @@ export const selectPlayerTrack = createSelector(
   player => player.track
 );
 
-export const selectPlayerArticleId = createSelector(
+export const selectPlayerCurrentArticleId = createSelector(
   [playerSelector],
-  player => player.articleId
+  player => player.currentArticleId
+);
+
+export const selectPlayerPreviousArticleId = createSelector(
+  [playerSelector],
+  player => player.previousArticleId
 );
 
 export const selectErrorCreateAudiofile = createSelector(
@@ -23,6 +30,27 @@ export const selectErrorCreateAudiofile = createSelector(
 export const selectPlayerAudiofile = createSelector(
   [playerSelector],
   player => player.audiofile
+);
+
+export const selectPlayerArticleFromAudiofileId = createSelector(
+  [selectPlayerTrack, selectAllPlaylistArticles],
+  (track, articles): Api.Article | undefined => {
+    const audiofileId = track.id;
+
+    if (!track || !audiofileId) { return undefined; }
+
+    // Find the article based on the audiofile id
+    const foundArticle = articles.find(article => {
+      if (article.audiofiles.length) {
+        const foundAudiofile = article.audiofiles.find(audiofile => audiofile.id === audiofileId);
+        if (foundAudiofile) { return true; }
+      }
+      return false;
+    });
+
+    return foundArticle;
+
+  }
 );
 
 export const selectPlayerAudiofileStatus = createSelector(
@@ -44,5 +72,25 @@ export const selectPlayerAudiofileStatus = createSelector(
 
 export const selectPlayerPlaybackState = createSelector(
   [playerSelector],
-  player => player.playbackState
+  player =>  player.playbackState
+);
+
+export const selectPlayerIsPlaying = createSelector(
+  [selectPlayerPlaybackState],
+  playbackState => [TrackPlayer.STATE_PLAYING].includes(playbackState)
+);
+
+export const selectPlayerIsStopped = createSelector(
+  [selectPlayerPlaybackState],
+  playbackState => [TrackPlayer.STATE_STOPPED, TrackPlayer.STATE_PAUSED, TrackPlayer.STATE_NONE, TrackPlayer.STATE_READY].includes(playbackState)
+);
+
+export const selectPlayerIsIdle = createSelector(
+  [selectPlayerPlaybackState],
+  playbackState => [TrackPlayer.STATE_NONE, TrackPlayer.STATE_READY].includes(playbackState)
+);
+
+export const selectPlayerIsLoading = createSelector(
+  [selectPlayerIsPlaying, selectPlayerIsStopped],
+  (playerIsPlaying, playerIsStopped) => !playerIsPlaying && !playerIsStopped
 );

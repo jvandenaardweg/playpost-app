@@ -1,0 +1,259 @@
+import React from 'react';
+// import { render, RenderAPI, fireEvent } from 'react-native-testing-library';
+import renderer from 'react-test-renderer';
+
+import { UpgradeContainerComponent } from '../UpgradeContainer';
+
+jest.mock('../../navigation/NavigationService');
+
+import mockApplePurchases from '../../../tests/__mocks__/apple-purchases';
+import mockSubscriptions from '../../../tests/__mocks__/subscriptions';
+import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../constants/in-app-purchase';
+
+const validateSubscriptionReceiptHandler = jest.fn();
+const getUserHandler = jest.fn();
+const navigateHandler = jest.fn();
+const navigationGetParamHandler = jest.fn();
+const navigationGoBackHandler = jest.fn();
+const setIsLoadingUpgradeHandler = jest.fn();
+const setIsLoadingRestoreHandler = jest.fn();
+
+const props: any = {
+  subscriptionsError: '',
+  validationResult: null,
+  activeSubscriptionProductId: '',
+  userDetails: null,
+  totalAvailableVoices: 10,
+  validateSubscriptionReceipt: validateSubscriptionReceiptHandler,
+  getUser: getUserHandler,
+  navigation: {
+    navigate: navigateHandler,
+    getParam: navigationGetParamHandler,
+    goBack: navigationGoBackHandler,
+  },
+  setIsLoadingUpgrade: setIsLoadingUpgradeHandler,
+  setIsLoadingRestore: setIsLoadingRestoreHandler
+};
+
+describe('UpgradeContainerComponent', () => {
+
+  describe('rendering', () => {
+    let wrapper: renderer.ReactTestRenderer;
+
+    beforeEach(() => {
+      wrapper = renderer.create(<UpgradeContainerComponent {...props} />);
+    });
+
+    it('should render correctly', () => {
+      expect(wrapper.toJSON()).toMatchSnapshot();
+    });
+  });
+
+  describe('interacting', () => {
+    let wrapper: renderer.ReactTestRenderer;
+
+    afterEach(() => {
+      jest.resetAllMocks();
+      jest.restoreAllMocks();
+    });
+
+    beforeEach(() => {
+      wrapper = renderer.create(<UpgradeContainerComponent {...props} />);
+    });
+
+    it('should correctly handle handleOnPressUpgrade() on an downgrade to free', async () => {
+      const testProductId = SUBSCRIPTION_PRODUCT_ID_FREE;
+      const testInstance = wrapper.root.instance;
+
+      const spySubscriptionAlert = jest.spyOn(testInstance, 'showManageSubscriptionAlert');
+
+      // User is not downgrading from a paid subscription
+      testInstance.isDowngradePaidSubscription = jest.fn().mockReturnValue(false)
+
+      // User is downgrading to a free subscription
+      testInstance.isDowngradeFreeSubscription = jest.fn().mockReturnValue(true)
+
+      await testInstance.handleOnPressUpgrade(testProductId);
+
+      expect(spySubscriptionAlert).toHaveBeenCalledTimes(1);
+      expect(spySubscriptionAlert).toHaveBeenCalledWith(
+        'Downgrade to Free?',
+        'To downgrade to Free you need to cancel your current subscription. Cancelling a subscription can only be done through iTunes.\n\n Press \"Manage Subscriptions\" below to manage your subscriptions.');
+    });
+
+    it('should correctly handle handleOnPressUpgrade() on an downgrade from a higher subscription', async () => {
+      const testProductId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
+      const testInstance = wrapper.root.instance;
+
+      const spySubscriptionAlert = jest.spyOn(testInstance, 'showManageSubscriptionAlert');
+
+      // User is downgrading from a paid subscription to free
+      testInstance.isDowngradePaidSubscription = jest.fn().mockReturnValue(true)
+
+      // User is not downgrading to a free subscription
+      testInstance.isDowngradeFreeSubscription = jest.fn().mockReturnValue(false)
+
+      await testInstance.handleOnPressUpgrade(testProductId);
+
+      expect(spySubscriptionAlert).toHaveBeenCalledTimes(1);
+      expect(spySubscriptionAlert).toHaveBeenCalledWith(
+        'Downgrading Subscription?',
+        'Downgrading a subscription can only be done through iTunes.\n\n Press "Manage Subscriptions" below to manage your subscriptions.');
+    });
+
+    it('should correctly handle handleOnPressUpgrade() on an upgrade', async () => {
+      const testProductId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
+
+      const testInstance = wrapper.root.instance;
+
+      const spySubscriptionAlert = jest.spyOn(testInstance, 'showManageSubscriptionAlert');
+      const spyRequestSubscription = jest.spyOn(testInstance, 'requestSubscription');
+      const spySetIsLoadingUpgrade = jest.spyOn(testInstance.props, 'setIsLoadingUpgrade');
+
+      // User is not downgrading from a paid subscription
+      testInstance.isDowngradePaidSubscription = jest.fn().mockReturnValue(false)
+
+      // User is not downgrading to a free subscription
+      testInstance.isDowngradeFreeSubscription = jest.fn().mockReturnValue(false)
+
+      // Test an upgrade to a higher subscription level
+      await testInstance.handleOnPressUpgrade(testProductId);
+
+      expect(spySubscriptionAlert).toHaveBeenCalledTimes(0);
+      expect(spyRequestSubscription).toHaveBeenCalledTimes(1);
+      expect(spySetIsLoadingUpgrade).toHaveBeenCalledTimes(1);
+      expect(spySetIsLoadingUpgrade).toHaveBeenCalledWith(true);
+      expect(spyRequestSubscription).toHaveBeenCalledWith(testProductId);
+      expect(testInstance.state.centeredSubscriptionProductId).toBe(testProductId);
+
+    });
+
+    it('should correctly handle an error inside handleOnPressUpgrade() on an upgrade', async () => {
+      const testProductId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
+
+      const testInstance = wrapper.root.instance;
+
+      const spyRequestSubscription = jest.spyOn(testInstance, 'requestSubscription').mockRejectedValueOnce(new Error('Some error!'));
+      const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert');
+      const spySetIsLoadingUpgrade = jest.spyOn(testInstance.props, 'setIsLoadingUpgrade');
+
+      // User is not downgrading from a paid subscription
+      testInstance.isDowngradePaidSubscription = jest.fn().mockReturnValue(false)
+
+      // User is not downgrading to a free subscription
+      testInstance.isDowngradeFreeSubscription = jest.fn().mockReturnValue(false)
+
+      // Test an upgrade to a higher subscription level
+      await testInstance.handleOnPressUpgrade(testProductId);
+
+      expect(spyRequestSubscription).toHaveBeenCalledTimes(1);
+      expect(spySetIsLoadingUpgrade).toHaveBeenCalledTimes(2);
+      expect(spySetIsLoadingUpgrade).toHaveBeenLastCalledWith(false);
+      expect(spyRequestSubscription).toHaveBeenCalledWith(testProductId);
+      expect(spyShowErrorAlert).toHaveBeenCalledTimes(0); // The error is handled in SubscriptionHandlerContainer
+
+    });
+
+    it('getLatestPurchase() should return the latest purchase from the array', () => {
+      const testInstance = wrapper.root.instance;
+
+      expect(testInstance.getLatestPurchase(mockApplePurchases)).toMatchObject(mockApplePurchases[0]);
+    })
+
+    it('isDowngradeFreeSubscription() should return true/false', () => {
+      const mockProps = {
+        ...props,
+        activeSubscriptionProductId: SUBSCRIPTION_PRODUCT_ID_FREE,
+        subscriptions: mockSubscriptions
+      }
+
+      wrapper.update(<UpgradeContainerComponent {...mockProps} />)
+      const testInstance = wrapper.root.instance;
+
+      expect(testInstance.isDowngradeFreeSubscription(SUBSCRIPTION_PRODUCT_ID_FREE)).toBe(false)
+      expect(testInstance.isDowngradeFreeSubscription(SUBSCRIPTION_PRODUCT_ID_PREMIUM)).toBe(false)
+      expect(testInstance.isDowngradeFreeSubscription('com.aardwegmedia.playpost.subscriptions.plus')).toBe(false)
+    })
+
+    it('isDowngradePaidSubscription() should return true/false', () => {
+      const mockProps = {
+        ...props,
+        activeSubscriptionProductId: 'com.aardwegmedia.playpost.subscriptions.plus',
+        subscriptions: mockSubscriptions
+      }
+
+      wrapper.update(<UpgradeContainerComponent {...mockProps} />)
+      const testInstance = wrapper.root.instance;
+
+      expect(testInstance.isDowngradePaidSubscription(SUBSCRIPTION_PRODUCT_ID_FREE)).toBe(false)
+      expect(testInstance.isDowngradePaidSubscription(SUBSCRIPTION_PRODUCT_ID_PREMIUM)).toBe(false)
+    })
+
+    it('should correctly handle handleOnPressRestore() when a user has previous purchases', async () => {
+      const testInstance = wrapper.root.instance;
+
+      const spyGetPurchaseHistory = jest.spyOn(testInstance, 'getPurchaseHistory').mockReturnValueOnce(mockApplePurchases)
+      const spyGetLatestPurchase = jest.spyOn(testInstance, 'getLatestPurchase').mockReturnValueOnce(mockApplePurchases[0]);
+      const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert');
+      const spySetIsLoadingRestore = jest.spyOn(testInstance.props, 'setIsLoadingRestore');
+      const spyValidateSubscriptionReceipt = jest.spyOn(testInstance.props, 'validateSubscriptionReceipt');
+
+
+      // Simulate a click on "Restore previous purchase"
+      await testInstance.handleOnPressRestore();
+
+      expect(spySetIsLoadingRestore).toHaveBeenCalledTimes(1);
+      expect(spySetIsLoadingRestore).toHaveBeenCalledWith(true);
+
+      expect(spyGetPurchaseHistory).toHaveBeenCalledTimes(1);
+      expect(spyGetPurchaseHistory).toHaveReturnedWith(mockApplePurchases)
+
+      expect(spyShowErrorAlert).toHaveBeenCalledTimes(0);
+
+      expect(spyGetLatestPurchase).toHaveBeenCalledTimes(1);
+      expect(spyGetLatestPurchase).toHaveReturnedWith(mockApplePurchases[0]);
+
+      expect(spyValidateSubscriptionReceipt).toHaveBeenCalledTimes(1);
+      expect(spyValidateSubscriptionReceipt).toHaveBeenCalledWith(mockApplePurchases[0].productId, mockApplePurchases[0].transactionReceipt);
+    });
+
+    it('should correctly handle handleOnPressRestore() when a user has no previous purchases', async () => {
+      const testInstance = wrapper.root.instance;
+
+      const spyGetPurchaseHistory = jest.spyOn(testInstance, 'getPurchaseHistory').mockReturnValueOnce([]);
+      const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert');
+      const spySetIsLoadingRestore = jest.spyOn(testInstance.props, 'setIsLoadingRestore');
+
+      // Simulate a click on "Restore previous purchase"
+      await testInstance.handleOnPressRestore();
+
+      expect(spySetIsLoadingRestore).toHaveBeenCalledTimes(2);
+      expect(spySetIsLoadingRestore).toHaveBeenLastCalledWith(false);
+
+      expect(spyGetPurchaseHistory).toHaveBeenCalledTimes(1);
+      expect(spyGetPurchaseHistory).toHaveReturnedWith([])
+
+      expect(spyShowErrorAlert).toHaveBeenCalledTimes(1);
+      expect(spyShowErrorAlert).toHaveBeenCalledWith('Nothing to restore', `We could not find any previous purchase to restore. If you think this is incorrect, please contact our support.`);
+
+    });
+
+    it('should show an error alert when an error throws inside handleOnPressRestore()', async () => {
+      const testInstance = wrapper.root.instance;
+
+      jest.spyOn(testInstance, 'getPurchaseHistory').mockRejectedValueOnce(new Error('Some error!'));
+      const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert');
+      const spySetIsLoadingRestore = jest.spyOn(testInstance.props, 'setIsLoadingRestore');
+
+      // Simulate a click on "Restore previous purchase"
+      await testInstance.handleOnPressRestore();
+
+      expect(spySetIsLoadingRestore).toHaveBeenCalledTimes(2);
+      expect(spySetIsLoadingRestore).toHaveBeenLastCalledWith(false);
+
+      expect(spyShowErrorAlert).toHaveBeenCalledTimes(1);
+      expect(spyShowErrorAlert).toHaveBeenCalledWith('Restore purchase error', `Some error!`);
+
+    });
+  });
+});

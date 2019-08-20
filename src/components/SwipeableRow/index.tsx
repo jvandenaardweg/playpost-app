@@ -7,6 +7,7 @@ import Swipeable from 'react-native-gesture-handler/Swipeable';
 import * as Icon from '../../components/Icon';
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
+import { ALERT_TITLE_ERROR_NO_INTERNET } from '../../constants/messages';
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
 interface Props {
@@ -20,16 +21,16 @@ interface Props {
 }
 export class SwipeableRow extends React.PureComponent<Props> {
 
-  public static contextType = NetworkContext;
+  static contextType = NetworkContext;
   private swipeableRef: React.RefObject<Swipeable> = React.createRef();
 
-  public handleOnPressRightAction = (actionName: string) => {
+  handleOnPressRightAction = (actionName: string) => {
     const { isConnected } = this.context;
     const { isFavorited, isArchived } = this.props;
 
     if (!isConnected) {
       this.close();
-      return Alert.alert('No internet', 'You need an active internet connection to do this.');
+      return Alert.alert(ALERT_TITLE_ERROR_NO_INTERNET, 'You need an active internet connection to do this.');
     }
 
     if (actionName === 'delete') {
@@ -52,14 +53,10 @@ export class SwipeableRow extends React.PureComponent<Props> {
       }
     }
 
-    if (actionName === 'download') {
-      return Alert.alert('Not available yet', 'This feature is not available yet.');
-    }
-
     return this.close();
   }
 
-  public renderRightAction = (action: string, icon: string, iconColor: string | null) => {
+  renderRightAction = (action: string, icon: string, iconColor: string | null) => {
     return (
       <View style={styles.rightActionContainer}>
         <RectButton
@@ -76,28 +73,28 @@ export class SwipeableRow extends React.PureComponent<Props> {
     );
   }
 
-  public renderRightActions = (progressAnimatedValue: Animated.Value | Animated.AnimatedInterpolation, dragAnimatedValue: Animated.Value | Animated.AnimatedInterpolation) => {
+  renderRightActions = (progressAnimatedValue: Animated.Value | Animated.AnimatedInterpolation, dragAnimatedValue: Animated.Value | Animated.AnimatedInterpolation) => {
     const { isArchived, isFavorited } = this.props;
 
     return (
-      <Animated.View style={styles.rightActionsContainer}>
-        {/* {this.renderRightAction('download', 'download', null)} */}
+      <View style={styles.rightActionsContainer}>
         {this.renderRightAction('archive', 'archive', (isArchived) ? colors.black : null)}
         {this.renderRightAction('favorite', 'heart', (isFavorited) ? colors.black : null)}
         {this.renderRightAction('delete', 'trash-2', null)}
-      </Animated.View>
+      </View>
     );
   }
 
-  public close = () => this.swipeableRef.current && this.swipeableRef.current.close()
+  close = () => this.swipeableRef.current && this.swipeableRef.current.close()
 
-  public render() {
+  render() {
     return (
       <Swipeable
         ref={this.swipeableRef}
         friction={2}
-        rightThreshold={40}
+        rightThreshold={50}
         renderRightActions={this.renderRightActions}
+        useNativeAnimations
       >
         {this.props.children}
       </Swipeable>

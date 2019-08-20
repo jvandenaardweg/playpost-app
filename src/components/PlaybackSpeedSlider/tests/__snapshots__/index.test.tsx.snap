@@ -1,0 +1,313 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlaybackSpeedSlider rendering should render correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#037DE2",
+      "borderRadius": 48,
+      "height": 48,
+      "justifyContent": "center",
+      "paddingLeft": 12,
+      "paddingRight": 12,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#037DE2",
+        "borderRadius": 50,
+        "paddingBottom": 8,
+        "paddingLeft": 12,
+        "paddingRight": 12,
+        "paddingTop": 8,
+        "position": "absolute",
+        "top": -40,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+      testID="PlaybackSpeedSlider-TouchableOpacity-label"
+    >
+      <Text
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontSize": 13,
+          }
+        }
+        testID="PlaybackSpeedSlider-Text-label"
+      >
+        1.00
+        x
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "space-around",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      hitSlop={
+        Object {
+          "bottom": 10,
+          "left": 10,
+          "right": 10,
+          "top": 10,
+        }
+      }
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#004A87",
+          "borderRadius": 30,
+          "height": 30,
+          "justifyContent": "center",
+          "width": 30,
+        }
+      }
+      testID="PlaybackSpeedSlider-TouchableHighlight-minus"
+    >
+      <Text
+        allowFontScaling={false}
+        style={
+          Array [
+            Object {
+              "color": "#ffffff",
+              "fontSize": 14,
+            },
+            null,
+            Object {
+              "fontFamily": "FontAwesome5Free-Solid",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            Object {
+              "fontWeight": "900",
+            },
+          ]
+        }
+      >
+        
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flexGrow": 1,
+          "marginLeft": 12,
+          "marginRight": 12,
+        }
+      }
+    >
+      <View
+        animationType="timing"
+        onLayout={[Function]}
+        onSlidingComplete={[Function]}
+        onValueChange={[Function]}
+        step={0.01}
+        style={
+          Object {
+            "height": 40,
+            "justifyContent": "center",
+          }
+        }
+        theme={
+          Object {
+            "colors": Object {
+              "disabled": "hsl(208, 8%, 90%)",
+              "divider": "#bcbbc1",
+              "error": "#ff190c",
+              "grey0": "#393e42",
+              "grey1": "#43484d",
+              "grey2": "#5e6977",
+              "grey3": "#86939e",
+              "grey4": "#bdc6cf",
+              "grey5": "#e1e8ee",
+              "greyOutline": "#bbb",
+              "platform": Object {
+                "android": Object {
+                  "error": "#f44336",
+                  "primary": "#2196f3",
+                  "secondary": "#9C27B0",
+                  "success": "#4caf50",
+                  "warning": "#ffeb3b",
+                },
+                "ios": Object {
+                  "error": "#ff3b30",
+                  "primary": "#007aff",
+                  "secondary": "#5856d6",
+                  "success": "#4cd964",
+                  "warning": "#ffcc00",
+                },
+              },
+              "primary": "#2089dc",
+              "searchBg": "#303337",
+              "secondary": "#8F0CE8",
+              "success": "#52c41a",
+              "warning": "#faad14",
+            },
+          }
+        }
+        thumbTouchSize={
+          Object {
+            "height": 40,
+            "width": 40,
+          }
+        }
+        value={1}
+      >
+        <View
+          onLayout={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#004A87",
+              "borderRadius": 2,
+              "height": 3,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "backgroundColor": "#004A87",
+              "borderRadius": 2,
+              "height": 0,
+              "marginTop": -0,
+              "position": "absolute",
+              "width": 0,
+            }
+          }
+        />
+        <View
+          onLayout={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#ffffff",
+              "borderRadius": 10,
+              "height": 0,
+              "position": "absolute",
+              "top": 21.5,
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+                Object {
+                  "translateY": -0,
+                },
+              ],
+              "width": 0,
+            }
+          }
+          testID="sliderThumb"
+        />
+        <View
+          onMoveShouldSetResponder={[Function]}
+          onMoveShouldSetResponderCapture={[Function]}
+          onResponderEnd={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderReject={[Function]}
+          onResponderRelease={[Function]}
+          onResponderStart={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          onStartShouldSetResponderCapture={[Function]}
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      accessible={true}
+      hitSlop={
+        Object {
+          "bottom": 10,
+          "left": 10,
+          "right": 10,
+          "top": 10,
+        }
+      }
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#004A87",
+          "borderRadius": 30,
+          "height": 30,
+          "justifyContent": "center",
+          "width": 30,
+        }
+      }
+      testID="PlaybackSpeedSlider-TouchableHighlight-plus"
+    >
+      <Text
+        allowFontScaling={false}
+        style={
+          Array [
+            Object {
+              "color": "#ffffff",
+              "fontSize": 14,
+            },
+            null,
+            Object {
+              "fontFamily": "FontAwesome5Free-Solid",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            Object {
+              "fontWeight": "900",
+            },
+          ]
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>
+</View>
+`;

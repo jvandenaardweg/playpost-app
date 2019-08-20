@@ -6,11 +6,15 @@ import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
+  },
+  contentContainer: {
     backgroundColor: colors.articleBackground,
     padding: spacing.default,
+  },
+  wrapper: {
+    flex: 1,
+    flexDirection: 'row',
     width: '100%',
-    flexDirection: 'row'
   },
   isMoving: {
     backgroundColor: colors.appBackground
@@ -29,8 +33,8 @@ export default StyleSheet.create({
   },
   author: {
     fontSize: fonts.fontSize.tiny,
-    color: colors.paragraphGrayed,
-    lineHeight: 18
+    lineHeight: Math.ceil(fonts.fontSize.tiny * 1.5),
+    color: colors.grayDark
   },
   bodyMeta: {
     flexDirection: 'row',
@@ -64,14 +68,14 @@ export default StyleSheet.create({
   },
   bodyTitleText: {
     fontSize: fonts.fontSize.title,
+    lineHeight: Math.ceil(fonts.fontSize.title * 1.2),
     fontWeight: fonts.fontWeight.semibold,
-    color: colors.titleDefault,
-    lineHeight: 21
+    color: colors.titleDefault
   },
   bodyFooterText: {
     fontSize: fonts.fontSize.tiny,
-    color: colors.paragraphGrayed,
-    fontWeight: fonts.fontWeight.thin,
+    color: colors.grayDark,
+    fontWeight: fonts.fontWeight.light,
     paddingLeft: 2
   },
   bodySourceIcon: {
@@ -79,15 +83,15 @@ export default StyleSheet.create({
   },
   bodySourceText: {
     fontSize: fonts.fontSize.tiny,
-    color: colors.paragraphGrayed,
+    color: colors.grayDark,
     paddingRight: 0,
-    fontWeight: fonts.fontWeight.thin
+    fontWeight: fonts.fontWeight.light
   },
   authorName: {
-    color: colors.paragraphGrayed
+    color: colors.grayDark
   },
   publicationName: {
-    color: colors.paragraphGrayed
+    color: colors.grayDark
   },
   controlButton: {
     backgroundColor: colors.controlButtonDefault,
@@ -110,11 +114,11 @@ export default StyleSheet.create({
     backgroundColor: colors.controlButtonActive
   },
   duration: {
-    color: colors.paragraphGrayed,
+    color: colors.grayDark,
     textAlign: 'center',
     marginTop: 6,
     fontSize: fonts.fontSize.tiny,
-    fontWeight: fonts.fontWeight.thin
+    fontWeight: fonts.fontWeight.light
   },
   imageContainer: {
     justifyContent: 'center',
@@ -137,5 +141,27 @@ export default StyleSheet.create({
   },
   imagePlaceholder: {
     backgroundColor: colors.grayLight
+  },
+  warningContainer: {
+    borderRadius: 6,
+    marginTop: spacing.default,
+  },
+  warningWrapper: {
+    padding: spacing.small,
+    borderRadius: 6,
+    backgroundColor: colors.orangeDark,
+  },
+  warningHighlight: {
+    fontStyle: 'italic',
+    fontWeight: fonts.fontWeight.semibold
+  },
+  warningText: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  warningLink: {
+    textDecorationStyle: 'solid',
+    textDecorationLine: 'underline',
+    marginTop: 4
   }
 });

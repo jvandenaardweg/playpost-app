@@ -1,6 +1,22 @@
 import { Platform } from 'react-native';
 
+export const SUBSCRIPTION_PRODUCT_ID_FREE = Platform.select({
+  ios: 'free',
+  android: 'free'
+});
+
+export const SUBSCRIPTION_PRODUCT_ID_PREMIUM = Platform.select({
+  ios: 'com.aardwegmedia.playpost.premium',
+  android: 'com.aardwegmedia.playpost.premium'
+});
+
+export const SUBSCRIPTION_PRODUCT_ID_PLUS = Platform.select({
+  ios: 'com.aardwegmedia.playpost.subscription.plus',
+  android: 'com.aardwegmedia.playpost.subscription.plus'
+});
+
 export const SUBSCRIPTION_PRODUCT_IDS = Platform.select({
+  // We keep the productId's the same between Apple and Google
   ios: ['com.aardwegmedia.playpost.premium', 'com.aardwegmedia.playpost.subscription.plus'],
-  android: ['test.sub1', 'test.sub2']
+  android: ['com.aardwegmedia.playpost.premium', 'com.aardwegmedia.playpost.subscription.plus']
 });

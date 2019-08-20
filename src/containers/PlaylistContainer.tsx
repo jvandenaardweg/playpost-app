@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import React from 'react';
-import { Alert, FlatList } from 'react-native';
+import { Alert, FlatList, InteractionManager } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import { connect } from 'react-redux';
 // import DraggableFlatList from 'react-native-draggable-flatlist';
@@ -20,6 +20,7 @@ import isEqual from 'react-fast-compare';
 import { RootState } from '../reducers';
 
 import { ListSeperator } from '../components/ListSeperator';
+import { ALERT_TITLE_ERROR } from '../constants/messages';
 import { selectDownloadedAudiofiles } from '../selectors/audiofiles';
 
 interface State {
@@ -44,9 +45,9 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
     return playlistItems && playlistItems.length;
   }
 
-  public static contextType = NetworkContext;
+  static contextType = NetworkContext;
 
-  public static getDerivedStateFromProps(props: Props, state: State) {
+  static getDerivedStateFromProps(props: Props, state: State) {
     // Prevent state update when we are re-ordering
     if (state.isReOrdering) {
       return null;
@@ -66,7 +67,7 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
       playlistItems
     };
   }
-  public state = {
+  state = {
     isLoading: false, // Show loading upon mount, because we fetch the playlist of the user
     isRefreshing: false,
     isReOrdering: false,
@@ -74,7 +75,7 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
     playlistItems: []
   };
 
-  public shouldComponentUpdate(nextProps: Props, nextState: State) {
+  shouldComponentUpdate(nextProps: Props, nextState: State) {
     // If there's a state change inside the component, always update it
     if (!isEqual(this.state, nextState)) {
       return true;
@@ -88,46 +89,46 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
     return false;
   }
 
-  public componentDidMount() {
+  componentDidMount() {
     const { isConnected } = this.context;
     const { isArchiveScreen, isFavoriteScreen } = this.props;
 
-    this.showOrHideHelpVideo();
+    InteractionManager.runAfterInteractions(() => {
+      this.showOrHideHelpVideo();
 
-    // If we mount this component, and we don't have any playlist items, fetch them
-    if (isConnected && (!isArchiveScreen || !isFavoriteScreen)) {
-      this.prePopulateApp();
+      // If we mount this component, and we don't have any playlist items, fetch them
+      if (isConnected && (!isArchiveScreen || !isFavoriteScreen)) {
+        this.prePopulateApp();
 
-      if (!this.hasPlaylistItems) {
-        this.setState({ isLoading: true }, () => {
-          this.fetchPlaylist();
-        });
+        if (!this.hasPlaylistItems) {
+          this.setState({ isLoading: true }, () => {
+            this.fetchPlaylist();
+          });
+        }
       }
-    }
 
-    // Wait a little longer, then hide the splash screen.
-    // So we don't have a "black" flash.
-    // TODO: remove timeout on unmount
-    setTimeout(() => SplashScreen.hide(), 100);
+      SplashScreen.hide();
+    });
+
   }
 
   /**
    * Method to pre-populate the app with initial data
    * We use it here because we can give the user a faster perceived loading performance
    */
-  public prePopulateApp = async () => {
+  prePopulateApp = async () => {
     const promises = await Promise.all([this.props.getUser(), this.props.getLanguages()]);
 
     return promises;
   }
 
-  public async showOrHideHelpVideo() {
+  async showOrHideHelpVideo() {
     const showHelpVideo = await AsyncStorage.getItem('@showHelpVideo');
 
     if (showHelpVideo) { this.setState({ showHelpVideo: true }); }
   }
 
-  public async fetchPlaylist() {
+  async fetchPlaylist() {
     const { isConnected } = this.context;
 
     try {
@@ -147,24 +148,24 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
     }
   }
 
-  public handleOnRefresh = () => {
+  handleOnRefresh = () => {
     // If we don't have any articles, we show the general centered loading indicator
     const isLoading = !this.hasPlaylistItems;
 
     this.setState({ isLoading, isRefreshing: true }, () => this.fetchPlaylist());
   }
 
-  public handleOnHideVideo = async () => {
+  handleOnHideVideo = async () => {
     await AsyncStorage.removeItem('@showHelpVideo');
     this.setState({ showHelpVideo: false });
   }
 
-  public handleOnShowVideo = async () => {
+  handleOnShowVideo = async () => {
     await AsyncStorage.setItem('@showHelpVideo', 'true');
     this.setState({ showHelpVideo: true });
   }
 
-  public renderEmptyComponent = () => {
+  renderEmptyComponent = () => {
     const { isLoading, isRefreshing, showHelpVideo } = this.state;
     const { isArchiveScreen, isFavoriteScreen } = this.props;
     const { isConnected } = this.context;
@@ -231,7 +232,7 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
     return null;
   }
 
-  public handleOnMoveEnd = async ({ data, to, from, row }: { data: Api.PlaylistItem[] | null; to: number; from: number; row: Api.PlaylistItem }) => {
+  handleOnMoveEnd = async ({ data, to, from, row }: { data: Api.PlaylistItem[] | null; to: number; from: number; row: Api.PlaylistItem }) => {
     const articleId = row.article.id;
     const newOrder = to;
     const newPlaylistItemsOrder: Api.PlaylistItem[] | null = data;
@@ -246,24 +247,24 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
         // Get the newly ordered playlist
         await this.props.getPlaylist();
       } catch (err) {
-        Alert.alert('Oops!', 'An error happened while re-ordering your playlist. Please try again.');
+        Alert.alert(ALERT_TITLE_ERROR, 'An error happened while re-ordering your playlist. Please try again.');
       } finally {
         this.setState({ isReOrdering: false });
       }
     });
   }
 
-  public renderSeperatorComponent = () => {
+  renderSeperatorComponent = () => {
     return <ListSeperator />;
   }
 
-  public renderItem = ({ item, index }: { item: Api.PlaylistItem; index: number }) => {
+  renderItem = ({ item, index }: { item: Api.PlaylistItem; index: number }) => {
     // Only allow re-ordering of items when in the playlist screen
     // const allowMove = !this.props.isArchiveScreen || !this.props.isFavoriteScreen;
 
     return (
       <ArticleContainer
-        key={index}
+        key={item.id}
         // isMoving={(allowMove) ? isActive : false}
         isMoving={false}
         isFavorited={!!item.favoritedAt}
@@ -278,7 +279,7 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
     );
   }
 
-  public render() {
+  render() {
     const { isRefreshing, playlistItems } = this.state;
 
     return (
@@ -291,10 +292,11 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
         keyExtractor={(item: Api.PlaylistItem) => item.id.toString()}
         ItemSeparatorComponent={this.renderSeperatorComponent}
         ListEmptyComponent={this.renderEmptyComponent}
+        initialNumToRender={7}
         // onMoveEnd={this.handleOnMoveEnd}
         // scrollPercent={5}
         renderItem={this.renderItem}
-        removeClippedSubviews={false} // unmount components that are off of the window, keep this false, as it sometimes renders no items when true
+        removeClippedSubviews={true}
       />
       // DraggableFlatList temporary disabled
       // There seems to be a problem with the list dissapearing when archiving/favoriting

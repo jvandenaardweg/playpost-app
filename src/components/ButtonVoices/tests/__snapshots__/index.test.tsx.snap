@@ -2,46 +2,67 @@
 
 exports[`ButtonVoices rendering should render correctly 1`] = `
 <View
-  accessible={true}
-  isTVSelectable={true}
-  onResponderGrant={[Function]}
-  onResponderMove={[Function]}
-  onResponderRelease={[Function]}
-  onResponderTerminate={[Function]}
-  onResponderTerminationRequest={[Function]}
-  onStartShouldSetResponder={[Function]}
   style={
     Object {
-      "alignItems": "center",
-      "flex": 1,
-      "flexDirection": "row",
-      "height": 40,
-      "opacity": 1,
-      "paddingLeft": 16,
-      "width": 56,
+      "paddingLeft": 12,
     }
   }
-  testID="ButtonVoices-button"
 >
-  <Text
-    allowFontScaling={false}
+  <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       Array [
         Object {
-          "color": "#03A87C",
-          "fontSize": 20,
+          "borderRadius": 28,
+          "height": 28,
         },
-        Object {},
         Object {
-          "fontFamily": "Feather",
-          "fontStyle": "normal",
-          "fontWeight": "normal",
+          "backgroundColor": "#e5e5e5",
         },
-        Object {},
       ]
     }
+    testID="ButtonTiny-Button"
   >
-    
-  </Text>
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 28,
+            "flexDirection": "row",
+            "height": 28,
+            "paddingLeft": 12,
+            "paddingRight": 12,
+          },
+          Object {
+            "backgroundColor": "#e5e5e5",
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontSize": 13,
+              "fontWeight": "600",
+            },
+            Object {
+              "color": "#000000",
+            },
+          ]
+        }
+      >
+        Voices
+      </Text>
+    </View>
+  </View>
 </View>
 `;

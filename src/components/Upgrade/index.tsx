@@ -1,6 +1,6 @@
 import getSymbolFromCurrency from 'currency-symbol-map';
-import React from 'react';
-import { ActivityIndicator, Dimensions, ScrollView, Text, View } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { ActivityIndicator, Dimensions, Platform, ScrollView, Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import * as RNIap from 'react-native-iap';
 
@@ -10,12 +10,14 @@ import styles from './styles';
 
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
+import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../constants/in-app-purchase';
 import spacing from '../../constants/spacing';
 
 interface Props {
   isLoadingSubscriptionItems: boolean;
   isLoadingBuySubscription: boolean;
   isLoadingRestorePurchases: boolean;
+  isEligibleForTrial: boolean;
   subscriptions?: Array<RNIap.Subscription<string>>;
   /* tslint:disable-next-line no-any */
   subscriptionFeatures: any[];
@@ -34,6 +36,7 @@ export const Upgrade: React.FC<Props> = React.memo(
     isLoadingSubscriptionItems,
     isLoadingBuySubscription,
     isLoadingRestorePurchases,
+    isEligibleForTrial,
     subscriptions,
     subscriptionFeatures,
     activeSubscriptionProductId,
@@ -45,29 +48,47 @@ export const Upgrade: React.FC<Props> = React.memo(
     onPressCancel,
     isDowngradePaidSubscription
   }) => {
+    const horizontalScrollViewRef = useRef<ScrollView>(null);
+
     const windowWidth = Dimensions.get('window').width;
     const cardMargin = 6;
     const cardFirstMarginLeft = spacing.default * 2;
     const cardLastMarginRight = spacing.default * 2;
+    const paymentAccountTitle = (Platform.OS === 'android') ? 'Google Play' : 'Apple ID';
 
     const cardWidth = windowWidth - cardFirstMarginLeft - cardLastMarginRight;
     const snapToInterval = cardWidth + cardMargin * 2;
 
     const startOffset = {
-      free: snapToInterval,
-      'com.aardwegmedia.playpost.premium': snapToInterval,
-      'com.aardwegmedia.playpost.subscription.plus': snapToInterval * 2
+      [SUBSCRIPTION_PRODUCT_ID_FREE]: snapToInterval,
+      [SUBSCRIPTION_PRODUCT_ID_PREMIUM]: snapToInterval,
+      [SUBSCRIPTION_PRODUCT_ID_PLUS]: snapToInterval * 2
     };
 
-    const contentOffsetX = centeredSubscriptionProductId ? startOffset[centeredSubscriptionProductId] : snapToInterval;
+    // Center the subscription based on centeredSubscriptionProductId
+    // Else on activeSubscriptionProductId
+    // Else, show free
+    const contentOffsetX = centeredSubscriptionProductId ? startOffset[centeredSubscriptionProductId] : activeSubscriptionProductId ? startOffset[activeSubscriptionProductId] : snapToInterval;
 
-    const contentOffset = { x: contentOffsetX, y: 0 };
+    const contentOffset = { x: contentOffsetX, y: 0, animated: false };
     const scrollEnabled = !isLoadingBuySubscription;
+
+    useEffect(() => {
+      if (!horizontalScrollViewRef || !horizontalScrollViewRef.current) {
+        return;
+      }
+
+      // We use a simple scrollTo to center the correct subscription in the ScrollView
+      // This is because Android does not support "contentOffset" on the <ScrollView>
+      horizontalScrollViewRef.current.scrollTo(contentOffset)
+
+    }, [horizontalScrollViewRef, contentOffset])
 
     return (
       <View style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={{ ...styles.container, backgroundColor: colors.appBackground }}>
           <ScrollView
+            ref={horizontalScrollViewRef}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             style={styles.cardsScrollView}
@@ -75,7 +96,6 @@ export const Upgrade: React.FC<Props> = React.memo(
             snapToInterval={snapToInterval}
             scrollEnabled={scrollEnabled}
             decelerationRate={0}
-            contentOffset={contentOffset}
           >
             {subscriptionFeatures &&
               subscriptionFeatures.map((subscriptionFeature, index) => {
@@ -92,11 +112,26 @@ export const Upgrade: React.FC<Props> = React.memo(
                 const localizedPrice = featureSubscription ? featureSubscription.localizedPrice : `${currencySymbol}${subscriptionFeature.price}`;
                 const title = subscriptionFeature.title; // Do not use the subscription.title, this appears to be missing on some localizations
 
-                const buttonLabel = isDowngradePaidSubscription(productId) || productId === 'free' ? `Downgrade to ${title}` : `Upgrade to ${title}`;
+
+                const hasTrial = featureSubscription && featureSubscription.introductoryPricePaymentModeIOS === 'FREETRIAL' && isEligibleForTrial;
+                // const trialPrice = (hasTrial && featureSubscription) ? featureSubscription.introductoryPrice : ''; // €0,00, $0,00
+                const trialDurationNumber = (hasTrial && featureSubscription) ? featureSubscription.introductoryPriceNumberOfPeriodsIOS : ''; // 3, 7, 1, 14 etc...
+                const trialDurationPeriod = (hasTrial && featureSubscription) ? featureSubscription.introductoryPriceSubscriptionPeriodIOS : ''; // DAY, WEEK, MONTH, YEAR
+                const trialDurationPeriodLowercased = (trialDurationPeriod) ? trialDurationPeriod.toLowerCase() : ''; // day, week, month, year
+
+                const trialButtonTitle = (hasTrial) ? `Start free ${trialDurationNumber}-${trialDurationPeriodLowercased} trial` : '';
+                const defaultButtonTitle = `Upgrade to ${title}`;
+                const freeButtonTitle = `Downgrade to ${title}`;
+
+                const buttonTitleAction = isDowngradePaidSubscription(productId) || productId === SUBSCRIPTION_PRODUCT_ID_FREE ? freeButtonTitle : trialButtonTitle ? trialButtonTitle : defaultButtonTitle;
+                const buttonTitle = activeSubscriptionProductId === productId ? 'Current subscription' : buttonTitleAction;
+
+                const isDisabled = isLoadingSubscriptionItems || isLoadingBuySubscription || isLoadingRestorePurchases || activeSubscriptionProductId === productId;
+                const isLoading = isLoadingSubscriptionItems || isLoadingBuySubscription;
 
                 return (
                   <View
-                    key={index}
+                    key={subscriptionFeature.productId}
                     style={[
                       styles.card,
                       { width: cardWidth, marginLeft: isFirst ? cardFirstMarginLeft : cardMargin, marginRight: isLast ? cardLastMarginRight : cardMargin }
@@ -113,12 +148,10 @@ export const Upgrade: React.FC<Props> = React.memo(
                     </View>
                     <View style={styles.cardButtonContainer}>
                       <Button
-                        title={activeSubscriptionProductId === productId ? 'Current subscription' : buttonLabel}
+                        title={buttonTitle}
                         onPress={() => onPressUpgrade(productId)}
-                        disabled={
-                          isLoadingSubscriptionItems || isLoadingBuySubscription || isLoadingRestorePurchases || activeSubscriptionProductId === productId
-                        }
-                        loading={isLoadingSubscriptionItems || isLoadingBuySubscription}
+                        disabled={isDisabled }
+                        loading={isLoading}
                         loadingProps={{ color: 'black' }}
                       />
                     </View>
@@ -179,10 +212,9 @@ export const Upgrade: React.FC<Props> = React.memo(
               <View style={styles.feature}>
                 <Icon.FontAwesome5 name="clock" size={34} style={styles.featureIcon} />
                 <View style={styles.featureContent}>
-                  <Text style={styles.title}>Higher article limits</Text>
+                  <Text style={styles.title}>More listening limits</Text>
                   <Text style={styles.paragraph}>
-                    99.9% of the articles on the internet are within the limitations of our Premium and Plus subscription. So you'll probably never hit that
-                    limit!
+                    With our Premium and Plus subscription you can enjoy higher listening minutes. You'll probably never hit that limit!
                   </Text>
                 </View>
               </View>
@@ -201,11 +233,12 @@ export const Upgrade: React.FC<Props> = React.memo(
 
             <View style={styles.footer}>
               <Text style={styles.footerText}>
-                Payment will be charged to your Apple ID account at the confirmation of purchase. Subscription automatically renews unless it is canceled at
+                Payment will be charged to your {paymentAccountTitle} account at the confirmation of purchase. Subscription automatically renews unless it is canceled at
                 least 24 hours before the end of the current period. Your account will be charged for renewal within 24 hours prior to the end of the current
                 period. You can manage and cancel your subscriptions by going to your account settings on the App Store after purchase. Refunds are not
                 available for unused portions of a subscription.
               </Text>
+
               <View style={styles.footerLinks}>
                 <Text style={[styles.footerText, styles.textHighlight]} onPress={() => onPressPrivacy()}>
                   Privacy Policy
@@ -216,18 +249,6 @@ export const Upgrade: React.FC<Props> = React.memo(
                 </Text>
               </View>
               <View style={{ marginTop: 18 }}>
-                {activeSubscriptionProductId !== 'free' && (
-                  <View style={{ marginBottom: 18 }}>
-                    <Button
-                      type="outline"
-                      titleStyle={{ color: colors.red, fontSize: fonts.fontSize.body }}
-                      buttonStyle={{ borderColor: colors.red }}
-                      onPress={() => onPressCancel()}
-                      title="Cancel active subscription?"
-                    />
-                  </View>
-                )}
-
                 <Button
                   title="Already upgraded? Restore purchase"
                   loading={isLoadingRestorePurchases}
@@ -236,6 +257,18 @@ export const Upgrade: React.FC<Props> = React.memo(
                   titleStyle={{ fontSize: fonts.fontSize.body }}
                   loadingProps={{ color: 'black' }}
                 />
+
+                {activeSubscriptionProductId !== SUBSCRIPTION_PRODUCT_ID_FREE && (
+                  <View style={{ marginTop: 18 }}>
+                    <Button
+                      type="clear"
+                      titleStyle={{ color: colors.red, fontSize: fonts.fontSize.body }}
+                      buttonStyle={{ borderColor: colors.red }}
+                      onPress={() => onPressCancel()}
+                      title="Cancel active subscription?"
+                    />
+                  </View>
+                )}
               </View>
             </View>
           </View>
