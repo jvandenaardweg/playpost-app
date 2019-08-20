@@ -1,4 +1,4 @@
-import dateFns from 'date-fns';
+import { formatDistanceToNow, parseISO } from 'date-fns';
 import React from 'react';
 import { ActivityIndicator, Text, TouchableHighlight, TouchableOpacity, View } from 'react-native';
 import { Image } from 'react-native-elements';
@@ -21,7 +21,7 @@ interface Props {
   hasAudiofile?: boolean;
   title?: string | null;
   url: string;
-  playlistItemCreatedAt: Date | string;
+  playlistItemCreatedAt: string;
   imageUrl?: string | null;
   description?: string | null;
   sourceName?: string | null;
@@ -110,7 +110,7 @@ export const Article: React.FC<Props> = React.memo(
                   testID="Article-icon-favorited"
                 />
               </View>
-              <Text style={styles.bodyFooterText}>Added {dateFns.distanceInWords(new Date(), playlistItemCreatedAt)} ago</Text>
+              <Text style={styles.bodyFooterText}>Added {formatDistanceToNow(parseISO(playlistItemCreatedAt))} ago</Text>
             </View>
           </View>
           <View style={styles.sectionControl}>

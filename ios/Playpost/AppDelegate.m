@@ -6,19 +6,20 @@
  */
 
 #import "AppDelegate.h"
-#import <AppCenterReactNativeCrashes/AppCenterReactNativeCrashes.h>
-#import <AppCenterReactNativeAnalytics/AppCenterReactNativeAnalytics.h>
-#import <AppCenterReactNative/AppCenterReactNative.h>
 
+#import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-#import "RNSplashScreen.h"
 
 // Custom added
-// iOS 9.x or newer
-// https://facebook.github.io/react-native/docs/linking
+#import <AppCenterReactNativeShared/AppCenterReactNativeShared.h>
+#import <AppCenterReactNative.h>
+#import <AppCenterReactNativeAnalytics.h>
+#import <AppCenterReactNativeCrashes.h>
+
+#import "RNSplashScreen.h"
+
 #import <React/RCTLinkingManager.h>
-// /Custom added
 
 @implementation AppDelegate
 
@@ -46,12 +47,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
-  [AppCenterReactNative register];  // Initialize AppCenter
-  // Custom added
-  [AppCenterReactNativeCrashes registerWithAutomaticProcessing];
-  [AppCenterReactNativeAnalytics registerWithInitiallyEnabled:false];
+  // Initialize AppCenter
   [AppCenterReactNative register];
-  // /Custom added
+  [AppCenterReactNativeAnalytics registerWithInitiallyEnabled:false];
+  [AppCenterReactNativeCrashes registerWithAutomaticProcessing];
 
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge

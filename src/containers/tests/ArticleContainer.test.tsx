@@ -1,6 +1,6 @@
 import React from 'react';
 import { Alert } from 'react-native';
-import TrackPlayer from 'react-native-track-player';
+import * as TrackPlayer from 'react-native-track-player';
 import renderer from 'react-test-renderer';
 
 import * as cache from '../../cache';
@@ -233,7 +233,7 @@ describe('ArticleContainer', () => {
           duration: 415.60816326530613,
           id: '6e455ab5-b8e4-4bb9-b43c-b764147c7b4e',
           key: '6e455ab5-b8e4-4bb9-b43c-b764147c7b4e',
-          pitchAlgorithm: TrackPlayer.PITCH_ALGORITHM_VOICE,
+          pitchAlgorithm: TrackPlayer.PitchAlgorithm.Voice,
           title: 'Strategies to Pull Yourself Out of a Bad Mood',
           url: expectedLocalAudiofilePath
         },
@@ -339,7 +339,7 @@ describe('ArticleContainer', () => {
       const spyHandleSetTrack = jest.spyOn(testInstance, 'handleSetTrack')
       const spyResetPlaybackStatus = jest.spyOn(testInstance.props, 'resetPlaybackStatus')
 
-      TrackPlayer.play = jest.fn()
+      TrackPlayer.default.play = jest.fn()
 
       await testInstance.handleOnPlayPress();
 
@@ -347,7 +347,7 @@ describe('ArticleContainer', () => {
       expect(spyAlertIfDifferentSelectedVoice).toHaveBeenCalledTimes(1);
       expect(spyAlertIfDifferentSelectedVoice).toHaveReturned();
       expect(spyHandleSetTrack).toHaveBeenCalledTimes(1);
-      expect(TrackPlayer.play).toHaveBeenCalledTimes(0);
+      expect(TrackPlayer.default.play).toHaveBeenCalledTimes(0);
       expect(spyResetPlaybackStatus).toHaveBeenCalledTimes(1);
     });
 
@@ -356,11 +356,11 @@ describe('ArticleContainer', () => {
 
       testInstance.state.isPlaying = true;
 
-      TrackPlayer.pause = jest.fn()
+      TrackPlayer.default.pause = jest.fn()
 
       await testInstance.handleOnPlayPress();
 
-      expect(TrackPlayer.pause).toHaveBeenCalledTimes(1);
+      expect(TrackPlayer.default.pause).toHaveBeenCalledTimes(1);
 
       // Reset state
       testInstance.state.isPlaying = false;
@@ -404,7 +404,7 @@ describe('ArticleContainer', () => {
 
       const spyAlertIfDifferentSelectedVoice = jest.spyOn(testInstance, 'alertIfDifferentSelectedVoice');
 
-      TrackPlayer.play = jest.fn()
+      TrackPlayer.default.play = jest.fn()
       Alert.alert = jest.fn()
 
       await testInstance.handleOnPlayPress();
@@ -423,11 +423,11 @@ describe('ArticleContainer', () => {
 
       const testInstance: ArticleContainerComponent = wrapper.root.instance;
 
-      TrackPlayer.play = jest.fn()
+      TrackPlayer.default.play = jest.fn()
 
       await testInstance.handleOnPlayPress();
 
-      expect(TrackPlayer.play).toHaveBeenCalledTimes(1);
+      expect(TrackPlayer.default.play).toHaveBeenCalledTimes(1);
     });
 
     it('handleOnPlayPress() should call handleCreateAudiofile() when there are no audiofiles for this article', async () => {

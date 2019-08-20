@@ -3,7 +3,9 @@
 exports[`Article active rendering should render active correctly 1`] = `
 <View
   accessible={true}
+  clickable={true}
   isTVSelectable={true}
+  onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -227,7 +229,9 @@ exports[`Article active rendering should render active correctly 1`] = `
       >
         <View
           accessible={true}
+          clickable={true}
           isTVSelectable={true}
+          onClick={[Function]}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -333,7 +337,9 @@ exports[`Article active rendering should render active correctly 1`] = `
 exports[`Article downloaded rendering should render downloaded correctly 1`] = `
 <View
   accessible={true}
+  clickable={true}
   isTVSelectable={true}
+  onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -557,7 +563,9 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
       >
         <View
           accessible={true}
+          clickable={true}
           isTVSelectable={true}
+          onClick={[Function]}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -661,7 +669,9 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
 exports[`Article full rendering should render full correctly 1`] = `
 <View
   accessible={true}
+  clickable={true}
   isTVSelectable={true}
+  onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -887,7 +897,9 @@ exports[`Article full rendering should render full correctly 1`] = `
       >
         <View
           accessible={true}
+          clickable={true}
           isTVSelectable={true}
+          onClick={[Function]}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -991,7 +1003,9 @@ exports[`Article full rendering should render full correctly 1`] = `
 exports[`Article incompatibility warning render should render correctly 1`] = `
 <View
   accessible={true}
+  clickable={true}
   isTVSelectable={true}
+  onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -1215,7 +1229,9 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
       >
         <View
           accessible={true}
+          clickable={true}
           isTVSelectable={true}
+          onClick={[Function]}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -1314,7 +1330,9 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
     </View>
     <View
       accessible={true}
+      clickable={true}
       isTVSelectable={true}
+      onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -1385,7 +1403,9 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
 exports[`Article loading rendering should render loading correctly 1`] = `
 <View
   accessible={true}
+  clickable={true}
   isTVSelectable={true}
+  onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -1609,7 +1629,9 @@ exports[`Article loading rendering should render loading correctly 1`] = `
       >
         <View
           accessible={true}
+          clickable={true}
           isTVSelectable={true}
+          onClick={[Function]}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -1695,7 +1717,9 @@ exports[`Article loading rendering should render loading correctly 1`] = `
 exports[`Article minimal rendering should render minimal correctly 1`] = `
 <View
   accessible={true}
+  clickable={true}
   isTVSelectable={true}
+  onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -1919,7 +1943,9 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
       >
         <View
           accessible={true}
+          clickable={true}
           isTVSelectable={true}
+          onClick={[Function]}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -2023,7 +2049,9 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
 exports[`Article playing rendering should render playing correctly 1`] = `
 <View
   accessible={true}
+  clickable={true}
   isTVSelectable={true}
+  onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -2247,7 +2275,9 @@ exports[`Article playing rendering should render playing correctly 1`] = `
       >
         <View
           accessible={true}
+          clickable={true}
           isTVSelectable={true}
+          onClick={[Function]}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}

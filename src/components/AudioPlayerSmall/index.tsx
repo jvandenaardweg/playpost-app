@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, TouchableHighlight, View } from 'react-native';
-import TrackPlayer from 'react-native-track-player';
+import * as TrackPlayer from 'react-native-track-player';
 
 import styles from './styles';
 

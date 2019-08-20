@@ -1,4 +1,4 @@
-import TrackPlayer from 'react-native-track-player';
+import * as TrackPlayer from 'react-native-track-player';
 
 export const SET_PLAYBACK_STATUS = 'player/SET_PLAYBACK_STATUS';
 export const RESET_PLAYBACK_STATUS = 'player/RESET_PLAYBACK_STATUS';
@@ -7,27 +7,24 @@ export const SET_TRACK = 'player/SET_TRACK';
 export const CREATE_AUDIOFILE = 'player/CREATE_AUDIOFILE';
 export const CREATE_AUDIOFILE_SUCCESS = 'player/CREATE_AUDIOFILE_SUCCESS';
 export const CREATE_AUDIOFILE_FAIL = 'player/CREATE_AUDIOFILE_FAIL';
-export const RESET_CREATE_AUDIOFILE_ERROR =
-  'player/RESET_CREATE_AUDIOFILE_ERROR';
+export const RESET_CREATE_AUDIOFILE_ERROR = 'player/RESET_CREATE_AUDIOFILE_ERROR';
 
 export const SET_IS_CREATING_AUDIOFILE = 'player/SET_IS_CREATING_AUDIOFILE';
-export const SET_IS_DOWNLOADING_AUDIOFILE =
-  'player/SET_IS_DOWNLOADING_AUDIOFILE';
+export const SET_IS_DOWNLOADING_AUDIOFILE = 'player/SET_IS_DOWNLOADING_AUDIOFILE';
 export const RESET_IS_CREATING_AUDIOFILE = 'player/RESET_IS_CREATING_AUDIOFILE';
-export const RESET_IS_DOWNLOADING_AUDIOFILE =
-  'player/RESET_IS_DOWNLOADING_AUDIOFILE';
+export const RESET_IS_DOWNLOADING_AUDIOFILE = 'player/RESET_IS_DOWNLOADING_AUDIOFILE';
 
 export const RESET_PLAYER_STATE = 'player/RESET_PLAYER_STATE';
 
-const CREATE_AUDIOFILE_FAIL_MESSAGE =
-  'An unknown error happened while creating creating an audiofile. Please contact us when this happens all the time.';
+const CREATE_AUDIOFILE_FAIL_MESSAGE = 'An unknown error happened while creating creating an audiofile. Please contact us when this happens all the time.';
+
 
 export type PlayerState = Readonly<{
   track: TrackPlayer.Track;
   audiofile: Api.Audiofile | null;
   previousArticleId: string;
   currentArticleId: string;
-  playbackState: string | number;
+  playbackState: TrackPlayer.State;
   error: string;
   errorCreateAudiofile: string;
   isLoadingCreateAudiofile: boolean;
@@ -50,7 +47,7 @@ export const initialState: PlayerState = {
   audiofile: null,
   previousArticleId: '',
   currentArticleId: '',
-  playbackState: 'none',
+  playbackState: TrackPlayer.State.None,
   error: '',
   errorCreateAudiofile: '',
   isLoadingCreateAudiofile: false,
@@ -167,7 +164,7 @@ export function resetCreateAudiofileError() {
   };
 }
 
-export function setPlaybackStatus(playbackState: string) {
+export function setPlaybackStatus(playbackState: TrackPlayer.State) {
   return {
     type: SET_PLAYBACK_STATUS,
     payload: playbackState

@@ -1,7 +1,7 @@
 import React from 'react';
 import isEqual from 'react-fast-compare';
 import { Alert, SectionListData } from 'react-native';
-import TrackPlayer from 'react-native-track-player';
+import * as TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
 
 import { LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
@@ -133,7 +133,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     const isPlaying = this.isVoicePlayingInPlayer(voice.id);
 
     // If the preview of this voice is playing, pause it
-    if (isPlaying) { return TrackPlayer.pause(); }
+    if (isPlaying) { return TrackPlayer.default.pause(); }
 
     // Check if the voice is already downloaded
     // If so, we can just play that locally downloaded voice preview
@@ -164,7 +164,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
       );
     }
 
-    return TrackPlayer.play();
+    return TrackPlayer.default.play();
   }
 
   fetchVoicePreview = (title: string, label: string, voice: Api.Voice) => {
@@ -213,7 +213,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
 
   isVoicePlayingInPlayer = (voiceId: string): boolean => {
     const { playbackState } = this.props;
-    const isPlaying = playbackState === 'playing' && TrackPlayer.STATE_PLAYING && this.isVoiceActiveInPlayer(voiceId);
+    const isPlaying = playbackState === TrackPlayer.State.Playing && TrackPlayer.State.Playing && this.isVoiceActiveInPlayer(voiceId);
     return !!isPlaying;
   }
 

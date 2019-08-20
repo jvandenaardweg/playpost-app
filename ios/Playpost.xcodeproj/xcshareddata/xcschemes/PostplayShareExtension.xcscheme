@@ -15,24 +15,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DFEB123BDF43D214C5D83522121003F1"
-               BuildableName = "libPods-Playpost.a"
-               BlueprintName = "Pods-Playpost"
-               ReferencedContainer = "container:Pods/Pods.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "83CBBA2D1A601D0E00E9B192"
-               BuildableName = "libReact.a"
-               BlueprintName = "React"
-               ReferencedContainer = "container:../node_modules/react-native/React/React.xcodeproj">
+               BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+               BuildableName = "Playpost.app"
+               BlueprintName = "Playpost"
+               ReferencedContainer = "container:Playpost.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -57,10 +43,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "Playpost.app"
-               BlueprintName = "Playpost"
-               ReferencedContainer = "container:Playpost.xcodeproj">
+               BlueprintIdentifier = "83CBBA2D1A601D0E00E9B192"
+               BuildableName = "libReact.a"
+               BlueprintName = "React"
+               ReferencedContainer = "container:../node_modules/react-native/React/React.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -96,7 +82,7 @@
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "2">
       <RemoteRunnable
-         runnableDebuggingMode = "1"
+         runnableDebuggingMode = "0"
          BundleIdentifier = "com.apple.mobilesafari"
          RemotePath = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/Applications/MobileSafari.app">
       </RemoteRunnable>

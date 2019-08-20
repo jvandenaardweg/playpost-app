@@ -3,6 +3,7 @@
 exports[`ButtonClose rendering should render correctly 1`] = `
 <View
   accessible={true}
+  clickable={true}
   hitSlop={
     Object {
       "bottom": 10,
@@ -12,6 +13,7 @@ exports[`ButtonClose rendering should render correctly 1`] = `
     }
   }
   isTVSelectable={true}
+  onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
