@@ -21,7 +21,8 @@
     "tsc": "tsc -p ./ --noEmit",
     "tsc:watch": "tsc -p ./ --noEmit -w",
     "version": "auto-changelog -p && git add CHANGELOG.md",
-    "postversion": "react-native-version && git push && git push --tags --no-verify"
+    "postversion": "react-native-version && git push && git push --tags --no-verify",
+    "postinstall": "npx jetify"
   },
   "husky": {
     "hooks": {
@@ -82,7 +83,7 @@
     "react-fast-compare": "^2.0.4",
     "react-native": "0.60.5",
     "react-native-app-intro-slider": "^3.0.0",
-    "react-native-config": "git+https://github.com/luggit/react-native-config#1eb6ac01991210ddad2989857359a0f6ee35d734",
+    "react-native-config": "git+https://github.com/luggit/react-native-config#89a602bf8be3808838403a97afaf915caeec76c2",
     "react-native-deep-linking": "^2.2.0",
     "react-native-device-info": "^2.3.2",
     "react-native-draggable-flatlist": "^1.1.7",
@@ -177,6 +178,7 @@
     "concurrently": "^4.1.2",
     "deep-object-diff": "^1.1.0",
     "husky": "^3.0.4",
+    "jetifier": "^1.6.4",
     "tslint-config-prettier": "^1.18.0"
   }
 }

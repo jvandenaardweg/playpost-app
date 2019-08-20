@@ -2,8 +2,7 @@ module.exports = {
   dependencies: {
     'react-native-config': {
       platforms: {
-        ios: null,
-        android: null
+        ios: null
       }
     },
     'react-native-share-extension': {
