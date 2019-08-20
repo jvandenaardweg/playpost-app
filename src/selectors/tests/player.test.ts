@@ -1,3 +1,4 @@
+import * as TrackPlayer from 'react-native-track-player';
 import { createStore } from 'redux';
 import {
   playerSelector,
@@ -45,11 +46,11 @@ describe('player selector', () => {
       ...rootState,
       player: {
         ...rootState.player,
-        playbackState: 'playing'
+        playbackState: TrackPlayer.State.Playing
       }
     };
 
-    expect(selectPlayerPlaybackState(exampleState)).toBe('playing');
+    expect(selectPlayerPlaybackState(exampleState)).toBe(TrackPlayer.State.Playing);
   });
 
   it('selectPlayerPlaybackState should return the player playback state', () => {
@@ -57,11 +58,11 @@ describe('player selector', () => {
       ...rootState,
       player: {
         ...rootState.player,
-        playbackState: 'playing'
+        playbackState: TrackPlayer.State.Playing
       }
     };
 
-    expect(selectPlayerPlaybackState(exampleState)).toBe('playing');
+    expect(selectPlayerPlaybackState(exampleState)).toBe(TrackPlayer.State.Playing);
   });
 
   it('selectPlayerTrack should return the player track', () => {

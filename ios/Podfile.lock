@@ -78,7 +78,7 @@ PODS:
     - React
   - react-native-splash-screen (3.2.0):
     - React
-  - react-native-track-player (2.0.0-rc10):
+  - react-native-track-player (2.0.0-rc13):
     - React
   - react-native-video (5.0.0):
     - React
@@ -278,7 +278,7 @@ SPEC CHECKSUMS:
   React-jsinspector: e08662d1bf5b129a3d556eb9ea343a3f40353ae4
   react-native-netinfo: 8d8db463bcc5db66a8ac5c48a7d86beb3b92f61a
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
-  react-native-track-player: d80e0457e7fee24a932549e3b9b4c66341f20864
+  react-native-track-player: 6c2c2f163534bb6d6b5fea68959b3641f70718dd
   react-native-video: 37a0a4628b985c080cfd7b0768457be84c8c3fd0
   react-native-webview: 91a1be404be0a61698abd6400e9186f1143150bb
   React-RCTActionSheet: b0f1ea83f4bf75fb966eae9bfc47b78c8d3efd90

@@ -128,9 +128,7 @@ exports[`AudioPlayerLarge rendering should render correctly 1`] = `
         }
       }
     >
-      <AudioPlayerProgressBar
-        backgroundColor="#ffffff"
-        color="#037DE2"
+      <Memo
         onProgressChange={[MockFunction]}
       />
       <View

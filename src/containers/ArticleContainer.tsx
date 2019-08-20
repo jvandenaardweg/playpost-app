@@ -2,7 +2,7 @@ import Analytics from 'appcenter-analytics';
 import React from 'react';
 import isEqual from 'react-fast-compare';
 import { Alert } from 'react-native';
-import TrackPlayer from 'react-native-track-player';
+import * as TrackPlayer from 'react-native-track-player';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 
@@ -128,12 +128,12 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
     if (!hasSomethingLoading && isCurrentArticleId) {
       // When a track is playing
-      if (playbackState && [TrackPlayer.STATE_PLAYING].includes(playbackState) && !prevState.isPlaying) {
+      if (playbackState && [TrackPlayer.State.Playing].includes(playbackState) && !prevState.isPlaying) {
         this.setState({ isPlaying: true, isActive: true, isLoading: false });
       }
 
       // When a track is stopped or paused
-      if (playbackState && [TrackPlayer.STATE_STOPPED, TrackPlayer.STATE_PAUSED].includes(playbackState) && prevState.isPlaying) {
+      if (playbackState && [TrackPlayer.State.Stopped, TrackPlayer.State.Paused].includes(playbackState) && prevState.isPlaying) {
         this.setState({ isPlaying: false, isActive: true });
       }
     }
@@ -182,7 +182,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       const { isConnected } = this.context;
 
       // Toggle play/pause
-      if (isPlaying) { return TrackPlayer.pause(); }
+      if (isPlaying) { return TrackPlayer.default.pause(); }
 
       // If there are no audiofiles and when there's no internet connection
       // Show the user he needs an active internet connection to listen to articles
@@ -215,7 +215,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       }
 
       // If we end up here, it means the audio is already in the player, we just play it then
-      return TrackPlayer.play();
+      return TrackPlayer.default.play();
     // });
   }
 
@@ -390,7 +390,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
               // contentType
               contentType: 'audio/mpeg',
               key: audiofile.id,
-              pitchAlgorithm: TrackPlayer.PITCH_ALGORITHM_VOICE
+              pitchAlgorithm: TrackPlayer.PitchAlgorithm.Voice
             },
             article.id
           );

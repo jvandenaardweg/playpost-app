@@ -1,4 +1,4 @@
-import TrackPlayer from 'react-native-track-player';
+import * as TrackPlayer from 'react-native-track-player';
 
 const track: TrackPlayer.Track = {
   id: '6e455ab5-b8e4-4bb9-b43c-b764147c7b4e', // from tests/__mocks__/article.ts
@@ -7,7 +7,7 @@ const track: TrackPlayer.Track = {
   artist: 'Test Author',
   userAgent: 'Test UA',
   contentType: 'audio/mpeg',
-  pitchAlgorithm: 'test'
+  pitchAlgorithm: TrackPlayer.PitchAlgorithm && TrackPlayer.PitchAlgorithm.Voice
 };
 
 export default track;

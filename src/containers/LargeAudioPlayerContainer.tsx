@@ -1,7 +1,7 @@
 // tslint:disable: no-console
 import debounce from 'lodash.debounce';
 import React from 'react';
-import TrackPlayer from 'react-native-track-player';
+import * as TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
 
 import { AudioPlayerLarge } from '../components/AudioPlayerLarge';
@@ -31,25 +31,25 @@ class LargeAudioPlayerContainerComponent extends React.PureComponent<Props, Stat
     requestAnimationFrame(async () => {
       // Toggle play/pause/stop
       if (playerIsPlaying) {
-        await TrackPlayer.pause();
+        await TrackPlayer.default.pause();
         return;
       }
 
       // Else, we just play it from pause
-      await TrackPlayer.play();
+      await TrackPlayer.default.play();
 
       // Make sure the playback speed is always in sync with the users setting
-      await TrackPlayer.setRate(userPlaybackSpeed);
+      await TrackPlayer.default.setRate(userPlaybackSpeed);
     });
   }
 
   handleOnProgressChange = async (percentage: number) => {
-    const trackId = await TrackPlayer.getCurrentTrack();
-    const track = await TrackPlayer.getTrack(trackId);
+    const trackId = await TrackPlayer.default.getCurrentTrack();
+    const track = await TrackPlayer.default.getTrack(trackId);
 
     if (track && track.duration) {
       const seekToSeconds = track.duration * percentage;
-      await TrackPlayer.seekTo(seekToSeconds);
+      await TrackPlayer.default.seekTo(seekToSeconds);
     }
   }
 

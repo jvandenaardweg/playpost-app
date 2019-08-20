@@ -1,6 +1,7 @@
 // tslint:disable: no-console
 import React from 'react';
-import TrackPlayer from 'react-native-track-player';
+import { EmitterSubscription } from 'react-native';
+import * as TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
 
 import { AudioPlayerSmall } from '../components/AudioPlayerSmall';
@@ -25,69 +26,62 @@ export class SmallAudioPlayerContainerComponent extends React.PureComponent<Prop
     isPlaybackSpeedVisible: false
   };
 
-  onTrackChange: TrackPlayer.EmitterSubscription | null = null;
-  onStateChanged: TrackPlayer.EmitterSubscription | null = null;
-  onStateError: TrackPlayer.EmitterSubscription | null = null;
-  onPlaybackQueueEnded: TrackPlayer.EmitterSubscription | null = null;
+  onTrackChange: EmitterSubscription | null = null;
+  onStateChanged: EmitterSubscription | null = null;
+  onStateError: EmitterSubscription | null = null;
+  onPlaybackQueueEnded: EmitterSubscription | null = null;
 
   componentDidMount() {
     this.setupTrackPlayer();
   }
 
   setupTrackPlayer = async () => {
-    await TrackPlayer.setupPlayer();
+    await TrackPlayer.default.setupPlayer();
 
-    await TrackPlayer.updateOptions({
+    await TrackPlayer.default.updateOptions({
       stopWithApp: false,
       capabilities: [
-        TrackPlayer.CAPABILITY_PLAY,
-        TrackPlayer.CAPABILITY_PAUSE,
-        TrackPlayer.CAPABILITY_STOP,
-        // TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
-        // TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
-        TrackPlayer.CAPABILITY_SEEK_TO
+        TrackPlayer.Capability.Play,
+        TrackPlayer.Capability.Pause,
+        TrackPlayer.Capability.Stop,
+        TrackPlayer.Capability.SeekTo
       ],
       compactCapabilities: [
-        TrackPlayer.CAPABILITY_PLAY,
-        TrackPlayer.CAPABILITY_PAUSE,
-        TrackPlayer.CAPABILITY_STOP,
-        // TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
-        // TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
-        TrackPlayer.CAPABILITY_SEEK_TO
+        TrackPlayer.Capability.Play,
+        TrackPlayer.Capability.Pause,
+        TrackPlayer.Capability.Stop,
+        TrackPlayer.Capability.SeekTo
       ],
       notificationCapabilities: [
-        TrackPlayer.CAPABILITY_PLAY,
-        TrackPlayer.CAPABILITY_PAUSE,
-        TrackPlayer.CAPABILITY_STOP,
-        // TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
-        // TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
-        TrackPlayer.CAPABILITY_SEEK_TO
+        TrackPlayer.Capability.Play,
+        TrackPlayer.Capability.Pause,
+        TrackPlayer.Capability.Stop,
+        TrackPlayer.Capability.SeekTo
       ]
     });
 
-    // Adds an event handler for the playback-track-changed event
-    this.onTrackChange = TrackPlayer.addEventListener('playback-track-changed', async (data) => {
+    this.onTrackChange = TrackPlayer.default.addEventListener(TrackPlayer.Event.PlaybackTrackChanged, async (data) => {
       console.log('Event', 'playback-track-changed', data);
     });
 
-    this.onStateChanged = TrackPlayer.addEventListener('playback-state', async ({ state }) => {
+    this.onStateChanged = TrackPlayer.default.addEventListener(TrackPlayer.Event.PlaybackState, async ({ state }) => {
       console.log('Event', 'playback-state', state);
       this.props.setPlaybackStatus(state);
     });
 
-    this.onStateError = TrackPlayer.addEventListener('playback-error', (data) => {
+    this.onStateError = TrackPlayer.default.addEventListener(TrackPlayer.Event.PlaybackError, (data) => {
       console.log('Event', 'playback-error', data);
     });
 
-    this.onPlaybackQueueEnded = TrackPlayer.addEventListener('playback-queue-ended', async (data) => {
+    this.onPlaybackQueueEnded = TrackPlayer.default.addEventListener(TrackPlayer.Event.PlaybackQueueEnded, async (data) => {
       const { track } = this.props;
 
       console.log('Event', 'playback-queue-ended', data);
 
-      await TrackPlayer.stop();
+      await TrackPlayer.default.stop();
 
       // Add the track to the player again, so the user can press "play" again when a track is finished
-      await TrackPlayer.add(track);
+      await TrackPlayer.default.add(track);
     });
   }
 
@@ -101,7 +95,7 @@ export class SmallAudioPlayerContainerComponent extends React.PureComponent<Prop
 
     // Change the playback speed when the user changed that setting
     if (prevProps.userPlaybackSpeed !== userPlaybackSpeed) {
-      await TrackPlayer.setRate(userPlaybackSpeed);
+      await TrackPlayer.default.setRate(userPlaybackSpeed);
     }
   }
 
@@ -116,13 +110,13 @@ export class SmallAudioPlayerContainerComponent extends React.PureComponent<Prop
       return;
     }
 
-    await TrackPlayer.reset();
+    await TrackPlayer.default.reset();
 
-    await TrackPlayer.add(track);
+    await TrackPlayer.default.add(track);
 
-    await TrackPlayer.play();
+    await TrackPlayer.default.play();
 
-    await TrackPlayer.setRate(userPlaybackSpeed);
+    await TrackPlayer.default.setRate(userPlaybackSpeed);
   }
 
   componentWillUnmount(): void {
@@ -146,15 +140,15 @@ export class SmallAudioPlayerContainerComponent extends React.PureComponent<Prop
     requestAnimationFrame(async () => {
       // Toggle play/pause/stop
       if (playerIsPlaying) {
-        await TrackPlayer.pause();
+        await TrackPlayer.default.pause();
         return;
       }
 
       // Else, we just play it from pause
-      await TrackPlayer.play();
+      await TrackPlayer.default.play();
 
       // Make sure the playback speed is always in sync with the users setting
-      await TrackPlayer.setRate(userPlaybackSpeed);
+      await TrackPlayer.default.setRate(userPlaybackSpeed);
     });
   }
 
