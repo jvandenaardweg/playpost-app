@@ -82,5 +82,13 @@ post_install do |installer|
     target.build_configurations.each do |config|
       config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'NO'
     end
+
+    # Idea from: https://stackoverflow.com/a/46690240/3194288
+    if ['react-native-track-player'].include? target.name
+      target.build_configurations.each do |config|
+        config.build_settings['SWIFT_VERSION'] = '5'
+      end
+    end
+
   end
 end
