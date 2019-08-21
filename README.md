@@ -259,3 +259,23 @@ Key store alias: `playpost-upload-key.keystore`, password: `testtest`
 # Known Issues
 ## App Crashes when changing playback speed
 This is a known issue and should not happen in the Release build. It's is fixed in newer versions of React Native Track Player: https://github.com/react-native-kit/react-native-track-player/issues/516
+
+# Versioning workflow
+Work should be devided with `major` or `minor` releases
+
+Context: working in new version 1.1.0 from version 1.0.0
+
+
+1. Make sure `develop` is synced with `master` and changes in `develop` are live on `master`
+2. Branche off `develop` to `release-1.1.0`
+3. Immeadiatly run `npm version minor` in `release-1.1.0`. This bumps the version from 1.0.0 to 1.1.0
+4. Do your changes in `feature/` branches, branched off from `develop`
+5. Merge those changes back in `develop`
+6. When done, merge `develop` back into `release-1.1.0`
+7. Open AppCenter and clone the configuration from `develop` to `release-1.1.0`
+8. Build `release-1.1.0` using AppCenter
+9. A TestFlight version should be created
+10. Test the TestFlight version, this is using our test environment
+11. When done, merge `release-1.1.0` into `master` and run `npm run release`. This will generate a changelog and create a version tag in git.
+12. Open AppCenter and click the cog wheel on the `master` branche. Fill in the release notes and build `master`
+13. Version 1.1.0 of the App is now pushed to Apple for review

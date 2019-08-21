@@ -20,10 +20,9 @@
     "upgrade-interactive": "npm-check --update",
     "tsc": "tsc -p ./ --noEmit",
     "tsc:watch": "tsc -p ./ --noEmit -w",
-    "version": "auto-changelog -p && git add CHANGELOG.md",
-    "postversion": "react-native-version && git push && git push --tags --no-verify",
     "postinstall": "npx jetify",
-    "release": "release-it --no-npm"
+    "version": "eact-native-version",
+    "release": "auto-changelog -p && git add CHANGELOG.md && git push --tags --no-verify"
   },
   "husky": {
     "hooks": {
