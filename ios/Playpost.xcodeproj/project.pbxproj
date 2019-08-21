@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		086BFFEBA62B442689704332 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 42E6B2BFE8E0452EA2FC6354 /* Foundation.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
@@ -45,6 +46,7 @@
 		8C7A3A0E2219D80700A9A9A7 /* SpaceMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5C433349EFA4F739AE21096 /* SpaceMono-Regular.ttf */; };
 		8C7D4678230C08AD00D2C1B5 /* libReactNativeShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD9975C230BE32500D7D346 /* libReactNativeShareExtension.a */; };
 		8C96C7BB22B3A1F9006E5704 /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF37A02FD9F246028F4091AF /* RNPlaceholder.swift */; };
+		8C9B782A230D4CA10097FAB9 /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C22087E22E0B6400029B873 /* libReactNativeConfig.a */; };
 		8CD3D194220F69A50030C131 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		8CD3D19E220F7B5B0030C131 /* dummy2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3D19D220F7B5B0030C131 /* dummy2.swift */; };
 		8CD99767230BE6A600D7D346 /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C22087E22E0B6400029B873 /* libReactNativeConfig.a */; };
@@ -55,7 +57,7 @@
 		BA57E94CCC4F4FEFBFBCCFC9 /* Merriweather-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E93C050B5DB7430FABAD8C10 /* Merriweather-Black.ttf */; };
 		BE52A10EF73E41FD87A1378B /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 927B7E57EE044F7694BE2CEB /* Ionicons.ttf */; };
 		C556DE020C19406B939ACE35 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71B3E76A25064A88BBA2930C /* FontAwesome.ttf */; };
-		D1644FAEA01CCD912BAD4010 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		D1644FAEA01CCD912BAD4010 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		D6D1143DAC5682EAB69CD6D5 /* libPods-Playpost-PlaypostShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBD52B5A4CB9A663E0A5025 /* libPods-Playpost-PlaypostShareExtension.a */; };
 		D820DC91A1B84330B668B87A /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF37A02FD9F246028F4091AF /* RNPlaceholder.swift */; };
 		DD6BBD1A43F44BC8A477438A /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CE153E601D849F1A72C8047 /* AppCenter-Config.plist */; };
@@ -385,7 +387,7 @@
 				8CD99767230BE6A600D7D346 /* libReactNativeConfig.a in Frameworks */,
 				8C13332F2292B24E00516937 /* StoreKit.framework in Frameworks */,
 				99C3B16B8F9AA75F78DBE17D /* libPods-Playpost.a in Frameworks */,
-				D1644FAEA01CCD912BAD4010 /* BuildFile in Frameworks */,
+				D1644FAEA01CCD912BAD4010 /* (null) in Frameworks */,
 				695ADABA47F5CA1B82257AC9 /* libPods-Playpost.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,6 +396,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C9B782A230D4CA10097FAB9 /* libReactNativeConfig.a in Frameworks */,
 				8C7D4678230C08AD00D2C1B5 /* libReactNativeShareExtension.a in Frameworks */,
 				D6D1143DAC5682EAB69CD6D5 /* libPods-Playpost-PlaypostShareExtension.a in Frameworks */,
 			);

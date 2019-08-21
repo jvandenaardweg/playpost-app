@@ -2,8 +2,10 @@ import React from 'react';
 import { NativeModules, Platform } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
 import { Provider } from 'react-redux';
+// tslint:disable-next-line:no-submodule-imports
+import { PersistGate } from 'redux-persist/integration/react';
 
-import { store } from './store';
+import { persistor, store } from './store';
 import { reactNativeElementsTheme } from './theme';
 
 import { ShareOverlay } from './components/ShareOverlay';
@@ -28,11 +30,13 @@ export default class ShareApp extends React.PureComponent {
   render (): JSX.Element {
     return (
       <Provider store={store}>
-        <ThemeProvider theme={reactNativeElementsTheme}>
-          <NetworkProvider>
-            <ShareOverlay />
-          </NetworkProvider>
-        </ThemeProvider>
+        <PersistGate loading={null} persistor={persistor}>
+          <ThemeProvider theme={reactNativeElementsTheme}>
+            <NetworkProvider>
+              <ShareOverlay />
+            </NetworkProvider>
+          </ThemeProvider>
+        </PersistGate>
       </Provider>
     );
   }

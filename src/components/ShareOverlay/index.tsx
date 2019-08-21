@@ -2,6 +2,10 @@ import React from 'react';
 import { Animated, Modal, View } from 'react-native';
 import ShareExtension from 'react-native-share-extension';
 
+import { setAuthToken } from '../../reducers/auth';
+import { store } from '../../store';
+import * as keychain from '../../utils/keychain';
+
 import { ErrorModal } from '../../components/ErrorModal';
 import { ShareModalContainer } from '../../containers/ShareModalContainer';
 
@@ -88,6 +92,14 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
       // First, wait for the animation IN to be finished
       // It seems on Android we need this delay on order for the ShareExtension data to come in. So don't remove that delay.
       await this.animateIn();
+
+      // Make sure the token from the main app is in our store
+      const token = await keychain.getToken();
+
+      if (token) {
+        // Store the token in Redux, so we can determine if a user is logged in or not
+        store.dispatch(setAuthToken(token));
+      }
 
       const { type, value }: { type: ShareExtensionType; value: ShareExtensionValue } = await this.getShareData();
 

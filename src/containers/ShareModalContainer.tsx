@@ -8,6 +8,7 @@ import { selectPlaylistError } from '../selectors/playlist';
 
 import { ShareModal } from '../components/ShareModal';
 import { RootState } from '../reducers';
+import { selectIsLoggedIn } from '../selectors/auth';
 
 interface State {
   errorMessage: string;
@@ -35,7 +36,14 @@ export class ShareModalContainerComponent extends React.PureComponent<Props, Sta
   timeout: NodeJS.Timeout | null = null;
 
   componentDidMount() {
-    const { url, documentHtml } = this.props;
+    const { url, documentHtml, isLoggedIn } = this.props;
+
+    if (!isLoggedIn) {
+      return this.setState({
+        errorMessage: 'Please login to the app first.',
+        isLoading: false
+      });
+    }
 
     // If we did not receive a URL, error
     if (!url) {
@@ -107,6 +115,7 @@ export class ShareModalContainerComponent extends React.PureComponent<Props, Sta
 
 interface StateProps {
   playlistError: ReturnType<typeof selectPlaylistError>;
+  isLoggedIn: ReturnType<typeof selectIsLoggedIn>;
 }
 
 interface DispatchProps {
@@ -114,7 +123,8 @@ interface DispatchProps {
 }
 
 const mapStateToProps = (state: RootState) => ({
-  playlistError: selectPlaylistError(state)
+  playlistError: selectPlaylistError(state),
+  isLoggedIn: selectIsLoggedIn(state)
 });
 
 const mapDispatchToProps = {
