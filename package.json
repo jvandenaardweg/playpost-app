@@ -1,6 +1,6 @@
 {
   "name": "playpost",
-  "version": "1.2.1",
+  "version": "1.2.0-0",
   "private": true,
   "scripts": {
     "start": "react-native start",
@@ -20,10 +20,10 @@
     "upgrade-interactive": "npm-check --update",
     "tsc": "tsc -p ./ --noEmit",
     "tsc:watch": "tsc -p ./ --noEmit -w",
-    "version": "react-native-version",
-    "postversion": "git push && git push --tags --no-verify",
-    "preversion": "auto-changelog -p && git add CHANGELOG.md",
-    "postinstall": "npx jetify"
+    "version": "auto-changelog -p && git add CHANGELOG.md",
+    "postversion": "react-native-version && git push && git push --tags --no-verify",
+    "postinstall": "npx jetify",
+    "release": "release-it --no-npm"
   },
   "husky": {
     "hooks": {
@@ -180,6 +180,7 @@
     "deep-object-diff": "^1.1.0",
     "husky": "^3.0.4",
     "jetifier": "^1.6.4",
+    "release-it": "^12.3.5",
     "tslint-config-prettier": "^1.18.0"
   }
 }
