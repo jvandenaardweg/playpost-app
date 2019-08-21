@@ -1,6 +1,6 @@
 {
   "name": "playpost",
-  "version": "1.2.0-0",
+  "version": "1.2.2",
   "private": true,
   "scripts": {
     "start": "react-native start",
@@ -21,7 +21,7 @@
     "tsc": "tsc -p ./ --noEmit",
     "tsc:watch": "tsc -p ./ --noEmit -w",
     "postinstall": "npx jetify",
-    "version": "eact-native-version",
+    "version": "react-native-version",
     "release": "auto-changelog -p && git add CHANGELOG.md && git push --tags --no-verify"
   },
   "husky": {
