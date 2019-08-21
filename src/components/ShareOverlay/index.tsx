@@ -3,8 +3,8 @@ import { Animated, Modal, View } from 'react-native';
 import ShareExtension from 'react-native-share-extension';
 
 import { setAuthToken } from '../../reducers/auth';
-import * as keychain from '../../utils/keychain';
 import { store } from '../../store';
+import * as keychain from '../../utils/keychain';
 
 import { ErrorModal } from '../../components/ErrorModal';
 import { ShareModalContainer } from '../../containers/ShareModalContainer';
