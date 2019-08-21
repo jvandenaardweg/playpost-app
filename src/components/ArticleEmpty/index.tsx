@@ -54,7 +54,13 @@ export const ArticleEmptyFailed: React.FC<Props> = React.memo((props: Props) => 
     <View style={styles.articleEmptyContent}>
       <Text style={[styles.articleEmptyTitle, styles.textWhite]}>Failed to process an article</Text>
       <Text style={[styles.articleEmptyText, styles.textWhite]}>Please remove the article from your playlist and try again.</Text>
-      <Text style={[styles.articleEmptyText, styles.textWhite, styles.link]} onPress={() => Linking.openURL(props.url)}>{props.url}</Text>
+      <Text style={[styles.articleEmptyText, styles.textWhite, styles.link]}
+        numberOfLines={3}
+        ellipsizeMode="tail"
+        onPress={() => Linking.openURL(props.url)}
+      >
+        {props.url}
+      </Text>
     </View>
   </View>
 ));

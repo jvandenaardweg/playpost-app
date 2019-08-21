@@ -90,6 +90,8 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering default should render correct
       Please remove the article from your playlist and try again.
     </Text>
     <Text
+      ellipsizeMode="tail"
+      numberOfLines={3}
       onPress={[Function]}
       style={
         Array [
@@ -203,6 +205,8 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering loading should render correct
       Please remove the article from your playlist and try again.
     </Text>
     <Text
+      ellipsizeMode="tail"
+      numberOfLines={3}
       onPress={[Function]}
       style={
         Array [
