@@ -268,7 +268,7 @@ Context: working in new version 1.1.0 from version 1.0.0
 
 1. Make sure `develop` is synced with `master` and changes in `develop` are live on `master`
 2. Branche off `develop` to `release-1.1.0`
-3. Immeadiatly run `npm version 1.1.0` in `release-1.1.0`. This bumps the version from 1.0.0 to 1.1.0, so we got a starting point.
+3. Immeadiatly run `npm version 1.1.0 -m 'Bumped to version 1.1.0'` in `release-1.1.0`. This bumps the version from 1.0.0 to 1.1.0, so we got a starting point.
 4. Do your changes in `feature/` branches, branched off from `develop`
 5. Merge those changes back in `develop`
 6. When done, merge `develop` back into `release-1.1.0`
