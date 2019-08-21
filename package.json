@@ -71,7 +71,6 @@
     "currency-symbol-map": "^4.0.4",
     "date-fns": "^2.0.0",
     "detox": "^14.0.2",
-    "fsevents": "^2.0.7",
     "jest": "^24.9.0",
     "jest-fetch-mock": "^2.1.2",
     "jest-runner": "^24.9.0",
