@@ -2,10 +2,17 @@ name: Node CI
 
 on: [push]
 
-steps:
-- uses: actions/checkout@master
-- uses: actions/setup-node@v1
-  with:
-    node-version: '10.x'
-- run: npm install
-- run: npm test
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 10.15.0
+    - name: npm install and test
+      run: |
+        npm install
+        npm test
