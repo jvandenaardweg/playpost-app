@@ -9,6 +9,7 @@ import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
 import { ALERT_TITLE_ERROR } from '../../constants/messages';
 import spacing from '../../constants/spacing';
+import { TextDirection } from '../../typings';
 import { CenterLoadingIndicator } from '../CenterLoadingIndicator';
 
 interface Props {
@@ -94,7 +95,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
     };
   }
 
-  function getHtmlHeader(themeStyle: ThemeStyles): string {
+  function getHtmlHeader(themeStyle: ThemeStyles, textDirection: 'rtl' | 'ltr'): string {
     return `
       <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -109,6 +110,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
           }
 
           body {
+            direction: ${textDirection};
             padding: 0 !important;
             margin: 0 !important;
             font-size: ${Math.ceil(fonts.fontSize.body * 1.1)}px;
@@ -212,10 +214,11 @@ export const ArticleReader: React.FC<Props> = React.memo(({
 
   function getNoHtmlDocument(articleProp: Api.Article | undefined, themeStyle: ThemeStyles): string {
     const articleUrlLink = (articleProp && articleProp.url) ? `<a href="${articleProp.url}">View the original article</a>` : '';
+    const textDirection = getTextDirection(articleProp);
 
     return `
       <!DOCTYPE html>
-        ${getHtmlHeader(themeStyle)}
+        ${getHtmlHeader(themeStyle, textDirection)}
         <body>
           <h1>Insufficient article data</h1>
           <p>The article did not return any sufficient content to show. This could happen when the article is behind a pay-wall or requires a login.</p>
@@ -226,9 +229,12 @@ export const ArticleReader: React.FC<Props> = React.memo(({
   }
 
   function getHtmlDocument(articleProp: Api.Article | undefined, themeStyle: ThemeStyles): string {
-
     // When we have no article or no html, show the user we don't have enough data
-    if (!articleProp || !articleProp.html) { return getNoHtmlDocument(articleProp, themeStyles); }
+    if (!articleProp || !articleProp.html) {
+      return getNoHtmlDocument(articleProp, themeStyles);
+    }
+
+    const textDirection = getTextDirection(articleProp);
 
     const articleUrl = articleProp.canonicalUrl || articleProp.url;
     const authorElement = (articleProp.authorName) ? `<strong>${articleProp.authorName}</strong>` : '';
@@ -236,7 +242,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
 
     let htmlDocument = `
       <!DOCTYPE html>
-      ${getHtmlHeader(themeStyle)}
+      ${getHtmlHeader(themeStyle, textDirection)}
         <body>
           ${imageElement}
           <div class="meta-header">
@@ -254,5 +260,9 @@ export const ArticleReader: React.FC<Props> = React.memo(({
     htmlDocument = htmlDocument.replace('[ARTICLE_HTML_PLACEHOLDER]', articleProp.html);
 
     return htmlDocument;
+  }
+
+  function getTextDirection(articleProp: Api.Article | undefined): TextDirection {
+    return (articleProp && articleProp.language && articleProp.language.rightToLeft) ? 'rtl' : 'ltr';
   }
 });

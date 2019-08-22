@@ -67,12 +67,18 @@ exports[`Article active rendering should render active correctly 1`] = `
               ellipsizeMode="tail"
               numberOfLines={1}
               style={
-                Object {
-                  "color": "#AAAAAA",
-                  "fontSize": 12,
-                  "fontWeight": "300",
-                  "paddingRight": 0,
-                }
+                Array [
+                  Object {
+                    "color": "#AAAAAA",
+                    "fontSize": 12,
+                    "fontWeight": "300",
+                    "paddingRight": 0,
+                  },
+                  Object {
+                    "direction": "ltr",
+                    "writingDirection": "ltr",
+                  },
+                ]
               }
               testID="Article-source-name"
             >
@@ -95,27 +101,39 @@ exports[`Article active rendering should render active correctly 1`] = `
             ellipsizeMode="tail"
             numberOfLines={3}
             style={
-              Object {
-                "color": "#000000",
-                "fontSize": 17,
-                "fontWeight": "600",
-                "lineHeight": 21,
-              }
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontSize": 17,
+                  "fontWeight": "600",
+                  "lineHeight": 21,
+                },
+                Object {
+                  "direction": "ltr",
+                  "writingDirection": "ltr",
+                },
+              ]
             }
             testID="Article-title"
           />
         </View>
         <View
           style={
-            Object {
-              "alignItems": "baseline",
-              "flex": 1,
-              "flexBasis": "auto",
-              "flexDirection": "row",
-              "flexGrow": 0,
-              "flexShrink": 1,
-              "height": 14,
-            }
+            Array [
+              Object {
+                "alignItems": "baseline",
+                "flex": 1,
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 0,
+                "flexShrink": 1,
+                "height": 14,
+              },
+              Object {
+                "direction": "ltr",
+                "writingDirection": "ltr",
+              },
+            ]
           }
         >
           <View
@@ -401,12 +419,18 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
               ellipsizeMode="tail"
               numberOfLines={1}
               style={
-                Object {
-                  "color": "#AAAAAA",
-                  "fontSize": 12,
-                  "fontWeight": "300",
-                  "paddingRight": 0,
-                }
+                Array [
+                  Object {
+                    "color": "#AAAAAA",
+                    "fontSize": 12,
+                    "fontWeight": "300",
+                    "paddingRight": 0,
+                  },
+                  Object {
+                    "direction": "ltr",
+                    "writingDirection": "ltr",
+                  },
+                ]
               }
               testID="Article-source-name"
             >
@@ -429,27 +453,39 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
             ellipsizeMode="tail"
             numberOfLines={3}
             style={
-              Object {
-                "color": "#000000",
-                "fontSize": 17,
-                "fontWeight": "600",
-                "lineHeight": 21,
-              }
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontSize": 17,
+                  "fontWeight": "600",
+                  "lineHeight": 21,
+                },
+                Object {
+                  "direction": "ltr",
+                  "writingDirection": "ltr",
+                },
+              ]
             }
             testID="Article-title"
           />
         </View>
         <View
           style={
-            Object {
-              "alignItems": "baseline",
-              "flex": 1,
-              "flexBasis": "auto",
-              "flexDirection": "row",
-              "flexGrow": 0,
-              "flexShrink": 1,
-              "height": 14,
-            }
+            Array [
+              Object {
+                "alignItems": "baseline",
+                "flex": 1,
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 0,
+                "flexShrink": 1,
+                "height": 14,
+              },
+              Object {
+                "direction": "ltr",
+                "writingDirection": "ltr",
+              },
+            ]
           }
         >
           <View
@@ -733,12 +769,18 @@ exports[`Article full rendering should render full correctly 1`] = `
               ellipsizeMode="tail"
               numberOfLines={1}
               style={
-                Object {
-                  "color": "#AAAAAA",
-                  "fontSize": 12,
-                  "fontWeight": "300",
-                  "paddingRight": 0,
-                }
+                Array [
+                  Object {
+                    "color": "#AAAAAA",
+                    "fontSize": 12,
+                    "fontWeight": "300",
+                    "paddingRight": 0,
+                  },
+                  Object {
+                    "direction": "ltr",
+                    "writingDirection": "ltr",
+                  },
+                ]
               }
               testID="Article-source-name"
             >
@@ -761,12 +803,18 @@ exports[`Article full rendering should render full correctly 1`] = `
             ellipsizeMode="tail"
             numberOfLines={3}
             style={
-              Object {
-                "color": "#000000",
-                "fontSize": 17,
-                "fontWeight": "600",
-                "lineHeight": 21,
-              }
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontSize": 17,
+                  "fontWeight": "600",
+                  "lineHeight": 21,
+                },
+                Object {
+                  "direction": "ltr",
+                  "writingDirection": "ltr",
+                },
+              ]
             }
             testID="Article-title"
           >
@@ -775,15 +823,21 @@ exports[`Article full rendering should render full correctly 1`] = `
         </View>
         <View
           style={
-            Object {
-              "alignItems": "baseline",
-              "flex": 1,
-              "flexBasis": "auto",
-              "flexDirection": "row",
-              "flexGrow": 0,
-              "flexShrink": 1,
-              "height": 14,
-            }
+            Array [
+              Object {
+                "alignItems": "baseline",
+                "flex": 1,
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 0,
+                "flexShrink": 1,
+                "height": 14,
+              },
+              Object {
+                "direction": "ltr",
+                "writingDirection": "ltr",
+              },
+            ]
           }
         >
           <View
@@ -1067,12 +1121,18 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
               ellipsizeMode="tail"
               numberOfLines={1}
               style={
-                Object {
-                  "color": "#AAAAAA",
-                  "fontSize": 12,
-                  "fontWeight": "300",
-                  "paddingRight": 0,
-                }
+                Array [
+                  Object {
+                    "color": "#AAAAAA",
+                    "fontSize": 12,
+                    "fontWeight": "300",
+                    "paddingRight": 0,
+                  },
+                  Object {
+                    "direction": "ltr",
+                    "writingDirection": "ltr",
+                  },
+                ]
               }
               testID="Article-source-name"
             >
@@ -1095,27 +1155,39 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
             ellipsizeMode="tail"
             numberOfLines={3}
             style={
-              Object {
-                "color": "#000000",
-                "fontSize": 17,
-                "fontWeight": "600",
-                "lineHeight": 21,
-              }
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontSize": 17,
+                  "fontWeight": "600",
+                  "lineHeight": 21,
+                },
+                Object {
+                  "direction": "ltr",
+                  "writingDirection": "ltr",
+                },
+              ]
             }
             testID="Article-title"
           />
         </View>
         <View
           style={
-            Object {
-              "alignItems": "baseline",
-              "flex": 1,
-              "flexBasis": "auto",
-              "flexDirection": "row",
-              "flexGrow": 0,
-              "flexShrink": 1,
-              "height": 14,
-            }
+            Array [
+              Object {
+                "alignItems": "baseline",
+                "flex": 1,
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 0,
+                "flexShrink": 1,
+                "height": 14,
+              },
+              Object {
+                "direction": "ltr",
+                "writingDirection": "ltr",
+              },
+            ]
           }
         >
           <View
@@ -1467,12 +1539,18 @@ exports[`Article loading rendering should render loading correctly 1`] = `
               ellipsizeMode="tail"
               numberOfLines={1}
               style={
-                Object {
-                  "color": "#AAAAAA",
-                  "fontSize": 12,
-                  "fontWeight": "300",
-                  "paddingRight": 0,
-                }
+                Array [
+                  Object {
+                    "color": "#AAAAAA",
+                    "fontSize": 12,
+                    "fontWeight": "300",
+                    "paddingRight": 0,
+                  },
+                  Object {
+                    "direction": "ltr",
+                    "writingDirection": "ltr",
+                  },
+                ]
               }
               testID="Article-source-name"
             >
@@ -1495,27 +1573,39 @@ exports[`Article loading rendering should render loading correctly 1`] = `
             ellipsizeMode="tail"
             numberOfLines={3}
             style={
-              Object {
-                "color": "#000000",
-                "fontSize": 17,
-                "fontWeight": "600",
-                "lineHeight": 21,
-              }
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontSize": 17,
+                  "fontWeight": "600",
+                  "lineHeight": 21,
+                },
+                Object {
+                  "direction": "ltr",
+                  "writingDirection": "ltr",
+                },
+              ]
             }
             testID="Article-title"
           />
         </View>
         <View
           style={
-            Object {
-              "alignItems": "baseline",
-              "flex": 1,
-              "flexBasis": "auto",
-              "flexDirection": "row",
-              "flexGrow": 0,
-              "flexShrink": 1,
-              "height": 14,
-            }
+            Array [
+              Object {
+                "alignItems": "baseline",
+                "flex": 1,
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 0,
+                "flexShrink": 1,
+                "height": 14,
+              },
+              Object {
+                "direction": "ltr",
+                "writingDirection": "ltr",
+              },
+            ]
           }
         >
           <View
@@ -1781,12 +1871,18 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
               ellipsizeMode="tail"
               numberOfLines={1}
               style={
-                Object {
-                  "color": "#AAAAAA",
-                  "fontSize": 12,
-                  "fontWeight": "300",
-                  "paddingRight": 0,
-                }
+                Array [
+                  Object {
+                    "color": "#AAAAAA",
+                    "fontSize": 12,
+                    "fontWeight": "300",
+                    "paddingRight": 0,
+                  },
+                  Object {
+                    "direction": "ltr",
+                    "writingDirection": "ltr",
+                  },
+                ]
               }
               testID="Article-source-name"
             >
@@ -1809,27 +1905,39 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
             ellipsizeMode="tail"
             numberOfLines={3}
             style={
-              Object {
-                "color": "#000000",
-                "fontSize": 17,
-                "fontWeight": "600",
-                "lineHeight": 21,
-              }
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontSize": 17,
+                  "fontWeight": "600",
+                  "lineHeight": 21,
+                },
+                Object {
+                  "direction": "ltr",
+                  "writingDirection": "ltr",
+                },
+              ]
             }
             testID="Article-title"
           />
         </View>
         <View
           style={
-            Object {
-              "alignItems": "baseline",
-              "flex": 1,
-              "flexBasis": "auto",
-              "flexDirection": "row",
-              "flexGrow": 0,
-              "flexShrink": 1,
-              "height": 14,
-            }
+            Array [
+              Object {
+                "alignItems": "baseline",
+                "flex": 1,
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 0,
+                "flexShrink": 1,
+                "height": 14,
+              },
+              Object {
+                "direction": "ltr",
+                "writingDirection": "ltr",
+              },
+            ]
           }
         >
           <View
@@ -2113,12 +2221,18 @@ exports[`Article playing rendering should render playing correctly 1`] = `
               ellipsizeMode="tail"
               numberOfLines={1}
               style={
-                Object {
-                  "color": "#AAAAAA",
-                  "fontSize": 12,
-                  "fontWeight": "300",
-                  "paddingRight": 0,
-                }
+                Array [
+                  Object {
+                    "color": "#AAAAAA",
+                    "fontSize": 12,
+                    "fontWeight": "300",
+                    "paddingRight": 0,
+                  },
+                  Object {
+                    "direction": "ltr",
+                    "writingDirection": "ltr",
+                  },
+                ]
               }
               testID="Article-source-name"
             >
@@ -2141,27 +2255,39 @@ exports[`Article playing rendering should render playing correctly 1`] = `
             ellipsizeMode="tail"
             numberOfLines={3}
             style={
-              Object {
-                "color": "#000000",
-                "fontSize": 17,
-                "fontWeight": "600",
-                "lineHeight": 21,
-              }
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontSize": 17,
+                  "fontWeight": "600",
+                  "lineHeight": 21,
+                },
+                Object {
+                  "direction": "ltr",
+                  "writingDirection": "ltr",
+                },
+              ]
             }
             testID="Article-title"
           />
         </View>
         <View
           style={
-            Object {
-              "alignItems": "baseline",
-              "flex": 1,
-              "flexBasis": "auto",
-              "flexDirection": "row",
-              "flexGrow": 0,
-              "flexShrink": 1,
-              "height": 14,
-            }
+            Array [
+              Object {
+                "alignItems": "baseline",
+                "flex": 1,
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 0,
+                "flexShrink": 1,
+                "height": 14,
+              },
+              Object {
+                "direction": "ltr",
+                "writingDirection": "ltr",
+              },
+            ]
           }
         >
           <View

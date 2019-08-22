@@ -329,12 +329,18 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                   ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
-                    Object {
-                      "color": "#AAAAAA",
-                      "fontSize": 12,
-                      "fontWeight": "300",
-                      "paddingRight": 0,
-                    }
+                    Array [
+                      Object {
+                        "color": "#AAAAAA",
+                        "fontSize": 12,
+                        "fontWeight": "300",
+                        "paddingRight": 0,
+                      },
+                      Object {
+                        "direction": "ltr",
+                        "writingDirection": "ltr",
+                      },
+                    ]
                   }
                   testID="Article-source-name"
                 >
@@ -357,12 +363,18 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                 ellipsizeMode="tail"
                 numberOfLines={3}
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 17,
-                    "fontWeight": "600",
-                    "lineHeight": 21,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontSize": 17,
+                      "fontWeight": "600",
+                      "lineHeight": 21,
+                    },
+                    Object {
+                      "direction": "ltr",
+                      "writingDirection": "ltr",
+                    },
+                  ]
                 }
                 testID="Article-title"
               >
@@ -371,15 +383,21 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
             </View>
             <View
               style={
-                Object {
-                  "alignItems": "baseline",
-                  "flex": 1,
-                  "flexBasis": "auto",
-                  "flexDirection": "row",
-                  "flexGrow": 0,
-                  "flexShrink": 1,
-                  "height": 14,
-                }
+                Array [
+                  Object {
+                    "alignItems": "baseline",
+                    "flex": 1,
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 0,
+                    "flexShrink": 1,
+                    "height": 14,
+                  },
+                  Object {
+                    "direction": "ltr",
+                    "writingDirection": "ltr",
+                  },
+                ]
               }
             >
               <View

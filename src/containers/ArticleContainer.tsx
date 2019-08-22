@@ -554,6 +554,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
     // Use the canonicalUrl if we have it, else fall back to the normal url
     const articleUrl = article.canonicalUrl ? article.canonicalUrl : article.url;
+    const textDirection = (article.language && article.language.rightToLeft) ? 'rtl' : 'ltr';
 
     const hasAudiofile = article.audiofiles.length > 0;
 
@@ -592,6 +593,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
             authorName={article.authorName}
             listenTimeInSeconds={this.listenTimeInSeconds}
             readingTime={article.readingTime}
+            textDirection={textDirection}
             onPlayPress={this.handleOnPlayPress}
             onOpenUrl={this.handleOnOpenUrl}
             onLongPress={onLongPress}
