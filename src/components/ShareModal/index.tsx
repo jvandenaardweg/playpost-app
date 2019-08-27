@@ -15,7 +15,7 @@ export const ShareModal: React.FC<Props> = React.memo(({ isLoading, errorMessage
   <View style={styles.container}>
     <View>
       <View style={styles.articleContainer}>
-        {isLoading && <ActivityIndicator size="small" />}
+        {isLoading && <ActivityIndicator size="small" color="black" />}
         {!isLoading && isError && <Text style={styles.errorMessage}>{errorMessage}</Text>}
         {!isLoading && isSuccess && <Text style={styles.successMessage}>Article is added to your playlist!</Text>}
       </View>

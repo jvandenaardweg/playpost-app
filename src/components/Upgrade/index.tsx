@@ -141,7 +141,7 @@ export const Upgrade: React.FC<Props> = React.memo(
                       <Text style={styles.cardTitle}>{title}</Text>
                     </View>
                     <View style={styles.cardPriceContainer}>
-                      {isLoadingSubscriptionItems ? <ActivityIndicator size="large" color="black" /> : <Text style={styles.cardPrice}>{localizedPrice}</Text>}
+                      {isLoadingSubscriptionItems ? <ActivityIndicator size="large" color={colors.black} /> : <Text style={styles.cardPrice}>{localizedPrice}</Text>}
                     </View>
                     <View>
                       <Text style={styles.cardMeta}>per month</Text>

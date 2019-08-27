@@ -198,7 +198,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
     const { isDeletingAccount } = this.state;
 
     if (isDeletingAccount) {
-      return <ActivityIndicator />;
+      return <ActivityIndicator size="small" color="black" />;
     }
 
     return (

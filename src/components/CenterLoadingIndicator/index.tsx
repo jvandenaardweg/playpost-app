@@ -11,6 +11,6 @@ interface Props {
 
 export const CenterLoadingIndicator: React.FC<Props>  = React.memo(({ backgroundColor }: Props) => (
   <View style={[styles.container, { backgroundColor: (backgroundColor) ? backgroundColor : colors.appBackground }]}>
-    <ActivityIndicator />
+    <ActivityIndicator size="small" color={colors.black} />
   </View>
 ));

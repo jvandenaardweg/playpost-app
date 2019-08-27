@@ -105,7 +105,7 @@ export const CustomSectionList: React.FC<Props> = React.memo(({ sectionListData,
 
 const getRightElement = (item: IListItem, checkmarkColor: string) => {
   if (item.isLoading) {
-    return <ActivityIndicator color="black" />;
+    return <ActivityIndicator color={colors.black} />;
   }
 
   if (item.chevron) {
