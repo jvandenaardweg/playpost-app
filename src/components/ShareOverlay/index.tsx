@@ -117,7 +117,7 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
       } else {
         // It could be possible some app shares the URL with text, like: "This is an example article https://link.com/12312"
         // In that case, we want to get: https://link.com/12312
-        const urlMatchesInText = value.match(/\bhttps?:\/\/\S+/gi);
+        const urlMatchesInText = value.match(/\bhttp(s)?:\/\/\S+/gi);
         const urlFromText = urlMatchesInText && urlMatchesInText.length ? urlMatchesInText[0] : '';
 
         url = urlFromText || value;
