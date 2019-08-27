@@ -15,8 +15,4 @@ export const SUBSCRIPTION_PRODUCT_ID_PLUS = Platform.select({
   android: 'com.aardwegmedia.playpost.subscription.plus'
 });
 
-export const SUBSCRIPTION_PRODUCT_IDS = Platform.select({
-  // We keep the productId's the same between Apple and Google
-  ios: ['com.aardwegmedia.playpost.premium', 'com.aardwegmedia.playpost.subscription.plus'],
-  android: ['com.aardwegmedia.playpost.premium', 'com.aardwegmedia.playpost.subscription.plus']
-});
+export const SUBSCRIPTION_PRODUCT_IDS = [SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_PLUS]
