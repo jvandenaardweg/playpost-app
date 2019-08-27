@@ -152,17 +152,17 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
-        release {
-            storeFile file('playpost-upload-key.keystore')
-            storePassword 'testtest'
-            keyAlias 'playpost-upload-key'
-            keyPassword 'testtest'
-        }
+        // release {
+        //     storeFile file('playpost-upload-key.keystore')
+        //     storePassword 'testtest'
+        //     keyAlias 'playpost-upload-key'
+        //     keyPassword 'testtest'
+        // }
     }
     buildTypes {
         debug {
-            // signingConfig signingConfigs.debug
-            signingConfig signingConfigs.release // Uncomment this to test in app purchase in local dev
+            signingConfig signingConfigs.debug
+            // signingConfig signingConfigs.release // Uncomment this to test in app purchase in local dev
             debuggable true
         }
         release {
