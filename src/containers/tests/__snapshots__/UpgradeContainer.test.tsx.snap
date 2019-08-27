@@ -51,7 +51,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                     "width": 0,
                   },
                   "shadowOpacity": 0.05,
-                  "shadowRadius": 10,
+                  "shadowRadius": 5,
                 },
                 Object {
                   "marginLeft": 24,
@@ -325,7 +325,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                     "width": 0,
                   },
                   "shadowOpacity": 0.05,
-                  "shadowRadius": 10,
+                  "shadowRadius": 5,
                 },
                 Object {
                   "marginLeft": 6,
@@ -599,7 +599,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                     "width": 0,
                   },
                   "shadowOpacity": 0.05,
-                  "shadowRadius": 10,
+                  "shadowRadius": 5,
                 },
                 Object {
                   "marginLeft": 6,

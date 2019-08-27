@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
@@ -7,7 +7,6 @@ import spacing from '../../constants/spacing';
 export default StyleSheet.create({
   container: {
     paddingTop: spacing.default
-    // padding: spacing.default
   },
   header: {
     marginBottom: spacing.default
@@ -40,14 +39,12 @@ export default StyleSheet.create({
   },
   feature: {
     paddingTop: spacing.large,
-    // marginBottom: spacing.medium,
     paddingBottom: spacing.large,
     borderBottomWidth: 1,
     borderColor: 'rgba(0,0,0,0.05)',
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center'
-    // backgroundColor: 'red'
   },
   featureContent: {
     flex: 1,
@@ -60,7 +57,6 @@ export default StyleSheet.create({
     width: 40
   },
   footer: {
-    // padding: spacing.default,
     paddingBottom: 24
   },
   footerText: {
@@ -115,7 +111,7 @@ export default StyleSheet.create({
       height: 1
     },
     shadowOpacity: 0.05,
-    shadowRadius: 10,
+    shadowRadius: (Platform.OS === 'ios') ? 5 : 10,
     elevation: 4,
     marginBottom: spacing.default,
     marginTop: spacing.default
