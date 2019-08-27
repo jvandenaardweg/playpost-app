@@ -19,7 +19,7 @@ import {
   ALERT_TITLE_ERROR,
   ALERT_TITLE_REQUEST_CONFIRM} from '../constants/messages';
 import spacing from '../constants/spacing';
-import { URL_ABOUT, URL_APP_APPLE_APP_STORE_REVIEW, URL_FEEDBACK, URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../constants/urls';
+import { URL_ABOUT, URL_APP_REVIEW, URL_FEEDBACK, URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../constants/urls';
 
 import { RootState } from '../reducers';
 import { resetAudiofilesState } from '../reducers/audiofiles';
@@ -330,7 +330,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             icon: 'heart',
             iconColor: colors.green,
             chevron: true,
-            onPress: () => Linking.openURL(URL_APP_APPLE_APP_STORE_REVIEW)
+            onPress: () => Linking.openURL(URL_APP_REVIEW)
           },
           {
             key: 'about-about',
