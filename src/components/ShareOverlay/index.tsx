@@ -101,7 +101,7 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
         store.dispatch(setAuthToken(token));
       }
 
-      const { type, value }: { type: ShareExtensionType; value: ShareExtensionValue } = await this.getShareData();
+      const { type, value } = await this.getShareData();
 
       let documentHtml: ShareExtensionDocumentHtml;
       let url: ShareExtensionUrl;
