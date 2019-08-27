@@ -59,18 +59,20 @@ export default StyleSheet.create({
     flexShrink: 1,
     flexBasis: 'auto',
     flexDirection: 'row',
-    alignItems: 'baseline',
+    alignItems: 'center',
     height: 14
   },
   bodyFooterIcons: {
     flexDirection: 'row',
-    width: 35
+    width: 35,
+    height: 8 // icon height
   },
   bodyTitleText: {
     fontSize: fonts.fontSize.title,
     lineHeight: Math.ceil(fonts.fontSize.title * 1.2),
     fontWeight: fonts.fontWeight.semibold,
-    color: colors.titleDefault
+    color: colors.titleDefault,
+    // fontFamily: 'Inter-SemiBold'
   },
   bodyFooterText: {
     fontSize: fonts.fontSize.tiny,
