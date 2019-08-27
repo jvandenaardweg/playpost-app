@@ -5,7 +5,7 @@ import { Platform } from 'react-native';
 import { createAppContainer, createStackNavigator, createSwitchNavigator, NavigationContainer } from 'react-navigation';
 import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
 
-import { MainTabNavigator } from './MainTabNavigator';
+import { MainTabNavigator, stackNavigatorDefaultNavigationOptions } from './MainTabNavigator';
 
 import { ButtonClose } from '../components/ButtonClose';
 import colors from '../constants/colors';
@@ -39,11 +39,10 @@ const LoginStack = createStackNavigator(
   {
     initialRouteName: 'login',
     headerMode: 'screen',
+    headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation }) => ({
-      headerRight: <ButtonClose onPress={() => navigation.navigate('Onboarding')} />,
-      headerStyle: {
-        borderBottomColor: colors.borderDefault
-      }
+      ...stackNavigatorDefaultNavigationOptions,
+      headerRight: <ButtonClose onPress={() => navigation.navigate('Onboarding')} />
     })
   }
 );
@@ -55,11 +54,10 @@ const SignupStack = createStackNavigator(
   {
     initialRouteName: 'Signup',
     headerMode: 'screen',
+    headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation }) => ({
-      headerRight: <ButtonClose onPress={() => navigation.navigate('Onboarding')} />,
-      headerStyle: {
-        borderBottomColor: colors.borderDefault
-      }
+      ...stackNavigatorDefaultNavigationOptions,
+      headerRight: <ButtonClose onPress={() => navigation.navigate('Onboarding')} />
     })
   }
 );
@@ -71,6 +69,7 @@ const SettingsLanguagesModalStack = createStackNavigator(
   {
     initialRouteName: 'SettingsLanguages',
     headerMode: 'none',
+    headerLayoutPreset: 'center',
   }
 );
 
@@ -82,12 +81,10 @@ const UpgradeStack = createStackNavigator(
   {
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
-
+    headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation }) => ({
-      headerRight: <ButtonClose onPress={() => navigation.dismiss()} />,
-      headerStyle: {
-        borderBottomColor: colors.borderDefault
-      }
+      ...stackNavigatorDefaultNavigationOptions,
+      headerRight: <ButtonClose onPress={() => navigation.dismiss()} />
     })
   }
 );
@@ -99,16 +96,13 @@ const ContentViewStack = createStackNavigator(
   {
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
-
+    headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation }) => ({
-      headerRight: <ButtonClose onPress={() => navigation.dismiss()} />,
-      headerStyle: {
-        borderBottomColor: colors.borderDefault
-      }
+      ...stackNavigatorDefaultNavigationOptions,
+      headerRight: <ButtonClose onPress={() => navigation.dismiss()} />
     })
   }
 );
-
 const FullAudioPlayerStack = createStackNavigator(
   {
     FullAudioPlayer: FullAudioPlayerScreen
@@ -116,7 +110,9 @@ const FullAudioPlayerStack = createStackNavigator(
   {
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
+    headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation }) => ({
+      ...stackNavigatorDefaultNavigationOptions,
       headerRight: <ButtonClose iconColor="white" onPress={() => navigation.dismiss()} />,
       headerLeft: null,
       headerStyle: {
@@ -135,15 +131,14 @@ const ModalLanguagesStack = createStackNavigator(
   {
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
+    headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation }) => ({
+      ...stackNavigatorDefaultNavigationOptions,
       title: 'Languages',
       headerRight: <ButtonClose onPress={() => {
         navigation.popToTop()
         navigation.dismiss()
-      }} />,
-      headerStyle: {
-        borderBottomColor: colors.borderDefault
-      }
+      }} />
     })
   }
 )
@@ -159,6 +154,7 @@ const OnboardingStack = createStackNavigator(
     mode: 'modal',
     headerMode: 'screen',
     headerTransitionPreset: 'uikit',
+    headerLayoutPreset: 'center',
     defaultNavigationOptions: {
       header: null,
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BottomTabBarProps, BottomTabNavigatorConfig, createBottomTabNavigator, createStackNavigator, StackNavigatorConfig } from 'react-navigation';
+import { BottomTabBarProps, BottomTabNavigatorConfig, createBottomTabNavigator, createStackNavigator, NavigationScreenOptions, StackNavigatorConfig } from 'react-navigation';
 
 import { TabBar } from '../components/TabBar';
 import { TabBarIcon } from '../components/TabBarIcon';
@@ -19,6 +19,13 @@ import { ButtonVoices } from '../components/ButtonVoices';
 import colors from '../constants/colors';
 import { ButtonUpgradeContainer } from '../containers/ButtonUpgradeContainer';
 
+
+export const stackNavigatorDefaultNavigationOptions: NavigationScreenOptions = {
+  headerStyle: {
+    borderBottomColor: colors.borderDefault
+  }
+}
+
 const PlaylistStack: StackNavigatorConfig = createStackNavigator(
   {
     Playlist: PlaylistScreen,
@@ -27,10 +34,9 @@ const PlaylistStack: StackNavigatorConfig = createStackNavigator(
   {
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
+    headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation }) => ({
-      headerStyle: {
-        borderBottomColor: colors.borderDefault
-      }
+      ...stackNavigatorDefaultNavigationOptions
     }),
     navigationOptions: {
       tabBarLabel: 'Playlist',
@@ -51,13 +57,12 @@ const ArchiveStack: StackNavigatorConfig = createStackNavigator(
   {
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
+    headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation }) => ({
+      ...stackNavigatorDefaultNavigationOptions,
       title: 'Archive',
       headerRight: <ButtonUpgradeContainer />,
-      headerLeft: <ButtonVoices onPress={() => requestAnimationFrame(() => navigation.navigate('ModalLanguages'))} />,
-      headerStyle: {
-        borderBottomColor: colors.borderDefault
-      }
+      headerLeft: <ButtonVoices onPress={() => requestAnimationFrame(() => navigation.navigate('ModalLanguages'))} />
     }),
     navigationOptions: {
       tabBarLabel: 'Archive',
@@ -79,13 +84,12 @@ const FavoritesStack: StackNavigatorConfig = createStackNavigator(
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
     defaultNavigationOptions: ({ navigation }) => ({
+      ...stackNavigatorDefaultNavigationOptions,
       title: 'Favorites',
       headerRight: <ButtonUpgradeContainer />,
-      headerLeft: <ButtonVoices onPress={() => requestAnimationFrame(() => navigation.navigate('ModalLanguages'))} />,
-      headerStyle: {
-        borderBottomColor: colors.borderDefault
-      }
+      headerLeft: <ButtonVoices onPress={() => requestAnimationFrame(() => navigation.navigate('ModalLanguages'))} />
     }),
+    headerLayoutPreset: 'center',
     navigationOptions: {
       tabBarLabel: 'Favorites',
       tabBarIcon: ({ focused }) => (
@@ -110,11 +114,10 @@ const SettingsStack: StackNavigatorConfig = createStackNavigator(
   {
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
+    headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation }) => ({
-      title: 'Settings',
-      headerStyle: {
-        borderBottomColor: colors.borderDefault
-      }
+      ...stackNavigatorDefaultNavigationOptions,
+      title: 'Settings'
     }),
     navigationOptions: ({ navigation }) => ({
       tabBarLabel: 'Settings',
