@@ -1,13 +1,14 @@
 import { Platform } from 'react-native';
 import * as Keychain from 'react-native-keychain';
+import { APP_BUNDLE_ID } from '../constants/bundle-id';
 
 const keychainArguments = Platform.select({
   ios: {
     accessGroup: 'group.playpost', // only required for iOS
-    service: 'com.aardwegmedia.playpost'
+    service: APP_BUNDLE_ID
   },
   android: {
-    service: 'com.aardwegmedia.playpost'
+    service: APP_BUNDLE_ID
   }
 });
 
