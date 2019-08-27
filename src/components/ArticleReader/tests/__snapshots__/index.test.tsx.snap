@@ -203,7 +203,7 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
   >
     <ActivityIndicator
       animating={true}
-      color="#999999"
+      color="#000000"
       hidesWhenStopped={true}
       size="small"
     />
@@ -414,7 +414,7 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
   >
     <ActivityIndicator
       animating={true}
-      color="#999999"
+      color="#000000"
       hidesWhenStopped={true}
       size="small"
     />
@@ -619,7 +619,7 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
   >
     <ActivityIndicator
       animating={true}
-      color="#999999"
+      color="#000000"
       hidesWhenStopped={true}
       size="small"
     />
@@ -824,7 +824,7 @@ exports[`ArticleReader rendering no author name should render no authorName when
   >
     <ActivityIndicator
       animating={true}
-      color="#999999"
+      color="#000000"
       hidesWhenStopped={true}
       size="small"
     />
@@ -1029,7 +1029,7 @@ exports[`ArticleReader rendering no html should render a different HTML output w
   >
     <ActivityIndicator
       animating={true}
-      color="#999999"
+      color="#000000"
       hidesWhenStopped={true}
       size="small"
     />
@@ -1240,7 +1240,7 @@ exports[`ArticleReader rendering right to left content should render correctly 1
   >
     <ActivityIndicator
       animating={true}
-      color="#999999"
+      color="#000000"
       hidesWhenStopped={true}
       size="small"
     />
