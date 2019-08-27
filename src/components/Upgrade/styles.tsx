@@ -88,8 +88,6 @@ export default StyleSheet.create({
     backgroundColor: colors.tintColor
   },
   cardsScrollView: {
-    paddingTop: spacing.default,
-    paddingBottom: spacing.default,
     backgroundColor: colors.appBackground,
     marginBottom: spacing.default,
     paddingLeft: 0,
@@ -117,8 +115,10 @@ export default StyleSheet.create({
       height: 1
     },
     shadowOpacity: 0.05,
-    shadowRadius: 5,
-    elevation: 3
+    shadowRadius: 10,
+    elevation: 4,
+    marginBottom: spacing.default,
+    marginTop: spacing.default
   },
   cardTitle: {
     fontSize: fonts.fontSize.titleLarge,

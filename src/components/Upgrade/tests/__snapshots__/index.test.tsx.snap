@@ -28,10 +28,8 @@ exports[`Upgrade rendering should render correctly 1`] = `
           Object {
             "backgroundColor": "#EEEEEE",
             "marginBottom": 12,
-            "paddingBottom": 12,
             "paddingLeft": 0,
             "paddingRight": 0,
-            "paddingTop": 12,
           }
         }
       >
