@@ -64,7 +64,9 @@ export default StyleSheet.create({
   },
   bodyFooterIcons: {
     flexDirection: 'row',
-    width: 35,
+    width: 31,
+    justifyContent: 'space-between',
+    marginRight: spacing.nano,
     height: 8 // icon height
   },
   bodyTitleText: {
@@ -78,11 +80,10 @@ export default StyleSheet.create({
     fontSize: fonts.fontSize.tiny,
     color: colors.grayDark,
     fontWeight: fonts.fontWeight.light,
-    paddingLeft: 2
+    paddingLeft: 2,
+    paddingRight: 6 // so our "rtl" text has enough spacing
   },
-  bodySourceIcon: {
-    marginRight: 4
-  },
+  bodySourceIcon: { },
   bodySourceText: {
     fontSize: fonts.fontSize.tiny,
     color: colors.grayDark,

@@ -56,11 +56,17 @@ exports[`Article active rendering should render active correctly 1`] = `
         >
           <View
             style={
-              Object {
-                "flexBasis": "auto",
-                "flexGrow": 1,
-                "flexShrink": 1,
-              }
+              Array [
+                Object {
+                  "flexBasis": "auto",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                },
+                Object {
+                  "flexDirection": undefined,
+                  "writingDirection": "ltr",
+                },
+              ]
             }
           >
             <Text
@@ -76,7 +82,6 @@ exports[`Article active rendering should render active correctly 1`] = `
                   },
                   Object {
                     "direction": "ltr",
-                    "textAlign": "left",
                     "writingDirection": "ltr",
                   },
                 ]
@@ -110,8 +115,7 @@ exports[`Article active rendering should render active correctly 1`] = `
                   "lineHeight": 21,
                 },
                 Object {
-                  "direction": "ltr",
-                  "justifyContent": "flex-start",
+                  "flexDirection": undefined,
                   "writingDirection": "ltr",
                 },
               ]
@@ -132,20 +136,29 @@ exports[`Article active rendering should render active correctly 1`] = `
                 "height": 14,
               },
               Object {
-                "direction": "ltr",
-                "justifyContent": "flex-start",
+                "flexDirection": undefined,
                 "writingDirection": "ltr",
+              },
+              Object {
+                "flexDirection": "row",
               },
             ]
           }
         >
           <View
             style={
-              Object {
-                "flexDirection": "row",
-                "height": 8,
-                "width": 35,
-              }
+              Array [
+                Object {
+                  "flexDirection": "row",
+                  "height": 8,
+                  "justifyContent": "space-between",
+                  "marginRight": 4,
+                  "width": 31,
+                },
+                Object {
+                  "flexDirection": "row",
+                },
+              ]
             }
           >
             <Text
@@ -156,9 +169,7 @@ exports[`Article active rendering should render active correctly 1`] = `
                     "color": "#ddd",
                     "fontSize": 8,
                   },
-                  Object {
-                    "marginRight": 4,
-                  },
+                  Object {},
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
                     "fontStyle": "normal",
@@ -181,9 +192,7 @@ exports[`Article active rendering should render active correctly 1`] = `
                     "color": "#ddd",
                     "fontSize": 8,
                   },
-                  Object {
-                    "marginRight": 4,
-                  },
+                  Object {},
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
                     "fontStyle": "normal",
@@ -206,9 +215,7 @@ exports[`Article active rendering should render active correctly 1`] = `
                     "color": "#ddd",
                     "fontSize": 8,
                   },
-                  Object {
-                    "marginRight": 4,
-                  },
+                  Object {},
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
                     "fontStyle": "normal",
@@ -231,6 +238,7 @@ exports[`Article active rendering should render active correctly 1`] = `
                 "fontSize": 12,
                 "fontWeight": "300",
                 "paddingLeft": 2,
+                "paddingRight": 6,
               }
             }
           >
@@ -412,11 +420,17 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
         >
           <View
             style={
-              Object {
-                "flexBasis": "auto",
-                "flexGrow": 1,
-                "flexShrink": 1,
-              }
+              Array [
+                Object {
+                  "flexBasis": "auto",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                },
+                Object {
+                  "flexDirection": undefined,
+                  "writingDirection": "ltr",
+                },
+              ]
             }
           >
             <Text
@@ -432,7 +446,6 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
                   },
                   Object {
                     "direction": "ltr",
-                    "textAlign": "left",
                     "writingDirection": "ltr",
                   },
                 ]
@@ -466,8 +479,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
                   "lineHeight": 21,
                 },
                 Object {
-                  "direction": "ltr",
-                  "justifyContent": "flex-start",
+                  "flexDirection": undefined,
                   "writingDirection": "ltr",
                 },
               ]
@@ -488,20 +500,29 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
                 "height": 14,
               },
               Object {
-                "direction": "ltr",
-                "justifyContent": "flex-start",
+                "flexDirection": undefined,
                 "writingDirection": "ltr",
+              },
+              Object {
+                "flexDirection": "row",
               },
             ]
           }
         >
           <View
             style={
-              Object {
-                "flexDirection": "row",
-                "height": 8,
-                "width": 35,
-              }
+              Array [
+                Object {
+                  "flexDirection": "row",
+                  "height": 8,
+                  "justifyContent": "space-between",
+                  "marginRight": 4,
+                  "width": 31,
+                },
+                Object {
+                  "flexDirection": "row",
+                },
+              ]
             }
           >
             <Text
@@ -512,9 +533,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
                     "color": "#ddd",
                     "fontSize": 8,
                   },
-                  Object {
-                    "marginRight": 4,
-                  },
+                  Object {},
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
                     "fontStyle": "normal",
@@ -537,9 +556,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
                     "color": "#03A87C",
                     "fontSize": 8,
                   },
-                  Object {
-                    "marginRight": 4,
-                  },
+                  Object {},
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
                     "fontStyle": "normal",
@@ -562,9 +579,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
                     "color": "#ddd",
                     "fontSize": 8,
                   },
-                  Object {
-                    "marginRight": 4,
-                  },
+                  Object {},
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
                     "fontStyle": "normal",
@@ -587,6 +602,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
                 "fontSize": 12,
                 "fontWeight": "300",
                 "paddingLeft": 2,
+                "paddingRight": 6,
               }
             }
           >
@@ -766,11 +782,17 @@ exports[`Article full rendering should render full correctly 1`] = `
         >
           <View
             style={
-              Object {
-                "flexBasis": "auto",
-                "flexGrow": 1,
-                "flexShrink": 1,
-              }
+              Array [
+                Object {
+                  "flexBasis": "auto",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                },
+                Object {
+                  "flexDirection": undefined,
+                  "writingDirection": "ltr",
+                },
+              ]
             }
           >
             <Text
@@ -786,7 +808,6 @@ exports[`Article full rendering should render full correctly 1`] = `
                   },
                   Object {
                     "direction": "ltr",
-                    "textAlign": "left",
                     "writingDirection": "ltr",
                   },
                 ]
@@ -820,8 +841,7 @@ exports[`Article full rendering should render full correctly 1`] = `
                   "lineHeight": 21,
                 },
                 Object {
-                  "direction": "ltr",
-                  "justifyContent": "flex-start",
+                  "flexDirection": undefined,
                   "writingDirection": "ltr",
                 },
               ]
@@ -844,20 +864,29 @@ exports[`Article full rendering should render full correctly 1`] = `
                 "height": 14,
               },
               Object {
-                "direction": "ltr",
-                "justifyContent": "flex-start",
+                "flexDirection": undefined,
                 "writingDirection": "ltr",
+              },
+              Object {
+                "flexDirection": "row",
               },
             ]
           }
         >
           <View
             style={
-              Object {
-                "flexDirection": "row",
-                "height": 8,
-                "width": 35,
-              }
+              Array [
+                Object {
+                  "flexDirection": "row",
+                  "height": 8,
+                  "justifyContent": "space-between",
+                  "marginRight": 4,
+                  "width": 31,
+                },
+                Object {
+                  "flexDirection": "row",
+                },
+              ]
             }
           >
             <Text
@@ -868,9 +897,7 @@ exports[`Article full rendering should render full correctly 1`] = `
                     "color": "#ddd",
                     "fontSize": 8,
                   },
-                  Object {
-                    "marginRight": 4,
-                  },
+                  Object {},
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
                     "fontStyle": "normal",
@@ -893,9 +920,7 @@ exports[`Article full rendering should render full correctly 1`] = `
                     "color": "#ddd",
                     "fontSize": 8,
                   },
-                  Object {
-                    "marginRight": 4,
-                  },
+                  Object {},
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
                     "fontStyle": "normal",
@@ -918,9 +943,7 @@ exports[`Article full rendering should render full correctly 1`] = `
                     "color": "#ddd",
                     "fontSize": 8,
                   },
-                  Object {
-                    "marginRight": 4,
-                  },
+                  Object {},
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
                     "fontStyle": "normal",
@@ -943,6 +966,7 @@ exports[`Article full rendering should render full correctly 1`] = `
                 "fontSize": 12,
                 "fontWeight": "300",
                 "paddingLeft": 2,
+                "paddingRight": 6,
               }
             }
           >
@@ -1122,11 +1146,17 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
         >
           <View
             style={
-              Object {
-                "flexBasis": "auto",
-                "flexGrow": 1,
-                "flexShrink": 1,
-              }
+              Array [
+                Object {
+                  "flexBasis": "auto",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                },
+                Object {
+                  "flexDirection": undefined,
+                  "writingDirection": "ltr",
+                },
+              ]
             }
           >
             <Text
@@ -1142,7 +1172,6 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
                   },
                   Object {
                     "direction": "ltr",
-                    "textAlign": "left",
                     "writingDirection": "ltr",
                   },
                 ]
@@ -1176,8 +1205,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
                   "lineHeight": 21,
                 },
                 Object {
-                  "direction": "ltr",
-                  "justifyContent": "flex-start",
+                  "flexDirection": undefined,
                   "writingDirection": "ltr",
                 },
               ]
@@ -1198,20 +1226,29 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
                 "height": 14,
               },
               Object {
-                "direction": "ltr",
-                "justifyContent": "flex-start",
+                "flexDirection": undefined,
                 "writingDirection": "ltr",
+              },
+              Object {
+                "flexDirection": "row",
               },
             ]
           }
         >
           <View
             style={
-              Object {
-                "flexDirection": "row",
-                "height": 8,
-                "width": 35,
-              }
+              Array [
+                Object {
+                  "flexDirection": "row",
+                  "height": 8,
+                  "justifyContent": "space-between",
+                  "marginRight": 4,
+                  "width": 31,
+                },
+                Object {
+                  "flexDirection": "row",
+                },
+              ]
             }
           >
             <Text
@@ -1222,9 +1259,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
                     "color": "#ddd",
                     "fontSize": 8,
                   },
-                  Object {
-                    "marginRight": 4,
-                  },
+                  Object {},
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
                     "fontStyle": "normal",
@@ -1247,9 +1282,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
                     "color": "#ddd",
                     "fontSize": 8,
                   },
-                  Object {
-                    "marginRight": 4,
-                  },
+                  Object {},
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
                     "fontStyle": "normal",
@@ -1272,9 +1305,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
                     "color": "#ddd",
                     "fontSize": 8,
                   },
-                  Object {
-                    "marginRight": 4,
-                  },
+                  Object {},
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
                     "fontStyle": "normal",
@@ -1297,6 +1328,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
                 "fontSize": 12,
                 "fontWeight": "300",
                 "paddingLeft": 2,
+                "paddingRight": 6,
               }
             }
           >
@@ -1544,11 +1576,17 @@ exports[`Article loading rendering should render loading correctly 1`] = `
         >
           <View
             style={
-              Object {
-                "flexBasis": "auto",
-                "flexGrow": 1,
-                "flexShrink": 1,
-              }
+              Array [
+                Object {
+                  "flexBasis": "auto",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                },
+                Object {
+                  "flexDirection": undefined,
+                  "writingDirection": "ltr",
+                },
+              ]
             }
           >
             <Text
@@ -1564,7 +1602,6 @@ exports[`Article loading rendering should render loading correctly 1`] = `
                   },
                   Object {
                     "direction": "ltr",
-                    "textAlign": "left",
                     "writingDirection": "ltr",
                   },
                 ]
@@ -1598,8 +1635,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
                   "lineHeight": 21,
                 },
                 Object {
-                  "direction": "ltr",
-                  "justifyContent": "flex-start",
+                  "flexDirection": undefined,
                   "writingDirection": "ltr",
                 },
               ]
@@ -1620,20 +1656,29 @@ exports[`Article loading rendering should render loading correctly 1`] = `
                 "height": 14,
               },
               Object {
-                "direction": "ltr",
-                "justifyContent": "flex-start",
+                "flexDirection": undefined,
                 "writingDirection": "ltr",
+              },
+              Object {
+                "flexDirection": "row",
               },
             ]
           }
         >
           <View
             style={
-              Object {
-                "flexDirection": "row",
-                "height": 8,
-                "width": 35,
-              }
+              Array [
+                Object {
+                  "flexDirection": "row",
+                  "height": 8,
+                  "justifyContent": "space-between",
+                  "marginRight": 4,
+                  "width": 31,
+                },
+                Object {
+                  "flexDirection": "row",
+                },
+              ]
             }
           >
             <Text
@@ -1644,9 +1689,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
                     "color": "#ddd",
                     "fontSize": 8,
                   },
-                  Object {
-                    "marginRight": 4,
-                  },
+                  Object {},
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
                     "fontStyle": "normal",
@@ -1669,9 +1712,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
                     "color": "#ddd",
                     "fontSize": 8,
                   },
-                  Object {
-                    "marginRight": 4,
-                  },
+                  Object {},
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
                     "fontStyle": "normal",
@@ -1694,9 +1735,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
                     "color": "#ddd",
                     "fontSize": 8,
                   },
-                  Object {
-                    "marginRight": 4,
-                  },
+                  Object {},
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
                     "fontStyle": "normal",
@@ -1719,6 +1758,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
                 "fontSize": 12,
                 "fontWeight": "300",
                 "paddingLeft": 2,
+                "paddingRight": 6,
               }
             }
           >
@@ -1880,11 +1920,17 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
         >
           <View
             style={
-              Object {
-                "flexBasis": "auto",
-                "flexGrow": 1,
-                "flexShrink": 1,
-              }
+              Array [
+                Object {
+                  "flexBasis": "auto",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                },
+                Object {
+                  "flexDirection": undefined,
+                  "writingDirection": "ltr",
+                },
+              ]
             }
           >
             <Text
@@ -1900,7 +1946,6 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
                   },
                   Object {
                     "direction": "ltr",
-                    "textAlign": "left",
                     "writingDirection": "ltr",
                   },
                 ]
@@ -1934,8 +1979,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
                   "lineHeight": 21,
                 },
                 Object {
-                  "direction": "ltr",
-                  "justifyContent": "flex-start",
+                  "flexDirection": undefined,
                   "writingDirection": "ltr",
                 },
               ]
@@ -1956,20 +2000,29 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
                 "height": 14,
               },
               Object {
-                "direction": "ltr",
-                "justifyContent": "flex-start",
+                "flexDirection": undefined,
                 "writingDirection": "ltr",
+              },
+              Object {
+                "flexDirection": "row",
               },
             ]
           }
         >
           <View
             style={
-              Object {
-                "flexDirection": "row",
-                "height": 8,
-                "width": 35,
-              }
+              Array [
+                Object {
+                  "flexDirection": "row",
+                  "height": 8,
+                  "justifyContent": "space-between",
+                  "marginRight": 4,
+                  "width": 31,
+                },
+                Object {
+                  "flexDirection": "row",
+                },
+              ]
             }
           >
             <Text
@@ -1980,9 +2033,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
                     "color": "#ddd",
                     "fontSize": 8,
                   },
-                  Object {
-                    "marginRight": 4,
-                  },
+                  Object {},
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
                     "fontStyle": "normal",
@@ -2005,9 +2056,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
                     "color": "#ddd",
                     "fontSize": 8,
                   },
-                  Object {
-                    "marginRight": 4,
-                  },
+                  Object {},
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
                     "fontStyle": "normal",
@@ -2030,9 +2079,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
                     "color": "#ddd",
                     "fontSize": 8,
                   },
-                  Object {
-                    "marginRight": 4,
-                  },
+                  Object {},
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
                     "fontStyle": "normal",
@@ -2055,6 +2102,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
                 "fontSize": 12,
                 "fontWeight": "300",
                 "paddingLeft": 2,
+                "paddingRight": 6,
               }
             }
           >
@@ -2234,11 +2282,17 @@ exports[`Article playing rendering should render playing correctly 1`] = `
         >
           <View
             style={
-              Object {
-                "flexBasis": "auto",
-                "flexGrow": 1,
-                "flexShrink": 1,
-              }
+              Array [
+                Object {
+                  "flexBasis": "auto",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                },
+                Object {
+                  "flexDirection": undefined,
+                  "writingDirection": "ltr",
+                },
+              ]
             }
           >
             <Text
@@ -2254,7 +2308,6 @@ exports[`Article playing rendering should render playing correctly 1`] = `
                   },
                   Object {
                     "direction": "ltr",
-                    "textAlign": "left",
                     "writingDirection": "ltr",
                   },
                 ]
@@ -2288,8 +2341,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
                   "lineHeight": 21,
                 },
                 Object {
-                  "direction": "ltr",
-                  "justifyContent": "flex-start",
+                  "flexDirection": undefined,
                   "writingDirection": "ltr",
                 },
               ]
@@ -2310,20 +2362,29 @@ exports[`Article playing rendering should render playing correctly 1`] = `
                 "height": 14,
               },
               Object {
-                "direction": "ltr",
-                "justifyContent": "flex-start",
+                "flexDirection": undefined,
                 "writingDirection": "ltr",
+              },
+              Object {
+                "flexDirection": "row",
               },
             ]
           }
         >
           <View
             style={
-              Object {
-                "flexDirection": "row",
-                "height": 8,
-                "width": 35,
-              }
+              Array [
+                Object {
+                  "flexDirection": "row",
+                  "height": 8,
+                  "justifyContent": "space-between",
+                  "marginRight": 4,
+                  "width": 31,
+                },
+                Object {
+                  "flexDirection": "row",
+                },
+              ]
             }
           >
             <Text
@@ -2334,9 +2395,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
                     "color": "#ddd",
                     "fontSize": 8,
                   },
-                  Object {
-                    "marginRight": 4,
-                  },
+                  Object {},
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
                     "fontStyle": "normal",
@@ -2359,9 +2418,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
                     "color": "#ddd",
                     "fontSize": 8,
                   },
-                  Object {
-                    "marginRight": 4,
-                  },
+                  Object {},
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
                     "fontStyle": "normal",
@@ -2384,9 +2441,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
                     "color": "#ddd",
                     "fontSize": 8,
                   },
-                  Object {
-                    "marginRight": 4,
-                  },
+                  Object {},
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
                     "fontStyle": "normal",
@@ -2409,6 +2464,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
                 "fontSize": 12,
                 "fontWeight": "300",
                 "paddingLeft": 2,
+                "paddingRight": 6,
               }
             }
           >

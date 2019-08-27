@@ -151,7 +151,6 @@ describe('Article', () => {
 
     it('should render the title from left to right', () => {
       expect(wrapper.getByTestId('Article-title').props.style[1].writingDirection).toBe('ltr');
-      expect(wrapper.getByTestId('Article-title').props.style[1].direction).toBe('ltr');
     });
 
     it('should render a source name', () => {
@@ -218,7 +217,6 @@ describe('Article', () => {
 
     it('should render the title from right to left', () => {
       expect(wrapper.getByTestId('Article-title').props.style[1].writingDirection).toBe('rtl');
-      expect(wrapper.getByTestId('Article-title').props.style[1].direction).toBe('rtl');
     });
   });
 });

@@ -1,6 +1,6 @@
 import { formatDistanceToNow, parseISO } from 'date-fns';
 import React from 'react';
-import { ActivityIndicator, StyleProp, Text, TextStyle, TouchableHighlight, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, StyleProp, Text, TextStyle, TouchableHighlight, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { Image } from 'react-native-elements';
 import urlParse from 'url-parse';
 
@@ -66,7 +66,8 @@ export const Article: React.FC<Props> = React.memo(
     textDirection
   }) => {
 
-    const textDirectionStyle: StyleProp<TextStyle> = { direction: textDirection, writingDirection: textDirection, justifyContent: (textDirection === 'rtl') ? 'flex-end' : 'flex-start' };
+    const textDirectionStyle: StyleProp<TextStyle> = { writingDirection: textDirection, flexDirection: (textDirection === 'rtl') ? 'row-reverse' : undefined };
+    const rtlFlexDirectionStyle: StyleProp<ViewStyle> = { flexDirection: (textDirection === 'rtl') ? 'row-reverse' : 'row' };
 
     return (
       <TouchableHighlight
@@ -81,7 +82,7 @@ export const Article: React.FC<Props> = React.memo(
           <View style={styles.wrapper}>
             <View testID="Article-Button-section" style={styles.sectionBody}>
               <View style={styles.bodyMeta}>
-                <View style={styles.bodyMetaSource}>
+                <View style={[styles.bodyMetaSource, textDirectionStyle]}>
                   <SourceText authorName={authorName} sourceName={sourceName} textDirection={textDirection} url={url} />
                 </View>
               </View>
@@ -90,8 +91,8 @@ export const Article: React.FC<Props> = React.memo(
                   {title}
                 </Text>
               </View>
-              <View style={[styles.bodyFooter, textDirectionStyle]}>
-                <View style={styles.bodyFooterIcons}>
+              <View style={[styles.bodyFooter, textDirectionStyle, rtlFlexDirectionStyle]}>
+                <View style={[styles.bodyFooterIcons, rtlFlexDirectionStyle]}>
                   <Icon.FontAwesome5
                     name="circle"
                     size={8}
@@ -162,7 +163,7 @@ interface SourceTextProps { authorName: Props['authorName']; sourceName: Props['
 
 const SourceText: React.FC<SourceTextProps> = React.memo((props: SourceTextProps) => {
   let text;
-  const textDirectionStyle: StyleProp<TextStyle> = { direction: props.textDirection, writingDirection: props.textDirection, textAlign: (props.textDirection === 'rtl') ? 'right' : 'left' };
+  const textDirectionStyle: StyleProp<TextStyle> = { direction: props.textDirection, writingDirection: props.textDirection };
 
   if (props.authorName && props.sourceName) {
     text = `${props.authorName} on ${props.sourceName}`;

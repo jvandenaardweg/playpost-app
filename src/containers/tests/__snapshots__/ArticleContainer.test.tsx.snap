@@ -318,11 +318,17 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
             >
               <View
                 style={
-                  Object {
-                    "flexBasis": "auto",
-                    "flexGrow": 1,
-                    "flexShrink": 1,
-                  }
+                  Array [
+                    Object {
+                      "flexBasis": "auto",
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                    },
+                    Object {
+                      "flexDirection": undefined,
+                      "writingDirection": "ltr",
+                    },
+                  ]
                 }
               >
                 <Text
@@ -338,7 +344,6 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                       },
                       Object {
                         "direction": "ltr",
-                        "textAlign": "left",
                         "writingDirection": "ltr",
                       },
                     ]
@@ -372,8 +377,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                       "lineHeight": 21,
                     },
                     Object {
-                      "direction": "ltr",
-                      "justifyContent": "flex-start",
+                      "flexDirection": undefined,
                       "writingDirection": "ltr",
                     },
                   ]
@@ -396,20 +400,29 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                     "height": 14,
                   },
                   Object {
-                    "direction": "ltr",
-                    "justifyContent": "flex-start",
+                    "flexDirection": undefined,
                     "writingDirection": "ltr",
+                  },
+                  Object {
+                    "flexDirection": "row",
                   },
                 ]
               }
             >
               <View
                 style={
-                  Object {
-                    "flexDirection": "row",
-                    "height": 8,
-                    "width": 35,
-                  }
+                  Array [
+                    Object {
+                      "flexDirection": "row",
+                      "height": 8,
+                      "justifyContent": "space-between",
+                      "marginRight": 4,
+                      "width": 31,
+                    },
+                    Object {
+                      "flexDirection": "row",
+                    },
+                  ]
                 }
               >
                 <Text
@@ -420,9 +433,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                         "color": "#03A87C",
                         "fontSize": 8,
                       },
-                      Object {
-                        "marginRight": 4,
-                      },
+                      Object {},
                       Object {
                         "fontFamily": "FontAwesome5Free-Solid",
                         "fontStyle": "normal",
@@ -445,9 +456,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                         "color": "#ddd",
                         "fontSize": 8,
                       },
-                      Object {
-                        "marginRight": 4,
-                      },
+                      Object {},
                       Object {
                         "fontFamily": "FontAwesome5Free-Solid",
                         "fontStyle": "normal",
@@ -470,9 +479,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                         "color": "#ddd",
                         "fontSize": 8,
                       },
-                      Object {
-                        "marginRight": 4,
-                      },
+                      Object {},
                       Object {
                         "fontFamily": "FontAwesome5Free-Solid",
                         "fontStyle": "normal",
@@ -495,6 +502,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                     "fontSize": 12,
                     "fontWeight": "300",
                     "paddingLeft": 2,
+                    "paddingRight": 6,
                   }
                 }
               >
