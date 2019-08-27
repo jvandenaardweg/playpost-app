@@ -66,7 +66,7 @@ export const Article: React.FC<Props> = React.memo(
     textDirection
   }) => {
 
-    const textDirectionStyle: StyleProp<TextStyle> = { direction: textDirection, writingDirection: textDirection } ;
+    const textDirectionStyle: StyleProp<TextStyle> = { direction: textDirection, writingDirection: textDirection, justifyContent: (textDirection === 'rtl') ? 'flex-end' : 'flex-start' };
 
     return (
       <TouchableHighlight
@@ -162,7 +162,7 @@ interface SourceTextProps { authorName: Props['authorName']; sourceName: Props['
 
 const SourceText: React.FC<SourceTextProps> = React.memo((props: SourceTextProps) => {
   let text;
-  const textDirectionStyle: StyleProp<TextStyle> = { direction: props.textDirection, writingDirection: props.textDirection };
+  const textDirectionStyle: StyleProp<TextStyle> = { direction: props.textDirection, writingDirection: props.textDirection, textAlign: (props.textDirection === 'rtl') ? 'right' : 'left' };
 
   if (props.authorName && props.sourceName) {
     text = `${props.authorName} on ${props.sourceName}`;

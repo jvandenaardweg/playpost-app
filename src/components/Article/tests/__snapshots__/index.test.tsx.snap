@@ -76,6 +76,7 @@ exports[`Article active rendering should render active correctly 1`] = `
                   },
                   Object {
                     "direction": "ltr",
+                    "textAlign": "left",
                     "writingDirection": "ltr",
                   },
                 ]
@@ -110,6 +111,7 @@ exports[`Article active rendering should render active correctly 1`] = `
                 },
                 Object {
                   "direction": "ltr",
+                  "justifyContent": "flex-start",
                   "writingDirection": "ltr",
                 },
               ]
@@ -121,7 +123,7 @@ exports[`Article active rendering should render active correctly 1`] = `
           style={
             Array [
               Object {
-                "alignItems": "baseline",
+                "alignItems": "center",
                 "flex": 1,
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -131,6 +133,7 @@ exports[`Article active rendering should render active correctly 1`] = `
               },
               Object {
                 "direction": "ltr",
+                "justifyContent": "flex-start",
                 "writingDirection": "ltr",
               },
             ]
@@ -140,6 +143,7 @@ exports[`Article active rendering should render active correctly 1`] = `
             style={
               Object {
                 "flexDirection": "row",
+                "height": 8,
                 "width": 35,
               }
             }
@@ -428,6 +432,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
                   },
                   Object {
                     "direction": "ltr",
+                    "textAlign": "left",
                     "writingDirection": "ltr",
                   },
                 ]
@@ -462,6 +467,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
                 },
                 Object {
                   "direction": "ltr",
+                  "justifyContent": "flex-start",
                   "writingDirection": "ltr",
                 },
               ]
@@ -473,7 +479,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
           style={
             Array [
               Object {
-                "alignItems": "baseline",
+                "alignItems": "center",
                 "flex": 1,
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -483,6 +489,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
               },
               Object {
                 "direction": "ltr",
+                "justifyContent": "flex-start",
                 "writingDirection": "ltr",
               },
             ]
@@ -492,6 +499,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
             style={
               Object {
                 "flexDirection": "row",
+                "height": 8,
                 "width": 35,
               }
             }
@@ -778,6 +786,7 @@ exports[`Article full rendering should render full correctly 1`] = `
                   },
                   Object {
                     "direction": "ltr",
+                    "textAlign": "left",
                     "writingDirection": "ltr",
                   },
                 ]
@@ -812,6 +821,7 @@ exports[`Article full rendering should render full correctly 1`] = `
                 },
                 Object {
                   "direction": "ltr",
+                  "justifyContent": "flex-start",
                   "writingDirection": "ltr",
                 },
               ]
@@ -825,7 +835,7 @@ exports[`Article full rendering should render full correctly 1`] = `
           style={
             Array [
               Object {
-                "alignItems": "baseline",
+                "alignItems": "center",
                 "flex": 1,
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -835,6 +845,7 @@ exports[`Article full rendering should render full correctly 1`] = `
               },
               Object {
                 "direction": "ltr",
+                "justifyContent": "flex-start",
                 "writingDirection": "ltr",
               },
             ]
@@ -844,6 +855,7 @@ exports[`Article full rendering should render full correctly 1`] = `
             style={
               Object {
                 "flexDirection": "row",
+                "height": 8,
                 "width": 35,
               }
             }
@@ -1130,6 +1142,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
                   },
                   Object {
                     "direction": "ltr",
+                    "textAlign": "left",
                     "writingDirection": "ltr",
                   },
                 ]
@@ -1164,6 +1177,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
                 },
                 Object {
                   "direction": "ltr",
+                  "justifyContent": "flex-start",
                   "writingDirection": "ltr",
                 },
               ]
@@ -1175,7 +1189,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
           style={
             Array [
               Object {
-                "alignItems": "baseline",
+                "alignItems": "center",
                 "flex": 1,
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -1185,6 +1199,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
               },
               Object {
                 "direction": "ltr",
+                "justifyContent": "flex-start",
                 "writingDirection": "ltr",
               },
             ]
@@ -1194,6 +1209,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
             style={
               Object {
                 "flexDirection": "row",
+                "height": 8,
                 "width": 35,
               }
             }
@@ -1548,6 +1564,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
                   },
                   Object {
                     "direction": "ltr",
+                    "textAlign": "left",
                     "writingDirection": "ltr",
                   },
                 ]
@@ -1582,6 +1599,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
                 },
                 Object {
                   "direction": "ltr",
+                  "justifyContent": "flex-start",
                   "writingDirection": "ltr",
                 },
               ]
@@ -1593,7 +1611,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
           style={
             Array [
               Object {
-                "alignItems": "baseline",
+                "alignItems": "center",
                 "flex": 1,
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -1603,6 +1621,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
               },
               Object {
                 "direction": "ltr",
+                "justifyContent": "flex-start",
                 "writingDirection": "ltr",
               },
             ]
@@ -1612,6 +1631,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
             style={
               Object {
                 "flexDirection": "row",
+                "height": 8,
                 "width": 35,
               }
             }
@@ -1880,6 +1900,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
                   },
                   Object {
                     "direction": "ltr",
+                    "textAlign": "left",
                     "writingDirection": "ltr",
                   },
                 ]
@@ -1914,6 +1935,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
                 },
                 Object {
                   "direction": "ltr",
+                  "justifyContent": "flex-start",
                   "writingDirection": "ltr",
                 },
               ]
@@ -1925,7 +1947,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
           style={
             Array [
               Object {
-                "alignItems": "baseline",
+                "alignItems": "center",
                 "flex": 1,
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -1935,6 +1957,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
               },
               Object {
                 "direction": "ltr",
+                "justifyContent": "flex-start",
                 "writingDirection": "ltr",
               },
             ]
@@ -1944,6 +1967,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
             style={
               Object {
                 "flexDirection": "row",
+                "height": 8,
                 "width": 35,
               }
             }
@@ -2230,6 +2254,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
                   },
                   Object {
                     "direction": "ltr",
+                    "textAlign": "left",
                     "writingDirection": "ltr",
                   },
                 ]
@@ -2264,6 +2289,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
                 },
                 Object {
                   "direction": "ltr",
+                  "justifyContent": "flex-start",
                   "writingDirection": "ltr",
                 },
               ]
@@ -2275,7 +2301,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
           style={
             Array [
               Object {
-                "alignItems": "baseline",
+                "alignItems": "center",
                 "flex": 1,
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -2285,6 +2311,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
               },
               Object {
                 "direction": "ltr",
+                "justifyContent": "flex-start",
                 "writingDirection": "ltr",
               },
             ]
@@ -2294,6 +2321,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
             style={
               Object {
                 "flexDirection": "row",
+                "height": 8,
                 "width": 35,
               }
             }

@@ -338,6 +338,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                       },
                       Object {
                         "direction": "ltr",
+                        "textAlign": "left",
                         "writingDirection": "ltr",
                       },
                     ]
@@ -372,6 +373,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                     },
                     Object {
                       "direction": "ltr",
+                      "justifyContent": "flex-start",
                       "writingDirection": "ltr",
                     },
                   ]
@@ -385,7 +387,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "alignItems": "baseline",
+                    "alignItems": "center",
                     "flex": 1,
                     "flexBasis": "auto",
                     "flexDirection": "row",
@@ -395,6 +397,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                   },
                   Object {
                     "direction": "ltr",
+                    "justifyContent": "flex-start",
                     "writingDirection": "ltr",
                   },
                 ]
@@ -404,6 +407,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                 style={
                   Object {
                     "flexDirection": "row",
+                    "height": 8,
                     "width": 35,
                   }
                 }
