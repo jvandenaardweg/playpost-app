@@ -319,7 +319,17 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         const result = await RNIap.initConnection();
 
         if (Platform.OS === 'android') {
-          await RNIap.consumeAllItemsAndroid();
+          const purchases = await this.getAvailablePurchases();
+
+          for (const purchase of purchases) {
+            if (!purchase.purchaseToken) {
+              throw new Error('Previous purchase has no purchase token.');
+            }
+
+            await RNIap.consumePurchaseAndroid(purchase.purchaseToken);
+          }
+
+          // await RNIap.consumeAllItemsAndroid();
         }
 
         if (!result) { throw new Error(ALERT_SUBSCRIPTION_INIT_FAIL); }
