@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
@@ -72,7 +72,7 @@ export default StyleSheet.create({
   bodyTitleText: {
     fontSize: fonts.fontSize.title,
     lineHeight: Math.ceil(fonts.fontSize.title * 1.2),
-    fontWeight: fonts.fontWeight.semibold,
+    fontWeight: Platform.OS === 'ios' ? fonts.fontWeight.semibold : fonts.fontWeight.bold,
     color: colors.titleDefault,
     // fontFamily: 'Inter-SemiBold'
   },
