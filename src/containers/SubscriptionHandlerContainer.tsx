@@ -17,6 +17,7 @@ import { getUser } from '../reducers/user';
 import { selectIsLoggedIn } from '../selectors/auth';
 import { selectActiveSubscriptionProductId, selectIsSubscribed, selectSubscriptionsError, selectSubscriptionsIsLoadingRestore, selectSubscriptionsIsLoadingUpgrade, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
 import { selectUserDetails, selectUserHasSubscribedBefore } from '../selectors/user';
+import * as inAppPurchaseHelper from '../utils/in-app-purchase-helper';
 
 interface IProps {
   navigation: NavigationScreenProp<NavigationRoute>;
@@ -172,21 +173,8 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
   }
 
   finishTransaction = async (purchase: RNIap.ProductPurchase) => {
-    if (Platform.OS === 'android') {
-      if (!purchase.purchaseToken) {
-        throw new Error('Purchase Token is not found.')
-      }
-
-      return RNIap.acknowledgePurchaseAndroid(purchase.purchaseToken);
-    }
-
-    if (!purchase.transactionId) {
-      throw new Error('Transaction ID is not found.');
-    }
-
-    return RNIap.finishTransactionIOS(purchase.transactionId);
+    return inAppPurchaseHelper.finishSubscriptionTransaction(purchase)
   }
-
 
   /**
    * Method to check if the user still has an active subscription when he/she opens the app again.

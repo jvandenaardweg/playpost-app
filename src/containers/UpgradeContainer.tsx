@@ -29,6 +29,7 @@ import { getUser } from '../reducers/user';
 import { selectActiveSubscriptionProductId, selectIsSubscribed, selectSubscriptionsError, selectSubscriptionsIsLoadingRestore, selectSubscriptionsIsLoadingUpgrade, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
 import { selectUserDetails, selectUserHasSubscribedBefore } from '../selectors/user';
 import { selectTotalAvailableVoices } from '../selectors/voices';
+import * as inAppPurchaseHelper from '../utils/in-app-purchase-helper';
 
 interface State {
   readonly subscriptions: Array<RNIap.Subscription<string>>;
@@ -254,17 +255,17 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       // Let's get the latest purchase receipt and validate that on the server
 
       // Get the latest receipt from the purchases to validate
-      const { transactionReceipt, productId, transactionId } = this.getLatestPurchase(purchases);
+      const purchase = this.getLatestPurchase(purchases);
 
-      if (!transactionId) {
+      if (!purchase.transactionId) {
         throw new Error('transactionId is not found in latest purchase.');
       }
 
       // Validate the receipt on our server
-      await this.props.validateSubscriptionReceipt(productId, transactionReceipt);
+      await this.props.validateSubscriptionReceipt(purchase.productId, purchase.transactionReceipt);
 
       // Finish the transaction, if it was not finished yet
-      await this.finishTransaction(transactionId);
+      await this.finishSubscriptionTransaction(purchase);
 
       // The validation result is handled in SubscriptionHandlerContainer
     } catch (err) {
@@ -277,8 +278,8 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  finishTransaction = async (transactionId: string) => {
-    return RNIap.finishTransactionIOS(transactionId);
+  finishSubscriptionTransaction = async (purchase: RNIap.ProductPurchase) => {
+    return inAppPurchaseHelper.finishSubscriptionTransaction(purchase)
   }
 
   requestSubscription = (productId: string): Promise<string> => {
