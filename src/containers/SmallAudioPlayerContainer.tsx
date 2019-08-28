@@ -40,6 +40,7 @@ export class SmallAudioPlayerContainerComponent extends React.PureComponent<Prop
 
     await TrackPlayer.default.updateOptions({
       stopWithApp: false,
+      icon: require('../assets/images/logo-1024.png'),
       capabilities: [
         TrackPlayer.Capability.Play,
         TrackPlayer.Capability.Pause,

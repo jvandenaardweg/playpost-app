@@ -378,6 +378,8 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         }
 
         if (localAudiofilePath) {
+          const artwork = article.imageUrl || require('../assets/images/logo-1024.png');
+
           return this.props.setTrack(
             {
               artist,
@@ -386,7 +388,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
               title: article.title || '',
               url: localAudiofilePath,
               duration: audiofile.length,
-              artwork: require('../assets/images/logo-1024.png'),
+              artwork,
               // contentType
               contentType: 'audio/mpeg',
               key: audiofile.id,
