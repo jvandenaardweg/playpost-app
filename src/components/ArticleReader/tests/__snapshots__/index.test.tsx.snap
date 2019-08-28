@@ -139,6 +139,26 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
             display: none;
           }
 
+          pre {
+            margin-left: -12px;
+            margin-right: -12px;
+            padding: 12px;
+            background-color: #444444;
+          }
+
+          pre,
+          pre p {
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-size: 13px;
+            font-family: monospace;
+            color: #C5C5C5;
+          }
+
+          code {
+            font-size: 13px;
+          }
+
           table {
             width: 100%;
           }
@@ -352,6 +372,26 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
             margin-bottom: 12px;
             margin-top: 12px;
             display: none;
+          }
+
+          pre {
+            margin-left: -12px;
+            margin-right: -12px;
+            padding: 12px;
+            background-color: #EEEEEE;
+          }
+
+          pre,
+          pre p {
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-size: 13px;
+            font-family: monospace;
+            color: #000000;
+          }
+
+          code {
+            font-size: 13px;
           }
 
           table {
@@ -569,6 +609,26 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
             display: none;
           }
 
+          pre {
+            margin-left: -12px;
+            margin-right: -12px;
+            padding: 12px;
+            background-color: #EEEEEE;
+          }
+
+          pre,
+          pre p {
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-size: 13px;
+            font-family: monospace;
+            color: #000000;
+          }
+
+          code {
+            font-size: 13px;
+          }
+
           table {
             width: 100%;
           }
@@ -776,6 +836,26 @@ exports[`ArticleReader rendering no author name should render no authorName when
             margin-bottom: 12px;
             margin-top: 12px;
             display: none;
+          }
+
+          pre {
+            margin-left: -12px;
+            margin-right: -12px;
+            padding: 12px;
+            background-color: #EEEEEE;
+          }
+
+          pre,
+          pre p {
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-size: 13px;
+            font-family: monospace;
+            color: #000000;
+          }
+
+          code {
+            font-size: 13px;
           }
 
           table {
@@ -987,6 +1067,26 @@ exports[`ArticleReader rendering no html should render a different HTML output w
             display: none;
           }
 
+          pre {
+            margin-left: -12px;
+            margin-right: -12px;
+            padding: 12px;
+            background-color: #EEEEEE;
+          }
+
+          pre,
+          pre p {
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-size: 13px;
+            font-family: monospace;
+            color: #000000;
+          }
+
+          code {
+            font-size: 13px;
+          }
+
           table {
             width: 100%;
           }
@@ -1194,6 +1294,26 @@ exports[`ArticleReader rendering right to left content should render correctly 1
             margin-bottom: 12px;
             margin-top: 12px;
             display: none;
+          }
+
+          pre {
+            margin-left: -12px;
+            margin-right: -12px;
+            padding: 12px;
+            background-color: #EEEEEE;
+          }
+
+          pre,
+          pre p {
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-size: 13px;
+            font-family: monospace;
+            color: #000000;
+          }
+
+          code {
+            font-size: 13px;
           }
 
           table {

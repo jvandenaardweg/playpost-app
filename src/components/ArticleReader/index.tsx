@@ -24,6 +24,7 @@ interface ThemeStyles {
   highlightColor: string;
   metaColor: string;
   titleColor: string;
+  highlightedBackgroundColor: string;
 }
 
 export const ArticleReader: React.FC<Props> = React.memo(({
@@ -75,6 +76,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
     let highlightColor = colors.black;
     let metaColor = colors.paragraphGrayed;
     let titleColor = colors.black;
+    let highlightedBackgroundColor = colors.grayLightest;
 
     if (themeProp === 'dark') {
       backgroundColor = colors.grayDarkest;
@@ -83,6 +85,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
       highlightColor = colors.gray;
       metaColor = colors.gray;
       titleColor = colors.white;
+      highlightedBackgroundColor = colors.grayDarker;
     }
 
     return {
@@ -91,7 +94,8 @@ export const ArticleReader: React.FC<Props> = React.memo(({
       paragraphColor,
       highlightColor,
       metaColor,
-      titleColor
+      titleColor,
+      highlightedBackgroundColor
     };
   }
 
@@ -206,6 +210,26 @@ export const ArticleReader: React.FC<Props> = React.memo(({
             margin-bottom: ${spacing.default}px;
             margin-top: ${spacing.default}px;
             display: none;
+          }
+
+          pre {
+            margin-left: -${spacing.default}px;
+            margin-right: -${spacing.default}px;
+            padding: ${spacing.default}px;
+            background-color: ${themeStyle.highlightedBackgroundColor};
+          }
+
+          pre,
+          pre p {
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-size: ${fonts.fontSize.small}px;
+            font-family: monospace;
+            color: ${themeStyle.highlightColor};
+          }
+
+          code {
+            font-size: ${fonts.fontSize.small}px;
           }
 
           table {
