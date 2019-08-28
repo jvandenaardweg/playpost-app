@@ -118,12 +118,7 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
     if (!isLoggedIn) { return; }
 
     try {
-      const { productId, transactionReceipt, transactionId } = purchase;
-
-      if (!transactionId) {
-        this.props.setIsLoadingUpgrade(false);
-        return this.showErrorAlert('Purchase failed', 'No transactionId present in purchase.');
-      }
+      const { productId, transactionReceipt } = purchase;
 
       if (!productId) {
         this.props.setIsLoadingUpgrade(false);
@@ -137,7 +132,7 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
       await this.props.validateSubscriptionReceipt(productId, transactionReceipt);
 
       // Finish the transaction after we validated the receipt
-      await this.finishTransaction(transactionId);
+      await this.finishTransaction(purchase);
 
       Analytics.trackEvent('Subscriptions upgrade success', { Status: 'success', ProductId: purchase.productId, UserId: this.analyticsUserId });
 
@@ -176,8 +171,20 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
     );
   }
 
-  finishTransaction = async (transactionId: string) => {
-    return RNIap.finishTransactionIOS(transactionId);
+  finishTransaction = async (purchase: RNIap.ProductPurchase) => {
+    if (Platform.OS === 'android') {
+      if (!purchase.purchaseToken) {
+        throw new Error('Purchase Token is not found.')
+      }
+
+      return RNIap.acknowledgePurchaseAndroid(purchase.purchaseToken);
+    }
+
+    if (!purchase.transactionId) {
+      throw new Error('Transaction ID is not found.');
+    }
+
+    return RNIap.finishTransactionIOS(purchase.transactionId);
   }
 
 

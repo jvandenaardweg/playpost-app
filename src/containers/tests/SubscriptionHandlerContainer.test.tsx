@@ -254,7 +254,7 @@ describe('SubscriptionHandlerContainer', () => {
       expect(spyValidateSubscriptionReceipt).toHaveBeenCalledWith(productId, transactionReceipt);
 
       expect(spyFinishTransaction).toHaveBeenCalledTimes(1);
-      expect(spyFinishTransaction).toHaveBeenCalledWith(transactionId);
+      expect(spyFinishTransaction).toHaveBeenCalledWith(mockPurchase);
     });
 
     it('should correctly handle an error inside handlePurchaseUpdateListener when productId is empty', async () => {
@@ -284,35 +284,6 @@ describe('SubscriptionHandlerContainer', () => {
 
       expect(spyShowErrorAlert).toHaveBeenCalledTimes(1);
       expect(spyShowErrorAlert).toHaveBeenCalledWith('Purchase failed', 'No productId present in purchase.');
-    });
-
-    it('should correctly handle an error inside handlePurchaseUpdateListener when transactionId is empty', async () => {
-      const productId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
-      const transactionReceipt = '[REDACTED]';
-      const transactionId = '';
-      const transactionDate = 1566204171000;
-      const mockPurchase = { productId, transactionReceipt, transactionId, transactionDate }
-
-      const props = {
-        ...defaultProps,
-        isSubscribed: false
-      }
-
-      wrapper.update(<SubscriptionHandlerContainerComponent {...props}><Text>Container test</Text></SubscriptionHandlerContainerComponent>)
-      const testInstance: SubscriptionHandlerContainerComponent = wrapper.root.instance;
-
-      testInstance.context.isConnected = true;
-
-      const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert')
-
-      // Run the handler with mock data to simulate a purchase
-      await testInstance.handlePurchaseUpdateListener(mockPurchase)
-
-      expect(testInstance.props.setIsLoadingUpgrade).toHaveBeenCalledTimes(1);
-      expect(testInstance.props.setIsLoadingUpgrade).toHaveBeenCalledWith(false);
-
-      expect(spyShowErrorAlert).toHaveBeenCalledTimes(1);
-      expect(spyShowErrorAlert).toHaveBeenCalledWith('Purchase failed', 'No transactionId present in purchase.');
     });
 
     it('should correctly handle an error by handlePurchaseErrorListener', async () => {
@@ -393,5 +364,10 @@ describe('SubscriptionHandlerContainer', () => {
       expect(spyShowErrorAlert).toHaveBeenCalledTimes(1);
       expect(spyShowErrorAlert).toHaveBeenCalledWith('Subscription is expired', expect.anything());
     });
+
+    // TODO: create test
+    // it('should correctly handle an error inside finishTransaction', () => {
+
+    // })
   });
 });
