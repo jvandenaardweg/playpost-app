@@ -224,17 +224,15 @@ describe('ArticleContainer', () => {
       expect(spySetTrack).toHaveBeenCalledTimes(1);
       expect(spySetTrack).toHaveBeenCalledWith(
         {
-          album: 'Medium',
-          artist: 'Cindy Lamothe',
-          artwork: {
-            testUri: '../../../src/assets/images/logo-1024.png'
-          },
+          album: articleMock.sourceName,
+          artist: articleMock.authorName,
+          artwork: articleMock.imageUrl,
           contentType: 'audio/mpeg',
-          duration: 415.60816326530613,
-          id: '6e455ab5-b8e4-4bb9-b43c-b764147c7b4e',
-          key: '6e455ab5-b8e4-4bb9-b43c-b764147c7b4e',
+          duration: articleMock.audiofiles[0].length,
+          id: articleMock.audiofiles[0].id,
+          key: articleMock.audiofiles[0].id,
           pitchAlgorithm: TrackPlayer.PitchAlgorithm.Voice,
-          title: 'Strategies to Pull Yourself Out of a Bad Mood',
+          title: articleMock.title,
           url: expectedLocalAudiofilePath
         },
         '98e0c749-3945-45d4-980b-0e5756339de5'

@@ -139,6 +139,10 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
             display: none;
           }
 
+          table {
+            width: 100%;
+          }
+
         </style>
       </head>
         <body>
@@ -348,6 +352,10 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
             margin-bottom: 12px;
             margin-top: 12px;
             display: none;
+          }
+
+          table {
+            width: 100%;
           }
 
         </style>
@@ -561,6 +569,10 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
             display: none;
           }
 
+          table {
+            width: 100%;
+          }
+
         </style>
       </head>
         <body>
@@ -764,6 +776,10 @@ exports[`ArticleReader rendering no author name should render no authorName when
             margin-bottom: 12px;
             margin-top: 12px;
             display: none;
+          }
+
+          table {
+            width: 100%;
           }
 
         </style>
@@ -971,6 +987,10 @@ exports[`ArticleReader rendering no html should render a different HTML output w
             display: none;
           }
 
+          table {
+            width: 100%;
+          }
+
         </style>
       </head>
         <body>
@@ -1174,6 +1194,10 @@ exports[`ArticleReader rendering right to left content should render correctly 1
             margin-bottom: 12px;
             margin-top: 12px;
             display: none;
+          }
+
+          table {
+            width: 100%;
           }
 
         </style>

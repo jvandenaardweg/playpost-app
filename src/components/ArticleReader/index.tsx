@@ -208,6 +208,10 @@ export const ArticleReader: React.FC<Props> = React.memo(({
             display: none;
           }
 
+          table {
+            width: 100%;
+          }
+
         </style>
       </head>`;
   }
