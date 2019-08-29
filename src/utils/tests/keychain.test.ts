@@ -2,8 +2,6 @@ import * as ReactNativeKeychain from 'react-native-keychain';
 import { APP_BUNDLE_ID } from '../../constants/bundle-id';
 import * as KeychainHelper from '../keychain';
 
-jest.mock('react-native-keychain');
-
 describe('kechain', () => {
 
   describe('getKeychainArguments()', () => {
