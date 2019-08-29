@@ -1,11 +1,9 @@
 import * as RNFS from 'react-native-fs'
 import RNFetchBlob from 'rn-fetch-blob';
-import { getLocalFilePath, downloadVoicePreview, downloadArticleAudiofile } from '../index';
+import { downloadArticleAudiofile, downloadVoicePreview, getLocalFilePath } from '../index';
 
-import voiceMock from '../../../tests/__mocks__/voice-en-gb';
 import articleMock from '../../../tests/__mocks__/article-with-audio-default-voice';
-// jest.mock('react-native-fs');
-// jest.mock('rn-fetch-blob');
+import voiceMock from '../../../tests/__mocks__/voice-en-gb';
 
 describe('cache', () => {
   afterEach(() => {
