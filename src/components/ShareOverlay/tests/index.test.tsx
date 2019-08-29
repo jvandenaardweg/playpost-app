@@ -7,7 +7,14 @@ import * as KeychainHelper from '../../../utils/keychain';
 import { Animated } from 'react-native';
 import { ShareOverlay } from '../index';
 
-// jest.useFakeTimers();
+// Mock our store, since we use a "store.dispatch" in the component
+jest.mock('../../../store', () => ({
+  dispatch: jest.fn()
+}));
+
+jest.mock('../../../reducers/auth', () => ({
+  setAuthToken: jest.fn()
+}))
 
 jest.mock('Animated', () => {
   const ActualAnimated = require.requireActual('Animated');
@@ -62,6 +69,7 @@ describe('ShareOverlay', () => {
       const spyRenderModal = jest.spyOn(testInstance, 'renderModal').mockReturnValueOnce(null)
       const spyRenderShareModal = jest.spyOn(testInstance, 'renderShareModal').mockReturnValueOnce(undefined)
       const spyAnimateIn = jest.spyOn(testInstance, 'animateIn').mockResolvedValueOnce()
+      const spySetAuthToken = jest.spyOn(testInstance, 'setAuthToken').mockResolvedValueOnce('' as never)
 
       // Just assume we are logged in and have a token
       const spyGetToken = jest.spyOn(KeychainHelper, 'getToken').mockResolvedValueOnce('testtoken')
@@ -78,8 +86,8 @@ describe('ShareOverlay', () => {
 
       expect(spyAnimateIn).toHaveBeenCalledTimes(1);
       expect(spyGetToken).toHaveBeenCalledTimes(1);
-
-      // TODO: check store dispatch
+      expect(spySetAuthToken).toHaveBeenCalledTimes(1);
+      expect(spySetAuthToken).toHaveBeenCalledWith('testtoken');
 
       // Should render the modals
       expect(spyRenderShareModal).toHaveBeenCalledTimes(1);
@@ -101,6 +109,7 @@ describe('ShareOverlay', () => {
       const spyRenderModal = jest.spyOn(testInstance, 'renderModal').mockReturnValueOnce(null)
       const spyRenderShareModal = jest.spyOn(testInstance, 'renderShareModal').mockReturnValueOnce(undefined)
       const spyAnimateIn = jest.spyOn(testInstance, 'animateIn').mockResolvedValueOnce()
+      const spySetAuthToken = jest.spyOn(testInstance, 'setAuthToken').mockResolvedValueOnce('' as never)
 
       // Just assume we are logged in and have a token
       const spyGetToken = jest.spyOn(KeychainHelper, 'getToken').mockResolvedValueOnce('testtoken')
@@ -117,8 +126,8 @@ describe('ShareOverlay', () => {
 
       expect(spyAnimateIn).toHaveBeenCalledTimes(1);
       expect(spyGetToken).toHaveBeenCalledTimes(1);
-
-      // TODO: check store dispatch
+      expect(spySetAuthToken).toHaveBeenCalledTimes(1);
+      expect(spySetAuthToken).toHaveBeenCalledWith('testtoken');
 
       // Should render the modals
       expect(spyRenderShareModal).toHaveBeenCalledTimes(1);
@@ -140,6 +149,7 @@ describe('ShareOverlay', () => {
       const spyRenderModal = jest.spyOn(testInstance, 'renderModal').mockReturnValueOnce(null)
       const spyRenderShareModal = jest.spyOn(testInstance, 'renderShareModal').mockReturnValueOnce(undefined)
       const spyAnimateIn = jest.spyOn(testInstance, 'animateIn').mockResolvedValueOnce()
+      const spySetAuthToken = jest.spyOn(testInstance, 'setAuthToken').mockResolvedValueOnce('' as never)
 
       // Just assume we are logged in and have a token
       const spyGetToken = jest.spyOn(KeychainHelper, 'getToken').mockResolvedValueOnce('testtoken')
@@ -156,8 +166,8 @@ describe('ShareOverlay', () => {
 
       expect(spyAnimateIn).toHaveBeenCalledTimes(1);
       expect(spyGetToken).toHaveBeenCalledTimes(1);
-
-      // TODO: check store dispatch
+      expect(spySetAuthToken).toHaveBeenCalledTimes(1);
+      expect(spySetAuthToken).toHaveBeenCalledWith('testtoken');
 
       // Should render the modals
       expect(spyRenderShareModal).toHaveBeenCalledTimes(1);
@@ -179,6 +189,7 @@ describe('ShareOverlay', () => {
       const spyRenderModal = jest.spyOn(testInstance, 'renderModal').mockReturnValueOnce(null)
       const spyRenderErrorMessageModal = jest.spyOn(testInstance, 'renderErrorMessageModal').mockReturnValueOnce(null)
       const spyAnimateIn = jest.spyOn(testInstance, 'animateIn').mockResolvedValueOnce()
+      const spySetAuthToken = jest.spyOn(testInstance, 'setAuthToken').mockResolvedValueOnce('' as never)
 
       // Just assume we are logged in and have a token
       const spyGetToken = jest.spyOn(KeychainHelper, 'getToken').mockRejectedValueOnce(new Error('Some test error'))
@@ -186,12 +197,15 @@ describe('ShareOverlay', () => {
       // Should start in loading state
       expect(testInstance.state.isLoading).toBe(true)
 
-      await testInstance.setup()
+      try {
+        await testInstance.setup()
+      } catch (err) {
+        //
+      }
 
       expect(spyAnimateIn).toHaveBeenCalledTimes(1);
       expect(spyGetToken).toHaveBeenCalledTimes(1);
-
-      // TODO: check store dispatch
+      expect(spySetAuthToken).toHaveBeenCalledTimes(0);
 
       // Should render the modals
       expect(spyRenderModal).toHaveBeenCalledTimes(2);
@@ -206,6 +220,9 @@ describe('ShareOverlay', () => {
 
     it('should close the share extension when calling closeOverlay()', async () => {
       const testInstance: ShareOverlay = wrapper;
+
+      // Mock the setting of the auth token
+      testInstance.setAuthToken = jest.fn();
 
       // Do not animate in our tests
       const spyAnimateOut = jest.spyOn(testInstance, 'animateOut').mockResolvedValueOnce()

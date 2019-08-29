@@ -67,6 +67,8 @@ export class ShareOverlay extends React.PureComponent<{}, State> {
     })
   }
 
+  setAuthToken = (token: string) => store.dispatch(setAuthToken(token));
+
   setup = async () => {
     try {
       // First, wait for the animation IN to be finished
@@ -76,12 +78,10 @@ export class ShareOverlay extends React.PureComponent<{}, State> {
       // Make sure the token from the main app is in our store
       const token = await keychain.getToken();
 
-      if (!token) {
-        throw new Error('You need to be logged in the Playpost app to use this feature.')
+      if (token) {
+        // Store the token in Redux, so we can determine if a user is logged in or not
+        this.setAuthToken(token);
       }
-
-      // Store the token in Redux, so we can determine if a user is logged in or not
-      store.dispatch(setAuthToken(token));
 
       const { type, value }: ShareData = await ShareExtension.data();
 
