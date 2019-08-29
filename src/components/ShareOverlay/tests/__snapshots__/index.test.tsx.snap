@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ShareOverlay rendering should render correctly 1`] = `
+<AnimatedComponent
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "rgba(0,0,0,0.7)",
+        "flex": 1,
+        "justifyContent": "center",
+      },
+      Object {
+        "opacity": 0,
+      },
+    ]
+  }
+/>
+`;

@@ -11,7 +11,7 @@ import { ShareModalContainer } from '../../containers/ShareModalContainer';
 
 import styles from './styles';
 
-interface ShareData { type: ShareExtensionType; value: ShareExtensionValue }
+interface ShareData { type: string; value: string }
 
 interface DocumentData {
   url: string;
@@ -19,52 +19,39 @@ interface DocumentData {
   title: string;
 }
 
-type ShareExtensionDocumentHtml = string | undefined;
-type ShareExtensionUrl = string | undefined;
-type ShareExtensionType = string | undefined;
-type ShareExtensionValue = string | undefined;
-
 interface State {
   isOpen: boolean;
   isLoading: boolean;
-  type: ShareExtensionType;
-  url: ShareExtensionUrl;
-  documentHtml: ShareExtensionDocumentHtml;
+  type: string;
+  url: string;
+  documentHtml: string;
   errorMessage: string;
   warningMessage: string;
 }
 
-interface Props {
-  animationDuration?: number;
-}
-
-export class ShareOverlay extends React.PureComponent<Props, State> {
-
-  static defaultProps = {
-    animationDuration: 200
-  };
-
+export class ShareOverlay extends React.PureComponent<{}, State> {
   state = {
     isOpen: true,
     isLoading: true,
     type: '',
     url: '',
-    documentHtml: undefined,
+    documentHtml: '',
     errorMessage: '',
     warningMessage: ''
   };
 
   opacityAnim = new Animated.Value(0);
+  animationDuration = 200;
 
-  componentDidMount(): void {
-    this.setup();
+  async componentDidMount(): Promise<void> {
+    await this.setup();
   }
 
   animateIn = (): Promise<void> => {
     return new Promise((resolve, reject) => {
       Animated.timing(this.opacityAnim, {
         toValue: 1,
-        duration: this.props.animationDuration,
+        duration: this.animationDuration,
         useNativeDriver: true
       }).start(() => resolve());
     })
@@ -74,16 +61,9 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
     return new Promise((resolve, reject) => {
       Animated.timing(this.opacityAnim, {
         toValue: 0,
-        duration: this.props.animationDuration,
+        duration: this.animationDuration,
         useNativeDriver: true
       }).start(() => resolve());
-    })
-  }
-
-  getShareData = (): Promise<ShareData> => {
-    return new Promise(async (resolve, reject) => {
-      const shareData: ShareData = await ShareExtension.data();
-      resolve(shareData);
     })
   }
 
@@ -96,17 +76,21 @@ export class ShareOverlay extends React.PureComponent<Props, State> {
       // Make sure the token from the main app is in our store
       const token = await keychain.getToken();
 
-      if (token) {
-        // Store the token in Redux, so we can determine if a user is logged in or not
-        store.dispatch(setAuthToken(token));
+      if (!token) {
+        throw new Error('You need to be logged in the Playpost app to use this feature.')
       }
 
-      const { type, value } = await this.getShareData();
+      // Store the token in Redux, so we can determine if a user is logged in or not
+      store.dispatch(setAuthToken(token));
 
-      let documentHtml: ShareExtensionDocumentHtml;
-      let url: ShareExtensionUrl;
+      const { type, value }: ShareData = await ShareExtension.data();
 
-      if (!value) { throw new Error('Did not receive anything to share to Playpost. Please try again.'); }
+      let documentHtml = '';
+      let url = '';
+
+      if (!value) {
+        throw new Error('Did not receive anything to share to Playpost. Please try again.');
+      }
 
       // If we have text/json, we probably have the documentHtml and url
       if (type === 'text/json') {

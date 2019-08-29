@@ -114,6 +114,7 @@ jest.mock('rn-fetch-blob', () => {
   }
 })
 
+jest.mock('react-native-share-extension');
 jest.mock('react-native-iap');
 jest.mock('react-native-video');
 jest.mock('react-native-splash-screen');
