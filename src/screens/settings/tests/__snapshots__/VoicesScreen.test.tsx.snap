@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SettingsVoicesScreen rendering should render correctly 1`] = `
+<Memo>
+  <InteractionManaged
+    isAnimated={true}
+    showActivityIndicator={false}
+  >
+    <withNavigation(Connect(VoiceSelectContainerComponent)) />
+  </InteractionManaged>
+</Memo>
+`;

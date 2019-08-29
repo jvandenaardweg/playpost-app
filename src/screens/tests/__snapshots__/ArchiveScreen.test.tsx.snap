@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArchiveScreen rendering should render correctly 1`] = `
+<Memo>
+  <InteractionManaged
+    isAnimated={true}
+    showActivityIndicator={true}
+  >
+    <Memo(Connect(PlaylistContainerComponent))
+      isArchiveScreen={true}
+    />
+  </InteractionManaged>
+</Memo>
+`;
