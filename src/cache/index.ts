@@ -14,12 +14,12 @@ export const getFileNameFromPath = (path: string) => {
  * A filePath could something like: "articles/ad3a5edb-d3f0-4857-ac8c-0dd920704324/audiofiles/4eb3076b-7621-4e06-a28a-4621daef1ecd.mp3"
  * (with a slash)
  */
-export const getLocalFilePath = (filePath: string, basePath: string) => {
+export const getLocalFilePath = (filePath: string, basePath: string): string => {
   const fileName = getFileNameFromPath(filePath);
   return `file://${basePath}/${fileName}`;
 };
 
-export const downloadVoicePreview = async (url: string) => {
+export const downloadVoicePreview = async (url: string): Promise<string> => {
   // Make sure the base path exists
   await RNFS.mkdir(LOCAL_CACHE_VOICE_PREVIEWS_PATH);
 
@@ -34,7 +34,7 @@ export const downloadVoicePreview = async (url: string) => {
   return `file://${result.path()}`;
 };
 
-export const downloadArticleAudiofile = async (url: string, filePath: string) => {
+export const downloadArticleAudiofile = async (url: string, filePath: string): Promise<string> => {
   // Make sure the base path exists
   await RNFS.mkdir(LOCAL_CACHE_AUDIOFILES_PATH);
 

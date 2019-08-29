@@ -90,12 +90,27 @@ jest.mock('@react-native-community/async-storage', () => mockAsyncStorage);
 
 jest.mock('rn-fetch-blob', () => {
   return {
+    DocumentDir: jest.fn(),
+    fetch: jest.fn(),
+    base64: jest.fn(),
+    android: jest.fn(),
+    ios: jest.fn(),
+    config: ({ path }: { path: string }) => ({
+      fetch: () => ({
+        path: jest.fn(() => path)
+      })
+    }),
+    session: jest.fn(),
     fs: {
       dirs: {
-        DocumentDir: ''
+        MainBundleDir: jest.fn(),
+        CacheDir: jest.fn(),
+        DocumentDir: jest.fn(),
       },
-      writeFile: () => Promise.resolve()
-    }
+    },
+    wrap: jest.fn(),
+    polyfill: jest.fn(),
+    JSONStream: jest.fn()
   }
 })
 
@@ -105,7 +120,8 @@ jest.mock('react-native-splash-screen');
 jest.mock('react-native-app-intro-slider');
 jest.mock('react-native-fs', () => {
   return {
-    DocumentDirectoryPath: jest.fn().mockRejectedValue('/test/path')
+    mkdir: jest.fn(),
+    DocumentDirectoryPath: 'local/test/path'
   }
 });
 jest.mock('react-native-device-info', () => {
