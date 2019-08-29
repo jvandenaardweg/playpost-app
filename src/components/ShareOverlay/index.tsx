@@ -43,8 +43,8 @@ export class ShareOverlay extends React.PureComponent<{}, State> {
   opacityAnim = new Animated.Value(0);
   animationDuration = 200;
 
-  async componentDidMount(): Promise<void> {
-    await this.setup();
+  componentDidMount() {
+    this.setup();
   }
 
   animateIn = (): Promise<void> => {
