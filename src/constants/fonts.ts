@@ -23,7 +23,7 @@ export default {
     medium: '500' as '500',
     semibold: Platform.OS === 'ios' ? '600' as '600' : '500' as '500', // Android's Robot has no semibold, so we fallback to bold
     bold: '700' as '700',
-    heavy: Platform.OS === 'ios' ? '800' as '800' : '900' as '900', // Android's Robot has no heavy, so we fallback to black
+    heavy: Platform.OS === 'ios' ? '800' as '800' : '700' as '700', // Android's Robot has no heavy, so we fallback to bold
     black: Platform.OS === 'ios' ? '800' as '800' : '900' as '900', // Apple's SF has no black, so we fallback to heavy
   }
 };

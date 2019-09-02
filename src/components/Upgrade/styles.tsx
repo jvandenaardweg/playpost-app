@@ -129,7 +129,7 @@ export default StyleSheet.create({
   },
   cardPrice: {
     fontSize: 48,
-    fontWeight: '800',
+    fontWeight: fonts.fontWeight.heavy,
     letterSpacing: -2,
     color: colors.black
   },
