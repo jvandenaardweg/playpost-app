@@ -1,4 +1,4 @@
-import RNIap, { ProductPurchase } from 'react-native-iap';
+import RNIap, { SubscriptionPurchase } from 'react-native-iap';
 import { SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../constants/in-app-purchase';
 import * as inAppPurchaseHelper from '../in-app-purchase-helper'
 
@@ -50,7 +50,7 @@ describe('in-app-purchase-helper', () => {
       const transactionId = '150000534161208';
       const transactionDate = 1566204171000;
       const purchaseToken = 'sometoken';
-      const mockPurchase: ProductPurchase = { productId, transactionReceipt, transactionId, transactionDate, purchaseToken }
+      const mockPurchase = { productId, transactionReceipt, transactionId, transactionDate, purchaseToken }
 
       // Mock like we are on iOS
       jest.mock('Platform', () => {
@@ -61,7 +61,7 @@ describe('in-app-purchase-helper', () => {
 
       const spyFinishTransactionIOS = jest.spyOn(RNIap, 'finishTransactionIOS')
 
-      await inAppPurchaseHelper.finishSubscriptionTransaction(mockPurchase);
+      await inAppPurchaseHelper.finishSubscriptionTransaction(mockPurchase as SubscriptionPurchase);
 
       expect(spyFinishTransactionIOS).toHaveBeenCalledTimes(1)
       expect(spyFinishTransactionIOS).toHaveBeenCalledWith(transactionId)
@@ -74,7 +74,9 @@ describe('in-app-purchase-helper', () => {
       const transactionId = '150000534161208';
       const transactionDate = 1566204171000;
       const purchaseToken = 'sometoken';
-      const mockPurchase: ProductPurchase = { productId, transactionReceipt, transactionId, transactionDate, purchaseToken }
+      const purchaseStateAndroid = 1;
+      const isAcknowledgedAndroid = undefined;
+      const mockPurchase = { productId, transactionReceipt, transactionId, transactionDate, purchaseToken, purchaseStateAndroid, isAcknowledgedAndroid }
 
       // Mock like we are on iOS
       jest.mock('Platform', () => {
@@ -85,7 +87,7 @@ describe('in-app-purchase-helper', () => {
 
       const spyAcknowledgePurchaseAndroid = jest.spyOn(RNIap, 'acknowledgePurchaseAndroid')
 
-      await inAppPurchaseHelper.finishSubscriptionTransaction(mockPurchase);
+      await inAppPurchaseHelper.finishSubscriptionTransaction(mockPurchase as SubscriptionPurchase);
 
       expect(spyAcknowledgePurchaseAndroid).toHaveBeenCalledTimes(1)
       expect(spyAcknowledgePurchaseAndroid).toHaveBeenCalledWith(purchaseToken)

@@ -20,6 +20,7 @@ import {
 import {
   URL_FEEDBACK,
   URL_MANAGE_APPLE_SUBSCRIPTIONS,
+  URL_MANAGE_GOOGLE_SUBSCRIPTIONS,
   URL_PRIVACY_POLICY,
   URL_TERMS_OF_USE
 } from '../constants/urls';
@@ -171,20 +172,16 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   }
 
   showManageSubscriptionAlert = (title: string, message: string) => {
-    let manageSubscriptionsButton: object = {
-      text: 'Manage Subscriptions',
-      onPress: () => {
-        Analytics.trackEvent('Subscriptions manage press', { ProductId: this.state.centeredSubscriptionProductId, UserId: this.analyticsUserId });
-        Linking.openURL(URL_MANAGE_APPLE_SUBSCRIPTIONS);
-      }
-    };
-
-    if (Platform.OS === 'android') {
-      manageSubscriptionsButton = {};
-    }
+    const manageSubscriptionsUrl = Platform.OS === 'ios' ? URL_MANAGE_APPLE_SUBSCRIPTIONS : `${URL_MANAGE_GOOGLE_SUBSCRIPTIONS}&sku=${this.state.centeredSubscriptionProductId}`;
 
     return Alert.alert(title, message, [
-      manageSubscriptionsButton,
+      {
+        text: 'Manage Subscriptions',
+        onPress: () => {
+          Analytics.trackEvent('Subscriptions manage press', { ProductId: this.state.centeredSubscriptionProductId, UserId: this.analyticsUserId });
+          Linking.openURL(manageSubscriptionsUrl);
+        }
+      },
       {
         text: 'OK',
         style: 'cancel'
@@ -193,13 +190,15 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   }
 
   handleOnPressUpgrade = async (productId: string) => {
+    const storeName = Platform.OS === 'ios' ? 'iTunes' : 'Google Play';
+
     // If it's a downgrade to an other paid subscription
     if (this.isDowngradePaidSubscription(productId)) {
       Analytics.trackEvent('Subscriptions downgrade', { Status: 'alert', ProductId: productId, UserId: this.analyticsUserId });
 
       return this.showManageSubscriptionAlert(
         'Downgrading Subscription?',
-        'Downgrading a subscription can only be done through iTunes.\n\n Press "Manage Subscriptions" below to manage your subscriptions.'
+        `Downgrading a subscription can only be done through ${storeName}.\n\n Press "Manage Subscriptions" below to manage your subscriptions.`
       );
     }
 
@@ -209,7 +208,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
       return this.showManageSubscriptionAlert(
         'Downgrade to Free?',
-        'To downgrade to Free you need to cancel your current subscription. Cancelling a subscription can only be done through iTunes.\n\n Press "Manage Subscriptions" below to manage your subscriptions.'
+        `To downgrade to Free you need to cancel your current subscription. Cancelling a subscription can only be done through ${storeName}.\n\n Press "Manage Subscriptions" below to manage your subscriptions.`
       );
     }
 
@@ -242,10 +241,10 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       Analytics.trackEvent('Subscriptions restore', { Status: 'restoring', UserId: this.analyticsUserId });
 
       // Get the previous purchases of the current user
-      const purchases = await this.getPurchaseHistory();
+      const purchases = await this.getAvailablePurchases();
 
       // If there are no previous purchases, there's nothing to restore...
-      if (!purchases.length) {
+      if (!purchases || !purchases.length) {
         this.props.setIsLoadingRestore(false);
         Analytics.trackEvent('Subscriptions restore nothing', { Status: 'nothing', UserId: this.analyticsUserId });
         return this.showErrorAlert(`Nothing to restore`, `We could not find any previous purchase to restore. If you think this is incorrect, please contact our support.`);
@@ -257,12 +256,20 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       // Get the latest receipt from the purchases to validate
       const purchase = this.getLatestPurchase(purchases);
 
-      if (!purchase.transactionId) {
-        throw new Error('transactionId is not found in latest purchase.');
+      if (Platform.OS === 'ios') {
+        if (!purchase.transactionId) {
+          throw new Error('transactionId is not found in latest purchase.');
+        }
+      }
+
+      if (Platform.OS === 'android') {
+        if (!purchase.purchaseToken) {
+          throw new Error('purchaseToken is not found in latest purchase.');
+        }
       }
 
       // Validate the receipt on our server
-      await this.props.validateSubscriptionReceipt(purchase.productId, purchase.transactionReceipt);
+      await this.props.validateSubscriptionReceipt(purchase.productId, purchase.transactionReceipt, Platform.OS);
 
       // Finish the transaction, if it was not finished yet
       await this.finishSubscriptionTransaction(purchase);
@@ -319,21 +326,9 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       try {
         const result = await RNIap.initConnection();
 
-        if (Platform.OS === 'android') {
-          const purchases = await this.getAvailablePurchases();
-
-          for (const purchase of purchases) {
-            if (!purchase.purchaseToken) {
-              throw new Error('Previous purchase has no purchase token.');
-            }
-
-            await RNIap.consumePurchaseAndroid(purchase.purchaseToken);
-          }
-
-          // await RNIap.consumeAllItemsAndroid();
+        if (!result) {
+          throw new Error(ALERT_SUBSCRIPTION_INIT_FAIL);
         }
-
-        if (!result) { throw new Error(ALERT_SUBSCRIPTION_INIT_FAIL); }
 
         // Pre-populate the app with subscriptions and previous purchases of the user
         const subscriptions = await RNIap.getSubscriptions(subscriptionProductIds);

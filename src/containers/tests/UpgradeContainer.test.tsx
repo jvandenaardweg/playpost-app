@@ -192,7 +192,7 @@ describe('UpgradeContainerComponent', () => {
     it('should correctly handle handleOnPressRestore() when a user has previous purchases', async () => {
       const testInstance = wrapper.root.instance;
 
-      const spyGetPurchaseHistory = jest.spyOn(testInstance, 'getPurchaseHistory').mockReturnValueOnce(mockApplePurchases)
+      const spyGetAvailablePurchases = jest.spyOn(testInstance, 'getAvailablePurchases').mockReturnValueOnce(mockApplePurchases)
       const spyGetLatestPurchase = jest.spyOn(testInstance, 'getLatestPurchase').mockReturnValueOnce(mockApplePurchases[0]);
       const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert');
       const spySetIsLoadingRestore = jest.spyOn(testInstance.props, 'setIsLoadingRestore');
@@ -205,8 +205,8 @@ describe('UpgradeContainerComponent', () => {
       expect(spySetIsLoadingRestore).toHaveBeenCalledTimes(1);
       expect(spySetIsLoadingRestore).toHaveBeenCalledWith(true);
 
-      expect(spyGetPurchaseHistory).toHaveBeenCalledTimes(1);
-      expect(spyGetPurchaseHistory).toHaveReturnedWith(mockApplePurchases)
+      expect(spyGetAvailablePurchases).toHaveBeenCalledTimes(1);
+      expect(spyGetAvailablePurchases).toHaveReturnedWith(mockApplePurchases)
 
       expect(spyShowErrorAlert).toHaveBeenCalledTimes(0);
 
@@ -214,13 +214,13 @@ describe('UpgradeContainerComponent', () => {
       expect(spyGetLatestPurchase).toHaveReturnedWith(mockApplePurchases[0]);
 
       expect(spyValidateSubscriptionReceipt).toHaveBeenCalledTimes(1);
-      expect(spyValidateSubscriptionReceipt).toHaveBeenCalledWith(mockApplePurchases[0].productId, mockApplePurchases[0].transactionReceipt);
+      expect(spyValidateSubscriptionReceipt).toHaveBeenCalledWith(mockApplePurchases[0].productId, mockApplePurchases[0].transactionReceipt, 'ios');
     });
 
     it('should correctly handle handleOnPressRestore() when a user has no previous purchases', async () => {
       const testInstance = wrapper.root.instance;
 
-      const spyGetPurchaseHistory = jest.spyOn(testInstance, 'getPurchaseHistory').mockReturnValueOnce([]);
+      const spyGetAvailablePurchases = jest.spyOn(testInstance, 'getAvailablePurchases').mockReturnValueOnce([]);
       const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert');
       const spySetIsLoadingRestore = jest.spyOn(testInstance.props, 'setIsLoadingRestore');
 
@@ -230,8 +230,8 @@ describe('UpgradeContainerComponent', () => {
       expect(spySetIsLoadingRestore).toHaveBeenCalledTimes(2);
       expect(spySetIsLoadingRestore).toHaveBeenLastCalledWith(false);
 
-      expect(spyGetPurchaseHistory).toHaveBeenCalledTimes(1);
-      expect(spyGetPurchaseHistory).toHaveReturnedWith([])
+      expect(spyGetAvailablePurchases).toHaveBeenCalledTimes(1);
+      expect(spyGetAvailablePurchases).toHaveReturnedWith([])
 
       expect(spyShowErrorAlert).toHaveBeenCalledTimes(1);
       expect(spyShowErrorAlert).toHaveBeenCalledWith('Nothing to restore', `We could not find any previous purchase to restore. If you think this is incorrect, please contact our support.`);
@@ -241,7 +241,7 @@ describe('UpgradeContainerComponent', () => {
     it('should show an error alert when an error throws inside handleOnPressRestore()', async () => {
       const testInstance = wrapper.root.instance;
 
-      jest.spyOn(testInstance, 'getPurchaseHistory').mockRejectedValueOnce(new Error('Some error!'));
+      jest.spyOn(testInstance, 'getAvailablePurchases').mockRejectedValueOnce(new Error('Some error!'));
       const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert');
       const spySetIsLoadingRestore = jest.spyOn(testInstance.props, 'setIsLoadingRestore');
 

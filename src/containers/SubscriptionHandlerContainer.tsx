@@ -112,7 +112,7 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
     }
   }
 
-  handlePurchaseUpdateListener = async (purchase: RNIap.ProductPurchase) => {
+  handlePurchaseUpdateListener = async (purchase: RNIap.SubscriptionPurchase) => {
     const { isLoggedIn } = this.props;
 
     // Just do not run anything when the user is not logged in yet
@@ -130,7 +130,7 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
       this.props.setIsLoadingUpgrade(true);
 
       // Validatation error is handeled in APIErrorAlertContainer
-      await this.props.validateSubscriptionReceipt(productId, transactionReceipt);
+      await this.props.validateSubscriptionReceipt(productId, transactionReceipt, Platform.OS);
 
       // Finish the transaction after we validated the receipt
       await this.finishTransaction(purchase);
@@ -158,6 +158,10 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
 
     const errorMessage = error && error.debugMessage ? error.debugMessage : JSON.stringify(error);
 
+    // @ts-ignore
+    // TODO: remove ts-ignore when types are updated: https://github.com/dooboolab/react-native-iap/pull/682
+    const isCancelled = error && error.code === 'E_USER_CANCELLED'; // Only on Android
+
     this.props.setIsLoadingUpgrade(false);
 
     Analytics.trackEvent('Subscriptions upgrade error', {
@@ -166,13 +170,16 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
       UserId: this.analyticsUserId
     });
 
-    this.showErrorAlert(
-      ALERT_TITLE_ERROR,
-      `If you canceled an upgrade, you can ignore this message.\n\nIf you tried to upgrade please contact our support with this error message:\n\n ${errorMessage}`
-    );
+    if (!isCancelled) {
+      this.showErrorAlert(
+        ALERT_TITLE_ERROR,
+        `If you canceled an upgrade, you can ignore this message.\n\nIf you tried to upgrade please contact our support with this error message:\n\n ${errorMessage}`
+      );
+    }
+
   }
 
-  finishTransaction = async (purchase: RNIap.ProductPurchase) => {
+  finishTransaction = async (purchase: RNIap.SubscriptionPurchase) => {
     return inAppPurchaseHelper.finishSubscriptionTransaction(purchase)
   }
 
@@ -214,7 +221,7 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
         );
 
         // Validate the receipt on our server
-        await this.props.validateSubscriptionReceipt(activeSubscriptionProductId, latestReceipt);
+        await this.props.validateSubscriptionReceipt(activeSubscriptionProductId, latestReceipt, Platform.OS);
 
         // Get the user with updated subscription data
         await this.props.getUser();
