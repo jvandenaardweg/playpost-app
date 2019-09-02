@@ -279,3 +279,12 @@ Context: working in new version 1.1.0 from version 1.0.0
 11. When done, merge `release-1.1.0` into `master` and run `npm run release`. This will generate a changelog and create a version tag in git.
 12. Open AppCenter and click the cog wheel on the `master` branche. Fill in the release notes and build `master`
 13. Version 1.1.0 of the App is now pushed to Apple for review
+
+# Use Xcode beta's
+If you have installed a beta version on your device and want to run the local development app:
+1. Download the Xcode beta that includes your iOS version.
+2. Install it under `/Applications`, like so: `/Applications/Xcode-beta.app`
+3. Change the `xcodebuild` SDK: `sudo xcode-select --switch /Applications/Xcode-beta.app/Contents/Developer`
+4. You can now run `npm run device:ios` again
+
+If you want to change it back, use: `sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer`
