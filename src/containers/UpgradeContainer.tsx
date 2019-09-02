@@ -190,10 +190,13 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   }
 
   handleOnPressUpgrade = async (productId: string) => {
+    const { activeSubscriptionProductId } = this.props;
     const storeName = Platform.OS === 'ios' ? 'iTunes' : 'Google Play';
+    const isDowngrade = this.isDowngradePaidSubscription(productId);
 
-    // If it's a downgrade to an other paid subscription
-    if (this.isDowngradePaidSubscription(productId)) {
+    // If it's a downgrade to an other paid subscription, and we are on iOS
+    // Just show a user can only downgrade through iTunes
+    if (isDowngrade && Platform.OS === 'ios') {
       Analytics.trackEvent('Subscriptions downgrade', { Status: 'alert', ProductId: productId, UserId: this.analyticsUserId });
 
       return this.showManageSubscriptionAlert(
@@ -218,7 +221,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
     this.setState({ centeredSubscriptionProductId: productId }, async () => {
       try {
-        const upgradeResult = await this.requestSubscription(productId);
+        const upgradeResult = await this.requestSubscription(productId, activeSubscriptionProductId);
 
         // The result of requestSubscription is handled in SubscriptionHandlerContainer
         return upgradeResult;
@@ -285,12 +288,12 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  finishSubscriptionTransaction = async (purchase: RNIap.ProductPurchase) => {
+  finishSubscriptionTransaction = async (purchase: RNIap.ProductPurchase): Promise<void | RNIap.PurchaseResult> => {
     return inAppPurchaseHelper.finishSubscriptionTransaction(purchase)
   }
 
-  requestSubscription = (productId: string): Promise<string> => {
-    return RNIap.requestSubscription(productId);
+  requestSubscription = (productId: string, activeProductId: string): Promise<string> => {
+    return inAppPurchaseHelper.requestSubscription(productId, activeProductId);
   }
 
   isDowngradePaidSubscription = (productId: string): boolean => {
