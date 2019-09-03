@@ -12,6 +12,9 @@ jest.useFakeTimers();
 import subscriptionValidationResultActiveMock from '../../../tests/__mocks__/subscription-validation-result-active';
 import subscriptionValidationResultExpiredMock from '../../../tests/__mocks__/subscription-validation-result-expired';
 import userMock from '../../../tests/__mocks__/user-active-subscription';
+
+import userInAppSubscriptionGoogle from '../../../tests/__mocks__/in-app-subscription-google';
+
 import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../constants/in-app-purchase';
 
 
@@ -28,6 +31,7 @@ const defaultProps: any = {
   validationResult: null,
   isSubscribed: false,
   activeSubscriptionProductId: SUBSCRIPTION_PRODUCT_ID_FREE,
+  activeInAppSubscription: null,
   userDetails: userMock,
   userHasSubscribedBefore: false,
   isLoadingUpgrade: false,
@@ -79,28 +83,28 @@ describe('SubscriptionHandlerContainer', () => {
       jest.restoreAllMocks();
     });
 
-    it('should run validateActiveSubscriptionAtInterval when interval time passes', () => {
+    it('should run syncUserInAppSubscriptionWithAPI when interval time passes', () => {
       const testInstance: SubscriptionHandlerContainerComponent = wrapper.root.instance;
 
-      testInstance.validateActiveSubscriptionAtInterval = jest.fn();
+      testInstance.syncUserInAppSubscriptionWithAPI = jest.fn();
 
       expect(testInstance.validateSubscriptionInterval).toBeDefined();
 
       // Mock
       jest.runOnlyPendingTimers();
 
-      expect(testInstance.validateActiveSubscriptionAtInterval).toHaveBeenCalledTimes(1);
+      expect(testInstance.syncUserInAppSubscriptionWithAPI).toHaveBeenCalledTimes(1);
 
     });
 
-    it('should correctly run validateActiveSubscriptionAtInterval when the user his subscription is expired locally', async () => {
+    it('should correctly run syncUserInAppSubscriptionWithAPI when the user his subscription is expired locally', async () => {
       const activeSubscriptionProductId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
 
       const props = {
         ...defaultProps,
         activeSubscriptionProductId,
         isSubscribed: true,
-        validationResult: subscriptionValidationResultExpiredMock
+        activeInAppSubscription: userInAppSubscriptionGoogle
       }
 
       wrapper.update(<SubscriptionHandlerContainerComponent {...props}><Text>Container test</Text></SubscriptionHandlerContainerComponent>)
@@ -108,17 +112,17 @@ describe('SubscriptionHandlerContainer', () => {
 
       testInstance.context.isConnected = true;
 
-      const spyValidateSubscriptionReceipt = jest.spyOn(testInstance.props, 'validateSubscriptionReceipt');
+      // const spyValidateSubscriptionReceipt = jest.spyOn(testInstance.props, 'validateSubscriptionReceipt');
       const spyGetUser = jest.spyOn(testInstance.props, 'getUser');
 
-      await testInstance.validateActiveSubscriptionAtInterval();
+      await testInstance.syncUserInAppSubscriptionWithAPI();
 
-      expect(spyValidateSubscriptionReceipt).toHaveBeenCalledTimes(1);
-      expect(spyValidateSubscriptionReceipt).toHaveBeenCalledWith(activeSubscriptionProductId, '[REDACTED]', 'ios');
+      // expect(spyValidateSubscriptionReceipt).toHaveBeenCalledTimes(1);
+      // expect(spyValidateSubscriptionReceipt).toHaveBeenCalledWith(activeSubscriptionProductId, '[REDACTED]', 'ios');
       expect(spyGetUser).toHaveBeenCalledTimes(1);
     });
 
-    it('should not run validateActiveSubscriptionAtInterval when the user his subscription is not expired locally', async () => {
+    it('should not run syncUserInAppSubscriptionWithAPI when the user his subscription is not expired locally', async () => {
       const activeSubscriptionProductId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
 
       // Set expires date to tomorrow
@@ -139,18 +143,19 @@ describe('SubscriptionHandlerContainer', () => {
 
       testInstance.context.isConnected = true;
 
-      await testInstance.validateActiveSubscriptionAtInterval();
+      await testInstance.syncUserInAppSubscriptionWithAPI();
 
       expect(testInstance.props.validateSubscriptionReceipt).toHaveBeenCalledTimes(0);
       expect(testInstance.props.getUser).toHaveBeenCalledTimes(0);
     });
 
-    it('should not run validateActiveSubscriptionAtInterval when the user is not subscribed', async () => {
+    it('should not run syncUserInAppSubscriptionWithAPI when the user is not subscribed', async () => {
       const activeSubscriptionProductId = SUBSCRIPTION_PRODUCT_ID_FREE;
 
       const props = {
         ...defaultProps,
         activeSubscriptionProductId,
+        activeInAppSubscription: userInAppSubscriptionGoogle,
         isSubscribed: false
       }
 
@@ -159,7 +164,7 @@ describe('SubscriptionHandlerContainer', () => {
 
       testInstance.context.isConnected = true;
 
-      await testInstance.validateActiveSubscriptionAtInterval();
+      await testInstance.syncUserInAppSubscriptionWithAPI();
 
       expect(testInstance.props.validateSubscriptionReceipt).toHaveBeenCalledTimes(0);
       expect(testInstance.props.getUser).toHaveBeenCalledTimes(0);

@@ -30,10 +30,10 @@ import {
   URL_TERMS_OF_USE
 } from '../constants/urls';
 import { RootState } from '../reducers';
-import { setIsLoadingRestore, setIsLoadingUpgrade, validateSubscriptionReceipt } from '../reducers/subscriptions';
+import { setIsLoadingRestore, setIsLoadingUpgrade } from '../reducers/subscriptions';
 import { getUser } from '../reducers/user';
 import { selectSubscriptionsError, selectSubscriptionsIsLoadingRestore, selectSubscriptionsIsLoadingUpgrade, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
-import { selectUserActiveSubscription, selectUserActiveSubscriptionProductId, selectUserDetails, selectUserHasSubscribedBefore, selectUserIsSubscribed } from '../selectors/user';
+import { selectActiveUserInAppSubscription, selectUserActiveSubscriptionProductId, selectUserDetails, selectUserHasSubscribedBefore, selectUserIsSubscribed } from '../selectors/user';
 import { selectTotalAvailableVoices } from '../selectors/voices';
 import * as inAppPurchaseHelper from '../utils/in-app-purchase-helper';
 
@@ -198,18 +198,18 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     const { activeInAppSubscription } = this.props;
     const storeName = Platform.OS === 'ios' ? 'iTunes' : 'Google Play';
     const isDowngrade = this.isDowngradePaidSubscription(productId);
-    const activeInAppSubscriptionProductId = (activeInAppSubscription) ? activeInAppSubscription.productId : '';
-    const activeInAppSubscriptionService = (activeInAppSubscription) ? activeInAppSubscription.service : '';
+    const activeInAppSubscriptionProductId = (activeInAppSubscription) ? activeInAppSubscription.inAppSubscription.productId : '';
+    const activeInAppSubscriptionService = (activeInAppSubscription) ? activeInAppSubscription.inAppSubscription.service : '';
 
     // Prevent upgrading when there's already an active subscription, on an other platform
 
     // Active subscription is an subscription bought with the Android app
     // Only allow upgrading through the Android app. Or cancel the Android subscription.
-    if (Platform.OS === 'ios' && activeInAppSubscription && activeInAppSubscription.service === 'google') {
+    if (Platform.OS === 'ios' && activeInAppSubscription && activeInAppSubscription.inAppSubscription.service === 'google') {
       return this.showErrorAlert(ALERT_TITLE_ERROR, ALERT_SUBSCRIPTION_UPGRADE_PLATFORM_ANDROID);
     }
 
-    if (Platform.OS === 'android' && activeInAppSubscription && activeInAppSubscription.service === 'apple') {
+    if (Platform.OS === 'android' && activeInAppSubscription && activeInAppSubscription.inAppSubscription.service === 'apple') {
       return this.showErrorAlert(ALERT_TITLE_ERROR, ALERT_SUBSCRIPTION_UPGRADE_PLATFORM_IOS);
     }
 
@@ -263,11 +263,11 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
     // Prevent restoring when there's an active subscription on an other platform
 
-    if (Platform.OS === 'android' && activeInAppSubscription && activeInAppSubscription.service === 'apple') {
+    if (Platform.OS === 'android' && activeInAppSubscription && activeInAppSubscription.inAppSubscription.service === 'apple') {
       return this.showErrorAlert(ALERT_TITLE_ERROR, ALERT_SUBSCRIPTION_RESTORE_PLATFORM_ANDROID);
     }
 
-    if (Platform.OS === 'ios' && activeInAppSubscription && activeInAppSubscription.service === 'google') {
+    if (Platform.OS === 'ios' && activeInAppSubscription && activeInAppSubscription.inAppSubscription.service === 'google') {
       return this.showErrorAlert(ALERT_TITLE_ERROR, ALERT_SUBSCRIPTION_RESTORE_PLATFORM_IOS);
     }
 
@@ -304,14 +304,13 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         }
       }
 
-      // Validate the receipt on our server
-      await this.props.validateSubscriptionReceipt(purchase.productId, purchase.transactionReceipt, Platform.OS);
-
       // Get the updated user with the active subscription
       await this.props.getUser();
 
       // Finish the transaction, if it was not finished yet
       await this.finishSubscriptionTransaction(purchase);
+
+      this.props.setIsLoadingRestore(false);
 
       // The validation result is handled in SubscriptionHandlerContainer
     } catch (err) {
@@ -341,7 +340,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     if (!subscriptionToUpgradeTo) { return false; }
     if (!activeInAppSubscription) { return false; }
 
-    return Number(subscriptionToUpgradeTo.price) < Number(activeInAppSubscription.price);
+    return Number(subscriptionToUpgradeTo.price) < Number(activeInAppSubscription.inAppSubscription.price);
   }
 
   isDowngradeFreeSubscription = (productId: string): boolean => {
@@ -454,11 +453,10 @@ interface StateProps {
   userHasSubscribedBefore: ReturnType<typeof selectUserHasSubscribedBefore>;
   isLoadingUpgrade: ReturnType<typeof selectSubscriptionsIsLoadingUpgrade>;
   isLoadingRestore: ReturnType<typeof selectSubscriptionsIsLoadingRestore>;
-  activeInAppSubscription: ReturnType<typeof selectUserActiveSubscription>;
+  activeInAppSubscription: ReturnType<typeof selectActiveUserInAppSubscription>;
 }
 
 interface DispatchProps {
-  validateSubscriptionReceipt: typeof validateSubscriptionReceipt;
   getUser: typeof getUser;
   setIsLoadingUpgrade: typeof setIsLoadingUpgrade;
   setIsLoadingRestore: typeof setIsLoadingRestore;
@@ -474,11 +472,10 @@ const mapStateToProps = (state: RootState): StateProps => ({
   userHasSubscribedBefore: selectUserHasSubscribedBefore(state),
   isLoadingUpgrade: selectSubscriptionsIsLoadingUpgrade(state),
   isLoadingRestore: selectSubscriptionsIsLoadingRestore(state),
-  activeInAppSubscription: selectUserActiveSubscription(state)
+  activeInAppSubscription: selectActiveUserInAppSubscription(state)
 });
 
 const mapDispatchToProps = {
-  validateSubscriptionReceipt,
   getUser,
   setIsLoadingUpgrade,
   setIsLoadingRestore

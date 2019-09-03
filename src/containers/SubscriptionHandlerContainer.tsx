@@ -16,7 +16,7 @@ import { setIsLoadingRestore, setIsLoadingUpgrade, validateSubscriptionReceipt }
 import { getUser } from '../reducers/user';
 import { selectIsLoggedIn } from '../selectors/auth';
 import { selectSubscriptionsError, selectSubscriptionsIsLoadingRestore, selectSubscriptionsIsLoadingUpgrade, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
-import { selectUserActiveSubscriptionProductId, selectUserDetails, selectUserHasSubscribedBefore, selectUserIsSubscribed } from '../selectors/user';
+import { selectActiveUserInAppSubscription, selectUserActiveSubscriptionProductId, selectUserDetails, selectUserHasSubscribedBefore, selectUserIsSubscribed } from '../selectors/user';
 import * as inAppPurchaseHelper from '../utils/in-app-purchase-helper';
 
 interface IProps {
@@ -47,7 +47,7 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
 
   componentDidMount() {
     // Check every minute if Subscription is still active
-    this.validateSubscriptionInterval = setInterval(() => this.validateActiveSubscriptionAtInterval(), 1000 * 60); // Every 1 minute
+    this.validateSubscriptionInterval = setInterval(() => this.syncUserInAppSubscriptionWithAPI(), 1000 * 60); // Every 1 minute
 
     this.purchaseUpdateSubscription = RNIap.purchaseUpdatedListener(this.handlePurchaseUpdateListener);
 
@@ -193,24 +193,24 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
    *
    * Only does an API call when the local receipt is expired.
    */
-  validateActiveSubscriptionAtInterval = async () => {
+  syncUserInAppSubscriptionWithAPI = async () => {
     const { isConnected } = this.context;
-    const { isLoggedIn, validationResult, activeSubscriptionProductId, isSubscribed } = this.props;
+    const { isLoggedIn, isSubscribed, activeInAppSubscription } = this.props;
 
     // Do not validate when not connected
     if (!isConnected) { return; }
 
     if (!isLoggedIn) { return; }
 
-    if (!validationResult) { return; }
-
     // Just don't do a check anymore when the subscription is expired or canceled.
     // The user has to manually subscribe again or restore his purchase, which results in a validation within that flow.
     // So we can just block the use of API validation here, as it is not needed. The user has no active subscription anymore.
     if (!isSubscribed) { return; };
 
+    if (!activeInAppSubscription || !activeInAppSubscription.inAppSubscription) { return; }
+
     // If we end up here, the user is logged in AND it has a subscription receipt we can validate
-    const { expiresAt, latestReceipt } = validationResult;
+    const { expiresAt } = activeInAppSubscription;
     const expiresAtDateMs = expiresAt ? new Date(expiresAt).getTime() : null;
     const currentTime = Date.now();
 
@@ -224,10 +224,8 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
           'User his subscription is expired locally. We validate his latest receipt on our server to check if the user still has a valid subscription.'
         );
 
-        // Validate the receipt on our server
-        // TODO: activeSubscriptionProductId and latestReceipt could be different per platform
-        // TODO: how can we keep the subscription in sync between iOS and Android?
-        await this.props.validateSubscriptionReceipt(activeSubscriptionProductId, latestReceipt, Platform.OS);
+        // Sync the user subscription info by requesting the user data
+        // The API will sync the subscription if it is expired
 
         // Get the user with updated subscription data
         await this.props.getUser();
@@ -263,6 +261,7 @@ interface StateProps {
   subscriptionsError: ReturnType<typeof selectSubscriptionsError>;
   validationResult: ReturnType<typeof selectSubscriptionsValidationResult>;
   isSubscribed: ReturnType<typeof selectUserIsSubscribed>;
+  activeInAppSubscription: ReturnType<typeof selectActiveUserInAppSubscription>;
   activeSubscriptionProductId: ReturnType<typeof selectUserActiveSubscriptionProductId>;
   userDetails: ReturnType<typeof selectUserDetails>;
   userHasSubscribedBefore: ReturnType<typeof selectUserHasSubscribedBefore>;
@@ -282,6 +281,7 @@ const mapStateToProps = (state: RootState): StateProps => ({
   subscriptionsError: selectSubscriptionsError(state),
   validationResult: selectSubscriptionsValidationResult(state),
   isSubscribed: selectUserIsSubscribed(state),
+  activeInAppSubscription: selectActiveUserInAppSubscription(state),
   activeSubscriptionProductId: selectUserActiveSubscriptionProductId(state),
   userDetails: selectUserDetails(state),
   userHasSubscribedBefore: selectUserHasSubscribedBefore(state),

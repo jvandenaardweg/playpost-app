@@ -21,7 +21,7 @@ import { initialState } from '../../reducers/user';
 
 import exampleUserWithActiveSubscription from '../../../tests/__mocks__/user-active-subscription';
 import exampleUserWithInactiveSubscription from '../../../tests/__mocks__/user-inactive-subscription';
-import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM_ANDROID } from '../../constants/in-app-purchase';
+import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM_APPLE } from '../../constants/in-app-purchase';
 
 const store = createStore(rootReducer);
 
@@ -259,7 +259,7 @@ describe('user selector', () => {
     };
 
     // The mock data contains a unsubscribed/expired subscription
-    expect(selectUserActiveSubscriptionProductId(exampleState)).toEqual(SUBSCRIPTION_PRODUCT_ID_PREMIUM_ANDROID);
+    expect(selectUserActiveSubscriptionProductId(exampleState)).toEqual(SUBSCRIPTION_PRODUCT_ID_PREMIUM_APPLE);
   });
 
   it('selectUserActiveSubscriptionProductId should return the default productId "free" when the user has no active subscription', () => {

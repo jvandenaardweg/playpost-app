@@ -84,44 +84,44 @@ export const selectUserSubscriptions = createDeepEqualSelector(
   userDetails => userDetails && userDetails.inAppSubscriptions
 );
 
-export const selectUserIsSubscribed = createSelector(
+export const selectUserIsSubscribed = createDeepEqualSelector(
   [selectUserDetails],
-  (userDetails): boolean => !!(userDetails && userDetails.isSubscribed)
+  (userDetails): boolean => !!(userDetails && userDetails.activeUserInAppSubscription)
 );
 
 /**
  * The active subscription's productId is different per platform.
  *
- * TODO: make sure when we upgrade on Android, we do not pass in the "oldSku" from an iOS subscription
  */
-export const selectUserActiveSubscriptionProductId = createSelector(
+export const selectUserActiveSubscriptionProductId = createDeepEqualSelector(
   [selectUserDetails, selectUserIsSubscribed],
   (userDetails, isSubscribed): string => {
     if (!isSubscribed) { return SUBSCRIPTION_PRODUCT_ID_FREE; }
     if (!userDetails) { return SUBSCRIPTION_PRODUCT_ID_FREE; }
-    if (!userDetails.activeInAppSubscription) { return SUBSCRIPTION_PRODUCT_ID_FREE; }
-    return userDetails.activeInAppSubscription.productId;
+    if (!userDetails.activeUserInAppSubscription) { return SUBSCRIPTION_PRODUCT_ID_FREE; }
+    if (!userDetails.activeUserInAppSubscription.inAppSubscription) { return SUBSCRIPTION_PRODUCT_ID_FREE; }
+    return userDetails.activeUserInAppSubscription.inAppSubscription.productId
   }
 );
 
-export const selectUserActiveSubscription = createSelector(
+export const selectActiveUserInAppSubscription = createDeepEqualSelector(
   [selectUserDetails, selectUserIsSubscribed],
-  (userDetails, isSubscribed): Api.InAppSubscription | null => {
+  (userDetails, isSubscribed): Api.UserInAppSubscriptionApple | Api.UserInAppSubscriptionGoogle | null => {
     if (!isSubscribed) { return null; }
     if (!userDetails) { return null; }
-    if (!userDetails.activeInAppSubscription) { return null; }
+    if (!userDetails.activeUserInAppSubscription) { return null; }
 
-    return userDetails.activeInAppSubscription;
+    return userDetails.activeUserInAppSubscription;
   }
 );
 
-export const selectUserActiveSubscriptionName = createSelector(
-  [selectUserActiveSubscription],
+export const selectUserActiveSubscriptionName = createDeepEqualSelector(
+  [selectActiveUserInAppSubscription],
   (userActiveSubscription): string => {
     if (!userActiveSubscription) {
       return SUBSCRIPTION_NAME[SUBSCRIPTION_PRODUCT_ID_FREE];
     }
-    return userActiveSubscription.name
+    return userActiveSubscription.inAppSubscription.name
   }
 );
 

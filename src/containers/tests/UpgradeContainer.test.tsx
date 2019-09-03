@@ -264,25 +264,29 @@ describe('UpgradeContainerComponent', () => {
       const spyGetLatestPurchase = jest.spyOn(testInstance, 'getLatestPurchase').mockReturnValueOnce(mockApplePurchases[0]);
       const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert');
       const spySetIsLoadingRestore = jest.spyOn(testInstance.props, 'setIsLoadingRestore');
-      const spyValidateSubscriptionReceipt = jest.spyOn(testInstance.props, 'validateSubscriptionReceipt');
+      const spyGetUser = jest.spyOn(testInstance.props, 'getUser');
+      // const spyValidateSubscriptionReceipt = jest.spyOn(testInstance.props, 'validateSubscriptionReceipt');
 
 
       // Simulate a click on "Restore previous purchase"
       await testInstance.handleOnPressRestore();
 
-      expect(spySetIsLoadingRestore).toHaveBeenCalledTimes(1);
-      expect(spySetIsLoadingRestore).toHaveBeenCalledWith(true);
+      expect(spySetIsLoadingRestore).toHaveBeenCalledTimes(2);
+      expect(spySetIsLoadingRestore).toHaveBeenNthCalledWith(1, true);
+      expect(spySetIsLoadingRestore).toHaveBeenNthCalledWith(2, false);
 
       expect(spyGetAvailablePurchases).toHaveBeenCalledTimes(1);
       expect(spyGetAvailablePurchases).toHaveReturnedWith(mockApplePurchases)
 
       expect(spyShowErrorAlert).toHaveBeenCalledTimes(0);
 
+      expect(spyGetUser).toHaveBeenCalledTimes(1);
+
       expect(spyGetLatestPurchase).toHaveBeenCalledTimes(1);
       expect(spyGetLatestPurchase).toHaveReturnedWith(mockApplePurchases[0]);
 
-      expect(spyValidateSubscriptionReceipt).toHaveBeenCalledTimes(1);
-      expect(spyValidateSubscriptionReceipt).toHaveBeenCalledWith(mockApplePurchases[0].productId, mockApplePurchases[0].transactionReceipt, 'ios');
+      // expect(spyValidateSubscriptionReceipt).toHaveBeenCalledTimes(1);
+      // expect(spyValidateSubscriptionReceipt).toHaveBeenCalledWith(mockApplePurchases[0].productId, mockApplePurchases[0].transactionReceipt, 'ios');
     });
 
     it('handleOnPressRestore() should correctly handle when a user has no previous purchases', async () => {

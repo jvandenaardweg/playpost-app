@@ -32,7 +32,7 @@ describe('Usage', () => {
     });
 
     it('should render the used minutes correctly', () => {
-      expect(wrapper.getByTestId('Usage-Text-minutes-used').props.children).toBe('of 30 minutes used');
+      expect(wrapper.getByTestId('Usage-Text-minutes-used').props.children).toBe('of 120 minutes used');
     });
 
     it('should render the used percentage correctly', () => {
