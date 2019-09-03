@@ -8,7 +8,7 @@ import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_UPDATE_EMAIL_DIFF, ALER
 import { UpdateEmailForm } from '../../components/UpdateEmailForm';
 
 import { RootState } from '../../reducers';
-import { getUser, patchUser, updateUserEmail } from '../../reducers/user';
+import { getUser, patchUser } from '../../reducers/user';
 
 import { selectUserDetails, selectUserError } from '../../selectors/user';
 
@@ -136,7 +136,6 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  updateUserEmail: typeof updateUserEmail;
   patchUser: typeof patchUser;
   getUser: typeof getUser;
 }
@@ -147,7 +146,6 @@ const mapStateToProps = (state: RootState): StateProps => ({
 });
 
 const mapDispatchToProps = {
-  updateUserEmail,
   patchUser,
   getUser
 };
