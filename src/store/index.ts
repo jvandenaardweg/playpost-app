@@ -15,7 +15,7 @@ import { apiClient } from '../api';
 import { migrations } from './migrations';
 
 // Setup persist
-const persistConfig: PersistConfig = {
+const persistConfig: PersistConfig<any> = {
   storage: AsyncStorage,
   key: 'root',
   blacklist: ['player'],

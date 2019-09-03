@@ -1,5 +1,5 @@
 import RNIap, { SubscriptionPurchase } from 'react-native-iap';
-import { SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_PLUS } from '../../constants/in-app-purchase';
+import { SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../constants/in-app-purchase';
 import * as inAppPurchaseHelper from '../in-app-purchase-helper'
 
 jest.mock('react-native-iap');
