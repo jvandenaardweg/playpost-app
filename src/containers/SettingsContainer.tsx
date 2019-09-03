@@ -26,8 +26,7 @@ import { resetAudiofilesState } from '../reducers/audiofiles';
 import { deleteUser, getUser } from '../reducers/user';
 import { resetDownloadedVoices, resetVoicesState } from '../reducers/voices';
 
-import { selectActiveSubscriptionName, selectActiveSubscriptionProductId, selectIsSubscribed } from '../selectors/subscriptions';
-import { selectUserDetails, selectUserHasSubscribedBefore } from '../selectors/user';
+import { selectUserActiveSubscriptionName, selectUserActiveSubscriptionProductId, selectUserDetails, selectUserHasSubscribedBefore, selectUserIsSubscribed } from '../selectors/user';
 import { selectTotalAvailableVoices } from '../selectors/voices';
 
 import { CustomSectionList } from '../components/CustomSectionList';
@@ -426,18 +425,18 @@ interface DispatchProps {
 
 interface StateProps {
   user: ReturnType<typeof selectUserDetails>;
-  isSubscribed: ReturnType<typeof selectIsSubscribed>;
-  activeSubscriptionName: ReturnType<typeof selectActiveSubscriptionName>;
-  activeSubscriptionProductId: ReturnType<typeof selectActiveSubscriptionProductId>;
+  isSubscribed: ReturnType<typeof selectUserIsSubscribed>;
+  activeSubscriptionName: ReturnType<typeof selectUserActiveSubscriptionName>;
+  activeSubscriptionProductId: ReturnType<typeof selectUserActiveSubscriptionProductId>;
   totalAvailableVoices: ReturnType<typeof selectTotalAvailableVoices>;
   userHasSubscribedBefore: ReturnType<typeof selectUserHasSubscribedBefore>;
 }
 
 const mapStateToProps = (state: RootState) => ({
   user: selectUserDetails(state),
-  isSubscribed: selectIsSubscribed(state),
-  activeSubscriptionName: selectActiveSubscriptionName(state),
-  activeSubscriptionProductId: selectActiveSubscriptionProductId(state),
+  isSubscribed: selectUserIsSubscribed(state),
+  activeSubscriptionName: selectUserActiveSubscriptionName(state),
+  activeSubscriptionProductId: selectUserActiveSubscriptionProductId(state),
   totalAvailableVoices: selectTotalAvailableVoices(state),
   userHasSubscribedBefore: selectUserHasSubscribedBefore(state),
 });

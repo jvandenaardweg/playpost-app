@@ -11,7 +11,7 @@ jest.useFakeTimers();
 
 import subscriptionValidationResultActiveMock from '../../../tests/__mocks__/subscription-validation-result-active';
 import subscriptionValidationResultExpiredMock from '../../../tests/__mocks__/subscription-validation-result-expired';
-import userMock from '../../../tests/__mocks__/user';
+import userMock from '../../../tests/__mocks__/user-active-subscription';
 import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../constants/in-app-purchase';
 
 

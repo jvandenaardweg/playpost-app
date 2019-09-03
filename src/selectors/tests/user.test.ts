@@ -1,11 +1,14 @@
 import { createStore } from 'redux';
 
 import { selectDeviceLocale,
+  selectUserActiveSubscriptionName,
+  selectUserActiveSubscriptionProductId,
   selectUserDetails,
   selectUserError,
   selectUserErrorSaveSelectedVoice,
   selectUserHasSubscribedBefore,
   selectUserIsLoading,
+  selectUserIsSubscribed,
   selectUserPlaybackSpeed,
   selectUserSelectedVoiceByLanguageName,
   selectUserSelectedVoices,
@@ -16,7 +19,9 @@ import { selectDeviceLocale,
 import { rootReducer } from '../../reducers';
 import { initialState } from '../../reducers/user';
 
-import exampleUser from '../../../tests/__mocks__/user';
+import exampleUserWithActiveSubscription from '../../../tests/__mocks__/user-active-subscription';
+import exampleUserWithInactiveSubscription from '../../../tests/__mocks__/user-inactive-subscription';
+import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM_ANDROID } from '../../constants/in-app-purchase';
 
 const store = createStore(rootReducer);
 
@@ -70,11 +75,11 @@ describe('user selector', () => {
       ...rootState,
       user: {
         ...rootState.user,
-        details: exampleUser
+        details: exampleUserWithActiveSubscription
       }
     };
 
-    expect(selectUserDetails(exampleUserDetailsState)).toMatchObject(exampleUser);
+    expect(selectUserDetails(exampleUserDetailsState)).toMatchObject(exampleUserWithActiveSubscription);
   });
 
   it('should return the user\'s selected voices', () => {
@@ -82,11 +87,11 @@ describe('user selector', () => {
       ...rootState,
       user: {
         ...rootState.user,
-        details: exampleUser
+        details: exampleUserWithActiveSubscription
       }
     };
 
-    const expected = exampleUser.voiceSettings.map(userVoiceSetting => userVoiceSetting.voice);
+    const expected = exampleUserWithActiveSubscription.voiceSettings.map(userVoiceSetting => userVoiceSetting.voice);
 
     expect(selectUserSelectedVoices(exampleUserDetailsState)).toEqual(expected);
 
@@ -104,7 +109,7 @@ describe('user selector', () => {
       ...rootState,
       user: {
         ...rootState.user,
-        details: exampleUser
+        details: exampleUserWithActiveSubscription
       }
     };
 
@@ -116,11 +121,11 @@ describe('user selector', () => {
       ...rootState,
       user: {
         ...rootState.user,
-        details: exampleUser
+        details: exampleUserWithActiveSubscription
       }
     };
 
-    const expected = exampleUser.inAppSubscriptions;
+    const expected = exampleUserWithActiveSubscription.inAppSubscriptions;
 
     expect(selectUserSubscriptions(exampleUserState)).toEqual(expected);
   });
@@ -160,7 +165,7 @@ describe('user selector', () => {
       ...rootState,
       user: {
         ...rootState.user,
-        details: exampleUser
+        details: exampleUserWithActiveSubscription
       }
     };
 
@@ -168,7 +173,7 @@ describe('user selector', () => {
   });
 
   it('selectUserHasSubscribedBefore should return false when the user has no previous subscriptions', () => {
-    const exampleUserCopy = {...exampleUser};
+    const exampleUserCopy = {...exampleUserWithActiveSubscription};
 
     exampleUserCopy.inAppSubscriptions = [];
 
@@ -194,4 +199,120 @@ describe('user selector', () => {
 
     expect(selectUserPlaybackSpeed(exampleUserState)).toEqual(0.95);
   });
+
+  it('selectUserIsSubscribed should return false when there is no user details', () => {
+    const exampleState = {
+      ...rootState,
+      user: {
+        ...rootState.user
+      }
+    };
+
+    expect(selectUserIsSubscribed(exampleState)).toEqual(false);
+  });
+
+  it('selectUserIsSubscribed should return true when there is an active subscription', () => {
+    const exampleState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: exampleUserWithActiveSubscription
+      }
+    };
+
+    expect(selectUserIsSubscribed(exampleState)).toEqual(true);
+  });
+
+  it('selectUserIsSubscribed should return false when there is no active subscription', () => {
+    const exampleState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: exampleUserWithInactiveSubscription
+      }
+    };
+
+    expect(selectUserIsSubscribed(exampleState)).toEqual(false);
+  });
+
+
+  it('selectUserActiveSubscriptionProductId should return the default productId "free" when there are no active subscriptions', () => {
+    const exampleState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: exampleUserWithInactiveSubscription
+      }
+    };
+
+    // The mock data contains a unsubscribed/expired subscription
+    expect(selectUserActiveSubscriptionProductId(exampleState)).toEqual(SUBSCRIPTION_PRODUCT_ID_FREE);
+  });
+
+  it('selectUserActiveSubscriptionProductId should return the active subscription productId', () => {
+    const exampleState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: exampleUserWithActiveSubscription
+      }
+    };
+
+    // The mock data contains a unsubscribed/expired subscription
+    expect(selectUserActiveSubscriptionProductId(exampleState)).toEqual(SUBSCRIPTION_PRODUCT_ID_PREMIUM_ANDROID);
+  });
+
+  it('selectUserActiveSubscriptionProductId should return the default productId "free" when the user has no active subscription', () => {
+    const exampleState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: exampleUserWithInactiveSubscription
+      }
+    };
+
+    // The mock data contains a unsubscribed/expired subscription
+    expect(selectUserActiveSubscriptionProductId(exampleState)).toEqual(SUBSCRIPTION_PRODUCT_ID_FREE);
+  });
+
+  it('selectUserActiveSubscriptionProductId should return the default productId "free" when there is no user info', () => {
+    const exampleState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: null
+      }
+    };
+
+    // The mock data contains a unsubscribed/expired subscription
+    expect(selectUserActiveSubscriptionProductId(exampleState)).toEqual(SUBSCRIPTION_PRODUCT_ID_FREE);
+  });
+
+  it('selectUserActiveSubscriptionName should return the active subscription name when the user has a validated subscription', () => {
+    const exampleState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: exampleUserWithActiveSubscription
+      }
+    };
+
+    // The mock data contains a unsubscribed/expired subscription
+    expect(selectUserActiveSubscriptionName(exampleState)).toEqual('Premium');
+  });
+
+  it('selectUserActiveSubscriptionName should return "Free" if the user has no subscription', () => {
+    const exampleState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: null
+      }
+    };
+
+    // The mock data contains a unsubscribed/expired subscription
+    expect(selectUserActiveSubscriptionName(exampleState)).toEqual('Free');
+  });
+
+
 });

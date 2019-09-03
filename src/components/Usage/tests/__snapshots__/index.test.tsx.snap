@@ -48,7 +48,7 @@ exports[`Usage rendering should render correctly 1`] = `
               }
             }
           >
-            80
+            0
           </Text>
         </View>
         <View
@@ -73,7 +73,7 @@ exports[`Usage rendering should render correctly 1`] = `
               }
               testID="Usage-Text-minutes-used"
             >
-              of 300 minutes used
+              of 30 minutes used
             </Text>
           </View>
           <View>
@@ -87,7 +87,7 @@ exports[`Usage rendering should render correctly 1`] = `
               }
               testID="Usage-Text-percentage"
             >
-              27%
+              0%
             </Text>
           </View>
         </View>
@@ -112,7 +112,7 @@ exports[`Usage rendering should render correctly 1`] = `
                 "height": 6,
               },
               Object {
-                "width": "26.450219501133788%",
+                "width": "0%",
               },
             ]
           }

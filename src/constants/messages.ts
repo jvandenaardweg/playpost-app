@@ -48,6 +48,11 @@ export const ALERT_SUBSCRIPTION_RESTORE_PURCHASE_NOT_FOUND = 'We could not find 
 export const ALERT_SUBSCRIPTION_RESTORE_NOTHING = 'There are no previous purchases to restore.';
 export const ALERT_SUBSCRIPTION_RESTORE_SUCCESS = 'You successfully restored the subscription! You can now use the extra features.';
 
+export const ALERT_SUBSCRIPTION_UPGRADE_PLATFORM_ANDROID = 'Your current active subscription is bought on Android device. Please upgrade using your Android device. Or cancel the subscription on your Android device and then upgrade on your Apple device.';
+export const ALERT_SUBSCRIPTION_UPGRADE_PLATFORM_IOS = 'Your current active subscription is bought on an Apple device. Please upgrade using your Apple device. Or cancel that subscription on your Apple device and then upgrade on your Android device.';
+export const ALERT_SUBSCRIPTION_RESTORE_PLATFORM_ANDROID = 'You have an active subscription on the Apple App Store. You cannot restore a previous purchase on this Android device.';
+export const ALERT_SUBSCRIPTION_RESTORE_PLATFORM_IOS = 'You have an active subscription on the Google Play Store. You cannot restore a previous purchase on this Apple device.';
+
 export const ALERT_PLAYBACK_SPEED_SUBSCRIPTION_ONLY = 'Changing the voice\'s speaking rate is only available for Premium and Plus users.';
 
 export const ALERT_LOGIN_SAVE_TOKEN_FAIL = 'Failed to save authentication credentials. Please try again.';

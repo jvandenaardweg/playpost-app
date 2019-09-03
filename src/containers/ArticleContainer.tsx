@@ -53,8 +53,7 @@ import {
 import { getUser } from '../reducers/user';
 import { selectDownloadedAudiofiles } from '../selectors/audiofiles';
 import { selectPlayerCurrentArticleId, selectPlayerPlaybackState, selectPlayerPreviousArticleId, selectPlayerTrack } from '../selectors/player';
-import { selectIsSubscribed } from '../selectors/subscriptions';
-import { selectUserHasSubscribedBefore, selectUserSelectedVoiceByLanguageName } from '../selectors/user';
+import { selectUserHasSubscribedBefore, selectUserIsSubscribed, selectUserSelectedVoiceByLanguageName } from '../selectors/user';
 import { selectLanguagesWithActiveVoicesByLanguageName } from '../selectors/voices';
 
 interface State {
@@ -612,7 +611,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 interface StateProps {
   readonly track: ReturnType<typeof selectPlayerTrack>;
   readonly playbackState: ReturnType<typeof selectPlayerPlaybackState>;
-  readonly isSubscribed: ReturnType<typeof selectIsSubscribed>;
+  readonly isSubscribed: ReturnType<typeof selectUserIsSubscribed>;
   readonly userSelectedVoiceByLanguageName: ReturnType<typeof selectUserSelectedVoiceByLanguageName>;
   readonly downloadedAudiofiles: ReturnType<typeof selectDownloadedAudiofiles>;
   readonly playerCurrentArticleId: ReturnType<typeof selectPlayerCurrentArticleId>;
@@ -642,7 +641,7 @@ interface DispatchProps {
 const mapStateToProps = (state: RootState, props: Props) => ({
   track: selectPlayerTrack(state),
   playbackState: selectPlayerPlaybackState(state),
-  isSubscribed: selectIsSubscribed(state),
+  isSubscribed: selectUserIsSubscribed(state),
   userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state),
   downloadedAudiofiles: selectDownloadedAudiofiles(state),
   playerCurrentArticleId: selectPlayerCurrentArticleId(state),

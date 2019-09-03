@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import { SUBSCRIPTION_PRODUCT_ID_FREE } from '../constants/in-app-purchase';
 import { RootState } from '../reducers';
 import { SubscriptionsState } from '../reducers/subscriptions';
 import { createDeepEqualSelector } from './index';
@@ -39,45 +38,4 @@ export const selectErrorValidateSubscriptionReceipt = createSelector(
 export const selectSubscriptionsValidationResult = createDeepEqualSelector(
   [subscriptionsSelector],
   state => state.validationResult
-);
-
-export const selectSubscriptionLatestReceipt = createDeepEqualSelector(
-  [selectSubscriptionsValidationResult],
-  (validationResult): string => {
-    if (!validationResult) { return ''; }
-
-    const { latestReceipt } = validationResult;
-
-    if (!latestReceipt) { return ''; }
-
-    return latestReceipt;
-  }
-);
-
-export const selectIsSubscribed = createSelector(
-  [selectSubscriptionsValidationResult],
-  (validationResult): boolean => {
-    if (!validationResult || !validationResult.status) { return false; }
-    const { status } = validationResult;
-    if (status !== 'active') { return false; }
-    return true;
-  }
-);
-
-export const selectActiveSubscriptionProductId = createSelector(
-  [selectSubscriptionsValidationResult, selectIsSubscribed],
-  (validationResult, isSubscribed): string => {
-    if (!isSubscribed) { return SUBSCRIPTION_PRODUCT_ID_FREE; }
-    if (!validationResult || !validationResult.inAppSubscription || !validationResult.inAppSubscription.productId) { return SUBSCRIPTION_PRODUCT_ID_FREE; }
-    return validationResult.inAppSubscription.productId;
-  }
-);
-
-export const selectActiveSubscriptionName = createSelector(
-  [selectSubscriptionsValidationResult, selectIsSubscribed],
-  (validationResult, isSubscribed): string => {
-    if (!isSubscribed) { return 'Free'; }
-    if (!validationResult || !validationResult.inAppSubscription || !validationResult.inAppSubscription.name) { return 'Free'; }
-    return validationResult.inAppSubscription.name;
-  }
 );

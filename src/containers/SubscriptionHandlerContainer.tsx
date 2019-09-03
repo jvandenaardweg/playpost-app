@@ -15,8 +15,8 @@ import { RootState } from '../reducers';
 import { setIsLoadingRestore, setIsLoadingUpgrade, validateSubscriptionReceipt } from '../reducers/subscriptions';
 import { getUser } from '../reducers/user';
 import { selectIsLoggedIn } from '../selectors/auth';
-import { selectActiveSubscriptionProductId, selectIsSubscribed, selectSubscriptionsError, selectSubscriptionsIsLoadingRestore, selectSubscriptionsIsLoadingUpgrade, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
-import { selectUserDetails, selectUserHasSubscribedBefore } from '../selectors/user';
+import { selectSubscriptionsError, selectSubscriptionsIsLoadingRestore, selectSubscriptionsIsLoadingUpgrade, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
+import { selectUserActiveSubscriptionProductId, selectUserDetails, selectUserHasSubscribedBefore, selectUserIsSubscribed } from '../selectors/user';
 import * as inAppPurchaseHelper from '../utils/in-app-purchase-helper';
 
 interface IProps {
@@ -87,6 +87,7 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
 
       if (isLoadingRestore) {
         if(validationResult && !isEqual(prevProps.validationResult, validationResult)) {
+          // TODO: correctly handle this
           return this.handleRestoreSubscriptionStatus(validationResult, isSubscribed);
         }
       }
@@ -98,14 +99,14 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
     return Alert.alert(ALERT_TITLE_SUBSCRIPTION_EXPIRED, ALERT_SUBSCRIPTION_EXPIRED);
   }
 
-  handleRestoreSubscriptionStatus = (validationResult: Api.ReceiptValidationResponse, isSubscribed: boolean) => {
+  handleRestoreSubscriptionStatus = (validationResult: Api.ReceiptValidationResponseApple | Api.ReceiptValidationResponseGoogle, isSubscribed: boolean) => {
     this.props.setIsLoadingRestore(false);
 
     // If the user is still not subscribed, show why
-    if (!isSubscribed) {
+    if (validationResult.status !== 'active') {
       return this.showErrorAlert(
         `Subscription is ${validationResult.status}`,
-        `In order to use our Premium features, you need to buy a new subscription.\n\nIf you think this is incorrect, please contact support.`
+        `In order to continue using our Premium features, you need to subscribe to a new subscription again.\n\nIf you think this is incorrect, please contact support.`
       );
     } else {
       return Alert.alert(ALERT_TITLE_SUBSCRIPTION_RESTORE_SUCCESS, ALERT_SUBSCRIPTION_RESTORE_SUCCESS);
@@ -131,6 +132,9 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
 
       // Validatation error is handeled in APIErrorAlertContainer
       await this.props.validateSubscriptionReceipt(productId, transactionReceipt, Platform.OS);
+
+      // Get the updated user with the active subscription
+      await this.props.getUser();
 
       // Finish the transaction after we validated the receipt
       await this.finishTransaction(purchase);
@@ -221,6 +225,8 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
         );
 
         // Validate the receipt on our server
+        // TODO: activeSubscriptionProductId and latestReceipt could be different per platform
+        // TODO: how can we keep the subscription in sync between iOS and Android?
         await this.props.validateSubscriptionReceipt(activeSubscriptionProductId, latestReceipt, Platform.OS);
 
         // Get the user with updated subscription data
@@ -256,8 +262,8 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
 interface StateProps {
   subscriptionsError: ReturnType<typeof selectSubscriptionsError>;
   validationResult: ReturnType<typeof selectSubscriptionsValidationResult>;
-  isSubscribed: ReturnType<typeof selectIsSubscribed>;
-  activeSubscriptionProductId: ReturnType<typeof selectActiveSubscriptionProductId>;
+  isSubscribed: ReturnType<typeof selectUserIsSubscribed>;
+  activeSubscriptionProductId: ReturnType<typeof selectUserActiveSubscriptionProductId>;
   userDetails: ReturnType<typeof selectUserDetails>;
   userHasSubscribedBefore: ReturnType<typeof selectUserHasSubscribedBefore>;
   isLoadingUpgrade: ReturnType<typeof selectSubscriptionsIsLoadingUpgrade>;
@@ -275,8 +281,8 @@ interface DispatchProps {
 const mapStateToProps = (state: RootState): StateProps => ({
   subscriptionsError: selectSubscriptionsError(state),
   validationResult: selectSubscriptionsValidationResult(state),
-  isSubscribed: selectIsSubscribed(state),
-  activeSubscriptionProductId: selectActiveSubscriptionProductId(state),
+  isSubscribed: selectUserIsSubscribed(state),
+  activeSubscriptionProductId: selectUserActiveSubscriptionProductId(state),
   userDetails: selectUserDetails(state),
   userHasSubscribedBefore: selectUserHasSubscribedBefore(state),
   isLoadingUpgrade: selectSubscriptionsIsLoadingUpgrade(state),

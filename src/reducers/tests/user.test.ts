@@ -33,7 +33,7 @@ import {
   userReducer
 } from '../user';
 
-import userMock from '../../../tests/__mocks__/user';
+import userMock from '../../../tests/__mocks__/user-active-subscription';
 
 describe('user reducer', () => {
   it('should return the initial state', () => {

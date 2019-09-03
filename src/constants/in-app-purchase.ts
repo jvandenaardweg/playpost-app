@@ -1,18 +1,36 @@
 import { Platform } from 'react-native';
 
+export const SUBSCRIPTION_PRODUCT_ID_FREE_APPLE = 'free';
+export const SUBSCRIPTION_PRODUCT_ID_FREE_ANDROID = 'free';
+
+export const SUBSCRIPTION_PRODUCT_ID_PREMIUM_APPLE = 'com.aardwegmedia.playpost.premium';
+export const SUBSCRIPTION_PRODUCT_ID_PREMIUM_ANDROID = 'com.aardwegmedia.playpost.android.premium';
+
+export const SUBSCRIPTION_PRODUCT_ID_PLUS_APPLE = 'com.aardwegmedia.playpost.subscription.plus';
+export const SUBSCRIPTION_PRODUCT_ID_PLUS_ANDROID = 'com.aardwegmedia.playpost.android.plus';
+
+export const SUBSCRIPTION_NAME = {
+  [SUBSCRIPTION_PRODUCT_ID_PREMIUM_APPLE]: 'Premium',
+  [SUBSCRIPTION_PRODUCT_ID_PREMIUM_ANDROID]: 'Premium',
+  [SUBSCRIPTION_PRODUCT_ID_PLUS_APPLE]: 'Plus',
+  [SUBSCRIPTION_PRODUCT_ID_PLUS_ANDROID]: 'Plus',
+  [SUBSCRIPTION_PRODUCT_ID_FREE_APPLE]: 'Free',
+  [SUBSCRIPTION_PRODUCT_ID_FREE_ANDROID]: 'Free'
+}
+
 export const SUBSCRIPTION_PRODUCT_ID_FREE = Platform.select({
-  ios: 'free',
-  android: 'free'
+  ios: SUBSCRIPTION_PRODUCT_ID_FREE_APPLE,
+  android: SUBSCRIPTION_PRODUCT_ID_FREE_ANDROID
 });
 
 export const SUBSCRIPTION_PRODUCT_ID_PREMIUM = Platform.select({
-  ios: 'com.aardwegmedia.playpost.premium',
-  android: 'com.aardwegmedia.playpost.android.premium'
+  ios: SUBSCRIPTION_PRODUCT_ID_PREMIUM_APPLE,
+  android: SUBSCRIPTION_PRODUCT_ID_PREMIUM_ANDROID
 });
 
 export const SUBSCRIPTION_PRODUCT_ID_PLUS = Platform.select({
-  ios: 'com.aardwegmedia.playpost.subscription.plus',
-  android: 'com.aardwegmedia.playpost.android.plus'
+  ios: SUBSCRIPTION_PRODUCT_ID_PLUS_APPLE,
+  android: SUBSCRIPTION_PRODUCT_ID_PLUS_ANDROID
 });
 
 export const SUBSCRIPTION_PRODUCT_IDS = [SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_PLUS]

@@ -108,7 +108,7 @@ describe('in-app-purchase-helper', () => {
         return Platform;
       });
 
-      await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PREMIUM, '');
+      await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PREMIUM, '', '');
 
       const spyRequestSubscription = jest.spyOn(RNIap, 'requestSubscription')
 
@@ -123,7 +123,7 @@ describe('in-app-purchase-helper', () => {
         return Platform;
       });
 
-      await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM);
+      await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM, 'google');
 
       const spyRequestSubscription = jest.spyOn(RNIap, 'requestSubscription')
 
@@ -138,7 +138,7 @@ describe('in-app-purchase-helper', () => {
         return Platform;
       });
 
-      await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_PLUS);
+      await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_PLUS, 'google');
 
       const spyRequestSubscription = jest.spyOn(RNIap, 'requestSubscription')
 
@@ -153,7 +153,7 @@ describe('in-app-purchase-helper', () => {
         return Platform;
       });
 
-      await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PREMIUM, 'free');
+      await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PREMIUM, 'free', 'apple');
 
       const spyRequestSubscription = jest.spyOn(RNIap, 'requestSubscription')
 
@@ -168,7 +168,7 @@ describe('in-app-purchase-helper', () => {
         return Platform;
       });
 
-      await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM);
+      await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM, 'apple');
 
       const spyRequestSubscription = jest.spyOn(RNIap, 'requestSubscription')
 

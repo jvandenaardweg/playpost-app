@@ -20,7 +20,7 @@ export type SubscriptionsState = Readonly<{
   isLoadingUpgrade: boolean;
   isLoadingRestore: boolean;
   subscriptions: Api.InAppSubscription[] | null;
-  validationResult: Api.ReceiptValidationResponse | null;
+  validationResult: Api.ReceiptValidationResponseApple | Api.ReceiptValidationResponseGoogle | null;
   error: string;
   errorValidateSubscriptionReceipt: string;
 }>;

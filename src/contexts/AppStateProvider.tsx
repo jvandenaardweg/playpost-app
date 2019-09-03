@@ -9,7 +9,8 @@ import { setAuthToken } from '../reducers/auth';
 import { validateSubscriptionReceipt } from '../reducers/subscriptions';
 import { getUser } from '../reducers/user';
 import { selectAuthenticationToken, selectIsLoggedIn } from '../selectors/auth';
-import { selectActiveSubscriptionProductId, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
+import { selectSubscriptionsValidationResult } from '../selectors/subscriptions';
+import { selectUserActiveSubscriptionProductId } from '../selectors/user';
 import { store } from '../store';
 import * as keychain from '../utils/keychain';
 // import { ALERT_SUBSCRIPTION_EXPIRED } from '../constants/messages';
@@ -120,7 +121,7 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
 interface StateProps {
   isLoggedIn: ReturnType<typeof selectIsLoggedIn>;
   subscriptionsValidationResult: ReturnType<typeof selectSubscriptionsValidationResult>;
-  activeSubscriptionProductId: ReturnType<typeof selectActiveSubscriptionProductId>;
+  activeSubscriptionProductId: ReturnType<typeof selectUserActiveSubscriptionProductId>;
   authToken: ReturnType<typeof selectAuthenticationToken>;
 }
 
@@ -133,7 +134,7 @@ interface DispatchProps {
 const mapStateToProps = (state: RootState): StateProps => ({
   isLoggedIn: selectIsLoggedIn(state),
   subscriptionsValidationResult: selectSubscriptionsValidationResult(state),
-  activeSubscriptionProductId: selectActiveSubscriptionProductId(state),
+  activeSubscriptionProductId: selectUserActiveSubscriptionProductId(state),
   authToken: selectAuthenticationToken(state)
 });
 

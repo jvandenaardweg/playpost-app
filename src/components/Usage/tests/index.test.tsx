@@ -3,7 +3,7 @@ import { fireEvent, render, RenderAPI } from 'react-native-testing-library';
 
 import { getUpgradeButtonTitle, getUpgradeMessage, Usage } from '../index';
 
-import userMock from '../../../../tests/__mocks__/user';
+import userMock from '../../../../tests/__mocks__/user-active-subscription';
 import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../../constants/in-app-purchase';
 
 const onPressUpgradeHandler = jest.fn();
@@ -32,15 +32,15 @@ describe('Usage', () => {
     });
 
     it('should render the used minutes correctly', () => {
-      expect(wrapper.getByTestId('Usage-Text-minutes-used').props.children).toBe('of 300 minutes used');
+      expect(wrapper.getByTestId('Usage-Text-minutes-used').props.children).toBe('of 30 minutes used');
     });
 
     it('should render the used percentage correctly', () => {
-      expect(wrapper.getByTestId('Usage-Text-percentage').props.children).toBe('27%');
+      expect(wrapper.getByTestId('Usage-Text-percentage').props.children).toBe('0%');
     });
 
     it('should render the progress width correctly', () => {
-      expect(wrapper.getByTestId('Usage-View-progress').props.style[1].width).toBe('26.450219501133788%');
+      expect(wrapper.getByTestId('Usage-View-progress').props.style[1].width).toBe('0%');
     });
 
     it('should render the progress width correctly when usage is above 100%', () => {

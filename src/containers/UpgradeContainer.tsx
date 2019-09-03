@@ -14,7 +14,12 @@ import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTIO
 import {
   ALERT_GENERIC_INTERNET_REQUIRED,
   ALERT_SUBSCRIPTION_INIT_FAIL,
+  ALERT_SUBSCRIPTION_RESTORE_PLATFORM_ANDROID,
+  ALERT_SUBSCRIPTION_RESTORE_PLATFORM_IOS,
   ALERT_SUBSCRIPTION_RESTORE_PURCHASE_NOT_FOUND,
+  ALERT_SUBSCRIPTION_UPGRADE_PLATFORM_ANDROID,
+  ALERT_SUBSCRIPTION_UPGRADE_PLATFORM_IOS,
+  ALERT_TITLE_ERROR,
   ALERT_TITLE_ERROR_NO_INTERNET,
   ALERT_TITLE_SUBSCRIPTION_RESTORE_ERROR} from '../constants/messages';
 import {
@@ -27,8 +32,8 @@ import {
 import { RootState } from '../reducers';
 import { setIsLoadingRestore, setIsLoadingUpgrade, validateSubscriptionReceipt } from '../reducers/subscriptions';
 import { getUser } from '../reducers/user';
-import { selectActiveSubscriptionProductId, selectIsSubscribed, selectSubscriptionsError, selectSubscriptionsIsLoadingRestore, selectSubscriptionsIsLoadingUpgrade, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
-import { selectUserDetails, selectUserHasSubscribedBefore } from '../selectors/user';
+import { selectSubscriptionsError, selectSubscriptionsIsLoadingRestore, selectSubscriptionsIsLoadingUpgrade, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
+import { selectUserActiveSubscription, selectUserActiveSubscriptionProductId, selectUserDetails, selectUserHasSubscribedBefore, selectUserIsSubscribed } from '../selectors/user';
 import { selectTotalAvailableVoices } from '../selectors/voices';
 import * as inAppPurchaseHelper from '../utils/in-app-purchase-helper';
 
@@ -190,9 +195,23 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   }
 
   handleOnPressUpgrade = async (productId: string) => {
-    const { activeSubscriptionProductId } = this.props;
+    const { activeInAppSubscription } = this.props;
     const storeName = Platform.OS === 'ios' ? 'iTunes' : 'Google Play';
     const isDowngrade = this.isDowngradePaidSubscription(productId);
+    const activeInAppSubscriptionProductId = (activeInAppSubscription) ? activeInAppSubscription.productId : '';
+    const activeInAppSubscriptionService = (activeInAppSubscription) ? activeInAppSubscription.service : '';
+
+    // Prevent upgrading when there's already an active subscription, on an other platform
+
+    // Active subscription is an subscription bought with the Android app
+    // Only allow upgrading through the Android app. Or cancel the Android subscription.
+    if (Platform.OS === 'ios' && activeInAppSubscription && activeInAppSubscription.service === 'google') {
+      return this.showErrorAlert(ALERT_TITLE_ERROR, ALERT_SUBSCRIPTION_UPGRADE_PLATFORM_ANDROID);
+    }
+
+    if (Platform.OS === 'android' && activeInAppSubscription && activeInAppSubscription.service === 'apple') {
+      return this.showErrorAlert(ALERT_TITLE_ERROR, ALERT_SUBSCRIPTION_UPGRADE_PLATFORM_IOS);
+    }
 
     // If it's a downgrade to an other paid subscription, and we are on iOS
     // Just show a user can only downgrade through iTunes
@@ -221,7 +240,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
     this.setState({ centeredSubscriptionProductId: productId }, async () => {
       try {
-        const upgradeResult = await this.requestSubscription(productId, activeSubscriptionProductId);
+        const upgradeResult = await this.requestSubscription(productId, activeInAppSubscriptionProductId, activeInAppSubscriptionService);
 
         // The result of requestSubscription is handled in SubscriptionHandlerContainer
         return upgradeResult;
@@ -238,11 +257,25 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   }
 
   handleOnPressRestore = async () => {
+    const { activeInAppSubscription } = this.props;
+
+    Analytics.trackEvent('Subscriptions restore', { Status: 'restoring', UserId: this.analyticsUserId });
+
+    // Prevent restoring when there's an active subscription on an other platform
+
+    if (Platform.OS === 'android' && activeInAppSubscription && activeInAppSubscription.service === 'apple') {
+      return this.showErrorAlert(ALERT_TITLE_ERROR, ALERT_SUBSCRIPTION_RESTORE_PLATFORM_ANDROID);
+    }
+
+    if (Platform.OS === 'ios' && activeInAppSubscription && activeInAppSubscription.service === 'google') {
+      return this.showErrorAlert(ALERT_TITLE_ERROR, ALERT_SUBSCRIPTION_RESTORE_PLATFORM_IOS);
+    }
+
+    // Only when the user has no active subscriptions on an other platform, we do the restore purchase flow
+
     this.props.setIsLoadingRestore(true);
 
     try {
-      Analytics.trackEvent('Subscriptions restore', { Status: 'restoring', UserId: this.analyticsUserId });
-
       // Get the previous purchases of the current user
       const purchases = await this.getAvailablePurchases();
 
@@ -274,6 +307,9 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       // Validate the receipt on our server
       await this.props.validateSubscriptionReceipt(purchase.productId, purchase.transactionReceipt, Platform.OS);
 
+      // Get the updated user with the active subscription
+      await this.props.getUser();
+
       // Finish the transaction, if it was not finished yet
       await this.finishSubscriptionTransaction(purchase);
 
@@ -292,21 +328,20 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     return inAppPurchaseHelper.finishSubscriptionTransaction(purchase)
   }
 
-  requestSubscription = (productId: string, activeProductId: string): Promise<string> => {
-    return inAppPurchaseHelper.requestSubscription(productId, activeProductId);
+  requestSubscription = (productId: string, activeInAppSubscriptionProductId: Api.InAppSubscription['productId'], activeInAppSubscriptionService: Api.InAppSubscription['service']): Promise<string> => {
+    return inAppPurchaseHelper.requestSubscription(productId, activeInAppSubscriptionProductId, activeInAppSubscriptionService);
   }
 
   isDowngradePaidSubscription = (productId: string): boolean => {
-    const { activeSubscriptionProductId } = this.props;
+    const { activeInAppSubscription } = this.props;
     const { subscriptions } = this.state;
 
     const subscriptionToUpgradeTo = subscriptions.find(subscription => subscription.productId === productId);
-    const currentSubscription = subscriptions.find(subscription => subscription.productId === activeSubscriptionProductId);
 
     if (!subscriptionToUpgradeTo) { return false; }
-    if (!currentSubscription) { return false; }
+    if (!activeInAppSubscription) { return false; }
 
-    return Number(subscriptionToUpgradeTo.price) < Number(currentSubscription.price);
+    return Number(subscriptionToUpgradeTo.price) < Number(activeInAppSubscription.price);
   }
 
   isDowngradeFreeSubscription = (productId: string): boolean => {
@@ -344,7 +379,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         const errorMessage = err && err.message ? err.message : 'An unknown error happened while fetching the available subscriptions';
 
         return this.setState({ isLoadingSubscriptionItems: false }, () => {
-          return this.showErrorAlert('Oops!', errorMessage);
+          return this.showErrorAlert(ALERT_TITLE_ERROR, errorMessage);
         });
       }
     });
@@ -412,13 +447,14 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 interface StateProps {
   subscriptionsError: ReturnType<typeof selectSubscriptionsError>;
   validationResult: ReturnType<typeof selectSubscriptionsValidationResult>;
-  isSubscribed: ReturnType<typeof selectIsSubscribed>;
-  activeSubscriptionProductId: ReturnType<typeof selectActiveSubscriptionProductId>;
+  isSubscribed: ReturnType<typeof selectUserIsSubscribed>;
+  activeSubscriptionProductId: ReturnType<typeof selectUserActiveSubscriptionProductId>;
   userDetails: ReturnType<typeof selectUserDetails>;
   totalAvailableVoices: ReturnType<typeof selectTotalAvailableVoices>;
   userHasSubscribedBefore: ReturnType<typeof selectUserHasSubscribedBefore>;
   isLoadingUpgrade: ReturnType<typeof selectSubscriptionsIsLoadingUpgrade>;
   isLoadingRestore: ReturnType<typeof selectSubscriptionsIsLoadingRestore>;
+  activeInAppSubscription: ReturnType<typeof selectUserActiveSubscription>;
 }
 
 interface DispatchProps {
@@ -431,13 +467,14 @@ interface DispatchProps {
 const mapStateToProps = (state: RootState): StateProps => ({
   subscriptionsError: selectSubscriptionsError(state),
   validationResult: selectSubscriptionsValidationResult(state),
-  isSubscribed: selectIsSubscribed(state),
-  activeSubscriptionProductId: selectActiveSubscriptionProductId(state),
+  isSubscribed: selectUserIsSubscribed(state),
+  activeSubscriptionProductId: selectUserActiveSubscriptionProductId(state),
   userDetails: selectUserDetails(state),
   totalAvailableVoices: selectTotalAvailableVoices(state),
   userHasSubscribedBefore: selectUserHasSubscribedBefore(state),
   isLoadingUpgrade: selectSubscriptionsIsLoadingUpgrade(state),
   isLoadingRestore: selectSubscriptionsIsLoadingRestore(state),
+  activeInAppSubscription: selectUserActiveSubscription(state)
 });
 
 const mapDispatchToProps = {

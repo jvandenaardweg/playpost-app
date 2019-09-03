@@ -7,8 +7,12 @@ import { UpgradeContainerComponent } from '../UpgradeContainer';
 jest.mock('../../navigation/NavigationService');
 
 import mockApplePurchases from '../../../tests/__mocks__/apple-purchases';
+import mockInAppSubscriptionApple from '../../../tests/__mocks__/in-app-subscription-apple';
+import mockInAppSubscriptionGoogle from '../../../tests/__mocks__/in-app-subscription-google';
 import mockSubscriptions from '../../../tests/__mocks__/subscriptions';
+
 import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../constants/in-app-purchase';
+import { ALERT_SUBSCRIPTION_RESTORE_PLATFORM_ANDROID, ALERT_SUBSCRIPTION_RESTORE_PLATFORM_IOS, ALERT_SUBSCRIPTION_UPGRADE_PLATFORM_ANDROID, ALERT_SUBSCRIPTION_UPGRADE_PLATFORM_IOS, ALERT_TITLE_ERROR } from '../../constants/messages';
 
 const validateSubscriptionReceiptHandler = jest.fn();
 const getUserHandler = jest.fn();
@@ -18,7 +22,7 @@ const navigationGoBackHandler = jest.fn();
 const setIsLoadingUpgradeHandler = jest.fn();
 const setIsLoadingRestoreHandler = jest.fn();
 
-const props: any = {
+const defaultProps: any = {
   subscriptionsError: '',
   validationResult: null,
   activeSubscriptionProductId: '',
@@ -41,6 +45,10 @@ describe('UpgradeContainerComponent', () => {
     let wrapper: renderer.ReactTestRenderer;
 
     beforeEach(() => {
+      const props = {
+        ...defaultProps
+      }
+
       wrapper = renderer.create(<UpgradeContainerComponent {...props} />);
     });
 
@@ -54,14 +62,18 @@ describe('UpgradeContainerComponent', () => {
 
     afterEach(() => {
       jest.resetAllMocks();
-      jest.restoreAllMocks();
+      jest.resetModules();
     });
 
     beforeEach(() => {
+      const props = {
+        ...defaultProps
+      }
+
       wrapper = renderer.create(<UpgradeContainerComponent {...props} />);
     });
 
-    it('should correctly handle handleOnPressUpgrade() on an downgrade to free', async () => {
+    it('handleOnPressUpgrade() should correctly handle an downgrade to free', async () => {
       const testProductId = SUBSCRIPTION_PRODUCT_ID_FREE;
       const testInstance = wrapper.root.instance;
 
@@ -81,7 +93,7 @@ describe('UpgradeContainerComponent', () => {
         'To downgrade to Free you need to cancel your current subscription. Cancelling a subscription can only be done through iTunes.\n\n Press \"Manage Subscriptions\" below to manage your subscriptions.');
     });
 
-    it('should correctly handle handleOnPressUpgrade() on an downgrade from a higher subscription', async () => {
+    it('handleOnPressUpgrade() should correctly handle an downgrade from a higher subscription', async () => {
       const testProductId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
       const testInstance = wrapper.root.instance;
 
@@ -101,7 +113,7 @@ describe('UpgradeContainerComponent', () => {
         'Downgrading a subscription can only be done through iTunes.\n\n Press "Manage Subscriptions" below to manage your subscriptions.');
     });
 
-    it('should correctly handle handleOnPressUpgrade() on an upgrade', async () => {
+    it('handleOnPressUpgrade() should correctly handle an upgrade', async () => {
       const testProductId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
 
       const testInstance = wrapper.root.instance;
@@ -123,12 +135,12 @@ describe('UpgradeContainerComponent', () => {
       expect(spyRequestSubscription).toHaveBeenCalledTimes(1);
       expect(spySetIsLoadingUpgrade).toHaveBeenCalledTimes(1);
       expect(spySetIsLoadingUpgrade).toHaveBeenCalledWith(true);
-      expect(spyRequestSubscription).toHaveBeenCalledWith(testProductId);
+      expect(spyRequestSubscription).toHaveBeenCalledWith(testProductId, '', '');
       expect(testInstance.state.centeredSubscriptionProductId).toBe(testProductId);
 
     });
 
-    it('should correctly handle an error inside handleOnPressUpgrade() on an upgrade', async () => {
+    it('handleOnPressUpgrade() should correctly handle an error on an upgrade', async () => {
       const testProductId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
 
       const testInstance = wrapper.root.instance;
@@ -149,8 +161,64 @@ describe('UpgradeContainerComponent', () => {
       expect(spyRequestSubscription).toHaveBeenCalledTimes(1);
       expect(spySetIsLoadingUpgrade).toHaveBeenCalledTimes(2);
       expect(spySetIsLoadingUpgrade).toHaveBeenLastCalledWith(false);
-      expect(spyRequestSubscription).toHaveBeenCalledWith(testProductId);
+      expect(spyRequestSubscription).toHaveBeenCalledWith(testProductId, '', '');
       expect(spyShowErrorAlert).toHaveBeenCalledTimes(0); // The error is handled in SubscriptionHandlerContainer
+
+    });
+
+    it('handleOnPressUpgrade() should prevent the user from upgrading if the user is on iOS but has an Google Play subscription active', async () => {
+      const Platform = require('react-native').Platform;
+      Platform.OS = 'ios';
+
+      const props = {
+        ...defaultProps,
+        activeInAppSubscription: mockInAppSubscriptionGoogle
+      }
+
+      wrapper.update(<UpgradeContainerComponent {...props} />)
+
+      const testInstance = wrapper.root.instance;
+
+      const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert').mockReturnValueOnce('');
+
+      const testProductId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
+
+      const spyRequestSubscription = jest.spyOn(testInstance, 'requestSubscription');
+
+      // Test an upgrade to a higher subscription level
+      await testInstance.handleOnPressUpgrade(testProductId);
+
+      expect(spyRequestSubscription).toHaveBeenCalledTimes(0);
+      expect(spyShowErrorAlert).toHaveBeenCalledTimes(1);
+      expect(spyShowErrorAlert).toHaveBeenCalledWith(ALERT_TITLE_ERROR, ALERT_SUBSCRIPTION_UPGRADE_PLATFORM_ANDROID);
+
+    });
+
+    it('handleOnPressUpgrade() should prevent the user from upgrading if the user is on Android but has an Apple App Store subscription active', async () => {
+      const Platform = require('react-native').Platform;
+      Platform.OS = 'android';
+
+      const props = {
+        ...defaultProps,
+        activeInAppSubscription: mockInAppSubscriptionApple
+      }
+
+      wrapper.update(<UpgradeContainerComponent {...props} />)
+
+      const testInstance = wrapper.root.instance;
+
+      const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert').mockReturnValueOnce('');
+
+      const testProductId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
+
+      const spyRequestSubscription = jest.spyOn(testInstance, 'requestSubscription');
+
+      // Test an upgrade to a higher subscription level
+      await testInstance.handleOnPressUpgrade(testProductId);
+
+      expect(spyRequestSubscription).toHaveBeenCalledTimes(0);
+      expect(spyShowErrorAlert).toHaveBeenCalledTimes(1);
+      expect(spyShowErrorAlert).toHaveBeenCalledWith(ALERT_TITLE_ERROR, ALERT_SUBSCRIPTION_UPGRADE_PLATFORM_IOS);
 
     });
 
@@ -161,13 +229,13 @@ describe('UpgradeContainerComponent', () => {
     })
 
     it('isDowngradeFreeSubscription() should return true/false', () => {
-      const mockProps = {
-        ...props,
+      const props = {
+        ...defaultProps,
         activeSubscriptionProductId: SUBSCRIPTION_PRODUCT_ID_FREE,
         subscriptions: mockSubscriptions
       }
 
-      wrapper.update(<UpgradeContainerComponent {...mockProps} />)
+      wrapper.update(<UpgradeContainerComponent {...props} />)
       const testInstance = wrapper.root.instance;
 
       expect(testInstance.isDowngradeFreeSubscription(SUBSCRIPTION_PRODUCT_ID_FREE)).toBe(false)
@@ -176,20 +244,20 @@ describe('UpgradeContainerComponent', () => {
     })
 
     it('isDowngradePaidSubscription() should return true/false', () => {
-      const mockProps = {
-        ...props,
+      const props = {
+        ...defaultProps,
         activeSubscriptionProductId: 'com.aardwegmedia.playpost.subscriptions.plus',
         subscriptions: mockSubscriptions
       }
 
-      wrapper.update(<UpgradeContainerComponent {...mockProps} />)
+      wrapper.update(<UpgradeContainerComponent {...props} />)
       const testInstance = wrapper.root.instance;
 
       expect(testInstance.isDowngradePaidSubscription(SUBSCRIPTION_PRODUCT_ID_FREE)).toBe(false)
       expect(testInstance.isDowngradePaidSubscription(SUBSCRIPTION_PRODUCT_ID_PREMIUM)).toBe(false)
     })
 
-    it('should correctly handle handleOnPressRestore() when a user has previous purchases', async () => {
+    it('handleOnPressRestore() should correctly handle when a user has previous purchases', async () => {
       const testInstance = wrapper.root.instance;
 
       const spyGetAvailablePurchases = jest.spyOn(testInstance, 'getAvailablePurchases').mockReturnValueOnce(mockApplePurchases)
@@ -217,7 +285,7 @@ describe('UpgradeContainerComponent', () => {
       expect(spyValidateSubscriptionReceipt).toHaveBeenCalledWith(mockApplePurchases[0].productId, mockApplePurchases[0].transactionReceipt, 'ios');
     });
 
-    it('should correctly handle handleOnPressRestore() when a user has no previous purchases', async () => {
+    it('handleOnPressRestore() should correctly handle when a user has no previous purchases', async () => {
       const testInstance = wrapper.root.instance;
 
       const spyGetAvailablePurchases = jest.spyOn(testInstance, 'getAvailablePurchases').mockReturnValueOnce([]);
@@ -238,7 +306,7 @@ describe('UpgradeContainerComponent', () => {
 
     });
 
-    it('should show an error alert when an error throws inside handleOnPressRestore()', async () => {
+    it('handleOnPressRestore() should show an error alert when an error throws inside', async () => {
       const testInstance = wrapper.root.instance;
 
       jest.spyOn(testInstance, 'getAvailablePurchases').mockRejectedValueOnce(new Error('Some error!'));
@@ -253,6 +321,52 @@ describe('UpgradeContainerComponent', () => {
 
       expect(spyShowErrorAlert).toHaveBeenCalledTimes(1);
       expect(spyShowErrorAlert).toHaveBeenCalledWith('Restore purchase error', `Some error!`);
+
+    });
+
+    it('handleOnPressRestore() should show an error alert when the active subscription is from the Google Play Store, but the platform is iOS', async () => {
+      const Platform = require('react-native').Platform;
+      Platform.OS = 'ios';
+
+      const props = {
+        ...defaultProps,
+        activeInAppSubscription: mockInAppSubscriptionGoogle
+      }
+
+      wrapper.update(<UpgradeContainerComponent {...props} />)
+
+      const testInstance = wrapper.root.instance;
+
+      const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert').mockReturnValueOnce('');
+
+      // Simulate a click on "Restore previous purchase"
+      await testInstance.handleOnPressRestore();
+
+      expect(spyShowErrorAlert).toHaveBeenCalledTimes(1);
+      expect(spyShowErrorAlert).toHaveBeenCalledWith(ALERT_TITLE_ERROR, ALERT_SUBSCRIPTION_RESTORE_PLATFORM_IOS);
+
+    });
+
+    it('handleOnPressRestore() should show an error alert when the active subscription is from the Apple App Store, but the platform is Android', async () => {
+      const Platform = require('react-native').Platform;
+      Platform.OS = 'android';
+
+      const props = {
+        ...defaultProps,
+        activeInAppSubscription: mockInAppSubscriptionApple
+      }
+
+      wrapper.update(<UpgradeContainerComponent {...props} />)
+
+      const testInstance = wrapper.root.instance;
+
+      const spyShowErrorAlert = jest.spyOn(testInstance, 'showErrorAlert').mockReturnValueOnce('');
+
+      // Simulate a click on "Restore previous purchase"
+      await testInstance.handleOnPressRestore();
+
+      expect(spyShowErrorAlert).toHaveBeenCalledTimes(1);
+      expect(spyShowErrorAlert).toHaveBeenCalledWith(ALERT_TITLE_ERROR, ALERT_SUBSCRIPTION_RESTORE_PLATFORM_ANDROID);
 
     });
   });

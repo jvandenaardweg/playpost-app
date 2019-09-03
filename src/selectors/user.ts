@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { SUBSCRIPTION_NAME, SUBSCRIPTION_PRODUCT_ID_FREE } from '../constants/in-app-purchase';
 import { RootState } from '../reducers';
 import { UserState } from '../reducers/user';
 import { createDeepEqualSelector } from './index';
@@ -81,6 +82,47 @@ export const selectUserSelectedVoiceByLanguageName = createDeepEqualSelector(
 export const selectUserSubscriptions = createDeepEqualSelector(
   [selectUserDetails],
   userDetails => userDetails && userDetails.inAppSubscriptions
+);
+
+export const selectUserIsSubscribed = createSelector(
+  [selectUserDetails],
+  (userDetails): boolean => !!(userDetails && userDetails.isSubscribed)
+);
+
+/**
+ * The active subscription's productId is different per platform.
+ *
+ * TODO: make sure when we upgrade on Android, we do not pass in the "oldSku" from an iOS subscription
+ */
+export const selectUserActiveSubscriptionProductId = createSelector(
+  [selectUserDetails, selectUserIsSubscribed],
+  (userDetails, isSubscribed): string => {
+    if (!isSubscribed) { return SUBSCRIPTION_PRODUCT_ID_FREE; }
+    if (!userDetails) { return SUBSCRIPTION_PRODUCT_ID_FREE; }
+    if (!userDetails.activeInAppSubscription) { return SUBSCRIPTION_PRODUCT_ID_FREE; }
+    return userDetails.activeInAppSubscription.productId;
+  }
+);
+
+export const selectUserActiveSubscription = createSelector(
+  [selectUserDetails, selectUserIsSubscribed],
+  (userDetails, isSubscribed): Api.InAppSubscription | null => {
+    if (!isSubscribed) { return null; }
+    if (!userDetails) { return null; }
+    if (!userDetails.activeInAppSubscription) { return null; }
+
+    return userDetails.activeInAppSubscription;
+  }
+);
+
+export const selectUserActiveSubscriptionName = createSelector(
+  [selectUserActiveSubscription],
+  (userActiveSubscription): string => {
+    if (!userActiveSubscription) {
+      return SUBSCRIPTION_NAME[SUBSCRIPTION_PRODUCT_ID_FREE];
+    }
+    return userActiveSubscription.name
+  }
 );
 
 export const selectUserHasSubscribedBefore = createDeepEqualSelector(

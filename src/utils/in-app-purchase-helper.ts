@@ -1,6 +1,5 @@
 import { Platform } from 'react-native';
 import RNIap from 'react-native-iap';
-import { SUBSCRIPTION_PRODUCT_IDS } from '../constants/in-app-purchase';
 
 /**
  * Method to finish subscription transactions for iOS and Android. Both platforms are handled correctly.
@@ -34,9 +33,10 @@ export const finishSubscriptionTransaction = async (purchase: RNIap.ProductPurch
   return RNIap.finishTransactionIOS(purchase.transactionId);
 }
 
-export const requestSubscription = async (newProductId: string, activeProductId: string) => {
+export const requestSubscription = async (newProductId: string, activeInAppSubscriptionProductId: Api.InAppSubscription['productId'], activeInAppSubscriptionService: Api.InAppSubscription['service']) => {
   // Correctly handle upgrades from lower subscriptions on Android
-  if (Platform.OS === 'android') {
+  // If the active subscription is an android subscription, we want to have some control over how the upgrade/downgrade happens...
+  if (Platform.OS === 'android' && activeInAppSubscriptionProductId && activeInAppSubscriptionService === 'google') {
 
     // https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.ProrationMode.html
     const prorationModes = {
@@ -51,11 +51,7 @@ export const requestSubscription = async (newProductId: string, activeProductId:
     // The default behavior.
     // When downgrading, the billing date is changed according to the remaining amount of the last time the user paid.
     // When upgrading, the user is charged immediately and, again, the new billing date is calculated according to the amount that was last paid.
-
-    // If the user already has an active subscription, handle upgrade or downgrade correctly on Android
-    if (activeProductId && SUBSCRIPTION_PRODUCT_IDS.includes(activeProductId)) {
-      return RNIap.requestSubscription(newProductId, activeProductId, prorationModes['IMMEDIATE_WITH_TIME_PRORATION'])
-    }
+    return RNIap.requestSubscription(newProductId, activeInAppSubscriptionProductId, prorationModes['IMMEDIATE_WITH_TIME_PRORATION'])
 
   }
 

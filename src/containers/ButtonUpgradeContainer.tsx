@@ -5,7 +5,7 @@ import { NavigationInjectedProps } from 'react-navigation';
 import { ButtonUpgrade } from '../components/ButtonUpgrade';
 import NavigationService from '../navigation/NavigationService';
 import { RootState } from '../reducers';
-import { selectIsSubscribed } from '../selectors/subscriptions';
+import { selectUserIsSubscribed } from '../selectors/user';
 
 type Props = StateProps & NavigationInjectedProps;
 
@@ -26,11 +26,11 @@ export class ButtonUpgradeContainerComponent extends React.PureComponent<Props> 
 }
 
 interface StateProps {
-  isSubscribed: ReturnType<typeof selectIsSubscribed>;
+  isSubscribed: ReturnType<typeof selectUserIsSubscribed>;
 }
 
 const mapStateToProps = (state: RootState, props: Props): StateProps => ({
-  isSubscribed: selectIsSubscribed(state),
+  isSubscribed: selectUserIsSubscribed(state),
 });
 
 export const ButtonUpgradeContainer =

@@ -7,13 +7,35 @@ declare namespace Api {
     token: string;
   }
 
-  export interface ReceiptValidationResponse {
+  export interface ReceiptValidationResponseApple {
     id: string;
     startedAt: string;
     expiresAt: string | null;
     latestTransactionId: string | null;
     originalTransactionId: string;
     latestReceipt: string;
+    hadTrial: string | null;
+    isTrial: boolean;
+    isCanceled: boolean | null;
+    isExpired: boolean | null;
+    status: string;
+    environment: string;
+    renewedAt: string | null;
+    canceledAt: string | null;
+    createdAt: string;
+    updatedAt: string;
+    inAppSubscription: InAppSubscription;
+  }
+
+  export interface ReceiptValidationResponseGoogle {
+    id: string;
+    startedAt: string;
+    expiresAt: string | null;
+    transactionId: string;
+    orderId: string;
+    purchaseToken: string;
+    latestReceipt: string;
+    hadTrial: string | null;
     isTrial: boolean;
     isCanceled: boolean | null;
     isExpired: boolean | null;
@@ -42,12 +64,35 @@ declare namespace Api {
     updatedAt: string;
   }
 
-  export interface UserInAppSubscriptions {
+  export interface UserInAppSubscriptionApple {
     id: string;
     latestTransactionId: string;
     originalTransactionId: string;
     latestReceipt: string;
     isTrial: boolean;
+    hadTrial: boolean;
+    status: string;
+    environment: string;
+    renewedAt: string | null;
+    canceledAt: string | null;
+    startedAt: string;
+    expiresAt: string | null;
+    isCanceled: boolean;
+    isExpired: boolean;
+    user?: User;
+    inAppSubscription: InAppSubscription;
+    createdAt: string;
+    updatedAt: string;
+  }
+
+  export interface UserInAppSubscriptionGoogle {
+    id: string;
+    transactionId: string;
+    orderId: string;
+    purchaseToken: string;
+    latestReceipt: string;
+    isTrial: boolean;
+    hadTrial: boolean;
     status: string;
     environment: string;
     renewedAt: string | null;
@@ -104,8 +149,11 @@ declare namespace Api {
     activatedAt: string | null;
     authenticatedAt: string | null;
     voiceSettings: UserVoiceSetting[];
-    inAppSubscriptions: UserInAppSubscriptions[];
+    usedInAppSubscriptionTrial: string[];
+    activeInAppSubscription: InAppSubscription | null;
+    // activeInAppSubscription: UserInAppSubscriptionApple | UserInAppSubscriptionGoogle;
     isSubscribed: boolean;
+    inAppSubscriptions?: UserInAppSubscriptionApple[], // TODO: should be removed later
     used: {
       audiofiles: {
         currentMonthInSeconds: number;
