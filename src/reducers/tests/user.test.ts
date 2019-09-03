@@ -2,9 +2,8 @@ import {
   CREATE_USER_FAIL_MESSAGE,
   DELETE_USER_FAIL_MESSAGE,
   GET_USER_FAIL_MESSAGE,
-  SAVE_SELECTED_VOICE_FAIL_MESSAGE,
-  UPDATE_USER_EMAIL_FAIL_MESSAGE,
-  UPDATE_USER_PASSWORD_FAIL_MESSAGE
+  PATCH_USER_FAIL_MESSAGE,
+  SAVE_SELECTED_VOICE_FAIL_MESSAGE
 } from '../../constants/messages';
 import {
   CREATE_USER,
@@ -17,6 +16,9 @@ import {
   GET_USER_FAIL,
   GET_USER_SUCCESS,
   initialState,
+  PATCH_USER,
+  PATCH_USER_FAIL,
+  PATCH_USER_SUCCESS,
   RESET_SAVE_SELECTED_VOICE_ERROR,
   RESET_USER_ERROR,
   RESET_USER_STATE,
@@ -24,12 +26,6 @@ import {
   SAVE_SELECTED_VOICE_FAIL,
   SAVE_SELECTED_VOICE_SUCCESS,
   SET_PLAYBACK_SPEED,
-  UPDATE_USER_EMAIL,
-  UPDATE_USER_EMAIL_FAIL,
-  UPDATE_USER_EMAIL_SUCCESS,
-  UPDATE_USER_PASSWORD,
-  UPDATE_USER_PASSWORD_FAIL,
-  UPDATE_USER_PASSWORD_SUCCESS,
   userReducer
 } from '../user';
 
@@ -218,86 +214,44 @@ describe('user reducer', () => {
     ).toEqual(expectedState);
   });
 
-  it('should handle UPDATE_USER_PASSWORD', () => {
+  it('should handle PATCH_USER', () => {
     const expectedState = {
       ...initialState,
-      isLoadingUpdatePassword: true,
+      isLoadingPatchUser: true,
       error: ''
     };
 
     expect(
       userReducer(initialState, {
-        type: UPDATE_USER_PASSWORD
+        type: PATCH_USER
       })
     ).toEqual(expectedState);
   });
 
-  it('should handle UPDATE_USER_PASSWORD_SUCCESS', () => {
+  it('should handle PATCH_USER_SUCCESS', () => {
     const expectedState = {
       ...initialState,
-      isLoadingUpdatePassword: false,
+      isLoadingPatchUser: false,
       error: ''
     };
 
     expect(
       userReducer(initialState, {
-        type: UPDATE_USER_PASSWORD_SUCCESS
+        type: PATCH_USER_SUCCESS
       })
     ).toEqual(expectedState);
   });
 
-  it('should handle UPDATE_USER_PASSWORD_FAIL', () => {
+  it('should handle PATCH_USER_FAIL', () => {
     const expectedState = {
       ...initialState,
-      isLoadingUpdatePassword: false,
-      error: UPDATE_USER_PASSWORD_FAIL_MESSAGE
+      isLoadingPatchUser: false,
+      error: PATCH_USER_FAIL_MESSAGE
     };
 
     expect(
       userReducer(initialState, {
-        type: UPDATE_USER_PASSWORD_FAIL
-      })
-    ).toEqual(expectedState);
-  });
-
-  it('should handle UPDATE_USER_EMAIL', () => {
-    const expectedState = {
-      ...initialState,
-      isLoadingUpdateEmail: true,
-      error: ''
-    };
-
-    expect(
-      userReducer(initialState, {
-        type: UPDATE_USER_EMAIL
-      })
-    ).toEqual(expectedState);
-  });
-
-  it('should handle UPDATE_USER_EMAIL_SUCCESS', () => {
-    const expectedState = {
-      ...initialState,
-      isLoadingUpdateEmail: false,
-      error: ''
-    };
-
-    expect(
-      userReducer(initialState, {
-        type: UPDATE_USER_EMAIL_SUCCESS
-      })
-    ).toEqual(expectedState);
-  });
-
-  it('should handle UPDATE_USER_EMAIL_FAIL', () => {
-    const expectedState = {
-      ...initialState,
-      isLoadingUpdateEmail: false,
-      error: UPDATE_USER_EMAIL_FAIL_MESSAGE
-    };
-
-    expect(
-      userReducer(initialState, {
-        type: UPDATE_USER_EMAIL_FAIL
+        type: PATCH_USER_FAIL
       })
     ).toEqual(expectedState);
   });

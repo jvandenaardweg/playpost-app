@@ -6,7 +6,7 @@ export const migrations = {
     ...state,
     user: {
       ...state.user,
-      deviceLocale: DeviceInfo.getDeviceLocale()
+      deviceLocale: DeviceInfo.getDeviceLocale() // add with default
     },
     voices: {
       ...state.voices,
@@ -32,6 +32,15 @@ export const migrations = {
     player: {
       ...state.player,
       playbackSpeed: undefined // Remove playbackSpeed from player
+    }
+  }),
+  8: (state: RootState) => ({
+    ...state,
+    user: {
+      ...state.user,
+      isLoadingUpdateEmail: undefined, // remove
+      isLoadingUpdatePassword: undefined, // remove
+      isLoadingPatchUser: false // add, with default
     }
   })
 }

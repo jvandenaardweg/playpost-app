@@ -8,7 +8,7 @@ import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_UPDATE_EMAIL_DIFF, ALER
 import { UpdateEmailForm } from '../../components/UpdateEmailForm';
 
 import { RootState } from '../../reducers';
-import { getUser, updateUserEmail } from '../../reducers/user';
+import { getUser, patchUser, updateUserEmail } from '../../reducers/user';
 
 import { selectUserDetails, selectUserError } from '../../selectors/user';
 
@@ -92,7 +92,7 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
 
     this.setState({ isLoading: true }, async () => {
       try {
-        await this.props.updateUserEmail(email);
+        await this.props.patchUser({ email });
 
         await this.props.getUser();
 
@@ -137,6 +137,7 @@ interface StateProps {
 
 interface DispatchProps {
   updateUserEmail: typeof updateUserEmail;
+  patchUser: typeof patchUser;
   getUser: typeof getUser;
 }
 
@@ -147,6 +148,7 @@ const mapStateToProps = (state: RootState): StateProps => ({
 
 const mapDispatchToProps = {
   updateUserEmail,
+  patchUser,
   getUser
 };
 

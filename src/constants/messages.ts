@@ -61,7 +61,7 @@ export const GENERIC_NETWORK_ERROR = 'Could not communicate with the server. Ple
 
 // Reducer messages
 export const GET_USER_FAIL_MESSAGE = 'An unknown error happened while getting your account. Please contact us when this happens all the time.';
-export const UPDATE_USER_PASSWORD_FAIL_MESSAGE = 'An unknown error happened while updating your password. Please contact us when this happens all the time.';
+export const PATCH_USER_FAIL_MESSAGE = 'An unknown error happened while updating your details. Please contact us when this happens all the time.';
 export const UPDATE_USER_EMAIL_FAIL_MESSAGE = 'An unknown error happened while updating your e-mail address. Please contact us when this happens all the time.';
 export const CREATE_USER_FAIL_MESSAGE = 'An unknown error happened while creating your account. Please contact us when this happens all the time.';
 export const DELETE_USER_FAIL_MESSAGE = 'An unknown error happened while deleting your account. Please contact us when this happens all the time.';

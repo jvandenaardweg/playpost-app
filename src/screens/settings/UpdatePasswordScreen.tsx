@@ -8,7 +8,7 @@ import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_UPDATE_PASSWORD_DIFF_VA
 import { UpdatePasswordForm } from '../../components/UpdatePasswordForm';
 
 import { RootState } from '../../reducers';
-import { updateUserPassword } from '../../reducers/user';
+import { patchUser } from '../../reducers/user';
 
 import { selectUserError } from '../../selectors/user';
 
@@ -77,7 +77,7 @@ export class UpdatePasswordScreenContainer extends React.PureComponent<Props, St
 
     this.setState({ isLoading: true }, async () => {
       try {
-        await this.props.updateUserPassword(password);
+        await this.props.patchUser({ password });
         return this.setState({ isSuccess: true, isLoading: false }, () => {
           this.navigationTimeout = setTimeout(() => this.props.navigation.navigate('Settings'), 2000);
         });
@@ -117,7 +117,7 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  updateUserPassword: typeof updateUserPassword;
+  patchUser: typeof patchUser;
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
@@ -125,7 +125,7 @@ const mapStateToProps = (state: RootState): StateProps => ({
 });
 
 const mapDispatchToProps = {
-  updateUserPassword
+  patchUser
 };
 
 export const UpdatePasswordScreen = connect(

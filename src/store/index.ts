@@ -19,7 +19,7 @@ const persistConfig: PersistConfig<any> = {
   storage: AsyncStorage,
   key: 'root',
   blacklist: ['player'],
-  version: 7, // up the version if store structure changes and create a migration for that
+  version: 8, // up the version if store structure changes and create a migration for that
   migrate: createMigrate(migrations as any)
 };
 
