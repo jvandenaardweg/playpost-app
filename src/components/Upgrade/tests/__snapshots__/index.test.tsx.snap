@@ -33,7 +33,844 @@ exports[`Upgrade rendering should render correctly 1`] = `
           }
         }
       >
-        <View />
+        <View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#ffffff",
+                  "borderRadius": 6,
+                  "elevation": 4,
+                  "marginBottom": 12,
+                  "marginTop": 12,
+                  "padding": 12,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.05,
+                  "shadowRadius": 5,
+                },
+                Object {
+                  "marginLeft": 24,
+                  "marginRight": 6,
+                  "width": 702,
+                },
+              ]
+            }
+          >
+            <View>
+              <Text
+                style={
+                  Object {
+                    "color": "#000000",
+                    "fontSize": 21,
+                    "fontWeight": "normal",
+                    "marginBottom": 12,
+                    "marginTop": 12,
+                  }
+                }
+              >
+                Free
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "height": 70,
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#000000",
+                    "fontSize": 48,
+                    "fontWeight": "800",
+                    "letterSpacing": -2,
+                  }
+                }
+                testID="Upgrade-Text-price"
+              >
+                €0
+              </Text>
+            </View>
+            <View>
+              <Text
+                style={
+                  Object {
+                    "color": "#222222",
+                    "marginBottom": 8,
+                    "marginLeft": 4,
+                    "marginTop": 6,
+                  }
+                }
+              >
+                per month
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "alignSelf": "stretch",
+                  "marginBottom": 6,
+                  "marginTop": 12,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "borderRadius": 3,
+                  }
+                }
+              >
+                <View
+                  accessible={true}
+                  clickable={true}
+                  isTVSelectable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "opacity": 1,
+                    }
+                  }
+                  testID="Upgrade-Button"
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "hsl(208, 8%, 90%)",
+                        "borderColor": "#2089dc",
+                        "borderRadius": 3,
+                        "borderWidth": 0,
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                        "padding": 8,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": Object {
+                            "color": Array [
+                              208,
+                              8,
+                              63,
+                            ],
+                            "model": "hsl",
+                            "valpha": 1,
+                          },
+                          "fontSize": 18,
+                          "paddingBottom": 1,
+                          "paddingTop": 2,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      Current subscription
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "paddingTop": 12,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "fontSize": 15,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                Basic quality voices
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "fontSize": 15,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                One voice option per language
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "fontSize": 15,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                Max. 30 minutes per month
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "fontSize": 15,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                Unlimited playlist items
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "fontSize": 15,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                Some advertisements
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "marginTop": 12,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#C5C5C5",
+                  }
+                }
+              >
+                About 5 articles to audio, per month
+              </Text>
+            </View>
+            <View>
+              <View
+                style={
+                  Object {
+                    "borderRadius": 3,
+                  }
+                }
+              >
+                <View
+                  accessible={true}
+                  clickable={true}
+                  isTVSelectable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "opacity": 1,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "transparent",
+                        "borderColor": "#2089dc",
+                        "borderRadius": 3,
+                        "borderWidth": 0,
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                        "padding": 8,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "#2089dc",
+                          "fontSize": 15,
+                          "paddingBottom": 1,
+                          "paddingTop": 2,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      Restore purchase
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#ffffff",
+                  "borderRadius": 6,
+                  "elevation": 4,
+                  "marginBottom": 12,
+                  "marginTop": 12,
+                  "padding": 12,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.05,
+                  "shadowRadius": 5,
+                },
+                Object {
+                  "marginLeft": 6,
+                  "marginRight": 6,
+                  "width": 702,
+                },
+              ]
+            }
+          >
+            <View>
+              <Text
+                style={
+                  Object {
+                    "color": "#000000",
+                    "fontSize": 21,
+                    "fontWeight": "normal",
+                    "marginBottom": 12,
+                    "marginTop": 12,
+                  }
+                }
+              >
+                Premium
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "height": 70,
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#000000",
+                    "fontSize": 48,
+                    "fontWeight": "800",
+                    "letterSpacing": -2,
+                  }
+                }
+                testID="Upgrade-Text-price"
+              >
+                € 4,99
+              </Text>
+            </View>
+            <View>
+              <Text
+                style={
+                  Object {
+                    "color": "#222222",
+                    "marginBottom": 8,
+                    "marginLeft": 4,
+                    "marginTop": 6,
+                  }
+                }
+              >
+                per month
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "alignSelf": "stretch",
+                  "marginBottom": 6,
+                  "marginTop": 12,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "borderRadius": 3,
+                  }
+                }
+              >
+                <View
+                  accessible={true}
+                  clickable={true}
+                  isTVSelectable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "opacity": 1,
+                    }
+                  }
+                  testID="Upgrade-Button"
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#2089dc",
+                        "borderColor": "#2089dc",
+                        "borderRadius": 3,
+                        "borderWidth": 0,
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                        "padding": 8,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "white",
+                          "fontSize": 18,
+                          "paddingBottom": 1,
+                          "paddingTop": 2,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      Start free 3-day trial
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "paddingTop": 12,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "fontSize": 15,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                10+ High Quality voices
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "fontSize": 15,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                Multiple voice options per language
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "fontSize": 15,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                Max. 120 minutes per month
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "fontSize": 15,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                Unlimited playlist items
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "fontSize": 15,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                No advertisements
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "marginTop": 12,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#C5C5C5",
+                  }
+                }
+              >
+                About 25 articles to audio, per month
+              </Text>
+            </View>
+            <View>
+              <View
+                style={
+                  Object {
+                    "borderRadius": 3,
+                  }
+                }
+              >
+                <View
+                  accessible={true}
+                  clickable={true}
+                  isTVSelectable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "opacity": 1,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "transparent",
+                        "borderColor": "#2089dc",
+                        "borderRadius": 3,
+                        "borderWidth": 0,
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                        "padding": 8,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "#2089dc",
+                          "fontSize": 15,
+                          "paddingBottom": 1,
+                          "paddingTop": 2,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      Restore purchase
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#ffffff",
+                  "borderRadius": 6,
+                  "elevation": 4,
+                  "marginBottom": 12,
+                  "marginTop": 12,
+                  "padding": 12,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.05,
+                  "shadowRadius": 5,
+                },
+                Object {
+                  "marginLeft": 6,
+                  "marginRight": 24,
+                  "width": 702,
+                },
+              ]
+            }
+          >
+            <View>
+              <Text
+                style={
+                  Object {
+                    "color": "#000000",
+                    "fontSize": 21,
+                    "fontWeight": "normal",
+                    "marginBottom": 12,
+                    "marginTop": 12,
+                  }
+                }
+              >
+                Plus
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "height": 70,
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#000000",
+                    "fontSize": 48,
+                    "fontWeight": "800",
+                    "letterSpacing": -2,
+                  }
+                }
+                testID="Upgrade-Text-price"
+              >
+                € 9,99
+              </Text>
+            </View>
+            <View>
+              <Text
+                style={
+                  Object {
+                    "color": "#222222",
+                    "marginBottom": 8,
+                    "marginLeft": 4,
+                    "marginTop": 6,
+                  }
+                }
+              >
+                per month
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "alignSelf": "stretch",
+                  "marginBottom": 6,
+                  "marginTop": 12,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "borderRadius": 3,
+                  }
+                }
+              >
+                <View
+                  accessible={true}
+                  clickable={true}
+                  isTVSelectable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "opacity": 1,
+                    }
+                  }
+                  testID="Upgrade-Button"
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#2089dc",
+                        "borderColor": "#2089dc",
+                        "borderRadius": 3,
+                        "borderWidth": 0,
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                        "padding": 8,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "white",
+                          "fontSize": 18,
+                          "paddingBottom": 1,
+                          "paddingTop": 2,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      Start free 3-day trial
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "paddingTop": 12,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "fontSize": 15,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                10+ High Quality voices
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "fontSize": 15,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                Multiple voice options per language
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "fontSize": 15,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                Max. 300 minutes per month
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "fontSize": 15,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                Unlimited playlist items
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "fontSize": 15,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                No advertisements
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "marginTop": 12,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#C5C5C5",
+                  }
+                }
+              >
+                About 65 articles to audio, per month
+              </Text>
+            </View>
+            <View>
+              <View
+                style={
+                  Object {
+                    "borderRadius": 3,
+                  }
+                }
+              >
+                <View
+                  accessible={true}
+                  clickable={true}
+                  isTVSelectable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "opacity": 1,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "transparent",
+                        "borderColor": "#2089dc",
+                        "borderRadius": 3,
+                        "borderWidth": 0,
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                        "padding": 8,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "#2089dc",
+                          "fontSize": 15,
+                          "paddingBottom": 1,
+                          "paddingTop": 2,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      Restore purchase
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
       </RCTScrollView>
       <View
         style={

@@ -93,6 +93,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                     "letterSpacing": -2,
                   }
                 }
+                testID="Upgrade-Text-price"
               >
                 0
               </Text>
@@ -143,6 +144,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                       "opacity": 1,
                     }
                   }
+                  testID="Upgrade-Button"
                 >
                   <View
                     style={
@@ -367,6 +369,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                     "letterSpacing": -2,
                   }
                 }
+                testID="Upgrade-Text-price"
               >
                 null
               </Text>
@@ -417,6 +420,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                       "opacity": 1,
                     }
                   }
+                  testID="Upgrade-Button"
                 >
                   <View
                     style={
@@ -641,6 +645,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                     "letterSpacing": -2,
                   }
                 }
+                testID="Upgrade-Text-price"
               >
                 null
               </Text>
@@ -691,6 +696,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                       "opacity": 1,
                     }
                   }
+                  testID="Upgrade-Button"
                 >
                   <View
                     style={

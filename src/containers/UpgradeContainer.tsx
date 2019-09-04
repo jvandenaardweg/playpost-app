@@ -107,9 +107,9 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
    * Technically this is already handled by Apple so a user cannot start a trial twice
    */
   get isEligibleForTrial() {
-    const { userHasSubscribedBefore } = this.props;
+    const { userHasSubscribedBefore, activeInAppSubscription } = this.props;
 
-    return !userHasSubscribedBefore;
+    return !userHasSubscribedBefore && !activeInAppSubscription;
   }
 
   static contextType = NetworkContext;

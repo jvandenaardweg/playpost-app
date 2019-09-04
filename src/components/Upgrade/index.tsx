@@ -13,7 +13,7 @@ import fonts from '../../constants/fonts';
 import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../constants/in-app-purchase';
 import spacing from '../../constants/spacing';
 
-interface Props {
+export interface Props {
   isLoadingSubscriptionItems: boolean;
   isLoadingBuySubscription: boolean;
   isLoadingRestorePurchases: boolean;
@@ -106,6 +106,20 @@ export const Upgrade: React.FC<Props> = React.memo(
                 const featureSubscription = subscriptions && subscriptions.find(subscription => subscription.productId === subscriptionFeature.productId);
                 const productId = featureSubscription ? featureSubscription.productId : subscriptionFeature.productId;
 
+                const androidTrialPeriodMapping = {
+                  'D': 'day',
+                  'W': 'week',
+                  'M': 'month',
+                  'Y': 'year'
+                }
+
+                const iosTrialPeriodMapping = {
+                  'DAY': 'day',
+                  'WEEK': 'week',
+                  'MONTH': 'month',
+                  'YEAR': 'year'
+                }
+
                 // Get the localized currency, so we can show a localized currency symbol next to our "Free" option
                 const localizedCurrency = subscriptions && subscriptions.length && subscriptions[0].currency;
                 const currencySymbol = localizedCurrency ? getSymbolFromCurrency(localizedCurrency) : '';
@@ -113,13 +127,21 @@ export const Upgrade: React.FC<Props> = React.memo(
                 const title = subscriptionFeature.title; // Do not use the subscription.title, this appears to be missing on some localizations
 
 
-                const hasTrial = featureSubscription && featureSubscription.introductoryPricePaymentModeIOS === 'FREETRIAL' && isEligibleForTrial;
-                // const trialPrice = (hasTrial && featureSubscription) ? featureSubscription.introductoryPrice : ''; // €0,00, $0,00
-                const trialDurationNumber = (hasTrial && featureSubscription) ? featureSubscription.introductoryPriceNumberOfPeriodsIOS : ''; // 3, 7, 1, 14 etc...
-                const trialDurationPeriod = (hasTrial && featureSubscription) ? featureSubscription.introductoryPriceSubscriptionPeriodIOS : ''; // DAY, WEEK, MONTH, YEAR
-                const trialDurationPeriodLowercased = (trialDurationPeriod) ? trialDurationPeriod.toLowerCase() : ''; // day, week, month, year
+                const hasTrialIOS = featureSubscription && featureSubscription.introductoryPricePaymentModeIOS === 'FREETRIAL' && isEligibleForTrial;
+                const hasTrialAndroid = featureSubscription && featureSubscription.freeTrialPeriodAndroid && isEligibleForTrial;
 
-                const trialButtonTitle = (hasTrial) ? `Start free ${trialDurationNumber}-${trialDurationPeriodLowercased} trial` : '';
+                const hasTrial = hasTrialIOS || hasTrialAndroid;
+
+                // const trialPrice = (hasTrial && featureSubscription) ? featureSubscription.introductoryPrice : ''; // €0,00, $0,00
+                const trialDurationNumberIOS = (hasTrial && featureSubscription) ? featureSubscription.introductoryPriceNumberOfPeriodsIOS : ''; // 3, 7, 1, 14 etc...
+                const trialDurationNumberAndroid = (hasTrial && featureSubscription && featureSubscription.freeTrialPeriodAndroid) ? featureSubscription.freeTrialPeriodAndroid.charAt(1) : ''; // P3D => 3
+                const trialDurationNumber = trialDurationNumberIOS || trialDurationNumberAndroid;
+
+                const trialDurationPeriodIOS = (hasTrial && featureSubscription && featureSubscription.introductoryPriceSubscriptionPeriodIOS) ? iosTrialPeriodMapping[featureSubscription.introductoryPriceSubscriptionPeriodIOS] : '';
+                const trialDurationPeriodAndroid = (hasTrial && featureSubscription && featureSubscription.freeTrialPeriodAndroid) ? androidTrialPeriodMapping[featureSubscription.freeTrialPeriodAndroid.charAt(2)]  : '';
+                const trialDurationPeriod = trialDurationPeriodIOS || trialDurationPeriodAndroid; // day, week, month, year
+
+                const trialButtonTitle = (hasTrial) ? `Start free ${trialDurationNumber}-${trialDurationPeriod} trial` : '';
                 const defaultButtonTitle = `Upgrade to ${title}`;
                 const freeButtonTitle = `Downgrade to ${title}`;
 
@@ -141,7 +163,7 @@ export const Upgrade: React.FC<Props> = React.memo(
                       <Text style={styles.cardTitle}>{title}</Text>
                     </View>
                     <View style={styles.cardPriceContainer}>
-                      {isLoadingSubscriptionItems ? <ActivityIndicator size="large" color={colors.black} /> : <Text style={styles.cardPrice}>{localizedPrice}</Text>}
+                      {isLoadingSubscriptionItems ? <ActivityIndicator size="large" color={colors.black} /> : <Text style={styles.cardPrice} testID="Upgrade-Text-price">{localizedPrice}</Text>}
                     </View>
                     <View>
                       <Text style={styles.cardMeta}>per month</Text>
@@ -150,9 +172,10 @@ export const Upgrade: React.FC<Props> = React.memo(
                       <Button
                         title={buttonTitle}
                         onPress={() => onPressUpgrade(productId)}
-                        disabled={isDisabled }
+                        disabled={isDisabled}
                         loading={isLoading}
                         loadingProps={{ color: 'black' }}
+                        testID="Upgrade-Button"
                       />
                     </View>
                     <View style={styles.cardFeaturesList}>
