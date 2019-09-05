@@ -129,7 +129,8 @@ export default StyleSheet.create({
     backgroundColor: colors.gray,
     borderRadius: 4,
     width: 75,
-    height: 75
+    height: 75,
+    overflow: 'hidden'
   },
   playButtonContainer: {
     position: 'absolute',
@@ -137,13 +138,13 @@ export default StyleSheet.create({
     height: 32
   },
   image: {
-    width: 75,
-    height: 75,
-    borderRadius: 4,
-    opacity: 0.9
+    width: '100%',
+    height: '100%',
+    opacity: 0.9,
   },
   imagePlaceholder: {
-    backgroundColor: colors.grayLight
+    backgroundColor: colors.grayLight,
+    borderRadius: 4,
   },
   warningContainer: {
     borderRadius: 6,
