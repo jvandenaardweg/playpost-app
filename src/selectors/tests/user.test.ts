@@ -7,12 +7,14 @@ import { selectDeviceLocale,
   selectUserError,
   selectUserErrorSaveSelectedVoice,
   selectUserHasSubscribedBefore,
+  selectUserIsEligibleForTrial,
   selectUserIsLoading,
   selectUserIsSubscribed,
   selectUserPlaybackSpeed,
   selectUserSelectedVoiceByLanguageName,
   selectUserSelectedVoices,
   selectUserSubscriptions,
+  selectUserUsedInAppSubscriptionTrials,
   userSelector
 } from '../user';
 
@@ -20,7 +22,9 @@ import { rootReducer } from '../../reducers';
 import { initialState } from '../../reducers/user';
 
 import exampleUserWithActiveSubscription from '../../../tests/__mocks__/user-active-subscription';
+import mockUserAllTrialsUsed from '../../../tests/__mocks__/user-all-trials-used';
 import exampleUserWithInactiveSubscription from '../../../tests/__mocks__/user-inactive-subscription';
+
 import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM_APPLE } from '../../constants/in-app-purchase';
 
 const store = createStore(rootReducer);
@@ -29,6 +33,11 @@ const rootState = store.getState();
 // const userStore = rootState.user;
 
 describe('user selector', () => {
+  afterEach(() => {
+    jest.resetAllMocks();
+    jest.resetModules();
+  });
+
   it('should return the initial state', () => {
     expect(userSelector(rootState)).toEqual(initialState);
   });
@@ -313,6 +322,150 @@ describe('user selector', () => {
     // The mock data contains a unsubscribed/expired subscription
     expect(selectUserActiveSubscriptionName(exampleState)).toEqual('Free');
   });
+
+  it('selectUserUsedInAppSubscriptionTrials should return the in app subscriptions the user had a trial from', () => {
+    const exampleState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: mockUserAllTrialsUsed
+      }
+    };
+
+    expect(selectUserUsedInAppSubscriptionTrials(exampleState)).toEqual(mockUserAllTrialsUsed.usedInAppSubscriptionTrials);
+  });
+
+  it('selectUserIsEligibleForTrial should return false if the user has already used a trial on Apple and Google when on iOS', () => {
+    const Platform = require('react-native').Platform;
+    Platform.OS = 'ios';
+
+    const exampleState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: mockUserAllTrialsUsed
+      }
+    };
+
+    // The mock data contains a unsubscribed/expired subscription
+    expect(selectUserIsEligibleForTrial(exampleState)).toEqual(false);
+  });
+
+  it('selectUserIsEligibleForTrial should return false if the user has already used a trial on Apple and Google when on Android', () => {
+    const Platform = require('react-native').Platform;
+    Platform.OS = 'android';
+
+    const exampleState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: mockUserAllTrialsUsed
+      }
+    };
+
+    // The mock data contains a unsubscribed/expired subscription
+    expect(selectUserIsEligibleForTrial(exampleState)).toEqual(false);
+  });
+
+  it('selectUserIsEligibleForTrial should return true if the user is on Android but only used a trial on Apple', () => {
+    const Platform = require('react-native').Platform;
+    Platform.OS = 'android';
+
+    const mockUserUsedTrialApple = {
+      ...mockUserAllTrialsUsed,
+      usedInAppSubscriptionTrials: mockUserAllTrialsUsed.usedInAppSubscriptionTrials.filter((usedInAppSubscriptionTrial) => usedInAppSubscriptionTrial.service === 'apple')
+    }
+
+    const exampleState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: mockUserUsedTrialApple
+      }
+    };
+
+    // The mock data contains a unsubscribed/expired subscription
+    expect(selectUserIsEligibleForTrial(exampleState)).toEqual(true);
+  });
+
+  it('selectUserIsEligibleForTrial should return true if the user is on iOS but only used a trial on Google', () => {
+    const Platform = require('react-native').Platform;
+    Platform.OS = 'ios';
+
+    const mockUserUsedTrialGoogle = {
+      ...mockUserAllTrialsUsed,
+      usedInAppSubscriptionTrials: mockUserAllTrialsUsed.usedInAppSubscriptionTrials.filter((usedInAppSubscriptionTrial) => usedInAppSubscriptionTrial.service === 'google')
+    }
+
+    const exampleState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: mockUserUsedTrialGoogle
+      }
+    };
+
+    // The mock data contains a unsubscribed/expired subscription
+    expect(selectUserIsEligibleForTrial(exampleState)).toEqual(true);
+  });
+
+  it('selectUserIsEligibleForTrial should return false if the user is on iOS but only used a trial on Apple', () => {
+    const Platform = require('react-native').Platform;
+    Platform.OS = 'ios';
+
+    const mockUserUsedTrialApple = {
+      ...mockUserAllTrialsUsed,
+      usedInAppSubscriptionTrials: mockUserAllTrialsUsed.usedInAppSubscriptionTrials.filter((usedInAppSubscriptionTrial) => usedInAppSubscriptionTrial.service === 'apple')
+    }
+
+    const exampleState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: mockUserUsedTrialApple
+      }
+    };
+
+    expect(selectUserIsEligibleForTrial(exampleState)).toEqual(false);
+  });
+
+  it('selectUserIsEligibleForTrial should return false if the user is on Android but only used a trial on Google', () => {
+    const Platform = require('react-native').Platform;
+    Platform.OS = 'android';
+
+    const mockUserUsedTrialGoogle = {
+      ...mockUserAllTrialsUsed,
+      usedInAppSubscriptionTrials: mockUserAllTrialsUsed.usedInAppSubscriptionTrials.filter((usedInAppSubscriptionTrial) => usedInAppSubscriptionTrial.service === 'google')
+    }
+
+    const exampleState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: mockUserUsedTrialGoogle
+      }
+    };
+
+    expect(selectUserIsEligibleForTrial(exampleState)).toEqual(false);
+  });
+
+  it('selectUserIsEligibleForTrial should return true if the user never used a trial before', () => {
+    const mockUserNoTrials = {
+      ...mockUserAllTrialsUsed,
+      usedInAppSubscriptionTrials: []
+    }
+
+    const exampleState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: mockUserNoTrials
+      }
+    };
+
+    expect(selectUserIsEligibleForTrial(exampleState)).toEqual(true);
+  });
+
 
 
 });

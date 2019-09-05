@@ -16,7 +16,7 @@ import { setIsLoadingRestore, setIsLoadingUpgrade, validateSubscriptionReceipt }
 import { getUser } from '../reducers/user';
 import { selectIsLoggedIn } from '../selectors/auth';
 import { selectSubscriptionsError, selectSubscriptionsIsLoadingRestore, selectSubscriptionsIsLoadingUpgrade, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
-import { selectActiveUserInAppSubscription, selectUserActiveSubscriptionProductId, selectUserDetails, selectUserHasSubscribedBefore, selectUserIsSubscribed } from '../selectors/user';
+import { selectActiveUserInAppSubscription, selectUserDetails, selectUserIsSubscribed } from '../selectors/user';
 import * as inAppPurchaseHelper from '../utils/in-app-purchase-helper';
 
 interface IProps {
@@ -262,9 +262,7 @@ interface StateProps {
   validationResult: ReturnType<typeof selectSubscriptionsValidationResult>;
   isSubscribed: ReturnType<typeof selectUserIsSubscribed>;
   activeInAppSubscription: ReturnType<typeof selectActiveUserInAppSubscription>;
-  activeSubscriptionProductId: ReturnType<typeof selectUserActiveSubscriptionProductId>;
   userDetails: ReturnType<typeof selectUserDetails>;
-  userHasSubscribedBefore: ReturnType<typeof selectUserHasSubscribedBefore>;
   isLoadingUpgrade: ReturnType<typeof selectSubscriptionsIsLoadingUpgrade>;
   isLoadingRestore: ReturnType<typeof selectSubscriptionsIsLoadingRestore>;
   isLoggedIn: ReturnType<typeof selectIsLoggedIn>;
@@ -282,9 +280,7 @@ const mapStateToProps = (state: RootState): StateProps => ({
   validationResult: selectSubscriptionsValidationResult(state),
   isSubscribed: selectUserIsSubscribed(state),
   activeInAppSubscription: selectActiveUserInAppSubscription(state),
-  activeSubscriptionProductId: selectUserActiveSubscriptionProductId(state),
   userDetails: selectUserDetails(state),
-  userHasSubscribedBefore: selectUserHasSubscribedBefore(state),
   isLoadingUpgrade: selectSubscriptionsIsLoadingUpgrade(state),
   isLoadingRestore: selectSubscriptionsIsLoadingRestore(state),
   isLoggedIn: selectIsLoggedIn(state)

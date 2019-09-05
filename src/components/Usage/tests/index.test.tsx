@@ -1,18 +1,18 @@
 import React from 'react';
 import { fireEvent, render, RenderAPI } from 'react-native-testing-library';
 
-import { getUpgradeButtonTitle, getUpgradeMessage, Usage } from '../index';
+import { getUpgradeButtonTitle, getUpgradeMessage, Props, Usage } from '../index';
 
 import userMock from '../../../../tests/__mocks__/user-active-subscription';
 import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../../constants/in-app-purchase';
 
 const onPressUpgradeHandler = jest.fn();
 
-const defaultProps: any = {
+const defaultProps: Props = {
   user: userMock,
   activeSubscriptionProductId: SUBSCRIPTION_PRODUCT_ID_FREE,
   onPressUpgrade: onPressUpgradeHandler,
-  userHasSubscribedBefore: false
+  userIsEligibleForTrial: false
 }
 
 describe('Usage', () => {
@@ -89,7 +89,7 @@ describe('Usage', () => {
     });
 
     it('should render the correct button title', () => {
-      expect(wrapper.getByTestId('Usage-Button-upgrade').props.title).toBe('Start free Premium or Plus trial');
+      expect(wrapper.getByTestId('Usage-Button-upgrade').props.title).toBe('Upgrade to Premium or Plus');
     });
 
     it('should render the correct upgrade message', () => {
@@ -137,28 +137,28 @@ describe('Usage', () => {
       expect(getUpgradeMessage('com.aardwegmedia.playpost.subscriptions.plus')).toBe('');
     });
 
-    it('getUpgradeButtonTitle should return the correct upgrade button title when on a free subscription when a user has subscribed before', () => {
-      expect(getUpgradeButtonTitle(SUBSCRIPTION_PRODUCT_ID_FREE, true)).toBe('Upgrade to Premium or Plus');
+    it('getUpgradeButtonTitle should return the correct upgrade button title when on a free subscription when a user is not eligible for a trial', () => {
+      expect(getUpgradeButtonTitle(SUBSCRIPTION_PRODUCT_ID_FREE, false)).toBe('Upgrade to Premium or Plus');
     });
 
-    it('getUpgradeButtonTitle should return the correct upgrade button title when on a free subscription when a user has not subscribed before', () => {
-      expect(getUpgradeButtonTitle(SUBSCRIPTION_PRODUCT_ID_FREE, false)).toBe('Start free Premium or Plus trial');
+    it('getUpgradeButtonTitle should return the correct upgrade button title when on a free subscription when a user is eligible for a trial', () => {
+      expect(getUpgradeButtonTitle(SUBSCRIPTION_PRODUCT_ID_FREE, true)).toBe('Start free Premium or Plus trial');
     });
 
-    it('getUpgradeButtonTitle should return the correct upgrade button title when on a premium subscription when a user has subscribed before', () => {
-      expect(getUpgradeButtonTitle(SUBSCRIPTION_PRODUCT_ID_PREMIUM, true)).toBe('Upgrade to Plus');
-    });
-
-    it('getUpgradeButtonTitle should return the correct upgrade button title when on a premium subscription when a user has not subscribed before', () => {
+    it('getUpgradeButtonTitle should return the correct upgrade button title when on a premium subscription when a user is not eligible for a trial', () => {
       expect(getUpgradeButtonTitle(SUBSCRIPTION_PRODUCT_ID_PREMIUM, false)).toBe('Upgrade to Plus');
     });
 
-    it('getUpgradeButtonTitle should return the correct upgrade button title when on a plus subscription when a user has subscribed before', () => {
-      expect(getUpgradeButtonTitle('com.aardwegmedia.playpost.subscriptions.plus', true)).toBe('');
+    it('getUpgradeButtonTitle should return the correct upgrade button title when on a premium subscription when a user is not eligible for a trial', () => {
+      expect(getUpgradeButtonTitle(SUBSCRIPTION_PRODUCT_ID_PREMIUM, true)).toBe('Upgrade to Plus');
     });
 
-    it('getUpgradeButtonTitle should return the correct upgrade button title when on a plus subscription when a user has not subscribed before', () => {
+    it('getUpgradeButtonTitle should return the correct upgrade button title when on a plus subscription when a user is not eligible for a trial', () => {
       expect(getUpgradeButtonTitle('com.aardwegmedia.playpost.subscriptions.plus', false)).toBe('');
+    });
+
+    it('getUpgradeButtonTitle should return the correct upgrade button title when on a plus subscription when a user is eligible for a trial', () => {
+      expect(getUpgradeButtonTitle('com.aardwegmedia.playpost.subscriptions.plus', true)).toBe('');
     });
 
   });

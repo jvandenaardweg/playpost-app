@@ -13,13 +13,13 @@ import NavigationService from '../navigation/NavigationService';
 import { RootState } from '../reducers';
 import { selectPlayerIsLoading, selectPlayerIsPlaying, selectPlayerTrack } from '../selectors/player';
 import { selectAllPlaylistArticles } from '../selectors/playlist';
-import { selectUserHasSubscribedBefore, selectUserPlaybackSpeed } from '../selectors/user';
+import { selectUserPlaybackSpeed } from '../selectors/user';
 
 interface State {
   isPlaybackSpeedVisible: boolean;
 }
 
-type Props = StateProps & DispatchProps;
+export type Props = StateProps & DispatchProps;
 
 export class SmallAudioPlayerContainerComponent extends React.PureComponent<Props, State> {
   state = {
@@ -181,7 +181,6 @@ export class SmallAudioPlayerContainerComponent extends React.PureComponent<Prop
 interface StateProps {
   readonly track: ReturnType<typeof selectPlayerTrack>;
   readonly userPlaybackSpeed: ReturnType<typeof selectUserPlaybackSpeed>;
-  readonly userHasSubscribedBefore: ReturnType<typeof selectUserHasSubscribedBefore>;
   readonly articles: ReturnType<typeof selectAllPlaylistArticles>;
   readonly playerIsPlaying: ReturnType<typeof selectPlayerIsPlaying>;
   readonly playerIsLoading: ReturnType<typeof selectPlayerIsLoading>;
@@ -195,7 +194,6 @@ interface DispatchProps {
 const mapStateToProps = (state: RootState): StateProps => ({
   track: selectPlayerTrack(state),
   userPlaybackSpeed: selectUserPlaybackSpeed(state),
-  userHasSubscribedBefore: selectUserHasSubscribedBefore(state),
   articles: selectAllPlaylistArticles(state),
   playerIsPlaying: selectPlayerIsPlaying(state),
   playerIsLoading: selectPlayerIsLoading(state)

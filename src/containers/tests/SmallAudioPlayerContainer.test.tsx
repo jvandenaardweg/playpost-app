@@ -1,32 +1,26 @@
 import React from 'react';
 import { render, RenderAPI } from 'react-native-testing-library';
 
-import { SmallAudioPlayerContainerComponent } from '../SmallAudioPlayerContainer';
+import { Props, SmallAudioPlayerContainerComponent } from '../SmallAudioPlayerContainer';
 
 import articleMock from '../../../tests/__mocks__/article';
 
 jest.mock('../../navigation/NavigationService');
 
+import { initialTrackState } from '../../reducers/player';
+
 const setPlaybackStatusHandler = jest.fn();
 const setPlaybackSpeedHandler = jest.fn();
-const navigateHandler = jest.fn();
-const navigationGetParamHandler = jest.fn();
-const navigationGoBackHandler = jest.fn();
 
-const defaultProps: any = {
-  track: {},
+const defaultProps: Props = {
+  track: initialTrackState,
   userPlaybackSpeed: 1,
-  userHasSubscribedBefore: false,
   articles: [],
   playerIsPlaying: false,
   playerIsLoading: false,
+
   setPlaybackStatus: setPlaybackStatusHandler,
-  setPlaybackSpeed: setPlaybackSpeedHandler,
-  navigation: {
-    navigate: navigateHandler,
-    getParam: navigationGetParamHandler,
-    goBack: navigationGoBackHandler,
-  },
+  setPlaybackSpeed: setPlaybackSpeedHandler
 };
 
 describe('SmallAudioPlayerContainer', () => {
@@ -36,7 +30,7 @@ describe('SmallAudioPlayerContainer', () => {
 
     beforeEach(() => {
 
-      const props = {
+      const props: Props = {
         ...defaultProps
       }
 
@@ -52,10 +46,11 @@ describe('SmallAudioPlayerContainer', () => {
     });
 
     it('should render an empty element with the correct empty text', () => {
-      const props = {
+      const props: Props = {
         ...defaultProps,
         articles: [articleMock] // simulate 1 article in an array
       }
+
       wrapper.update(<SmallAudioPlayerContainerComponent {...props} />);
       expect(wrapper.queryByTestId('AudioPlayerSmallEmpty')).toBeTruthy();
       expect(wrapper.getByTestId('AudioPlayerSmallEmpty-Text-empty').props.children).toBe('Select an article to listen');

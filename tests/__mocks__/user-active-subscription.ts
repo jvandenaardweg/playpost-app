@@ -75,7 +75,7 @@ const user: Api.User = {
       updatedAt: '2019-08-22T10:07:51.534Z'
     }
   },
-  usedInAppSubscriptionTrial: [],
+  usedInAppSubscriptionTrials: [],
   used: {
     audiofiles: {
       currentMonthInSeconds: 0

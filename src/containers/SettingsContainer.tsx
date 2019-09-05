@@ -26,7 +26,7 @@ import { resetAudiofilesState } from '../reducers/audiofiles';
 import { deleteUser, getUser } from '../reducers/user';
 import { resetDownloadedVoices, resetVoicesState } from '../reducers/voices';
 
-import { selectUserActiveSubscriptionName, selectUserActiveSubscriptionProductId, selectUserDetails, selectUserHasSubscribedBefore, selectUserIsSubscribed } from '../selectors/user';
+import { selectUserActiveSubscriptionName, selectUserActiveSubscriptionProductId, selectUserDetails, selectUserIsEligibleForTrial, selectUserIsSubscribed } from '../selectors/user';
 import { selectTotalAvailableVoices } from '../selectors/voices';
 
 import { CustomSectionList } from '../components/CustomSectionList';
@@ -245,7 +245,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
   }
 
   render() {
-    const { activeSubscriptionName, totalAvailableVoices, user, activeSubscriptionProductId, userHasSubscribedBefore } = this.props;
+    const { activeSubscriptionName, totalAvailableVoices, user, activeSubscriptionProductId, userIsEligibleForTrial } = this.props;
     const { isClearingCache, cacheSize } = this.state;
 
     const sectionListData = [
@@ -405,7 +405,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
               user={user}
               activeSubscriptionProductId={activeSubscriptionProductId}
               onPressUpgrade={this.handleOnPressUpgrade}
-              userHasSubscribedBefore={userHasSubscribedBefore}
+              userIsEligibleForTrial={userIsEligibleForTrial}
             />
           </View>
         }
@@ -429,7 +429,7 @@ interface StateProps {
   activeSubscriptionName: ReturnType<typeof selectUserActiveSubscriptionName>;
   activeSubscriptionProductId: ReturnType<typeof selectUserActiveSubscriptionProductId>;
   totalAvailableVoices: ReturnType<typeof selectTotalAvailableVoices>;
-  userHasSubscribedBefore: ReturnType<typeof selectUserHasSubscribedBefore>;
+  userIsEligibleForTrial: ReturnType<typeof selectUserIsEligibleForTrial>;
 }
 
 const mapStateToProps = (state: RootState) => ({
@@ -438,7 +438,7 @@ const mapStateToProps = (state: RootState) => ({
   activeSubscriptionName: selectUserActiveSubscriptionName(state),
   activeSubscriptionProductId: selectUserActiveSubscriptionProductId(state),
   totalAvailableVoices: selectTotalAvailableVoices(state),
-  userHasSubscribedBefore: selectUserHasSubscribedBefore(state),
+  userIsEligibleForTrial: selectUserIsEligibleForTrial(state),
 });
 
 const mapDispatchToProps = {

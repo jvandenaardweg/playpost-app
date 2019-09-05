@@ -33,7 +33,7 @@ import { RootState } from '../reducers';
 import { setIsLoadingRestore, setIsLoadingUpgrade } from '../reducers/subscriptions';
 import { getUser } from '../reducers/user';
 import { selectSubscriptionsError, selectSubscriptionsIsLoadingRestore, selectSubscriptionsIsLoadingUpgrade, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
-import { selectActiveUserInAppSubscription, selectUserActiveSubscriptionProductId, selectUserDetails, selectUserHasSubscribedBefore, selectUserIsSubscribed } from '../selectors/user';
+import { selectActiveUserInAppSubscription, selectUserActiveSubscriptionProductId, selectUserDetails, selectUserIsEligibleForTrial, selectUserIsSubscribed } from '../selectors/user';
 import { selectTotalAvailableVoices } from '../selectors/voices';
 import * as inAppPurchaseHelper from '../utils/in-app-purchase-helper';
 
@@ -98,18 +98,6 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         footer: 'About 65 articles to audio, per month'
       }
     ];
-  }
-
-  /**
-   * A method to check if a user has previously already used a subscription,
-   * if so, it is not eligible for a trial and we should not show "Start free trial" button
-   *
-   * Technically this is already handled by Apple so a user cannot start a trial twice
-   */
-  get isEligibleForTrial() {
-    const { userHasSubscribedBefore, activeInAppSubscription } = this.props;
-
-    return !userHasSubscribedBefore && !activeInAppSubscription;
   }
 
   static contextType = NetworkContext;
@@ -420,14 +408,14 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
   render() {
     const { isLoadingSubscriptionItems, subscriptions, centeredSubscriptionProductId } = this.state;
-    const { activeSubscriptionProductId, isLoadingUpgrade, isLoadingRestore } = this.props;
+    const { activeSubscriptionProductId, isLoadingUpgrade, isLoadingRestore, userIsEligibleForTrial } = this.props;
 
     return (
       <Upgrade
         isLoadingSubscriptionItems={isLoadingSubscriptionItems}
         isLoadingBuySubscription={isLoadingUpgrade}
         isLoadingRestorePurchases={isLoadingRestore}
-        isEligibleForTrial={this.isEligibleForTrial}
+        isEligibleForTrial={userIsEligibleForTrial}
         subscriptions={subscriptions}
         activeSubscriptionProductId={activeSubscriptionProductId}
         centeredSubscriptionProductId={centeredSubscriptionProductId}
@@ -450,7 +438,7 @@ interface StateProps {
   activeSubscriptionProductId: ReturnType<typeof selectUserActiveSubscriptionProductId>;
   userDetails: ReturnType<typeof selectUserDetails>;
   totalAvailableVoices: ReturnType<typeof selectTotalAvailableVoices>;
-  userHasSubscribedBefore: ReturnType<typeof selectUserHasSubscribedBefore>;
+  userIsEligibleForTrial: ReturnType<typeof selectUserIsEligibleForTrial>;
   isLoadingUpgrade: ReturnType<typeof selectSubscriptionsIsLoadingUpgrade>;
   isLoadingRestore: ReturnType<typeof selectSubscriptionsIsLoadingRestore>;
   activeInAppSubscription: ReturnType<typeof selectActiveUserInAppSubscription>;
@@ -469,7 +457,7 @@ const mapStateToProps = (state: RootState): StateProps => ({
   activeSubscriptionProductId: selectUserActiveSubscriptionProductId(state),
   userDetails: selectUserDetails(state),
   totalAvailableVoices: selectTotalAvailableVoices(state),
-  userHasSubscribedBefore: selectUserHasSubscribedBefore(state),
+  userIsEligibleForTrial: selectUserIsEligibleForTrial(state),
   isLoadingUpgrade: selectSubscriptionsIsLoadingUpgrade(state),
   isLoadingRestore: selectSubscriptionsIsLoadingRestore(state),
   activeInAppSubscription: selectActiveUserInAppSubscription(state)

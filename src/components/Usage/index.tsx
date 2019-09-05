@@ -6,14 +6,14 @@ import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTIO
 import styles from './styles';
 
 
-interface Props {
+export interface Props {
   user: Api.User | null;
   activeSubscriptionProductId: string;
-  userHasSubscribedBefore: boolean;
+  userIsEligibleForTrial: boolean;
   onPressUpgrade(upgradeScreenCenteredSubscriptionProductId?: string): void;
 }
 
-export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProductId, onPressUpgrade, userHasSubscribedBefore }) => {
+export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProductId, onPressUpgrade, userIsEligibleForTrial }) => {
   if (!user) { return null; }
 
   const limitSecondsPerMonth = user.limits.audiofiles.limitSecondsPerMonth;
@@ -26,7 +26,7 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
 
   const showUpgradeButton = activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE || activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_PREMIUM;
 
-  const upgradeButtonTitle = getUpgradeButtonTitle(activeSubscriptionProductId, userHasSubscribedBefore);
+  const upgradeButtonTitle = getUpgradeButtonTitle(activeSubscriptionProductId, userIsEligibleForTrial);
   const upgradeMessage = getUpgradeMessage(activeSubscriptionProductId);
   const usedText = `of ${currentLimitLocalized} minutes used`;
   const usedPercentageText = `${Math.ceil(percentageUsed)}%`;
@@ -92,8 +92,8 @@ export function getUpgradeMessage(activeSubscriptionProductId: string): string {
   return ''
 }
 
-export function getUpgradeButtonTitle(activeSubscriptionProductId: string, userHasSubscribedBefore: boolean): string {
-  if (activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE && !userHasSubscribedBefore) {
+export function getUpgradeButtonTitle(activeSubscriptionProductId: string, userIsEligibleForTrial: boolean): string {
+  if (activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE && userIsEligibleForTrial) {
     return 'Start free Premium or Plus trial'
   }
 

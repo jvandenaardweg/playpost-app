@@ -16,7 +16,7 @@ import { getUser, resetSaveSelectedVoiceError, saveSelectedVoice } from '../redu
 import { setDownloadedVoice } from '../reducers/voices';
 
 import { selectPlayerPlaybackState, selectPlayerTrack } from '../selectors/player';
-import { selectUserErrorSaveSelectedVoice, selectUserHasSubscribedBefore, selectUserIsSubscribed, selectUserSelectedVoiceByLanguageName } from '../selectors/user';
+import { selectUserErrorSaveSelectedVoice, selectUserIsEligibleForTrial, selectUserIsSubscribed, selectUserSelectedVoiceByLanguageName } from '../selectors/user';
 import { selectCountryOptions, selectDownloadedVoicePreviews, selectGenderOptions, selectLanguagesWithActiveVoicesByLanguageName, selectQualityOptions } from '../selectors/voices';
 
 import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_VOICE_CHANGE, ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE, ALERT_TITLE_ERROR, ALERT_TITLE_ERROR_NO_INTERNET, ALERT_TITLE_SUBSCRIPTION_ONLY, ALERT_TITLE_VOICE_CHANGE_REQUEST } from '../constants/messages';
@@ -61,7 +61,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
 
   handleOnListItemPress = (voice: Api.Voice) => {
     const { isConnected } = this.context;
-    const { isSubscribed, userHasSubscribedBefore } = this.props;
+    const { isSubscribed, userIsEligibleForTrial } = this.props;
     const isSelected = this.isSelected(voice);
 
     // If it's already selected, do nothing
@@ -76,9 +76,9 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     if (!isSubscribed) {
       const defaultText = 'Changing voices is only available for Premium and Plus users.\n\nYou can preview this voice by using the play button on the left.';
       const trialText = 'Changing voices is only available for Premium and Plus users. Start a Free trial to experience these voices.\n\nYou can preview this voice by using the play button on the left.';
-      const title = (userHasSubscribedBefore) ? ALERT_TITLE_SUBSCRIPTION_ONLY : 'Start your free trial';
-      const description = (userHasSubscribedBefore) ? defaultText : trialText;
-      const buttonText = (userHasSubscribedBefore) ? 'Upgrade' : 'Start Free trial';
+      const title = (userIsEligibleForTrial) ? 'Start your free trial' : ALERT_TITLE_SUBSCRIPTION_ONLY;
+      const description = (userIsEligibleForTrial) ? trialText : defaultText;
+      const buttonText = (userIsEligibleForTrial) ? 'Start Free trial' : 'Upgrade';
 
       return Alert.alert(
         title,
@@ -397,7 +397,7 @@ interface StateProps {
   readonly userSelectedVoiceByLanguageName: ReturnType<typeof selectUserSelectedVoiceByLanguageName>;
   readonly isSubscribed: ReturnType<typeof selectUserIsSubscribed>;
   readonly errorSaveSelectedVoice: ReturnType<typeof selectUserErrorSaveSelectedVoice>;
-  readonly userHasSubscribedBefore: ReturnType<typeof selectUserHasSubscribedBefore>;
+  readonly userIsEligibleForTrial: ReturnType<typeof selectUserIsEligibleForTrial>;
   readonly qualityOptions: ReturnType<typeof selectQualityOptions>;
   readonly genderOptions: ReturnType<typeof selectGenderOptions>;
   readonly countryOptions: ReturnType<typeof selectCountryOptions>;
@@ -411,7 +411,7 @@ const mapStateToProps = (state: RootState) => ({
   userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state),
   isSubscribed: selectUserIsSubscribed(state),
   errorSaveSelectedVoice: selectUserErrorSaveSelectedVoice(state),
-  userHasSubscribedBefore: selectUserHasSubscribedBefore(state),
+  userIsEligibleForTrial: selectUserIsEligibleForTrial(state),
   qualityOptions: selectQualityOptions(state),
   genderOptions: selectGenderOptions(state),
   countryOptions: selectCountryOptions(state)

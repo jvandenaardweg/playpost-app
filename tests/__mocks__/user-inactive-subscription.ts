@@ -43,7 +43,7 @@ const user: Api.User = {
     }
   ],
   activeUserInAppSubscription: null,
-  usedInAppSubscriptionTrial: [],
+  usedInAppSubscriptionTrials: [],
   used: {
     audiofiles: {
       currentMonthInSeconds: 0

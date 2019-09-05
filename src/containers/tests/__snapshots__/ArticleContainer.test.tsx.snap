@@ -546,6 +546,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
               testID="Article-Button-play"
             >
               <View
+                accessibilityIgnoresInvertColors={true}
                 style={
                   Object {
                     "backgroundColor": "transparent",
@@ -554,20 +555,28 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                 }
               >
                 <Image
-                  onLoadEnd={[Function]}
+                  onLoad={[Function]}
                   source={
                     Object {
                       "uri": "https://cdn-images-1.medium.com/max/1200/1*7bkLMEixJ8jnTn4E2JJe5A.jpeg",
                     }
                   }
                   style={
-                    Object {
-                      "borderRadius": 4,
-                      "height": 75,
-                      "opacity": 0.9,
-                      "width": 75,
-                    }
+                    Array [
+                      Object {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                      Object {
+                        "height": 75,
+                        "width": 75,
+                      },
+                    ]
                   }
+                  testID="RNE__Image"
                   theme={
                     Object {
                       "colors": Object {
@@ -607,6 +616,9 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                   }
                 />
                 <View
+                  accessibilityElementsHidden={true}
+                  importantForAccessibility="no-hide-descendants"
+                  pointerEvents="none"
                   style={
                     Object {
                       "bottom": 0,
@@ -633,6 +645,16 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                     testID="RNE__Image__placeholder"
                   />
                 </View>
+                <View
+                  style={
+                    Object {
+                      "borderRadius": 4,
+                      "height": 75,
+                      "opacity": 0.9,
+                      "width": 75,
+                    }
+                  }
+                />
               </View>
               <View
                 style={

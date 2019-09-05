@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import { createSelector } from 'reselect';
 import { SUBSCRIPTION_NAME, SUBSCRIPTION_PRODUCT_ID_FREE } from '../constants/in-app-purchase';
 import { RootState } from '../reducers';
@@ -28,6 +29,11 @@ export const selectUserIsLoading = createSelector(
 export const selectUserDetails = createSelector(
   [userSelector],
   user => user.details
+);
+
+export const selectUserUsedInAppSubscriptionTrials = createSelector(
+  [selectUserDetails],
+  userDetails => userDetails && userDetails.usedInAppSubscriptionTrials
 );
 
 export const selectDeviceLocale = createSelector(
@@ -122,6 +128,23 @@ export const selectUserActiveSubscriptionName = createDeepEqualSelector(
       return SUBSCRIPTION_NAME[SUBSCRIPTION_PRODUCT_ID_FREE];
     }
     return userActiveSubscription.inAppSubscription.name
+  }
+);
+
+export const selectUserIsEligibleForTrial = createDeepEqualSelector(
+  [selectUserUsedInAppSubscriptionTrials],
+  (usedInAppSubscriptionTrials): boolean => {
+    if (!usedInAppSubscriptionTrials || !usedInAppSubscriptionTrials.length) {
+      return true;
+    }
+
+    // If the platform is Android, look up if the user had a Google subscription trial before
+    if (Platform.OS === 'android') {
+      return !!!usedInAppSubscriptionTrials.find(usedInAppSubscription => usedInAppSubscription.service === 'google')
+    }
+
+    // If the platform is else (iOS), look up if the user had a Apple subscription trial before
+    return !!!usedInAppSubscriptionTrials.find(usedInAppSubscription => usedInAppSubscription.service === 'apple')
   }
 );
 

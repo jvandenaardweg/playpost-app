@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer';
 
 import * as cache from '../../cache';
 
-import { ArticleContainerComponent } from '../ArticleContainer';
+import { ArticleContainerComponent, Props } from '../ArticleContainer';
 
 import articleMock from '../../../tests/__mocks__/article';
 import articleMockWithAudioDefaultVoice from '../../../tests/__mocks__/article-with-audio-default-voice';
@@ -40,7 +40,7 @@ const navigateHandler = jest.fn();
 const navigationGetParamHandler = jest.fn();
 const navigationGoBackHandler = jest.fn();
 
-const defaultProps: any = {
+const defaultProps: Props = {
   article: articleMock,
   playlistItem: playlistItemMock,
   isFavorited: false,
@@ -49,14 +49,14 @@ const defaultProps: any = {
   onLongPress: onLongPressHandler,
   onPressOut: onPressOutHandler,
   track: initialTrackState,
-  playbackState: 'none',
   isSubscribed: false,
   userSelectedVoiceByLanguageName: null,
   downloadedAudiofiles: [],
   playerCurrentArticleId: '',
   playerPreviousArticleId: '',
   availableVoicesByLanguageName: null,
-  userHasSubscribedBefore: false,
+  userIsEligibleForTrial: false,
+  playbackState: TrackPlayer.State.None,
 
   setTrack: setTrackHandler,
   getPlaylist: getPlaylistHandler,
@@ -78,7 +78,7 @@ const defaultProps: any = {
     navigate: navigateHandler,
     getParam: navigationGetParamHandler,
     goBack: navigationGoBackHandler,
-  },
+  } as any,
 };
 
 describe('ArticleContainer', () => {
@@ -88,7 +88,7 @@ describe('ArticleContainer', () => {
 
     beforeEach(() => {
 
-      const props = {
+      const props: Props = {
         ...defaultProps
       }
 
@@ -107,7 +107,7 @@ describe('ArticleContainer', () => {
       jest.resetAllMocks();
       jest.restoreAllMocks();
 
-      const props = {
+      const props: Props = {
         ...defaultProps
       }
 
@@ -172,10 +172,10 @@ describe('ArticleContainer', () => {
     });
 
     it('handleCreateAudiofile() should correctly show an alert when the user has no subscription but has a selected voice that is different from the default', async () => {
-      const props = {
+      const props: Props = {
         ...defaultProps,
         isSubscribed: false,
-        userHasSubscribedBefore: true,
+        userIsEligibleForTrial: true,
         userSelectedVoiceByLanguageName: {
           'English': voicePremium
         }
@@ -243,7 +243,7 @@ describe('ArticleContainer', () => {
 
     it('handleSetTrack() should show an error when there is no downloaded audiofile and the user is not connected to the internet', async () => {
 
-      const props = {
+      const props: Props = {
         ...defaultProps,
         article: articleMockWithAudioDefaultVoice,
         downloadedAudiofiles: []
@@ -292,7 +292,7 @@ describe('ArticleContainer', () => {
     });
 
     it('handleSetTrack() should show an error when getLocalFilePath does not return something', async () => {
-      const props = {
+      const props: Props = {
         ...defaultProps,
         article: articleMockWithAudioDefaultVoice,
         downloadedAudiofiles: [articleMockWithAudioDefaultVoice.audiofiles[0]]
@@ -368,7 +368,7 @@ describe('ArticleContainer', () => {
       const articleWithoutAudiofiles = {...articleMock }
       articleWithoutAudiofiles.audiofiles = [];
 
-      const props = {
+      const props: Props = {
         ...defaultProps,
         article: articleWithoutAudiofiles
       }
@@ -389,7 +389,7 @@ describe('ArticleContainer', () => {
     });
 
     it('handleOnPlayPress() should call alertIfDifferentSelectedVoice() when the user is not subscribed', async () => {
-      const props = {
+      const props: Props = {
         ...defaultProps,
         article: articleMock,
         isSubscribed: false,
@@ -411,7 +411,7 @@ describe('ArticleContainer', () => {
     });
 
     it('handleOnPlayPress() should just play the track when it is loaded in the player', async () => {
-      const props = {
+      const props: Props = {
         ...defaultProps,
         article: articleMock,
         playerCurrentArticleId: articleMock.id
@@ -432,7 +432,7 @@ describe('ArticleContainer', () => {
       const articleWithoutAudiofiles = {...articleMock }
       articleWithoutAudiofiles.audiofiles = [];
 
-      const props = {
+      const props: Props = {
         ...defaultProps,
         article: articleWithoutAudiofiles
       }
@@ -450,7 +450,7 @@ describe('ArticleContainer', () => {
     });
 
     it('handleOnPlayPress() should call handleCreateAudiofile() when the user is subscribed but there is no audio for the user his selected voice on the article', async () => {
-      const props = {
+      const props: Props = {
         ...defaultProps,
         isSubscribed: true
       }
@@ -520,7 +520,7 @@ describe('ArticleContainer', () => {
     })
 
     it('getAudiofileByUserSelectedVoice() should return no audiofile for the user when there is no audiofile on the article with the user his selected voice', async () => {
-      const props = {
+      const props: Props = {
         ...defaultProps,
         article: articleMockWithAudioDefaultVoice,
         userSelectedVoiceByLanguageName: {
@@ -530,7 +530,7 @@ describe('ArticleContainer', () => {
           'English': {
             voices: [voiceLanguageDefaultEN]
           }
-        }
+        } as any
       }
 
       wrapper.update(<ArticleContainerComponent {...props} />);
@@ -545,7 +545,7 @@ describe('ArticleContainer', () => {
     })
 
     it('getAudiofileByUserSelectedVoice() should return the audiofile for the user when there is an audiofile on the article with the user his selected voice', async () => {
-      const props = {
+      const props: Props = {
         ...defaultProps,
         article: articleMockWithAudioDefaultVoice,
         userSelectedVoiceByLanguageName: {
@@ -555,7 +555,7 @@ describe('ArticleContainer', () => {
           'English': {
             voices: [voiceLanguageDefaultEN]
           }
-        }
+        } as any
       }
 
       wrapper.update(<ArticleContainerComponent {...props} />);
@@ -570,7 +570,7 @@ describe('ArticleContainer', () => {
     })
 
     it('getAudiofileByUserSelectedVoice() should return the audiofile for the user when there is an audiofile on the article if the user has no selected voice', async () => {
-      const props = {
+      const props: Props = {
         ...defaultProps,
         article: articleMockWithAudioDefaultVoice,
         userSelectedVoiceByLanguageName: null,
@@ -578,7 +578,7 @@ describe('ArticleContainer', () => {
           'English': {
             voices: [voiceLanguageDefaultEN]
           }
-        }
+        } as any
       }
 
       wrapper.update(<ArticleContainerComponent {...props} />);
@@ -593,7 +593,7 @@ describe('ArticleContainer', () => {
     })
 
     it('isDownloaded should return true when the article audiofile is found in downloadedAudiofiles', async () => {
-      const props = {
+      const props: Props = {
         ...defaultProps,
         article: articleMockWithAudioDefaultVoice,
         downloadedAudiofiles: [articleMockWithAudioDefaultVoice.audiofiles[0]],
@@ -602,7 +602,7 @@ describe('ArticleContainer', () => {
           'English': {
             voices: [voiceLanguageDefaultEN]
           }
-        }
+        } as any
       }
 
       wrapper.update(<ArticleContainerComponent {...props} />);
@@ -613,7 +613,7 @@ describe('ArticleContainer', () => {
     })
 
     it('isDownloaded should return false when the article audiofile is not found in downloadedAudiofiles', async () => {
-      const props = {
+      const props: Props = {
         ...defaultProps,
         article: articleMockWithAudioDefaultVoice,
         downloadedAudiofiles: [],
@@ -622,7 +622,7 @@ describe('ArticleContainer', () => {
           'English': {
             voices: [voiceLanguageDefaultEN]
           }
-        }
+        } as any
       }
 
       wrapper.update(<ArticleContainerComponent {...props} />);

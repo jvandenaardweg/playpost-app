@@ -149,7 +149,7 @@ declare namespace Api {
     activatedAt: string | null;
     authenticatedAt: string | null;
     voiceSettings: UserVoiceSetting[];
-    usedInAppSubscriptionTrial: string[];
+    usedInAppSubscriptionTrials: InAppSubscription[];
     activeUserInAppSubscription: UserInAppSubscriptionApple | UserInAppSubscriptionGoogle | null;
     inAppSubscriptions?: UserInAppSubscriptionApple[], // TODO: should be removed later
     used: {

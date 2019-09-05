@@ -3,7 +3,7 @@ import { Text } from 'react-native';
 import { SubscriptionPurchase } from 'react-native-iap';
 import renderer from 'react-test-renderer';
 
-import { SubscriptionHandlerContainerComponent } from '../SubscriptionHandlerContainer';
+import { Props, SubscriptionHandlerContainerComponent } from '../SubscriptionHandlerContainer';
 
 jest.mock('../../navigation/NavigationService');
 
@@ -15,7 +15,7 @@ import userMock from '../../../tests/__mocks__/user-active-subscription';
 
 import userInAppSubscriptionGoogle from '../../../tests/__mocks__/in-app-subscription-google';
 
-import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../constants/in-app-purchase';
+import { SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../constants/in-app-purchase';
 
 
 const validateSubscriptionReceiptHandler = jest.fn();
@@ -26,26 +26,26 @@ const navigateHandler = jest.fn();
 const navigationGetParamHandler = jest.fn();
 const navigationGoBackHandler = jest.fn();
 
-const defaultProps: any = {
+const defaultProps: Props = {
   subscriptionsError: '',
   validationResult: null,
   isSubscribed: false,
-  activeSubscriptionProductId: SUBSCRIPTION_PRODUCT_ID_FREE,
   activeInAppSubscription: null,
   userDetails: userMock,
-  userHasSubscribedBefore: false,
   isLoadingUpgrade: false,
   isLoadingRestore: false,
   isLoggedIn: true,
+
   validateSubscriptionReceipt: validateSubscriptionReceiptHandler,
   getUser: getUserHandler,
   setIsLoadingUpgrade: setIsLoadingUpgradeHandler,
   setIsLoadingRestore: setIsLoadingRestoreHandler,
+
   navigation: {
     navigate: navigateHandler,
     getParam: navigationGetParamHandler,
     goBack: navigationGoBackHandler,
-  },
+  } as any
 };
 
 describe('SubscriptionHandlerContainer', () => {
@@ -55,7 +55,7 @@ describe('SubscriptionHandlerContainer', () => {
 
     beforeEach(() => {
 
-      const props = {
+      const props: Props = {
         ...defaultProps
       }
 
@@ -71,7 +71,7 @@ describe('SubscriptionHandlerContainer', () => {
     let wrapper: renderer.ReactTestRenderer;
 
     beforeEach(() => {
-      const props = {
+      const props: Props = {
         ...defaultProps
       }
 
@@ -98,11 +98,8 @@ describe('SubscriptionHandlerContainer', () => {
     });
 
     it('should correctly run syncUserInAppSubscriptionWithAPI when the user his subscription is expired locally', async () => {
-      const activeSubscriptionProductId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
-
-      const props = {
+      const props: Props = {
         ...defaultProps,
-        activeSubscriptionProductId,
         isSubscribed: true,
         activeInAppSubscription: userInAppSubscriptionGoogle
       }
@@ -123,19 +120,16 @@ describe('SubscriptionHandlerContainer', () => {
     });
 
     it('should not run syncUserInAppSubscriptionWithAPI when the user his subscription is not expired locally', async () => {
-      const activeSubscriptionProductId = SUBSCRIPTION_PRODUCT_ID_PREMIUM;
-
       // Set expires date to tomorrow
       const expiresAt = new Date().setDate(new Date().getDate() + 1);
 
-      const props = {
+      const props: Props = {
         ...defaultProps,
-        activeSubscriptionProductId,
         isSubscribed: true,
         validationResult: {
           ...subscriptionValidationResultActiveMock,
           expiresAt
-        }
+        } as any
       }
 
       wrapper.update(<SubscriptionHandlerContainerComponent {...props}><Text>Container test</Text></SubscriptionHandlerContainerComponent>)
@@ -150,11 +144,8 @@ describe('SubscriptionHandlerContainer', () => {
     });
 
     it('should not run syncUserInAppSubscriptionWithAPI when the user is not subscribed', async () => {
-      const activeSubscriptionProductId = SUBSCRIPTION_PRODUCT_ID_FREE;
-
-      const props = {
+      const props: Props = {
         ...defaultProps,
-        activeSubscriptionProductId,
         activeInAppSubscription: userInAppSubscriptionGoogle,
         isSubscribed: false
       }
@@ -177,7 +168,7 @@ describe('SubscriptionHandlerContainer', () => {
       const transactionDate = 1566204171000;
       const mockPurchase = { productId, transactionReceipt, transactionId, transactionDate }
 
-      const props = {
+      const props: Props = {
         ...defaultProps,
         userDetails: null,
         isLoggedIn: false
@@ -203,7 +194,7 @@ describe('SubscriptionHandlerContainer', () => {
     });
 
     it('should not run handlePurchaseErrorListener when a user is not logged in', async () => {
-      const props = {
+      const props: Props = {
         ...defaultProps,
         userDetails: null,
         isLoggedIn: false
@@ -231,7 +222,7 @@ describe('SubscriptionHandlerContainer', () => {
       const transactionDate = 1566204171000;
       const mockPurchase = { productId, transactionReceipt, transactionId, transactionDate }
 
-      const props = {
+      const props: Props = {
         ...defaultProps,
         isSubscribed: false
       }
@@ -269,7 +260,7 @@ describe('SubscriptionHandlerContainer', () => {
       const transactionDate = 1566204171000;
       const mockPurchase = { productId, transactionReceipt, transactionId, transactionDate }
 
-      const props = {
+      const props: Props = {
         ...defaultProps,
         isSubscribed: false
       }
@@ -295,7 +286,7 @@ describe('SubscriptionHandlerContainer', () => {
       const debugMessage = 'Some debug message to show!';
       const mockError = { debugMessage }
 
-      const props = {
+      const props: Props = {
         ...defaultProps,
         isSubscribed: false
       }
@@ -320,7 +311,7 @@ describe('SubscriptionHandlerContainer', () => {
       const debugMessage = 'Some debug message to show!';
       const mockError = { debugMessage, code: 'E_USER_CANCELLED' }
 
-      const props = {
+      const props: Props = {
         ...defaultProps,
         isSubscribed: true
       }
@@ -366,10 +357,10 @@ describe('SubscriptionHandlerContainer', () => {
     it('should correctly handle an restore purchase error message in componentDidUpdate when a user has no active subscriptions anymore', async () => {
       const isSubscribed = defaultProps.isSubscribed;
 
-      const propsDefault = {
+      const props: Props = {
         ...defaultProps,
         isLoadingRestore: false,
-        validationResult: ''
+        validationResult: '' as any
       }
 
       const propsExpired = {
@@ -378,7 +369,7 @@ describe('SubscriptionHandlerContainer', () => {
         validationResult: subscriptionValidationResultExpiredMock
       }
 
-      wrapper.update(<SubscriptionHandlerContainerComponent {...propsDefault}><Text>Container test</Text></SubscriptionHandlerContainerComponent>);
+      wrapper.update(<SubscriptionHandlerContainerComponent {...props}><Text>Container test</Text></SubscriptionHandlerContainerComponent>);
 
       const testInstance: SubscriptionHandlerContainerComponent = wrapper.root.instance;
       const spyHandleRestoreSubscriptionStatus = jest.spyOn(testInstance, 'handleRestoreSubscriptionStatus');
