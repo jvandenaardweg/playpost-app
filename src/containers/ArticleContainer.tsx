@@ -306,7 +306,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         'Because you are on a free account, we will use the already available voice for this article. Which is a different voice. Premium users do not have this limitation.',
         [
           {
-            text: (userIsEligibleForTrial) ? 'Upgrade' : 'Start free trial',
+            text: (userIsEligibleForTrial) ? 'Start free trial' : 'Upgrade',
             style: 'cancel',
             onPress: () => this.props.navigation.navigate('Upgrade')
           },
