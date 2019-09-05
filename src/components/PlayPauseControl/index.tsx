@@ -15,6 +15,7 @@ interface IProps {
 interface PlayPauseIconProps {
   isPlaying: boolean;
   isLoading: boolean;
+  isDisabled?: boolean;
   size?: number;
   color?: string;
 }
@@ -25,20 +26,20 @@ export const PlayPauseControl: React.FC<Props> = React.memo(({ isPlaying, isLoad
   return (
     <TouchableOpacity testID="PlayPauseControl-button" disabled={isLoading} style={styles.playButton} onPress={() => onPressPlay()} hitSlop={defaultHitslop}>
       <View style={styles.controlPlay}>
-        <PlayPauseIcon isLoading={isLoading} isPlaying={isPlaying} size={size} color={iconColor} />
+        <PlayPauseIcon isLoading={isLoading} isDisabled={isLoading} isPlaying={isPlaying} size={size} color={iconColor} />
       </View>
     </TouchableOpacity>
   );
 });
 
-export const PlayPauseControlCircle: React.FC<Props> = React.memo(({ isPlaying, isLoading, size, iconColor, onPressPlay }) => {
+export const PlayPauseControlCircle: React.FC<Props> = React.memo(({ isPlaying, isLoading, isDisabled, size, iconColor, onPressPlay }) => {
   return (
     <TouchableOpacity
       testID="PlayPauseControlCircle-button"
       style={[styles.playButton, styles.playButtonCircle]}
       onPress={() => onPressPlay()}
       hitSlop={defaultHitslop}
-      disabled={isLoading}
+      disabled={isDisabled}
     >
       <View style={styles.controlPlay}>
         <PlayPauseIcon isLoading={isLoading} isPlaying={isPlaying} size={size} color={iconColor} />

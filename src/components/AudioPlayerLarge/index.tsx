@@ -68,6 +68,7 @@ export const AudioPlayerLarge: React.FC<Props> = React.memo((props: Props) => {
                 iconColor={colors.black}
                 isLoading={props.isLoading}
                 isPlaying={props.isPlaying}
+                isDisabled={props.isPlaybackSpeedVisible}
                 onPressPlay={props.onPressPlay}
               />
             </View>

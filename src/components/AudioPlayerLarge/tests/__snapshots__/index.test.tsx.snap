@@ -158,6 +158,7 @@ exports[`AudioPlayerLarge rendering should render correctly 1`] = `
         >
           <Memo
             iconColor="#000000"
+            isDisabled={false}
             isLoading={false}
             isPlaying={false}
             onPressPlay={[MockFunction]}
