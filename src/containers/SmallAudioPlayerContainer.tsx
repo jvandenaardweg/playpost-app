@@ -106,7 +106,7 @@ export class SmallAudioPlayerContainerComponent extends React.PureComponent<Prop
     // "Only the id, url, title and artist properties are required for basic playback"
     // https://react-native-kit.github.io/react-native-track-player/documentation/#track-object
 
-    if (!track.id || !track.url || !track.title || !track.artist) {
+    if (!track || !track.id || !track.url || !track.title || !track.artist) {
       console.warn('Cannot play track, missing a required track property.');
       return;
     }
@@ -162,7 +162,7 @@ export class SmallAudioPlayerContainerComponent extends React.PureComponent<Prop
 
     if (!articles.length) { return null; }
 
-    if (!track.id) {
+    if (!track || !track.id) {
       return <AudioPlayerSmallEmpty />;
     }
 
