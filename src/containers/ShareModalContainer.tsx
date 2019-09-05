@@ -87,7 +87,8 @@ export class ShareModalContainerComponent extends React.PureComponent<Props, Sta
   addArticleToPlaylist = async (url: string, documentHtml?: string) => {
     try {
       // Do the API call to add the URL to the user's playlist
-      await this.props.addArticleToPlaylistByUrl(url, documentHtml);
+      // We correctly set the documentHtml as undefined if it's not present, as we do not want to send an empty string to our API, which will result in an error
+      await this.props.addArticleToPlaylistByUrl(url, documentHtml ? documentHtml : undefined);
 
       this.setState({ isSuccess: true, isLoading: false });
 
