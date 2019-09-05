@@ -276,6 +276,7 @@ exports[`Article active rendering should render active correctly 1`] = `
               "height": 75,
               "justifyContent": "center",
               "opacity": 1,
+              "overflow": "hidden",
               "width": 75,
             }
           }
@@ -640,6 +641,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
               "height": 75,
               "justifyContent": "center",
               "opacity": 1,
+              "overflow": "hidden",
               "width": 75,
             }
           }
@@ -1004,6 +1006,7 @@ exports[`Article full rendering should render full correctly 1`] = `
               "height": 75,
               "justifyContent": "center",
               "opacity": 1,
+              "overflow": "hidden",
               "width": 75,
             }
           }
@@ -1366,6 +1369,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
               "height": 75,
               "justifyContent": "center",
               "opacity": 1,
+              "overflow": "hidden",
               "width": 75,
             }
           }
@@ -1796,6 +1800,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
               "height": 75,
               "justifyContent": "center",
               "opacity": 1,
+              "overflow": "hidden",
               "width": 75,
             }
           }
@@ -2140,6 +2145,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
               "height": 75,
               "justifyContent": "center",
               "opacity": 1,
+              "overflow": "hidden",
               "width": 75,
             }
           }
@@ -2502,6 +2508,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
               "height": 75,
               "justifyContent": "center",
               "opacity": 1,
+              "overflow": "hidden",
               "width": 75,
             }
           }

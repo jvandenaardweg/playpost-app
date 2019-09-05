@@ -540,6 +540,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                   "height": 75,
                   "justifyContent": "center",
                   "opacity": 1,
+                  "overflow": "hidden",
                   "width": 75,
                 }
               }
@@ -550,7 +551,10 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                 style={
                   Object {
                     "backgroundColor": "transparent",
+                    "height": "100%",
+                    "opacity": 0.9,
                     "position": "relative",
+                    "width": "100%",
                   }
                 }
               >
@@ -571,8 +575,8 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                         "top": 0,
                       },
                       Object {
-                        "height": 75,
-                        "width": 75,
+                        "height": undefined,
+                        "width": undefined,
                       },
                     ]
                   }
@@ -636,24 +640,14 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                         "alignItems": "center",
                         "backgroundColor": "#e5e5e5",
                         "borderRadius": 4,
-                        "height": 75,
                         "justifyContent": "center",
-                        "opacity": 0.9,
-                        "width": 75,
                       }
                     }
                     testID="RNE__Image__placeholder"
                   />
                 </View>
                 <View
-                  style={
-                    Object {
-                      "borderRadius": 4,
-                      "height": 75,
-                      "opacity": 0.9,
-                      "width": 75,
-                    }
-                  }
+                  style={Object {}}
                 />
               </View>
               <View
