@@ -2,5 +2,5 @@
     <string name="app_name">Playpost</string>
     <string name="appCenterAnalytics_whenToEnableAnalytics" moduleConfig="true" translatable="false">ENABLE_IN_JS</string>
     <string name="appCenterCrashes_whenToSendCrashes" moduleConfig="true" translatable="false">ALWAYS_SEND</string>
-    <string name="title_activity_share"></string> <!-- keep empty, so it does not display in the share overlay -->
+    <string name="title_activity_share">Playpost</string>
 </resources>
