@@ -11,7 +11,7 @@
     "jest": "jest",
     "jest:coverage": "jest --coverage",
     "device:ios": "ENVFILE=.env.local react-native run-ios --device",
-    "device:ios:ipad": "ENVFILE=.env.local react-native run-ios --simulator 'iPad Air (3rd generation)'",
+    "ios:ipad": "ENVFILE=.env.local react-native run-ios --simulator 'iPad Pro (12.9-inch) (3rd generation) (13.0)'",
     "device:android": "ENVFILE=.env.local react-native run-android",
     "device:android:release": "ENVFILE=.env.local react-native run-android --variant release",
     "device:release": "ENVFILE=.env.local react-native run-ios --device --configuration Release",
