@@ -21,6 +21,11 @@ export default StyleSheet.create({
 
     elevation: 10,
   },
+  wrapper: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between'
+  },
   articleContainer: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -29,7 +34,7 @@ export default StyleSheet.create({
     textAlign: 'center'
   },
   footer: {
-    marginTop: 12
+
   },
   footerRow: {
     flexDirection: 'row'

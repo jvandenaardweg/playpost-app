@@ -13,7 +13,7 @@ interface Props {
 
 export const ShareModal: React.FC<Props> = React.memo(({ isLoading, errorMessage, isSuccess, isError, onPressClose }) => (
   <View style={styles.container}>
-    <View>
+    <View style={styles.wrapper}>
       <View style={styles.articleContainer}>
         {isLoading && <ActivityIndicator size="small" color="black" />}
         {!isLoading && isError && <Text style={styles.errorMessage}>{errorMessage}</Text>}
