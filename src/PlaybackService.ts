@@ -36,6 +36,16 @@ module.exports = async function PlaybackService(): Promise<void> {
     TrackPlayer.default.seekTo(data.position);
   });
 
+  TrackPlayer.default.addEventListener(TrackPlayer.Event.RemoteJumpForward, async (data: { interval: number }) => {
+    const position = await TrackPlayer.default.getPosition();
+    TrackPlayer.default.seekTo(position + data.interval);
+  });
+
+  TrackPlayer.default.addEventListener(TrackPlayer.Event.RemoteJumpBackward, async (data: { interval: number }) => {
+    const position = await TrackPlayer.default.getPosition();
+    TrackPlayer.default.seekTo(position - data.interval);
+  });
+
   // TrackPlayer.addEventListener('remote-duck', (data: { paused: boolean, permanent: boolean, ducking: boolean}) => {
   //   // https://react-native-kit.github.io/react-native-track-player/documentation/#remote-duck
   //   if (data.paused) TrackPlayer.pause();

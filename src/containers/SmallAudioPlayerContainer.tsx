@@ -40,24 +40,31 @@ export class SmallAudioPlayerContainerComponent extends React.PureComponent<Prop
 
     await TrackPlayer.default.updateOptions({
       stopWithApp: false,
+      jumpInterval: 15,
       // icon: require('../assets/images/logo-1024.png'), // Keep commented for now, does not display our logo on Android
       capabilities: [
         TrackPlayer.Capability.Play,
         TrackPlayer.Capability.Pause,
         TrackPlayer.Capability.Stop,
-        TrackPlayer.Capability.SeekTo
+        TrackPlayer.Capability.SeekTo,
+        TrackPlayer.Capability.JumpForward,
+        TrackPlayer.Capability.JumpBackward
       ],
       compactCapabilities: [
         TrackPlayer.Capability.Play,
         TrackPlayer.Capability.Pause,
         TrackPlayer.Capability.Stop,
-        TrackPlayer.Capability.SeekTo
+        TrackPlayer.Capability.SeekTo,
+        TrackPlayer.Capability.JumpForward,
+        TrackPlayer.Capability.JumpBackward
       ],
       notificationCapabilities: [
         TrackPlayer.Capability.Play,
         TrackPlayer.Capability.Pause,
         TrackPlayer.Capability.Stop,
-        TrackPlayer.Capability.SeekTo
+        TrackPlayer.Capability.SeekTo,
+        TrackPlayer.Capability.JumpForward,
+        TrackPlayer.Capability.JumpBackward
       ]
     });
 
