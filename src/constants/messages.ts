@@ -37,6 +37,7 @@ export const ALERT_SETTINGS_VOICE_CHANGE = 'Articles with already available audi
 export const ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE = 'No voice preview available, yet. Please try again later.';
 export const ALERT_SETTINGS_LANGUAGES_VOICE_SAVE = 'Saving the selected voice for this language failed. Please try again.';
 export const ALERT_SETTINGS_DELETE_USER = 'Deleting your account cannot be undone. All your data will be deleted from our systems.';
+export const ALERT_SETTINGS_DELETE_USER_SUBSCRIBED = `You are currently subscribed to a subscription plan. Please note that deleting your account does not cancel your subscription. Make sure you have cancelled your subscription before deleting your account. ${ALERT_SETTINGS_DELETE_USER}`;
 export const ALERT_SETTINGS_DELETE_USER_FAIL = 'An error happened while trying to delete your account. Please try again or contact us when this happens all the time.';
 export const ALERT_SETTINGS_UPDATE_EMAIL_DIFF = 'The e-mail address given is the same. No need to update :-)';
 export const ALERT_SETTINGS_UPDATE_PASSWORD_DIFF_VALIDATION_FAIL = 'The given passwords do not match. Please make sure you typed your passwords correctly.';

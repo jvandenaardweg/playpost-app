@@ -14,12 +14,13 @@ import {
   ALERT_SETTINGS_CLEAR_CACHE_WARNING,
   ALERT_SETTINGS_DELETE_USER,
   ALERT_SETTINGS_DELETE_USER_FAIL,
+  ALERT_SETTINGS_DELETE_USER_SUBSCRIBED,
   ALERT_SETTINGS_RESET_CACHE_FAIL,
   ALERT_SETTINGS_SET_CACHE_SIZE_FAIL,
   ALERT_TITLE_ERROR,
   ALERT_TITLE_REQUEST_CONFIRM} from '../constants/messages';
 import spacing from '../constants/spacing';
-import { URL_ABOUT, URL_APP_REVIEW, URL_FEEDBACK, URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../constants/urls';
+import { URL_ABOUT, URL_APP_REVIEW, URL_FEEDBACK, URL_MANAGE_SUBSCRIPTIONS, URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../constants/urls';
 
 import { RootState } from '../reducers';
 import { resetAudiofilesState } from '../reducers/audiofiles';
@@ -180,6 +181,26 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
   handleOnPressAccountEmail = () => NavigationService.navigate('UpdateEmail');
 
   handleOnPressAccountDelete = () => {
+    const { isSubscribed } = this.props;
+
+    if (isSubscribed) {
+      return Alert.alert(ALERT_TITLE_REQUEST_CONFIRM, ALERT_SETTINGS_DELETE_USER_SUBSCRIBED, [
+        {
+          text: 'Cancel',
+          style: 'cancel'
+        },
+        {
+          text: 'Manage Subscriptions',
+          onPress: () => Linking.openURL(URL_MANAGE_SUBSCRIPTIONS)
+        },
+        {
+          text: 'Delete account',
+          style: 'destructive',
+          onPress: () => this.deleteAccount()
+        }
+      ]);
+    }
+
     return Alert.alert(ALERT_TITLE_REQUEST_CONFIRM, ALERT_SETTINGS_DELETE_USER, [
       {
         text: 'Cancel',
@@ -191,6 +212,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
         onPress: () => this.deleteAccount()
       }
     ]);
+
   }
 
   renderDeleteAccount = () => {
