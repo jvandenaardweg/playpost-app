@@ -1,4 +1,4 @@
-import DeviceInfo from 'react-native-device-info';
+import { userLanguageCode } from '../locale';
 import { RootState } from '../reducers';
 
 export const migrations = {
@@ -6,7 +6,7 @@ export const migrations = {
     ...state,
     user: {
       ...state.user,
-      deviceLocale: DeviceInfo.getDeviceLocale() // add with default
+      deviceLocale: userLanguageCode, // en, fr, nl etc...
     },
     voices: {
       ...state.voices,

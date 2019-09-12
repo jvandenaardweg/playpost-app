@@ -237,10 +237,13 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
     );
   }
 
-  renderVersionInfo = () => {
+  renderVersionInfo = async () => {
     const environment = Config.NODE_ENV;
     const environmentText = environment !== 'production' ? `(Env: ${environment})` : '';
-    const versionText = `Version: ${DeviceInfo.getVersion()} (Build: ${DeviceInfo.getBuildNumber()}) ${environmentText}`;
+    const version = await DeviceInfo.getVersion();
+    const buildNumber = await DeviceInfo.getBuildNumber();
+
+    const versionText = `Version: ${version} (Build: ${buildNumber}) ${environmentText}`;
 
     return (
       <Text

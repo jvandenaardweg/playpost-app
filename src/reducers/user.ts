@@ -1,4 +1,4 @@
-import DeviceInfo from 'react-native-device-info';
+import { userLanguageCode } from '../locale';
 
 import {
   CREATE_USER_FAIL_MESSAGE,
@@ -56,7 +56,7 @@ export const initialState: UserState = {
   details: null,
   error: '',
   errorSaveSelectedVoice: '',
-  deviceLocale: DeviceInfo.getDeviceLocale(),
+  deviceLocale: userLanguageCode, // en, fr, nl etc...
   playbackSpeed: 1
 };
 

@@ -1,6 +1,11 @@
 // tslint:disable-next-line: no-submodule-imports
 import mockAsyncStorage from '@react-native-community/async-storage/jest/async-storage-mock';
 
+// tslint:disable-next-line: no-empty
+jest.mock('react-native-localize', () => ({
+  getLocales: jest.fn()
+}));
+
 // Mock the track player depedency: https://github.com/react-native-kit/react-native-track-player/issues/501#issuecomment-474693116
 jest.mock('react-native-track-player', () => ({
   addEventListener: jest.fn(),
