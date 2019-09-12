@@ -4,20 +4,22 @@ import React from 'react';
 import * as ShallowRenderer from 'react-test-renderer/shallow';
 
 import articleMock from '../../../../tests/__mocks__/article';
-import { AudioPlayerLarge } from '../index';
+import { AudioPlayerLarge, Props } from '../index';
 
 const onSetPlaybackSpeedHandler = jest.fn();
 const onPressPlayHandler = jest.fn();
-const onPressCloseHandler = jest.fn();
 const onProgressChangeHandler = jest.fn();
 const onTogglePlaybackSpeedVisibilityHandler = jest.fn();
+const onPressJumpForwardHandler = jest.fn();
+const onPressJumpBackwardHandler = jest.fn();
 
-const defaultProps = {
+const defaultProps: Props = {
   onSetPlaybackSpeed: onSetPlaybackSpeedHandler,
   onPressPlay: onPressPlayHandler,
-  onPressClose: onPressCloseHandler,
   onProgressChange: onProgressChangeHandler,
   onTogglePlaybackSpeedVisibility: onTogglePlaybackSpeedVisibilityHandler,
+  onPressJumpForward: onPressJumpForwardHandler,
+  onPressJumpBackward: onPressJumpBackwardHandler,
   playbackSpeed: 1,
   isPlaying: false,
   isLoading: false,

@@ -43,7 +43,7 @@ class LargeAudioPlayerContainerComponent extends React.PureComponent<Props, Stat
     });
   }
 
-  handleOnProgressChange = async (percentage: number) => {
+  handleOnProgressChange = async (percentage: number): Promise<void> => {
     const trackId = await TrackPlayer.default.getCurrentTrack();
     const track = await TrackPlayer.default.getTrack(trackId);
 
@@ -55,6 +55,16 @@ class LargeAudioPlayerContainerComponent extends React.PureComponent<Props, Stat
 
   handleOnTogglePlaybackSpeedVisibility = () => {
     requestAnimationFrame(() => this.setState({ isPlaybackSpeedVisible: !this.state.isPlaybackSpeedVisible }))
+  }
+
+  handleOnPressJumpForward = async (): Promise<void> => {
+    const position = await TrackPlayer.default.getPosition();
+    return TrackPlayer.default.seekTo(position + 10);
+  }
+
+  handleOnPressJumpBackward = async (): Promise<void> => {
+    const position = await TrackPlayer.default.getPosition();
+    return TrackPlayer.default.seekTo(position - 10);
   }
 
   render() {
@@ -72,6 +82,8 @@ class LargeAudioPlayerContainerComponent extends React.PureComponent<Props, Stat
         onProgressChange={this.handleOnProgressChange}
         onSetPlaybackSpeed={this.handleOnSetPlaybackSpeed}
         onTogglePlaybackSpeedVisibility={this.handleOnTogglePlaybackSpeedVisibility}
+        onPressJumpForward={this.handleOnPressJumpForward}
+        onPressJumpBackward={this.handleOnPressJumpBackward}
       />
     );
   }

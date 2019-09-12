@@ -135,6 +135,53 @@ exports[`AudioPlayerLarge rendering should render correctly 1`] = `
         style={
           Object {
             "alignItems": "center",
+            "justifyContent": "center",
+          }
+        }
+      >
+        <TouchableOpacity
+          activeOpacity={0.2}
+          hitSlop={
+            Object {
+              "bottom": 20,
+              "left": 20,
+              "right": 20,
+              "top": 20,
+            }
+          }
+          onPress={[MockFunction]}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderColor": "#C5C5C5",
+              "borderRadius": 32,
+              "borderWidth": 1,
+              "height": 32,
+              "justifyContent": "center",
+              "width": 60,
+            }
+          }
+          testID="AudioPlayerLarge-TouchableOpacity-playbackspeed"
+        >
+          <Text
+            style={
+              Object {
+                "color": "#ffffff",
+                "fontSize": 12,
+                "fontWeight": "600",
+              }
+            }
+            testID="AudioPlayerLarge-Text-playbackspeed"
+          >
+            1.00
+            x
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
             "flexDirection": "row",
             "justifyContent": "space-around",
             "marginTop": 24,
@@ -147,7 +194,27 @@ exports[`AudioPlayerLarge rendering should render correctly 1`] = `
               "width": 48,
             }
           }
-        />
+        >
+          <TouchableOpacity
+            activeOpacity={0.2}
+            hitSlop={
+              Object {
+                "bottom": 20,
+                "left": 20,
+                "right": 20,
+                "top": 20,
+              }
+            }
+            onPress={[MockFunction]}
+            testID="AudioPlayerLarge-TouchableOpacity-jump-backward"
+          >
+            <Memo
+              color="white"
+              name="replay-10"
+              size={42}
+            />
+          </TouchableOpacity>
+        </View>
         <View
           style={
             Object {
@@ -184,32 +251,13 @@ exports[`AudioPlayerLarge rendering should render correctly 1`] = `
                 }
               }
               onPress={[MockFunction]}
-              style={
-                Object {
-                  "alignItems": "center",
-                  "borderColor": "#C5C5C5",
-                  "borderRadius": 48,
-                  "borderWidth": 1,
-                  "height": 48,
-                  "justifyContent": "center",
-                  "width": 48,
-                }
-              }
-              testID="AudioPlayerLarge-TouchableOpacity-playbackspeed"
+              testID="AudioPlayerLarge-TouchableOpacity-jump-forward"
             >
-              <Text
-                style={
-                  Object {
-                    "color": "#ffffff",
-                    "fontSize": 12,
-                    "fontWeight": "600",
-                  }
-                }
-                testID="AudioPlayerLarge-Text-playbackspeed"
-              >
-                1.00
-                x
-              </Text>
+              <Memo
+                color="white"
+                name="forward-10"
+                size={42}
+              />
             </TouchableOpacity>
           </View>
         </View>

@@ -90,9 +90,9 @@ export default StyleSheet.create({
   buttonControl: {
     borderWidth: 1,
     borderColor: colors.gray,
-    height: 48,
-    width: 48,
-    borderRadius: 48,
+    height: 32,
+    width: 60,
+    borderRadius: 32,
     alignItems: 'center',
     justifyContent: 'center'
   },

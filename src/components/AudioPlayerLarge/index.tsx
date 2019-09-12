@@ -12,7 +12,7 @@ import colors from '../../constants/colors';
 import { PlaybackSpeedSlider } from '../PlaybackSpeedSlider';
 import styles from './styles';
 
-interface Props {
+export interface Props {
   isPlaying: boolean;
   isLoading: boolean;
   isPlaybackSpeedVisible: boolean;
@@ -22,6 +22,8 @@ interface Props {
   onProgressChange(value: number): void;
   onSetPlaybackSpeed(speed: number): void;
   onTogglePlaybackSpeedVisibility(): void;
+  onPressJumpForward(): void;
+  onPressJumpBackward(): void;
 }
 
 export const AudioPlayerLarge: React.FC<Props> = React.memo((props: Props) => {
@@ -60,8 +62,33 @@ export const AudioPlayerLarge: React.FC<Props> = React.memo((props: Props) => {
         </View>
         <View style={styles.controlsContainer}>
           <AudioPlayerProgressBar onProgressChange={props.onProgressChange} />
+          <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+            <TouchableOpacity
+              testID="AudioPlayerLarge-TouchableOpacity-playbackspeed"
+              style={styles.buttonControl}
+              hitSlop={defaultHitslop}
+              onPress={props.onTogglePlaybackSpeedVisibility}
+            >
+              {props.isPlaybackSpeedVisible && (<Icon.FontAwesome name="times" color="white" size={22} />)}
+                {!props.isPlaybackSpeedVisible && (
+                  <Text
+                    testID="AudioPlayerLarge-Text-playbackspeed"
+                    style={styles.buttonControlText}
+                  >
+                    {props.playbackSpeed.toFixed(2)}x</Text>
+                )}
+            </TouchableOpacity>
+          </View>
           <View style={styles.controlsRow}>
-            <View style={styles.controlContainer}></View>
+            <View style={styles.controlContainer}>
+              <TouchableOpacity
+                testID="AudioPlayerLarge-TouchableOpacity-jump-backward"
+                hitSlop={defaultHitslop}
+                onPress={props.onPressJumpBackward}
+              >
+                <Icon.MaterialIcons name="replay-10" color="white" size={42} />
+              </TouchableOpacity>
+            </View>
             <View style={{ opacity: (props.isPlaybackSpeedVisible) ? 0 : 1, height: 64 }}>
               <PlayPauseControlCircle
                 size={24}
@@ -74,21 +101,13 @@ export const AudioPlayerLarge: React.FC<Props> = React.memo((props: Props) => {
             </View>
             <View>
               <View style={styles.controlContainer}>
-              <TouchableOpacity
-                testID="AudioPlayerLarge-TouchableOpacity-playbackspeed"
-                style={styles.buttonControl}
-                hitSlop={defaultHitslop}
-                onPress={props.onTogglePlaybackSpeedVisibility}
-              >
-                {props.isPlaybackSpeedVisible && (<Icon.FontAwesome name="times" color="white" size={22} />)}
-                  {!props.isPlaybackSpeedVisible && (
-                    <Text
-                      testID="AudioPlayerLarge-Text-playbackspeed"
-                      style={styles.buttonControlText}
-                    >
-                      {props.playbackSpeed.toFixed(2)}x</Text>
-                  )}
-              </TouchableOpacity>
+                <TouchableOpacity
+                  testID="AudioPlayerLarge-TouchableOpacity-jump-forward"
+                  hitSlop={defaultHitslop}
+                  onPress={props.onPressJumpForward}
+                >
+                  <Icon.MaterialIcons name="forward-10" color="white" size={42} />
+                </TouchableOpacity>
               </View>
             </View>
           </View>
