@@ -20,7 +20,7 @@ import {
   ALERT_TITLE_ERROR,
   ALERT_TITLE_REQUEST_CONFIRM} from '../constants/messages';
 import spacing from '../constants/spacing';
-import { URL_ABOUT, URL_APP_REVIEW, URL_FEEDBACK, URL_MANAGE_SUBSCRIPTIONS, URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../constants/urls';
+import { URL_ABOUT, URL_APP_REVIEW, URL_BROWSER_EXTENSION, URL_FEEDBACK, URL_MANAGE_SUBSCRIPTIONS, URL_PRIVACY_POLICY, URL_TERMS_OF_USE, URL_BROWSER_EXTENSION_FIREFOX, URL_BROWSER_EXTENSION_OPERA, URL_BROWSER_EXTENSION_CHROME, URL_PLAYPOST_FOR_PUBLISHERS } from '../constants/urls';
 
 import { RootState } from '../reducers';
 import { resetAudiofilesState } from '../reducers/audiofiles';
@@ -352,6 +352,54 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             iconColor: colors.green,
             chevron: true,
             onPress: () => Linking.openURL(URL_APP_REVIEW)
+          },
+          {
+            key: 'about-for-publishers',
+            title: 'For publishers',
+            icon: 'file-text',
+            iconColor: colors.grayDark,
+            chevron: true,
+            onPress: () =>
+              NavigationService.navigate('Browser', {
+                url: URL_PLAYPOST_FOR_PUBLISHERS,
+                title: 'For publishers'
+              })
+          },
+          {
+            key: 'about-chrome-browser-extension',
+            title: 'Chrome browser extension',
+            icon: 'package',
+            iconColor: colors.grayDark,
+            chevron: true,
+            onPress: () =>
+              NavigationService.navigate('Browser', {
+                url: URL_BROWSER_EXTENSION_CHROME,
+                title: 'Chrome browser extension'
+              })
+          },
+          {
+            key: 'about-firefox-browser-extension',
+            title: 'Firefox browser extension',
+            icon: 'package',
+            iconColor: colors.grayDark,
+            chevron: true,
+            onPress: () =>
+              NavigationService.navigate('Browser', {
+                url: URL_BROWSER_EXTENSION_FIREFOX,
+                title: 'Firefox browser extension'
+              })
+          },
+          {
+            key: 'about-opera-browser-extension',
+            title: 'Opera browser extension',
+            icon: 'package',
+            iconColor: colors.grayDark,
+            chevron: true,
+            onPress: () =>
+              NavigationService.navigate('Browser', {
+                url: URL_BROWSER_EXTENSION_OPERA,
+                title: 'Opera browser extension'
+              })
           },
           {
             key: 'about-about',
