@@ -5,9 +5,11 @@ import * as TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
 
 import { AudioPlayerLarge } from '../components/AudioPlayerLarge';
+import NavigationService from '../navigation/NavigationService';
 import { setPlaybackStatus } from '../reducers/player';
 import { setPlaybackSpeed } from '../reducers/user';
 
+import { NavigationActions, StackActions } from 'react-navigation';
 import { RootState } from '../reducers';
 import { selectPlayerArticleFromAudiofileId, selectPlayerIsLoading, selectPlayerIsPlaying, selectPlayerTrack } from '../selectors/player';
 import { selectUserPlaybackSpeed } from '../selectors/user';
@@ -57,6 +59,27 @@ class LargeAudioPlayerContainerComponent extends React.PureComponent<Props, Stat
     requestAnimationFrame(() => this.setState({ isPlaybackSpeedVisible: !this.state.isPlaybackSpeedVisible }))
   }
 
+  handleOnPressVoice = () => {
+    const voiceLanguageName = this.audiofile && this.audiofile.voice.language.name;
+
+    requestAnimationFrame(() => {
+      // Close the audio player...
+      NavigationService.goBack(undefined);
+
+      // ... then go the the voices screen
+      NavigationService.navigate(
+        'ModalLanguages',
+        {},
+        NavigationActions.navigate({
+          routeName: 'SettingsVoices',
+          params: {
+            languageName: voiceLanguageName
+          }
+        })
+      )
+    })
+  }
+
   handleOnPressJumpForward = async (): Promise<void> => {
     const position = await TrackPlayer.default.getPosition();
     return TrackPlayer.default.seekTo(position + 10);
@@ -67,6 +90,12 @@ class LargeAudioPlayerContainerComponent extends React.PureComponent<Props, Stat
     return TrackPlayer.default.seekTo(position - 10);
   }
 
+  get audiofile(): Api.Audiofile | undefined {
+    const { track, article } = this.props;
+    const audiofile = article && article.audiofiles.find(articleAudiofile => articleAudiofile.id === track.id);
+    return audiofile;
+  }
+
   render() {
     const { isPlaybackSpeedVisible } = this.state;
     const { userPlaybackSpeed, article, playerIsPlaying, playerIsLoading } = this.props;
@@ -74,6 +103,7 @@ class LargeAudioPlayerContainerComponent extends React.PureComponent<Props, Stat
     return (
       <AudioPlayerLarge
         article={article}
+        audiofile={this.audiofile}
         isLoading={playerIsLoading}
         isPlaying={playerIsPlaying}
         playbackSpeed={userPlaybackSpeed}
@@ -84,6 +114,7 @@ class LargeAudioPlayerContainerComponent extends React.PureComponent<Props, Stat
         onTogglePlaybackSpeedVisibility={this.handleOnTogglePlaybackSpeedVisibility}
         onPressJumpForward={this.handleOnPressJumpForward}
         onPressJumpBackward={this.handleOnPressJumpBackward}
+        onPressVoice={this.handleOnPressVoice}
       />
     );
   }

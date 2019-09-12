@@ -17,6 +17,7 @@ export interface Props {
   isLoading: boolean;
   isPlaybackSpeedVisible: boolean;
   article?: Api.Article;
+  audiofile?: Api.Audiofile;
   playbackSpeed: number;
   onPressPlay(): void;
   onProgressChange(value: number): void;
@@ -24,6 +25,7 @@ export interface Props {
   onTogglePlaybackSpeedVisibility(): void;
   onPressJumpForward(): void;
   onPressJumpBackward(): void;
+  onPressVoice(): void;
 }
 
 export const AudioPlayerLarge: React.FC<Props> = React.memo((props: Props) => {
@@ -62,10 +64,10 @@ export const AudioPlayerLarge: React.FC<Props> = React.memo((props: Props) => {
         </View>
         <View style={styles.controlsContainer}>
           <AudioPlayerProgressBar onProgressChange={props.onProgressChange} />
-          <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+          <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }}>
             <TouchableOpacity
               testID="AudioPlayerLarge-TouchableOpacity-playbackspeed"
-              style={styles.buttonControl}
+              style={{...styles.buttonControl, minWidth: 65}}
               hitSlop={defaultHitslop}
               onPress={props.onTogglePlaybackSpeedVisibility}
             >
@@ -75,8 +77,17 @@ export const AudioPlayerLarge: React.FC<Props> = React.memo((props: Props) => {
                     testID="AudioPlayerLarge-Text-playbackspeed"
                     style={styles.buttonControlText}
                   >
-                    {props.playbackSpeed.toFixed(2)}x</Text>
+                    {props.playbackSpeed.toFixed(2)}x
+                  </Text>
                 )}
+            </TouchableOpacity>
+            <TouchableOpacity
+              testID="AudioPlayerLarge-TouchableOpacity-voice"
+              style={styles.buttonControl}
+              hitSlop={defaultHitslop}
+              onPress={props.onPressVoice}
+            >
+              <Text style={styles.buttonControlText}>{props.audiofile && props.audiofile.voice.label}</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.controlsRow}>

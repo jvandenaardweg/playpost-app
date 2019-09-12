@@ -89,12 +89,15 @@ export default StyleSheet.create({
   },
   buttonControl: {
     borderWidth: 1,
-    borderColor: colors.gray,
+    borderColor: colors.white,
     height: 32,
-    width: 60,
+    paddingLeft: spacing.medium,
+    paddingRight: spacing.medium,
     borderRadius: 32,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginLeft: spacing.micro,
+    marginRight: spacing.micro
   },
   buttonControlText: {
     color: colors.white,

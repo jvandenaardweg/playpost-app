@@ -12,6 +12,7 @@ const onProgressChangeHandler = jest.fn();
 const onTogglePlaybackSpeedVisibilityHandler = jest.fn();
 const onPressJumpForwardHandler = jest.fn();
 const onPressJumpBackwardHandler = jest.fn();
+const onPressVoiceHandler = jest.fn();
 
 const defaultProps: Props = {
   onSetPlaybackSpeed: onSetPlaybackSpeedHandler,
@@ -20,6 +21,7 @@ const defaultProps: Props = {
   onTogglePlaybackSpeedVisibility: onTogglePlaybackSpeedVisibilityHandler,
   onPressJumpForward: onPressJumpForwardHandler,
   onPressJumpBackward: onPressJumpBackwardHandler,
+  onPressVoice: onPressVoiceHandler,
   playbackSpeed: 1,
   isPlaying: false,
   isLoading: false,
