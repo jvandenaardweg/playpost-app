@@ -9,7 +9,7 @@ import NavigationService from '../navigation/NavigationService';
 import { setPlaybackStatus } from '../reducers/player';
 import { setPlaybackSpeed } from '../reducers/user';
 
-import { NavigationActions, StackActions } from 'react-navigation';
+import { NavigationActions } from 'react-navigation';
 import { RootState } from '../reducers';
 import { selectPlayerArticleFromAudiofileId, selectPlayerIsLoading, selectPlayerIsPlaying, selectPlayerTrack } from '../selectors/player';
 import { selectUserPlaybackSpeed } from '../selectors/user';
