@@ -31,9 +31,11 @@ exports[`CustomSectionList basic rendering should render correctly 1`] = `
         Object {
           "data": Array [
             Object {
+              "key": "item-title",
               "title": "Item title",
             },
           ],
+          "key": "test",
           "title": "test",
         },
       ]
@@ -60,9 +62,11 @@ exports[`CustomSectionList basic rendering should render correctly 1`] = `
         Object {
           "data": Array [
             Object {
+              "key": "item-title",
               "title": "Item title",
             },
           ],
+          "key": "test",
           "title": "test",
         },
       ]

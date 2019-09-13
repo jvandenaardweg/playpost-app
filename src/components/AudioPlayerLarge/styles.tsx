@@ -88,19 +88,19 @@ export default StyleSheet.create({
     width: '100%'
   },
   buttonControl: {
-    borderWidth: 1,
-    borderColor: colors.white,
+    backgroundColor: colors.grayDarkest,
     height: 32,
     paddingLeft: spacing.medium,
     paddingRight: spacing.medium,
     borderRadius: 32,
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: spacing.micro,
-    marginRight: spacing.micro
+    marginTop: spacing.small,
+    marginLeft: spacing.nano,
+    marginRight: spacing.nano
   },
   buttonControlText: {
-    color: colors.white,
+    color: colors.gray,
     fontSize: fonts.fontSize.tiny,
     fontWeight: fonts.fontWeight.semibold
   }

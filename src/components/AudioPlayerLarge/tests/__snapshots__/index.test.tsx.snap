@@ -154,16 +154,16 @@ exports[`AudioPlayerLarge rendering should render correctly 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "borderColor": "#ffffff",
+              "backgroundColor": "#222222",
               "borderRadius": 32,
-              "borderWidth": 1,
               "height": 32,
               "justifyContent": "center",
-              "marginLeft": 8,
-              "marginRight": 8,
-              "minWidth": 65,
+              "marginLeft": 4,
+              "marginRight": 4,
+              "marginTop": 12,
               "paddingLeft": 14,
               "paddingRight": 14,
+              "width": 65,
             }
           }
           testID="AudioPlayerLarge-TouchableOpacity-playbackspeed"
@@ -171,7 +171,7 @@ exports[`AudioPlayerLarge rendering should render correctly 1`] = `
           <Text
             style={
               Object {
-                "color": "#ffffff",
+                "color": "#C5C5C5",
                 "fontSize": 12,
                 "fontWeight": "600",
               }
@@ -181,43 +181,6 @@ exports[`AudioPlayerLarge rendering should render correctly 1`] = `
             1.00
             x
           </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.2}
-          hitSlop={
-            Object {
-              "bottom": 20,
-              "left": 20,
-              "right": 20,
-              "top": 20,
-            }
-          }
-          onPress={[MockFunction]}
-          style={
-            Object {
-              "alignItems": "center",
-              "borderColor": "#ffffff",
-              "borderRadius": 32,
-              "borderWidth": 1,
-              "height": 32,
-              "justifyContent": "center",
-              "marginLeft": 8,
-              "marginRight": 8,
-              "paddingLeft": 14,
-              "paddingRight": 14,
-            }
-          }
-          testID="AudioPlayerLarge-TouchableOpacity-voice"
-        >
-          <Text
-            style={
-              Object {
-                "color": "#ffffff",
-                "fontSize": 12,
-                "fontWeight": "600",
-              }
-            }
-          />
         </TouchableOpacity>
       </View>
       <View
