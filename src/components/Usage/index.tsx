@@ -28,7 +28,7 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
 
   const upgradeButtonTitle = getUpgradeButtonTitle(activeSubscriptionProductId, userIsEligibleForTrial);
   const upgradeMessage = getUpgradeMessage(activeSubscriptionProductId);
-  const usedText = `of ${currentLimitLocalized} minutes used`;
+  const usedText = `of ${currentLimitLocalized} minutes used this month`;
   const usedPercentageText = `${Math.ceil(percentageUsed)}%`;
   const progressWidth = `${percentageUsed}%`;
 

@@ -73,7 +73,7 @@ exports[`Usage rendering should render correctly 1`] = `
               }
               testID="Usage-Text-minutes-used"
             >
-              of 120 minutes used
+              of 120 minutes used this month
             </Text>
           </View>
           <View>
