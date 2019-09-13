@@ -44,6 +44,8 @@ interface State {
   isClearingCache: boolean;
   isLoggingOut: boolean;
   isDeletingAccount: boolean;
+  version: string;
+  buildNumber: string;
 }
 
 export class SettingsContainerComponent extends React.Component<Props, State> {
@@ -51,13 +53,16 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
     cacheSize: '0',
     isClearingCache: false,
     isLoggingOut: false,
-    isDeletingAccount: false
+    isDeletingAccount: false,
+    version: '',
+    buildNumber: ''
   };
 
   componentDidMount() {
     InteractionManager.runAfterInteractions(() => {
       // TODO: Set cache size every time the settings screen becomes active
       this.setCacheSize();
+      this.setVersionInfo();
 
       // Getting the user details, but also the user's settings (for example: user selected voices)
       this.props.getUser();
@@ -76,6 +81,13 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
     }
 
     return false;
+  }
+
+  setVersionInfo = async () => {
+    const version = await DeviceInfo.getVersion();
+    const buildNumber = await DeviceInfo.getBuildNumber();
+
+    return this.setState({ version, buildNumber });
   }
 
   setCacheSize = async () => {
@@ -237,33 +249,27 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
     );
   }
 
-  renderVersionInfo = async () => {
+  renderFooter = () => {
+    const { version, buildNumber } = this.state;
+
     const environment = Config.NODE_ENV;
     const environmentText = environment !== 'production' ? `(Env: ${environment})` : '';
-    const version = await DeviceInfo.getVersion();
-    const buildNumber = await DeviceInfo.getBuildNumber();
 
     const versionText = `Version: ${version} (Build: ${buildNumber}) ${environmentText}`;
 
     return (
-      <Text
-        style={{
-          alignSelf: 'center',
-          fontSize: fonts.fontSize.body,
-          color: colors.grayDark,
-          marginBottom: 40,
-          marginTop: spacing.large
-        }}
-      >
-        {versionText}
-      </Text>
-    );
-  }
-
-  renderFooter = () => {
-    return (
       <View>
-        {this.renderVersionInfo()}
+        <Text
+          style={{
+            alignSelf: 'center',
+            fontSize: fonts.fontSize.body,
+            color: colors.grayDark,
+            marginBottom: 40,
+            marginTop: spacing.large
+          }}
+        >
+          {versionText}
+        </Text>
         {this.renderDeleteAccount()}
       </View>
     );
@@ -491,7 +497,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             />
           </View>
         }
-        // ListFooterComponent={this.renderFooter}
+        ListFooterComponent={this.renderFooter}
       />
     );
   }
