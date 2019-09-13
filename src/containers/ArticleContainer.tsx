@@ -304,7 +304,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     if (!isAudioWithSameVoice && !isArticlePlaying) {
       Alert.alert(
         'Article has different voice',
-        `Because you are on a free account, we will use the already available voice "${audiofileVoiceLabel}" for this article.\n\nYou can upgrade to always use your chosen voice.`,
+        `Because you are on a free account, we will use the already available audio with the voice "${audiofileVoiceLabel}" for this article.\n\nYou can upgrade to always use your chosen voice.`,
         [
           {
             text: (userIsEligibleForTrial) ? 'Start free trial' : 'Upgrade',
