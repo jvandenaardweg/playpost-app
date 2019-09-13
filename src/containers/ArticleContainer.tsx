@@ -296,6 +296,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     const audiofileWithUsersSelectedVoice = this.getAudiofileByUserSelectedVoice();
     const selectedVoiceId = audiofileWithUsersSelectedVoice && audiofileWithUsersSelectedVoice.voice.id;
     const audiofileVoiceId = this.audiofileToUse && this.audiofileToUse.voice.id;
+    const audiofileVoiceLabel = this.audiofileToUse && this.audiofileToUse.voice.label;
     const isAudioWithSameVoice = selectedVoiceId === audiofileVoiceId;
     const isArticlePlaying = playerCurrentArticleId === article.id;
 
@@ -303,7 +304,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     if (!isAudioWithSameVoice && !isArticlePlaying) {
       Alert.alert(
         'Article has different voice',
-        'Because you are on a free account, we will use the already available voice for this article. Which is a different voice. Premium users do not have this limitation.',
+        `Because you are on a free account, we will use the already available voice "${audiofileVoiceLabel}" for this article.\n\nYou can upgrade to always use your chosen voice.`,
         [
           {
             text: (userIsEligibleForTrial) ? 'Start free trial' : 'Upgrade',
