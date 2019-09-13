@@ -11,11 +11,12 @@ import { EmptyState } from '../EmptyState';
 import { ListSeperator } from '../ListSeperator';
 
 export interface IListItem {
+  key: string;
   subtitle?: string;
   title?: string;
   icon?: string;
   iconColor?: string;
-  value?: number;
+  value?: number | string;
   chevron?: boolean;
   checkmark?: boolean;
   isSelected?: boolean;
@@ -26,13 +27,14 @@ export interface IListItem {
 }
 
 export interface ICustomSectionListSectionData {
+  key: string;
   title?: string;
   data: IListItem[];
 }
 
 interface Props {
   paddingTop?: number;
-  sectionListData: ReadonlyArray<SectionListData<any>>;
+  sectionListData: ReadonlyArray<SectionListData<IListItem>>;
   ListHeaderComponent?: React.ComponentType<any> | React.ReactElement | null;
   ListFooterComponent?: React.ComponentType<any> | React.ReactElement | null;
   emptyTitle?: string;

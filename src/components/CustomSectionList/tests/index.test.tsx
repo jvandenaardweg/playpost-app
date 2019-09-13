@@ -12,9 +12,11 @@ describe('CustomSectionList', () => {
         <CustomSectionList
           sectionListData={[
             {
+              key: 'test',
               title: 'test',
               data: [
                 {
+                  key: 'item-title',
                   title: 'Item title'
                 }
               ]

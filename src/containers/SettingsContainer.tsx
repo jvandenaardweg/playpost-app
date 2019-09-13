@@ -1,6 +1,6 @@
 import React from 'react';
 import isEqual from 'react-fast-compare';
-import { ActivityIndicator, Alert, InteractionManager, Linking, Text, View } from 'react-native';
+import { ActivityIndicator, Alert, InteractionManager, Linking, Text, View, SectionListData } from 'react-native';
 import Config from 'react-native-config';
 import DeviceInfo from 'react-native-device-info';
 import RNFS from 'react-native-fs';
@@ -30,7 +30,7 @@ import { resetDownloadedVoices, resetVoicesState } from '../reducers/voices';
 import { selectUserActiveSubscriptionName, selectUserActiveSubscriptionProductId, selectUserDetails, selectUserIsEligibleForTrial, selectUserIsSubscribed } from '../selectors/user';
 import { selectTotalAvailableVoices } from '../selectors/voices';
 
-import { CustomSectionList } from '../components/CustomSectionList';
+import { CustomSectionList, IListItem } from '../components/CustomSectionList';
 import { Usage } from '../components/Usage';
 
 import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../constants/in-app-purchase';
@@ -273,7 +273,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
     const { activeSubscriptionName, totalAvailableVoices, user, activeSubscriptionProductId, userIsEligibleForTrial } = this.props;
     const { isClearingCache, cacheSize } = this.state;
 
-    const sectionListData = [
+    const sectionListData: ReadonlyArray<SectionListData<IListItem>> = [
       {
         key: 'language',
         title: 'Lanuage',
@@ -362,11 +362,12 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             icon: 'file-text',
             iconColor: colors.grayDark,
             chevron: true,
-            onPress: () =>
+            onPress: () => {
               NavigationService.navigate('Browser', {
                 url: URL_PLAYPOST_FOR_PUBLISHERS,
                 title: 'For publishers'
               })
+            }
           },
           {
             key: 'about-chrome-browser-extension',
@@ -374,11 +375,12 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             icon: 'package',
             iconColor: colors.grayDark,
             chevron: true,
-            onPress: () =>
+            onPress: () => {
               NavigationService.navigate('Browser', {
                 url: URL_BROWSER_EXTENSION_CHROME,
                 title: 'Chrome browser extension'
               })
+            }
           },
           {
             key: 'about-firefox-browser-extension',
@@ -386,11 +388,12 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             icon: 'package',
             iconColor: colors.grayDark,
             chevron: true,
-            onPress: () =>
+            onPress: () => {
               NavigationService.navigate('Browser', {
                 url: URL_BROWSER_EXTENSION_FIREFOX,
                 title: 'Firefox browser extension'
               })
+            }
           },
           {
             key: 'about-opera-browser-extension',
@@ -398,11 +401,12 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             icon: 'package',
             iconColor: colors.grayDark,
             chevron: true,
-            onPress: () =>
+            onPress: () => {
               NavigationService.navigate('Browser', {
                 url: URL_BROWSER_EXTENSION_OPERA,
                 title: 'Opera browser extension'
               })
+            }
           },
           {
             key: 'about-about',
@@ -410,11 +414,12 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             icon: 'link',
             iconColor: colors.grayDark,
             chevron: true,
-            onPress: () =>
+            onPress: () => {
               NavigationService.navigate('Browser', {
                 url: URL_ABOUT,
                 title: 'About'
               })
+            }
           },
           {
             key: 'about-privacy-policy',
@@ -422,11 +427,12 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             icon: 'link',
             iconColor: colors.grayDark,
             chevron: true,
-            onPress: () =>
+            onPress: () => {
               NavigationService.navigate('Browser', {
                 url: URL_PRIVACY_POLICY,
                 title: 'Privacy Policy'
               })
+            }
           },
           {
             key: 'about-terms-of-use',
@@ -434,11 +440,12 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             icon: 'link',
             iconColor: colors.grayDark,
             chevron: true,
-            onPress: () =>
+            onPress: () => {
               NavigationService.navigate('Browser', {
                 url: URL_TERMS_OF_USE,
                 title: 'Terms of Use'
               })
+            }
           },
           {
             key: 'about-feedback',
@@ -446,11 +453,12 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             icon: 'message-square',
             iconColor: colors.grayDark,
             chevron: true,
-            onPress: () =>
+            onPress: () => {
               NavigationService.navigate('Browser', {
                 url: URL_FEEDBACK,
                 title: 'Feedback'
               })
+            }
           },
           {
             key: 'about-support',
@@ -458,11 +466,12 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             icon: 'message-square',
             iconColor: colors.grayDark,
             chevron: true,
-            onPress: () =>
+            onPress: () => {
               NavigationService.navigate('Browser', {
                 url: URL_FEEDBACK,
                 title: 'Support'
               })
+            }
           }
         ]
       }
@@ -482,7 +491,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             />
           </View>
         }
-        ListFooterComponent={this.renderFooter}
+        // ListFooterComponent={this.renderFooter}
       />
     );
   }
