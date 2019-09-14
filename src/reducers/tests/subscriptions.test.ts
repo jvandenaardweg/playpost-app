@@ -1,7 +1,7 @@
 import subscriptionValidationResultActiveMock from '../../../tests/__mocks__/subscription-validation-result-active';
 import subscriptionsMock from '../../../tests/__mocks__/subscriptions';
 import { GET_ACTIVE_SUBSCRIPTIONS_FAIL_MESSAGE, POST_VALIDATE_SUBSCRIPTION_RECEIPT_FAIL_MESSAGE } from '../../constants/messages';
-import { GET_ACTIVE_SUBSCRIPTIONS, GET_ACTIVE_SUBSCRIPTIONS_FAIL, GET_ACTIVE_SUBSCRIPTIONS_SUCCESS, initialState, POST_VALIDATE_SUBSCRIPTION_RECEIPT, POST_VALIDATE_SUBSCRIPTION_RECEIPT_FAIL, POST_VALIDATE_SUBSCRIPTION_RECEIPT_SUCCESS, RESET_SUBSCRIPTIONS_STATE, RESET_VALIDATE_SUBSCRIPTION_RECEIPT_ERROR, SET_IS_LOADING_RESTORE, SET_IS_LOADING_UPGRADE, subscriptionsReducer } from '../subscriptions';
+import { GET_ACTIVE_SUBSCRIPTIONS, GET_ACTIVE_SUBSCRIPTIONS_FAIL, GET_ACTIVE_SUBSCRIPTIONS_SUCCESS, initialState, POST_VALIDATE_SUBSCRIPTION_RECEIPT, POST_VALIDATE_SUBSCRIPTION_RECEIPT_FAIL, POST_VALIDATE_SUBSCRIPTION_RECEIPT_SUCCESS, RESET_SUBSCRIPTIONS_STATE, RESET_VALIDATE_SUBSCRIPTION_RECEIPT_ERROR, SET_IS_ACTIVE_UPGRADE_MODAL, SET_IS_LOADING_RESTORE, SET_IS_LOADING_UPGRADE, subscriptionsReducer } from '../subscriptions';
 
 describe('subscriptions reducer', () => {
   it('should return the initial state', () => {
@@ -171,6 +171,34 @@ describe('subscriptions reducer', () => {
       subscriptionsReducer(initialState, {
         type: SET_IS_LOADING_RESTORE,
         payload: true
+      })
+    ).toEqual(expectedState);
+  });
+
+  it('should handle SET_IS_ACTIVE_UPGRADE_MODAL', () => {
+    const expectedState = {
+      ...initialState,
+      isActiveUpgradeModal: true
+    };
+
+    expect(
+      subscriptionsReducer(initialState, {
+        type: SET_IS_ACTIVE_UPGRADE_MODAL,
+        payload: true
+      })
+    ).toEqual(expectedState);
+  });
+
+  it('should handle SET_IS_ACTIVE_UPGRADE_MODAL', () => {
+    const expectedState = {
+      ...initialState,
+      isActiveUpgradeModal: false
+    };
+
+    expect(
+      subscriptionsReducer(initialState, {
+        type: SET_IS_ACTIVE_UPGRADE_MODAL,
+        payload: false
       })
     ).toEqual(expectedState);
   });

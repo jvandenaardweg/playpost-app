@@ -6,6 +6,7 @@ import { Platform } from 'react-native';
 export default {
   fontSize: {
     headline: 30,
+    titleExtraLarge: 26,
     titleLarge: 21,
     titleMedium: 18,
     title: 17, // page titles, modal

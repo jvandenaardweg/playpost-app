@@ -9,6 +9,8 @@ export const GET_ACTIVE_SUBSCRIPTIONS_FAIL = 'subscriptions/GET_ACTIVE_SUBSCRIPT
 export const SET_IS_LOADING_UPGRADE = 'subscriptions/SET_IS_LOADING_UPGRADE';
 export const SET_IS_LOADING_RESTORE = 'subscriptions/SET_IS_LOADING_RESTORE';
 
+export const SET_IS_ACTIVE_UPGRADE_MODAL = 'subscriptions/SET_IS_ACTIVE_UPGRADE_MODAL';
+
 export const POST_VALIDATE_SUBSCRIPTION_RECEIPT = 'subscriptions/POST_VALIDATE_SUBSCRIPTION_RECEIPT';
 export const POST_VALIDATE_SUBSCRIPTION_RECEIPT_SUCCESS = 'subscriptions/POST_VALIDATE_SUBSCRIPTION_RECEIPT_SUCCESS';
 export const POST_VALIDATE_SUBSCRIPTION_RECEIPT_FAIL = 'subscriptions/POST_VALIDATE_SUBSCRIPTION_RECEIPT_FAIL';
@@ -23,6 +25,7 @@ export type SubscriptionsState = Readonly<{
   validationResult: Api.ReceiptValidationResponseApple | Api.ReceiptValidationResponseGoogle | null;
   error: string;
   errorValidateSubscriptionReceipt: string;
+  isActiveUpgradeModal: boolean;
 }>;
 
 export const initialState: SubscriptionsState = {
@@ -33,12 +36,19 @@ export const initialState: SubscriptionsState = {
   subscriptions: null,
   validationResult: null,
   error: '',
-  errorValidateSubscriptionReceipt: ''
+  errorValidateSubscriptionReceipt: '',
+  isActiveUpgradeModal: false
 };
 
 /* tslint:disable-next-line no-any */
 export function subscriptionsReducer(state = initialState, action: any): SubscriptionsState {
   switch (action.type) {
+    case SET_IS_ACTIVE_UPGRADE_MODAL:
+      return {
+        ...state,
+        isActiveUpgradeModal: action.payload,
+      };
+
     case SET_IS_LOADING_UPGRADE:
       return {
         ...state,
@@ -147,6 +157,11 @@ export const setIsLoadingUpgrade = (isLoading: boolean) => ({
 export const setIsLoadingRestore = (isLoading: boolean) => ({
   type: SET_IS_LOADING_RESTORE,
   payload: isLoading
+});
+
+export const setIsActiveUpgradeModal = (isActive: boolean) => ({
+  type: SET_IS_ACTIVE_UPGRADE_MODAL,
+  payload: isActive
 });
 
 export const resetSubscriptionsState = () => ({

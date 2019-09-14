@@ -42,5 +42,12 @@ export const migrations = {
       isLoadingUpdatePassword: undefined, // remove
       isLoadingPatchUser: false // add, with default
     }
+  }),
+  9: (state: RootState) => ({
+    ...state,
+    subscriptions: {
+      ...state.subscriptions,
+      isActiveUpgradeModal: false
+    }
   })
 }

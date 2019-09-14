@@ -166,12 +166,13 @@ describe('voices selector', () => {
       }
     };
 
-    expect(selectSortedLanguages(exampleState)[0].name).toBe('Chinese');
-    expect(selectSortedLanguages(exampleState)[1].name).toBe('Czech');
-    expect(selectSortedLanguages(exampleState)[2].name).toBe('Danish');
-    expect(selectSortedLanguages(exampleState)[3].name).toBe('Dutch');
-    expect(selectSortedLanguages(exampleState)[4].name).toBe('English');
-    expect(selectSortedLanguages(exampleState)[5].name).toBe('Finnish');
+    expect(selectSortedLanguages(exampleState)[0].name).toBe('Arabic');
+    expect(selectSortedLanguages(exampleState)[1].name).toBe('Chinese');
+    expect(selectSortedLanguages(exampleState)[2].name).toBe('Czech');
+    expect(selectSortedLanguages(exampleState)[3].name).toBe('Danish');
+    expect(selectSortedLanguages(exampleState)[4].name).toBe('Dutch');
+    expect(selectSortedLanguages(exampleState)[5].name).toBe('English');
+    expect(selectSortedLanguages(exampleState)[6].name).toBe('Finnish');
   });
 
   it('selectSortedLanguages should return an empty array when there are not languages', () => {

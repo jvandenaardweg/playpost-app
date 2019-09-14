@@ -22,6 +22,7 @@ const validateSubscriptionReceiptHandler = jest.fn();
 const getUserHandler = jest.fn();
 const setIsLoadingUpgradeHandler = jest.fn();
 const setIsLoadingRestoreHandler = jest.fn();
+const setIsActiveUpgradeModalHandler = jest.fn();
 const navigateHandler = jest.fn();
 const navigationGetParamHandler = jest.fn();
 const navigationGoBackHandler = jest.fn();
@@ -35,11 +36,15 @@ const defaultProps: Props = {
   isLoadingUpgrade: false,
   isLoadingRestore: false,
   isLoggedIn: true,
+  userIsEligibleForTrial: false,
+  isActiveUpgradeModal: false,
+  totalAvailableVoices: 240,
 
   validateSubscriptionReceipt: validateSubscriptionReceiptHandler,
   getUser: getUserHandler,
   setIsLoadingUpgrade: setIsLoadingUpgradeHandler,
   setIsLoadingRestore: setIsLoadingRestoreHandler,
+  setIsActiveUpgradeModal: setIsActiveUpgradeModalHandler,
 
   navigation: {
     navigate: navigateHandler,

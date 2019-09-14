@@ -15,9 +15,11 @@ const voice: Api.Voice = {
   isPremium: true,
   isHighestQuality: true,
   isLanguageDefault: null,
+  isUnsubscribedLanguageDefault: null,
+  isSubscribedLanguageDefault: true,
   exampleAudioUrl: 'https://storage-development.playpost.app/voices/3675e6db-307e-48de-b5ff-13b38470632f.wav',
   createdAt: '2019-04-25T07:27:13.250Z',
-  updatedAt: '2019-08-15T15:30:05.018Z',
+  updatedAt: '2019-09-13T18:20:11.589Z',
   language: {
     id: '95f01039-fe8e-412d-a542-7089303b84c8',
     name: 'English',

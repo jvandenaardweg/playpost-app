@@ -4,6 +4,8 @@ import Config from 'react-native-config';
 import DeviceInfo from 'react-native-device-info';
 
 import { userLanguageCode } from '../locale';
+import { setIsActiveUpgradeModal } from '../reducers/subscriptions';
+import { store } from '../store';
 import * as keychain from '../utils/keychain';
 
 // Android emulator uses 10.0.2.2 as localhost map
@@ -17,6 +19,28 @@ const apiClient = axios.create({
   responseType: 'json',
   timeout: 30000 // 30 seconds timeout, creation of audiofiles could take 10 seconds
 });
+
+apiClient.interceptors.response.use(async (response) => {
+  return response
+}, (error) => {
+  // Status 402 = Payment Required
+  // When this happens the user should be shown an upgrade modal
+  if (error.response.status === 402) {
+    return store.dispatch(setIsActiveUpgradeModal(true));
+  }
+
+  // Unauthorized
+  // User is probably logged out
+  // User his account could be deleted, but he might still be logged in into the app
+  // User his token is expired
+  // Important: If a user receives this error, he should be given the option to login again
+  // if (error.response.status === 401) {
+  //   // store.dispatch('SHOW_AUTHENTICATION_MODAL')
+  //   return;
+  // }
+
+  throw error;
+})
 
 // Set the AUTH token for any request
 apiClient.interceptors.request.use(async (config) => {

@@ -13,7 +13,7 @@ import { resetVoicesError } from '../reducers/voices';
 import { selectErrorRequestResetPasswordToken, selectErrorUpdatePassword } from '../selectors/auth';
 import { selectErrorCreateAudiofile } from '../selectors/player';
 import { selectPlaylistError } from '../selectors/playlist';
-import { selectErrorValidateSubscriptionReceipt } from '../selectors/subscriptions';
+import { selectErrorValidateSubscriptionReceipt, selectIsActiveUpgradeModal } from '../selectors/subscriptions';
 import { selectUserError, selectUserErrorSaveSelectedVoice } from '../selectors/user';
 import { selectVoicesError } from '../selectors/voices';
 
@@ -55,8 +55,14 @@ export class APIErrorAlertContainerComponent extends React.Component<Props, Stat
       errorRequestResetPasswordToken,
       errorPlaylist,
       errorVoices,
-      errorUser
+      errorUser,
+      isActiveUpgradeModal
     } = this.props;
+
+    // Do not show alert's when there are custom modals active
+    if (isActiveUpgradeModal) {
+      return;
+    }
 
     if (errorSaveSelectedVoice && prevProps.errorSaveSelectedVoice !== errorSaveSelectedVoice) {
       return this.setState({ hasOpenAlert: true }, () => {
@@ -220,6 +226,7 @@ interface StateProps {
   readonly errorPlaylist: ReturnType<typeof selectPlaylistError>;
   readonly errorVoices: ReturnType<typeof selectVoicesError>;
   readonly errorUser: ReturnType<typeof selectUserError>;
+  readonly isActiveUpgradeModal: ReturnType<typeof selectIsActiveUpgradeModal>;
 }
 
 const mapStateToProps = (state: RootState, props: Props) => ({
@@ -230,7 +237,9 @@ const mapStateToProps = (state: RootState, props: Props) => ({
   errorRequestResetPasswordToken: selectErrorRequestResetPasswordToken(state),
   errorPlaylist: selectPlaylistError(state),
   errorVoices: selectVoicesError(state),
-  errorUser: selectUserError(state)
+  errorUser: selectUserError(state),
+  isActiveUpgradeModal: selectIsActiveUpgradeModal(state),
+
 });
 
 const mapDispatchToProps = {

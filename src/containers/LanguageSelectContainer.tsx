@@ -10,7 +10,7 @@ import { getLanguages } from '../reducers/voices';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { CustomSectionList } from '../components/CustomSectionList';
 import colors from '../constants/colors';
-import { selectUserSelectedVoices } from '../selectors/user';
+import { selectUserIsSubscribed, selectUserSelectedVoices } from '../selectors/user';
 import { selectLanguagesWithActiveVoices } from '../selectors/voices';
 
 type Props = NavigationInjectedProps & StateProps & DispatchProps;
@@ -27,19 +27,27 @@ export class LanguagesSelectComponent extends React.Component<Props> {
     return !isEqual(this.props, nextProps)
   }
 
-  keyExtractor = (item: Api.Language, index: number) => index.toString();
+  keyExtractor = (language: Api.Language, index: number) => index.toString();
 
-  handleOnListItemPress = (item: Api.Language) => this.props.navigation.navigate('SettingsVoices', { languageName: item.name });
+  handleOnListItemPress = (language: Api.Language) => this.props.navigation.navigate('SettingsVoices', { languageName: language.name });
 
   getDefaultVoice = (language: Api.Language) => {
-    return language.voices && language.voices.find(voice => !!voice.isLanguageDefault);
+    const { isSubscribed } = this.props;
+
+    return language.voices && language.voices.find(voice => {
+      if (!isSubscribed) {
+        return !!voice.isUnsubscribedLanguageDefault
+      }
+
+      return !!voice.isSubscribedLanguageDefault
+    });
   }
 
-  getVoiceSubtitle = (item: Api.Language) => {
+  getVoiceSubtitle = (language: Api.Language) => {
     const { userSelectedVoices } = this.props;
 
-    const foundUserSelectedVoice = userSelectedVoices.find(userSelectedVoice => userSelectedVoice.language.id === item.id);
-    const defaultVoice = this.getDefaultVoice(item);
+    const foundUserSelectedVoice = userSelectedVoices.find(userSelectedVoice => userSelectedVoice.language.id === language.id);
+    const defaultVoice = this.getDefaultVoice(language);
 
     const voice = foundUserSelectedVoice || defaultVoice;
 
@@ -87,11 +95,13 @@ interface DispatchProps {
 interface StateProps {
   readonly languagesWithActiveVoices: ReturnType<typeof selectLanguagesWithActiveVoices>;
   readonly userSelectedVoices: ReturnType<typeof selectUserSelectedVoices>;
+  readonly isSubscribed: ReturnType<typeof selectUserIsSubscribed>;
 }
 
 const mapStateToProps = (state: RootState) => ({
   languagesWithActiveVoices: selectLanguagesWithActiveVoices(state),
-  userSelectedVoices: selectUserSelectedVoices(state)
+  userSelectedVoices: selectUserSelectedVoices(state),
+  isSubscribed: selectUserIsSubscribed(state)
 });
 
 const mapDispatchToProps = {

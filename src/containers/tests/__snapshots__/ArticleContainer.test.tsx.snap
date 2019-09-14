@@ -350,7 +350,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                   }
                   testID="Article-source-name"
                 >
-                  Cindy Lamothe on Medium
+                  Darius Foroux on Medium
                 </Text>
               </View>
             </View>
@@ -384,7 +384,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                 }
                 testID="Article-title"
               >
-                Strategies to Pull Yourself Out of a Bad Mood
+                How to Keep Going When You Don’t Know What’s Next
               </Text>
             </View>
             <View
@@ -562,7 +562,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                   onLoad={[Function]}
                   source={
                     Object {
-                      "uri": "https://cdn-images-1.medium.com/max/1200/1*7bkLMEixJ8jnTn4E2JJe5A.jpeg",
+                      "uri": "https://miro.medium.com/focal/1200/632/77/62/1*G32Y6J9RapeGziq7ajRa9A.jpeg",
                     }
                   }
                   style={
@@ -723,7 +723,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
               }
               testID="Article-duration"
             >
-              7 min.
+              5 min.
             </Text>
           </View>
         </View>

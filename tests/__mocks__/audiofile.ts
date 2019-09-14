@@ -24,9 +24,11 @@ const audiofile: Api.Audiofile = {
     isPremium: true,
     isHighestQuality: false,
     isLanguageDefault: null,
+    isUnsubscribedLanguageDefault: null,
+    isSubscribedLanguageDefault: null,
     exampleAudioUrl: 'https://storage-development.playpost.app/voices/1a6136d5-fb0d-4543-a6f2-68feb020a31f.mp3',
     createdAt: '2019-04-25T11:35:03.758Z',
-    updatedAt: '2019-08-15T15:30:05.003Z',
+    updatedAt: '2019-09-13T18:20:11.536Z',
     language: {
       id: '95f01039-fe8e-412d-a542-7089303b84c8',
       name: 'English',

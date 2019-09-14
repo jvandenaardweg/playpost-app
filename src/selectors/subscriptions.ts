@@ -39,3 +39,8 @@ export const selectSubscriptionsValidationResult = createDeepEqualSelector(
   [subscriptionsSelector],
   state => state.validationResult
 );
+
+export const selectIsActiveUpgradeModal = createSelector(
+  [subscriptionsSelector],
+  state => state.isActiveUpgradeModal
+);

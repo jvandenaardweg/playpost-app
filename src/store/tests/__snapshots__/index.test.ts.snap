@@ -13,7 +13,7 @@ exports[`store/index store.getState() should return the initial store state 1`] 
 Object {
   "_persist": Object {
     "rehydrated": false,
-    "version": 8,
+    "version": 9,
   },
   "audiofiles": Object {
     "downloaded": Array [],
@@ -63,6 +63,7 @@ Object {
   "subscriptions": Object {
     "error": "",
     "errorValidateSubscriptionReceipt": "",
+    "isActiveUpgradeModal": false,
     "isLoadingRestore": false,
     "isLoadingSubscriptions": false,
     "isLoadingUpgrade": false,

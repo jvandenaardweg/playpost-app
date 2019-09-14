@@ -1,4 +1,5 @@
 import Analytics from 'appcenter-analytics';
+import { addDays, format } from 'date-fns';
 import React from 'react';
 import isEqual from 'react-fast-compare';
 import { Alert, Platform } from 'react-native';
@@ -8,15 +9,17 @@ import { connect } from 'react-redux';
 
 import { NetworkContext } from '../contexts/NetworkProvider';
 
+import { UpgradeModal } from '../components/UpgradeModal';
 import { ALERT_SUBSCRIPTION_EXPIRED, ALERT_SUBSCRIPTION_RESTORE_SUCCESS, ALERT_TITLE_ERROR, ALERT_TITLE_SUBSCRIPTION_EXPIRED, ALERT_TITLE_SUBSCRIPTION_RESTORE_SUCCESS, ALERT_TITLE_SUBSCRIPTION_UPGRADE_ERROR } from '../constants/messages';
 import { URL_FEEDBACK } from '../constants/urls';
 import NavigationService from '../navigation/NavigationService';
 import { RootState } from '../reducers';
-import { setIsLoadingRestore, setIsLoadingUpgrade, validateSubscriptionReceipt } from '../reducers/subscriptions';
+import { setIsActiveUpgradeModal, setIsLoadingRestore, setIsLoadingUpgrade, validateSubscriptionReceipt } from '../reducers/subscriptions';
 import { getUser } from '../reducers/user';
 import { selectIsLoggedIn } from '../selectors/auth';
-import { selectSubscriptionsError, selectSubscriptionsIsLoadingRestore, selectSubscriptionsIsLoadingUpgrade, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
-import { selectActiveUserInAppSubscription, selectUserDetails, selectUserIsSubscribed } from '../selectors/user';
+import { selectIsActiveUpgradeModal, selectSubscriptionsError, selectSubscriptionsIsLoadingRestore, selectSubscriptionsIsLoadingUpgrade, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
+import { selectActiveUserInAppSubscription, selectUserDetails, selectUserIsEligibleForTrial, selectUserIsSubscribed } from '../selectors/user';
+import { selectTotalAvailableVoices } from '../selectors/voices';
 import * as inAppPurchaseHelper from '../utils/in-app-purchase-helper';
 
 interface IProps {
@@ -52,7 +55,6 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
     this.purchaseUpdateSubscription = RNIap.purchaseUpdatedListener(this.handlePurchaseUpdateListener);
 
     this.purchaseErrorSubscription = RNIap.purchaseErrorListener(this.handlePurchaseErrorListener);
-
   }
 
   componentWillUnmount(): void {
@@ -162,8 +164,6 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
 
     const errorMessage = error && error.debugMessage ? error.debugMessage : JSON.stringify(error);
 
-    // @ts-ignore
-    // TODO: remove ts-ignore when types are updated: https://github.com/dooboolab/react-native-iap/pull/682
     const isCancelled = error && error.code === 'E_USER_CANCELLED'; // Only on Android
 
     this.props.setIsLoadingUpgrade(false);
@@ -252,8 +252,35 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
     ]);
   }
 
+  handleOnPressModalCancel = () => {
+    this.props.setIsActiveUpgradeModal(false)
+  }
+
+  handleOnPressModalUpgrade = () => {
+    NavigationService.navigate('Upgrade')
+    this.props.setIsActiveUpgradeModal(false)
+  }
+
   render() {
-    return this.props.children;
+    const { isActiveUpgradeModal, userIsEligibleForTrial, isSubscribed, totalAvailableVoices } = this.props;
+
+    // Give a sense of urgency to the trial, pick a date 2 days from now
+    const useTrialUrgencyDate = format(addDays(new Date(), 2), 'EEEE, MMMM do');
+
+    return (
+      <>
+        <UpgradeModal
+          isActive={isActiveUpgradeModal}
+          onPressCancel={this.handleOnPressModalCancel}
+          onPressUpgrade={this.handleOnPressModalUpgrade}
+          isEligibleForTrial={userIsEligibleForTrial}
+          isSubscribed={isSubscribed}
+          useTrialUrgencyDate={useTrialUrgencyDate}
+          totalAvailableVoices={totalAvailableVoices}
+        />
+        {this.props.children}
+      </>
+    )
   }
 }
 
@@ -266,6 +293,9 @@ interface StateProps {
   isLoadingUpgrade: ReturnType<typeof selectSubscriptionsIsLoadingUpgrade>;
   isLoadingRestore: ReturnType<typeof selectSubscriptionsIsLoadingRestore>;
   isLoggedIn: ReturnType<typeof selectIsLoggedIn>;
+  isActiveUpgradeModal: ReturnType<typeof selectIsActiveUpgradeModal>;
+  userIsEligibleForTrial: ReturnType<typeof selectUserIsEligibleForTrial>;
+  totalAvailableVoices: ReturnType<typeof selectTotalAvailableVoices>;
 }
 
 interface DispatchProps {
@@ -273,6 +303,7 @@ interface DispatchProps {
   getUser: typeof getUser;
   setIsLoadingUpgrade: typeof setIsLoadingUpgrade;
   setIsLoadingRestore: typeof setIsLoadingRestore;
+  setIsActiveUpgradeModal: typeof setIsActiveUpgradeModal;
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
@@ -283,14 +314,18 @@ const mapStateToProps = (state: RootState): StateProps => ({
   userDetails: selectUserDetails(state),
   isLoadingUpgrade: selectSubscriptionsIsLoadingUpgrade(state),
   isLoadingRestore: selectSubscriptionsIsLoadingRestore(state),
-  isLoggedIn: selectIsLoggedIn(state)
+  isLoggedIn: selectIsLoggedIn(state),
+  isActiveUpgradeModal: selectIsActiveUpgradeModal(state),
+  userIsEligibleForTrial: selectUserIsEligibleForTrial(state),
+  totalAvailableVoices: selectTotalAvailableVoices(state)
 });
 
 const mapDispatchToProps = {
   validateSubscriptionReceipt,
   getUser,
   setIsLoadingUpgrade,
-  setIsLoadingRestore
+  setIsLoadingRestore,
+  setIsActiveUpgradeModal
 };
 
 export const SubscriptionHandlerContainer = connect(

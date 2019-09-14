@@ -222,25 +222,35 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
   }
 
   isSelected = (item: Api.Voice): boolean => {
-    const { languagesWithActiveVoicesByLanguageName, userSelectedVoiceByLanguageName } = this.props;
+    const { languagesWithActiveVoicesByLanguageName, userSelectedVoiceByLanguageName, isSubscribed } = this.props;
     const selectedLanguageName = this.props.navigation.getParam('languageName', '');
     const languagewithActiveVoices = languagesWithActiveVoicesByLanguageName && languagesWithActiveVoicesByLanguageName[selectedLanguageName];
     const userSelectedVoice = userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName[selectedLanguageName];
 
-    const isDefaultSelected = !!languagewithActiveVoices && !!languagewithActiveVoices.voices && !!languagewithActiveVoices.voices.find(voice => voice.id === item.id && voice.isLanguageDefault);
+    // Default selected when unsubscribed
+    const isUnsubscribedDefaultSelected = !!languagewithActiveVoices && !!languagewithActiveVoices.voices && !!languagewithActiveVoices.voices.find(voice => voice.id === item.id && voice.isUnsubscribedLanguageDefault);
+
+    // Default selected when subscribed
+    const isSubscribedDefaultSelected = !!languagewithActiveVoices && !!languagewithActiveVoices.voices && !!languagewithActiveVoices.voices.find(voice => voice.id === item.id && voice.isSubscribedLanguageDefault);
+
+    // User his own selection
     const isUserSelected = !!userSelectedVoice && userSelectedVoice.id === item.id;
 
-    let isSelected = false;
+    // If a user is subscribed
+    if (isSubscribed) {
 
-    if (isUserSelected) {
-      isSelected = isUserSelected;
+      // If the user has no own selected voice
+      if (!isUserSelected) {
+        // Return the subscribed default voice as selected
+        return isSubscribedDefaultSelected
+      }
+
+      // Else, return the user's own selected voice
+      return isUserSelected;
+
     }
 
-    if (!userSelectedVoice) {
-      isSelected = isDefaultSelected;
-    }
-
-    return isSelected;
+    return isUnsubscribedDefaultSelected;
   }
 
   getBadgeValue(isPremium: boolean): string {
@@ -301,9 +311,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
         const isLoadingSaveSelected = isLoadingSaveSelectedVoiceId === voice.id;
         const isLoadingVoicePreview = isLoadingPreviewVoiceId === voice.id;
 
-        // const defaultLabel = voice.isLanguageDefault ? '(Default) ' : '';
         const title = `${voice.label || voice.name}`;
-        // const badgeValue = this.getBadgeValue(voice.isPremium, voice.isHighestQuality);
         const badgeValue = `Quality: ${voice.quality}`;
         const gender = voice.gender === 'MALE' ? 'Male' : 'Female';
         const subtitle = `${gender} (${voice.countryCode})`;

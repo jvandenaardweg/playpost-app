@@ -142,12 +142,14 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
    * Find the audiofile in this article using the user's selected voice
    */
   getAudiofileByUserSelectedVoice(): Api.Audiofile | undefined {
-    const { article, userSelectedVoiceByLanguageName, availableVoicesByLanguageName } = this.props;
+    const { article, userSelectedVoiceByLanguageName, availableVoicesByLanguageName, isSubscribed } = this.props;
     const articleLanguageName = article.language ? article.language.name : '';
     const articleLanguage = availableVoicesByLanguageName && availableVoicesByLanguageName[articleLanguageName];
     const userSelectedVoice = userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName[articleLanguageName];
-    const defaultVoice = (articleLanguage && articleLanguage.voices) ? articleLanguage.voices.find(voice => voice.isLanguageDefault) : null;
+    const isUnsubscribedDefaultVoice = (articleLanguage && articleLanguage.voices) ? articleLanguage.voices.find(voice => voice.isUnsubscribedLanguageDefault) : null;
+    const isSubscribedDefaultVoice = (articleLanguage && articleLanguage.voices) ? articleLanguage.voices.find(voice => voice.isSubscribedLanguageDefault) : null;
 
+    const defaultVoice = (isSubscribed) ? isSubscribedDefaultVoice : isUnsubscribedDefaultVoice;
 
     if (!articleLanguage || !defaultVoice) {
       return undefined;
@@ -224,9 +226,9 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     const userSelectedVoice = userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName[articleLanguageName];
 
     // If the selected voice of the user, is a Premium voice, but the user has no Premium account active
-    // On free accounts, voices with isLanguageDefault are "free" voices
+    // On free accounts, voices with isUnsubscribedLanguageDefault are "free" voices
     // So, if the user has not selected a default voice and is not subscribed, he cannot use this voice
-    if ((userSelectedVoice && !userSelectedVoice.isLanguageDefault) && !isSubscribed) {
+    if ((userSelectedVoice && !userSelectedVoice.isUnsubscribedLanguageDefault) && !isSubscribed) {
       // Show an Alert he needs to change his default voice for the "userSelectedVoice.name" language
       const selectedVoiceLanguageName = userSelectedVoice.language.name;
 
@@ -341,8 +343,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     const { article } = this.props;
 
     if (!article || !article.audiofiles.length) {
-      this.setState({ isActive: false, isLoading: false });
-      return Alert.alert(ALERT_TITLE_ERROR, ALERT_ARTICLE_PLAY_FAIL);
+      return this.setState({ isActive: false, isLoading: false });
     }
 
     const audiofile = this.audiofileToUse ? this.audiofileToUse : null;

@@ -235,7 +235,7 @@ describe('ArticleContainer', () => {
           title: articleMock.title,
           url: expectedLocalAudiofilePath
         },
-        '98e0c749-3945-45d4-980b-0e5756339de5'
+        '7ca86b8a-02aa-4733-92e4-1cfe7ef46954'
       );
       expect(testInstance.state.isActive).toBe(true);
       expect(testInstance.state.isLoading).toBe(true);

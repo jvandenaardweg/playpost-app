@@ -203,8 +203,10 @@ declare namespace Api {
     isHighestQuality: boolean;
     exampleAudioUrl: string | null;
     language: Language;
-    country: Country;
+    country: Country | null; // The language "Arabic" has no specific country, so it could be "null"
     isLanguageDefault: boolean | null;
+    isUnsubscribedLanguageDefault: boolean | null;
+    isSubscribedLanguageDefault: boolean | null;
     createdAt: string;
     updatedAt: string;
     quality: string;

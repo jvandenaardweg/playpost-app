@@ -1,6 +1,6 @@
 import React from 'react';
 import isEqual from 'react-fast-compare';
-import { ActivityIndicator, Alert, InteractionManager, Linking, Text, View, SectionListData } from 'react-native';
+import { ActivityIndicator, Alert, InteractionManager, Linking, SectionListData, Text, View } from 'react-native';
 import Config from 'react-native-config';
 import DeviceInfo from 'react-native-device-info';
 import RNFS from 'react-native-fs';
