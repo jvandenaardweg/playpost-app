@@ -81,21 +81,21 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         title: 'Free',
         price: '0',
         body: ['Basic quality voices', 'One voice option per language', 'Max. 30 minutes per month', 'Unlimited playlist items', 'Some advertisements'],
-        footer: 'About 5 articles to audio, per month'
+        footer: ''
       },
       {
         productId: SUBSCRIPTION_PRODUCT_ID_PREMIUM,
         title: 'Premium',
         price: null,
         body: [`${totalAvailableVoices}+ High Quality voices`, 'Multiple voice options per language', 'Max. 120 minutes per month', 'Unlimited playlist items', 'No advertisements'],
-        footer: 'About 25 articles to audio, per month'
+        footer: ''
       },
       {
         productId: SUBSCRIPTION_PRODUCT_ID_PLUS,
         title: 'Plus',
         price: null,
         body: [`${totalAvailableVoices}+ High Quality voices`, 'Multiple voice options per language', 'Max. 300 minutes per month', 'Unlimited playlist items', 'No advertisements'],
-        footer: 'About 65 articles to audio, per month'
+        footer: ''
       }
     ];
   }
