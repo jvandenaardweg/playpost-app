@@ -21,6 +21,7 @@ import { selectIsActiveUpgradeModal, selectSubscriptionsError, selectSubscriptio
 import { selectActiveUserInAppSubscription, selectUserDetails, selectUserIsEligibleForTrial, selectUserIsSubscribed } from '../selectors/user';
 import { selectTotalAvailableVoices } from '../selectors/voices';
 import * as inAppPurchaseHelper from '../utils/in-app-purchase-helper';
+import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_PLUS } from '../constants/in-app-purchase';
 
 interface IProps {
   navigation: NavigationScreenProp<NavigationRoute>;
@@ -257,7 +258,11 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
   }
 
   handleOnPressModalUpgrade = () => {
-    NavigationService.navigate('Upgrade')
+    const { activeInAppSubscription } = this.props;
+    const activeProductId = activeInAppSubscription && activeInAppSubscription.inAppSubscription.productId;
+    const centeredSubscriptionProductId = (activeProductId === SUBSCRIPTION_PRODUCT_ID_FREE) ? SUBSCRIPTION_PRODUCT_ID_PREMIUM : SUBSCRIPTION_PRODUCT_ID_PLUS;
+
+    NavigationService.navigate('Upgrade', { centeredSubscriptionProductId })
     this.props.setIsActiveUpgradeModal(false)
   }
 
