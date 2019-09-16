@@ -85,18 +85,18 @@ Array [
             "backgroundColor": "#ffffff",
             "borderRadius": 8,
             "maxWidth": 450,
-            "padding": 24,
-            "paddingBottom": 12,
+            "padding": 14,
           }
         }
       >
         <Text
           style={
             Object {
-              "fontSize": 26,
+              "color": "#000000",
+              "fontSize": 24,
               "fontWeight": "600",
-              "lineHeight": 31.2,
-              "marginBottom": 24,
+              "lineHeight": 28.799999999999997,
+              "marginBottom": 12,
               "marginTop": 10,
               "textAlign": "center",
             }
@@ -108,6 +108,7 @@ Array [
         <Text
           style={
             Object {
+              "color": "#000000",
               "fontSize": 15,
               "lineHeight": 22.5,
               "marginBottom": 24,
@@ -116,9 +117,9 @@ Array [
           }
           testID="UpgradeModal-Text-not-isSubscribed"
         >
-          You have used your last free high-quality audio article and free minutes for this month. Continue listening using this voice or one of the 
-          240
-           other high-quality voices. Pick and choose the voice you like!
+          You have used your free minutes for this month. Upgrade now to continue listening using this voice or one of the 240 other high-quality voices. Pick and choose the voice you like!
+
+When not upgrading, you will be set to use our lowest quality voices for the next month.
         </Text>
         <View
           style={
@@ -177,7 +178,7 @@ Array [
                     }
                   }
                 >
-                  Upgrade to Premium or Plus
+                  Continue listening
                 </Text>
               </View>
             </View>
@@ -233,7 +234,7 @@ Array [
                     }
                   }
                 >
-                  Cancel (use lowest quality voice)
+                  Cancel (use lowest quality voices)
                 </Text>
               </View>
             </View>

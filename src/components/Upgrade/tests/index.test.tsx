@@ -12,7 +12,7 @@ const subscriptionFeaturesIOS = [
     productId: SUBSCRIPTION_PRODUCT_ID_FREE,
     title: 'Free',
     price: '0',
-    body: ['Basic quality voices', 'One voice option per language', 'Max. 30 minutes per month', 'Unlimited playlist items', 'Some advertisements'],
+    body: ['Basic quality voices', 'First 30 minutes using high quality voice', 'One voice option per language', 'Max. 30 minutes per month', 'Unlimited playlist items', 'Some advertisements'],
     footer: 'About 5 articles to audio, per month'
   },
   {

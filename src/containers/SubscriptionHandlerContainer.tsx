@@ -260,17 +260,20 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
   handleOnPressModalUpgrade = () => {
     const { activeInAppSubscription } = this.props;
     const activeProductId = activeInAppSubscription && activeInAppSubscription.inAppSubscription.productId;
-    const centeredSubscriptionProductId = (activeProductId === SUBSCRIPTION_PRODUCT_ID_FREE) ? SUBSCRIPTION_PRODUCT_ID_PREMIUM : SUBSCRIPTION_PRODUCT_ID_PLUS;
+    const centeredSubscriptionProductId = (activeProductId === SUBSCRIPTION_PRODUCT_ID_FREE) ? SUBSCRIPTION_PRODUCT_ID_PREMIUM : (!activeProductId) ? SUBSCRIPTION_PRODUCT_ID_PREMIUM : SUBSCRIPTION_PRODUCT_ID_PLUS;
+
+    this.props.setIsActiveUpgradeModal(false)
 
     NavigationService.navigate('Upgrade', { centeredSubscriptionProductId })
-    this.props.setIsActiveUpgradeModal(false)
+
+    return centeredSubscriptionProductId;
   }
 
   render() {
     const { isActiveUpgradeModal, userIsEligibleForTrial, isSubscribed, totalAvailableVoices } = this.props;
 
     // Give a sense of urgency to the trial, pick a date 2 days from now
-    const useTrialUrgencyDate = format(addDays(new Date(), 2), 'EEEE, MMMM do');
+    const trialUrgencyDate = format(addDays(new Date(), 2), 'EEEE, MMMM do');
 
     return (
       <>
@@ -280,7 +283,7 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
           onPressUpgrade={this.handleOnPressModalUpgrade}
           isEligibleForTrial={userIsEligibleForTrial}
           isSubscribed={isSubscribed}
-          useTrialUrgencyDate={useTrialUrgencyDate}
+          trialUrgencyDate={trialUrgencyDate}
           totalAvailableVoices={totalAvailableVoices}
         />
         {this.props.children}

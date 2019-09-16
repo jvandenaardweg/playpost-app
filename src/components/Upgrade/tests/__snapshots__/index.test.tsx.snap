@@ -211,6 +211,16 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   }
                 }
               >
+                First 30 minutes using high quality voice
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "fontSize": 15,
+                    "marginBottom": 8,
+                  }
+                }
+              >
                 One voice option per language
               </Text>
               <Text

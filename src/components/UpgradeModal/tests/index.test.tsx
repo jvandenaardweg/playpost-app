@@ -9,7 +9,7 @@ const defaultProps: Props = {
   isActive: false,
   isEligibleForTrial: false,
   isSubscribed: false,
-  useTrialUrgencyDate: 'Tuesday, September 17th',
+  trialUrgencyDate: 'Tuesday, September 17th',
   totalAvailableVoices: 240,
   onPressCancel: onPressCancelHandler,
   onPressUpgrade: onPressUpgradeHandler
@@ -51,7 +51,7 @@ describe('UpgradeModal', () => {
       }
       wrapper.update(<UpgradeModal {...props} />);
 
-      expect(wrapper.getByTestId('UpgradeModal-Text-trial').props.children).toMatchObject(['Continue listening, start your free trial before ', 'Tuesday, September 17th', '.']);
+      // expect(wrapper.getByTestId('UpgradeModal-Text-trial').props.children).toMatchObject(['Continue listening, start your free trial before ', 'Tuesday, September 17th', '.']);
       expect(wrapper.queryByTestId('UpgradeModal-Button-upgrade')).toBeTruthy();
       expect(wrapper.getByTestId('UpgradeModal-Button-upgrade').props.title).toBe('Start free trial');
     });
@@ -65,11 +65,11 @@ describe('UpgradeModal', () => {
       }
       wrapper.update(<UpgradeModal {...props} />);
 
-      expect(wrapper.queryByTestId('UpgradeModal-Text-trial')).toBeFalsy();
+      // expect(wrapper.queryByTestId('UpgradeModal-Text-trial')).toBeFalsy();
       expect(wrapper.getByTestId('UpgradeModal-Button-upgrade')).toBeTruthy();
-      expect(wrapper.getByTestId('UpgradeModal-Button-upgrade').props.title).toBe('Upgrade to Premium or Plus');
+      expect(wrapper.getByTestId('UpgradeModal-Button-upgrade').props.title).toBe('Continue listening');
       expect(wrapper.getByTestId('UpgradeModal-Text-not-isSubscribed')).toBeTruthy();
-      expect(wrapper.getByTestId('UpgradeModal-Text-not-isSubscribed').props.children).toMatchObject(['You have used your last free high-quality audio article and free minutes for this month. Continue listening using this voice or one of the ', 240, ' other high-quality voices. Pick and choose the voice you like!']);
+      expect(wrapper.getByTestId('UpgradeModal-Text-not-isSubscribed').props.children).toBe(`You have used your free minutes for this month. Upgrade now to continue listening using this voice or one of the 240 other high-quality voices. Pick and choose the voice you like!\n\nWhen not upgrading, you will be set to use our lowest quality voices for the next month.`);
     });
 
     it('should render the correct content when user is already subscribed but should upgrade to a higher plan', () => {
@@ -81,11 +81,11 @@ describe('UpgradeModal', () => {
       }
       wrapper.update(<UpgradeModal {...props} />);
 
-      expect(wrapper.queryByTestId('UpgradeModal-Text-trial')).toBeFalsy();
+      // expect(wrapper.queryByTestId('UpgradeModal-Text-trial')).toBeFalsy();
       expect(wrapper.getByTestId('UpgradeModal-Button-upgrade')).toBeTruthy();
-      expect(wrapper.getByTestId('UpgradeModal-Button-upgrade').props.title).toBe('Upgrade');
+      expect(wrapper.getByTestId('UpgradeModal-Button-upgrade').props.title).toBe('Continue listening');
       expect(wrapper.queryByTestId('UpgradeModal-Text-not-isSubscribed')).toBeFalsy();
-      expect(wrapper.getByTestId('UpgradeModal-Text-isSubscribed').props.children).toBe('You have used your last remaining audio minutes for your subscription this month. Continue listening by upgrading to a higher subscription plan.');
+      expect(wrapper.getByTestId('UpgradeModal-Text-isSubscribed').props.children).toBe('You have used your last remaining audio minutes for your subscription this month.\n\nYou can continue listening by upgrading to a higher subscription plan.');
     });
   });
 });

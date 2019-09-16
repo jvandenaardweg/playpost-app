@@ -185,9 +185,11 @@ export const Upgrade: React.FC<Props> = React.memo(
                         </Text>
                       ))}
                     </View>
-                    <View style={styles.cardFooter}>
-                      <Text style={styles.cardFooterText}>{subscriptionFeature.footer}</Text>
-                    </View>
+                    {!!subscriptionFeature.footer && (
+                      <View style={styles.cardFooter}>
+                        <Text style={styles.cardFooterText}>{subscriptionFeature.footer}</Text>
+                      </View>
+                    )}
                     <View>
                       <Button
                         type="clear"
