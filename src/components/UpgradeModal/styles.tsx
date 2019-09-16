@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
@@ -10,24 +10,25 @@ export default StyleSheet.create({
   },
   container: {
     backgroundColor: colors.white,
-    padding: spacing.large,
-    paddingBottom: spacing.default,
+    padding: spacing.medium,
     borderRadius: 8,
     maxWidth: 450
   },
   title: {
     marginTop: spacing.tiny,
     fontSize: fonts.fontSize.titleExtraLarge,
-    fontWeight: fonts.fontWeight.semibold,
-    marginBottom: spacing.large,
+    fontWeight: Platform.OS === 'ios' ? fonts.fontWeight.semibold : fonts.fontWeight.bold,
+    marginBottom: spacing.default,
     lineHeight: fonts.fontSize.titleExtraLarge * 1.2,
-    textAlign: 'center'
+    textAlign: 'center',
+    color: colors.black
   },
   paragraph: {
     fontSize: fonts.fontSize.body,
     lineHeight: fonts.fontSize.body * 1.5,
     marginBottom: spacing.large,
-    textAlign: 'center'
+    textAlign: 'center',
+    color: colors.black
   },
   paragraphBold: {
     fontWeight: fonts.fontWeight.semibold
