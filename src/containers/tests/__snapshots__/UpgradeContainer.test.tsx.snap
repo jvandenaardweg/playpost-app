@@ -236,23 +236,6 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                 Some advertisements
               </Text>
             </View>
-            <View
-              style={
-                Object {
-                  "marginTop": 12,
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "color": "#C5C5C5",
-                  }
-                }
-              >
-                About 5 articles to audio, per month
-              </Text>
-            </View>
             <View>
               <View
                 style={
@@ -512,23 +495,6 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                 No advertisements
               </Text>
             </View>
-            <View
-              style={
-                Object {
-                  "marginTop": 12,
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "color": "#C5C5C5",
-                  }
-                }
-              >
-                About 25 articles to audio, per month
-              </Text>
-            </View>
             <View>
               <View
                 style={
@@ -786,23 +752,6 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                 }
               >
                 No advertisements
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "marginTop": 12,
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "color": "#C5C5C5",
-                  }
-                }
-              >
-                About 65 articles to audio, per month
               </Text>
             </View>
             <View>
