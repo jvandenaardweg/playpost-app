@@ -18,10 +18,23 @@ export const finishSubscriptionTransaction = async (purchase: RNIap.ProductPurch
     // Only aknowledge when it is not acknowledged yet
     // Or else we get an error
     // From: https://github.com/dooboolab/react-native-iap/blob/ec53ac446b5ebdd459a53dde6a52b49d089ab292/IapExample/App.js#L66
-    if (purchase.purchaseStateAndroid === 1 && !purchase.isAcknowledgedAndroid) {
+
+    // purchaseStateAndroid = paymentState on https://developers.google.com/android-publisher/api-ref/purchases/subscriptions
+    // 0 = Payment pending
+    // 1 = Payment received
+    // 2 = Free trial
+    // 3 = Pending deferred upgrade/downgrade
+    if (purchase.purchaseStateAndroid === 1) {
+      // tslint:disable-next-line: no-console
+      console.log('Android Subscription Purchase', 'Running acknowledgePurchaseAndroid()...')
       const acknowledgeResult = await RNIap.acknowledgePurchaseAndroid(purchase.purchaseToken);
+      // tslint:disable-next-line: no-console
+      console.log('Android Subscription Purchase', 'acknowledgePurchaseAndroid() result: ', acknowledgeResult)
       return acknowledgeResult;
     }
+
+    // tslint:disable-next-line: no-console
+    console.log('Android Subscription Purchase', 'purchaseStateAndroid is not 1, so we do not run acknowledgePurchaseAndroid().')
 
     return
   }
