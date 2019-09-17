@@ -73,6 +73,24 @@ export const selectTotalAvailableVoices = createDeepEqualSelector(
   }
 );
 
+export const selectTotalAvailableUnsubscribedVoices = createDeepEqualSelector(
+  [selectSortedLanguages],
+  languages => {
+    if (!languages.length) {
+      return 0;
+    }
+
+    return languages.reduce((prev, curr) => {
+      if (!curr.voices || !curr.voices.length) { return prev; }
+      const unsubscribedActiveVoices = curr.voices && curr.voices.filter(voice => voice.isUnsubscribedLanguageDefault && voice.isActive);
+
+      /* tslint:disable-next-line no-parameter-reassignment */
+      prev = prev + unsubscribedActiveVoices.length;
+      return prev;
+    }, 0);
+  }
+);
+
 export const selectLanguagesWithActiveVoices = createDeepEqualSelector(
   [selectSortedLanguages, selectDeviceLocale],
   (languages, deviceLocale) => {

@@ -34,7 +34,7 @@ import { setIsLoadingRestore, setIsLoadingUpgrade } from '../reducers/subscripti
 import { getUser } from '../reducers/user';
 import { selectSubscriptionsError, selectSubscriptionsIsLoadingRestore, selectSubscriptionsIsLoadingUpgrade, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
 import { selectActiveUserInAppSubscription, selectUserActiveSubscriptionProductId, selectUserDetails, selectUserIsEligibleForTrial, selectUserIsSubscribed } from '../selectors/user';
-import { selectTotalAvailableVoices } from '../selectors/voices';
+import { selectTotalAvailableUnsubscribedVoices, selectTotalAvailableVoices } from '../selectors/voices';
 import * as inAppPurchaseHelper from '../utils/in-app-purchase-helper';
 
 interface State {
@@ -73,28 +73,28 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   }
 
   get subscriptionFeatures(): SubscriptionFeatures {
-    const { totalAvailableVoices } = this.props;
+    const { totalAvailableVoices, totalAvailableUnsubscribedVoices } = this.props;
 
     return [
       {
         productId: SUBSCRIPTION_PRODUCT_ID_FREE,
         title: 'Free',
         price: '0',
-        body: ['Basic quality voices', 'One voice option per language', 'Max. 30 minutes per month', 'Unlimited playlist items', 'Some advertisements'],
+        body: [`Access to ${totalAvailableUnsubscribedVoices} voices`, 'Use basic quality voices', 'One predefined voice per language', 'Max. 30 minutes per month', 'Unlimited playlist items', 'Some advertisements', '\nFirst 30 minutes High Quality voice for free'],
         footer: ''
       },
       {
         productId: SUBSCRIPTION_PRODUCT_ID_PREMIUM,
         title: 'Premium',
         price: null,
-        body: [`${totalAvailableVoices}+ High Quality voices`, 'Multiple voice options per language', 'Max. 120 minutes per month', 'Unlimited playlist items', 'No advertisements'],
+        body: [`Access to all ${totalAvailableVoices} voices`, 'Use the highest quality voices', 'Change the voice per language', 'Max. 120 minutes per month', 'Unlimited playlist items', 'No advertisements'],
         footer: ''
       },
       {
         productId: SUBSCRIPTION_PRODUCT_ID_PLUS,
         title: 'Plus',
         price: null,
-        body: [`${totalAvailableVoices}+ High Quality voices`, 'Multiple voice options per language', 'Max. 300 minutes per month', 'Unlimited playlist items', 'No advertisements'],
+        body: [`Access to all ${totalAvailableVoices} voices`, 'Use the highest quality voices', 'Change the voice per language', 'Max. 300 minutes per month', 'Unlimited playlist items', 'No advertisements'],
         footer: ''
       }
     ];
@@ -442,6 +442,7 @@ interface StateProps {
   isLoadingUpgrade: ReturnType<typeof selectSubscriptionsIsLoadingUpgrade>;
   isLoadingRestore: ReturnType<typeof selectSubscriptionsIsLoadingRestore>;
   activeInAppSubscription: ReturnType<typeof selectActiveUserInAppSubscription>;
+  totalAvailableUnsubscribedVoices: ReturnType<typeof selectTotalAvailableUnsubscribedVoices>;
 }
 
 interface DispatchProps {
@@ -460,7 +461,8 @@ const mapStateToProps = (state: RootState): StateProps => ({
   userIsEligibleForTrial: selectUserIsEligibleForTrial(state),
   isLoadingUpgrade: selectSubscriptionsIsLoadingUpgrade(state),
   isLoadingRestore: selectSubscriptionsIsLoadingRestore(state),
-  activeInAppSubscription: selectActiveUserInAppSubscription(state)
+  activeInAppSubscription: selectActiveUserInAppSubscription(state),
+  totalAvailableUnsubscribedVoices: selectTotalAvailableUnsubscribedVoices(state),
 });
 
 const mapDispatchToProps = {

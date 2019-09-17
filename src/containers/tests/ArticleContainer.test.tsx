@@ -329,6 +329,7 @@ describe('ArticleContainer', () => {
       expect(spySetTrack).toHaveBeenCalledTimes(0);
     });
 
+    // Note: we have temporary disabled "alertIfDifferentSelectedVoice" in the component
     it('handleOnPlayPress() should correctly handle when the audio is already available for the correct voice', async () => {
       const testInstance: ArticleContainerComponent = wrapper.root.instance;
 
@@ -342,8 +343,8 @@ describe('ArticleContainer', () => {
       await testInstance.handleOnPlayPress();
 
       expect(spyHandleCreateAudiofile).toHaveBeenCalledTimes(0);
-      expect(spyAlertIfDifferentSelectedVoice).toHaveBeenCalledTimes(1);
-      expect(spyAlertIfDifferentSelectedVoice).toHaveReturned();
+      expect(spyAlertIfDifferentSelectedVoice).toHaveBeenCalledTimes(0);
+      // expect(spyAlertIfDifferentSelectedVoice).toHaveReturned();
       expect(spyHandleSetTrack).toHaveBeenCalledTimes(1);
       expect(TrackPlayer.default.play).toHaveBeenCalledTimes(0);
       expect(spyResetPlaybackStatus).toHaveBeenCalledTimes(1);
@@ -388,6 +389,7 @@ describe('ArticleContainer', () => {
       expect(Alert.alert).toHaveBeenCalledWith(ALERT_TITLE_ERROR_NO_INTERNET, ALERT_ARTICLE_PLAY_INTERNET_REQUIRED);
     });
 
+    // Note: we have temporary disabled "alertIfDifferentSelectedVoice" in the component
     it('handleOnPlayPress() should call alertIfDifferentSelectedVoice() when the user is not subscribed', async () => {
       const props: Props = {
         ...defaultProps,
@@ -407,7 +409,7 @@ describe('ArticleContainer', () => {
 
       await testInstance.handleOnPlayPress();
 
-      expect(spyAlertIfDifferentSelectedVoice).toHaveBeenCalledTimes(1);
+      expect(spyAlertIfDifferentSelectedVoice).toHaveBeenCalledTimes(0);
     });
 
     it('handleOnPlayPress() should just play the track when it is loaded in the player', async () => {

@@ -16,7 +16,7 @@ import { getUser, resetSaveSelectedVoiceError, saveSelectedVoice } from '../redu
 import { setDownloadedVoice } from '../reducers/voices';
 
 import { selectPlayerPlaybackState, selectPlayerTrack } from '../selectors/player';
-import { selectUserErrorSaveSelectedVoice, selectUserIsEligibleForTrial, selectUserIsSubscribed, selectUserSelectedVoiceByLanguageName } from '../selectors/user';
+import { selectUserErrorSaveSelectedVoice, selectUserHasUsedFreeIntroduction, selectUserIsEligibleForTrial, selectUserIsSubscribed, selectUserSelectedVoiceByLanguageName } from '../selectors/user';
 import { selectCountryOptions, selectDownloadedVoicePreviews, selectGenderOptions, selectLanguagesWithActiveVoicesByLanguageName, selectQualityOptions } from '../selectors/voices';
 
 import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_VOICE_CHANGE, ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE, ALERT_TITLE_ERROR, ALERT_TITLE_ERROR_NO_INTERNET, ALERT_TITLE_SUBSCRIPTION_ONLY, ALERT_TITLE_VOICE_CHANGE_REQUEST } from '../constants/messages';
@@ -222,7 +222,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
   }
 
   isSelected = (item: Api.Voice): boolean => {
-    const { languagesWithActiveVoicesByLanguageName, userSelectedVoiceByLanguageName, isSubscribed } = this.props;
+    const { languagesWithActiveVoicesByLanguageName, userSelectedVoiceByLanguageName, isSubscribed, userHasUsedFreeIntroduction } = this.props;
     const selectedLanguageName = this.props.navigation.getParam('languageName', '');
     const languagewithActiveVoices = languagesWithActiveVoicesByLanguageName && languagesWithActiveVoicesByLanguageName[selectedLanguageName];
     const userSelectedVoice = userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName[selectedLanguageName];
@@ -248,6 +248,13 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
       // Else, return the user's own selected voice
       return isUserSelected;
 
+    }
+
+    // User is unsubscribed
+
+    // If the user has a free introduction left, the default selected voice are the subscribed default
+    if (!userHasUsedFreeIntroduction) {
+      return isSubscribedDefaultSelected
     }
 
     return isUnsubscribedDefaultSelected;
@@ -409,6 +416,7 @@ interface StateProps {
   readonly qualityOptions: ReturnType<typeof selectQualityOptions>;
   readonly genderOptions: ReturnType<typeof selectGenderOptions>;
   readonly countryOptions: ReturnType<typeof selectCountryOptions>;
+  readonly userHasUsedFreeIntroduction: ReturnType<typeof selectUserHasUsedFreeIntroduction>;
 }
 
 const mapStateToProps = (state: RootState) => ({
@@ -422,7 +430,8 @@ const mapStateToProps = (state: RootState) => ({
   userIsEligibleForTrial: selectUserIsEligibleForTrial(state),
   qualityOptions: selectQualityOptions(state),
   genderOptions: selectGenderOptions(state),
-  countryOptions: selectCountryOptions(state)
+  countryOptions: selectCountryOptions(state),
+  userHasUsedFreeIntroduction: selectUserHasUsedFreeIntroduction(state)
 });
 
 const mapDispatchToProps = {

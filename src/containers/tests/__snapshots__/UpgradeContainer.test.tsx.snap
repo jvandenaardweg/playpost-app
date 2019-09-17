@@ -193,7 +193,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   }
                 }
               >
-                Basic quality voices
+                Access to undefined voices
               </Text>
               <Text
                 style={
@@ -203,7 +203,17 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   }
                 }
               >
-                One voice option per language
+                Use basic quality voices
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "fontSize": 15,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                One predefined voice per language
               </Text>
               <Text
                 style={
@@ -234,6 +244,17 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                 }
               >
                 Some advertisements
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "fontSize": 15,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                
+First 30 minutes High Quality voice for free
               </Text>
             </View>
             <View>
@@ -452,7 +473,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   }
                 }
               >
-                10+ High Quality voices
+                Access to all 10 voices
               </Text>
               <Text
                 style={
@@ -462,7 +483,17 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   }
                 }
               >
-                Multiple voice options per language
+                Use the highest quality voices
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "fontSize": 15,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                Change the voice per language
               </Text>
               <Text
                 style={
@@ -711,7 +742,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   }
                 }
               >
-                10+ High Quality voices
+                Access to all 10 voices
               </Text>
               <Text
                 style={
@@ -721,7 +752,17 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   }
                 }
               >
-                Multiple voice options per language
+                Use the highest quality voices
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "fontSize": 15,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                Change the voice per language
               </Text>
               <Text
                 style={

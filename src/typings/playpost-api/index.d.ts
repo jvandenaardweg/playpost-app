@@ -152,6 +152,7 @@ declare namespace Api {
     usedInAppSubscriptionTrials: InAppSubscription[];
     activeUserInAppSubscription: UserInAppSubscriptionApple | UserInAppSubscriptionGoogle | null;
     inAppSubscriptions?: UserInAppSubscriptionApple[], // TODO: should be removed later
+    hasUsedFreeIntroduction: boolean;
     used: {
       audiofiles: {
         currentMonthInSeconds: number;

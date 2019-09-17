@@ -21,9 +21,14 @@ export default StyleSheet.create({
     paddingRight: spacing.large,
     paddingLeft: spacing.large
   },
-  controlsContainer: {
+  bottomContainer: {
     paddingLeft: spacing.large,
     paddingRight: spacing.large
+  },
+  controlsContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row'
   },
   titleContainer: {
     paddingTop: spacing.large,
@@ -88,7 +93,7 @@ export default StyleSheet.create({
     width: '100%'
   },
   buttonControl: {
-    backgroundColor: colors.grayDarkest,
+    backgroundColor: colors.grayDarker,
     height: 32,
     paddingLeft: spacing.medium,
     paddingRight: spacing.medium,
@@ -96,11 +101,11 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: spacing.small,
-    marginLeft: spacing.nano,
-    marginRight: spacing.nano
+    marginLeft: spacing.micro,
+    marginRight: spacing.micro
   },
   buttonControlText: {
-    color: colors.gray,
+    color: colors.white,
     fontSize: fonts.fontSize.tiny,
     fontWeight: fonts.fontWeight.semibold
   }

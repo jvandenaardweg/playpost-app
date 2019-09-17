@@ -188,22 +188,22 @@ Keep turning the knobs, my friend. When it sounds right, you’ll know.",
           activeOpacity={0.2}
           hitSlop={
             Object {
-              "bottom": 20,
-              "left": 20,
-              "right": 20,
-              "top": 20,
+              "bottom": 5,
+              "left": 5,
+              "right": 5,
+              "top": 5,
             }
           }
           onPress={[MockFunction]}
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "#222222",
+              "backgroundColor": "#444444",
               "borderRadius": 32,
               "height": 32,
               "justifyContent": "center",
-              "marginLeft": 4,
-              "marginRight": 4,
+              "marginLeft": 8,
+              "marginRight": 8,
               "marginTop": 12,
               "paddingLeft": 14,
               "paddingRight": 14,
@@ -215,7 +215,7 @@ Keep turning the knobs, my friend. When it sounds right, you’ll know.",
           <Text
             style={
               Object {
-                "color": "#C5C5C5",
+                "color": "#ffffff",
                 "fontSize": 12,
                 "fontWeight": "600",
               }

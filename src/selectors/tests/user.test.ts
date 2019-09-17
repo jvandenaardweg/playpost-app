@@ -6,14 +6,13 @@ import { selectDeviceLocale,
   selectUserDetails,
   selectUserError,
   selectUserErrorSaveSelectedVoice,
-  selectUserHasSubscribedBefore,
+  selectUserHasUsedFreeIntroduction,
   selectUserIsEligibleForTrial,
   selectUserIsLoading,
   selectUserIsSubscribed,
   selectUserPlaybackSpeed,
   selectUserSelectedVoiceByLanguageName,
   selectUserSelectedVoices,
-  selectUserSubscriptions,
   selectUserUsedInAppSubscriptionTrials,
   userSelector
 } from '../user';
@@ -125,20 +124,6 @@ describe('user selector', () => {
     expect(selectUserSelectedVoiceByLanguageName(exampleUserDetailsState)).toMatchSnapshot();
   });
 
-  it('should return the user\'s subscriptions', () => {
-    const exampleUserState = {
-      ...rootState,
-      user: {
-        ...rootState.user,
-        details: exampleUserWithActiveSubscription
-      }
-    };
-
-    const expected = exampleUserWithActiveSubscription.inAppSubscriptions;
-
-    expect(selectUserSubscriptions(exampleUserState)).toEqual(expected);
-  });
-
   it('selectDeviceLocale should return the user\'s subscriptions', () => {
     const exampleUserStateOne = {
       ...rootState,
@@ -169,34 +154,6 @@ describe('user selector', () => {
     expect(selectDeviceLocale(exampleUserStateThree)).toEqual('');
   });
 
-  it('selectUserHasSubscribedBefore should return true when the user has previous subscriptions', () => {
-    const exampleUserState = {
-      ...rootState,
-      user: {
-        ...rootState.user,
-        details: exampleUserWithActiveSubscription
-      }
-    };
-
-    expect(selectUserHasSubscribedBefore(exampleUserState)).toEqual(true);
-  });
-
-  it('selectUserHasSubscribedBefore should return false when the user has no previous subscriptions', () => {
-    const exampleUserCopy = {...exampleUserWithActiveSubscription};
-
-    exampleUserCopy.inAppSubscriptions = [];
-
-    const exampleUserStateWithoutSubscriptions = {
-      ...rootState,
-      user: {
-        ...rootState.user,
-        details: exampleUserCopy
-      }
-    };
-
-    expect(selectUserHasSubscribedBefore(exampleUserStateWithoutSubscriptions)).toEqual(false);
-  });
-
   it('selectUserPlaybackSpeed should return a number', () => {
     const exampleUserState = {
       ...rootState,
@@ -218,6 +175,36 @@ describe('user selector', () => {
     };
 
     expect(selectUserIsSubscribed(exampleState)).toEqual(false);
+  });
+
+  it('selectUserHasUsedFreeIntroduction should return true when it is true inside user details', () => {
+    const exampleState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: {
+          ...exampleUserWithActiveSubscription,
+          hasUsedFreeIntroduction: true
+        }
+      }
+    };
+
+    expect(selectUserHasUsedFreeIntroduction(exampleState)).toEqual(true);
+  });
+
+  it('selectUserHasUsedFreeIntroduction should return false when it is false inside user details', () => {
+    const exampleState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: {
+          ...exampleUserWithActiveSubscription,
+          hasUsedFreeIntroduction: false
+        }
+      }
+    };
+
+    expect(selectUserHasUsedFreeIntroduction(exampleState)).toEqual(false);
   });
 
   it('selectUserIsSubscribed should return true when there is an active subscription', () => {

@@ -5,12 +5,13 @@ import { connect } from 'react-redux';
 
 import { RootState } from '../reducers';
 
+import { getUser } from '../reducers/user';
 import { getLanguages } from '../reducers/voices';
 
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { CustomSectionList } from '../components/CustomSectionList';
 import colors from '../constants/colors';
-import { selectUserIsSubscribed, selectUserSelectedVoices } from '../selectors/user';
+import { selectUserHasUsedFreeIntroduction, selectUserIsSubscribed, selectUserSelectedVoices } from '../selectors/user';
 import { selectLanguagesWithActiveVoices } from '../selectors/voices';
 
 type Props = NavigationInjectedProps & StateProps & DispatchProps;
@@ -19,6 +20,7 @@ export class LanguagesSelectComponent extends React.Component<Props> {
   componentDidMount(): void {
     InteractionManager.runAfterInteractions(() => {
       this.props.getLanguages();
+      this.props.getUser()
     });
   }
 
@@ -32,10 +34,16 @@ export class LanguagesSelectComponent extends React.Component<Props> {
   handleOnListItemPress = (language: Api.Language) => this.props.navigation.navigate('SettingsVoices', { languageName: language.name });
 
   getDefaultVoice = (language: Api.Language) => {
-    const { isSubscribed } = this.props;
+    const { isSubscribed, userHasUsedFreeIntroduction } = this.props;
 
     return language.voices && language.voices.find(voice => {
       if (!isSubscribed) {
+        // If the user is not subscribed, and has not used his free introduction
+        // Select the default voice to be the subscribed language default
+        if (!userHasUsedFreeIntroduction) {
+          return !!voice.isSubscribedLanguageDefault
+        }
+
         return !!voice.isUnsubscribedLanguageDefault
       }
 
@@ -90,22 +98,26 @@ export class LanguagesSelectComponent extends React.Component<Props> {
 
 interface DispatchProps {
   readonly getLanguages: typeof getLanguages;
+  readonly getUser: typeof getUser;
 }
 
 interface StateProps {
   readonly languagesWithActiveVoices: ReturnType<typeof selectLanguagesWithActiveVoices>;
   readonly userSelectedVoices: ReturnType<typeof selectUserSelectedVoices>;
   readonly isSubscribed: ReturnType<typeof selectUserIsSubscribed>;
+  readonly userHasUsedFreeIntroduction: ReturnType<typeof selectUserHasUsedFreeIntroduction>;
 }
 
 const mapStateToProps = (state: RootState) => ({
   languagesWithActiveVoices: selectLanguagesWithActiveVoices(state),
   userSelectedVoices: selectUserSelectedVoices(state),
-  isSubscribed: selectUserIsSubscribed(state)
+  isSubscribed: selectUserIsSubscribed(state),
+  userHasUsedFreeIntroduction: selectUserHasUsedFreeIntroduction(state)
 });
 
 const mapDispatchToProps = {
-  getLanguages
+  getLanguages,
+  getUser
 };
 
 export const LanguagesSelectContainer = withNavigation(

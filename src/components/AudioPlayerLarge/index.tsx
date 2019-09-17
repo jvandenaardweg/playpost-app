@@ -6,7 +6,7 @@ import { AudioPlayerProgressBar } from '../AudioPlayerProgressBar';
 import * as Icon from '../Icon';
 import { PlayPauseControlCircle } from '../PlayPauseControl';
 
-import { defaultHitslop } from '../../constants/buttons';
+import { defaultHitslop, smallHitslop } from '../../constants/buttons';
 import colors from '../../constants/colors';
 
 import { PlaybackSpeedSlider } from '../PlaybackSpeedSlider';
@@ -62,13 +62,13 @@ export const AudioPlayerLarge: React.FC<Props> = React.memo((props: Props) => {
         <View style={styles.scrollableContainer}>
           {props.article && <ArticleReader article={props.article} theme="dark" />}
         </View>
-        <View style={styles.controlsContainer}>
+        <View style={styles.bottomContainer}>
           <AudioPlayerProgressBar onProgressChange={props.onProgressChange} />
-          <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }}>
+          <View style={styles.controlsContainer}>
             <TouchableOpacity
               testID="AudioPlayerLarge-TouchableOpacity-playbackspeed"
               style={{...styles.buttonControl, width: 65 }}
-              hitSlop={defaultHitslop}
+              hitSlop={smallHitslop}
               onPress={props.onTogglePlaybackSpeedVisibility}
             >
               {props.isPlaybackSpeedVisible && (<Icon.FontAwesome name="times" color="white" size={18} />)}
@@ -85,24 +85,12 @@ export const AudioPlayerLarge: React.FC<Props> = React.memo((props: Props) => {
               <TouchableOpacity
                 testID="AudioPlayerLarge-TouchableOpacity-voice"
                 style={styles.buttonControl}
-                hitSlop={defaultHitslop}
+                hitSlop={smallHitslop}
                 onPress={props.onPressVoice}
               >
                 <Text style={styles.buttonControlText}>{props.audiofile.voice.label} ({props.audiofile.voice.languageCode})</Text>
               </TouchableOpacity>
             )}
-            {/* <TouchableOpacity
-              testID="AudioPlayerLarge-TouchableOpacity-playbackspeed"
-              style={{...styles.buttonControl, width: 60}}
-              hitSlop={defaultHitslop}
-              onPress={props.onTogglePlaybackSpeedVisibility}
-            >
-              {props.isPlaybackSpeedVisible && (<Icon.FontAwesome name="times" color="white" size={22} />)}
-                {!props.isPlaybackSpeedVisible && (
-                  <Icon.Feather name="archive" color={colors.grayDark} size={16} style={{ height: 17 }} />
-                )}
-            </TouchableOpacity> */}
-
           </View>
           <View style={styles.controlsRow}>
             <View style={styles.controlContainer}>

@@ -31,6 +31,11 @@ export const selectUserDetails = createSelector(
   user => user.details
 );
 
+export const selectUserHasUsedFreeIntroduction = createSelector(
+  [selectUserDetails],
+  userDetails => userDetails && userDetails.hasUsedFreeIntroduction
+);
+
 export const selectUserUsedInAppSubscriptionTrials = createSelector(
   [selectUserDetails],
   userDetails => userDetails && userDetails.usedInAppSubscriptionTrials
@@ -83,11 +88,6 @@ export const selectUserSelectedVoiceByLanguageName = createDeepEqualSelector(
 
     return voicesObjectWithLanguageNameKeys;
   }
-);
-
-export const selectUserSubscriptions = createDeepEqualSelector(
-  [selectUserDetails],
-  userDetails => userDetails && userDetails.inAppSubscriptions
 );
 
 export const selectUserIsSubscribed = createDeepEqualSelector(
@@ -148,19 +148,7 @@ export const selectUserIsEligibleForTrial = createDeepEqualSelector(
   }
 );
 
-export const selectUserHasSubscribedBefore = createDeepEqualSelector(
-  [selectUserSubscriptions],
-  userInAppSubscriptions => {
-    if (!userInAppSubscriptions || !userInAppSubscriptions.length) {
-      return false;
-    }
-
-    // If the user has a previous in app subscription record, return true
-    return !!userInAppSubscriptions.length;
-  }
-);
-
 export const selectUserPlaybackSpeed = createSelector(
   [userSelector],
   user =>  user.playbackSpeed
-)
+);

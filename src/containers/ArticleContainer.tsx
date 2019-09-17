@@ -204,10 +204,12 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         return this.handleCreateAudiofile();
       }
 
+      // Temporary commented out below to allow playing of high quality voices on free accounts as an introduction
+      //
       // If the user is on a free account, check if available audiofile uses different voice. Show alert if it does.
-      if (!isSubscribed) {
-        this.alertIfDifferentSelectedVoice();
-      }
+      // if (!isSubscribed) {
+      //   this.alertIfDifferentSelectedVoice();
+      // }
 
       // Only set a new track when it's a different one
       // handleSetTrack will also handle the download of the audio
