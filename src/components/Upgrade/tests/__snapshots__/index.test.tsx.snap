@@ -196,6 +196,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
+                    "color": "#000000",
                     "fontSize": 15,
                     "marginBottom": 8,
                   }
@@ -206,6 +207,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
+                    "color": "#000000",
                     "fontSize": 15,
                     "marginBottom": 8,
                   }
@@ -216,6 +218,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
+                    "color": "#000000",
                     "fontSize": 15,
                     "marginBottom": 8,
                   }
@@ -226,6 +229,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
+                    "color": "#000000",
                     "fontSize": 15,
                     "marginBottom": 8,
                   }
@@ -236,6 +240,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
+                    "color": "#000000",
                     "fontSize": 15,
                     "marginBottom": 8,
                   }
@@ -246,6 +251,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
+                    "color": "#000000",
                     "fontSize": 15,
                     "marginBottom": 8,
                   }
@@ -482,6 +488,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
+                    "color": "#000000",
                     "fontSize": 15,
                     "marginBottom": 8,
                   }
@@ -492,6 +499,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
+                    "color": "#000000",
                     "fontSize": 15,
                     "marginBottom": 8,
                   }
@@ -502,6 +510,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
+                    "color": "#000000",
                     "fontSize": 15,
                     "marginBottom": 8,
                   }
@@ -512,6 +521,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
+                    "color": "#000000",
                     "fontSize": 15,
                     "marginBottom": 8,
                   }
@@ -522,6 +532,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
+                    "color": "#000000",
                     "fontSize": 15,
                     "marginBottom": 8,
                   }
@@ -758,6 +769,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
+                    "color": "#000000",
                     "fontSize": 15,
                     "marginBottom": 8,
                   }
@@ -768,6 +780,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
+                    "color": "#000000",
                     "fontSize": 15,
                     "marginBottom": 8,
                   }
@@ -778,6 +791,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
+                    "color": "#000000",
                     "fontSize": 15,
                     "marginBottom": 8,
                   }
@@ -788,6 +802,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
+                    "color": "#000000",
                     "fontSize": 15,
                     "marginBottom": 8,
                   }
@@ -798,6 +813,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
+                    "color": "#000000",
                     "fontSize": 15,
                     "marginBottom": 8,
                   }
