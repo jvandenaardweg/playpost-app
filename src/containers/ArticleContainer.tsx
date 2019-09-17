@@ -149,6 +149,8 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     const isUnsubscribedDefaultVoice = (articleLanguage && articleLanguage.voices) ? articleLanguage.voices.find(voice => voice.isUnsubscribedLanguageDefault) : null;
     const isSubscribedDefaultVoice = (articleLanguage && articleLanguage.voices) ? articleLanguage.voices.find(voice => voice.isSubscribedLanguageDefault) : null;
 
+    // TODO: get correct voice when user is on free introduction
+
     const defaultVoice = (isSubscribed) ? isSubscribedDefaultVoice : isUnsubscribedDefaultVoice;
 
     if (!articleLanguage || !defaultVoice) {
@@ -198,6 +200,8 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       }
 
       // When we end up here, it means the article already has an audiofile
+
+      // TODO: check if an article has the same voice as the user has
 
       // If he user is subscribed, but it has no audio for it's selected voice, we create an audiofile
       if (isSubscribed && !this.getAudiofileByUserSelectedVoice()) {

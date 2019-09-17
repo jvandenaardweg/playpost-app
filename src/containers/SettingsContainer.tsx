@@ -7,6 +7,8 @@ import RNFS from 'react-native-fs';
 import { NavigationInjectedProps } from 'react-navigation';
 import { connect } from 'react-redux';
 
+import * as inAppBrowser from '../utils/in-app-browser';
+
 import colors from '../constants/colors';
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 import fonts from '../constants/fonts';
@@ -368,12 +370,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             icon: 'file-text',
             iconColor: colors.grayDark,
             chevron: true,
-            onPress: () => {
-              NavigationService.navigate('Browser', {
-                url: URL_PLAYPOST_FOR_PUBLISHERS,
-                title: 'For publishers'
-              })
-            }
+            onPress: () => inAppBrowser.openUrl(URL_PLAYPOST_FOR_PUBLISHERS)
           },
           {
             key: 'about-chrome-browser-extension',
@@ -381,12 +378,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             icon: 'package',
             iconColor: colors.grayDark,
             chevron: true,
-            onPress: () => {
-              NavigationService.navigate('Browser', {
-                url: URL_BROWSER_EXTENSION_CHROME,
-                title: 'Chrome browser extension'
-              })
-            }
+            onPress: () => inAppBrowser.openUrl(URL_BROWSER_EXTENSION_CHROME)
           },
           {
             key: 'about-firefox-browser-extension',
@@ -394,12 +386,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             icon: 'package',
             iconColor: colors.grayDark,
             chevron: true,
-            onPress: () => {
-              NavigationService.navigate('Browser', {
-                url: URL_BROWSER_EXTENSION_FIREFOX,
-                title: 'Firefox browser extension'
-              })
-            }
+            onPress: () => inAppBrowser.openUrl(URL_BROWSER_EXTENSION_FIREFOX)
           },
           {
             key: 'about-opera-browser-extension',
@@ -407,12 +394,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             icon: 'package',
             iconColor: colors.grayDark,
             chevron: true,
-            onPress: () => {
-              NavigationService.navigate('Browser', {
-                url: URL_BROWSER_EXTENSION_OPERA,
-                title: 'Opera browser extension'
-              })
-            }
+            onPress: () => inAppBrowser.openUrl(URL_BROWSER_EXTENSION_OPERA)
           },
           {
             key: 'about-about',
@@ -420,12 +402,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             icon: 'link',
             iconColor: colors.grayDark,
             chevron: true,
-            onPress: () => {
-              NavigationService.navigate('Browser', {
-                url: URL_ABOUT,
-                title: 'About'
-              })
-            }
+            onPress: () => inAppBrowser.openUrl(URL_ABOUT)
           },
           {
             key: 'about-privacy-policy',
@@ -433,12 +410,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             icon: 'link',
             iconColor: colors.grayDark,
             chevron: true,
-            onPress: () => {
-              NavigationService.navigate('Browser', {
-                url: URL_PRIVACY_POLICY,
-                title: 'Privacy Policy'
-              })
-            }
+            onPress: () => inAppBrowser.openUrl(URL_PRIVACY_POLICY)
           },
           {
             key: 'about-terms-of-use',
@@ -446,12 +418,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             icon: 'link',
             iconColor: colors.grayDark,
             chevron: true,
-            onPress: () => {
-              NavigationService.navigate('Browser', {
-                url: URL_TERMS_OF_USE,
-                title: 'Terms of Use'
-              })
-            }
+            onPress: () => inAppBrowser.openUrl(URL_TERMS_OF_USE)
           },
           {
             key: 'about-feedback',
@@ -459,12 +426,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             icon: 'message-square',
             iconColor: colors.grayDark,
             chevron: true,
-            onPress: () => {
-              NavigationService.navigate('Browser', {
-                url: URL_FEEDBACK,
-                title: 'Feedback'
-              })
-            }
+            onPress: () => inAppBrowser.openUrl(URL_FEEDBACK)
           },
           {
             key: 'about-support',
@@ -472,12 +434,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             icon: 'message-square',
             iconColor: colors.grayDark,
             chevron: true,
-            onPress: () => {
-              NavigationService.navigate('Browser', {
-                url: URL_FEEDBACK,
-                title: 'Support'
-              })
-            }
+            onPress: () => inAppBrowser.openUrl(URL_FEEDBACK)
           }
         ]
       }

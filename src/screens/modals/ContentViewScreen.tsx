@@ -4,6 +4,7 @@ import { NavigationRoute, NavigationScreenOptions, NavigationScreenProp } from '
 
 import { ContentView } from '../../components/ContentView';
 import { URL_FEEDBACK } from '../../constants/urls';
+import * as inAppBrowser from '../../utils/in-app-browser';
 
 interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;
@@ -18,7 +19,7 @@ export class ContentViewScreen extends React.PureComponent<Props> {
 
   handleOnPressSupport = () => {
     Analytics.trackEvent('ContentView Support Pressed');
-    this.props.navigation.navigate('Browser', { url: URL_FEEDBACK, title: 'Support' });
+    inAppBrowser.openUrl(URL_FEEDBACK);
   }
 
   render() {

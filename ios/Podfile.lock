@@ -122,6 +122,8 @@ PODS:
     - React
   - RNIap (3.4.11):
     - React
+  - RNInAppBrowser (3.1.0):
+    - React
   - RNKeychain (4.0.0):
     - React
   - RNLocalize (1.2.0):
@@ -169,6 +171,7 @@ DEPENDENCIES:
   - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNIap (from `../node_modules/react-native-iap`)
+  - RNInAppBrowser (from `../node_modules/react-native-inappbrowser-reborn`)
   - RNKeychain (from `../node_modules/react-native-keychain`)
   - RNLocalize (from `../node_modules/react-native-localize`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
@@ -251,6 +254,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-gesture-handler"
   RNIap:
     :path: "../node_modules/react-native-iap"
+  RNInAppBrowser:
+    :path: "../node_modules/react-native-inappbrowser-reborn"
   RNKeychain:
     :path: "../node_modules/react-native-keychain"
   RNLocalize:
@@ -302,6 +307,7 @@ SPEC CHECKSUMS:
   RNFS: a8fbe7060fa49157d819466404794ad9c58e58cf
   RNGestureHandler: 4cb47a93019c1a201df2644413a0a1569a51c8aa
   RNIap: 0a987143fdc68343f43150e4b80be4763f83073d
+  RNInAppBrowser: c0c1f509fe1ced46d751b61463be847c9b139ae9
   RNKeychain: de0a565ff2f548576ac494612f05f77a7cda3f55
   RNLocalize: 3d67438cbed25c21d512edb6357e29b6db9ed2d9
   RNReanimated: 1b52415c4302f198cb581282a0166690bad62c43

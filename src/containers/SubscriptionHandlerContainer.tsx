@@ -21,6 +21,7 @@ import { selectIsLoggedIn } from '../selectors/auth';
 import { selectIsActiveUpgradeModal, selectSubscriptionsError, selectSubscriptionsIsLoadingRestore, selectSubscriptionsIsLoadingUpgrade, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
 import { selectActiveUserInAppSubscription, selectUserDetails, selectUserIsEligibleForTrial, selectUserIsSubscribed } from '../selectors/user';
 import { selectTotalAvailableVoices } from '../selectors/voices';
+import * as inAppBrowser from '../utils/in-app-browser';
 import * as inAppPurchaseHelper from '../utils/in-app-purchase-helper';
 
 interface IProps {
@@ -248,7 +249,7 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
       },
       {
         text: 'Contact support',
-        onPress: () => NavigationService.navigate('Browser', { url: URL_FEEDBACK, title: 'Support' })
+        onPress: () => inAppBrowser.openUrl(URL_FEEDBACK)
       }
     ]);
   }

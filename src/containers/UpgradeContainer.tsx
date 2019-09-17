@@ -6,6 +6,7 @@ import { NavigationRoute, NavigationScreenProp } from 'react-navigation';
 import { connect } from 'react-redux';
 
 import { Upgrade } from '../components/Upgrade';
+import * as inAppBrowser from '../utils/in-app-browser';
 
 import { NetworkContext } from '../contexts/NetworkProvider';
 import NavigationService from '../navigation/NavigationService';
@@ -401,7 +402,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       },
       {
         text: 'Contact support',
-        onPress: () => NavigationService.navigate('Browser', { url: URL_FEEDBACK, title: 'Support' })
+        onPress: () => inAppBrowser.openUrl(URL_FEEDBACK)
       }
     ]);
   }

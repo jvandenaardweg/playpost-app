@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Alert, Linking, StatusBar } from 'react-native';
+import { Alert, StatusBar } from 'react-native';
 import WebView from 'react-native-webview';
 // tslint:disable-next-line: no-submodule-imports
 import { WebViewNavigation } from 'react-native-webview/lib/WebViewTypes';
@@ -10,6 +10,7 @@ import fonts from '../../constants/fonts';
 import { ALERT_TITLE_ERROR } from '../../constants/messages';
 import spacing from '../../constants/spacing';
 import { TextDirection } from '../../typings';
+import * as inAppBrowser from '../../utils/in-app-browser';
 import { CenterLoadingIndicator } from '../CenterLoadingIndicator';
 
 interface Props {
@@ -44,7 +45,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
     StatusBar.setBarStyle('default');
 
     try {
-      await Linking.openURL(url);
+      await inAppBrowser.openUrl(url);
       return webViewRefObj.current && webViewRefObj.current.stopLoading();
     } catch (err) {
       Alert.alert(ALERT_TITLE_ERROR, 'Could not open the URL.');
