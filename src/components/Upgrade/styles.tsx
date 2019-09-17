@@ -156,7 +156,8 @@ export default StyleSheet.create({
   },
   cardFeaturesListItem: {
     marginBottom: 8,
-    fontSize: fonts.fontSize.body
+    fontSize: fonts.fontSize.body,
+    color: colors.black
   },
   cardFeaturesListItemHighlight: {
     fontWeight: fonts.fontWeight.semibold
