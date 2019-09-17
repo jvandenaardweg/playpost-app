@@ -48,7 +48,6 @@ exports[`AudioPlayerLarge rendering should render correctly 1`] = `
                 "updatedAt": "2019-08-16T10:32:32.821Z",
                 "url": "https://storage-development.playpost.app/articles/7ca86b8a-02aa-4733-92e4-1cfe7ef46954/audiofiles/2f495b91-bb7f-449e-8333-45b9d4905463.mp3",
                 "voice": Object {
-                  "audioProfile": "default",
                   "country": Object {
                     "code": "US",
                     "continent": "NA",
@@ -65,7 +64,6 @@ exports[`AudioPlayerLarge rendering should render correctly 1`] = `
                   "gender": "FEMALE",
                   "id": "3675e6db-307e-48de-b5ff-13b38470632f",
                   "isActive": true,
-                  "isHighestQuality": true,
                   "isLanguageDefault": null,
                   "isPremium": true,
                   "isSubscribedLanguageDefault": true,
@@ -83,12 +81,9 @@ exports[`AudioPlayerLarge rendering should render correctly 1`] = `
                   },
                   "languageCode": "en-US",
                   "name": "en-US-Wavenet-F",
-                  "naturalSampleRateHertz": 24000,
-                  "pitch": 0,
                   "quality": "Very High",
-                  "speakingRate": 1,
                   "synthesizer": "Google",
-                  "updatedAt": "2019-09-13T18:20:11.589Z",
+                  "updatedAt": "2019-09-17T10:37:30.995Z",
                 },
               },
             ],
@@ -114,48 +109,6 @@ exports[`AudioPlayerLarge rendering should render correctly 1`] = `
             "readingTime": 215.70000000000002,
             "sourceName": "Medium",
             "status": "finished",
-            "text": "THE FUTURE CAN BE SCARY, BUT THERE ARE WAYS TO DEAL WITH THAT FEAR
-We often hear about the power of day one, and are told that getting started is the key to success. But really, the hardest and most vital thing is to keep going.
-
-Anyone can declare themselves a writer, singer, designer, illustrator, and many have real talent. But only a dedicated few can stick with it for months, years, decades. Plenty of people have great ideas and entrepreneurial spirit. But almost half of startups  don’t exist after five years.
-
-A reader of my blog recently emailed me: “I want to create something for others,” the person wrote. “I started with a tiny step. It was easy at first. But after that I felt like I lacked inspiration. How do you keep going even if you don’t know what’s next?”
-
-It’s an essential question. Not knowing what’s next is a fundamental condition of human life. Here’s what I do to tackle that challenge.
-
-FOCUS ON TODAY
-Much of our anxiety comes from uncertainty about the future. “What will happen tomorrow or in a year from now?” It can be scary. I can tell you that the world won’t blow up tomorrow, but if you’re in the wrong state of mind, you won’t listen to a word I say.
-
-The best thing you can do is to focus on your very next step — right now. What are you going to do next? Not as in, “What’s your next big move?” No. What are you going to do after you’ve read this article?
-
-Look, maybe you’re right. Maybe tomorrow the world will end. Are you really okay with wasting today on crap you don’t control? Make something out of your day. Forget about the past and the future.
-
-SET GOALS IN AREAS YOU CONTROL
-Never give the wheel to someone else. You’re the ruler of your kingdom.  You’re in the driver’s seat.
-
-That’s why you’ll want to focus on things you can control. You don’t control the rewards you get. If people don’t want to give you their business, so what? If people don’t want to hire you, so what? When you set goals you don’t have control over, you will think success is impossible. Plus, you will always depend on others for your success.
-
-Your business is to improve yourself, make things, be a good person, and do the best you can.
-
-Think about what you actually control. Very few things, right? Among them: your own work, your learning, your openness to new ideas. That should make this step easy. All you have to do is to grab a piece of paper and write your goals on it. Next, work on them.
-
-ADJUST — OR EVEN BAIL — WHEN IT’S NECESSARY
-A while back, the author and podcaster Tim Ferriss tried to change the business model for his podcast. He went from ad-based to fan-based funding. He asked listeners to contribute $10 a month, or more if they wanted. He announced that this was an experiment for something like six months.
-
-Then, a few weeks later, he pulled the plug, refunded all the contributions, and went back to ads. That’s life. No big deal. He didn’t stop podcasting. He didn’t become a failure. He simply made an adjustment.
-
-Ferriss put a positive spin on it, pointing out that “experiments can sometimes yield conclusions much more quickly than expected.”
-
-And he’s right — if we are paying attention. Sometimes we try something new, and we soon find that it’s not going according to plan. Perhaps our assumptions and plans were totally off, or perhaps circumstances changed. Either way, we should not be afraid to make bold decisions .
-
-> Keep turning the knobs, my friend. When it sounds right, you’ll know.
-
-
-These steps are key to finding the right fit for your career and life: focusing on the day ahead of you, setting goals in areas you can control, and making adjustments where necessary.
-
-It reminds me of what a music producer once told me when I asked him about his creative process: “I come up with a melody, turn it into a song, and then finally, I keep turning the knobs until it sounds right.”
-
-Keep turning the knobs, my friend. When it sounds right, you’ll know.",
             "title": "How to Keep Going When You Don’t Know What’s Next",
             "updatedAt": "2019-08-16T10:29:01.954Z",
             "url": "https://link.medium.com/XhWppETqcZ",

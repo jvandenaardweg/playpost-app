@@ -138,7 +138,6 @@ declare namespace Api {
     isCompatible: boolean;
     compatibilityMessage: string | null;
     ssml?: string | null; // optional
-    text?: string | null; // optional
     user?: User | null; // optional
     documentHtml?: string | null; // optional
   }
@@ -195,13 +194,8 @@ declare namespace Api {
     label: string | null;
     gender: Gender<string>;
     synthesizer: Synthesizer<string>;
-    audioProfile: AudioProfile<string>;
-    speakingRate: number;
-    pitch: number;
-    naturalSampleRateHertz: number | null;
     isActive: boolean;
     isPremium: boolean;
-    isHighestQuality: boolean;
     exampleAudioUrl: string | null;
     language: Language;
     country: Country | null; // The language "Arabic" has no specific country, so it could be "null"
@@ -263,17 +257,5 @@ declare namespace Api {
   export enum Synthesizer {
     GOOGLE = 'Google',
     AWS = 'AWS'
-  }
-
-  export enum AudioProfile {
-    DEFAULT = 'default',
-    HEADPHONE = 'headphone-class-device',
-    SMARTPHONE = 'handset-class-device',
-    SMART_WATCH = 'wearable-class-device',
-    SMALL_HOME_SPEAKER = 'small-bluetooth-speaker-class-device',
-    SMART_HOME_SPEAKER = 'medium-bluetooth-speaker-class-device',
-    LARGE_HOME_ENTERTAINMENT_SYSTEM = 'large-home-entertainment-class-device',
-    CAR_SPEAKER = 'large-automotive-class-device',
-    INTERACTIVE_VOICE_RESPONSE_SYSTEM = 'telephony-class-application'
   }
 }
