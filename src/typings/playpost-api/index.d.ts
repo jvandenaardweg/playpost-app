@@ -60,6 +60,7 @@ declare namespace Api {
     isActive: boolean;
     limitSecondsPerMonth: number;
     limitSecondsPerArticle: number;
+    upgradeFromId: string | null; // ID from a subscription
     createdAt: string;
     updatedAt: string;
   }

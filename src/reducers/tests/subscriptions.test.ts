@@ -1,7 +1,7 @@
 import subscriptionValidationResultActiveMock from '../../../tests/__mocks__/subscription-validation-result-active';
 import subscriptionsMock from '../../../tests/__mocks__/subscriptions';
-import { GET_ACTIVE_SUBSCRIPTIONS_FAIL_MESSAGE, POST_VALIDATE_SUBSCRIPTION_RECEIPT_FAIL_MESSAGE } from '../../constants/messages';
-import { GET_ACTIVE_SUBSCRIPTIONS, GET_ACTIVE_SUBSCRIPTIONS_FAIL, GET_ACTIVE_SUBSCRIPTIONS_SUCCESS, initialState, POST_VALIDATE_SUBSCRIPTION_RECEIPT, POST_VALIDATE_SUBSCRIPTION_RECEIPT_FAIL, POST_VALIDATE_SUBSCRIPTION_RECEIPT_SUCCESS, RESET_SUBSCRIPTIONS_STATE, RESET_VALIDATE_SUBSCRIPTION_RECEIPT_ERROR, SET_IS_ACTIVE_UPGRADE_MODAL, SET_IS_LOADING_RESTORE, SET_IS_LOADING_UPGRADE, subscriptionsReducer } from '../subscriptions';
+import { GET_IN_APP_SUBSCRIPTIONS_FAIL_MESSAGE, POST_VALIDATE_SUBSCRIPTION_RECEIPT_FAIL_MESSAGE } from '../../constants/messages';
+import { GET_IN_APP_SUBSCRIPTIONS, GET_IN_APP_SUBSCRIPTIONS_FAIL, GET_IN_APP_SUBSCRIPTIONS_SUCCESS, initialState, POST_VALIDATE_SUBSCRIPTION_RECEIPT, POST_VALIDATE_SUBSCRIPTION_RECEIPT_FAIL, POST_VALIDATE_SUBSCRIPTION_RECEIPT_SUCCESS, RESET_SUBSCRIPTIONS_STATE, RESET_VALIDATE_SUBSCRIPTION_RECEIPT_ERROR, SET_IS_ACTIVE_UPGRADE_MODAL, SET_IS_LOADING_RESTORE, SET_IS_LOADING_UPGRADE, subscriptionsReducer } from '../subscriptions';
 
 describe('subscriptions reducer', () => {
   it('should return the initial state', () => {
@@ -27,7 +27,7 @@ describe('subscriptions reducer', () => {
     ).toEqual(expectedState);
   });
 
-  it('should handle GET_ACTIVE_SUBSCRIPTIONS', () => {
+  it('should handle GET_IN_APP_SUBSCRIPTIONS', () => {
     const expectedState = {
       ...initialState,
       isLoadingSubscriptions: true,
@@ -36,12 +36,12 @@ describe('subscriptions reducer', () => {
 
     expect(
       subscriptionsReducer(initialState, {
-        type: GET_ACTIVE_SUBSCRIPTIONS
+        type: GET_IN_APP_SUBSCRIPTIONS
       })
     ).toEqual(expectedState);
   });
 
-  it('should handle GET_ACTIVE_SUBSCRIPTIONS_SUCCESS', () => {
+  it('should handle GET_IN_APP_SUBSCRIPTIONS_SUCCESS', () => {
     const expectedState = {
       ...initialState,
       isLoadingSubscriptions: false,
@@ -51,7 +51,7 @@ describe('subscriptions reducer', () => {
 
     expect(
       subscriptionsReducer(initialState, {
-        type: GET_ACTIVE_SUBSCRIPTIONS_SUCCESS,
+        type: GET_IN_APP_SUBSCRIPTIONS_SUCCESS,
         payload: {
           data: subscriptionsMock
         }
@@ -59,19 +59,19 @@ describe('subscriptions reducer', () => {
     ).toEqual(expectedState);
   });
 
-  it('should handle GET_ACTIVE_SUBSCRIPTIONS_FAIL', () => {
+  it('should handle GET_IN_APP_SUBSCRIPTIONS_FAIL', () => {
     const expectedState = {
       ...initialState,
       isLoadingSubscriptions: false,
-      error: GET_ACTIVE_SUBSCRIPTIONS_FAIL_MESSAGE
+      error: GET_IN_APP_SUBSCRIPTIONS_FAIL_MESSAGE
     };
 
     expect(
       subscriptionsReducer(initialState, {
-        type: GET_ACTIVE_SUBSCRIPTIONS_FAIL,
+        type: GET_IN_APP_SUBSCRIPTIONS_FAIL,
         payload: {
           data: {
-            error: GET_ACTIVE_SUBSCRIPTIONS_FAIL_MESSAGE
+            error: GET_IN_APP_SUBSCRIPTIONS_FAIL_MESSAGE
           }
         }
       })

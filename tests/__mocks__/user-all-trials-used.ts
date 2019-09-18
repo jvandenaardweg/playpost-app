@@ -20,6 +20,7 @@ const user: Api.User = {
       limitSecondsPerMonth: 7200,
       limitSecondsPerArticle: 1800,
       isActive: true,
+      upgradeFromId: "e4f10326-4584-4a7e-b833-dd388cb2a41a",
       createdAt: '2019-07-22T03:24:53.236Z',
       updatedAt: '2019-09-04T08:11:56.748Z'
     },
@@ -35,6 +36,7 @@ const user: Api.User = {
       limitSecondsPerMonth: 7200,
       limitSecondsPerArticle: 1800,
       isActive: true,
+      upgradeFromId: "e4f10326-4584-4a7e-b833-dd388cb2a41a",
       createdAt: '2019-06-01T08:16:42.873Z',
       updatedAt: '2019-09-04T08:11:56.766Z'
     }

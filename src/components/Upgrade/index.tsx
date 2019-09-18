@@ -13,6 +13,7 @@ import fonts from '../../constants/fonts';
 import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_UNLIMITED } from '../../constants/in-app-purchase';
 import spacing from '../../constants/spacing';
 import { URL_ACCEPTABLE_USE_POLICY, URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../../constants/urls';
+import { SubscriptionFeatures } from '../../containers/UpgradeContainer';
 
 export interface Props {
   isLoadingSubscriptionItems: boolean;
@@ -21,7 +22,7 @@ export interface Props {
   isEligibleForTrial: boolean;
   subscriptions?: Array<RNIap.Subscription<string>>;
   /* tslint:disable-next-line no-any */
-  subscriptionFeatures: any[];
+  subscriptionFeatures: SubscriptionFeatures;
   activeSubscriptionProductId: string;
   centeredSubscriptionProductId: string;
   onPressUpgrade(productId: string): void;
@@ -51,8 +52,8 @@ export const Upgrade: React.FC<Props> = React.memo(
 
     const windowWidth = Dimensions.get('window').width;
     const cardMargin = 6;
-    const cardFirstMarginLeft = spacing.default * 2.5;
-    const cardLastMarginRight = spacing.default * 2.5;
+    const cardFirstMarginLeft = spacing.default * 2.75;
+    const cardLastMarginRight = spacing.default * 2.75;
     const paymentAccountTitle = (Platform.OS === 'android') ? 'Google Play' : 'Apple ID';
 
     const cardWidth = windowWidth - cardFirstMarginLeft - cardLastMarginRight;
@@ -98,13 +99,16 @@ export const Upgrade: React.FC<Props> = React.memo(
             decelerationRate={0}
           >
             {subscriptionFeatures &&
-              subscriptionFeatures.map((subscriptionFeature, index) => {
+              Object.keys(subscriptionFeatures).map((subscriptionFeatureProductId, index) => {
                 const isFirst = index === 0;
-                const isLast = subscriptionFeatures.length === index + 1;
+                const isLast = Object.keys(subscriptionFeatures).length === index + 1;
+
+                const subscriptionFeature = subscriptionFeatures[subscriptionFeatureProductId];
 
                 // Get the subscription data using the productId
-                const featureSubscription = subscriptions && subscriptions.find(subscription => subscription.productId === subscriptionFeature.productId);
-                const productId = featureSubscription ? featureSubscription.productId : subscriptionFeature.productId;
+                const featureSubscription = subscriptions && subscriptions.find(subscription => subscription.productId === subscriptionFeatureProductId);
+                const productId = featureSubscription ? featureSubscription.productId : subscriptionFeatureProductId;
+                const isAvailableOnService = !!featureSubscription;
 
                 const androidTrialPeriodMapping = {
                   'D': 'day',
@@ -148,12 +152,12 @@ export const Upgrade: React.FC<Props> = React.memo(
                 const buttonTitleAction = isDowngradePaidSubscription(productId) || productId === SUBSCRIPTION_PRODUCT_ID_FREE ? freeButtonTitle : trialButtonTitle ? trialButtonTitle : defaultButtonTitle;
                 const buttonTitle = activeSubscriptionProductId === productId ? 'Current subscription' : buttonTitleAction;
 
-                const isDisabled = isLoadingSubscriptionItems || isLoadingBuySubscription || isLoadingRestorePurchases || activeSubscriptionProductId === productId;
+                const isDisabled = isLoadingSubscriptionItems || isLoadingBuySubscription || isLoadingRestorePurchases || activeSubscriptionProductId === productId || !isAvailableOnService;
                 const isLoading = isLoadingSubscriptionItems || isLoadingBuySubscription;
 
                 return (
                   <View
-                    key={subscriptionFeature.productId}
+                    key={subscriptionFeatureProductId}
                     style={[
                       styles.card,
                       { width: cardWidth, marginLeft: isFirst ? cardFirstMarginLeft : cardMargin, marginRight: isLast ? cardLastMarginRight : cardMargin }
@@ -190,17 +194,20 @@ export const Upgrade: React.FC<Props> = React.memo(
                         <Text style={styles.cardFooterText}>{subscriptionFeature.footer}</Text>
                       </View>
                     )}
-                    <View>
-                      <Button
-                        type="clear"
-                        title="Restore purchase"
-                        loading={isLoadingRestorePurchases}
-                        disabled={isLoadingRestorePurchases}
-                        onPress={onPressRestore}
-                        titleStyle={{ fontSize: fonts.fontSize.body }}
-                        loadingProps={{ color: 'black' }}
-                      />
-                    </View>
+
+                    {(productId !== 'free') && (
+                      <View>
+                        <Button
+                          type="clear"
+                          title="Restore purchase"
+                          loading={isLoadingRestorePurchases}
+                          disabled={isLoadingRestorePurchases}
+                          onPress={onPressRestore}
+                          titleStyle={{ fontSize: fonts.fontSize.body }}
+                          loadingProps={{ color: 'black' }}
+                        />
+                      </View>
+                    )}
                   </View>
                 );
               })}
@@ -211,7 +218,7 @@ export const Upgrade: React.FC<Props> = React.memo(
 
           <View style={styles.featuresContainer}>
             <View style={styles.header}>
-              <Text style={styles.headerTitle}>Upgrade to Premium or Unlimited</Text>
+              <Text style={styles.headerTitle}>{'Upgrade to\nPremium or Unlimited'}</Text>
 
               <View style={styles.feature}>
                 <Icon.FontAwesome5 name="gem" size={34} style={styles.featureIcon} />

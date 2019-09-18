@@ -11,8 +11,6 @@ import { NetworkContext } from '../contexts/NetworkProvider';
 import { ArticleContainer } from './ArticleContainer';
 
 import { getPlaylist, reOrderPlaylistItem } from '../reducers/playlist';
-import { getUser } from '../reducers/user';
-import { getLanguages } from '../reducers/voices';
 
 import { selectArchivedPlaylistItems, selectFavoritedPlaylistItems, selectNewPlaylistItems } from '../selectors/playlist';
 
@@ -98,8 +96,6 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
 
       // If we mount this component, and we don't have any playlist items, fetch them
       if (isConnected && (!isArchiveScreen || !isFavoriteScreen)) {
-        this.prePopulateApp();
-
         if (!this.hasPlaylistItems) {
           this.setState({ isLoading: true }, () => {
             this.fetchPlaylist();
@@ -110,16 +106,6 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
       SplashScreen.hide();
     });
 
-  }
-
-  /**
-   * Method to pre-populate the app with initial data
-   * We use it here because we can give the user a faster perceived loading performance
-   */
-  prePopulateApp = async () => {
-    const promises = await Promise.all([this.props.getUser(), this.props.getLanguages()]);
-
-    return promises;
   }
 
   async showOrHideHelpVideo() {
@@ -328,8 +314,6 @@ interface StateProps {
 
 interface DispatchProps {
   getPlaylist: typeof getPlaylist;
-  getLanguages: typeof getLanguages;
-  getUser: typeof getUser;
   reOrderPlaylistItem: typeof reOrderPlaylistItem;
 }
 
@@ -342,8 +326,6 @@ const mapStateToProps = (state: RootState) => ({
 
 const mapDispatchToProps = {
   getPlaylist,
-  getLanguages,
-  getUser,
   reOrderPlaylistItem
 };
 

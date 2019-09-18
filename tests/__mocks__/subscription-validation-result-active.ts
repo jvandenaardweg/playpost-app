@@ -27,6 +27,7 @@ const subscriptionValidationResult: Api.ReceiptValidationResponseApple = {
     limitSecondsPerMonth: 7200,
     limitSecondsPerArticle: 900,
     isActive: true,
+    upgradeFromId: "e4f10326-4584-4a7e-b833-dd388cb2a41a",
     createdAt: '2019-06-01T08:16:42.873Z',
     updatedAt: '2019-07-02T05:32:35.020Z'
   }

@@ -35,7 +35,7 @@ import { selectTotalAvailableVoices } from '../selectors/voices';
 import { CustomSectionList, IListItem } from '../components/CustomSectionList';
 import { Usage } from '../components/Usage';
 
-import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../constants/in-app-purchase';
+import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_UNLIMITED } from '../constants/in-app-purchase';
 import NavigationService from '../navigation/NavigationService';
 
 
@@ -179,7 +179,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
   handleOnPressUpgrade = () => {
     const { activeSubscriptionProductId } = this.props;
 
-    const centeredSubscriptionProductId = (activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE) ? SUBSCRIPTION_PRODUCT_ID_PREMIUM : SUBSCRIPTION_PRODUCT_ID_PLUS;
+    const centeredSubscriptionProductId = (activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE) ? SUBSCRIPTION_PRODUCT_ID_PREMIUM : SUBSCRIPTION_PRODUCT_ID_UNLIMITED;
 
     NavigationService.navigate('Upgrade', {
       centeredSubscriptionProductId

@@ -3,6 +3,7 @@ import { Alert } from 'react-native';
 import { NavigationInjectedProps } from 'react-navigation';
 import { connect } from 'react-redux';
 
+import { NetworkContext } from '../contexts/NetworkProvider';
 import { RootState } from '../reducers';
 import { resetErrorRequestPasswordToken, resetErrorUpdatePassword } from '../reducers/auth';
 import { resetCreateAudiofileError } from '../reducers/player';
@@ -33,6 +34,9 @@ type Props = IProps & NavigationInjectedProps & StateProps & DispatchProps;
  * When creating errors in the API, make sure they will be understood by the end-user.
  */
 export class APIErrorAlertContainerComponent extends React.Component<Props, State> {
+
+  static contextType = NetworkContext;
+
   state = {
     hasOpenAlert: false // A way to prevent multiple alerts being thrown at the user
   };
@@ -59,8 +63,15 @@ export class APIErrorAlertContainerComponent extends React.Component<Props, Stat
       isActiveUpgradeModal
     } = this.props;
 
+    const { isConnected } = this.context;
+
     // Do not show alert's when there are custom modals active
     if (isActiveUpgradeModal) {
+      return;
+    }
+
+    // Do not show alerts when not connected to the internet
+    if (isConnected) {
       return;
     }
 

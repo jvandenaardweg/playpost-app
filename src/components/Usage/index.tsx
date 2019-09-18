@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import colors from '../../constants/colors';
-import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../constants/in-app-purchase';
+import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_UNLIMITED } from '../../constants/in-app-purchase';
 import styles from './styles';
 
 
@@ -34,7 +34,7 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
 
   const upgradeScreenCenteredSubscriptionProductId =
     activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_PREMIUM
-      ? SUBSCRIPTION_PRODUCT_ID_PLUS
+      ? SUBSCRIPTION_PRODUCT_ID_UNLIMITED
       : activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE
       ? SUBSCRIPTION_PRODUCT_ID_PREMIUM
       : SUBSCRIPTION_PRODUCT_ID_PREMIUM;

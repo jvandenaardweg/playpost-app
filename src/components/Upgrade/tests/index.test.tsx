@@ -1,68 +1,72 @@
 import React from 'react';
 import { fireEvent, render, RenderAPI } from 'react-native-testing-library';
 
-import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_FREE_ANDROID, SUBSCRIPTION_PRODUCT_ID_FREE_APPLE, SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PLUS_ANDROID, SUBSCRIPTION_PRODUCT_ID_PLUS_APPLE, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_PREMIUM_ANDROID, SUBSCRIPTION_PRODUCT_ID_PREMIUM_APPLE } from '../../../constants/in-app-purchase';
+import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_FREE_ANDROID, SUBSCRIPTION_PRODUCT_ID_FREE_APPLE, SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PLUS_ANDROID, SUBSCRIPTION_PRODUCT_ID_PLUS_APPLE, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_PREMIUM_ANDROID, SUBSCRIPTION_PRODUCT_ID_PREMIUM_APPLE, SUBSCRIPTION_PRODUCT_ID_UNLIMITED, SUBSCRIPTION_PRODUCT_ID_UNLIMITED_ANDROID } from '../../../constants/in-app-purchase';
 import { Upgrade } from '../index';
 
 import mockSubscriptionsAndroid from '../../../../tests/__mocks__/react-native-iap/subscriptions-android';
 import mockSubscriptionsIOS from '../../../../tests/__mocks__/react-native-iap/subscriptions-ios';
 
-const subscriptionFeaturesIOS = [
-  {
-    productId: SUBSCRIPTION_PRODUCT_ID_FREE,
+const subscriptionFeaturesIOS = {
+  [SUBSCRIPTION_PRODUCT_ID_FREE]: {
     title: 'Free',
-    price: '0',
+    price: 0,
     body: ['Basic quality voices', 'First 30 minutes using high quality voice', 'One voice option per language', 'Max. 30 minutes per month', 'Unlimited playlist items', 'Some advertisements'],
     footer: 'About 5 articles to audio, per month'
   },
-  {
-    productId: SUBSCRIPTION_PRODUCT_ID_PREMIUM,
+  [SUBSCRIPTION_PRODUCT_ID_PREMIUM]: {
     title: 'Premium',
-    price: null,
+    price: 0,
     body: [`10+ High Quality voices`, 'Multiple voice options per language', 'Max. 120 minutes per month', 'Unlimited playlist items', 'No advertisements'],
     footer: 'About 25 articles to audio, per month'
   },
-  {
-    productId: SUBSCRIPTION_PRODUCT_ID_PLUS,
+  [SUBSCRIPTION_PRODUCT_ID_PLUS]: {
     title: 'Plus',
-    price: null,
+    price: 0,
     body: [`10+ High Quality voices`, 'Multiple voice options per language', 'Max. 300 minutes per month', 'Unlimited playlist items', 'No advertisements'],
     footer: 'About 65 articles to audio, per month'
+  },
+  [SUBSCRIPTION_PRODUCT_ID_UNLIMITED]: {
+    title: 'Unlimited',
+    price: 0,
+    body: [`10+ High Quality voices`, 'Multiple voice options per language', 'Unlimited minutes per month', 'Unlimited playlist items', 'No advertisements'],
+    footer: 'About 65 articles to audio, per month'
   }
-]
+}
 
-const subscriptionFeaturesAndroid = [
-  {
-    productId: SUBSCRIPTION_PRODUCT_ID_FREE_ANDROID,
+const subscriptionFeaturesAndroid = {
+  [SUBSCRIPTION_PRODUCT_ID_FREE_ANDROID]: {
     title: 'Free',
-    price: '0',
-    body: ['Basic quality voices', 'One voice option per language', 'Max. 30 minutes per month', 'Unlimited playlist items', 'Some advertisements'],
+    price: 0,
+    body: ['Basic quality voices', 'First 30 minutes using high quality voice', 'One voice option per language', 'Max. 30 minutes per month', 'Unlimited playlist items', 'Some advertisements'],
     footer: 'About 5 articles to audio, per month'
   },
-  {
-    productId: SUBSCRIPTION_PRODUCT_ID_PREMIUM_ANDROID,
+  [SUBSCRIPTION_PRODUCT_ID_PREMIUM_ANDROID]: {
     title: 'Premium',
-    price: null,
+    price: 0,
     body: [`10+ High Quality voices`, 'Multiple voice options per language', 'Max. 120 minutes per month', 'Unlimited playlist items', 'No advertisements'],
     footer: 'About 25 articles to audio, per month'
   },
-  {
-    productId: SUBSCRIPTION_PRODUCT_ID_PLUS_ANDROID,
+  [SUBSCRIPTION_PRODUCT_ID_PLUS_ANDROID]: {
     title: 'Plus',
-    price: null,
+    price: 0,
     body: [`10+ High Quality voices`, 'Multiple voice options per language', 'Max. 300 minutes per month', 'Unlimited playlist items', 'No advertisements'],
     footer: 'About 65 articles to audio, per month'
+  },
+  [SUBSCRIPTION_PRODUCT_ID_UNLIMITED_ANDROID]: {
+    title: 'Unlimited',
+    price: 0,
+    body: [`10+ High Quality voices`, 'Multiple voice options per language', 'Unlimited minutes per month', 'Unlimited playlist items', 'No advertisements'],
+    footer: 'About 65 articles to audio, per month'
   }
-]
+}
 
 const onPressUpgradeHandler = jest.fn();
 const onPressRestoreHandler = jest.fn();
-const onPressPrivacyHandler = jest.fn();
-const onPressTermsHandler = jest.fn();
+const onPressOpenUrlHandler = jest.fn();
 const onPressCancelHandler = jest.fn();
 const isDowngradePaidSubscriptionHandler = jest.fn();
 
-// TODO: use Prop type when RNIap types are correct
 const defaultProps: any = {
   isLoadingSubscriptionItems: false,
   isLoadingBuySubscription: false,
@@ -74,8 +78,7 @@ const defaultProps: any = {
   subscriptionFeatures: subscriptionFeaturesIOS,
   onPressUpgrade: onPressUpgradeHandler,
   onPressRestore: onPressRestoreHandler,
-  onPressPrivacy: onPressPrivacyHandler,
-  onPressTerms: onPressTermsHandler,
+  onPressOpenUrl: onPressOpenUrlHandler,
   onPressCancel: onPressCancelHandler,
   isDowngradePaidSubscription: isDowngradePaidSubscriptionHandler,
 }

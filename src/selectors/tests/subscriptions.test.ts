@@ -1,8 +1,9 @@
 import { createStore } from 'redux';
 import {
+  selectAvailableInAppSubscriptions,
   selectErrorValidateSubscriptionReceipt,
+  selectInAppSubscriptions,
   selectIsLoadingSubscriptions,
-  selectSubscriptions,
   selectSubscriptionsError,
   selectSubscriptionsIsLoadingRestore,
   selectSubscriptionsIsLoadingUpgrade,
@@ -27,7 +28,7 @@ describe('subscriptions selector', () => {
     expect(subscriptionsSelector(rootState)).toEqual(initialState);
   });
 
-  it('selectSubscriptions should return the subscriptions', () => {
+  it('selectInAppSubscriptions should return the subscriptions', () => {
     const exampleState = {
       ...rootState,
       subscriptions: {
@@ -36,7 +37,35 @@ describe('subscriptions selector', () => {
       }
     };
 
-    expect(selectSubscriptions(exampleState)).toEqual(subscriptionsMock);
+    const subscriptions = selectInAppSubscriptions(exampleState)
+
+    expect(subscriptions).toHaveLength(4);
+
+    // Should have the correct order
+    expect(subscriptions && subscriptions[0].name).toBe('Free');
+    expect(subscriptions && subscriptions[1].name).toBe('Premium');
+    expect(subscriptions && subscriptions[2].name).toBe('Plus');
+    expect(subscriptions && subscriptions[3].name).toBe('Unlimited');
+  });
+
+  it('selectAvailableInAppSubscriptions should return the subscriptions', () => {
+    const exampleState = {
+      ...rootState,
+      subscriptions: {
+        ...rootState.subscriptions,
+        subscriptions: subscriptionsMock
+      }
+    };
+
+    const subscriptions = selectAvailableInAppSubscriptions(exampleState)
+
+    expect(subscriptions).toHaveLength(3);
+
+    // Should have the correct order
+    expect(subscriptions && subscriptions[0].name).toBe('Free');
+    expect(subscriptions && subscriptions[1].name).toBe('Premium');
+    expect(subscriptions && subscriptions[2]).not.toBe('Plus'); // Plus is inactive in our mock
+    expect(subscriptions && subscriptions[2].name).toBe('Unlimited');
   });
 
   it('selectIsLoadingSubscriptions should return the loading state', () => {

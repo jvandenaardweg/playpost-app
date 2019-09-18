@@ -2,7 +2,7 @@ import React from 'react';
 // import { render, RenderAPI, fireEvent } from 'react-native-testing-library';
 import renderer from 'react-test-renderer';
 
-import { UpgradeContainerComponent } from '../UpgradeContainer';
+import { Props, UpgradeContainerComponent } from '../UpgradeContainer';
 
 jest.mock('../../navigation/NavigationService');
 
@@ -14,7 +14,7 @@ import mockSubscriptions from '../../../tests/__mocks__/subscriptions';
 import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../constants/in-app-purchase';
 import { ALERT_SUBSCRIPTION_RESTORE_PLATFORM_ANDROID, ALERT_SUBSCRIPTION_RESTORE_PLATFORM_IOS, ALERT_SUBSCRIPTION_UPGRADE_PLATFORM_ANDROID, ALERT_SUBSCRIPTION_UPGRADE_PLATFORM_IOS, ALERT_TITLE_ERROR } from '../../constants/messages';
 
-const validateSubscriptionReceiptHandler = jest.fn();
+const getInAppSubscriptionsHandler = jest.fn();
 const getUserHandler = jest.fn();
 const navigateHandler = jest.fn();
 const navigationGetParamHandler = jest.fn();
@@ -22,21 +22,30 @@ const navigationGoBackHandler = jest.fn();
 const setIsLoadingUpgradeHandler = jest.fn();
 const setIsLoadingRestoreHandler = jest.fn();
 
-const defaultProps: any = {
+const defaultProps: Props = {
   subscriptionsError: '',
   validationResult: null,
   activeSubscriptionProductId: '',
+  centeredSubscriptionProductId: '',
   userDetails: null,
   totalAvailableVoices: 10,
-  validateSubscriptionReceipt: validateSubscriptionReceiptHandler,
+  isSubscribed: false,
+  userIsEligibleForTrial: false,
+  isLoadingUpgrade: false,
+  isLoadingRestore: false,
+  activeInAppSubscription: null,
+  totalAvailableUnsubscribedVoices: 28,
+  availableInAppSubscriptions: [],
+  getInAppSubscriptions: getInAppSubscriptionsHandler,
   getUser: getUserHandler,
+  setIsLoadingUpgrade: setIsLoadingUpgradeHandler,
+  setIsLoadingRestore: setIsLoadingRestoreHandler,
+
   navigation: {
     navigate: navigateHandler,
     getParam: navigationGetParamHandler,
     goBack: navigationGoBackHandler,
-  },
-  setIsLoadingUpgrade: setIsLoadingUpgradeHandler,
-  setIsLoadingRestore: setIsLoadingRestoreHandler
+  } as any
 };
 
 describe('UpgradeContainerComponent', () => {

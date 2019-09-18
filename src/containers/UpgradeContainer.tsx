@@ -11,7 +11,7 @@ import * as inAppBrowser from '../utils/in-app-browser';
 import { NetworkContext } from '../contexts/NetworkProvider';
 import NavigationService from '../navigation/NavigationService';
 
-import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_UNLIMITED, SUBSCRIPTION_PRODUCT_IDS } from '../constants/in-app-purchase';
+import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_UNLIMITED, SUBSCRIPTION_PRODUCT_IDS } from '../constants/in-app-purchase';
 import {
   ALERT_GENERIC_INTERNET_REQUIRED,
   ALERT_SUBSCRIPTION_INIT_FAIL,
@@ -28,9 +28,9 @@ import {
   URL_MANAGE_APPLE_SUBSCRIPTIONS,
   URL_MANAGE_GOOGLE_SUBSCRIPTIONS} from '../constants/urls';
 import { RootState } from '../reducers';
-import { setIsLoadingRestore, setIsLoadingUpgrade } from '../reducers/subscriptions';
+import { getInAppSubscriptions, setIsLoadingRestore, setIsLoadingUpgrade } from '../reducers/subscriptions';
 import { getUser } from '../reducers/user';
-import { selectSubscriptionsError, selectSubscriptionsIsLoadingRestore, selectSubscriptionsIsLoadingUpgrade, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
+import { selectAvailableInAppSubscriptions, selectSubscriptionsError, selectSubscriptionsIsLoadingRestore, selectSubscriptionsIsLoadingUpgrade, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
 import { selectActiveUserInAppSubscription, selectUserActiveSubscriptionProductId, selectUserDetails, selectUserIsEligibleForTrial, selectUserIsSubscribed } from '../selectors/user';
 import { selectTotalAvailableUnsubscribedVoices, selectTotalAvailableVoices } from '../selectors/voices';
 import * as inAppPurchaseHelper from '../utils/in-app-purchase-helper';
@@ -49,14 +49,15 @@ interface IProps {
 }
 
 export interface SubscriptionFeature {
-  productId: string;
   title: string;
-  price: string | null;
+  price: number; // just a placeholder
   body: string[];
   footer: string;
 }
 
-export type SubscriptionFeatures = SubscriptionFeature[];
+export interface SubscriptionFeatures {
+  [productId: string]: SubscriptionFeature;
+}
 
 export type Props = IProps & StateProps & DispatchProps;
 
@@ -71,38 +72,74 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   }
 
   get subscriptionFeatures(): SubscriptionFeatures {
-    const { totalAvailableVoices, totalAvailableUnsubscribedVoices } = this.props;
+    const { totalAvailableVoices, totalAvailableUnsubscribedVoices, availableInAppSubscriptions } = this.props;
 
-    return [
-      {
-        productId: SUBSCRIPTION_PRODUCT_ID_FREE,
+    const features = {
+      [SUBSCRIPTION_PRODUCT_ID_FREE]: {
         title: 'Free',
-        price: '0',
-        body: [`Access to ${totalAvailableUnsubscribedVoices} of ${totalAvailableVoices} voices`, 'Use basic quality voices', 'One predefined voice per language', 'Max. 30 minutes per month', 'Unlimited playlist items', 'Some advertisements'],
+        price: 0,
+        body: [
+          `Access to ${totalAvailableUnsubscribedVoices} of ${totalAvailableVoices} voices`,
+          'Use basic quality voices',
+          'One predefined voice per language',
+          'Max. 30 minutes per month',
+          'Unlimited playlist items',
+          'Some advertisements'
+        ],
         footer: 'First 30 minutes High Quality voice\nfor free'
       },
-      {
-        productId: SUBSCRIPTION_PRODUCT_ID_PREMIUM,
+      [SUBSCRIPTION_PRODUCT_ID_PREMIUM]: {
         title: 'Premium',
-        price: null,
-        body: [`Access to all ${totalAvailableVoices} voices`, 'Use the highest quality voices', 'Change the voice per language', 'Max. 120 minutes per month', 'Unlimited playlist items', 'No advertisements'],
+        price: 0,
+        body: [
+          `Access to all ${totalAvailableVoices} voices`,
+          'Use the highest quality voices',
+          'Change the voice per language',
+          'Max. 120 minutes per month',
+          'Unlimited playlist items',
+          'No advertisements'
+        ],
         footer: '\n'
       },
-      // {
-      //   productId: SUBSCRIPTION_PRODUCT_ID_PLUS,
-      //   title: 'Plus',
-      //   price: null,
-      //   body: [`Access to all ${totalAvailableVoices} voices`, 'Use the highest quality voices', 'Change the voice per language', 'Max. 300 minutes per month', 'Unlimited playlist items', 'No advertisements'],
-      //   footer: ''
-      // },
-      {
-        productId: SUBSCRIPTION_PRODUCT_ID_UNLIMITED,
+      [SUBSCRIPTION_PRODUCT_ID_PLUS]: {
+        title: 'Plus',
+        price: 0,
+        body: [
+          `Access to all ${totalAvailableVoices} voices`,
+          'Use the highest quality voices',
+          'Change the voice per language',
+          'Max. 300 minutes per month',
+          'Unlimited playlist items',
+          'No advertisements'
+        ],
+        footer: 'Same as Premium,\nbut with more minutes.'
+      },
+      [SUBSCRIPTION_PRODUCT_ID_UNLIMITED]: {
         title: 'Unlimited',
-        price: null,
-        body: [`Access to all ${totalAvailableVoices} voices`, 'Use the highest quality voices', 'Change the voice per language', 'Unlimited minutes per month', 'Unlimited playlist items', 'No advertisements'],
+        price: 0,
+        body: [
+          `Access to all ${totalAvailableVoices} voices`,
+          'Use the highest quality voices',
+          'Change the voice per language',
+          'Unlimited minutes per month',
+          'Unlimited playlist items',
+          'No advertisements'
+        ],
         footer: 'Same as Premium,\nbut with unlimited minutes.'
       }
-    ];
+    }
+
+    const productIds = Object.keys(features)
+    const availableProductIds = availableInAppSubscriptions.map(availableInAppSubscription => availableInAppSubscription.productId);
+
+    // Only show the active subscriptions
+    productIds.map(productId => {
+      if (!availableProductIds.includes(productId)) {
+        delete features[productId];
+      }
+    })
+
+    return features;
   }
 
   static contextType = NetworkContext;
@@ -124,6 +161,9 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       this.handleClose();
       return Alert.alert(ALERT_TITLE_ERROR_NO_INTERNET, ALERT_GENERIC_INTERNET_REQUIRED);
     }
+
+    this.props.getInAppSubscriptions();
+    this.props.getUser();
 
     this.getAvailableSubscriptionItems(SUBSCRIPTION_PRODUCT_IDS);
   }
@@ -445,12 +485,14 @@ interface StateProps {
   isLoadingRestore: ReturnType<typeof selectSubscriptionsIsLoadingRestore>;
   activeInAppSubscription: ReturnType<typeof selectActiveUserInAppSubscription>;
   totalAvailableUnsubscribedVoices: ReturnType<typeof selectTotalAvailableUnsubscribedVoices>;
+  availableInAppSubscriptions: ReturnType<typeof selectAvailableInAppSubscriptions>;
 }
 
 interface DispatchProps {
   getUser: typeof getUser;
   setIsLoadingUpgrade: typeof setIsLoadingUpgrade;
   setIsLoadingRestore: typeof setIsLoadingRestore;
+  getInAppSubscriptions: typeof getInAppSubscriptions;
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
@@ -465,12 +507,14 @@ const mapStateToProps = (state: RootState): StateProps => ({
   isLoadingRestore: selectSubscriptionsIsLoadingRestore(state),
   activeInAppSubscription: selectActiveUserInAppSubscription(state),
   totalAvailableUnsubscribedVoices: selectTotalAvailableUnsubscribedVoices(state),
+  availableInAppSubscriptions: selectAvailableInAppSubscriptions(state)
 });
 
 const mapDispatchToProps = {
   getUser,
   setIsLoadingUpgrade,
-  setIsLoadingRestore
+  setIsLoadingRestore,
+  getInAppSubscriptions
 };
 
 export const UpgradeContainer = connect(

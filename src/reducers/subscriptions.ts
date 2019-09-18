@@ -1,10 +1,10 @@
-import { GENERIC_NETWORK_ERROR, GET_ACTIVE_SUBSCRIPTIONS_FAIL_MESSAGE, POST_VALIDATE_SUBSCRIPTION_RECEIPT_FAIL_MESSAGE } from '../constants/messages';
+import { GENERIC_NETWORK_ERROR, GET_IN_APP_SUBSCRIPTIONS_FAIL_MESSAGE, POST_VALIDATE_SUBSCRIPTION_RECEIPT_FAIL_MESSAGE } from '../constants/messages';
 
 export const RESET_SUBSCRIPTIONS_STATE = 'subscriptions/RESET_SUBSCRIPTIONS_STATE';
 
-export const GET_ACTIVE_SUBSCRIPTIONS = 'subscriptions/GET_ACTIVE_SUBSCRIPTIONS';
-export const GET_ACTIVE_SUBSCRIPTIONS_SUCCESS = 'subscriptions/GET_ACTIVE_SUBSCRIPTIONS_SUCCESS';
-export const GET_ACTIVE_SUBSCRIPTIONS_FAIL = 'subscriptions/GET_ACTIVE_SUBSCRIPTIONS_FAIL';
+export const GET_IN_APP_SUBSCRIPTIONS = 'subscriptions/GET_IN_APP_SUBSCRIPTIONS';
+export const GET_IN_APP_SUBSCRIPTIONS_SUCCESS = 'subscriptions/GET_IN_APP_SUBSCRIPTIONS_SUCCESS';
+export const GET_IN_APP_SUBSCRIPTIONS_FAIL = 'subscriptions/GET_IN_APP_SUBSCRIPTIONS_FAIL';
 
 export const SET_IS_LOADING_UPGRADE = 'subscriptions/SET_IS_LOADING_UPGRADE';
 export const SET_IS_LOADING_RESTORE = 'subscriptions/SET_IS_LOADING_RESTORE';
@@ -61,14 +61,14 @@ export function subscriptionsReducer(state = initialState, action: any): Subscri
         isLoadingRestore: action.payload,
       };
 
-    case GET_ACTIVE_SUBSCRIPTIONS:
+    case GET_IN_APP_SUBSCRIPTIONS:
       return {
         ...state,
         isLoadingSubscriptions: true,
         error: ''
       };
 
-    case GET_ACTIVE_SUBSCRIPTIONS_SUCCESS:
+    case GET_IN_APP_SUBSCRIPTIONS_SUCCESS:
       return {
         ...state,
         isLoadingSubscriptions: false,
@@ -76,7 +76,7 @@ export function subscriptionsReducer(state = initialState, action: any): Subscri
         error: ''
       };
 
-    case GET_ACTIVE_SUBSCRIPTIONS_FAIL:
+    case GET_IN_APP_SUBSCRIPTIONS_FAIL:
       let getSubscriptionsFailMessage = '';
 
       // Network error
@@ -87,7 +87,7 @@ export function subscriptionsReducer(state = initialState, action: any): Subscri
         if (action.error && action.error.response && action.error.response.data && action.error.response.data.message) {
           getSubscriptionsFailMessage = action.error.response.data.message;
         } else {
-          getSubscriptionsFailMessage = GET_ACTIVE_SUBSCRIPTIONS_FAIL_MESSAGE;
+          getSubscriptionsFailMessage = GET_IN_APP_SUBSCRIPTIONS_FAIL_MESSAGE;
         }
       }
 
@@ -172,13 +172,13 @@ export const resetValidateSubscriptionReceiptError = () => ({
   type: RESET_VALIDATE_SUBSCRIPTION_RECEIPT_ERROR
 });
 
-export function getActiveSubscriptions() {
+export function getInAppSubscriptions() {
   return {
-    type: GET_ACTIVE_SUBSCRIPTIONS,
+    type: GET_IN_APP_SUBSCRIPTIONS,
     payload: {
       request: {
         method: 'get',
-        url: '/v1/in-app-subscriptions/active'
+        url: '/v1/in-app-subscriptions'
       }
     }
   };

@@ -1,5 +1,5 @@
 import RNIap, { SubscriptionPurchase } from 'react-native-iap';
-import { SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../constants/in-app-purchase';
+import { SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_UNLIMITED } from '../../constants/in-app-purchase';
 import * as inAppPurchaseHelper from '../in-app-purchase-helper'
 
 jest.mock('react-native-iap');
@@ -116,6 +116,36 @@ describe('in-app-purchase-helper', () => {
       expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_PREMIUM)
     })
 
+    it('should correctly handle an upgrade on Android from free to unlimited', async () => {
+      jest.mock('Platform', () => {
+        const Platform = require.requireActual('Platform');
+        Platform.OS = 'android';
+        return Platform;
+      });
+
+      await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_UNLIMITED, '', '');
+
+      const spyRequestSubscription = jest.spyOn(RNIap, 'requestSubscription')
+
+      expect(spyRequestSubscription).toHaveBeenCalledTimes(1)
+      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_UNLIMITED)
+    })
+
+    it('should correctly handle an upgrade on Android from free to plus', async () => {
+      jest.mock('Platform', () => {
+        const Platform = require.requireActual('Platform');
+        Platform.OS = 'android';
+        return Platform;
+      });
+
+      await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PLUS, '', '');
+
+      const spyRequestSubscription = jest.spyOn(RNIap, 'requestSubscription')
+
+      expect(spyRequestSubscription).toHaveBeenCalledTimes(1)
+      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_PLUS)
+    })
+
     it('should correctly handle an upgrade on Android from premium to plus', async () => {
       jest.mock('Platform', () => {
         const Platform = require.requireActual('Platform');
@@ -129,6 +159,36 @@ describe('in-app-purchase-helper', () => {
 
       expect(spyRequestSubscription).toHaveBeenCalledTimes(1)
       expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM, 1)
+    })
+
+    it('should correctly handle an upgrade on Android from premium to unlimited', async () => {
+      jest.mock('Platform', () => {
+        const Platform = require.requireActual('Platform');
+        Platform.OS = 'android';
+        return Platform;
+      });
+
+      await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_UNLIMITED, SUBSCRIPTION_PRODUCT_ID_PREMIUM, 'google');
+
+      const spyRequestSubscription = jest.spyOn(RNIap, 'requestSubscription')
+
+      expect(spyRequestSubscription).toHaveBeenCalledTimes(1)
+      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_UNLIMITED, SUBSCRIPTION_PRODUCT_ID_PREMIUM, 1)
+    })
+
+    it('should correctly handle an downgrade on Android from unlimited to premium', async () => {
+      jest.mock('Platform', () => {
+        const Platform = require.requireActual('Platform');
+        Platform.OS = 'android';
+        return Platform;
+      });
+
+      await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_UNLIMITED, 'google');
+
+      const spyRequestSubscription = jest.spyOn(RNIap, 'requestSubscription')
+
+      expect(spyRequestSubscription).toHaveBeenCalledTimes(1)
+      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_UNLIMITED, 1)
     })
 
     it('should correctly handle an downgrade on Android from plus to premium', async () => {
@@ -153,12 +213,42 @@ describe('in-app-purchase-helper', () => {
         return Platform;
       });
 
-      await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PREMIUM, 'free', 'apple');
+      await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PREMIUM, '', 'apple');
 
       const spyRequestSubscription = jest.spyOn(RNIap, 'requestSubscription')
 
       expect(spyRequestSubscription).toHaveBeenCalledTimes(1)
       expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_PREMIUM)
+    })
+
+    it('should correctly handle an upgrade on iOS from free to plus', async () => {
+      jest.mock('Platform', () => {
+        const Platform = require.requireActual('Platform');
+        Platform.OS = 'ios';
+        return Platform;
+      });
+
+      await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PLUS, '', 'apple');
+
+      const spyRequestSubscription = jest.spyOn(RNIap, 'requestSubscription')
+
+      expect(spyRequestSubscription).toHaveBeenCalledTimes(1)
+      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_PLUS)
+    })
+
+    it('should correctly handle an upgrade on iOS from free to unlimited', async () => {
+      jest.mock('Platform', () => {
+        const Platform = require.requireActual('Platform');
+        Platform.OS = 'ios';
+        return Platform;
+      });
+
+      await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_UNLIMITED, '', 'apple');
+
+      const spyRequestSubscription = jest.spyOn(RNIap, 'requestSubscription')
+
+      expect(spyRequestSubscription).toHaveBeenCalledTimes(1)
+      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_UNLIMITED)
     })
 
     it('should correctly handle an upgrade on iOS from premium to plus', async () => {
@@ -168,7 +258,7 @@ describe('in-app-purchase-helper', () => {
         return Platform;
       });
 
-      await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM, 'apple');
+      await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PLUS, '', 'apple');
 
       const spyRequestSubscription = jest.spyOn(RNIap, 'requestSubscription')
 

@@ -6,8 +6,9 @@ import { RootState } from '../reducers';
 import { getPlaylist } from '../reducers/playlist';
 
 import { setAuthToken } from '../reducers/auth';
-import { validateSubscriptionReceipt } from '../reducers/subscriptions';
+import { getInAppSubscriptions, validateSubscriptionReceipt } from '../reducers/subscriptions';
 import { getUser } from '../reducers/user';
+import { getLanguages } from '../reducers/voices';
 import { selectAuthenticationToken, selectIsLoggedIn } from '../selectors/auth';
 import { selectSubscriptionsValidationResult } from '../selectors/subscriptions';
 import { selectUserActiveSubscriptionProductId } from '../selectors/user';
@@ -38,8 +39,10 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
 
   appStateChangeListener: void | null = null;
 
-  componentDidMount() {
+  async componentDidMount() {
     this.appStateChangeListener = AppState.addEventListener('change', this.handleAppStateChange);
+
+    this.syncAppWithRequiredData();
   }
 
   componentWillUnmount() {
@@ -48,6 +51,25 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
     if (this.appStateChangeListener) {
       this.appStateChangeListener = null;
     }
+  }
+
+  /**
+   * Method to sync the app with required data used throughout the app.
+   * We want to keep this data in sync when the user starts the app, and comes back to the app
+   */
+  syncAppWithRequiredData = () => {
+    const { isLoggedIn } = this.props;
+
+    if (!isLoggedIn) {
+      return;
+    }
+
+    return Promise.all([
+      this.props.getPlaylist(),
+      this.props.getUser(),
+      this.props.getInAppSubscriptions(),
+      this.props.getLanguages()
+    ])
   }
 
   /**
@@ -65,8 +87,7 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
         this.syncAuthToken()
 
         // Make sure the playlist and user data is up-to-date when user comes back
-        this.fetchUserPlaylist();
-        this.fetchUser();
+        this.syncAppWithRequiredData();
       }
     });
   }
@@ -113,6 +134,13 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
     this.props.getUser();
   }
 
+  fetchInAppSubscriptions = () => {
+    const { isLoggedIn } = this.props;
+
+    if (!isLoggedIn) { return; }
+    this.props.getInAppSubscriptions();
+  }
+
   render() {
     return <AppStateContext.Provider value={this.state}>{this.props.children}</AppStateContext.Provider>;
   }
@@ -129,6 +157,8 @@ interface DispatchProps {
   getPlaylist: typeof getPlaylist;
   validateSubscriptionReceipt: typeof validateSubscriptionReceipt;
   getUser: typeof getUser;
+  getInAppSubscriptions: typeof getInAppSubscriptions;
+  getLanguages: typeof getLanguages;
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
@@ -141,7 +171,9 @@ const mapStateToProps = (state: RootState): StateProps => ({
 const mapDispatchToProps = {
   getPlaylist,
   validateSubscriptionReceipt,
-  getUser
+  getUser,
+  getInAppSubscriptions,
+  getLanguages
 };
 
 export const AppStateProvider = connect(

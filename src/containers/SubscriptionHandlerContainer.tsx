@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { NetworkContext } from '../contexts/NetworkProvider';
 
 import { UpgradeModal } from '../components/UpgradeModal';
-import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../constants/in-app-purchase';
+import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_UNLIMITED } from '../constants/in-app-purchase';
 import { ALERT_SUBSCRIPTION_EXPIRED, ALERT_SUBSCRIPTION_RESTORE_SUCCESS, ALERT_TITLE_ERROR, ALERT_TITLE_SUBSCRIPTION_EXPIRED, ALERT_TITLE_SUBSCRIPTION_RESTORE_SUCCESS, ALERT_TITLE_SUBSCRIPTION_UPGRADE_ERROR } from '../constants/messages';
 import { URL_FEEDBACK } from '../constants/urls';
 import NavigationService from '../navigation/NavigationService';
@@ -261,7 +261,7 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
   handleOnPressModalUpgrade = () => {
     const { activeInAppSubscription } = this.props;
     const activeProductId = activeInAppSubscription && activeInAppSubscription.inAppSubscription.productId;
-    const centeredSubscriptionProductId = (activeProductId === SUBSCRIPTION_PRODUCT_ID_FREE) ? SUBSCRIPTION_PRODUCT_ID_PREMIUM : (!activeProductId) ? SUBSCRIPTION_PRODUCT_ID_PREMIUM : SUBSCRIPTION_PRODUCT_ID_PLUS;
+    const centeredSubscriptionProductId = (activeProductId === SUBSCRIPTION_PRODUCT_ID_FREE) ? SUBSCRIPTION_PRODUCT_ID_PREMIUM : (!activeProductId) ? SUBSCRIPTION_PRODUCT_ID_PREMIUM : SUBSCRIPTION_PRODUCT_ID_UNLIMITED;
 
     this.props.setIsActiveUpgradeModal(false)
 

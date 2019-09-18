@@ -12,16 +12,17 @@ export default StyleSheet.create({
     marginBottom: spacing.default
   },
   headerTitle: {
-    fontSize: fonts.fontSize.titleLarge,
+    fontSize: fonts.fontSize.titleExtraLarge,
     textAlign: 'center',
     fontWeight: fonts.fontWeight.bold,
+    lineHeight: fonts.fontSize.titleExtraLarge * 1.5,
     marginTop: spacing.default,
     marginBottom: spacing.large,
     color: colors.black
   },
   title: {
     fontSize: fonts.fontSize.title,
-    fontWeight: fonts.fontWeight.semibold,
+    fontWeight: Platform.OS === 'android' ? fonts.fontWeight.bold : fonts.fontWeight.semibold,
     lineHeight: Math.ceil(fonts.fontSize.title * 1.2),
     marginBottom: 4,
     color: colors.black
@@ -54,7 +55,7 @@ export default StyleSheet.create({
     color: colors.tintColor,
     marginRight: spacing.default,
     marginLeft: 8,
-    width: 40
+    width: 48
   },
   footer: {
     paddingBottom: 24
