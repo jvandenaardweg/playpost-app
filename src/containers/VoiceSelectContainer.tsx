@@ -74,8 +74,8 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     // If it's a premium voice and the user is not subscribed
     // Show a warning
     if (!isSubscribed) {
-      const defaultText = 'Changing voices is only available for Premium and Plus users.\n\nYou can preview this voice by using the play button on the left.';
-      const trialText = 'Changing voices is only available for Premium and Plus users. Start a Free trial to experience these voices.\n\nYou can preview this voice by using the play button on the left.';
+      const defaultText = 'Changing voices is only available for Premium and Unlimited users.\n\nYou can preview this voice by using the play button on the left.';
+      const trialText = 'Changing voices is only available for Premium and Unlimited users. Start a Free trial to experience these voices.\n\nYou can preview this voice by using the play button on the left.';
       const title = (userIsEligibleForTrial) ? 'Start your free trial' : ALERT_TITLE_SUBSCRIPTION_ONLY;
       const description = (userIsEligibleForTrial) ? trialText : defaultText;
       const buttonText = (userIsEligibleForTrial) ? 'Start Free trial' : 'Upgrade';
