@@ -52,6 +52,7 @@ export default StyleSheet.create({
     textAlign: 'center'
   },
   footerTextHighlight: {
-    color: colors.black
+    color: colors.black,
+    textDecorationLine: 'underline'
   }
 });

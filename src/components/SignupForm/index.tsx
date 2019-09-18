@@ -3,17 +3,18 @@ import { KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, View } fro
 import { Button } from 'react-native-elements';
 import styles from './styles';
 
+import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../../constants/urls';
+
 interface Props {
   email: string;
   password: string;
   isLoading: boolean;
   onChangeText(field: string, text: string): void;
   onPressSignup(): void;
-  onPressPrivacyPolicy(): void;
-  onPressTerms(): void;
+  onPressOpenUrl(url: string): void;
 }
 
-export const SignupForm: React.FC<Props> = React.memo(({ onChangeText, onPressSignup, onPressPrivacyPolicy, onPressTerms, email, password, isLoading }) => {
+export const SignupForm: React.FC<Props> = React.memo(({ onChangeText, onPressSignup, onPressOpenUrl, email, password, isLoading }) => {
   let passwordInput: TextInput | null = null;
 
   // Android and iOS both interact with this prop differently.
@@ -76,11 +77,11 @@ export const SignupForm: React.FC<Props> = React.memo(({ onChangeText, onPressSi
         <View style={styles.footerContainer}>
           <View style={styles.footer}>
             <Text style={styles.footerText}>By signing up you agree to our </Text>
-            <Text style={[styles.footerText, styles.footerTextHighlight]} testID="SignupForm-Text-privacy-policy" onPress={() => onPressPrivacyPolicy()}>
+            <Text style={[styles.footerText, styles.footerTextHighlight]} testID="SignupForm-Text-privacy-policy" onPress={() => onPressOpenUrl(URL_PRIVACY_POLICY)}>
               Privacy Policy
             </Text>
             <Text style={styles.footerText}> and </Text>
-            <Text style={[styles.footerText, styles.footerTextHighlight]} testID="SignupForm-Text-terms" onPress={() => onPressTerms()}>
+            <Text style={[styles.footerText, styles.footerTextHighlight]} testID="SignupForm-Text-terms" onPress={() => onPressOpenUrl(URL_TERMS_OF_USE)}>
               Terms of Use
             </Text>
           </View>

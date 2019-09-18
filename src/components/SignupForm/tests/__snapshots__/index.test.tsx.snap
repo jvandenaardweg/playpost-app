@@ -191,6 +191,7 @@ exports[`SignupForm rendering should render correctly 1`] = `
                 },
                 Object {
                   "color": "#000000",
+                  "textDecorationLine": "underline",
                 },
               ]
             }
@@ -222,6 +223,7 @@ exports[`SignupForm rendering should render correctly 1`] = `
                 },
                 Object {
                   "color": "#000000",
+                  "textDecorationLine": "underline",
                 },
               ]
             }

@@ -1,23 +1,26 @@
 import React from 'react';
 import { fireEvent, render, RenderAPI } from 'react-native-testing-library';
 
+import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../../../constants/urls';
 import { SignupForm } from '../index';
+
+const onPressSignupHandler = jest.fn();
+const onChangeTextHandler = jest.fn();
+const onPressOpenUrlHandler = jest.fn();
 
 describe('SignupForm', () => {
   describe('rendering', () => {
     let wrapper: RenderAPI;
-    const onPressSignupHandler = jest.fn();
-    const onChangeTextHandler = jest.fn();
-    const onPressPrivacyPolicyHandler = jest.fn();
-    const onPressTermsHandler = jest.fn();
 
     beforeEach(() => {
+      jest.resetAllMocks();
+      jest.restoreAllMocks();
+
       wrapper = render(
         <SignupForm
           onChangeText={onChangeTextHandler}
           onPressSignup={onPressSignupHandler}
-          onPressPrivacyPolicy={onPressPrivacyPolicyHandler}
-          onPressTerms={onPressTermsHandler}
+          onPressOpenUrl={onPressOpenUrlHandler}
           email=""
           password=""
           isLoading={false}
@@ -32,18 +35,16 @@ describe('SignupForm', () => {
 
   describe('interacting', () => {
     let wrapper: RenderAPI;
-    const onPressSignupHandler = jest.fn();
-    const onChangeTextHandler = jest.fn();
-    const onPressPrivacyPolicyHandler = jest.fn();
-    const onPressTermsHandler = jest.fn();
 
     beforeEach(() => {
+      jest.resetAllMocks();
+      jest.restoreAllMocks();
+
       wrapper = render(
         <SignupForm
           onChangeText={onChangeTextHandler}
           onPressSignup={onPressSignupHandler}
-          onPressPrivacyPolicy={onPressPrivacyPolicyHandler}
-          onPressTerms={onPressTermsHandler}
+          onPressOpenUrl={onPressOpenUrlHandler}
           email=""
           password=""
           isLoading={false}
@@ -58,12 +59,14 @@ describe('SignupForm', () => {
 
     it('should fire onPressPrivacyPolicy when the Privacy Policy button is pressed', () => {
       fireEvent.press(wrapper.getByTestId('SignupForm-Text-privacy-policy'));
-      expect(onPressPrivacyPolicyHandler).toHaveBeenCalledTimes(1);
+      expect(onPressOpenUrlHandler).toHaveBeenCalledTimes(1);
+      expect(onPressOpenUrlHandler).toHaveBeenCalledWith(URL_PRIVACY_POLICY);
     });
 
     it('should fire onPressTerms when the Terms of Use button is pressed', () => {
       fireEvent.press(wrapper.getByTestId('SignupForm-Text-terms'));
-      expect(onPressTermsHandler).toHaveBeenCalledTimes(1);
+      expect(onPressOpenUrlHandler).toHaveBeenCalledTimes(1);
+      expect(onPressOpenUrlHandler).toHaveBeenCalledWith(URL_TERMS_OF_USE);
     });
 
     it('should fire onChangeText when filling in a TextInput', () => {
@@ -87,8 +90,7 @@ describe('SignupForm', () => {
         <SignupForm
           onChangeText={onChangeTextHandler}
           onPressSignup={onPressSignupHandler}
-          onPressPrivacyPolicy={onPressPrivacyPolicyHandler}
-          onPressTerms={onPressTermsHandler}
+          onPressOpenUrl={onPressOpenUrlHandler}
           email=""
           password=""
           isLoading={true}
