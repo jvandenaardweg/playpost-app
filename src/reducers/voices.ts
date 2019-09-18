@@ -127,7 +127,7 @@ export function getLanguages() {
     payload: {
       request: {
         method: 'get',
-        url: '/v1/languages/active'
+        url: '/v1/languages?isActive=true'
       }
     }
   };
