@@ -4,7 +4,7 @@ import { fireEvent, render, RenderAPI } from 'react-native-testing-library';
 import { getUpgradeButtonTitle, getUpgradeMessage, Props, Usage } from '../index';
 
 import userMock from '../../../../tests/__mocks__/user-active-subscription';
-import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_UNLIMITED } from '../../../constants/in-app-purchase';
+import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_UNLIMITED } from '../../../constants/in-app-purchase';
 
 const onPressUpgradeHandler = jest.fn();
 
