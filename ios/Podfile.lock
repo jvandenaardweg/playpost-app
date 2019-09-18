@@ -114,13 +114,13 @@ PODS:
     - React-Core
   - RNCAsyncStorage (1.6.1):
     - React
-  - RNDeviceInfo (3.1.1):
+  - RNDeviceInfo (3.1.3):
     - React
   - RNFS (2.14.1):
     - React
   - RNGestureHandler (1.4.1):
     - React
-  - RNIap (3.4.11):
+  - RNIap (3.4.12):
     - React
   - RNInAppBrowser (3.1.0):
     - React
@@ -303,10 +303,10 @@ SPEC CHECKSUMS:
   React-RCTWebSocket: cd932a16b7214898b6b7f788c8bddb3637246ac4
   rn-fetch-blob: 651b8d076b43d0d7aa294a3d9ec16c00aab8bef9
   RNCAsyncStorage: 621bad7a889b5bf1583a52547f2dcd3a4d1ff15e
-  RNDeviceInfo: fc696b2d6702ee2562308208eca816883b9ec3cb
+  RNDeviceInfo: 7ca1cc4d72b9d655f5791e1083c523274974ecea
   RNFS: a8fbe7060fa49157d819466404794ad9c58e58cf
   RNGestureHandler: 4cb47a93019c1a201df2644413a0a1569a51c8aa
-  RNIap: 0a987143fdc68343f43150e4b80be4763f83073d
+  RNIap: 0d3f80cc8f9c0f8b8dc91699cc0f19aea7385e5d
   RNInAppBrowser: c0c1f509fe1ced46d751b61463be847c9b139ae9
   RNKeychain: de0a565ff2f548576ac494612f05f77a7cda3f55
   RNLocalize: 3d67438cbed25c21d512edb6357e29b6db9ed2d9
