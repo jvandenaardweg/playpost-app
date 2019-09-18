@@ -23,7 +23,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
         pagingEnabled={true}
         scrollEnabled={true}
         showsHorizontalScrollIndicator={false}
-        snapToInterval={714}
+        snapToInterval={702}
         style={
           Object {
             "backgroundColor": "#EEEEEE",
@@ -54,9 +54,9 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   "shadowRadius": 5,
                 },
                 Object {
-                  "marginLeft": 24,
+                  "marginLeft": 30,
                   "marginRight": 6,
-                  "width": 702,
+                  "width": 690,
                 },
               ]
             }
@@ -198,7 +198,9 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -209,7 +211,9 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -220,7 +224,9 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -231,7 +237,9 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -242,7 +250,9 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -253,7 +263,9 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -271,6 +283,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Object {
                     "color": "#C5C5C5",
+                    "textAlign": "center",
                   }
                 }
               >
@@ -356,7 +369,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 Object {
                   "marginLeft": 6,
                   "marginRight": 6,
-                  "width": 702,
+                  "width": 690,
                 },
               ]
             }
@@ -490,7 +503,9 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -501,7 +516,9 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -512,7 +529,9 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -523,7 +542,9 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -534,7 +555,9 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -552,6 +575,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Object {
                     "color": "#C5C5C5",
+                    "textAlign": "center",
                   }
                 }
               >
@@ -636,8 +660,8 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 },
                 Object {
                   "marginLeft": 6,
-                  "marginRight": 24,
-                  "width": 702,
+                  "marginRight": 30,
+                  "width": 690,
                 },
               ]
             }
@@ -771,7 +795,9 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -782,7 +808,9 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -793,7 +821,9 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -804,7 +834,9 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -815,7 +847,9 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -833,6 +867,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Object {
                     "color": "#C5C5C5",
+                    "textAlign": "center",
                   }
                 }
               >
@@ -927,7 +962,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
               }
             }
           >
-            Upgrade to Premium or Plus
+            Upgrade to Premium or Unlimited
           </Text>
           <View
             style={
@@ -999,7 +1034,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   }
                 }
               >
-                Access to our highest quality Premium and Plus voices for easier listening. You can preview these Higher Quality voices in the settings screen.
+                Access to our highest quality Premium voices for easier listening. You can preview these Higher Quality voices in the settings screen.
               </Text>
             </View>
           </View>
@@ -1147,7 +1182,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   }
                 }
               >
-                With our Premium and Plus subscription you can enjoy higher listening minutes. You'll probably never hit that limit!
+                With our Premium and Unlimited subscription you can enjoy higher listening minutes. Unlimited gives you unlimited listening minutes.
               </Text>
             </View>
           </View>
@@ -1221,7 +1256,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   }
                 }
               >
-                Sponsored content and advertisements helps us continue to provide a free version of Playpost. After upgrading to Playpost Premium or Plus, you won’t see any ads, and you’ll be supporting Playpost more directly!
+                Sponsored content and advertisements helps us continue to provide a free version of Playpost. After upgrading you won’t see any ads, and you’ll be supporting Playpost more directly!
               </Text>
             </View>
           </View>
@@ -1252,7 +1287,8 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 "flex": 1,
                 "flexDirection": "row",
                 "justifyContent": "center",
-                "marginTop": 6,
+                "marginBottom": 12,
+                "marginTop": 12,
               }
             }
           >
@@ -1304,6 +1340,36 @@ exports[`Upgrade rendering should render correctly 1`] = `
               }
             >
               Terms of Use
+            </Text>
+            <Text
+              style={
+                Object {
+                  "fontSize": 13,
+                  "lineHeight": 20,
+                  "opacity": 0.5,
+                }
+              }
+            >
+               - 
+            </Text>
+            <Text
+              onPress={[Function]}
+              style={
+                Array [
+                  Object {
+                    "fontSize": 13,
+                    "lineHeight": 20,
+                    "opacity": 0.5,
+                  },
+                  Object {
+                    "color": "#000000",
+                    "opacity": 1,
+                    "textDecorationLine": "underline",
+                  },
+                ]
+              }
+            >
+              Acceptable Use Policy
             </Text>
           </View>
           <View

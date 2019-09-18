@@ -67,7 +67,8 @@ export default StyleSheet.create({
   footerLinks: {
     flex: 1,
     flexDirection: 'row',
-    marginTop: 6,
+    marginTop: spacing.default,
+    marginBottom: spacing.default,
     justifyContent: 'center'
   },
   textHighlight: {
@@ -148,7 +149,8 @@ export default StyleSheet.create({
     marginTop: 12
   },
   cardFooterText: {
-    color: colors.gray
+    color: colors.gray,
+    textAlign: 'center'
   },
   cardFeaturesList: {
     alignItems: 'center',
@@ -157,7 +159,9 @@ export default StyleSheet.create({
   cardFeaturesListItem: {
     marginBottom: 8,
     fontSize: fonts.fontSize.body,
-    color: colors.black
+    color: colors.black,
+    textAlign: 'center',
+    lineHeight: fonts.fontSize.body * 1.3
   },
   cardFeaturesListItemHighlight: {
     fontWeight: fonts.fontWeight.semibold

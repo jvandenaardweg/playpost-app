@@ -22,15 +22,15 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
   const percentageUsed = percentageUsedCurrentMonth >= 100 ? 100 : percentageUsedCurrentMonth;
 
   const currentUsageLocalized = Math.ceil(usageUsedCurrentMonthInSeconds / 60).toLocaleString('nl-NL'); // So we have 5.000 (with a dot)
-  const currentLimitLocalized = Math.ceil(limitSecondsPerMonth / 60).toLocaleString('nl-NL'); // So we have 5.000 (with a dot)
+  const currentLimitLocalized = (limitSecondsPerMonth) ? Math.ceil(limitSecondsPerMonth / 60).toLocaleString('nl-NL') : 'unlimited'; // So we have 5.000 (with a dot)
 
   const showUpgradeButton = activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE || activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_PREMIUM;
 
   const upgradeButtonTitle = getUpgradeButtonTitle(activeSubscriptionProductId, userIsEligibleForTrial);
   const upgradeMessage = getUpgradeMessage(activeSubscriptionProductId);
   const usedText = `of ${currentLimitLocalized} minutes used this month`;
-  const usedPercentageText = `${Math.ceil(percentageUsed)}%`;
-  const progressWidth = `${percentageUsed}%`;
+  const usedPercentageText = limitSecondsPerMonth ? `${Math.ceil(percentageUsed)}%` : '';
+  const progressWidth = limitSecondsPerMonth ? `${percentageUsed}%` : '0%';
 
   const upgradeScreenCenteredSubscriptionProductId =
     activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_PREMIUM
@@ -86,7 +86,7 @@ export function getUpgradeMessage(activeSubscriptionProductId: string): string {
   }
 
   if (activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_PREMIUM) {
-    return 'Upgrade for nearly unlimited minutes.'
+    return 'Upgrade for unlimited minutes.'
   }
 
   return ''
@@ -94,15 +94,15 @@ export function getUpgradeMessage(activeSubscriptionProductId: string): string {
 
 export function getUpgradeButtonTitle(activeSubscriptionProductId: string, userIsEligibleForTrial: boolean): string {
   if (activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE && userIsEligibleForTrial) {
-    return 'Start free Premium or Plus trial'
+    return 'Start free trial'
   }
 
   if (activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE) {
-    return 'Upgrade to Premium or Plus'
+    return 'Upgrade to Premium or Unlimited'
   }
 
   if (activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_PREMIUM) {
-    return 'Upgrade to Plus'
+    return 'Upgrade to Unlimited'
   }
 
   return ''

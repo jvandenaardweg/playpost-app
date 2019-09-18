@@ -11,7 +11,7 @@ import * as inAppBrowser from '../utils/in-app-browser';
 import { NetworkContext } from '../contexts/NetworkProvider';
 import NavigationService from '../navigation/NavigationService';
 
-import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_IDS } from '../constants/in-app-purchase';
+import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_UNLIMITED, SUBSCRIPTION_PRODUCT_IDS } from '../constants/in-app-purchase';
 import {
   ALERT_GENERIC_INTERNET_REQUIRED,
   ALERT_SUBSCRIPTION_INIT_FAIL,
@@ -26,10 +26,7 @@ import {
 import {
   URL_FEEDBACK,
   URL_MANAGE_APPLE_SUBSCRIPTIONS,
-  URL_MANAGE_GOOGLE_SUBSCRIPTIONS,
-  URL_PRIVACY_POLICY,
-  URL_TERMS_OF_USE
-} from '../constants/urls';
+  URL_MANAGE_GOOGLE_SUBSCRIPTIONS} from '../constants/urls';
 import { RootState } from '../reducers';
 import { setIsLoadingRestore, setIsLoadingUpgrade } from '../reducers/subscriptions';
 import { getUser } from '../reducers/user';
@@ -81,22 +78,29 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         productId: SUBSCRIPTION_PRODUCT_ID_FREE,
         title: 'Free',
         price: '0',
-        body: [`Access to ${totalAvailableUnsubscribedVoices} voices`, 'Use basic quality voices', 'One predefined voice per language', 'Max. 30 minutes per month', 'Unlimited playlist items', 'Some advertisements', '\nFirst 30 minutes High Quality voice for free'],
-        footer: ''
+        body: [`Access to ${totalAvailableUnsubscribedVoices} of ${totalAvailableVoices} voices`, 'Use basic quality voices', 'One predefined voice per language', 'Max. 30 minutes per month', 'Unlimited playlist items', 'Some advertisements'],
+        footer: 'First 30 minutes High Quality voice\nfor free'
       },
       {
         productId: SUBSCRIPTION_PRODUCT_ID_PREMIUM,
         title: 'Premium',
         price: null,
         body: [`Access to all ${totalAvailableVoices} voices`, 'Use the highest quality voices', 'Change the voice per language', 'Max. 120 minutes per month', 'Unlimited playlist items', 'No advertisements'],
-        footer: ''
+        footer: '\n'
       },
+      // {
+      //   productId: SUBSCRIPTION_PRODUCT_ID_PLUS,
+      //   title: 'Plus',
+      //   price: null,
+      //   body: [`Access to all ${totalAvailableVoices} voices`, 'Use the highest quality voices', 'Change the voice per language', 'Max. 300 minutes per month', 'Unlimited playlist items', 'No advertisements'],
+      //   footer: ''
+      // },
       {
-        productId: SUBSCRIPTION_PRODUCT_ID_PLUS,
-        title: 'Plus',
+        productId: SUBSCRIPTION_PRODUCT_ID_UNLIMITED,
+        title: 'Unlimited',
         price: null,
-        body: [`Access to all ${totalAvailableVoices} voices`, 'Use the highest quality voices', 'Change the voice per language', 'Max. 300 minutes per month', 'Unlimited playlist items', 'No advertisements'],
-        footer: ''
+        body: [`Access to all ${totalAvailableVoices} voices`, 'Use the highest quality voices', 'Change the voice per language', 'Unlimited minutes per month', 'Unlimited playlist items', 'No advertisements'],
+        footer: 'Same as Premium,\nbut with unlimited minutes.'
       }
     ];
   }
@@ -147,9 +151,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     NavigationService.goBack({ key: null });
   }
 
-  handleOpenPrivacy = () => Linking.openURL(`${URL_PRIVACY_POLICY}?ref=playpost://upgrade`);
-
-  handleOpenTerms = () => Linking.openURL(`${URL_TERMS_OF_USE}?ref=playpost://upgrade`);
+  handleOnPressOpenUrl = (url: string) => inAppBrowser.openUrl(`${url}?ref=playpost://upgrade`);
 
   handleOnPressCancel = () => {
     if (Platform.OS === 'android') {
@@ -423,8 +425,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         subscriptionFeatures={this.subscriptionFeatures}
         onPressUpgrade={this.handleOnPressUpgrade}
         onPressRestore={this.handleOnPressRestore}
-        onPressPrivacy={this.handleOpenPrivacy}
-        onPressTerms={this.handleOpenTerms}
+        onPressOpenUrl={this.handleOnPressOpenUrl}
         onPressCancel={this.handleOnPressCancel}
         isDowngradePaidSubscription={this.isDowngradePaidSubscription}
       />

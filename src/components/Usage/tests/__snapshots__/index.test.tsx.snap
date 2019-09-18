@@ -177,7 +177,7 @@ exports[`Usage rendering should render correctly 1`] = `
                 }
               }
             >
-              Upgrade to Premium or Plus
+              Upgrade to Premium or Unlimited
             </Text>
           </View>
         </View>

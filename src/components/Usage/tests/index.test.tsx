@@ -4,7 +4,7 @@ import { fireEvent, render, RenderAPI } from 'react-native-testing-library';
 import { getUpgradeButtonTitle, getUpgradeMessage, Props, Usage } from '../index';
 
 import userMock from '../../../../tests/__mocks__/user-active-subscription';
-import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../../constants/in-app-purchase';
+import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_UNLIMITED } from '../../../constants/in-app-purchase';
 
 const onPressUpgradeHandler = jest.fn();
 
@@ -89,7 +89,7 @@ describe('Usage', () => {
     });
 
     it('should render the correct button title', () => {
-      expect(wrapper.getByTestId('Usage-Button-upgrade').props.title).toBe('Upgrade to Premium or Plus');
+      expect(wrapper.getByTestId('Usage-Button-upgrade').props.title).toBe('Upgrade to Premium or Unlimited');
     });
 
     it('should render the correct upgrade message', () => {
@@ -99,7 +99,18 @@ describe('Usage', () => {
     it('should not render an upgrade button when on a plus subscription', () => {
       const props = {
         ...defaultProps,
-        activeSubscriptionProductId: 'com.aardwegmedia.subscriptions.plus'
+        activeSubscriptionProductId: SUBSCRIPTION_PRODUCT_ID_PLUS
+      }
+
+      wrapper.update(<Usage {...props} />)
+
+      expect(wrapper.queryByTestId('Usage-Button-upgrade')).toBeFalsy();
+    });
+
+    it('should not render an upgrade button when on a unlimited subscription', () => {
+      const props = {
+        ...defaultProps,
+        activeSubscriptionProductId: SUBSCRIPTION_PRODUCT_ID_UNLIMITED
       }
 
       wrapper.update(<Usage {...props} />)
@@ -126,7 +137,7 @@ describe('Usage', () => {
     });
 
     it('getUpgradeMessage should return the correct upgrade message when on a premium subscription', () => {
-      expect(getUpgradeMessage(SUBSCRIPTION_PRODUCT_ID_PREMIUM)).toBe('Upgrade for nearly unlimited minutes.');
+      expect(getUpgradeMessage(SUBSCRIPTION_PRODUCT_ID_PREMIUM)).toBe('Upgrade for unlimited minutes.');
     });
 
     it('getUpgradeMessage should return the correct upgrade message when on a free subscription', () => {
@@ -138,27 +149,35 @@ describe('Usage', () => {
     });
 
     it('getUpgradeButtonTitle should return the correct upgrade button title when on a free subscription when a user is not eligible for a trial', () => {
-      expect(getUpgradeButtonTitle(SUBSCRIPTION_PRODUCT_ID_FREE, false)).toBe('Upgrade to Premium or Plus');
+      expect(getUpgradeButtonTitle(SUBSCRIPTION_PRODUCT_ID_FREE, false)).toBe('Upgrade to Premium or Unlimited');
     });
 
     it('getUpgradeButtonTitle should return the correct upgrade button title when on a free subscription when a user is eligible for a trial', () => {
-      expect(getUpgradeButtonTitle(SUBSCRIPTION_PRODUCT_ID_FREE, true)).toBe('Start free Premium or Plus trial');
+      expect(getUpgradeButtonTitle(SUBSCRIPTION_PRODUCT_ID_FREE, true)).toBe('Start free trial');
     });
 
     it('getUpgradeButtonTitle should return the correct upgrade button title when on a premium subscription when a user is not eligible for a trial', () => {
-      expect(getUpgradeButtonTitle(SUBSCRIPTION_PRODUCT_ID_PREMIUM, false)).toBe('Upgrade to Plus');
+      expect(getUpgradeButtonTitle(SUBSCRIPTION_PRODUCT_ID_PREMIUM, false)).toBe('Upgrade to Unlimited');
     });
 
     it('getUpgradeButtonTitle should return the correct upgrade button title when on a premium subscription when a user is not eligible for a trial', () => {
-      expect(getUpgradeButtonTitle(SUBSCRIPTION_PRODUCT_ID_PREMIUM, true)).toBe('Upgrade to Plus');
+      expect(getUpgradeButtonTitle(SUBSCRIPTION_PRODUCT_ID_PREMIUM, true)).toBe('Upgrade to Unlimited');
     });
 
     it('getUpgradeButtonTitle should return the correct upgrade button title when on a plus subscription when a user is not eligible for a trial', () => {
-      expect(getUpgradeButtonTitle('com.aardwegmedia.playpost.subscriptions.plus', false)).toBe('');
+      expect(getUpgradeButtonTitle(SUBSCRIPTION_PRODUCT_ID_PLUS, false)).toBe('');
     });
 
     it('getUpgradeButtonTitle should return the correct upgrade button title when on a plus subscription when a user is eligible for a trial', () => {
-      expect(getUpgradeButtonTitle('com.aardwegmedia.playpost.subscriptions.plus', true)).toBe('');
+      expect(getUpgradeButtonTitle(SUBSCRIPTION_PRODUCT_ID_PLUS, true)).toBe('');
+    });
+
+    it('getUpgradeButtonTitle should return the correct upgrade button title when on a unlimited subscription when a user is not eligible for a trial', () => {
+      expect(getUpgradeButtonTitle(SUBSCRIPTION_PRODUCT_ID_UNLIMITED, false)).toBe('');
+    });
+
+    it('getUpgradeButtonTitle should return the correct upgrade button title when on a unlimited subscription when a user is eligible for a trial', () => {
+      expect(getUpgradeButtonTitle(SUBSCRIPTION_PRODUCT_ID_UNLIMITED, true)).toBe('');
     });
 
   });

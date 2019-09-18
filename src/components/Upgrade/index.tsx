@@ -10,8 +10,9 @@ import styles from './styles';
 
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
-import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../constants/in-app-purchase';
+import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_UNLIMITED } from '../../constants/in-app-purchase';
 import spacing from '../../constants/spacing';
+import { URL_ACCEPTABLE_USE_POLICY, URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../../constants/urls';
 
 export interface Props {
   isLoadingSubscriptionItems: boolean;
@@ -25,8 +26,7 @@ export interface Props {
   centeredSubscriptionProductId: string;
   onPressUpgrade(productId: string): void;
   onPressRestore(): void;
-  onPressPrivacy(): void;
-  onPressTerms(): void;
+  onPressOpenUrl(url: string): void;
   onPressCancel(): void;
   isDowngradePaidSubscription(productId: string): boolean;
 }
@@ -43,8 +43,7 @@ export const Upgrade: React.FC<Props> = React.memo(
     centeredSubscriptionProductId,
     onPressUpgrade,
     onPressRestore,
-    onPressPrivacy,
-    onPressTerms,
+    onPressOpenUrl,
     onPressCancel,
     isDowngradePaidSubscription
   }) => {
@@ -52,8 +51,8 @@ export const Upgrade: React.FC<Props> = React.memo(
 
     const windowWidth = Dimensions.get('window').width;
     const cardMargin = 6;
-    const cardFirstMarginLeft = spacing.default * 2;
-    const cardLastMarginRight = spacing.default * 2;
+    const cardFirstMarginLeft = spacing.default * 2.5;
+    const cardLastMarginRight = spacing.default * 2.5;
     const paymentAccountTitle = (Platform.OS === 'android') ? 'Google Play' : 'Apple ID';
 
     const cardWidth = windowWidth - cardFirstMarginLeft - cardLastMarginRight;
@@ -62,7 +61,8 @@ export const Upgrade: React.FC<Props> = React.memo(
     const startOffset = {
       [SUBSCRIPTION_PRODUCT_ID_FREE]: snapToInterval,
       [SUBSCRIPTION_PRODUCT_ID_PREMIUM]: snapToInterval,
-      [SUBSCRIPTION_PRODUCT_ID_PLUS]: snapToInterval * 2
+      [SUBSCRIPTION_PRODUCT_ID_PLUS]: snapToInterval * 2,
+      [SUBSCRIPTION_PRODUCT_ID_UNLIMITED]: snapToInterval * 2,
     };
 
     // Center the subscription based on centeredSubscriptionProductId
@@ -211,14 +211,14 @@ export const Upgrade: React.FC<Props> = React.memo(
 
           <View style={styles.featuresContainer}>
             <View style={styles.header}>
-              <Text style={styles.headerTitle}>Upgrade to Premium or Plus</Text>
+              <Text style={styles.headerTitle}>Upgrade to Premium or Unlimited</Text>
 
               <View style={styles.feature}>
                 <Icon.FontAwesome5 name="gem" size={34} style={styles.featureIcon} />
                 <View style={styles.featureContent}>
                   <Text style={styles.title}>Higher Quality voices</Text>
                   <Text style={styles.paragraph}>
-                    Access to our highest quality Premium and Plus voices for easier listening. You can preview these Higher Quality voices in the settings
+                    Access to our highest quality Premium voices for easier listening. You can preview these Higher Quality voices in the settings
                     screen.
                   </Text>
                 </View>
@@ -239,7 +239,7 @@ export const Upgrade: React.FC<Props> = React.memo(
                 <View style={styles.featureContent}>
                   <Text style={styles.title}>More listening limits</Text>
                   <Text style={styles.paragraph}>
-                    With our Premium and Plus subscription you can enjoy higher listening minutes. You'll probably never hit that limit!
+                    With our Premium and Unlimited subscription you can enjoy higher listening minutes. Unlimited gives you unlimited listening minutes.
                   </Text>
                 </View>
               </View>
@@ -249,7 +249,7 @@ export const Upgrade: React.FC<Props> = React.memo(
                 <View style={styles.featureContent}>
                   <Text style={styles.title}>No advertisements</Text>
                   <Text style={styles.paragraph}>
-                    Sponsored content and advertisements helps us continue to provide a free version of Playpost. After upgrading to Playpost Premium or Plus,
+                    Sponsored content and advertisements helps us continue to provide a free version of Playpost. After upgrading
                     you won’t see any ads, and you’ll be supporting Playpost more directly!
                   </Text>
                 </View>
@@ -265,12 +265,16 @@ export const Upgrade: React.FC<Props> = React.memo(
               </Text>
 
               <View style={styles.footerLinks}>
-                <Text style={[styles.footerText, styles.textHighlight]} onPress={() => onPressPrivacy()}>
+                <Text style={[styles.footerText, styles.textHighlight]} onPress={() => onPressOpenUrl(URL_PRIVACY_POLICY)}>
                   Privacy Policy
                 </Text>
                 <Text style={styles.footerText}> - </Text>
-                <Text style={[styles.footerText, styles.textHighlight]} onPress={() => onPressTerms()}>
+                <Text style={[styles.footerText, styles.textHighlight]} onPress={() => onPressOpenUrl(URL_TERMS_OF_USE)}>
                   Terms of Use
+                </Text>
+                <Text style={styles.footerText}> - </Text>
+                <Text style={[styles.footerText, styles.textHighlight]} onPress={() => onPressOpenUrl(URL_ACCEPTABLE_USE_POLICY)}>
+                  Acceptable Use Policy
                 </Text>
               </View>
               <View style={{ marginTop: 18 }}>

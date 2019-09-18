@@ -5,6 +5,7 @@ export const URL_PRIVACY_POLICY = 'https://playpost.app/privacy';
 export const URL_TERMS_OF_USE = 'https://playpost.app/terms';
 export const URL_ABOUT = 'https://playpost.app';
 export const URL_FEEDBACK = 'https://playpost.app/support';
+export const URL_ACCEPTABLE_USE_POLICY = 'https://playpost.app/acceptable-use-policy';
 export const URL_BROWSER_EXTENSION_CHROME = 'https://playpost.app/chrome';
 export const URL_BROWSER_EXTENSION_FIREFOX = 'https://playpost.app/firefox';
 export const URL_BROWSER_EXTENSION_OPERA = 'https://playpost.app/opera';

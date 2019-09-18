@@ -1,7 +1,7 @@
 // Alert titles
 export const ALERT_TITLE_ERROR_NO_INTERNET = 'No internet availalbe';
 export const ALERT_TITLE_ERROR = 'Oops!';
-export const ALERT_TITLE_SUBSCRIPTION_ONLY = 'Available on Premium or Plus';
+export const ALERT_TITLE_SUBSCRIPTION_ONLY = 'Available on Premium or Unlimited';
 export const ALERT_TITLE_REQUEST_CONFIRM = 'Are you sure?';
 export const ALERT_TITLE_SUBSCRIPTION_UPGRADE_SUCCESS = 'Upgrade success!';
 export const ALERT_TITLE_SUBSCRIPTION_RESTORE_SUCCESS = 'Restore successful!';
@@ -43,7 +43,7 @@ export const ALERT_SETTINGS_UPDATE_EMAIL_DIFF = 'The e-mail address given is the
 export const ALERT_SETTINGS_UPDATE_PASSWORD_DIFF_VALIDATION_FAIL = 'The given passwords do not match. Please make sure you typed your passwords correctly.';
 
 export const ALERT_SUBSCRIPTION_INIT_FAIL = 'Could not set up a connection to the App Store. Please try again later.';
-export const ALERT_SUBSCRIPTION_EXPIRED = 'Your subscription is expired. To use our Premium or Plus features again, re-subscribe by using the Upgrade button.';
+export const ALERT_SUBSCRIPTION_EXPIRED = 'Your subscription is expired. To use our Premium or Unlimited features again, re-subscribe by using the Upgrade button.';
 export const ALERT_SUBSCRIPTION_BUY_SUCCESS = 'You can now use the extra features.';
 export const ALERT_SUBSCRIPTION_RESTORE_PURCHASE_NOT_FOUND = 'We could not find a subscription purchase to restore. If you had a subscription before, it might be expired. If you think this is incorrect, contact our support.';
 export const ALERT_SUBSCRIPTION_RESTORE_NOTHING = 'There are no previous purchases to restore.';
@@ -54,7 +54,7 @@ export const ALERT_SUBSCRIPTION_UPGRADE_PLATFORM_IOS = 'Your current active subs
 export const ALERT_SUBSCRIPTION_RESTORE_PLATFORM_ANDROID = 'You have an active subscription on the Apple App Store. You cannot restore a previous purchase on this Android device.';
 export const ALERT_SUBSCRIPTION_RESTORE_PLATFORM_IOS = 'You have an active subscription on the Google Play Store. You cannot restore a previous purchase on this Apple device.';
 
-export const ALERT_PLAYBACK_SPEED_SUBSCRIPTION_ONLY = 'Changing the voice\'s speaking rate is only available for Premium and Plus users.';
+export const ALERT_PLAYBACK_SPEED_SUBSCRIPTION_ONLY = 'Changing the voice\'s speaking rate is only available for Premium and Unlimited users.';
 
 export const ALERT_LOGIN_SAVE_TOKEN_FAIL = 'Failed to save authentication credentials. Please try again.';
 

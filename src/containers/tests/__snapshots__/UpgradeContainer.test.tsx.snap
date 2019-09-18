@@ -23,7 +23,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
         pagingEnabled={true}
         scrollEnabled={true}
         showsHorizontalScrollIndicator={false}
-        snapToInterval={714}
+        snapToInterval={702}
         style={
           Object {
             "backgroundColor": "#EEEEEE",
@@ -54,9 +54,9 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   "shadowRadius": 5,
                 },
                 Object {
-                  "marginLeft": 24,
+                  "marginLeft": 30,
                   "marginRight": 6,
-                  "width": 702,
+                  "width": 690,
                 },
               ]
             }
@@ -190,18 +190,22 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
-                Access to undefined voices
+                Access to undefined of 10 voices
               </Text>
               <Text
                 style={
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -212,7 +216,9 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -223,7 +229,9 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -234,7 +242,9 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -245,23 +255,32 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
                 Some advertisements
               </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "marginTop": 12,
+                }
+              }
+            >
               <Text
                 style={
                   Object {
-                    "color": "#000000",
-                    "fontSize": 15,
-                    "marginBottom": 8,
+                    "color": "#C5C5C5",
+                    "textAlign": "center",
                   }
                 }
               >
-                
-First 30 minutes High Quality voice for free
+                First 30 minutes High Quality voice
+for free
               </Text>
             </View>
             <View>
@@ -343,7 +362,7 @@ First 30 minutes High Quality voice for free
                 Object {
                   "marginLeft": 6,
                   "marginRight": 6,
-                  "width": 702,
+                  "width": 690,
                 },
               ]
             }
@@ -477,7 +496,9 @@ First 30 minutes High Quality voice for free
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -488,7 +509,9 @@ First 30 minutes High Quality voice for free
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -499,7 +522,9 @@ First 30 minutes High Quality voice for free
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -510,7 +535,9 @@ First 30 minutes High Quality voice for free
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -521,7 +548,9 @@ First 30 minutes High Quality voice for free
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -532,11 +561,32 @@ First 30 minutes High Quality voice for free
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
                 No advertisements
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "marginTop": 12,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#C5C5C5",
+                    "textAlign": "center",
+                  }
+                }
+              >
+                
+
               </Text>
             </View>
             <View>
@@ -617,8 +667,8 @@ First 30 minutes High Quality voice for free
                 },
                 Object {
                   "marginLeft": 6,
-                  "marginRight": 24,
-                  "width": 702,
+                  "marginRight": 30,
+                  "width": 690,
                 },
               ]
             }
@@ -635,7 +685,7 @@ First 30 minutes High Quality voice for free
                   }
                 }
               >
-                Plus
+                Unlimited
               </Text>
             </View>
             <View
@@ -733,7 +783,7 @@ First 30 minutes High Quality voice for free
                         }
                       }
                     >
-                      Upgrade to Plus
+                      Upgrade to Unlimited
                     </Text>
                   </View>
                 </View>
@@ -752,7 +802,9 @@ First 30 minutes High Quality voice for free
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -763,7 +815,9 @@ First 30 minutes High Quality voice for free
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -774,7 +828,9 @@ First 30 minutes High Quality voice for free
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -785,18 +841,22 @@ First 30 minutes High Quality voice for free
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
-                Max. 300 minutes per month
+                Unlimited minutes per month
               </Text>
               <Text
                 style={
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
@@ -807,11 +867,32 @@ First 30 minutes High Quality voice for free
                   Object {
                     "color": "#000000",
                     "fontSize": 15,
+                    "lineHeight": 19.5,
                     "marginBottom": 8,
+                    "textAlign": "center",
                   }
                 }
               >
                 No advertisements
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "marginTop": 12,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#C5C5C5",
+                    "textAlign": "center",
+                  }
+                }
+              >
+                Same as Premium,
+but with unlimited minutes.
               </Text>
             </View>
             <View>
@@ -902,7 +983,7 @@ First 30 minutes High Quality voice for free
               }
             }
           >
-            Upgrade to Premium or Plus
+            Upgrade to Premium or Unlimited
           </Text>
           <View
             style={
@@ -974,7 +1055,7 @@ First 30 minutes High Quality voice for free
                   }
                 }
               >
-                Access to our highest quality Premium and Plus voices for easier listening. You can preview these Higher Quality voices in the settings screen.
+                Access to our highest quality Premium voices for easier listening. You can preview these Higher Quality voices in the settings screen.
               </Text>
             </View>
           </View>
@@ -1122,7 +1203,7 @@ First 30 minutes High Quality voice for free
                   }
                 }
               >
-                With our Premium and Plus subscription you can enjoy higher listening minutes. You'll probably never hit that limit!
+                With our Premium and Unlimited subscription you can enjoy higher listening minutes. Unlimited gives you unlimited listening minutes.
               </Text>
             </View>
           </View>
@@ -1196,7 +1277,7 @@ First 30 minutes High Quality voice for free
                   }
                 }
               >
-                Sponsored content and advertisements helps us continue to provide a free version of Playpost. After upgrading to Playpost Premium or Plus, you won’t see any ads, and you’ll be supporting Playpost more directly!
+                Sponsored content and advertisements helps us continue to provide a free version of Playpost. After upgrading you won’t see any ads, and you’ll be supporting Playpost more directly!
               </Text>
             </View>
           </View>
@@ -1227,7 +1308,8 @@ First 30 minutes High Quality voice for free
                 "flex": 1,
                 "flexDirection": "row",
                 "justifyContent": "center",
-                "marginTop": 6,
+                "marginBottom": 12,
+                "marginTop": 12,
               }
             }
           >
@@ -1279,6 +1361,36 @@ First 30 minutes High Quality voice for free
               }
             >
               Terms of Use
+            </Text>
+            <Text
+              style={
+                Object {
+                  "fontSize": 13,
+                  "lineHeight": 20,
+                  "opacity": 0.5,
+                }
+              }
+            >
+               - 
+            </Text>
+            <Text
+              onPress={[Function]}
+              style={
+                Array [
+                  Object {
+                    "fontSize": 13,
+                    "lineHeight": 20,
+                    "opacity": 0.5,
+                  },
+                  Object {
+                    "color": "#000000",
+                    "opacity": 1,
+                    "textDecorationLine": "underline",
+                  },
+                ]
+              }
+            >
+              Acceptable Use Policy
             </Text>
           </View>
           <View
