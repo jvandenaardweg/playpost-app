@@ -23,7 +23,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
         pagingEnabled={true}
         scrollEnabled={true}
         showsHorizontalScrollIndicator={false}
-        snapToInterval={702}
+        snapToInterval={696}
         style={
           Object {
             "backgroundColor": "#EEEEEE",
@@ -56,15 +56,17 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
             style={
               Object {
                 "color": "#000000",
-                "fontSize": 21,
+                "fontSize": 24,
                 "fontWeight": "700",
+                "lineHeight": 36,
                 "marginBottom": 24,
                 "marginTop": 12,
                 "textAlign": "center",
               }
             }
           >
-            Upgrade to Premium or Unlimited
+            Upgrade to
+Premium or Unlimited
           </Text>
           <View
             style={
@@ -91,7 +93,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                     "color": "#037DE2",
                     "marginLeft": 8,
                     "marginRight": 12,
-                    "width": 40,
+                    "width": 48,
                   },
                   Object {
                     "fontFamily": "FontAwesome5Free-Regular",
@@ -165,7 +167,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                     "color": "#037DE2",
                     "marginLeft": 8,
                     "marginRight": 12,
-                    "width": 40,
+                    "width": 48,
                   },
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
@@ -239,7 +241,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                     "color": "#037DE2",
                     "marginLeft": 8,
                     "marginRight": 12,
-                    "width": 40,
+                    "width": 48,
                   },
                   Object {
                     "fontFamily": "FontAwesome5Free-Regular",
@@ -313,7 +315,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                     "color": "#037DE2",
                     "marginLeft": 8,
                     "marginRight": 12,
-                    "width": 40,
+                    "width": 48,
                   },
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",

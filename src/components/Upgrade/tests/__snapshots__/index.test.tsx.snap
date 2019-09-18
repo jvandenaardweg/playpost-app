@@ -23,7 +23,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
         pagingEnabled={true}
         scrollEnabled={true}
         showsHorizontalScrollIndicator={false}
-        snapToInterval={702}
+        snapToInterval={696}
         style={
           Object {
             "backgroundColor": "#EEEEEE",
@@ -54,9 +54,9 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   "shadowRadius": 5,
                 },
                 Object {
-                  "marginLeft": 30,
+                  "marginLeft": 33,
                   "marginRight": 6,
-                  "width": 690,
+                  "width": 684,
                 },
               ]
             }
@@ -290,62 +290,6 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 About 5 articles to audio, per month
               </Text>
             </View>
-            <View>
-              <View
-                style={
-                  Object {
-                    "borderRadius": 3,
-                  }
-                }
-              >
-                <View
-                  accessible={true}
-                  clickable={true}
-                  isTVSelectable={true}
-                  onClick={[Function]}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
-                  style={
-                    Object {
-                      "opacity": 1,
-                    }
-                  }
-                >
-                  <View
-                    style={
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "transparent",
-                        "borderColor": "#2089dc",
-                        "borderRadius": 3,
-                        "borderWidth": 0,
-                        "flexDirection": "row",
-                        "justifyContent": "center",
-                        "padding": 8,
-                      }
-                    }
-                  >
-                    <Text
-                      style={
-                        Object {
-                          "color": "#2089dc",
-                          "fontSize": 15,
-                          "paddingBottom": 1,
-                          "paddingTop": 2,
-                          "textAlign": "center",
-                        }
-                      }
-                    >
-                      Restore purchase
-                    </Text>
-                  </View>
-                </View>
-              </View>
-            </View>
           </View>
           <View
             style={
@@ -369,7 +313,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 Object {
                   "marginLeft": 6,
                   "marginRight": 6,
-                  "width": 690,
+                  "width": 684,
                 },
               ]
             }
@@ -661,7 +605,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 Object {
                   "marginLeft": 6,
                   "marginRight": 6,
-                  "width": 690,
+                  "width": 684,
                 },
               ]
             }
@@ -952,8 +896,8 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 },
                 Object {
                   "marginLeft": 6,
-                  "marginRight": 30,
-                  "width": 690,
+                  "marginRight": 33,
+                  "width": 684,
                 },
               ]
             }
@@ -1047,7 +991,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                     style={
                       Object {
                         "alignItems": "center",
-                        "backgroundColor": "#2089dc",
+                        "backgroundColor": "hsl(208, 8%, 90%)",
                         "borderColor": "#2089dc",
                         "borderRadius": 3,
                         "borderWidth": 0,
@@ -1060,7 +1004,15 @@ exports[`Upgrade rendering should render correctly 1`] = `
                     <Text
                       style={
                         Object {
-                          "color": "white",
+                          "color": Object {
+                            "color": Array [
+                              208,
+                              8,
+                              63,
+                            ],
+                            "model": "hsl",
+                            "valpha": 1,
+                          },
                           "fontSize": 18,
                           "paddingBottom": 1,
                           "paddingTop": 2,
@@ -1246,15 +1198,17 @@ exports[`Upgrade rendering should render correctly 1`] = `
             style={
               Object {
                 "color": "#000000",
-                "fontSize": 21,
+                "fontSize": 24,
                 "fontWeight": "700",
+                "lineHeight": 36,
                 "marginBottom": 24,
                 "marginTop": 12,
                 "textAlign": "center",
               }
             }
           >
-            Upgrade to Premium or Unlimited
+            Upgrade to
+Premium or Unlimited
           </Text>
           <View
             style={
@@ -1281,7 +1235,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                     "color": "#037DE2",
                     "marginLeft": 8,
                     "marginRight": 12,
-                    "width": 40,
+                    "width": 48,
                   },
                   Object {
                     "fontFamily": "FontAwesome5Free-Regular",
@@ -1355,7 +1309,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                     "color": "#037DE2",
                     "marginLeft": 8,
                     "marginRight": 12,
-                    "width": 40,
+                    "width": 48,
                   },
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
@@ -1429,7 +1383,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                     "color": "#037DE2",
                     "marginLeft": 8,
                     "marginRight": 12,
-                    "width": 40,
+                    "width": 48,
                   },
                   Object {
                     "fontFamily": "FontAwesome5Free-Regular",
@@ -1503,7 +1457,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                     "color": "#037DE2",
                     "marginLeft": 8,
                     "marginRight": 12,
-                    "width": 40,
+                    "width": 48,
                   },
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
