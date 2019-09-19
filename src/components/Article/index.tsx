@@ -1,4 +1,3 @@
-import { formatDistanceToNow, parseISO } from 'date-fns';
 import React from 'react';
 import { ActivityIndicator, StyleProp, TextStyle, TouchableHighlight, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { Image } from 'react-native-elements';
@@ -82,45 +81,48 @@ export const Article: React.FC<Props> = React.memo(
         <View style={styles.contentContainer}>
           <View style={styles.wrapper}>
             <View testID="Article-Button-section" style={styles.sectionBody}>
-              <View style={styles.bodyMeta}>
-                <View style={[styles.bodyMetaSource, textDirectionStyle]}>
-                  <SourceText authorName={authorName} sourceName={sourceName} textDirection={textDirection} url={url} />
-                </View>
-              </View>
               <View style={styles.bodyTitle}>
                 <Text style={[styles.bodyTitleText, textDirectionStyle]} testID="Article-title" ellipsizeMode="tail" numberOfLines={3} template="bodyEmphasized">
                   {title}
                 </Text>
               </View>
+
               <View style={[styles.bodyFooter, textDirectionStyle, rtlFlexDirectionStyle]}>
-                <View style={[styles.bodyFooterIcons, rtlFlexDirectionStyle]}>
-                  <Icon.FontAwesome5
-                    name="circle"
+                <View style={[rtlFlexDirectionStyle]}>
+                  {/* <Icon.FontAwesome5
+                    name="play"
                     size={8}
-                    solid
+                    // solid
                     style={styles.bodySourceIcon}
-                    color={hasAudiofile ? colors.green : '#ddd'}
+                    color={isActive ? colors.tintColor : colors.gray}
                     testID="Article-PlayIcon-Icon-playable"
-                  />
-                  <Icon.FontAwesome5
-                    name="arrow-alt-circle-down"
-                    size={8}
-                    solid
+                  /> */}
+                  <Icon.Feather
+                    name={hasAudiofile ? 'download-cloud' : 'cloud-off'}
+                    size={14}
+                    // solid
                     style={styles.bodySourceIcon}
-                    color={isDownloaded ? colors.green : '#ddd'}
+                    color={isDownloaded ? colors.green : colors.gray}
                     testID="Article-icon-downloaded"
                   />
-                  <Icon.FontAwesome5
+                  {/* <Icon.Feather
                     name="heart"
-                    size={8}
-                    solid
+                    size={12}
+                    // solid
                     style={styles.bodySourceIcon}
-                    color={isFavorited ? colors.favorite : '#ddd'}
+                    color={isFavorited ? colors.favorite : colors.gray }
                     testID="Article-icon-favorited"
-                  />
+                  /> */}
                 </View>
-                <Text style={styles.bodyFooterText} template="caption2">Added {formatDistanceToNow(parseISO(playlistItemCreatedAt))} ago</Text>
+                <View style={styles.bodyMeta}>
+                <View style={[styles.bodyMetaSource, textDirectionStyle]}>
+                  <SourceText authorName={authorName} sourceName={sourceName} textDirection={textDirection} url={url} />
+                </View>
               </View>
+                {/* <SourceText authorName={authorName} sourceName={sourceName} textDirection={textDirection} url={url} /> */}
+                {/* <Text style={styles.bodyFooterText} template="caption2">added {formatDistanceToNow(parseISO(playlistItemCreatedAt))} ago</Text> */}
+              </View>
+
             </View>
             <View style={styles.sectionControl}>
               <TouchableOpacity
@@ -134,7 +136,7 @@ export const Article: React.FC<Props> = React.memo(
                   <PlayIcon isLoading={isLoading} isPlaying={isPlaying} isActive={isActive} />
                 </View>
               </TouchableOpacity>
-              <Duration listenTimeInSeconds={listenTimeInSeconds} readingTime={readingTime} />
+              <Duration listenTimeInSeconds={listenTimeInSeconds} readingTime={readingTime} isActive={isActive} />
             </View>
           </View>
           {!isCompatible && (
@@ -149,9 +151,9 @@ export const Article: React.FC<Props> = React.memo(
                 <Text style={styles.warningText}>
                   <Text>This article</Text>
                   <Text style={styles.warningHighlight} fontWeight="bold">{' '}might{' '}</Text>
-                  <Text>not be compatible for listening.</Text>
+                  <Text>not be compatible for listening.{' '}</Text>
+                  <Text style={styles.warningLink}>Learn more</Text>
                 </Text>
-                <Text style={styles.warningLink}>Learn more</Text>
               </View>
             </TouchableHighlight>
           )}
@@ -186,23 +188,25 @@ const SourceText: React.FC<SourceTextProps> = React.memo((props: SourceTextProps
 interface DurationProps {
   listenTimeInSeconds?: number;
   readingTime?: number | null;
+  isActive?: boolean;
 }
 
 const Duration: React.FC<DurationProps> = React.memo((props: DurationProps) => {
   // During our tests, it seems that it takes about 10-20% longer to listen to an article, then to read one
   // So we manually adjust the readingTime
-  const readingTimeToListenTimeMargin = 1.1;
+  const readingTimeToListenTimeMargin = 1.2;
+  const style = [styles.duration, (props.isActive) ? styles.durationActive : undefined];
 
   if (props.listenTimeInSeconds) {
-    return <Text style={styles.duration} testID="Article-duration" template="caption2">{`${Math.ceil(props.listenTimeInSeconds / 60)} min.`}</Text>;
+    return <Text style={style} testID="Article-duration" template="caption2Emphasized">{`${Math.ceil(props.listenTimeInSeconds / 60)} min.`}</Text>;
   }
 
   if (props.readingTime) {
-    return <Text style={styles.duration} testID="Article-duration" template="caption2">{`${Math.ceil((props.readingTime * readingTimeToListenTimeMargin) / 60)} min.`}</Text>;
+    return <Text style={style} testID="Article-duration" template="caption2Emphasized">{`${Math.ceil((props.readingTime * readingTimeToListenTimeMargin) / 60)} min.`}</Text>;
   }
 
   return (
-    <Text style={styles.duration} testID="Article-duration" template="caption2">
+    <Text style={style} testID="Article-duration" template="caption2Emphasized">
       ? min.
     </Text>
   );

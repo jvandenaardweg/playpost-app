@@ -437,6 +437,14 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   }
 
   showErrorAlert = (title: string, message: string) => {
+    const { userDetails } = this.props;
+
+    let feedbackUrl = URL_FEEDBACK;
+
+    if (userDetails) {
+      feedbackUrl = feedbackUrl + `email=${userDetails.email}&id=${userDetails.id}`;
+    }
+
     return Alert.alert(title, message, [
       {
         text: 'Close',
@@ -444,7 +452,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       },
       {
         text: 'Contact support',
-        onPress: () => inAppBrowser.openUrl(URL_FEEDBACK)
+        onPress: () => inAppBrowser.openUrl(feedbackUrl)
       }
     ]);
   }

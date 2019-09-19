@@ -7,6 +7,8 @@ import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
 import spacing from '../../constants/spacing';
 
+import { URL_BROWSER_EXTENSION_CHROME, URL_BROWSER_EXTENSION_FIREFOX, URL_BROWSER_EXTENSION_OPERA } from '../../constants/urls';
+import { textTemplates } from '../Text';
 import styles from './styles';
 
 interface Props {
@@ -20,6 +22,8 @@ export class ContentView extends React.PureComponent<Props> {
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width">
         <style type="text/css">
+          @import url('https://rsms.me/inter/inter.css');
+
           html {
             box-sizing: border-box;
           }
@@ -30,8 +34,8 @@ export class ContentView extends React.PureComponent<Props> {
           body {
             padding: 0 !important;
             margin: 0 !important;
-            font-size: ${fonts.fontSize.body}px;
-            font-family: 'SF Pro Text', 'Roboto', 'Helvetica', serif;
+            font-size: ${textTemplates['body'].fontSize}px;
+            font-family: 'Inter', 'Roboto', 'Helvetica', serif;
             line-height: 1.5;
             color: ${colors.black};
             font-weight: normal;
@@ -44,11 +48,11 @@ export class ContentView extends React.PureComponent<Props> {
             margin-top: 0;
             margin-bottom: ${spacing.tiny}px;
             color: ${colors.black};
-            font-family: 'SF Pro Display', 'Roboto', 'Helvetica', serif;
           }
 
           h1 {
-            font-size: ${fonts.fontSize.headline}px;
+            font-size: 28px;
+            letter-spacing: -0.019px;
             margin-bottom: 0;
             text-align: center;
           }
@@ -120,7 +124,7 @@ export class ContentView extends React.PureComponent<Props> {
           }
 
           .content {
-            padding: ${spacing.default}px;
+            padding: ${spacing.large}px;
           }
 
           .content img,
@@ -157,7 +161,7 @@ export class ContentView extends React.PureComponent<Props> {
             <h3>1. Article could be for subscribers only</h3>
             <p>A "subscriber-only" article is an article behind a paywall or a login. We call these "subscriber-only" articles.</p>
 
-            <p>Our App uses an external crawler to extract articles from a website. Our crawler is not logged in any website. It's not subscribed. It's not paying websites to gain access to certain articles. So, if a website requires a login, try using <a href="#what-to-do">one of the methods listed below</a>.</p>
+            <p>Playpost does not have access to articles behind a paywall or login. So, if a website requires a login, try using <a href="#what-to-do">one of the methods listed below</a>.</p>
 
             <h3>2. Article's website could be too complex</h3>
             <p>It could also happen the website of the article is too complex to automatically extract the article from. If that's the case with your article, we would like to know more so we can improve the article extraction.</p>
@@ -170,17 +174,18 @@ export class ContentView extends React.PureComponent<Props> {
             <h3>1. Verify if the article is really incompatible</h3>
             <p>You can verify this by just opening the article from your playlist by pressing on the title. You can then read the article Playpost has extracted. If you notice the article is correct, then you can just ignore the incompatibility warning. We were wrong then!</p>
 
-            <h3>2. Use Safari on your iPhone to share the article</h3>
+            <h3>2. Use our share extensions</h3>
+            <p>Use our share extension for <a href="${URL_BROWSER_EXTENSION_CHROME}">Chrome</a>, <a href="${URL_BROWSER_EXTENSION_FIREFOX}">Firefox</a> or <a href="${URL_BROWSER_EXTENSION_OPERA}">Opera</a> to save the article to your playlist.</p>
+
+            <h3>3. iPhone only: Use Safari to share the article</h3>
             <p>If the website from the article is known to have subscriber-only articles, make sure you are logged in the website in Safari. Then just press Share from Safari and select the Playpost App. We can then extract the correct article from the webpage.</p>
 
-            <h3>3. Re-add the article</h3>
+            <h3>4. Re-add the article</h3>
             <p>First, remove the article from your playlist and then add it again as you did before. This will allow Playpost to retry.</p>
 
-            <h3>4. Contact our support</h3>
+            <h3>5. Contact our support</h3>
             <p>If none of the above worked out for you feel free to contact our support. We are happy to help!</p>
 
-            <!--<h3>3. Use our browser extension</h3>
-            <p>Which will be available later. With that browser extension you can share those articles to the Playpost App.</p>-->
           </div>
         </body>
       </html>

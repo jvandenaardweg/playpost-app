@@ -28,7 +28,7 @@ exports[`AudioPlayerLarge rendering should render correctly 1`] = `
           "borderTopWidth": 1,
           "flexGrow": 1,
           "flexShrink": 1,
-          "marginBottom": 24,
+          "marginBottom": 20,
           "marginTop": 0,
           "overflow": "hidden",
         }
@@ -120,8 +120,8 @@ exports[`AudioPlayerLarge rendering should render correctly 1`] = `
     <View
       style={
         Object {
-          "paddingLeft": 24,
-          "paddingRight": 24,
+          "paddingLeft": 20,
+          "paddingRight": 20,
         }
       }
     >
@@ -185,7 +185,7 @@ exports[`AudioPlayerLarge rendering should render correctly 1`] = `
             "alignItems": "center",
             "flexDirection": "row",
             "justifyContent": "space-around",
-            "marginTop": 24,
+            "marginTop": 20,
           }
         }
       >
@@ -268,8 +268,8 @@ exports[`AudioPlayerLarge rendering should render correctly 1`] = `
       style={
         Object {
           "height": 60,
-          "paddingLeft": 24,
-          "paddingRight": 24,
+          "paddingLeft": 20,
+          "paddingRight": 20,
           "paddingTop": 12,
         }
       }

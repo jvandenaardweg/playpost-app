@@ -121,7 +121,7 @@ exports[`UpgradeModal rendering should render correctly 1`] = `
               "color": "#000000",
               "fontSize": 15,
               "lineHeight": 22.5,
-              "marginBottom": 24,
+              "marginBottom": 20,
               "textAlign": "center",
             },
           ]

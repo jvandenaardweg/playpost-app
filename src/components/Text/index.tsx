@@ -10,7 +10,7 @@ type FontFamilies = {
 
 type FontWeightOptions = 'thin' | 'extraLight' | 'light' | 'regular' | 'medium' | 'semiBold' | 'bold' | 'extraBold' | 'black';
 
-type TextTemplateOptions = 'largeTitleEmphasized' | 'title3Emphasized' | 'title3' | 'bodyEmphasized' | 'body' | 'subheadEmphasized' | 'subhead' | 'subheadShort' | 'callout' | 'footnoteEmphasized' | 'footnote' | 'caption2Emphasized' | 'caption2';
+type TextTemplateOptions = 'largeTitleEmphasized' | 'title3Emphasized' | 'title3' | 'bodyEmphasized' | 'body' | 'subheadEmphasized' | 'subhead' | 'subheadShort' | 'callout' | 'calloutEmphasized' | 'footnoteEmphasized' | 'footnote' | 'caption2Emphasized' | 'caption2';
 
 type TemplateMap = { [textTemplate in TextTemplateOptions]: ReactNative.TextStyle }
 
@@ -89,7 +89,12 @@ export const textTemplates: TemplateMap = {
   callout: {
     ...fontFamilies['regular'],
     fontSize: 16,
-    lineHeight: Math.ceil(16 * 1.2)
+    lineHeight: Math.ceil(16 * 1.3)
+  },
+  calloutEmphasized: {
+    ...fontFamilies['semiBold'],
+    fontSize: 16,
+    lineHeight: Math.ceil(16 * 1.3)
   },
   footnoteEmphasized: {
     ...fontFamilies['semiBold'],

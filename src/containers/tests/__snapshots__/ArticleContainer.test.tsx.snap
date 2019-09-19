@@ -310,64 +310,10 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
             <View
               style={
                 Object {
-                  "alignItems": "baseline",
-                  "flexDirection": "row",
-                  "height": 14,
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "flexBasis": "auto",
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                    },
-                    Object {
-                      "flexDirection": undefined,
-                      "writingDirection": "ltr",
-                    },
-                  ]
-                }
-              >
-                <Text
-                  ellipsizeMode="tail"
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#000000",
-                        "fontFamily": "Inter-Regular",
-                        "fontSize": 13,
-                        "lineHeight": 16,
-                      },
-                      Array [
-                        Object {
-                          "color": "#AAAAAA",
-                          "paddingRight": 0,
-                        },
-                        Object {
-                          "direction": "ltr",
-                          "writingDirection": "ltr",
-                        },
-                      ],
-                    ]
-                  }
-                  testID="Article-source-name"
-                >
-                  Darius Foroux on Medium
-                </Text>
-              </View>
-            </View>
-            <View
-              style={
-                Object {
                   "flex": 1,
                   "flexBasis": "auto",
                   "flexGrow": 0,
                   "marginBottom": 10,
-                  "marginTop": 10,
                 }
               }
             >
@@ -408,7 +354,6 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                     "flexDirection": "row",
                     "flexGrow": 0,
                     "flexShrink": 1,
-                    "height": 18,
                   },
                   Object {
                     "flexDirection": undefined,
@@ -425,13 +370,6 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                   Array [
                     Object {
                       "flexDirection": "row",
-                      "height": 10,
-                      "justifyContent": "space-between",
-                      "marginRight": 4,
-                      "width": 31,
-                    },
-                    Object {
-                      "flexDirection": "row",
                     },
                   ]
                 }
@@ -441,98 +379,85 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                   style={
                     Array [
                       Object {
-                        "color": "#03A87C",
-                        "fontSize": 8,
+                        "color": "#C5C5C5",
+                        "fontSize": 14,
                       },
-                      Object {},
                       Object {
-                        "fontFamily": "FontAwesome5Free-Solid",
+                        "marginRight": 6,
+                      },
+                      Object {
+                        "fontFamily": "Feather",
                         "fontStyle": "normal",
                         "fontWeight": "normal",
                       },
-                      Object {
-                        "fontWeight": "900",
-                      },
-                    ]
-                  }
-                  testID="Article-PlayIcon-Icon-playable"
-                >
-                  
-                </Text>
-                <Text
-                  allowFontScaling={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#ddd",
-                        "fontSize": 8,
-                      },
                       Object {},
-                      Object {
-                        "fontFamily": "FontAwesome5Free-Solid",
-                        "fontStyle": "normal",
-                        "fontWeight": "normal",
-                      },
-                      Object {
-                        "fontWeight": "900",
-                      },
                     ]
                   }
                   testID="Article-icon-downloaded"
                 >
-                  
+                  
                 </Text>
-                <Text
-                  allowFontScaling={false}
+              </View>
+              <View
+                style={
+                  Object {
+                    "alignItems": "baseline",
+                    "flexDirection": "row",
+                  }
+                }
+              >
+                <View
                   style={
                     Array [
                       Object {
-                        "color": "#ddd",
-                        "fontSize": 8,
-                      },
-                      Object {},
-                      Object {
-                        "fontFamily": "FontAwesome5Free-Solid",
-                        "fontStyle": "normal",
-                        "fontWeight": "normal",
+                        "flexBasis": "auto",
+                        "flexGrow": 1,
+                        "flexShrink": 1,
                       },
                       Object {
-                        "fontWeight": "900",
+                        "flexDirection": undefined,
+                        "writingDirection": "ltr",
                       },
                     ]
                   }
-                  testID="Article-icon-favorited"
                 >
-                  
-                </Text>
+                  <Text
+                    ellipsizeMode="tail"
+                    numberOfLines={1}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#000000",
+                          "fontFamily": "Inter-Regular",
+                          "fontSize": 13,
+                          "lineHeight": 16,
+                        },
+                        Array [
+                          Object {
+                            "color": "#AAAAAA",
+                            "paddingRight": 0,
+                          },
+                          Object {
+                            "direction": "ltr",
+                            "writingDirection": "ltr",
+                          },
+                        ],
+                      ]
+                    }
+                    testID="Article-source-name"
+                  >
+                    Darius Foroux on Medium
+                  </Text>
+                </View>
               </View>
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#000000",
-                      "fontFamily": "Inter-Regular",
-                      "fontSize": 12,
-                      "lineHeight": 15,
-                    },
-                    Object {
-                      "color": "#AAAAAA",
-                      "paddingLeft": 2,
-                      "paddingRight": 6,
-                    },
-                  ]
-                }
-              >
-                Added 
-                6 months
-                 ago
-              </Text>
             </View>
           </View>
           <View
             style={
               Object {
-                "marginLeft": 12,
+                "alignItems": "center",
+                "height": "100%",
+                "marginLeft": 20,
                 "marginTop": 4,
                 "width": 75,
               }
@@ -733,15 +658,25 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                 Array [
                   Object {
                     "color": "#000000",
-                    "fontFamily": "Inter-Regular",
+                    "fontFamily": "Inter-SemiBold",
                     "fontSize": 12,
                     "lineHeight": 15,
                   },
-                  Object {
-                    "color": "#C5C5C5",
-                    "marginTop": 6,
-                    "textAlign": "center",
-                  },
+                  Array [
+                    Object {
+                      "backgroundColor": "#EEEEEE",
+                      "borderRadius": 10,
+                      "color": "#AAAAAA",
+                      "height": 21,
+                      "marginTop": 10,
+                      "paddingBottom": 0,
+                      "paddingLeft": 8,
+                      "paddingRight": 8,
+                      "paddingTop": 3,
+                      "textAlign": "center",
+                    },
+                    undefined,
+                  ],
                 ]
               }
               testID="Article-duration"

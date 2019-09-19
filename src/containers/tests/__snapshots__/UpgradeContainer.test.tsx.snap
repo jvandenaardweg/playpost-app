@@ -64,7 +64,7 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
                   "fontSize": 24,
                   "fontWeight": "700",
                   "lineHeight": 36,
-                  "marginBottom": 24,
+                  "marginBottom": 20,
                   "marginTop": 12,
                   "textAlign": "center",
                 },
@@ -82,8 +82,8 @@ Premium or Unlimited
                 "borderColor": "rgba(0,0,0,0.05)",
                 "flex": 1,
                 "flexDirection": "row",
-                "paddingBottom": 24,
-                "paddingTop": 24,
+                "paddingBottom": 20,
+                "paddingTop": 20,
               }
             }
           >
@@ -168,8 +168,8 @@ Premium or Unlimited
                 "borderColor": "rgba(0,0,0,0.05)",
                 "flex": 1,
                 "flexDirection": "row",
-                "paddingBottom": 24,
-                "paddingTop": 24,
+                "paddingBottom": 20,
+                "paddingTop": 20,
               }
             }
           >
@@ -254,8 +254,8 @@ Premium or Unlimited
                 "borderColor": "rgba(0,0,0,0.05)",
                 "flex": 1,
                 "flexDirection": "row",
-                "paddingBottom": 24,
-                "paddingTop": 24,
+                "paddingBottom": 20,
+                "paddingTop": 20,
               }
             }
           >
@@ -340,8 +340,8 @@ Premium or Unlimited
                 "borderColor": "rgba(0,0,0,0.05)",
                 "flex": 1,
                 "flexDirection": "row",
-                "paddingBottom": 24,
-                "paddingTop": 24,
+                "paddingBottom": 20,
+                "paddingTop": 20,
               }
             }
           >

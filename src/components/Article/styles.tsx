@@ -24,20 +24,21 @@ export default StyleSheet.create({
   },
   sectionBody: {
     flex: 1,
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   sectionControl: {
     width: 75,
-    marginLeft: spacing.default,
-    marginTop: 4
+    marginLeft: spacing.large,
+    marginTop: 4,
+    height: '100%',
+    alignItems: 'center'
   },
   author: {
     color: colors.grayDark
   },
   bodyMeta: {
     flexDirection: 'row',
-    alignItems: 'baseline',
-    height: 14
+    alignItems: 'baseline'
   },
   bodyMetaSource: {
     flexGrow: 1,
@@ -48,7 +49,6 @@ export default StyleSheet.create({
     flex: 1,
     flexGrow: 0,
     flexBasis: 'auto',
-    marginTop: spacing.tiny,
     marginBottom: spacing.tiny
   },
   bodyFooter: {
@@ -57,8 +57,7 @@ export default StyleSheet.create({
     flexShrink: 1,
     flexBasis: 'auto',
     flexDirection: 'row',
-    alignItems: 'center',
-    height: 18
+    alignItems: 'center'
   },
   bodyFooterIcons: {
     flexDirection: 'row',
@@ -72,10 +71,11 @@ export default StyleSheet.create({
   },
   bodyFooterText: {
     color: colors.grayDark,
-    paddingLeft: 2,
     paddingRight: 6 // so our "rtl" text has enough spacing
   },
-  bodySourceIcon: { },
+  bodySourceIcon: {
+    marginRight: 6
+  },
   bodySourceText: {
     color: colors.grayDark,
     paddingRight: 0
@@ -107,9 +107,20 @@ export default StyleSheet.create({
     backgroundColor: colors.controlButtonActive
   },
   duration: {
-    color: colors.gray,
+    color: colors.grayDark,
     textAlign: 'center',
-    marginTop: 6
+    marginTop: spacing.tiny,
+    backgroundColor: colors.grayLightest,
+    borderRadius: 10,
+    paddingTop: 3,
+    paddingBottom: 0,
+    paddingLeft: 8,
+    paddingRight: 8,
+    height: 21,
+  },
+  durationActive: {
+    backgroundColor: colors.tintColor,
+    color: colors.white
   },
   imageContainer: {
     justifyContent: 'center',

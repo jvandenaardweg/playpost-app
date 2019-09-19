@@ -15,9 +15,9 @@ exports[`Usage rendering should render correctly 1`] = `
     style={
       Object {
         "backgroundColor": "#037DE2",
-        "borderRadius": 10,
+        "borderRadius": 8,
         "marginBottom": 0,
-        "padding": 24,
+        "padding": 20,
       }
     }
   >

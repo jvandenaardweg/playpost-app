@@ -46,7 +46,7 @@ exports[`UpdateEmailForm rendering should render correctly 1`] = `
           "fontFamily": "Inter-Regular",
           "fontSize": 16,
           "height": 54,
-          "lineHeight": 20,
+          "lineHeight": 21,
           "marginBottom": 12,
           "paddingLeft": 12,
           "paddingRight": 12,

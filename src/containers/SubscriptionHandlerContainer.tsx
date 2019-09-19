@@ -242,6 +242,14 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
   }
 
   showErrorAlert = (title: string, message: string) => {
+    const { userDetails } = this.props;
+
+    let feedbackUrl = URL_FEEDBACK;
+
+    if (userDetails) {
+      feedbackUrl = feedbackUrl + `email=${userDetails.email}&id=${userDetails.id}`;
+    }
+
     return Alert.alert(title, message, [
       {
         text: 'Close',
@@ -249,7 +257,7 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
       },
       {
         text: 'Contact support',
-        onPress: () => inAppBrowser.openUrl(URL_FEEDBACK)
+        onPress: () => inAppBrowser.openUrl(feedbackUrl)
       }
     ]);
   }

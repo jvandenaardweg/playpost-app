@@ -16,7 +16,7 @@ export default StyleSheet.create({
     backgroundColor: colors.tintColor,
     padding: spacing.large,
     marginBottom: 0,
-    borderRadius: layout.borderRadius.large
+    borderRadius: layout.borderRadius.medium
   },
   headerTitle: {
     color: colors.white,

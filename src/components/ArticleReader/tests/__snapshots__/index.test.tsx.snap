@@ -68,12 +68,12 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
           }
 
           h2, h3, h4 {
-            margin-top: 24px;
+            margin-top: 20px;
             font-size: 21px;
           }
 
           h5, h6, h7, h8 {
-            margin-top: 24px;
+            margin-top: 20px;
             font-size 18px
           }
 
@@ -92,8 +92,8 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
           blockquote {
             font-style: italic;
             color: #C5C5C5;
-            margin-left: 24px;
-            margin-right: 24px;
+            margin-left: 20px;
+            margin-right: 20px;
           }
           blockquote p {
             font-style: italic;
@@ -105,7 +105,7 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
 
           .meta-header {
             text-align: center;
-            padding: 24px;
+            padding: 20px;
           }
 
           .meta-header strong {
@@ -128,7 +128,7 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
           }
 
           .content {
-            padding: 24px;
+            padding: 20px;
             padding-top: 0;
           }
 
@@ -304,12 +304,12 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
           }
 
           h2, h3, h4 {
-            margin-top: 24px;
+            margin-top: 20px;
             font-size: 21px;
           }
 
           h5, h6, h7, h8 {
-            margin-top: 24px;
+            margin-top: 20px;
             font-size 18px
           }
 
@@ -328,8 +328,8 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
           blockquote {
             font-style: italic;
             color: #000000;
-            margin-left: 24px;
-            margin-right: 24px;
+            margin-left: 20px;
+            margin-right: 20px;
           }
           blockquote p {
             font-style: italic;
@@ -341,7 +341,7 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
 
           .meta-header {
             text-align: center;
-            padding: 24px;
+            padding: 20px;
           }
 
           .meta-header strong {
@@ -364,7 +364,7 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
           }
 
           .content {
-            padding: 24px;
+            padding: 20px;
             padding-top: 0;
           }
 
@@ -540,12 +540,12 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
           }
 
           h2, h3, h4 {
-            margin-top: 24px;
+            margin-top: 20px;
             font-size: 21px;
           }
 
           h5, h6, h7, h8 {
-            margin-top: 24px;
+            margin-top: 20px;
             font-size 18px
           }
 
@@ -564,8 +564,8 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
           blockquote {
             font-style: italic;
             color: #000000;
-            margin-left: 24px;
-            margin-right: 24px;
+            margin-left: 20px;
+            margin-right: 20px;
           }
           blockquote p {
             font-style: italic;
@@ -577,7 +577,7 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
 
           .meta-header {
             text-align: center;
-            padding: 24px;
+            padding: 20px;
           }
 
           .meta-header strong {
@@ -600,7 +600,7 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
           }
 
           .content {
-            padding: 24px;
+            padding: 20px;
             padding-top: 0;
           }
 
@@ -770,12 +770,12 @@ exports[`ArticleReader rendering no author name should render no authorName when
           }
 
           h2, h3, h4 {
-            margin-top: 24px;
+            margin-top: 20px;
             font-size: 21px;
           }
 
           h5, h6, h7, h8 {
-            margin-top: 24px;
+            margin-top: 20px;
             font-size 18px
           }
 
@@ -794,8 +794,8 @@ exports[`ArticleReader rendering no author name should render no authorName when
           blockquote {
             font-style: italic;
             color: #000000;
-            margin-left: 24px;
-            margin-right: 24px;
+            margin-left: 20px;
+            margin-right: 20px;
           }
           blockquote p {
             font-style: italic;
@@ -807,7 +807,7 @@ exports[`ArticleReader rendering no author name should render no authorName when
 
           .meta-header {
             text-align: center;
-            padding: 24px;
+            padding: 20px;
           }
 
           .meta-header strong {
@@ -830,7 +830,7 @@ exports[`ArticleReader rendering no author name should render no authorName when
           }
 
           .content {
-            padding: 24px;
+            padding: 20px;
             padding-top: 0;
           }
 
@@ -1000,12 +1000,12 @@ exports[`ArticleReader rendering no html should render a different HTML output w
           }
 
           h2, h3, h4 {
-            margin-top: 24px;
+            margin-top: 20px;
             font-size: 21px;
           }
 
           h5, h6, h7, h8 {
-            margin-top: 24px;
+            margin-top: 20px;
             font-size 18px
           }
 
@@ -1024,8 +1024,8 @@ exports[`ArticleReader rendering no html should render a different HTML output w
           blockquote {
             font-style: italic;
             color: #000000;
-            margin-left: 24px;
-            margin-right: 24px;
+            margin-left: 20px;
+            margin-right: 20px;
           }
           blockquote p {
             font-style: italic;
@@ -1037,7 +1037,7 @@ exports[`ArticleReader rendering no html should render a different HTML output w
 
           .meta-header {
             text-align: center;
-            padding: 24px;
+            padding: 20px;
           }
 
           .meta-header strong {
@@ -1060,7 +1060,7 @@ exports[`ArticleReader rendering no html should render a different HTML output w
           }
 
           .content {
-            padding: 24px;
+            padding: 20px;
             padding-top: 0;
           }
 
@@ -1230,12 +1230,12 @@ exports[`ArticleReader rendering right to left content should render correctly 1
           }
 
           h2, h3, h4 {
-            margin-top: 24px;
+            margin-top: 20px;
             font-size: 21px;
           }
 
           h5, h6, h7, h8 {
-            margin-top: 24px;
+            margin-top: 20px;
             font-size 18px
           }
 
@@ -1254,8 +1254,8 @@ exports[`ArticleReader rendering right to left content should render correctly 1
           blockquote {
             font-style: italic;
             color: #000000;
-            margin-left: 24px;
-            margin-right: 24px;
+            margin-left: 20px;
+            margin-right: 20px;
           }
           blockquote p {
             font-style: italic;
@@ -1267,7 +1267,7 @@ exports[`ArticleReader rendering right to left content should render correctly 1
 
           .meta-header {
             text-align: center;
-            padding: 24px;
+            padding: 20px;
           }
 
           .meta-header strong {
@@ -1290,7 +1290,7 @@ exports[`ArticleReader rendering right to left content should render correctly 1
           }
 
           .content {
-            padding: 24px;
+            padding: 20px;
             padding-top: 0;
           }
 

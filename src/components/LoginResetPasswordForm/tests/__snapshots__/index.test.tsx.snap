@@ -48,7 +48,7 @@ exports[`LoginResetPasswordForm rendering should render correctly 1`] = `
               "color": "#222222",
               "fontSize": 15,
               "lineHeight": 23,
-              "marginBottom": 24,
+              "marginBottom": 20,
             },
           ]
         }
@@ -76,7 +76,7 @@ exports[`LoginResetPasswordForm rendering should render correctly 1`] = `
             "fontFamily": "Inter-Regular",
             "fontSize": 16,
             "height": 54,
-            "lineHeight": 20,
+            "lineHeight": 21,
             "marginBottom": 12,
             "paddingLeft": 12,
             "paddingRight": 12,
@@ -107,7 +107,7 @@ exports[`LoginResetPasswordForm rendering should render correctly 1`] = `
             "fontFamily": "Inter-Regular",
             "fontSize": 16,
             "height": 54,
-            "lineHeight": 20,
+            "lineHeight": 21,
             "marginBottom": 12,
             "paddingLeft": 12,
             "paddingRight": 12,

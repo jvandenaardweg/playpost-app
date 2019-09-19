@@ -1,5 +1,6 @@
 import React from 'react';
 import { fireEvent, render, RenderAPI } from 'react-native-testing-library';
+import colors from '../../../constants/colors';
 import { TextDirection } from '../../../typings';
 import { Article } from '../index';
 
@@ -45,7 +46,7 @@ describe('Article', () => {
     });
 
     it('should render default color download icon', () => {
-      expect(wrapper.getByTestId('Article-icon-downloaded').props.color).toBe('#ddd');
+      expect(wrapper.getByTestId('Article-icon-downloaded').props.color).toBe(colors.gray);
     });
   });
 
@@ -83,7 +84,7 @@ describe('Article', () => {
     });
 
     it('should render a different color play button', () => {
-      expect(wrapper.getByTestId('Article-PlayIcon-view').props.style[1].backgroundColor).toBe('#037DE2');
+      expect(wrapper.getByTestId('Article-PlayIcon-view').props.style[1].backgroundColor).toBe(colors.tintColor);
     });
   });
 
@@ -122,7 +123,7 @@ describe('Article', () => {
     });
 
     it('should render different color download icon', () => {
-      expect(wrapper.getByTestId('Article-icon-downloaded').props.color).toBe('#03A87C');
+      expect(wrapper.getByTestId('Article-icon-downloaded').props.color).toBe(colors.green);
     });
   });
 

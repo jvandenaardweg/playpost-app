@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
-import fonts from '../../constants/fonts';
 import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
@@ -19,26 +18,20 @@ export default StyleSheet.create({
     paddingBottom: '25%'
   },
   image: {
-    width: 320,
-    // height: 320,
+    width: 320
   },
   text: {
     color: colors.white,
     opacity: 0.9,
     backgroundColor: 'transparent',
     textAlign: 'center',
-    paddingHorizontal: spacing.default,
-    // fontSize: fonts.fontSize.paragraph,
-    // lineHeight: Math.ceil(fonts.fontSize.paragraph * 1.5),
+    paddingHorizontal: spacing.default
   },
   title: {
-    // fontSize: fonts.fontSize.headline,
-    // lineHeight: Math.ceil(fonts.fontSize.headline * 1.2),
     color: colors.white,
     backgroundColor: 'transparent',
     textAlign: 'center',
-    marginBottom: spacing.default,
-    // fontWeight: fonts.fontWeight.bold
+    marginBottom: spacing.default
   },
   footerContainer: {
     marginBottom: 22,

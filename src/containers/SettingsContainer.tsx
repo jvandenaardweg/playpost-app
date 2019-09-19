@@ -12,7 +12,7 @@ import * as inAppBrowser from '../utils/in-app-browser';
 
 import colors from '../constants/colors';
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
-import fonts from '../constants/fonts';
+
 import {
   ALERT_SETTINGS_CLEAR_CACHE_WARNING,
   ALERT_SETTINGS_DELETE_USER,
@@ -241,8 +241,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
       <Text
         style={{
           alignSelf: 'center',
-          fontSize: fonts.fontSize.title,
-          color: 'red',
+          color: colors.red,
           marginBottom: 40
         }}
         onPress={this.handleOnPressAccountDelete}
@@ -258,14 +257,13 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
     const environment = Config.NODE_ENV;
     const environmentText = environment !== 'production' ? `(Env: ${environment})` : '';
 
-    const versionText = `Version: ${version} (Build: ${buildNumber}) ${environmentText}`;
+    const versionText = `Version: ${version} (${buildNumber}) ${environmentText}`;
 
     return (
       <View>
         <Text
           style={{
             alignSelf: 'center',
-            fontSize: fonts.fontSize.body,
             color: colors.grayDark,
             marginBottom: 40,
             marginTop: spacing.large
@@ -281,6 +279,9 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
   render() {
     const { activeSubscriptionName, totalAvailableVoices, user, activeSubscriptionProductId, userIsEligibleForTrial } = this.props;
     const { isClearingCache, cacheSize } = this.state;
+
+    const userEmail = user && user.email;
+    const userId = user && user.id;
 
     const sectionListData: ReadonlyArray<SectionListData<IListItem>> = [
       {
@@ -359,7 +360,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
         data: [
           {
             key: 'about-write-a-review',
-            title: 'Write a review',
+            title: 'Rate us 5 stars',
             icon: 'heart',
             iconColor: colors.green,
             chevron: true,
@@ -427,7 +428,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             icon: 'message-square',
             iconColor: colors.grayDark,
             chevron: true,
-            onPress: () => inAppBrowser.openUrl(URL_FEEDBACK)
+            onPress: () => inAppBrowser.openUrl(URL_FEEDBACK + `?email=${userEmail}&id=${userId}`)
           },
           {
             key: 'about-support',
@@ -435,7 +436,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             icon: 'message-square',
             iconColor: colors.grayDark,
             chevron: true,
-            onPress: () => inAppBrowser.openUrl(URL_FEEDBACK)
+            onPress: () => inAppBrowser.openUrl(URL_FEEDBACK + `?email=${userEmail}&id=${userId}`)
           }
         ]
       }
