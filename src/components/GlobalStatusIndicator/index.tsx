@@ -1,6 +1,7 @@
 import React from 'react';
-import { ActivityIndicator, Text, View } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 
+import { Text } from '../Text';
 import styles from './styles';
 
 interface Props {
@@ -12,7 +13,7 @@ export const GlobalStatusIndicator: React.FC<Props> = React.memo(({ label = 'Loa
     <View style={styles.container}>
       <View style={styles.wrapper}>
         <ActivityIndicator size="small" color="white" />
-        <Text style={styles.label} testID="GlobalStatusIndicator-label">
+        <Text style={styles.label} testID="GlobalStatusIndicator-label" template="subheadEmphasized">
           {label}
         </Text>
       </View>

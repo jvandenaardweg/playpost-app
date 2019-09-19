@@ -319,7 +319,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
         const isLoadingVoicePreview = isLoadingPreviewVoiceId === voice.id;
 
         const title = `${voice.label || voice.name}`;
-        const badgeValue = `Quality: ${voice.quality}`;
+        const badgeValue = voice.quality;
         const gender = voice.gender === 'MALE' ? 'Male' : 'Female';
         const subtitle = `${gender} (${voice.countryCode})`;
 

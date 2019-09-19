@@ -11,6 +11,6 @@ export default StyleSheet.create({
   },
   seperatorLine: {
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.borderDefault,
+    borderBottomColor: colors.grayLight,
   }
 });

@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
-import fonts from '../../constants/fonts';
 import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
@@ -50,23 +49,6 @@ export default StyleSheet.create({
   scrollableContent: {
     padding: spacing.large,
   },
-  contentText: {
-    color: colors.white,
-    fontSize: fonts.fontSize.body,
-    lineHeight: Math.ceil(fonts.fontSize.body * 1.5),
-    marginBottom: spacing.large
-  },
-  title: {
-    color: colors.white,
-    fontSize: fonts.fontSize.titleLarge,
-    lineHeight: Math.ceil(fonts.fontSize.titleLarge * 1.2),
-    fontWeight: fonts.fontWeight.semibold,
-    marginBottom: 6
-  },
-  album: {
-    color: colors.paragraphGrayed,
-    fontSize: fonts.fontSize.small
-  },
   controlsRow: {
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -105,8 +87,6 @@ export default StyleSheet.create({
     marginRight: spacing.micro
   },
   buttonControlText: {
-    color: colors.white,
-    fontSize: fonts.fontSize.tiny,
-    fontWeight: fonts.fontWeight.semibold
+    color: colors.white
   }
 });

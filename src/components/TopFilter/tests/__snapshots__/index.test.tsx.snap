@@ -18,12 +18,18 @@ exports[`TopFilter rendering should render correctly 1`] = `
     >
       <Text
         style={
-          Object {
-            "fontWeight": "600",
-            "marginLeft": 12,
-            "marginRight": 12,
-            "width": 55,
-          }
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "Inter-Regular",
+            },
+            Object {
+              "fontWeight": "600",
+              "marginLeft": 12,
+              "marginRight": 12,
+              "width": 56,
+            },
+          ]
         }
         testID="TopFilter-Text-label"
       >
@@ -95,8 +101,10 @@ exports[`TopFilter rendering should render correctly 1`] = `
                   style={
                     Array [
                       Object {
+                        "color": "#000000",
+                        "fontFamily": "Inter-SemiBold",
                         "fontSize": 13,
-                        "fontWeight": "600",
+                        "lineHeight": 16,
                       },
                       Object {
                         "color": "#037DE2",
@@ -193,8 +201,10 @@ exports[`TopFilter rendering should render correctly 1`] = `
                   style={
                     Array [
                       Object {
+                        "color": "#000000",
+                        "fontFamily": "Inter-SemiBold",
                         "fontSize": 13,
-                        "fontWeight": "600",
+                        "lineHeight": 16,
                       },
                       Object {
                         "color": "#000000",
@@ -260,8 +270,10 @@ exports[`TopFilter rendering should render correctly 1`] = `
                   style={
                     Array [
                       Object {
+                        "color": "#000000",
+                        "fontFamily": "Inter-SemiBold",
                         "fontSize": 13,
-                        "fontWeight": "600",
+                        "lineHeight": 16,
                       },
                       Object {
                         "color": "#000000",
@@ -327,8 +339,10 @@ exports[`TopFilter rendering should render correctly 1`] = `
                   style={
                     Array [
                       Object {
+                        "color": "#000000",
+                        "fontFamily": "Inter-SemiBold",
                         "fontSize": 13,
-                        "fontWeight": "600",
+                        "lineHeight": 16,
                       },
                       Object {
                         "color": "#000000",

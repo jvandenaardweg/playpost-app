@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../constants/colors';
-import fonts from '../../constants/fonts';
 import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
@@ -25,8 +24,6 @@ export default StyleSheet.create({
   },
   label: {
     color: colors.white,
-    fontSize: fonts.fontSize.body,
-    marginLeft: spacing.tiny,
-    fontWeight: fonts.fontWeight.semibold
+    marginLeft: spacing.tiny
   }
 });

@@ -91,15 +91,21 @@ Array [
       >
         <Text
           style={
-            Object {
-              "color": "#000000",
-              "fontSize": 24,
-              "fontWeight": "600",
-              "lineHeight": 28.799999999999997,
-              "marginBottom": 12,
-              "marginTop": 10,
-              "textAlign": "center",
-            }
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "Inter-Regular",
+              },
+              Object {
+                "color": "#000000",
+                "fontSize": 24,
+                "fontWeight": "600",
+                "lineHeight": 28.799999999999997,
+                "marginBottom": 12,
+                "marginTop": 10,
+                "textAlign": "center",
+              },
+            ]
           }
           testID="UpgradeModal-Text-title"
         >
@@ -107,13 +113,19 @@ Array [
         </Text>
         <Text
           style={
-            Object {
-              "color": "#000000",
-              "fontSize": 15,
-              "lineHeight": 22.5,
-              "marginBottom": 24,
-              "textAlign": "center",
-            }
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "Inter-Regular",
+              },
+              Object {
+                "color": "#000000",
+                "fontSize": 15,
+                "lineHeight": 22.5,
+                "marginBottom": 24,
+                "textAlign": "center",
+              },
+            ]
           }
           testID="UpgradeModal-Text-not-isSubscribed"
         >

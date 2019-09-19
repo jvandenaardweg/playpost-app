@@ -1,9 +1,10 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { Slider } from 'react-native-elements';
 import { useProgress } from 'react-native-track-player';
 
 import colors from '../../constants/colors';
+import { Text } from '../Text';
 
 import styles from './styles';
 
@@ -57,8 +58,8 @@ export const AudioPlayerProgressBar: React.FC<Props> = React.memo(({ onProgressC
         />
       </View>
       <View style={styles.progressTimeContainer}>
-        <View><Text style={styles.timeText}>{readablePosition}</Text></View>
-        <View><Text style={styles.timeText}>{readableRemaining}</Text></View>
+        <View><Text style={styles.timeText} template="footnote">{readablePosition}</Text></View>
+        <View><Text style={styles.timeText} template="footnote">{readableRemaining}</Text></View>
       </View>
     </View>
   )

@@ -1,10 +1,11 @@
 import getSymbolFromCurrency from 'currency-symbol-map';
 import React, { useEffect, useRef } from 'react';
-import { ActivityIndicator, Dimensions, Platform, ScrollView, Text, View } from 'react-native';
+import { ActivityIndicator, Dimensions, Platform, ScrollView, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import * as RNIap from 'react-native-iap';
 
-import * as Icon from '../../components/Icon';
+import * as Icon from '../Icon';
+import { Text } from '../Text';
 
 import styles from './styles';
 
@@ -164,13 +165,13 @@ export const Upgrade: React.FC<Props> = React.memo(
                     ]}
                   >
                     <View>
-                      <Text style={styles.cardTitle}>{title}</Text>
+                      <Text style={styles.cardTitle} template="title3">{title}</Text>
                     </View>
                     <View style={styles.cardPriceContainer}>
-                      {isLoadingSubscriptionItems ? <ActivityIndicator size="large" color={colors.black} /> : <Text style={styles.cardPrice} testID="Upgrade-Text-price">{localizedPrice}</Text>}
+                      {isLoadingSubscriptionItems ? <ActivityIndicator size="large" color={colors.black} /> : <Text style={styles.cardPrice} testID="Upgrade-Text-price" fontWeight="extraBold">{localizedPrice}</Text>}
                     </View>
                     <View>
-                      <Text style={styles.cardMeta}>per month</Text>
+                      <Text style={styles.cardMeta} template="footnote">per month</Text>
                     </View>
                     <View style={styles.cardButtonContainer}>
                       <Button
@@ -184,14 +185,14 @@ export const Upgrade: React.FC<Props> = React.memo(
                     </View>
                     <View style={styles.cardFeaturesList}>
                       {subscriptionFeature.body.map((featureText: string, featureBodyIndex: number) => (
-                        <Text key={featureBodyIndex} style={styles.cardFeaturesListItem}>
+                        <Text key={featureBodyIndex} style={styles.cardFeaturesListItem} template="subhead">
                           {featureText}
                         </Text>
                       ))}
                     </View>
                     {!!subscriptionFeature.footer && (
                       <View style={styles.cardFooter}>
-                        <Text style={styles.cardFooterText}>{subscriptionFeature.footer}</Text>
+                        <Text style={styles.cardFooterText} template="subhead">{subscriptionFeature.footer}</Text>
                       </View>
                     )}
 

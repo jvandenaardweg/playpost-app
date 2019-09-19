@@ -1,9 +1,10 @@
 import React from 'react';
-import { KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, ScrollView, TextInput, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import styles from './styles';
 
 import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../../constants/urls';
+import { Text } from '../Text';
 
 interface Props {
   email: string;
@@ -68,7 +69,7 @@ export const SignupForm: React.FC<Props> = React.memo(({ onChangeText, onPressSi
             loading={isLoading}
             onPress={onPressSignup}
             disabled={isLoading}
-            buttonStyle={styles.buttonStyle}
+            // buttonStyle={styles.buttonStyle}
             activeOpacity={1}
             disabledStyle={styles.buttonStyle}
           />

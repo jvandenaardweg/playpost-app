@@ -1,16 +1,11 @@
 import React, { useRef } from 'react';
-import { Alert, StatusBar } from 'react-native';
 import WebView from 'react-native-webview';
-// tslint:disable-next-line: no-submodule-imports
-import { WebViewNavigation } from 'react-native-webview/lib/WebViewTypes';
 import urlParse from 'url-parse';
 
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
-import { ALERT_TITLE_ERROR } from '../../constants/messages';
 import spacing from '../../constants/spacing';
 import { TextDirection } from '../../typings';
-import * as inAppBrowser from '../../utils/in-app-browser';
 import { CenterLoadingIndicator } from '../CenterLoadingIndicator';
 
 interface Props {
@@ -35,36 +30,19 @@ export const ArticleReader: React.FC<Props> = React.memo(({
   const webViewRef = useRef<WebView>(null);
   const themeStyles = getThemeStyles(theme);
 
-  const handleWebViewNavigationStateChange = async (request: WebViewNavigation, webViewRefObj: React.RefObject<WebView>) => {
-    const { url } = request;
-
-    if (!url || url.includes('file://') || url === 'about:blank') { return; }
-
-    // It seems like when opening URL's from the WebView that the StatusBar turns white
-    // We want to keep it the default style so we enforce that here.
-    StatusBar.setBarStyle('default');
-
-    try {
-      await inAppBrowser.openUrl(url);
-      return webViewRefObj.current && webViewRefObj.current.stopLoading();
-    } catch (err) {
-      Alert.alert(ALERT_TITLE_ERROR, 'Could not open the URL.');
-    }
-  };
-
   return (
     <WebView
       ref={webViewRef}
       startInLoadingState={true}
       renderLoading={() => <CenterLoadingIndicator backgroundColor={themeStyles.backgroundColor} />}
       useWebKit
-      originWhitelist={['*']}
+      allowFileAccess
+      originWhitelist={['file://']}
       javaScriptEnabled={false}
       source={{ html: getHtmlDocument(article, themeStyles), baseUrl: '' }}
       bounces
       decelerationRate="normal"
       style={{ backgroundColor: themeStyles.backgroundColor, padding: 0, margin: 0 }}
-      onNavigationStateChange={(request: WebViewNavigation) => handleWebViewNavigationStateChange(request, webViewRef)}
     />
   );
 
@@ -136,7 +114,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
           }
 
           h1 {
-            font-size: ${fonts.fontSize.headline}px;
+            font-size: ${fonts.fontSize.titleExtraLarge}px;
             margin-bottom: ${spacing.default}px;
             text-align: center;
           }
@@ -155,8 +133,8 @@ export const ArticleReader: React.FC<Props> = React.memo(({
             font-size: ${fonts.fontSize.title}px;
             margin-top: 1.5;
             color: ${themeStyle.paragraphColor};
-            line-height: 1.58;
-            margin-bottom: 1.5;
+            line-height: 1.6;
+            margin-bottom: 2;
           }
 
           a, strong {
@@ -179,7 +157,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
 
           .meta-header {
             text-align: center;
-            padding: ${spacing.default}px;
+            padding: ${spacing.large}px;
           }
 
           .meta-header strong {
@@ -192,7 +170,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
           }
 
           .image-header {
-            margin-bottom: ${spacing.tiny}px
+            margin-bottom: 0;
           }
 
           .image-header img {
@@ -202,7 +180,8 @@ export const ArticleReader: React.FC<Props> = React.memo(({
           }
 
           .content {
-            padding: ${spacing.default}px;
+            padding: ${spacing.large}px;
+            padding-top: 0;
           }
 
           .content img,

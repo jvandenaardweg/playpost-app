@@ -1,8 +1,9 @@
 import { formatDistanceToNow, parseISO } from 'date-fns';
 import React from 'react';
-import { ActivityIndicator, StyleProp, Text, TextStyle, TouchableHighlight, TouchableOpacity, View, ViewStyle } from 'react-native';
+import { ActivityIndicator, StyleProp, TextStyle, TouchableHighlight, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { Image } from 'react-native-elements';
 import urlParse from 'url-parse';
+import { Text } from '../Text';
 
 import colors from '../../constants/colors';
 
@@ -87,7 +88,7 @@ export const Article: React.FC<Props> = React.memo(
                 </View>
               </View>
               <View style={styles.bodyTitle}>
-                <Text style={[styles.bodyTitleText, textDirectionStyle]} testID="Article-title" ellipsizeMode="tail" numberOfLines={3}>
+                <Text style={[styles.bodyTitleText, textDirectionStyle]} testID="Article-title" ellipsizeMode="tail" numberOfLines={3} template="bodyEmphasized">
                   {title}
                 </Text>
               </View>
@@ -118,7 +119,7 @@ export const Article: React.FC<Props> = React.memo(
                     testID="Article-icon-favorited"
                   />
                 </View>
-                <Text style={styles.bodyFooterText}>Added {formatDistanceToNow(parseISO(playlistItemCreatedAt))} ago</Text>
+                <Text style={styles.bodyFooterText} template="caption2">Added {formatDistanceToNow(parseISO(playlistItemCreatedAt))} ago</Text>
               </View>
             </View>
             <View style={styles.sectionControl}>
@@ -145,11 +146,11 @@ export const Article: React.FC<Props> = React.memo(
               underlayColor={colors.black}
             >
               <View style={styles.warningWrapper}>
-                <View style={styles.warningText}>
+                <Text style={styles.warningText}>
                   <Text>This article</Text>
-                  <Text style={styles.warningHighlight}>{' '}might{' '}</Text>
+                  <Text style={styles.warningHighlight} fontWeight="bold">{' '}might{' '}</Text>
                   <Text>not be compatible for listening.</Text>
-                </View>
+                </Text>
                 <Text style={styles.warningLink}>Learn more</Text>
               </View>
             </TouchableHighlight>
@@ -176,7 +177,7 @@ const SourceText: React.FC<SourceTextProps> = React.memo((props: SourceTextProps
   }
 
   return (
-    <Text style={[styles.bodySourceText, textDirectionStyle]} ellipsizeMode="tail" numberOfLines={1} testID="Article-source-name">
+    <Text style={[styles.bodySourceText, textDirectionStyle]} ellipsizeMode="tail" numberOfLines={1} testID="Article-source-name" template="footnote">
       {text}
     </Text>
   );
@@ -193,15 +194,15 @@ const Duration: React.FC<DurationProps> = React.memo((props: DurationProps) => {
   const readingTimeToListenTimeMargin = 1.1;
 
   if (props.listenTimeInSeconds) {
-    return <Text style={styles.duration} testID="Article-duration">{`${Math.ceil(props.listenTimeInSeconds / 60)} min.`}</Text>;
+    return <Text style={styles.duration} testID="Article-duration" template="caption2">{`${Math.ceil(props.listenTimeInSeconds / 60)} min.`}</Text>;
   }
 
   if (props.readingTime) {
-    return <Text style={styles.duration} testID="Article-duration">{`${Math.ceil((props.readingTime * readingTimeToListenTimeMargin) / 60)} min.`}</Text>;
+    return <Text style={styles.duration} testID="Article-duration" template="caption2">{`${Math.ceil((props.readingTime * readingTimeToListenTimeMargin) / 60)} min.`}</Text>;
   }
 
   return (
-    <Text style={styles.duration} testID="Article-duration">
+    <Text style={styles.duration} testID="Article-duration" template="caption2">
       ? min.
     </Text>
   );

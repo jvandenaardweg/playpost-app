@@ -46,8 +46,10 @@ exports[`ButtonTiny rendering should render correctly 1`] = `
       style={
         Array [
           Object {
+            "color": "#000000",
+            "fontFamily": "Inter-SemiBold",
             "fontSize": 13,
-            "fontWeight": "600",
+            "lineHeight": 16,
           },
           Object {
             "color": undefined,

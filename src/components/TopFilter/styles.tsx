@@ -22,7 +22,7 @@ export default StyleSheet.create({
   filterLabel: {
     fontWeight: fonts.fontWeight.semibold,
     marginRight: spacing.default,
-    width: 55,
+    width: 56,
     marginLeft: spacing.default
   },
   scrollView: {

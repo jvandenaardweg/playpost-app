@@ -14,9 +14,17 @@ exports[`OfflineNotice rendering should render correctly 1`] = `
 >
   <Text
     style={
-      Object {
-        "color": "#ffffff",
-      }
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "Inter-SemiBold",
+          "fontSize": 13,
+          "lineHeight": 16,
+        },
+        Object {
+          "color": "#ffffff",
+        },
+      ]
     }
   >
     No internet connection, playing is limited

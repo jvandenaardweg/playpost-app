@@ -10,6 +10,7 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
   }
 >
   <RNCWKWebView
+    allowFileAccess={true}
     bounces={true}
     cacheEnabled={true}
     decelerationRate={0.998}
@@ -20,7 +21,6 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
     onLoadingProgress={[Function]}
     onLoadingStart={[Function]}
     onMessage={[Function]}
-    onNavigationStateChange={[Function]}
     onShouldStartLoadWithRequest={[Function]}
     source={
       Object {
@@ -62,7 +62,7 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
           }
 
           h1 {
-            font-size: 30px;
+            font-size: 24px;
             margin-bottom: 12px;
             text-align: center;
           }
@@ -81,8 +81,8 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
             font-size: 17px;
             margin-top: 1.5;
             color: #C5C5C5;
-            line-height: 1.58;
-            margin-bottom: 1.5;
+            line-height: 1.6;
+            margin-bottom: 2;
           }
 
           a, strong {
@@ -105,7 +105,7 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
 
           .meta-header {
             text-align: center;
-            padding: 12px;
+            padding: 24px;
           }
 
           .meta-header strong {
@@ -118,7 +118,7 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
           }
 
           .image-header {
-            margin-bottom: 10px
+            margin-bottom: 0;
           }
 
           .image-header img {
@@ -128,7 +128,8 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
           }
 
           .content {
-            padding: 12px;
+            padding: 24px;
+            padding-top: 0;
           }
 
           .content img,
@@ -245,6 +246,7 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
   }
 >
   <RNCWKWebView
+    allowFileAccess={true}
     bounces={true}
     cacheEnabled={true}
     decelerationRate={0.998}
@@ -255,7 +257,6 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
     onLoadingProgress={[Function]}
     onLoadingStart={[Function]}
     onMessage={[Function]}
-    onNavigationStateChange={[Function]}
     onShouldStartLoadWithRequest={[Function]}
     source={
       Object {
@@ -297,7 +298,7 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
           }
 
           h1 {
-            font-size: 30px;
+            font-size: 24px;
             margin-bottom: 12px;
             text-align: center;
           }
@@ -316,8 +317,8 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
             font-size: 17px;
             margin-top: 1.5;
             color: #444444;
-            line-height: 1.58;
-            margin-bottom: 1.5;
+            line-height: 1.6;
+            margin-bottom: 2;
           }
 
           a, strong {
@@ -340,7 +341,7 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
 
           .meta-header {
             text-align: center;
-            padding: 12px;
+            padding: 24px;
           }
 
           .meta-header strong {
@@ -353,7 +354,7 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
           }
 
           .image-header {
-            margin-bottom: 10px
+            margin-bottom: 0;
           }
 
           .image-header img {
@@ -363,7 +364,8 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
           }
 
           .content {
-            padding: 12px;
+            padding: 24px;
+            padding-top: 0;
           }
 
           .content img,
@@ -480,6 +482,7 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
   }
 >
   <RNCWKWebView
+    allowFileAccess={true}
     bounces={true}
     cacheEnabled={true}
     decelerationRate={0.998}
@@ -490,7 +493,6 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
     onLoadingProgress={[Function]}
     onLoadingStart={[Function]}
     onMessage={[Function]}
-    onNavigationStateChange={[Function]}
     onShouldStartLoadWithRequest={[Function]}
     source={
       Object {
@@ -532,7 +534,7 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
           }
 
           h1 {
-            font-size: 30px;
+            font-size: 24px;
             margin-bottom: 12px;
             text-align: center;
           }
@@ -551,8 +553,8 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
             font-size: 17px;
             margin-top: 1.5;
             color: #444444;
-            line-height: 1.58;
-            margin-bottom: 1.5;
+            line-height: 1.6;
+            margin-bottom: 2;
           }
 
           a, strong {
@@ -575,7 +577,7 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
 
           .meta-header {
             text-align: center;
-            padding: 12px;
+            padding: 24px;
           }
 
           .meta-header strong {
@@ -588,7 +590,7 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
           }
 
           .image-header {
-            margin-bottom: 10px
+            margin-bottom: 0;
           }
 
           .image-header img {
@@ -598,7 +600,8 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
           }
 
           .content {
-            padding: 12px;
+            padding: 24px;
+            padding-top: 0;
           }
 
           .content img,
@@ -709,6 +712,7 @@ exports[`ArticleReader rendering no author name should render no authorName when
   }
 >
   <RNCWKWebView
+    allowFileAccess={true}
     bounces={true}
     cacheEnabled={true}
     decelerationRate={0.998}
@@ -719,7 +723,6 @@ exports[`ArticleReader rendering no author name should render no authorName when
     onLoadingProgress={[Function]}
     onLoadingStart={[Function]}
     onMessage={[Function]}
-    onNavigationStateChange={[Function]}
     onShouldStartLoadWithRequest={[Function]}
     source={
       Object {
@@ -761,7 +764,7 @@ exports[`ArticleReader rendering no author name should render no authorName when
           }
 
           h1 {
-            font-size: 30px;
+            font-size: 24px;
             margin-bottom: 12px;
             text-align: center;
           }
@@ -780,8 +783,8 @@ exports[`ArticleReader rendering no author name should render no authorName when
             font-size: 17px;
             margin-top: 1.5;
             color: #444444;
-            line-height: 1.58;
-            margin-bottom: 1.5;
+            line-height: 1.6;
+            margin-bottom: 2;
           }
 
           a, strong {
@@ -804,7 +807,7 @@ exports[`ArticleReader rendering no author name should render no authorName when
 
           .meta-header {
             text-align: center;
-            padding: 12px;
+            padding: 24px;
           }
 
           .meta-header strong {
@@ -817,7 +820,7 @@ exports[`ArticleReader rendering no author name should render no authorName when
           }
 
           .image-header {
-            margin-bottom: 10px
+            margin-bottom: 0;
           }
 
           .image-header img {
@@ -827,7 +830,8 @@ exports[`ArticleReader rendering no author name should render no authorName when
           }
 
           .content {
-            padding: 12px;
+            padding: 24px;
+            padding-top: 0;
           }
 
           .content img,
@@ -938,6 +942,7 @@ exports[`ArticleReader rendering no html should render a different HTML output w
   }
 >
   <RNCWKWebView
+    allowFileAccess={true}
     bounces={true}
     cacheEnabled={true}
     decelerationRate={0.998}
@@ -948,7 +953,6 @@ exports[`ArticleReader rendering no html should render a different HTML output w
     onLoadingProgress={[Function]}
     onLoadingStart={[Function]}
     onMessage={[Function]}
-    onNavigationStateChange={[Function]}
     onShouldStartLoadWithRequest={[Function]}
     source={
       Object {
@@ -990,7 +994,7 @@ exports[`ArticleReader rendering no html should render a different HTML output w
           }
 
           h1 {
-            font-size: 30px;
+            font-size: 24px;
             margin-bottom: 12px;
             text-align: center;
           }
@@ -1009,8 +1013,8 @@ exports[`ArticleReader rendering no html should render a different HTML output w
             font-size: 17px;
             margin-top: 1.5;
             color: #444444;
-            line-height: 1.58;
-            margin-bottom: 1.5;
+            line-height: 1.6;
+            margin-bottom: 2;
           }
 
           a, strong {
@@ -1033,7 +1037,7 @@ exports[`ArticleReader rendering no html should render a different HTML output w
 
           .meta-header {
             text-align: center;
-            padding: 12px;
+            padding: 24px;
           }
 
           .meta-header strong {
@@ -1046,7 +1050,7 @@ exports[`ArticleReader rendering no html should render a different HTML output w
           }
 
           .image-header {
-            margin-bottom: 10px
+            margin-bottom: 0;
           }
 
           .image-header img {
@@ -1056,7 +1060,8 @@ exports[`ArticleReader rendering no html should render a different HTML output w
           }
 
           .content {
-            padding: 12px;
+            padding: 24px;
+            padding-top: 0;
           }
 
           .content img,
@@ -1167,6 +1172,7 @@ exports[`ArticleReader rendering right to left content should render correctly 1
   }
 >
   <RNCWKWebView
+    allowFileAccess={true}
     bounces={true}
     cacheEnabled={true}
     decelerationRate={0.998}
@@ -1177,7 +1183,6 @@ exports[`ArticleReader rendering right to left content should render correctly 1
     onLoadingProgress={[Function]}
     onLoadingStart={[Function]}
     onMessage={[Function]}
-    onNavigationStateChange={[Function]}
     onShouldStartLoadWithRequest={[Function]}
     source={
       Object {
@@ -1219,7 +1224,7 @@ exports[`ArticleReader rendering right to left content should render correctly 1
           }
 
           h1 {
-            font-size: 30px;
+            font-size: 24px;
             margin-bottom: 12px;
             text-align: center;
           }
@@ -1238,8 +1243,8 @@ exports[`ArticleReader rendering right to left content should render correctly 1
             font-size: 17px;
             margin-top: 1.5;
             color: #444444;
-            line-height: 1.58;
-            margin-bottom: 1.5;
+            line-height: 1.6;
+            margin-bottom: 2;
           }
 
           a, strong {
@@ -1262,7 +1267,7 @@ exports[`ArticleReader rendering right to left content should render correctly 1
 
           .meta-header {
             text-align: center;
-            padding: 12px;
+            padding: 24px;
           }
 
           .meta-header strong {
@@ -1275,7 +1280,7 @@ exports[`ArticleReader rendering right to left content should render correctly 1
           }
 
           .image-header {
-            margin-bottom: 10px
+            margin-bottom: 0;
           }
 
           .image-header img {
@@ -1285,7 +1290,8 @@ exports[`ArticleReader rendering right to left content should render correctly 1
           }
 
           .content {
-            padding: 12px;
+            padding: 24px;
+            padding-top: 0;
           }
 
           .content img,

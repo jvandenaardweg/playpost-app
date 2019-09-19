@@ -10,7 +10,17 @@ exports[`AppBackground rendering should render correctly 1`] = `
     }
   }
 >
-  <Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "Inter-Regular",
+        },
+        undefined,
+      ]
+    }
+  >
     Example!
   </Text>
 </View>

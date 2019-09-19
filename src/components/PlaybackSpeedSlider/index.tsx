@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Text, TouchableHighlight, TouchableOpacity, View } from 'react-native';
+import { TouchableHighlight, TouchableOpacity, View } from 'react-native';
 import { Slider } from 'react-native-elements';
 
 import { mediumHitslop } from '../../constants/buttons';
 import colors from '../../constants/colors';
+import { Text } from '../Text';
 
 import * as Icon from '../Icon';
 

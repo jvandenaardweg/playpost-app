@@ -2,6 +2,7 @@ import { Platform, StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
+import layout from '../../constants/layout';
 import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
@@ -105,7 +106,7 @@ export default StyleSheet.create({
   card: {
     padding: spacing.default,
     alignItems: 'center',
-    borderRadius: 6,
+    borderRadius: layout.borderRadius.small,
     backgroundColor: colors.white,
     shadowColor: '#000',
     shadowOffset: {
@@ -119,8 +120,6 @@ export default StyleSheet.create({
     marginTop: spacing.default
   },
   cardTitle: {
-    fontSize: fonts.fontSize.titleLarge,
-    fontWeight: fonts.fontWeight.normal,
     marginBottom: 12,
     marginTop: 12,
     color: colors.black
@@ -131,7 +130,6 @@ export default StyleSheet.create({
   },
   cardPrice: {
     fontSize: 48,
-    fontWeight: fonts.fontWeight.heavy,
     letterSpacing: -2,
     color: colors.black
   },
@@ -159,10 +157,8 @@ export default StyleSheet.create({
   },
   cardFeaturesListItem: {
     marginBottom: 8,
-    fontSize: fonts.fontSize.body,
     color: colors.black,
     textAlign: 'center',
-    lineHeight: fonts.fontSize.body * 1.3
   },
   cardFeaturesListItemHighlight: {
     fontWeight: fonts.fontWeight.semibold

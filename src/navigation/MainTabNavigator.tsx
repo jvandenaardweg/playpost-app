@@ -15,6 +15,7 @@ import { UpdatePasswordScreen } from '../screens/settings/UpdatePasswordScreen';
 import { SettingsVoicesScreen } from '../screens/settings/VoicesScreen';
 
 import { ButtonVoices } from '../components/ButtonVoices';
+import { textTemplates } from '../components/Text';
 import colors from '../constants/colors';
 import { ButtonUpgradeContainer } from '../containers/ButtonUpgradeContainer';
 
@@ -22,6 +23,13 @@ import { ButtonUpgradeContainer } from '../containers/ButtonUpgradeContainer';
 export const stackNavigatorDefaultNavigationOptions: NavigationScreenOptions = {
   headerStyle: {
     borderBottomColor: colors.borderDefault
+  },
+  headerTitleStyle: {
+    ...textTemplates['bodyEmphasized']
+  },
+  headerBackTitleStyle: {
+    ...textTemplates['body'],
+    color: colors.tintColor
   }
 }
 

@@ -1,7 +1,7 @@
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
-import fonts from '../../constants/fonts';
+import layout from '../../constants/layout';
 import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
@@ -19,15 +19,11 @@ export default StyleSheet.create({
   },
   title: {
     textAlign: 'center',
-    fontSize: fonts.fontSize.titleMedium,
-    fontWeight: Platform.OS === 'ios' ? fonts.fontWeight.semibold : fonts.fontWeight.bold,
     color: colors.titleDefault,
     marginBottom: 6
   },
   description: {
     textAlign: 'center',
-    fontSize: fonts.fontSize.body,
-    lineHeight: Math.ceil(fonts.fontSize.body * 1.5),
     color: colors.paragraphGrayed,
     paddingRight: spacing.large,
     paddingLeft: spacing.large,
@@ -47,7 +43,7 @@ export default StyleSheet.create({
     height: 40,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 3,
+    borderRadius: layout.borderRadius.small,
     opacity: 0.8
   }
 });

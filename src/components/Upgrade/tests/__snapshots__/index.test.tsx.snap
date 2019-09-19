@@ -64,13 +64,19 @@ exports[`Upgrade rendering should render correctly 1`] = `
             <View>
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 21,
-                    "fontWeight": "normal",
-                    "marginBottom": 12,
-                    "marginTop": 12,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 20,
+                      "lineHeight": 24,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 12,
+                      "marginTop": 12,
+                    },
+                  ]
                 }
               >
                 Free
@@ -86,12 +92,17 @@ exports[`Upgrade rendering should render correctly 1`] = `
             >
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 48,
-                    "fontWeight": "800",
-                    "letterSpacing": -2,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-ExtraBold",
+                    },
+                    Object {
+                      "color": "#000000",
+                      "fontSize": 48,
+                      "letterSpacing": -2,
+                    },
+                  ]
                 }
                 testID="Upgrade-Text-price"
               >
@@ -101,12 +112,20 @@ exports[`Upgrade rendering should render correctly 1`] = `
             <View>
               <Text
                 style={
-                  Object {
-                    "color": "#222222",
-                    "marginBottom": 8,
-                    "marginLeft": 4,
-                    "marginTop": 6,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 13,
+                      "lineHeight": 16,
+                    },
+                    Object {
+                      "color": "#222222",
+                      "marginBottom": 8,
+                      "marginLeft": 4,
+                      "marginTop": 6,
+                    },
+                  ]
                 }
               >
                 per month
@@ -195,78 +214,114 @@ exports[`Upgrade rendering should render correctly 1`] = `
             >
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 15,
-                    "lineHeight": 19.5,
-                    "marginBottom": 8,
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 8,
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 Basic quality voices
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 15,
-                    "lineHeight": 19.5,
-                    "marginBottom": 8,
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 8,
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 First 30 minutes using high quality voice
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 15,
-                    "lineHeight": 19.5,
-                    "marginBottom": 8,
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 8,
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 One voice option per language
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 15,
-                    "lineHeight": 19.5,
-                    "marginBottom": 8,
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 8,
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 Max. 30 minutes per month
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 15,
-                    "lineHeight": 19.5,
-                    "marginBottom": 8,
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 8,
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 Unlimited playlist items
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 15,
-                    "lineHeight": 19.5,
-                    "marginBottom": 8,
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 8,
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 Some advertisements
@@ -281,10 +336,18 @@ exports[`Upgrade rendering should render correctly 1`] = `
             >
               <Text
                 style={
-                  Object {
-                    "color": "#C5C5C5",
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#C5C5C5",
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 About 5 articles to audio, per month
@@ -321,13 +384,19 @@ exports[`Upgrade rendering should render correctly 1`] = `
             <View>
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 21,
-                    "fontWeight": "normal",
-                    "marginBottom": 12,
-                    "marginTop": 12,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 20,
+                      "lineHeight": 24,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 12,
+                      "marginTop": 12,
+                    },
+                  ]
                 }
               >
                 Premium
@@ -343,12 +412,17 @@ exports[`Upgrade rendering should render correctly 1`] = `
             >
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 48,
-                    "fontWeight": "800",
-                    "letterSpacing": -2,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-ExtraBold",
+                    },
+                    Object {
+                      "color": "#000000",
+                      "fontSize": 48,
+                      "letterSpacing": -2,
+                    },
+                  ]
                 }
                 testID="Upgrade-Text-price"
               >
@@ -358,12 +432,20 @@ exports[`Upgrade rendering should render correctly 1`] = `
             <View>
               <Text
                 style={
-                  Object {
-                    "color": "#222222",
-                    "marginBottom": 8,
-                    "marginLeft": 4,
-                    "marginTop": 6,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 13,
+                      "lineHeight": 16,
+                    },
+                    Object {
+                      "color": "#222222",
+                      "marginBottom": 8,
+                      "marginLeft": 4,
+                      "marginTop": 6,
+                    },
+                  ]
                 }
               >
                 per month
@@ -444,65 +526,95 @@ exports[`Upgrade rendering should render correctly 1`] = `
             >
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 15,
-                    "lineHeight": 19.5,
-                    "marginBottom": 8,
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 8,
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 10+ High Quality voices
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 15,
-                    "lineHeight": 19.5,
-                    "marginBottom": 8,
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 8,
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 Multiple voice options per language
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 15,
-                    "lineHeight": 19.5,
-                    "marginBottom": 8,
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 8,
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 Max. 120 minutes per month
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 15,
-                    "lineHeight": 19.5,
-                    "marginBottom": 8,
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 8,
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 Unlimited playlist items
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 15,
-                    "lineHeight": 19.5,
-                    "marginBottom": 8,
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 8,
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 No advertisements
@@ -517,10 +629,18 @@ exports[`Upgrade rendering should render correctly 1`] = `
             >
               <Text
                 style={
-                  Object {
-                    "color": "#C5C5C5",
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#C5C5C5",
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 About 25 articles to audio, per month
@@ -613,13 +733,19 @@ exports[`Upgrade rendering should render correctly 1`] = `
             <View>
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 21,
-                    "fontWeight": "normal",
-                    "marginBottom": 12,
-                    "marginTop": 12,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 20,
+                      "lineHeight": 24,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 12,
+                      "marginTop": 12,
+                    },
+                  ]
                 }
               >
                 Plus
@@ -635,12 +761,17 @@ exports[`Upgrade rendering should render correctly 1`] = `
             >
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 48,
-                    "fontWeight": "800",
-                    "letterSpacing": -2,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-ExtraBold",
+                    },
+                    Object {
+                      "color": "#000000",
+                      "fontSize": 48,
+                      "letterSpacing": -2,
+                    },
+                  ]
                 }
                 testID="Upgrade-Text-price"
               >
@@ -650,12 +781,20 @@ exports[`Upgrade rendering should render correctly 1`] = `
             <View>
               <Text
                 style={
-                  Object {
-                    "color": "#222222",
-                    "marginBottom": 8,
-                    "marginLeft": 4,
-                    "marginTop": 6,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 13,
+                      "lineHeight": 16,
+                    },
+                    Object {
+                      "color": "#222222",
+                      "marginBottom": 8,
+                      "marginLeft": 4,
+                      "marginTop": 6,
+                    },
+                  ]
                 }
               >
                 per month
@@ -736,65 +875,95 @@ exports[`Upgrade rendering should render correctly 1`] = `
             >
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 15,
-                    "lineHeight": 19.5,
-                    "marginBottom": 8,
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 8,
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 10+ High Quality voices
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 15,
-                    "lineHeight": 19.5,
-                    "marginBottom": 8,
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 8,
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 Multiple voice options per language
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 15,
-                    "lineHeight": 19.5,
-                    "marginBottom": 8,
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 8,
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 Max. 300 minutes per month
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 15,
-                    "lineHeight": 19.5,
-                    "marginBottom": 8,
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 8,
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 Unlimited playlist items
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 15,
-                    "lineHeight": 19.5,
-                    "marginBottom": 8,
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 8,
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 No advertisements
@@ -809,10 +978,18 @@ exports[`Upgrade rendering should render correctly 1`] = `
             >
               <Text
                 style={
-                  Object {
-                    "color": "#C5C5C5",
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#C5C5C5",
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 About 65 articles to audio, per month
@@ -905,13 +1082,19 @@ exports[`Upgrade rendering should render correctly 1`] = `
             <View>
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 21,
-                    "fontWeight": "normal",
-                    "marginBottom": 12,
-                    "marginTop": 12,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 20,
+                      "lineHeight": 24,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 12,
+                      "marginTop": 12,
+                    },
+                  ]
                 }
               >
                 Unlimited
@@ -927,12 +1110,17 @@ exports[`Upgrade rendering should render correctly 1`] = `
             >
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 48,
-                    "fontWeight": "800",
-                    "letterSpacing": -2,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-ExtraBold",
+                    },
+                    Object {
+                      "color": "#000000",
+                      "fontSize": 48,
+                      "letterSpacing": -2,
+                    },
+                  ]
                 }
                 testID="Upgrade-Text-price"
               >
@@ -942,12 +1130,20 @@ exports[`Upgrade rendering should render correctly 1`] = `
             <View>
               <Text
                 style={
-                  Object {
-                    "color": "#222222",
-                    "marginBottom": 8,
-                    "marginLeft": 4,
-                    "marginTop": 6,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 13,
+                      "lineHeight": 16,
+                    },
+                    Object {
+                      "color": "#222222",
+                      "marginBottom": 8,
+                      "marginLeft": 4,
+                      "marginTop": 6,
+                    },
+                  ]
                 }
               >
                 per month
@@ -1036,65 +1232,95 @@ exports[`Upgrade rendering should render correctly 1`] = `
             >
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 15,
-                    "lineHeight": 19.5,
-                    "marginBottom": 8,
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 8,
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 10+ High Quality voices
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 15,
-                    "lineHeight": 19.5,
-                    "marginBottom": 8,
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 8,
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 Multiple voice options per language
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 15,
-                    "lineHeight": 19.5,
-                    "marginBottom": 8,
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 8,
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 Unlimited minutes per month
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 15,
-                    "lineHeight": 19.5,
-                    "marginBottom": 8,
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 8,
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 Unlimited playlist items
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 15,
-                    "lineHeight": 19.5,
-                    "marginBottom": 8,
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "marginBottom": 8,
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 No advertisements
@@ -1109,10 +1335,18 @@ exports[`Upgrade rendering should render correctly 1`] = `
             >
               <Text
                 style={
-                  Object {
-                    "color": "#C5C5C5",
-                    "textAlign": "center",
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                    Object {
+                      "color": "#C5C5C5",
+                      "textAlign": "center",
+                    },
+                  ]
                 }
               >
                 About 65 articles to audio, per month
@@ -1196,15 +1430,21 @@ exports[`Upgrade rendering should render correctly 1`] = `
         >
           <Text
             style={
-              Object {
-                "color": "#000000",
-                "fontSize": 24,
-                "fontWeight": "700",
-                "lineHeight": 36,
-                "marginBottom": 24,
-                "marginTop": 12,
-                "textAlign": "center",
-              }
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontFamily": "Inter-Regular",
+                },
+                Object {
+                  "color": "#000000",
+                  "fontSize": 24,
+                  "fontWeight": "700",
+                  "lineHeight": 36,
+                  "marginBottom": 24,
+                  "marginTop": 12,
+                  "textAlign": "center",
+                },
+              ]
             }
           >
             Upgrade to
@@ -1260,24 +1500,36 @@ Premium or Unlimited
             >
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 17,
-                    "fontWeight": "600",
-                    "lineHeight": 21,
-                    "marginBottom": 4,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                    },
+                    Object {
+                      "color": "#000000",
+                      "fontSize": 17,
+                      "fontWeight": "600",
+                      "lineHeight": 21,
+                      "marginBottom": 4,
+                    },
+                  ]
                 }
               >
                 Higher Quality voices
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#222222",
-                    "fontSize": 15,
-                    "lineHeight": 23,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                    },
+                    Object {
+                      "color": "#222222",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                  ]
                 }
               >
                 Access to our highest quality Premium voices for easier listening. You can preview these Higher Quality voices in the settings screen.
@@ -1334,24 +1586,36 @@ Premium or Unlimited
             >
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 17,
-                    "fontWeight": "600",
-                    "lineHeight": 21,
-                    "marginBottom": 4,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                    },
+                    Object {
+                      "color": "#000000",
+                      "fontSize": 17,
+                      "fontWeight": "600",
+                      "lineHeight": 21,
+                      "marginBottom": 4,
+                    },
+                  ]
                 }
               >
                 Voice customization options
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#222222",
-                    "fontSize": 15,
-                    "lineHeight": 23,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                    },
+                    Object {
+                      "color": "#222222",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                  ]
                 }
               >
                 Choose between a variety of male and female voices with accents like American, British or Australian English.
@@ -1408,24 +1672,36 @@ Premium or Unlimited
             >
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 17,
-                    "fontWeight": "600",
-                    "lineHeight": 21,
-                    "marginBottom": 4,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                    },
+                    Object {
+                      "color": "#000000",
+                      "fontSize": 17,
+                      "fontWeight": "600",
+                      "lineHeight": 21,
+                      "marginBottom": 4,
+                    },
+                  ]
                 }
               >
                 More listening limits
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#222222",
-                    "fontSize": 15,
-                    "lineHeight": 23,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                    },
+                    Object {
+                      "color": "#222222",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                  ]
                 }
               >
                 With our Premium and Unlimited subscription you can enjoy higher listening minutes. Unlimited gives you unlimited listening minutes.
@@ -1482,24 +1758,36 @@ Premium or Unlimited
             >
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 17,
-                    "fontWeight": "600",
-                    "lineHeight": 21,
-                    "marginBottom": 4,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                    },
+                    Object {
+                      "color": "#000000",
+                      "fontSize": 17,
+                      "fontWeight": "600",
+                      "lineHeight": 21,
+                      "marginBottom": 4,
+                    },
+                  ]
                 }
               >
                 No advertisements
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#222222",
-                    "fontSize": 15,
-                    "lineHeight": 23,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                    },
+                    Object {
+                      "color": "#222222",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                  ]
                 }
               >
                 Sponsored content and advertisements helps us continue to provide a free version of Playpost. After upgrading you won’t see any ads, and you’ll be supporting Playpost more directly!
@@ -1516,11 +1804,17 @@ Premium or Unlimited
         >
           <Text
             style={
-              Object {
-                "fontSize": 13,
-                "lineHeight": 20,
-                "opacity": 0.5,
-              }
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontFamily": "Inter-Regular",
+                },
+                Object {
+                  "fontSize": 13,
+                  "lineHeight": 20,
+                  "opacity": 0.5,
+                },
+              ]
             }
           >
             Payment will be charged to your 
@@ -1543,15 +1837,21 @@ Premium or Unlimited
               style={
                 Array [
                   Object {
-                    "fontSize": 13,
-                    "lineHeight": 20,
-                    "opacity": 0.5,
-                  },
-                  Object {
                     "color": "#000000",
-                    "opacity": 1,
-                    "textDecorationLine": "underline",
+                    "fontFamily": "Inter-Regular",
                   },
+                  Array [
+                    Object {
+                      "fontSize": 13,
+                      "lineHeight": 20,
+                      "opacity": 0.5,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "opacity": 1,
+                      "textDecorationLine": "underline",
+                    },
+                  ],
                 ]
               }
             >
@@ -1559,11 +1859,17 @@ Premium or Unlimited
             </Text>
             <Text
               style={
-                Object {
-                  "fontSize": 13,
-                  "lineHeight": 20,
-                  "opacity": 0.5,
-                }
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "Inter-Regular",
+                  },
+                  Object {
+                    "fontSize": 13,
+                    "lineHeight": 20,
+                    "opacity": 0.5,
+                  },
+                ]
               }
             >
                - 
@@ -1573,15 +1879,21 @@ Premium or Unlimited
               style={
                 Array [
                   Object {
-                    "fontSize": 13,
-                    "lineHeight": 20,
-                    "opacity": 0.5,
-                  },
-                  Object {
                     "color": "#000000",
-                    "opacity": 1,
-                    "textDecorationLine": "underline",
+                    "fontFamily": "Inter-Regular",
                   },
+                  Array [
+                    Object {
+                      "fontSize": 13,
+                      "lineHeight": 20,
+                      "opacity": 0.5,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "opacity": 1,
+                      "textDecorationLine": "underline",
+                    },
+                  ],
                 ]
               }
             >
@@ -1589,11 +1901,17 @@ Premium or Unlimited
             </Text>
             <Text
               style={
-                Object {
-                  "fontSize": 13,
-                  "lineHeight": 20,
-                  "opacity": 0.5,
-                }
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "Inter-Regular",
+                  },
+                  Object {
+                    "fontSize": 13,
+                    "lineHeight": 20,
+                    "opacity": 0.5,
+                  },
+                ]
               }
             >
                - 
@@ -1603,15 +1921,21 @@ Premium or Unlimited
               style={
                 Array [
                   Object {
-                    "fontSize": 13,
-                    "lineHeight": 20,
-                    "opacity": 0.5,
-                  },
-                  Object {
                     "color": "#000000",
-                    "opacity": 1,
-                    "textDecorationLine": "underline",
+                    "fontFamily": "Inter-Regular",
                   },
+                  Array [
+                    Object {
+                      "fontSize": 13,
+                      "lineHeight": 20,
+                      "opacity": 0.5,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "opacity": 1,
+                      "textDecorationLine": "underline",
+                    },
+                  ],
                 ]
               }
             >

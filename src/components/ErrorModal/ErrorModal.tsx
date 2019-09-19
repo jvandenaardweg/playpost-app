@@ -1,7 +1,9 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { Button } from 'react-native-elements';
 import styles from './styles';
+
+import { Text } from '../Text';
 
 interface Props {
   message: string;
@@ -11,7 +13,7 @@ interface Props {
 export const ErrorModal: React.FC<Props> = React.memo(({ message, onPressClose }) => (
   <View style={styles.container}>
     <View>
-      <Text style={styles.messageText}>{message}</Text>
+      <Text style={styles.messageText} template="bodyEmphasized">{message}</Text>
     </View>
     <View style={styles.footer}>
       <Button testID="ErrorModal-Button-close" title="Close" onPress={onPressClose} />

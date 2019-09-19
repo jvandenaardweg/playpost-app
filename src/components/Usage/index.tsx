@@ -1,8 +1,10 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { Button } from 'react-native-elements';
+
 import colors from '../../constants/colors';
 import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_UNLIMITED } from '../../constants/in-app-purchase';
+import { Text } from '../Text';
 import styles from './styles';
 
 
@@ -45,14 +47,14 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
         <View style={styles.statsContainer}>
           <View style={styles.statsWrapper}>
             <View>
-              <Text style={styles.statsBigNumber}>{currentUsageLocalized}</Text>
+              <Text style={styles.statsBigNumber} template="largeTitleEmphasized">{currentUsageLocalized}</Text>
             </View>
             <View style={styles.statsNumbersContainer}>
               <View>
-                <Text testID="Usage-Text-minutes-used" style={styles.statsMeta}>{usedText}</Text>
+                <Text testID="Usage-Text-minutes-used" style={styles.statsMeta} template="footnote">{usedText}</Text>
               </View>
               <View>
-                <Text testID="Usage-Text-percentage" style={styles.statsPercentage}>{usedPercentageText}</Text>
+                <Text testID="Usage-Text-percentage" style={styles.statsPercentage} template="bodyEmphasized">{usedPercentageText}</Text>
               </View>
             </View>
           </View>
@@ -70,7 +72,7 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
               buttonStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}
               onPress={() => onPressUpgrade(upgradeScreenCenteredSubscriptionProductId)}
             />
-            <Text testID="Usage-Text-upgrade-message" style={styles.messageText}>
+            <Text testID="Usage-Text-upgrade-message" style={styles.messageText} template="footnote">
               {upgradeMessage}
             </Text>
           </View>
@@ -98,7 +100,7 @@ export function getUpgradeButtonTitle(activeSubscriptionProductId: string, userI
   }
 
   if (activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE) {
-    return 'Upgrade to Premium or Unlimited'
+    return 'Upgrade to Premium/Unlimited'
   }
 
   if (activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_PREMIUM) {

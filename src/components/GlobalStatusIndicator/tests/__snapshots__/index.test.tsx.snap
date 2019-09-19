@@ -36,12 +36,18 @@ exports[`GlobalStatusIndicator rendering should render correctly 1`] = `
     />
     <Text
       style={
-        Object {
-          "color": "#ffffff",
-          "fontSize": 15,
-          "fontWeight": "600",
-          "marginLeft": 10,
-        }
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "Inter-SemiBold",
+            "fontSize": 15,
+            "lineHeight": 23,
+          },
+          Object {
+            "color": "#ffffff",
+            "marginLeft": 10,
+          },
+        ]
       }
       testID="GlobalStatusIndicator-label"
     >

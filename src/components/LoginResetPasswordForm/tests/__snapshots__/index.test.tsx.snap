@@ -37,12 +37,20 @@ exports[`LoginResetPasswordForm rendering should render correctly 1`] = `
     <View>
       <Text
         style={
-          Object {
-            "color": "#222222",
-            "fontSize": 15,
-            "lineHeight": 23,
-            "marginBottom": 24,
-          }
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "Inter-Regular",
+              "fontSize": 17,
+              "lineHeight": 23,
+            },
+            Object {
+              "color": "#222222",
+              "fontSize": 15,
+              "lineHeight": 23,
+              "marginBottom": 24,
+            },
+          ]
         }
       >
         Please check your e-mail's inbox for the password reset code and fill it in below.
@@ -60,12 +68,15 @@ exports[`LoginResetPasswordForm rendering should render correctly 1`] = `
         returnKeyType="next"
         style={
           Object {
+            "alignItems": "center",
             "backgroundColor": "#ffffff",
             "borderColor": "#e5e5e5",
             "borderRadius": 4,
             "borderWidth": 1,
-            "fontSize": 15,
-            "height": 50,
+            "fontFamily": "Inter-Regular",
+            "fontSize": 16,
+            "height": 54,
+            "lineHeight": 20,
             "marginBottom": 12,
             "paddingLeft": 12,
             "paddingRight": 12,
@@ -88,12 +99,15 @@ exports[`LoginResetPasswordForm rendering should render correctly 1`] = `
         secureTextEntry={true}
         style={
           Object {
+            "alignItems": "center",
             "backgroundColor": "#ffffff",
             "borderColor": "#e5e5e5",
             "borderRadius": 4,
             "borderWidth": 1,
-            "fontSize": 15,
-            "height": 50,
+            "fontFamily": "Inter-Regular",
+            "fontSize": 16,
+            "height": 54,
+            "lineHeight": 20,
             "marginBottom": 12,
             "paddingLeft": 12,
             "paddingRight": 12,

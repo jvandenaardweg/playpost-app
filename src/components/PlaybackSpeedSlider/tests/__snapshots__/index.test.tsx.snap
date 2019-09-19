@@ -48,10 +48,16 @@ exports[`PlaybackSpeedSlider rendering should render correctly 1`] = `
     >
       <Text
         style={
-          Object {
-            "color": "#ffffff",
-            "fontSize": 13,
-          }
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "Inter-Regular",
+            },
+            Object {
+              "color": "#ffffff",
+              "fontSize": 13,
+            },
+          ]
         }
         testID="PlaybackSpeedSlider-Text-label"
       >

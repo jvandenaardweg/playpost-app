@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
-import fonts from '../../constants/fonts';
 import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
@@ -37,26 +36,17 @@ export default StyleSheet.create({
     marginRight: spacing.nano
   },
   emptyText: {
-    fontSize: fonts.fontSize.body,
-    color: colors.white,
-    fontWeight: fonts.fontWeight.medium
+    color: colors.white
   },
   trackInfoButton: {
-    flex: 1,
-    // marginRight: spacing.default
+    flex: 1
   },
-  trackInfo: {
-    // flex: 1,
-    // marginRight: spacing.default
-  },
+  trackInfo: { },
   trackInfoTitle: {
-    fontSize: fonts.fontSize.small,
     color: colors.white,
-    fontWeight: fonts.fontWeight.bold,
     marginBottom: 2
   },
   trackInfoArtist: {
-    fontSize: fonts.fontSize.tiny,
     color: colors.grayDark,
   },
   controls: {

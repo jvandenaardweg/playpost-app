@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
-import fonts from '../../constants/fonts';
 import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
@@ -9,7 +8,7 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     backgroundColor: colors.appBackground,
-    padding: spacing.medium,
+    padding: spacing.default,
     width: '100%'
   },
   isFailed: {
@@ -35,10 +34,7 @@ export default StyleSheet.create({
     alignItems: 'flex-start'
   },
   articleEmptyTitle: {
-    fontSize: fonts.fontSize.body,
-    fontWeight: fonts.fontWeight.semibold,
     color: colors.black,
-    lineHeight: Math.ceil(fonts.fontSize.body * 1.2),
     marginBottom: spacing.tiny
   },
   articleEmptyText: {

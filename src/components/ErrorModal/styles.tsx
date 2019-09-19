@@ -3,13 +3,14 @@ import {
 } from 'react-native';
 
 import colors from '../../constants/colors';
+import layout from '../../constants/layout';
 import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
   container: {
     backgroundColor: 'white',
     padding: spacing.default,
-    borderRadius: 10
+    borderRadius: layout.borderRadius.large
   },
   footer: {
     marginTop: spacing.default

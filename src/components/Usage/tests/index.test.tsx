@@ -89,7 +89,7 @@ describe('Usage', () => {
     });
 
     it('should render the correct button title', () => {
-      expect(wrapper.getByTestId('Usage-Button-upgrade').props.title).toBe('Upgrade to Premium or Unlimited');
+      expect(wrapper.getByTestId('Usage-Button-upgrade').props.title).toBe('Upgrade to Premium/Unlimited');
     });
 
     it('should render the correct upgrade message', () => {
@@ -149,7 +149,7 @@ describe('Usage', () => {
     });
 
     it('getUpgradeButtonTitle should return the correct upgrade button title when on a free subscription when a user is not eligible for a trial', () => {
-      expect(getUpgradeButtonTitle(SUBSCRIPTION_PRODUCT_ID_FREE, false)).toBe('Upgrade to Premium or Unlimited');
+      expect(getUpgradeButtonTitle(SUBSCRIPTION_PRODUCT_ID_FREE, false)).toBe('Upgrade to Premium/Unlimited');
     });
 
     it('getUpgradeButtonTitle should return the correct upgrade button title when on a free subscription when a user is eligible for a trial', () => {

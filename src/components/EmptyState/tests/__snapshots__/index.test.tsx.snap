@@ -23,13 +23,19 @@ exports[`EmptyState basic rendering should render correctly 1`] = `
   >
     <Text
       style={
-        Object {
-          "color": "#000000",
-          "fontSize": 18,
-          "fontWeight": "600",
-          "marginBottom": 6,
-          "textAlign": "center",
-        }
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "Inter-SemiBold",
+            "fontSize": 20,
+            "lineHeight": 24,
+          },
+          Object {
+            "color": "#000000",
+            "marginBottom": 6,
+            "textAlign": "center",
+          },
+        ]
       }
       testID="empty-state-title"
     >
@@ -37,15 +43,21 @@ exports[`EmptyState basic rendering should render correctly 1`] = `
     </Text>
     <Text
       style={
-        Object {
-          "color": "#222222",
-          "fontSize": 15,
-          "lineHeight": 23,
-          "marginBottom": 14,
-          "paddingLeft": 24,
-          "paddingRight": 24,
-          "textAlign": "center",
-        }
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "Inter-Regular",
+            "fontSize": 15,
+            "lineHeight": 23,
+          },
+          Object {
+            "color": "#222222",
+            "marginBottom": 14,
+            "paddingLeft": 24,
+            "paddingRight": 24,
+            "textAlign": "center",
+          },
+        ]
       }
       testID="empty-state-description"
     >
@@ -78,13 +90,19 @@ exports[`EmptyState full rendering should render correctly 1`] = `
   >
     <Text
       style={
-        Object {
-          "color": "#000000",
-          "fontSize": 18,
-          "fontWeight": "600",
-          "marginBottom": 6,
-          "textAlign": "center",
-        }
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "Inter-SemiBold",
+            "fontSize": 20,
+            "lineHeight": 24,
+          },
+          Object {
+            "color": "#000000",
+            "marginBottom": 6,
+            "textAlign": "center",
+          },
+        ]
       }
       testID="empty-state-title"
     >
@@ -92,15 +110,21 @@ exports[`EmptyState full rendering should render correctly 1`] = `
     </Text>
     <Text
       style={
-        Object {
-          "color": "#222222",
-          "fontSize": 15,
-          "lineHeight": 23,
-          "marginBottom": 14,
-          "paddingLeft": 24,
-          "paddingRight": 24,
-          "textAlign": "center",
-        }
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "Inter-Regular",
+            "fontSize": 15,
+            "lineHeight": 23,
+          },
+          Object {
+            "color": "#222222",
+            "marginBottom": 14,
+            "paddingLeft": 24,
+            "paddingRight": 24,
+            "textAlign": "center",
+          },
+        ]
       }
       testID="empty-state-description"
     >

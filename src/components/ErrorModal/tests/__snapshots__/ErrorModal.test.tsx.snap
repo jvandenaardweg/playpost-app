@@ -13,9 +13,17 @@ exports[`ErrorModal rendering should render correctly 1`] = `
   <View>
     <Text
       style={
-        Object {
-          "color": "#000000",
-        }
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "Inter-SemiBold",
+            "fontSize": 17,
+            "lineHeight": 23,
+          },
+          Object {
+            "color": "#000000",
+          },
+        ]
       }
     >
       Test

@@ -337,15 +337,21 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                   style={
                     Array [
                       Object {
-                        "color": "#AAAAAA",
-                        "fontSize": 12,
-                        "fontWeight": "300",
-                        "paddingRight": 0,
+                        "color": "#000000",
+                        "fontFamily": "Inter-Regular",
+                        "fontSize": 13,
+                        "lineHeight": 16,
                       },
-                      Object {
-                        "direction": "ltr",
-                        "writingDirection": "ltr",
-                      },
+                      Array [
+                        Object {
+                          "color": "#AAAAAA",
+                          "paddingRight": 0,
+                        },
+                        Object {
+                          "direction": "ltr",
+                          "writingDirection": "ltr",
+                        },
+                      ],
                     ]
                   }
                   testID="Article-source-name"
@@ -360,8 +366,8 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                   "flex": 1,
                   "flexBasis": "auto",
                   "flexGrow": 0,
-                  "marginBottom": 6,
-                  "marginTop": 6,
+                  "marginBottom": 10,
+                  "marginTop": 10,
                 }
               }
             >
@@ -372,14 +378,19 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                   Array [
                     Object {
                       "color": "#000000",
+                      "fontFamily": "Inter-SemiBold",
                       "fontSize": 17,
-                      "fontWeight": "600",
-                      "lineHeight": 21,
+                      "lineHeight": 23,
                     },
-                    Object {
-                      "flexDirection": undefined,
-                      "writingDirection": "ltr",
-                    },
+                    Array [
+                      Object {
+                        "color": "#000000",
+                      },
+                      Object {
+                        "flexDirection": undefined,
+                        "writingDirection": "ltr",
+                      },
+                    ],
                   ]
                 }
                 testID="Article-title"
@@ -397,7 +408,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                     "flexDirection": "row",
                     "flexGrow": 0,
                     "flexShrink": 1,
-                    "height": 14,
+                    "height": 18,
                   },
                   Object {
                     "flexDirection": undefined,
@@ -414,7 +425,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                   Array [
                     Object {
                       "flexDirection": "row",
-                      "height": 8,
+                      "height": 10,
                       "justifyContent": "space-between",
                       "marginRight": 4,
                       "width": 31,
@@ -497,13 +508,19 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
               </View>
               <Text
                 style={
-                  Object {
-                    "color": "#AAAAAA",
-                    "fontSize": 12,
-                    "fontWeight": "300",
-                    "paddingLeft": 2,
-                    "paddingRight": 6,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                      "fontSize": 12,
+                      "lineHeight": 15,
+                    },
+                    Object {
+                      "color": "#AAAAAA",
+                      "paddingLeft": 2,
+                      "paddingRight": 6,
+                    },
+                  ]
                 }
               >
                 Added 
@@ -536,7 +553,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "#C5C5C5",
-                  "borderRadius": 4,
+                  "borderRadius": 6,
                   "height": 75,
                   "justifyContent": "center",
                   "opacity": 1,
@@ -639,7 +656,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                       Object {
                         "alignItems": "center",
                         "backgroundColor": "#e5e5e5",
-                        "borderRadius": 4,
+                        "borderRadius": 6,
                         "justifyContent": "center",
                       }
                     }
@@ -713,13 +730,19 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
             </View>
             <Text
               style={
-                Object {
-                  "color": "#AAAAAA",
-                  "fontSize": 12,
-                  "fontWeight": "300",
-                  "marginTop": 6,
-                  "textAlign": "center",
-                }
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "Inter-Regular",
+                    "fontSize": 12,
+                    "lineHeight": 15,
+                  },
+                  Object {
+                    "color": "#C5C5C5",
+                    "marginTop": 6,
+                    "textAlign": "center",
+                  },
+                ]
               }
               testID="Article-duration"
             >

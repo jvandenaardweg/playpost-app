@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
-import fonts from '../../constants/fonts';
 
 export default StyleSheet.create({
   container: { },
@@ -17,9 +16,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   timeText: {
-    color: colors.white,
-    fontSize: fonts.fontSize.small,
-    fontWeight: fonts.fontWeight.medium
+    color: colors.white
   },
   thumbStyle: {
     width: 18,

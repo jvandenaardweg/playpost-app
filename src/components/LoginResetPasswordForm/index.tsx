@@ -1,6 +1,8 @@
 import React from 'react';
-import { KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, ScrollView, TextInput, View } from 'react-native';
 import { Button } from 'react-native-elements';
+
+import { Text } from '../Text';
 import styles from './styles';
 
 interface Props {
@@ -24,7 +26,7 @@ export const LoginResetPasswordForm: React.FC<Props> = React.memo(
     return (
       <KeyboardAvoidingView testID="LoginResetPasswordForm" style={styles.container} behavior={behaviorOption} enabled>
         <ScrollView style={styles.form} contentContainerStyle={styles.formContent} keyboardShouldPersistTaps={'handled'}>
-          <Text style={styles.subtitle}>Please check your e-mail's inbox for the password reset code and fill it in below.</Text>
+          <Text style={styles.subtitle} template="body">Please check your e-mail's inbox for the password reset code and fill it in below.</Text>
 
           <TextInput
             testID="LoginResetPasswordForm-TextInput-reset-password-code"

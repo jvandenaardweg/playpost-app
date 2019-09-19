@@ -46,12 +46,15 @@ exports[`SignupForm rendering should render correctly 1`] = `
         returnKeyType="next"
         style={
           Object {
+            "alignItems": "center",
             "backgroundColor": "#ffffff",
             "borderColor": "#e5e5e5",
             "borderRadius": 4,
             "borderWidth": 1,
-            "fontSize": 15,
-            "height": 50,
+            "fontFamily": "Inter-Regular",
+            "fontSize": 16,
+            "height": 54,
+            "lineHeight": 20,
             "marginBottom": 12,
             "paddingLeft": 12,
             "paddingRight": 12,
@@ -74,12 +77,15 @@ exports[`SignupForm rendering should render correctly 1`] = `
         secureTextEntry={true}
         style={
           Object {
+            "alignItems": "center",
             "backgroundColor": "#ffffff",
             "borderColor": "#e5e5e5",
             "borderRadius": 4,
             "borderWidth": 1,
-            "fontSize": 15,
-            "height": 50,
+            "fontFamily": "Inter-Regular",
+            "fontSize": 16,
+            "height": 54,
+            "lineHeight": 20,
             "marginBottom": 12,
             "paddingLeft": 12,
             "paddingRight": 12,
@@ -119,14 +125,12 @@ exports[`SignupForm rendering should render correctly 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "#000000",
+                  "backgroundColor": "#2089dc",
                   "borderColor": "#2089dc",
                   "borderRadius": 3,
                   "borderWidth": 0,
                   "flexDirection": "row",
                   "justifyContent": "center",
-                  "marginBottom": 12,
-                  "opacity": 1,
                   "padding": 8,
                 }
               }
@@ -169,12 +173,18 @@ exports[`SignupForm rendering should render correctly 1`] = `
         >
           <Text
             style={
-              Object {
-                "color": "#222222",
-                "fontSize": 15,
-                "lineHeight": 23,
-                "textAlign": "center",
-              }
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontFamily": "Inter-Regular",
+                },
+                Object {
+                  "color": "#222222",
+                  "fontSize": 15,
+                  "lineHeight": 23,
+                  "textAlign": "center",
+                },
+              ]
             }
           >
             By signing up you agree to our 
@@ -184,15 +194,21 @@ exports[`SignupForm rendering should render correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#222222",
-                  "fontSize": 15,
-                  "lineHeight": 23,
-                  "textAlign": "center",
-                },
-                Object {
                   "color": "#000000",
-                  "textDecorationLine": "underline",
+                  "fontFamily": "Inter-Regular",
                 },
+                Array [
+                  Object {
+                    "color": "#222222",
+                    "fontSize": 15,
+                    "lineHeight": 23,
+                    "textAlign": "center",
+                  },
+                  Object {
+                    "color": "#000000",
+                    "textDecorationLine": "underline",
+                  },
+                ],
               ]
             }
             testID="SignupForm-Text-privacy-policy"
@@ -201,12 +217,18 @@ exports[`SignupForm rendering should render correctly 1`] = `
           </Text>
           <Text
             style={
-              Object {
-                "color": "#222222",
-                "fontSize": 15,
-                "lineHeight": 23,
-                "textAlign": "center",
-              }
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontFamily": "Inter-Regular",
+                },
+                Object {
+                  "color": "#222222",
+                  "fontSize": 15,
+                  "lineHeight": 23,
+                  "textAlign": "center",
+                },
+              ]
             }
           >
              and 
@@ -216,15 +238,21 @@ exports[`SignupForm rendering should render correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#222222",
-                  "fontSize": 15,
-                  "lineHeight": 23,
-                  "textAlign": "center",
-                },
-                Object {
                   "color": "#000000",
-                  "textDecorationLine": "underline",
+                  "fontFamily": "Inter-Regular",
                 },
+                Array [
+                  Object {
+                    "color": "#222222",
+                    "fontSize": 15,
+                    "lineHeight": 23,
+                    "textAlign": "center",
+                  },
+                  Object {
+                    "color": "#000000",
+                    "textDecorationLine": "underline",
+                  },
+                ],
               ]
             }
             testID="SignupForm-Text-terms"

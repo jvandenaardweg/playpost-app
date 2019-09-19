@@ -1,10 +1,11 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { Button } from 'react-native-elements';
 import Modal from 'react-native-modal';
 
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
+import { Text } from '../Text';
 import styles from './styles';
 
 export interface Props {

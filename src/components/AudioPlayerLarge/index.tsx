@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Animated, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, TouchableOpacity, View } from 'react-native';
 
 import { ArticleReader } from '../ArticleReader';
 import { AudioPlayerProgressBar } from '../AudioPlayerProgressBar';
 import * as Icon from '../Icon';
 import { PlayPauseControlCircle } from '../PlayPauseControl';
+import { Text } from '../Text';
 
 import { defaultHitslop, smallHitslop } from '../../constants/buttons';
 import colors from '../../constants/colors';
@@ -76,6 +77,7 @@ export const AudioPlayerLarge: React.FC<Props> = React.memo((props: Props) => {
                   <Text
                     testID="AudioPlayerLarge-Text-playbackspeed"
                     style={styles.buttonControlText}
+                    template="footnoteEmphasized"
                   >
                     {props.playbackSpeed.toFixed(2)}x
                   </Text>
@@ -88,7 +90,7 @@ export const AudioPlayerLarge: React.FC<Props> = React.memo((props: Props) => {
                 hitSlop={smallHitslop}
                 onPress={props.onPressVoice}
               >
-                <Text style={styles.buttonControlText}>{props.audiofile.voice.label} ({props.audiofile.voice.languageCode})</Text>
+                <Text style={styles.buttonControlText} template="footnoteEmphasized">{props.audiofile.voice.label} ({props.audiofile.voice.languageCode})</Text>
               </TouchableOpacity>
             )}
           </View>

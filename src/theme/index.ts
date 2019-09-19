@@ -1,19 +1,19 @@
 import { Theme } from 'react-native-elements';
+import { textTemplates } from '../components/Text';
 import colors from '../constants/colors';
-import fonts from '../constants/fonts';
+import layout from '../constants/layout';
 
 export const reactNativeElementsTheme: Theme = {
   Button: {
     containerStyle: {
-      borderRadius: 8
+      borderRadius: layout.borderRadius.medium
     },
     buttonStyle: {
       height: 50,
-      borderRadius: 8
+      borderRadius: layout.borderRadius.medium
     },
     titleStyle: {
-      fontWeight: fonts.fontWeight.semibold,
-      fontSize: fonts.fontSize.button
+      ...textTemplates['bodyEmphasized']
     }
   },
   Divider: {
@@ -24,13 +24,12 @@ export const reactNativeElementsTheme: Theme = {
   },
   ListItem: {
     titleStyle: {
-      fontWeight: fonts.fontWeight.regular,
-      fontSize: fonts.fontSize.title,
+      ...textTemplates['body'],
       color: colors.black
     },
     subtitleStyle: {
+      ...textTemplates['footNote'],
       color: colors.grayDark,
-      fontSize: fonts.fontSize.small,
       marginTop: 2
     }
   },

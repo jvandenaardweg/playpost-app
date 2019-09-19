@@ -2,6 +2,7 @@ import { Platform, StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
+import layout from '../../constants/layout';
 import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
@@ -11,7 +12,7 @@ export default StyleSheet.create({
   container: {
     backgroundColor: colors.white,
     padding: spacing.medium,
-    borderRadius: 8,
+    borderRadius: layout.borderRadius.medium,
     maxWidth: 450
   },
   title: {

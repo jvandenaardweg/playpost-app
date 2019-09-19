@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { Button } from 'react-native-elements';
 import SplashScreen from 'react-native-splash-screen';
 import { NavigationRoute, NavigationScreenProp, withNavigation } from 'react-navigation';
+import { Text } from '../Text';
 
 import * as Icon from '../../components/Icon';
 import styles from './styles';
@@ -41,7 +42,7 @@ const OnboardingSliderComponent: React.FC<Props> = React.memo(({
     },
     {
       key: 'slide2',
-      title: 'Over 100 high quality voices',
+      title: '240+ high-quality voices',
       text: 'Industry leading high quality voices are used to automatically transform text into speech.\n\nChoose between a variety of high quality male and female voices with accents like American, British or Australian English.',
     },
     {
@@ -99,8 +100,8 @@ const OnboardingSlide: React.FC<OnboardingSlideProps> = React.memo(({
     ]}
   >
     <View key={index}>
-      <Text testID="onboarding-slider-item-title" style={styles.title}>{item.title}</Text>
-      <Text testID="onboarding-slider-item-text" style={styles.text}>{item.text}</Text>
+      <Text testID="onboarding-slider-item-title" style={styles.title} template="largeTitleEmphasized">{item.title}</Text>
+      <Text testID="onboarding-slider-item-text" style={styles.text} template="body">{item.text}</Text>
     </View>
   </View>
 ));

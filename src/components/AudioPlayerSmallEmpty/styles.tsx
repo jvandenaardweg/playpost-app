@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
-import fonts from '../../constants/fonts';
 
 import spacing from '../../constants/spacing';
 import styles from '../AudioPlayerSmall/styles';
@@ -14,9 +13,7 @@ export default StyleSheet.create({
     ...styles.container
   },
   emptyText: {
-    fontSize: fonts.fontSize.body,
-    color: colors.white,
-    fontWeight: fonts.fontWeight.semibold
+    color: colors.white
   },
   placeHolder: {
     flex: 1,

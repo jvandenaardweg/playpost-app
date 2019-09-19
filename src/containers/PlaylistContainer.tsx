@@ -89,13 +89,12 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
 
   componentDidMount() {
     const { isConnected } = this.context;
-    const { isArchiveScreen, isFavoriteScreen } = this.props;
 
     InteractionManager.runAfterInteractions(() => {
       this.showOrHideHelpVideo();
 
       // If we mount this component, and we don't have any playlist items, fetch them
-      if (isConnected && (!isArchiveScreen || !isFavoriteScreen)) {
+      if (isConnected) {
         if (!this.hasPlaylistItems) {
           this.setState({ isLoading: true }, () => {
             this.fetchPlaylist();

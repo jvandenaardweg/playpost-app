@@ -8,7 +8,7 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering default should render correct
         "backgroundColor": "#EEEEEE",
         "flex": 1,
         "flexDirection": "row",
-        "padding": 14,
+        "padding": 12,
         "width": "100%",
       },
       Object {
@@ -60,14 +60,19 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering default should render correct
         Array [
           Object {
             "color": "#000000",
+            "fontFamily": "Inter-SemiBold",
             "fontSize": 15,
-            "fontWeight": "600",
-            "lineHeight": 18,
-            "marginBottom": 10,
+            "lineHeight": 23,
           },
-          Object {
-            "color": "#ffffff",
-          },
+          Array [
+            Object {
+              "color": "#000000",
+              "marginBottom": 10,
+            },
+            Object {
+              "color": "#ffffff",
+            },
+          ],
         ]
       }
     >
@@ -78,12 +83,20 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering default should render correct
         Array [
           Object {
             "color": "#000000",
-            "marginBottom": 10,
-            "opacity": 0.9,
+            "fontFamily": "Inter-Regular",
+            "fontSize": 15,
+            "lineHeight": 23,
           },
-          Object {
-            "color": "#ffffff",
-          },
+          Array [
+            Object {
+              "color": "#000000",
+              "marginBottom": 10,
+              "opacity": 0.9,
+            },
+            Object {
+              "color": "#ffffff",
+            },
+          ],
         ]
       }
     >
@@ -91,21 +104,29 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering default should render correct
     </Text>
     <Text
       ellipsizeMode="tail"
-      numberOfLines={3}
+      numberOfLines={1}
       onPress={[Function]}
       style={
         Array [
           Object {
             "color": "#000000",
-            "marginBottom": 10,
-            "opacity": 0.9,
+            "fontFamily": "Inter-Regular",
+            "fontSize": 15,
+            "lineHeight": 23,
           },
-          Object {
-            "color": "#ffffff",
-          },
-          Object {
-            "textDecorationLine": "underline",
-          },
+          Array [
+            Object {
+              "color": "#000000",
+              "marginBottom": 10,
+              "opacity": 0.9,
+            },
+            Object {
+              "color": "#ffffff",
+            },
+            Object {
+              "textDecorationLine": "underline",
+            },
+          ],
         ]
       }
     >
@@ -123,7 +144,7 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering loading should render correct
         "backgroundColor": "#EEEEEE",
         "flex": 1,
         "flexDirection": "row",
-        "padding": 14,
+        "padding": 12,
         "width": "100%",
       },
       Object {
@@ -175,14 +196,19 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering loading should render correct
         Array [
           Object {
             "color": "#000000",
+            "fontFamily": "Inter-SemiBold",
             "fontSize": 15,
-            "fontWeight": "600",
-            "lineHeight": 18,
-            "marginBottom": 10,
+            "lineHeight": 23,
           },
-          Object {
-            "color": "#ffffff",
-          },
+          Array [
+            Object {
+              "color": "#000000",
+              "marginBottom": 10,
+            },
+            Object {
+              "color": "#ffffff",
+            },
+          ],
         ]
       }
     >
@@ -193,12 +219,20 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering loading should render correct
         Array [
           Object {
             "color": "#000000",
-            "marginBottom": 10,
-            "opacity": 0.9,
+            "fontFamily": "Inter-Regular",
+            "fontSize": 15,
+            "lineHeight": 23,
           },
-          Object {
-            "color": "#ffffff",
-          },
+          Array [
+            Object {
+              "color": "#000000",
+              "marginBottom": 10,
+              "opacity": 0.9,
+            },
+            Object {
+              "color": "#ffffff",
+            },
+          ],
         ]
       }
     >
@@ -206,21 +240,29 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering loading should render correct
     </Text>
     <Text
       ellipsizeMode="tail"
-      numberOfLines={3}
+      numberOfLines={1}
       onPress={[Function]}
       style={
         Array [
           Object {
             "color": "#000000",
-            "marginBottom": 10,
-            "opacity": 0.9,
+            "fontFamily": "Inter-Regular",
+            "fontSize": 15,
+            "lineHeight": 23,
           },
-          Object {
-            "color": "#ffffff",
-          },
-          Object {
-            "textDecorationLine": "underline",
-          },
+          Array [
+            Object {
+              "color": "#000000",
+              "marginBottom": 10,
+              "opacity": 0.9,
+            },
+            Object {
+              "color": "#ffffff",
+            },
+            Object {
+              "textDecorationLine": "underline",
+            },
+          ],
         ]
       }
     >
@@ -237,7 +279,7 @@ exports[`ArticleEmpty ArticleEmptyNew rendering default should render correctly 
       "backgroundColor": "#EEEEEE",
       "flex": 1,
       "flexDirection": "row",
-      "padding": 14,
+      "padding": 12,
       "width": "100%",
     }
   }
@@ -282,24 +324,37 @@ exports[`ArticleEmpty ArticleEmptyNew rendering default should render correctly 
   >
     <Text
       style={
-        Object {
-          "color": "#000000",
-          "fontSize": 15,
-          "fontWeight": "600",
-          "lineHeight": 18,
-          "marginBottom": 10,
-        }
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "Inter-SemiBold",
+            "fontSize": 15,
+            "lineHeight": 23,
+          },
+          Object {
+            "color": "#000000",
+            "marginBottom": 10,
+          },
+        ]
       }
     >
       Not processing article, yet!
     </Text>
     <Text
       style={
-        Object {
-          "color": "#000000",
-          "marginBottom": 10,
-          "opacity": 0.9,
-        }
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "Inter-Regular",
+            "fontSize": 15,
+            "lineHeight": 23,
+          },
+          Object {
+            "color": "#000000",
+            "marginBottom": 10,
+            "opacity": 0.9,
+          },
+        ]
       }
     >
       Hold on, it seems busy. We will start processing this article shortly.
@@ -319,12 +374,20 @@ exports[`ArticleEmpty ArticleEmptyNew rendering default should render correctly 
           Array [
             Object {
               "color": "#000000",
-              "marginBottom": 10,
-              "opacity": 0.9,
+              "fontFamily": "Inter-Regular",
+              "fontSize": 15,
+              "lineHeight": 23,
             },
-            Object {
-              "textDecorationLine": "underline",
-            },
+            Array [
+              Object {
+                "color": "#000000",
+                "marginBottom": 10,
+                "opacity": 0.9,
+              },
+              Object {
+                "textDecorationLine": "underline",
+              },
+            ],
           ]
         }
       >
@@ -342,7 +405,7 @@ exports[`ArticleEmpty ArticleEmptyNew rendering loading should render correctly 
       "backgroundColor": "#EEEEEE",
       "flex": 1,
       "flexDirection": "row",
-      "padding": 14,
+      "padding": 12,
       "width": "100%",
     }
   }
@@ -387,24 +450,37 @@ exports[`ArticleEmpty ArticleEmptyNew rendering loading should render correctly 
   >
     <Text
       style={
-        Object {
-          "color": "#000000",
-          "fontSize": 15,
-          "fontWeight": "600",
-          "lineHeight": 18,
-          "marginBottom": 10,
-        }
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "Inter-SemiBold",
+            "fontSize": 15,
+            "lineHeight": 23,
+          },
+          Object {
+            "color": "#000000",
+            "marginBottom": 10,
+          },
+        ]
       }
     >
       Not processing article, yet!
     </Text>
     <Text
       style={
-        Object {
-          "color": "#000000",
-          "marginBottom": 10,
-          "opacity": 0.9,
-        }
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "Inter-Regular",
+            "fontSize": 15,
+            "lineHeight": 23,
+          },
+          Object {
+            "color": "#000000",
+            "marginBottom": 10,
+            "opacity": 0.9,
+          },
+        ]
       }
     >
       Hold on, it seems busy. We will start processing this article shortly.
@@ -437,7 +513,7 @@ exports[`ArticleEmpty ArticleEmptyProcessing rendering default should render cor
       "backgroundColor": "#EEEEEE",
       "flex": 1,
       "flexDirection": "row",
-      "padding": 14,
+      "padding": 12,
       "width": "100%",
     }
   }
@@ -482,24 +558,37 @@ exports[`ArticleEmpty ArticleEmptyProcessing rendering default should render cor
   >
     <Text
       style={
-        Object {
-          "color": "#000000",
-          "fontSize": 15,
-          "fontWeight": "600",
-          "lineHeight": 18,
-          "marginBottom": 10,
-        }
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "Inter-SemiBold",
+            "fontSize": 15,
+            "lineHeight": 23,
+          },
+          Object {
+            "color": "#000000",
+            "marginBottom": 10,
+          },
+        ]
       }
     >
       Processing article...
     </Text>
     <Text
       style={
-        Object {
-          "color": "#000000",
-          "marginBottom": 10,
-          "opacity": 0.9,
-        }
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "Inter-Regular",
+            "fontSize": 15,
+            "lineHeight": 23,
+          },
+          Object {
+            "color": "#000000",
+            "marginBottom": 10,
+            "opacity": 0.9,
+          },
+        ]
       }
     >
       The article from "
@@ -521,12 +610,20 @@ exports[`ArticleEmpty ArticleEmptyProcessing rendering default should render cor
           Array [
             Object {
               "color": "#000000",
-              "marginBottom": 10,
-              "opacity": 0.9,
+              "fontFamily": "Inter-Regular",
+              "fontSize": 15,
+              "lineHeight": 23,
             },
-            Object {
-              "textDecorationLine": "underline",
-            },
+            Array [
+              Object {
+                "color": "#000000",
+                "marginBottom": 10,
+                "opacity": 0.9,
+              },
+              Object {
+                "textDecorationLine": "underline",
+              },
+            ],
           ]
         }
       >
@@ -544,7 +641,7 @@ exports[`ArticleEmpty ArticleEmptyProcessing rendering loading should render cor
       "backgroundColor": "#EEEEEE",
       "flex": 1,
       "flexDirection": "row",
-      "padding": 14,
+      "padding": 12,
       "width": "100%",
     }
   }
@@ -589,24 +686,37 @@ exports[`ArticleEmpty ArticleEmptyProcessing rendering loading should render cor
   >
     <Text
       style={
-        Object {
-          "color": "#000000",
-          "fontSize": 15,
-          "fontWeight": "600",
-          "lineHeight": 18,
-          "marginBottom": 10,
-        }
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "Inter-SemiBold",
+            "fontSize": 15,
+            "lineHeight": 23,
+          },
+          Object {
+            "color": "#000000",
+            "marginBottom": 10,
+          },
+        ]
       }
     >
       Processing article...
     </Text>
     <Text
       style={
-        Object {
-          "color": "#000000",
-          "marginBottom": 10,
-          "opacity": 0.9,
-        }
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "Inter-Regular",
+            "fontSize": 15,
+            "lineHeight": 23,
+          },
+          Object {
+            "color": "#000000",
+            "marginBottom": 10,
+            "opacity": 0.9,
+          },
+        ]
       }
     >
       The article from "

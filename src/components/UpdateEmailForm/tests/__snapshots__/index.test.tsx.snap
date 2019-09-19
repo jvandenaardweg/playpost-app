@@ -38,12 +38,15 @@ exports[`UpdateEmailForm rendering should render correctly 1`] = `
       returnKeyType="done"
       style={
         Object {
+          "alignItems": "center",
           "backgroundColor": "#ffffff",
           "borderColor": "#e5e5e5",
           "borderRadius": 4,
           "borderWidth": 1,
-          "fontSize": 15,
-          "height": 50,
+          "fontFamily": "Inter-Regular",
+          "fontSize": 16,
+          "height": 54,
+          "lineHeight": 20,
           "marginBottom": 12,
           "paddingLeft": 12,
           "paddingRight": 12,

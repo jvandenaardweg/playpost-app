@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-
+import { View } from 'react-native';
 import { Button } from 'react-native-elements';
+
+import { Text } from '../Text';
 import { VideoPlayer } from '../VideoPlayer';
 import styles from './styles';
 
@@ -17,8 +18,8 @@ interface Props {
 export const EmptyState: React.FC<Props> = React.memo(({ title, description, actionButtonLabel, localVideo, actionButtonOnPress }) => (
   <View style={styles.container}>
     <View style={styles.content}>
-      {title && <Text style={styles.title} testID="empty-state-title">{title}</Text>}
-      {description && <Text style={styles.description} testID="empty-state-description">{description.join('\n\n')}</Text>}
+      {title && <Text style={styles.title} testID="empty-state-title" template="title3Emphasized">{title}</Text>}
+      {description && <Text style={styles.description} testID="empty-state-description" template="subhead">{description.join('\n\n')}</Text>}
       {localVideo && <VideoPlayer localVideo={localVideo} />}
       {actionButtonLabel && <Button buttonStyle={styles.button} title={actionButtonLabel} onPress={actionButtonOnPress} testID="empty-state-button" />}
     </View>

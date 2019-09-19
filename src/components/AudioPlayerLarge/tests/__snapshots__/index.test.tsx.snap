@@ -165,19 +165,18 @@ exports[`AudioPlayerLarge rendering should render correctly 1`] = `
           }
           testID="AudioPlayerLarge-TouchableOpacity-playbackspeed"
         >
-          <Text
+          <Memo
             style={
               Object {
                 "color": "#ffffff",
-                "fontSize": 12,
-                "fontWeight": "600",
               }
             }
+            template="footnoteEmphasized"
             testID="AudioPlayerLarge-Text-playbackspeed"
           >
             1.00
             x
-          </Text>
+          </Memo>
         </TouchableOpacity>
       </View>
       <View

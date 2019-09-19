@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
-import fonts from '../../constants/fonts';
+import layout from '../../constants/layout';
 import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
@@ -9,7 +9,7 @@ export default StyleSheet.create({
     backgroundColor: colors.white,
     height: 168,
     padding: spacing.default,
-    borderRadius: 10,
+    borderRadius: layout.borderRadius.large,
     width: '100%',
     shadowColor: '#000',
     shadowOffset: {
@@ -30,7 +30,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     minHeight: 70,
-    borderRadius: 6,
+    borderRadius: layout.borderRadius.small,
     textAlign: 'center'
   },
   footer: {
@@ -41,14 +41,10 @@ export default StyleSheet.create({
   },
   errorMessage: {
     textAlign: 'center',
-    fontSize: fonts.fontSize.body,
-    color: colors.red,
-    fontWeight: fonts.fontWeight.semibold
+    color: colors.red
   },
   successMessage: {
     textAlign: 'center',
-    fontSize: fonts.fontSize.body,
-    color: colors.green,
-    fontWeight: fonts.fontWeight.semibold
+    color: colors.green
   }
 });

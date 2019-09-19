@@ -54,15 +54,21 @@ exports[`UpgradeContainerComponent rendering should render correctly 1`] = `
         >
           <Text
             style={
-              Object {
-                "color": "#000000",
-                "fontSize": 24,
-                "fontWeight": "700",
-                "lineHeight": 36,
-                "marginBottom": 24,
-                "marginTop": 12,
-                "textAlign": "center",
-              }
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontFamily": "Inter-Regular",
+                },
+                Object {
+                  "color": "#000000",
+                  "fontSize": 24,
+                  "fontWeight": "700",
+                  "lineHeight": 36,
+                  "marginBottom": 24,
+                  "marginTop": 12,
+                  "textAlign": "center",
+                },
+              ]
             }
           >
             Upgrade to
@@ -118,24 +124,36 @@ Premium or Unlimited
             >
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 17,
-                    "fontWeight": "600",
-                    "lineHeight": 21,
-                    "marginBottom": 4,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                    },
+                    Object {
+                      "color": "#000000",
+                      "fontSize": 17,
+                      "fontWeight": "600",
+                      "lineHeight": 21,
+                      "marginBottom": 4,
+                    },
+                  ]
                 }
               >
                 Higher Quality voices
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#222222",
-                    "fontSize": 15,
-                    "lineHeight": 23,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                    },
+                    Object {
+                      "color": "#222222",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                  ]
                 }
               >
                 Access to our highest quality Premium voices for easier listening. You can preview these Higher Quality voices in the settings screen.
@@ -192,24 +210,36 @@ Premium or Unlimited
             >
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 17,
-                    "fontWeight": "600",
-                    "lineHeight": 21,
-                    "marginBottom": 4,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                    },
+                    Object {
+                      "color": "#000000",
+                      "fontSize": 17,
+                      "fontWeight": "600",
+                      "lineHeight": 21,
+                      "marginBottom": 4,
+                    },
+                  ]
                 }
               >
                 Voice customization options
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#222222",
-                    "fontSize": 15,
-                    "lineHeight": 23,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                    },
+                    Object {
+                      "color": "#222222",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                  ]
                 }
               >
                 Choose between a variety of male and female voices with accents like American, British or Australian English.
@@ -266,24 +296,36 @@ Premium or Unlimited
             >
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 17,
-                    "fontWeight": "600",
-                    "lineHeight": 21,
-                    "marginBottom": 4,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                    },
+                    Object {
+                      "color": "#000000",
+                      "fontSize": 17,
+                      "fontWeight": "600",
+                      "lineHeight": 21,
+                      "marginBottom": 4,
+                    },
+                  ]
                 }
               >
                 More listening limits
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#222222",
-                    "fontSize": 15,
-                    "lineHeight": 23,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                    },
+                    Object {
+                      "color": "#222222",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                  ]
                 }
               >
                 With our Premium and Unlimited subscription you can enjoy higher listening minutes. Unlimited gives you unlimited listening minutes.
@@ -340,24 +382,36 @@ Premium or Unlimited
             >
               <Text
                 style={
-                  Object {
-                    "color": "#000000",
-                    "fontSize": 17,
-                    "fontWeight": "600",
-                    "lineHeight": 21,
-                    "marginBottom": 4,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                    },
+                    Object {
+                      "color": "#000000",
+                      "fontSize": 17,
+                      "fontWeight": "600",
+                      "lineHeight": 21,
+                      "marginBottom": 4,
+                    },
+                  ]
                 }
               >
                 No advertisements
               </Text>
               <Text
                 style={
-                  Object {
-                    "color": "#222222",
-                    "fontSize": 15,
-                    "lineHeight": 23,
-                  }
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-Regular",
+                    },
+                    Object {
+                      "color": "#222222",
+                      "fontSize": 15,
+                      "lineHeight": 23,
+                    },
+                  ]
                 }
               >
                 Sponsored content and advertisements helps us continue to provide a free version of Playpost. After upgrading you won’t see any ads, and you’ll be supporting Playpost more directly!
@@ -374,11 +428,17 @@ Premium or Unlimited
         >
           <Text
             style={
-              Object {
-                "fontSize": 13,
-                "lineHeight": 20,
-                "opacity": 0.5,
-              }
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontFamily": "Inter-Regular",
+                },
+                Object {
+                  "fontSize": 13,
+                  "lineHeight": 20,
+                  "opacity": 0.5,
+                },
+              ]
             }
           >
             Payment will be charged to your 
@@ -401,15 +461,21 @@ Premium or Unlimited
               style={
                 Array [
                   Object {
-                    "fontSize": 13,
-                    "lineHeight": 20,
-                    "opacity": 0.5,
-                  },
-                  Object {
                     "color": "#000000",
-                    "opacity": 1,
-                    "textDecorationLine": "underline",
+                    "fontFamily": "Inter-Regular",
                   },
+                  Array [
+                    Object {
+                      "fontSize": 13,
+                      "lineHeight": 20,
+                      "opacity": 0.5,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "opacity": 1,
+                      "textDecorationLine": "underline",
+                    },
+                  ],
                 ]
               }
             >
@@ -417,11 +483,17 @@ Premium or Unlimited
             </Text>
             <Text
               style={
-                Object {
-                  "fontSize": 13,
-                  "lineHeight": 20,
-                  "opacity": 0.5,
-                }
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "Inter-Regular",
+                  },
+                  Object {
+                    "fontSize": 13,
+                    "lineHeight": 20,
+                    "opacity": 0.5,
+                  },
+                ]
               }
             >
                - 
@@ -431,15 +503,21 @@ Premium or Unlimited
               style={
                 Array [
                   Object {
-                    "fontSize": 13,
-                    "lineHeight": 20,
-                    "opacity": 0.5,
-                  },
-                  Object {
                     "color": "#000000",
-                    "opacity": 1,
-                    "textDecorationLine": "underline",
+                    "fontFamily": "Inter-Regular",
                   },
+                  Array [
+                    Object {
+                      "fontSize": 13,
+                      "lineHeight": 20,
+                      "opacity": 0.5,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "opacity": 1,
+                      "textDecorationLine": "underline",
+                    },
+                  ],
                 ]
               }
             >
@@ -447,11 +525,17 @@ Premium or Unlimited
             </Text>
             <Text
               style={
-                Object {
-                  "fontSize": 13,
-                  "lineHeight": 20,
-                  "opacity": 0.5,
-                }
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "Inter-Regular",
+                  },
+                  Object {
+                    "fontSize": 13,
+                    "lineHeight": 20,
+                    "opacity": 0.5,
+                  },
+                ]
               }
             >
                - 
@@ -461,15 +545,21 @@ Premium or Unlimited
               style={
                 Array [
                   Object {
-                    "fontSize": 13,
-                    "lineHeight": 20,
-                    "opacity": 0.5,
-                  },
-                  Object {
                     "color": "#000000",
-                    "opacity": 1,
-                    "textDecorationLine": "underline",
+                    "fontFamily": "Inter-Regular",
                   },
+                  Array [
+                    Object {
+                      "fontSize": 13,
+                      "lineHeight": 20,
+                      "opacity": 0.5,
+                    },
+                    Object {
+                      "color": "#000000",
+                      "opacity": 1,
+                      "textDecorationLine": "underline",
+                    },
+                  ],
                 ]
               }
             >

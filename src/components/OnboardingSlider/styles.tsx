@@ -28,17 +28,17 @@ export default StyleSheet.create({
     backgroundColor: 'transparent',
     textAlign: 'center',
     paddingHorizontal: spacing.default,
-    fontSize: fonts.fontSize.paragraph,
-    lineHeight: Math.ceil(fonts.fontSize.paragraph * 1.5),
+    // fontSize: fonts.fontSize.paragraph,
+    // lineHeight: Math.ceil(fonts.fontSize.paragraph * 1.5),
   },
   title: {
-    fontSize: fonts.fontSize.headline,
-    lineHeight: Math.ceil(fonts.fontSize.headline * 1.2),
+    // fontSize: fonts.fontSize.headline,
+    // lineHeight: Math.ceil(fonts.fontSize.headline * 1.2),
     color: colors.white,
     backgroundColor: 'transparent',
     textAlign: 'center',
     marginBottom: spacing.default,
-    fontWeight: fonts.fontWeight.bold
+    // fontWeight: fonts.fontWeight.bold
   },
   footerContainer: {
     marginBottom: 22,

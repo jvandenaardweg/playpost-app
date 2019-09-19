@@ -1,8 +1,9 @@
 import React from 'react';
+import * as ReactNative from 'react-native';
 import { render, RenderAPI } from 'react-native-testing-library';
 import { AppBackground } from '../index';
 
-import { Text } from 'react-native';
+import { Text } from '../../Text';
 
 describe('AppBackground', () => {
 
@@ -18,7 +19,7 @@ describe('AppBackground', () => {
     });
 
     it('should render a child element', () => {
-      expect(wrapper.getByType(Text).props.children).toBe('Example!');
+      expect(wrapper.getByType(ReactNative.Text).props.children).toBe('Example!');
     });
   });
 });

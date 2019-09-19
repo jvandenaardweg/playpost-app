@@ -1,12 +1,13 @@
 import React from 'react';
 import isEqual from 'react-fast-compare';
-import { ActivityIndicator, Alert, InteractionManager, Linking, SectionListData, Text, View } from 'react-native';
+import { ActivityIndicator, Alert, InteractionManager, Linking, SectionListData, View } from 'react-native';
 import Config from 'react-native-config';
 import DeviceInfo from 'react-native-device-info';
 import RNFS from 'react-native-fs';
 import { NavigationInjectedProps } from 'react-navigation';
 import { connect } from 'react-redux';
 
+import { Text } from '../components/Text';
 import * as inAppBrowser from '../utils/in-app-browser';
 
 import colors from '../constants/colors';

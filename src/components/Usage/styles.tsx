@@ -2,20 +2,21 @@ import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
+import layout from '../../constants/layout';
 import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
   container: {
     paddingLeft: spacing.default,
     paddingRight: spacing.default,
-    marginTop: spacing.default * -1,
+    marginLeft: spacing.default,
+    marginRight: spacing.default,
   },
   wrapper: {
     backgroundColor: colors.tintColor,
-    padding: spacing.default,
-    paddingBottom: spacing.large,
-    marginBottom: spacing.tiny,
-    borderRadius: 0
+    padding: spacing.large,
+    marginBottom: 0,
+    borderRadius: layout.borderRadius.large
   },
   headerTitle: {
     color: colors.white,
@@ -32,53 +33,48 @@ export default StyleSheet.create({
     opacity: 0.7
   },
   statsWrapper: {
-    marginTop: spacing.small,
     flexDirection: 'row',
     alignItems: 'flex-end'
   },
   statsBigNumber: {
     color: colors.white,
-    fontSize: 32,
-    fontWeight: fonts.fontWeight.bold,
     letterSpacing: -0.75
   },
   statsNumbersContainer: {
     flexDirection: 'row',
     flexGrow: 1,
     justifyContent: 'space-between',
+    alignItems: 'flex-end',
     marginBottom: 4
   },
   statsMeta: {
     color: colors.white,
-    fontSize: fonts.fontSize.body,
     opacity: 0.7,
-    marginLeft: 4
+    marginLeft: 4,
+    marginBottom: 2
   },
   statsPercentage: {
-    color: colors.white,
-    fontSize: fonts.fontSize.body,
-    fontWeight: fonts.fontWeight.bold
+    color: colors.white
   },
   upgradeContainer: {
-    paddingTop: spacing.default
+    marginTop: spacing.default
   },
   progressContainer: {
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
     height: 6,
-    borderRadius: 6,
+    borderRadius: layout.borderRadius.small,
     overflow: 'hidden',
     marginTop: 6
   },
   progress: {
     backgroundColor: colors.white,
     height: 6,
-    borderRadius: 6
+    borderRadius: layout.borderRadius.small
   },
   messageText: {
     marginTop: 8,
     color: colors.white,
     opacity: 0.7,
-    textAlign: 'center',
-    fontSize: fonts.fontSize.small
+    textAlign: 'center'
   }
 });

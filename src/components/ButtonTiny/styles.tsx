@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import fonts from '../../constants/fonts';
 import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
@@ -18,9 +17,5 @@ export default StyleSheet.create({
   icon: {
     marginLeft: 6,
     marginRight: -1
-  },
-  label: {
-    fontWeight: fonts.fontWeight.semibold,
-    fontSize: fonts.fontSize.small
   }
 });

@@ -1,7 +1,7 @@
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
-import fonts from '../../constants/fonts';
+import layout from '../../constants/layout';
 import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
@@ -32,8 +32,6 @@ export default StyleSheet.create({
     marginTop: 4
   },
   author: {
-    fontSize: fonts.fontSize.tiny,
-    lineHeight: Math.ceil(fonts.fontSize.tiny * 1.5),
     color: colors.grayDark
   },
   bodyMeta: {
@@ -50,8 +48,8 @@ export default StyleSheet.create({
     flex: 1,
     flexGrow: 0,
     flexBasis: 'auto',
-    marginTop: 6,
-    marginBottom: 6
+    marginTop: spacing.tiny,
+    marginBottom: spacing.tiny
   },
   bodyFooter: {
     flex: 1,
@@ -60,35 +58,27 @@ export default StyleSheet.create({
     flexBasis: 'auto',
     flexDirection: 'row',
     alignItems: 'center',
-    height: 14
+    height: 18
   },
   bodyFooterIcons: {
     flexDirection: 'row',
     width: 31,
     justifyContent: 'space-between',
     marginRight: spacing.nano,
-    height: 8 // icon height
+    height: 10 // icon height
   },
   bodyTitleText: {
-    fontSize: fonts.fontSize.title,
-    lineHeight: Math.ceil(fonts.fontSize.title * 1.2),
-    fontWeight: Platform.OS === 'ios' ? fonts.fontWeight.semibold : fonts.fontWeight.bold,
-    color: colors.titleDefault,
-    // fontFamily: 'Inter-SemiBold'
+    color: colors.titleDefault
   },
   bodyFooterText: {
-    fontSize: fonts.fontSize.tiny,
     color: colors.grayDark,
-    fontWeight: fonts.fontWeight.light,
     paddingLeft: 2,
     paddingRight: 6 // so our "rtl" text has enough spacing
   },
   bodySourceIcon: { },
   bodySourceText: {
-    fontSize: fonts.fontSize.tiny,
     color: colors.grayDark,
-    paddingRight: 0,
-    fontWeight: fonts.fontWeight.light
+    paddingRight: 0
   },
   authorName: {
     color: colors.grayDark
@@ -117,17 +107,15 @@ export default StyleSheet.create({
     backgroundColor: colors.controlButtonActive
   },
   duration: {
-    color: colors.grayDark,
+    color: colors.gray,
     textAlign: 'center',
-    marginTop: 6,
-    fontSize: fonts.fontSize.tiny,
-    fontWeight: fonts.fontWeight.light
+    marginTop: 6
   },
   imageContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: colors.gray,
-    borderRadius: 4,
+    borderRadius: layout.borderRadius.small,
     width: 75,
     height: 75,
     overflow: 'hidden'
@@ -144,24 +132,21 @@ export default StyleSheet.create({
   },
   imagePlaceholder: {
     backgroundColor: colors.grayLight,
-    borderRadius: 4,
+    borderRadius: layout.borderRadius.small,
   },
   warningContainer: {
-    borderRadius: 6,
+    borderRadius: layout.borderRadius.small,
     marginTop: spacing.default,
   },
   warningWrapper: {
     padding: spacing.small,
-    borderRadius: 6,
+    borderRadius: layout.borderRadius.small,
     backgroundColor: colors.orangeDark,
   },
-  warningHighlight: {
-    fontStyle: 'italic',
-    fontWeight: fonts.fontWeight.semibold
-  },
+  warningHighlight: { },
   warningText: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
+    // flexWrap: 'wrap'
   },
   warningLink: {
     textDecorationStyle: 'solid',

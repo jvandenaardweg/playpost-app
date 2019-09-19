@@ -1,15 +1,20 @@
+import { TextStyle } from 'react-native';
+import { textTemplates } from '../components/Text';
 import colors from '../constants/colors';
-import fonts from '../constants/fonts';
+import layout from './layout';
 import spacing from './spacing';
 
-export default {
-  height: 50,
+const textInput: TextStyle = {
+  height: 54,
   backgroundColor: colors.white,
   borderWidth: 1,
   borderColor: colors.borderDefault,
-  borderRadius: 4,
+  borderRadius: layout.borderRadius.tiny,
   paddingLeft: spacing.default,
   paddingRight: spacing.default,
   marginBottom: spacing.small,
-  fontSize: fonts.fontSize.body
+  alignItems: 'center',
+  ...textTemplates['callout']
 };
+
+export default textInput;

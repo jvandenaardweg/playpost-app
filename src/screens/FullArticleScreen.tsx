@@ -21,9 +21,7 @@ export class FullArticleScreen extends React.PureComponent<Props> {
 
   render() {
     return (
-      <InteractionManaged>
-        <ArticleReader article={this.article} />
-      </InteractionManaged>
+      <ArticleReader article={this.article} />
     );
   }
 }
