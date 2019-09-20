@@ -57,7 +57,7 @@ exports[`Article active rendering should render active correctly 1`] = `
         >
           <Text
             ellipsizeMode="tail"
-            numberOfLines={3}
+            numberOfLines={4}
             style={
               Array [
                 Object {
@@ -84,7 +84,7 @@ exports[`Article active rendering should render active correctly 1`] = `
           style={
             Array [
               Object {
-                "alignItems": "center",
+                "alignItems": "stretch",
                 "flex": 1,
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -136,55 +136,47 @@ exports[`Article active rendering should render active correctly 1`] = `
           </View>
           <View
             style={
-              Object {
-                "alignItems": "baseline",
-                "flexDirection": "row",
-              }
+              Array [
+                Object {
+                  "alignItems": "stretch",
+                  "flexBasis": "auto",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                },
+                Object {
+                  "flexDirection": undefined,
+                  "writingDirection": "ltr",
+                },
+              ]
             }
           >
-            <View
+            <Text
+              ellipsizeMode="tail"
+              numberOfLines={1}
               style={
                 Array [
                   Object {
-                    "flexBasis": "auto",
-                    "flexGrow": 1,
-                    "flexShrink": 1,
+                    "color": "#000000",
+                    "fontFamily": "Inter-Regular",
+                    "fontSize": 13,
+                    "lineHeight": 16,
                   },
-                  Object {
-                    "flexDirection": undefined,
-                    "writingDirection": "ltr",
-                  },
-                ]
-              }
-            >
-              <Text
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                style={
                   Array [
                     Object {
-                      "color": "#000000",
-                      "fontFamily": "Inter-Regular",
-                      "fontSize": 13,
-                      "lineHeight": 16,
+                      "color": "#AAAAAA",
+                      "paddingRight": 0,
                     },
-                    Array [
-                      Object {
-                        "color": "#AAAAAA",
-                        "paddingRight": 0,
-                      },
-                      Object {
-                        "direction": "ltr",
-                        "writingDirection": "ltr",
-                      },
-                    ],
-                  ]
-                }
-                testID="Article-source-name"
-              >
-                www.google.nl
-              </Text>
-            </View>
+                    Object {
+                      "direction": "ltr",
+                      "writingDirection": "ltr",
+                    },
+                  ],
+                ]
+              }
+              testID="Article-source-name"
+            >
+              www.google.nl
+            </Text>
           </View>
         </View>
       </View>
@@ -383,7 +375,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
         >
           <Text
             ellipsizeMode="tail"
-            numberOfLines={3}
+            numberOfLines={4}
             style={
               Array [
                 Object {
@@ -410,7 +402,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
           style={
             Array [
               Object {
-                "alignItems": "center",
+                "alignItems": "stretch",
                 "flex": 1,
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -462,55 +454,47 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
           </View>
           <View
             style={
-              Object {
-                "alignItems": "baseline",
-                "flexDirection": "row",
-              }
+              Array [
+                Object {
+                  "alignItems": "stretch",
+                  "flexBasis": "auto",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                },
+                Object {
+                  "flexDirection": undefined,
+                  "writingDirection": "ltr",
+                },
+              ]
             }
           >
-            <View
+            <Text
+              ellipsizeMode="tail"
+              numberOfLines={1}
               style={
                 Array [
                   Object {
-                    "flexBasis": "auto",
-                    "flexGrow": 1,
-                    "flexShrink": 1,
+                    "color": "#000000",
+                    "fontFamily": "Inter-Regular",
+                    "fontSize": 13,
+                    "lineHeight": 16,
                   },
-                  Object {
-                    "flexDirection": undefined,
-                    "writingDirection": "ltr",
-                  },
-                ]
-              }
-            >
-              <Text
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                style={
                   Array [
                     Object {
-                      "color": "#000000",
-                      "fontFamily": "Inter-Regular",
-                      "fontSize": 13,
-                      "lineHeight": 16,
+                      "color": "#AAAAAA",
+                      "paddingRight": 0,
                     },
-                    Array [
-                      Object {
-                        "color": "#AAAAAA",
-                        "paddingRight": 0,
-                      },
-                      Object {
-                        "direction": "ltr",
-                        "writingDirection": "ltr",
-                      },
-                    ],
-                  ]
-                }
-                testID="Article-source-name"
-              >
-                www.google.nl
-              </Text>
-            </View>
+                    Object {
+                      "direction": "ltr",
+                      "writingDirection": "ltr",
+                    },
+                  ],
+                ]
+              }
+              testID="Article-source-name"
+            >
+              www.google.nl
+            </Text>
           </View>
         </View>
       </View>
@@ -704,7 +688,7 @@ exports[`Article full rendering should render full correctly 1`] = `
         >
           <Text
             ellipsizeMode="tail"
-            numberOfLines={3}
+            numberOfLines={4}
             style={
               Array [
                 Object {
@@ -733,7 +717,7 @@ exports[`Article full rendering should render full correctly 1`] = `
           style={
             Array [
               Object {
-                "alignItems": "center",
+                "alignItems": "stretch",
                 "flex": 1,
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -785,55 +769,47 @@ exports[`Article full rendering should render full correctly 1`] = `
           </View>
           <View
             style={
-              Object {
-                "alignItems": "baseline",
-                "flexDirection": "row",
-              }
+              Array [
+                Object {
+                  "alignItems": "stretch",
+                  "flexBasis": "auto",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                },
+                Object {
+                  "flexDirection": undefined,
+                  "writingDirection": "ltr",
+                },
+              ]
             }
           >
-            <View
+            <Text
+              ellipsizeMode="tail"
+              numberOfLines={1}
               style={
                 Array [
                   Object {
-                    "flexBasis": "auto",
-                    "flexGrow": 1,
-                    "flexShrink": 1,
+                    "color": "#000000",
+                    "fontFamily": "Inter-Regular",
+                    "fontSize": 13,
+                    "lineHeight": 16,
                   },
-                  Object {
-                    "flexDirection": undefined,
-                    "writingDirection": "ltr",
-                  },
-                ]
-              }
-            >
-              <Text
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                style={
                   Array [
                     Object {
-                      "color": "#000000",
-                      "fontFamily": "Inter-Regular",
-                      "fontSize": 13,
-                      "lineHeight": 16,
+                      "color": "#AAAAAA",
+                      "paddingRight": 0,
                     },
-                    Array [
-                      Object {
-                        "color": "#AAAAAA",
-                        "paddingRight": 0,
-                      },
-                      Object {
-                        "direction": "ltr",
-                        "writingDirection": "ltr",
-                      },
-                    ],
-                  ]
-                }
-                testID="Article-source-name"
-              >
-                Jordy on Test
-              </Text>
-            </View>
+                    Object {
+                      "direction": "ltr",
+                      "writingDirection": "ltr",
+                    },
+                  ],
+                ]
+              }
+              testID="Article-source-name"
+            >
+              Jordy on Test
+            </Text>
           </View>
         </View>
       </View>
@@ -1027,7 +1003,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
         >
           <Text
             ellipsizeMode="tail"
-            numberOfLines={3}
+            numberOfLines={4}
             style={
               Array [
                 Object {
@@ -1054,7 +1030,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
           style={
             Array [
               Object {
-                "alignItems": "center",
+                "alignItems": "stretch",
                 "flex": 1,
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -1106,55 +1082,47 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
           </View>
           <View
             style={
-              Object {
-                "alignItems": "baseline",
-                "flexDirection": "row",
-              }
+              Array [
+                Object {
+                  "alignItems": "stretch",
+                  "flexBasis": "auto",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                },
+                Object {
+                  "flexDirection": undefined,
+                  "writingDirection": "ltr",
+                },
+              ]
             }
           >
-            <View
+            <Text
+              ellipsizeMode="tail"
+              numberOfLines={1}
               style={
                 Array [
                   Object {
-                    "flexBasis": "auto",
-                    "flexGrow": 1,
-                    "flexShrink": 1,
+                    "color": "#000000",
+                    "fontFamily": "Inter-Regular",
+                    "fontSize": 13,
+                    "lineHeight": 16,
                   },
-                  Object {
-                    "flexDirection": undefined,
-                    "writingDirection": "ltr",
-                  },
-                ]
-              }
-            >
-              <Text
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                style={
                   Array [
                     Object {
-                      "color": "#000000",
-                      "fontFamily": "Inter-Regular",
-                      "fontSize": 13,
-                      "lineHeight": 16,
+                      "color": "#AAAAAA",
+                      "paddingRight": 0,
                     },
-                    Array [
-                      Object {
-                        "color": "#AAAAAA",
-                        "paddingRight": 0,
-                      },
-                      Object {
-                        "direction": "ltr",
-                        "writingDirection": "ltr",
-                      },
-                    ],
-                  ]
-                }
-                testID="Article-source-name"
-              >
-                www.google.nl
-              </Text>
-            </View>
+                    Object {
+                      "direction": "ltr",
+                      "writingDirection": "ltr",
+                    },
+                  ],
+                ]
+              }
+              testID="Article-source-name"
+            >
+              www.google.nl
+            </Text>
           </View>
         </View>
       </View>
@@ -1451,7 +1419,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
         >
           <Text
             ellipsizeMode="tail"
-            numberOfLines={3}
+            numberOfLines={4}
             style={
               Array [
                 Object {
@@ -1478,7 +1446,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
           style={
             Array [
               Object {
-                "alignItems": "center",
+                "alignItems": "stretch",
                 "flex": 1,
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -1530,55 +1498,47 @@ exports[`Article loading rendering should render loading correctly 1`] = `
           </View>
           <View
             style={
-              Object {
-                "alignItems": "baseline",
-                "flexDirection": "row",
-              }
+              Array [
+                Object {
+                  "alignItems": "stretch",
+                  "flexBasis": "auto",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                },
+                Object {
+                  "flexDirection": undefined,
+                  "writingDirection": "ltr",
+                },
+              ]
             }
           >
-            <View
+            <Text
+              ellipsizeMode="tail"
+              numberOfLines={1}
               style={
                 Array [
                   Object {
-                    "flexBasis": "auto",
-                    "flexGrow": 1,
-                    "flexShrink": 1,
+                    "color": "#000000",
+                    "fontFamily": "Inter-Regular",
+                    "fontSize": 13,
+                    "lineHeight": 16,
                   },
-                  Object {
-                    "flexDirection": undefined,
-                    "writingDirection": "ltr",
-                  },
-                ]
-              }
-            >
-              <Text
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                style={
                   Array [
                     Object {
-                      "color": "#000000",
-                      "fontFamily": "Inter-Regular",
-                      "fontSize": 13,
-                      "lineHeight": 16,
+                      "color": "#AAAAAA",
+                      "paddingRight": 0,
                     },
-                    Array [
-                      Object {
-                        "color": "#AAAAAA",
-                        "paddingRight": 0,
-                      },
-                      Object {
-                        "direction": "ltr",
-                        "writingDirection": "ltr",
-                      },
-                    ],
-                  ]
-                }
-                testID="Article-source-name"
-              >
-                www.google.nl
-              </Text>
-            </View>
+                    Object {
+                      "direction": "ltr",
+                      "writingDirection": "ltr",
+                    },
+                  ],
+                ]
+              }
+              testID="Article-source-name"
+            >
+              www.google.nl
+            </Text>
           </View>
         </View>
       </View>
@@ -1754,7 +1714,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
         >
           <Text
             ellipsizeMode="tail"
-            numberOfLines={3}
+            numberOfLines={4}
             style={
               Array [
                 Object {
@@ -1781,7 +1741,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
           style={
             Array [
               Object {
-                "alignItems": "center",
+                "alignItems": "stretch",
                 "flex": 1,
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -1833,55 +1793,47 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
           </View>
           <View
             style={
-              Object {
-                "alignItems": "baseline",
-                "flexDirection": "row",
-              }
+              Array [
+                Object {
+                  "alignItems": "stretch",
+                  "flexBasis": "auto",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                },
+                Object {
+                  "flexDirection": undefined,
+                  "writingDirection": "ltr",
+                },
+              ]
             }
           >
-            <View
+            <Text
+              ellipsizeMode="tail"
+              numberOfLines={1}
               style={
                 Array [
                   Object {
-                    "flexBasis": "auto",
-                    "flexGrow": 1,
-                    "flexShrink": 1,
+                    "color": "#000000",
+                    "fontFamily": "Inter-Regular",
+                    "fontSize": 13,
+                    "lineHeight": 16,
                   },
-                  Object {
-                    "flexDirection": undefined,
-                    "writingDirection": "ltr",
-                  },
-                ]
-              }
-            >
-              <Text
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                style={
                   Array [
                     Object {
-                      "color": "#000000",
-                      "fontFamily": "Inter-Regular",
-                      "fontSize": 13,
-                      "lineHeight": 16,
+                      "color": "#AAAAAA",
+                      "paddingRight": 0,
                     },
-                    Array [
-                      Object {
-                        "color": "#AAAAAA",
-                        "paddingRight": 0,
-                      },
-                      Object {
-                        "direction": "ltr",
-                        "writingDirection": "ltr",
-                      },
-                    ],
-                  ]
-                }
-                testID="Article-source-name"
-              >
-                www.google.nl
-              </Text>
-            </View>
+                    Object {
+                      "direction": "ltr",
+                      "writingDirection": "ltr",
+                    },
+                  ],
+                ]
+              }
+              testID="Article-source-name"
+            >
+              www.google.nl
+            </Text>
           </View>
         </View>
       </View>
@@ -2075,7 +2027,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
         >
           <Text
             ellipsizeMode="tail"
-            numberOfLines={3}
+            numberOfLines={4}
             style={
               Array [
                 Object {
@@ -2102,7 +2054,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
           style={
             Array [
               Object {
-                "alignItems": "center",
+                "alignItems": "stretch",
                 "flex": 1,
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -2154,55 +2106,47 @@ exports[`Article playing rendering should render playing correctly 1`] = `
           </View>
           <View
             style={
-              Object {
-                "alignItems": "baseline",
-                "flexDirection": "row",
-              }
+              Array [
+                Object {
+                  "alignItems": "stretch",
+                  "flexBasis": "auto",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                },
+                Object {
+                  "flexDirection": undefined,
+                  "writingDirection": "ltr",
+                },
+              ]
             }
           >
-            <View
+            <Text
+              ellipsizeMode="tail"
+              numberOfLines={1}
               style={
                 Array [
                   Object {
-                    "flexBasis": "auto",
-                    "flexGrow": 1,
-                    "flexShrink": 1,
+                    "color": "#000000",
+                    "fontFamily": "Inter-Regular",
+                    "fontSize": 13,
+                    "lineHeight": 16,
                   },
-                  Object {
-                    "flexDirection": undefined,
-                    "writingDirection": "ltr",
-                  },
-                ]
-              }
-            >
-              <Text
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                style={
                   Array [
                     Object {
-                      "color": "#000000",
-                      "fontFamily": "Inter-Regular",
-                      "fontSize": 13,
-                      "lineHeight": 16,
+                      "color": "#AAAAAA",
+                      "paddingRight": 0,
                     },
-                    Array [
-                      Object {
-                        "color": "#AAAAAA",
-                        "paddingRight": 0,
-                      },
-                      Object {
-                        "direction": "ltr",
-                        "writingDirection": "ltr",
-                      },
-                    ],
-                  ]
-                }
-                testID="Article-source-name"
-              >
-                www.google.nl
-              </Text>
-            </View>
+                    Object {
+                      "direction": "ltr",
+                      "writingDirection": "ltr",
+                    },
+                  ],
+                ]
+              }
+              testID="Article-source-name"
+            >
+              www.google.nl
+            </Text>
           </View>
         </View>
       </View>

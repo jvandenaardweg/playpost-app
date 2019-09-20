@@ -43,7 +43,8 @@ export default StyleSheet.create({
   bodyMetaSource: {
     flexGrow: 1,
     flexShrink: 1,
-    flexBasis: 'auto'
+    flexBasis: 'auto',
+    alignItems: 'stretch'
   },
   bodyTitle: {
     flex: 1,
@@ -57,7 +58,7 @@ export default StyleSheet.create({
     flexShrink: 1,
     flexBasis: 'auto',
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'stretch'
   },
   bodyFooterIcons: {
     flexDirection: 'row',

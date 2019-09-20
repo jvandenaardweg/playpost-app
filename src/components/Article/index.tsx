@@ -82,45 +82,24 @@ export const Article: React.FC<Props> = React.memo(
           <View style={styles.wrapper}>
             <View testID="Article-Button-section" style={styles.sectionBody}>
               <View style={styles.bodyTitle}>
-                <Text style={[styles.bodyTitleText, textDirectionStyle]} testID="Article-title" ellipsizeMode="tail" numberOfLines={3} preset="bodyEmphasized">
+                <Text style={[styles.bodyTitleText, textDirectionStyle]} testID="Article-title" ellipsizeMode="tail" numberOfLines={4} preset="bodyEmphasized">
                   {title}
                 </Text>
               </View>
 
               <View style={[styles.bodyFooter, textDirectionStyle, rtlFlexDirectionStyle]}>
                 <View style={[rtlFlexDirectionStyle]}>
-                  {/* <Icon.FontAwesome5
-                    name="play"
-                    size={8}
-                    // solid
-                    style={styles.bodySourceIcon}
-                    color={isActive ? colors.tintColor : colors.gray}
-                    testID="Article-PlayIcon-Icon-playable"
-                  /> */}
                   <Icon.Feather
                     name={hasAudiofile ? 'download-cloud' : 'cloud-off'}
                     size={14}
-                    // solid
                     style={styles.bodySourceIcon}
                     color={isDownloaded ? colors.green : colors.gray}
                     testID="Article-icon-downloaded"
                   />
-                  {/* <Icon.Feather
-                    name="heart"
-                    size={12}
-                    // solid
-                    style={styles.bodySourceIcon}
-                    color={isFavorited ? colors.favorite : colors.gray }
-                    testID="Article-icon-favorited"
-                  /> */}
                 </View>
-                <View style={styles.bodyMeta}>
                 <View style={[styles.bodyMetaSource, textDirectionStyle]}>
                   <SourceText authorName={authorName} sourceName={sourceName} textDirection={textDirection} url={url} />
                 </View>
-              </View>
-                {/* <SourceText authorName={authorName} sourceName={sourceName} textDirection={textDirection} url={url} /> */}
-                {/* <Text style={styles.bodyFooterText} preset="caption2">added {formatDistanceToNow(parseISO(playlistItemCreatedAt))} ago</Text> */}
               </View>
 
             </View>
@@ -179,7 +158,13 @@ const SourceText: React.FC<SourceTextProps> = React.memo((props: SourceTextProps
   }
 
   return (
-    <Text style={[styles.bodySourceText, textDirectionStyle]} ellipsizeMode="tail" numberOfLines={1} testID="Article-source-name" preset="footnote">
+    <Text
+      style={[styles.bodySourceText, textDirectionStyle]}
+      ellipsizeMode="tail"
+      numberOfLines={1}
+      testID="Article-source-name"
+      preset="footnote"
+    >
       {text}
     </Text>
   );

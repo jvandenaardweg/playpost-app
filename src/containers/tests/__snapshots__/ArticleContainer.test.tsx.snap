@@ -319,7 +319,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
             >
               <Text
                 ellipsizeMode="tail"
-                numberOfLines={3}
+                numberOfLines={4}
                 style={
                   Array [
                     Object {
@@ -348,7 +348,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
+                    "alignItems": "stretch",
                     "flex": 1,
                     "flexBasis": "auto",
                     "flexDirection": "row",
@@ -400,55 +400,47 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
               </View>
               <View
                 style={
-                  Object {
-                    "alignItems": "baseline",
-                    "flexDirection": "row",
-                  }
+                  Array [
+                    Object {
+                      "alignItems": "stretch",
+                      "flexBasis": "auto",
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                    },
+                    Object {
+                      "flexDirection": undefined,
+                      "writingDirection": "ltr",
+                    },
+                  ]
                 }
               >
-                <View
+                <Text
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
-                        "flexBasis": "auto",
-                        "flexGrow": 1,
-                        "flexShrink": 1,
+                        "color": "#000000",
+                        "fontFamily": "Inter-Regular",
+                        "fontSize": 13,
+                        "lineHeight": 16,
                       },
-                      Object {
-                        "flexDirection": undefined,
-                        "writingDirection": "ltr",
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    ellipsizeMode="tail"
-                    numberOfLines={1}
-                    style={
                       Array [
                         Object {
-                          "color": "#000000",
-                          "fontFamily": "Inter-Regular",
-                          "fontSize": 13,
-                          "lineHeight": 16,
+                          "color": "#AAAAAA",
+                          "paddingRight": 0,
                         },
-                        Array [
-                          Object {
-                            "color": "#AAAAAA",
-                            "paddingRight": 0,
-                          },
-                          Object {
-                            "direction": "ltr",
-                            "writingDirection": "ltr",
-                          },
-                        ],
-                      ]
-                    }
-                    testID="Article-source-name"
-                  >
-                    Darius Foroux on Medium
-                  </Text>
-                </View>
+                        Object {
+                          "direction": "ltr",
+                          "writingDirection": "ltr",
+                        },
+                      ],
+                    ]
+                  }
+                  testID="Article-source-name"
+                >
+                  Darius Foroux on Medium
+                </Text>
               </View>
             </View>
           </View>
