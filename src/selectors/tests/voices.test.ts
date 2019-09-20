@@ -109,6 +109,38 @@ describe('voices selector', () => {
     expect(selectLanguagesWithActiveVoices(exampleState)).toMatchSnapshot();
   });
 
+  it('selectLanguagesWithActiveVoices should return the languages with the user his deviceLocale language on top', () => {
+    const exampleState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        deviceLocale: 'nl'
+      },
+      voices: {
+        ...rootState.voices,
+        languages: languagesMock
+      }
+    };
+
+    expect(selectLanguagesWithActiveVoices(exampleState)[0].code).toBe('nl');
+  });
+
+  it('selectLanguagesWithActiveVoices should return the languages with English on top if deviceLocale returns nothing', () => {
+    const exampleState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        deviceLocale: ''
+      },
+      voices: {
+        ...rootState.voices,
+        languages: languagesMock
+      }
+    };
+
+    expect(selectLanguagesWithActiveVoices(exampleState)[0].code).toBe('en');
+  });
+
   it('selectLanguagesWithActiveVoices should return an empty array when there are no active voices', () => {
     const exampleState = {
       ...rootState,

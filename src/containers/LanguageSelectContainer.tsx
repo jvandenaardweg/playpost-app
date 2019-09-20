@@ -67,25 +67,44 @@ export class LanguagesSelectComponent extends React.Component<Props> {
     return `${label} (${voice.countryCode}) (${genderLabel})`;
   }
 
+  getTotalVoices = (language: Api.Language): number => {
+    return language.voices && language.voices.length ? language.voices.length : 0;
+  }
+
   render() {
     const { languagesWithActiveVoices } = this.props;
 
+    // The first in the array is probably the user his language
+    const userLanguage = languagesWithActiveVoices.slice(0, 1);
+    const restLanguages = languagesWithActiveVoices.slice(1, languagesWithActiveVoices.length);
+
     const sectionListData = [
+      {
+        key: 'language-user',
+        title: 'Lanuage user',
+        data: [{
+            key: userLanguage[0].id,
+            subtitle: this.getVoiceSubtitle(userLanguage[0]),
+            title: userLanguage[0].name,
+            icon: 'globe',
+            iconColor: colors.green,
+            onPress: () => this.handleOnListItemPress(userLanguage[0]),
+            value: this.getTotalVoices(userLanguage[0]),
+            chevron: true
+        }]
+      },
       {
         key: 'language',
         title: 'Lanuage',
-        data: languagesWithActiveVoices.map((language, index) => {
-          const totalVoices = language.voices && language.voices.length ? language.voices.length : 0;
-          const subtitle = this.getVoiceSubtitle(language);
-
+        data: restLanguages.map((language, index) => {
           return {
             key: language.id,
-            subtitle,
+            subtitle: this.getVoiceSubtitle(language),
             title: language.name,
             icon: 'globe',
             iconColor: colors.green,
             onPress: () => this.handleOnListItemPress(language),
-            value: totalVoices,
+            value: this.getTotalVoices(language),
             chevron: true
           };
         })
