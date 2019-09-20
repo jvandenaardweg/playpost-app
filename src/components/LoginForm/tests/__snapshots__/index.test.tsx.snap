@@ -140,7 +140,7 @@ exports[`LoginForm rendering should render correctly 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#ffffff",
+                    "color": "white",
                     "fontSize": 18,
                     "paddingBottom": 1,
                     "paddingTop": 2,

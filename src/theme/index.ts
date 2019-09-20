@@ -14,6 +14,9 @@ export const reactNativeElementsTheme: Theme = {
     },
     titleStyle: {
       ...textPresets['bodyEmphasized']
+    },
+    loadingProps: {
+      color: colors.black
     }
   },
   Divider: {
@@ -37,6 +40,7 @@ export const reactNativeElementsTheme: Theme = {
     primary: colors.tintColor,
     error: colors.redLight,
     divider: colors.borderDefault,
-    success: colors.green
+    success: colors.green,
+    disabled: colors.appBackground
   }
 };

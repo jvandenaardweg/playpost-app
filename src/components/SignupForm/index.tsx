@@ -70,7 +70,6 @@ export const SignupForm: React.FC<Props> = React.memo(({ onChangeText, onPressSi
             onPress={onPressSignup}
             disabled={isLoading}
             activeOpacity={1}
-            disabledStyle={styles.buttonStyle}
           />
         </View>
 

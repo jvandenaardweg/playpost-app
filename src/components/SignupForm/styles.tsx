@@ -31,6 +31,9 @@ export default StyleSheet.create({
     marginBottom: spacing.default,
     opacity: 1
   },
+  buttonStyleDisabled: {
+    backgroundColor: colors.grayDark
+  },
   footerContainer: {
     justifyContent: 'center',
     alignItems: 'center',

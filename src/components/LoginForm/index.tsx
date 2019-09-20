@@ -67,9 +67,9 @@ export const LoginForm: React.FC<Props> = React.memo(({ email, password, isLoadi
             onPress={onPressLogin}
             disabled={isLoading}
             // buttonStyle={styles.buttonStyle}
-            disabledStyle={styles.buttonStyle}
+            // disabledStyle={styles.buttonStyle}
             activeOpacity={1}
-            titleStyle={styles.buttonTitleStyle}
+            // titleStyle={styles.buttonTitleStyle}
           />
           <Button testID="LoginForm-Button-forgot-password" title="Forgot password?" type="clear" onPress={onPressForgotPassword} />
         </View>
