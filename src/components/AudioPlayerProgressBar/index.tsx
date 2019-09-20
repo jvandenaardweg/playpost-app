@@ -58,8 +58,8 @@ export const AudioPlayerProgressBar: React.FC<Props> = React.memo(({ onProgressC
         />
       </View>
       <View style={styles.progressTimeContainer}>
-        <View><Text style={styles.timeText} template="footnote">{readablePosition}</Text></View>
-        <View><Text style={styles.timeText} template="footnote">{readableRemaining}</Text></View>
+        <View><Text style={styles.timeText} preset="footnote">{readablePosition}</Text></View>
+        <View><Text style={styles.timeText} preset="footnote">{readableRemaining}</Text></View>
       </View>
     </View>
   )

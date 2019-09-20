@@ -10,9 +10,9 @@ type FontFamilies = {
 
 type FontWeightOptions = 'thin' | 'extraLight' | 'light' | 'regular' | 'medium' | 'semiBold' | 'bold' | 'extraBold' | 'black';
 
-type TextTemplateOptions = 'largeTitleEmphasized' | 'title3Emphasized' | 'title3' | 'bodyEmphasized' | 'body' | 'subheadEmphasized' | 'subhead' | 'subheadShort' | 'callout' | 'calloutEmphasized' | 'footnoteEmphasized' | 'footnote' | 'caption2Emphasized' | 'caption2';
+type TextPresetOptions = 'largeTitleEmphasized' | 'title1' | 'title1Emphasized' | 'title2' | 'title2Emphasized' | 'title3Emphasized' | 'title3' | 'bodyEmphasized' | 'body' | 'subheadEmphasized' | 'subhead' | 'subheadShort' | 'callout' | 'calloutEmphasized' | 'footnoteEmphasized' | 'footnote' | 'caption2Emphasized' | 'caption2';
 
-type TemplateMap = { [textTemplate in TextTemplateOptions]: ReactNative.TextStyle }
+type PresetMap = { [textTemplate in TextPresetOptions]: ReactNative.TextStyle }
 
 export const fontFamilies: FontFamilies = {
   thin: {
@@ -45,11 +45,31 @@ export const fontFamilies: FontFamilies = {
 }
 
 // Taken from: https://github.com/hectahertz/react-native-typography#iosuikit
-export const textTemplates: TemplateMap = {
+export const textPresets: PresetMap = {
   largeTitleEmphasized: {
     ...fontFamilies['bold'],
     fontSize: 34,
     lineHeight: Math.ceil(34 * 1.2)
+  },
+  title1Emphasized: {
+    ...fontFamilies['semiBold'],
+    fontSize: 28,
+    lineHeight: Math.ceil(28 * 1.2)
+  },
+  title1: {
+    ...fontFamilies['regular'],
+    fontSize: 28,
+    lineHeight: Math.ceil(28 * 1.2)
+  },
+  title2Emphasized: {
+    ...fontFamilies['semiBold'],
+    fontSize: 24,
+    lineHeight: Math.ceil(24 * 1.2)
+  },
+  title2: {
+    ...fontFamilies['regular'],
+    fontSize: 24,
+    lineHeight: Math.ceil(24 * 1.2)
   },
   title3Emphasized: {
     ...fontFamilies['semiBold'],
@@ -120,17 +140,17 @@ export const textTemplates: TemplateMap = {
 interface Props extends ReactNative.TextProps {
   children: ReactNode;
   fontWeight?: string;
-  template?: TextTemplateOptions;
+  preset?: TextPresetOptions;
 }
 
-export const Text: React.FC<Props> = React.memo(({ children, fontWeight, template, ...rest }) => {
+export const Text: React.FC<Props> = React.memo(({ children, fontWeight, preset, ...rest }) => {
   const fontFamily: ReactNative.TextStyle = fontWeight ? fontFamilies[fontWeight] : fontFamilies['regular'];
-  const templateStyle = template ? textTemplates[template] : undefined;
+  const presetStyle = preset ? textPresets[preset] : undefined;
   const defaultColor: ReactNative.TextStyle = { color: colors.black };
 
   const customStyle: ReactNative.TextStyle = {
     ...fontFamily,
-    ...templateStyle,
+    ...presetStyle,
     ...defaultColor
   }
 

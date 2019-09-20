@@ -18,8 +18,8 @@ export const ShareModal: React.FC<Props> = React.memo(({ isLoading, errorMessage
     <View style={styles.wrapper}>
       <View style={styles.articleContainer}>
         {isLoading && <ActivityIndicator size="small" color="black" />}
-        {!isLoading && isError && <Text style={styles.errorMessage} template="bodyEmphasized">{errorMessage}</Text>}
-        {!isLoading && isSuccess && <Text style={styles.successMessage} template="bodyEmphasized">Article is added to your playlist!</Text>}
+        {!isLoading && isError && <Text style={styles.errorMessage} preset="bodyEmphasized">{errorMessage}</Text>}
+        {!isLoading && isSuccess && <Text style={styles.successMessage} preset="bodyEmphasized">Article is added to your playlist!</Text>}
       </View>
       <View style={styles.footer}>
         <Button testID="ShareModal-Button-close" title="Close" onPress={onPressClose} />

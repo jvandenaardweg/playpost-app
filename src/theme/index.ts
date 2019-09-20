@@ -1,5 +1,5 @@
 import { Theme } from 'react-native-elements';
-import { textTemplates } from '../components/Text';
+import { textPresets } from '../components/Text';
 import colors from '../constants/colors';
 import layout from '../constants/layout';
 
@@ -13,7 +13,7 @@ export const reactNativeElementsTheme: Theme = {
       borderRadius: layout.borderRadius.medium
     },
     titleStyle: {
-      ...textTemplates['bodyEmphasized']
+      ...textPresets['bodyEmphasized']
     }
   },
   Divider: {
@@ -24,11 +24,11 @@ export const reactNativeElementsTheme: Theme = {
   },
   ListItem: {
     titleStyle: {
-      ...textTemplates['body'],
+      ...textPresets['body'],
       color: colors.black
     },
     subtitleStyle: {
-      ...textTemplates['footNote'],
+      ...textPresets['footNote'],
       color: colors.grayDark,
       marginTop: 2
     }

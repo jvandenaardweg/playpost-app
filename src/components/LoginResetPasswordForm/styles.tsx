@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
 
-import fonts from '../../constants/fonts';
 import spacing from '../../constants/spacing';
 import textInputStyle from '../../constants/text-input';
 
@@ -47,13 +46,10 @@ export default StyleSheet.create({
   },
   title: {
     fontSize: 28,
-    fontWeight: fonts.fontWeight.bold,
     marginBottom: spacing.large
   },
   subtitle: {
-    fontSize: fonts.fontSize.body,
     color: colors.paragraphDefault,
-    marginBottom: spacing.large,
-    lineHeight: Math.ceil(fonts.fontSize.body * 1.5)
+    marginBottom: spacing.large
   }
 });

@@ -82,7 +82,7 @@ export const Article: React.FC<Props> = React.memo(
           <View style={styles.wrapper}>
             <View testID="Article-Button-section" style={styles.sectionBody}>
               <View style={styles.bodyTitle}>
-                <Text style={[styles.bodyTitleText, textDirectionStyle]} testID="Article-title" ellipsizeMode="tail" numberOfLines={3} template="bodyEmphasized">
+                <Text style={[styles.bodyTitleText, textDirectionStyle]} testID="Article-title" ellipsizeMode="tail" numberOfLines={3} preset="bodyEmphasized">
                   {title}
                 </Text>
               </View>
@@ -120,7 +120,7 @@ export const Article: React.FC<Props> = React.memo(
                 </View>
               </View>
                 {/* <SourceText authorName={authorName} sourceName={sourceName} textDirection={textDirection} url={url} /> */}
-                {/* <Text style={styles.bodyFooterText} template="caption2">added {formatDistanceToNow(parseISO(playlistItemCreatedAt))} ago</Text> */}
+                {/* <Text style={styles.bodyFooterText} preset="caption2">added {formatDistanceToNow(parseISO(playlistItemCreatedAt))} ago</Text> */}
               </View>
 
             </View>
@@ -179,7 +179,7 @@ const SourceText: React.FC<SourceTextProps> = React.memo((props: SourceTextProps
   }
 
   return (
-    <Text style={[styles.bodySourceText, textDirectionStyle]} ellipsizeMode="tail" numberOfLines={1} testID="Article-source-name" template="footnote">
+    <Text style={[styles.bodySourceText, textDirectionStyle]} ellipsizeMode="tail" numberOfLines={1} testID="Article-source-name" preset="footnote">
       {text}
     </Text>
   );
@@ -198,15 +198,15 @@ const Duration: React.FC<DurationProps> = React.memo((props: DurationProps) => {
   const style = [styles.duration, (props.isActive) ? styles.durationActive : undefined];
 
   if (props.listenTimeInSeconds) {
-    return <Text style={style} testID="Article-duration" template="caption2Emphasized">{`${Math.ceil(props.listenTimeInSeconds / 60)} min.`}</Text>;
+    return <Text style={style} testID="Article-duration" preset="caption2Emphasized">{`${Math.ceil(props.listenTimeInSeconds / 60)} min.`}</Text>;
   }
 
   if (props.readingTime) {
-    return <Text style={style} testID="Article-duration" template="caption2Emphasized">{`${Math.ceil((props.readingTime * readingTimeToListenTimeMargin) / 60)} min.`}</Text>;
+    return <Text style={style} testID="Article-duration" preset="caption2Emphasized">{`${Math.ceil((props.readingTime * readingTimeToListenTimeMargin) / 60)} min.`}</Text>;
   }
 
   return (
-    <Text style={style} testID="Article-duration" template="caption2Emphasized">
+    <Text style={style} testID="Article-duration" preset="caption2Emphasized">
       ? min.
     </Text>
   );

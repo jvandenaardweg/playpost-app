@@ -166,6 +166,7 @@ exports[`SignupForm rendering should render correctly 1`] = `
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "center",
+              "marginTop": 20,
               "maxWidth": 300,
               "textAlign": "center",
             }
@@ -177,11 +178,11 @@ exports[`SignupForm rendering should render correctly 1`] = `
                 Object {
                   "color": "#000000",
                   "fontFamily": "Inter-Regular",
+                  "fontSize": 15,
+                  "lineHeight": 23,
                 },
                 Object {
                   "color": "#222222",
-                  "fontSize": 15,
-                  "lineHeight": 23,
                   "textAlign": "center",
                 },
               ]
@@ -196,12 +197,12 @@ exports[`SignupForm rendering should render correctly 1`] = `
                 Object {
                   "color": "#000000",
                   "fontFamily": "Inter-Regular",
+                  "fontSize": 15,
+                  "lineHeight": 23,
                 },
                 Array [
                   Object {
                     "color": "#222222",
-                    "fontSize": 15,
-                    "lineHeight": 23,
                     "textAlign": "center",
                   },
                   Object {
@@ -221,11 +222,11 @@ exports[`SignupForm rendering should render correctly 1`] = `
                 Object {
                   "color": "#000000",
                   "fontFamily": "Inter-Regular",
+                  "fontSize": 15,
+                  "lineHeight": 23,
                 },
                 Object {
                   "color": "#222222",
-                  "fontSize": 15,
-                  "lineHeight": 23,
                   "textAlign": "center",
                 },
               ]
@@ -240,12 +241,12 @@ exports[`SignupForm rendering should render correctly 1`] = `
                 Object {
                   "color": "#000000",
                   "fontFamily": "Inter-Regular",
+                  "fontSize": 15,
+                  "lineHeight": 23,
                 },
                 Array [
                   Object {
                     "color": "#222222",
-                    "fontSize": 15,
-                    "lineHeight": 23,
                     "textAlign": "center",
                   },
                   Object {

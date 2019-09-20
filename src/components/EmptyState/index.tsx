@@ -18,8 +18,8 @@ interface Props {
 export const EmptyState: React.FC<Props> = React.memo(({ title, description, actionButtonLabel, localVideo, actionButtonOnPress }) => (
   <View style={styles.container}>
     <View style={styles.content}>
-      {title && <Text style={styles.title} testID="empty-state-title" template="title3Emphasized">{title}</Text>}
-      {description && <Text style={styles.description} testID="empty-state-description" template="subhead">{description.join('\n\n')}</Text>}
+      {title && <Text style={styles.title} testID="empty-state-title" preset="title3Emphasized">{title}</Text>}
+      {description && <Text style={styles.description} testID="empty-state-description" preset="subhead">{description.join('\n\n')}</Text>}
       {localVideo && <VideoPlayer localVideo={localVideo} />}
       {actionButtonLabel && <Button buttonStyle={styles.button} title={actionButtonLabel} onPress={actionButtonOnPress} testID="empty-state-button" />}
     </View>

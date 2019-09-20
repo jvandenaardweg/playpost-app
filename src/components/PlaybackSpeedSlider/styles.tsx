@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
-import fonts from '../../constants/fonts';
 import spacing from '../../constants/spacing';
 
 const controlButtonWidth = 30;
@@ -28,8 +27,7 @@ export default StyleSheet.create({
     borderRadius: 50
   },
   labelText: {
-    color: colors.white,
-    fontSize: fonts.fontSize.small
+    color: colors.white
   },
   controlsContainer: {
     flex: 1,

@@ -3,10 +3,10 @@ import WebView from 'react-native-webview';
 import urlParse from 'url-parse';
 
 import colors from '../../constants/colors';
-import fonts from '../../constants/fonts';
 import spacing from '../../constants/spacing';
 import { TextDirection } from '../../typings';
 import { CenterLoadingIndicator } from '../CenterLoadingIndicator';
+import { textPresets } from '../Text';
 
 interface Props {
   article: Api.Article | undefined;
@@ -51,7 +51,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
     // Light
     let backgroundColor = colors.white;
     let fontColor = colors.black;
-    let paragraphColor = colors.grayDarker;
+    let paragraphColor = colors.black;
     let highlightColor = colors.black;
     let metaColor = colors.paragraphGrayed;
     let titleColor = colors.black;
@@ -85,6 +85,8 @@ export const ArticleReader: React.FC<Props> = React.memo(({
         <meta name="viewport" content="width=device-width">
         <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i|PT+Serif:400,400i,700,700i" rel="stylesheet">
         <style type="text/css">
+          @import url('https://rsms.me/inter/inter.css');
+
           html {
             box-sizing: border-box;
           }
@@ -96,7 +98,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
             direction: ${textDirection};
             padding: 0 !important;
             margin: 0 !important;
-            font-size: ${Math.ceil(fonts.fontSize.body * 1.1)}px;
+            font-size: ${textPresets['body'].fontSize}px;
             font-family: 'PT Serif', serif;
             line-height: 1.5;
             color: ${themeStyle.fontColor};
@@ -110,30 +112,30 @@ export const ArticleReader: React.FC<Props> = React.memo(({
             margin-top: 0;
             margin-bottom: ${spacing.tiny}px;
             color: ${themeStyle.titleColor};
-            font-family: 'PT Sans', sans-serif;
+            font-family: 'Inter', 'Helvetica', Arial, sans-serif;
           }
 
           h1 {
-            font-size: ${fonts.fontSize.titleExtraLarge}px;
+            font-size: ${textPresets['title1'].fontSize}px;
             margin-bottom: ${spacing.default}px;
             text-align: center;
           }
 
           h2, h3, h4 {
-            margin-top: ${spacing.large}px;
-            font-size: ${fonts.fontSize.titleLarge}px;
+            margin-top: ${spacing.large * 2}px;
+            font-size: ${textPresets['title3'].fontSize}px;
           }
 
           h5, h6, h7, h8 {
             margin-top: ${spacing.large}px;
-            font-size ${fonts.fontSize.titleMedium}px
+            font-size ${textPresets['body'].fontSize}px
           }
 
           p {
-            font-size: ${fonts.fontSize.title}px;
+            font-size: ${textPresets['body'].fontSize}px;
             margin-top: 1.5;
             color: ${themeStyle.paragraphColor};
-            line-height: 1.6;
+            line-height: 1.7;
             margin-bottom: 2;
           }
 
@@ -158,11 +160,13 @@ export const ArticleReader: React.FC<Props> = React.memo(({
           .meta-header {
             text-align: center;
             padding: ${spacing.large}px;
+            font-family: 'Inter', 'Helvetica', Arial, sans-serif;
           }
 
           .meta-header strong {
             display: block;
             font-weight: normal;
+            color: ${colors.grayDark};
           }
 
           .meta-header a {
@@ -203,13 +207,13 @@ export const ArticleReader: React.FC<Props> = React.memo(({
           pre p {
             white-space: pre-wrap;
             word-break: break-word;
-            font-size: ${fonts.fontSize.small}px;
+            font-size: ${textPresets['footnote'].fontSize}px;
             font-family: monospace;
             color: ${themeStyle.highlightColor};
           }
 
           code {
-            font-size: ${fonts.fontSize.small}px;
+            font-size: ${textPresets['footnote'].fontSize}px;
           }
 
           table {

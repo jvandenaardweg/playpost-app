@@ -166,12 +166,12 @@ exports[`AudioPlayerLarge rendering should render correctly 1`] = `
           testID="AudioPlayerLarge-TouchableOpacity-playbackspeed"
         >
           <Memo
+            preset="footnoteEmphasized"
             style={
               Object {
                 "color": "#ffffff",
               }
             }
-            template="footnoteEmphasized"
             testID="AudioPlayerLarge-Text-playbackspeed"
           >
             1.00

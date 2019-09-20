@@ -10,7 +10,6 @@ import { Text } from '../Text';
 import styles from './styles';
 
 import colors from '../../constants/colors';
-import fonts from '../../constants/fonts';
 import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_UNLIMITED } from '../../constants/in-app-purchase';
 import spacing from '../../constants/spacing';
 import { URL_ACCEPTABLE_USE_POLICY, URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../../constants/urls';
@@ -165,13 +164,13 @@ export const Upgrade: React.FC<Props> = React.memo(
                     ]}
                   >
                     <View>
-                      <Text style={styles.cardTitle} template="title3">{title}</Text>
+                      <Text style={styles.cardTitle} preset="title3">{title}</Text>
                     </View>
                     <View style={styles.cardPriceContainer}>
                       {isLoadingSubscriptionItems ? <ActivityIndicator size="large" color={colors.black} /> : <Text style={styles.cardPrice} testID="Upgrade-Text-price" fontWeight="extraBold">{localizedPrice}</Text>}
                     </View>
                     <View>
-                      <Text style={styles.cardMeta} template="footnote">per month</Text>
+                      <Text style={styles.cardMeta} preset="footnote">per month</Text>
                     </View>
                     <View style={styles.cardButtonContainer}>
                       <Button
@@ -185,14 +184,14 @@ export const Upgrade: React.FC<Props> = React.memo(
                     </View>
                     <View style={styles.cardFeaturesList}>
                       {subscriptionFeature.body.map((featureText: string, featureBodyIndex: number) => (
-                        <Text key={featureBodyIndex} style={styles.cardFeaturesListItem} template="subhead">
+                        <Text key={featureBodyIndex} style={styles.cardFeaturesListItem} preset="subhead">
                           {featureText}
                         </Text>
                       ))}
                     </View>
                     {!!subscriptionFeature.footer && (
                       <View style={styles.cardFooter}>
-                        <Text style={styles.cardFooterText} template="subhead">{subscriptionFeature.footer}</Text>
+                        <Text style={styles.cardFooterText} preset="subhead">{subscriptionFeature.footer}</Text>
                       </View>
                     )}
 
@@ -204,7 +203,6 @@ export const Upgrade: React.FC<Props> = React.memo(
                           loading={isLoadingRestorePurchases}
                           disabled={isLoadingRestorePurchases}
                           onPress={onPressRestore}
-                          titleStyle={{ fontSize: fonts.fontSize.body }}
                           loadingProps={{ color: 'black' }}
                         />
                       </View>
@@ -219,13 +217,13 @@ export const Upgrade: React.FC<Props> = React.memo(
 
           <View style={styles.featuresContainer}>
             <View style={styles.header}>
-              <Text style={styles.headerTitle}>{'Upgrade to\nPremium or Unlimited'}</Text>
+              <Text style={styles.headerTitle} preset="title1Emphasized">{'Upgrade to\nPremium or Unlimited'}</Text>
 
               <View style={styles.feature}>
                 <Icon.FontAwesome5 name="gem" size={34} style={styles.featureIcon} />
                 <View style={styles.featureContent}>
-                  <Text style={styles.title}>Higher Quality voices</Text>
-                  <Text style={styles.paragraph}>
+                  <Text style={styles.title} preset="bodyEmphasized">Higher Quality voices</Text>
+                  <Text style={styles.paragraph} preset="subhead">
                     Access to our highest quality Premium voices for easier listening. You can preview these Higher Quality voices in the settings
                     screen.
                   </Text>
@@ -235,8 +233,8 @@ export const Upgrade: React.FC<Props> = React.memo(
               <View style={styles.feature}>
                 <Icon.FontAwesome5 name="assistive-listening-systems" solid size={34} style={styles.featureIcon} />
                 <View style={styles.featureContent}>
-                  <Text style={styles.title}>Voice customization options</Text>
-                  <Text style={styles.paragraph}>
+                  <Text style={styles.title} preset="bodyEmphasized">Voice customization options</Text>
+                  <Text style={styles.paragraph} preset="subhead">
                     Choose between a variety of male and female voices with accents like American, British or Australian English.
                   </Text>
                 </View>
@@ -245,8 +243,8 @@ export const Upgrade: React.FC<Props> = React.memo(
               <View style={styles.feature}>
                 <Icon.FontAwesome5 name="clock" size={34} style={styles.featureIcon} />
                 <View style={styles.featureContent}>
-                  <Text style={styles.title}>More listening limits</Text>
-                  <Text style={styles.paragraph}>
+                  <Text style={styles.title} preset="bodyEmphasized">More listening limits</Text>
+                  <Text style={styles.paragraph} preset="subhead">
                     With our Premium and Unlimited subscription you can enjoy higher listening minutes. Unlimited gives you unlimited listening minutes.
                   </Text>
                 </View>
@@ -255,8 +253,8 @@ export const Upgrade: React.FC<Props> = React.memo(
               <View style={styles.feature}>
                 <Icon.FontAwesome5 name="ad" solid size={28} style={styles.featureIcon} />
                 <View style={styles.featureContent}>
-                  <Text style={styles.title}>No advertisements</Text>
-                  <Text style={styles.paragraph}>
+                  <Text style={styles.title} preset="bodyEmphasized">No advertisements</Text>
+                  <Text style={styles.paragraph} preset="subhead">
                     Sponsored content and advertisements helps us continue to provide a free version of Playpost. After upgrading
                     you won’t see any ads, and you’ll be supporting Playpost more directly!
                   </Text>
@@ -265,7 +263,7 @@ export const Upgrade: React.FC<Props> = React.memo(
             </View>
 
             <View style={styles.footer}>
-              <Text style={styles.footerText}>
+              <Text style={styles.footerText} preset="caption2">
                 Payment will be charged to your {paymentAccountTitle} account at the confirmation of purchase. Subscription automatically renews unless it is canceled at
                 least 24 hours before the end of the current period. Your account will be charged for renewal within 24 hours prior to the end of the current
                 period. You can manage and cancel your subscriptions by going to your account settings on the App Store after purchase. Refunds are not
@@ -273,15 +271,15 @@ export const Upgrade: React.FC<Props> = React.memo(
               </Text>
 
               <View style={styles.footerLinks}>
-                <Text style={[styles.footerText, styles.textHighlight]} onPress={() => onPressOpenUrl(URL_PRIVACY_POLICY)}>
+                <Text preset="caption2" style={[styles.footerText, styles.textHighlight]} onPress={() => onPressOpenUrl(URL_PRIVACY_POLICY)}>
                   Privacy Policy
                 </Text>
-                <Text style={styles.footerText}> - </Text>
-                <Text style={[styles.footerText, styles.textHighlight]} onPress={() => onPressOpenUrl(URL_TERMS_OF_USE)}>
+                <Text preset="caption2" style={styles.footerText}> - </Text>
+                <Text preset="caption2" style={[styles.footerText, styles.textHighlight]} onPress={() => onPressOpenUrl(URL_TERMS_OF_USE)}>
                   Terms of Use
                 </Text>
-                <Text style={styles.footerText}> - </Text>
-                <Text style={[styles.footerText, styles.textHighlight]} onPress={() => onPressOpenUrl(URL_ACCEPTABLE_USE_POLICY)}>
+                <Text preset="caption2" style={styles.footerText}> - </Text>
+                <Text preset="caption2" style={[styles.footerText, styles.textHighlight]} onPress={() => onPressOpenUrl(URL_ACCEPTABLE_USE_POLICY)}>
                   Acceptable Use Policy
                 </Text>
               </View>
@@ -291,7 +289,6 @@ export const Upgrade: React.FC<Props> = React.memo(
                   loading={isLoadingRestorePurchases}
                   disabled={isLoadingRestorePurchases}
                   onPress={onPressRestore}
-                  titleStyle={{ fontSize: fonts.fontSize.body }}
                   loadingProps={{ color: 'black' }}
                 />
 
@@ -299,7 +296,6 @@ export const Upgrade: React.FC<Props> = React.memo(
                   <View style={{ marginTop: 18 }}>
                     <Button
                       type="clear"
-                      titleStyle={{ color: colors.red, fontSize: fonts.fontSize.body }}
                       buttonStyle={{ borderColor: colors.red }}
                       onPress={() => onPressCancel()}
                       title="Cancel active subscription?"

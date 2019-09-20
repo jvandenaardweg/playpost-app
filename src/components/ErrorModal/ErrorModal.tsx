@@ -13,7 +13,7 @@ interface Props {
 export const ErrorModal: React.FC<Props> = React.memo(({ message, onPressClose }) => (
   <View style={styles.container}>
     <View>
-      <Text style={styles.messageText} template="bodyEmphasized">{message}</Text>
+      <Text style={styles.messageText} preset="bodyEmphasized">{message}</Text>
     </View>
     <View style={styles.footer}>
       <Button testID="ErrorModal-Button-close" title="Close" onPress={onPressClose} />

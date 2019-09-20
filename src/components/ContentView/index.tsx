@@ -4,11 +4,10 @@ import { Button } from 'react-native-elements';
 import WebView from 'react-native-webview';
 
 import colors from '../../constants/colors';
-import fonts from '../../constants/fonts';
 import spacing from '../../constants/spacing';
 
 import { URL_BROWSER_EXTENSION_CHROME, URL_BROWSER_EXTENSION_FIREFOX, URL_BROWSER_EXTENSION_OPERA } from '../../constants/urls';
-import { textTemplates } from '../Text';
+import { textPresets } from '../Text';
 import styles from './styles';
 
 interface Props {
@@ -34,7 +33,7 @@ export class ContentView extends React.PureComponent<Props> {
           body {
             padding: 0 !important;
             margin: 0 !important;
-            font-size: ${textTemplates['body'].fontSize}px;
+            font-size: ${textPresets['body'].fontSize}px;
             font-family: 'Inter', 'Roboto', 'Helvetica', serif;
             line-height: 1.5;
             color: ${colors.black};
@@ -59,22 +58,22 @@ export class ContentView extends React.PureComponent<Props> {
 
           h2 {
             margin-top: 46px;
-            font-size: ${fonts.fontSize.headline}px;
+            font-size: ${textPresets['title2'].fontSize}px;
           }
 
           h3, h4 {
             margin-top: ${spacing.large}px;
-            font-size: ${fonts.fontSize.titleMedium}px;
+            font-size: ${textPresets['callout'].fontSize}px;
             font-weight: bold;
           }
 
           h5, h6, h7, h8 {
             margin-top: ${spacing.large}px;
-            font-size ${fonts.fontSize.titleMedium}px
+            font-size ${textPresets['body'].fontSize}px
           }
 
           p {
-            font-size: ${fonts.fontSize.title}px;
+            font-size: ${textPresets['body'].fontSize}px;
             margin-top: 1.5;
             color: ${colors.paragraphDefault};
             line-height: 1.58;

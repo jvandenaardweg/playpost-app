@@ -1,7 +1,7 @@
 import React from 'react';
 import * as ReactNative from 'react-native';
 import { render, RenderAPI } from 'react-native-testing-library';
-import { fontFamilies, textTemplates } from '../index';
+import { fontFamilies, textPresets } from '../index';
 
 import { Text } from '../../Text';
 
@@ -33,10 +33,10 @@ describe('Text', () => {
       });
     });
 
-    Object.keys(textTemplates).forEach(templateKey => {
-      it(`should render the correct ${templateKey}`, () => {
-        wrapper.update(<Text template={templateKey as any}>Example!</Text>);
-        expect(wrapper.getByType(ReactNative.Text).props.style[0]).toMatchObject(textTemplates[templateKey]);
+    Object.keys(textPresets).forEach(presetKey => {
+      it(`should render the correct ${presetKey}`, () => {
+        wrapper.update(<Text preset={presetKey as any}>Example!</Text>);
+        expect(wrapper.getByType(ReactNative.Text).props.style[0]).toMatchObject(textPresets[presetKey]);
       });
     });
 

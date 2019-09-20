@@ -23,7 +23,7 @@ export const ButtonTiny: React.FC<Props> = React.memo(({ onPress, label, IconEle
       style={[styles.container, { backgroundColor }]}
     >
       <View style={[styles.wrapper, { backgroundColor }]}>
-        <Text style={{ color: labelColor }} template="footnoteEmphasized">{label}</Text>
+        <Text style={{ color: labelColor }} preset="footnoteEmphasized">{label}</Text>
         {IconElement && (
           <View style={styles.icon}>
             {IconElement}

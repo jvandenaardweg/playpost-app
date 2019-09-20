@@ -77,7 +77,7 @@ export const AudioPlayerLarge: React.FC<Props> = React.memo((props: Props) => {
                   <Text
                     testID="AudioPlayerLarge-Text-playbackspeed"
                     style={styles.buttonControlText}
-                    template="footnoteEmphasized"
+                    preset="footnoteEmphasized"
                   >
                     {props.playbackSpeed.toFixed(2)}x
                   </Text>
@@ -90,7 +90,7 @@ export const AudioPlayerLarge: React.FC<Props> = React.memo((props: Props) => {
                 hitSlop={smallHitslop}
                 onPress={props.onPressVoice}
               >
-                <Text style={styles.buttonControlText} template="footnoteEmphasized">{props.audiofile.voice.label} ({props.audiofile.voice.languageCode})</Text>
+                <Text style={styles.buttonControlText} preset="footnoteEmphasized">{props.audiofile.voice.label} ({props.audiofile.voice.languageCode})</Text>
               </TouchableOpacity>
             )}
           </View>

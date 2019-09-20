@@ -6,7 +6,6 @@ import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 import * as Icon from '../../components/Icon';
 import colors from '../../constants/colors';
-import fonts from '../../constants/fonts';
 import { ALERT_TITLE_ERROR_NO_INTERNET } from '../../constants/messages';
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
@@ -111,7 +110,6 @@ const styles = StyleSheet.create({
   },
   actionText: {
     color: 'white',
-    fontSize: fonts.fontSize.body,
     backgroundColor: 'transparent',
     padding: 10,
   },

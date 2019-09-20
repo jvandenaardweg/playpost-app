@@ -93,7 +93,7 @@ export const selectTotalAvailableUnsubscribedVoices = createDeepEqualSelector(
 
 export const selectLanguagesWithActiveVoices = createDeepEqualSelector(
   [selectSortedLanguages, selectDeviceLocale],
-  (languages, deviceLocale) => {
+  (languages, deviceLocale): Api.Language[] => {
     if (!languages.length) {
       return [];
     }

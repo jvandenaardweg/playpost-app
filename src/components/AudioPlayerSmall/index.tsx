@@ -29,10 +29,10 @@ export const AudioPlayerSmall: React.FC<Props> = React.memo(({
       <TouchableHighlight style={styles.trackInfoButton} onPress={onPressShowFullPlayer}>
         <View style={styles.trackInfo}>
           <View>
-            <Text testID="AudioPlayerSmall-Text-title" style={styles.trackInfoTitle} ellipsizeMode="tail" numberOfLines={1} template="footnoteEmphasized">{(title) ? title : 'Select an article'}</Text>
+            <Text testID="AudioPlayerSmall-Text-title" style={styles.trackInfoTitle} ellipsizeMode="tail" numberOfLines={1} preset="footnoteEmphasized">{(title) ? title : 'Select an article'}</Text>
           </View>
           <View>
-            <Text testID="AudioPlayerSmall-Text-meta" style={styles.trackInfoArtist} ellipsizeMode="tail" numberOfLines={1} template="caption2">
+            <Text testID="AudioPlayerSmall-Text-meta" style={styles.trackInfoArtist} ellipsizeMode="tail" numberOfLines={1} preset="caption2">
               {(artist) ? artist : '-'}
               {(album) ? `, ${album}` : null}
             </Text>

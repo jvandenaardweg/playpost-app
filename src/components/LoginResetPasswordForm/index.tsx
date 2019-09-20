@@ -26,7 +26,7 @@ export const LoginResetPasswordForm: React.FC<Props> = React.memo(
     return (
       <KeyboardAvoidingView testID="LoginResetPasswordForm" style={styles.container} behavior={behaviorOption} enabled>
         <ScrollView style={styles.form} contentContainerStyle={styles.formContent} keyboardShouldPersistTaps={'handled'}>
-          <Text style={styles.subtitle} template="body">Please check your e-mail's inbox for the password reset code and fill it in below.</Text>
+          <Text style={styles.subtitle} preset="body">Please check your e-mail's inbox for the password reset code and fill it in below.</Text>
 
           <TextInput
             testID="LoginResetPasswordForm-TextInput-reset-password-code"

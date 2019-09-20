@@ -25,7 +25,7 @@ export const TopFilter: React.FC<Props> = React.memo(({ filters }) => (
   <View>
     {filters.map((filter, filterIndex) => (
       <View style={styles.filterContainer} key={filterIndex}>
-        <Text style={styles.filterLabel} testID="TopFilter-Text-label">{filter.label}</Text>
+        <Text style={styles.filterLabel} preset="footnoteEmphasized" testID="TopFilter-Text-label">{filter.label}</Text>
         <ScrollView
           contentContainerStyle={styles.scrollView}
           horizontal={true}

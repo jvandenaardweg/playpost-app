@@ -689,7 +689,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                       style={
                         Object {
                           "color": "#2089dc",
-                          "fontSize": 15,
+                          "fontSize": 18,
                           "paddingBottom": 1,
                           "paddingTop": 2,
                           "textAlign": "center",
@@ -1038,7 +1038,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                       style={
                         Object {
                           "color": "#2089dc",
-                          "fontSize": 15,
+                          "fontSize": 18,
                           "paddingBottom": 1,
                           "paddingTop": 2,
                           "textAlign": "center",
@@ -1395,7 +1395,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                       style={
                         Object {
                           "color": "#2089dc",
-                          "fontSize": 15,
+                          "fontSize": 18,
                           "paddingBottom": 1,
                           "paddingTop": 2,
                           "textAlign": "center",
@@ -1417,7 +1417,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
             "backgroundColor": "white",
             "borderTopColor": "#e5e5e5",
             "borderTopWidth": 1,
-            "padding": 12,
+            "padding": 20,
           }
         }
       >
@@ -1433,13 +1433,12 @@ exports[`Upgrade rendering should render correctly 1`] = `
               Array [
                 Object {
                   "color": "#000000",
-                  "fontFamily": "Inter-Regular",
+                  "fontFamily": "Inter-SemiBold",
+                  "fontSize": 28,
+                  "lineHeight": 34,
                 },
                 Object {
                   "color": "#000000",
-                  "fontSize": 24,
-                  "fontWeight": "700",
-                  "lineHeight": 36,
                   "marginBottom": 20,
                   "marginTop": 12,
                   "textAlign": "center",
@@ -1503,13 +1502,12 @@ Premium or Unlimited
                   Array [
                     Object {
                       "color": "#000000",
-                      "fontFamily": "Inter-Regular",
+                      "fontFamily": "Inter-SemiBold",
+                      "fontSize": 17,
+                      "lineHeight": 23,
                     },
                     Object {
                       "color": "#000000",
-                      "fontSize": 17,
-                      "fontWeight": "600",
-                      "lineHeight": 21,
                       "marginBottom": 4,
                     },
                   ]
@@ -1523,11 +1521,11 @@ Premium or Unlimited
                     Object {
                       "color": "#000000",
                       "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
                     },
                     Object {
                       "color": "#222222",
-                      "fontSize": 15,
-                      "lineHeight": 23,
                     },
                   ]
                 }
@@ -1589,13 +1587,12 @@ Premium or Unlimited
                   Array [
                     Object {
                       "color": "#000000",
-                      "fontFamily": "Inter-Regular",
+                      "fontFamily": "Inter-SemiBold",
+                      "fontSize": 17,
+                      "lineHeight": 23,
                     },
                     Object {
                       "color": "#000000",
-                      "fontSize": 17,
-                      "fontWeight": "600",
-                      "lineHeight": 21,
                       "marginBottom": 4,
                     },
                   ]
@@ -1609,11 +1606,11 @@ Premium or Unlimited
                     Object {
                       "color": "#000000",
                       "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
                     },
                     Object {
                       "color": "#222222",
-                      "fontSize": 15,
-                      "lineHeight": 23,
                     },
                   ]
                 }
@@ -1675,13 +1672,12 @@ Premium or Unlimited
                   Array [
                     Object {
                       "color": "#000000",
-                      "fontFamily": "Inter-Regular",
+                      "fontFamily": "Inter-SemiBold",
+                      "fontSize": 17,
+                      "lineHeight": 23,
                     },
                     Object {
                       "color": "#000000",
-                      "fontSize": 17,
-                      "fontWeight": "600",
-                      "lineHeight": 21,
                       "marginBottom": 4,
                     },
                   ]
@@ -1695,11 +1691,11 @@ Premium or Unlimited
                     Object {
                       "color": "#000000",
                       "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
                     },
                     Object {
                       "color": "#222222",
-                      "fontSize": 15,
-                      "lineHeight": 23,
                     },
                   ]
                 }
@@ -1761,13 +1757,12 @@ Premium or Unlimited
                   Array [
                     Object {
                       "color": "#000000",
-                      "fontFamily": "Inter-Regular",
+                      "fontFamily": "Inter-SemiBold",
+                      "fontSize": 17,
+                      "lineHeight": 23,
                     },
                     Object {
                       "color": "#000000",
-                      "fontSize": 17,
-                      "fontWeight": "600",
-                      "lineHeight": 21,
                       "marginBottom": 4,
                     },
                   ]
@@ -1781,11 +1776,11 @@ Premium or Unlimited
                     Object {
                       "color": "#000000",
                       "fontFamily": "Inter-Regular",
+                      "fontSize": 15,
+                      "lineHeight": 23,
                     },
                     Object {
                       "color": "#222222",
-                      "fontSize": 15,
-                      "lineHeight": 23,
                     },
                   ]
                 }
@@ -1798,7 +1793,8 @@ Premium or Unlimited
         <View
           style={
             Object {
-              "paddingBottom": 24,
+              "marginBottom": 20,
+              "marginTop": 20,
             }
           }
         >
@@ -1808,10 +1804,10 @@ Premium or Unlimited
                 Object {
                   "color": "#000000",
                   "fontFamily": "Inter-Regular",
+                  "fontSize": 12,
+                  "lineHeight": 15,
                 },
                 Object {
-                  "fontSize": 13,
-                  "lineHeight": 20,
                   "opacity": 0.5,
                 },
               ]
@@ -1839,11 +1835,11 @@ Premium or Unlimited
                   Object {
                     "color": "#000000",
                     "fontFamily": "Inter-Regular",
+                    "fontSize": 12,
+                    "lineHeight": 15,
                   },
                   Array [
                     Object {
-                      "fontSize": 13,
-                      "lineHeight": 20,
                       "opacity": 0.5,
                     },
                     Object {
@@ -1863,10 +1859,10 @@ Premium or Unlimited
                   Object {
                     "color": "#000000",
                     "fontFamily": "Inter-Regular",
+                    "fontSize": 12,
+                    "lineHeight": 15,
                   },
                   Object {
-                    "fontSize": 13,
-                    "lineHeight": 20,
                     "opacity": 0.5,
                   },
                 ]
@@ -1881,11 +1877,11 @@ Premium or Unlimited
                   Object {
                     "color": "#000000",
                     "fontFamily": "Inter-Regular",
+                    "fontSize": 12,
+                    "lineHeight": 15,
                   },
                   Array [
                     Object {
-                      "fontSize": 13,
-                      "lineHeight": 20,
                       "opacity": 0.5,
                     },
                     Object {
@@ -1905,10 +1901,10 @@ Premium or Unlimited
                   Object {
                     "color": "#000000",
                     "fontFamily": "Inter-Regular",
+                    "fontSize": 12,
+                    "lineHeight": 15,
                   },
                   Object {
-                    "fontSize": 13,
-                    "lineHeight": 20,
                     "opacity": 0.5,
                   },
                 ]
@@ -1923,11 +1919,11 @@ Premium or Unlimited
                   Object {
                     "color": "#000000",
                     "fontFamily": "Inter-Regular",
+                    "fontSize": 12,
+                    "lineHeight": 15,
                   },
                   Array [
                     Object {
-                      "fontSize": 13,
-                      "lineHeight": 20,
                       "opacity": 0.5,
                     },
                     Object {
@@ -1991,7 +1987,7 @@ Premium or Unlimited
                     style={
                       Object {
                         "color": "white",
-                        "fontSize": 15,
+                        "fontSize": 18,
                         "paddingBottom": 1,
                         "paddingTop": 2,
                         "textAlign": "center",

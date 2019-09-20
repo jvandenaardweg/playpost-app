@@ -47,14 +47,14 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
         <View style={styles.statsContainer}>
           <View style={styles.statsWrapper}>
             <View>
-              <Text style={styles.statsBigNumber} template="largeTitleEmphasized">{currentUsageLocalized}</Text>
+              <Text style={styles.statsBigNumber} preset="largeTitleEmphasized">{currentUsageLocalized}</Text>
             </View>
             <View style={styles.statsNumbersContainer}>
               <View>
-                <Text testID="Usage-Text-minutes-used" style={styles.statsMeta} template="footnote">{usedText}</Text>
+                <Text testID="Usage-Text-minutes-used" style={styles.statsMeta} preset="footnote">{usedText}</Text>
               </View>
               <View>
-                <Text testID="Usage-Text-percentage" style={styles.statsPercentage} template="bodyEmphasized">{usedPercentageText}</Text>
+                <Text testID="Usage-Text-percentage" style={styles.statsPercentage} preset="bodyEmphasized">{usedPercentageText}</Text>
               </View>
             </View>
           </View>
@@ -72,7 +72,7 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
               buttonStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}
               onPress={() => onPressUpgrade(upgradeScreenCenteredSubscriptionProductId)}
             />
-            <Text testID="Usage-Text-upgrade-message" style={styles.messageText} template="footnote">
+            <Text testID="Usage-Text-upgrade-message" style={styles.messageText} preset="footnote">
               {upgradeMessage}
             </Text>
           </View>

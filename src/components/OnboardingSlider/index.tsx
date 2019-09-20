@@ -100,8 +100,8 @@ const OnboardingSlide: React.FC<OnboardingSlideProps> = React.memo(({
     ]}
   >
     <View key={index}>
-      <Text testID="onboarding-slider-item-title" style={styles.title} template="largeTitleEmphasized">{item.title}</Text>
-      <Text testID="onboarding-slider-item-text" style={styles.text} template="body">{item.text}</Text>
+      <Text testID="onboarding-slider-item-title" style={styles.title} preset="largeTitleEmphasized">{item.title}</Text>
+      <Text testID="onboarding-slider-item-text" style={styles.text} preset="body">{item.text}</Text>
     </View>
   </View>
 ));

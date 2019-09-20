@@ -1,9 +1,9 @@
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
-import fonts from '../../constants/fonts';
 import layout from '../../constants/layout';
 import spacing from '../../constants/spacing';
+import { textPresets } from '../Text';
 
 export default StyleSheet.create({
   modal: {
@@ -17,24 +17,20 @@ export default StyleSheet.create({
   },
   title: {
     marginTop: spacing.tiny,
-    fontSize: fonts.fontSize.titleExtraLarge,
-    fontWeight: Platform.OS === 'ios' ? fonts.fontWeight.semibold : fonts.fontWeight.bold,
     marginBottom: spacing.default,
-    lineHeight: fonts.fontSize.titleExtraLarge * 1.2,
     textAlign: 'center',
     color: colors.black
   },
   paragraph: {
-    fontSize: fonts.fontSize.body,
-    lineHeight: fonts.fontSize.body * 1.5,
     marginBottom: spacing.large,
     textAlign: 'center',
     color: colors.black
   },
-  paragraphBold: {
-    fontWeight: fonts.fontWeight.semibold
-  },
   footer: {
     marginTop: spacing.tiny
+  },
+  cancelTitle: {
+    color: colors.grayDark,
+    ...textPresets['subheadEmphasized']
   }
 });

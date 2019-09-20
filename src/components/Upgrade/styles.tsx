@@ -1,7 +1,6 @@
 import { Platform, StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
-import fonts from '../../constants/fonts';
 import layout from '../../constants/layout';
 import spacing from '../../constants/spacing';
 
@@ -13,28 +12,20 @@ export default StyleSheet.create({
     marginBottom: spacing.default
   },
   headerTitle: {
-    fontSize: fonts.fontSize.titleExtraLarge,
     textAlign: 'center',
-    fontWeight: fonts.fontWeight.bold,
-    lineHeight: fonts.fontSize.titleExtraLarge * 1.5,
     marginTop: spacing.default,
     marginBottom: spacing.large,
     color: colors.black
   },
   title: {
-    fontSize: fonts.fontSize.title,
-    fontWeight: Platform.OS === 'android' ? fonts.fontWeight.bold : fonts.fontWeight.semibold,
-    lineHeight: Math.ceil(fonts.fontSize.title * 1.2),
     marginBottom: 4,
     color: colors.black
   },
   paragraph: {
-    color: colors.paragraphGrayed,
-    lineHeight: Math.ceil(fonts.fontSize.body * 1.5),
-    fontSize: fonts.fontSize.body
+    color: colors.paragraphGrayed
   },
   featuresContainer: {
-    padding: spacing.default,
+    padding: spacing.large,
     backgroundColor: 'white',
     borderTopWidth: 1,
     borderTopColor: colors.grayLight
@@ -59,11 +50,10 @@ export default StyleSheet.create({
     width: 48
   },
   footer: {
-    paddingBottom: 24
+    marginTop: spacing.large,
+    marginBottom: spacing.large
   },
   footerText: {
-    fontSize: fonts.fontSize.small,
-    lineHeight: Math.ceil(fonts.fontSize.small * 1.5),
     opacity: 0.5
   },
   footerLinks: {
@@ -99,8 +89,6 @@ export default StyleSheet.create({
     backgroundColor: 'green'
   },
   cardsScrollViewFooterText: {
-    fontWeight: fonts.fontWeight.medium,
-    fontSize: fonts.fontSize.body,
     textAlign: 'center'
   },
   card: {
@@ -160,7 +148,5 @@ export default StyleSheet.create({
     color: colors.black,
     textAlign: 'center',
   },
-  cardFeaturesListItemHighlight: {
-    fontWeight: fonts.fontWeight.semibold
-  }
+  cardFeaturesListItemHighlight: { }
 });

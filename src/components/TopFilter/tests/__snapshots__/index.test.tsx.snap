@@ -21,10 +21,11 @@ exports[`TopFilter rendering should render correctly 1`] = `
           Array [
             Object {
               "color": "#000000",
-              "fontFamily": "Inter-Regular",
+              "fontFamily": "Inter-SemiBold",
+              "fontSize": 13,
+              "lineHeight": 16,
             },
             Object {
-              "fontWeight": "600",
               "marginLeft": 12,
               "marginRight": 12,
               "width": 56,

@@ -3,8 +3,6 @@ import { View } from 'react-native';
 import { Button } from 'react-native-elements';
 import Modal from 'react-native-modal';
 
-import colors from '../../constants/colors';
-import fonts from '../../constants/fonts';
 import { Text } from '../Text';
 import styles from './styles';
 
@@ -38,7 +36,7 @@ export const UpgradeModal: React.FC<Props> = React.memo(({
     style={styles.modal}
   >
     <View style={styles.container}>
-      <Text style={styles.title} testID="UpgradeModal-Text-title">Continue listening with high-quality voices</Text>
+      <Text style={styles.title} testID="UpgradeModal-Text-title" preset="title2Emphasized">Continue listening with high-quality voices</Text>
 
       {/*
         Contexts when the user could see this modal:
@@ -47,13 +45,13 @@ export const UpgradeModal: React.FC<Props> = React.memo(({
       */}
 
       {!isSubscribed && (
-        <Text testID="UpgradeModal-Text-not-isSubscribed" style={styles.paragraph}>
+        <Text testID="UpgradeModal-Text-not-isSubscribed" style={styles.paragraph} preset="subhead">
           {`You have used your free minutes for this month. Upgrade now to continue listening using this voice or one of the ${totalAvailableVoices} other high-quality voices. Pick and choose the voice you like!\n\nWhen not upgrading, you will be set to use our lowest quality voices for the next month.`}
         </Text>
       )}
 
       {isSubscribed && (
-        <Text testID="UpgradeModal-Text-isSubscribed" style={styles.paragraph}>
+        <Text testID="UpgradeModal-Text-isSubscribed" style={styles.paragraph} preset="subhead">
           {'You have used your last remaining audio minutes for your subscription this month.\n\nYou can continue listening by upgrading to a higher subscription plan.'}
         </Text>
       )}
@@ -65,9 +63,26 @@ export const UpgradeModal: React.FC<Props> = React.memo(({
       )} */}
 
       <View style={styles.footer}>
-        {isSubscribed && <Button testID="UpgradeModal-Button-upgrade" title={'Continue listening'} onPress={onPressUpgrade} />}
-        {!isSubscribed && <Button testID="UpgradeModal-Button-upgrade" title={isEligibleForTrial ? 'Start free trial' : 'Continue listening'} onPress={onPressUpgrade} />}
-        <Button testID="UpgradeModal-Button-cancel" title={isSubscribed ? 'Close' : 'Cancel (use lowest quality voices)'} type="clear" onPress={onPressCancel} titleStyle={{ color: colors.grayDark, fontWeight: fonts.fontWeight.normal, fontSize: fonts.fontSize.body }} />
+        {isSubscribed && (
+          <Button
+            testID="UpgradeModal-Button-upgrade"
+            title={'Continue listening'}
+            onPress={onPressUpgrade} />
+        )}
+        {!isSubscribed && (
+          <Button
+            testID="UpgradeModal-Button-upgrade"
+            title={isEligibleForTrial ? 'Start free trial' : 'Continue listening'}
+            onPress={onPressUpgrade}
+          />
+        )}
+        <Button
+          testID="UpgradeModal-Button-cancel"
+          title={isSubscribed ? 'Close' : 'Cancel (use lowest quality voices)'}
+          type="clear"
+          onPress={onPressCancel}
+          titleStyle={styles.cancelTitle}
+        />
       </View>
     </View>
   </Modal>

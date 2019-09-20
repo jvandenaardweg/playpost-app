@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
-import fonts from '../../constants/fonts';
 import spacing from '../../constants/spacing';
 import textInputStyle from '../../constants/text-input';
 
@@ -42,8 +41,6 @@ export default StyleSheet.create({
     maxWidth: 300,
   },
   footerText: {
-    fontSize: fonts.fontSize.body,
-    lineHeight: Math.ceil(fonts.fontSize.body * 1.5),
     color: colors.paragraphGrayed,
     textAlign: 'center'
   },

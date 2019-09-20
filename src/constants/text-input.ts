@@ -1,5 +1,5 @@
 import { TextStyle } from 'react-native';
-import { textTemplates } from '../components/Text';
+import { textPresets } from '../components/Text';
 import colors from '../constants/colors';
 import layout from './layout';
 import spacing from './spacing';
@@ -14,7 +14,7 @@ const textInput: TextStyle = {
   paddingRight: spacing.default,
   marginBottom: spacing.small,
   alignItems: 'center',
-  ...textTemplates['callout']
+  ...textPresets['callout']
 };
 
 export default textInput;

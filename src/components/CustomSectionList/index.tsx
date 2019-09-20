@@ -4,10 +4,9 @@ import { ListItem } from 'react-native-elements';
 import styles from './styles';
 
 import colors from '../../constants/colors';
-import { Text } from '../Text';
+import { Text, textPresets } from '../Text';
 
 import * as Icon from '../../components/Icon';
-import fonts from '../../constants/fonts';
 import { EmptyState } from '../EmptyState';
 import { ListSeperator } from '../ListSeperator';
 
@@ -61,8 +60,8 @@ export const CustomSectionList: React.FC<Props> = React.memo(({ sectionListData,
 
         // styles
         const containerStyle = (item.isSelected) ? { backgroundColor: colors.tintColor } : undefined;
-        const titleStyle = (item.isSelected) ? { color: colors.white } : { fontSize: fonts.fontSize.title };
-        const subtitleStyle = (item.isSelected) ? { color: 'rgba(255, 255, 255, 0.7)' } : { fontSize: fonts.fontSize.small };
+        const titleStyle = (item.isSelected) ? { color: colors.white } : undefined;
+        const subtitleStyle = (item.isSelected) ? { color: 'rgba(255, 255, 255, 0.7)' } : undefined;
         const rightIconTextStyles = [styles.rightIconText, item.isSelected ? { color: colors.white } : undefined, item.rightIconColor && !item.isSelected ? { color: item.rightIconColor } : undefined];
 
         // props
@@ -77,7 +76,7 @@ export const CustomSectionList: React.FC<Props> = React.memo(({ sectionListData,
           ) :
             undefined;
 
-        const rightIcon = (item.value) ? <Text style={rightIconTextStyles} template="footnoteEmphasized">{item.value}</Text> : undefined;
+        const rightIcon = (item.value) ? <Text style={rightIconTextStyles} preset="footnoteEmphasized">{item.value}</Text> : undefined;
         const rightElement = getRightElement(item, checkmarkColor);
 
         return (
@@ -86,8 +85,8 @@ export const CustomSectionList: React.FC<Props> = React.memo(({ sectionListData,
             title={item.title}
             onPress={item.onPress}
             containerStyle={containerStyle}
-            titleStyle={titleStyle}
-            subtitleStyle={subtitleStyle}
+            titleStyle={[titleStyle, textPresets['body']]}
+            subtitleStyle={[subtitleStyle, textPresets['footnote'], { color: colors.grayDark }]}
             subtitle={subtitle}
             leftIcon={leftIcon}
             rightIcon={rightIcon}

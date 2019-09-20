@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
-import fonts from '../../constants/fonts';
 import layout from '../../constants/layout';
 import spacing from '../../constants/spacing';
 
@@ -19,17 +18,13 @@ export default StyleSheet.create({
     borderRadius: layout.borderRadius.medium
   },
   headerTitle: {
-    color: colors.white,
-    fontSize: fonts.fontSize.title,
-    fontWeight: fonts.fontWeight.bold
+    color: colors.white
   },
   statsContainer: {
     paddingBottom: spacing.small
   },
   statsTitle: {
     color: colors.white,
-    fontSize: fonts.fontSize.body,
-    fontWeight: fonts.fontWeight.normal,
     opacity: 0.7
   },
   statsWrapper: {

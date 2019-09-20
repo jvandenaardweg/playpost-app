@@ -13,7 +13,7 @@ export const GlobalStatusIndicator: React.FC<Props> = React.memo(({ label = 'Loa
     <View style={styles.container}>
       <View style={styles.wrapper}>
         <ActivityIndicator size="small" color="white" />
-        <Text style={styles.label} testID="GlobalStatusIndicator-label" template="subheadEmphasized">
+        <Text style={styles.label} testID="GlobalStatusIndicator-label" preset="subheadEmphasized">
           {label}
         </Text>
       </View>

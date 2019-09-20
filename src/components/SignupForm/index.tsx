@@ -69,7 +69,6 @@ export const SignupForm: React.FC<Props> = React.memo(({ onChangeText, onPressSi
             loading={isLoading}
             onPress={onPressSignup}
             disabled={isLoading}
-            // buttonStyle={styles.buttonStyle}
             activeOpacity={1}
             disabledStyle={styles.buttonStyle}
           />
@@ -77,12 +76,12 @@ export const SignupForm: React.FC<Props> = React.memo(({ onChangeText, onPressSi
 
         <View style={styles.footerContainer}>
           <View style={styles.footer}>
-            <Text style={styles.footerText}>By signing up you agree to our </Text>
-            <Text style={[styles.footerText, styles.footerTextHighlight]} testID="SignupForm-Text-privacy-policy" onPress={() => onPressOpenUrl(URL_PRIVACY_POLICY)}>
+            <Text style={styles.footerText} preset="subhead">By signing up you agree to our </Text>
+            <Text style={[styles.footerText, styles.footerTextHighlight]} preset="subhead" testID="SignupForm-Text-privacy-policy" onPress={() => onPressOpenUrl(URL_PRIVACY_POLICY)}>
               Privacy Policy
             </Text>
-            <Text style={styles.footerText}> and </Text>
-            <Text style={[styles.footerText, styles.footerTextHighlight]} testID="SignupForm-Text-terms" onPress={() => onPressOpenUrl(URL_TERMS_OF_USE)}>
+            <Text style={styles.footerText} preset="subhead"> and </Text>
+            <Text style={[styles.footerText, styles.footerTextHighlight]} preset="subhead" testID="SignupForm-Text-terms" onPress={() => onPressOpenUrl(URL_TERMS_OF_USE)}>
               Terms of Use
             </Text>
           </View>

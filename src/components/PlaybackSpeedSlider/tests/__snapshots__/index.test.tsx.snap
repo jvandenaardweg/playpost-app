@@ -55,7 +55,6 @@ exports[`PlaybackSpeedSlider rendering should render correctly 1`] = `
             },
             Object {
               "color": "#ffffff",
-              "fontSize": 13,
             },
           ]
         }

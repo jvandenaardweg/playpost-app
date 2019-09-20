@@ -94,13 +94,12 @@ Array [
             Array [
               Object {
                 "color": "#000000",
-                "fontFamily": "Inter-Regular",
+                "fontFamily": "Inter-SemiBold",
+                "fontSize": 24,
+                "lineHeight": 29,
               },
               Object {
                 "color": "#000000",
-                "fontSize": 24,
-                "fontWeight": "600",
-                "lineHeight": 28.799999999999997,
                 "marginBottom": 12,
                 "marginTop": 10,
                 "textAlign": "center",
@@ -117,11 +116,11 @@ Array [
               Object {
                 "color": "#000000",
                 "fontFamily": "Inter-Regular",
+                "fontSize": 15,
+                "lineHeight": 23,
               },
               Object {
                 "color": "#000000",
-                "fontSize": 15,
-                "lineHeight": 22.5,
                 "marginBottom": 20,
                 "textAlign": "center",
               },
@@ -238,8 +237,9 @@ When not upgrading, you will be set to use our lowest quality voices for the nex
                   style={
                     Object {
                       "color": "#AAAAAA",
+                      "fontFamily": "Inter-SemiBold",
                       "fontSize": 15,
-                      "fontWeight": "normal",
+                      "lineHeight": 23,
                       "paddingBottom": 1,
                       "paddingTop": 2,
                       "textAlign": "center",

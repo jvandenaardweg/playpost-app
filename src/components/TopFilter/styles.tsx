@@ -3,7 +3,6 @@ import {
 } from 'react-native';
 
 import colors from '../../constants/colors';
-import fonts from '../../constants/fonts';
 import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
@@ -20,7 +19,6 @@ export default StyleSheet.create({
     borderBottomColor: colors.borderDefault
   },
   filterLabel: {
-    fontWeight: fonts.fontWeight.semibold,
     marginRight: spacing.default,
     width: 56,
     marginLeft: spacing.default

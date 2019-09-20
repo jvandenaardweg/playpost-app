@@ -1,15 +1,12 @@
 import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
-import fonts from '../../constants/fonts';
 import spacing from '../../constants/spacing';
 import textInputStyle from '../../constants/text-input';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
     padding: spacing.default,
     backgroundColor: colors.appBackground
   },
@@ -44,10 +41,9 @@ export default StyleSheet.create({
     justifyContent: 'center',
     textAlign: 'center',
     maxWidth: 300,
+    marginTop: spacing.large,
   },
   footerText: {
-    fontSize: fonts.fontSize.body,
-    lineHeight: Math.ceil(fonts.fontSize.body * 1.5),
     color: colors.paragraphGrayed,
     textAlign: 'center'
   },
