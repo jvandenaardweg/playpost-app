@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
 import spacing from '../../constants/spacing';
-import { textPresets } from '../Text';
 
 const bottomContainerHeight = 350;
 const slideImageSize = 120;
@@ -40,7 +39,6 @@ export default StyleSheet.create({
   },
   loginButtonContainer: {
     position: 'absolute',
-    // marginTop: spacing.large,
     right: spacing.medium,
     zIndex: 2
   },
@@ -54,11 +52,8 @@ export default StyleSheet.create({
     textAlign: 'right',
     bottom: 35,
     height: 30,
-    // alignItems: 'center',
     justifyContent: 'center',
-    zIndex: 2,
-    // overflow: 'hidden',
-    // backgroundColor: 'red'
+    zIndex: 2
   },
   skipButtonTitleStyle: {
     textAlign: 'right',

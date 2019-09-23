@@ -7,7 +7,6 @@ import { NavigationRoute, NavigationScreenProp, withNavigation } from 'react-nav
 import { Text } from '../Text';
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import colors from '../../constants/colors';
 import NavigationService from '../../navigation/NavigationService';
 import styles from './styles';
 
