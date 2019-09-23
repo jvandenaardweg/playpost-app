@@ -2,6 +2,6 @@
 
 exports[`SettingsScreen rendering should render correctly 1`] = `
 <Memo>
-  <Memo(Connect(SettingsContainerComponent)) />
+  <Memo(Connect(withNavigation(SettingsContainerComponent))) />
 </Memo>
 `;

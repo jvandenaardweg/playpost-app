@@ -4,7 +4,7 @@ import { ActivityIndicator, Alert, InteractionManager, Linking, SectionListData,
 import Config from 'react-native-config';
 import DeviceInfo from 'react-native-device-info';
 import RNFS from 'react-native-fs';
-import { NavigationInjectedProps } from 'react-navigation';
+import { NavigationEventSubscription, NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 
 import { Text } from '../components/Text';
@@ -61,15 +61,30 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
     buildNumber: ''
   };
 
+  didFocusSubscription: NavigationEventSubscription | null = null;
+
   componentDidMount() {
     InteractionManager.runAfterInteractions(() => {
-      // TODO: Set cache size every time the settings screen becomes active
-      this.setCacheSize();
       this.setVersionInfo();
 
-      // Getting the user details, but also the user's settings (for example: user selected voices)
-      this.props.getUser();
+      // Re-calculate the cache size every time the user goes to the settings screen
+      this.didFocusSubscription = this.props.navigation.addListener(
+        'didFocus',
+        () => {
+          this.setCacheSize();
+
+          // Getting the user details, but also the user's settings (for example: user selected voices)
+          this.props.getUser();
+        }
+      );
     });
+  }
+
+  componentWillUnmount() {
+    if (this.didFocusSubscription) {
+      this.didFocusSubscription.remove()
+      this.didFocusSubscription = null;
+    }
   }
 
   shouldComponentUpdate(nextProps: Props, nextState: State) {
@@ -499,4 +514,4 @@ const mapDispatchToProps = {
 export const SettingsContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(SettingsContainerComponent)
+)(withNavigation(SettingsContainerComponent))
