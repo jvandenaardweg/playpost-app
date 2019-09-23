@@ -118,7 +118,7 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
           }
 
           .meta-header a {
-            color: #037DE2;
+            color: #0066FF;
           }
 
           .image-header {
@@ -148,7 +148,7 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
             margin-left: -12px;
             margin-right: -12px;
             padding: 12px;
-            background-color: #444444;
+            background-color: #555555;
           }
 
           pre,
@@ -358,7 +358,7 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
           }
 
           .meta-header a {
-            color: #037DE2;
+            color: #0066FF;
           }
 
           .image-header {
@@ -598,7 +598,7 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
           }
 
           .meta-header a {
-            color: #037DE2;
+            color: #0066FF;
           }
 
           .image-header {
@@ -832,7 +832,7 @@ exports[`ArticleReader rendering no author name should render no authorName when
           }
 
           .meta-header a {
-            color: #037DE2;
+            color: #0066FF;
           }
 
           .image-header {
@@ -1066,7 +1066,7 @@ exports[`ArticleReader rendering no html should render a different HTML output w
           }
 
           .meta-header a {
-            color: #037DE2;
+            color: #0066FF;
           }
 
           .image-header {
@@ -1300,7 +1300,7 @@ exports[`ArticleReader rendering right to left content should render correctly 1
           }
 
           .meta-header a {
-            color: #037DE2;
+            color: #0066FF;
           }
 
           .image-header {

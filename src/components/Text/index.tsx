@@ -10,7 +10,7 @@ type FontFamilies = {
 
 type FontWeightOptions = 'thin' | 'extraLight' | 'light' | 'regular' | 'medium' | 'semiBold' | 'bold' | 'extraBold' | 'black';
 
-type TextPresetOptions = 'largeTitleEmphasized' | 'title1' | 'title1Emphasized' | 'title2' | 'title2Emphasized' | 'title3Emphasized' | 'title3' | 'bodyEmphasized' | 'body' | 'subheadEmphasized' | 'subhead' | 'subheadShort' | 'callout' | 'calloutEmphasized' | 'footnoteEmphasized' | 'footnote' | 'caption2Emphasized' | 'caption2';
+type TextPresetOptions = 'largeTitleEmphasized' | 'title1' | 'title1Emphasized' | 'title2' | 'title2Emphasized' | 'title3Emphasized' | 'title3' | 'leadEmphasized' | 'lead' | 'bodyEmphasized' | 'body' | 'subheadEmphasized' | 'subhead' | 'subheadShort' | 'callout' | 'calloutEmphasized' | 'footnoteEmphasized' | 'footnote' | 'caption2Emphasized' | 'caption2';
 
 type PresetMap = { [textTemplate in TextPresetOptions]: ReactNative.TextStyle }
 
@@ -90,6 +90,16 @@ export const textPresets: PresetMap = {
     ...fontFamilies['regular'],
     fontSize: 17,
     lineHeight: Math.ceil(17 * 1.3)
+  },
+  leadEmphasized: {
+    ...fontFamilies['semiBold'],
+    fontSize: 15,
+    lineHeight: Math.ceil(15 * 1.5)
+  },
+  lead: {
+    ...fontFamilies['regular'],
+    fontSize: 15,
+    lineHeight: Math.ceil(15 * 1.5)
   },
   subheadEmphasized: {
     ...fontFamilies['semiBold'],

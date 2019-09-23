@@ -7,10 +7,9 @@ exports[`UpdateEmailForm rendering should render correctly 1`] = `
     Array [
       Object {
         "alignItems": "center",
-        "backgroundColor": "#EEEEEE",
         "flex": 1,
         "justifyContent": "center",
-        "padding": 12,
+        "padding": 20,
       },
       Object {
         "paddingBottom": 0,
@@ -26,36 +25,59 @@ exports[`UpdateEmailForm rendering should render correctly 1`] = `
       }
     }
   >
-    <TextInput
-      autoCapitalize="none"
-      autoFocus={false}
-      blurOnSubmit={false}
-      clearButtonMode="always"
-      editable={true}
-      onChangeText={[Function]}
-      onSubmitEditing={[Function]}
-      placeholder="Your new e-mail address"
-      returnKeyType="done"
+    <View
       style={
         Object {
-          "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "borderColor": "#e5e5e5",
-          "borderRadius": 4,
-          "borderWidth": 1,
-          "fontFamily": "Inter-Regular",
-          "fontSize": 16,
-          "height": 54,
-          "lineHeight": 21,
-          "marginBottom": 12,
-          "paddingLeft": 12,
-          "paddingRight": 12,
+          "marginBottom": 14,
         }
       }
-      testID="UpdateEmailForm-TextInput-email"
-      textContentType="emailAddress"
-      value=""
-    />
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "Inter-SemiBold",
+              "fontSize": 15,
+              "lineHeight": 23,
+            },
+            Object {
+              "marginBottom": 4,
+            },
+          ]
+        }
+      >
+        E-mail address
+      </Text>
+      <TextInput
+        autoCapitalize="none"
+        autoFocus={false}
+        blurOnSubmit={false}
+        clearButtonMode="always"
+        editable={true}
+        keyboardType="email-address"
+        onChangeText={[Function]}
+        onSubmitEditing={[Function]}
+        placeholder="john.appleseed@playpost.app"
+        returnKeyType="done"
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#EEEEEE",
+            "borderRadius": 6,
+            "fontFamily": "Inter-Regular",
+            "fontSize": 15,
+            "height": 50,
+            "lineHeight": 15,
+            "paddingLeft": 14,
+            "paddingRight": 14,
+          }
+        }
+        testID="UpdateEmailForm-TextInput-email"
+        textContentType="username"
+        value=""
+      />
+    </View>
     <View>
       <View
         style={
@@ -86,14 +108,12 @@ exports[`UpdateEmailForm rendering should render correctly 1`] = `
             style={
               Object {
                 "alignItems": "center",
-                "backgroundColor": "#000000",
+                "backgroundColor": "#2089dc",
                 "borderColor": "#2089dc",
                 "borderRadius": 3,
                 "borderWidth": 0,
                 "flexDirection": "row",
                 "justifyContent": "center",
-                "marginBottom": 12,
-                "opacity": 1,
                 "padding": 8,
               }
             }
@@ -109,7 +129,7 @@ exports[`UpdateEmailForm rendering should render correctly 1`] = `
                 }
               }
             >
-              Update e-mail address
+              Save new e-mail address
             </Text>
           </View>
         </View>

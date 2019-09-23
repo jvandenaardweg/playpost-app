@@ -1,6 +1,6 @@
 import React from 'react';
 import { Alert, InteractionManager } from 'react-native';
-import { NavigationInjectedProps, NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
+import { NavigationInjectedProps, NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions, SafeAreaView } from 'react-navigation';
 import { connect } from 'react-redux';
 
 import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_UPDATE_EMAIL_DIFF, ALERT_TITLE_ERROR, ALERT_TITLE_NO_UPDATE } from '../../constants/messages';
@@ -12,7 +12,6 @@ import { getUser, patchUser } from '../../reducers/user';
 
 import { selectUserDetails, selectUserError } from '../../selectors/user';
 
-import { AppBackground } from '../../components/AppBackground';
 import { InteractionManaged } from '../../components/InteractionManaged';
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
@@ -115,8 +114,8 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
     const { email, isLoading, isSuccess } = this.state;
 
     return (
-      <AppBackground>
-        <InteractionManaged>
+      <InteractionManaged>
+        <SafeAreaView style={{ flex: 1 }}>
           <UpdateEmailForm
             email={email}
             isLoading={isLoading}
@@ -124,8 +123,8 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
             onChangeText={this.handleOnChangeText}
             onPressUpdateEmail={this.handleOnPressUpdateEmail}
           />
-        </InteractionManaged>
-      </AppBackground>
+        </SafeAreaView>
+      </InteractionManaged>
     );
   }
 }

@@ -5,7 +5,7 @@ exports[`PlaybackSpeedSlider rendering should render correctly 1`] = `
   style={
     Object {
       "alignItems": "center",
-      "backgroundColor": "#037DE2",
+      "backgroundColor": "#0066FF",
       "borderRadius": 48,
       "height": 48,
       "justifyContent": "center",
@@ -17,7 +17,7 @@ exports[`PlaybackSpeedSlider rendering should render correctly 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#037DE2",
+        "backgroundColor": "#0066FF",
         "borderRadius": 50,
         "paddingBottom": 8,
         "paddingLeft": 12,

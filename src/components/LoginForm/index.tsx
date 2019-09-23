@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { KeyboardAvoidingView, Platform, ScrollView, TextInput, View } from 'react-native';
 import { Button } from 'react-native-elements';
+
+import spacing from '../../constants/spacing';
+import { InputGroupEmail } from '../InputGroup/email';
+import { InputGroupPassword } from '../InputGroup/password';
 import styles from './styles';
 
-interface Props {
+export interface Props {
   email: string;
   password: string;
   isLoading: boolean;
@@ -12,8 +16,8 @@ interface Props {
   onPressForgotPassword(): void;
 }
 
-export const LoginForm: React.FC<Props> = React.memo(({ email, password, isLoading, onChangeText, onPressLogin, onPressForgotPassword }) => {
-  let passwordInput: TextInput | null = null;
+export const LoginForm: React.FC<Props> = React.memo(({ email, password, isLoading, onChangeText, onPressLogin, onPressForgotPassword  }) => {
+  const passwordInputRef = useRef<TextInput>(null);
 
   // Android and iOS both interact with this prop differently.
   // Android may behave better when given no behavior prop at all, whereas iOS is the opposite.
@@ -21,55 +25,39 @@ export const LoginForm: React.FC<Props> = React.memo(({ email, password, isLoadi
   const behaviorOption = Platform.OS === 'ios' ? 'padding' : undefined;
 
   return (
-    <KeyboardAvoidingView testID="LoginForm" style={styles.container} behavior={behaviorOption} enabled>
+    <KeyboardAvoidingView testID="LoginForm" style={styles.container} keyboardVerticalOffset={60} behavior={behaviorOption} enabled>
       <ScrollView style={styles.form} contentContainerStyle={styles.formContent} keyboardShouldPersistTaps={'handled'}>
-        <TextInput
+
+        <InputGroupEmail
           testID="LoginForm-TextInput-email"
-          placeholder="E-mail address"
-          autoCapitalize="none"
           value={email}
           onChangeText={text => onChangeText('email', text)}
-          textContentType="username"
-          onSubmitEditing={() => passwordInput && passwordInput.focus()}
+          onSubmitEditing={() => passwordInputRef.current && passwordInputRef.current.focus()}
           editable={!isLoading}
           style={styles.textField}
-          keyboardType="email-address"
           returnKeyType="next"
           clearButtonMode="always"
           autoFocus
-          blurOnSubmit={false}
         />
 
-        <TextInput
+        <InputGroupPassword
+          textInputRef={passwordInputRef}
           testID="LoginForm-TextInput-password"
-          ref={input => {
-            passwordInput = input;
-          }}
-          placeholder="Password"
-          autoCapitalize="none"
-          secureTextEntry
           value={password}
-          onChangeText={text => onChangeText('password', text)}
+          onChangeText={(text: string) => onChangeText('password', text)}
           onSubmitEditing={() => onPressLogin()}
           editable={!isLoading}
-          textContentType="password"
-          style={styles.textField}
           returnKeyType="done"
-          clearButtonMode="always"
-          blurOnSubmit={false}
         />
 
-        <View>
+        <View style={{ marginTop: spacing.default }}>
           <Button
             testID="LoginForm-Button-login"
             title="Login"
             loading={isLoading}
             onPress={onPressLogin}
             disabled={isLoading}
-            // buttonStyle={styles.buttonStyle}
-            // disabledStyle={styles.buttonStyle}
             activeOpacity={1}
-            // titleStyle={styles.buttonTitleStyle}
           />
           <Button testID="LoginForm-Button-forgot-password" title="Forgot password?" type="clear" onPress={onPressForgotPassword} />
         </View>

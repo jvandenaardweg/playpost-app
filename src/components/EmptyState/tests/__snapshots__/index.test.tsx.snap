@@ -51,7 +51,6 @@ exports[`EmptyState basic rendering should render correctly 1`] = `
             "lineHeight": 23,
           },
           Object {
-            "color": "#222222",
             "marginBottom": 14,
             "paddingLeft": 20,
             "paddingRight": 20,
@@ -118,7 +117,6 @@ exports[`EmptyState full rendering should render correctly 1`] = `
             "lineHeight": 23,
           },
           Object {
-            "color": "#222222",
             "marginBottom": 14,
             "paddingLeft": 20,
             "paddingRight": 20,

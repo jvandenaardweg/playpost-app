@@ -1,9 +1,9 @@
-const tintColor = '#037DE2';
+const tintColor = '#0066FF'; // newer blue since 23-09-2019
 const tintColorLight = '#D9E9FD';
 const tintColorDark = '#004A87';
 const black = '#000000';
 const grayDarkest = '#222222';
-const grayDarker = '#444444';
+const grayDarker = '#555555';
 const grayDark = '#AAAAAA';
 const gray = '#C5C5C5';
 const grayLight = '#e5e5e5';
@@ -51,6 +51,7 @@ export default {
   paragraphDefault: grayDarkest,
   paragraphGrayed: grayDarkest,
   borderDefault: grayLight,
+  textLead: grayDarker,
 
   controlButtonDefault: white,
   controlButtonActive: tintColor,

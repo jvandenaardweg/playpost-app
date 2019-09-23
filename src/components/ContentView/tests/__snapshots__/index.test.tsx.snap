@@ -126,7 +126,7 @@ exports[`ContentView basic rendering should render correctly 1`] = `
           }
 
           .meta-header a {
-            color: #037DE2;
+            color: #0066FF;
           }
 
           .image-header {

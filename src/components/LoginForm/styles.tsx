@@ -10,8 +10,8 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: spacing.default,
-    backgroundColor: colors.appBackground
+    backgroundColor: colors.white,
+    paddingHorizontal: spacing.large
   },
   form: {
     width: '100%'
@@ -19,7 +19,8 @@ export default StyleSheet.create({
   formContent: {
     flex: 1,
     justifyContent: 'center',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    width: '100%'
   },
   textField: textInputStyle,
   errorContainer: {

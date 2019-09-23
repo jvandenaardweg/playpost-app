@@ -1,26 +1,29 @@
 import React from 'react';
 import { fireEvent, render, RenderAPI } from 'react-native-testing-library';
 
-import { LoginForm } from '../index';
+import { LoginForm, Props } from '../index';
 
+const onPressLoginHandler = jest.fn();
+const onChangeTextHandler = jest.fn();
+const onPressForgotPasswordHandler = jest.fn();
+
+const defaultProps: Props = {
+  onChangeText: onChangeTextHandler,
+  onPressLogin: onPressLoginHandler,
+  onPressForgotPassword: onPressForgotPasswordHandler,
+  email: '',
+  password: '',
+  isLoading: false
+}
 describe('LoginForm', () => {
   describe('rendering', () => {
     let wrapper: RenderAPI;
-    const onPressLoginHandler = jest.fn();
-    const onChangeTextHandler = jest.fn();
-    const onPressForgotPasswordHandler = jest.fn();
 
     beforeEach(() => {
-      wrapper = render(
-        <LoginForm
-          onChangeText={onChangeTextHandler}
-          onPressLogin={onPressLoginHandler}
-          onPressForgotPassword={onPressForgotPasswordHandler}
-          email=""
-          password=""
-          isLoading={false}
-        />
-      );
+      const props = {
+        ...defaultProps
+      }
+      wrapper = render(<LoginForm {...props} />);
     });
 
     it('should render correctly', () => {
@@ -30,21 +33,12 @@ describe('LoginForm', () => {
 
   describe('interacting', () => {
     let wrapper: RenderAPI;
-    const onPressLoginHandler = jest.fn();
-    const onChangeTextHandler = jest.fn();
-    const onPressForgotPasswordHandler = jest.fn();
 
     beforeEach(() => {
-      wrapper = render(
-        <LoginForm
-          onChangeText={onChangeTextHandler}
-          onPressLogin={onPressLoginHandler}
-          onPressForgotPassword={onPressForgotPasswordHandler}
-          email=""
-          password=""
-          isLoading={false}
-        />
-      );
+      const props = {
+        ...defaultProps
+      }
+      wrapper = render(<LoginForm {...props} />);
     });
 
     it('should fire onPressLogin when the login button is pressed', () => {
@@ -74,16 +68,12 @@ describe('LoginForm', () => {
     });
 
     it('should disable the signup button if isLoading is true', () => {
-      wrapper.update(
-        <LoginForm
-          onChangeText={onChangeTextHandler}
-          onPressLogin={onPressLoginHandler}
-          onPressForgotPassword={onPressForgotPasswordHandler}
-          email=""
-          password=""
-          isLoading={true}
-        />
-      );
+      const props = {
+        ...defaultProps,
+        isLoading: true
+      }
+
+      wrapper.update(<LoginForm {...props} />);
 
       expect(wrapper.getByTestId('LoginForm-Button-login').props.disabled).toBe(true);
     });

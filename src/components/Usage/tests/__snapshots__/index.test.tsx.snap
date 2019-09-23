@@ -14,7 +14,7 @@ exports[`Usage rendering should render correctly 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#037DE2",
+        "backgroundColor": "#0066FF",
         "borderRadius": 8,
         "marginBottom": 0,
         "padding": 20,

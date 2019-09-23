@@ -1,9 +1,9 @@
 import React from 'react';
 import { Alert } from 'react-native';
-import { NavigationInjectedProps, NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
+import { NavigationInjectedProps, NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions, SafeAreaView } from 'react-navigation';
 import { connect } from 'react-redux';
 
-import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_UPDATE_PASSWORD_DIFF_VALIDATION_FAIL, ALERT_TITLE_ERROR } from '../../constants/messages';
+import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_TITLE_ERROR } from '../../constants/messages';
 
 import { UpdatePasswordForm } from '../../components/UpdatePasswordForm';
 
@@ -19,7 +19,6 @@ interface State {
   isLoading: boolean;
   isSuccess: boolean;
   password: string;
-  passwordValidation: string;
   validationError: string;
 }
 
@@ -42,7 +41,6 @@ export class UpdatePasswordScreenContainer extends React.PureComponent<Props, St
     isLoading: false,
     isSuccess: false,
     password: '',
-    passwordValidation: '',
     validationError: '',
   };
 
@@ -63,17 +61,13 @@ export class UpdatePasswordScreenContainer extends React.PureComponent<Props, St
   }
 
   handleOnPressUpdatePassword = async () => {
-    const { password, passwordValidation, isSuccess } = this.state;
+    const { password, isSuccess } = this.state;
     const { isConnected } = this.context;
 
     if (!isConnected) { return Alert.alert(ALERT_TITLE_ERROR, ALERT_GENERIC_INTERNET_REQUIRED); }
 
     // Just navigate back to the settings screen
     if (isSuccess) { return this.props.navigation.navigate('Settings'); }
-
-    if (password !== passwordValidation) {
-      return Alert.alert(ALERT_TITLE_ERROR, ALERT_SETTINGS_UPDATE_PASSWORD_DIFF_VALIDATION_FAIL);
-    }
 
     this.setState({ isLoading: true }, async () => {
       try {
@@ -91,22 +85,22 @@ export class UpdatePasswordScreenContainer extends React.PureComponent<Props, St
 
   handleOnChangeText = (field: 'password' | 'passwordValidation', value: string) => {
     if (field === 'password') { this.setState({ password: value }); }
-    if (field === 'passwordValidation') { this.setState({ passwordValidation: value }); }
   }
 
   render() {
-    const { password, passwordValidation, isLoading, isSuccess } = this.state;
+    const { password, isLoading, isSuccess } = this.state;
 
     return (
       <InteractionManaged>
-        <UpdatePasswordForm
-          password={password}
-          passwordValidation={passwordValidation}
-          isLoading={isLoading}
-          isSuccess={isSuccess}
-          onChangeText={this.handleOnChangeText}
-          onPressUpdatePassword={this.handleOnPressUpdatePassword}
-        />
+        <SafeAreaView style={{ flex: 1 }}>
+          <UpdatePasswordForm
+            password={password}
+            isLoading={isLoading}
+            isSuccess={isSuccess}
+            onChangeText={this.handleOnChangeText}
+            onPressUpdatePassword={this.handleOnPressUpdatePassword}
+          />
+        </SafeAreaView>
       </InteractionManaged>
     );
   }

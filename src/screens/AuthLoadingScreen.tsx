@@ -1,11 +1,13 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import NetInfo from '@react-native-community/netinfo';
 import React from 'react';
+import { StatusBar } from 'react-native';
 import RNFS from 'react-native-fs';
 import { NavigationRoute, NavigationScreenProp } from 'react-navigation';
 
 import { persistor, store } from '../store';
 
+import colors from '../constants/colors';
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 import { setAuthToken } from '../reducers/auth';
 import * as keychain from '../utils/keychain';
@@ -18,6 +20,9 @@ interface Props {
 export class AuthLoadingScreen extends React.PureComponent<Props> {
   componentDidMount() {
     this.bootstrapAsync();
+
+    StatusBar.setBarStyle('dark-content');
+    StatusBar.setBackgroundColor(colors.white)
   }
 
   // Upon load of the app, do the following...

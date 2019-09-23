@@ -26,7 +26,7 @@ exports[`ButtonUpgrade rendering should render correctly 1`] = `
           "height": 28,
         },
         Object {
-          "backgroundColor": "#037DE2",
+          "backgroundColor": "#0066FF",
         },
       ]
     }
@@ -44,7 +44,7 @@ exports[`ButtonUpgrade rendering should render correctly 1`] = `
             "paddingRight": 12,
           },
           Object {
-            "backgroundColor": "#037DE2",
+            "backgroundColor": "#0066FF",
           },
         ]
       }

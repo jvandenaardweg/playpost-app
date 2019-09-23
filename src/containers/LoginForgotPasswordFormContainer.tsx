@@ -28,6 +28,10 @@ class LoginForgotPasswordFormContainerComponent extends React.PureComponent<Prop
 
   componentDidMount(): void {
     this.props.navigation.setParams({ handleOnClose: this.handleOnClose });
+
+    this.setState({
+      email: this.props.navigation.getParam('email', '')
+    })
   }
 
   handleOnClose = () => {
@@ -38,14 +42,14 @@ class LoginForgotPasswordFormContainerComponent extends React.PureComponent<Prop
     if (field === 'email') { this.setState({ email: value }); }
   }
 
-  handleOnPressResetPasswordCode = () => this.props.navigation.navigate('login/reset-password', { resetPasswordToken: '' });
+  handleOnPressResetPasswordCode = () => this.props.navigation.navigate('login/reset-password', { resetPasswordToken: '', email: this.state.email });
 
   handleOnPressResetPassword = () => {
     const { email } = this.state;
     return this.setState({ isLoading: true }, async () => {
       try {
         await this.props.postRequestResetPasswordToken(email);
-        this.setState({ isSuccess: true }, () => this.props.navigation.navigate('login/reset-password', { resetPasswordToken: '' }));
+        this.setState({ isSuccess: true }, () => this.props.navigation.navigate('login/reset-password', { resetPasswordToken: '', email }));
       } catch (err) {
         return err;
       } finally {

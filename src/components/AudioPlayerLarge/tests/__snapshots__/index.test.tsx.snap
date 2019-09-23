@@ -151,7 +151,7 @@ exports[`AudioPlayerLarge rendering should render correctly 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "#444444",
+              "backgroundColor": "#555555",
               "borderRadius": 32,
               "height": 32,
               "justifyContent": "center",

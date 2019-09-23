@@ -45,7 +45,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   "marginBottom": 12,
                   "marginTop": 12,
                   "padding": 12,
-                  "shadowColor": "#000",
+                  "shadowColor": "#000000",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 0,
@@ -365,7 +365,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   "marginBottom": 12,
                   "marginTop": 12,
                   "padding": 12,
-                  "shadowColor": "#000",
+                  "shadowColor": "#000000",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 0,
@@ -714,7 +714,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   "marginBottom": 12,
                   "marginTop": 12,
                   "padding": 12,
-                  "shadowColor": "#000",
+                  "shadowColor": "#000000",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 0,
@@ -1063,7 +1063,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   "marginBottom": 12,
                   "marginTop": 12,
                   "padding": 12,
-                  "shadowColor": "#000",
+                  "shadowColor": "#000000",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 0,
@@ -1471,7 +1471,7 @@ Premium or Unlimited
                     "fontSize": 34,
                   },
                   Object {
-                    "color": "#037DE2",
+                    "color": "#0066FF",
                     "marginLeft": 8,
                     "marginRight": 12,
                     "width": 48,
@@ -1556,7 +1556,7 @@ Premium or Unlimited
                     "fontSize": 34,
                   },
                   Object {
-                    "color": "#037DE2",
+                    "color": "#0066FF",
                     "marginLeft": 8,
                     "marginRight": 12,
                     "width": 48,
@@ -1641,7 +1641,7 @@ Premium or Unlimited
                     "fontSize": 34,
                   },
                   Object {
-                    "color": "#037DE2",
+                    "color": "#0066FF",
                     "marginLeft": 8,
                     "marginRight": 12,
                     "width": 48,
@@ -1726,7 +1726,7 @@ Premium or Unlimited
                     "fontSize": 28,
                   },
                   Object {
-                    "color": "#037DE2",
+                    "color": "#0066FF",
                     "marginLeft": 8,
                     "marginRight": 12,
                     "width": 48,

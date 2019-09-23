@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { KeyboardAvoidingView, Platform, ScrollView, TextInput, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import styles from './styles';
 
 import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../../constants/urls';
+import { InputGroupEmail } from '../InputGroup/email';
+import { InputGroupPassword } from '../InputGroup/password';
 import { Text } from '../Text';
 
-interface Props {
+export interface Props {
   email: string;
   password: string;
   isLoading: boolean;
@@ -16,7 +18,7 @@ interface Props {
 }
 
 export const SignupForm: React.FC<Props> = React.memo(({ onChangeText, onPressSignup, onPressOpenUrl, email, password, isLoading }) => {
-  let passwordInput: TextInput | null = null;
+  const passwordInputRef = useRef<TextInput>(null);
 
   // Android and iOS both interact with this prop differently.
   // Android may behave better when given no behavior prop at all, whereas iOS is the opposite.
@@ -24,42 +26,28 @@ export const SignupForm: React.FC<Props> = React.memo(({ onChangeText, onPressSi
   const behaviorOption = Platform.OS === 'ios' ? 'padding' : undefined;
 
   return (
-    <KeyboardAvoidingView testID="signup-form" style={styles.container} behavior={behaviorOption} keyboardVerticalOffset={80} enabled>
+    <KeyboardAvoidingView testID="signup-form" style={styles.container} behavior={behaviorOption} keyboardVerticalOffset={60} enabled>
       <ScrollView style={styles.form} contentContainerStyle={styles.formContent} keyboardShouldPersistTaps={'handled'}>
-        <TextInput
+
+        <InputGroupEmail
           testID="SignupForm-TextInput-email"
-          placeholder="E-mail address"
-          autoCapitalize="none"
           value={email}
           onChangeText={text => onChangeText('email', text)}
-          textContentType="username"
-          onSubmitEditing={() => passwordInput && passwordInput.focus()}
+          onSubmitEditing={() => passwordInputRef.current && passwordInputRef.current.focus()}
           editable={!isLoading}
-          style={styles.textField}
-          keyboardType="email-address"
           returnKeyType="next"
           clearButtonMode="always"
-          blurOnSubmit={false}
           autoFocus
         />
 
-        <TextInput
+        <InputGroupPassword
+          textInputRef={passwordInputRef}
           testID="SignupForm-TextInput-password"
-          ref={input => {
-            passwordInput = input;
-          }}
-          placeholder="Your password"
-          autoCapitalize="none"
-          secureTextEntry
           value={password}
-          onChangeText={text => onChangeText('password', text)}
+          onChangeText={(text: string) => onChangeText('password', text)}
           onSubmitEditing={() => onPressSignup()}
           editable={!isLoading}
-          textContentType="password"
-          style={styles.textField}
           returnKeyType="done"
-          clearButtonMode="always"
-          blurOnSubmit={false}
         />
 
         <View>

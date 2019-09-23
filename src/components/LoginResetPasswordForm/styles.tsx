@@ -10,8 +10,8 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: spacing.default,
-    backgroundColor: colors.appBackground
+    paddingHorizontal: spacing.large,
+    // backgroundColor: colors.appBackground
   },
   form: {
     width: '100%'
@@ -49,7 +49,7 @@ export default StyleSheet.create({
     marginBottom: spacing.large
   },
   subtitle: {
-    color: colors.paragraphDefault,
+    color: colors.textLead,
     marginBottom: spacing.large
   }
 });

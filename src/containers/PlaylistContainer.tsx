@@ -206,7 +206,7 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
 
       return (
         <EmptyState
-          title="Nothing in your playlist, yet"
+          title="Nothing in your playlist... yet!"
           description={['Easily add articles to your playlist by using the share icon in every app on your phone.']}
           actionButtonLabel="Show instructions"
           actionButtonOnPress={() => this.handleOnShowVideo()}

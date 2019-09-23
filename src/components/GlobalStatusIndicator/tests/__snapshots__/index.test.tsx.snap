@@ -18,7 +18,7 @@ exports[`GlobalStatusIndicator rendering should render correctly 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "backgroundColor": "#037DE2",
+        "backgroundColor": "#0066FF",
         "borderRadius": 100,
         "flexDirection": "row",
         "height": 38,

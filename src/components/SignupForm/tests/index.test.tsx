@@ -2,11 +2,20 @@ import React from 'react';
 import { fireEvent, render, RenderAPI } from 'react-native-testing-library';
 
 import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../../../constants/urls';
-import { SignupForm } from '../index';
+import { Props, SignupForm } from '../index';
 
 const onPressSignupHandler = jest.fn();
 const onChangeTextHandler = jest.fn();
 const onPressOpenUrlHandler = jest.fn();
+
+const defaultProps: Props = {
+  onChangeText: onChangeTextHandler,
+  onPressSignup: onPressSignupHandler,
+  onPressOpenUrl: onPressOpenUrlHandler,
+  email: '',
+  password: '',
+  isLoading: false
+}
 
 describe('SignupForm', () => {
   describe('rendering', () => {
@@ -16,16 +25,11 @@ describe('SignupForm', () => {
       jest.resetAllMocks();
       jest.restoreAllMocks();
 
-      wrapper = render(
-        <SignupForm
-          onChangeText={onChangeTextHandler}
-          onPressSignup={onPressSignupHandler}
-          onPressOpenUrl={onPressOpenUrlHandler}
-          email=""
-          password=""
-          isLoading={false}
-        />
-      );
+      const props = {
+        ...defaultProps
+      }
+
+      wrapper = render(<SignupForm {...props} />);
     });
 
     it('should render correctly', () => {
@@ -40,16 +44,11 @@ describe('SignupForm', () => {
       jest.resetAllMocks();
       jest.restoreAllMocks();
 
-      wrapper = render(
-        <SignupForm
-          onChangeText={onChangeTextHandler}
-          onPressSignup={onPressSignupHandler}
-          onPressOpenUrl={onPressOpenUrlHandler}
-          email=""
-          password=""
-          isLoading={false}
-        />
-      );
+      const props = {
+        ...defaultProps
+      }
+
+      wrapper = render(<SignupForm {...props} />);
     });
 
     it('should fire onPressSignup when the signup button is pressed', () => {
@@ -86,16 +85,12 @@ describe('SignupForm', () => {
     });
 
     it('should disable the signup button if isLoading is true', () => {
-      wrapper.update(
-        <SignupForm
-          onChangeText={onChangeTextHandler}
-          onPressSignup={onPressSignupHandler}
-          onPressOpenUrl={onPressOpenUrlHandler}
-          email=""
-          password=""
-          isLoading={true}
-        />
-      );
+      const props = {
+        ...defaultProps,
+        isLoading: true
+      }
+
+      wrapper.update(<SignupForm {...props} />);
 
       expect(wrapper.getByTestId('SignupForm-Button-signup').props.disabled).toBe(true);
     });

@@ -96,7 +96,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     borderRadius: layout.borderRadius.small,
     backgroundColor: colors.white,
-    shadowColor: '#000',
+    shadowColor: colors.black,
     shadowOffset: {
       width: 0,
       height: 1

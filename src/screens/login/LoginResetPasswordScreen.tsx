@@ -1,5 +1,6 @@
 import React from 'react';
-import { NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
+import { StatusBar } from 'react-native';
+import { NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions, SafeAreaView } from 'react-navigation';
 import { LoginResetPasswordFormContainer } from '../../containers/LoginResetPasswordFormContainer';
 
 interface Props {
@@ -9,14 +10,17 @@ interface Props {
 export class LoginResetPasswordScreen extends React.PureComponent<Props> {
   static navigationOptions = (): NavigationStackScreenOptions => {
     return {
-      title: 'Reset your password',
-      // header: null
+      title: 'Reset your password'
     };
   }
 
   render() {
     return (
-      <LoginResetPasswordFormContainer />
+      <SafeAreaView style={{ flex: 1 }}>
+        <StatusBar barStyle="dark-content" />
+        <LoginResetPasswordFormContainer />
+      </SafeAreaView>
+
     );
   }
 }

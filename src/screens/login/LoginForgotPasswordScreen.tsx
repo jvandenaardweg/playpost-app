@@ -1,5 +1,6 @@
 import React from 'react';
-import { NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
+import { StatusBar } from 'react-native';
+import { NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions, SafeAreaView } from 'react-navigation';
 import { LoginForgotPasswordFormContainer } from '../../containers/LoginForgotPasswordFormContainer';
 
 interface Props {
@@ -9,14 +10,16 @@ interface Props {
 export class LoginForgotPasswordScreen extends React.PureComponent<Props> {
   static navigationOptions = (): NavigationStackScreenOptions => {
     return {
-      title: 'Forgot your password?',
-      // header: null
+      title: 'Forgot password?'
     };
   }
 
   render() {
     return (
-      <LoginForgotPasswordFormContainer />
+      <SafeAreaView style={{ flex: 1 }}>
+        <StatusBar barStyle="dark-content" />
+        <LoginForgotPasswordFormContainer />
+      </SafeAreaView>
     );
   }
 }

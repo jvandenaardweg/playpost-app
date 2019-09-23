@@ -108,7 +108,7 @@ exports[`TopFilter rendering should render correctly 1`] = `
                         "lineHeight": 16,
                       },
                       Object {
-                        "color": "#037DE2",
+                        "color": "#0066FF",
                       },
                     ]
                   }
@@ -128,7 +128,7 @@ exports[`TopFilter rendering should render correctly 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#037DE2",
+                          "color": "#0066FF",
                           "fontSize": 10,
                         },
                         undefined,

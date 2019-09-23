@@ -11,7 +11,7 @@ export default StyleSheet.create({
     padding: spacing.default,
     borderRadius: layout.borderRadius.large,
     width: '100%',
-    shadowColor: '#000',
+    shadowColor: colors.black,
     shadowOffset: {
       width: 0,
       height: 2,

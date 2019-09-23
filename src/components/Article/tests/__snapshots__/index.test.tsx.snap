@@ -245,7 +245,7 @@ exports[`Article active rendering should render active correctly 1`] = `
                     "width": 32,
                   },
                   Object {
-                    "backgroundColor": "#037DE2",
+                    "backgroundColor": "#0066FF",
                   },
                 ]
               }
@@ -302,7 +302,7 @@ exports[`Article active rendering should render active correctly 1`] = `
                   "textAlign": "center",
                 },
                 Object {
-                  "backgroundColor": "#037DE2",
+                  "backgroundColor": "#0066FF",
                   "color": "#ffffff",
                 },
               ],
@@ -2215,7 +2215,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
                     "width": 32,
                   },
                   Object {
-                    "backgroundColor": "#037DE2",
+                    "backgroundColor": "#0066FF",
                   },
                 ]
               }
@@ -2270,7 +2270,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
                   "textAlign": "center",
                 },
                 Object {
-                  "backgroundColor": "#037DE2",
+                  "backgroundColor": "#0066FF",
                   "color": "#ffffff",
                 },
               ],

@@ -9,8 +9,7 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: spacing.default,
-    backgroundColor: colors.appBackground
+    padding: spacing.large
   },
   form: {
     width: '100%'

@@ -71,7 +71,7 @@ export class APIErrorAlertContainerComponent extends React.Component<Props, Stat
     }
 
     // Do not show alerts when not connected to the internet
-    if (isConnected) {
+    if (!isConnected) {
       return;
     }
 
@@ -142,7 +142,6 @@ export class APIErrorAlertContainerComponent extends React.Component<Props, Stat
         );
       });
     }
-
     if (errorRequestResetPasswordToken && prevProps.errorRequestResetPasswordToken !== errorRequestResetPasswordToken) {
       return this.setState({ hasOpenAlert: true }, () => {
         return Alert.alert(

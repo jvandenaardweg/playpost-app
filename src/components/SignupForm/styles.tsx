@@ -7,8 +7,7 @@ import textInputStyle from '../../constants/text-input';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    padding: spacing.default,
-    backgroundColor: colors.appBackground
+    paddingHorizontal: spacing.large
   },
   form: {
     width: '100%'

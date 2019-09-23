@@ -1,6 +1,6 @@
 import React from 'react';
 import { Alert } from 'react-native';
-import { NavigationInjectedProps, withNavigation } from 'react-navigation';
+import { NavigationEventSubscription, NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 
 import { LoginForm } from '../components/LoginForm';
@@ -8,6 +8,7 @@ import { LoginForm } from '../components/LoginForm';
 import { getAuthToken } from '../reducers/auth';
 
 import { ALERT_LOGIN_SAVE_TOKEN_FAIL, ALERT_TITLE_ERROR } from '../constants/messages';
+import NavigationService from '../navigation/NavigationService';
 import { RootState } from '../reducers';
 import { selectAuthenticationToken, selectAuthError } from '../selectors/auth';
 import * as keychain from '../utils/keychain';
@@ -30,8 +31,29 @@ class LoginFormContainerComponent extends React.PureComponent<Props, State> {
     error: null
   };
 
+  didFocusSubscription: NavigationEventSubscription | null = null;
+
   componentDidMount() {
-    this.props.navigation.setParams({ handleOnClose: this.handleOnClose });
+    this.didFocusSubscription = this.props.navigation.addListener(
+      'didFocus',
+      () => {
+        const emailFromParam = this.props.navigation.getParam('email', '')
+
+        if (emailFromParam) {
+          this.setState({
+            email: emailFromParam
+          })
+        }
+
+      }
+    );
+  }
+
+  componentWillUnmount() {
+    if (this.didFocusSubscription) {
+      this.didFocusSubscription.remove()
+      this.didFocusSubscription = null;
+    }
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -52,7 +74,7 @@ class LoginFormContainerComponent extends React.PureComponent<Props, State> {
   saveToken = async (token: string) => {
     try {
       await keychain.setToken(token);
-      this.props.navigation.navigate('App');
+      NavigationService.navigate('App');
     } catch (err) {
       Alert.alert(ALERT_TITLE_ERROR, ALERT_LOGIN_SAVE_TOKEN_FAIL, [
         {
@@ -65,10 +87,6 @@ class LoginFormContainerComponent extends React.PureComponent<Props, State> {
         }
       ]);
     }
-  }
-
-  handleOnClose = () => {
-    this.props.navigation.goBack();
   }
 
   handleOnPressLogin = async () => {
@@ -84,7 +102,7 @@ class LoginFormContainerComponent extends React.PureComponent<Props, State> {
     if (field === 'password') { this.setState({ password: value }); }
   }
 
-  handleOnPressForgotPassword = () => this.props.navigation.navigate('login/forgot-password');
+  handleOnPressForgotPassword = () => NavigationService.navigate('login/forgot-password', { email: this.state.email });
 
   render() {
     const { email, password, isLoading } = this.state;

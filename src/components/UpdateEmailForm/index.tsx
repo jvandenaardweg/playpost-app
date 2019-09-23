@@ -1,6 +1,7 @@
 import React from 'react';
-import { KeyboardAvoidingView, Platform, TextInput, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, View } from 'react-native';
 import { Button } from 'react-native-elements';
+import { InputGroupEmail } from '../InputGroup/email';
 import styles from './styles';
 
 interface Props {
@@ -21,33 +22,26 @@ export const UpdateEmailForm: React.FC<Props> = React.memo(({ onChangeText, onPr
   return (
     <KeyboardAvoidingView testID="UpdateEmailForm" style={styles.container} behavior={behaviorOption} keyboardVerticalOffset={100} enabled>
       <View style={styles.form}>
-        <TextInput
+        <InputGroupEmail
           testID="UpdateEmailForm-TextInput-email"
-          placeholder="Your new e-mail address"
-          autoCapitalize="none"
           value={email}
           onChangeText={text => onChangeText('email', text)}
           onSubmitEditing={() => onPressUpdateEmail()}
-          textContentType="emailAddress"
-          style={styles.textField}
           editable={!isLoading}
+          style={styles.textField}
           returnKeyType="done"
           clearButtonMode="always"
-          blurOnSubmit={false}
+          autoFocus
         />
 
         <View>
           <Button
             testID="UpdateEmailForm-Button-update"
-            title={isSuccess ? 'Update success!' : 'Update e-mail address'}
+            title={isSuccess ? 'Update success!' : 'Save new e-mail address'}
             loading={isLoading}
             onPress={onPressUpdateEmail}
             disabled={isLoading || isSuccess}
-            buttonStyle={isSuccess ? styles.buttonStyleSuccess : styles.buttonStyle}
-            titleStyle={isSuccess ? styles.buttonTitleStyleSuccess : {}}
             activeOpacity={1}
-            disabledStyle={isSuccess ? styles.buttonStyleSuccess : styles.buttonStyle}
-            disabledTitleStyle={isSuccess ? styles.buttonTitleStyleSuccess : styles.buttonStyle}
           />
         </View>
       </View>

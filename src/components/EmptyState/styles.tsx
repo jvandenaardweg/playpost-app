@@ -24,7 +24,6 @@ export default StyleSheet.create({
   },
   description: {
     textAlign: 'center',
-    color: colors.paragraphGrayed,
     paddingRight: spacing.large,
     paddingLeft: spacing.large,
     marginBottom: spacing.medium

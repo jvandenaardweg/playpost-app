@@ -28,7 +28,7 @@ exports[`ButtonReload rendering should render correctly 1`] = `
     style={
       Array [
         Object {
-          "color": "#037DE2",
+          "color": "#0066FF",
           "fontSize": 20,
         },
         undefined,

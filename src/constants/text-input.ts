@@ -5,16 +5,14 @@ import layout from './layout';
 import spacing from './spacing';
 
 const textInput: TextStyle = {
-  height: 54,
-  backgroundColor: colors.white,
-  borderWidth: 1,
-  borderColor: colors.borderDefault,
-  borderRadius: layout.borderRadius.tiny,
-  paddingLeft: spacing.default,
-  paddingRight: spacing.default,
-  marginBottom: spacing.small,
+  height: 50,
+  backgroundColor: colors.grayLightest,
+  borderRadius: layout.borderRadius.small,
+  paddingLeft: spacing.medium,
+  paddingRight: spacing.medium,
   alignItems: 'center',
-  ...textPresets['callout']
+  ...textPresets['lead'],
+  lineHeight: textPresets['lead'].fontSize
 };
 
 export default textInput;

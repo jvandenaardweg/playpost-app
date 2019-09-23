@@ -121,6 +121,7 @@ exports[`CustomSectionList basic rendering should render correctly 1`] = `
                 style={
                   Object {
                     "backgroundColor": "transparent",
+                    "color": "#000000",
                     "fontFamily": "Inter-Regular",
                     "fontSize": 17,
                     "lineHeight": 23,

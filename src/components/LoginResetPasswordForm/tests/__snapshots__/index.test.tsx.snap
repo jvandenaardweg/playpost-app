@@ -7,10 +7,9 @@ exports[`LoginResetPasswordForm rendering should render correctly 1`] = `
     Array [
       Object {
         "alignItems": "center",
-        "backgroundColor": "#EEEEEE",
         "flex": 1,
         "justifyContent": "center",
-        "padding": 12,
+        "paddingHorizontal": 20,
       },
       Object {
         "paddingBottom": 0,
@@ -41,11 +40,11 @@ exports[`LoginResetPasswordForm rendering should render correctly 1`] = `
             Object {
               "color": "#000000",
               "fontFamily": "Inter-Regular",
-              "fontSize": 17,
+              "fontSize": 15,
               "lineHeight": 23,
             },
             Object {
-              "color": "#222222",
+              "color": "#555555",
               "marginBottom": 20,
             },
           ]
@@ -53,68 +52,179 @@ exports[`LoginResetPasswordForm rendering should render correctly 1`] = `
       >
         Please check your e-mail's inbox for the password reset code and fill it in below.
       </Text>
-      <TextInput
-        autoCapitalize="characters"
-        autoFocus={false}
-        blurOnSubmit={false}
-        clearButtonMode="always"
-        editable={true}
-        keyboardType="default"
-        onChangeText={[Function]}
-        onSubmitEditing={[Function]}
-        placeholder="Reset password code, example: A6HC13"
-        returnKeyType="next"
+      <View
         style={
           Object {
-            "alignItems": "center",
-            "backgroundColor": "#ffffff",
-            "borderColor": "#e5e5e5",
-            "borderRadius": 4,
-            "borderWidth": 1,
-            "fontFamily": "Inter-Regular",
-            "fontSize": 16,
-            "height": 54,
-            "lineHeight": 21,
-            "marginBottom": 12,
-            "paddingLeft": 12,
-            "paddingRight": 12,
+            "marginBottom": 14,
           }
         }
-        testID="LoginResetPasswordForm-TextInput-reset-password-code"
-        textContentType="username"
-        value=""
-      />
-      <TextInput
-        autoCapitalize="none"
-        autoFocus={false}
-        blurOnSubmit={false}
-        clearButtonMode="always"
-        editable={true}
-        onChangeText={[Function]}
-        onSubmitEditing={[Function]}
-        placeholder="Your new password"
-        returnKeyType="done"
-        secureTextEntry={true}
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "Inter-SemiBold",
+                "fontSize": 15,
+                "lineHeight": 23,
+              },
+              Object {
+                "marginBottom": 4,
+              },
+            ]
+          }
+        >
+          Reset password code
+        </Text>
+        <TextInput
+          autoCapitalize="characters"
+          autoFocus={false}
+          blurOnSubmit={false}
+          clearButtonMode="always"
+          editable={true}
+          keyboardType="default"
+          onChangeText={[Function]}
+          onSubmitEditing={[Function]}
+          placeholder="A1B2C3"
+          returnKeyType="next"
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#EEEEEE",
+              "borderRadius": 6,
+              "fontFamily": "Inter-Regular",
+              "fontSize": 15,
+              "height": 50,
+              "lineHeight": 15,
+              "paddingLeft": 14,
+              "paddingRight": 14,
+            }
+          }
+          testID="LoginResetPasswordForm-TextInput-reset-password-code"
+          textContentType="username"
+          value=""
+        />
+      </View>
+      <View
         style={
           Object {
-            "alignItems": "center",
-            "backgroundColor": "#ffffff",
-            "borderColor": "#e5e5e5",
-            "borderRadius": 4,
-            "borderWidth": 1,
-            "fontFamily": "Inter-Regular",
-            "fontSize": 16,
-            "height": 54,
-            "lineHeight": 21,
-            "marginBottom": 12,
-            "paddingLeft": 12,
-            "paddingRight": 12,
+            "marginBottom": 14,
           }
         }
-        testID="LoginResetPasswordForm-TextInput-password"
-        textContentType="password"
-        value=""
-      />
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#EEEEEE",
+              "bottom": 0,
+              "height": 50,
+              "justifyContent": "center",
+              "position": "absolute",
+              "right": 4,
+              "width": 50,
+              "zIndex": 1,
+            }
+          }
+        >
+          <View
+            accessible={true}
+            clickable={true}
+            hitSlop={
+              Object {
+                "bottom": 10,
+                "left": 10,
+                "right": 10,
+                "top": 10,
+              }
+            }
+            isTVSelectable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+            testID="InputGroupPassword-TouchableOpacity-toggle-password-visible"
+          >
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": "black",
+                    "fontSize": 20,
+                  },
+                  Object {
+                    "height": 20,
+                    "width": 20,
+                  },
+                  Object {
+                    "fontFamily": "Feather",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {},
+                ]
+              }
+              testID="InputGroupPassword-TouchableOpacity-toggle-password-visible-icon"
+            >
+              
+            </Text>
+          </View>
+        </View>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "Inter-SemiBold",
+                "fontSize": 15,
+                "lineHeight": 23,
+              },
+              Object {
+                "marginBottom": 4,
+              },
+            ]
+          }
+        >
+          Password
+        </Text>
+        <TextInput
+          autoCapitalize="none"
+          autoFocus={false}
+          blurOnSubmit={false}
+          clearButtonMode="always"
+          editable={true}
+          onChangeText={[Function]}
+          onSubmitEditing={[Function]}
+          placeholder="Your super secret password"
+          returnKeyType="done"
+          secureTextEntry={true}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#EEEEEE",
+              "borderRadius": 6,
+              "fontFamily": "Inter-Regular",
+              "fontSize": 15,
+              "height": 50,
+              "lineHeight": 15,
+              "paddingLeft": 14,
+              "paddingRight": 14,
+            }
+          }
+          testID="LoginResetPasswordForm-TextInput-password"
+          textContentType="password"
+          value=""
+        />
+      </View>
       <View>
         <View
           style={
@@ -145,13 +255,12 @@ exports[`LoginResetPasswordForm rendering should render correctly 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "#000000",
+                  "backgroundColor": "#2089dc",
                   "borderColor": "#2089dc",
                   "borderRadius": 3,
                   "borderWidth": 0,
                   "flexDirection": "row",
                   "justifyContent": "center",
-                  "marginBottom": 12,
                   "padding": 8,
                 }
               }
@@ -167,7 +276,7 @@ exports[`LoginResetPasswordForm rendering should render correctly 1`] = `
                   }
                 }
               >
-                Save my new password
+                Save new password
               </Text>
             </View>
           </View>

@@ -73,7 +73,7 @@ class LoginResetPasswordFormContainerComponent extends React.PureComponent<Props
 
         // Redirect the user to the login screen
         this.timeout = setTimeout(() => {
-          this.props.navigation.navigate('login');
+          this.props.navigation.navigate('login', { email: this.props.navigation.getParam('email', '') });
         }, 2000);
 
       } catch (err) {

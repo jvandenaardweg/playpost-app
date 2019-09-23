@@ -52,7 +52,9 @@ export function authReducer(state = initialState, action: any): AuthState {
       return {
         ...state,
         isLoading: true,
-        error: ''
+        error: '',
+        errorRequestResetPasswordToken: '',
+        errorUpdatePassword: ''
       };
 
     case POST_AUTH_SUCCESS:
@@ -60,7 +62,9 @@ export function authReducer(state = initialState, action: any): AuthState {
         ...state,
         isLoading: false,
         token: action.payload.data.token,
-        error: ''
+        error: '',
+        errorRequestResetPasswordToken: '',
+        errorUpdatePassword: ''
       };
 
     case POST_AUTH_FAIL:
@@ -89,14 +93,18 @@ export function authReducer(state = initialState, action: any): AuthState {
       return {
         ...state,
         isLoadingResetPassword: true,
-        errorRequestResetPasswordToken: ''
+        error: '',
+        errorRequestResetPasswordToken: '',
+        errorUpdatePassword: ''
       };
 
     case POST_REQUEST_RESET_PASSWORD_TOKEN_SUCCESS:
       return {
         ...state,
         isLoadingResetPassword: false,
-        errorRequestResetPasswordToken: ''
+        error: '',
+        errorRequestResetPasswordToken: '',
+        errorUpdatePassword: ''
       };
 
     case POST_REQUEST_RESET_PASSWORD_TOKEN_FAIL:
@@ -124,6 +132,8 @@ export function authReducer(state = initialState, action: any): AuthState {
       return {
         ...state,
         isLoadingUpdatePassword: true,
+        error: '',
+        errorRequestResetPasswordToken: '',
         errorUpdatePassword: ''
       };
 
@@ -131,6 +141,8 @@ export function authReducer(state = initialState, action: any): AuthState {
       return {
         ...state,
         isLoadingUpdatePassword: false,
+        error: '',
+        errorRequestResetPasswordToken: '',
         errorUpdatePassword: ''
       };
 

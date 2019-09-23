@@ -6,11 +6,11 @@ import layout from '../constants/layout';
 export const reactNativeElementsTheme: Theme = {
   Button: {
     containerStyle: {
-      borderRadius: layout.borderRadius.medium
+      borderRadius: layout.borderRadius.small
     },
     buttonStyle: {
       height: 50,
-      borderRadius: layout.borderRadius.medium
+      borderRadius: layout.borderRadius.small
     },
     titleStyle: {
       ...textPresets['bodyEmphasized']

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { KeyboardAvoidingView, Platform, ScrollView, TextInput, View } from 'react-native';
 import { Button } from 'react-native-elements';
 
+import { InputGroup } from '../InputGroup';
+import { InputGroupPassword } from '../InputGroup/password';
 import { Text } from '../Text';
 import styles from './styles';
 
@@ -16,7 +18,7 @@ interface Props {
 
 export const LoginResetPasswordForm: React.FC<Props> = React.memo(
   ({ password, resetPasswordToken, isLoading, isSuccess, onChangeText, onPressUpdatePassword }) => {
-    let passwordInput: TextInput | null = null;
+    const passwordInputRef = useRef<TextInput>(null);
 
     // Android and iOS both interact with this prop differently.
     // Android may behave better when given no behavior prop at all, whereas iOS is the opposite.
@@ -24,58 +26,47 @@ export const LoginResetPasswordForm: React.FC<Props> = React.memo(
     const behaviorOption = Platform.OS === 'ios' ? 'padding' : undefined;
 
     return (
-      <KeyboardAvoidingView testID="LoginResetPasswordForm" style={styles.container} behavior={behaviorOption} enabled>
+      <KeyboardAvoidingView testID="LoginResetPasswordForm" style={styles.container} keyboardVerticalOffset={60} behavior={behaviorOption} enabled>
         <ScrollView style={styles.form} contentContainerStyle={styles.formContent} keyboardShouldPersistTaps={'handled'}>
-          <Text style={styles.subtitle} preset="body">Please check your e-mail's inbox for the password reset code and fill it in below.</Text>
+          <Text style={styles.subtitle} preset="lead">Please check your e-mail's inbox for the password reset code and fill it in below.</Text>
 
-          <TextInput
-            testID="LoginResetPasswordForm-TextInput-reset-password-code"
-            placeholder="Reset password code, example: A6HC13"
-            autoCapitalize="characters"
-            value={resetPasswordToken}
-            onChangeText={text => onChangeText('resetPasswordToken', text)}
-            textContentType="username"
-            onSubmitEditing={() => passwordInput && passwordInput.focus()}
-            editable={!isLoading}
-            style={styles.textField}
-            keyboardType="default"
-            returnKeyType="next"
-            clearButtonMode="always"
-            autoFocus
-            blurOnSubmit={false}
-          />
+          <InputGroup label="Reset password code">
+            <TextInput
+              testID="LoginResetPasswordForm-TextInput-reset-password-code"
+              placeholder="A1B2C3"
+              autoCapitalize="characters"
+              value={resetPasswordToken}
+              onChangeText={text => onChangeText('resetPasswordToken', text)}
+              textContentType="username"
+              onSubmitEditing={() => passwordInputRef.current && passwordInputRef.current.focus()}
+              editable={!isLoading}
+              style={styles.textField}
+              keyboardType="default"
+              returnKeyType="next"
+              clearButtonMode="always"
+              autoFocus
+              blurOnSubmit={false}
+            />
+          </InputGroup>
 
-          <TextInput
+          <InputGroupPassword
+            textInputRef={passwordInputRef}
             testID="LoginResetPasswordForm-TextInput-password"
-            ref={input => {
-              passwordInput = input;
-            }}
-            placeholder="Your new password"
-            autoCapitalize="none"
-            secureTextEntry
             value={password}
-            onChangeText={text => onChangeText('password', text)}
+            onChangeText={(text: string) => onChangeText('password', text)}
             onSubmitEditing={() => onPressUpdatePassword()}
             editable={!isLoading}
-            textContentType="password"
-            style={styles.textField}
             returnKeyType="done"
-            clearButtonMode="always"
-            blurOnSubmit={false}
           />
 
           <View>
             <Button
               testID="LoginResetPasswordForm-Button-update-password"
-              title={isSuccess ? 'Successfully changed password!' : 'Save my new password'}
+              title={isSuccess ? 'Successfully changed password!' : 'Save new password'}
               loading={isLoading}
               onPress={onPressUpdatePassword}
               disabled={isLoading || !!isSuccess}
-              buttonStyle={isSuccess ? styles.buttonStyleSuccess : styles.buttonStyle}
-              titleStyle={isSuccess ? styles.buttonTitleStyleSuccess : {}}
               activeOpacity={1}
-              disabledStyle={isSuccess ? styles.buttonStyleSuccess : styles.buttonStyle}
-              disabledTitleStyle={isSuccess ? styles.buttonTitleStyleSuccess : styles.buttonStyle}
             />
           </View>
         </ScrollView>
