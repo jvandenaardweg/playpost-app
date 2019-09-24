@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputGroup rendering should render correctly 1`] = `
+<View
+  style={
+    Object {
+      "marginBottom": 14,
+    }
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "Inter-SemiBold",
+          "fontSize": 15,
+          "lineHeight": 23,
+        },
+        Object {
+          "marginBottom": 4,
+        },
+      ]
+    }
+    testID="InputGroup-Text-label"
+  >
+    E-mail address
+  </Text>
+  <TextInput
+    autoFocus={false}
+  />
+</View>
+`;

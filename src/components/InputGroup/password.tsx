@@ -7,15 +7,16 @@ import * as Icon from '../Icon';
 import { InputGroup } from './index';
 
 export interface Props extends TextInputProps {
+  label?: string;
   textInputRef?: React.RefObject<TextInput>
 }
 
-export const InputGroupPassword: React.FC<Props> = React.memo(({ textInputRef, ...rest }) => {
+export const InputGroupPassword: React.FC<Props> = React.memo(({ label, textInputRef, ...rest }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   return (
     <InputGroup
-      label="Password"
+      label={label ? label : 'Password'}
       RightElement={
         <TouchableOpacity
           onPress={() => setIsPasswordVisible(!isPasswordVisible)}

@@ -24,6 +24,7 @@ export const UpdatePasswordForm: React.FC<Props> = React.memo(({ onChangeText, o
       <View style={styles.form}>
 
         <InputGroupPassword
+          label="Your new password"
           testID="UpdatePasswordForm-TextInput-password"
           placeholder="Your new super secret password"
           value={password}

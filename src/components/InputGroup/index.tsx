@@ -16,11 +16,11 @@ export const InputGroup: React.FC<Props> = React.memo(({ label, children, RightE
   return (
     <View style={styles.container}>
       {RightElement && (
-        <View style={styles.rightElementContainer}>
+        <View style={styles.rightElementContainer} testID="InputGroup-View-right-element-container">
           {RightElement}
         </View>
       )}
-      {label ? <Text preset="leadEmphasized" style={{ marginBottom: spacing.nano }}>{label}</Text> : undefined}
+      {label ? <Text preset="leadEmphasized" style={{ marginBottom: spacing.nano }} testID="InputGroup-Text-label">{label}</Text> : undefined}
       {children}
     </View>
   )

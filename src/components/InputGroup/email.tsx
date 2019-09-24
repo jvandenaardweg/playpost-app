@@ -5,12 +5,13 @@ import textInput from '../../constants/text-input';
 import { InputGroup } from './index';
 
 export interface Props extends TextInputProps {
+  label?: string;
   textInputRef?: React.RefObject<TextInput>
 }
 
-export const InputGroupEmail: React.FC<Props> = React.memo(({ textInputRef, ...rest }) => {
+export const InputGroupEmail: React.FC<Props> = React.memo(({ label, textInputRef, ...rest }) => {
   return (
-    <InputGroup label="E-mail address">
+    <InputGroup label={label ? label : 'E-mail address'}>
       <TextInput
         ref={textInputRef}
         autoCapitalize="none"

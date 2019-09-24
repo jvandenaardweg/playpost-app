@@ -46,6 +46,7 @@ exports[`UpdatePasswordForm rendering should render correctly 1`] = `
             "zIndex": 1,
           }
         }
+        testID="InputGroup-View-right-element-container"
       >
         <View
           accessible={true}
@@ -113,8 +114,9 @@ exports[`UpdatePasswordForm rendering should render correctly 1`] = `
             },
           ]
         }
+        testID="InputGroup-Text-label"
       >
-        Password
+        Your new password
       </Text>
       <TextInput
         autoCapitalize="none"

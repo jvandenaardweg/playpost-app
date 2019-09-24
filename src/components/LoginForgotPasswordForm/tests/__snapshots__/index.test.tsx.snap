@@ -55,6 +55,7 @@ exports[`LoginForgotPasswordForm rendering should render correctly 1`] = `
               },
             ]
           }
+          testID="InputGroup-Text-label"
         >
           E-mail address
         </Text>

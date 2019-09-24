@@ -2,7 +2,6 @@ import AsyncStorage from '@react-native-community/async-storage';
 import NetInfo from '@react-native-community/netinfo';
 import React from 'react';
 import { StatusBar } from 'react-native';
-import RNFS from 'react-native-fs';
 import { NavigationRoute, NavigationScreenProp } from 'react-navigation';
 
 import { persistor, store } from '../store';
