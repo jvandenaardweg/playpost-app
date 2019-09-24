@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import NetInfo from '@react-native-community/netinfo';
 import React from 'react';
-import { StatusBar } from 'react-native';
+import { Platform, StatusBar } from 'react-native';
 import { NavigationRoute, NavigationScreenProp } from 'react-navigation';
 
 import { persistor, store } from '../store';
@@ -21,7 +21,10 @@ export class AuthLoadingScreen extends React.PureComponent<Props> {
     this.bootstrapAsync();
 
     StatusBar.setBarStyle('dark-content');
-    StatusBar.setBackgroundColor(colors.white)
+
+    if (Platform.OS === 'android') {
+      StatusBar.setBackgroundColor(colors.white)
+    }
   }
 
   // Upon load of the app, do the following...
