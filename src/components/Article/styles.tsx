@@ -110,7 +110,7 @@ export default StyleSheet.create({
   duration: {
     color: colors.grayDark,
     textAlign: 'center',
-    marginTop: spacing.tiny,
+    marginTop: spacing.micro,
     backgroundColor: colors.grayLightest,
     borderRadius: 10,
     paddingTop: 3,
@@ -157,8 +157,7 @@ export default StyleSheet.create({
   },
   warningHighlight: { },
   warningText: {
-    flexDirection: 'row',
-    // flexWrap: 'wrap'
+    flexDirection: 'row'
   },
   warningLink: {
     textDecorationStyle: 'solid',
