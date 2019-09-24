@@ -33,7 +33,7 @@ const OnboardingSliderComponent: React.FC<Props> = React.memo(() => {
       key: 'slide0',
       image: require('../../assets/images/onboarding/voice-message.png'),
       title: 'Instant podcasts of every article',
-      text: 'Playpost transforms every article on the web into audio using industry-leading high-quality voices. So you can listen to it just like Podcasts and Audiobooks.'
+      text: 'Playpost transforms every article on the web into audio using industry-leading high-quality voices. So you can listen to it just like podcasts and audiobooks.'
     },
     {
       key: 'slide1',
