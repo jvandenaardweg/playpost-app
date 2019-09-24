@@ -179,7 +179,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
   }
 
   handleOnPressLanguage = () => {
-    requestAnimationFrame(() => NavigationService.navigate('SignupSuccess'));
+    requestAnimationFrame(() => NavigationService.navigate('SettingsLanguages'));
   }
 
   handleOnPressAccountPassword = () => NavigationService.navigate('UpdatePassword');
