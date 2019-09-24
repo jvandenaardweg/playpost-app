@@ -24,12 +24,12 @@ exports[`ButtonClose rendering should render correctly 1`] = `
     Object {
       "alignItems": "center",
       "backgroundColor": "#EEEEEE",
-      "borderRadius": 32,
-      "height": 32,
+      "borderRadius": 36,
+      "height": 36,
       "justifyContent": "center",
       "marginRight": 12,
       "opacity": 1,
-      "width": 32,
+      "width": 36,
     }
   }
   testID="button-close"

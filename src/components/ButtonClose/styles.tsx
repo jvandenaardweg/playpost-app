@@ -4,10 +4,10 @@ import spacing from '../../constants/spacing';
 export default StyleSheet.create({
   container: {
     marginRight: spacing.default,
-    width: 32,
-    height: 32,
+    width: 36,
+    height: 36,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 32
+    borderRadius: 36
   }
 });
