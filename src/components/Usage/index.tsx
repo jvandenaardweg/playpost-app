@@ -32,6 +32,7 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
   const usedPercentageText = limitSecondsPerMonth ? `${Math.ceil(percentageUsed)}%` : '';
   const progressWidth = limitSecondsPerMonth ? `${percentageUsed}%` : '0%';
   const progressBackgroundColor = percentageUsed < 85 ? colors.black : colors.red;
+  const percentageUsedColor = percentageUsed < 85 ? colors.black : colors.red;
 
   const upgradeScreenCenteredSubscriptionProductId =
     activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_PREMIUM
@@ -53,7 +54,7 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
                 <Text testID="Usage-Text-minutes-used" style={styles.statsMeta} preset="footnote">{usedText}</Text>
               </View>
               <View>
-                <Text testID="Usage-Text-percentage" style={styles.statsPercentage} preset="bodyEmphasized">{usedPercentageText}</Text>
+                <Text testID="Usage-Text-percentage" style={{...styles.statsPercentage, color: percentageUsedColor }} preset="bodyEmphasized">{usedPercentageText}</Text>
               </View>
             </View>
           </View>
