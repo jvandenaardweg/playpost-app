@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import colors from '../../constants/colors';
 import spacing from '../../constants/spacing';
 
 export default StyleSheet.create({
@@ -9,7 +8,6 @@ export default StyleSheet.create({
     height: 32,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.grayLightest,
     borderRadius: 32
   }
 });

@@ -42,7 +42,7 @@ const LoginStack = createStackNavigator(
     headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation }) => ({
       ...stackNavigatorDefaultNavigationOptions,
-      headerRight: <ButtonClose onPress={() => navigation.navigate('Onboarding')} />
+      headerRight: <ButtonClose theme="light" onPress={() => navigation.navigate('Onboarding')} />
     })
   }
 );
@@ -57,7 +57,7 @@ const SignupStack = createStackNavigator(
     headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation }) => ({
       ...stackNavigatorDefaultNavigationOptions,
-      headerRight: <ButtonClose onPress={() => navigation.navigate('Onboarding')} />
+      headerRight: <ButtonClose theme="light" onPress={() => navigation.navigate('Onboarding')} />
     })
   }
 );
@@ -84,7 +84,7 @@ const UpgradeStack = createStackNavigator(
     headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation }) => ({
       ...stackNavigatorDefaultNavigationOptions,
-      headerRight: <ButtonClose onPress={() => navigation.dismiss()} />
+      headerRight: <ButtonClose theme="light" onPress={() => navigation.dismiss()} />
     })
   }
 );
@@ -99,7 +99,7 @@ const ContentViewStack = createStackNavigator(
     headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation }) => ({
       ...stackNavigatorDefaultNavigationOptions,
-      headerRight: <ButtonClose onPress={() => navigation.dismiss()} />
+      headerRight: <ButtonClose theme="light" onPress={() => navigation.dismiss()} />
     })
   }
 );
@@ -113,7 +113,7 @@ const FullAudioPlayerStack = createStackNavigator(
     headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation }) => ({
       ...stackNavigatorDefaultNavigationOptions,
-      headerRight: <ButtonClose iconColor="white" onPress={() => navigation.dismiss()} />,
+      headerRight: <ButtonClose theme="dark" onPress={() => navigation.dismiss()} />,
       headerLeft: null,
       headerStyle: {
         backgroundColor: colors.black,
@@ -135,7 +135,7 @@ const ModalLanguagesStack = createStackNavigator(
     defaultNavigationOptions: ({ navigation }) => ({
       ...stackNavigatorDefaultNavigationOptions,
       title: 'Languages',
-      headerRight: <ButtonClose onPress={() => {
+      headerRight: <ButtonClose theme="light" onPress={() => {
         navigation.popToTop()
         navigation.dismiss()
       }} />
