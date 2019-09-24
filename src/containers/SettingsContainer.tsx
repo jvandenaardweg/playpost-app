@@ -179,7 +179,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
   }
 
   handleOnPressLanguage = () => {
-    requestAnimationFrame(() => NavigationService.navigate('SettingsLanguages'));
+    requestAnimationFrame(() => NavigationService.navigate('SignupSuccess'));
   }
 
   handleOnPressAccountPassword = () => NavigationService.navigate('UpdatePassword');
@@ -419,7 +419,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             icon: 'message-square',
             iconColor: colors.grayDark,
             chevron: true,
-            onPress: () => inAppBrowser.openUrl(URL_FEEDBACK + `?email=${userEmail}&id=${userId}`)
+            onPress: () => inAppBrowser.openUrl(URL_FEEDBACK + `?email=${userEmail}&id=${userId}`, { modalEnabled: false })
           },
           {
             key: 'about-support',
@@ -427,7 +427,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             icon: 'message-square',
             iconColor: colors.grayDark,
             chevron: true,
-            onPress: () => inAppBrowser.openUrl(URL_FEEDBACK + `?email=${userEmail}&id=${userId}`)
+            onPress: () => inAppBrowser.openUrl(URL_FEEDBACK + `?email=${userEmail}&id=${userId}`, { modalEnabled: false })
           }
         ]
       }

@@ -257,7 +257,7 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
       },
       {
         text: 'Contact support',
-        onPress: () => inAppBrowser.openUrl(feedbackUrl)
+        onPress: () => inAppBrowser.openUrl(feedbackUrl, { modalEnabled: false })
       }
     ]);
   }

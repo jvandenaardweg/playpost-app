@@ -452,7 +452,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       },
       {
         text: 'Contact support',
-        onPress: () => inAppBrowser.openUrl(feedbackUrl)
+        onPress: () => inAppBrowser.openUrl(feedbackUrl, { modalEnabled: false })
       }
     ]);
   }

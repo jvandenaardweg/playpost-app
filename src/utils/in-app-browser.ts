@@ -1,17 +1,15 @@
 import { Linking } from 'react-native';
-import InAppBrowser from 'react-native-inappbrowser-reborn'
+import InAppBrowser, { InAppBrowserOptions } from 'react-native-inappbrowser-reborn'
 import colors from '../constants/colors';
 
-export const openUrl = async (url: string) => {
+export const openUrl = async (url: string, options?: InAppBrowserOptions | undefined) => {
   const isInAppBrowserAvailable = await InAppBrowser.isAvailable();
 
   if (!isInAppBrowserAvailable) {
     return Linking.openURL(url);
   }
 
-  const result = await InAppBrowser.open(url, {
-    // iOS Properties
-
+  const defaultOptions = {
     dismissButtonStyle: 'close',
     preferredBarTintColor: colors.white,
     // preferredControlTintColor: 'white',
@@ -28,7 +26,14 @@ export const openUrl = async (url: string) => {
     enableDefaultShare: true,
     forceCloseOnRedirection: false,
     waitForRedirectDelay: 0
-  })
+  }
+
+  const inAppBrowserOptions = {
+    ...defaultOptions,
+    ...options
+  }
+
+  const result = await InAppBrowser.open(url, inAppBrowserOptions)
 
   return result;
 }
