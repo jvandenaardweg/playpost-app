@@ -117,6 +117,20 @@ describe('Usage', () => {
 
       expect(wrapper.queryByTestId('Usage-Button-upgrade')).toBeFalsy();
     });
+
+    it('should render empty when user is not defined', () => {
+      const props = {
+        ...defaultProps,
+        user: null
+      }
+
+      wrapper.update(<Usage {...props} />);
+
+      expect(wrapper.getByTestId('Usage-Text-current-usage').props.children).toBe('?');
+      expect(wrapper.getByTestId('Usage-Text-minutes-used').props.children).toBe('of ? minutes used this month');
+      expect(wrapper.getByTestId('Usage-Text-percentage').props.children).toBe('');
+      expect(wrapper.getByTestId('Usage-View-progress').props.style[1].width).toBe('0%');
+    });
   });
 
   describe('interacting', () => {

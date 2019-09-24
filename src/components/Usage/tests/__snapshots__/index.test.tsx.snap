@@ -52,6 +52,7 @@ exports[`Usage rendering should render correctly 1`] = `
                 },
               ]
             }
+            testID="Usage-Text-current-usage"
           >
             0
           </Text>

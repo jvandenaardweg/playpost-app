@@ -16,15 +16,13 @@ export interface Props {
 }
 
 export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProductId, onPressUpgrade, userIsEligibleForTrial }) => {
-  if (!user) { return null; }
-
-  const limitSecondsPerMonth = user.limits.audiofiles.limitSecondsPerMonth;
-  const usageUsedCurrentMonthInSeconds = user.used.audiofiles && user.used.audiofiles.currentMonthInSeconds;
-  const percentageUsedCurrentMonth = (usageUsedCurrentMonthInSeconds / limitSecondsPerMonth) * 100;
+  const limitSecondsPerMonth = (user) ? user.limits.audiofiles.limitSecondsPerMonth : null;
+  const usageUsedCurrentMonthInSeconds = (user) ? user.used.audiofiles && user.used.audiofiles.currentMonthInSeconds : null;
+  const percentageUsedCurrentMonth = (usageUsedCurrentMonthInSeconds !== null && limitSecondsPerMonth !== null) ? (usageUsedCurrentMonthInSeconds / limitSecondsPerMonth) * 100 : 0;
   const percentageUsed = percentageUsedCurrentMonth >= 100 ? 100 : percentageUsedCurrentMonth;
 
-  const currentUsageLocalized = Math.ceil(usageUsedCurrentMonthInSeconds / 60).toLocaleString('nl-NL'); // So we have 5.000 (with a dot)
-  const currentLimitLocalized = (limitSecondsPerMonth) ? Math.ceil(limitSecondsPerMonth / 60).toLocaleString('nl-NL') : 'unlimited'; // So we have 5.000 (with a dot)
+  const currentUsageLocalized = (usageUsedCurrentMonthInSeconds !== null) ? Math.ceil(usageUsedCurrentMonthInSeconds / 60).toLocaleString('nl-NL') : '?'; // So we have 5.000 (with a dot)
+  const currentLimitLocalized = (limitSecondsPerMonth) ? Math.ceil(limitSecondsPerMonth / 60).toLocaleString('nl-NL') : (user) ? 'unlimited' : '?'; // So we have 5.000 (with a dot)
 
   const showUpgradeButton = activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE || activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_PREMIUM;
 
@@ -47,7 +45,7 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
         <View style={styles.statsContainer}>
           <View style={styles.statsWrapper}>
             <View>
-              <Text style={styles.statsBigNumber} preset="largeTitleEmphasized">{currentUsageLocalized}</Text>
+              <Text style={styles.statsBigNumber} preset="largeTitleEmphasized" testID="Usage-Text-current-usage">{currentUsageLocalized}</Text>
             </View>
             <View style={styles.statsNumbersContainer}>
               <View>
