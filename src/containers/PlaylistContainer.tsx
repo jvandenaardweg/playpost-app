@@ -1,8 +1,9 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import React from 'react';
-import { Alert, FlatList, InteractionManager } from 'react-native';
+import { Alert, FlatList, InteractionManager, Platform } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import { connect } from 'react-redux';
+import DeviceInfo from 'react-native-device-info';
 // import DraggableFlatList from 'react-native-draggable-flatlist';
 
 import { CenterLoadingIndicator } from '../components/CenterLoadingIndicator';
@@ -27,6 +28,7 @@ interface State {
   isReOrdering: boolean;
   showHelpVideo: boolean;
   playlistItems: Api.PlaylistItem[];
+  osVersion: string;
 }
 
 interface IProps {
@@ -70,7 +72,8 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
     isRefreshing: false,
     isReOrdering: false,
     showHelpVideo: false,
-    playlistItems: []
+    playlistItems: [],
+    osVersion: ''
   };
 
   shouldComponentUpdate(nextProps: Props, nextState: State) {
@@ -90,7 +93,12 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
   componentDidMount() {
     const { isConnected } = this.context;
 
-    InteractionManager.runAfterInteractions(() => {
+    InteractionManager.runAfterInteractions(async () => {
+
+      const systemVersion = await DeviceInfo.getSystemVersion()
+
+      this.setState({ osVersion: systemVersion });
+
       this.showOrHideHelpVideo();
 
       // If we mount this component, and we don't have any playlist items, fetch them
@@ -150,12 +158,29 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
     this.setState({ showHelpVideo: true });
   }
 
+  get requireInstructionsVideo(): NodeRequire {
+    const { osVersion } = this.state;
+
+    // Show older help video on older iOS versions
+    if (Platform.OS === 'ios' && (osVersion.startsWith('12') || osVersion.startsWith('11'))) {
+      return require('../assets/video/help/enabling-sharing/ios-ios12.m4v');
+    }
+
+    // Show a different video on Android
+    if (Platform.OS === 'android') {
+      return require('../assets/video/help/enabling-sharing/android.m4v');
+    }
+
+    // Fallback to iOS 13 and newer
+    return require('../assets/video/help/enabling-sharing/ios-ios13.m4v');
+  }
+
   renderEmptyComponent = () => {
-    const { isLoading, isRefreshing, showHelpVideo } = this.state;
+    const { isLoading, isRefreshing, showHelpVideo, osVersion } = this.state;
     const { isArchiveScreen, isFavoriteScreen } = this.props;
     const { isConnected } = this.context;
 
-    if (isLoading) { return <CenterLoadingIndicator />; }
+    if (isLoading || !osVersion) { return <CenterLoadingIndicator />; }
 
     if (isArchiveScreen) {
       return (
@@ -197,7 +222,7 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
       if (showHelpVideo) {
         return (
           <EmptyState
-            localVideo={require('../assets/video/help/enabling-sharing/enable-sharing-square-v2.m4v')}
+            localVideo={this.requireInstructionsVideo}
             actionButtonLabel="Hide instructions"
             actionButtonOnPress={() => this.handleOnHideVideo()}
           />

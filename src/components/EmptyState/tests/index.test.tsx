@@ -39,7 +39,7 @@ describe('EmptyState', () => {
         <EmptyState
           title="Test empty state"
           description={['Test description']}
-          // localVideo={require('../../../assets/video/help/enabling-sharing/enable-sharing-square.m4v')}
+          // localVideo={require('../../../assets/video/help/enabling-sharing/android.m4v')}
           actionButtonLabel="Test button"
           actionButtonOnPress={actionButtonOnPressHandler}
          />

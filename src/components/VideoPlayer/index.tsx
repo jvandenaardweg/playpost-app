@@ -17,10 +17,13 @@ export const VideoPlayer: React.FC<Props> = React.memo(({
   const source = (localVideo) ? localVideo : { uri: url };
 
   return (
-    <Video source={source}
+    <Video
+      source={source}
+      resizeMode="cover"
       controls
       repeat
       playInBackground={false}
+      muted
       ref={videoPlayerRef}
       style={styles.container}
     />
