@@ -103,11 +103,6 @@ export class SwipeableRow extends React.PureComponent<Props> {
 }
 
 const styles = StyleSheet.create({
-  leftAction: {
-    flex: 1,
-    backgroundColor: '#CDF0D8',
-    justifyContent: 'center',
-  },
   actionText: {
     color: 'white',
     backgroundColor: 'transparent',

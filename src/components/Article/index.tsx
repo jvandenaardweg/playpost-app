@@ -205,18 +205,18 @@ interface PlayIconProps {
 
 const PlayIcon: React.FC<PlayIconProps> = React.memo((props: PlayIconProps) => (
   <View style={[styles.controlButton, props.isPlaying || props.isActive ? styles.controlButtonActive : null]} testID="Article-PlayIcon-view">
-    {props.isLoading && <ActivityIndicator testID="Article-PlayIcon-ActivityIndicator" size="small" color={props.isPlaying || props.isActive ? '#fff' : '#000'} />}
+    {props.isLoading && <ActivityIndicator testID="Article-PlayIcon-ActivityIndicator" size="small" color={props.isPlaying || props.isActive ? colors.white : colors.black} />}
     {!props.isLoading && !props.isPlaying && (
       <Icon.FontAwesome5
         name="play"
         size={11}
-        color={props.isPlaying || props.isActive ? '#fff' : '#000'}
+        color={props.isPlaying || props.isActive ? colors.white : colors.black}
         testID="Article-PlayIcon-Icon-play"
         style={{ marginLeft: 2 }}
       />
     )}
     {!props.isLoading && props.isPlaying && (
-      <Icon.FontAwesome5 name="pause" size={11} color={props.isPlaying || props.isActive ? '#fff' : '#000'} testID="Article-PlayIcon-Icon-pause" />
+      <Icon.FontAwesome5 name="pause" size={11} color={props.isPlaying || props.isActive ? colors.white : colors.black} testID="Article-PlayIcon-Icon-pause" />
     )}
   </View>
 ));
