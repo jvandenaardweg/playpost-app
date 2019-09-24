@@ -259,7 +259,7 @@ exports[`SignupForm rendering should render correctly 1`] = `
                   }
                 }
               >
-                Create account
+                Create new account
               </Text>
             </View>
           </View>

@@ -53,7 +53,7 @@ export const SignupForm: React.FC<Props> = React.memo(({ onChangeText, onPressSi
         <View>
           <Button
             testID="SignupForm-Button-signup"
-            title="Create account"
+            title="Create new account"
             loading={isLoading}
             onPress={onPressSignup}
             disabled={isLoading}

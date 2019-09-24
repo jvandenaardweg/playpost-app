@@ -45,7 +45,7 @@ const OnboardingSliderComponent: React.FC<Props> = React.memo(() => {
       key: 'slide2',
       image: require('../../assets/images/onboarding/language.png'),
       title: '240+ naturally sounding voices in 28 languages',
-      text: 'The most advanced text to speech synthesis solutions to speak text to you and sound natural and pleasant to listen to. Personalize the experience by.',
+      text: 'A variety of male and female voices to choose from. Personalize your experience by choosing a voice you prefer for easy listening.',
     },
     {
       key: 'last',
@@ -135,7 +135,7 @@ const OnboardingSlide: React.FC<OnboardingSlideProps> = React.memo(({
       </View>
       <View style={styles.slideContentFooter}>
         {(item.key === 'last') && (
-          <Button testID="onboarding-button-signup" title="Create account" onPress={() => NavigationService.navigate('Signup')} />
+          <Button testID="onboarding-button-signup" title="Create new account" onPress={() => NavigationService.navigate('Signup')} />
         )}
 
         {(item.key !== 'last') && (

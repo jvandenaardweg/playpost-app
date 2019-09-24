@@ -9,7 +9,7 @@ import { SignupFormContainer } from '../../containers/SignupFormContainer';
 export class SignupScreen extends React.PureComponent {
   static navigationOptions = (): NavigationStackScreenOptions => {
     return {
-      title: 'Create account'
+      title: 'Create new account'
     };
   }
 
