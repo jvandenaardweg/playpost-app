@@ -6,11 +6,10 @@ import { NavigationRoute, NavigationScreenProp } from 'react-navigation';
 
 import { persistor, store } from '../store';
 
+import * as cache from '../cache';
 import colors from '../constants/colors';
-import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 import { setAuthToken } from '../reducers/auth';
 import * as keychain from '../utils/keychain';
-import * as cache from '../cache';
 
 
 interface Props {
