@@ -65,14 +65,16 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
   componentDidMount() {
     InteractionManager.runAfterInteractions(() => {
       this.setVersionInfo();
+      this.setCacheSize();
+
+      // Getting the user details, but also the user's settings (for example: user selected voices)
+      this.props.getUser();
 
       // Re-calculate the cache size every time the user goes to the settings screen
       this.didFocusSubscription = this.props.navigation.addListener(
         'didFocus',
         () => {
           this.setCacheSize();
-
-          // Getting the user details, but also the user's settings (for example: user selected voices)
           this.props.getUser();
         }
       );
