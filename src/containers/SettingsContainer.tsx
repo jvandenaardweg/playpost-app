@@ -3,7 +3,6 @@ import isEqual from 'react-fast-compare';
 import { ActivityIndicator, Alert, InteractionManager, Linking, SectionListData, View } from 'react-native';
 import Config from 'react-native-config';
 import DeviceInfo from 'react-native-device-info';
-import RNFS from 'react-native-fs';
 import { NavigationEventSubscription, NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 
@@ -11,7 +10,6 @@ import { Text } from '../components/Text';
 import * as inAppBrowser from '../utils/in-app-browser';
 
 import colors from '../constants/colors';
-import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 
 import {
   ALERT_SETTINGS_CLEAR_CACHE_WARNING,
@@ -36,6 +34,7 @@ import { selectTotalAvailableVoices } from '../selectors/voices';
 import { CustomSectionList, IListItem } from '../components/CustomSectionList';
 import { Usage } from '../components/Usage';
 
+import * as cache from '../cache';
 import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_UNLIMITED } from '../constants/in-app-purchase';
 import NavigationService from '../navigation/NavigationService';
 
@@ -110,33 +109,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
 
   setCacheSize = async () => {
     try {
-      let combinedSize = 0;
-
-      await RNFS.mkdir(LOCAL_CACHE_AUDIOFILES_PATH);
-      await RNFS.mkdir(LOCAL_CACHE_VOICE_PREVIEWS_PATH);
-
-      const directories = [LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH];
-      const sizes = [];
-
-      for (const directory of directories) {
-        const files = await RNFS.readDir(directory);
-        const size = files.reduce((prev, curr) => {
-          /* tslint:disable-next-line no-parameter-reassignment */
-          prev = prev + parseFloat(curr.size);
-          return prev;
-        }, 0);
-        sizes.push(size);
-      }
-
-      if (sizes.length) {
-        combinedSize = sizes.reduce((prev, size) => {
-          /* tslint:disable-next-line no-parameter-reassignment */
-          prev = prev + size;
-          return prev;
-        }, 0);
-      }
-
-      const sizeInMb = (combinedSize / 1000000).toFixed(2);
+      const sizeInMb = await cache.getCacheSizeInMb();
       return this.setState({ cacheSize: sizeInMb });
     } catch (err) {
       return Alert.alert(ALERT_TITLE_ERROR, ALERT_SETTINGS_SET_CACHE_SIZE_FAIL);
@@ -172,8 +145,9 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
   doResetCache = async () => {
     this.props.resetAudiofilesState();
     this.props.resetDownloadedVoices();
-    await RNFS.unlink(LOCAL_CACHE_AUDIOFILES_PATH);
-    await RNFS.unlink(LOCAL_CACHE_VOICE_PREVIEWS_PATH);
+
+    await cache.emptyAllCaches();
+
     return this.setCacheSize();
   }
 

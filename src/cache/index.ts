@@ -3,6 +3,8 @@ import RNFetchBlob from 'rn-fetch-blob';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 
+export const CACHE_DIRECTORIES = [LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH];
+
 export const getFileNameFromPath = (path: string) => {
   const pathParts = path.split('/');
   const fileName = pathParts[pathParts.length - 1];
@@ -48,3 +50,64 @@ export const downloadArticleAudiofile = async (url: string, filePath: string): P
   // Return the local file path
   return `file://${result.path()}`;
 };
+
+/**
+ * Create the cache directories our app needs.
+ */
+export const createAllCacheDirectories = async () => {
+  for (const cacheDirectory of CACHE_DIRECTORIES) {
+    await RNFS.mkdir(cacheDirectory);
+  }
+
+  return;
+}
+
+/**
+ * Empties all cache directories we have. When the directories are deleted, we create them again.
+ *
+ * Make sure you delete specific paths, and not the entire document directory.
+ */
+export const emptyAllCaches = async () => {
+  for (const cacheDirectory of CACHE_DIRECTORIES) {
+    if (await RNFS.exists(cacheDirectory)){
+      await RNFS.unlink(cacheDirectory);
+    }
+  }
+
+  await createAllCacheDirectories();
+
+  return;
+}
+
+/**
+ * Calculates the cache size in MB in our cache directories
+ */
+export const getCacheSizeInMb = async () => {
+  let combinedSize = 0;
+  const sizes = [];
+
+  // Make sure the directories are there
+  await createAllCacheDirectories();
+
+  for (const cacheDirectory of CACHE_DIRECTORIES) {
+    const files = await RNFS.readDir(cacheDirectory);
+    const size = files.reduce((prev, curr) => {
+      /* tslint:disable-next-line no-parameter-reassignment */
+      prev = prev + parseFloat(curr.size);
+      return prev;
+    }, 0);
+    sizes.push(size);
+  }
+
+  if (sizes.length) {
+    combinedSize = sizes.reduce((prev, size) => {
+      /* tslint:disable-next-line no-parameter-reassignment */
+      prev = prev + size;
+      return prev;
+    }, 0);
+  }
+
+  const sizeInMb = (combinedSize / 1000000).toFixed(2);
+
+  return sizeInMb;
+}

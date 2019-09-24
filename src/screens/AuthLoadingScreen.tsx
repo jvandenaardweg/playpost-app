@@ -11,6 +11,7 @@ import colors from '../constants/colors';
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 import { setAuthToken } from '../reducers/auth';
 import * as keychain from '../utils/keychain';
+import * as cache from '../cache';
 
 
 interface Props {
@@ -57,8 +58,7 @@ export class AuthLoadingScreen extends React.PureComponent<Props> {
     await NetInfo.isConnected.fetch();
 
     // Make sure we have the correct cache direct\ories needed in the app
-    await RNFS.mkdir(LOCAL_CACHE_AUDIOFILES_PATH);
-    await RNFS.mkdir(LOCAL_CACHE_VOICE_PREVIEWS_PATH);
+    await cache.createAllCacheDirectories();
 
     if (!token) {
       return this.props.navigation.navigate('Onboarding');

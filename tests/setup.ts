@@ -124,9 +124,13 @@ jest.mock('react-native-iap');
 jest.mock('react-native-video');
 jest.mock('react-native-splash-screen');
 jest.mock('react-native-app-intro-slider');
+
 jest.mock('react-native-fs', () => {
   return {
+    exists: jest.fn(),
+    unlink: jest.fn(),
     mkdir: jest.fn(),
+    readDir: jest.fn(),
     DocumentDirectoryPath: 'local/test/path'
   }
 });
