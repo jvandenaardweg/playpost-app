@@ -7,9 +7,9 @@ import colors from '../../constants/colors';
 import { Text, textPresets } from '../Text';
 
 import * as Icon from '../../components/Icon';
+import spacing from '../../constants/spacing';
 import { EmptyState } from '../EmptyState';
 import { ListSeperator } from '../ListSeperator';
-import spacing from '../../constants/spacing';
 
 export interface IListItem {
   key: string;
