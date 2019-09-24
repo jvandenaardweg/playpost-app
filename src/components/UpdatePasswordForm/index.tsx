@@ -31,6 +31,7 @@ export const UpdatePasswordForm: React.FC<Props> = React.memo(({ onChangeText, o
           onSubmitEditing={() => onPressUpdatePassword()}
           editable={!isLoading}
           returnKeyType="done"
+          autoFocus
         />
 
         <View>
