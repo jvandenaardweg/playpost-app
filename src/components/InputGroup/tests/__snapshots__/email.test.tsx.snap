@@ -41,7 +41,7 @@ exports[`InputGroupEmail rendering should render correctly 1`] = `
         "fontFamily": "Inter-Regular",
         "fontSize": 15,
         "height": 50,
-        "lineHeight": 15,
+        "lineHeight": undefined,
         "paddingLeft": 14,
         "paddingRight": 14,
       }

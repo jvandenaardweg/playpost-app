@@ -12,7 +12,7 @@ const textInput: TextStyle = {
   paddingRight: spacing.medium,
   alignItems: 'center',
   ...textPresets['lead'],
-  lineHeight: textPresets['lead'].fontSize
+  lineHeight: undefined
 };
 
 export default textInput;
