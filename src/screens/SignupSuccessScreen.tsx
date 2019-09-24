@@ -17,7 +17,14 @@ export class SignupSuccessScreen extends React.PureComponent<Props> {
 
   render() {
     return (
-      <EmptyState title={'Welcome to Playpost!'} description={['You can now add articles to your playlist from every app on your phone.']} actionButtonLabel="Go to my playlist" actionButtonOnPress={() => this.props.navigation.navigate('Playlist')} />
+      <EmptyState
+        title={'Welcome to Playpost!'}
+        description={[
+          'You can now add articles to your playlist from every app on your phone.'
+        ]}
+        actionButtonLabel="Go to my playlist"
+        actionButtonOnPress={() => this.props.navigation.navigate('Playlist')}
+      />
     );
   }
 }
