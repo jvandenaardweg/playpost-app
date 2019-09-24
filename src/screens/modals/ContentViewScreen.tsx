@@ -19,7 +19,7 @@ export class ContentViewScreen extends React.PureComponent<Props> {
 
   handleOnPressSupport = () => {
     Analytics.trackEvent('ContentView Support Pressed');
-    inAppBrowser.openUrl(URL_FEEDBACK);
+    inAppBrowser.openUrl(URL_FEEDBACK, { modalEnabled: false });
   }
 
   render() {
