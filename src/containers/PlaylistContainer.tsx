@@ -1,9 +1,9 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import React from 'react';
 import { Alert, FlatList, InteractionManager, Platform } from 'react-native';
+import DeviceInfo from 'react-native-device-info';
 import SplashScreen from 'react-native-splash-screen';
 import { connect } from 'react-redux';
-import DeviceInfo from 'react-native-device-info';
 // import DraggableFlatList from 'react-native-draggable-flatlist';
 
 import { CenterLoadingIndicator } from '../components/CenterLoadingIndicator';
