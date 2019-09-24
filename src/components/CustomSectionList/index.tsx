@@ -66,7 +66,7 @@ export const CustomSectionList: React.FC<Props> = React.memo(({ sectionListData,
         // styles
         const containerStyle = (item.isSelected) ? { backgroundColor: colors.tintColor } : { backgroundColor: colors.white };
         const titleStyle = (item.isSelected) ? { color: colors.white } : { color: colors.black };
-        const subtitleStyle = (item.isSelected) ? { color: 'rgba(255, 255, 255, 0.7)' } : undefined;
+        const subtitleStyle = (item.isSelected) ? { color: 'rgba(255, 255, 255, 0.7)' } : { color: colors.grayDark };
         const rightIconTextStyles = [styles.rightIconText, item.isSelected ? { color: colors.white } : undefined, item.rightIconColor && !item.isSelected ? { color: item.rightIconColor } : undefined];
 
         // props
@@ -91,7 +91,7 @@ export const CustomSectionList: React.FC<Props> = React.memo(({ sectionListData,
             onPress={item.onPress}
             containerStyle={containerStyle}
             titleStyle={[titleStyle, textPresets['body']]}
-            subtitleStyle={[subtitleStyle, textPresets['footnote'], { color: colors.grayDark }]}
+            subtitleStyle={[subtitleStyle, textPresets['footnote']]}
             subtitle={subtitle}
             leftIcon={leftIcon}
             rightIcon={rightIcon}
