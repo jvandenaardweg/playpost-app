@@ -12,11 +12,9 @@ exports[`Usage rendering should render correctly 1`] = `
   <View
     style={
       Object {
-        "borderRadius": 8,
+        "backgroundColor": "#ffffff",
         "marginBottom": 0,
         "padding": 20,
-        "paddingBottom": 12,
-        "paddingTop": 12,
       }
     }
   >

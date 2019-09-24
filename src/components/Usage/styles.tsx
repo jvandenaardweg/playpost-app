@@ -10,11 +10,9 @@ export default StyleSheet.create({
     paddingRight: spacing.default
   },
   wrapper: {
+    backgroundColor: colors.white,
     padding: spacing.large,
-    paddingTop: spacing.default,
-    paddingBottom: spacing.default,
-    marginBottom: 0,
-    borderRadius: layout.borderRadius.medium
+    marginBottom: 0
   },
   statsContainer: {
     paddingBottom: spacing.small
