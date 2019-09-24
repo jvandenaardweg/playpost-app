@@ -26,7 +26,7 @@ export const selectUserIsLoading = createSelector(
   user => user.isLoading
 );
 
-export const selectUserDetails = createSelector(
+export const selectUserDetails = createDeepEqualSelector(
   [userSelector],
   user => user.details
 );

@@ -436,14 +436,12 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
         paddingTop={0}
         sectionListData={sectionListData}
         ListHeaderComponent={
-          <View style={{ marginLeft: spacing.default * -1, marginRight: spacing.default * -1, marginBottom: spacing.small }}>
-            <Usage
-              user={user}
-              activeSubscriptionProductId={activeSubscriptionProductId}
-              onPressUpgrade={this.handleOnPressUpgrade}
-              userIsEligibleForTrial={userIsEligibleForTrial}
-            />
-          </View>
+          <Usage
+            user={user}
+            activeSubscriptionProductId={activeSubscriptionProductId}
+            onPressUpgrade={this.handleOnPressUpgrade}
+            userIsEligibleForTrial={userIsEligibleForTrial}
+          />
         }
         ListFooterComponent={this.renderFooter}
       />

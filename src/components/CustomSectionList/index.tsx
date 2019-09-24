@@ -9,6 +9,7 @@ import { Text, textPresets } from '../Text';
 import * as Icon from '../../components/Icon';
 import { EmptyState } from '../EmptyState';
 import { ListSeperator } from '../ListSeperator';
+import spacing from '../../constants/spacing';
 
 export interface IListItem {
   key: string;
@@ -48,7 +49,11 @@ export const CustomSectionList: React.FC<Props> = React.memo(({ sectionListData,
       contentContainerStyle={styles.containerStyle}
       initialNumToRender={15}
       keyExtractor={(item, index) => item.key}
-      ListHeaderComponent={ListHeaderComponent}
+      ListHeaderComponent={ListHeaderComponent && (
+        <View style={{ marginLeft: spacing.default * -1, marginRight: spacing.default * -1, marginBottom: spacing.small }}>
+          {ListHeaderComponent}
+        </View>
+      )}
       ListFooterComponent={ListFooterComponent}
       stickySectionHeadersEnabled={false}
       ItemSeparatorComponent={() => <View style={styles.itemSeperator}><ListSeperator /></View>}

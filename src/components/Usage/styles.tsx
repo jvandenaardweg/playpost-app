@@ -7,32 +7,24 @@ import spacing from '../../constants/spacing';
 export default StyleSheet.create({
   container: {
     paddingLeft: spacing.default,
-    paddingRight: spacing.default,
-    marginLeft: spacing.default,
-    marginRight: spacing.default,
+    paddingRight: spacing.default
   },
   wrapper: {
-    backgroundColor: colors.tintColor,
     padding: spacing.large,
+    paddingTop: spacing.default,
+    paddingBottom: spacing.default,
     marginBottom: 0,
     borderRadius: layout.borderRadius.medium
   },
-  headerTitle: {
-    color: colors.white
-  },
   statsContainer: {
     paddingBottom: spacing.small
-  },
-  statsTitle: {
-    color: colors.white,
-    opacity: 0.7
   },
   statsWrapper: {
     flexDirection: 'row',
     alignItems: 'flex-end'
   },
   statsBigNumber: {
-    color: colors.white,
+    color: colors.black,
     letterSpacing: -0.75
   },
   statsNumbersContainer: {
@@ -43,33 +35,30 @@ export default StyleSheet.create({
     marginBottom: 4
   },
   statsMeta: {
-    color: colors.white,
-    opacity: 0.7,
+    color: colors.grayDarkest,
     marginLeft: 4,
-    marginBottom: 2
+    marginBottom: 2,
   },
   statsPercentage: {
-    color: colors.white
+    color: colors.black
   },
   upgradeContainer: {
     marginTop: spacing.default
   },
   progressContainer: {
-    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
     height: 6,
     borderRadius: layout.borderRadius.small,
     overflow: 'hidden',
     marginTop: 6
   },
   progress: {
-    backgroundColor: colors.white,
     height: 6,
     borderRadius: layout.borderRadius.small
   },
   messageText: {
     marginTop: 8,
-    color: colors.white,
-    opacity: 0.7,
+    color: colors.grayDarkest,
     textAlign: 'center'
   }
 });

@@ -31,6 +31,7 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
   const usedText = `of ${currentLimitLocalized} minutes used this month`;
   const usedPercentageText = limitSecondsPerMonth ? `${Math.ceil(percentageUsed)}%` : '';
   const progressWidth = limitSecondsPerMonth ? `${percentageUsed}%` : '0%';
+  const progressBackgroundColor = percentageUsed < 85 ? colors.black : colors.red;
 
   const upgradeScreenCenteredSubscriptionProductId =
     activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_PREMIUM
@@ -57,7 +58,7 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
             </View>
           </View>
           <View style={styles.progressContainer}>
-            <View testID="Usage-View-progress" style={[styles.progress, { width: progressWidth }]} />
+            <View testID="Usage-View-progress" style={[styles.progress, { width: progressWidth }, { backgroundColor: progressBackgroundColor }]} />
           </View>
         </View>
 
@@ -66,8 +67,6 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
             <Button
               testID="Usage-Button-upgrade"
               title={upgradeButtonTitle}
-              titleStyle={{ color: colors.white }}
-              buttonStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}
               onPress={() => onPressUpgrade(upgradeScreenCenteredSubscriptionProductId)}
             />
             <Text testID="Usage-Text-upgrade-message" style={styles.messageText} preset="footnote">

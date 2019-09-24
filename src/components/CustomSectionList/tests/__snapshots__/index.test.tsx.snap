@@ -20,6 +20,17 @@ exports[`CustomSectionList basic rendering should render correctly 1`] = `
         title="No items to show"
       />
     }
+    ListHeaderComponent={
+      <View
+        style={
+          Object {
+            "marginBottom": 12,
+            "marginLeft": -12,
+            "marginRight": -12,
+          }
+        }
+      />
+    }
     contentContainerStyle={
       Object {
         "overflow": "visible",
@@ -77,6 +88,19 @@ exports[`CustomSectionList basic rendering should render correctly 1`] = `
     windowSize={21}
   >
     <View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          style={
+            Object {
+              "marginBottom": 12,
+              "marginLeft": -12,
+              "marginRight": -12,
+            }
+          }
+        />
+      </View>
       <View
         onLayout={[Function]}
         style={null}
