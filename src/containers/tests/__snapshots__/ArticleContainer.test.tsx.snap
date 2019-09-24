@@ -494,6 +494,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
               >
                 <Image
                   onLoad={[Function]}
+                  resizeMode="cover"
                   source={
                     Object {
                       "uri": "https://miro.medium.com/focal/1200/632/77/62/1*G32Y6J9RapeGziq7ajRa9A.jpeg",
@@ -660,7 +661,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                       "borderRadius": 10,
                       "color": "#AAAAAA",
                       "height": 21,
-                      "marginTop": 10,
+                      "marginTop": 8,
                       "paddingBottom": 0,
                       "paddingLeft": 8,
                       "paddingRight": 8,
