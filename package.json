@@ -43,8 +43,8 @@
     "commitLimit": false
   },
   "dependencies": {
-    "@babel/core": "^7.6.0",
-    "@babel/runtime": "^7.6.0",
+    "@babel/core": "^7.6.2",
+    "@babel/runtime": "^7.6.2",
     "@react-native-community/async-storage": "^1.6.1",
     "@react-native-community/netinfo": "^4.2.2",
     "@types/date-fns": "^2.6.0",
@@ -83,7 +83,7 @@
     "npm-check": "^5.9.0",
     "react": "^16.9.0",
     "react-fast-compare": "^2.0.4",
-    "react-native": "0.60.5",
+    "react-native": "^0.61.0",
     "react-native-app-intro-slider": "^3.0.0",
     "react-native-config": "git+https://github.com/luggit/react-native-config#89a602bf8be3808838403a97afaf915caeec76c2",
     "react-native-deep-linking": "^2.2.0",
