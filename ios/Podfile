@@ -36,6 +36,27 @@ target 'Playpost' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+  # Custom App specific pods
+  pod 'ReactNativeShareExtension', :podspec => '../node_modules/react-native-share-extension/ReactNativeShareExtension.podspec'
+  # pod 'AppCenter/Crashes', '~> 2.0.1'
+  # pod 'AppCenter/Analytics', '~> 2.0.1'
+  # pod 'AppCenterReactNativeShared', '~> 2.0.0'
+  # pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+  # pod 'RNKeychain', :path => '../node_modules/react-native-keychain'
+  # pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
+  # pod 'RNFS', :path => '../node_modules/react-native-fs'
+  # pod 'rn-fetch-blob', :path => '../node_modules/rn-fetch-blob'
+  # pod 'react-native-video', :path => '../node_modules/react-native-video'
+  # pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+  # pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+  # pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+  # pod 'RNIap', :path => '../node_modules/react-native-iap'
+  # pod 'react-native-config', :path => '../node_modules/react-native-config'
+  # pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
+  # pod 'RNScreens', :path => '../node_modules/react-native-screens'
+  # pod 'react-native-track-player', :path => '../node_modules/react-native-track-player'
+
+
   use_native_modules!
   # target 'playpostTests' do
   #   inherit! :search_paths
