@@ -646,36 +646,43 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                 </View>
               </View>
             </View>
-            <Text
+            <View
               style={
                 Array [
                   Object {
-                    "color": "#000000",
-                    "fontFamily": "Inter-SemiBold",
-                    "fontSize": 12,
-                    "lineHeight": 15,
+                    "backgroundColor": "#EEEEEE",
+                    "borderRadius": 21,
+                    "height": 21,
+                    "marginTop": 8,
+                    "paddingBottom": 0,
+                    "paddingLeft": 8,
+                    "paddingRight": 8,
+                    "paddingTop": 3,
+                    "textAlign": "center",
                   },
-                  Array [
-                    Object {
-                      "backgroundColor": "#EEEEEE",
-                      "borderRadius": 10,
-                      "color": "#AAAAAA",
-                      "height": 21,
-                      "marginTop": 8,
-                      "paddingBottom": 0,
-                      "paddingLeft": 8,
-                      "paddingRight": 8,
-                      "paddingTop": 3,
-                      "textAlign": "center",
-                    },
-                    undefined,
-                  ],
+                  undefined,
                 ]
               }
-              testID="Article-duration"
             >
-              5 min.
-            </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-SemiBold",
+                      "fontSize": 12,
+                      "lineHeight": 15,
+                    },
+                    Object {
+                      "color": "#AAAAAA",
+                    },
+                  ]
+                }
+                testID="Article-duration"
+              >
+                5 min.
+              </Text>
+            </View>
           </View>
         </View>
       </View>

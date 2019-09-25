@@ -279,39 +279,46 @@ exports[`Article active rendering should render active correctly 1`] = `
             </View>
           </View>
         </View>
-        <Text
+        <View
           style={
             Array [
               Object {
-                "color": "#000000",
-                "fontFamily": "Inter-SemiBold",
-                "fontSize": 12,
-                "lineHeight": 15,
+                "backgroundColor": "#EEEEEE",
+                "borderRadius": 21,
+                "height": 21,
+                "marginTop": 8,
+                "paddingBottom": 0,
+                "paddingLeft": 8,
+                "paddingRight": 8,
+                "paddingTop": 3,
+                "textAlign": "center",
               },
-              Array [
-                Object {
-                  "backgroundColor": "#EEEEEE",
-                  "borderRadius": 10,
-                  "color": "#AAAAAA",
-                  "height": 21,
-                  "marginTop": 8,
-                  "paddingBottom": 0,
-                  "paddingLeft": 8,
-                  "paddingRight": 8,
-                  "paddingTop": 3,
-                  "textAlign": "center",
-                },
-                Object {
-                  "backgroundColor": "#0066FF",
-                  "color": "#ffffff",
-                },
-              ],
+              Object {
+                "backgroundColor": "#0066FF",
+                "color": "#ffffff",
+              },
             ]
           }
-          testID="Article-duration"
         >
-          ? min.
-        </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontFamily": "Inter-SemiBold",
+                  "fontSize": 12,
+                  "lineHeight": 15,
+                },
+                Object {
+                  "color": "#AAAAAA",
+                },
+              ]
+            }
+            testID="Article-duration"
+          >
+            ? min.
+          </Text>
+        </View>
       </View>
     </View>
   </View>
@@ -595,36 +602,43 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
             </View>
           </View>
         </View>
-        <Text
+        <View
           style={
             Array [
               Object {
-                "color": "#000000",
-                "fontFamily": "Inter-SemiBold",
-                "fontSize": 12,
-                "lineHeight": 15,
+                "backgroundColor": "#EEEEEE",
+                "borderRadius": 21,
+                "height": 21,
+                "marginTop": 8,
+                "paddingBottom": 0,
+                "paddingLeft": 8,
+                "paddingRight": 8,
+                "paddingTop": 3,
+                "textAlign": "center",
               },
-              Array [
-                Object {
-                  "backgroundColor": "#EEEEEE",
-                  "borderRadius": 10,
-                  "color": "#AAAAAA",
-                  "height": 21,
-                  "marginTop": 8,
-                  "paddingBottom": 0,
-                  "paddingLeft": 8,
-                  "paddingRight": 8,
-                  "paddingTop": 3,
-                  "textAlign": "center",
-                },
-                undefined,
-              ],
+              undefined,
             ]
           }
-          testID="Article-duration"
         >
-          ? min.
-        </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontFamily": "Inter-SemiBold",
+                  "fontSize": 12,
+                  "lineHeight": 15,
+                },
+                Object {
+                  "color": "#AAAAAA",
+                },
+              ]
+            }
+            testID="Article-duration"
+          >
+            ? min.
+          </Text>
+        </View>
       </View>
     </View>
   </View>
@@ -910,36 +924,43 @@ exports[`Article full rendering should render full correctly 1`] = `
             </View>
           </View>
         </View>
-        <Text
+        <View
           style={
             Array [
               Object {
-                "color": "#000000",
-                "fontFamily": "Inter-SemiBold",
-                "fontSize": 12,
-                "lineHeight": 15,
+                "backgroundColor": "#EEEEEE",
+                "borderRadius": 21,
+                "height": 21,
+                "marginTop": 8,
+                "paddingBottom": 0,
+                "paddingLeft": 8,
+                "paddingRight": 8,
+                "paddingTop": 3,
+                "textAlign": "center",
               },
-              Array [
-                Object {
-                  "backgroundColor": "#EEEEEE",
-                  "borderRadius": 10,
-                  "color": "#AAAAAA",
-                  "height": 21,
-                  "marginTop": 8,
-                  "paddingBottom": 0,
-                  "paddingLeft": 8,
-                  "paddingRight": 8,
-                  "paddingTop": 3,
-                  "textAlign": "center",
-                },
-                undefined,
-              ],
+              undefined,
             ]
           }
-          testID="Article-duration"
         >
-          2 min.
-        </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontFamily": "Inter-SemiBold",
+                  "fontSize": 12,
+                  "lineHeight": 15,
+                },
+                Object {
+                  "color": "#AAAAAA",
+                },
+              ]
+            }
+            testID="Article-duration"
+          >
+            2 min.
+          </Text>
+        </View>
       </View>
     </View>
   </View>
@@ -1223,36 +1244,43 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
             </View>
           </View>
         </View>
-        <Text
+        <View
           style={
             Array [
               Object {
-                "color": "#000000",
-                "fontFamily": "Inter-SemiBold",
-                "fontSize": 12,
-                "lineHeight": 15,
+                "backgroundColor": "#EEEEEE",
+                "borderRadius": 21,
+                "height": 21,
+                "marginTop": 8,
+                "paddingBottom": 0,
+                "paddingLeft": 8,
+                "paddingRight": 8,
+                "paddingTop": 3,
+                "textAlign": "center",
               },
-              Array [
-                Object {
-                  "backgroundColor": "#EEEEEE",
-                  "borderRadius": 10,
-                  "color": "#AAAAAA",
-                  "height": 21,
-                  "marginTop": 8,
-                  "paddingBottom": 0,
-                  "paddingLeft": 8,
-                  "paddingRight": 8,
-                  "paddingTop": 3,
-                  "textAlign": "center",
-                },
-                undefined,
-              ],
+              undefined,
             ]
           }
-          testID="Article-duration"
         >
-          ? min.
-        </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontFamily": "Inter-SemiBold",
+                  "fontSize": 12,
+                  "lineHeight": 15,
+                },
+                Object {
+                  "color": "#AAAAAA",
+                },
+              ]
+            }
+            testID="Article-duration"
+          >
+            ? min.
+          </Text>
+        </View>
       </View>
     </View>
     <View
@@ -1621,36 +1649,43 @@ exports[`Article loading rendering should render loading correctly 1`] = `
             </View>
           </View>
         </View>
-        <Text
+        <View
           style={
             Array [
               Object {
-                "color": "#000000",
-                "fontFamily": "Inter-SemiBold",
-                "fontSize": 12,
-                "lineHeight": 15,
+                "backgroundColor": "#EEEEEE",
+                "borderRadius": 21,
+                "height": 21,
+                "marginTop": 8,
+                "paddingBottom": 0,
+                "paddingLeft": 8,
+                "paddingRight": 8,
+                "paddingTop": 3,
+                "textAlign": "center",
               },
-              Array [
-                Object {
-                  "backgroundColor": "#EEEEEE",
-                  "borderRadius": 10,
-                  "color": "#AAAAAA",
-                  "height": 21,
-                  "marginTop": 8,
-                  "paddingBottom": 0,
-                  "paddingLeft": 8,
-                  "paddingRight": 8,
-                  "paddingTop": 3,
-                  "textAlign": "center",
-                },
-                undefined,
-              ],
+              undefined,
             ]
           }
-          testID="Article-duration"
         >
-          ? min.
-        </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontFamily": "Inter-SemiBold",
+                  "fontSize": 12,
+                  "lineHeight": 15,
+                },
+                Object {
+                  "color": "#AAAAAA",
+                },
+              ]
+            }
+            testID="Article-duration"
+          >
+            ? min.
+          </Text>
+        </View>
       </View>
     </View>
   </View>
@@ -1934,36 +1969,43 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
             </View>
           </View>
         </View>
-        <Text
+        <View
           style={
             Array [
               Object {
-                "color": "#000000",
-                "fontFamily": "Inter-SemiBold",
-                "fontSize": 12,
-                "lineHeight": 15,
+                "backgroundColor": "#EEEEEE",
+                "borderRadius": 21,
+                "height": 21,
+                "marginTop": 8,
+                "paddingBottom": 0,
+                "paddingLeft": 8,
+                "paddingRight": 8,
+                "paddingTop": 3,
+                "textAlign": "center",
               },
-              Array [
-                Object {
-                  "backgroundColor": "#EEEEEE",
-                  "borderRadius": 10,
-                  "color": "#AAAAAA",
-                  "height": 21,
-                  "marginTop": 8,
-                  "paddingBottom": 0,
-                  "paddingLeft": 8,
-                  "paddingRight": 8,
-                  "paddingTop": 3,
-                  "textAlign": "center",
-                },
-                undefined,
-              ],
+              undefined,
             ]
           }
-          testID="Article-duration"
         >
-          ? min.
-        </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontFamily": "Inter-SemiBold",
+                  "fontSize": 12,
+                  "lineHeight": 15,
+                },
+                Object {
+                  "color": "#AAAAAA",
+                },
+              ]
+            }
+            testID="Article-duration"
+          >
+            ? min.
+          </Text>
+        </View>
       </View>
     </View>
   </View>
@@ -2247,39 +2289,46 @@ exports[`Article playing rendering should render playing correctly 1`] = `
             </View>
           </View>
         </View>
-        <Text
+        <View
           style={
             Array [
               Object {
-                "color": "#000000",
-                "fontFamily": "Inter-SemiBold",
-                "fontSize": 12,
-                "lineHeight": 15,
+                "backgroundColor": "#EEEEEE",
+                "borderRadius": 21,
+                "height": 21,
+                "marginTop": 8,
+                "paddingBottom": 0,
+                "paddingLeft": 8,
+                "paddingRight": 8,
+                "paddingTop": 3,
+                "textAlign": "center",
               },
-              Array [
-                Object {
-                  "backgroundColor": "#EEEEEE",
-                  "borderRadius": 10,
-                  "color": "#AAAAAA",
-                  "height": 21,
-                  "marginTop": 8,
-                  "paddingBottom": 0,
-                  "paddingLeft": 8,
-                  "paddingRight": 8,
-                  "paddingTop": 3,
-                  "textAlign": "center",
-                },
-                Object {
-                  "backgroundColor": "#0066FF",
-                  "color": "#ffffff",
-                },
-              ],
+              Object {
+                "backgroundColor": "#0066FF",
+                "color": "#ffffff",
+              },
             ]
           }
-          testID="Article-duration"
         >
-          ? min.
-        </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontFamily": "Inter-SemiBold",
+                  "fontSize": 12,
+                  "lineHeight": 15,
+                },
+                Object {
+                  "color": "#AAAAAA",
+                },
+              ]
+            }
+            testID="Article-duration"
+          >
+            ? min.
+          </Text>
+        </View>
       </View>
     </View>
   </View>

@@ -107,17 +107,19 @@ export default StyleSheet.create({
   controlButtonActive: {
     backgroundColor: colors.controlButtonActive
   },
-  duration: {
-    color: colors.grayDark,
+  durationContainer: {
     textAlign: 'center',
     marginTop: spacing.micro,
     backgroundColor: colors.grayLightest,
-    borderRadius: 10,
+    borderRadius: 21,
     paddingTop: 3,
     paddingBottom: 0,
     paddingLeft: 8,
     paddingRight: 8,
     height: 21,
+  },
+  durationText: {
+    color: colors.grayDark,
   },
   durationActive: {
     backgroundColor: colors.tintColor,

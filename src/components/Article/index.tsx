@@ -180,21 +180,18 @@ const Duration: React.FC<DurationProps> = React.memo((props: DurationProps) => {
   // During our tests, it seems that it takes about 10-20% longer to listen to an article, then to read one
   // So we manually adjust the readingTime
   const readingTimeToListenTimeMargin = 1.2;
-  const style = [styles.duration, (props.isActive) ? styles.durationActive : undefined];
 
-  if (props.listenTimeInSeconds) {
-    return <Text style={style} testID="Article-duration" preset="caption2Emphasized">{`${Math.ceil(props.listenTimeInSeconds / 60)} min.`}</Text>;
-  }
-
-  if (props.readingTime) {
-    return <Text style={style} testID="Article-duration" preset="caption2Emphasized">{`${Math.ceil((props.readingTime * readingTimeToListenTimeMargin) / 60)} min.`}</Text>;
-  }
+  const durationText = props.listenTimeInSeconds
+  ? `${Math.ceil(props.listenTimeInSeconds / 60)} min.`
+  : props.readingTime
+    ? `${Math.ceil((props.readingTime * readingTimeToListenTimeMargin) / 60)} min.`
+    : '? min.'
 
   return (
-    <Text style={style} testID="Article-duration" preset="caption2Emphasized">
-      ? min.
-    </Text>
-  );
+    <View style={[styles.durationContainer, (props.isActive) ? styles.durationActive : undefined]}>
+      <Text style={styles.durationText} testID="Article-duration" preset="caption2Emphasized">{durationText}</Text>
+    </View>
+  )
 });
 
 interface PlayIconProps {
