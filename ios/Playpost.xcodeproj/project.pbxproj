@@ -1033,7 +1033,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native/Libraries/LinkingIOS/**",
-					"$(SRCROOT)/../node_modules/react-native-share-extension/ios/**",
 				);
 				INFOPLIST_FILE = Playpost/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
@@ -1067,7 +1066,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native/Libraries/LinkingIOS/**",
-					"$(SRCROOT)/../node_modules/react-native-share-extension/ios/**",
 				);
 				INFOPLIST_FILE = Playpost/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
@@ -1217,7 +1215,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native/Libraries/LinkingIOS/**",
-					"$(SRCROOT)/../node_modules/react-native-share-extension/ios/**",
 				);
 				INFOPLIST_FILE = PlaypostShareExtension/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
@@ -1265,7 +1262,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native/Libraries/LinkingIOS/**",
-					"$(SRCROOT)/../node_modules/react-native-share-extension/ios/**",
 				);
 				INFOPLIST_FILE = PlaypostShareExtension/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
