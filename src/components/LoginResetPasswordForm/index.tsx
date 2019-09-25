@@ -4,7 +4,7 @@ import { Button } from 'react-native-elements';
 
 import { InputGroup } from '../InputGroup';
 import { InputGroupPassword } from '../InputGroup/password';
-import { Text } from '../Text';
+import Text from '../Text';
 import styles from './styles';
 
 interface Props {

@@ -1,4 +1,5 @@
 import RNIap, { SubscriptionPurchase } from 'react-native-iap';
+import * as utils from '../../../tests/utils/react-native';
 import { SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_UNLIMITED } from '../../constants/in-app-purchase';
 import * as inAppPurchaseHelper from '../in-app-purchase-helper'
 
@@ -14,11 +15,7 @@ describe('in-app-purchase-helper', () => {
     it('should correctly handle an error when transactionId is not found on a iOS purchase', async () => {
 
       // Mock like we are on iOS
-      jest.mock('Platform', () => {
-        const Platform = require.requireActual('Platform');
-        Platform.OS = 'ios';
-        return Platform;
-      });
+      utils.mockPlatform('ios');
 
       try {
         await inAppPurchaseHelper.finishSubscriptionTransaction({} as any)
@@ -30,11 +27,7 @@ describe('in-app-purchase-helper', () => {
 
     it('should correctly handle an error when transactionId is not found on a iOS purchase', async () => {
       // Mock like we are on Android
-      jest.mock('Platform', () => {
-        const Platform = require.requireActual('Platform');
-        Platform.OS = 'android';
-        return Platform;
-      });
+      utils.mockPlatform('android');
 
       try {
         await inAppPurchaseHelper.finishSubscriptionTransaction({} as any)
@@ -53,11 +46,7 @@ describe('in-app-purchase-helper', () => {
       const mockPurchase = { productId, transactionReceipt, transactionId, transactionDate, purchaseToken }
 
       // Mock like we are on iOS
-      jest.mock('Platform', () => {
-        const Platform = require.requireActual('Platform');
-        Platform.OS = 'ios';
-        return Platform;
-      });
+      utils.mockPlatform('ios');
 
       const spyFinishTransactionIOS = jest.spyOn(RNIap, 'finishTransactionIOS')
 
@@ -79,11 +68,7 @@ describe('in-app-purchase-helper', () => {
       const mockPurchase = { productId, transactionReceipt, transactionId, transactionDate, purchaseToken, purchaseStateAndroid, isAcknowledgedAndroid }
 
       // Mock like we are on iOS
-      jest.mock('Platform', () => {
-        const Platform = require.requireActual('Platform');
-        Platform.OS = 'android';
-        return Platform;
-      });
+      utils.mockPlatform('android');
 
       const spyAcknowledgePurchaseAndroid = jest.spyOn(RNIap, 'acknowledgePurchaseAndroid')
 
@@ -102,11 +87,7 @@ describe('in-app-purchase-helper', () => {
     })
 
     it('should correctly handle an upgrade on Android from free to premium', async () => {
-      jest.mock('Platform', () => {
-        const Platform = require.requireActual('Platform');
-        Platform.OS = 'android';
-        return Platform;
-      });
+      utils.mockPlatform('android');
 
       await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PREMIUM, '', '');
 
@@ -117,11 +98,7 @@ describe('in-app-purchase-helper', () => {
     })
 
     it('should correctly handle an upgrade on Android from free to unlimited', async () => {
-      jest.mock('Platform', () => {
-        const Platform = require.requireActual('Platform');
-        Platform.OS = 'android';
-        return Platform;
-      });
+      utils.mockPlatform('android');
 
       await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_UNLIMITED, '', '');
 
@@ -132,11 +109,7 @@ describe('in-app-purchase-helper', () => {
     })
 
     it('should correctly handle an upgrade on Android from free to plus', async () => {
-      jest.mock('Platform', () => {
-        const Platform = require.requireActual('Platform');
-        Platform.OS = 'android';
-        return Platform;
-      });
+      utils.mockPlatform('android');
 
       await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PLUS, '', '');
 
@@ -147,11 +120,7 @@ describe('in-app-purchase-helper', () => {
     })
 
     it('should correctly handle an upgrade on Android from premium to plus', async () => {
-      jest.mock('Platform', () => {
-        const Platform = require.requireActual('Platform');
-        Platform.OS = 'android';
-        return Platform;
-      });
+      utils.mockPlatform('android');
 
       await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM, 'google');
 
@@ -162,11 +131,7 @@ describe('in-app-purchase-helper', () => {
     })
 
     it('should correctly handle an upgrade on Android from premium to unlimited', async () => {
-      jest.mock('Platform', () => {
-        const Platform = require.requireActual('Platform');
-        Platform.OS = 'android';
-        return Platform;
-      });
+      utils.mockPlatform('android');
 
       await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_UNLIMITED, SUBSCRIPTION_PRODUCT_ID_PREMIUM, 'google');
 
@@ -177,11 +142,7 @@ describe('in-app-purchase-helper', () => {
     })
 
     it('should correctly handle an downgrade on Android from unlimited to premium', async () => {
-      jest.mock('Platform', () => {
-        const Platform = require.requireActual('Platform');
-        Platform.OS = 'android';
-        return Platform;
-      });
+      utils.mockPlatform('android');
 
       await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_UNLIMITED, 'google');
 
@@ -192,11 +153,7 @@ describe('in-app-purchase-helper', () => {
     })
 
     it('should correctly handle an downgrade on Android from plus to premium', async () => {
-      jest.mock('Platform', () => {
-        const Platform = require.requireActual('Platform');
-        Platform.OS = 'android';
-        return Platform;
-      });
+      utils.mockPlatform('android');
 
       await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_PLUS, 'google');
 
@@ -207,11 +164,7 @@ describe('in-app-purchase-helper', () => {
     })
 
     it('should correctly handle an upgrade on iOS from free to premium', async () => {
-      jest.mock('Platform', () => {
-        const Platform = require.requireActual('Platform');
-        Platform.OS = 'ios';
-        return Platform;
-      });
+      utils.mockPlatform('ios');
 
       await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PREMIUM, '', 'apple');
 
@@ -222,11 +175,7 @@ describe('in-app-purchase-helper', () => {
     })
 
     it('should correctly handle an upgrade on iOS from free to plus', async () => {
-      jest.mock('Platform', () => {
-        const Platform = require.requireActual('Platform');
-        Platform.OS = 'ios';
-        return Platform;
-      });
+      utils.mockPlatform('ios');
 
       await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PLUS, '', 'apple');
 
@@ -237,11 +186,7 @@ describe('in-app-purchase-helper', () => {
     })
 
     it('should correctly handle an upgrade on iOS from free to unlimited', async () => {
-      jest.mock('Platform', () => {
-        const Platform = require.requireActual('Platform');
-        Platform.OS = 'ios';
-        return Platform;
-      });
+      utils.mockPlatform('ios');
 
       await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_UNLIMITED, '', 'apple');
 
@@ -252,11 +197,7 @@ describe('in-app-purchase-helper', () => {
     })
 
     it('should correctly handle an upgrade on iOS from premium to plus', async () => {
-      jest.mock('Platform', () => {
-        const Platform = require.requireActual('Platform');
-        Platform.OS = 'ios';
-        return Platform;
-      });
+      utils.mockPlatform('ios');
 
       await inAppPurchaseHelper.requestSubscription(SUBSCRIPTION_PRODUCT_ID_PLUS, '', 'apple');
 

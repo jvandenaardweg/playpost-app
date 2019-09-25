@@ -2,7 +2,7 @@ import React from 'react';
 import { ActivityIndicator, StyleProp, TextStyle, TouchableHighlight, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { Image } from 'react-native-elements';
 import urlParse from 'url-parse';
-import { Text } from '../Text';
+import Text from '../Text';
 
 import colors from '../../constants/colors';
 

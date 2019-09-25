@@ -578,7 +578,7 @@ Premium or Unlimited
             >
               <View
                 accessible={true}
-                clickable={true}
+                focusable={true}
                 isTVSelectable={true}
                 onClick={[Function]}
                 onResponderGrant={[Function]}
@@ -639,7 +639,7 @@ Premium or Unlimited
               >
                 <View
                   accessible={true}
-                  clickable={true}
+                  focusable={true}
                   isTVSelectable={true}
                   onClick={[Function]}
                   onResponderGrant={[Function]}

@@ -1,9 +1,9 @@
 import React from 'react';
-import * as ReactNative from 'react-native';
+import { Text as RNText } from 'react-native';
 import { render, RenderAPI } from 'react-native-testing-library';
 import { fontFamilies, textPresets } from '../index';
 
-import { Text } from '../../Text';
+import Text from '../../Text';
 
 describe('Text', () => {
 
@@ -19,24 +19,24 @@ describe('Text', () => {
     });
 
     it('should render a child element', () => {
-      expect(wrapper.getByType(ReactNative.Text).props.children).toBe('Example!');
+      expect(wrapper.getByType(RNText).props.children).toBe('Example!');
     });
 
     it('should render the correct default fontFamily', () => {
-      expect(wrapper.getByType(ReactNative.Text).props.style[0]).toMatchObject(fontFamilies['regular']);
+      expect(wrapper.getByType(RNText).props.style[0]).toMatchObject(fontFamilies['regular']);
     });
 
     Object.keys(fontFamilies).forEach(fontWeightKey => {
       it(`should render the correct font-weight: ${fontWeightKey}`, () => {
         wrapper.update(<Text fontWeight={fontWeightKey as any}>Example!</Text>);
-        expect(wrapper.getByType(ReactNative.Text).props.style[0]).toMatchObject(fontFamilies[fontWeightKey]);
+        expect(wrapper.getByType(RNText).props.style[0]).toMatchObject(fontFamilies[fontWeightKey]);
       });
     });
 
     Object.keys(textPresets).forEach(presetKey => {
       it(`should render the correct ${presetKey}`, () => {
         wrapper.update(<Text preset={presetKey as any}>Example!</Text>);
-        expect(wrapper.getByType(ReactNative.Text).props.style[0]).toMatchObject(textPresets[presetKey]);
+        expect(wrapper.getByType(RNText).props.style[0]).toMatchObject(textPresets[presetKey]);
       });
     });
 

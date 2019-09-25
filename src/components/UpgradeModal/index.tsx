@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { Button } from 'react-native-elements';
 import Modal from 'react-native-modal';
 
-import { Text } from '../Text';
+import Text from '../Text';
 import styles from './styles';
 
 export interface Props {

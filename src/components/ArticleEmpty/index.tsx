@@ -3,7 +3,7 @@ import { ActivityIndicator, Linking, View } from 'react-native';
 import urlParse from 'url-parse';
 
 import colors from '../../constants/colors';
-import { Text } from '../Text'
+import Text from '../Text'
 
 import styles from './styles';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { Text } from '../Text';
+import Text from '../Text';
 import styles from './styles';
 
 export const OfflineNotice: React.FC = React.memo(() => (

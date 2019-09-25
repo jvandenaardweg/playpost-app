@@ -1,4 +1,5 @@
 import * as ReactNativeKeychain from 'react-native-keychain';
+import * as utils from '../../../tests/utils/react-native';
 import { APP_BUNDLE_ID } from '../../constants/bundle-id';
 import * as KeychainHelper from '../keychain';
 
@@ -13,11 +14,7 @@ describe('kechain', () => {
     it('should return the correct keychainArguments when on iOS', async () => {
 
       // Mock like we are on Android
-      jest.mock('Platform', () => {
-        const Platform = require.requireActual('Platform');
-        Platform.OS = 'ios';
-        return Platform;
-      });
+      utils.mockPlatform('ios');
 
       expect(KeychainHelper.getKeychainArguments()).toMatchObject({
         accessGroup: 'group.playpost',
@@ -29,11 +26,7 @@ describe('kechain', () => {
     it('should return the correct keychainArguments when on Android', async () => {
 
       // Mock like we are on Android
-      jest.mock('Platform', () => {
-        const Platform = require.requireActual('Platform');
-        Platform.OS = 'android';
-        return Platform;
-      });
+      utils.mockPlatform('android');
 
       expect(KeychainHelper.getKeychainArguments()).toMatchObject({
         service: APP_BUNDLE_ID
@@ -51,11 +44,7 @@ describe('kechain', () => {
     it('should get the token from iOS keychain if it exists', async () => {
 
       // Mock like we are on iOS
-      jest.mock('Platform', () => {
-        const Platform = require.requireActual('Platform');
-        Platform.OS = 'ios';
-        return Platform;
-      });
+      utils.mockPlatform('ios');
 
       const spyGetGenericPassword = jest.spyOn(ReactNativeKeychain, 'getGenericPassword').mockResolvedValueOnce({
         service: '',
@@ -81,11 +70,7 @@ describe('kechain', () => {
     it('should get the token from Android keychain if it exists', async () => {
 
       // Mock like we are on Android
-      jest.mock('Platform', () => {
-        const Platform = require.requireActual('Platform');
-        Platform.OS = 'android';
-        return Platform;
-      });
+      utils.mockPlatform('android');
 
       const spyGetGenericPassword = jest.spyOn(ReactNativeKeychain, 'getGenericPassword').mockResolvedValueOnce({
         service: '',

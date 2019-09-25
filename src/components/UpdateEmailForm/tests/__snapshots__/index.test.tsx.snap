@@ -51,8 +51,9 @@ exports[`UpdateEmailForm rendering should render correctly 1`] = `
         E-mail address
       </Text>
       <TextInput
+        allowFontScaling={true}
         autoCapitalize="none"
-        autoFocus={false}
+        autoFocus={true}
         blurOnSubmit={false}
         clearButtonMode="always"
         editable={true}
@@ -60,6 +61,7 @@ exports[`UpdateEmailForm rendering should render correctly 1`] = `
         onChangeText={[Function]}
         onSubmitEditing={[Function]}
         placeholder="john.appleseed@playpost.app"
+        rejectResponderTermination={true}
         returnKeyType="done"
         style={
           Object {
@@ -76,6 +78,7 @@ exports[`UpdateEmailForm rendering should render correctly 1`] = `
         }
         testID="UpdateEmailForm-TextInput-email"
         textContentType="username"
+        underlineColorAndroid="transparent"
         value=""
       />
     </View>
@@ -89,7 +92,7 @@ exports[`UpdateEmailForm rendering should render correctly 1`] = `
       >
         <View
           accessible={true}
-          clickable={true}
+          focusable={true}
           isTVSelectable={true}
           onClick={[Function]}
           onResponderGrant={[Function]}

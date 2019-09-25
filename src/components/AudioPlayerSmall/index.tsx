@@ -7,7 +7,7 @@ import styles from './styles';
 import colors from '../../constants/colors';
 import { AudioPlayerSmallProgressBar } from '../AudioPlayerSmallProgressBar';
 import { PlayPauseControl } from '../PlayPauseControl';
-import { Text } from '../Text';
+import Text from '../Text';
 
 interface Props {
   isPlaying: boolean;

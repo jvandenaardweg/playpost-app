@@ -2,7 +2,7 @@ import React from 'react';
 import { TextInput } from 'react-native';
 import { render, RenderAPI } from 'react-native-testing-library';
 
-import { Text } from '../../Text';
+import Text from '../../Text';
 import { InputGroup, Props } from '../index';
 
 const defaultProps: Props = {

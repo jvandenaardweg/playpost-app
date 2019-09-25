@@ -27,7 +27,9 @@ exports[`InputGroup rendering should render correctly 1`] = `
     E-mail address
   </Text>
   <TextInput
-    autoFocus={false}
+    allowFontScaling={true}
+    rejectResponderTermination={true}
+    underlineColorAndroid="transparent"
   />
 </View>
 `;

@@ -2,7 +2,7 @@ import React from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import { Button } from 'react-native-elements';
 
-import { Text } from '../Text';
+import Text from '../Text';
 import styles from './styles';
 
 interface Props {

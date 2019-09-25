@@ -4,7 +4,7 @@ import { Slider } from 'react-native-elements';
 import { useProgress } from 'react-native-track-player';
 
 import colors from '../../constants/colors';
-import { Text } from '../Text';
+import Text from '../Text';
 
 import styles from './styles';
 

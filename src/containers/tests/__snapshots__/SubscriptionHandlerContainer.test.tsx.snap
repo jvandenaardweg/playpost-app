@@ -26,7 +26,7 @@ Array [
   >
     <View
       accessible={true}
-      clickable={true}
+      focusable={true}
       onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -148,7 +148,7 @@ When not upgrading, you will be set to use our lowest quality voices for the nex
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -203,7 +203,7 @@ When not upgrading, you will be set to use our lowest quality voices for the nex
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -255,7 +255,17 @@ When not upgrading, you will be set to use our lowest quality voices for the nex
       </View>
     </View>
   </Modal>,
-  <Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "Inter-Regular",
+        },
+        undefined,
+      ]
+    }
+  >
     Container test
   </Text>,
 ]

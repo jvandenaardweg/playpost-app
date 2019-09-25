@@ -5,7 +5,7 @@ import { ArticleReader } from '../ArticleReader';
 import { AudioPlayerProgressBar } from '../AudioPlayerProgressBar';
 import * as Icon from '../Icon';
 import { PlayPauseControlCircle } from '../PlayPauseControl';
-import { Text } from '../Text';
+import Text from '../Text';
 
 import { defaultHitslop, smallHitslop } from '../../constants/buttons';
 import colors from '../../constants/colors';

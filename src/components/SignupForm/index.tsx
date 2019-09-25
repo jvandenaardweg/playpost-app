@@ -6,7 +6,7 @@ import styles from './styles';
 import { URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../../constants/urls';
 import { InputGroupEmail } from '../InputGroup/email';
 import { InputGroupPassword } from '../InputGroup/password';
-import { Text } from '../Text';
+import Text from '../Text';
 
 export interface Props {
   email: string;

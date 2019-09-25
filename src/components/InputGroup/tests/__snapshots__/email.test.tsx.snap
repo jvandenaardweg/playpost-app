@@ -27,12 +27,13 @@ exports[`InputGroupEmail rendering should render correctly 1`] = `
     E-mail address
   </Text>
   <TextInput
+    allowFontScaling={true}
     autoCapitalize="none"
-    autoFocus={false}
     blurOnSubmit={false}
     clearButtonMode="always"
     keyboardType="email-address"
     placeholder="john.appleseed@playpost.app"
+    rejectResponderTermination={true}
     style={
       Object {
         "alignItems": "center",
@@ -47,6 +48,7 @@ exports[`InputGroupEmail rendering should render correctly 1`] = `
       }
     }
     textContentType="username"
+    underlineColorAndroid="transparent"
   />
 </View>
 `;

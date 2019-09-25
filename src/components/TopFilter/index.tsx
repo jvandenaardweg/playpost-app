@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { ScrollView, View } from 'react-native';
-import { Text } from '../Text';
+import Text from '../Text';
 
 import styles from './styles';
 

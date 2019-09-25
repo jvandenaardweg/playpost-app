@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import * as ReactNative from 'react-native';
+import { Text, TextProps, TextStyle } from 'react-native';
 import colors from '../../constants/colors';
 
 type FontFamilies = {
@@ -12,7 +12,7 @@ type FontWeightOptions = 'thin' | 'extraLight' | 'light' | 'regular' | 'medium' 
 
 type TextPresetOptions = 'largeTitleEmphasized' | 'title1' | 'title1Emphasized' | 'title2' | 'title2Emphasized' | 'title3Emphasized' | 'title3' | 'leadEmphasized' | 'lead' | 'bodyEmphasized' | 'body' | 'subheadEmphasized' | 'subhead' | 'subheadShort' | 'callout' | 'calloutEmphasized' | 'footnoteEmphasized' | 'footnote' | 'caption2Emphasized' | 'caption2';
 
-type PresetMap = { [textTemplate in TextPresetOptions]: ReactNative.TextStyle }
+type PresetMap = { [textTemplate in TextPresetOptions]: TextStyle }
 
 export const fontFamilies: FontFamilies = {
   thin: {
@@ -147,29 +147,31 @@ export const textPresets: PresetMap = {
     lineHeight: Math.ceil(12 * 1.2)
   }
 }
-interface Props extends ReactNative.TextProps {
+interface Props extends TextProps {
   children: ReactNode;
   fontWeight?: string;
   preset?: TextPresetOptions;
 }
 
-export const Text: React.FC<Props> = React.memo(({ children, fontWeight, preset, ...rest }) => {
-  const fontFamily: ReactNative.TextStyle = fontWeight ? fontFamilies[fontWeight] : fontFamilies['regular'];
+const CustomText: React.FC<Props> = React.memo(({ children, fontWeight, preset, ...rest }) => {
+  const fontFamily: TextStyle = fontWeight ? fontFamilies[fontWeight] : fontFamilies['regular'];
   const presetStyle = preset ? textPresets[preset] : undefined;
-  const defaultColor: ReactNative.TextStyle = { color: colors.black };
+  const defaultColor: TextStyle = { color: colors.black };
 
-  const customStyle: ReactNative.TextStyle = {
+  const customStyle: TextStyle = {
     ...fontFamily,
     ...presetStyle,
     ...defaultColor
   }
 
   return (
-    <ReactNative.Text
+    <Text
       {...rest}
       style={[customStyle, rest.style]}
     >
       {children}
-    </ReactNative.Text>
+    </Text>
   )
 })
+
+export default CustomText;

@@ -3,7 +3,7 @@
 exports[`ButtonVoicePreview rendering should render correctly 1`] = `
 <View
   accessible={true}
-  clickable={true}
+  focusable={true}
   hitSlop={
     Object {
       "bottom": 20,

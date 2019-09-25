@@ -4,7 +4,6 @@ import ShareExtension from 'react-native-share-extension';
 import * as ShallowRenderer from 'react-test-renderer/shallow';
 import * as KeychainHelper from '../../../utils/keychain';
 
-import { Animated } from 'react-native';
 import { ShareOverlay } from '../index';
 
 // Mock our store, since we use a "store.dispatch" in the component
@@ -15,22 +14,6 @@ jest.mock('../../../store', () => ({
 jest.mock('../../../reducers/auth', () => ({
   setAuthToken: jest.fn()
 }))
-
-jest.mock('Animated', () => {
-  const ActualAnimated = require.requireActual('Animated');
-  return {
-    ...ActualAnimated,
-    timing: (value: Animated.Value, config: Animated.TimingAnimationConfig) => {
-      return {
-        start: (callback: any) => {
-          value.setValue(config.toValue as number);
-          // tslint:disable-next-line: no-unused-expression
-          callback && callback();
-        },
-      };
-    },
-  };
-});
 
 describe('ShareOverlay', () => {
 

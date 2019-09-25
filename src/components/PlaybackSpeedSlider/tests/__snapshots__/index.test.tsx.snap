@@ -30,7 +30,7 @@ exports[`PlaybackSpeedSlider rendering should render correctly 1`] = `
   >
     <View
       accessible={true}
-      clickable={true}
+      focusable={true}
       isTVSelectable={true}
       onClick={[Function]}
       onResponderGrant={[Function]}
@@ -77,7 +77,7 @@ exports[`PlaybackSpeedSlider rendering should render correctly 1`] = `
   >
     <View
       accessible={true}
-      clickable={true}
+      focusable={true}
       hitSlop={
         Object {
           "bottom": 10,
@@ -267,7 +267,7 @@ exports[`PlaybackSpeedSlider rendering should render correctly 1`] = `
     </View>
     <View
       accessible={true}
-      clickable={true}
+      focusable={true}
       hitSlop={
         Object {
           "bottom": 10,

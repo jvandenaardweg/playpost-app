@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableHighlight, View } from 'react-native';
 
 import colors from '../../constants/colors';
-import { Text } from '../Text';
+import Text from '../Text';
 import styles from './styles';
 
 interface Props {

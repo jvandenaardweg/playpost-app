@@ -4,7 +4,7 @@ import { ListItem } from 'react-native-elements';
 import styles from './styles';
 
 import colors from '../../constants/colors';
-import { Text, textPresets } from '../Text';
+import Text, { textPresets } from '../Text';
 
 import * as Icon from '../../components/Icon';
 import spacing from '../../constants/spacing';

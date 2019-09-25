@@ -1,8 +1,8 @@
 import React from 'react';
-import { Text } from 'react-native';
 import { SubscriptionPurchase } from 'react-native-iap';
 import renderer from 'react-test-renderer';
 
+import Text from '../../components/Text';
 import { Props, SubscriptionHandlerContainerComponent } from '../SubscriptionHandlerContainer';
 
 jest.mock('../../navigation/NavigationService');

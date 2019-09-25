@@ -4,7 +4,7 @@ import { Slider } from 'react-native-elements';
 
 import { mediumHitslop } from '../../constants/buttons';
 import colors from '../../constants/colors';
-import { Text } from '../Text';
+import Text from '../Text';
 
 import * as Icon from '../Icon';
 

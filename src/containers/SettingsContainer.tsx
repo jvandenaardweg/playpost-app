@@ -6,7 +6,7 @@ import DeviceInfo from 'react-native-device-info';
 import { NavigationEventSubscription, NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 
-import { Text } from '../components/Text';
+import Text from '../components/Text';
 import * as inAppBrowser from '../utils/in-app-browser';
 
 import colors from '../constants/colors';

@@ -10,7 +10,7 @@ exports[`ButtonUpgrade rendering should render correctly 1`] = `
 >
   <View
     accessible={true}
-    clickable={true}
+    focusable={true}
     isTVSelectable={true}
     onClick={[Function]}
     onResponderGrant={[Function]}

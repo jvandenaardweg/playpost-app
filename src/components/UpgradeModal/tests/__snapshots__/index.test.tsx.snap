@@ -25,7 +25,7 @@ exports[`UpgradeModal rendering should render correctly 1`] = `
 >
   <View
     accessible={true}
-    clickable={true}
+    focusable={true}
     onClick={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
@@ -147,7 +147,7 @@ When not upgrading, you will be set to use our lowest quality voices for the nex
         >
           <View
             accessible={true}
-            clickable={true}
+            focusable={true}
             isTVSelectable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -202,7 +202,7 @@ When not upgrading, you will be set to use our lowest quality voices for the nex
         >
           <View
             accessible={true}
-            clickable={true}
+            focusable={true}
             isTVSelectable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}

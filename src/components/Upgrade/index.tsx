@@ -5,7 +5,7 @@ import { Button } from 'react-native-elements';
 import * as RNIap from 'react-native-iap';
 
 import * as Icon from '../Icon';
-import { Text } from '../Text';
+import Text from '../Text';
 
 import styles from './styles';
 

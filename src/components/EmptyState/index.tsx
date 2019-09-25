@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { Button } from 'react-native-elements';
 
-import { Text } from '../Text';
+import Text from '../Text';
 import { VideoPlayer } from '../VideoPlayer';
 import styles from './styles';
 

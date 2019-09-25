@@ -4,7 +4,7 @@ import AppIntroSlider from 'react-native-app-intro-slider';
 import { Button, Image } from 'react-native-elements';
 import SplashScreen from 'react-native-splash-screen';
 import { NavigationRoute, NavigationScreenProp, withNavigation } from 'react-navigation';
-import { Text } from '../Text';
+import Text from '../Text';
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import NavigationService from '../../navigation/NavigationService';

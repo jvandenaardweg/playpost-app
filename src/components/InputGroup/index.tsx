@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import { View } from 'react-native'
 import spacing from '../../constants/spacing'
 
-import { Text } from '../Text';
+import Text from '../Text';
 
 import styles from './styles'
 

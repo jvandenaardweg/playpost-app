@@ -52,7 +52,7 @@ exports[`ShareModal interacting should fire onPressClose when pressing the close
       >
         <View
           accessible={true}
-          clickable={true}
+          focusable={true}
           isTVSelectable={true}
           onClick={[Function]}
           onResponderGrant={[Function]}
@@ -155,7 +155,7 @@ exports[`ShareModal rendering should render correctly 1`] = `
       >
         <View
           accessible={true}
-          clickable={true}
+          focusable={true}
           isTVSelectable={true}
           onClick={[Function]}
           onResponderGrant={[Function]}

@@ -4,7 +4,7 @@ import { Button } from 'react-native-elements';
 
 import colors from '../../constants/colors';
 import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_UNLIMITED } from '../../constants/in-app-purchase';
-import { Text } from '../Text';
+import Text from '../Text';
 import styles from './styles';
 
 
