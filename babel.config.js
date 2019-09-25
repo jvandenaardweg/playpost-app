@@ -10,6 +10,5 @@ module.exports = {
       plugins: ['transform-remove-console']
     }
   },
-  presets: ['module:metro-react-native-babel-preset'],
-  plugins: ['functional-hmr']
+  presets: ['module:metro-react-native-babel-preset']
 };
