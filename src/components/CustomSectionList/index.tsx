@@ -81,7 +81,7 @@ export const CustomSectionList: React.FC<Props> = React.memo(({ sectionListData,
           ) :
             undefined;
 
-        const rightIcon = (item.value) ? <Text style={rightIconTextStyles} preset="footnoteEmphasized">{item.value}</Text> : undefined;
+        const rightIcon = (item.value) ? <Text style={rightIconTextStyles} preset="subhead">{item.value}</Text> : undefined;
         const rightElement = getRightElement(item, checkmarkColor);
 
         return (
