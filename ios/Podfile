@@ -28,6 +28,7 @@ target 'Playpost' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
   # Custom App specific pods
+  pod 'ReactNativeShareExtension', :podspec => '../node_modules/react-native-share-extension/ReactNativeShareExtension.podspec'
   # pod 'AppCenter/Crashes', '~> 2.0.1'
   # pod 'AppCenter/Analytics', '~> 2.0.1'
   # pod 'AppCenterReactNativeShared', '~> 2.0.0'

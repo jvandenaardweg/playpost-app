@@ -57,13 +57,11 @@
 		8C7A3A0C2219D80700A9A9A7 /* Merriweather-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B9779BB4A0A4F7CBDD605DB /* Merriweather-LightItalic.ttf */; };
 		8C7A3A0D2219D80700A9A9A7 /* Merriweather-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4737CA2073746B38C3D16F0 /* Merriweather-Regular.ttf */; };
 		8C7A3A0E2219D80700A9A9A7 /* SpaceMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5C433349EFA4F739AE21096 /* SpaceMono-Regular.ttf */; };
-		8C7D4678230C08AD00D2C1B5 /* libReactNativeShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD9975C230BE32500D7D346 /* libReactNativeShareExtension.a */; };
 		8C96C7BB22B3A1F9006E5704 /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF37A02FD9F246028F4091AF /* RNPlaceholder.swift */; };
 		8C9B782A230D4CA10097FAB9 /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C22087E22E0B6400029B873 /* libReactNativeConfig.a */; };
 		8CD3D194220F69A50030C131 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		8CD3D19E220F7B5B0030C131 /* dummy2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3D19D220F7B5B0030C131 /* dummy2.swift */; };
 		8CD99767230BE6A600D7D346 /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C22087E22E0B6400029B873 /* libReactNativeConfig.a */; };
-		8CD9976A230BE9D200D7D346 /* libReactNativeShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD9975C230BE32500D7D346 /* libReactNativeShareExtension.a */; };
 		99C3B16B8F9AA75F78DBE17D /* libPods-Playpost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE776479D18664E4E22DF773 /* libPods-Playpost.a */; };
 		A64A372C832C4F67B5C9F81E /* Merriweather-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 208F0875A5244E5E8585FD01 /* Merriweather-Italic.ttf */; };
 		B781E6C7D20A497C85EE0E4B /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37421C5BB434438EA41F38B9 /* MaterialIcons.ttf */; };
@@ -226,13 +224,6 @@
 			remoteGlobalIDString = 8C5A7DC1220F224A00ECCC65;
 			remoteInfo = PlaypostShareExtension;
 		};
-		8CD9975B230BE32500D7D346 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8CD99755230BE32500D7D346 /* ReactNativeShareExtension.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 41B5DE301D0B505800949BD5;
-			remoteInfo = ReactNativeShareExtension;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -365,7 +356,6 @@
 		8CD3D19D220F7B5B0030C131 /* dummy2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dummy2.swift; sourceTree = "<group>"; };
 		8CD9974D230BE21D00D7D346 /* libreact-native-config.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-config.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD99750230BE22700D7D346 /* libreact-native-config.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-config.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8CD99755230BE32500D7D346 /* ReactNativeShareExtension.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeShareExtension.xcodeproj; path = "../node_modules/react-native-share-extension/ios/ReactNativeShareExtension.xcodeproj"; sourceTree = "<group>"; };
 		8CD99786230BF42300D7D346 /* libReact-Core.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-Core.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD99791230BF86600D7D346 /* libReact-Core.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-Core.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD99793230BF86600D7D346 /* libReact-cxxreact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-cxxreact.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -419,7 +409,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CD9976A230BE9D200D7D346 /* libReactNativeShareExtension.a in Frameworks */,
 				8CD99767230BE6A600D7D346 /* libReactNativeConfig.a in Frameworks */,
 				8C13332F2292B24E00516937 /* StoreKit.framework in Frameworks */,
 				99C3B16B8F9AA75F78DBE17D /* libPods-Playpost.a in Frameworks */,
@@ -433,7 +422,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C9B782A230D4CA10097FAB9 /* libReactNativeConfig.a in Frameworks */,
-				8C7D4678230C08AD00D2C1B5 /* libReactNativeShareExtension.a in Frameworks */,
 				D6D1143DAC5682EAB69CD6D5 /* libPods-Playpost-PlaypostShareExtension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -634,7 +622,6 @@
 			isa = PBXGroup;
 			children = (
 				8C364782230C135C000AE1C2 /* React.xcodeproj */,
-				8CD99755230BE32500D7D346 /* ReactNativeShareExtension.xcodeproj */,
 				8C22087822E0B6400029B873 /* ReactNativeConfig.xcodeproj */,
 			);
 			name = Libraries;
@@ -722,14 +709,6 @@
 				EF37A02FD9F246028F4091AF /* RNPlaceholder.swift */,
 			);
 			name = "Recovered References";
-			sourceTree = "<group>";
-		};
-		8CD99756230BE32500D7D346 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8CD9975C230BE32500D7D346 /* libReactNativeShareExtension.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -844,10 +823,6 @@
 				{
 					ProductGroup = 8C22087922E0B6400029B873 /* Products */;
 					ProjectRef = 8C22087822E0B6400029B873 /* ReactNativeConfig.xcodeproj */;
-				},
-				{
-					ProductGroup = 8CD99756230BE32500D7D346 /* Products */;
-					ProjectRef = 8CD99755230BE32500D7D346 /* ReactNativeShareExtension.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -983,13 +958,6 @@
 			fileType = archive.ar;
 			path = "libjsiexecutor-tvOS.a";
 			remoteRef = 8C3647B3230C135C000AE1C2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		8CD9975C230BE32500D7D346 /* libReactNativeShareExtension.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libReactNativeShareExtension.a;
-			remoteRef = 8CD9975B230BE32500D7D346 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
