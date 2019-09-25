@@ -17,12 +17,14 @@ exports[`ContentView basic rendering should render correctly 1`] = `
       }
     }
   >
-    <RNCWKWebView
+    <RNCWebView
       bounces={true}
       cacheEnabled={true}
       decelerationRate={0.998}
       javaScriptEnabled={false}
       messagingEnabled={false}
+      onContentProcessDidTerminate={[Function]}
+      onHttpError={[Function]}
       onLoadingError={[Function]}
       onLoadingFinish={[Function]}
       onLoadingProgress={[Function]}

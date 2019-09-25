@@ -9,13 +9,15 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
     }
   }
 >
-  <RNCWKWebView
+  <RNCWebView
     allowFileAccess={true}
     bounces={true}
     cacheEnabled={true}
     decelerationRate={0.998}
     javaScriptEnabled={false}
     messagingEnabled={false}
+    onContentProcessDidTerminate={[Function]}
+    onHttpError={[Function]}
     onLoadingError={[Function]}
     onLoadingFinish={[Function]}
     onLoadingProgress={[Function]}
@@ -200,10 +202,6 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
           "margin": 0,
           "padding": 0,
         },
-        Object {
-          "flex": 0,
-          "height": 0,
-        },
       ]
     }
     useSharedProcessPool={true}
@@ -249,13 +247,15 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
     }
   }
 >
-  <RNCWKWebView
+  <RNCWebView
     allowFileAccess={true}
     bounces={true}
     cacheEnabled={true}
     decelerationRate={0.998}
     javaScriptEnabled={false}
     messagingEnabled={false}
+    onContentProcessDidTerminate={[Function]}
+    onHttpError={[Function]}
     onLoadingError={[Function]}
     onLoadingFinish={[Function]}
     onLoadingProgress={[Function]}
@@ -440,10 +440,6 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
           "margin": 0,
           "padding": 0,
         },
-        Object {
-          "flex": 0,
-          "height": 0,
-        },
       ]
     }
     useSharedProcessPool={true}
@@ -489,13 +485,15 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
     }
   }
 >
-  <RNCWKWebView
+  <RNCWebView
     allowFileAccess={true}
     bounces={true}
     cacheEnabled={true}
     decelerationRate={0.998}
     javaScriptEnabled={false}
     messagingEnabled={false}
+    onContentProcessDidTerminate={[Function]}
+    onHttpError={[Function]}
     onLoadingError={[Function]}
     onLoadingFinish={[Function]}
     onLoadingProgress={[Function]}
@@ -674,10 +672,6 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
           "margin": 0,
           "padding": 0,
         },
-        Object {
-          "flex": 0,
-          "height": 0,
-        },
       ]
     }
     useSharedProcessPool={true}
@@ -723,13 +717,15 @@ exports[`ArticleReader rendering no author name should render no authorName when
     }
   }
 >
-  <RNCWKWebView
+  <RNCWebView
     allowFileAccess={true}
     bounces={true}
     cacheEnabled={true}
     decelerationRate={0.998}
     javaScriptEnabled={false}
     messagingEnabled={false}
+    onContentProcessDidTerminate={[Function]}
+    onHttpError={[Function]}
     onLoadingError={[Function]}
     onLoadingFinish={[Function]}
     onLoadingProgress={[Function]}
@@ -907,10 +903,6 @@ exports[`ArticleReader rendering no author name should render no authorName when
           "backgroundColor": "#ffffff",
           "margin": 0,
           "padding": 0,
-        },
-        Object {
-          "flex": 0,
-          "height": 0,
         },
       ]
     }
@@ -957,13 +949,15 @@ exports[`ArticleReader rendering no html should render a different HTML output w
     }
   }
 >
-  <RNCWKWebView
+  <RNCWebView
     allowFileAccess={true}
     bounces={true}
     cacheEnabled={true}
     decelerationRate={0.998}
     javaScriptEnabled={false}
     messagingEnabled={false}
+    onContentProcessDidTerminate={[Function]}
+    onHttpError={[Function]}
     onLoadingError={[Function]}
     onLoadingFinish={[Function]}
     onLoadingProgress={[Function]}
@@ -1142,10 +1136,6 @@ exports[`ArticleReader rendering no html should render a different HTML output w
           "margin": 0,
           "padding": 0,
         },
-        Object {
-          "flex": 0,
-          "height": 0,
-        },
       ]
     }
     useSharedProcessPool={true}
@@ -1191,13 +1181,15 @@ exports[`ArticleReader rendering right to left content should render correctly 1
     }
   }
 >
-  <RNCWKWebView
+  <RNCWebView
     allowFileAccess={true}
     bounces={true}
     cacheEnabled={true}
     decelerationRate={0.998}
     javaScriptEnabled={false}
     messagingEnabled={false}
+    onContentProcessDidTerminate={[Function]}
+    onHttpError={[Function]}
     onLoadingError={[Function]}
     onLoadingFinish={[Function]}
     onLoadingProgress={[Function]}
@@ -1381,10 +1373,6 @@ exports[`ArticleReader rendering right to left content should render correctly 1
           "backgroundColor": "#ffffff",
           "margin": 0,
           "padding": 0,
-        },
-        Object {
-          "flex": 0,
-          "height": 0,
         },
       ]
     }

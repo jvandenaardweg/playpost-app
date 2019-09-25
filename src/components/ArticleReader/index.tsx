@@ -35,7 +35,6 @@ export const ArticleReader: React.FC<Props> = React.memo(({
       ref={webViewRef}
       startInLoadingState={true}
       renderLoading={() => <CenterLoadingIndicator backgroundColor={themeStyles.backgroundColor} />}
-      useWebKit
       allowFileAccess
       originWhitelist={['file://']}
       javaScriptEnabled={false}

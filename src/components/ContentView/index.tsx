@@ -196,7 +196,6 @@ export class ContentView extends React.PureComponent<Props> {
       <SafeAreaView style={styles.container}>
         <WebView
           source={{ html: this.getHtmlDocument() }}
-          useWebKit
           originWhitelist={['*']}
           javaScriptEnabled={false}
           bounces
