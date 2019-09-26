@@ -32,7 +32,7 @@
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
-		<true />
+		<true/>
 	</dict>
 	<key>NSExtension</key>
 	<dict>
@@ -43,7 +43,7 @@
 				<key>NSExtensionActivationDictionaryVersion</key>
 				<integer>2</integer>
 				<key>NSExtensionActivationSupportsText</key>
-				<true />
+				<true/>
 				<key>NSExtensionActivationSupportsWebPageWithMaxCount</key>
 				<integer>1</integer>
 				<key>NSExtensionActivationSupportsWebURLWithMaxCount</key>
@@ -57,6 +57,13 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.share-services</string>
 	</dict>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
@@ -67,6 +74,7 @@
 		<string>FontAwesome5_Brands.ttf</string>
 		<string>FontAwesome5_Regular.ttf</string>
 		<string>FontAwesome5_Solid.ttf</string>
+		<string>Fontisto.ttf</string>
 		<string>Foundation.ttf</string>
 		<string>Ionicons.ttf</string>
 		<string>MaterialCommunityIcons.ttf</string>
@@ -74,22 +82,24 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
-		<string>Merriweather-Black.ttf</string>
-		<string>Merriweather-BlackItalic.ttf</string>
-		<string>Merriweather-Bold.ttf</string>
-		<string>Merriweather-BoldItalic.ttf</string>
-		<string>Merriweather-Italic.ttf</string>
-		<string>Merriweather-Light.ttf</string>
-		<string>Merriweather-LightItalic.ttf</string>
-		<string>Merriweather-Regular.ttf</string>
-		<string>SpaceMono-Regular.ttf</string>
-	</array>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>Inter-Black.ttf</string>
+		<string>Inter-BlackItalic.ttf</string>
+		<string>Inter-Bold.ttf</string>
+		<string>Inter-BoldItalic.ttf</string>
+		<string>Inter-ExtraBold.ttf</string>
+		<string>Inter-ExtraBoldItalic.ttf</string>
+		<string>Inter-ExtraLight-BETA.ttf</string>
+		<string>Inter-ExtraLightItalic-BETA.ttf</string>
+		<string>Inter-Italic.ttf</string>
+		<string>Inter-Light-BETA.ttf</string>
+		<string>Inter-LightItalic-BETA.ttf</string>
+		<string>Inter-Medium.ttf</string>
+		<string>Inter-MediumItalic.ttf</string>
+		<string>Inter-Regular.ttf</string>
+		<string>Inter-SemiBold.ttf</string>
+		<string>Inter-SemiBoldItalic.ttf</string>
+		<string>Inter-Thin-BETA.ttf</string>
+		<string>Inter-ThinItalic-BETA.ttf</string>
 	</array>
 </dict>
 </plist>
