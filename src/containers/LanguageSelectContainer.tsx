@@ -8,6 +8,8 @@ import { RootState } from '../reducers';
 import { getUser } from '../reducers/user';
 import { getLanguages } from '../reducers/voices';
 
+import * as languageUtils from '../utils/language';
+
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { CustomSectionList, IListItem } from '../components/CustomSectionList';
 import colors from '../constants/colors';
@@ -33,46 +35,15 @@ export class LanguagesSelectComponent extends React.Component<Props> {
 
   handleOnListItemPress = (language: Api.Language) => this.props.navigation.navigate('SettingsVoices', { languageName: language.name });
 
-  getDefaultVoice = (language: Api.Language) => {
-    const { isSubscribed, userHasUsedFreeIntroduction } = this.props;
-
-    return language.voices && language.voices.find(voice => {
-      if (!isSubscribed) {
-        // If the user is not subscribed, and has not used his free introduction
-        // Select the default voice to be the subscribed language default
-        if (!userHasUsedFreeIntroduction) {
-          return !!voice.isSubscribedLanguageDefault
-        }
-
-        return !!voice.isUnsubscribedLanguageDefault
-      }
-
-      return !!voice.isSubscribedLanguageDefault
-    });
-  }
-
   getSelectedVoiceSubtitle = (language: Api.Language) => {
-    const voice = this.getSelectedVoice(language);
+    const selectedVoice = languageUtils.getSelectedVoiceForLanguage(language, this.props.userHasUsedFreeIntroduction, this.props.isSubscribed, this.props.userSelectedVoices);
 
-    if (!voice) { return ''; }
+    if (!selectedVoice) { return ''; }
 
-    const genderLabel = voice.gender === 'MALE' ? 'Male' : 'Female';
-    const label = voice.label ? voice.label : '';
+    const genderLabel = selectedVoice.gender === 'MALE' ? 'Male' : 'Female';
+    const label = selectedVoice.label ? selectedVoice.label : '';
 
-    return `${label} (${voice.countryCode}) (${genderLabel})`;
-  }
-
-  getSelectedVoice = (language: Api.Language): Api.Voice | undefined => {
-    const { userSelectedVoices, isSubscribed } = this.props;
-
-    const foundUserSelectedVoice = userSelectedVoices.find(userSelectedVoice => userSelectedVoice.language.id === language.id);
-    const defaultVoice = this.getDefaultVoice(language);
-
-    // If a user is subscribed, and the user has it's own selected voice, show that one
-    // Else, default back to the default voice
-    const voice = isSubscribed ? foundUserSelectedVoice || defaultVoice : defaultVoice;
-
-    return voice
+    return `${label} (${selectedVoice.countryCode}) (${genderLabel})`;
   }
 
   getTotalVoices = (language: Api.Language): number => {

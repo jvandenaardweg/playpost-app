@@ -9,14 +9,14 @@ import { LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 import * as cache from '../cache';
 
 import { NetworkContext } from '../contexts/NetworkProvider';
-
+import * as languageUtils from '../utils/language';
 import { RootState } from '../reducers';
 import { setTrack } from '../reducers/player';
 import { getUser, resetSaveSelectedVoiceError, saveSelectedVoice } from '../reducers/user';
 import { setDownloadedVoice } from '../reducers/voices';
 
 import { selectPlayerPlaybackState, selectPlayerTrack } from '../selectors/player';
-import { selectUserErrorSaveSelectedVoice, selectUserHasUsedFreeIntroduction, selectUserIsEligibleForTrial, selectUserIsSubscribed, selectUserSelectedVoiceByLanguageName } from '../selectors/user';
+import { selectUserErrorSaveSelectedVoice, selectUserHasUsedFreeIntroduction, selectUserIsEligibleForTrial, selectUserIsSubscribed, selectUserSelectedVoiceByLanguageName, selectUserSelectedVoices } from '../selectors/user';
 import { selectCountryOptions, selectDownloadedVoicePreviews, selectGenderOptions, selectLanguagesWithActiveVoicesByLanguageName, selectQualityOptions } from '../selectors/voices';
 
 import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_VOICE_CHANGE, ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE, ALERT_TITLE_ERROR, ALERT_TITLE_ERROR_NO_INTERNET, ALERT_TITLE_SUBSCRIPTION_ONLY, ALERT_TITLE_VOICE_CHANGE_REQUEST } from '../constants/messages';
@@ -59,10 +59,9 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
 
   keyExtractor = (item: Api.Voice, index: number) => index.toString();
 
-  handleOnListItemPress = (voice: Api.Voice) => {
+  handleOnListItemPress = (voice: Api.Voice, isSelected: boolean) => {
     const { isConnected } = this.context;
     const { isSubscribed, userIsEligibleForTrial } = this.props;
-    const isSelected = this.isSelected(voice);
 
     // If it's already selected, do nothing
     if (isSelected) { return; }
@@ -221,65 +220,28 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     return playerTrack && playerTrack.id === voiceId;
   }
 
-  isSelected = (item: Api.Voice): boolean => {
-    const { languagesWithActiveVoicesByLanguageName, userSelectedVoiceByLanguageName, isSubscribed, userHasUsedFreeIntroduction } = this.props;
-    const selectedLanguageName = this.props.navigation.getParam('languageName', '');
-    const languagewithActiveVoices = languagesWithActiveVoicesByLanguageName && languagesWithActiveVoicesByLanguageName[selectedLanguageName];
-    const userSelectedVoice = userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName[selectedLanguageName];
-
-    // Default selected when unsubscribed
-    const isUnsubscribedDefaultSelected = !!languagewithActiveVoices && !!languagewithActiveVoices.voices && !!languagewithActiveVoices.voices.find(voice => voice.id === item.id && voice.isUnsubscribedLanguageDefault);
-
-    // Default selected when subscribed
-    const isSubscribedDefaultSelected = !!languagewithActiveVoices && !!languagewithActiveVoices.voices && !!languagewithActiveVoices.voices.find(voice => voice.id === item.id && voice.isSubscribedLanguageDefault);
-
-    // User his own selection
-    const isUserSelected = !!userSelectedVoice && userSelectedVoice.id === item.id;
-
-    // If a user is subscribed
-    if (isSubscribed) {
-
-      // If the user has no own selected voice
-      if (!isUserSelected) {
-        // Return the subscribed default voice as selected
-        return isSubscribedDefaultSelected
-      }
-
-      // Else, return the user's own selected voice
-      return isUserSelected;
-
-    }
-
-    // User is unsubscribed
-
-    // If the user has a free introduction left, the default selected voice are the subscribed default
-    if (!userHasUsedFreeIntroduction) {
-      return isSubscribedDefaultSelected
-    }
-
-    return isUnsubscribedDefaultSelected;
-  }
-
-  getBadgeValue(isPremium: boolean): string {
-    if (isPremium) {
-      return 'Premium';
-    }
-
-    return 'Free';
-  }
-
   handleSelectQuality = (quality: string) => requestAnimationFrame(() => this.setState({ selectedQuality: quality }));
 
   handleSelectGender = (gender: string) => requestAnimationFrame(() => this.setState({ selectedGender: gender }));
 
   handleSelectRegion = (region: string) => requestAnimationFrame(() => this.setState({ selectedRegion: region }));
 
+  get selectedLanguageName() {
+    return this.props.navigation.getParam('languageName', '');
+  }
+
+  get selectedVoiceForLanguage() {
+    const { languagesWithActiveVoicesByLanguageName, userHasUsedFreeIntroduction, isSubscribed, userSelectedVoices } = this.props;
+    const languagewithActiveVoices = languagesWithActiveVoicesByLanguageName && languagesWithActiveVoicesByLanguageName[this.selectedLanguageName];
+
+    return languageUtils.getSelectedVoiceForLanguage(languagewithActiveVoices, userHasUsedFreeIntroduction, isSubscribed, userSelectedVoices)
+  }
+
   get filteredVoices(): Api.Voice[] {
-    const selectedLanguageName = this.props.navigation.getParam('languageName', '');
     const { languagesWithActiveVoicesByLanguageName } = this.props;
     const { selectedQuality, selectedGender, selectedRegion } = this.state;
 
-    const availableVoices = languagesWithActiveVoicesByLanguageName && languagesWithActiveVoicesByLanguageName[selectedLanguageName].voices || [];
+    const availableVoices = languagesWithActiveVoicesByLanguageName && languagesWithActiveVoicesByLanguageName[this.selectedLanguageName].voices || [];
 
     const filteredVoices = availableVoices.filter(voice => {
       if (selectedGender.toUpperCase() !== voice.gender && selectedGender !== 'All') {
@@ -311,7 +273,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
       key: 'available-voices',
       title: 'Available voices',
       data: this.filteredVoices.map((voice) => {
-        const isSelected = this.isSelected(voice);
+        const isSelected = (this.selectedVoiceForLanguage) ? voice.id === this.selectedVoiceForLanguage.id : false;
         const isPlaying = this.isVoicePlayingInPlayer(voice.id);
         const isActive = this.isVoiceActiveInPlayer(voice.id);
         const isAvailable = !!voice.exampleAudioUrl;
@@ -341,7 +303,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
               onPress={() => this.handleOnPreviewPress(title, label, voice)}
             />
           ),
-          onPress: () => this.handleOnListItemPress(voice),
+          onPress: () => this.handleOnListItemPress(voice, isSelected),
           value: badgeValue,
           chevron: false,
           isLoading: isLoadingSaveSelected,
@@ -355,7 +317,6 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
   get topFilterOptions() {
     const { selectedQuality, selectedGender, selectedRegion } = this.state;
     const { qualityOptions, genderOptions, countryOptions } = this.props;
-    const selectedLanguageName = this.props.navigation.getParam('languageName', '');
 
     return [
       {
@@ -372,7 +333,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
       },
       {
         label: 'Country',
-        options: countryOptions[selectedLanguageName],
+        options: countryOptions[this.selectedLanguageName],
         selectedOption: selectedRegion,
         onSelect: this.handleSelectRegion
       }
@@ -417,6 +378,7 @@ interface StateProps {
   readonly genderOptions: ReturnType<typeof selectGenderOptions>;
   readonly countryOptions: ReturnType<typeof selectCountryOptions>;
   readonly userHasUsedFreeIntroduction: ReturnType<typeof selectUserHasUsedFreeIntroduction>;
+  readonly userSelectedVoices: ReturnType<typeof selectUserSelectedVoices>;
 }
 
 const mapStateToProps = (state: RootState) => ({
@@ -431,7 +393,8 @@ const mapStateToProps = (state: RootState) => ({
   qualityOptions: selectQualityOptions(state),
   genderOptions: selectGenderOptions(state),
   countryOptions: selectCountryOptions(state),
-  userHasUsedFreeIntroduction: selectUserHasUsedFreeIntroduction(state)
+  userHasUsedFreeIntroduction: selectUserHasUsedFreeIntroduction(state),
+  userSelectedVoices: selectUserSelectedVoices(state)
 });
 
 const mapDispatchToProps = {
