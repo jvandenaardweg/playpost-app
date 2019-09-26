@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
+import { AppBackground } from '../../components/AppBackground';
 import { InteractionManaged } from '../../components/InteractionManaged';
 import { LanguagesSelectContainer } from '../../containers/LanguageSelectContainer';
 
@@ -13,7 +14,9 @@ export class SettingsLanguagesScreen extends React.PureComponent {
   render() {
     return (
       <InteractionManaged>
-        <LanguagesSelectContainer />
+        <AppBackground>
+          <LanguagesSelectContainer />
+        </AppBackground>
       </InteractionManaged>
     );
   }

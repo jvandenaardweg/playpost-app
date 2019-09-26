@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
+import { AppBackground } from '../../components/AppBackground';
 import { InteractionManaged } from '../../components/InteractionManaged';
 import { VoiceSelectContainer } from '../../containers/VoiceSelectContainer';
 
@@ -13,7 +14,9 @@ export class SettingsVoicesScreen extends React.PureComponent {
   render() {
     return (
       <InteractionManaged>
-        <VoiceSelectContainer />
+        <AppBackground>
+          <VoiceSelectContainer />
+        </AppBackground>
       </InteractionManaged>
     );
   }
