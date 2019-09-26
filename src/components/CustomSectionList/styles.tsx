@@ -8,12 +8,10 @@ const sectionFooterHeight = spacing.default;
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: colors.appBackground,
   },
   containerStyle: {
-    paddingTop: spacing.default,
-    overflow: 'visible'
+    paddingTop: spacing.default
   },
   sectionFooter: {
     height: sectionFooterHeight
