@@ -20,6 +20,9 @@ import { RootState } from '../reducers';
 
 import { ListSeperator } from '../components/ListSeperator';
 import { ALERT_TITLE_ERROR } from '../constants/messages';
+import { getInAppSubscriptions } from '../reducers/subscriptions';
+import { getUser } from '../reducers/user';
+import { getLanguages } from '../reducers/voices';
 import { selectDownloadedAudiofiles } from '../selectors/audiofiles';
 
 interface State {
@@ -108,6 +111,11 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
             this.fetchPlaylist();
           });
         }
+
+        // Populate the app
+        this.props.getUser()
+        this.props.getInAppSubscriptions()
+        this.props.getLanguages()
       }
 
       SplashScreen.hide();
@@ -338,6 +346,9 @@ interface StateProps {
 
 interface DispatchProps {
   getPlaylist: typeof getPlaylist;
+  getUser: typeof getUser;
+  getLanguages: typeof getLanguages;
+  getInAppSubscriptions: typeof getInAppSubscriptions;
   reOrderPlaylistItem: typeof reOrderPlaylistItem;
 }
 
@@ -350,6 +361,9 @@ const mapStateToProps = (state: RootState) => ({
 
 const mapDispatchToProps = {
   getPlaylist,
+  getUser,
+  getLanguages,
+  getInAppSubscriptions,
   reOrderPlaylistItem
 };
 
