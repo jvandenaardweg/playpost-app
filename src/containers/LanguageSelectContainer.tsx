@@ -51,13 +51,8 @@ export class LanguagesSelectComponent extends React.Component<Props> {
     });
   }
 
-  getVoiceSubtitle = (language: Api.Language) => {
-    const { userSelectedVoices } = this.props;
-
-    const foundUserSelectedVoice = userSelectedVoices.find(userSelectedVoice => userSelectedVoice.language.id === language.id);
-    const defaultVoice = this.getDefaultVoice(language);
-
-    const voice = foundUserSelectedVoice || defaultVoice;
+  getSelectedVoiceSubtitle = (language: Api.Language) => {
+    const voice = this.getSelectedVoice(language);
 
     if (!voice) { return ''; }
 
@@ -65,6 +60,19 @@ export class LanguagesSelectComponent extends React.Component<Props> {
     const label = voice.label ? voice.label : '';
 
     return `${label} (${voice.countryCode}) (${genderLabel})`;
+  }
+
+  getSelectedVoice = (language: Api.Language): Api.Voice | undefined => {
+    const { userSelectedVoices, isSubscribed } = this.props;
+
+    const foundUserSelectedVoice = userSelectedVoices.find(userSelectedVoice => userSelectedVoice.language.id === language.id);
+    const defaultVoice = this.getDefaultVoice(language);
+
+    // If a user is subscribed, and the user has it's own selected voice, show that one
+    // Else, default back to the default voice
+    const voice = isSubscribed ? foundUserSelectedVoice || defaultVoice : defaultVoice;
+
+    return voice
   }
 
   getTotalVoices = (language: Api.Language): number => {
@@ -75,7 +83,7 @@ export class LanguagesSelectComponent extends React.Component<Props> {
     return languages.map((language, index) => {
       return {
         key: language.id,
-        subtitle: this.getVoiceSubtitle(language),
+        subtitle: this.getSelectedVoiceSubtitle(language),
         title: language.name,
         icon: 'globe',
         iconColor: colors.green,
