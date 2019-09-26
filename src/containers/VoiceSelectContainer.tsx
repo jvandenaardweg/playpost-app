@@ -1,6 +1,6 @@
 import React from 'react';
 import isEqual from 'react-fast-compare';
-import { Alert, SectionListData } from 'react-native';
+import { Alert, SectionListData, View } from 'react-native';
 import * as TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
 
@@ -382,7 +382,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
   render() {
 
     return (
-      <>
+      <View style={{ flex: 1 }}>
         <TopFilter
           filters={this.topFilterOptions}
         />
@@ -391,7 +391,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
           emptyTitle="No voices found"
           emptyDescription={['There are no voices matching your filters. Change your filters to see if there are any other voices!']}
         />
-      </>
+      </View>
     );
   }
 }
