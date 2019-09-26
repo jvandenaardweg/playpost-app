@@ -121,8 +121,10 @@ export default StyleSheet.create({
   durationText: {
     color: colors.grayDark,
   },
-  durationActive: {
-    backgroundColor: colors.tintColor,
+  durationContainerActive: {
+    backgroundColor: colors.tintColor
+  },
+  durationTextActive: {
     color: colors.white
   },
   imageContainer: {

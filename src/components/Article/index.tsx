@@ -188,8 +188,8 @@ const Duration: React.FC<DurationProps> = React.memo((props: DurationProps) => {
     : '? min.'
 
   return (
-    <View style={[styles.durationContainer, (props.isActive) ? styles.durationActive : undefined]}>
-      <Text style={styles.durationText} testID="Article-duration" preset="caption2Emphasized">{durationText}</Text>
+    <View style={[styles.durationContainer, (props.isActive) ? styles.durationContainerActive : undefined]}>
+      <Text style={[styles.durationText, (props.isActive) ? styles.durationTextActive : undefined]} testID="Article-duration" preset="caption2Emphasized">{durationText}</Text>
     </View>
   )
 });
