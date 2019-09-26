@@ -250,7 +250,7 @@ PODS:
     - ReactCommon/jscallinvoker (= 0.61.1)
   - ReactNativeShareExtension (1.2.1):
     - React
-  - rn-fetch-blob (0.11.1):
+  - rn-fetch-blob (0.10.16):
     - React-Core
   - RNCAsyncStorage (1.6.2):
     - React
@@ -464,7 +464,7 @@ SPEC CHECKSUMS:
   React-RCTVibration: 8be61459e3749d1fb02cf414edd05b3007622882
   ReactCommon: 4fba5be89efdf0b5720e0adb3d8d7edf6e532db0
   ReactNativeShareExtension: 7abfce32b7f831e659da3ac2bd441159672ba3b0
-  rn-fetch-blob: 2509def10b0fd8ff10e22da284264be34b2231f6
+  rn-fetch-blob: 651b8d076b43d0d7aa294a3d9ec16c00aab8bef9
   RNCAsyncStorage: 5ae4d57458804e99f73d427214442a6b10a53856
   RNDeviceInfo: 9e88577c51bd42f65275e53bb0de0a0f728ed6b8
   RNFS: a8fbe7060fa49157d819466404794ad9c58e58cf
