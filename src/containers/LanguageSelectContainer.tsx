@@ -8,15 +8,15 @@ import { RootState } from '../reducers';
 import { getUser } from '../reducers/user';
 import { getLanguages } from '../reducers/voices';
 
-import * as languageUtils from '../utils/language';
-
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { CustomSectionList, IListItem } from '../components/CustomSectionList';
 import colors from '../constants/colors';
-import { selectUserHasUsedFreeIntroduction, selectUserIsSubscribed, selectUserSelectedVoices } from '../selectors/user';
-import { selectLanguagesWithActiveVoices } from '../selectors/voices';
+import { makeSelectedVoiceForLanguageName, selectLanguagesWithActiveVoices } from '../selectors/voices';
+import { store } from '../store';
 
 type Props = NavigationInjectedProps & StateProps & DispatchProps;
+
+const selectSelectedVoiceForLanguageName = makeSelectedVoiceForLanguageName();
 
 export class LanguagesSelectComponent extends React.Component<Props> {
   componentDidMount(): void {
@@ -36,7 +36,7 @@ export class LanguagesSelectComponent extends React.Component<Props> {
   handleOnListItemPress = (language: Api.Language) => this.props.navigation.navigate('SettingsVoices', { languageName: language.name });
 
   getSelectedVoiceSubtitle = (language: Api.Language) => {
-    const selectedVoice = languageUtils.getSelectedVoiceForLanguage(language, this.props.userHasUsedFreeIntroduction, this.props.isSubscribed, this.props.userSelectedVoices);
+    const selectedVoice = selectSelectedVoiceForLanguageName(store.getState(), { languageName: language.name });
 
     if (!selectedVoice) { return ''; }
 
@@ -98,16 +98,10 @@ interface DispatchProps {
 
 interface StateProps {
   readonly languagesWithActiveVoices: ReturnType<typeof selectLanguagesWithActiveVoices>;
-  readonly userSelectedVoices: ReturnType<typeof selectUserSelectedVoices>;
-  readonly isSubscribed: ReturnType<typeof selectUserIsSubscribed>;
-  readonly userHasUsedFreeIntroduction: ReturnType<typeof selectUserHasUsedFreeIntroduction>;
 }
 
 const mapStateToProps = (state: RootState) => ({
-  languagesWithActiveVoices: selectLanguagesWithActiveVoices(state),
-  userSelectedVoices: selectUserSelectedVoices(state),
-  isSubscribed: selectUserIsSubscribed(state),
-  userHasUsedFreeIntroduction: selectUserHasUsedFreeIntroduction(state)
+  languagesWithActiveVoices: selectLanguagesWithActiveVoices(state)
 });
 
 const mapDispatchToProps = {

@@ -9,15 +9,14 @@ import { LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 import * as cache from '../cache';
 
 import { NetworkContext } from '../contexts/NetworkProvider';
-import * as languageUtils from '../utils/language';
 import { RootState } from '../reducers';
 import { setTrack } from '../reducers/player';
 import { getUser, resetSaveSelectedVoiceError, saveSelectedVoice } from '../reducers/user';
 import { setDownloadedVoice } from '../reducers/voices';
 
 import { selectPlayerPlaybackState, selectPlayerTrack } from '../selectors/player';
-import { selectUserErrorSaveSelectedVoice, selectUserHasUsedFreeIntroduction, selectUserIsEligibleForTrial, selectUserIsSubscribed, selectUserSelectedVoiceByLanguageName, selectUserSelectedVoices } from '../selectors/user';
-import { selectCountryOptions, selectDownloadedVoicePreviews, selectGenderOptions, selectLanguagesWithActiveVoicesByLanguageName, selectQualityOptions } from '../selectors/voices';
+import { selectUserErrorSaveSelectedVoice, selectUserIsEligibleForTrial, selectUserIsSubscribed } from '../selectors/user';
+import { selectCountryOptions, selectDownloadedVoicePreviews, selectGenderOptions, selectLanguagesWithActiveVoicesByLanguageName, selectQualityOptions, makeSelectedVoiceForLanguageName } from '../selectors/voices';
 
 import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_VOICE_CHANGE, ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE, ALERT_TITLE_ERROR, ALERT_TITLE_ERROR_NO_INTERNET, ALERT_TITLE_SUBSCRIPTION_ONLY, ALERT_TITLE_VOICE_CHANGE_REQUEST } from '../constants/messages';
 
@@ -230,13 +229,6 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     return this.props.navigation.getParam('languageName', '');
   }
 
-  get selectedVoiceForLanguage() {
-    const { languagesWithActiveVoicesByLanguageName, userHasUsedFreeIntroduction, isSubscribed, userSelectedVoices } = this.props;
-    const languagewithActiveVoices = languagesWithActiveVoicesByLanguageName && languagesWithActiveVoicesByLanguageName[this.selectedLanguageName];
-
-    return languageUtils.getSelectedVoiceForLanguage(languagewithActiveVoices, userHasUsedFreeIntroduction, isSubscribed, userSelectedVoices)
-  }
-
   get filteredVoices(): Api.Voice[] {
     const { languagesWithActiveVoicesByLanguageName } = this.props;
     const { selectedQuality, selectedGender, selectedRegion } = this.state;
@@ -264,6 +256,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
 
   get sectionListData(): ReadonlyArray<SectionListData<any>> {
     const { isLoadingSaveSelectedVoiceId, isLoadingPreviewVoiceId } = this.state;
+    const { selectedVoiceForLanguageName } = this.props;
 
     if (!this.filteredVoices.length) {
       return [];
@@ -273,7 +266,8 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
       key: 'available-voices',
       title: 'Available voices',
       data: this.filteredVoices.map((voice) => {
-        const isSelected = (this.selectedVoiceForLanguage) ? voice.id === this.selectedVoiceForLanguage.id : false;
+        const isSelected = (selectedVoiceForLanguageName) ? voice.id === selectedVoiceForLanguageName.id : false;
+        // const isSelected = (this.selectedVoiceForLanguage) ? voice.id === this.selectedVoiceForLanguage.id : false;
         const isPlaying = this.isVoicePlayingInPlayer(voice.id);
         const isActive = this.isVoiceActiveInPlayer(voice.id);
         const isAvailable = !!voice.exampleAudioUrl;
@@ -370,32 +364,34 @@ interface StateProps {
   readonly playerTrack: ReturnType<typeof selectPlayerTrack>;
   readonly downloadedVoices: ReturnType<typeof selectDownloadedVoicePreviews>;
   readonly languagesWithActiveVoicesByLanguageName: ReturnType<typeof selectLanguagesWithActiveVoicesByLanguageName>;
-  readonly userSelectedVoiceByLanguageName: ReturnType<typeof selectUserSelectedVoiceByLanguageName>;
   readonly isSubscribed: ReturnType<typeof selectUserIsSubscribed>;
   readonly errorSaveSelectedVoice: ReturnType<typeof selectUserErrorSaveSelectedVoice>;
   readonly userIsEligibleForTrial: ReturnType<typeof selectUserIsEligibleForTrial>;
   readonly qualityOptions: ReturnType<typeof selectQualityOptions>;
   readonly genderOptions: ReturnType<typeof selectGenderOptions>;
   readonly countryOptions: ReturnType<typeof selectCountryOptions>;
-  readonly userHasUsedFreeIntroduction: ReturnType<typeof selectUserHasUsedFreeIntroduction>;
-  readonly userSelectedVoices: ReturnType<typeof selectUserSelectedVoices>;
+  readonly selectedVoiceForLanguageName: ReturnType<typeof makeSelectedVoiceForLanguageName>;
 }
 
-const mapStateToProps = (state: RootState) => ({
-  playbackState: selectPlayerPlaybackState(state),
-  playerTrack: selectPlayerTrack(state),
-  downloadedVoices: selectDownloadedVoicePreviews(state),
-  languagesWithActiveVoicesByLanguageName: selectLanguagesWithActiveVoicesByLanguageName(state),
-  userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state),
-  isSubscribed: selectUserIsSubscribed(state),
-  errorSaveSelectedVoice: selectUserErrorSaveSelectedVoice(state),
-  userIsEligibleForTrial: selectUserIsEligibleForTrial(state),
-  qualityOptions: selectQualityOptions(state),
-  genderOptions: selectGenderOptions(state),
-  countryOptions: selectCountryOptions(state),
-  userHasUsedFreeIntroduction: selectUserHasUsedFreeIntroduction(state),
-  userSelectedVoices: selectUserSelectedVoices(state)
-});
+const mapStateToProps = (state: RootState, props: Props) => {
+  // Makes the selector memoized accross multiple components
+  // More info: https://github.com/reduxjs/reselect#sharing-selectors-with-props-across-multiple-component-instances
+  const selectSelectedVoiceForLanguageName = makeSelectedVoiceForLanguageName();
+
+  return ({
+    playbackState: selectPlayerPlaybackState(state),
+    playerTrack: selectPlayerTrack(state),
+    downloadedVoices: selectDownloadedVoicePreviews(state),
+    languagesWithActiveVoicesByLanguageName: selectLanguagesWithActiveVoicesByLanguageName(state),
+    isSubscribed: selectUserIsSubscribed(state),
+    errorSaveSelectedVoice: selectUserErrorSaveSelectedVoice(state),
+    userIsEligibleForTrial: selectUserIsEligibleForTrial(state),
+    qualityOptions: selectQualityOptions(state),
+    genderOptions: selectGenderOptions(state),
+    countryOptions: selectCountryOptions(state),
+    selectedVoiceForLanguageName: selectSelectedVoiceForLanguageName(state, { languageName: props.navigation.getParam('languageName', '')})
+  });
+}
 
 const mapDispatchToProps = {
   saveSelectedVoice,

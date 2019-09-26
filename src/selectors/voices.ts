@@ -4,7 +4,7 @@ import { createDeepEqualSelector } from './index';
 
 import { RootState } from '../reducers';
 import { VoicesState } from '../reducers/voices';
-import { selectDeviceLocale } from './user';
+import { selectDeviceLocale, selectUserSelectedVoiceByLanguageName, selectUserSelectedVoices, selectUserIsSubscribed, selectUserHasUsedFreeIntroduction } from './user';
 
 export interface VoicesLanguages {
   languageName: string;
@@ -224,3 +224,40 @@ export const selectCountryOptions = createDeepEqualSelector(
     return countryCodeOptions;
   }
 );
+
+const getLanguageByName = (state: RootState, { languageName }: { languageName: string }) => state.voices.languages.find(language => language.name === languageName);
+
+// Uses a normal createSelector, seems more performant
+export const makeSelectedVoiceForLanguageName = () => {
+  return createSelector(
+    [getLanguageByName, selectUserSelectedVoices, selectUserIsSubscribed, selectUserHasUsedFreeIntroduction],
+    (language, userSelectedVoices, isSubscribed, userHasUsedFreeIntroduction): Api.Voice | undefined => {
+      if (!language) {
+        return undefined;
+      }
+
+      const defaultVoice = language.voices && language.voices.find(voice => {
+        if (!isSubscribed) {
+          // If the user is not subscribed, and has not used his free introduction
+          // Select the default voice to be the subscribed language default
+          if (!userHasUsedFreeIntroduction) {
+            return !!voice.isSubscribedLanguageDefault
+          }
+
+          return !!voice.isUnsubscribedLanguageDefault
+        }
+
+        return !!voice.isSubscribedLanguageDefault
+      });
+
+      const foundUserSelectedVoice = userSelectedVoices.find(userSelectedVoice => userSelectedVoice.language.id === language.id);
+
+      // If a user is subscribed, and the user has it's own selected voice, show that one
+      // Else, default back to the default voice
+      // const selectedVoice = isSubscribed ? foundUserSelectedVoice || defaultVoice : defaultVoice;
+      const selectedVoice = foundUserSelectedVoice || defaultVoice;
+
+      return selectedVoice
+    }
+  )
+};
