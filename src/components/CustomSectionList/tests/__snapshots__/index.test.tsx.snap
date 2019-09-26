@@ -5,7 +5,6 @@ exports[`CustomSectionList basic rendering should render correctly 1`] = `
   style={
     Object {
       "backgroundColor": "#EEEEEE",
-      "flex": 1,
     }
   }
 >
@@ -22,7 +21,6 @@ exports[`CustomSectionList basic rendering should render correctly 1`] = `
     }
     contentContainerStyle={
       Object {
-        "overflow": "visible",
         "paddingTop": 12,
       }
     }
