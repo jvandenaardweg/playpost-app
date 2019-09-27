@@ -1,12 +1,12 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
-import { NavigationStackScreenOptions } from 'react-navigation';
+import { NavigationStackOptions } from 'react-navigation-stack';
 
 import { OnboardingSlider } from '../../components/OnboardingSlider';
 import colors from '../../constants/colors';
 
 export class OnboardingScreen extends React.PureComponent {
-  static navigationOptions = (): NavigationStackScreenOptions => {
+  static navigationOptions = (): NavigationStackOptions => {
     return {
       title: 'Introduction',
       header: null

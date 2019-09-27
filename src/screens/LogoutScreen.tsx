@@ -1,6 +1,7 @@
 import React from 'react';
 import RNFS from 'react-native-fs';
-import { NavigationInjectedProps, NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
+import { NavigationInjectedProps, NavigationRoute, NavigationScreenProp } from 'react-navigation';
+import { NavigationStackOptions } from 'react-navigation-stack';
 import { connect } from 'react-redux';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
@@ -21,7 +22,7 @@ import * as keychain from '../utils/keychain';
 type Props = NavigationInjectedProps & DispatchProps;
 
 class LogoutScreenContainer extends React.PureComponent<Props> {
-  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackOptions => {
     return {
       title: 'Logout'
     };

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Alert, InteractionManager } from 'react-native';
-import { NavigationInjectedProps, NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions, SafeAreaView } from 'react-navigation';
+import { NavigationInjectedProps, NavigationRoute, NavigationScreenProp, SafeAreaView } from 'react-navigation';
+import { NavigationStackOptions } from 'react-navigation-stack';
 import { connect } from 'react-redux';
 
 import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_UPDATE_EMAIL_DIFF, ALERT_TITLE_ERROR, ALERT_TITLE_NO_UPDATE } from '../../constants/messages';
@@ -32,7 +33,7 @@ type Props = NavigationInjectedProps & StateProps & DispatchProps;
 export class UpdateEmailScreenContainer extends React.PureComponent<Props, State> {
 
   static contextType = NetworkContext;
-  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackScreenOptions => {
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackOptions => {
     return {
       title: 'Change e-mail'
     };

@@ -1,6 +1,8 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
-import { NavigationRoute, NavigationScreenProp, NavigationStackScreenOptions, SafeAreaView } from 'react-navigation';
+import { NavigationRoute, NavigationScreenProp, SafeAreaView } from 'react-navigation';
+import { NavigationStackOptions } from 'react-navigation-stack';
+
 import { LoginResetPasswordFormContainer } from '../../containers/LoginResetPasswordFormContainer';
 
 interface Props {
@@ -8,7 +10,7 @@ interface Props {
 }
 
 export class LoginResetPasswordScreen extends React.PureComponent<Props> {
-  static navigationOptions = (): NavigationStackScreenOptions => {
+  static navigationOptions = (): NavigationStackOptions => {
     return {
       title: 'Reset your password'
     };

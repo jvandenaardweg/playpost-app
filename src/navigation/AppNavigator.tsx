@@ -2,8 +2,9 @@
 import React from 'react';
 import { Platform } from 'react-native';
 
-import { createAppContainer, createStackNavigator, createSwitchNavigator, NavigationContainer } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator, NavigationContainer } from 'react-navigation';
 import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
+import { createStackNavigator } from 'react-navigation-stack';
 
 import { MainTabNavigator, stackNavigatorDefaultNavigationOptions } from './MainTabNavigator';
 

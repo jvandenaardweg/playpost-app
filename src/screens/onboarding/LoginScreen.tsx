@@ -1,12 +1,12 @@
 import React from 'react';
 import { SafeAreaView, StatusBar } from 'react-native';
-import { NavigationStackScreenOptions } from 'react-navigation';
+import { NavigationStackOptions } from 'react-navigation-stack';
 
 import colors from '../../constants/colors';
 import { LoginFormContainer } from '../../containers/LoginFormContainer';
 
 export class LoginScreen extends React.PureComponent {
-  static navigationOptions = (): NavigationStackScreenOptions => {
+  static navigationOptions = (): NavigationStackOptions => {
     return {
       title: 'Login',
     };

@@ -1,5 +1,7 @@
 import React from 'react';
-import { NavigationRoute, NavigationScreenOptions, NavigationScreenProp } from 'react-navigation';
+import { NavigationRoute, NavigationScreenProp } from 'react-navigation';
+import { NavigationStackOptions } from 'react-navigation-stack';
+
 import { AppBackground } from '../../components/AppBackground';
 import { InteractionManaged } from '../../components/InteractionManaged';
 import { UpgradeContainer } from '../../containers/UpgradeContainer';
@@ -9,7 +11,7 @@ interface Props {
 }
 
 export class UpgradeScreen extends React.PureComponent<Props> {
-  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationScreenOptions => {
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackOptions => {
     return {
       title: 'Upgrade subscription',
       headerLeft: null

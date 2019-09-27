@@ -1,13 +1,14 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
-import { NavigationStackScreenOptions, SafeAreaView } from 'react-navigation';
+import { SafeAreaView } from 'react-navigation';
+import { NavigationStackOptions } from 'react-navigation-stack';
 
 import colors from '../../constants/colors';
 import { SignupFormContainer } from '../../containers/SignupFormContainer';
 
 
 export class SignupScreen extends React.PureComponent {
-  static navigationOptions = (): NavigationStackScreenOptions => {
+  static navigationOptions = (): NavigationStackOptions => {
     return {
       title: 'Create new account'
     };

@@ -1,6 +1,7 @@
 import Analytics from 'appcenter-analytics';
 import React from 'react';
-import { NavigationRoute, NavigationScreenOptions, NavigationScreenProp } from 'react-navigation';
+import { NavigationRoute, NavigationScreenProp } from 'react-navigation';
+import { NavigationStackOptions } from 'react-navigation-stack';
 
 import { ContentView } from '../../components/ContentView';
 import { URL_FEEDBACK } from '../../constants/urls';
@@ -11,7 +12,7 @@ interface Props {
 }
 
 export class ContentViewScreen extends React.PureComponent<Props> {
-  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationScreenOptions => {
+  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackOptions => {
     return {
       headerLeft: null
     };

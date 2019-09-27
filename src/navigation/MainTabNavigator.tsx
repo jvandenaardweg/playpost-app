@@ -1,5 +1,6 @@
 import React from 'react';
-import { BottomTabBarProps, BottomTabNavigatorConfig, createBottomTabNavigator, createStackNavigator, NavigationScreenOptions, StackNavigatorConfig } from 'react-navigation';
+import { createStackNavigator, NavigationStackOptions } from 'react-navigation-stack';
+import { createBottomTabNavigator, NavigationTabProp } from 'react-navigation-tabs';
 
 import { TabBar } from '../components/TabBar';
 import { TabBarIcon } from '../components/TabBarIcon';
@@ -20,7 +21,7 @@ import colors from '../constants/colors';
 import { ButtonUpgradeContainer } from '../containers/ButtonUpgradeContainer';
 
 
-export const stackNavigatorDefaultNavigationOptions: NavigationScreenOptions = {
+export const stackNavigatorDefaultNavigationOptions: NavigationStackOptions = {
   headerStyle: {
     borderBottomColor: colors.borderDefault
   },
@@ -33,7 +34,7 @@ export const stackNavigatorDefaultNavigationOptions: NavigationScreenOptions = {
   }
 }
 
-const PlaylistStack: StackNavigatorConfig = createStackNavigator(
+const PlaylistStack = createStackNavigator(
   {
     Playlist: PlaylistScreen,
     FullArticle: FullArticleScreen
@@ -47,7 +48,7 @@ const PlaylistStack: StackNavigatorConfig = createStackNavigator(
     }),
     navigationOptions: {
       tabBarLabel: 'Playlist',
-      tabBarIcon: ({ focused }) => (
+      tabBarIcon: ({ focused }: { focused: boolean }) => (
         <TabBarIcon
           focused={focused}
           name="headphones"
@@ -57,7 +58,7 @@ const PlaylistStack: StackNavigatorConfig = createStackNavigator(
   }
 );
 
-const ArchiveStack: StackNavigatorConfig = createStackNavigator(
+const ArchiveStack = createStackNavigator(
   {
     Archive: ArchiveScreen
   },
@@ -73,7 +74,7 @@ const ArchiveStack: StackNavigatorConfig = createStackNavigator(
     }),
     navigationOptions: {
       tabBarLabel: 'Archive',
-      tabBarIcon: ({ focused }) => (
+      tabBarIcon: ({ focused }: { focused: boolean }) => (
         <TabBarIcon
           focused={focused}
           name="archive"
@@ -83,7 +84,7 @@ const ArchiveStack: StackNavigatorConfig = createStackNavigator(
   }
 );
 
-const FavoritesStack: StackNavigatorConfig = createStackNavigator(
+const FavoritesStack = createStackNavigator(
   {
     Favorites: FavoritesScreen
   },
@@ -99,7 +100,7 @@ const FavoritesStack: StackNavigatorConfig = createStackNavigator(
     headerLayoutPreset: 'center',
     navigationOptions: {
       tabBarLabel: 'Favorites',
-      tabBarIcon: ({ focused }) => (
+      tabBarIcon: ({ focused }: { focused: boolean }) => (
         <TabBarIcon
           focused={focused}
           name="heart"
@@ -109,7 +110,7 @@ const FavoritesStack: StackNavigatorConfig = createStackNavigator(
   }
 );
 
-const SettingsStack: StackNavigatorConfig = createStackNavigator(
+const SettingsStack = createStackNavigator(
   {
     Settings: SettingsScreen,
     SettingsVoices: SettingsVoicesScreen,
@@ -127,7 +128,7 @@ const SettingsStack: StackNavigatorConfig = createStackNavigator(
     }),
     navigationOptions: ({ navigation }) => ({
       tabBarLabel: 'Settings',
-      tabBarIcon: ({ focused }) => (
+      tabBarIcon: ({ focused }: { focused: boolean }) => (
         <TabBarIcon
           focused={focused}
           name="settings"
@@ -137,7 +138,7 @@ const SettingsStack: StackNavigatorConfig = createStackNavigator(
   }
 );
 
-export const MainTabNavigator: BottomTabNavigatorConfig = createBottomTabNavigator(
+export const MainTabNavigator = createBottomTabNavigator(
   {
     PlaylistStack,
     ArchiveStack,
@@ -146,7 +147,7 @@ export const MainTabNavigator: BottomTabNavigatorConfig = createBottomTabNavigat
   },
   {
     // lazy: false, // pre-render all screens
-    tabBarComponent: (props: BottomTabBarProps) => <TabBar {...props} />,
+    tabBarComponent: (props: NavigationTabProp) => <TabBar {...props} />,
     tabBarOptions: {
       showLabel: false
     },

@@ -8,7 +8,7 @@ import { NetworkContext } from '../../contexts/NetworkProvider';
 // Using this BottomTabBar, instead of the one from react-native-tabs also makes sure it just works
 // react-native-tabs does not seem to work properly with the documentation provided
 // @ts-ignore
-import { BottomTabBar, BottomTabBarProps } from 'react-navigation';
+import { BottomTabBar, BottomTabBarProps } from 'react-navigation-tabs';
 
 import { SmallAudioPlayerContainer } from '../../containers/SmallAudioPlayerContainer';
 
