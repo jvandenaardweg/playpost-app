@@ -43,65 +43,63 @@ interface Props {
 }
 
 export const CustomSectionList: React.FC<Props> = React.memo(({ sectionListData, ListHeaderComponent, ListFooterComponent, paddingTop, emptyTitle, emptyDescription }) => (
-  <View style={styles.container}>
-    <SectionList
-      ListEmptyComponent={<EmptyState title={emptyTitle ? emptyTitle : "No items to show"} description={emptyDescription ? emptyDescription : ['It seems like this list is empty...']} />}
-      contentContainerStyle={styles.containerStyle}
-      initialNumToRender={15}
-      keyExtractor={(item, index) => item.key}
-      ListHeaderComponent={ListHeaderComponent && (
-        <View style={{ marginLeft: spacing.default * -1, marginRight: spacing.default * -1, marginBottom: spacing.small }}>
-          {ListHeaderComponent}
-        </View>
-      )}
-      ListFooterComponent={ListFooterComponent}
-      stickySectionHeadersEnabled={false}
-      ItemSeparatorComponent={() => <View style={styles.itemSeperator}><ListSeperator /></View>}
-      renderSectionFooter={() => <View style={styles.sectionFooter} />}
-      renderItem={({ item, index, section }: { item: IListItem, index: number, section: any }) => {
-        // colors
-        const leftIconColor = item.iconColor ? item.iconColor : colors.black;
-        const checkmarkColor = item.isSelected ? colors.white : colors.grayLight;
+  <SectionList
+    ListEmptyComponent={<EmptyState title={emptyTitle ? emptyTitle : "No items to show"} description={emptyDescription ? emptyDescription : ['It seems like this list is empty...']} />}
+    contentContainerStyle={styles.containerStyle}
+    initialNumToRender={15}
+    keyExtractor={(item, index) => item.key}
+    ListHeaderComponent={ListHeaderComponent && (
+      <View style={{ marginLeft: spacing.default * -1, marginRight: spacing.default * -1, marginBottom: spacing.small }}>
+        {ListHeaderComponent}
+      </View>
+    )}
+    ListFooterComponent={ListFooterComponent}
+    stickySectionHeadersEnabled={false}
+    ItemSeparatorComponent={() => <View style={styles.itemSeperator}><ListSeperator /></View>}
+    renderSectionFooter={() => <View style={styles.sectionFooter} />}
+    renderItem={({ item, index, section }: { item: IListItem, index: number, section: any }) => {
+      // colors
+      const leftIconColor = item.iconColor ? item.iconColor : colors.black;
+      const checkmarkColor = item.isSelected ? colors.white : colors.grayLight;
 
-        // styles
-        const containerStyle = (item.isSelected) ? { backgroundColor: colors.tintColor } : { backgroundColor: colors.white };
-        const titleStyle = (item.isSelected) ? { color: colors.white } : { color: colors.black };
-        const subtitleStyle = (item.isSelected) ? { color: 'rgba(255, 255, 255, 0.7)' } : { color: colors.grayDark };
-        const rightIconTextStyles = [styles.rightIconText, item.isSelected ? { color: colors.white } : undefined, item.rightIconColor && !item.isSelected ? { color: item.rightIconColor } : undefined];
+      // styles
+      const containerStyle = (item.isSelected) ? { backgroundColor: colors.tintColor } : { backgroundColor: colors.white };
+      const titleStyle = (item.isSelected) ? { color: colors.white } : { color: colors.black };
+      const subtitleStyle = (item.isSelected) ? { color: 'rgba(255, 255, 255, 0.7)' } : { color: colors.grayDark };
+      const rightIconTextStyles = [styles.rightIconText, item.isSelected ? { color: colors.white } : undefined, item.rightIconColor && !item.isSelected ? { color: item.rightIconColor } : undefined];
 
-        // props
-        const subtitle = (item.subtitle) ? item.subtitle : undefined;
+      // props
+      const subtitle = (item.subtitle) ? item.subtitle : undefined;
 
-        // elements
-        const leftIcon = (item.leftIcon) ? (item.leftIcon) : (item.icon)
-          ? (
-            <View style={{...styles.listItemLeftIconContainer, backgroundColor: leftIconColor }}>
-              <Icon.Feather name={item.icon} size={14} color='white' style={styles.listItemLeftIcon} />
-            </View>
-          ) :
-            undefined;
+      // elements
+      const leftIcon = (item.leftIcon) ? (item.leftIcon) : (item.icon)
+        ? (
+          <View style={{...styles.listItemLeftIconContainer, backgroundColor: leftIconColor }}>
+            <Icon.Feather name={item.icon} size={14} color='white' style={styles.listItemLeftIcon} />
+          </View>
+        ) :
+          undefined;
 
-        const rightIcon = (item.value) ? <Text style={rightIconTextStyles} preset="subhead">{item.value}</Text> : undefined;
-        const rightElement = getRightElement(item, checkmarkColor);
+      const rightIcon = (item.value) ? <Text style={rightIconTextStyles} preset="subhead">{item.value}</Text> : undefined;
+      const rightElement = getRightElement(item, checkmarkColor);
 
-        return (
-          <ListItem
-            Component={TouchableHighlight}
-            title={item.title}
-            onPress={item.onPress}
-            containerStyle={containerStyle}
-            titleStyle={[titleStyle, textPresets['body']]}
-            subtitleStyle={[subtitleStyle, textPresets['footnote']]}
-            subtitle={subtitle}
-            leftIcon={leftIcon}
-            rightIcon={rightIcon}
-            rightElement={rightElement}
-          />
-        );
-      }}
-      sections={sectionListData}
-    />
-  </View>
+      return (
+        <ListItem
+          Component={TouchableHighlight}
+          title={item.title}
+          onPress={item.onPress}
+          containerStyle={containerStyle}
+          titleStyle={[titleStyle, textPresets['body']]}
+          subtitleStyle={[subtitleStyle, textPresets['footnote']]}
+          subtitle={subtitle}
+          leftIcon={leftIcon}
+          rightIcon={rightIcon}
+          rightElement={rightElement}
+        />
+      );
+    }}
+    sections={sectionListData}
+  />
 ));
 
 

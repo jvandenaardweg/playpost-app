@@ -335,18 +335,21 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
   }
 
   render() {
-
     return (
-      <View style={{ flex: 1 }}>
+      <>
         <TopFilter
           filters={this.topFilterOptions}
         />
-        <CustomSectionList
-          sectionListData={this.sectionListData}
-          emptyTitle="No voices found"
-          emptyDescription={['There are no voices matching your filters. Change your filters to see if there are any other voices!']}
-        />
-      </View>
+        <View style={{ flexGrow: 1 }}>
+          <View style={{ flex: 1 }}>
+            <CustomSectionList
+              sectionListData={this.sectionListData}
+              emptyTitle="No voices found"
+              emptyDescription={['There are no voices matching your filters. Change your filters to see if there are any other voices!']}
+            />
+          </View>
+        </View>
+      </>
     );
   }
 }
