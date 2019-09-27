@@ -79,7 +79,8 @@ export default StyleSheet.create({
   },
   bodySourceText: {
     color: colors.grayDark,
-    paddingRight: 0
+    paddingRight: 0,
+    marginBottom: spacing.tiny
   },
   authorName: {
     color: colors.grayDark

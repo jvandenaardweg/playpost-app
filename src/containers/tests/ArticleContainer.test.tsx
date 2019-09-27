@@ -431,7 +431,7 @@ describe('ArticleContainer', () => {
 
       await testInstance.handleOnPlayPress();
 
-      expect(spyGetAudiofileByUserSelectedVoice).toHaveBeenCalledTimes(2); // One time in handleOnPlayPress, one time in handleCreateAudiofile
+      expect(spyGetAudiofileByUserSelectedVoice).toHaveBeenCalled();
       expect(spyGetAudiofileByUserSelectedVoice).toHaveReturnedWith(undefined);
       expect(spyHandleCreateAudiofile).toHaveBeenCalledTimes(1);
 
@@ -539,7 +539,7 @@ describe('ArticleContainer', () => {
       expect(audiofile).toMatchObject(articleMockWithAudioDefaultVoice.audiofiles[0])
     })
 
-    it('isDownloaded should return true when the article audiofile is found in downloadedAudiofiles', async () => {
+    it('getIsDownloaded should return true when the article audiofile is found in downloadedAudiofiles', async () => {
       const props: Props = {
         ...defaultProps,
         article: articleMockWithAudioDefaultVoice,
@@ -551,10 +551,10 @@ describe('ArticleContainer', () => {
 
       const testInstance: ArticleContainerComponent = wrapper.root.instance;
 
-      expect(testInstance.isDownloaded).toBe(true);
+      expect(testInstance.getIsDownloaded()).toBe(true);
     })
 
-    it('isDownloaded should return false when the article audiofile is not found in downloadedAudiofiles', async () => {
+    it('getIsDownloaded should return false when the article audiofile is not found in downloadedAudiofiles', async () => {
       const props: Props = {
         ...defaultProps,
         article: articleMockWithAudioDefaultVoice,
@@ -566,7 +566,7 @@ describe('ArticleContainer', () => {
 
       const testInstance: ArticleContainerComponent = wrapper.root.instance;
 
-      expect(testInstance.isDownloaded).toBe(false);
+      expect(testInstance.getIsDownloaded()).toBe(false);
     })
   })
 });

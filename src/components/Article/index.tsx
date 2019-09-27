@@ -11,7 +11,7 @@ import * as Icon from '../../components/Icon';
 import { TextDirection } from '../../typings';
 import styles from './styles';
 
-interface Props {
+export interface Props {
   isMoving?: boolean;
   isLoading?: boolean;
   isPlaying?: boolean;
@@ -31,6 +31,7 @@ interface Props {
   readingTime?: number | null;
   isCompatible: boolean;
   textDirection: TextDirection;
+  voiceLabel: string;
   onPlayPress(): void;
   onOpenUrl(): void;
   onLongPress?(): void;
@@ -63,7 +64,8 @@ export const Article: React.FC<Props> = React.memo(
     onPressOut,
     onPressArticleIncompatible,
     isCompatible,
-    textDirection
+    textDirection,
+    voiceLabel
   }) => {
 
     const textDirectionStyle: StyleProp<TextStyle> = { writingDirection: textDirection, flexDirection: (textDirection === 'rtl') ? 'row-reverse' : undefined };
@@ -86,22 +88,21 @@ export const Article: React.FC<Props> = React.memo(
                   {title}
                 </Text>
               </View>
-
+              <SourceText authorName={authorName} sourceName={sourceName} textDirection={textDirection} url={url} />
               <View style={[styles.bodyFooter, textDirectionStyle, rtlFlexDirectionStyle]}>
                 <View style={[rtlFlexDirectionStyle]}>
                   <Icon.Feather
                     name={hasAudiofile ? 'download-cloud' : 'cloud-off'}
                     size={14}
                     style={styles.bodySourceIcon}
-                    color={isDownloaded ? colors.green : colors.gray}
+                    color={isDownloaded ? colors.green : colors.grayDark}
                     testID="Article-icon-downloaded"
                   />
                 </View>
                 <View style={[styles.bodyMetaSource, textDirectionStyle]}>
-                  <SourceText authorName={authorName} sourceName={sourceName} textDirection={textDirection} url={url} />
+                  <Text style={[styles.durationText, { color: isDownloaded ? colors.green : colors.grayDark }]} preset="footnote" testID="Article-Text-voiceLabel">{voiceLabel}</Text>
                 </View>
               </View>
-
             </View>
             <View style={styles.sectionControl}>
               <TouchableOpacity
@@ -163,7 +164,7 @@ const SourceText: React.FC<SourceTextProps> = React.memo((props: SourceTextProps
       ellipsizeMode="tail"
       numberOfLines={1}
       testID="Article-source-name"
-      preset="footnote"
+      preset="footnoteEmphasized"
     >
       {text}
     </Text>

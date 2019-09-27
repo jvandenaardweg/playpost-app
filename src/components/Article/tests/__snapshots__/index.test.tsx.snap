@@ -80,6 +80,34 @@ exports[`Article active rendering should render active correctly 1`] = `
             testID="Article-title"
           />
         </View>
+        <Text
+          ellipsizeMode="tail"
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "Inter-SemiBold",
+                "fontSize": 13,
+                "lineHeight": 16,
+              },
+              Array [
+                Object {
+                  "color": "#AAAAAA",
+                  "marginBottom": 10,
+                  "paddingRight": 0,
+                },
+                Object {
+                  "direction": "ltr",
+                  "writingDirection": "ltr",
+                },
+              ],
+            ]
+          }
+          testID="Article-source-name"
+        >
+          www.google.nl
+        </Text>
         <View
           style={
             Array [
@@ -115,7 +143,7 @@ exports[`Article active rendering should render active correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#C5C5C5",
+                    "color": "#AAAAAA",
                     "fontSize": 14,
                   },
                   Object {
@@ -151,8 +179,6 @@ exports[`Article active rendering should render active correctly 1`] = `
             }
           >
             <Text
-              ellipsizeMode="tail"
-              numberOfLines={1}
               style={
                 Array [
                   Object {
@@ -164,18 +190,16 @@ exports[`Article active rendering should render active correctly 1`] = `
                   Array [
                     Object {
                       "color": "#AAAAAA",
-                      "paddingRight": 0,
                     },
                     Object {
-                      "direction": "ltr",
-                      "writingDirection": "ltr",
+                      "color": "#AAAAAA",
                     },
                   ],
                 ]
               }
-              testID="Article-source-name"
+              testID="Article-Text-voiceLabel"
             >
-              www.google.nl
+              
             </Text>
           </View>
         </View>
@@ -409,6 +433,34 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
             testID="Article-title"
           />
         </View>
+        <Text
+          ellipsizeMode="tail"
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "Inter-SemiBold",
+                "fontSize": 13,
+                "lineHeight": 16,
+              },
+              Array [
+                Object {
+                  "color": "#AAAAAA",
+                  "marginBottom": 10,
+                  "paddingRight": 0,
+                },
+                Object {
+                  "direction": "ltr",
+                  "writingDirection": "ltr",
+                },
+              ],
+            ]
+          }
+          testID="Article-source-name"
+        >
+          www.google.nl
+        </Text>
         <View
           style={
             Array [
@@ -480,8 +532,6 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
             }
           >
             <Text
-              ellipsizeMode="tail"
-              numberOfLines={1}
               style={
                 Array [
                   Object {
@@ -493,18 +543,16 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
                   Array [
                     Object {
                       "color": "#AAAAAA",
-                      "paddingRight": 0,
                     },
                     Object {
-                      "direction": "ltr",
-                      "writingDirection": "ltr",
+                      "color": "#03A87C",
                     },
                   ],
                 ]
               }
-              testID="Article-source-name"
+              testID="Article-Text-voiceLabel"
             >
-              www.google.nl
+              
             </Text>
           </View>
         </View>
@@ -734,6 +782,34 @@ exports[`Article full rendering should render full correctly 1`] = `
             Test title
           </Text>
         </View>
+        <Text
+          ellipsizeMode="tail"
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "Inter-SemiBold",
+                "fontSize": 13,
+                "lineHeight": 16,
+              },
+              Array [
+                Object {
+                  "color": "#AAAAAA",
+                  "marginBottom": 10,
+                  "paddingRight": 0,
+                },
+                Object {
+                  "direction": "ltr",
+                  "writingDirection": "ltr",
+                },
+              ],
+            ]
+          }
+          testID="Article-source-name"
+        >
+          Jordy on Test
+        </Text>
         <View
           style={
             Array [
@@ -769,7 +845,7 @@ exports[`Article full rendering should render full correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#C5C5C5",
+                    "color": "#AAAAAA",
                     "fontSize": 14,
                   },
                   Object {
@@ -805,8 +881,6 @@ exports[`Article full rendering should render full correctly 1`] = `
             }
           >
             <Text
-              ellipsizeMode="tail"
-              numberOfLines={1}
               style={
                 Array [
                   Object {
@@ -818,18 +892,16 @@ exports[`Article full rendering should render full correctly 1`] = `
                   Array [
                     Object {
                       "color": "#AAAAAA",
-                      "paddingRight": 0,
                     },
                     Object {
-                      "direction": "ltr",
-                      "writingDirection": "ltr",
+                      "color": "#AAAAAA",
                     },
                   ],
                 ]
               }
-              testID="Article-source-name"
+              testID="Article-Text-voiceLabel"
             >
-              Jordy on Test
+              
             </Text>
           </View>
         </View>
@@ -1057,6 +1129,34 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
             testID="Article-title"
           />
         </View>
+        <Text
+          ellipsizeMode="tail"
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "Inter-SemiBold",
+                "fontSize": 13,
+                "lineHeight": 16,
+              },
+              Array [
+                Object {
+                  "color": "#AAAAAA",
+                  "marginBottom": 10,
+                  "paddingRight": 0,
+                },
+                Object {
+                  "direction": "ltr",
+                  "writingDirection": "ltr",
+                },
+              ],
+            ]
+          }
+          testID="Article-source-name"
+        >
+          www.google.nl
+        </Text>
         <View
           style={
             Array [
@@ -1092,7 +1192,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#C5C5C5",
+                    "color": "#AAAAAA",
                     "fontSize": 14,
                   },
                   Object {
@@ -1128,8 +1228,6 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
             }
           >
             <Text
-              ellipsizeMode="tail"
-              numberOfLines={1}
               style={
                 Array [
                   Object {
@@ -1141,18 +1239,16 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
                   Array [
                     Object {
                       "color": "#AAAAAA",
-                      "paddingRight": 0,
                     },
                     Object {
-                      "direction": "ltr",
-                      "writingDirection": "ltr",
+                      "color": "#AAAAAA",
                     },
                   ],
                 ]
               }
-              testID="Article-source-name"
+              testID="Article-Text-voiceLabel"
             >
-              www.google.nl
+              
             </Text>
           </View>
         </View>
@@ -1483,6 +1579,34 @@ exports[`Article loading rendering should render loading correctly 1`] = `
             testID="Article-title"
           />
         </View>
+        <Text
+          ellipsizeMode="tail"
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "Inter-SemiBold",
+                "fontSize": 13,
+                "lineHeight": 16,
+              },
+              Array [
+                Object {
+                  "color": "#AAAAAA",
+                  "marginBottom": 10,
+                  "paddingRight": 0,
+                },
+                Object {
+                  "direction": "ltr",
+                  "writingDirection": "ltr",
+                },
+              ],
+            ]
+          }
+          testID="Article-source-name"
+        >
+          www.google.nl
+        </Text>
         <View
           style={
             Array [
@@ -1518,7 +1642,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#C5C5C5",
+                    "color": "#AAAAAA",
                     "fontSize": 14,
                   },
                   Object {
@@ -1554,8 +1678,6 @@ exports[`Article loading rendering should render loading correctly 1`] = `
             }
           >
             <Text
-              ellipsizeMode="tail"
-              numberOfLines={1}
               style={
                 Array [
                   Object {
@@ -1567,18 +1689,16 @@ exports[`Article loading rendering should render loading correctly 1`] = `
                   Array [
                     Object {
                       "color": "#AAAAAA",
-                      "paddingRight": 0,
                     },
                     Object {
-                      "direction": "ltr",
-                      "writingDirection": "ltr",
+                      "color": "#AAAAAA",
                     },
                   ],
                 ]
               }
-              testID="Article-source-name"
+              testID="Article-Text-voiceLabel"
             >
-              www.google.nl
+              
             </Text>
           </View>
         </View>
@@ -1788,6 +1908,34 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
             testID="Article-title"
           />
         </View>
+        <Text
+          ellipsizeMode="tail"
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "Inter-SemiBold",
+                "fontSize": 13,
+                "lineHeight": 16,
+              },
+              Array [
+                Object {
+                  "color": "#AAAAAA",
+                  "marginBottom": 10,
+                  "paddingRight": 0,
+                },
+                Object {
+                  "direction": "ltr",
+                  "writingDirection": "ltr",
+                },
+              ],
+            ]
+          }
+          testID="Article-source-name"
+        >
+          www.google.nl
+        </Text>
         <View
           style={
             Array [
@@ -1823,7 +1971,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#C5C5C5",
+                    "color": "#AAAAAA",
                     "fontSize": 14,
                   },
                   Object {
@@ -1859,8 +2007,6 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
             }
           >
             <Text
-              ellipsizeMode="tail"
-              numberOfLines={1}
               style={
                 Array [
                   Object {
@@ -1872,18 +2018,16 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
                   Array [
                     Object {
                       "color": "#AAAAAA",
-                      "paddingRight": 0,
                     },
                     Object {
-                      "direction": "ltr",
-                      "writingDirection": "ltr",
+                      "color": "#AAAAAA",
                     },
                   ],
                 ]
               }
-              testID="Article-source-name"
+              testID="Article-Text-voiceLabel"
             >
-              www.google.nl
+              
             </Text>
           </View>
         </View>
@@ -2111,6 +2255,34 @@ exports[`Article playing rendering should render playing correctly 1`] = `
             testID="Article-title"
           />
         </View>
+        <Text
+          ellipsizeMode="tail"
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "Inter-SemiBold",
+                "fontSize": 13,
+                "lineHeight": 16,
+              },
+              Array [
+                Object {
+                  "color": "#AAAAAA",
+                  "marginBottom": 10,
+                  "paddingRight": 0,
+                },
+                Object {
+                  "direction": "ltr",
+                  "writingDirection": "ltr",
+                },
+              ],
+            ]
+          }
+          testID="Article-source-name"
+        >
+          www.google.nl
+        </Text>
         <View
           style={
             Array [
@@ -2146,7 +2318,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#C5C5C5",
+                    "color": "#AAAAAA",
                     "fontSize": 14,
                   },
                   Object {
@@ -2182,8 +2354,6 @@ exports[`Article playing rendering should render playing correctly 1`] = `
             }
           >
             <Text
-              ellipsizeMode="tail"
-              numberOfLines={1}
               style={
                 Array [
                   Object {
@@ -2195,18 +2365,16 @@ exports[`Article playing rendering should render playing correctly 1`] = `
                   Array [
                     Object {
                       "color": "#AAAAAA",
-                      "paddingRight": 0,
                     },
                     Object {
-                      "direction": "ltr",
-                      "writingDirection": "ltr",
+                      "color": "#AAAAAA",
                     },
                   ],
                 ]
               }
-              testID="Article-source-name"
+              testID="Article-Text-voiceLabel"
             >
-              www.google.nl
+              
             </Text>
           </View>
         </View>

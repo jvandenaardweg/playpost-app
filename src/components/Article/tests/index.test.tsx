@@ -2,27 +2,29 @@ import React from 'react';
 import { fireEvent, render, RenderAPI } from 'react-native-testing-library';
 import colors from '../../../constants/colors';
 import { TextDirection } from '../../../typings';
-import { Article } from '../index';
+import { Article, Props } from '../index';
+
+const onOpenUrlHandler = jest.fn();
+const onPlayPressHandler = jest.fn();
+const onLongPressHandler = jest.fn();
+const onPressOutHandler = jest.fn();
+const onPressArticleIncompatibleHandler = jest.fn();
+
+const defaultProps: Props = {
+  onOpenUrl: onOpenUrlHandler,
+  onPlayPress: onPlayPressHandler,
+  onLongPress: onLongPressHandler,
+  onPressOut: onPressOutHandler,
+  onPressArticleIncompatible: onPressArticleIncompatibleHandler,
+  url: "https://www.google.nl",
+  playlistItemCreatedAt: new Date().toISOString(),
+  isCompatible: true,
+  textDirection: 'ltr' as TextDirection,
+  voiceLabel: ''
+}
 
 describe('Article', () => {
   let wrapper: RenderAPI;
-  const onOpenUrlHandler = jest.fn();
-  const onPlayPressHandler = jest.fn();
-  const onLongPressHandler = jest.fn();
-  const onPressOutHandler = jest.fn();
-  const onPressArticleIncompatibleHandler = jest.fn();
-
-  const defaultProps = {
-    onOpenUrl: onOpenUrlHandler,
-    onPlayPress: onPlayPressHandler,
-    onLongPress: onLongPressHandler,
-    onPressOut: onPressOutHandler,
-    onPressArticleIncompatible: onPressArticleIncompatibleHandler,
-    url: "https://www.google.nl",
-    playlistItemCreatedAt: new Date().toISOString(),
-    isCompatible: true,
-    textDirection: 'ltr' as TextDirection
-  }
 
   describe('minimal rendering', () => {
     beforeAll(() => {
@@ -46,7 +48,22 @@ describe('Article', () => {
     });
 
     it('should render default color download icon', () => {
-      expect(wrapper.getByTestId('Article-icon-downloaded').props.color).toBe(colors.gray);
+      expect(wrapper.getByTestId('Article-icon-downloaded').props.color).toBe(colors.grayDark);
+    });
+
+    it('should not render the voiceLabel if none is given', () => {
+      expect(wrapper.getByTestId('Article-Text-voiceLabel').props.children).toBe('');
+    });
+
+    it('should render the correct voiceLabel if given', () => {
+      const props = {
+        ...defaultProps,
+        voiceLabel: 'Emily'
+      }
+
+      wrapper.update(<Article {...props} />)
+
+      expect(wrapper.getByTestId('Article-Text-voiceLabel').props.children).toBe('Emily');
     });
   });
 

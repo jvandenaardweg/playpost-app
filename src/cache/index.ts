@@ -47,6 +47,10 @@ export const downloadArticleAudiofile = async (url: string, filePath: string): P
   // Download the file and store it at the localFilePath
   const result = await RNFetchBlob.config({ path: localFilePath }).fetch('GET', url);
 
+  if (!result || !result.path()) {
+    throw new Error('Could not download audio. Please try again.');
+  }
+
   // Return the local file path
   return `file://${result.path()}`;
 };
@@ -110,4 +114,9 @@ export const getCacheSizeInMb = async () => {
   const sizeInMb = (combinedSize / 1000000).toFixed(2);
 
   return sizeInMb;
+}
+
+export const fileExistsInCache = async (path: string) => {
+  const exists = await RNFS.exists(path);
+  return exists
 }

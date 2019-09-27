@@ -86,20 +86,61 @@ export type Props = IProps & StateProps & DispatchProps;
 
 export class ArticleContainerComponent extends React.Component<Props, State> {
 
-  static contextType = NetworkContext;
-  state = initialState;
-
+  /**
+   * Get's the audiofile to be used for this article.
+   * If the user is subscribed, it will return the audiofile from the selected voice.
+   * If the user is not subscribed, it will return the available premium audiofile voice, or just the first it can found.
+   */
   get audiofileToUse(): Api.Audiofile | undefined {
     const { isSubscribed, article } = this.props;
-    const audiofile = isSubscribed ? this.getAudiofileByUserSelectedVoice() : article.audiofiles[0];
-    return audiofile;
+
+    // Get a premium audiofile if it exists
+    const premiumAudiofile = article.audiofiles.find(audiofile => audiofile.voice.isPremium);
+    const unsubscribedAudiofile = premiumAudiofile ? premiumAudiofile : article.audiofiles[0];
+
+    // Get the audiofile based on the user his selection when he is subscribed
+    // If not subscribed, we'll use the audiofile from above
+    if (isSubscribed) {
+      return this.getAudiofileByUserSelectedVoice();
+    }
+
+    return unsubscribedAudiofile;
   }
 
-  get listenTimeInSeconds(): number {
-    const { article } = this.props;
-    // Just get the listen time of the first audiofile, for now
-    return article.audiofiles[0] && article.audiofiles[0].length ? article.audiofiles[0].length : 0;
+  /**
+   * Get's the voice to be used for this article.
+   * If there are audiofiles to be used, it returns the voice from that audiofile.
+   * Else it will return the voice the user has selected or the default voice for the language.
+   */
+  get voiceToUse(): Api.Voice | null {
+    const { selectedVoiceForLanguageName } = this.props;
+
+    if (this.audiofileToUse) {
+      return this.audiofileToUse.voice;
+    }
+
+    if (selectedVoiceForLanguageName) {
+      return selectedVoiceForLanguageName
+    }
+
+    return null;
   }
+
+  /**
+   * Get's the listening time in seconds based on the audiofile.
+   * If no audiofile is found, it will return 0
+   */
+  get listenTimeInSeconds(): number {
+    if (!this.audiofileToUse) {
+      return 0;
+    }
+
+    return this.audiofileToUse.length;
+  }
+
+  static contextType = NetworkContext;
+
+  state = initialState;
 
   shouldComponentUpdate(nextProps: Props, nextState: State) {
     // Make sure we update the article that's active or was previously active in the player
@@ -128,12 +169,12 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     if (!hasSomethingLoading && isCurrentArticleId) {
       // When a track is playing
       if (playbackState && [TrackPlayer.State.Playing].includes(playbackState) && !prevState.isPlaying) {
-        this.setState({ isPlaying: true, isActive: true, isLoading: false });
+        return this.setState({ isPlaying: true, isActive: true, isLoading: false });
       }
 
       // When a track is stopped or paused
       if (playbackState && [TrackPlayer.State.Stopped, TrackPlayer.State.Paused].includes(playbackState) && prevState.isPlaying) {
-        this.setState({ isPlaying: false, isActive: true });
+        return this.setState({ isPlaying: false, isActive: true });
       }
     }
   }
@@ -193,13 +234,6 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         return this.handleCreateAudiofile();
       }
 
-      // Temporary commented out below to allow playing of high quality voices on free accounts as an introduction
-      //
-      // If the user is on a free account, check if available audiofile uses different voice. Show alert if it does.
-      // if (!isSubscribed) {
-      //   this.alertIfDifferentSelectedVoice();
-      // }
-
       // Only set a new track when it's a different one
       // handleSetTrack will also handle the download of the audio
       if (playerCurrentArticleId !== article.id) {
@@ -242,13 +276,18 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     }
   }
 
-  get isDownloaded() {
-    const { article, downloadedAudiofiles } = this.props;
-    if (!article.audiofiles || !article.audiofiles.length) { return false; }
+  getIsDownloaded(): boolean {
+    const { downloadedAudiofiles } = this.props;
 
-    const articleAudiofilesIds = article.audiofiles.map(audiofile => audiofile.id);
+    if (!this.audiofileToUse) {
+      return false;
+    }
 
-    return !!downloadedAudiofiles.find(audiofile => articleAudiofilesIds.includes(audiofile.id));
+    const downloadedAudiofileIds = downloadedAudiofiles.map(audiofile => audiofile.id)
+
+    const isDownloaded = downloadedAudiofileIds.includes(this.audiofileToUse.id);
+
+    return isDownloaded;
   }
 
   alertIfDifferentSelectedVoice = (): void => {
@@ -307,9 +346,13 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
     const audiofile = this.audiofileToUse ? this.audiofileToUse : null;
 
-    if (!audiofile) { return Alert.alert(ALERT_TITLE_ERROR, 'no audio'); }
+    if (!audiofile) {
+      return Alert.alert(ALERT_TITLE_ERROR, 'Something went wrong. We could not play the audio for this article. Please contact our support.');
+    }
 
-    if (!this.isDownloaded && !isConnected) {
+    const isDownloaded = this.getIsDownloaded();
+
+    if (!isDownloaded && !isConnected) {
       return Alert.alert(ALERT_TITLE_ERROR_NO_INTERNET, ALERT_ARTICLE_PLAY_INTERNET_REQUIRED);
     }
 
@@ -322,7 +365,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
         let localAudiofilePath = cache.getLocalFilePath(audiofile.filename, LOCAL_CACHE_AUDIOFILES_PATH);
 
-        if (!this.isDownloaded) {
+        if (!isDownloaded) {
           const downloadedLocalAudiofilePath = await this.downloadAudiofile(audiofile.url, audiofile.id, audiofile.filename);
 
           // Save the audiofile in store, so we can track which article has downloaded articles
@@ -518,7 +561,9 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     const articleUrl = article.canonicalUrl ? article.canonicalUrl : article.url;
     const textDirection = (article.language && article.language.rightToLeft) ? 'rtl' : 'ltr';
 
-    const hasAudiofile = article.audiofiles.length > 0;
+    const hasAudiofile = !!this.audiofileToUse;
+    const isDownloaded = this.getIsDownloaded();
+    const voiceLabel = (this.voiceToUse && this.voiceToUse.label)  ? this.voiceToUse.label : '';
 
     return (
       <SwipeableRow
@@ -542,10 +587,11 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
             isLoading={isLoading || isCreatingAudiofile || isDownloadingAudiofile}
             isPlaying={isPlaying}
             isActive={isActive}
-            isDownloaded={this.isDownloaded}
+            isDownloaded={isDownloaded}
             isFavorited={isFavorited}
             isArchived={isArchived}
             hasAudiofile={hasAudiofile}
+            voiceLabel={voiceLabel}
             title={article.title}
             url={articleUrl}
             imageUrl={article.imageUrl}

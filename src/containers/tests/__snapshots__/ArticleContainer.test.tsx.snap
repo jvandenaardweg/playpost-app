@@ -344,6 +344,34 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                 How to Keep Going When You Don’t Know What’s Next
               </Text>
             </View>
+            <Text
+              ellipsizeMode="tail"
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "Inter-SemiBold",
+                    "fontSize": 13,
+                    "lineHeight": 16,
+                  },
+                  Array [
+                    Object {
+                      "color": "#AAAAAA",
+                      "marginBottom": 10,
+                      "paddingRight": 0,
+                    },
+                    Object {
+                      "direction": "ltr",
+                      "writingDirection": "ltr",
+                    },
+                  ],
+                ]
+              }
+              testID="Article-source-name"
+            >
+              Darius Foroux on Medium
+            </Text>
             <View
               style={
                 Array [
@@ -379,7 +407,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                   style={
                     Array [
                       Object {
-                        "color": "#C5C5C5",
+                        "color": "#AAAAAA",
                         "fontSize": 14,
                       },
                       Object {
@@ -415,8 +443,6 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                 }
               >
                 <Text
-                  ellipsizeMode="tail"
-                  numberOfLines={1}
                   style={
                     Array [
                       Object {
@@ -428,18 +454,16 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                       Array [
                         Object {
                           "color": "#AAAAAA",
-                          "paddingRight": 0,
                         },
                         Object {
-                          "direction": "ltr",
-                          "writingDirection": "ltr",
+                          "color": "#AAAAAA",
                         },
                       ],
                     ]
                   }
-                  testID="Article-source-name"
+                  testID="Article-Text-voiceLabel"
                 >
-                  Darius Foroux on Medium
+                  Emily
                 </Text>
               </View>
             </View>
