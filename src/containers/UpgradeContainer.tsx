@@ -485,7 +485,6 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         isLoadingBuySubscription={isLoadingUpgrade}
         isLoadingRestorePurchases={isLoadingRestore}
         isEligibleForTrial={userIsEligibleForTrial}
-        isSubscriptionActiveOnCurrentPlatform={this.isSubscriptionActiveOnCurrentPlatform}
         subscriptions={subscriptions}
         activeSubscriptionProductId={activeSubscriptionProductId}
         centeredSubscriptionProductId={centeredSubscriptionProductId}
