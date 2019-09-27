@@ -268,7 +268,7 @@ PODS:
     - React
   - RNLocalize (1.2.1):
     - React
-  - RNReanimated (1.2.0):
+  - RNReanimated (1.3.0):
     - React
   - RNScreens (1.0.0-alpha.23):
     - React
@@ -473,7 +473,7 @@ SPEC CHECKSUMS:
   RNInAppBrowser: c0c1f509fe1ced46d751b61463be847c9b139ae9
   RNKeychain: de0a565ff2f548576ac494612f05f77a7cda3f55
   RNLocalize: 7206d44eb341d6e2a61a8184b831c64a5539fcdf
-  RNReanimated: 1b52415c4302f198cb581282a0166690bad62c43
+  RNReanimated: 6abbbae2e5e72609d85aabd92a982a94566885f1
   RNScreens: f28b48b8345f2f5f39ed6195518291515032a788
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   Yoga: d8c572ddec8d05b7dba08e4e5f1924004a177078

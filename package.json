@@ -96,7 +96,7 @@
     "react-native-keychain": "^4.0.0",
     "react-native-localize": "^1.2.1",
     "react-native-modal": "^11.4.0",
-    "react-native-reanimated": "^1.2.0",
+    "react-native-reanimated": "^1.3.0",
     "react-native-screens": "^1.0.0-alpha.23",
     "react-native-share-extension": "git+https://github.com/jvandenaardweg/react-native-share-extension#3a7be58a624fc1f975494bb8f80992146916b464",
     "react-native-splash-screen": "^3.2.0",
