@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { SafeAreaView, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { Button, Image } from 'react-native-elements';
 import SplashScreen from 'react-native-splash-screen';
@@ -21,6 +21,7 @@ interface OnboardingSlideProps {
     text: string;
   };
   index: number;
+  showSkipButton: boolean;
   goToSlide(slideIndex: number): void;
 }
 
@@ -58,7 +59,7 @@ const OnboardingSliderComponent: React.FC<Props> = React.memo(() => {
     SplashScreen.hide();
   }, []);
 
-  const goToSlide = (slideIndex: number) => appIntroSliderRef.current.goToSlide(slideIndex)
+  const goToSlide = (goToSlideIndex: number) => appIntroSliderRef.current.goToSlide(goToSlideIndex)
 
   function renderItem(props: OnboardingSlideProps) {
     return <OnboardingSlide {...props} goToSlide={goToSlide} />;
@@ -77,11 +78,6 @@ const OnboardingSliderComponent: React.FC<Props> = React.memo(() => {
           />
         </SafeAreaView>
         <View style={{ flex: 1, paddingBottom: 35 }}>
-          <View style={styles.skipButtonContainer}>
-            <TouchableOpacity testID="onboarding-button-skip" onPress={() => appIntroSliderRef.current.goToSlide(slides.length - 1)}>
-              <Text style={styles.skipButtonTitleStyle} preset="footnoteEmphasized">Skip</Text>
-            </TouchableOpacity>
-          </View>
           <AppIntroSlider
             ref={appIntroSliderRef}
             testID="onboarding-slider"
