@@ -236,11 +236,11 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
     // Active subscription is an subscription bought with the Android app
     // Only allow upgrading through the Android app. Or cancel the Android subscription.
-    if (Platform.OS === 'ios' && activeInAppSubscription && activeInAppSubscription.inAppSubscription.service === 'google') {
+    if (Platform.OS === 'ios' && !this.isSubscriptionActiveOnCurrentPlatform) {
       return this.showErrorAlert(ALERT_TITLE_ERROR, ALERT_SUBSCRIPTION_UPGRADE_PLATFORM_ANDROID);
     }
 
-    if (Platform.OS === 'android' && activeInAppSubscription && activeInAppSubscription.inAppSubscription.service === 'apple') {
+    if (Platform.OS === 'android' && !this.isSubscriptionActiveOnCurrentPlatform) {
       return this.showErrorAlert(ALERT_TITLE_ERROR, ALERT_SUBSCRIPTION_UPGRADE_PLATFORM_IOS);
     }
 
@@ -288,17 +288,15 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   }
 
   handleOnPressRestore = async () => {
-    const { activeInAppSubscription } = this.props;
-
     Analytics.trackEvent('Subscriptions restore', { Status: 'restoring', UserId: this.analyticsUserId });
 
     // Prevent restoring when there's an active subscription on an other platform
 
-    if (Platform.OS === 'android' && activeInAppSubscription && activeInAppSubscription.inAppSubscription.service === 'apple') {
+    if (Platform.OS === 'android' && !this.isSubscriptionActiveOnCurrentPlatform) {
       return this.showErrorAlert(ALERT_TITLE_ERROR, ALERT_SUBSCRIPTION_RESTORE_PLATFORM_ANDROID);
     }
 
-    if (Platform.OS === 'ios' && activeInAppSubscription && activeInAppSubscription.inAppSubscription.service === 'google') {
+    if (Platform.OS === 'ios' && !this.isSubscriptionActiveOnCurrentPlatform) {
       return this.showErrorAlert(ALERT_TITLE_ERROR, ALERT_SUBSCRIPTION_RESTORE_PLATFORM_IOS);
     }
 
@@ -457,6 +455,26 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     ]);
   }
 
+  get isSubscriptionActiveOnCurrentPlatform(): boolean {
+    const { activeInAppSubscription } = this.props;
+
+    // If there is no active subscription, just return true
+    if (!activeInAppSubscription) {
+      return true;
+    }
+
+    const platformToServiceMapping = {
+      'ios': 'apple',
+      'android': 'google'
+    }
+
+    const currentService = platformToServiceMapping[Platform.OS]
+
+    const activeSubscriptionService = activeInAppSubscription && activeInAppSubscription.inAppSubscription.service
+
+    return activeSubscriptionService === currentService
+  }
+
   render() {
     const { isLoadingSubscriptionItems, subscriptions, centeredSubscriptionProductId } = this.state;
     const { activeSubscriptionProductId, isLoadingUpgrade, isLoadingRestore, userIsEligibleForTrial } = this.props;
@@ -467,6 +485,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         isLoadingBuySubscription={isLoadingUpgrade}
         isLoadingRestorePurchases={isLoadingRestore}
         isEligibleForTrial={userIsEligibleForTrial}
+        isSubscriptionActiveOnCurrentPlatform={this.isSubscriptionActiveOnCurrentPlatform}
         subscriptions={subscriptions}
         activeSubscriptionProductId={activeSubscriptionProductId}
         centeredSubscriptionProductId={centeredSubscriptionProductId}
