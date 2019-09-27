@@ -22,8 +22,10 @@ export default StyleSheet.create({
     paddingLeft: spacing.default,
     paddingRight: spacing.default
   },
+  activityIndicator: {
+    marginRight: spacing.tiny
+  },
   label: {
-    color: colors.white,
-    marginLeft: spacing.tiny
+    color: colors.white
   }
 });

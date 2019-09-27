@@ -12,9 +12,9 @@ class AudiofileStatusComponent extends React.PureComponent<Props> {
   render() {
     const { audiofileStatus } = this.props;
 
-    if (!audiofileStatus) { return null; }
+    const isActive = !!audiofileStatus;
 
-    return <GlobalStatusIndicator label={audiofileStatus} />;
+    return <GlobalStatusIndicator isActive={isActive} label={audiofileStatus} />;
   }
 }
 

@@ -161,7 +161,7 @@ describe('player selector', () => {
     expect(selectPlayerAudiofileStatus(exampleState2)).toEqual(
       'Downloading article audio...'
     );
-    expect(selectPlayerAudiofileStatus(exampleState3)).toEqual(null);
+    expect(selectPlayerAudiofileStatus(exampleState3)).toEqual('');
     expect(selectPlayerAudiofileStatus(exampleState4)).toEqual(
       'Loading article audio...'
     );

@@ -55,7 +55,7 @@ export const selectPlayerArticleFromAudiofileId = createSelector(
 
 export const selectPlayerAudiofileStatus = createSelector(
   [playerSelector],
-  player => {
+  (player): string => {
     const { isCreatingAudiofile, isDownloadingAudiofile } = player;
 
     if (isCreatingAudiofile && isDownloadingAudiofile) {
@@ -66,7 +66,7 @@ export const selectPlayerAudiofileStatus = createSelector(
 
     if (isDownloadingAudiofile) { return 'Downloading article audio...'; }
 
-    return null;
+    return '';
   }
 );
 
