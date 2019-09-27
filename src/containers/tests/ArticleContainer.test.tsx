@@ -50,14 +50,12 @@ const defaultProps: Props = {
   onPressOut: onPressOutHandler,
   track: initialTrackState,
   isSubscribed: false,
-  userSelectedVoiceByLanguageName: null,
   downloadedAudiofiles: [],
   playerCurrentArticleId: '',
   playerPreviousArticleId: '',
-  availableVoicesByLanguageName: null,
   userIsEligibleForTrial: false,
   playbackState: TrackPlayer.State.None,
-
+  selectedVoiceForLanguageName: undefined,
   setTrack: setTrackHandler,
   getPlaylist: getPlaylistHandler,
   createAudiofile: createAudiofileHandler,
@@ -168,40 +166,6 @@ describe('ArticleContainer', () => {
       expect(spyGetUser).toHaveBeenCalledTimes(0);
       expect(spyHandleSetTrack).toHaveBeenCalledTimes(0);
       expect(spyResetIsCreatingAudiofile).toHaveBeenCalledTimes(1);
-
-    });
-
-    it('handleCreateAudiofile() should correctly show an alert when the user has no subscription but has a selected voice that is different from the default', async () => {
-      const props: Props = {
-        ...defaultProps,
-        isSubscribed: false,
-        userIsEligibleForTrial: true,
-        userSelectedVoiceByLanguageName: {
-          'English': voicePremium
-        }
-      }
-
-      Alert.alert = jest.fn()
-
-      wrapper.update(<ArticleContainerComponent {...props} />);
-
-      const testInstance: ArticleContainerComponent = wrapper.root.instance;
-
-      const spySetIsCreatingAudiofile = jest.spyOn(testInstance.props, 'setIsCreatingAudiofile')
-
-      await testInstance.handleCreateAudiofile();
-
-      expect(Alert.alert).toHaveBeenCalledTimes(1);
-      expect(Alert.alert).toHaveBeenCalledWith('Cannot use selected voice', 'Your selected voice for this English article is a Premium voice, but you have no active Premium subscription. If you want to continue to use this voice you should upgrade again.', expect.anything());
-
-      // All the spy's should not be called
-      expect(spySetIsCreatingAudiofile).toHaveBeenCalledTimes(0);
-
-      // State should be as it is not loading anything when done
-      expect(testInstance.state.isPlaying).toBe(false);
-      expect(testInstance.state.isLoading).toBe(false);
-      expect(testInstance.state.isActive).toBe(false);
-      expect(testInstance.state.isCreatingAudiofile).toBe(false);
 
     });
 
@@ -525,14 +489,7 @@ describe('ArticleContainer', () => {
       const props: Props = {
         ...defaultProps,
         article: articleMockWithAudioDefaultVoice,
-        userSelectedVoiceByLanguageName: {
-          'English': voicePremium
-        },
-        availableVoicesByLanguageName: {
-          'English': {
-            voices: [voiceLanguageDefaultEN]
-          }
-        } as any
+        selectedVoiceForLanguageName: voicePremium
       }
 
       wrapper.update(<ArticleContainerComponent {...props} />);
@@ -550,14 +507,7 @@ describe('ArticleContainer', () => {
       const props: Props = {
         ...defaultProps,
         article: articleMockWithAudioDefaultVoice,
-        userSelectedVoiceByLanguageName: {
-          'English': voiceLanguageDefaultEN
-        },
-        availableVoicesByLanguageName: {
-          'English': {
-            voices: [voiceLanguageDefaultEN]
-          }
-        } as any
+        selectedVoiceForLanguageName: voiceLanguageDefaultEN
       }
 
       wrapper.update(<ArticleContainerComponent {...props} />);
@@ -575,12 +525,7 @@ describe('ArticleContainer', () => {
       const props: Props = {
         ...defaultProps,
         article: articleMockWithAudioDefaultVoice,
-        userSelectedVoiceByLanguageName: null,
-        availableVoicesByLanguageName: {
-          'English': {
-            voices: [voiceLanguageDefaultEN]
-          }
-        } as any
+        selectedVoiceForLanguageName: voiceLanguageDefaultEN
       }
 
       wrapper.update(<ArticleContainerComponent {...props} />);
@@ -599,12 +544,7 @@ describe('ArticleContainer', () => {
         ...defaultProps,
         article: articleMockWithAudioDefaultVoice,
         downloadedAudiofiles: [articleMockWithAudioDefaultVoice.audiofiles[0]],
-        userSelectedVoiceByLanguageName: null,
-        availableVoicesByLanguageName: {
-          'English': {
-            voices: [voiceLanguageDefaultEN]
-          }
-        } as any
+        selectedVoiceForLanguageName: voiceLanguageDefaultEN
       }
 
       wrapper.update(<ArticleContainerComponent {...props} />);
@@ -619,12 +559,7 @@ describe('ArticleContainer', () => {
         ...defaultProps,
         article: articleMockWithAudioDefaultVoice,
         downloadedAudiofiles: [],
-        userSelectedVoiceByLanguageName: null,
-        availableVoicesByLanguageName: {
-          'English': {
-            voices: [voiceLanguageDefaultEN]
-          }
-        } as any
+        selectedVoiceForLanguageName: voiceLanguageDefaultEN
       }
 
       wrapper.update(<ArticleContainerComponent {...props} />);

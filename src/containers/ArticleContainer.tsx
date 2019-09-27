@@ -53,8 +53,8 @@ import {
 import { getUser } from '../reducers/user';
 import { selectDownloadedAudiofiles } from '../selectors/audiofiles';
 import { selectPlayerCurrentArticleId, selectPlayerPlaybackState, selectPlayerPreviousArticleId, selectPlayerTrack } from '../selectors/player';
-import { selectUserIsEligibleForTrial, selectUserIsSubscribed, selectUserSelectedVoiceByLanguageName } from '../selectors/user';
-import { selectLanguagesWithActiveVoicesByLanguageName } from '../selectors/voices';
+import { selectUserIsEligibleForTrial, selectUserIsSubscribed } from '../selectors/user';
+import { makeSelectedVoiceForLanguageName } from '../selectors/voices';
 
 interface State {
   isLoading: boolean;
@@ -142,34 +142,19 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
    * Find the audiofile in this article using the user's selected voice
    */
   getAudiofileByUserSelectedVoice(): Api.Audiofile | undefined {
-    const { article, userSelectedVoiceByLanguageName, availableVoicesByLanguageName, isSubscribed } = this.props;
+    const { article, selectedVoiceForLanguageName } = this.props;
     const articleLanguageName = article.language ? article.language.name : '';
-    const articleLanguage = availableVoicesByLanguageName && availableVoicesByLanguageName[articleLanguageName];
-    const userSelectedVoice = userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName[articleLanguageName];
-    const isUnsubscribedDefaultVoice = (articleLanguage && articleLanguage.voices) ? articleLanguage.voices.find(voice => voice.isUnsubscribedLanguageDefault) : null;
-    const isSubscribedDefaultVoice = (articleLanguage && articleLanguage.voices) ? articleLanguage.voices.find(voice => voice.isSubscribedLanguageDefault) : null;
 
-    // TODO: get correct voice when user is on free introduction
-
-    const defaultVoice = (isSubscribed) ? isSubscribedDefaultVoice : isUnsubscribedDefaultVoice;
-
-    if (!articleLanguage || !defaultVoice) {
+    if (!articleLanguageName) {
       return undefined;
     }
 
-    // If the user has no custom selected voice, return the audiofile of the default voice for this language
-    if (!userSelectedVoice && defaultVoice) {
-      const audiofileOfDefaultVoice = article.audiofiles.find(audiofile => audiofile.voice.id === defaultVoice.id);
-      return audiofileOfDefaultVoice;
-    }
-
-    if (userSelectedVoice) {
-      // We get the audiofile based on the user's selected voice
-      return userSelectedVoice && article.audiofiles.find(audiofile => audiofile.voice.id === userSelectedVoice.id);
+    if (!selectedVoiceForLanguageName) {
+      return undefined;
     }
 
     // Else, just return the default voice audio
-    return article.audiofiles.find(audiofile => audiofile.voice.id === defaultVoice.id);
+    return article.audiofiles.find(audiofile => audiofile.voice.id === selectedVoiceForLanguageName.id);
   }
 
   /**
@@ -227,39 +212,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   handleCreateAudiofile = async (): Promise<void> => {
-    const { article, userSelectedVoiceByLanguageName, isSubscribed, userIsEligibleForTrial } = this.props;
-    const articleLanguageName = article.language ? article.language.name : '';
-    const userSelectedVoice = userSelectedVoiceByLanguageName && userSelectedVoiceByLanguageName[articleLanguageName];
-
-    // If the selected voice of the user, is a Premium voice, but the user has no Premium account active
-    // On free accounts, voices with isUnsubscribedLanguageDefault are "free" voices
-    // So, if the user has not selected a default voice and is not subscribed, he cannot use this voice
-    if ((userSelectedVoice && !userSelectedVoice.isUnsubscribedLanguageDefault) && !isSubscribed) {
-      // Show an Alert he needs to change his default voice for the "userSelectedVoice.name" language
-      const selectedVoiceLanguageName = userSelectedVoice.language.name;
-
-      return Alert.alert(
-        'Cannot use selected voice',
-        `Your selected voice for this ${selectedVoiceLanguageName} article is a Premium voice, but you have no active Premium subscription. If you want to continue to use this voice you should upgrade again.`,
-        [
-          {
-            text: 'Cancel',
-          },
-          {
-            text: (userIsEligibleForTrial) ? 'Start free trial' : 'Upgrade',
-            style: 'cancel',
-            onPress: () => this.props.navigation.navigate('Upgrade')
-          },
-          {
-            text: `Change ${selectedVoiceLanguageName} voice`,
-            onPress: () =>
-              this.props.navigation.navigate('SettingsVoices', {
-                languageName: selectedVoiceLanguageName
-              })
-          }
-        ]
-      );
-    }
+    const { article } = this.props;
 
     // Create the audiofile using our API...
     this.setState({
@@ -620,12 +573,11 @@ interface StateProps {
   readonly track: ReturnType<typeof selectPlayerTrack>;
   readonly playbackState: ReturnType<typeof selectPlayerPlaybackState>;
   readonly isSubscribed: ReturnType<typeof selectUserIsSubscribed>;
-  readonly userSelectedVoiceByLanguageName: ReturnType<typeof selectUserSelectedVoiceByLanguageName>;
   readonly downloadedAudiofiles: ReturnType<typeof selectDownloadedAudiofiles>;
   readonly playerCurrentArticleId: ReturnType<typeof selectPlayerCurrentArticleId>;
   readonly playerPreviousArticleId: ReturnType<typeof selectPlayerPreviousArticleId>;
-  readonly availableVoicesByLanguageName: ReturnType<typeof selectLanguagesWithActiveVoicesByLanguageName>;
   readonly userIsEligibleForTrial: ReturnType<typeof selectUserIsEligibleForTrial>;
+  readonly selectedVoiceForLanguageName: Api.Voice | undefined;
 }
 
 interface DispatchProps {
@@ -646,17 +598,23 @@ interface DispatchProps {
   readonly getUser: typeof getUser;
 }
 
-const mapStateToProps = (state: RootState, props: Props) => ({
-  track: selectPlayerTrack(state),
-  playbackState: selectPlayerPlaybackState(state),
-  isSubscribed: selectUserIsSubscribed(state),
-  userSelectedVoiceByLanguageName: selectUserSelectedVoiceByLanguageName(state),
-  downloadedAudiofiles: selectDownloadedAudiofiles(state),
-  playerCurrentArticleId: selectPlayerCurrentArticleId(state),
-  playerPreviousArticleId: selectPlayerPreviousArticleId(state),
-  availableVoicesByLanguageName: selectLanguagesWithActiveVoicesByLanguageName(state),
-  userIsEligibleForTrial: selectUserIsEligibleForTrial(state),
-});
+const mapStateToProps = (state: RootState, props: Props) => {
+  // Makes the selector memoized accross multiple components
+  // More info: https://github.com/reduxjs/reselect#sharing-selectors-with-props-across-multiple-component-instances
+  const selectSelectedVoiceForLanguageName = makeSelectedVoiceForLanguageName();
+  const languageName = props.article.language ? props.article.language.name : '';
+
+  return ({
+    track: selectPlayerTrack(state),
+    playbackState: selectPlayerPlaybackState(state),
+    isSubscribed: selectUserIsSubscribed(state),
+    downloadedAudiofiles: selectDownloadedAudiofiles(state),
+    playerCurrentArticleId: selectPlayerCurrentArticleId(state),
+    playerPreviousArticleId: selectPlayerPreviousArticleId(state),
+    userIsEligibleForTrial: selectUserIsEligibleForTrial(state),
+    selectedVoiceForLanguageName: selectSelectedVoiceForLanguageName(state, { languageName })
+  });
+}
 
 const mapDispatchToProps: DispatchProps = {
   setTrack,

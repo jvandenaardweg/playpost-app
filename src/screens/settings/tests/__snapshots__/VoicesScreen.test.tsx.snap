@@ -5,6 +5,8 @@ exports[`SettingsVoicesScreen rendering should render correctly 1`] = `
   isAnimated={true}
   showActivityIndicator={false}
 >
-  <withNavigation(Connect(VoiceSelectContainerComponent)) />
+  <Memo>
+    <withNavigation(Connect(VoiceSelectContainerComponent)) />
+  </Memo>
 </InteractionManaged>
 `;

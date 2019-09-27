@@ -370,7 +370,7 @@ interface StateProps {
   readonly qualityOptions: ReturnType<typeof selectQualityOptions>;
   readonly genderOptions: ReturnType<typeof selectGenderOptions>;
   readonly countryOptions: ReturnType<typeof selectCountryOptions>;
-  readonly selectedVoiceForLanguageName: ReturnType<typeof makeSelectedVoiceForLanguageName>;
+  readonly selectedVoiceForLanguageName: Api.Voice | undefined;
 }
 
 const mapStateToProps = (state: RootState, props: Props) => {

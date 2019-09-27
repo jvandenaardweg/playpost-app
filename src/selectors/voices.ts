@@ -4,7 +4,7 @@ import { createDeepEqualSelector } from './index';
 
 import { RootState } from '../reducers';
 import { VoicesState } from '../reducers/voices';
-import { selectDeviceLocale, selectUserSelectedVoiceByLanguageName, selectUserSelectedVoices, selectUserIsSubscribed, selectUserHasUsedFreeIntroduction } from './user';
+import { selectDeviceLocale, selectUserHasUsedFreeIntroduction, selectUserIsSubscribed, selectUserSelectedVoices } from './user';
 
 export interface VoicesLanguages {
   languageName: string;

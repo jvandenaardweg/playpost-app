@@ -5,6 +5,8 @@ exports[`SettingsLanguagesScreen rendering should render correctly 1`] = `
   isAnimated={true}
   showActivityIndicator={false}
 >
-  <withNavigation(Connect(LanguagesSelectComponent)) />
+  <Memo>
+    <withNavigation(Connect(LanguagesSelectComponent)) />
+  </Memo>
 </InteractionManaged>
 `;
