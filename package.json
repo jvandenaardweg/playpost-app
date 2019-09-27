@@ -144,6 +144,9 @@
       "tsx",
       "js"
     ],
+    "transformIgnorePatterns": [
+      "node_modules/(react-navigation-stack|@react-navigation/core|@react-navigation/native)"
+    ],
     "transform": {
       "^.+\\.(js)$": "<rootDir>/node_modules/babel-jest",
       "\\.(ts|tsx)$": "ts-jest"
