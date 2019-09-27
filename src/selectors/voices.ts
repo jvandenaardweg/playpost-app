@@ -22,6 +22,10 @@ export const selectLanguages = createDeepEqualSelector(
   voices => voices.languages
 );
 
+export const selectLanguageByName = (state: RootState, { languageName }: { languageName: string }) => {
+  return state.voices.languages.find(language => language.name === languageName)
+}
+
 export const selectVoicesError = createSelector(
   [voicesSelector],
   voices => voices.error
@@ -225,12 +229,10 @@ export const selectCountryOptions = createDeepEqualSelector(
   }
 );
 
-const getLanguageByName = (state: RootState, { languageName }: { languageName: string }) => state.voices.languages.find(language => language.name === languageName);
-
 // Uses a normal createSelector, seems more performant
 export const makeSelectedVoiceForLanguageName = () => {
   return createSelector(
-    [getLanguageByName, selectUserSelectedVoices, selectUserIsSubscribed, selectUserHasUsedFreeIntroduction],
+    [selectLanguageByName, selectUserSelectedVoices, selectUserIsSubscribed, selectUserHasUsedFreeIntroduction],
     (language, userSelectedVoices, isSubscribed, userHasUsedFreeIntroduction): Api.Voice | undefined => {
       if (!language) {
         return undefined;

@@ -1,8 +1,10 @@
 import { createStore } from 'redux';
 import {
+  makeSelectedVoiceForLanguageName,
   selectCountryOptions,
   selectDownloadedVoicePreviews,
   selectGenderOptions,
+  selectLanguageByName,
   selectLanguages,
   selectLanguagesWithActiveVoices,
   selectLanguagesWithActiveVoicesByLanguageName,
@@ -17,6 +19,7 @@ import { rootReducer } from '../../reducers';
 import { initialState } from '../../reducers/voices';
 
 import languagesMock from '../../../tests/__mocks__/languages';
+import voiceEnGbMock from '../../../tests/__mocks__/voice-en-gb';
 import voicesMock from '../../../tests/__mocks__/voices';
 
 const store = createStore(rootReducer);
@@ -269,5 +272,116 @@ describe('voices selector', () => {
     }
 
     expect(selectCountryOptions(exampleState)).toMatchObject(expected);
+  });
+
+  it('selectLanguageByName should return the language based on the given language name', () => {
+    const exampleState = {
+      ...rootState,
+      voices: {
+        ...rootState.voices,
+        languages: languagesMock
+      }
+    };
+
+    const expectedEnglish = languagesMock.filter(language => language.name === 'English');
+    const expectedGerman = languagesMock.filter(language => language.name === 'German');
+
+    expect(selectLanguageByName(exampleState, { languageName: 'English' })).toMatchObject(expectedEnglish[0]);
+    expect(selectLanguageByName(exampleState, { languageName: 'German' })).toMatchObject(expectedGerman[0]);
+  });
+
+  it('makeSelectedVoiceForLanguageName should return the default English voice when not subscribed', () => {
+    const exampleState = {
+      ...rootState,
+      voices: {
+        ...rootState.voices,
+        languages: languagesMock
+      }
+    };
+
+    // Mock user selectors
+    const user = require('../user')
+
+    user.selectUserIsSubscribed = jest.fn().mockReturnValue(false)
+    user.selectUserSelectedVoices = jest.fn().mockReturnValue([])
+    user.selectUserHasUsedFreeIntroduction = jest.fn().mockReturnValue(true)
+
+    const selectSelectedVoiceForLanguageName = makeSelectedVoiceForLanguageName();
+
+    const voice = selectSelectedVoiceForLanguageName(exampleState, { languageName: 'English' })
+
+    expect(voice && voice.label).toBe('Joanna');
+
+  });
+
+  it('makeSelectedVoiceForLanguageName should return the default English voice when subscribed', () => {
+    const exampleState = {
+      ...rootState,
+      voices: {
+        ...rootState.voices,
+        languages: languagesMock
+      }
+    };
+
+    // Mock user selectors
+    const user = require('../user')
+
+    user.selectUserIsSubscribed = jest.fn().mockReturnValue(true)
+    user.selectUserSelectedVoices = jest.fn().mockReturnValue([])
+    user.selectUserHasUsedFreeIntroduction = jest.fn().mockReturnValue(true)
+
+    const selectSelectedVoiceForLanguageName = makeSelectedVoiceForLanguageName();
+
+    const voice = selectSelectedVoiceForLanguageName(exampleState, { languageName: 'English' })
+
+    expect(voice && voice.label).toBe('Emily');
+
+  });
+
+  it('makeSelectedVoiceForLanguageName should return the default English subscribed voice when user has free introduction left', () => {
+    const exampleState = {
+      ...rootState,
+      voices: {
+        ...rootState.voices,
+        languages: languagesMock
+      }
+    };
+
+    // Mock user selectors
+    const user = require('../user')
+
+    user.selectUserIsSubscribed = jest.fn().mockReturnValue(true)
+    user.selectUserSelectedVoices = jest.fn().mockReturnValue([])
+    user.selectUserHasUsedFreeIntroduction = jest.fn().mockReturnValue(false)
+
+    const selectSelectedVoiceForLanguageName = makeSelectedVoiceForLanguageName();
+
+    const voice = selectSelectedVoiceForLanguageName(exampleState, { languageName: 'English' })
+
+    expect(voice && voice.label).toBe('Emily');
+
+  });
+
+  it('makeSelectedVoiceForLanguageName should return the user his selected voice when subscribed if the user has a selected voice for English', () => {
+    const exampleState = {
+      ...rootState,
+      voices: {
+        ...rootState.voices,
+        languages: languagesMock
+      }
+    };
+
+    // Mock user selectors
+    const user = require('../user')
+    user.selectUserIsSubscribed = jest.fn().mockReturnValue(true)
+    user.selectUserSelectedVoices = jest.fn().mockReturnValue([voiceEnGbMock])
+    user.selectUserHasUsedFreeIntroduction = jest.fn().mockReturnValue(false)
+
+    const selectSelectedVoiceForLanguageName = makeSelectedVoiceForLanguageName();
+
+    const voice = selectSelectedVoiceForLanguageName(exampleState, { languageName: 'English' })
+
+    expect(voice && voice.label).toBe(voiceEnGbMock.label);
+
   });
 });
