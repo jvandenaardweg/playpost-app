@@ -16,7 +16,7 @@ import { setDownloadedVoice } from '../reducers/voices';
 
 import { selectPlayerPlaybackState, selectPlayerTrack } from '../selectors/player';
 import { selectUserErrorSaveSelectedVoice, selectUserIsEligibleForTrial, selectUserIsSubscribed } from '../selectors/user';
-import { selectCountryOptions, selectDownloadedVoicePreviews, selectGenderOptions, selectLanguagesWithActiveVoicesByLanguageName, selectQualityOptions, makeSelectedVoiceForLanguageName } from '../selectors/voices';
+import { makeSelectedVoiceForLanguageName, selectCountryOptions, selectDownloadedVoicePreviews, selectGenderOptions, selectLanguagesWithActiveVoicesByLanguageName, selectQualityOptions } from '../selectors/voices';
 
 import { ALERT_GENERIC_INTERNET_REQUIRED, ALERT_SETTINGS_VOICE_CHANGE, ALERT_SETTINGS_VOICE_PREVIEW_UNAVAILABLE, ALERT_TITLE_ERROR, ALERT_TITLE_ERROR_NO_INTERNET, ALERT_TITLE_SUBSCRIPTION_ONLY, ALERT_TITLE_VOICE_CHANGE_REQUEST } from '../constants/messages';
 
