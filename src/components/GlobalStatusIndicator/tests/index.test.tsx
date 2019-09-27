@@ -8,7 +8,7 @@ describe('GlobalStatusIndicator', () => {
     let wrapper: RenderAPI;
 
     beforeAll(() => {
-      wrapper = render(<GlobalStatusIndicator label={'Creating article audio...'} />);
+      wrapper = render(<GlobalStatusIndicator label={'Creating article audio...'} isActive />);
     });
 
     it('should render correctly', () => {
@@ -20,7 +20,7 @@ describe('GlobalStatusIndicator', () => {
     });
 
     it('should use a fallback label when label is not set', () => {
-      wrapper = render(<GlobalStatusIndicator />);
+      wrapper = render(<GlobalStatusIndicator isActive />);
       expect(wrapper.getByTestId('GlobalStatusIndicator-label').props.children).toBe('Loading...');
     });
   });
