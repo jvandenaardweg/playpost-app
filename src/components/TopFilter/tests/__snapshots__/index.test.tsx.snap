@@ -2,363 +2,361 @@
 
 exports[`TopFilter rendering should render correctly 1`] = `
 <View>
-  <View>
-    <View
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#ffffff",
+        "borderBottomColor": "#e5e5e5",
+        "borderBottomWidth": 0.5,
+        "flexDirection": "row",
+        "paddingBottom": 12,
+        "paddingTop": 12,
+      }
+    }
+  >
+    <Text
       style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "Inter-SemiBold",
+            "fontSize": 13,
+            "lineHeight": 16,
+          },
+          Object {
+            "marginLeft": 12,
+            "marginRight": 12,
+            "width": 56,
+          },
+        ]
+      }
+      testID="TopFilter-Text-label"
+    >
+      Country
+    </Text>
+    <RCTScrollView
+      contentContainerStyle={
         Object {
           "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "borderBottomColor": "#e5e5e5",
-          "borderBottomWidth": 0.5,
           "flexDirection": "row",
-          "paddingBottom": 12,
-          "paddingTop": 12,
         }
       }
+      decelerationRate={0}
+      horizontal={true}
+      showsHorizontalScrollIndicator={false}
+      testID="TopFilter-ScrollView"
     >
-      <Text
-        style={
-          Array [
+      <View>
+        <View
+          style={
             Object {
-              "color": "#000000",
-              "fontFamily": "Inter-SemiBold",
-              "fontSize": 13,
-              "lineHeight": 16,
-            },
-            Object {
-              "marginLeft": 12,
-              "marginRight": 12,
-              "width": 56,
-            },
-          ]
-        }
-        testID="TopFilter-Text-label"
-      >
-        Country
-      </Text>
-      <RCTScrollView
-        contentContainerStyle={
-          Object {
-            "alignItems": "center",
-            "flexDirection": "row",
-          }
-        }
-        decelerationRate={0}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        testID="TopFilter-ScrollView"
-      >
-        <View>
-          <View
-            style={
-              Object {
-                "marginRight": 6,
-              }
+              "marginRight": 6,
             }
-            testID="TopFilter-View-ButtonTiny-container"
+          }
+          testID="TopFilter-View-ButtonTiny-container"
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "borderRadius": 28,
+                  "height": 28,
+                },
+                Object {
+                  "backgroundColor": "#D9E9FD",
+                },
+              ]
+            }
+            testID="ButtonTiny-Button"
           >
             <View
-              accessible={true}
-              focusable={true}
-              isTVSelectable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "borderRadius": 28,
+                    "flexDirection": "row",
                     "height": 28,
+                    "paddingLeft": 12,
+                    "paddingRight": 12,
                   },
                   Object {
                     "backgroundColor": "#D9E9FD",
                   },
                 ]
               }
-              testID="ButtonTiny-Button"
             >
-              <View
+              <Text
                 style={
                   Array [
                     Object {
-                      "alignItems": "center",
-                      "borderRadius": 28,
-                      "flexDirection": "row",
-                      "height": 28,
-                      "paddingLeft": 12,
-                      "paddingRight": 12,
+                      "color": "#000000",
+                      "fontFamily": "Inter-SemiBold",
+                      "fontSize": 13,
+                      "lineHeight": 16,
                     },
                     Object {
-                      "backgroundColor": "#D9E9FD",
+                      "color": "#0066FF",
                     },
                   ]
                 }
               >
+                All
+              </Text>
+              <View
+                style={
+                  Object {
+                    "marginLeft": 6,
+                    "marginRight": -1,
+                  }
+                }
+              >
                 <Text
+                  allowFontScaling={false}
                   style={
                     Array [
-                      Object {
-                        "color": "#000000",
-                        "fontFamily": "Inter-SemiBold",
-                        "fontSize": 13,
-                        "lineHeight": 16,
-                      },
                       Object {
                         "color": "#0066FF",
+                        "fontSize": 10,
+                      },
+                      undefined,
+                      Object {
+                        "fontFamily": "FontAwesome5Free-Solid",
+                        "fontStyle": "normal",
+                        "fontWeight": "normal",
+                      },
+                      Object {
+                        "fontWeight": "900",
                       },
                     ]
                   }
                 >
-                  All
-                </Text>
-                <View
-                  style={
-                    Object {
-                      "marginLeft": 6,
-                      "marginRight": -1,
-                    }
-                  }
-                >
-                  <Text
-                    allowFontScaling={false}
-                    style={
-                      Array [
-                        Object {
-                          "color": "#0066FF",
-                          "fontSize": 10,
-                        },
-                        undefined,
-                        Object {
-                          "fontFamily": "FontAwesome5Free-Solid",
-                          "fontStyle": "normal",
-                          "fontWeight": "normal",
-                        },
-                        Object {
-                          "fontWeight": "900",
-                        },
-                      ]
-                    }
-                  >
-                    
-                  </Text>
-                </View>
-              </View>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "marginRight": 6,
-              }
-            }
-            testID="TopFilter-View-ButtonTiny-container"
-          >
-            <View
-              accessible={true}
-              focusable={true}
-              isTVSelectable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Array [
-                  Object {
-                    "borderRadius": 28,
-                    "height": 28,
-                  },
-                  Object {
-                    "backgroundColor": "#EEEEEE",
-                  },
-                ]
-              }
-              testID="ButtonTiny-Button"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "borderRadius": 28,
-                      "flexDirection": "row",
-                      "height": 28,
-                      "paddingLeft": 12,
-                      "paddingRight": 12,
-                    },
-                    Object {
-                      "backgroundColor": "#EEEEEE",
-                    },
-                  ]
-                }
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#000000",
-                        "fontFamily": "Inter-SemiBold",
-                        "fontSize": 13,
-                        "lineHeight": 16,
-                      },
-                      Object {
-                        "color": "#000000",
-                      },
-                    ]
-                  }
-                >
-                  EN
-                </Text>
-              </View>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "marginRight": 6,
-              }
-            }
-            testID="TopFilter-View-ButtonTiny-container"
-          >
-            <View
-              accessible={true}
-              focusable={true}
-              isTVSelectable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Array [
-                  Object {
-                    "borderRadius": 28,
-                    "height": 28,
-                  },
-                  Object {
-                    "backgroundColor": "#EEEEEE",
-                  },
-                ]
-              }
-              testID="ButtonTiny-Button"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "borderRadius": 28,
-                      "flexDirection": "row",
-                      "height": 28,
-                      "paddingLeft": 12,
-                      "paddingRight": 12,
-                    },
-                    Object {
-                      "backgroundColor": "#EEEEEE",
-                    },
-                  ]
-                }
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#000000",
-                        "fontFamily": "Inter-SemiBold",
-                        "fontSize": 13,
-                        "lineHeight": 16,
-                      },
-                      Object {
-                        "color": "#000000",
-                      },
-                    ]
-                  }
-                >
-                  NL
-                </Text>
-              </View>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "marginRight": 6,
-              }
-            }
-            testID="TopFilter-View-ButtonTiny-container"
-          >
-            <View
-              accessible={true}
-              focusable={true}
-              isTVSelectable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Array [
-                  Object {
-                    "borderRadius": 28,
-                    "height": 28,
-                  },
-                  Object {
-                    "backgroundColor": "#EEEEEE",
-                  },
-                ]
-              }
-              testID="ButtonTiny-Button"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "borderRadius": 28,
-                      "flexDirection": "row",
-                      "height": 28,
-                      "paddingLeft": 12,
-                      "paddingRight": 12,
-                    },
-                    Object {
-                      "backgroundColor": "#EEEEEE",
-                    },
-                  ]
-                }
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#000000",
-                        "fontFamily": "Inter-SemiBold",
-                        "fontSize": 13,
-                        "lineHeight": 16,
-                      },
-                      Object {
-                        "color": "#000000",
-                      },
-                    ]
-                  }
-                >
-                  DE
+                  
                 </Text>
               </View>
             </View>
           </View>
         </View>
-      </RCTScrollView>
-    </View>
+        <View
+          style={
+            Object {
+              "marginRight": 6,
+            }
+          }
+          testID="TopFilter-View-ButtonTiny-container"
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "borderRadius": 28,
+                  "height": 28,
+                },
+                Object {
+                  "backgroundColor": "#EEEEEE",
+                },
+              ]
+            }
+            testID="ButtonTiny-Button"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 28,
+                    "flexDirection": "row",
+                    "height": 28,
+                    "paddingLeft": 12,
+                    "paddingRight": 12,
+                  },
+                  Object {
+                    "backgroundColor": "#EEEEEE",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-SemiBold",
+                      "fontSize": 13,
+                      "lineHeight": 16,
+                    },
+                    Object {
+                      "color": "#000000",
+                    },
+                  ]
+                }
+              >
+                EN
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "marginRight": 6,
+            }
+          }
+          testID="TopFilter-View-ButtonTiny-container"
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "borderRadius": 28,
+                  "height": 28,
+                },
+                Object {
+                  "backgroundColor": "#EEEEEE",
+                },
+              ]
+            }
+            testID="ButtonTiny-Button"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 28,
+                    "flexDirection": "row",
+                    "height": 28,
+                    "paddingLeft": 12,
+                    "paddingRight": 12,
+                  },
+                  Object {
+                    "backgroundColor": "#EEEEEE",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-SemiBold",
+                      "fontSize": 13,
+                      "lineHeight": 16,
+                    },
+                    Object {
+                      "color": "#000000",
+                    },
+                  ]
+                }
+              >
+                NL
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "marginRight": 6,
+            }
+          }
+          testID="TopFilter-View-ButtonTiny-container"
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "borderRadius": 28,
+                  "height": 28,
+                },
+                Object {
+                  "backgroundColor": "#EEEEEE",
+                },
+              ]
+            }
+            testID="ButtonTiny-Button"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 28,
+                    "flexDirection": "row",
+                    "height": 28,
+                    "paddingLeft": 12,
+                    "paddingRight": 12,
+                  },
+                  Object {
+                    "backgroundColor": "#EEEEEE",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "Inter-SemiBold",
+                      "fontSize": 13,
+                      "lineHeight": 16,
+                    },
+                    Object {
+                      "color": "#000000",
+                    },
+                  ]
+                }
+              >
+                DE
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
   </View>
 </View>
 `;
