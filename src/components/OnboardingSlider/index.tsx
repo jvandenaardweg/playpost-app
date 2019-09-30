@@ -1,3 +1,4 @@
+import analytics from '@react-native-firebase/analytics';
 import React, { useEffect, useRef } from 'react';
 import { SafeAreaView, View } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
@@ -23,6 +24,8 @@ interface OnboardingSlideProps {
   index: number;
   showSkipButton: boolean;
   goToSlide(slideIndex: number): void;
+  onPressSignup(): void;
+  onPressLogin(): void;
 }
 
 const OnboardingSliderComponent: React.FC<Props> = React.memo(() => {
@@ -59,10 +62,34 @@ const OnboardingSliderComponent: React.FC<Props> = React.memo(() => {
     SplashScreen.hide();
   }, []);
 
-  const goToSlide = (goToSlideIndex: number) => appIntroSliderRef.current.goToSlide(goToSlideIndex)
+  const goToSlide = async (goToSlideIndex: number) => {
+    appIntroSliderRef.current.goToSlide(goToSlideIndex)
+
+    await analytics().logEvent('onboarding_press_continue', {
+      goToSlideIndex
+    });
+  }
+
+  const handleOnPressSliderSignup = async () => {
+    NavigationService.navigate('Signup')
+
+    await analytics().logEvent('onboarding_slider_press_signup')
+  }
+
+  const handleOnPressSliderLogin = async () => {
+    NavigationService.navigate('login')
+
+    await analytics().logEvent('onboarding_slider_press_login')
+  }
+
+  const handleOnPressHeaderLogin = async () => {
+    NavigationService.navigate('login')
+
+    await analytics().logEvent('onboarding_press_login')
+  }
 
   function renderItem(props: OnboardingSlideProps) {
-    return <OnboardingSlide {...props} goToSlide={goToSlide} />;
+    return <OnboardingSlide {...props} goToSlide={goToSlide} onPressSignup={handleOnPressSliderSignup} onPressLogin={handleOnPressSliderLogin} />;
   }
 
   return (
@@ -74,7 +101,7 @@ const OnboardingSliderComponent: React.FC<Props> = React.memo(() => {
             type="clear"
             testID="onboarding-button-login"
             titleStyle={styles.loginButtonTitleStyle}
-            onPress={() => NavigationService.navigate('login')}
+            onPress={handleOnPressHeaderLogin}
           />
         </SafeAreaView>
         <View style={{ flex: 1, paddingBottom: 35 }}>
@@ -112,7 +139,9 @@ const OnboardingSliderComponent: React.FC<Props> = React.memo(() => {
 const OnboardingSlide: React.FC<OnboardingSlideProps> = React.memo(({
   item,
   index,
-  goToSlide
+  goToSlide,
+  onPressSignup,
+  onPressLogin
 }) => (
   <View style={styles.slideContainer} key={index}>
     <View style={styles.slideImageContainer}>
@@ -124,13 +153,13 @@ const OnboardingSlide: React.FC<OnboardingSlideProps> = React.memo(({
         <Text testID="onboarding-slider-item-text" style={styles.text} preset="lead">{item.text}</Text>
         {(item.key === 'last') && (
           <View style={styles.slideContentBodyFooter}>
-            <Text testID="onboarding-slider-item-text" style={[styles.text, styles.textHighlight]} preset="lead" onPress={() => NavigationService.navigate('login')}>Login with existing account</Text>
+            <Text testID="onboarding-slider-item-text" style={[styles.text, styles.textHighlight]} preset="lead" onPress={onPressLogin}>Login with existing account</Text>
           </View>
         )}
       </View>
       <View style={styles.slideContentFooter}>
         {(item.key === 'last') && (
-          <Button testID="onboarding-button-signup" title="Create new account" onPress={() => NavigationService.navigate('Signup')} />
+          <Button testID="onboarding-button-signup" title="Create new account" onPress={onPressSignup} />
         )}
 
         {(item.key !== 'last') && (
