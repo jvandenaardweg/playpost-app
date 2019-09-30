@@ -104,7 +104,11 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
     });
   }
 
-  handleOnPressOpenUrl = (url: string) => inAppBrowser.openUrl(url);
+  handleOnPressOpenUrl = async (url: string) => {
+    inAppBrowser.openUrl(url)
+
+    await analytics().logEvent('signup_open_url', { url });
+  }
 
   handleOnChangeText = (field: 'email' | 'password', value: string) => {
     if (field === 'email') { this.setState({ email: value }); }

@@ -1,8 +1,8 @@
+import analytics from '@react-native-firebase/analytics';
 import React from 'react';
 import { Alert } from 'react-native';
 import { NavigationEventSubscription, NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
-import analytics from '@react-native-firebase/analytics';
 
 import { LoginForm } from '../components/LoginForm';
 
@@ -107,7 +107,11 @@ class LoginFormContainerComponent extends React.PureComponent<Props, State> {
     if (field === 'password') { this.setState({ password: value }); }
   }
 
-  handleOnPressForgotPassword = () => NavigationService.navigate('login/forgot-password', { email: this.state.email });
+  handleOnPressForgotPassword = async () => {
+    NavigationService.navigate('login/forgot-password', { email: this.state.email })
+
+    await analytics().logEvent('login_press_forgot_password');
+  }
 
   render() {
     const { email, password, isLoading } = this.state;
