@@ -38,9 +38,6 @@ target 'Playpost' do
 
   # Custom App specific pods
   pod 'ReactNativeShareExtension', :podspec => '../node_modules/react-native-share-extension/ReactNativeShareExtension.podspec'
-  # pod 'AppCenter/Crashes', '~> 2.0.1'
-  # pod 'AppCenter/Analytics', '~> 2.0.1'
-  # pod 'AppCenterReactNativeShared', '~> 2.0.0'
   # pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
   # pod 'RNKeychain', :path => '../node_modules/react-native-keychain'
   # pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'

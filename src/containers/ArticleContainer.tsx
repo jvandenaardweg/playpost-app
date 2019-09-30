@@ -1,4 +1,4 @@
-import Analytics from 'appcenter-analytics';
+import analytics from '@react-native-firebase/analytics';
 import React from 'react';
 import isEqual from 'react-fast-compare';
 import { Alert } from 'react-native';
@@ -210,6 +210,13 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
       const { article, isSubscribed, playerCurrentArticleId } = this.props;
       const { isConnected } = this.context;
 
+      await analytics().logEvent('article_press_play', {
+        id: article.id,
+        title: article.title,
+        url: article.url,
+        isPlaying
+      });
+
       // Toggle play/pause
       if (isPlaying) { return TrackPlayer.default.pause(); }
 
@@ -257,6 +264,12 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     });
 
     try {
+      await analytics().logEvent('article_create_audiofile', {
+        id: article.id,
+        title: article.title,
+        url: article.url
+      });
+
       this.props.setIsCreatingAudiofile();
 
       await this.props.createAudiofile(article.id); // Create the audiofile using our API, this could take a little time
@@ -320,9 +333,19 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   downloadAudiofile = async (url: string, audiofileId: string, filename: string): Promise<string | void> => {
+    const { article } = this.props;
+
     return new Promise((resolve, reject) => {
       return this.setState({ isActive: true, isLoading: true, isDownloadingAudiofile: true }, async () => {
         try {
+          await analytics().logEvent('article_download_audiofile', {
+            id: article.id,
+            title: article.title,
+            url: article.url,
+            audiofileId,
+            audiofileUrl: url
+          });
+
           this.props.setIsDownloadingAudiofile();
           const localFilePath = await cache.downloadArticleAudiofile(url, filename);
           resolve(localFilePath);
@@ -412,6 +435,8 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
   fetchPlaylist = async (): Promise<void> => {
     try {
+      await analytics().logEvent('article_playlist_fetch');
+
       await this.props.getPlaylist();
     } catch (err) {
       Alert.alert(ALERT_TITLE_ERROR, ALERT_PLAYLIST_UPDATE_FAIL, [
@@ -428,10 +453,17 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   handleRemoveArticle = async (): Promise<void> => {
-    const articleId = this.props.article.id;
+    const { article } = this.props;
 
     try {
-      await this.props.removeArticleFromPlaylist(articleId);
+      await analytics().logEvent('article_remove_from_playlist', {
+        id: article.id,
+        title: article.title,
+        url: article.url
+      });
+
+      await this.props.removeArticleFromPlaylist(article.id);
+
       this.fetchPlaylist();
     } catch (err) {
       Alert.alert(ALERT_TITLE_ERROR, ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL, [
@@ -448,10 +480,16 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   handleArchiveArticle = async (): Promise<void> => {
-    const articleId = this.props.article.id;
+    const { article } = this.props;
 
     try {
-      await this.props.archivePlaylistItem(articleId);
+      await analytics().logEvent('article_archive', {
+        id: article.id,
+        title: article.title,
+        url: article.url
+      });
+
+      await this.props.archivePlaylistItem(article.id);
       this.fetchPlaylist();
     } catch (err) {
       Alert.alert(ALERT_TITLE_ERROR, ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL, [
@@ -468,10 +506,17 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   handleFavoriteArticle = async (): Promise<void> => {
-    const articleId = this.props.article.id;
+    const { article } = this.props;
 
     try {
-      await this.props.favoritePlaylistItem(articleId);
+      await analytics().logEvent('article_favorite', {
+        id: article.id,
+        title: article.title,
+        url: article.url
+      });
+
+      await this.props.favoritePlaylistItem(article.id);
+
       this.fetchPlaylist();
     } catch (err) {
       Alert.alert(ALERT_TITLE_ERROR, ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL, [
@@ -488,10 +533,17 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   handleUnFavoriteArticle = async (): Promise<void> => {
-    const articleId = this.props.article.id;
+    const { article } = this.props;
 
     try {
-      await this.props.unFavoritePlaylistItem(articleId);
+      await analytics().logEvent('article_unfavorite', {
+        id: article.id,
+        title: article.title,
+        url: article.url
+      });
+
+      await this.props.unFavoritePlaylistItem(article.id);
+
       this.fetchPlaylist();
     } catch (err) {
       Alert.alert(ALERT_TITLE_ERROR, ALERT_PLAYLIST_UNFAVORITE_ARTICLE_FAIL, [
@@ -508,10 +560,17 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   handleUnArchiveArticle = async (): Promise<void> => {
-    const articleId = this.props.article.id;
+    const { article } = this.props;
 
     try {
-      await this.props.unArchivePlaylistItem(articleId);
+      await analytics().logEvent('article_unarchive', {
+        id: article.id,
+        title: article.title,
+        url: article.url
+      });
+
+      await this.props.unArchivePlaylistItem(article.id);
+
       this.fetchPlaylist();
     } catch (err) {
       Alert.alert(ALERT_TITLE_ERROR, ALERT_PLAYLIST_UNARCHIVE_ARTICLE_FAIL, [
@@ -528,14 +587,29 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   handleOnOpenUrl = () => {
-    requestAnimationFrame(() => {
+    requestAnimationFrame(async () => {
       const { article } = this.props;
+
+      await analytics().logEvent('article_press_full', {
+        id: article.id,
+        title: article.title,
+        url: article.url
+      });
+
       this.props.navigation.navigate('FullArticle', { article })
     });
   }
 
   handleOnPressUpdate = (): void => {
-    requestAnimationFrame(() => {
+    requestAnimationFrame(async () => {
+      const { article } = this.props;
+
+      await analytics().logEvent('article_press_update', {
+        id: article.id,
+        title: article.title,
+        url: article.url
+      });
+
       this.setState({ isLoading: true }, async () => {
         try {
           await this.fetchPlaylist();
@@ -547,8 +621,15 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
   }
 
   handleOnPressArticleIncompatible = () => {
-    requestAnimationFrame(() => {
-      Analytics.trackEvent('Article Press Incompatible');
+    requestAnimationFrame(async () => {
+      const { article } = this.props;
+
+      await analytics().logEvent('article_press_incompatible', {
+        id: article.id,
+        title: article.title,
+        url: article.url
+      });
+
       return this.props.navigation.navigate('ContentView');
     });
   }

@@ -1,4 +1,4 @@
-import Analytics from 'appcenter-analytics';
+import analytics from '@react-native-firebase/analytics';
 import { addDays, format } from 'date-fns';
 import React from 'react';
 import isEqual from 'react-fast-compare';
@@ -31,15 +31,6 @@ interface IProps {
 export type Props = IProps & StateProps & DispatchProps;
 
 export class SubscriptionHandlerContainerComponent extends React.PureComponent<Props> {
-
-  get analyticsUserId(): string {
-    const { userDetails } = this.props;
-
-    if (!userDetails || !userDetails.id) { return '' };
-
-    return userDetails.id;
-  }
-
   static contextType = NetworkContext;
 
   /* tslint:disable-next-line no-any */
@@ -143,7 +134,9 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
       // Finish the transaction after we validated the receipt
       await this.finishTransaction(purchase);
 
-      Analytics.trackEvent('Subscriptions upgrade success', { Status: 'success', ProductId: purchase.productId, UserId: this.analyticsUserId });
+      await analytics().logEvent('subscription_upgrade_success', {
+        productId
+      });
 
       return this.props.setIsLoadingUpgrade(false);
     } catch (err) {
@@ -170,10 +163,9 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
 
     this.props.setIsLoadingUpgrade(false);
 
-    Analytics.trackEvent('Subscriptions upgrade error', {
-      Status: 'error',
-      Message: errorMessage,
-      UserId: this.analyticsUserId
+    await analytics().logEvent('subscription_upgrade_error', {
+      errorMessage,
+      isCancelled
     });
 
     if (!isCancelled) {
@@ -186,6 +178,10 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
   }
 
   finishTransaction = async (purchase: RNIap.SubscriptionPurchase) => {
+    await analytics().logEvent('subscription_finish_transaction', {
+      productId: purchase.productId
+    });
+
     return inAppPurchaseHelper.finishSubscriptionTransaction(purchase)
   }
 
@@ -226,6 +222,10 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
           'User his subscription is expired locally. We validate his latest receipt on our server to check if the user still has a valid subscription.'
         );
 
+        await analytics().logEvent('subscription_sync_api', {
+          productId: activeInAppSubscription
+        });
+
         // Sync the user subscription info by requesting the user data
         // The API will sync the subscription if it is expired
 
@@ -241,7 +241,7 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
     }
   }
 
-  showErrorAlert = (title: string, message: string) => {
+  showErrorAlert = async (title: string, message: string) => {
     const { userDetails } = this.props;
 
     let feedbackUrl = URL_FEEDBACK;
@@ -249,6 +249,11 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
     if (userDetails) {
       feedbackUrl = feedbackUrl + `email=${userDetails.email}&id=${userDetails.id}`;
     }
+
+    await analytics().logEvent('subscription_error_alert', {
+      title,
+      message
+    });
 
     return Alert.alert(title, message, [
       {
@@ -262,14 +267,20 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
     ]);
   }
 
-  handleOnPressModalCancel = () => {
+  handleOnPressModalCancel = async () => {
+    await analytics().logEvent('subscription_upgrade_modal_cancel');
+
     this.props.setIsActiveUpgradeModal(false)
   }
 
-  handleOnPressModalUpgrade = () => {
+  handleOnPressModalUpgrade = async () => {
     const { activeInAppSubscription } = this.props;
     const activeProductId = activeInAppSubscription && activeInAppSubscription.inAppSubscription.productId;
     const centeredSubscriptionProductId = (activeProductId === SUBSCRIPTION_PRODUCT_ID_FREE) ? SUBSCRIPTION_PRODUCT_ID_PREMIUM : (!activeProductId) ? SUBSCRIPTION_PRODUCT_ID_PREMIUM : SUBSCRIPTION_PRODUCT_ID_UNLIMITED;
+
+    await analytics().logEvent('subscription_upgrade_modal_upgrade', {
+      productId: centeredSubscriptionProductId
+    });
 
     this.props.setIsActiveUpgradeModal(false)
 

@@ -148,7 +148,8 @@ jest.mock('react-native-device-info', () => {
   }
 });
 
-jest.mock('appcenter-analytics');
+jest.mock('@react-native-firebase/analytics');
+jest.mock('@react-native-firebase/crashlytics');
 
 // Below gives TS errors... So we uncomment it for now
 // jest.mock('react-navigation', ({

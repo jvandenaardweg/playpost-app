@@ -5,17 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@import Firebase;
+
 #import "AppDelegate.h"
 
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-
-// Custom added
-#import <AppCenterReactNativeShared/AppCenterReactNativeShared.h>
-#import <AppCenterReactNative.h>
-#import <AppCenterReactNativeAnalytics.h>
-#import <AppCenterReactNativeCrashes.h>
 
 #import "RNSplashScreen.h"
 
@@ -47,10 +43,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
-  // Initialize AppCenter
-  [AppCenterReactNative register];
-  [AppCenterReactNativeAnalytics registerWithInitiallyEnabled:false];
-  [AppCenterReactNativeCrashes registerWithAutomaticProcessing];
+  // Initialize Firebase
+  if ([FIRApp defaultApp] == nil) {
+    [FIRApp configure];
+  }
 
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge

@@ -1,4 +1,4 @@
-import Analytics from 'appcenter-analytics';
+import analytics from '@react-native-firebase/analytics';
 import React from 'react';
 import { Alert, Linking, Platform } from 'react-native';
 import RNIap from 'react-native-iap';
@@ -62,15 +62,6 @@ export interface SubscriptionFeatures {
 export type Props = IProps & StateProps & DispatchProps;
 
 export class UpgradeContainerComponent extends React.PureComponent<Props, State> {
-
-  get analyticsUserId(): string {
-    const { userDetails } = this.props;
-
-    if (!userDetails || !userDetails.id) { return '' };
-
-    return userDetails.id;
-  }
-
   get subscriptionFeatures(): SubscriptionFeatures {
     const { totalAvailableVoices, totalAvailableUnsubscribedVoices, availableInAppSubscriptions } = this.props;
 
@@ -174,15 +165,8 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       const result = await this.props.getUser();
       return result;
     } catch (err) {
-      const errorMessage =
-        err && err.message ? err.message : 'An unknown error happened while getting the up-to-date user account data after upgrade or restore.';
-      Analytics.trackEvent('Subscriptions fetch updated user data error', {
-        Status: 'error',
-        Message: errorMessage,
-        ProductId: this.state.centeredSubscriptionProductId,
-        UserId: this.analyticsUserId
-      });
-      return err;
+      const errorMessage = err && err.message ? err.message : 'An unknown error happened while getting the up-to-date user account data after upgrade or restore.';
+      return errorMessage;
     }
   }
 
@@ -213,8 +197,11 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     return Alert.alert(title, message, [
       {
         text: 'Manage Subscriptions',
-        onPress: () => {
-          Analytics.trackEvent('Subscriptions manage press', { ProductId: this.state.centeredSubscriptionProductId, UserId: this.analyticsUserId });
+        onPress: async () => {
+          await analytics().logEvent('subscription_press_manage', {
+            productId: this.state.centeredSubscriptionProductId
+          });
+
           Linking.openURL(manageSubscriptionsUrl);
         }
       },
@@ -247,7 +234,9 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     // If it's a downgrade to an other paid subscription, and we are on iOS
     // Just show a user can only downgrade through iTunes
     if (isDowngrade && Platform.OS === 'ios') {
-      Analytics.trackEvent('Subscriptions downgrade', { Status: 'alert', ProductId: productId, UserId: this.analyticsUserId });
+      await analytics().logEvent('subscription_press_downgrade', {
+        productId
+      });
 
       return this.showManageSubscriptionAlert(
         'Downgrading Subscription?',
@@ -257,7 +246,9 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
     // If it's a downgrade to "free"
     if (this.isDowngradeFreeSubscription(productId)) {
-      Analytics.trackEvent('Subscriptions downgrade', { Status: 'alert', ProductId: productId, UserId: this.analyticsUserId });
+      await analytics().logEvent('subscription_press_downgrade', {
+        productId
+      });
 
       return this.showManageSubscriptionAlert(
         'Downgrade to Free?',
@@ -267,7 +258,9 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
 
     this.props.setIsLoadingUpgrade(true);
 
-    Analytics.trackEvent('Subscriptions upgrade', { Status: 'upgrading', ProductId: productId, UserId: this.analyticsUserId });
+    await analytics().logEvent('subscription_press_upgrade', {
+      productId
+    });
 
     this.setState({ centeredSubscriptionProductId: productId }, async () => {
       try {
@@ -276,9 +269,6 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         // The result of requestSubscription is handled in SubscriptionHandlerContainer
         return upgradeResult;
       } catch (err) {
-        const errorMessage = err && err.message ? err.message : 'An unknown error happened while upgrading a subscription.';
-        Analytics.trackEvent('Subscriptions upgrade error', { Status: 'error', Message: errorMessage, UserId: this.analyticsUserId });
-
         return this.props.setIsLoadingUpgrade(false);
 
         // An error with requestSubscription is handled in SubscriptionHandlerContainer on handlePurchaseErrorListener
@@ -288,7 +278,11 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   }
 
   handleOnPressRestore = async () => {
-    Analytics.trackEvent('Subscriptions restore', { Status: 'restoring', UserId: this.analyticsUserId });
+    const { centeredSubscriptionProductId } = this.props;
+
+    await analytics().logEvent('subscription_press_restore', {
+      productId: centeredSubscriptionProductId
+    });
 
     // Prevent restoring when there's an active subscription on an other platform
 
@@ -311,7 +305,11 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       // If there are no previous purchases, there's nothing to restore...
       if (!purchases || !purchases.length) {
         this.props.setIsLoadingRestore(false);
-        Analytics.trackEvent('Subscriptions restore nothing', { Status: 'nothing', UserId: this.analyticsUserId });
+
+        await analytics().logEvent('subscription_press_restore_nothing', {
+          productId: centeredSubscriptionProductId
+        });
+
         return this.showErrorAlert(`Nothing to restore`, `We could not find any previous purchase to restore. If you think this is incorrect, please contact our support.`);
       }
 
@@ -344,7 +342,6 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       // The validation result is handled in SubscriptionHandlerContainer
     } catch (err) {
       const errorMessage = err && err.message ? err.message : 'An unknown error happened while restoring a subscription.';
-      Analytics.trackEvent('Subscriptions restore error', { Status: 'error', Message: errorMessage, UserId: this.analyticsUserId });
 
       this.props.setIsLoadingRestore(false);
 

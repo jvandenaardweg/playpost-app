@@ -1,4 +1,4 @@
-import Analytics from 'appcenter-analytics';
+import analytics from '@react-native-firebase/analytics';
 import React from 'react';
 import { NavigationRoute, NavigationScreenProp } from 'react-navigation';
 import { NavigationStackOptions } from 'react-navigation-stack';
@@ -18,8 +18,9 @@ export class ContentViewScreen extends React.PureComponent<Props> {
     };
   }
 
-  handleOnPressSupport = () => {
-    Analytics.trackEvent('ContentView Support Pressed');
+  handleOnPressSupport = async () => {
+    await analytics().logEvent('contentview_press_support');
+
     inAppBrowser.openUrl(URL_FEEDBACK, { modalEnabled: false });
   }
 

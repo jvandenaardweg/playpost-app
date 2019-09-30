@@ -3,6 +3,7 @@ import RNFS from 'react-native-fs';
 import { NavigationInjectedProps, NavigationRoute, NavigationScreenProp } from 'react-navigation';
 import { NavigationStackOptions } from 'react-navigation-stack';
 import { connect } from 'react-redux';
+import analytics from '@react-native-firebase/analytics';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 
@@ -58,6 +59,9 @@ class LogoutScreenContainer extends React.PureComponent<Props> {
     this.props.resetAudiofilesState();
     this.props.resetVoicesState();
     this.props.resetSubscriptionsState();
+
+    // Reset all analytics data
+    await analytics().resetAnalyticsData();
 
     return this.props.navigation.navigate('Onboarding');
   }

@@ -1,4 +1,6 @@
 import AsyncStorage from '@react-native-community/async-storage';
+import analytics from '@react-native-firebase/analytics';
+
 import React from 'react';
 import { Alert, FlatList, InteractionManager, Platform } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
@@ -149,19 +151,24 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
     }
   }
 
-  handleOnRefresh = () => {
+  handleOnRefresh = async () => {
     // If we don't have any articles, we show the general centered loading indicator
     const isLoading = !this.hasPlaylistItems;
 
-    this.setState({ isLoading, isRefreshing: true }, () => this.fetchPlaylist());
+    this.setState({ isLoading, isRefreshing: true }, async () => {
+      await analytics().logEvent('playlist_manual_refresh');
+      this.fetchPlaylist()
+    });
   }
 
   handleOnHideVideo = async () => {
+    await analytics().logEvent('playlist_instructions_hide');
     await AsyncStorage.removeItem('@showHelpVideo');
     this.setState({ showHelpVideo: false });
   }
 
   handleOnShowVideo = async () => {
+    await analytics().logEvent('playlist_instructions_show');
     await AsyncStorage.setItem('@showHelpVideo', 'true');
     this.setState({ showHelpVideo: true });
   }

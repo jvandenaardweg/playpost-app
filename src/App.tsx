@@ -1,4 +1,3 @@
-import Analytics from 'appcenter-analytics';
 import React from 'react';
 import { Alert, InteractionManager, Linking } from 'react-native';
 import DeepLinking from 'react-native-deep-linking';
@@ -8,6 +7,7 @@ import SplashScreen from 'react-native-splash-screen';
 import { Provider } from 'react-redux';
 // tslint:disable-next-line:no-submodule-imports
 import { PersistGate } from 'redux-persist/integration/react';
+import crashlytics from '@react-native-firebase/crashlytics';
 
 useScreens();
 
@@ -21,17 +21,6 @@ import { AppStateProvider } from './contexts/AppStateProvider';
 import { NetworkProvider } from './contexts/NetworkProvider';
 import { AppNavigator } from './navigation/AppNavigator';
 import NavigationService from './navigation/NavigationService';
-
-// import { whyDidYouUpdate } from 'why-did-you-update';
-// whyDidYouUpdate(React, { exclude: /^YellowBox|Icon|Swipeable/ });
-
-async function setAnalytics(dev: boolean): Promise<void> {
-  if (dev) { return; }
-
-  await Analytics.setEnabled(true);
-}
-
-setAnalytics(__DEV__);
 
 interface State {
   errorShown: boolean;
@@ -76,6 +65,11 @@ export default class App extends React.PureComponent<State> {
       }
     })
 
+    setTimeout(() => {
+      crashlytics().log('test crash!')
+      crashlytics().crash()
+    }, 5000)
+
   }
 
   componentWillUnmount(): void {
@@ -100,12 +94,6 @@ export default class App extends React.PureComponent<State> {
     // An error could appear on startup
     // When we do not hide the splashscreen, our Alert won't show
     SplashScreen.hide();
-
-    const Info = (info) ? JSON.stringify(info) : '';
-    const Error = (error) ? JSON.stringify(error) : '';
-
-    // Track the error
-    Analytics.trackEvent('App catch error', { Error, Info });
 
     // Show the alert to the user
     Alert.alert(

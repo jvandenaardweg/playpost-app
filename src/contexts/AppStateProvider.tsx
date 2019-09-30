@@ -1,6 +1,8 @@
 import React from 'react';
-import { AppState, AppStateStatus } from 'react-native';
+import { AppState, AppStateStatus, Platform } from 'react-native';
 import { connect } from 'react-redux';
+import analytics from '@react-native-firebase/analytics';
+import DeviceInfo from 'react-native-device-info';
 
 import { RootState } from '../reducers';
 import { getPlaylist } from '../reducers/playlist';
@@ -11,7 +13,7 @@ import { getUser } from '../reducers/user';
 import { getLanguages } from '../reducers/voices';
 import { selectAuthenticationToken, selectIsLoggedIn } from '../selectors/auth';
 import { selectSubscriptionsValidationResult } from '../selectors/subscriptions';
-import { selectUserActiveSubscriptionProductId } from '../selectors/user';
+import { selectUserActiveSubscriptionProductId, selectUserDetails, selectUserIsSubscribed } from '../selectors/user';
 import { store } from '../store';
 import * as keychain from '../utils/keychain';
 // import { ALERT_SUBSCRIPTION_EXPIRED } from '../constants/messages';
@@ -53,6 +55,11 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
     }
   }
 
+  componentDidUpdate(prevProps: Props, nextState: State) {
+    // Make sure our Analytics always has up to date information about our user
+    this.syncUserAnalyticsData();
+  }
+
   /**
    * Method to sync the app with required data used throughout the app.
    * We want to keep this data in sync when the user starts the app, and comes back to the app
@@ -72,6 +79,21 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
     ])
   }
 
+  syncUserAnalyticsData = async () => {
+    const { user, isSubscribed, activeSubscriptionProductId, isLoggedIn } = this.props;
+
+    if (isLoggedIn && user) {
+      await Promise.all([
+        analytics().setUserId(user.id),
+        analytics().setUserProperties({
+          isSubscribed: isSubscribed.toString(),
+          subscriptionProductId: activeSubscriptionProductId
+        })
+      ]);
+    }
+
+  }
+
   /**
    * Method to detect app state changes, like becoming active or inactive when the
    * app goes to the background or foreground.
@@ -88,6 +110,8 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
 
         // Make sure the playlist and user data is up-to-date when user comes back
         this.syncAppWithRequiredData();
+
+
       }
     });
   }
@@ -151,6 +175,8 @@ interface StateProps {
   subscriptionsValidationResult: ReturnType<typeof selectSubscriptionsValidationResult>;
   activeSubscriptionProductId: ReturnType<typeof selectUserActiveSubscriptionProductId>;
   authToken: ReturnType<typeof selectAuthenticationToken>;
+  user: ReturnType<typeof selectUserDetails>;
+  isSubscribed: ReturnType<typeof selectUserIsSubscribed>;
 }
 
 interface DispatchProps {
@@ -165,7 +191,9 @@ const mapStateToProps = (state: RootState): StateProps => ({
   isLoggedIn: selectIsLoggedIn(state),
   subscriptionsValidationResult: selectSubscriptionsValidationResult(state),
   activeSubscriptionProductId: selectUserActiveSubscriptionProductId(state),
-  authToken: selectAuthenticationToken(state)
+  authToken: selectAuthenticationToken(state),
+  user: selectUserDetails(state),
+  isSubscribed: selectUserIsSubscribed(state)
 });
 
 const mapDispatchToProps = {
