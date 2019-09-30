@@ -3,10 +3,13 @@
 exports[`ArticleReader rendering dark theme should render correctly 1`] = `
 <View
   style={
-    Object {
-      "flex": 1,
-      "overflow": "hidden",
-    }
+    Array [
+      Object {
+        "flex": 1,
+        "overflow": "hidden",
+      },
+      undefined,
+    ]
   }
 >
   <RNCWebView
@@ -241,10 +244,13 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
 exports[`ArticleReader rendering default should render correctly 1`] = `
 <View
   style={
-    Object {
-      "flex": 1,
-      "overflow": "hidden",
-    }
+    Array [
+      Object {
+        "flex": 1,
+        "overflow": "hidden",
+      },
+      undefined,
+    ]
   }
 >
   <RNCWebView
@@ -479,10 +485,13 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
 exports[`ArticleReader rendering no article URL should render no article URL link 1`] = `
 <View
   style={
-    Object {
-      "flex": 1,
-      "overflow": "hidden",
-    }
+    Array [
+      Object {
+        "flex": 1,
+        "overflow": "hidden",
+      },
+      undefined,
+    ]
   }
 >
   <RNCWebView
@@ -711,10 +720,13 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
 exports[`ArticleReader rendering no author name should render no authorName when it is not present 1`] = `
 <View
   style={
-    Object {
-      "flex": 1,
-      "overflow": "hidden",
-    }
+    Array [
+      Object {
+        "flex": 1,
+        "overflow": "hidden",
+      },
+      undefined,
+    ]
   }
 >
   <RNCWebView
@@ -943,10 +955,13 @@ exports[`ArticleReader rendering no author name should render no authorName when
 exports[`ArticleReader rendering no html should render a different HTML output when the article has not HTML 1`] = `
 <View
   style={
-    Object {
-      "flex": 1,
-      "overflow": "hidden",
-    }
+    Array [
+      Object {
+        "flex": 1,
+        "overflow": "hidden",
+      },
+      undefined,
+    ]
   }
 >
   <RNCWebView
@@ -1175,10 +1190,13 @@ exports[`ArticleReader rendering no html should render a different HTML output w
 exports[`ArticleReader rendering right to left content should render correctly 1`] = `
 <View
   style={
-    Object {
-      "flex": 1,
-      "overflow": "hidden",
-    }
+    Array [
+      Object {
+        "flex": 1,
+        "overflow": "hidden",
+      },
+      undefined,
+    ]
   }
 >
   <RNCWebView

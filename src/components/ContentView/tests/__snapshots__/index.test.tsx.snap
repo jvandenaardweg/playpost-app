@@ -11,10 +11,13 @@ exports[`ContentView basic rendering should render correctly 1`] = `
 >
   <View
     style={
-      Object {
-        "flex": 1,
-        "overflow": "hidden",
-      }
+      Array [
+        Object {
+          "flex": 1,
+          "overflow": "hidden",
+        },
+        undefined,
+      ]
     }
   >
     <RNCWebView
