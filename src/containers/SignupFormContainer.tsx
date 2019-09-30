@@ -1,3 +1,4 @@
+import analytics from '@react-native-firebase/analytics';
 import React from 'react';
 import { Alert } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
@@ -72,6 +73,11 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
 
     try {
       const response: any = await this.props.postAuth(email, password);
+
+      await analytics().logLogin({
+        method: 'email_password',
+      });
+
       this.saveToken(response.payload.data.token);
     } catch (err) {
       // Only stop loading on error, so we can keep a persisting activity indicator till we switch screens
@@ -85,6 +91,11 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
     this.setState({ isLoading: true }, async () => {
       try {
         await this.props.createUser(email, password);
+
+        await analytics().logSignUp({
+          method: 'email_password',
+        });
+
         this.autoLogin();
       } catch (err) {
         // Only stop loading on error, so we can keep a persisting activity indicator till we switch screens

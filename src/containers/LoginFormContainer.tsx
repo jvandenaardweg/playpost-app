@@ -2,6 +2,7 @@ import React from 'react';
 import { Alert } from 'react-native';
 import { NavigationEventSubscription, NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
+import analytics from '@react-native-firebase/analytics';
 
 import { LoginForm } from '../components/LoginForm';
 
@@ -92,7 +93,11 @@ class LoginFormContainerComponent extends React.PureComponent<Props, State> {
   handleOnPressLogin = async () => {
     const { email, password } = this.state;
 
-    this.setState({ isLoading: true }, () => {
+    this.setState({ isLoading: true }, async () => {
+      await analytics().logLogin({
+        method: 'email_password',
+      });
+
       this.props.getAuthToken(email, password);
     });
   }
