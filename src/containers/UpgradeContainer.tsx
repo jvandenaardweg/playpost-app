@@ -256,25 +256,25 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       );
     }
 
-    this.props.setIsLoadingUpgrade(true);
+    this.setState({ centeredSubscriptionProductId: productId });
 
     await analytics().logEvent('subscription_press_upgrade', {
       productId
     });
 
-    this.setState({ centeredSubscriptionProductId: productId }, async () => {
-      try {
-        const upgradeResult = await this.requestSubscription(productId, activeInAppSubscriptionProductId, activeInAppSubscriptionService);
+    this.props.setIsLoadingUpgrade(true);
 
-        // The result of requestSubscription is handled in SubscriptionHandlerContainer
-        return upgradeResult;
-      } catch (err) {
-        return this.props.setIsLoadingUpgrade(false);
+    try {
+      const upgradeResult = await this.requestSubscription(productId, activeInAppSubscriptionProductId, activeInAppSubscriptionService);
 
-        // An error with requestSubscription is handled in SubscriptionHandlerContainer on handlePurchaseErrorListener
-        // return this.showErrorAlert(ALERT_TITLE_SUBSCRIPTION_UPGRADE_ERROR, errorMessage);
-      }
-    })
+      // The result of requestSubscription is handled in SubscriptionHandlerContainer
+      return upgradeResult;
+    } catch (err) {
+      return this.props.setIsLoadingUpgrade(false);
+
+      // An error with requestSubscription is handled in SubscriptionHandlerContainer on handlePurchaseErrorListener
+      // return this.showErrorAlert(ALERT_TITLE_SUBSCRIPTION_UPGRADE_ERROR, errorMessage);
+    }
   }
 
   handleOnPressRestore = async () => {

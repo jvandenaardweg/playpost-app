@@ -268,9 +268,8 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
   }
 
   handleOnPressModalCancel = async () => {
-    await analytics().logEvent('subscription_upgrade_modal_cancel');
-
     this.props.setIsActiveUpgradeModal(false)
+    await analytics().logEvent('subscription_upgrade_modal_cancel')
   }
 
   handleOnPressModalUpgrade = async () => {
@@ -278,13 +277,13 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
     const activeProductId = activeInAppSubscription && activeInAppSubscription.inAppSubscription.productId;
     const centeredSubscriptionProductId = (activeProductId === SUBSCRIPTION_PRODUCT_ID_FREE) ? SUBSCRIPTION_PRODUCT_ID_PREMIUM : (!activeProductId) ? SUBSCRIPTION_PRODUCT_ID_PREMIUM : SUBSCRIPTION_PRODUCT_ID_UNLIMITED;
 
-    await analytics().logEvent('subscription_upgrade_modal_upgrade', {
-      productId: centeredSubscriptionProductId
-    });
-
     this.props.setIsActiveUpgradeModal(false)
 
     NavigationService.navigate('Upgrade', { centeredSubscriptionProductId })
+
+    await analytics().logEvent('subscription_upgrade_modal_upgrade', {
+      productId: centeredSubscriptionProductId
+    });
 
     return centeredSubscriptionProductId;
   }

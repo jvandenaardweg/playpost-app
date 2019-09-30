@@ -1,4 +1,4 @@
-import { firebase } from '@react-native-firebase/perf';
+import perf from '@react-native-firebase/perf';
 import axios from 'axios';
 import { Platform } from 'react-native';
 import Config from 'react-native-config';
@@ -32,7 +32,6 @@ apiClient.interceptors.response.use(async (response) => {
     await httpMetric.stop();
   }
 
-
   return response
 }, async (error) => {
   if (error.response) {
@@ -64,7 +63,7 @@ apiClient.interceptors.request.use(async (config) => {
   const methodUpperCase = config.method && config.method.toUpperCase();
 
   if (methodUpperCase) {
-    const httpMetric = firebase.perf().newHttpMetric(config.url, methodUpperCase);
+    const httpMetric = perf().newHttpMetric(config.url, methodUpperCase);
 
     config['metadata'] = { httpMetric }
 

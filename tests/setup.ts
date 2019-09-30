@@ -148,8 +148,31 @@ jest.mock('react-native-device-info', () => {
   }
 });
 
-jest.mock('@react-native-firebase/analytics');
-jest.mock('@react-native-firebase/crashlytics');
+// jest.mock('@react-native-firebase/app', () => {
+//   return {
+//     addListener: jest.fn()
+//   }
+// });
+
+jest.mock('@react-native-firebase/perf', () => {
+  return () => {
+    return {
+      newHttpMetric: jest.fn()
+    }
+  }
+});
+
+jest.mock('@react-native-firebase/analytics', () => {
+  return () => {
+    return {
+      logEvent: jest.fn().mockResolvedValue(true),
+      setUserProperties: jest.fn().mockResolvedValue(true),
+      setUserId: jest.fn().mockResolvedValue(true),
+      setCurrentScreen: jest.fn().mockResolvedValue(true),
+    }
+  }
+});
+
 
 // Below gives TS errors... So we uncomment it for now
 // jest.mock('react-navigation', ({

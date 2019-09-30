@@ -1,9 +1,9 @@
+import analytics from '@react-native-firebase/analytics';
 import React from 'react';
 import RNFS from 'react-native-fs';
 import { NavigationInjectedProps, NavigationRoute, NavigationScreenProp } from 'react-navigation';
 import { NavigationStackOptions } from 'react-navigation-stack';
 import { connect } from 'react-redux';
-import analytics from '@react-native-firebase/analytics';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH, LOCAL_CACHE_VOICE_PREVIEWS_PATH } from '../constants/files';
 

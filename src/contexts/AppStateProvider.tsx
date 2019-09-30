@@ -1,8 +1,7 @@
-import React from 'react';
-import { AppState, AppStateStatus, Platform } from 'react-native';
-import { connect } from 'react-redux';
 import analytics from '@react-native-firebase/analytics';
-import DeviceInfo from 'react-native-device-info';
+import React from 'react';
+import { AppState, AppStateStatus } from 'react-native';
+import { connect } from 'react-redux';
 
 import { RootState } from '../reducers';
 import { getPlaylist } from '../reducers/playlist';

@@ -404,7 +404,7 @@ describe('SubscriptionHandlerContainer', () => {
       const testInstance: SubscriptionHandlerContainerComponent = wrapper.root.instance;
       const spySetIsActiveUpgradeModal = jest.spyOn(testInstance.props, 'setIsActiveUpgradeModal');
 
-      testInstance.handleOnPressModalCancel()
+      await testInstance.handleOnPressModalCancel()
 
       expect(spySetIsActiveUpgradeModal).toHaveBeenCalledTimes(1);
       expect(spySetIsActiveUpgradeModal).toHaveBeenCalledWith(false);
@@ -421,7 +421,7 @@ describe('SubscriptionHandlerContainer', () => {
       const testInstance: SubscriptionHandlerContainerComponent = wrapper.root.instance;
       const spySetIsActiveUpgradeModal = jest.spyOn(testInstance.props, 'setIsActiveUpgradeModal');
 
-      testInstance.handleOnPressModalUpgrade()
+      await testInstance.handleOnPressModalUpgrade()
 
       expect(spySetIsActiveUpgradeModal).toHaveBeenCalledTimes(1);
       expect(spySetIsActiveUpgradeModal).toHaveBeenCalledWith(false);
@@ -439,7 +439,7 @@ describe('SubscriptionHandlerContainer', () => {
 
       const testInstance: SubscriptionHandlerContainerComponent = wrapper.root.instance;
 
-      expect(testInstance.handleOnPressModalUpgrade()).toBe(SUBSCRIPTION_PRODUCT_ID_PREMIUM);
+      expect(await testInstance.handleOnPressModalUpgrade()).toBe(SUBSCRIPTION_PRODUCT_ID_PREMIUM);
 
     });
 
@@ -455,7 +455,7 @@ describe('SubscriptionHandlerContainer', () => {
       const testInstance: SubscriptionHandlerContainerComponent = wrapper.root.instance;
       const spyNavigationServiceNavigate = jest.spyOn(NavigationService, 'navigate');
 
-      testInstance.handleOnPressModalUpgrade();
+      await testInstance.handleOnPressModalUpgrade();
 
       expect(spyNavigationServiceNavigate).toHaveBeenCalledTimes(1);
       expect(spyNavigationServiceNavigate).toHaveBeenCalledWith('Upgrade', { centeredSubscriptionProductId: SUBSCRIPTION_PRODUCT_ID_PREMIUM });

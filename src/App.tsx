@@ -7,7 +7,6 @@ import SplashScreen from 'react-native-splash-screen';
 import { Provider } from 'react-redux';
 // tslint:disable-next-line:no-submodule-imports
 import { PersistGate } from 'redux-persist/integration/react';
-import crashlytics from '@react-native-firebase/crashlytics';
 
 useScreens();
 
@@ -64,11 +63,6 @@ export default class App extends React.PureComponent<State> {
         Alert.alert(ALERT_TITLE_ERROR, errorMessage);
       }
     })
-
-    setTimeout(() => {
-      crashlytics().log('test crash!')
-      crashlytics().crash()
-    }, 5000)
 
   }
 
