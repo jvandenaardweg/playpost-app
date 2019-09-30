@@ -89,16 +89,16 @@
 		8C5A7DC9220F224A00ECCC65 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C5A7DC7220F224A00ECCC65 /* MainInterface.storyboard */; };
 		8C5A7DCD220F224A00ECCC65 /* PlaypostShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8C5A7DC2220F224A00ECCC65 /* PlaypostShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8C5A7DD3220F22A700ECCC65 /* PlaypostShareExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5A7DD2220F22A700ECCC65 /* PlaypostShareExtension.m */; };
-		8C67B540234220F000C00678 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C67B53D234220F000C00678 /* GoogleService-Info.plist */; };
-		8C67B541234220F000C00678 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C67B53D234220F000C00678 /* GoogleService-Info.plist */; };
+		8C6AB0DA2342A2EB009A9014 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C6AB0D92342A2EB009A9014 /* GoogleService-Info.plist */; };
+		8C6AB0DB2342A32A009A9014 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C6AB0D92342A2EB009A9014 /* GoogleService-Info.plist */; };
 		8C96C7BB22B3A1F9006E5704 /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF37A02FD9F246028F4091AF /* RNPlaceholder.swift */; };
 		8C9B782A230D4CA10097FAB9 /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C22087E22E0B6400029B873 /* libReactNativeConfig.a */; };
 		8CD3D194220F69A50030C131 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		8CD3D19E220F7B5B0030C131 /* dummy2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3D19D220F7B5B0030C131 /* dummy2.swift */; };
 		8CD99767230BE6A600D7D346 /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C22087E22E0B6400029B873 /* libReactNativeConfig.a */; };
-		8D1D438D40075A5BCAB8707A /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		8D1D438D40075A5BCAB8707A /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		99C3B16B8F9AA75F78DBE17D /* libPods-Playpost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE776479D18664E4E22DF773 /* libPods-Playpost.a */; };
-		D1644FAEA01CCD912BAD4010 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		D1644FAEA01CCD912BAD4010 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		D6D1143DAC5682EAB69CD6D5 /* libPods-Playpost-PlaypostShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBD52B5A4CB9A663E0A5025 /* libPods-Playpost-PlaypostShareExtension.a */; };
 		D820DC91A1B84330B668B87A /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF37A02FD9F246028F4091AF /* RNPlaceholder.swift */; };
 		DD6BBD1A43F44BC8A477438A /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CE153E601D849F1A72C8047 /* AppCenter-Config.plist */; };
@@ -296,7 +296,7 @@
 		8C5A7DC8220F224A00ECCC65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		8C5A7DCA220F224A00ECCC65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C5A7DD2220F22A700ECCC65 /* PlaypostShareExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaypostShareExtension.m; sourceTree = "<group>"; };
-		8C67B53D234220F000C00678 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8C6AB0D92342A2EB009A9014 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8CCC36A122E0BB0800632984 /* libappcenter-analytics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libappcenter-analytics.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CCC36A322E0BB0800632984 /* libappcenter-crashes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libappcenter-crashes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CCC36A522E0BB0800632984 /* libappcenter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libappcenter.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -393,9 +393,9 @@
 				8CD99767230BE6A600D7D346 /* libReactNativeConfig.a in Frameworks */,
 				8C13332F2292B24E00516937 /* StoreKit.framework in Frameworks */,
 				99C3B16B8F9AA75F78DBE17D /* libPods-Playpost.a in Frameworks */,
-				D1644FAEA01CCD912BAD4010 /* BuildFile in Frameworks */,
+				D1644FAEA01CCD912BAD4010 /* (null) in Frameworks */,
 				695ADABA47F5CA1B82257AC9 /* libPods-Playpost.a in Frameworks */,
-				8D1D438D40075A5BCAB8707A /* BuildFile in Frameworks */,
+				8D1D438D40075A5BCAB8707A /* (null) in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -691,7 +691,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				8C67B53D234220F000C00678 /* GoogleService-Info.plist */,
+				8C6AB0D92342A2EB009A9014 /* GoogleService-Info.plist */,
 				8C43759322081410000A15FE /* dummy.swift */,
 				13B07FAE1A68108700A75B9A /* Playpost */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -903,7 +903,7 @@
 				8C379FB6233B8D450083A699 /* Fontisto.ttf in Resources */,
 				8C379FB7233B8D450083A699 /* Foundation.ttf in Resources */,
 				8C379FB8233B8D450083A699 /* Ionicons.ttf in Resources */,
-				8C67B540234220F000C00678 /* GoogleService-Info.plist in Resources */,
+				8C6AB0DA2342A2EB009A9014 /* GoogleService-Info.plist in Resources */,
 				8C379FB9233B8D450083A699 /* MaterialCommunityIcons.ttf in Resources */,
 				8C379FBA233B8D450083A699 /* MaterialIcons.ttf in Resources */,
 				8C379FBB233B8D450083A699 /* Octicons.ttf in Resources */,
@@ -937,6 +937,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C6AB0DB2342A32A009A9014 /* GoogleService-Info.plist in Resources */,
 				8C379F8C233B8D100083A699 /* AntDesign.ttf in Resources */,
 				8C379F8D233B8D100083A699 /* Entypo.ttf in Resources */,
 				8C379F8E233B8D100083A699 /* EvilIcons.ttf in Resources */,
@@ -948,7 +949,6 @@
 				8C379F94233B8D100083A699 /* Fontisto.ttf in Resources */,
 				8C379F95233B8D100083A699 /* Foundation.ttf in Resources */,
 				8C379F96233B8D100083A699 /* Ionicons.ttf in Resources */,
-				8C67B541234220F000C00678 /* GoogleService-Info.plist in Resources */,
 				8C379F97233B8D100083A699 /* MaterialCommunityIcons.ttf in Resources */,
 				8C379F98233B8D100083A699 /* MaterialIcons.ttf in Resources */,
 				8C379F99233B8D100083A699 /* Octicons.ttf in Resources */,
