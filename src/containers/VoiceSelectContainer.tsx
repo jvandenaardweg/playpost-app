@@ -1,3 +1,4 @@
+import analytics from '@react-native-firebase/analytics';
 import React from 'react';
 import isEqual from 'react-fast-compare';
 import { Alert, SectionListData, View } from 'react-native';
@@ -119,6 +120,12 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
 
         // Get the updated settings
         await this.props.getUser();
+
+        await analytics().logEvent('voices_select', {
+          id: item.id,
+          label: item.label,
+          languageName: item.language.name
+        });
       } finally {
         this.setState({ isLoadingSaveSelectedVoiceId: '' });
       }
@@ -128,6 +135,12 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
   handleOnPreviewPress = async (title: string, label: string, voice: Api.Voice) => {
     const { downloadedVoices } = this.props;
     const isPlaying = this.isVoicePlayingInPlayer(voice.id);
+
+    await analytics().logEvent('voices_preview', {
+      id: voice.id,
+      label: voice.label,
+      languageName: voice.language.name
+    });
 
     // If the preview of this voice is playing, pause it
     if (isPlaying) { return TrackPlayer.default.pause(); }
@@ -219,11 +232,35 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
     return playerTrack && playerTrack.id === voiceId;
   }
 
-  handleSelectQuality = (quality: string) => requestAnimationFrame(() => this.setState({ selectedQuality: quality }));
+  handleSelectQuality = (quality: string) => {
+    return requestAnimationFrame(async () => {
+      this.setState({ selectedQuality: quality })
 
-  handleSelectGender = (gender: string) => requestAnimationFrame(() => this.setState({ selectedGender: gender }));
+      await analytics().logEvent('voices_filter_quality', {
+        quality
+      })
+    })
+  }
 
-  handleSelectRegion = (region: string) => requestAnimationFrame(() => this.setState({ selectedRegion: region }));
+  handleSelectGender = (gender: string) => {
+    return requestAnimationFrame(async () => {
+      this.setState({ selectedGender: gender })
+
+      await analytics().logEvent('voices_filter_gender', {
+        gender
+      })
+    })
+  }
+
+  handleSelectRegion = (region: string) => {
+    return requestAnimationFrame(async () => {
+      this.setState({ selectedRegion: region })
+
+      await analytics().logEvent('voices_filter_region', {
+        region
+      })
+    })
+  }
 
   get selectedLanguageName() {
     return this.props.navigation.getParam('languageName', '');

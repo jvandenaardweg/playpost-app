@@ -1,3 +1,4 @@
+import analytics from '@react-native-firebase/analytics';
 import React from 'react';
 import isEqual from 'react-fast-compare';
 import { InteractionManager } from 'react-native';
@@ -33,7 +34,13 @@ export class LanguagesSelectComponent extends React.Component<Props> {
 
   keyExtractor = (language: Api.Language, index: number) => index.toString();
 
-  handleOnListItemPress = (language: Api.Language) => this.props.navigation.navigate('SettingsVoices', { languageName: language.name });
+  handleOnListItemPress = async (language: Api.Language) => {
+    this.props.navigation.navigate('SettingsVoices', { languageName: language.name })
+
+    await analytics().logEvent('languages_select', {
+      languageName: language.name
+    });
+  }
 
   getSelectedVoiceSubtitle = (language: Api.Language) => {
     const selectedVoice = selectSelectedVoiceForLanguageName(store.getState(), { languageName: language.name });
