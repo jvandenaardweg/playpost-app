@@ -48,7 +48,7 @@ describe('kechain', () => {
 
       const spyGetGenericPassword = jest.spyOn(ReactNativeKeychain, 'getGenericPassword').mockResolvedValueOnce({
         service: '',
-        username: '',
+        username: 'token',
         password: 'testtoken'
       })
 
@@ -74,7 +74,7 @@ describe('kechain', () => {
 
       const spyGetGenericPassword = jest.spyOn(ReactNativeKeychain, 'getGenericPassword').mockResolvedValueOnce({
         service: '',
-        username: '',
+        username: 'token',
         password: 'testtoken'
       })
 

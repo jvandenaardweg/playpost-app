@@ -19,7 +19,7 @@ export const getToken = async (): Promise<string | null> => {
   const credentials = await Keychain.getGenericPassword(keychainArguments);
   let token = null;
 
-  if (credentials && credentials.password) {
+  if (credentials && credentials.password && credentials.username) {
     token = credentials.password;
   }
 
