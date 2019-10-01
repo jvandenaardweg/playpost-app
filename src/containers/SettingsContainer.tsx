@@ -1,3 +1,4 @@
+import analytics from '@react-native-firebase/analytics';
 import React from 'react';
 import isEqual from 'react-fast-compare';
 import { ActivityIndicator, Alert, InteractionManager, Linking, SectionListData, View } from 'react-native';
@@ -5,7 +6,6 @@ import Config from 'react-native-config';
 import DeviceInfo from 'react-native-device-info';
 import { NavigationEventSubscription, NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
-import analytics from '@react-native-firebase/analytics';
 
 import Text from '../components/Text';
 import * as inAppBrowser from '../utils/in-app-browser';

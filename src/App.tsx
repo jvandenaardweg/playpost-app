@@ -146,18 +146,20 @@ export default class App extends React.PureComponent<State> {
    *
    * From: https://reactnavigation.org/docs/en/screen-tracking.html
    */
-  handleOnNavigationStateChange = async (
+  handleOnNavigationStateChange = (
     prevState: NavigationState,
     currentState: NavigationState,
     action: NavigationAction
-  ): Promise<void> => {
-    const currentScreenName = this.getActiveRouteName(currentState);
-    const prevScreenName = this.getActiveRouteName(prevState);
+  ): void => {
+    requestAnimationFrame(async () => {
+      const currentScreenName = this.getActiveRouteName(currentState);
+      const prevScreenName = this.getActiveRouteName(prevState);
 
-    // Only set track on screen change
-    if (prevScreenName !== currentScreenName) {
-      await analytics().setCurrentScreen(currentScreenName)
-    }
+      // Only set track on screen change
+      if (prevScreenName !== currentScreenName) {
+        await analytics().setCurrentScreen(currentScreenName)
+      }
+    })
   }
 
   render() {
