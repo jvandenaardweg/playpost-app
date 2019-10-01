@@ -1,11 +1,10 @@
-import RNIap from 'react-native-iap';
+import * as RNIap from 'react-native-iap';
 
-// TODO: Add types: RNIap.Subscription<string>[] when this is fixed: https://github.com/dooboolab/react-native-iap/issues/694
-const subscriptionsIos: Array<RNIap.Subscription<string>> = [
+const subscriptionsIos: RNIap.Subscription[] = [
   {
     currency: 'EUR',
     description: 'Premium monthly subscription',
-    // discounts: [],
+    discounts: [],
     introductoryPrice: '€ 0,00',
     introductoryPriceNumberOfPeriodsIOS: '3',
     introductoryPricePaymentModeIOS: 'FREETRIAL',
@@ -22,7 +21,7 @@ const subscriptionsIos: Array<RNIap.Subscription<string>> = [
   {
     currency: 'EUR',
     description: 'Plus monthly subscription',
-    // discounts: [],
+    discounts: [],
     introductoryPrice: '€ 0,00',
     introductoryPriceNumberOfPeriodsIOS: '3',
     introductoryPricePaymentModeIOS: 'FREETRIAL',

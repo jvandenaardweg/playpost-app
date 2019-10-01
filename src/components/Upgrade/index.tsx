@@ -20,7 +20,7 @@ export interface Props {
   isLoadingBuySubscription: boolean;
   isLoadingRestorePurchases: boolean;
   isEligibleForTrial: boolean;
-  subscriptions?: Array<RNIap.Subscription<string>>;
+  subscriptions?: RNIap.Subscription[];
   /* tslint:disable-next-line no-any */
   subscriptionFeatures: SubscriptionFeatures;
   activeSubscriptionProductId: string;

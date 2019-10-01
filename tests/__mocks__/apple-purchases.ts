@@ -1,8 +1,8 @@
-// import RNIap from 'react-native-iap';
+import * as RNIap from 'react-native-iap';
 
-const purchases = [
+const purchases: RNIap.ProductPurchase[] = [
   {
-    originalTransactionDateIOS: 1561801324000,
+    originalTransactionDateIOS: '1561801324000',
     productId: 'com.aardwegmedia.playpost.premium',
     transactionId: '1000000549642655',
     transactionDate: 1562089043000,
@@ -10,7 +10,7 @@ const purchases = [
     originalTransactionIdentifierIOS: '1000000541965803'
   },
   {
-    originalTransactionDateIOS: 1561801324000,
+    originalTransactionDateIOS: '1561801324000',
     productId: 'com.aardwegmedia.playpost.subscription.plus',
     transactionId: '1000000549642656',
     transactionDate: 1563864399000,
@@ -18,7 +18,7 @@ const purchases = [
     originalTransactionIdentifierIOS: '1000000541965803'
   },
   {
-    originalTransactionDateIOS: 1561801324000,
+    originalTransactionDateIOS: '1561801324000',
     productId: 'com.aardwegmedia.playpost.subscription.plus',
     transactionId: '1000000549642657',
     transactionDate: 1562091779000,
@@ -26,7 +26,7 @@ const purchases = [
     originalTransactionIdentifierIOS: '1000000541965803'
   },
   {
-    originalTransactionDateIOS: 1562085324000,
+    originalTransactionDateIOS: '1562085324000',
     productId: 'com.aardwegmedia.playpost.plus',
     transactionId: '1000000549642658',
     transactionDate: 1562085624000,
@@ -34,7 +34,7 @@ const purchases = [
     originalTransactionIdentifierIOS: '1000000542859225'
   },
   {
-    originalTransactionDateIOS: 1561801324000,
+    originalTransactionDateIOS: '1561801324000',
     productId: 'com.aardwegmedia.playpost.premium',
     transactionId: '1000000549642659',
     transactionDate: 1561801623000,
@@ -42,7 +42,7 @@ const purchases = [
     originalTransactionIdentifierIOS: '1000000541965803'
   },
   {
-    originalTransactionDateIOS: 1562085324000,
+    originalTransactionDateIOS: '1562085324000',
     productId: 'com.aardwegmedia.playpost.plus',
     transactionId: '1000000549642660',
     transactionDate: 1562085924000,
@@ -50,7 +50,7 @@ const purchases = [
     originalTransactionIdentifierIOS: '1000000542859225'
   },
   {
-    originalTransactionDateIOS: 1561801324000,
+    originalTransactionDateIOS: '1561801324000',
     productId: 'com.aardwegmedia.playpost.subscription.plus',
     transactionId: '1000000549642661',
     transactionDate: 1562092405000,
@@ -58,7 +58,7 @@ const purchases = [
     originalTransactionIdentifierIOS: '1000000541965803'
   },
   {
-    originalTransactionDateIOS: 1561801324000,
+    originalTransactionDateIOS: '1561801324000',
     productId: 'com.aardwegmedia.playpost.subscription.plus',
     transactionId: '1000000549642662',
     transactionDate: 1562090762000,
@@ -66,7 +66,7 @@ const purchases = [
     originalTransactionIdentifierIOS: '1000000541965803'
   },
   {
-    originalTransactionDateIOS: 1561801324000,
+    originalTransactionDateIOS: '1561801324000',
     productId: 'com.aardwegmedia.playpost.premium',
     transactionId: '1000000549642663',
     transactionDate: 1562761236000,
@@ -74,7 +74,7 @@ const purchases = [
     originalTransactionIdentifierIOS: '1000000541965803'
   },
   {
-    originalTransactionDateIOS: 1561801324000,
+    originalTransactionDateIOS: '1561801324000',
     productId: 'com.aardwegmedia.playpost.premium',
     transactionId: '1000000549642664',
     transactionDate: 1561802523000,

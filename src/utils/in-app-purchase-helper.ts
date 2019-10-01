@@ -1,5 +1,5 @@
 import { Platform } from 'react-native';
-import RNIap from 'react-native-iap';
+import * as RNIap from 'react-native-iap';
 
 /**
  * Method to finish subscription transactions for iOS and Android. Both platforms are handled correctly.
@@ -9,7 +9,7 @@ import RNIap from 'react-native-iap';
  *
  * @param purchase
  */
-export const finishSubscriptionTransaction = async (purchase: RNIap.ProductPurchase): Promise<void | RNIap.PurchaseResult> => {
+export const finishSubscriptionTransaction = async (purchase: RNIap.ProductPurchase): Promise<void | string | RNIap.PurchaseResult> => {
   if (Platform.OS === 'android') {
     if (!purchase.purchaseToken) {
       throw new Error('Purchase Token is not found on purchase.')

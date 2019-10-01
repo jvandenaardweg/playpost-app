@@ -1,7 +1,7 @@
 import analytics from '@react-native-firebase/analytics';
 import React from 'react';
 import { Alert, Linking, Platform } from 'react-native';
-import RNIap from 'react-native-iap';
+import * as RNIap from 'react-native-iap';
 import { NavigationRoute, NavigationScreenProp } from 'react-navigation';
 import { connect } from 'react-redux';
 
@@ -36,7 +36,7 @@ import { selectTotalAvailableUnsubscribedVoices, selectTotalAvailableVoices } fr
 import * as inAppPurchaseHelper from '../utils/in-app-purchase-helper';
 
 interface State {
-  readonly subscriptions: Array<RNIap.Subscription<string>>;
+  readonly subscriptions: RNIap.Subscription[];
   readonly isLoadingSubscriptionItems: boolean;
   readonly isLoadingPurchases: boolean;
   readonly purchases: RNIap.Purchase[];
@@ -136,7 +136,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
   static contextType = NetworkContext;
 
   state = {
-    subscriptions: [] as Array<RNIap.Subscription<string>>,
+    subscriptions: [] as RNIap.Subscription[],
     isLoadingSubscriptionItems: false,
     isLoadingPurchases: false,
     purchases: [] as RNIap.Purchase[],
@@ -349,7 +349,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  finishSubscriptionTransaction = async (purchase: RNIap.ProductPurchase): Promise<void | RNIap.PurchaseResult> => {
+  finishSubscriptionTransaction = async (purchase: RNIap.ProductPurchase): Promise<void | string | RNIap.PurchaseResult> => {
     return inAppPurchaseHelper.finishSubscriptionTransaction(purchase)
   }
 
@@ -394,7 +394,8 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
         }
 
         // Pre-populate the app with subscriptions and previous purchases of the user
-        const subscriptions = await RNIap.getSubscriptions(subscriptionProductIds);
+        // TODO: remove casting when merged: https://github.com/dooboolab/react-native-iap/pull/746
+        const subscriptions = await RNIap.getSubscriptions(subscriptionProductIds) as unknown as RNIap.Subscription[];
 
         // Re-order the subscriptions
         // const cheapestSubscriptionFirst = subscriptions.sort((a, b) => Number(a.price) - Number(b.price));

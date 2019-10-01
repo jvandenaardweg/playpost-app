@@ -3,7 +3,7 @@ import { addDays, format } from 'date-fns';
 import React from 'react';
 import isEqual from 'react-fast-compare';
 import { Alert, Platform } from 'react-native';
-import RNIap from 'react-native-iap';
+import * as RNIap from 'react-native-iap';
 import { NavigationRoute, NavigationScreenProp } from 'react-navigation';
 import { connect } from 'react-redux';
 
