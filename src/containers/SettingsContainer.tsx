@@ -5,6 +5,7 @@ import Config from 'react-native-config';
 import DeviceInfo from 'react-native-device-info';
 import { NavigationEventSubscription, NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
+import analytics from '@react-native-firebase/analytics';
 
 import Text from '../components/Text';
 import * as inAppBrowser from '../utils/in-app-browser';
@@ -168,12 +169,16 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
 
   handleOnPressLogout = async () => NavigationService.navigate('Logout');
 
-  handleOnPressUpgrade = () => {
+  handleOnPressUpgrade = async () => {
     const { activeSubscriptionProductId } = this.props;
 
     const centeredSubscriptionProductId = (activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE) ? SUBSCRIPTION_PRODUCT_ID_PREMIUM : SUBSCRIPTION_PRODUCT_ID_UNLIMITED;
 
     NavigationService.navigate('Upgrade', {
+      centeredSubscriptionProductId
+    })
+
+    await analytics().logEvent('settings_press_upgrade', {
       centeredSubscriptionProductId
     })
   }

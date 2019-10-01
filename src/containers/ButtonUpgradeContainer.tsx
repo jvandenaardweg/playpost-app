@@ -1,3 +1,4 @@
+import analytics from '@react-native-firebase/analytics';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -11,7 +12,11 @@ type Props = StateProps & NavigationInjectedProps;
 
 export class ButtonUpgradeContainerComponent extends React.PureComponent<Props> {
   handleOnPressUpgrade = () => {
-    requestAnimationFrame(() => NavigationService.navigate('Upgrade'))
+    requestAnimationFrame(async () => {
+      NavigationService.navigate('Upgrade')
+
+      await analytics().logEvent('button_press_upgrade')
+    })
   }
 
   render() {

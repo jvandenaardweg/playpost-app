@@ -86,7 +86,13 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
           {
             text: buttonText,
             style: 'cancel',
-            onPress: () => this.props.navigation.navigate('Upgrade')
+            onPress: async () => {
+              this.props.navigation.navigate('Upgrade')
+
+              await analytics().logEvent('voices_select_alert_press_upgrade', {
+                userIsEligibleForTrial
+              })
+            }
           },
           {
             text: 'Cancel'
