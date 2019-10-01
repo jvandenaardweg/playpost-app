@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "741397086243-a1arjl5ql10l60kcqp9p9g1v32oa9pod.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aardwegmedia.playpost",
+            "certificate_hash": "019a8e474a1cab897d3dfcaa3a6c6431af2b236c"
+          }
+        },
+        {
           "client_id": "741397086243-gap6rq5dumk5rf0dc5113hqio0on7n1r.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -32,10 +40,47 @@
               "client_type": 3
             },
             {
-              "client_id": "741397086243-ke067g214os35oqq0uv45dstb7vga37b.apps.googleusercontent.com",
+              "client_id": "741397086243-blk5kvopmid2q42l57eiqjqb7pren63u.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.aardwegmedia.playpost",
+                "bundle_id": "com.aardwegmedia.playpost.shareextension",
+                "app_store_id": "1460663960"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:741397086243:android:bd10b47e50de0ac9397196",
+        "android_client_info": {
+          "package_name": "com.aardwegmedia.playpost.shareextension"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "741397086243-gap6rq5dumk5rf0dc5113hqio0on7n1r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJtKe7J0gFJ4ACQ3kzpBuT5WGhX3qYbBc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "741397086243-dl2skp1jfgcs6gtraktniqg801vi429o.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "741397086243-blk5kvopmid2q42l57eiqjqb7pren63u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.aardwegmedia.playpost.shareextension",
                 "app_store_id": "1460663960"
               }
             }
