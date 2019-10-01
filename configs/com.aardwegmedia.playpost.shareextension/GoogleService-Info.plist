@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>354622889978-bso8hkodhjsjjem5muchavuvmu7h25v1.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.354622889978-bso8hkodhjsjjem5muchavuvmu7h25v1</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBCRVEPCAVzXu24fvousLrsORCoCTyOV2M</string>
+	<key>GCM_SENDER_ID</key>
+	<string>354622889978</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.aardwegmedia.playpost.shareextension</string>
+	<key>PROJECT_ID</key>
+	<string>playpost-share-extension</string>
+	<key>STORAGE_BUCKET</key>
+	<string>playpost-share-extension.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:354622889978:ios:9fbd345299ba8895380e43</string>
+	<key>DATABASE_URL</key>
+	<string>https://playpost-share-extension.firebaseio.com</string>
+</dict>
+</plist>

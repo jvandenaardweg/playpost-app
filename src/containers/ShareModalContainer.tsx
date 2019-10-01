@@ -1,3 +1,4 @@
+import analytics from '@react-native-firebase/analytics';
 import React from 'react';
 import { connect } from 'react-redux';
 import validUrl from 'valid-url';
@@ -35,10 +36,12 @@ export class ShareModalContainerComponent extends React.PureComponent<Props, Sta
 
   timeout: NodeJS.Timeout | null = null;
 
-  componentDidMount() {
+  async componentDidMount() {
     const { url, documentHtml, isLoggedIn } = this.props;
 
     if (!isLoggedIn) {
+      await analytics().logEvent('share_error_not_logged_in');
+
       return this.setState({
         errorMessage: 'Please login to the app first.',
         isLoading: false
@@ -47,6 +50,8 @@ export class ShareModalContainerComponent extends React.PureComponent<Props, Sta
 
     // If we did not receive a URL, error
     if (!url) {
+      await analytics().logEvent('share_error_url_undefined', { url });
+
       return this.setState({
         errorMessage: 'Could not add this article to your playlist, because did not receive a URL. Please contact support when this happens.',
         isLoading: false
@@ -55,6 +60,8 @@ export class ShareModalContainerComponent extends React.PureComponent<Props, Sta
 
     // If there's a URL, but it's not a valid url, error
     if (!validUrl.isUri(url)) {
+      await analytics().logEvent('share_error_url_invalid', { url });
+
       return this.setState({
         errorMessage: `Could not add this article to your playlist, because it does not seem to be a valid URL: "${url}"`,
         isLoading: false
@@ -71,11 +78,13 @@ export class ShareModalContainerComponent extends React.PureComponent<Props, Sta
     }
   }
 
-  componentDidUpdate(prevProps: Props) {
+  async componentDidUpdate(prevProps: Props) {
     const { playlistError } = this.props;
 
     // When a new API error happens, we show a message to the user
     if (playlistError && prevProps.playlistError !== playlistError) {
+      await analytics().logEvent('share_error', { errorMessage: playlistError });
+
       return this.setState({
         errorMessage: playlistError,
         isLoading: false,
@@ -91,6 +100,8 @@ export class ShareModalContainerComponent extends React.PureComponent<Props, Sta
       await this.props.addArticleToPlaylistByUrl(url, documentHtml ? documentHtml : undefined);
 
       this.setState({ isSuccess: true, isLoading: false });
+
+      await analytics().logEvent('share_success', { url });
 
       // Automatically close the modal after X seconds
       this.timeout = setTimeout(() => this.props.onPressClose(), 2500);
