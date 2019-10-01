@@ -1,5 +1,5 @@
 import perf from '@react-native-firebase/perf';
-import axios from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Platform } from 'react-native';
 import Config from 'react-native-config';
 import DeviceInfo from 'react-native-device-info';
@@ -22,31 +22,10 @@ const apiClient = axios.create({
 });
 
 apiClient.interceptors.response.use(async (response) => {
-  // @ts-ignore
-  if (response.config.metadata) {
-    // @ts-ignore
-    const { httpMetric } = response.config.metadata;
-
-    httpMetric.setHttpResponseCode(response.status);
-    httpMetric.setResponseContentType(response.headers['content-type']);
-    await httpMetric.stop();
-  }
-
+  await stopHttpMetric(response, response.config);
   return response
 }, async (error) => {
-  if (error.response) {
-    if (error.config && error.config.metadata) {
-      // @ts-ignore
-      const { httpMetric } = error.config.metadata;
-
-      // add any extra metric attributes if needed
-      // httpMetric.putAttribute('userId', '12345678');
-
-      httpMetric.setHttpResponseCode(error.response.status);
-      httpMetric.setResponseContentType(error.response.headers['content-type']);
-      await httpMetric.stop();
-    }
-  }
+  await stopHttpMetric(error.response, error.config);
 
   // Status 402 = Payment Required
   // When this happens the user should be shown an upgrade modal
@@ -54,21 +33,12 @@ apiClient.interceptors.response.use(async (response) => {
     return store.dispatch(setIsActiveUpgradeModal(true));
   }
 
-
   throw error;
 })
 
 // Set the AUTH token for any request
 apiClient.interceptors.request.use(async (config) => {
-  const methodUpperCase = config.method && config.method.toUpperCase();
-
-  if (methodUpperCase) {
-    const httpMetric = perf().newHttpMetric(config.url, methodUpperCase);
-
-    config['metadata'] = { httpMetric }
-
-    await httpMetric.start();
-  }
+  await startHttpMetric(config)
 
   const token = await keychain.getToken();
 
@@ -98,5 +68,51 @@ apiClient.interceptors.request.use(async (config) => {
 
   return config;
 });
+
+export const isPerfHttpMetricsEnabled = () => {
+  const isEnabled = !__DEV__
+  return isEnabled;
+}
+
+/**
+ * Method to start the httpMetric measurement for Firebase Performance.
+ * We only do this in non-development environments.
+ *
+ * @param config
+ */
+const startHttpMetric = async (config: AxiosRequestConfig) => {
+  if (isPerfHttpMetricsEnabled) {
+    const methodUpperCase = config.method && config.method.toUpperCase();
+
+    if (methodUpperCase) {
+      const httpMetric = perf().newHttpMetric(config.url, methodUpperCase);
+
+      config['metadata'] = { httpMetric }
+
+      await httpMetric.start();
+    }
+  }
+}
+
+/**
+ * Method to stop the httpMetric measurement for Firebase Performance.
+ * We only do this in non-development environments.
+ *
+ * @param config
+ */
+const stopHttpMetric = async (response: AxiosResponse<any>, config: AxiosRequestConfig) => {
+  if (isPerfHttpMetricsEnabled) {
+    if (config['metadata']) {
+      const { httpMetric } = config['metadata'];
+
+      if (response) {
+        httpMetric.setHttpResponseCode(response.status);
+        httpMetric.setResponseContentType(response.headers['content-type']);
+      }
+
+      await httpMetric.stop();
+    }
+  }
+}
 
 export { apiClient };

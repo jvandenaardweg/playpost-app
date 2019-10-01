@@ -177,7 +177,7 @@ const RootStack = createStackNavigator(
   }
 )
 
-export const AppNavigator: NavigationContainer = createAppContainer(
+export const AppContainer: NavigationContainer = createAppContainer(
   customCreateSwitchNavigator(
     {
       Root: RootStack,

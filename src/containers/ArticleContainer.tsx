@@ -322,7 +322,12 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
           {
             text: (userIsEligibleForTrial) ? 'Start free trial' : 'Upgrade',
             style: 'cancel',
-            onPress: () => this.props.navigation.navigate('Upgrade')
+            onPress: async () => {
+              this.props.navigation.navigate('Upgrade')
+              await analytics().logEvent('article_alert_press_upgrade', {
+                userIsEligibleForTrial
+              })
+            }
           },
           {
             text: 'OK'

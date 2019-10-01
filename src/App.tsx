@@ -1,3 +1,4 @@
+import analytics from '@react-native-firebase/analytics';
 import React from 'react';
 import { Alert, InteractionManager, Linking } from 'react-native';
 import DeepLinking from 'react-native-deep-linking';
@@ -13,12 +14,14 @@ useScreens();
 import { persistor, store } from './store';
 import { reactNativeElementsTheme } from './theme';
 
+import { NavigationAction, NavigationState } from 'react-navigation';
+import { isPerfHttpMetricsEnabled } from './api';
 import { ALERT_TITLE_ERROR } from './constants/messages';
 import { APIErrorAlertContainer } from './containers/APIErrorAlertContainer';
 import { SubscriptionHandlerContainer } from './containers/SubscriptionHandlerContainer';
 import { AppStateProvider } from './contexts/AppStateProvider';
 import { NetworkProvider } from './contexts/NetworkProvider';
-import { AppNavigator } from './navigation/AppNavigator';
+import { AppContainer } from './navigation/AppNavigator';
 import NavigationService from './navigation/NavigationService';
 
 interface State {
@@ -32,7 +35,21 @@ export default class App extends React.PureComponent<State> {
     errorShown: false
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    // Disable Firebase services in dev mode
+    if (__DEV__) {
+      // tslint:disable: no-console
+
+      if (!isPerfHttpMetricsEnabled()) {
+        console.log('Notice: Disabled Firebase Performance for local development.')
+      }
+
+      await analytics().setAnalyticsCollectionEnabled(false)
+      console.log('Notice: Disabled Firebase Analytics for local development.')
+    } else {
+      await analytics().setAnalyticsCollectionEnabled(true)
+    }
+
     InteractionManager.runAfterInteractions(async () => {
       Linking.addEventListener('url', this.handleUrl);
 
@@ -104,6 +121,45 @@ export default class App extends React.PureComponent<State> {
     );
   }
 
+  /**
+   * Method to get the active route name from react-navigation.
+   */
+  getActiveRouteName = (
+    navigationState: NavigationState
+  ): string | null => {
+    if (!navigationState) {
+      return null;
+    }
+
+    const route = navigationState.routes[navigationState.index];
+
+    // dive into nested navigators
+    if (route.routes) {
+      return this.getActiveRouteName(route);
+    }
+
+    return route.routeName;
+  }
+
+  /**
+   * Sets the correct screen name in our Analytics.
+   *
+   * From: https://reactnavigation.org/docs/en/screen-tracking.html
+   */
+  handleOnNavigationStateChange = async (
+    prevState: NavigationState,
+    currentState: NavigationState,
+    action: NavigationAction
+  ): Promise<void> => {
+    const currentScreenName = this.getActiveRouteName(currentState);
+    const prevScreenName = this.getActiveRouteName(prevState);
+
+    // Only set track on screen change
+    if (prevScreenName !== currentScreenName) {
+      await analytics().setCurrentScreen(currentScreenName)
+    }
+  }
+
   render() {
     return (
       <Provider store={store}>
@@ -113,10 +169,11 @@ export default class App extends React.PureComponent<State> {
               <AppStateProvider>
                 <APIErrorAlertContainer>
                   <SubscriptionHandlerContainer>
-                    <AppNavigator
+                    <AppContainer
                       ref={navigatorRef => {
                         NavigationService.setTopLevelNavigator(navigatorRef);
                       }}
+                      onNavigationStateChange={this.handleOnNavigationStateChange}
                     />
                   </SubscriptionHandlerContainer>
                 </APIErrorAlertContainer>
