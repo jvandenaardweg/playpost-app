@@ -134,7 +134,7 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
       // Finish the transaction after we validated the receipt
       await this.finishTransaction(purchase);
 
-      await analytics().logEvent('subscription_upgrade_success', {
+      await analytics().logEvent('subscription_buy', {
         productId
       });
 
