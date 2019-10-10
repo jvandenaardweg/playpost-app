@@ -93,7 +93,8 @@ export default class App extends React.PureComponent<State> {
       }
 
       // Get the title out of the query parameter, trim it and limit it to max 100 characters to prevent abuse
-      const articleTitle = unescape(otherParams.replace('?title=', '').trim()).substring(0, 100);
+      const titleParam = otherParams ? unescape(otherParams.replace('?title=', '').trim()) : null;
+      const articleTitle = titleParam ? titleParam.substring(0, 100) : null;
 
       NavigationService.navigate('Playlist', { articleId });
 
@@ -105,7 +106,7 @@ export default class App extends React.PureComponent<State> {
             text: 'Cancel',
           },
           {
-            text: 'Add article',
+            text: 'Yes, add article',
             onPress: () => store.dispatch(addArticleToPlaylistById(articleId))
           }
         ],
