@@ -129,7 +129,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
 
         await analytics().logEvent('voices_select', {
           id: item.id,
-          label: item.label,
+          label: item.label ? item.label : '',
           languageName: item.language.name
         });
       } finally {
@@ -144,7 +144,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
 
     await analytics().logEvent('voices_preview', {
       id: voice.id,
-      label: voice.label,
+      label: voice.label ? voice.label : '',
       languageName: voice.language.name
     });
 

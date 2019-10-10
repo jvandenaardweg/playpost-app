@@ -223,7 +223,7 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
         );
 
         await analytics().logEvent('subscription_sync_api', {
-          productId: activeInAppSubscription
+          productId: activeInAppSubscription.inAppSubscription.productId
         });
 
         // Sync the user subscription info by requesting the user data
@@ -269,7 +269,7 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
 
   handleOnPressModalCancel = async () => {
     this.props.setIsActiveUpgradeModal(false)
-    await analytics().logEvent('subscription_upgrade_modal_cancel')
+    // await analytics().logEvent('subscription_upgrade_modal_cancel')
   }
 
   handleOnPressModalUpgrade = async () => {

@@ -1,4 +1,4 @@
-import analytics from '@react-native-firebase/analytics';
+// import analytics from '@react-native-firebase/analytics';
 import React, { useEffect, useRef } from 'react';
 import { SafeAreaView, View } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
@@ -65,27 +65,27 @@ const OnboardingSliderComponent: React.FC<Props> = React.memo(() => {
   const goToSlide = async (goToSlideIndex: number) => {
     appIntroSliderRef.current.goToSlide(goToSlideIndex)
 
-    await analytics().logEvent('onboarding_press_continue', {
-      goToSlideIndex
-    });
+    // await analytics().logEvent('onboarding_press_continue', {
+    //   goToSlideIndex
+    // });
   }
 
   const handleOnPressSliderSignup = async () => {
     NavigationService.navigate('Signup')
 
-    await analytics().logEvent('onboarding_slider_press_signup')
+    // await analytics().logEvent('onboarding_slider_press_signup')
   }
 
   const handleOnPressSliderLogin = async () => {
     NavigationService.navigate('login')
 
-    await analytics().logEvent('onboarding_slider_press_login')
+    // await analytics().logEvent('onboarding_slider_press_login')
   }
 
   const handleOnPressHeaderLogin = async () => {
     NavigationService.navigate('login')
 
-    await analytics().logEvent('onboarding_press_login')
+    // await analytics().logEvent('onboarding_press_login')
   }
 
   function renderItem(props: OnboardingSlideProps) {

@@ -156,7 +156,7 @@ export default class App extends React.PureComponent<State> {
       const prevScreenName = this.getActiveRouteName(prevState);
 
       // Only set track on screen change
-      if (prevScreenName !== currentScreenName) {
+      if (prevScreenName !== currentScreenName && currentScreenName) {
         await analytics().setCurrentScreen(currentScreenName)
       }
     })

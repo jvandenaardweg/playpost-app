@@ -1,7 +1,7 @@
+import analytics from '@react-native-firebase/analytics';
 import React from 'react';
 import { Animated, Modal, View } from 'react-native';
 import ShareExtension from 'react-native-share-extension';
-import analytics from '@react-native-firebase/analytics';
 
 import { setAuthToken } from '../../reducers/auth';
 import { store } from '../../store';

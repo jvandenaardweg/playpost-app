@@ -212,7 +212,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
       await analytics().logEvent('article_press_play', {
         id: article.id,
-        title: article.title,
+        title: article.title ? article.title : '',
         url: article.url,
         isPlaying
       });
@@ -266,7 +266,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     try {
       await analytics().logEvent('article_create_audiofile', {
         id: article.id,
-        title: article.title,
+        title: article.title ? article.title : '',
         url: article.url
       });
 
@@ -345,7 +345,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         try {
           await analytics().logEvent('article_download_audiofile', {
             id: article.id,
-            title: article.title,
+            title: article.title ? article.title : '',
             url: article.url,
             audiofileId,
             audiofileUrl: url
@@ -440,7 +440,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
   fetchPlaylist = async (): Promise<void> => {
     try {
-      await analytics().logEvent('article_playlist_fetch');
+      // await analytics().logEvent('article_playlist_fetch');
 
       await this.props.getPlaylist();
     } catch (err) {
@@ -463,7 +463,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     try {
       await analytics().logEvent('article_remove_from_playlist', {
         id: article.id,
-        title: article.title,
+        title: article.title ? article.title : '',
         url: article.url
       });
 
@@ -490,7 +490,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     try {
       await analytics().logEvent('article_archive', {
         id: article.id,
-        title: article.title,
+        title: article.title ? article.title : '',
         url: article.url
       });
 
@@ -516,7 +516,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     try {
       await analytics().logEvent('article_favorite', {
         id: article.id,
-        title: article.title,
+        title: article.title ? article.title : '',
         url: article.url
       });
 
@@ -543,7 +543,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     try {
       await analytics().logEvent('article_unfavorite', {
         id: article.id,
-        title: article.title,
+        title: article.title ? article.title : '',
         url: article.url
       });
 
@@ -570,7 +570,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
     try {
       await analytics().logEvent('article_unarchive', {
         id: article.id,
-        title: article.title,
+        title: article.title ? article.title : '',
         url: article.url
       });
 
@@ -597,7 +597,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
       await analytics().logEvent('article_press_full', {
         id: article.id,
-        title: article.title,
+        title: article.title ? article.title : '',
         url: article.url
       });
 
@@ -611,7 +611,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
       await analytics().logEvent('article_press_update', {
         id: article.id,
-        title: article.title,
+        title: article.title ? article.title : '',
         url: article.url
       });
 
@@ -631,7 +631,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
       await analytics().logEvent('article_press_incompatible', {
         id: article.id,
-        title: article.title,
+        title: article.title ? article.title : '',
         url: article.url
       });
 

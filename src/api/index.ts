@@ -1,4 +1,4 @@
-import perf from '@react-native-firebase/perf';
+import perf, { FirebasePerformanceTypes } from '@react-native-firebase/perf';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Platform } from 'react-native';
 import Config from 'react-native-config';
@@ -84,8 +84,8 @@ const startHttpMetric = async (config: AxiosRequestConfig) => {
   if (isPerfHttpMetricsEnabled) {
     const methodUpperCase = config.method && config.method.toUpperCase();
 
-    if (methodUpperCase) {
-      const httpMetric = perf().newHttpMetric(config.url, methodUpperCase);
+    if (methodUpperCase && config.url) {
+      const httpMetric = perf().newHttpMetric(config.url, methodUpperCase as FirebasePerformanceTypes.HttpMethod);
 
       config['metadata'] = { httpMetric }
 

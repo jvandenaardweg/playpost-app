@@ -110,7 +110,7 @@ class LoginFormContainerComponent extends React.PureComponent<Props, State> {
   handleOnPressForgotPassword = async () => {
     NavigationService.navigate('login/forgot-password', { email: this.state.email })
 
-    await analytics().logEvent('login_press_forgot_password');
+    // await analytics().logEvent('login_press_forgot_password');
   }
 
   render() {

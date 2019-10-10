@@ -40,7 +40,7 @@ export class ShareModalContainerComponent extends React.PureComponent<Props, Sta
     const { url, documentHtml, isLoggedIn } = this.props;
 
     if (!isLoggedIn) {
-      await analytics().logEvent('share_error_not_logged_in');
+      await analytics().logEvent('share_error_not_logged_in', { url: url ? url : '' });
 
       return this.setState({
         errorMessage: 'Please login to the app first.',
@@ -50,7 +50,7 @@ export class ShareModalContainerComponent extends React.PureComponent<Props, Sta
 
     // If we did not receive a URL, error
     if (!url) {
-      await analytics().logEvent('share_error_url_undefined', { url });
+      await analytics().logEvent('share_error_url_undefined', { url: url ? url : '' });
 
       return this.setState({
         errorMessage: 'Could not add this article to your playlist, because did not receive a URL. Please contact support when this happens.',
@@ -60,7 +60,7 @@ export class ShareModalContainerComponent extends React.PureComponent<Props, Sta
 
     // If there's a URL, but it's not a valid url, error
     if (!validUrl.isUri(url)) {
-      await analytics().logEvent('share_error_url_invalid', { url });
+      await analytics().logEvent('share_error_url_invalid', { url: url ? url : '' });
 
       return this.setState({
         errorMessage: `Could not add this article to your playlist, because it does not seem to be a valid URL: "${url}"`,
