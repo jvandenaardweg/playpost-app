@@ -25,6 +25,7 @@ import { NetworkProvider } from './contexts/NetworkProvider';
 import { AppContainer } from './navigation/AppNavigator';
 import NavigationService from './navigation/NavigationService';
 import { addArticleToPlaylistById } from './reducers/playlist';
+import { selectIsLoggedIn } from './selectors/auth';
 
 interface State {
   errorShown: boolean;
@@ -58,6 +59,21 @@ export default class App extends React.PureComponent<State> {
 
     DeepLinking.addRoute('/playlist/add/:articleId/:otherParams', ({ path, articleId, otherParams }: { path: string; articleId: string, otherParams: string }) => {
       // Example: playpost://playlist/add/0cdb6a24-db69-4d0b-8efc-281d6e7c1306
+      const isLoggedIn = selectIsLoggedIn(store.getState())
+
+      if (!isLoggedIn) {
+        return Alert.alert(
+          'Oops!',
+          `You need to be logged in to add this article to your playlist. Try again after logging in.`,
+          [
+            {
+              text: 'Ok',
+              style: 'cancel'
+            }
+          ],
+          { cancelable: false }
+        );
+      }
 
       // Important: We should not trust any data we get in here, as any website can use our scheme to directly target screens in our app
 
@@ -76,7 +92,8 @@ export default class App extends React.PureComponent<State> {
         );
       }
 
-      const articleTitle = unescape(otherParams.replace('?title=', '').trim())
+      // Get the title out of the query parameter, trim it and limit it to max 100 characters to prevent abuse
+      const articleTitle = unescape(otherParams.replace('?title=', '').trim()).substring(0, 100);
 
       NavigationService.navigate('Playlist', { articleId });
 
@@ -159,47 +176,6 @@ export default class App extends React.PureComponent<State> {
     );
   }
 
-  /**
-   * Method to get the active route name from react-navigation.
-   */
-  getActiveRouteName = (
-    navigationState: NavigationState
-  ): string | null => {
-    if (!navigationState) {
-      return null;
-    }
-
-    const route = navigationState.routes[navigationState.index];
-
-    // dive into nested navigators
-    if (route.routes) {
-      return this.getActiveRouteName(route);
-    }
-
-    return route.routeName;
-  }
-
-  /**
-   * Sets the correct screen name in our Analytics.
-   *
-   * From: https://reactnavigation.org/docs/en/screen-tracking.html
-   */
-  handleOnNavigationStateChange = (
-    prevState: NavigationState,
-    currentState: NavigationState,
-    action: NavigationAction
-  ): void => {
-    requestAnimationFrame(async () => {
-      const currentScreenName = this.getActiveRouteName(currentState);
-      const prevScreenName = this.getActiveRouteName(prevState);
-
-      // Only set track on screen change
-      if (prevScreenName !== currentScreenName && currentScreenName) {
-        await analytics().setCurrentScreen(currentScreenName)
-      }
-    })
-  }
-
   render() {
     return (
       <Provider store={store}>
@@ -225,11 +201,50 @@ export default class App extends React.PureComponent<State> {
     );
   }
 
+  /**
+   * Method to get the active route name from react-navigation.
+   */
+  private getActiveRouteName = (
+    navigationState: NavigationState
+  ): string | null => {
+    if (!navigationState) {
+      return null;
+    }
+
+    const route = navigationState.routes[navigationState.index];
+
+    // dive into nested navigators
+    if (route.routes) {
+      return this.getActiveRouteName(route);
+    }
+
+    return route.routeName;
+  }
+
+  /**
+   * Sets the correct screen name in our Analytics.
+   *
+   * From: https://reactnavigation.org/docs/en/screen-tracking.html
+   */
+  private handleOnNavigationStateChange = (
+    prevState: NavigationState,
+    currentState: NavigationState,
+    action: NavigationAction
+  ): void => {
+    requestAnimationFrame(async () => {
+      const currentScreenName = this.getActiveRouteName(currentState);
+      const prevScreenName = this.getActiveRouteName(prevState);
+
+      // Only set track on screen change
+      if (prevScreenName !== currentScreenName && currentScreenName) {
+        await analytics().setCurrentScreen(currentScreenName)
+      }
+    })
+  }
+
   private handleUrl = ({ url }: { url: string }) => {
-    console.log('handleUrl', url)
     Linking.canOpenURL(url).then(supported => {
       if (supported) {
-        console.log('supported', url)
         DeepLinking.evaluateUrl(url);
       }
     });
