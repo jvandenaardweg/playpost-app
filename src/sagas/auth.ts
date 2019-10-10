@@ -11,7 +11,7 @@ export function* authorize({ email, password }: AnyAction) {
     yield put(resetAuthError());
 
     // Get a token from the API
-    const { data } = yield call(API.getAuthToken,  email, password);
+    const { data } = yield call(API.getAuthToken, email, password);
     const token = data.token;
 
     if (!token) {

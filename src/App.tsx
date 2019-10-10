@@ -1,6 +1,7 @@
 import analytics from '@react-native-firebase/analytics';
+import isUUID from 'is-uuid';
 import React from 'react';
-import { Alert, InteractionManager, Linking } from 'react-native';
+import { Alert, Linking } from 'react-native';
 import DeepLinking from 'react-native-deep-linking';
 import { ThemeProvider } from 'react-native-elements';
 import { useScreens } from 'react-native-screens';
@@ -23,6 +24,7 @@ import { AppStateProvider } from './contexts/AppStateProvider';
 import { NetworkProvider } from './contexts/NetworkProvider';
 import { AppContainer } from './navigation/AppNavigator';
 import NavigationService from './navigation/NavigationService';
+import { addArticleToPlaylistById } from './reducers/playlist';
 
 interface State {
   errorShown: boolean;
@@ -50,37 +52,73 @@ export default class App extends React.PureComponent<State> {
       await analytics().setAnalyticsCollectionEnabled(true)
     }
 
-    InteractionManager.runAfterInteractions(async () => {
-      Linking.addEventListener('url', this.handleUrl);
+    Linking.addEventListener('url', this.handleUrl);
 
-      DeepLinking.addScheme('playpost://');
-      DeepLinking.addScheme('https://');
+    DeepLinking.addScheme('playpost://');
 
-      DeepLinking.addRoute('/login/reset-password/:resetPasswordToken', ({ path, resetPasswordToken }: { path: string; resetPasswordToken: string }) => {
+    DeepLinking.addRoute('/playlist/add/:articleId/:otherParams', ({ path, articleId, otherParams }: { path: string; articleId: string, otherParams: string }) => {
+      // Example: playpost://playlist/add/0cdb6a24-db69-4d0b-8efc-281d6e7c1306
+
+      // Important: We should not trust any data we get in here, as any website can use our scheme to directly target screens in our app
+
+      // Check if received articleId is a valid UUID
+      if (!articleId || !isUUID.anyNonNil(articleId)) {
+        return Alert.alert(
+          'Add new article',
+          `The article you want to add to your playlist does not seem to be valid.`,
+          [
+            {
+              text: 'Ok',
+              style: 'cancel'
+            }
+          ],
+          { cancelable: false }
+        );
+      }
+
+      const articleTitle = unescape(otherParams.replace('?title=', '').trim())
+
+      NavigationService.navigate('Playlist', { articleId });
+
+      return Alert.alert(
+        'Add new article',
+        `Are you sure you want to add this article to your playlist?\n\n${articleTitle}`,
+        [
+          {
+            text: 'Cancel',
+          },
+          {
+            text: 'Add article',
+            onPress: () => store.dispatch(addArticleToPlaylistById(articleId))
+          }
+        ],
+        { cancelable: false }
+      );
+    });
+
+    DeepLinking.addRoute('/login/reset-password/:resetPasswordToken', ({ path, resetPasswordToken }: { path: string; resetPasswordToken: string }) => {
+      // playpost://update-password/123ABC
+      NavigationService.navigate('login/reset-password', { resetPasswordToken });
+    });
+
+    DeepLinking.addRoute(
+      '/playpost.app/login/reset-password/:resetPasswordToken',
+      ({ path, resetPasswordToken }: { path: string; resetPasswordToken: string }) => {
         // playpost://update-password/123ABC
         NavigationService.navigate('login/reset-password', { resetPasswordToken });
-      });
-
-      DeepLinking.addRoute(
-        '/playpost.app/login/reset-password/:resetPasswordToken',
-        ({ path, resetPasswordToken }: { path: string; resetPasswordToken: string }) => {
-          // playpost://update-password/123ABC
-          NavigationService.navigate('login/reset-password', { resetPasswordToken });
-        }
-      );
-
-      try {
-        const url = await Linking.getInitialURL();
-
-        if (url) {
-          Linking.openURL(url);
-        }
-      } catch (err) {
-        const errorMessage = (err && err.message) ? err.message : 'An uknown error happened while opening a URL.';
-        Alert.alert(ALERT_TITLE_ERROR, errorMessage);
       }
-    })
+    );
 
+    try {
+      const url = await Linking.getInitialURL();
+      console.log('getInitialURL', url)
+      if (url) {
+        await Linking.openURL(url);
+      }
+    } catch (err) {
+      const errorMessage = (err && err.message) ? err.message : 'An uknown error happened while opening a URL.';
+      Alert.alert(ALERT_TITLE_ERROR, errorMessage);
+    }
   }
 
   componentWillUnmount(): void {
@@ -188,8 +226,10 @@ export default class App extends React.PureComponent<State> {
   }
 
   private handleUrl = ({ url }: { url: string }) => {
+    console.log('handleUrl', url)
     Linking.canOpenURL(url).then(supported => {
       if (supported) {
+        console.log('supported', url)
         DeepLinking.evaluateUrl(url);
       }
     });

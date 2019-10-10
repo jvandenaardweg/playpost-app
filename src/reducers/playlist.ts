@@ -1,5 +1,7 @@
 import { ARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE, CREATE_PLAYLIST_ITEM_FAIL_MESSAGE, FAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE, GENERIC_NETWORK_ERROR, GET_PLAYLIST_FAIL_MESSAGE, REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE, REORDER_PLAYLIST_ITEM_FAIL_MESSAGE, UNARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE, UNFAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE } from '../constants/messages';
 
+export const SET_PLAYLIST_ERROR = 'playlist/SET_PLAYLIST_ERROR';
+
 export const GET_PLAYLIST = 'playlist/GET_PLAYLIST';
 export const GET_PLAYLIST_SUCCESS = 'playlist/GET_PLAYLIST_SUCCESS';
 export const GET_PLAYLIST_FAIL = 'playlist/GET_PLAYLIST_FAIL';
@@ -7,6 +9,10 @@ export const GET_PLAYLIST_FAIL = 'playlist/GET_PLAYLIST_FAIL';
 export const CREATE_PLAYLIST_ITEM = 'playlist/CREATE_PLAYLIST_ITEM';
 export const CREATE_PLAYLIST_ITEM_SUCCESS = 'playlist/CREATE_PLAYLIST_ITEM_SUCCESS';
 export const CREATE_PLAYLIST_ITEM_FAIL = 'playlist/CREATE_PLAYLIST_ITEM_FAIL';
+
+export const CREATE_PLAYLIST_ITEM_BY_ID = 'playlist/CREATE_PLAYLIST_ITEM_BY_ID';
+export const CREATE_PLAYLIST_ITEM_BY_ID_SUCCESS = 'playlist/CREATE_PLAYLIST_ITEM_BY_ID_SUCCESS';
+export const CREATE_PLAYLIST_ITEM_BY_ID_FAIL = 'playlist/CREATE_PLAYLIST_ITEM_BY_ID_FAIL';
 
 export const ARCHIVE_PLAYLIST_ITEM = 'playlist/ARCHIVE_PLAYLIST_ITEM';
 export const ARCHIVE_PLAYLIST_ITEM_SUCCESS = 'playlist/ARCHIVE_PLAYLIST_ITEM_SUCCESS';
@@ -67,6 +73,12 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
         ...state,
         isLoading: true,
         error: ''
+      };
+
+    case SET_PLAYLIST_ERROR:
+      return {
+        ...state,
+        error: action.errorMessage
       };
 
     case GET_PLAYLIST_SUCCESS:
@@ -373,6 +385,11 @@ export const resetErrorPlaylist = () => ({
   type: RESET_ERROR_PLAYLIST
 });
 
+export const setPlaylistError = (errorMessage?: string) => ({
+  errorMessage,
+  type: SET_PLAYLIST_ERROR
+});
+
 export const getPlaylist = () => ({
   type: GET_PLAYLIST,
   payload: {
@@ -395,6 +412,11 @@ export const addArticleToPlaylistByUrl = (articleUrl: string, documentHtml?: str
       }
     }
   }
+});
+
+export const addArticleToPlaylistById = (articleId: string) => ({
+  type: CREATE_PLAYLIST_ITEM_BY_ID,
+  articleId
 });
 
 export const removeArticleFromPlaylist = (articleId: string) => ({
