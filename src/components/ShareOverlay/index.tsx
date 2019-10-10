@@ -1,6 +1,7 @@
 import React from 'react';
 import { Animated, Modal, View } from 'react-native';
 import ShareExtension from 'react-native-share-extension';
+import analytics from '@react-native-firebase/analytics';
 
 import { setAuthToken } from '../../reducers/auth';
 import { store } from '../../store';
@@ -43,7 +44,7 @@ export class ShareOverlay extends React.PureComponent<{}, State> {
   opacityAnim = new Animated.Value(0);
   animationDuration = 200;
 
-  componentDidMount() {
+  async componentDidMount() {
     this.setup();
   }
 
@@ -73,17 +74,20 @@ export class ShareOverlay extends React.PureComponent<{}, State> {
     try {
       // First, wait for the animation IN to be finished
       // It seems on Android we need this delay on order for the ShareExtension data to come in. So don't remove that delay.
-      await this.animateIn();
+      await this.animateIn()
 
-      // Make sure the token from the main app is in our store
-      const token = await keychain.getToken();
+      // Run all promises in parallel, which is faster
+      const [token, shareData] = await Promise.all([
+        await keychain.getToken(),
+        await ShareExtension.data()
+      ]);
 
       if (token) {
         // Store the token in Redux, so we can determine if a user is logged in or not
         this.setAuthToken(token);
       }
 
-      const { type, value }: ShareData = await ShareExtension.data();
+      const { type, value }: ShareData = shareData;
 
       let documentHtml = '';
       let url = '';
@@ -111,6 +115,7 @@ export class ShareOverlay extends React.PureComponent<{}, State> {
       this.setState({ type, url, documentHtml, errorMessage: '' });
     } catch (err) {
       const errorMessage = err.message ? err.message : 'An unknown error happened. Please try again.';
+      await analytics().logEvent('share_error', { errorMessage });
       this.setState({ errorMessage });
     } finally {
       this.setState({ isLoading: false });

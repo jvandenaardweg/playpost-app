@@ -282,7 +282,7 @@ PODS:
     - React-cxxreact (= 0.61.1)
     - React-jsi (= 0.61.1)
   - React-jsinspector (0.61.1)
-  - react-native-netinfo (4.2.2):
+  - react-native-netinfo (4.3.0):
     - React
   - react-native-splash-screen (3.2.0):
     - React
@@ -360,7 +360,7 @@ PODS:
     - React
   - RNGestureHandler (1.4.1):
     - React
-  - RNIap (3.4.14):
+  - RNIap (3.5.2):
     - React
   - RNInAppBrowser (3.1.0):
     - React
@@ -584,7 +584,7 @@ SPEC CHECKSUMS:
   React-jsi: 61ff417c95e6c3af50fb96399037e80752fb5ce7
   React-jsiexecutor: ee45274419eb95614bbbadb98e20684c5f29996e
   React-jsinspector: 574d597112f9ea3d1b717f6fb62aef764c70dd6f
-  react-native-netinfo: 0edde14215abf6352ea5c8f9440e777e12ad6a0f
+  react-native-netinfo: 19ea7ffad6159777c77a34a3ed283b994a520d19
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
   react-native-track-player: 6c2c2f163534bb6d6b5fea68959b3641f70718dd
   react-native-video: 961749da457e73bf0b5565edfbaffc25abfb8974
@@ -609,7 +609,7 @@ SPEC CHECKSUMS:
   RNFBPerf: a16b6bb01c5e8838dd20ff9b3774bb8316af1bfe
   RNFS: a8fbe7060fa49157d819466404794ad9c58e58cf
   RNGestureHandler: 4cb47a93019c1a201df2644413a0a1569a51c8aa
-  RNIap: 07db85f8a48e976d295c0b1b9826acf9e401fafd
+  RNIap: 27916e0a07f31aad84b07fee4deb157ebfa4ed50
   RNInAppBrowser: c0c1f509fe1ced46d751b61463be847c9b139ae9
   RNKeychain: 45dbd50d1ac4bd42c3740f76ffb135abf05746d0
   RNLocalize: 7206d44eb341d6e2a61a8184b831c64a5539fcdf

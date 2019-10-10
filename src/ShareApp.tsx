@@ -32,8 +32,6 @@ export default class ShareApp extends React.PureComponent {
     } else {
       await analytics().setAnalyticsCollectionEnabled(true)
     }
-
-    await analytics().setCurrentScreen('Share')
   }
 
   render (): JSX.Element {

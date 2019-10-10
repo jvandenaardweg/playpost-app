@@ -6,13 +6,13 @@
 //  Copyright © 2019 Facebook. All rights reserved.
 //
 
+@import Firebase;
+
 #import <Foundation/Foundation.h>
 #import "ReactNativeShareExtension.h"
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import <React/RCTLog.h>
-
-@import Firebase;
 
 @interface PlaypostShareExtension : ReactNativeShareExtension
 @end
@@ -23,11 +23,6 @@ RCT_EXPORT_MODULE();
 
 - (UIView*) shareView {
   NSURL *jsCodeLocation;
-
-  // Initialize Firebase
-  if ([FIRApp defaultApp] == nil) {
-    [FIRApp configure];
-  }
   
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
   
@@ -40,6 +35,11 @@ RCT_EXPORT_MODULE();
   
   // Uncomment for console output in Xcode console for release mode on device:
   // RCTSetLogThreshold(RCTLogLevelInfo - 1);
+  
+  // Initialize Firebase
+  if ([FIRApp defaultApp] == nil) {
+    [FIRApp configure];
+  }
   
   return rootView;
 }
