@@ -1,5 +1,5 @@
 import perf, { FirebasePerformanceTypes } from '@react-native-firebase/perf';
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Platform } from 'react-native';
 import Config from 'react-native-config';
 import DeviceInfo from 'react-native-device-info';
@@ -22,10 +22,10 @@ const apiClient = axios.create({
 });
 
 apiClient.interceptors.response.use(async (response) => {
-  await stopHttpMetric(response, response.config);
+  await stopHttpMetric(response.config, response);
   return response
-}, async (error) => {
-  await stopHttpMetric(error.response, error.config);
+}, async (error: AxiosError) => {
+  await stopHttpMetric(error.config, error.response);
 
   // Status 402 = Payment Required
   // When this happens the user should be shown an upgrade modal
@@ -69,7 +69,7 @@ apiClient.interceptors.request.use(async (config) => {
   return config;
 });
 
-export const isPerfHttpMetricsEnabled = () => {
+export const isPerfHttpMetricsEnabled = (): boolean => {
   const isEnabled = !__DEV__
   return isEnabled;
 }
@@ -81,7 +81,7 @@ export const isPerfHttpMetricsEnabled = () => {
  * @param config
  */
 const startHttpMetric = async (config: AxiosRequestConfig) => {
-  if (isPerfHttpMetricsEnabled) {
+  if (isPerfHttpMetricsEnabled()) {
     const methodUpperCase = config.method && config.method.toUpperCase();
 
     if (methodUpperCase && config.url) {
@@ -100,8 +100,8 @@ const startHttpMetric = async (config: AxiosRequestConfig) => {
  *
  * @param config
  */
-const stopHttpMetric = async (response: AxiosResponse<any>, config: AxiosRequestConfig) => {
-  if (isPerfHttpMetricsEnabled) {
+const stopHttpMetric = async (config: AxiosRequestConfig, response?: AxiosResponse<any>) => {
+  if (isPerfHttpMetricsEnabled()) {
     if (config['metadata']) {
       const { httpMetric } = config['metadata'];
 
