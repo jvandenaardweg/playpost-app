@@ -12,7 +12,8 @@ import { BottomTabBar, BottomTabBarProps } from 'react-navigation-tabs';
 
 import { SmallAudioPlayerContainer } from '../../containers/SmallAudioPlayerContainer';
 
-import { AudiofileStatusContainer } from '../../containers/AudiofileStatusContainer';
+import colors from '../../constants/colors';
+import { GlobalStatusIndicatorContainer } from '../../containers/GlobalStatusIndicatorContainer';
 import { OfflineNotice } from '../OfflineNotice';
 import styles from './styles';
 
@@ -24,9 +25,9 @@ export const TabBar: React.FC<BottomTabBarProps> = React.memo((
   return (
     <View style={styles.container}>
       {!isConnected && <OfflineNotice />}
-      <AudiofileStatusContainer />
+      <GlobalStatusIndicatorContainer />
       <SmallAudioPlayerContainer />
-      <BottomTabBar {...props} />
+      <BottomTabBar {...props} style={{ backgroundColor: colors.tabBarBackgroundColor, borderTopColor: colors.tabBarBorderColor }} />
     </View>
   );
 });

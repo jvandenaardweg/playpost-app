@@ -39,9 +39,14 @@ export default {
   green,
   appBackground,
 
+  // Navigation
   tabIconDefault: gray,
   tabIconSelected: black,
   tabBar: white,
+  tabBarBackgroundColor: white,
+  tabBarBorderColor: grayLight,
+  navigationBackgroundColor: white,
+  navigationBorderColor: grayLight,
 
   articleBackground: white,
 

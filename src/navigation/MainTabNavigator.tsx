@@ -23,10 +23,12 @@ import { ButtonUpgradeContainer } from '../containers/ButtonUpgradeContainer';
 
 export const stackNavigatorDefaultNavigationOptions: NavigationStackOptions = {
   headerStyle: {
-    borderBottomColor: colors.borderDefault
+    borderBottomColor: colors.navigationBorderColor,
+    backgroundColor: colors.navigationBackgroundColor
   },
   headerTitleStyle: {
-    ...textPresets['bodyEmphasized']
+    ...textPresets['bodyEmphasized'],
+    color: colors.black
   },
   headerBackTitleStyle: {
     ...textPresets['body'],
