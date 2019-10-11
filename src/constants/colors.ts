@@ -21,7 +21,18 @@ const green = '#03A87C';
 /*
 dark theme:
 
-white: #ffffff
+black: #f4f4f4 // not pure white
+
+grayDarkest: #222222
+grayDarker: #444444
+grayDark: #666666
+
+gryLight: #222222
+grayLightest: #111111
+
+appBackground: #000000
+
+white: #000000
 gray: #979797
 
 app background: #111111
