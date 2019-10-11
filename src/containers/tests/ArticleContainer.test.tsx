@@ -13,7 +13,7 @@ import playlistItemMock from '../../../tests/__mocks__/playlist-item';
 import voiceLanguageDefaultEN from '../../../tests/__mocks__/voice-language-default-en';
 import voicePremium from '../../../tests/__mocks__/voice-premium';
 
-import { ALERT_ARTICLE_DOWNLOAD_FAIL, ALERT_ARTICLE_PLAY_FAIL, ALERT_ARTICLE_PLAY_INTERNET_REQUIRED, ALERT_TITLE_ERROR, ALERT_TITLE_ERROR_NO_INTERNET } from '../../constants/messages';
+import { ALERT_ARTICLE_DOWNLOAD_FAIL, ALERT_ARTICLE_PLAY_INTERNET_REQUIRED, ALERT_TITLE_ERROR, ALERT_TITLE_ERROR_NO_INTERNET } from '../../constants/messages';
 import { initialTrackState } from '../../reducers/player';
 
 jest.mock('../../navigation/NavigationService');
@@ -169,10 +169,11 @@ describe('ArticleContainer', () => {
 
     });
 
-    it('handleSetTrack() should correctly set a track in the player', async () => {
+    it('handleSetTrack() should correctly set a track in the player when the audio is not downloaded yet', async () => {
       const testInstance: ArticleContainerComponent = wrapper.root.instance;
 
-      const expectedLocalAudiofilePath = `some/local/path/${articleMock.audiofiles[0].filename}`;
+      const expectedLocalAudiofilePath = articleMock.audiofiles[0].url;
+      // const expectedLocalAudiofilePath = `some/local/path/${articleMock.audiofiles[0].filename}`;
 
       const spyDownloadAudiofile = jest.spyOn(testInstance, 'downloadAudiofile').mockResolvedValueOnce(expectedLocalAudiofilePath)
       const spyResetPlaybackStatus = jest.spyOn(testInstance.props, 'resetPlaybackStatus')
@@ -182,9 +183,6 @@ describe('ArticleContainer', () => {
       await testInstance.handleSetTrack();
 
       expect(spyResetPlaybackStatus).toHaveBeenCalledTimes(1);
-      expect(spyDownloadAudiofile).toHaveBeenCalledTimes(1);
-      expect(spySetDownloadedAudiofile).toHaveBeenCalledTimes(1);
-      expect(spySetDownloadedAudiofile).toHaveBeenCalledWith(articleMock.audiofiles[0]);
       expect(spySetTrack).toHaveBeenCalledTimes(1);
       expect(spySetTrack).toHaveBeenCalledWith(
         {
@@ -201,6 +199,52 @@ describe('ArticleContainer', () => {
         },
         '7ca86b8a-02aa-4733-92e4-1cfe7ef46954'
       );
+
+      expect(spyDownloadAudiofile).toHaveBeenCalledTimes(1);
+      expect(spySetDownloadedAudiofile).toHaveBeenCalledTimes(1);
+      expect(spySetDownloadedAudiofile).toHaveBeenCalledWith(articleMock.audiofiles[0]);
+
+      expect(testInstance.state.isActive).toBe(true);
+      expect(testInstance.state.isLoading).toBe(true);
+    });
+
+    it('handleSetTrack() should correctly set a track in the player when the audio is already downloaded', async () => {
+      const testInstance: ArticleContainerComponent = wrapper.root.instance;
+
+      // const expectedLocalAudiofilePath = articleMock.audiofiles[0].url;
+      const expectedLocalAudiofilePath = `file://local/test/path/audiofiles/${articleMock.audiofiles[0].id}.mp3`;
+
+      const spyDownloadAudiofile = jest.spyOn(testInstance, 'downloadAudiofile').mockResolvedValueOnce(expectedLocalAudiofilePath)
+      const spyResetPlaybackStatus = jest.spyOn(testInstance.props, 'resetPlaybackStatus')
+      const spySetDownloadedAudiofile = jest.spyOn(testInstance.props, 'setDownloadedAudiofile');
+      const spySetTrack = jest.spyOn(testInstance.props, 'setTrack')
+      const spyGetIsDownloaded = jest.spyOn(testInstance, 'getIsDownloaded').mockReturnValue(true)
+
+      await testInstance.handleSetTrack();
+
+      expect(spyResetPlaybackStatus).toHaveBeenCalledTimes(1);
+      expect(spySetTrack).toHaveBeenCalledTimes(1);
+      expect(spySetTrack).toHaveBeenCalledWith(
+        {
+          album: articleMock.sourceName,
+          artist: articleMock.authorName,
+          artwork: articleMock.imageUrl,
+          contentType: 'audio/mpeg',
+          duration: articleMock.audiofiles[0].length,
+          id: articleMock.audiofiles[0].id,
+          key: articleMock.audiofiles[0].id,
+          pitchAlgorithm: TrackPlayer.PitchAlgorithm.Voice,
+          title: articleMock.title,
+          url: expectedLocalAudiofilePath
+        },
+        '7ca86b8a-02aa-4733-92e4-1cfe7ef46954'
+      );
+
+      expect(spyGetIsDownloaded).toHaveBeenCalledTimes(2);
+
+      expect(spyDownloadAudiofile).toHaveBeenCalledTimes(0);
+      expect(spySetDownloadedAudiofile).toHaveBeenCalledTimes(0);
+
       expect(testInstance.state.isActive).toBe(true);
       expect(testInstance.state.isLoading).toBe(true);
     });
@@ -243,8 +287,9 @@ describe('ArticleContainer', () => {
       await testInstance.handleSetTrack();
 
       expect(spyResetPlaybackStatus).toHaveBeenCalledTimes(1);
+      expect(spySetTrack).toHaveBeenCalledTimes(1);
       expect(spyDownloadAudiofile).toHaveBeenCalledTimes(1);
-      expect(spySetDownloadedAudiofile).toHaveBeenCalledTimes(1);
+      expect(spySetDownloadedAudiofile).toHaveBeenCalledTimes(0);
 
       expect(Alert.alert).toHaveBeenCalledTimes(1);
       expect(Alert.alert).toHaveBeenCalledWith(ALERT_TITLE_ERROR, ALERT_ARTICLE_DOWNLOAD_FAIL);
@@ -252,17 +297,17 @@ describe('ArticleContainer', () => {
       expect(testInstance.state.isActive).toBe(false);
       expect(testInstance.state.isLoading).toBe(false);
 
-      expect(spySetTrack).toHaveBeenCalledTimes(0);
+
     });
 
-    it('handleSetTrack() should show an error when getLocalFilePath does not return something', async () => {
+    it('handleSetTrack() should use the audiofile\'s url if getLocalFilePath does not return something', async () => {
       const props: Props = {
         ...defaultProps,
         article: articleMockWithAudioDefaultVoice,
         downloadedAudiofiles: [articleMockWithAudioDefaultVoice.audiofiles[0]]
       }
 
-      const expectedLocalAudiofilePath = `some/local/path/${articleMock.audiofiles[0].filename}`;
+      const expectedLocalAudiofilePath = `some/local/path/${articleMockWithAudioDefaultVoice.audiofiles[0].filename}`;
 
       wrapper.update(<ArticleContainerComponent {...props} />);
 
@@ -283,14 +328,24 @@ describe('ArticleContainer', () => {
       expect(spySetDownloadedAudiofile).toHaveBeenCalledTimes(0);
       expect(spyGetLocalFilePath).toHaveBeenCalledTimes(1);
       expect(spyGetLocalFilePath).toHaveReturnedWith('');
+      expect(spySetTrack).toHaveBeenCalledTimes(1);
+      expect(spySetTrack).toHaveBeenCalledWith(
+        {
+          album: articleMockWithAudioDefaultVoice.sourceName,
+          artist: articleMockWithAudioDefaultVoice.authorName,
+          artwork: articleMockWithAudioDefaultVoice.imageUrl,
+          contentType: 'audio/mpeg',
+          duration: articleMockWithAudioDefaultVoice.audiofiles[0].length,
+          id: articleMockWithAudioDefaultVoice.audiofiles[0].id,
+          key: articleMockWithAudioDefaultVoice.audiofiles[0].id,
+          pitchAlgorithm: TrackPlayer.PitchAlgorithm.Voice,
+          title: articleMockWithAudioDefaultVoice.title,
+          url: articleMockWithAudioDefaultVoice.audiofiles[0].url
+        },
+        articleMockWithAudioDefaultVoice.id
+      );
 
-      expect(Alert.alert).toHaveBeenCalledTimes(1);
-      expect(Alert.alert).toHaveBeenCalledWith(ALERT_TITLE_ERROR, ALERT_ARTICLE_PLAY_FAIL);
-
-      expect(testInstance.state.isActive).toBe(false);
-      expect(testInstance.state.isLoading).toBe(false);
-
-      expect(spySetTrack).toHaveBeenCalledTimes(0);
+      expect(Alert.alert).toHaveBeenCalledTimes(0);
     });
 
     // Note: we have temporary disabled "alertIfDifferentSelectedVoice" in the component

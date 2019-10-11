@@ -10,7 +10,6 @@ import { LOCAL_CACHE_AUDIOFILES_PATH } from '../constants/files';
 import {
   ALERT_ARTICLE_DOWNLOAD_FAIL,
   ALERT_ARTICLE_PLAY_DOWNLOAD_FAIL,
-  ALERT_ARTICLE_PLAY_FAIL,
   ALERT_ARTICLE_PLAY_INTERNET_REQUIRED,
   ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL,
   ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL,
@@ -390,47 +389,47 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
 
         const artist = article.authorName ? article.authorName : article.sourceName || '';
         const album = article.sourceName ? article.sourceName : '';
+        const artwork = article.imageUrl || require('../assets/images/logo-1024.png');
+        const localAudiofilePath = cache.getLocalFilePath(audiofile.filename, LOCAL_CACHE_AUDIOFILES_PATH);
 
-        let localAudiofilePath = cache.getLocalFilePath(audiofile.filename, LOCAL_CACHE_AUDIOFILES_PATH);
+        // If the audiofile is downloaded, use the local file path
+        // Else, just stream it, and download it after we have loaded the file into the player
+        // Resulting in faster plays
+        const audiofileUrl = (isDownloaded && localAudiofilePath) ? localAudiofilePath : audiofile.url;
 
+        this.props.setTrack(
+          {
+            artist,
+            album,
+            id: audiofile.id,
+            title: article.title || '',
+            url: audiofileUrl,
+            duration: audiofile.length,
+            artwork,
+            // contentType
+            contentType: 'audio/mpeg',
+            key: audiofile.id,
+            pitchAlgorithm: TrackPlayer.PitchAlgorithm.Voice
+          },
+          article.id
+        );
+
+        // Download the audiofile after we have added it to the player, resulting in faster plays
         if (!isDownloaded) {
           const downloadedLocalAudiofilePath = await this.downloadAudiofile(audiofile.url, audiofile.id, audiofile.filename);
 
-          // Save the audiofile in store, so we can track which article has downloaded articles
-          this.props.setDownloadedAudiofile(audiofile);
-
-          if (downloadedLocalAudiofilePath) {
-            localAudiofilePath = downloadedLocalAudiofilePath;
-          } else {
+          if (!downloadedLocalAudiofilePath) {
             return this.setState({ isLoading: false }, () => {
               Alert.alert(ALERT_TITLE_ERROR, ALERT_ARTICLE_DOWNLOAD_FAIL);
             });
           }
-        }
 
-        if (localAudiofilePath) {
-          const artwork = article.imageUrl || require('../assets/images/logo-1024.png');
-
-          return this.props.setTrack(
-            {
-              artist,
-              album,
-              id: audiofile.id,
-              title: article.title || '',
-              url: localAudiofilePath,
-              duration: audiofile.length,
-              artwork,
-              // contentType
-              contentType: 'audio/mpeg',
-              key: audiofile.id,
-              pitchAlgorithm: TrackPlayer.PitchAlgorithm.Voice
-            },
-            article.id
-          );
+          // Save the audiofile in store, so we can track which article has downloaded articles
+          return this.props.setDownloadedAudiofile(audiofile);
         }
 
         // IF we end up here, something above failed
-        this.setState({ isActive: false, isLoading: false }, () => Alert.alert(ALERT_TITLE_ERROR, ALERT_ARTICLE_PLAY_FAIL))
+        // this.setState({ isActive: false, isLoading: false }, () => Alert.alert(ALERT_TITLE_ERROR, ALERT_ARTICLE_PLAY_FAIL))
       } catch (err) {
         this.setState({ isActive: false, isLoading: false });
         return Alert.alert(ALERT_TITLE_ERROR, ALERT_ARTICLE_PLAY_DOWNLOAD_FAIL);
