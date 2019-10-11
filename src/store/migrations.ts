@@ -49,5 +49,12 @@ export const migrations = {
       ...state.subscriptions,
       isActiveUpgradeModal: false
     }
+  }),
+  10: (state: RootState) => ({
+    ...state,
+    playlist: {
+      ...state.playlist,
+      isLoadingDeleteItem: false
+    }
   })
 }

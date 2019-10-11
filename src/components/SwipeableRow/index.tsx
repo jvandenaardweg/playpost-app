@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, Animated, StyleSheet, View } from 'react-native';
+import { Alert, Animated, LayoutAnimation, StyleSheet, View } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 // tslint:disable-next-line: no-submodule-imports
 import Swipeable from 'react-native-gesture-handler/Swipeable';
@@ -18,9 +18,10 @@ interface Props {
   unArchiveArticle(): void;
   unFavoriteArticle(): void;
 }
-export class SwipeableRow extends React.PureComponent<Props> {
 
+export class SwipeableRow extends React.PureComponent<Props> {
   static contextType = NetworkContext;
+
   private swipeableRef: React.RefObject<Swipeable> = React.createRef();
 
   handleOnPressRightAction = (actionName: string) => {
@@ -32,6 +33,9 @@ export class SwipeableRow extends React.PureComponent<Props> {
       return Alert.alert(ALERT_TITLE_ERROR_NO_INTERNET, 'You need an active internet connection to do this.');
     }
 
+    // Animate the change in the list view
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+
     if (actionName === 'delete') {
       this.props.removeArticle();
     }
@@ -42,17 +46,16 @@ export class SwipeableRow extends React.PureComponent<Props> {
       } else {
         this.props.unFavoriteArticle();
       }
+      return this.close();
     }
 
     if (actionName === 'archive') {
       if (!isArchived) {
-        this.props.archiveArticle();
+        this.props.archiveArticle()
       } else {
         this.props.unArchiveArticle();
       }
     }
-
-    return this.close();
   }
 
   renderRightAction = (action: string, icon: string, iconColor: string | null) => {

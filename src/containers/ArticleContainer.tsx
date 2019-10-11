@@ -11,11 +11,6 @@ import {
   ALERT_ARTICLE_DOWNLOAD_FAIL,
   ALERT_ARTICLE_PLAY_DOWNLOAD_FAIL,
   ALERT_ARTICLE_PLAY_INTERNET_REQUIRED,
-  ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL,
-  ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL,
-  ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL,
-  ALERT_PLAYLIST_UNARCHIVE_ARTICLE_FAIL,
-  ALERT_PLAYLIST_UNFAVORITE_ARTICLE_FAIL,
   ALERT_PLAYLIST_UPDATE_FAIL,
   ALERT_TITLE_ERROR,
   ALERT_TITLE_ERROR_NO_INTERNET
@@ -42,12 +37,14 @@ import {
 } from '../reducers/player';
 import {
   archivePlaylistItem,
+  deleteArticleFromPlaylist,
   favoritePlaylistItem,
   getPlaylist,
-  removeArticleFromPlaylist,
   unArchivePlaylistItem,
   unFavoritePlaylistItem
 } from '../reducers/playlist';
+
+
 
 import { getUser } from '../reducers/user';
 import { selectDownloadedAudiofiles } from '../selectors/audiofiles';
@@ -466,20 +463,9 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         url: article.url
       });
 
-      await this.props.removeArticleFromPlaylist(article.id);
-
-      this.fetchPlaylist();
+      this.props.deleteArticleFromPlaylist(article.id);
     } catch (err) {
-      Alert.alert(ALERT_TITLE_ERROR, ALERT_PLAYLIST_REMOVE_ARTICLE_FAIL, [
-        {
-          text: 'Cancel',
-          style: 'cancel'
-        },
-        {
-          text: 'Try again',
-          onPress: () => this.handleRemoveArticle()
-        }
-      ]);
+      //
     }
   }
 
@@ -493,19 +479,9 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         url: article.url
       });
 
-      await this.props.archivePlaylistItem(article.id);
-      this.fetchPlaylist();
+      this.props.archivePlaylistItem(article.id);
     } catch (err) {
-      Alert.alert(ALERT_TITLE_ERROR, ALERT_PLAYLIST_ARCHIVE_ARTICLE_FAIL, [
-        {
-          text: 'Cancel',
-          style: 'cancel'
-        },
-        {
-          text: 'Try again',
-          onPress: () => this.handleArchiveArticle()
-        }
-      ]);
+      //
     }
   }
 
@@ -519,20 +495,9 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         url: article.url
       });
 
-      await this.props.favoritePlaylistItem(article.id);
-
-      this.fetchPlaylist();
+      this.props.favoritePlaylistItem(article.id);
     } catch (err) {
-      Alert.alert(ALERT_TITLE_ERROR, ALERT_PLAYLIST_FAVORITE_ARTICLE_FAIL, [
-        {
-          text: 'Cancel',
-          style: 'cancel'
-        },
-        {
-          text: 'Try again',
-          onPress: () => this.handleFavoriteArticle()
-        }
-      ]);
+      //
     }
   }
 
@@ -546,20 +511,9 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         url: article.url
       });
 
-      await this.props.unFavoritePlaylistItem(article.id);
-
-      this.fetchPlaylist();
+      this.props.unFavoritePlaylistItem(article.id);
     } catch (err) {
-      Alert.alert(ALERT_TITLE_ERROR, ALERT_PLAYLIST_UNFAVORITE_ARTICLE_FAIL, [
-        {
-          text: 'Cancel',
-          style: 'cancel'
-        },
-        {
-          text: 'Try again',
-          onPress: () => this.handleUnFavoriteArticle()
-        }
-      ]);
+      //
     }
   }
 
@@ -573,20 +527,9 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         url: article.url
       });
 
-      await this.props.unArchivePlaylistItem(article.id);
-
-      this.fetchPlaylist();
+      this.props.unArchivePlaylistItem(article.id);
     } catch (err) {
-      Alert.alert(ALERT_TITLE_ERROR, ALERT_PLAYLIST_UNARCHIVE_ARTICLE_FAIL, [
-        {
-          text: 'Cancel',
-          style: 'cancel'
-        },
-        {
-          text: 'Try again',
-          onPress: () => this.handleUnArchiveArticle()
-        }
-      ]);
+      //
     }
   }
 
@@ -715,7 +658,7 @@ interface DispatchProps {
   readonly setTrack: typeof setTrack;
   readonly createAudiofile: typeof createAudiofile;
   readonly getPlaylist: typeof getPlaylist;
-  readonly removeArticleFromPlaylist: typeof removeArticleFromPlaylist;
+  readonly deleteArticleFromPlaylist: typeof deleteArticleFromPlaylist;
   readonly archivePlaylistItem: typeof archivePlaylistItem;
   readonly favoritePlaylistItem: typeof favoritePlaylistItem;
   readonly unArchivePlaylistItem: typeof unArchivePlaylistItem;
@@ -751,7 +694,7 @@ const mapDispatchToProps: DispatchProps = {
   setTrack,
   getPlaylist,
   createAudiofile,
-  removeArticleFromPlaylist,
+  deleteArticleFromPlaylist,
   archivePlaylistItem,
   favoritePlaylistItem,
   unArchivePlaylistItem,

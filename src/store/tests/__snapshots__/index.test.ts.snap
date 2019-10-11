@@ -54,6 +54,7 @@ Object {
     "isLoading": false,
     "isLoadingArchiveItem": false,
     "isLoadingCreateItem": false,
+    "isLoadingDeleteItem": false,
     "isLoadingFavoriteItem": false,
     "isLoadingReOrderItem": false,
     "isLoadingUnArchiveItem": false,

@@ -24,8 +24,8 @@ export const TabBar: React.FC<BottomTabBarProps> = React.memo((
 
   return (
     <View style={styles.container}>
-      {!isConnected && <OfflineNotice />}
       <GlobalStatusIndicatorContainer />
+      {!isConnected && <OfflineNotice />}
       <SmallAudioPlayerContainer />
       <BottomTabBar {...props} style={{ backgroundColor: colors.tabBarBackgroundColor, borderTopColor: colors.tabBarBorderColor }} />
     </View>

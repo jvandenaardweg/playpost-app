@@ -23,7 +23,7 @@ const onPressOutHandler = jest.fn();
 const setTrackHandler = jest.fn();
 const getPlaylistHandler = jest.fn();
 const createAudiofileHandler = jest.fn();
-const removeArticleFromPlaylistHandler = jest.fn();
+const deleteArticleFromPlaylistHandler = jest.fn();
 const archivePlaylistItemHandler = jest.fn();
 const favoritePlaylistItemHandler = jest.fn();
 const unArchivePlaylistItemHandler = jest.fn();
@@ -59,7 +59,7 @@ const defaultProps: Props = {
   setTrack: setTrackHandler,
   getPlaylist: getPlaylistHandler,
   createAudiofile: createAudiofileHandler,
-  removeArticleFromPlaylist: removeArticleFromPlaylistHandler,
+  deleteArticleFromPlaylist: deleteArticleFromPlaylistHandler,
   archivePlaylistItem: archivePlaylistItemHandler,
   favoritePlaylistItem: favoritePlaylistItemHandler,
   unArchivePlaylistItem: unArchivePlaylistItemHandler,

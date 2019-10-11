@@ -1,5 +1,5 @@
-import { ARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE, CREATE_PLAYLIST_ITEM_FAIL_MESSAGE, FAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE, GET_PLAYLIST_FAIL_MESSAGE, REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE, REORDER_PLAYLIST_ITEM_FAIL_MESSAGE, UNARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE, UNFAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE } from '../../constants/messages';
-import { ARCHIVE_PLAYLIST_ITEM, ARCHIVE_PLAYLIST_ITEM_FAIL, ARCHIVE_PLAYLIST_ITEM_SUCCESS, CREATE_PLAYLIST_ITEM, CREATE_PLAYLIST_ITEM_FAIL, CREATE_PLAYLIST_ITEM_SUCCESS, FAVORITE_PLAYLIST_ITEM, FAVORITE_PLAYLIST_ITEM_FAIL, FAVORITE_PLAYLIST_ITEM_SUCCESS, GET_PLAYLIST, GET_PLAYLIST_FAIL, GET_PLAYLIST_SUCCESS, initialState, playlistReducer, REMOVE_PLAYLIST_ITEM, REMOVE_PLAYLIST_ITEM_FAIL, REMOVE_PLAYLIST_ITEM_SUCCESS, REORDER_PLAYLIST_ITEM, REORDER_PLAYLIST_ITEM_FAIL, REORDER_PLAYLIST_ITEM_SUCCESS, RESET_ERROR_PLAYLIST, RESET_STATE, UNARCHIVE_PLAYLIST_ITEM, UNARCHIVE_PLAYLIST_ITEM_FAIL, UNARCHIVE_PLAYLIST_ITEM_SUCCESS, UNFAVORITE_PLAYLIST_ITEM, UNFAVORITE_PLAYLIST_ITEM_FAIL, UNFAVORITE_PLAYLIST_ITEM_SUCCESS } from '../playlist';
+import { CREATE_PLAYLIST_ITEM_FAIL_MESSAGE, GET_PLAYLIST_FAIL_MESSAGE, REORDER_PLAYLIST_ITEM_FAIL_MESSAGE } from '../../constants/messages';
+import { CREATE_PLAYLIST_ITEM, CREATE_PLAYLIST_ITEM_FAIL, CREATE_PLAYLIST_ITEM_SUCCESS, GET_PLAYLIST, GET_PLAYLIST_FAIL, GET_PLAYLIST_SUCCESS, initialState, playlistReducer, REORDER_PLAYLIST_ITEM, REORDER_PLAYLIST_ITEM_FAIL, REORDER_PLAYLIST_ITEM_SUCCESS, RESET_ERROR_PLAYLIST, RESET_STATE, SET_PLAYLIST_IS_LOADING_ARCHIVE_ITEM, SET_PLAYLIST_IS_LOADING_CREATE_ITEM, SET_PLAYLIST_IS_LOADING_DELETE_ITEM, SET_PLAYLIST_IS_LOADING_UNARCHIVE_ITEM } from '../playlist';
 
 import playlistMock from '../../../tests/__mocks__/playlist';
 
@@ -136,216 +136,6 @@ describe('playlist reducer', () => {
     ).toEqual(expectedState);
   });
 
-  it('should handle FAVORITE_PLAYLIST_ITEM', () => {
-    const expectedState = {
-      ...initialState,
-      isLoadingFavoriteItem: true,
-      error: ''
-    };
-
-    expect(
-      playlistReducer(initialState, {
-        type: FAVORITE_PLAYLIST_ITEM
-      })
-    ).toEqual(expectedState);
-  });
-
-  it('should handle FAVORITE_PLAYLIST_ITEM_SUCCESS', () => {
-    const expectedState = {
-      ...initialState,
-      isLoadingFavoriteItem: false,
-      error: ''
-    };
-
-    expect(
-      playlistReducer(initialState, {
-        type: FAVORITE_PLAYLIST_ITEM_SUCCESS
-      })
-    ).toEqual(expectedState);
-  });
-
-  it('should handle FAVORITE_PLAYLIST_ITEM_FAIL', () => {
-    const expectedState = {
-      ...initialState,
-      isLoadingFavoriteItem: false,
-      error: FAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE
-    };
-
-    expect(
-      playlistReducer(initialState, {
-        type: FAVORITE_PLAYLIST_ITEM_FAIL
-      })
-    ).toEqual(expectedState);
-  });
-
-  it('should handle UNFAVORITE_PLAYLIST_ITEM', () => {
-    const expectedState = {
-      ...initialState,
-      isLoadingUnFavoriteItem: true,
-      error: ''
-    };
-
-    expect(
-      playlistReducer(initialState, {
-        type: UNFAVORITE_PLAYLIST_ITEM
-      })
-    ).toEqual(expectedState);
-  });
-
-  it('should handle UNFAVORITE_PLAYLIST_ITEM_SUCCESS', () => {
-    const expectedState = {
-      ...initialState,
-      isLoadingUnFavoriteItem: false,
-      error: ''
-    };
-
-    expect(
-      playlistReducer(initialState, {
-        type: UNFAVORITE_PLAYLIST_ITEM_SUCCESS
-      })
-    ).toEqual(expectedState);
-  });
-
-  it('should handle UNFAVORITE_PLAYLIST_ITEM_FAIL', () => {
-    const expectedState = {
-      ...initialState,
-      isLoadingUnFavoriteItem: false,
-      error: UNFAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE
-    };
-
-    expect(
-      playlistReducer(initialState, {
-        type: UNFAVORITE_PLAYLIST_ITEM_FAIL
-      })
-    ).toEqual(expectedState);
-  });
-
-  it('should handle ARCHIVE_PLAYLIST_ITEM', () => {
-    const expectedState = {
-      ...initialState,
-      isLoadingArchiveItem: true,
-      error: ''
-    };
-
-    expect(
-      playlistReducer(initialState, {
-        type: ARCHIVE_PLAYLIST_ITEM
-      })
-    ).toEqual(expectedState);
-  });
-
-  it('should handle ARCHIVE_PLAYLIST_ITEM_SUCCESS', () => {
-    const expectedState = {
-      ...initialState,
-      isLoadingArchiveItem: false,
-      error: ''
-    };
-
-    expect(
-      playlistReducer(initialState, {
-        type: ARCHIVE_PLAYLIST_ITEM_SUCCESS
-      })
-    ).toEqual(expectedState);
-  });
-
-  it('should handle ARCHIVE_PLAYLIST_ITEM_FAIL', () => {
-    const expectedState = {
-      ...initialState,
-      isLoadingArchiveItem: false,
-      error: ARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE
-    };
-
-    expect(
-      playlistReducer(initialState, {
-        type: ARCHIVE_PLAYLIST_ITEM_FAIL
-      })
-    ).toEqual(expectedState);
-  });
-
-  it('should handle UNARCHIVE_PLAYLIST_ITEM', () => {
-    const expectedState = {
-      ...initialState,
-      isLoadingUnArchiveItem: true,
-      error: ''
-    };
-
-    expect(
-      playlistReducer(initialState, {
-        type: UNARCHIVE_PLAYLIST_ITEM
-      })
-    ).toEqual(expectedState);
-  });
-
-  it('should handle UNARCHIVE_PLAYLIST_ITEM_SUCCESS', () => {
-    const expectedState = {
-      ...initialState,
-      isLoadingUnArchiveItem: false,
-      error: ''
-    };
-
-    expect(
-      playlistReducer(initialState, {
-        type: UNARCHIVE_PLAYLIST_ITEM_SUCCESS
-      })
-    ).toEqual(expectedState);
-  });
-
-  it('should handle UNARCHIVE_PLAYLIST_ITEM_FAIL', () => {
-    const expectedState = {
-      ...initialState,
-      isLoadingUnArchiveItem: false,
-      error: UNARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE
-    };
-
-    expect(
-      playlistReducer(initialState, {
-        type: UNARCHIVE_PLAYLIST_ITEM_FAIL
-      })
-    ).toEqual(expectedState);
-  });
-
-  it('should handle REMOVE_PLAYLIST_ITEM', () => {
-    const expectedState = {
-      ...initialState,
-      isLoading: true,
-      error: ''
-    };
-
-    expect(
-      playlistReducer(initialState, {
-        type: REMOVE_PLAYLIST_ITEM
-      })
-    ).toEqual(expectedState);
-  });
-
-  it('should handle REMOVE_PLAYLIST_ITEM_SUCCESS', () => {
-    const expectedState = {
-      ...initialState,
-      isLoading: false,
-      error: ''
-    };
-
-    expect(
-      playlistReducer(initialState, {
-        type: REMOVE_PLAYLIST_ITEM_SUCCESS
-      })
-    ).toEqual(expectedState);
-  });
-
-  it('should handle REMOVE_PLAYLIST_ITEM_FAIL', () => {
-    const expectedState = {
-      ...initialState,
-      isLoading: false,
-      error: REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE
-    };
-
-    expect(
-      playlistReducer(initialState, {
-        type: REMOVE_PLAYLIST_ITEM_FAIL
-      })
-    ).toEqual(expectedState);
-  });
-
   it('should handle REORDER_PLAYLIST_ITEM', () => {
     const expectedState = {
       ...initialState,
@@ -387,4 +177,245 @@ describe('playlist reducer', () => {
       })
     ).toEqual(expectedState);
   });
+
+  it('should handle SET_PLAYLIST_IS_LOADING_CREATE_ITEM with isLoading = true', () => {
+    const expectedState = {
+      ...initialState,
+      isLoadingCreateItem: true
+    };
+
+    const isLoading = true;
+
+    expect(
+      playlistReducer(initialState, {
+        type: SET_PLAYLIST_IS_LOADING_CREATE_ITEM,
+        isLoading
+      })
+    ).toEqual(expectedState);
+  });
+
+  it('should handle SET_PLAYLIST_IS_LOADING_CREATE_ITEM with isLoading = false', () => {
+    const expectedState = {
+      ...initialState,
+      isLoadingCreateItem: false
+    };
+
+    const isLoading = false;
+
+    expect(
+      playlistReducer(initialState, {
+        type: SET_PLAYLIST_IS_LOADING_CREATE_ITEM,
+        isLoading
+      })
+    ).toEqual(expectedState);
+  });
+
+  it('should handle SET_PLAYLIST_IS_LOADING_ARCHIVE_ITEM with isLoading = true and an articleId', () => {
+    const isLoading = true;
+    const articleId = playlistMock[0].article.id;
+
+    const mockedInitialState = {
+      ...initialState,
+      items: playlistMock
+    }
+
+    const expectedPlaylistMock = playlistMock.map(playlistItem => {
+      if (playlistItem.article.id === articleId) {
+        return {
+          ...playlistItem,
+          archivedAt: new Date().toISOString()
+        }
+      }
+
+      return playlistItem
+    })
+
+    const expectedState = {
+      ...initialState,
+      isLoadingArchiveItem: true,
+      items: expectedPlaylistMock
+    };
+
+    expect(
+      playlistReducer(mockedInitialState, {
+        type: SET_PLAYLIST_IS_LOADING_ARCHIVE_ITEM,
+        isLoading,
+        articleId
+      })
+    ).toMatchObject(expectedState);
+  });
+
+  it('should handle SET_PLAYLIST_IS_LOADING_ARCHIVE_ITEM with isLoading = true without an articleId', () => {
+    const isLoading = true;
+
+    const mockedInitialState = {
+      ...initialState,
+      items: playlistMock
+    }
+
+    const expectedState = {
+      ...initialState,
+      isLoadingArchiveItem: true,
+      items: playlistMock
+    };
+
+    expect(
+      playlistReducer(mockedInitialState, {
+        type: SET_PLAYLIST_IS_LOADING_ARCHIVE_ITEM,
+        isLoading
+      })
+    ).toMatchObject(expectedState);
+  });
+
+  it('should handle SET_PLAYLIST_IS_LOADING_UNARCHIVE_ITEM with isLoading = true and an articleId', () => {
+    const isLoading = true;
+    const articleId = playlistMock[0].article.id;
+
+    const mockedInitialState = {
+      ...initialState,
+      items: playlistMock
+    }
+
+    const expectedPlaylistMock = playlistMock.map(playlistItem => {
+      if (playlistItem.article.id === articleId) {
+        return {
+          ...playlistItem,
+          archivedAt: null
+        }
+      }
+
+      return playlistItem
+    })
+
+    const expectedState = {
+      ...initialState,
+      isLoadingUnArchiveItem: true,
+      items: expectedPlaylistMock
+    };
+
+    expect(
+      playlistReducer(mockedInitialState, {
+        type: SET_PLAYLIST_IS_LOADING_UNARCHIVE_ITEM,
+        isLoading,
+        articleId
+      })
+    ).toMatchObject(expectedState);
+  });
+
+
+  it('should handle SET_PLAYLIST_IS_LOADING_UNARCHIVE_ITEM with isLoading = true without an articleId', () => {
+    const isLoading = true;
+
+    const mockedInitialState = {
+      ...initialState,
+      items: playlistMock
+    }
+
+    const expectedState = {
+      ...initialState,
+      isLoadingUnArchiveItem: true,
+      items: playlistMock
+    };
+
+    expect(
+      playlistReducer(mockedInitialState, {
+        type: SET_PLAYLIST_IS_LOADING_UNARCHIVE_ITEM,
+        isLoading
+      })
+    ).toMatchObject(expectedState);
+  });
+
+  it('should handle SET_PLAYLIST_IS_LOADING_DELETE_ITEM with isLoading = true without an articleId', () => {
+    const isLoading = true;
+
+    const mockedInitialState = {
+      ...initialState,
+      items: playlistMock
+    }
+
+    const expectedState = {
+      ...initialState,
+      isLoadingDeleteItem: true,
+      items: playlistMock
+    };
+
+    expect(
+      playlistReducer(mockedInitialState, {
+        type: SET_PLAYLIST_IS_LOADING_DELETE_ITEM,
+        isLoading
+      })
+    ).toMatchObject(expectedState);
+  });
+
+  it('should handle SET_PLAYLIST_IS_LOADING_DELETE_ITEM with isLoading = false without an articleId', () => {
+    const isLoading = false;
+
+    const mockedInitialState = {
+      ...initialState,
+      items: playlistMock
+    }
+
+    const expectedState = {
+      ...initialState,
+      isLoadingDeleteItem: false,
+      items: playlistMock
+    };
+
+    expect(
+      playlistReducer(mockedInitialState, {
+        type: SET_PLAYLIST_IS_LOADING_DELETE_ITEM,
+        isLoading
+      })
+    ).toMatchObject(expectedState);
+  });
+
+  it('should handle SET_PLAYLIST_IS_LOADING_DELETE_ITEM with isLoading = true with an articleId', () => {
+    const isLoading = true;
+    const articleId = playlistMock[0].article.id;
+
+    const mockedInitialState = {
+      ...initialState,
+      items: playlistMock
+    }
+
+    const expectedState = {
+      ...initialState,
+      isLoadingDeleteItem: true,
+      items: playlistMock.filter(playlistItem => playlistItem.article.id !== articleId)
+    };
+
+    expect(
+      playlistReducer(mockedInitialState, {
+        type: SET_PLAYLIST_IS_LOADING_DELETE_ITEM,
+        isLoading,
+        articleId
+      })
+    ).toMatchObject(expectedState);
+  });
+
+  it('should handle SET_PLAYLIST_IS_LOADING_DELETE_ITEM with isLoading = false with an articleId', () => {
+    const isLoading = false;
+    const articleId = playlistMock[0].article.id;
+
+    const mockedInitialState = {
+      ...initialState,
+      items: playlistMock
+    }
+
+    const expectedState = {
+      ...initialState,
+      isLoadingDeleteItem: false,
+      items: playlistMock
+    };
+
+    expect(
+      playlistReducer(mockedInitialState, {
+        type: SET_PLAYLIST_IS_LOADING_DELETE_ITEM,
+        isLoading,
+        articleId
+      })
+    ).toMatchObject(expectedState);
+  });
+
+
 });
