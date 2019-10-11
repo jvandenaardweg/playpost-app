@@ -58,7 +58,6 @@ export default class App extends React.PureComponent<State> {
     DeepLinking.addScheme('playpost://');
 
     DeepLinking.addRoute('/playlist/add/:articleId/:otherParams', ({ path, articleId, otherParams }: { path: string; articleId: string, otherParams: string }) => {
-      // Example: playpost://playlist/add/0cdb6a24-db69-4d0b-8efc-281d6e7c1306
       const isLoggedIn = selectIsLoggedIn(store.getState())
 
       if (!isLoggedIn) {
@@ -96,40 +95,28 @@ export default class App extends React.PureComponent<State> {
       const titleParam = otherParams ? unescape(otherParams.replace('?title=', '').trim()) : null;
       const articleTitle = titleParam ? titleParam.substring(0, 100) : null;
 
-      NavigationService.navigate('Playlist', { articleId });
+      // Important: do not navigate, as this triggers 2 alerts
+      // NavigationService.navigate('Playlist', { articleId });
 
       return Alert.alert(
         'Add new article',
         `Are you sure you want to add this article to your playlist?\n\n${articleTitle}`,
         [
           {
-            text: 'Cancel',
+            text: 'Add article',
+            onPress: () => store.dispatch(addArticleToPlaylistById(articleId))
           },
           {
-            text: 'Yes, add article',
-            onPress: () => store.dispatch(addArticleToPlaylistById(articleId))
+            text: 'Cancel',
+            style: 'cancel',
           }
         ],
         { cancelable: false }
       );
     });
 
-    DeepLinking.addRoute('/login/reset-password/:resetPasswordToken', ({ path, resetPasswordToken }: { path: string; resetPasswordToken: string }) => {
-      // playpost://update-password/123ABC
-      NavigationService.navigate('login/reset-password', { resetPasswordToken });
-    });
-
-    DeepLinking.addRoute(
-      '/playpost.app/login/reset-password/:resetPasswordToken',
-      ({ path, resetPasswordToken }: { path: string; resetPasswordToken: string }) => {
-        // playpost://update-password/123ABC
-        NavigationService.navigate('login/reset-password', { resetPasswordToken });
-      }
-    );
-
     try {
       const url = await Linking.getInitialURL();
-      console.log('getInitialURL', url)
       if (url) {
         await Linking.openURL(url);
       }
@@ -243,11 +230,10 @@ export default class App extends React.PureComponent<State> {
     })
   }
 
-  private handleUrl = ({ url }: { url: string }) => {
-    Linking.canOpenURL(url).then(supported => {
-      if (supported) {
-        DeepLinking.evaluateUrl(url);
-      }
-    });
+  private handleUrl = async ({ url }: { url: string }): Promise<any> => {
+    const isSupported = await Linking.canOpenURL(url)
+    if (isSupported) {
+      return DeepLinking.evaluateUrl(url);
+    }
   }
 }
