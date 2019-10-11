@@ -33,6 +33,8 @@ export class SwipeableRow extends React.PureComponent<Props> {
       return Alert.alert(ALERT_TITLE_ERROR_NO_INTERNET, 'You need an active internet connection to do this.');
     }
 
+    this.close();
+
     // Animate the change in the list view
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
 
@@ -46,7 +48,6 @@ export class SwipeableRow extends React.PureComponent<Props> {
       } else {
         this.props.unFavoriteArticle();
       }
-      return this.close();
     }
 
     if (actionName === 'archive') {

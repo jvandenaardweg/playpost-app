@@ -1,7 +1,7 @@
 import analytics from '@react-native-firebase/analytics';
 import isUUID from 'is-uuid';
 import React from 'react';
-import { Alert, Linking } from 'react-native';
+import { Alert, Linking, Platform, UIManager } from 'react-native';
 import DeepLinking from 'react-native-deep-linking';
 import { ThemeProvider } from 'react-native-elements';
 import { useScreens } from 'react-native-screens';
@@ -26,6 +26,14 @@ import { AppContainer } from './navigation/AppNavigator';
 import NavigationService from './navigation/NavigationService';
 import { addArticleToPlaylistById } from './reducers/playlist';
 import { selectIsLoggedIn } from './selectors/auth';
+
+// https://facebook.github.io/react-native/docs/layoutanimation
+// Note that in order to get this to work on Android you need to set the following flags via UIManager:
+if (Platform.OS === 'android') {
+  if (UIManager.setLayoutAnimationEnabledExperimental) {
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+  }
+}
 
 interface State {
   errorShown: boolean;
