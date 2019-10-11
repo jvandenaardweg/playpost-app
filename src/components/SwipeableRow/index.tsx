@@ -104,7 +104,7 @@ export class SwipeableRow extends React.PureComponent<Props> {
 
 const styles = StyleSheet.create({
   actionText: {
-    color: 'white',
+    color: colors.white,
     backgroundColor: 'transparent',
     padding: 10,
   },

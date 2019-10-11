@@ -1414,7 +1414,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "white",
+            "backgroundColor": "#ffffff",
             "borderTopColor": "#e5e5e5",
             "borderTopWidth": 1,
             "padding": 20,

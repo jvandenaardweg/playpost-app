@@ -26,7 +26,7 @@ export default StyleSheet.create({
   },
   featuresContainer: {
     padding: spacing.large,
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
     borderTopWidth: 1,
     borderTopColor: colors.grayLight
   },

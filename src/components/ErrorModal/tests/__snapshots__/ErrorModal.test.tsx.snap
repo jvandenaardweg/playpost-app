@@ -4,7 +4,7 @@ exports[`ErrorModal rendering should render correctly 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "white",
+      "backgroundColor": "#ffffff",
       "borderRadius": 10,
       "padding": 12,
     }

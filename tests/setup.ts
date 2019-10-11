@@ -173,6 +173,14 @@ jest.mock('@react-native-firebase/analytics', () => {
   }
 });
 
+jest.mock('@react-native-firebase/crashlytics', () => {
+  return () => {
+    return {
+      recordError: jest.fn()
+    }
+  }
+});
+
 
 // Below gives TS errors... So we uncomment it for now
 // jest.mock('react-navigation', ({
