@@ -26,6 +26,9 @@ export const reactNativeElementsTheme: Theme = {
     }
   },
   ListItem: {
+    containerStyle: {
+      backgroundColor: colors.listItemBackground
+    },
     titleStyle: {
       ...textPresets['body'],
       color: colors.black

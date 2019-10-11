@@ -18,6 +18,19 @@ const orange = '#ffc107';
 const orangeDark = '#ffc107';
 const green = '#03A87C';
 
+/*
+dark theme:
+
+white: #ffffff
+gray: #979797
+
+app background: #111111
+article background: #111111
+
+nav background: #212121
+
+*/
+
 export default {
   tintColor,
   tintColorLight,
@@ -37,6 +50,7 @@ export default {
   orange,
   orangeDark,
   green,
+
   appBackground,
 
   // Navigation
@@ -48,18 +62,18 @@ export default {
   navigationBackgroundColor: white,
   navigationBorderColor: grayLight,
 
+  // Article
   articleBackground: white,
-
   favorite: redLight,
-
   titleDefault: black,
   paragraphDefault: grayDarkest,
   paragraphGrayed: grayDarkest,
   borderDefault: grayLight,
   textLead: grayDarker,
-
   controlButtonDefault: white,
   controlButtonActive: tintColor,
+
+  listItemBackground: white,
 
   errorBackground: red,
   errorText: white,
