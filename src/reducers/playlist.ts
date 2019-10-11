@@ -1,6 +1,7 @@
 import { ARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE, CREATE_PLAYLIST_ITEM_FAIL_MESSAGE, FAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE, GENERIC_NETWORK_ERROR, GET_PLAYLIST_FAIL_MESSAGE, REMOVE_PLAYLIST_ITEM_FAIL_MESSAGE, REORDER_PLAYLIST_ITEM_FAIL_MESSAGE, UNARCHIVE_PLAYLIST_ITEM_FAIL_MESSAGE, UNFAVORITE_PLAYLIST_ITEM_FAIL_MESSAGE } from '../constants/messages';
 
 export const SET_PLAYLIST_ERROR = 'playlist/SET_PLAYLIST_ERROR';
+export const SET_PLAYLIST_IS_LOADING_CREATE_ITEM = 'playlist/SET_PLAYLIST_IS_LOADING_CREATE_ITEM';
 
 export const GET_PLAYLIST = 'playlist/GET_PLAYLIST';
 export const GET_PLAYLIST_SUCCESS = 'playlist/GET_PLAYLIST_SUCCESS';
@@ -118,6 +119,14 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
     case RESET_ERROR_PLAYLIST:
       return {
         ...state,
+        error: ''
+      };
+
+
+    case SET_PLAYLIST_IS_LOADING_CREATE_ITEM:
+      return {
+        ...state,
+        isLoadingCreateItem: action.isLoading,
         error: ''
       };
 
@@ -418,6 +427,11 @@ export const addArticleToPlaylistById = (articleId: string) => ({
   type: CREATE_PLAYLIST_ITEM_BY_ID,
   articleId
 });
+
+export const setPlaylistIsLoadingCreateItem = (isLoading: boolean) => ({
+  type: SET_PLAYLIST_IS_LOADING_CREATE_ITEM,
+  isLoading
+})
 
 export const removeArticleFromPlaylist = (articleId: string) => ({
   type: REMOVE_PLAYLIST_ITEM,
