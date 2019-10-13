@@ -27,7 +27,8 @@
           <action android:name="android.intent.action.VIEW" />
           <category android:name="android.intent.category.DEFAULT" />
           <category android:name="android.intent.category.BROWSABLE" />
-          <data android:scheme="playpost" android:host="playlist" />
+          <data android:scheme="playpost" android:host="playlist/add" />
+          <data android:scheme="https" android:host="playpost.app" android:pathPrefix="/playlist/add"  />
         </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
