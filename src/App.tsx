@@ -65,7 +65,8 @@ export default class App extends React.PureComponent<State> {
     try {
       const url = await Linking.getInitialURL();
       if (url) {
-        await Linking.openURL(url);
+        await this.handleUrl({ url });
+        // await Linking.openURL(url); // Do not use openURL, but handle using the DeepLinking package
       }
     } catch (err) {
       const errorMessage = (err && err.message) ? err.message : 'An uknown error happened while opening a URL.';
@@ -188,10 +189,10 @@ export default class App extends React.PureComponent<State> {
   }
 
   private handleUrl = async ({ url }: { url: string }): Promise<any> => {
-    // const isSupported = await Linking.canOpenURL(url)
-    // if (isSupported) {
+    const isSupported = await Linking.canOpenURL(url)
+    if (isSupported) {
       return DeepLinking.evaluateUrl(url);
-    // }
+    }
   }
 
   private handleArticleAddDeeplink = (articleId: string, otherParams: string) => {
