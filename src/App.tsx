@@ -188,10 +188,10 @@ export default class App extends React.PureComponent<State> {
   }
 
   private handleUrl = async ({ url }: { url: string }): Promise<any> => {
-    const isSupported = await Linking.canOpenURL(url)
-    if (isSupported) {
+    // const isSupported = await Linking.canOpenURL(url)
+    // if (isSupported) {
       return DeepLinking.evaluateUrl(url);
-    }
+    // }
   }
 
   private handleArticleAddDeeplink = (articleId: string, otherParams: string) => {
