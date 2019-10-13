@@ -61,68 +61,7 @@ export default class App extends React.PureComponent<State> {
       await analytics().setAnalyticsCollectionEnabled(true)
     }
 
-    Linking.addEventListener('url', this.handleUrl);
-
-    DeepLinking.addScheme('playpost://');
-
-    DeepLinking.addRoute('/playlist/add/:articleId/:otherParams', ({ path, articleId, otherParams }: { path: string; articleId: string, otherParams: string }) => {
-      const isLoggedIn = selectIsLoggedIn(store.getState())
-
-      if (!isLoggedIn) {
-        return Alert.alert(
-          'Oops!',
-          `You need to be logged in to add this article to your playlist. Try again after logging in.`,
-          [
-            {
-              text: 'Ok',
-              style: 'cancel'
-            }
-          ],
-          { cancelable: false }
-        );
-      }
-
-      // Important: We should not trust any data we get in here, as any website can use our scheme to directly target screens in our app
-
-      // Check if received articleId is a valid UUID
-      if (!articleId || !isUUID.anyNonNil(articleId)) {
-        return Alert.alert(
-          'Add new article',
-          `The article you want to add to your playlist does not seem to be valid.`,
-          [
-            {
-              text: 'Ok',
-              style: 'cancel'
-            }
-          ],
-          { cancelable: false }
-        );
-      }
-
-      // Get the title out of the query parameter, trim it and limit it to max 100 characters to prevent abuse
-      const titleParam = otherParams ? unescape(otherParams.replace('?title=', '').trim()) : null;
-      const articleTitle = titleParam ? titleParam.substring(0, 100) : null;
-
-      // Important: do not navigate, as this triggers 2 alerts
-      // NavigationService.navigate('Playlist', { articleId });
-
-      return Alert.alert(
-        'Add new article',
-        `Are you sure you want to add this article to your playlist?\n\n${articleTitle}`,
-        [
-          {
-            text: 'Add article',
-            onPress: () => store.dispatch(addArticleToPlaylistById(articleId))
-          },
-          {
-            text: 'Cancel',
-            style: 'cancel',
-          }
-        ],
-        { cancelable: false }
-      );
-    });
-
+    // Handle deeplinking only on app start
     try {
       const url = await Linking.getInitialURL();
       if (url) {
@@ -132,6 +71,16 @@ export default class App extends React.PureComponent<State> {
       const errorMessage = (err && err.message) ? err.message : 'An uknown error happened while opening a URL.';
       Alert.alert(ALERT_TITLE_ERROR, errorMessage);
     }
+
+    // Handles deeplink when app is in memory
+    Linking.addEventListener('url', this.handleUrl);
+
+    DeepLinking.addScheme('playpost://');
+    DeepLinking.addScheme('https://');
+
+    DeepLinking.addRoute('/playlist/add/:articleId/:otherParams', ({ path, articleId, otherParams }: { path: string; articleId: string, otherParams: string }) => {
+      this.handleArticleAddDeeplink(articleId, otherParams);
+    });
   }
 
   componentWillUnmount(): void {
@@ -243,5 +192,63 @@ export default class App extends React.PureComponent<State> {
     if (isSupported) {
       return DeepLinking.evaluateUrl(url);
     }
+  }
+
+  private handleArticleAddDeeplink = (articleId: string, otherParams: string) => {
+    const isLoggedIn = selectIsLoggedIn(store.getState())
+
+    if (!isLoggedIn) {
+      return Alert.alert(
+        'Oops!',
+        `You need to be logged in to add this article to your playlist. Try again after logging in.`,
+        [
+          {
+            text: 'Ok',
+            style: 'cancel'
+          }
+        ],
+        { cancelable: false }
+      );
+    }
+
+    // Important: We should not trust any data we get in here, as any website can use our scheme to directly target screens in our app
+
+    // Check if received articleId is a valid UUID
+    if (!articleId || !isUUID.anyNonNil(articleId)) {
+      return Alert.alert(
+        'Add new article',
+        `The article you want to add to your playlist does not seem to be valid.`,
+        [
+          {
+            text: 'Ok',
+            style: 'cancel'
+          }
+        ],
+        { cancelable: false }
+      );
+    }
+
+    // Get the title out of the query parameter, trim it and limit it to max 100 characters to prevent abuse
+    const titleParam = otherParams ? unescape(otherParams.replace('?title=', '').trim()) : null;
+    const articleTitle = titleParam ? titleParam.substring(0, 100) : null;
+
+    // Important: do not navigate, as this triggers 2 alerts
+    // NavigationService.navigate('Playlist', { articleId });
+
+    return Alert.alert(
+      'Add new article',
+      `Are you sure you want to add this article to your playlist?\n\n${articleTitle}`,
+      [
+        {
+          text: 'Add article',
+          onPress: () => store.dispatch(addArticleToPlaylistById(articleId))
+        },
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        }
+      ],
+      { cancelable: false }
+    );
   }
 }
