@@ -9,7 +9,7 @@ import * as RNIap from 'react-native-iap';
  *
  * @param purchase
  */
-export const finishSubscriptionTransaction = async (purchase: RNIap.ProductPurchase): Promise<void | string | RNIap.PurchaseResult> => {
+export const finishSubscriptionTransaction = async (purchase: RNIap.SubscriptionPurchase): Promise<void | string | RNIap.PurchaseResult> => {
   if (Platform.OS === 'android') {
     if (!purchase.purchaseToken) {
       throw new Error('Purchase Token is not found on purchase.')
@@ -46,7 +46,11 @@ export const finishSubscriptionTransaction = async (purchase: RNIap.ProductPurch
   return RNIap.finishTransactionIOS(purchase.transactionId);
 }
 
-export const requestSubscription = async (newProductId: string, activeInAppSubscriptionProductId: Api.InAppSubscription['productId'], activeInAppSubscriptionService: Api.InAppSubscription['service']) => {
+export const requestSubscription = async (
+  newProductId: string,
+  activeInAppSubscriptionProductId: Api.InAppSubscription['productId'],
+  activeInAppSubscriptionService: Api.InAppSubscription['service']
+): Promise<void> => {
   // Correctly handle upgrades from lower subscriptions on Android
   // If the active subscription is an android subscription, we want to have some control over how the upgrade/downgrade happens...
   if (Platform.OS === 'android' && activeInAppSubscriptionProductId && activeInAppSubscriptionService === 'google') {
@@ -64,9 +68,9 @@ export const requestSubscription = async (newProductId: string, activeInAppSubsc
     // The default behavior.
     // When downgrading, the billing date is changed according to the remaining amount of the last time the user paid.
     // When upgrading, the user is charged immediately and, again, the new billing date is calculated according to the amount that was last paid.
-    return RNIap.requestSubscription(newProductId, activeInAppSubscriptionProductId, prorationModes['IMMEDIATE_WITH_TIME_PRORATION'])
+    return RNIap.requestSubscription(newProductId, false, activeInAppSubscriptionProductId, prorationModes['IMMEDIATE_WITH_TIME_PRORATION'])
 
   }
 
-  return RNIap.requestSubscription(newProductId)
+  return RNIap.requestSubscription(newProductId, false)
 }

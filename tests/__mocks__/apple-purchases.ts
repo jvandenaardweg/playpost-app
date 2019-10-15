@@ -1,6 +1,6 @@
 import * as RNIap from 'react-native-iap';
 
-const purchases: RNIap.ProductPurchase[] = [
+const purchases: RNIap.SubscriptionPurchase[] = [
   {
     originalTransactionDateIOS: '1561801324000',
     productId: 'com.aardwegmedia.playpost.premium',

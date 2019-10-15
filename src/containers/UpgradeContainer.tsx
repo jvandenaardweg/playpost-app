@@ -265,10 +265,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     this.props.setIsLoadingUpgrade(true);
 
     try {
-      const upgradeResult = await this.requestSubscription(productId, activeInAppSubscriptionProductId, activeInAppSubscriptionService);
-
-      // The result of requestSubscription is handled in SubscriptionHandlerContainer
-      return upgradeResult;
+      await this.requestSubscription(productId, activeInAppSubscriptionProductId, activeInAppSubscriptionService);
     } catch (err) {
       return this.props.setIsLoadingUpgrade(false);
 
@@ -349,11 +346,11 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     }
   }
 
-  finishSubscriptionTransaction = async (purchase: RNIap.ProductPurchase): Promise<void | string | RNIap.PurchaseResult> => {
+  finishSubscriptionTransaction = async (purchase: RNIap.SubscriptionPurchase): Promise<void | string | RNIap.PurchaseResult> => {
     return inAppPurchaseHelper.finishSubscriptionTransaction(purchase)
   }
 
-  requestSubscription = (productId: string, activeInAppSubscriptionProductId: Api.InAppSubscription['productId'], activeInAppSubscriptionService: Api.InAppSubscription['service']): Promise<string> => {
+  requestSubscription = (productId: string, activeInAppSubscriptionProductId: Api.InAppSubscription['productId'], activeInAppSubscriptionService: Api.InAppSubscription['service']): Promise<void> => {
     return inAppPurchaseHelper.requestSubscription(productId, activeInAppSubscriptionProductId, activeInAppSubscriptionService);
   }
 
@@ -411,7 +408,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     });
   }
 
-  getLatestPurchase = (purchases: RNIap.ProductPurchase[]): RNIap.ProductPurchase => {
+  getLatestPurchase = (purchases: RNIap.SubscriptionPurchase[]): RNIap.SubscriptionPurchase => {
     if (!purchases.length) {
       throw new Error(ALERT_SUBSCRIPTION_RESTORE_PURCHASE_NOT_FOUND);
     }

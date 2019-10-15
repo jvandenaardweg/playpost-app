@@ -94,7 +94,7 @@ describe('in-app-purchase-helper', () => {
       const spyRequestSubscription = jest.spyOn(RNIap, 'requestSubscription')
 
       expect(spyRequestSubscription).toHaveBeenCalledTimes(1)
-      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_PREMIUM)
+      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_PREMIUM, false)
     })
 
     it('should correctly handle an upgrade on Android from free to unlimited', async () => {
@@ -105,7 +105,7 @@ describe('in-app-purchase-helper', () => {
       const spyRequestSubscription = jest.spyOn(RNIap, 'requestSubscription')
 
       expect(spyRequestSubscription).toHaveBeenCalledTimes(1)
-      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_UNLIMITED)
+      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_UNLIMITED, false)
     })
 
     it('should correctly handle an upgrade on Android from free to plus', async () => {
@@ -116,7 +116,7 @@ describe('in-app-purchase-helper', () => {
       const spyRequestSubscription = jest.spyOn(RNIap, 'requestSubscription')
 
       expect(spyRequestSubscription).toHaveBeenCalledTimes(1)
-      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_PLUS)
+      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_PLUS, false)
     })
 
     it('should correctly handle an upgrade on Android from premium to plus', async () => {
@@ -127,7 +127,7 @@ describe('in-app-purchase-helper', () => {
       const spyRequestSubscription = jest.spyOn(RNIap, 'requestSubscription')
 
       expect(spyRequestSubscription).toHaveBeenCalledTimes(1)
-      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTION_PRODUCT_ID_PREMIUM, 1)
+      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_PLUS, false, SUBSCRIPTION_PRODUCT_ID_PREMIUM, 1)
     })
 
     it('should correctly handle an upgrade on Android from premium to unlimited', async () => {
@@ -138,7 +138,7 @@ describe('in-app-purchase-helper', () => {
       const spyRequestSubscription = jest.spyOn(RNIap, 'requestSubscription')
 
       expect(spyRequestSubscription).toHaveBeenCalledTimes(1)
-      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_UNLIMITED, SUBSCRIPTION_PRODUCT_ID_PREMIUM, 1)
+      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_UNLIMITED, false, SUBSCRIPTION_PRODUCT_ID_PREMIUM, 1)
     })
 
     it('should correctly handle an downgrade on Android from unlimited to premium', async () => {
@@ -149,7 +149,7 @@ describe('in-app-purchase-helper', () => {
       const spyRequestSubscription = jest.spyOn(RNIap, 'requestSubscription')
 
       expect(spyRequestSubscription).toHaveBeenCalledTimes(1)
-      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_UNLIMITED, 1)
+      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_PREMIUM, false, SUBSCRIPTION_PRODUCT_ID_UNLIMITED, 1)
     })
 
     it('should correctly handle an downgrade on Android from plus to premium', async () => {
@@ -160,7 +160,7 @@ describe('in-app-purchase-helper', () => {
       const spyRequestSubscription = jest.spyOn(RNIap, 'requestSubscription')
 
       expect(spyRequestSubscription).toHaveBeenCalledTimes(1)
-      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_PLUS, 1)
+      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_PREMIUM, false, SUBSCRIPTION_PRODUCT_ID_PLUS, 1)
     })
 
     it('should correctly handle an upgrade on iOS from free to premium', async () => {
@@ -171,7 +171,7 @@ describe('in-app-purchase-helper', () => {
       const spyRequestSubscription = jest.spyOn(RNIap, 'requestSubscription')
 
       expect(spyRequestSubscription).toHaveBeenCalledTimes(1)
-      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_PREMIUM)
+      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_PREMIUM, false)
     })
 
     it('should correctly handle an upgrade on iOS from free to plus', async () => {
@@ -182,7 +182,7 @@ describe('in-app-purchase-helper', () => {
       const spyRequestSubscription = jest.spyOn(RNIap, 'requestSubscription')
 
       expect(spyRequestSubscription).toHaveBeenCalledTimes(1)
-      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_PLUS)
+      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_PLUS, false)
     })
 
     it('should correctly handle an upgrade on iOS from free to unlimited', async () => {
@@ -193,7 +193,7 @@ describe('in-app-purchase-helper', () => {
       const spyRequestSubscription = jest.spyOn(RNIap, 'requestSubscription')
 
       expect(spyRequestSubscription).toHaveBeenCalledTimes(1)
-      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_UNLIMITED)
+      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_UNLIMITED, false)
     })
 
     it('should correctly handle an upgrade on iOS from premium to plus', async () => {
@@ -204,7 +204,7 @@ describe('in-app-purchase-helper', () => {
       const spyRequestSubscription = jest.spyOn(RNIap, 'requestSubscription')
 
       expect(spyRequestSubscription).toHaveBeenCalledTimes(1)
-      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_PLUS)
+      expect(spyRequestSubscription).toHaveBeenCalledWith(SUBSCRIPTION_PRODUCT_ID_PLUS, false)
     })
   })
 });
