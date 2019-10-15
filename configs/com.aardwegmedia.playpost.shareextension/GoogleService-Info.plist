@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>741397086243-ke067g214os35oqq0uv45dstb7vga37b.apps.googleusercontent.com</string>
+	<string>741397086243-blk5kvopmid2q42l57eiqjqb7pren63u.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.741397086243-ke067g214os35oqq0uv45dstb7vga37b</string>
+	<string>com.googleusercontent.apps.741397086243-blk5kvopmid2q42l57eiqjqb7pren63u</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>741397086243-a1arjl5ql10l60kcqp9p9g1v32oa9pod.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -31,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:741397086243:ios:2b62c799a96e7f66</string>
+	<string>1:741397086243:ios:54d6beaec20f9551397196</string>
 	<key>DATABASE_URL</key>
 	<string>https://playpost.firebaseio.com</string>
 </dict>
