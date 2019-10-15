@@ -223,7 +223,7 @@ describe('playlist reducer', () => {
       if (playlistItem.article.id === articleId) {
         return {
           ...playlistItem,
-          archivedAt: new Date().toISOString()
+          archivedAt: expect.any(String)
         }
       }
 
