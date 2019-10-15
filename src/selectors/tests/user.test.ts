@@ -20,6 +20,7 @@ import { selectDeviceLocale,
 import { rootReducer } from '../../reducers';
 import { initialState } from '../../reducers/user';
 
+import exampleApplePurchases from '../../../tests/__mocks__/apple-purchases';
 import exampleUserWithActiveSubscription from '../../../tests/__mocks__/user-active-subscription';
 import mockUserAllTrialsUsed from '../../../tests/__mocks__/user-all-trials-used';
 import exampleUserWithInactiveSubscription from '../../../tests/__mocks__/user-inactive-subscription';
@@ -316,6 +317,10 @@ describe('user selector', () => {
       user: {
         ...rootState.user,
         details: mockUserAllTrialsUsed
+      },
+      subscriptions: {
+        ...rootState.subscriptions,
+        localPurchaseHistory: []
       }
     };
 
@@ -331,6 +336,10 @@ describe('user selector', () => {
       user: {
         ...rootState.user,
         details: mockUserAllTrialsUsed
+      },
+      subscriptions: {
+        ...rootState.subscriptions,
+        localPurchaseHistory: []
       }
     };
 
@@ -347,6 +356,10 @@ describe('user selector', () => {
       user: {
         ...rootState.user,
         details: mockUserAllTrialsUsed
+      },
+      subscriptions: {
+        ...rootState.subscriptions,
+        localPurchaseHistory: []
       }
     };
 
@@ -368,6 +381,10 @@ describe('user selector', () => {
       user: {
         ...rootState.user,
         details: mockUserUsedTrialApple
+      },
+      subscriptions: {
+        ...rootState.subscriptions,
+        localPurchaseHistory: []
       }
     };
 
@@ -389,6 +406,10 @@ describe('user selector', () => {
       user: {
         ...rootState.user,
         details: mockUserUsedTrialGoogle
+      },
+      subscriptions: {
+        ...rootState.subscriptions,
+        localPurchaseHistory: []
       }
     };
 
@@ -410,6 +431,10 @@ describe('user selector', () => {
       user: {
         ...rootState.user,
         details: mockUserUsedTrialApple
+      },
+      subscriptions: {
+        ...rootState.subscriptions,
+        localPurchaseHistory: []
       }
     };
 
@@ -430,6 +455,10 @@ describe('user selector', () => {
       user: {
         ...rootState.user,
         details: mockUserUsedTrialGoogle
+      },
+      subscriptions: {
+        ...rootState.subscriptions,
+        localPurchaseHistory: []
       }
     };
 
@@ -447,6 +476,42 @@ describe('user selector', () => {
       user: {
         ...rootState.user,
         details: mockUserNoTrials
+      },
+      subscriptions: {
+        ...rootState.subscriptions,
+        localPurchaseHistory: []
+      }
+    };
+
+    expect(selectUserIsEligibleForTrial(exampleState)).toEqual(true);
+  });
+
+  it('selectUserIsEligibleForTrial should return false if there is a local purchase history', () => {
+    const exampleState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: null
+      },
+      subscriptions: {
+        ...rootState.subscriptions,
+        localPurchaseHistory: exampleApplePurchases
+      }
+    };
+
+    expect(selectUserIsEligibleForTrial(exampleState)).toEqual(false);
+  });
+
+  it('selectUserIsEligibleForTrial should return true if there is no local purchase history', () => {
+    const exampleState = {
+      ...rootState,
+      user: {
+        ...rootState.user,
+        details: null
+      },
+      subscriptions: {
+        ...rootState.subscriptions,
+        localPurchaseHistory: []
       }
     };
 

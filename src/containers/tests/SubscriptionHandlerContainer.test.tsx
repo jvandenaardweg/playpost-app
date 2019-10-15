@@ -28,6 +28,7 @@ const setIsActiveUpgradeModalHandler = jest.fn();
 const navigateHandler = jest.fn();
 const navigationGetParamHandler = jest.fn();
 const navigationGoBackHandler = jest.fn();
+const setLocalPurchaseHistoryHandler = jest.fn();
 
 const defaultProps: Props = {
   subscriptionsError: '',
@@ -47,6 +48,7 @@ const defaultProps: Props = {
   setIsLoadingUpgrade: setIsLoadingUpgradeHandler,
   setIsLoadingRestore: setIsLoadingRestoreHandler,
   setIsActiveUpgradeModal: setIsActiveUpgradeModalHandler,
+  setLocalPurchaseHistory: setLocalPurchaseHistoryHandler,
 
   navigation: {
     navigate: navigateHandler,

@@ -15,7 +15,7 @@ import { ALERT_SUBSCRIPTION_EXPIRED, ALERT_SUBSCRIPTION_RESTORE_SUCCESS, ALERT_T
 import { URL_FEEDBACK } from '../constants/urls';
 import NavigationService from '../navigation/NavigationService';
 import { RootState } from '../reducers';
-import { setIsActiveUpgradeModal, setIsLoadingRestore, setIsLoadingUpgrade, validateSubscriptionReceipt } from '../reducers/subscriptions';
+import { setIsActiveUpgradeModal, setIsLoadingRestore, setIsLoadingUpgrade, setLocalPurchaseHistory, validateSubscriptionReceipt } from '../reducers/subscriptions';
 import { getUser } from '../reducers/user';
 import { selectIsLoggedIn } from '../selectors/auth';
 import { selectIsActiveUpgradeModal, selectSubscriptionsError, selectSubscriptionsIsLoadingRestore, selectSubscriptionsIsLoadingUpgrade, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
@@ -41,13 +41,17 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
 
   validateSubscriptionInterval: NodeJS.Timeout | null = null;
 
-  componentDidMount() {
+  async componentDidMount() {
     // Check every minute if Subscription is still active
     this.validateSubscriptionInterval = setInterval(() => this.syncUserInAppSubscriptionWithAPI(), 1000 * 60); // Every 1 minute
 
     this.purchaseUpdateSubscription = RNIap.purchaseUpdatedListener(this.handlePurchaseUpdateListener);
 
     this.purchaseErrorSubscription = RNIap.purchaseErrorListener(this.handlePurchaseErrorListener);
+
+    // Stores the local purchases from the user's device into our local store
+    // So we can determine if the user already used a trial
+    this.addLocalPurchasesToStore()
   }
 
   componentWillUnmount(): void {
@@ -88,6 +92,11 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
       }
     }
 
+  }
+
+  addLocalPurchasesToStore = async () => {
+    const purchaseHistory = await RNIap.getPurchaseHistory()
+    this.props.setLocalPurchaseHistory(purchaseHistory)
   }
 
   handleSubscriptionStatusExpired = () => {
@@ -331,6 +340,7 @@ interface DispatchProps {
   setIsLoadingUpgrade: typeof setIsLoadingUpgrade;
   setIsLoadingRestore: typeof setIsLoadingRestore;
   setIsActiveUpgradeModal: typeof setIsActiveUpgradeModal;
+  setLocalPurchaseHistory: typeof setLocalPurchaseHistory;
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
@@ -352,7 +362,8 @@ const mapDispatchToProps = {
   getUser,
   setIsLoadingUpgrade,
   setIsLoadingRestore,
-  setIsActiveUpgradeModal
+  setIsActiveUpgradeModal,
+  setLocalPurchaseHistory
 };
 
 export const SubscriptionHandlerContainer = connect(

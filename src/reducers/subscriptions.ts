@@ -1,6 +1,10 @@
+import * as RNIap from 'react-native-iap';
+
 import { GENERIC_NETWORK_ERROR, GET_IN_APP_SUBSCRIPTIONS_FAIL_MESSAGE, POST_VALIDATE_SUBSCRIPTION_RECEIPT_FAIL_MESSAGE } from '../constants/messages';
 
 export const RESET_SUBSCRIPTIONS_STATE = 'subscriptions/RESET_SUBSCRIPTIONS_STATE';
+
+export const SET_LOCAL_PURCHASE_HISTORY = 'subscriptions/SET_LOCAL_PURCHASE_HISTORY';
 
 export const GET_IN_APP_SUBSCRIPTIONS = 'subscriptions/GET_IN_APP_SUBSCRIPTIONS';
 export const GET_IN_APP_SUBSCRIPTIONS_SUCCESS = 'subscriptions/GET_IN_APP_SUBSCRIPTIONS_SUCCESS';
@@ -26,6 +30,7 @@ export type SubscriptionsState = Readonly<{
   error: string;
   errorValidateSubscriptionReceipt: string;
   isActiveUpgradeModal: boolean;
+  localPurchaseHistory: RNIap.SubscriptionPurchase[]
 }>;
 
 export const initialState: SubscriptionsState = {
@@ -37,7 +42,8 @@ export const initialState: SubscriptionsState = {
   validationResult: null,
   error: '',
   errorValidateSubscriptionReceipt: '',
-  isActiveUpgradeModal: false
+  isActiveUpgradeModal: false,
+  localPurchaseHistory: []
 };
 
 /* tslint:disable-next-line no-any */
@@ -47,6 +53,12 @@ export function subscriptionsReducer(state = initialState, action: any): Subscri
       return {
         ...state,
         isActiveUpgradeModal: action.payload,
+      };
+
+    case SET_LOCAL_PURCHASE_HISTORY:
+      return {
+        ...state,
+        localPurchaseHistory: action.payload,
       };
 
     case SET_IS_LOADING_UPGRADE:
@@ -157,6 +169,11 @@ export const setIsLoadingUpgrade = (isLoading: boolean) => ({
 export const setIsLoadingRestore = (isLoading: boolean) => ({
   type: SET_IS_LOADING_RESTORE,
   payload: isLoading
+});
+
+export const setLocalPurchaseHistory = (purchases: RNIap.SubscriptionPurchase[]) => ({
+  type: SET_LOCAL_PURCHASE_HISTORY,
+  payload: purchases
 });
 
 export const setIsActiveUpgradeModal = (isActive: boolean) => ({

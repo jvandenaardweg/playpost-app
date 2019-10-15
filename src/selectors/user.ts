@@ -4,6 +4,7 @@ import { SUBSCRIPTION_NAME, SUBSCRIPTION_PRODUCT_ID_FREE } from '../constants/in
 import { RootState } from '../reducers';
 import { UserState } from '../reducers/user';
 import { createDeepEqualSelector } from './index';
+import { selectLocalPurchaseHistory } from './subscriptions';
 
 export interface UserSelectedVoiceByLanguageName {
   [key: string]: Api.Voice
@@ -132,8 +133,13 @@ export const selectUserActiveSubscriptionName = createDeepEqualSelector(
 );
 
 export const selectUserIsEligibleForTrial = createDeepEqualSelector(
-  [selectUserUsedInAppSubscriptionTrials],
-  (usedInAppSubscriptionTrials): boolean => {
+  [selectUserUsedInAppSubscriptionTrials, selectLocalPurchaseHistory],
+  (usedInAppSubscriptionTrials, localPurchaseHistory): boolean => {
+    // If we find local purchase from our app on the user's device, just assume he already used the trial
+    if (localPurchaseHistory.length) {
+      return false;
+    }
+
     if (!usedInAppSubscriptionTrials || !usedInAppSubscriptionTrials.length) {
       return true;
     }

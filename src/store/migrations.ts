@@ -56,5 +56,12 @@ export const migrations = {
       ...state.playlist,
       isLoadingDeleteItem: false
     }
+  }),
+  11: (state: RootState) => ({
+    ...state,
+    subscriptions: {
+      ...state.subscriptions,
+      localPurchaseHistory: []
+    }
   })
 }

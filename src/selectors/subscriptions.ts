@@ -1,5 +1,7 @@
 import { Platform } from 'react-native';
+import * as RNIap from 'react-native-iap';
 import { createSelector } from 'reselect';
+
 import { RootState } from '../reducers';
 import { SubscriptionsState } from '../reducers/subscriptions';
 import { createDeepEqualSelector } from './index';
@@ -31,6 +33,13 @@ export const selectAvailableInAppSubscriptions = createSelector(
   [selectInAppSubscriptions],
   (inAppSubscriptions): Api.InAppSubscription[] => {
     return inAppSubscriptions.filter(inAppSubscription => inAppSubscription.isActive);
+  }
+);
+
+export const selectLocalPurchaseHistory = createSelector(
+  [subscriptionsSelector],
+  (state): RNIap.SubscriptionPurchase[] => {
+    return state.localPurchaseHistory
   }
 );
 
