@@ -293,7 +293,7 @@ PODS:
     - react-native-video/Video (= 5.0.2)
   - react-native-video/Video (5.0.2):
     - React
-  - react-native-webview (7.4.1):
+  - react-native-webview (7.4.2):
     - React
   - React-RCTActionSheet (0.61.2):
     - React-Core/RCTActionSheetHeaders (= 0.61.2)
@@ -336,7 +336,7 @@ PODS:
     - React-Core
   - RNCAsyncStorage (1.6.2):
     - React
-  - RNDeviceInfo (3.1.4):
+  - RNDeviceInfo (4.0.1):
     - React
   - RNFBAnalytics (6.0.1):
     - Firebase/Core (~> 6.8.1)
@@ -588,7 +588,7 @@ SPEC CHECKSUMS:
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
   react-native-track-player: 6c2c2f163534bb6d6b5fea68959b3641f70718dd
   react-native-video: 961749da457e73bf0b5565edfbaffc25abfb8974
-  react-native-webview: 4dbc1d2a4a6b9c5e9e723c62651917aa2b5e579e
+  react-native-webview: 5e82a4853e16e02bb6cb184ae4892df71c200571
   React-RCTActionSheet: 89b037c0fb7d2671607cb645760164e7e0c013f6
   React-RCTAnimation: e3cefa93c38c004c318f7ec04b883eb14b8b8235
   React-RCTBlob: d26ac0e313fbf14e7203473fd593ccaaeee8329e
@@ -602,7 +602,7 @@ SPEC CHECKSUMS:
   ReactNativeShareExtension: 7abfce32b7f831e659da3ac2bd441159672ba3b0
   rn-fetch-blob: 651b8d076b43d0d7aa294a3d9ec16c00aab8bef9
   RNCAsyncStorage: 5ae4d57458804e99f73d427214442a6b10a53856
-  RNDeviceInfo: 9e88577c51bd42f65275e53bb0de0a0f728ed6b8
+  RNDeviceInfo: 12faae605ba42a1a5041c3c41a77834bc23f049d
   RNFBAnalytics: f1e488fb6ff33d82a06e76af3d1c797da6719dcd
   RNFBApp: 5dd12fdb688ddd25aa756d8cd2780abaadf15709
   RNFBCrashlytics: 7a2e88557f8bf4b9c4c37dd787ad38da4c0c10ba
