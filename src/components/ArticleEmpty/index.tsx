@@ -48,14 +48,14 @@ export const ArticleEmptyProcessing: React.FC<Props> = React.memo((props: Props)
 ));
 
 export const ArticleEmptyFailed: React.FC<Props> = React.memo((props: Props) => (
-  <View style={[styles.articleEmptyContainer, styles.isFailed]}>
+  <View style={styles.articleEmptyContainer}>
     <View style={styles.articleEmptyIcon}>
-      <Icon.FontAwesome5 name="exclamation-circle" size={34} color={colors.white} />
+      <Icon.FontAwesome5 name="exclamation-circle" size={34} color={colors.black} />
     </View>
     <View style={styles.articleEmptyContent}>
-      <Text style={[styles.articleEmptyTitle, styles.textWhite]} preset="subheadEmphasized">Failed to process an article</Text>
-      <Text style={[styles.articleEmptyText, styles.textWhite]} preset="subhead">Please remove the article from your playlist and try again.</Text>
-      <Text style={[styles.articleEmptyText, styles.textWhite, styles.link]}
+      <Text style={styles.articleEmptyTitle} preset="subheadEmphasized">Could not process this article correctly</Text>
+      <Text style={styles.articleEmptyText} preset="subhead">Please remove this article from your playlist and try again.</Text>
+      <Text style={[styles.articleEmptyText, styles.link]}
         numberOfLines={1}
         ellipsizeMode="tail"
         onPress={() => Linking.openURL(props.url)}
