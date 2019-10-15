@@ -3,18 +3,13 @@
 exports[`ArticleEmpty ArticleEmptyFailed rendering default should render correctly 1`] = `
 <View
   style={
-    Array [
-      Object {
-        "backgroundColor": "#EEEEEE",
-        "flex": 1,
-        "flexDirection": "row",
-        "padding": 12,
-        "width": "100%",
-      },
-      Object {
-        "backgroundColor": "#E9110B",
-      },
-    ]
+    Object {
+      "backgroundColor": "#EEEEEE",
+      "flex": 1,
+      "flexDirection": "row",
+      "padding": 12,
+      "width": "100%",
+    }
   }
 >
   <View
@@ -30,7 +25,7 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering default should render correct
       style={
         Array [
           Object {
-            "color": "#ffffff",
+            "color": "#000000",
             "fontSize": 34,
           },
           undefined,
@@ -64,19 +59,14 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering default should render correct
             "fontSize": 15,
             "lineHeight": 23,
           },
-          Array [
-            Object {
-              "color": "#000000",
-              "marginBottom": 10,
-            },
-            Object {
-              "color": "#ffffff",
-            },
-          ],
+          Object {
+            "color": "#000000",
+            "marginBottom": 10,
+          },
         ]
       }
     >
-      Failed to process an article
+      Could not process this article correctly
     </Text>
     <Text
       style={
@@ -87,20 +77,15 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering default should render correct
             "fontSize": 15,
             "lineHeight": 23,
           },
-          Array [
-            Object {
-              "color": "#000000",
-              "marginBottom": 10,
-              "opacity": 0.9,
-            },
-            Object {
-              "color": "#ffffff",
-            },
-          ],
+          Object {
+            "color": "#000000",
+            "marginBottom": 10,
+            "opacity": 0.9,
+          },
         ]
       }
     >
-      Please remove the article from your playlist and try again.
+      Please remove this article from your playlist and try again.
     </Text>
     <Text
       ellipsizeMode="tail"
@@ -119,9 +104,6 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering default should render correct
               "color": "#000000",
               "marginBottom": 10,
               "opacity": 0.9,
-            },
-            Object {
-              "color": "#ffffff",
             },
             Object {
               "textDecorationLine": "underline",
@@ -139,18 +121,13 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering default should render correct
 exports[`ArticleEmpty ArticleEmptyFailed rendering loading should render correctly when isLoading is true 1`] = `
 <View
   style={
-    Array [
-      Object {
-        "backgroundColor": "#EEEEEE",
-        "flex": 1,
-        "flexDirection": "row",
-        "padding": 12,
-        "width": "100%",
-      },
-      Object {
-        "backgroundColor": "#E9110B",
-      },
-    ]
+    Object {
+      "backgroundColor": "#EEEEEE",
+      "flex": 1,
+      "flexDirection": "row",
+      "padding": 12,
+      "width": "100%",
+    }
   }
 >
   <View
@@ -166,7 +143,7 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering loading should render correct
       style={
         Array [
           Object {
-            "color": "#ffffff",
+            "color": "#000000",
             "fontSize": 34,
           },
           undefined,
@@ -200,19 +177,14 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering loading should render correct
             "fontSize": 15,
             "lineHeight": 23,
           },
-          Array [
-            Object {
-              "color": "#000000",
-              "marginBottom": 10,
-            },
-            Object {
-              "color": "#ffffff",
-            },
-          ],
+          Object {
+            "color": "#000000",
+            "marginBottom": 10,
+          },
         ]
       }
     >
-      Failed to process an article
+      Could not process this article correctly
     </Text>
     <Text
       style={
@@ -223,20 +195,15 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering loading should render correct
             "fontSize": 15,
             "lineHeight": 23,
           },
-          Array [
-            Object {
-              "color": "#000000",
-              "marginBottom": 10,
-              "opacity": 0.9,
-            },
-            Object {
-              "color": "#ffffff",
-            },
-          ],
+          Object {
+            "color": "#000000",
+            "marginBottom": 10,
+            "opacity": 0.9,
+          },
         ]
       }
     >
-      Please remove the article from your playlist and try again.
+      Please remove this article from your playlist and try again.
     </Text>
     <Text
       ellipsizeMode="tail"
@@ -255,9 +222,6 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering loading should render correct
               "color": "#000000",
               "marginBottom": 10,
               "opacity": 0.9,
-            },
-            Object {
-              "color": "#ffffff",
             },
             Object {
               "textDecorationLine": "underline",
