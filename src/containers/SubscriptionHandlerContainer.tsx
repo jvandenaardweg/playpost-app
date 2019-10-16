@@ -48,10 +48,6 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
     this.purchaseUpdateSubscription = RNIap.purchaseUpdatedListener(this.handlePurchaseUpdateListener);
 
     this.purchaseErrorSubscription = RNIap.purchaseErrorListener(this.handlePurchaseErrorListener);
-
-    // Stores the local purchases from the user's device into our local store
-    // So we can determine if the user already used a trial
-    this.addLocalPurchasesToStore()
   }
 
   componentWillUnmount(): void {
@@ -92,11 +88,6 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
       }
     }
 
-  }
-
-  addLocalPurchasesToStore = async () => {
-    const purchaseHistory = await RNIap.getPurchaseHistory()
-    this.props.setLocalPurchaseHistory(purchaseHistory)
   }
 
   handleSubscriptionStatusExpired = () => {

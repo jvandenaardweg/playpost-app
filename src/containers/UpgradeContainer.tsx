@@ -28,7 +28,7 @@ import {
   URL_MANAGE_APPLE_SUBSCRIPTIONS,
   URL_MANAGE_GOOGLE_SUBSCRIPTIONS} from '../constants/urls';
 import { RootState } from '../reducers';
-import { getInAppSubscriptions, setIsLoadingRestore, setIsLoadingUpgrade } from '../reducers/subscriptions';
+import { getInAppSubscriptions, setIsLoadingRestore, setIsLoadingUpgrade, setLocalPurchaseHistory } from '../reducers/subscriptions';
 import { getUser } from '../reducers/user';
 import { selectAvailableInAppSubscriptions, selectSubscriptionsError, selectSubscriptionsIsLoadingRestore, selectSubscriptionsIsLoadingUpgrade, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
 import { selectActiveUserInAppSubscription, selectUserActiveSubscriptionProductId, selectUserDetails, selectUserIsEligibleForTrial, selectUserIsSubscribed } from '../selectors/user';
@@ -157,6 +157,15 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     this.props.getUser();
 
     this.getAvailableSubscriptionItems(SUBSCRIPTION_PRODUCT_IDS);
+
+    // Stores the local purchases from the user's device into our local store
+    // So we can determine if the user already used a trial
+    this.addLocalPurchasesToStore()
+  }
+
+  addLocalPurchasesToStore = async () => {
+    const purchaseHistory = await RNIap.getPurchaseHistory()
+    this.props.setLocalPurchaseHistory(purchaseHistory)
   }
 
   fetchUpdatedUserData = async () => {
@@ -514,6 +523,7 @@ interface DispatchProps {
   setIsLoadingUpgrade: typeof setIsLoadingUpgrade;
   setIsLoadingRestore: typeof setIsLoadingRestore;
   getInAppSubscriptions: typeof getInAppSubscriptions;
+  setLocalPurchaseHistory: typeof setLocalPurchaseHistory;
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
@@ -535,7 +545,8 @@ const mapDispatchToProps = {
   getUser,
   setIsLoadingUpgrade,
   setIsLoadingRestore,
-  getInAppSubscriptions
+  getInAppSubscriptions,
+  setLocalPurchaseHistory
 };
 
 export const UpgradeContainer = connect(
