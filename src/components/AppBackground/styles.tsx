@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
+import { UserTheme } from '../../reducers/user';
 
-export default StyleSheet.create({
+export default (theme?: UserTheme) => StyleSheet.create({
   container: {
-    backgroundColor: colors.appBackground,
+    backgroundColor: theme === UserTheme.dark ? colors.black : colors.grayLightest,
     flex: 1,
     padding: 0
   }

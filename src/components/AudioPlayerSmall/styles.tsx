@@ -2,8 +2,9 @@ import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
 import spacing from '../../constants/spacing';
+import { UserTheme } from '../../reducers/user';
 
-export default StyleSheet.create({
+export default (theme?: UserTheme) => StyleSheet.create({
   wrapper: {
     height: 55
   },
@@ -11,7 +12,9 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: colors.black,
+    backgroundColor: theme === UserTheme.dark ? '#1E1E1E' : colors.black,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#444444',
     paddingLeft: spacing.default,
     paddingRight: spacing.default,
     paddingTop: 8,

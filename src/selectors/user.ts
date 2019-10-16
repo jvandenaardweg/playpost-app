@@ -158,3 +158,13 @@ export const selectUserPlaybackSpeed = createSelector(
   [userSelector],
   user =>  user.playbackSpeed
 );
+
+export const selectUserSelectedTheme = createSelector(
+  [userSelector],
+  user =>  user.selectedTheme
+);
+
+export const selectUserAvailableThemes = createSelector(
+  [userSelector],
+  user =>  user.availableThemes
+);

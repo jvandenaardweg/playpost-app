@@ -19,12 +19,13 @@ import { ButtonVoices } from '../components/ButtonVoices';
 import { textPresets } from '../components/Text';
 import colors from '../constants/colors';
 import { ButtonUpgradeContainer } from '../containers/ButtonUpgradeContainer';
+import { SettingsThemesScreen } from '../screens/settings/ThemesScreen';
 
 
 export const stackNavigatorDefaultNavigationOptions: NavigationStackOptions = {
   headerStyle: {
-    borderBottomColor: colors.navigationBorderColor,
-    backgroundColor: colors.navigationBackgroundColor
+    borderBottomColor: '#333333',
+    backgroundColor: '#1E1E1E'
   },
   headerTitleStyle: {
     ...textPresets['bodyEmphasized'],
@@ -117,6 +118,7 @@ const SettingsStack = createStackNavigator(
     Settings: SettingsScreen,
     SettingsVoices: SettingsVoicesScreen,
     SettingsLanguages: SettingsLanguagesScreen,
+    SettingsTheme: SettingsThemesScreen,
     UpdatePassword: UpdatePasswordScreen,
     UpdateEmail: UpdateEmailScreen
   },
@@ -152,6 +154,6 @@ export const MainTabNavigator = createBottomTabNavigator(
     tabBarComponent: (props: NavigationTabProp) => <TabBar {...props} />,
     tabBarOptions: {
       showLabel: false
-    },
+    }
   }
 );

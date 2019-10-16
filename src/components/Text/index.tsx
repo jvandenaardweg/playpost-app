@@ -1,6 +1,8 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useContext } from 'react';
 import { Text, TextProps, TextStyle } from 'react-native';
 import colors from '../../constants/colors';
+import { UserThemeContext } from '../../contexts/UserThemeProvider';
+import { UserTheme } from '../../reducers/user';
 
 type FontFamilies = {
   [fontWeight in FontWeightOptions]: {
@@ -154,9 +156,11 @@ interface Props extends TextProps {
 }
 
 const CustomText: React.FC<Props> = React.memo(({ children, fontWeight, preset, ...rest }) => {
+  const { theme } = useContext(UserThemeContext);
+
   const fontFamily: TextStyle = fontWeight ? fontFamilies[fontWeight] : fontFamilies['regular'];
   const presetStyle = preset ? textPresets[preset] : undefined;
-  const defaultColor: TextStyle = { color: colors.black };
+  const defaultColor: TextStyle = theme === UserTheme.dark ? { color: colors.white, opacity: 0.9 } : { color: colors.black };
 
   const customStyle: TextStyle = {
     ...fontFamily,

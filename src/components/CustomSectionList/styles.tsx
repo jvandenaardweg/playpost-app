@@ -3,13 +3,14 @@ import { StyleSheet } from 'react-native';
 import colors from '../../constants/colors';
 import layout from '../../constants/layout';
 import spacing from '../../constants/spacing';
+import { UserTheme } from '../../reducers/user';
 
 const sectionFooterHeight = spacing.default;
 
-export default StyleSheet.create({
+export default (theme?: UserTheme) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.appBackground
+    backgroundColor: theme === UserTheme.dark ? colors.black : colors.grayLightest
   },
   containerStyle: {
     width: '100%',

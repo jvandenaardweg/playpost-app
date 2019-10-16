@@ -26,10 +26,10 @@ import { URL_ABOUT, URL_APP_REVIEW, URL_BROWSER_EXTENSION_CHROME, URL_BROWSER_EX
 
 import { RootState } from '../reducers';
 import { resetAudiofilesState } from '../reducers/audiofiles';
-import { deleteUser, getUser } from '../reducers/user';
+import { deleteUser, getUser, UserTheme } from '../reducers/user';
 import { resetDownloadedVoices, resetVoicesState } from '../reducers/voices';
 
-import { selectUserActiveSubscriptionName, selectUserActiveSubscriptionProductId, selectUserDetails, selectUserIsEligibleForTrial, selectUserIsSubscribed } from '../selectors/user';
+import { selectUserActiveSubscriptionName, selectUserActiveSubscriptionProductId, selectUserDetails, selectUserIsEligibleForTrial, selectUserIsSubscribed, selectUserSelectedTheme } from '../selectors/user';
 import { selectTotalAvailableVoices } from '../selectors/voices';
 
 import { CustomSectionList, IListItem } from '../components/CustomSectionList';
@@ -38,6 +38,8 @@ import { Usage } from '../components/Usage';
 import * as cache from '../cache';
 import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_UNLIMITED } from '../constants/in-app-purchase';
 import NavigationService from '../navigation/NavigationService';
+
+import { UserThemeContext } from '../contexts/UserThemeProvider';
 
 
 type Props = NavigationInjectedProps & DispatchProps & StateProps;
@@ -52,6 +54,8 @@ interface State {
 }
 
 export class SettingsContainerComponent extends React.Component<Props, State> {
+  static contextType = UserThemeContext;
+
   state = {
     cacheSize: '0',
     isClearingCache: false,
@@ -226,6 +230,10 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
 
   }
 
+  handleOnPressChangeTheme = () => {
+    NavigationService.navigate('SettingsTheme')
+  }
+
   renderDeleteAccount = () => {
     const { isDeletingAccount } = this.state;
 
@@ -273,7 +281,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
   }
 
   render() {
-    const { activeSubscriptionName, totalAvailableVoices, user, activeSubscriptionProductId, userIsEligibleForTrial } = this.props;
+    const { activeSubscriptionName, totalAvailableVoices, user, activeSubscriptionProductId, userIsEligibleForTrial, userSelectedTheme } = this.props;
     const { isClearingCache, cacheSize } = this.state;
 
     const userEmail = user && user.email;
@@ -281,18 +289,27 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
 
     const sectionListData: ReadonlyArray<SectionListData<IListItem>> = [
       {
-        key: 'language',
-        title: 'Lanuage',
+        key: 'user-settings',
+        title: 'Settings',
         data: [
           {
-            key: 'language-voices-and-languguages',
+            key: 'user-language-voices-and-languguages',
             title: 'Voices & Languages',
             icon: 'globe',
             iconColor: colors.green,
             onPress: this.handleOnPressLanguage,
             value: totalAvailableVoices,
             chevron: true
-          }
+          },
+          {
+            key: 'user-theme',
+            title: 'Theme',
+            icon: (userSelectedTheme === UserTheme.light) ? 'sun' : (userSelectedTheme === UserTheme.dark) ? 'moon' : 'clock',
+            iconColor: colors.green,
+            onPress: this.handleOnPressChangeTheme,
+            chevron: true,
+            value: userSelectedTheme[0].toUpperCase() + userSelectedTheme.slice(1)
+          },
         ]
       },
       {
@@ -471,6 +488,7 @@ interface StateProps {
   activeSubscriptionProductId: ReturnType<typeof selectUserActiveSubscriptionProductId>;
   totalAvailableVoices: ReturnType<typeof selectTotalAvailableVoices>;
   userIsEligibleForTrial: ReturnType<typeof selectUserIsEligibleForTrial>;
+  userSelectedTheme: ReturnType<typeof selectUserSelectedTheme>;
 }
 
 const mapStateToProps = (state: RootState) => ({
@@ -480,6 +498,7 @@ const mapStateToProps = (state: RootState) => ({
   activeSubscriptionProductId: selectUserActiveSubscriptionProductId(state),
   totalAvailableVoices: selectTotalAvailableVoices(state),
   userIsEligibleForTrial: selectUserIsEligibleForTrial(state),
+  userSelectedTheme: selectUserSelectedTheme(state),
 });
 
 const mapDispatchToProps = {

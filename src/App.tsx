@@ -3,7 +3,7 @@ import isUUID from 'is-uuid';
 import React from 'react';
 import { Alert, Linking, Platform, UIManager } from 'react-native';
 import DeepLinking from 'react-native-deep-linking';
-import { ThemeProvider } from 'react-native-elements';
+import { ThemeProvider as ReactNativeElementsThemeProvider } from 'react-native-elements';
 import { useScreens } from 'react-native-screens';
 import SplashScreen from 'react-native-splash-screen';
 import { Provider } from 'react-redux';
@@ -26,6 +26,7 @@ import { AppContainer } from './navigation/AppNavigator';
 import NavigationService from './navigation/NavigationService';
 import { addArticleToPlaylistById } from './reducers/playlist';
 import { selectIsLoggedIn } from './selectors/auth';
+import { UserThemeContext, UserThemeProvider } from './contexts/UserThemeProvider';
 
 // https://facebook.github.io/react-native/docs/layoutanimation
 // Note that in order to get this to work on Android you need to set the following flags via UIManager:
@@ -42,6 +43,8 @@ interface State {
 // Important: Keep this App a Class component
 // Using a Functional Component as the root component breaks Hot Reloading (on a local device)
 export default class App extends React.PureComponent<State> {
+  static contextType = UserThemeContext;
+
   state = {
     errorShown: false
   }
@@ -126,22 +129,25 @@ export default class App extends React.PureComponent<State> {
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <ThemeProvider theme={reactNativeElementsTheme}>
-            <NetworkProvider>
-              <AppStateProvider>
-                <APIErrorAlertContainer>
-                  <SubscriptionHandlerContainer>
-                    <AppContainer
-                      ref={navigatorRef => {
-                        NavigationService.setTopLevelNavigator(navigatorRef);
-                      }}
-                      onNavigationStateChange={this.handleOnNavigationStateChange}
-                    />
-                  </SubscriptionHandlerContainer>
-                </APIErrorAlertContainer>
-              </AppStateProvider>
-            </NetworkProvider>
-          </ThemeProvider>
+          <UserThemeProvider>
+            <ReactNativeElementsThemeProvider theme={reactNativeElementsTheme}>
+              <NetworkProvider>
+                <AppStateProvider>
+                  <APIErrorAlertContainer>
+                    <SubscriptionHandlerContainer>
+                      <AppContainer
+                        theme="dark"
+                        ref={navigatorRef => {
+                          NavigationService.setTopLevelNavigator(navigatorRef);
+                        }}
+                        onNavigationStateChange={this.handleOnNavigationStateChange}
+                      />
+                    </SubscriptionHandlerContainer>
+                  </APIErrorAlertContainer>
+                </AppStateProvider>
+              </NetworkProvider>
+            </ReactNativeElementsThemeProvider>
+          </UserThemeProvider>
         </PersistGate>
       </Provider>
     );

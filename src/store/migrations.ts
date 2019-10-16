@@ -1,5 +1,6 @@
 import { userLanguageCode } from '../locale';
 import { RootState } from '../reducers';
+import { UserTheme, availableThemes } from '../reducers/user';
 
 export const migrations = {
   4: (state: RootState) => ({
@@ -62,6 +63,14 @@ export const migrations = {
     subscriptions: {
       ...state.subscriptions,
       localPurchaseHistory: []
+    }
+  }),
+  13: (state: RootState) => ({
+    ...state,
+    user: {
+      ...state.user,
+      availableThemes,
+      selectedTheme: UserTheme.light
     }
   })
 }

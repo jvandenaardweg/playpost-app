@@ -9,6 +9,8 @@ import {
   SAVE_SELECTED_VOICE_FAIL_MESSAGE
 } from '../constants/messages';
 
+export const SET_USER_SELECTED_THEME = 'user/SET_USER_SELECTED_THEME';
+
 export const GET_USER = 'user/GET_USER';
 export const GET_USER_SUCCESS = 'user/GET_USER_SUCCESS';
 export const GET_USER_FAIL = 'user/GET_USER_FAIL';
@@ -36,6 +38,19 @@ export const SET_PLAYBACK_SPEED = 'user/SET_PLAYBACK_SPEED';
 export const RESET_USER_STATE = 'user/RESET_USER_STATE';
 export const RESET_USER_ERROR = 'user/RESET_USER_ERROR';
 
+
+export enum UserTheme {
+  auto = 'auto',
+  light = 'light',
+  dark = 'dark'
+}
+
+export const availableThemes: UserTheme[] = [
+  UserTheme.auto,
+  UserTheme.light,
+  UserTheme.dark
+]
+
 export type UserState = Readonly<{
   isLoading: boolean;
   isLoadingDelete: boolean;
@@ -46,6 +61,8 @@ export type UserState = Readonly<{
   errorSaveSelectedVoice: string;
   deviceLocale: string;
   playbackSpeed: number;
+  availableThemes: UserTheme[];
+  selectedTheme: UserTheme;
 }>;
 
 export const initialState: UserState = {
@@ -57,12 +74,20 @@ export const initialState: UserState = {
   error: '',
   errorSaveSelectedVoice: '',
   deviceLocale: userLanguageCode, // en, fr, nl etc...
-  playbackSpeed: 1
+  playbackSpeed: 1,
+  availableThemes,
+  selectedTheme: UserTheme.light // default
 };
 
 /* tslint:disable no-any */
 export function userReducer(state = initialState, action: any): UserState {
   switch (action.type) {
+    case SET_USER_SELECTED_THEME:
+      return {
+        ...state,
+        selectedTheme: action.payload.theme
+      };
+
     case GET_USER:
       return {
         ...state,
@@ -286,6 +311,13 @@ export function resetUserError() {
     type: RESET_USER_ERROR
   };
 }
+
+export const setUserSelectedTheme = (theme: UserTheme) => ({
+  type: SET_USER_SELECTED_THEME,
+  payload: {
+    theme
+  }
+})
 
 export function getUser() {
   return {

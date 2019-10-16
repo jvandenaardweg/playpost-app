@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { CenterLoadingIndicator } from '../components/CenterLoadingIndicator';
 import { EmptyState } from '../components/EmptyState';
 import { NetworkContext } from '../contexts/NetworkProvider';
+import { UserThemeContext } from '../contexts/UserThemeProvider';
 import { ArticleContainer } from './ArticleContainer';
 
 import { getPlaylist, reOrderPlaylistItem } from '../reducers/playlist';
@@ -23,9 +24,10 @@ import { RootState } from '../reducers';
 import { ListSeperator } from '../components/ListSeperator';
 import { ALERT_TITLE_ERROR } from '../constants/messages';
 import { getInAppSubscriptions } from '../reducers/subscriptions';
-import { getUser } from '../reducers/user';
+import { getUser, UserTheme } from '../reducers/user';
 import { getLanguages } from '../reducers/voices';
 import { selectDownloadedAudiofiles } from '../selectors/audiofiles';
+import colors from '../constants/colors';
 
 interface State {
   isLoading: boolean;
@@ -50,7 +52,7 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
     return playlistItems && playlistItems.length;
   }
 
-  static contextType = NetworkContext;
+  static contextType = {...NetworkContext, ...UserThemeContext};
 
   static getDerivedStateFromProps(props: Props, state: State) {
     // Prevent state update when we are re-ordering
@@ -322,6 +324,7 @@ class PlaylistContainerComponent extends React.Component<Props, State> {
         // scrollPercent={5}
         renderItem={this.renderItem}
         removeClippedSubviews={true}
+        indicatorStyle={this.context.theme === UserTheme.dark ? 'white' : 'black'}
       />
       // DraggableFlatList temporary disabled
       // There seems to be a problem with the list dissapearing when archiving/favoriting

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ActivityIndicator, StyleProp, TextStyle, TouchableHighlight, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { Image } from 'react-native-elements';
 import urlParse from 'url-parse';
@@ -10,6 +10,8 @@ import * as Icon from '../../components/Icon';
 
 import { TextDirection } from '../../typings';
 import styles from './styles';
+import { UserThemeContext } from '../../contexts/UserThemeProvider';
+import { UserTheme } from '../../reducers/user';
 
 export interface Props {
   isMoving?: boolean;
@@ -67,52 +69,53 @@ export const Article: React.FC<Props> = React.memo(
     textDirection,
     voiceLabel
   }) => {
+    const { theme } = useContext(UserThemeContext)
 
     const textDirectionStyle: StyleProp<TextStyle> = { writingDirection: textDirection, flexDirection: (textDirection === 'rtl') ? 'row-reverse' : undefined };
     const rtlFlexDirectionStyle: StyleProp<ViewStyle> = { flexDirection: (textDirection === 'rtl') ? 'row-reverse' : 'row' };
 
     return (
       <TouchableHighlight
-        style={[styles.container, isMoving ? styles.isMoving : null]}
+        style={[styles(theme).container, isMoving ? styles(theme).isMoving : null]}
         onPress={onOpenUrl}
         onLongPress={onLongPress}
         onPressOut={onPressOut}
         activeOpacity={0.9}
         underlayColor={colors.black}
       >
-        <View style={styles.contentContainer}>
-          <View style={styles.wrapper}>
-            <View testID="Article-Button-section" style={styles.sectionBody}>
-              <View style={styles.bodyTitle}>
-                <Text style={[styles.bodyTitleText, textDirectionStyle]} testID="Article-title" ellipsizeMode="tail" numberOfLines={4} preset="bodyEmphasized">
+        <View style={styles(theme).contentContainer}>
+          <View style={styles(theme).wrapper}>
+            <View testID="Article-Button-section" style={styles(theme).sectionBody}>
+              <View style={styles(theme).bodyTitle}>
+                <Text style={[styles(theme).bodyTitleText, textDirectionStyle]} testID="Article-title" ellipsizeMode="tail" numberOfLines={4} preset="bodyEmphasized">
                   {title}
                 </Text>
               </View>
               <SourceText authorName={authorName} sourceName={sourceName} textDirection={textDirection} url={url} />
-              <View style={[styles.bodyFooter, textDirectionStyle, rtlFlexDirectionStyle]}>
+              <View style={[styles(theme).bodyFooter, textDirectionStyle, rtlFlexDirectionStyle]}>
                 <View style={[rtlFlexDirectionStyle]}>
                   <Icon.Feather
                     name={hasAudiofile ? 'download-cloud' : 'cloud-off'}
                     size={14}
-                    style={styles.bodySourceIcon}
-                    color={isDownloaded ? colors.green : colors.grayDark}
+                    style={styles(theme).bodySourceIcon}
+                    color={isDownloaded ? colors.green : (theme === UserTheme.dark) ? colors.grayDarker : colors.grayDark}
                     testID="Article-icon-downloaded"
                   />
                 </View>
-                <View style={[styles.bodyMetaSource, textDirectionStyle]}>
-                  <Text style={[styles.durationText, { color: isDownloaded ? colors.green : colors.grayDark }]} preset="footnote" testID="Article-Text-voiceLabel">{voiceLabel}</Text>
+                <View style={[styles(theme).bodyMetaSource, textDirectionStyle]}>
+                  <Text style={[styles(theme).downloadText, { color: isDownloaded ? colors.green : (theme === UserTheme.dark) ? colors.grayDarker : colors.grayDark }]} preset="footnote" testID="Article-Text-voiceLabel">{voiceLabel}</Text>
                 </View>
               </View>
             </View>
-            <View style={styles.sectionControl}>
+            <View style={styles(theme).sectionControl}>
               <TouchableOpacity
                 testID="Article-Button-play"
-                style={styles.imageContainer}
+                style={styles(theme).imageContainer}
                 onPress={onPlayPress}
                 disabled={isLoading}
               >
-                {imageUrl && <Image resizeMode="cover" containerStyle={styles.image} source={{ uri: imageUrl }} placeholderStyle={styles.imagePlaceholder} />}
-                <View style={styles.playButtonContainer}>
+                {imageUrl && <Image resizeMode="cover" containerStyle={styles(theme).image} source={{ uri: imageUrl }} placeholderStyle={styles(theme).imagePlaceholder} />}
+                <View style={styles(theme).playButtonContainer}>
                   <PlayIcon isLoading={isLoading} isPlaying={isPlaying} isActive={isActive} />
                 </View>
               </TouchableOpacity>
@@ -122,17 +125,17 @@ export const Article: React.FC<Props> = React.memo(
           {!isCompatible && (
             <TouchableHighlight
               testID="Article-Button-incompatibility-warning"
-              style={styles.warningContainer}
+              style={styles(theme).warningContainer}
               onPress={onPressArticleIncompatible}
               activeOpacity={0.8}
               underlayColor={colors.black}
             >
-              <View style={styles.warningWrapper}>
-                <Text style={styles.warningText}>
+              <View style={styles(theme).warningWrapper}>
+                <Text style={styles(theme).warningText}>
                   <Text>This article</Text>
-                  <Text style={styles.warningHighlight} fontWeight="bold">{' '}might{' '}</Text>
+                  <Text style={styles(theme).warningHighlight} fontWeight="bold">{' '}might{' '}</Text>
                   <Text>not be compatible for listening.{' '}</Text>
-                  <Text style={styles.warningLink}>Learn more</Text>
+                  <Text style={styles(theme).warningLink}>Learn more</Text>
                 </Text>
               </View>
             </TouchableHighlight>
@@ -145,6 +148,8 @@ export const Article: React.FC<Props> = React.memo(
 interface SourceTextProps { authorName: Props['authorName']; sourceName: Props['sourceName']; url: Props['url']; textDirection: Props['textDirection'] }
 
 const SourceText: React.FC<SourceTextProps> = React.memo((props: SourceTextProps) => {
+  const { theme } = useContext(UserThemeContext)
+
   let text;
   const textDirectionStyle: StyleProp<TextStyle> = { direction: props.textDirection, writingDirection: props.textDirection };
 
@@ -160,11 +165,11 @@ const SourceText: React.FC<SourceTextProps> = React.memo((props: SourceTextProps
 
   return (
     <Text
-      style={[styles.bodySourceText, textDirectionStyle]}
+      style={[styles(theme).bodySourceText, textDirectionStyle]}
       ellipsizeMode="tail"
       numberOfLines={1}
       testID="Article-source-name"
-      preset="footnoteEmphasized"
+      preset="footnote"
     >
       {text}
     </Text>
@@ -178,6 +183,8 @@ interface DurationProps {
 }
 
 const Duration: React.FC<DurationProps> = React.memo((props: DurationProps) => {
+  const { theme } = useContext(UserThemeContext)
+
   // During our tests, it seems that it takes about 10-20% longer to listen to an article, then to read one
   // So we manually adjust the readingTime
   const readingTimeToListenTimeMargin = 1.2;
@@ -189,8 +196,8 @@ const Duration: React.FC<DurationProps> = React.memo((props: DurationProps) => {
     : '? min.'
 
   return (
-    <View style={[styles.durationContainer, (props.isActive) ? styles.durationContainerActive : undefined]}>
-      <Text style={[styles.durationText, (props.isActive) ? styles.durationTextActive : undefined]} testID="Article-duration" preset="caption2Emphasized">{durationText}</Text>
+    <View style={[styles(theme).durationContainer, (props.isActive) ? styles(theme).durationContainerActive : undefined]}>
+      <Text style={[styles(theme).durationText, (props.isActive) ? styles(theme).durationTextActive : undefined]} testID="Article-duration" preset="caption2Emphasized">{durationText}</Text>
     </View>
   )
 });
@@ -201,20 +208,24 @@ interface PlayIconProps {
   isActive?: boolean;
 }
 
-const PlayIcon: React.FC<PlayIconProps> = React.memo((props: PlayIconProps) => (
-  <View style={[styles.controlButton, props.isPlaying || props.isActive ? styles.controlButtonActive : null]} testID="Article-PlayIcon-view">
-    {props.isLoading && <ActivityIndicator testID="Article-PlayIcon-ActivityIndicator" size="small" color={props.isPlaying || props.isActive ? colors.white : colors.black} />}
-    {!props.isLoading && !props.isPlaying && (
-      <Icon.FontAwesome5
-        name="play"
-        size={11}
-        color={props.isPlaying || props.isActive ? colors.white : colors.black}
-        testID="Article-PlayIcon-Icon-play"
-        style={{ marginLeft: 2 }}
-      />
-    )}
-    {!props.isLoading && props.isPlaying && (
-      <Icon.FontAwesome5 name="pause" size={11} color={props.isPlaying || props.isActive ? colors.white : colors.black} testID="Article-PlayIcon-Icon-pause" />
-    )}
-  </View>
-));
+const PlayIcon: React.FC<PlayIconProps> = React.memo((props: PlayIconProps) => {
+  const { theme } = useContext(UserThemeContext)
+
+  return (
+    <View style={[styles(theme).controlButton, props.isPlaying || props.isActive ? styles(theme).controlButtonActive : null]} testID="Article-PlayIcon-view">
+      {props.isLoading && <ActivityIndicator testID="Article-PlayIcon-ActivityIndicator" size="small" color={props.isPlaying || props.isActive ? colors.white : colors.black} />}
+      {!props.isLoading && !props.isPlaying && (
+        <Icon.FontAwesome5
+          name="play"
+          size={11}
+          color={props.isPlaying || props.isActive ? colors.white : colors.black}
+          testID="Article-PlayIcon-Icon-play"
+          style={{ marginLeft: 2 }}
+        />
+      )}
+      {!props.isLoading && props.isPlaying && (
+        <Icon.FontAwesome5 name="pause" size={11} color={props.isPlaying || props.isActive ? colors.white : colors.black} testID="Article-PlayIcon-Icon-pause" />
+      )}
+    </View>
+  )
+});

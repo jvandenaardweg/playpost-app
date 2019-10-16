@@ -1,5 +1,5 @@
-import React from 'react';
-import { Alert, Animated, LayoutAnimation, StyleSheet, View } from 'react-native';
+import React, { useContext, useRef } from 'react';
+import { Alert, Animated, LayoutAnimation, View } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 // tslint:disable-next-line: no-submodule-imports
 import Swipeable from 'react-native-gesture-handler/Swipeable';
@@ -8,6 +8,10 @@ import * as Icon from '../../components/Icon';
 import colors from '../../constants/colors';
 import { ALERT_TITLE_ERROR_NO_INTERNET } from '../../constants/messages';
 import { NetworkContext } from '../../contexts/NetworkProvider';
+import { UserThemeContext } from '../../contexts/UserThemeProvider';
+
+import styles from './styles';
+import { UserTheme } from '../../reducers/user';
 
 interface Props {
   isFavorited: boolean;
@@ -19,114 +23,88 @@ interface Props {
   unFavoriteArticle(): void;
 }
 
-export class SwipeableRow extends React.PureComponent<Props> {
-  static contextType = NetworkContext;
+export const SwipeableRow: React.FC<Props> = React.memo(({
+  isFavorited, isArchived, removeArticle, archiveArticle, favoriteArticle, unArchiveArticle, unFavoriteArticle, children
+}) => {
+  const { isConnected } = useContext(NetworkContext)
+  const { theme } = useContext(UserThemeContext)
+  const swipeableRef = useRef<Swipeable>(null)
 
-  private swipeableRef: React.RefObject<Swipeable> = React.createRef();
-
-  handleOnPressRightAction = (actionName: string) => {
-    const { isConnected } = this.context;
-    const { isFavorited, isArchived } = this.props;
-
+  const handleOnPressRightAction = (actionName: string) => {
     if (!isConnected) {
-      this.close();
-      return Alert.alert(ALERT_TITLE_ERROR_NO_INTERNET, 'You need an active internet connection to do this.');
+      close();
+      return Alert.alert(ALERT_TITLE_ERROR_NO_INTERNET, 'You need an active internet connection to do ');
     }
 
-    this.close();
+    close();
 
     // Animate the change in the list view
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
 
     if (actionName === 'delete') {
-      this.props.removeArticle();
+      removeArticle();
     }
 
     if (actionName === 'favorite') {
       if (!isFavorited) {
-        this.props.favoriteArticle();
+        favoriteArticle();
       } else {
-        this.props.unFavoriteArticle();
+        unFavoriteArticle();
       }
     }
 
     if (actionName === 'archive') {
       if (!isArchived) {
-        this.props.archiveArticle()
+        archiveArticle()
       } else {
-        this.props.unArchiveArticle();
+        unArchiveArticle();
       }
     }
   }
 
-  renderRightAction = (action: string, icon: string, iconColor: string | null) => {
+  const renderRightAction = (action: string, icon: string, iconColor: string | null) => {
+    const defaultColor = (theme === UserTheme.dark) ? colors.grayDarker : colors.gray
     return (
-      <View style={styles.rightActionContainer}>
+      <View style={styles(theme).rightActionContainer}>
         <RectButton
-          style={styles.rightAction}
-          onPress={() => this.handleOnPressRightAction(action)}
+          style={styles(theme).rightAction}
+          onPress={() => handleOnPressRightAction(action)}
         >
           <Icon.Feather
             name={icon}
             size={22}
-            color={(iconColor) ? iconColor : colors.gray}
+            color={(iconColor) ? iconColor : defaultColor}
           />
         </RectButton>
       </View>
     );
   }
 
-  renderRightActions = (progressAnimatedValue: Animated.Value | Animated.AnimatedInterpolation, dragAnimatedValue: Animated.Value | Animated.AnimatedInterpolation) => {
-    const { isArchived, isFavorited } = this.props;
+  const renderRightActions = (progressAnimatedValue: Animated.Value | Animated.AnimatedInterpolation, dragAnimatedValue: Animated.Value | Animated.AnimatedInterpolation) => {
+    const iconColorActive = (theme === UserTheme.dark) ? colors.white : colors.black;
 
     return (
-      <View style={styles.rightActionsContainer}>
+      <View style={styles(theme).rightActionsContainer}>
         {/* {this.renderRightAction('download', 'download-cloud', (isArchived) ? colors.black : null)} */}
-        {this.renderRightAction('archive', 'archive', (isArchived) ? colors.black : null)}
-        {this.renderRightAction('favorite', 'heart', (isFavorited) ? colors.black : null)}
-        {this.renderRightAction('delete', 'trash-2', null)}
+        {renderRightAction('archive', 'archive', (isArchived) ? iconColorActive : null)}
+        {renderRightAction('favorite', 'heart', (isFavorited) ? iconColorActive : null)}
+        {renderRightAction('delete', 'trash-2', null)}
       </View>
     );
   }
 
-  close = () => this.swipeableRef.current && this.swipeableRef.current.close()
+  const close = () => swipeableRef.current && swipeableRef.current.close()
 
-  render() {
-    return (
-      <Swipeable
-        ref={this.swipeableRef}
-        friction={2}
-        rightThreshold={50}
-        renderRightActions={this.renderRightActions}
-        useNativeAnimations
-      >
-        {this.props.children}
-      </Swipeable>
-    );
-  }
-}
 
-const styles = StyleSheet.create({
-  actionText: {
-    color: colors.white,
-    backgroundColor: 'transparent',
-    padding: 10,
-  },
-  rightActionsContainer: {
-    width: 250,
-    flexDirection: 'row',
-    paddingLeft: 16,
-    paddingRight: 16
-  },
-  rightActionContainer: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-  },
-  rightAction: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-    width: 54 // 250 - 16 - 16 / 4
-  },
-});
+  return (
+    <Swipeable
+      ref={swipeableRef}
+      friction={2}
+      rightThreshold={50}
+      renderRightActions={renderRightActions}
+      useNativeAnimations
+    >
+      {children}
+    </Swipeable>
+  )
+})

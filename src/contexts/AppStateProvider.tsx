@@ -8,7 +8,7 @@ import { getPlaylist } from '../reducers/playlist';
 
 import { setAuthToken } from '../reducers/auth';
 import { getInAppSubscriptions, validateSubscriptionReceipt } from '../reducers/subscriptions';
-import { getUser } from '../reducers/user';
+import { getUser, UserTheme } from '../reducers/user';
 import { getLanguages } from '../reducers/voices';
 import { selectAuthenticationToken, selectIsLoggedIn } from '../selectors/auth';
 import { selectSubscriptionsValidationResult } from '../selectors/subscriptions';
@@ -17,8 +17,9 @@ import { store } from '../store';
 import * as keychain from '../utils/keychain';
 // import { ALERT_SUBSCRIPTION_EXPIRED } from '../constants/messages';
 
-export const AppStateContext = React.createContext<{ appState: AppStateStatus; }>({
-  appState: AppState.currentState
+export const AppStateContext = React.createContext<{ appState: AppStateStatus, theme: UserTheme; }>({
+  appState: AppState.currentState,
+  theme: UserTheme.light // default
 });
 
 export const AppStateConsumer = AppStateContext.Consumer;
@@ -29,13 +30,15 @@ interface IProps {
 
 interface State {
   appState: AppStateStatus;
+  theme: UserTheme
 }
 
 type Props = IProps & StateProps & DispatchProps;
 
 export class AppStateProviderContainer extends React.PureComponent<Props, State> {
   state = {
-    appState: AppState.currentState
+    appState: AppState.currentState,
+    theme: UserTheme.light // default
   };
 
   appStateChangeListener: void | null = null;

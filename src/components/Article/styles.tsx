@@ -3,12 +3,13 @@ import { StyleSheet } from 'react-native';
 import colors from '../../constants/colors';
 import layout from '../../constants/layout';
 import spacing from '../../constants/spacing';
+import { UserTheme } from '../../reducers/user';
 
-export default StyleSheet.create({
+export default (theme?: UserTheme) => StyleSheet.create({
   container: {
   },
   contentContainer: {
-    backgroundColor: colors.articleBackground,
+    backgroundColor: theme === UserTheme.dark ? colors.grayDarkest : colors.articleBackground,
     padding: spacing.default,
   },
   wrapper: {
@@ -17,7 +18,7 @@ export default StyleSheet.create({
     width: '100%',
   },
   isMoving: {
-    backgroundColor: colors.appBackground
+    backgroundColor: theme === UserTheme.dark ? colors.grayDarker : colors.appBackground
   },
   isActive: {
     backgroundColor: colors.tintColor
@@ -34,7 +35,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   author: {
-    color: colors.grayDark
+    color: theme === UserTheme.dark ? colors.grayDarkest : colors.grayDark
   },
   bodyMeta: {
     flexDirection: 'row',
@@ -68,17 +69,17 @@ export default StyleSheet.create({
     height: 10 // icon height
   },
   bodyTitleText: {
-    color: colors.titleDefault
+    color: theme === UserTheme.dark ? colors.white : colors.titleDefault
   },
   bodyFooterText: {
-    color: colors.grayDark,
+    color: theme === UserTheme.dark ? colors.grayDarker : colors.grayDark,
     paddingRight: 6 // so our "rtl" text has enough spacing
   },
   bodySourceIcon: {
     marginRight: 6
   },
   bodySourceText: {
-    color: colors.grayDark,
+    color: theme === UserTheme.dark ? colors.grayDarker : colors.grayDark,
     paddingRight: 0,
     marginBottom: spacing.tiny
   },
@@ -111,7 +112,7 @@ export default StyleSheet.create({
   durationContainer: {
     textAlign: 'center',
     marginTop: spacing.micro,
-    backgroundColor: colors.grayLightest,
+    backgroundColor: theme === UserTheme.dark ? colors.grayDarker : colors.grayLightest,
     borderRadius: 21,
     paddingTop: 3,
     paddingBottom: 0,
@@ -121,6 +122,9 @@ export default StyleSheet.create({
   },
   durationText: {
     color: colors.grayDark,
+  },
+  downloadText: {
+    color: theme === UserTheme.dark ? colors.grayDarker : colors.grayDark,
   },
   durationContainerActive: {
     backgroundColor: colors.tintColor

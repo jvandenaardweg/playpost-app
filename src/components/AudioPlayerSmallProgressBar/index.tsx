@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // import isEqual from 'react-fast-compare';
 import { View } from 'react-native';
 import { useProgress } from 'react-native-track-player';
 
+import { UserThemeContext } from '../../contexts/UserThemeProvider';
 import styles from './styles';
 
 export const AudioPlayerSmallProgressBar: React.FC = React.memo(() => {
-
+  const { theme } = useContext(UserThemeContext);
   const progress = useProgress();
 
   let percentage = 0;
@@ -16,29 +17,8 @@ export const AudioPlayerSmallProgressBar: React.FC = React.memo(() => {
     percentage = position / duration;
   }
   return (
-    <View style={styles.container}>
-      <View style={[styles.progress, { width: `${percentage * 100}%` }]} />
+    <View style={styles(theme).container}>
+      <View style={[styles(theme).progress, { width: `${percentage * 100}%` }]} />
     </View>
   )
 });
-
-// export class AudioPlayerSmallProgressBar extends ProgressComponent<any, State> {
-//   shouldComponentUpdate(nextProps: any, nextState: State) {
-//     return !isEqual(this.state, nextState);
-//   }
-
-//   render() {
-//     let percentage = 0;
-//     const { position, duration } = this.state;
-
-//     if (position && duration) {
-//       percentage = position / duration;
-//     }
-
-//     return (
-//       <View style={styles.container}>
-//         <View style={[styles.progress, { width: `${percentage * 100}%` }]} />
-//       </View>
-//     );
-//   }
-// }

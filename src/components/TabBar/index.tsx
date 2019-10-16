@@ -12,8 +12,8 @@ import { BottomTabBar, BottomTabBarProps } from 'react-navigation-tabs';
 
 import { SmallAudioPlayerContainer } from '../../containers/SmallAudioPlayerContainer';
 
-import colors from '../../constants/colors';
 import { GlobalStatusIndicatorContainer } from '../../containers/GlobalStatusIndicatorContainer';
+import { UserThemeContext } from '../../contexts/UserThemeProvider';
 import { OfflineNotice } from '../OfflineNotice';
 import styles from './styles';
 
@@ -21,13 +21,14 @@ export const TabBar: React.FC<BottomTabBarProps> = React.memo((
   props: BottomTabBarProps
 ) => {
   const { isConnected } = useContext(NetworkContext);
+  const { theme } = useContext(UserThemeContext);
 
   return (
-    <View style={styles.container}>
+    <View style={styles(theme).container}>
       <GlobalStatusIndicatorContainer />
       {!isConnected && <OfflineNotice />}
       <SmallAudioPlayerContainer />
-      <BottomTabBar {...props} style={{ backgroundColor: colors.tabBarBackgroundColor, borderTopColor: colors.tabBarBorderColor }} />
+      <BottomTabBar {...props} style={styles(theme).bottomTabBar} />
     </View>
   );
 });

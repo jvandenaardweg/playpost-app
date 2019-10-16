@@ -6,6 +6,8 @@ import colors from '../../constants/colors';
 import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_UNLIMITED } from '../../constants/in-app-purchase';
 import Text from '../Text';
 import styles from './styles';
+import { UserThemeContext } from '../../contexts/UserThemeProvider';
+import { useContext } from 'react';
 
 
 export interface Props {
@@ -16,6 +18,8 @@ export interface Props {
 }
 
 export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProductId, onPressUpgrade, userIsEligibleForTrial }) => {
+  const { theme } = useContext(UserThemeContext)
+
   const limitSecondsPerMonth = (user) ? user.limits.audiofiles.limitSecondsPerMonth : null;
   const usageUsedCurrentMonthInSeconds = (user) ? user.used.audiofiles && user.used.audiofiles.currentMonthInSeconds : null;
   const percentageUsedCurrentMonth = (usageUsedCurrentMonthInSeconds !== null && limitSecondsPerMonth !== null) ? (usageUsedCurrentMonthInSeconds / limitSecondsPerMonth) * 100 : 0;
@@ -42,35 +46,35 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
       : SUBSCRIPTION_PRODUCT_ID_PREMIUM;
 
   return (
-    <View style={styles.container}>
-      <View style={styles.wrapper}>
-        <View style={styles.statsContainer}>
-          <View style={styles.statsWrapper}>
+    <View style={styles(theme).container}>
+      <View style={styles(theme).wrapper}>
+        <View style={styles(theme).statsContainer}>
+          <View style={styles(theme).statsWrapper}>
             <View>
-              <Text style={styles.statsBigNumber} preset="largeTitleEmphasized" testID="Usage-Text-current-usage">{currentUsageLocalized}</Text>
+              <Text style={styles(theme).statsBigNumber} preset="largeTitleEmphasized" testID="Usage-Text-current-usage">{currentUsageLocalized}</Text>
             </View>
-            <View style={styles.statsNumbersContainer}>
+            <View style={styles(theme).statsNumbersContainer}>
               <View>
-                <Text testID="Usage-Text-minutes-used" style={styles.statsMeta} preset="footnote">{usedText}</Text>
+                <Text testID="Usage-Text-minutes-used" style={styles(theme).statsMeta} preset="footnote">{usedText}</Text>
               </View>
               <View>
-                <Text testID="Usage-Text-percentage" style={{...styles.statsPercentage, color: percentageUsedColor }} preset="bodyEmphasized">{usedPercentageText}</Text>
+                <Text testID="Usage-Text-percentage" style={{...styles(theme).statsPercentage, color: percentageUsedColor }} preset="bodyEmphasized">{usedPercentageText}</Text>
               </View>
             </View>
           </View>
-          <View style={styles.progressContainer}>
-            <View testID="Usage-View-progress" style={[styles.progress, { width: progressWidth }, { backgroundColor: progressBackgroundColor }]} />
+          <View style={styles(theme).progressContainer}>
+            <View testID="Usage-View-progress" style={[styles(theme).progress, { width: progressWidth }, { backgroundColor: progressBackgroundColor }]} />
           </View>
         </View>
 
         {showUpgradeButton && (
-          <View style={styles.upgradeContainer}>
+          <View style={styles(theme).upgradeContainer}>
             <Button
               testID="Usage-Button-upgrade"
               title={upgradeButtonTitle}
               onPress={() => onPressUpgrade(upgradeScreenCenteredSubscriptionProductId)}
             />
-            <Text testID="Usage-Text-upgrade-message" style={styles.messageText} preset="footnote">
+            <Text testID="Usage-Text-upgrade-message" style={styles(theme).messageText} preset="footnote">
               {upgradeMessage}
             </Text>
           </View>

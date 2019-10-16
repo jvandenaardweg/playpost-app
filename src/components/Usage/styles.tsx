@@ -3,14 +3,15 @@ import { StyleSheet } from 'react-native';
 import colors from '../../constants/colors';
 import layout from '../../constants/layout';
 import spacing from '../../constants/spacing';
+import { UserTheme } from '../../reducers/user';
 
-export default StyleSheet.create({
+export default (theme?: UserTheme) => StyleSheet.create({
   container: {
     paddingLeft: spacing.default,
     paddingRight: spacing.default
   },
   wrapper: {
-    backgroundColor: colors.white,
+    backgroundColor: theme === UserTheme.dark ? colors.grayDarkest : colors.white,
     padding: spacing.large,
     marginBottom: 0
   },
@@ -22,7 +23,7 @@ export default StyleSheet.create({
     alignItems: 'flex-end'
   },
   statsBigNumber: {
-    color: colors.black,
+    color: theme === UserTheme.dark ? colors.white : colors.black,
     letterSpacing: -0.75
   },
   statsNumbersContainer: {
@@ -33,18 +34,18 @@ export default StyleSheet.create({
     marginBottom: 4
   },
   statsMeta: {
-    color: colors.grayDarkest,
+    color: theme === UserTheme.dark ? colors.grayLight : colors.grayDarkest,
     marginLeft: 4,
     marginBottom: 2,
   },
   statsPercentage: {
-    color: colors.black
+    color: theme === UserTheme.dark ? colors.white : colors.black
   },
   upgradeContainer: {
     marginTop: spacing.default
   },
   progressContainer: {
-    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    backgroundColor: theme === UserTheme.dark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
     height: 6,
     borderRadius: layout.borderRadius.small,
     overflow: 'hidden',
@@ -56,7 +57,7 @@ export default StyleSheet.create({
   },
   messageText: {
     marginTop: 8,
-    color: colors.grayDarkest,
+    color: theme === UserTheme.dark ? colors.grayLightest : colors.grayDarkest,
     textAlign: 'center'
   }
 });
