@@ -94,7 +94,7 @@ exports[`CustomSectionList basic rendering should render correctly 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
+              "backgroundColor": "#ffffff",
               "borderColor": "#bcbbc1",
               "flexDirection": "row",
               "padding": 14,
@@ -113,7 +113,7 @@ exports[`CustomSectionList basic rendering should render correctly 1`] = `
               style={
                 Object {
                   "backgroundColor": "transparent",
-                  "color": "#000000",
+                  "color": "#090909",
                   "fontFamily": "Inter-Regular",
                   "fontSize": 17,
                   "lineHeight": 23,

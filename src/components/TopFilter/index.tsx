@@ -6,9 +6,9 @@ import Text from '../Text';
 import styles from './styles';
 
 import colors from '../../constants/colors';
+import { UserThemeContext } from '../../contexts/UserThemeProvider';
 import { ButtonTiny } from '../ButtonTiny';
 import * as Icon from '../Icon';
-import { UserThemeContext } from '../../contexts/UserThemeProvider';
 
 interface Filter {
   label: string;

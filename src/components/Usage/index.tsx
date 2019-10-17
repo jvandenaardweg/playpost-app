@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View } from 'react-native';
 import { Button } from 'react-native-elements';
 
 import colors from '../../constants/colors';
 import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_UNLIMITED } from '../../constants/in-app-purchase';
+import { UserThemeContext } from '../../contexts/UserThemeProvider';
 import Text from '../Text';
 import styles from './styles';
-import { UserThemeContext } from '../../contexts/UserThemeProvider';
-import { useContext } from 'react';
 
 
 export interface Props {

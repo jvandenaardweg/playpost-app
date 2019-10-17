@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from 'react';
-import { Alert, Animated, LayoutAnimation, View } from 'react-native';
+import { Alert, Animated, View } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 // tslint:disable-next-line: no-submodule-imports
 import Swipeable from 'react-native-gesture-handler/Swipeable';

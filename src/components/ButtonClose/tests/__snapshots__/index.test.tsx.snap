@@ -39,7 +39,7 @@ exports[`ButtonClose rendering should render correctly 1`] = `
     style={
       Array [
         Object {
-          "color": "#000000",
+          "color": "#090909",
           "fontSize": 18,
         },
         Object {

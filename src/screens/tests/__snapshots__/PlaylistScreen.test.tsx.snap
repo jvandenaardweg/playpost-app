@@ -6,7 +6,7 @@ exports[`PlaylistScreen rendering should render correctly 1`] = `
     isAnimated={true}
     showActivityIndicator={true}
   >
-    <Memo(Connect(PlaylistContainerComponent)) />
+    <Memo(Connect(Component)) />
   </InteractionManaged>
 </Memo>
 `;

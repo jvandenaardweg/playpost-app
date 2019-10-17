@@ -45,7 +45,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   "marginBottom": 12,
                   "marginTop": 12,
                   "padding": 12,
-                  "shadowColor": "#000000",
+                  "shadowColor": "#090909",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 0,
@@ -66,13 +66,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 20,
                       "lineHeight": 24,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 12,
                       "marginTop": 12,
                     },
@@ -94,11 +94,11 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-ExtraBold",
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontSize": 48,
                       "letterSpacing": -2,
                     },
@@ -114,13 +114,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 13,
                       "lineHeight": 16,
                     },
                     Object {
-                      "color": "#222222",
+                      "color": "#121212",
                       "marginBottom": 8,
                       "marginLeft": 4,
                       "marginTop": 6,
@@ -216,13 +216,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 8,
                       "textAlign": "center",
                     },
@@ -235,13 +235,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 8,
                       "textAlign": "center",
                     },
@@ -254,13 +254,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 8,
                       "textAlign": "center",
                     },
@@ -273,13 +273,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 8,
                       "textAlign": "center",
                     },
@@ -292,13 +292,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 8,
                       "textAlign": "center",
                     },
@@ -311,13 +311,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 8,
                       "textAlign": "center",
                     },
@@ -338,7 +338,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
@@ -365,7 +365,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   "marginBottom": 12,
                   "marginTop": 12,
                   "padding": 12,
-                  "shadowColor": "#000000",
+                  "shadowColor": "#090909",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 0,
@@ -386,13 +386,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 20,
                       "lineHeight": 24,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 12,
                       "marginTop": 12,
                     },
@@ -414,11 +414,11 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-ExtraBold",
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontSize": 48,
                       "letterSpacing": -2,
                     },
@@ -434,13 +434,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 13,
                       "lineHeight": 16,
                     },
                     Object {
-                      "color": "#222222",
+                      "color": "#121212",
                       "marginBottom": 8,
                       "marginLeft": 4,
                       "marginTop": 6,
@@ -528,13 +528,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 8,
                       "textAlign": "center",
                     },
@@ -547,13 +547,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 8,
                       "textAlign": "center",
                     },
@@ -566,13 +566,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 8,
                       "textAlign": "center",
                     },
@@ -585,13 +585,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 8,
                       "textAlign": "center",
                     },
@@ -604,13 +604,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 8,
                       "textAlign": "center",
                     },
@@ -631,7 +631,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
@@ -714,7 +714,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   "marginBottom": 12,
                   "marginTop": 12,
                   "padding": 12,
-                  "shadowColor": "#000000",
+                  "shadowColor": "#090909",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 0,
@@ -735,13 +735,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 20,
                       "lineHeight": 24,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 12,
                       "marginTop": 12,
                     },
@@ -763,11 +763,11 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-ExtraBold",
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontSize": 48,
                       "letterSpacing": -2,
                     },
@@ -783,13 +783,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 13,
                       "lineHeight": 16,
                     },
                     Object {
-                      "color": "#222222",
+                      "color": "#121212",
                       "marginBottom": 8,
                       "marginLeft": 4,
                       "marginTop": 6,
@@ -877,13 +877,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 8,
                       "textAlign": "center",
                     },
@@ -896,13 +896,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 8,
                       "textAlign": "center",
                     },
@@ -915,13 +915,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 8,
                       "textAlign": "center",
                     },
@@ -934,13 +934,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 8,
                       "textAlign": "center",
                     },
@@ -953,13 +953,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 8,
                       "textAlign": "center",
                     },
@@ -980,7 +980,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
@@ -1063,7 +1063,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                   "marginBottom": 12,
                   "marginTop": 12,
                   "padding": 12,
-                  "shadowColor": "#000000",
+                  "shadowColor": "#090909",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 0,
@@ -1084,13 +1084,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 20,
                       "lineHeight": 24,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 12,
                       "marginTop": 12,
                     },
@@ -1112,11 +1112,11 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-ExtraBold",
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontSize": 48,
                       "letterSpacing": -2,
                     },
@@ -1132,13 +1132,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 13,
                       "lineHeight": 16,
                     },
                     Object {
-                      "color": "#222222",
+                      "color": "#121212",
                       "marginBottom": 8,
                       "marginLeft": 4,
                       "marginTop": 6,
@@ -1234,13 +1234,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 8,
                       "textAlign": "center",
                     },
@@ -1253,13 +1253,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 8,
                       "textAlign": "center",
                     },
@@ -1272,13 +1272,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 8,
                       "textAlign": "center",
                     },
@@ -1291,13 +1291,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 8,
                       "textAlign": "center",
                     },
@@ -1310,13 +1310,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 8,
                       "textAlign": "center",
                     },
@@ -1337,7 +1337,7 @@ exports[`Upgrade rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
@@ -1432,13 +1432,13 @@ exports[`Upgrade rendering should render correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#000000",
+                  "color": "#090909",
                   "fontFamily": "Inter-SemiBold",
                   "fontSize": 28,
                   "lineHeight": 34,
                 },
                 Object {
-                  "color": "#000000",
+                  "color": "#090909",
                   "marginBottom": 20,
                   "marginTop": 12,
                   "textAlign": "center",
@@ -1501,13 +1501,13 @@ Premium or Unlimited
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-SemiBold",
                       "fontSize": 17,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 4,
                     },
                   ]
@@ -1519,13 +1519,13 @@ Premium or Unlimited
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#222222",
+                      "color": "#121212",
                     },
                   ]
                 }
@@ -1586,13 +1586,13 @@ Premium or Unlimited
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-SemiBold",
                       "fontSize": 17,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 4,
                     },
                   ]
@@ -1604,13 +1604,13 @@ Premium or Unlimited
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#222222",
+                      "color": "#121212",
                     },
                   ]
                 }
@@ -1671,13 +1671,13 @@ Premium or Unlimited
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-SemiBold",
                       "fontSize": 17,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 4,
                     },
                   ]
@@ -1689,13 +1689,13 @@ Premium or Unlimited
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#222222",
+                      "color": "#121212",
                     },
                   ]
                 }
@@ -1756,13 +1756,13 @@ Premium or Unlimited
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-SemiBold",
                       "fontSize": 17,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "marginBottom": 4,
                     },
                   ]
@@ -1774,13 +1774,13 @@ Premium or Unlimited
                 style={
                   Array [
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "fontFamily": "Inter-Regular",
                       "fontSize": 15,
                       "lineHeight": 23,
                     },
                     Object {
-                      "color": "#222222",
+                      "color": "#121212",
                     },
                   ]
                 }
@@ -1802,7 +1802,7 @@ Premium or Unlimited
             style={
               Array [
                 Object {
-                  "color": "#000000",
+                  "color": "#090909",
                   "fontFamily": "Inter-Regular",
                   "fontSize": 12,
                   "lineHeight": 15,
@@ -1833,7 +1833,7 @@ Premium or Unlimited
               style={
                 Array [
                   Object {
-                    "color": "#000000",
+                    "color": "#090909",
                     "fontFamily": "Inter-Regular",
                     "fontSize": 12,
                     "lineHeight": 15,
@@ -1843,7 +1843,7 @@ Premium or Unlimited
                       "opacity": 0.5,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "opacity": 1,
                       "textDecorationLine": "underline",
                     },
@@ -1857,7 +1857,7 @@ Premium or Unlimited
               style={
                 Array [
                   Object {
-                    "color": "#000000",
+                    "color": "#090909",
                     "fontFamily": "Inter-Regular",
                     "fontSize": 12,
                     "lineHeight": 15,
@@ -1875,7 +1875,7 @@ Premium or Unlimited
               style={
                 Array [
                   Object {
-                    "color": "#000000",
+                    "color": "#090909",
                     "fontFamily": "Inter-Regular",
                     "fontSize": 12,
                     "lineHeight": 15,
@@ -1885,7 +1885,7 @@ Premium or Unlimited
                       "opacity": 0.5,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "opacity": 1,
                       "textDecorationLine": "underline",
                     },
@@ -1899,7 +1899,7 @@ Premium or Unlimited
               style={
                 Array [
                   Object {
-                    "color": "#000000",
+                    "color": "#090909",
                     "fontFamily": "Inter-Regular",
                     "fontSize": 12,
                     "lineHeight": 15,
@@ -1917,7 +1917,7 @@ Premium or Unlimited
               style={
                 Array [
                   Object {
-                    "color": "#000000",
+                    "color": "#090909",
                     "fontFamily": "Inter-Regular",
                     "fontSize": 12,
                     "lineHeight": 15,
@@ -1927,7 +1927,7 @@ Premium or Unlimited
                       "opacity": 0.5,
                     },
                     Object {
-                      "color": "#000000",
+                      "color": "#090909",
                       "opacity": 1,
                       "textDecorationLine": "underline",
                     },

@@ -9,7 +9,7 @@ exports[`ShareModal interacting should fire onPressClose when pressing the close
       "elevation": 10,
       "height": 168,
       "padding": 12,
-      "shadowColor": "#000000",
+      "shadowColor": "#090909",
       "shadowOffset": Object {
         "height": 2,
         "width": 0,
@@ -112,7 +112,7 @@ exports[`ShareModal rendering should render correctly 1`] = `
       "elevation": 10,
       "height": 168,
       "padding": 12,
-      "shadowColor": "#000000",
+      "shadowColor": "#090909",
       "shadowOffset": Object {
         "height": 2,
         "width": 0,

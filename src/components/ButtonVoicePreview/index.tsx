@@ -3,8 +3,8 @@ import { ActivityIndicator, TouchableOpacity } from 'react-native';
 
 import * as Icon from '../Icon';
 
-import styles from './styles';
 import { UserThemeContext } from '../../contexts/UserThemeProvider';
+import styles from './styles';
 
 interface Props {
   isLoading?: boolean;

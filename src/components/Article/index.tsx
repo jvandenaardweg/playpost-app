@@ -8,10 +8,10 @@ import colors from '../../constants/colors';
 
 import * as Icon from '../../components/Icon';
 
-import { TextDirection } from '../../typings';
-import styles from './styles';
 import { UserThemeContext } from '../../contexts/UserThemeProvider';
 import { UserTheme } from '../../reducers/user';
+import { TextDirection } from '../../typings';
+import styles from './styles';
 
 export interface Props {
   isMoving?: boolean;

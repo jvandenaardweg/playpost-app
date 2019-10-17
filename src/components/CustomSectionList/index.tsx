@@ -8,10 +8,10 @@ import Text, { textPresets } from '../Text';
 
 import * as Icon from '../../components/Icon';
 import spacing from '../../constants/spacing';
-import { EmptyState } from '../EmptyState';
-import { ListSeperator } from '../ListSeperator';
 import { UserThemeContext } from '../../contexts/UserThemeProvider';
 import { UserTheme } from '../../reducers/user';
+import { EmptyState } from '../EmptyState';
+import { ListSeperator } from '../ListSeperator';
 
 export interface IListItem {
   key: string;

@@ -29,7 +29,6 @@ export class UserThemeProviderContainer extends React.PureComponent<Props, State
 
   async componentDidMount() {
     const { userSelectedTheme } = this.props;
-    console.log('Load theme: ', userSelectedTheme)
     this.setState({ theme: userSelectedTheme })
 
     this.setStatusBarStyle(userSelectedTheme);
@@ -40,7 +39,6 @@ export class UserThemeProviderContainer extends React.PureComponent<Props, State
 
     // sync store with provider
     if (prevProps.userSelectedTheme !== userSelectedTheme) {
-      console.log('Change theme to: ', userSelectedTheme)
       this.setState({ theme: userSelectedTheme })
       this.setStatusBarStyle(userSelectedTheme);
     }

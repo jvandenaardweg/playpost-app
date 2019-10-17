@@ -58,7 +58,7 @@ exports[`ContentView basic rendering should render correctly 1`] = `
             font-size: 17px;
             font-family: 'Inter', 'Roboto', 'Helvetica', serif;
             line-height: 1.5;
-            color: #000000;
+            color: #090909;
             font-weight: normal;
             word-break: break-word;
             background-color: #ffffff;
@@ -68,7 +68,7 @@ exports[`ContentView basic rendering should render correctly 1`] = `
             line-height: 1.2;
             margin-top: 0;
             margin-bottom: 10px;
-            color: #000000;
+            color: #090909;
           }
 
           h1 {
@@ -97,13 +97,13 @@ exports[`ContentView basic rendering should render correctly 1`] = `
           p {
             font-size: 17px;
             margin-top: 1.5;
-            color: #222222;
+            color: #121212;
             line-height: 1.58;
             margin-bottom: 1.5;
           }
 
           a, strong {
-            color: #000000;
+            color: #090909;
           }
 
           blockquote {

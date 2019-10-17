@@ -6,7 +6,7 @@ exports[`ArchiveScreen rendering should render correctly 1`] = `
     isAnimated={true}
     showActivityIndicator={true}
   >
-    <Memo(Connect(PlaylistContainerComponent))
+    <Memo(Connect(Component))
       isArchiveScreen={true}
     />
   </InteractionManaged>

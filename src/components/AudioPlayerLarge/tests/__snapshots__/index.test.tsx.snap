@@ -4,7 +4,7 @@ exports[`AudioPlayerLarge rendering should render correctly 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "#000000",
+      "backgroundColor": "#090909",
       "flex": 1,
     }
   }
@@ -151,7 +151,7 @@ exports[`AudioPlayerLarge rendering should render correctly 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "#555555",
+              "backgroundColor": "#666666",
               "borderRadius": 32,
               "height": 32,
               "justifyContent": "center",
@@ -225,7 +225,7 @@ exports[`AudioPlayerLarge rendering should render correctly 1`] = `
           }
         >
           <Memo
-            iconColor="#000000"
+            iconColor="#090909"
             isDisabled={false}
             isLoading={false}
             isPlaying={false}

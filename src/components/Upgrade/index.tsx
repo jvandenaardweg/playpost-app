@@ -1,5 +1,5 @@
 import getSymbolFromCurrency from 'currency-symbol-map';
-import React, { useEffect, useRef, useContext } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { ActivityIndicator, Dimensions, Platform, ScrollView, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import * as RNIap from 'react-native-iap';

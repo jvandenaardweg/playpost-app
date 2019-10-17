@@ -45,7 +45,7 @@ exports[`LoginForgotPasswordForm rendering should render correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#000000",
+                "color": "#090909",
                 "fontFamily": "Inter-SemiBold",
                 "fontSize": 15,
                 "lineHeight": 23,

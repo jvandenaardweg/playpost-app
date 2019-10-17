@@ -5,10 +5,10 @@ import * as TrackPlayer from 'react-native-track-player';
 import styles from './styles';
 
 import colors from '../../constants/colors';
+import { UserThemeContext } from '../../contexts/UserThemeProvider';
 import { AudioPlayerSmallProgressBar } from '../AudioPlayerSmallProgressBar';
 import { PlayPauseControl } from '../PlayPauseControl';
 import Text from '../Text';
-import { UserThemeContext } from '../../contexts/UserThemeProvider';
 
 interface Props {
   isPlaying: boolean;

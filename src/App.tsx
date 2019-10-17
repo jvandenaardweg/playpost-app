@@ -22,11 +22,11 @@ import { APIErrorAlertContainer } from './containers/APIErrorAlertContainer';
 import { SubscriptionHandlerContainer } from './containers/SubscriptionHandlerContainer';
 import { AppStateProvider } from './contexts/AppStateProvider';
 import { NetworkProvider } from './contexts/NetworkProvider';
+import { UserThemeContext, UserThemeProvider } from './contexts/UserThemeProvider';
 import { AppContainer } from './navigation/AppNavigator';
 import NavigationService from './navigation/NavigationService';
 import { addArticleToPlaylistById } from './reducers/playlist';
 import { selectIsLoggedIn } from './selectors/auth';
-import { UserThemeContext, UserThemeProvider } from './contexts/UserThemeProvider';
 
 // https://facebook.github.io/react-native/docs/layoutanimation
 // Note that in order to get this to work on Android you need to set the following flags via UIManager:

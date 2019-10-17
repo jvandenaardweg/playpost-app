@@ -13,7 +13,7 @@ exports[`store/index store.getState() should return the initial store state 1`] 
 Object {
   "_persist": Object {
     "rehydrated": false,
-    "version": 11,
+    "version": 13,
   },
   "audiofiles": Object {
     "downloaded": Array [],
@@ -74,6 +74,11 @@ Object {
     "validationResult": null,
   },
   "user": Object {
+    "availableThemes": Array [
+      "auto",
+      "light",
+      "dark",
+    ],
     "details": null,
     "deviceLocale": "en",
     "error": "",
@@ -83,6 +88,7 @@ Object {
     "isLoadingPatchUser": false,
     "isLoadingSaveSelectedVoice": false,
     "playbackSpeed": 1,
+    "selectedTheme": "light",
   },
   "voices": Object {
     "downloadedVoicePreviews": Array [],

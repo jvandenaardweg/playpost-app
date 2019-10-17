@@ -18,14 +18,14 @@ exports[`CenterLoadingIndicator rendering should render correctly 1`] = `
         "width": "100%",
       },
       Object {
-        "backgroundColor": "#EEEEEE",
+        "backgroundColor": undefined,
       },
     ]
   }
 >
   <ActivityIndicator
     animating={true}
-    color="#000000"
+    color="#090909"
     hidesWhenStopped={true}
     size="small"
   />

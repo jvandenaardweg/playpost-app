@@ -15,13 +15,13 @@ exports[`ErrorModal rendering should render correctly 1`] = `
       style={
         Array [
           Object {
-            "color": "#000000",
+            "color": "#090909",
             "fontFamily": "Inter-SemiBold",
             "fontSize": 17,
             "lineHeight": 23,
           },
           Object {
-            "color": "#000000",
+            "color": "#090909",
           },
         ]
       }

@@ -2,27 +2,11 @@
 
 exports[`AudioPlayerSmallEmpty rendering should render correctly 1`] = `
 <View
-  style={
-    Object {
-      "height": 55,
-    }
-  }
+  style={Object {}}
   testID="AudioPlayerSmallEmpty"
 >
   <View
-    style={
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "#000000",
-        "flexDirection": "row",
-        "height": 55,
-        "justifyContent": "space-around",
-        "paddingBottom": 8,
-        "paddingLeft": 12,
-        "paddingRight": 12,
-        "paddingTop": 8,
-      }
-    }
+    style={Object {}}
   >
     <View
       style={
@@ -38,7 +22,7 @@ exports[`AudioPlayerSmallEmpty rendering should render correctly 1`] = `
         style={
           Array [
             Object {
-              "color": "#000000",
+              "color": "#090909",
               "fontFamily": "Inter-SemiBold",
               "fontSize": 15,
               "lineHeight": 23,
