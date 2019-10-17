@@ -1,9 +1,9 @@
 const tintColor = '#0066FF'; // newer blue since 23-09-2019
 const tintColorLight = '#D9E9FD';
 const tintColorDark = '#004A87';
-const black = '#000000';
+const black = '#090909';
 const grayDarkest = '#121212';
-const grayDarker = '#555555';
+const grayDarker = '#666666';
 const grayDark = '#AAAAAA';
 const gray = '#C5C5C5';
 const grayLight = '#e5e5e5';

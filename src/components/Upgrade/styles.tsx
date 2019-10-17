@@ -3,10 +3,12 @@ import { Platform, StyleSheet } from 'react-native';
 import colors from '../../constants/colors';
 import layout from '../../constants/layout';
 import spacing from '../../constants/spacing';
+import { UserTheme } from '../../reducers/user';
 
-export default StyleSheet.create({
+export default (theme?: UserTheme) => StyleSheet.create({
   container: {
-    paddingTop: spacing.default
+    paddingTop: spacing.default,
+    backgroundColor: theme === UserTheme.dark ? colors.black : colors.appBackground
   },
   header: {
     marginBottom: spacing.default
@@ -15,20 +17,20 @@ export default StyleSheet.create({
     textAlign: 'center',
     marginTop: spacing.default,
     marginBottom: spacing.large,
-    color: colors.black
+    color: theme === UserTheme.dark ? colors.white : colors.black
   },
   title: {
     marginBottom: 4,
-    color: colors.black
+    color: theme === UserTheme.dark ? colors.white : colors.black
   },
   paragraph: {
-    color: colors.paragraphGrayed
+    color: theme === UserTheme.dark ? colors.grayDark : colors.paragraphGrayed
   },
   featuresContainer: {
     padding: spacing.large,
-    backgroundColor: colors.white,
+    backgroundColor: theme === UserTheme.dark ? colors.black : colors.white,
     borderTopWidth: 1,
-    borderTopColor: colors.grayLight
+    borderTopColor: theme === UserTheme.dark ? colors.black : colors.grayLight
   },
   feature: {
     paddingTop: spacing.large,
@@ -64,7 +66,7 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   textHighlight: {
-    color: colors.black,
+    color: theme === UserTheme.dark ? colors.white : colors.black,
     opacity: 1,
     textDecorationLine: 'underline'
   },
@@ -77,7 +79,7 @@ export default StyleSheet.create({
     backgroundColor: colors.tintColor
   },
   cardsScrollView: {
-    backgroundColor: colors.appBackground,
+    backgroundColor: theme === UserTheme.dark ? colors.black : colors.appBackground,
     marginBottom: spacing.default,
     paddingLeft: 0,
     paddingRight: 0
@@ -95,7 +97,7 @@ export default StyleSheet.create({
     padding: spacing.default,
     alignItems: 'center',
     borderRadius: layout.borderRadius.small,
-    backgroundColor: colors.white,
+    backgroundColor: theme === UserTheme.dark ? colors.grayDarkest : colors.white,
     shadowColor: colors.black,
     shadowOffset: {
       width: 0,
@@ -110,7 +112,7 @@ export default StyleSheet.create({
   cardTitle: {
     marginBottom: 12,
     marginTop: 12,
-    color: colors.black
+    color: theme === UserTheme.dark ? colors.white : colors.black
   },
   cardPriceContainer: {
     height: 70,
@@ -119,13 +121,13 @@ export default StyleSheet.create({
   cardPrice: {
     fontSize: 48,
     letterSpacing: -2,
-    color: colors.black
+    color: theme === UserTheme.dark ? colors.white : colors.black
   },
   cardMeta: {
     marginBottom: 8,
     marginTop: 6,
     marginLeft: 4,
-    color: colors.paragraphGrayed
+    color: theme === UserTheme.dark ? colors.grayDarker : colors.paragraphGrayed
   },
   cardButtonContainer: {
     alignSelf: 'stretch',
@@ -136,7 +138,7 @@ export default StyleSheet.create({
     marginTop: 12
   },
   cardFooterText: {
-    color: colors.gray,
+    color: theme === UserTheme.dark ? colors.grayDarker : colors.gray,
     textAlign: 'center'
   },
   cardFeaturesList: {
@@ -145,7 +147,7 @@ export default StyleSheet.create({
   },
   cardFeaturesListItem: {
     marginBottom: 8,
-    color: colors.black,
+    color: theme === UserTheme.dark ? colors.white : colors.black,
     textAlign: 'center',
   },
   cardFeaturesListItemHighlight: { }

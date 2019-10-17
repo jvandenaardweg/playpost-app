@@ -112,7 +112,7 @@ export default (theme?: UserTheme) => StyleSheet.create({
   durationContainer: {
     textAlign: 'center',
     marginTop: spacing.micro,
-    backgroundColor: theme === UserTheme.dark ? colors.grayDarker : colors.grayLightest,
+    backgroundColor: theme === UserTheme.dark ? 'rgba(255, 255, 255, 0.2)' : colors.grayLightest,
     borderRadius: 21,
     paddingTop: 3,
     paddingBottom: 0,
@@ -121,7 +121,7 @@ export default (theme?: UserTheme) => StyleSheet.create({
     height: 21,
   },
   durationText: {
-    color: colors.grayDark,
+    color: theme === UserTheme.dark ? colors.gray : colors.grayDark,
   },
   downloadText: {
     color: theme === UserTheme.dark ? colors.grayDarker : colors.grayDark,

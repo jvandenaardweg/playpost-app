@@ -4,19 +4,20 @@ import {
 
 import colors from '../../constants/colors';
 import spacing from '../../constants/spacing';
+import { UserTheme } from '../../reducers/user';
 
-export default StyleSheet.create({
+export default (theme?: UserTheme) => StyleSheet.create({
   container: {
 
   },
   filterContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.white,
+    backgroundColor: theme === UserTheme.dark ? colors.grayDarkest : colors.white,
     paddingBottom: spacing.default,
     paddingTop: spacing.default,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.borderDefault
+    borderBottomColor: theme === UserTheme.dark ? colors.grayDarker : colors.borderDefault
   },
   filterLabel: {
     marginRight: spacing.default,

@@ -11,6 +11,6 @@ export default (theme?: UserTheme) => StyleSheet.create({
   },
   progress: {
     height: '100%',
-    backgroundColor: theme === UserTheme.dark ? 'rgba(0, 0, 0, 0.4)' : 'rgba(255, 255, 255, 0.15)'
+    backgroundColor: theme === UserTheme.dark ? 'rgba(255, 255, 255, 0.035)' : 'rgba(255, 255, 255, 0.15)'
   }
 });

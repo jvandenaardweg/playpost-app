@@ -29,7 +29,7 @@ export const stackNavigatorDefaultNavigationOptions: NavigationStackOptions = {
   },
   headerTitleStyle: {
     ...textPresets['bodyEmphasized'],
-    color: colors.black
+    color: colors.white
   },
   headerBackTitleStyle: {
     ...textPresets['body'],
@@ -100,6 +100,7 @@ const FavoritesStack = createStackNavigator(
       headerRight: <ButtonUpgradeContainer />,
       headerLeft: <ButtonVoices onPress={() => requestAnimationFrame(() => navigation.navigate('ModalLanguages'))} />
     }),
+    transparentCard: true,
     headerLayoutPreset: 'center',
     navigationOptions: {
       tabBarLabel: 'Favorites',

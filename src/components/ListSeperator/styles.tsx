@@ -6,12 +6,12 @@ import { UserTheme } from '../../reducers/user';
 
 export default (theme?: UserTheme) => StyleSheet.create({
   seperator: {
-    backgroundColor: theme === UserTheme.dark ? 'rgba(255, 255, 255, 0.1)' : colors.articleBackground,
+    backgroundColor: theme === UserTheme.dark ? colors.grayDarkest : colors.articleBackground,
     paddingLeft: spacing.default,
     paddingRight: spacing.default
   },
   seperatorLine: {
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: theme === UserTheme.dark ? 'rgba(255, 255, 255, 0.1)' : colors.grayLight,
+    borderBottomColor: theme === UserTheme.dark ? 'rgba(255, 255, 255, 0.15)' : colors.grayLight,
   }
 });

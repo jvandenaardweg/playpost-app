@@ -173,7 +173,8 @@ const RootStack = createStackNavigator(
   {
     mode: 'modal',
     initialRouteName: 'App',
-    headerMode: 'none'
+    headerMode: 'none',
+    transparentCard: true
   }
 )
 

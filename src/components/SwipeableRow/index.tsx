@@ -10,8 +10,8 @@ import { ALERT_TITLE_ERROR_NO_INTERNET } from '../../constants/messages';
 import { NetworkContext } from '../../contexts/NetworkProvider';
 import { UserThemeContext } from '../../contexts/UserThemeProvider';
 
-import styles from './styles';
 import { UserTheme } from '../../reducers/user';
+import styles from './styles';
 
 interface Props {
   isFavorited: boolean;
@@ -23,9 +23,7 @@ interface Props {
   unFavoriteArticle(): void;
 }
 
-export const SwipeableRow: React.FC<Props> = React.memo(({
-  isFavorited, isArchived, removeArticle, archiveArticle, favoriteArticle, unArchiveArticle, unFavoriteArticle, children
-}) => {
+export const SwipeableRow: React.FC<Props> = React.memo((props) => {
   const { isConnected } = useContext(NetworkContext)
   const { theme } = useContext(UserThemeContext)
   const swipeableRef = useRef<Swipeable>(null)
@@ -38,26 +36,23 @@ export const SwipeableRow: React.FC<Props> = React.memo(({
 
     close();
 
-    // Animate the change in the list view
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-
     if (actionName === 'delete') {
-      removeArticle();
+      props.removeArticle();
     }
 
     if (actionName === 'favorite') {
-      if (!isFavorited) {
-        favoriteArticle();
+      if (!props.isFavorited) {
+        props.favoriteArticle();
       } else {
-        unFavoriteArticle();
+        props.unFavoriteArticle();
       }
     }
 
     if (actionName === 'archive') {
-      if (!isArchived) {
-        archiveArticle()
+      if (!props.isArchived) {
+        props.archiveArticle()
       } else {
-        unArchiveArticle();
+        props.unArchiveArticle();
       }
     }
   }
@@ -86,15 +81,14 @@ export const SwipeableRow: React.FC<Props> = React.memo(({
     return (
       <View style={styles(theme).rightActionsContainer}>
         {/* {this.renderRightAction('download', 'download-cloud', (isArchived) ? colors.black : null)} */}
-        {renderRightAction('archive', 'archive', (isArchived) ? iconColorActive : null)}
-        {renderRightAction('favorite', 'heart', (isFavorited) ? iconColorActive : null)}
+        {renderRightAction('archive', 'archive', (props.isArchived) ? iconColorActive : null)}
+        {renderRightAction('favorite', 'heart', (props.isFavorited) ? iconColorActive : null)}
         {renderRightAction('delete', 'trash-2', null)}
       </View>
     );
   }
 
   const close = () => swipeableRef.current && swipeableRef.current.close()
-
 
   return (
     <Swipeable
@@ -104,7 +98,7 @@ export const SwipeableRow: React.FC<Props> = React.memo(({
       renderRightActions={renderRightActions}
       useNativeAnimations
     >
-      {children}
+      {props.children}
     </Swipeable>
   )
 })

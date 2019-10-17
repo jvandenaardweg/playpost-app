@@ -6,9 +6,13 @@ import { NavigationRoute, NavigationScreenProp } from 'react-navigation';
 
 import { persistor, store } from '../store';
 
+import SplashScreen from 'react-native-splash-screen';
 import * as cache from '../cache';
 import colors from '../constants/colors';
 import { setAuthToken } from '../reducers/auth';
+import { getInAppSubscriptions } from '../reducers/subscriptions';
+import { getUser } from '../reducers/user';
+import { getLanguages } from '../reducers/voices';
 import * as keychain from '../utils/keychain';
 
 
@@ -70,9 +74,13 @@ export class AuthLoadingScreen extends React.PureComponent<Props> {
     // Prepare the app for the logged in user
 
     // Pre-populate the app with the user data
-    // Every other pre-population is done within the start screen, so we can load faster
-    // await store.dispatch(getUser());
-    return this.props.navigation.navigate('App');
+    store.dispatch(getUser())
+    store.dispatch(getInAppSubscriptions())
+    store.dispatch(getLanguages())
+
+    this.props.navigation.navigate('App');
+
+    requestAnimationFrame(() => SplashScreen.hide())
   }
 
   // Render any loading content that you like here

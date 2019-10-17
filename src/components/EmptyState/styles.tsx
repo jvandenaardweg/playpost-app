@@ -3,14 +3,15 @@ import { StyleSheet } from 'react-native';
 import colors from '../../constants/colors';
 import layout from '../../constants/layout';
 import spacing from '../../constants/spacing';
+import { UserTheme } from '../../reducers/user';
 
-export default StyleSheet.create({
+export default (theme?: UserTheme) => StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.appBackground,
+    backgroundColor: theme === UserTheme.dark ? colors.black : colors.appBackground,
     paddingRight: spacing.small,
     paddingLeft: spacing.small,
   },
@@ -19,14 +20,15 @@ export default StyleSheet.create({
   },
   title: {
     textAlign: 'center',
-    color: colors.titleDefault,
+    color: theme === UserTheme.dark ? colors.white : colors.titleDefault,
     marginBottom: 6
   },
   description: {
     textAlign: 'center',
     paddingRight: spacing.large,
     paddingLeft: spacing.large,
-    marginBottom: spacing.medium
+    marginBottom: spacing.medium,
+    color: theme === UserTheme.dark ? colors.grayDark : colors.black,
   },
   button: {
     marginTop: spacing.large,

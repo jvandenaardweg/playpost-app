@@ -1,4 +1,5 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 
 import { RootState } from '../reducers';
@@ -30,6 +31,8 @@ export class UserThemeProviderContainer extends React.PureComponent<Props, State
     const { userSelectedTheme } = this.props;
     console.log('Load theme: ', userSelectedTheme)
     this.setState({ theme: userSelectedTheme })
+
+    this.setStatusBarStyle(userSelectedTheme);
   }
 
   componentDidUpdate(prevProps: Props, nextState: State) {
@@ -39,6 +42,15 @@ export class UserThemeProviderContainer extends React.PureComponent<Props, State
     if (prevProps.userSelectedTheme !== userSelectedTheme) {
       console.log('Change theme to: ', userSelectedTheme)
       this.setState({ theme: userSelectedTheme })
+      this.setStatusBarStyle(userSelectedTheme);
+    }
+  }
+
+  setStatusBarStyle = (userSelectedTheme: UserTheme) => {
+    if (userSelectedTheme === UserTheme.dark) {
+      StatusBar.setBarStyle('light-content')
+    } else {
+      StatusBar.setBarStyle('dark-content')
     }
   }
 

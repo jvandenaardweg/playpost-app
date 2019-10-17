@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import { TouchableHighlight, View } from 'react-native';
 
 import colors from '../../constants/colors';
+import { UserThemeContext } from '../../contexts/UserThemeProvider';
 import Text from '../Text';
 import styles from './styles';
-import { UserThemeContext } from '../../contexts/UserThemeProvider';
 
 interface Props {
   label: string;
@@ -14,22 +14,22 @@ interface Props {
   onPress(): void;
 }
 
-export const ButtonTiny: React.FC<Props> = React.memo(({ onPress, label, IconElement, backgroundColor, labelColor }) => {
+export const ButtonTiny: React.FC<Props> = React.memo((props) => {
   const { theme } = useContext(UserThemeContext);
 
   return (
     <TouchableHighlight
       testID="ButtonTiny-Button"
-      onPress={onPress}
+      onPress={props.onPress}
       activeOpacity={0.7}
       underlayColor={colors.black}
-      style={[styles(theme).container, { backgroundColor }]}
+      style={[styles(theme).container, { backgroundColor: props.backgroundColor }]}
     >
-      <View style={[styles(theme).wrapper, { backgroundColor }]}>
-        <Text style={{ color: labelColor }} preset="footnoteEmphasized">{label}</Text>
-        {IconElement && (
+      <View style={[styles(theme).wrapper, { backgroundColor: props.backgroundColor }]}>
+        <Text style={{ color: props.labelColor }} preset="footnoteEmphasized">{props.label}</Text>
+        {props.IconElement && (
           <View style={styles(theme).icon}>
-            {IconElement}
+            {props.IconElement}
           </View>
         )}
       </View>

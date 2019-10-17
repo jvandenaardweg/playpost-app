@@ -1,5 +1,5 @@
 import getSymbolFromCurrency from 'currency-symbol-map';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import { ActivityIndicator, Dimensions, Platform, ScrollView, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import * as RNIap from 'react-native-iap';
@@ -14,6 +14,8 @@ import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PLUS, SUBSCRIPTIO
 import spacing from '../../constants/spacing';
 import { URL_ACCEPTABLE_USE_POLICY, URL_PRIVACY_POLICY, URL_TERMS_OF_USE } from '../../constants/urls';
 import { SubscriptionFeatures } from '../../containers/UpgradeContainer';
+import { UserThemeContext } from '../../contexts/UserThemeProvider';
+import { UserTheme } from '../../reducers/user';
 
 export interface Props {
   isLoadingSubscriptionItems: boolean;
@@ -48,6 +50,7 @@ export const Upgrade: React.FC<Props> = React.memo(
     onPressCancel,
     isDowngradePaidSubscription
   }) => {
+    const { theme } = useContext(UserThemeContext);
     const horizontalScrollViewRef = useRef<ScrollView>(null);
 
     const windowWidth = Dimensions.get('window').width;
@@ -87,12 +90,12 @@ export const Upgrade: React.FC<Props> = React.memo(
 
     return (
       <View style={{ flex: 1 }}>
-        <ScrollView contentContainerStyle={{ ...styles.container, backgroundColor: colors.appBackground }}>
+        <ScrollView contentContainerStyle={styles(theme).container}>
           <ScrollView
             ref={horizontalScrollViewRef}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
-            style={styles.cardsScrollView}
+            style={styles(theme).cardsScrollView}
             pagingEnabled
             snapToInterval={snapToInterval}
             scrollEnabled={scrollEnabled}
@@ -159,20 +162,20 @@ export const Upgrade: React.FC<Props> = React.memo(
                   <View
                     key={subscriptionFeatureProductId}
                     style={[
-                      styles.card,
+                      styles(theme).card,
                       { width: cardWidth, marginLeft: isFirst ? cardFirstMarginLeft : cardMargin, marginRight: isLast ? cardLastMarginRight : cardMargin }
                     ]}
                   >
                     <View>
-                      <Text style={styles.cardTitle} preset="title3">{title}</Text>
+                      <Text style={styles(theme).cardTitle} preset="title3">{title}</Text>
                     </View>
-                    <View style={styles.cardPriceContainer}>
-                      {isLoadingSubscriptionItems ? <ActivityIndicator size="large" color={colors.black} /> : <Text style={styles.cardPrice} testID="Upgrade-Text-price" fontWeight="extraBold">{localizedPrice}</Text>}
+                    <View style={styles(theme).cardPriceContainer}>
+                      {isLoadingSubscriptionItems ? <ActivityIndicator size="large" color={theme === UserTheme.dark ? colors.white : colors.black} /> : <Text style={styles(theme).cardPrice} testID="Upgrade-Text-price" fontWeight="extraBold">{localizedPrice}</Text>}
                     </View>
                     <View>
-                      <Text style={styles.cardMeta} preset="footnote">per month</Text>
+                      <Text style={styles(theme).cardMeta} preset="footnote">per month</Text>
                     </View>
-                    <View style={styles.cardButtonContainer}>
+                    <View style={styles(theme).cardButtonContainer}>
                       <Button
                         title={buttonTitle}
                         onPress={() => onPressUpgrade(productId)}
@@ -182,16 +185,16 @@ export const Upgrade: React.FC<Props> = React.memo(
                         testID="Upgrade-Button"
                       />
                     </View>
-                    <View style={styles.cardFeaturesList}>
+                    <View style={styles(theme).cardFeaturesList}>
                       {subscriptionFeature.body.map((featureText: string, featureBodyIndex: number) => (
-                        <Text key={featureBodyIndex} style={styles.cardFeaturesListItem} preset="subhead">
+                        <Text key={featureBodyIndex} style={styles(theme).cardFeaturesListItem} preset="subhead">
                           {featureText}
                         </Text>
                       ))}
                     </View>
                     {!!subscriptionFeature.footer && (
-                      <View style={styles.cardFooter}>
-                        <Text style={styles.cardFooterText} preset="subhead">{subscriptionFeature.footer}</Text>
+                      <View style={styles(theme).cardFooter}>
+                        <Text style={styles(theme).cardFooterText} preset="subhead">{subscriptionFeature.footer}</Text>
                       </View>
                     )}
 
@@ -211,50 +214,50 @@ export const Upgrade: React.FC<Props> = React.memo(
                 );
               })}
           </ScrollView>
-          {/* <View style={styles.cardsScrollViewFooter}>
+          {/* <View style={styles(theme).cardsScrollViewFooter}>
             <View style={{ width: cardWidth, height: 10, backgroundColor: 'red' }} />
           </View> */}
 
-          <View style={styles.featuresContainer}>
-            <View style={styles.header}>
-              <Text style={styles.headerTitle} preset="title1Emphasized">{'Upgrade to\nPremium or Unlimited'}</Text>
+          <View style={styles(theme).featuresContainer}>
+            <View style={styles(theme).header}>
+              <Text style={styles(theme).headerTitle} preset="title1Emphasized">{'Upgrade to\nPremium or Unlimited'}</Text>
 
-              <View style={styles.feature}>
-                <Icon.FontAwesome5 name="gem" size={34} style={styles.featureIcon} />
-                <View style={styles.featureContent}>
-                  <Text style={styles.title} preset="bodyEmphasized">Higher Quality voices</Text>
-                  <Text style={styles.paragraph} preset="subhead">
+              <View style={styles(theme).feature}>
+                <Icon.FontAwesome5 name="gem" size={34} style={styles(theme).featureIcon} />
+                <View style={styles(theme).featureContent}>
+                  <Text style={styles(theme).title} preset="bodyEmphasized">Higher Quality voices</Text>
+                  <Text style={styles(theme).paragraph} preset="subhead">
                     Access to our highest quality Premium voices for easier listening. You can preview these Higher Quality voices in the settings
                     screen.
                   </Text>
                 </View>
               </View>
 
-              <View style={styles.feature}>
-                <Icon.FontAwesome5 name="assistive-listening-systems" solid size={34} style={styles.featureIcon} />
-                <View style={styles.featureContent}>
-                  <Text style={styles.title} preset="bodyEmphasized">Voice customization options</Text>
-                  <Text style={styles.paragraph} preset="subhead">
+              <View style={styles(theme).feature}>
+                <Icon.FontAwesome5 name="assistive-listening-systems" solid size={34} style={styles(theme).featureIcon} />
+                <View style={styles(theme).featureContent}>
+                  <Text style={styles(theme).title} preset="bodyEmphasized">Voice customization options</Text>
+                  <Text style={styles(theme).paragraph} preset="subhead">
                     Choose between a variety of male and female voices with accents like American, British or Australian English.
                   </Text>
                 </View>
               </View>
 
-              <View style={styles.feature}>
-                <Icon.FontAwesome5 name="clock" size={34} style={styles.featureIcon} />
-                <View style={styles.featureContent}>
-                  <Text style={styles.title} preset="bodyEmphasized">More listening limits</Text>
-                  <Text style={styles.paragraph} preset="subhead">
+              <View style={styles(theme).feature}>
+                <Icon.FontAwesome5 name="clock" size={34} style={styles(theme).featureIcon} />
+                <View style={styles(theme).featureContent}>
+                  <Text style={styles(theme).title} preset="bodyEmphasized">More listening limits</Text>
+                  <Text style={styles(theme).paragraph} preset="subhead">
                     With our Premium and Unlimited subscription you can enjoy higher listening minutes. Unlimited gives you unlimited listening minutes.
                   </Text>
                 </View>
               </View>
 
-              <View style={styles.feature}>
-                <Icon.FontAwesome5 name="ad" solid size={28} style={styles.featureIcon} />
-                <View style={styles.featureContent}>
-                  <Text style={styles.title} preset="bodyEmphasized">No advertisements</Text>
-                  <Text style={styles.paragraph} preset="subhead">
+              <View style={styles(theme).feature}>
+                <Icon.FontAwesome5 name="ad" solid size={28} style={styles(theme).featureIcon} />
+                <View style={styles(theme).featureContent}>
+                  <Text style={styles(theme).title} preset="bodyEmphasized">No advertisements</Text>
+                  <Text style={styles(theme).paragraph} preset="subhead">
                     Sponsored content and advertisements helps us continue to provide a free version of Playpost. After upgrading
                     you won’t see any ads, and you’ll be supporting Playpost more directly!
                   </Text>
@@ -262,24 +265,24 @@ export const Upgrade: React.FC<Props> = React.memo(
               </View>
             </View>
 
-            <View style={styles.footer}>
-              <Text style={styles.footerText} preset="caption2">
+            <View style={styles(theme).footer}>
+              <Text style={styles(theme).footerText} preset="caption2">
                 Payment will be charged to your {paymentAccountTitle} account at the confirmation of purchase. Subscription automatically renews unless it is canceled at
                 least 24 hours before the end of the current period. Your account will be charged for renewal within 24 hours prior to the end of the current
                 period. You can manage and cancel your subscriptions by going to your account settings on the App Store after purchase. Refunds are not
                 available for unused portions of a subscription.
               </Text>
 
-              <View style={styles.footerLinks}>
-                <Text preset="caption2" style={[styles.footerText, styles.textHighlight]} onPress={() => onPressOpenUrl(URL_PRIVACY_POLICY)}>
+              <View style={styles(theme).footerLinks}>
+                <Text preset="caption2" style={[styles(theme).footerText, styles(theme).textHighlight]} onPress={() => onPressOpenUrl(URL_PRIVACY_POLICY)}>
                   Privacy Policy
                 </Text>
-                <Text preset="caption2" style={styles.footerText}> - </Text>
-                <Text preset="caption2" style={[styles.footerText, styles.textHighlight]} onPress={() => onPressOpenUrl(URL_TERMS_OF_USE)}>
+                <Text preset="caption2" style={styles(theme).footerText}> - </Text>
+                <Text preset="caption2" style={[styles(theme).footerText, styles(theme).textHighlight]} onPress={() => onPressOpenUrl(URL_TERMS_OF_USE)}>
                   Terms of Use
                 </Text>
-                <Text preset="caption2" style={styles.footerText}> - </Text>
-                <Text preset="caption2" style={[styles.footerText, styles.textHighlight]} onPress={() => onPressOpenUrl(URL_ACCEPTABLE_USE_POLICY)}>
+                <Text preset="caption2" style={styles(theme).footerText}> - </Text>
+                <Text preset="caption2" style={[styles(theme).footerText, styles(theme).textHighlight]} onPress={() => onPressOpenUrl(URL_ACCEPTABLE_USE_POLICY)}>
                   Acceptable Use Policy
                 </Text>
               </View>

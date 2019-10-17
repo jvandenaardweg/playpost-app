@@ -136,7 +136,6 @@ export default class App extends React.PureComponent<State> {
                   <APIErrorAlertContainer>
                     <SubscriptionHandlerContainer>
                       <AppContainer
-                        theme="dark"
                         ref={navigatorRef => {
                           NavigationService.setTopLevelNavigator(navigatorRef);
                         }}
