@@ -21,6 +21,7 @@ const navigationGetParamHandler = jest.fn();
 const navigationGoBackHandler = jest.fn();
 const setIsLoadingUpgradeHandler = jest.fn();
 const setIsLoadingRestoreHandler = jest.fn();
+const setLocalPurchaseHistoryHandler = jest.fn();
 
 const defaultProps: Props = {
   subscriptionsError: '',
@@ -40,6 +41,7 @@ const defaultProps: Props = {
   getUser: getUserHandler,
   setIsLoadingUpgrade: setIsLoadingUpgradeHandler,
   setIsLoadingRestore: setIsLoadingRestoreHandler,
+  setLocalPurchaseHistory: setLocalPurchaseHistoryHandler,
 
   navigation: {
     navigate: navigateHandler,

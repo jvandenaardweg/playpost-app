@@ -2,11 +2,29 @@
 
 exports[`AudioPlayerSmallEmpty rendering should render correctly 1`] = `
 <View
-  style={Object {}}
+  style={
+    Object {
+      "height": 55,
+    }
+  }
   testID="AudioPlayerSmallEmpty"
 >
   <View
-    style={Object {}}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#090909",
+        "borderBottomColor": "#444444",
+        "borderBottomWidth": 0.5,
+        "flexDirection": "row",
+        "height": 55,
+        "justifyContent": "space-around",
+        "paddingBottom": 8,
+        "paddingLeft": 12,
+        "paddingRight": 12,
+        "paddingTop": 8,
+      }
+    }
   >
     <View
       style={
