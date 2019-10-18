@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
+import isEqual from 'react-fast-compare';
 import { ActivityIndicator, StyleProp, TextStyle, TouchableHighlight, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { Image } from 'react-native-elements';
 import urlParse from 'url-parse';
-import isEqual from 'react-fast-compare';
 
 import Text from '../Text';
 

@@ -2,11 +2,10 @@
 
 exports[`PlaylistScreen rendering should render correctly 1`] = `
 <Memo>
-  <InteractionManaged
-    isAnimated={true}
+  <Memo
     showActivityIndicator={true}
   >
     <Memo(Connect(Component)) />
-  </InteractionManaged>
+  </Memo>
 </Memo>
 `;

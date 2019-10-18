@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { NavigationRoute, NavigationScreenProp, NavigationScreenComponent, NavigationParams } from 'react-navigation';
+import { NavigationRoute, NavigationScreenComponent, NavigationScreenProp } from 'react-navigation';
 import { NavigationStackOptions } from 'react-navigation-stack';
 
 import { AppBackground } from '../../components/AppBackground';

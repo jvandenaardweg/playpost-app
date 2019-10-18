@@ -57,7 +57,7 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
             color: #C5C5C5;
             font-weight: normal;
             word-break: break-word;
-            background-color: #121212;
+            background-color: #111111;
           }
 
           h1, h2, h3, h4, h5, h6, h7, h8 {
@@ -201,7 +201,7 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
           "backgroundColor": "#ffffff",
         },
         Object {
-          "backgroundColor": "#121212",
+          "backgroundColor": "#111111",
           "margin": 0,
           "padding": 0,
         },
@@ -226,14 +226,14 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
           "width": "100%",
         },
         Object {
-          "backgroundColor": "#121212",
+          "backgroundColor": "#111111",
         },
       ]
     }
   >
     <ActivityIndicator
       animating={true}
-      color="#090909"
+      color="#040404"
       hidesWhenStopped={true}
       size="small"
     />
@@ -295,7 +295,7 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
             font-size: 17px;
             font-family: 'PT Serif', serif;
             line-height: 1.5;
-            color: #090909;
+            color: #040404;
             font-weight: normal;
             word-break: break-word;
             background-color: #ffffff;
@@ -305,7 +305,7 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
             line-height: 1.2;
             margin-top: 0;
             margin-bottom: 10px;
-            color: #090909;
+            color: #040404;
             font-family: 'Inter', 'Helvetica', Arial, sans-serif;
           }
 
@@ -328,18 +328,18 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
           p {
             font-size: 17px;
             margin-top: 1.5;
-            color: #090909;
+            color: #040404;
             line-height: 1.7;
             margin-bottom: 2;
           }
 
           a, strong {
-            color: #090909;
+            color: #040404;
           }
 
           blockquote {
             font-style: italic;
-            color: #090909;
+            color: #040404;
             margin-left: 20px;
             margin-right: 20px;
           }
@@ -403,7 +403,7 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
             word-break: break-word;
             font-size: 13px;
             font-family: monospace;
-            color: #090909;
+            color: #040404;
           }
 
           code {
@@ -474,7 +474,7 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
   >
     <ActivityIndicator
       animating={true}
-      color="#090909"
+      color="#040404"
       hidesWhenStopped={true}
       size="small"
     />
@@ -536,7 +536,7 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
             font-size: 17px;
             font-family: 'PT Serif', serif;
             line-height: 1.5;
-            color: #090909;
+            color: #040404;
             font-weight: normal;
             word-break: break-word;
             background-color: #ffffff;
@@ -546,7 +546,7 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
             line-height: 1.2;
             margin-top: 0;
             margin-bottom: 10px;
-            color: #090909;
+            color: #040404;
             font-family: 'Inter', 'Helvetica', Arial, sans-serif;
           }
 
@@ -569,18 +569,18 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
           p {
             font-size: 17px;
             margin-top: 1.5;
-            color: #090909;
+            color: #040404;
             line-height: 1.7;
             margin-bottom: 2;
           }
 
           a, strong {
-            color: #090909;
+            color: #040404;
           }
 
           blockquote {
             font-style: italic;
-            color: #090909;
+            color: #040404;
             margin-left: 20px;
             margin-right: 20px;
           }
@@ -644,7 +644,7 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
             word-break: break-word;
             font-size: 13px;
             font-family: monospace;
-            color: #090909;
+            color: #040404;
           }
 
           code {
@@ -709,7 +709,7 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
   >
     <ActivityIndicator
       animating={true}
-      color="#090909"
+      color="#040404"
       hidesWhenStopped={true}
       size="small"
     />
@@ -771,7 +771,7 @@ exports[`ArticleReader rendering no author name should render no authorName when
             font-size: 17px;
             font-family: 'PT Serif', serif;
             line-height: 1.5;
-            color: #090909;
+            color: #040404;
             font-weight: normal;
             word-break: break-word;
             background-color: #ffffff;
@@ -781,7 +781,7 @@ exports[`ArticleReader rendering no author name should render no authorName when
             line-height: 1.2;
             margin-top: 0;
             margin-bottom: 10px;
-            color: #090909;
+            color: #040404;
             font-family: 'Inter', 'Helvetica', Arial, sans-serif;
           }
 
@@ -804,18 +804,18 @@ exports[`ArticleReader rendering no author name should render no authorName when
           p {
             font-size: 17px;
             margin-top: 1.5;
-            color: #090909;
+            color: #040404;
             line-height: 1.7;
             margin-bottom: 2;
           }
 
           a, strong {
-            color: #090909;
+            color: #040404;
           }
 
           blockquote {
             font-style: italic;
-            color: #090909;
+            color: #040404;
             margin-left: 20px;
             margin-right: 20px;
           }
@@ -879,7 +879,7 @@ exports[`ArticleReader rendering no author name should render no authorName when
             word-break: break-word;
             font-size: 13px;
             font-family: monospace;
-            color: #090909;
+            color: #040404;
           }
 
           code {
@@ -944,7 +944,7 @@ exports[`ArticleReader rendering no author name should render no authorName when
   >
     <ActivityIndicator
       animating={true}
-      color="#090909"
+      color="#040404"
       hidesWhenStopped={true}
       size="small"
     />
@@ -1006,7 +1006,7 @@ exports[`ArticleReader rendering no html should render a different HTML output w
             font-size: 17px;
             font-family: 'PT Serif', serif;
             line-height: 1.5;
-            color: #090909;
+            color: #040404;
             font-weight: normal;
             word-break: break-word;
             background-color: #ffffff;
@@ -1016,7 +1016,7 @@ exports[`ArticleReader rendering no html should render a different HTML output w
             line-height: 1.2;
             margin-top: 0;
             margin-bottom: 10px;
-            color: #090909;
+            color: #040404;
             font-family: 'Inter', 'Helvetica', Arial, sans-serif;
           }
 
@@ -1039,18 +1039,18 @@ exports[`ArticleReader rendering no html should render a different HTML output w
           p {
             font-size: 17px;
             margin-top: 1.5;
-            color: #090909;
+            color: #040404;
             line-height: 1.7;
             margin-bottom: 2;
           }
 
           a, strong {
-            color: #090909;
+            color: #040404;
           }
 
           blockquote {
             font-style: italic;
-            color: #090909;
+            color: #040404;
             margin-left: 20px;
             margin-right: 20px;
           }
@@ -1114,7 +1114,7 @@ exports[`ArticleReader rendering no html should render a different HTML output w
             word-break: break-word;
             font-size: 13px;
             font-family: monospace;
-            color: #090909;
+            color: #040404;
           }
 
           code {
@@ -1179,7 +1179,7 @@ exports[`ArticleReader rendering no html should render a different HTML output w
   >
     <ActivityIndicator
       animating={true}
-      color="#090909"
+      color="#040404"
       hidesWhenStopped={true}
       size="small"
     />
@@ -1241,7 +1241,7 @@ exports[`ArticleReader rendering right to left content should render correctly 1
             font-size: 17px;
             font-family: 'PT Serif', serif;
             line-height: 1.5;
-            color: #090909;
+            color: #040404;
             font-weight: normal;
             word-break: break-word;
             background-color: #ffffff;
@@ -1251,7 +1251,7 @@ exports[`ArticleReader rendering right to left content should render correctly 1
             line-height: 1.2;
             margin-top: 0;
             margin-bottom: 10px;
-            color: #090909;
+            color: #040404;
             font-family: 'Inter', 'Helvetica', Arial, sans-serif;
           }
 
@@ -1274,18 +1274,18 @@ exports[`ArticleReader rendering right to left content should render correctly 1
           p {
             font-size: 17px;
             margin-top: 1.5;
-            color: #090909;
+            color: #040404;
             line-height: 1.7;
             margin-bottom: 2;
           }
 
           a, strong {
-            color: #090909;
+            color: #040404;
           }
 
           blockquote {
             font-style: italic;
-            color: #090909;
+            color: #040404;
             margin-left: 20px;
             margin-right: 20px;
           }
@@ -1349,7 +1349,7 @@ exports[`ArticleReader rendering right to left content should render correctly 1
             word-break: break-word;
             font-size: 13px;
             font-family: monospace;
-            color: #090909;
+            color: #040404;
           }
 
           code {
@@ -1420,7 +1420,7 @@ exports[`ArticleReader rendering right to left content should render correctly 1
   >
     <ActivityIndicator
       animating={true}
-      color="#090909"
+      color="#040404"
       hidesWhenStopped={true}
       size="small"
     />

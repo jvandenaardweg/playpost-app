@@ -36,6 +36,7 @@ exports[`CustomSectionList basic rendering should render correctly 1`] = `
   getItem={[Function]}
   getItemCount={[Function]}
   horizontal={false}
+  indicatorStyle="black"
   initialNumToRender={15}
   keyExtractor={[Function]}
   maxToRenderPerBatch={10}
@@ -113,10 +114,10 @@ exports[`CustomSectionList basic rendering should render correctly 1`] = `
               style={
                 Object {
                   "backgroundColor": "transparent",
-                  "color": "#090909",
+                  "color": "#040404",
                   "fontFamily": "Inter-Regular",
-                  "fontSize": 17,
-                  "lineHeight": 23,
+                  "fontSize": 16,
+                  "lineHeight": 21,
                 }
               }
               testID="listItemTitle"

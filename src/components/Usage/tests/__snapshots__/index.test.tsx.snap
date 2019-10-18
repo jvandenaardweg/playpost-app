@@ -38,13 +38,13 @@ exports[`Usage rendering should render correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#090909",
+                  "color": "#040404",
                   "fontFamily": "Inter-Bold",
                   "fontSize": 34,
                   "lineHeight": 41,
                 },
                 Object {
-                  "color": "#090909",
+                  "color": "#040404",
                   "letterSpacing": -0.75,
                 },
               ]
@@ -70,13 +70,13 @@ exports[`Usage rendering should render correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#090909",
+                    "color": "#040404",
                     "fontFamily": "Inter-Regular",
                     "fontSize": 13,
                     "lineHeight": 16,
                   },
                   Object {
-                    "color": "#121212",
+                    "color": "#111111",
                     "marginBottom": 2,
                     "marginLeft": 4,
                   },
@@ -92,13 +92,13 @@ exports[`Usage rendering should render correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#090909",
+                    "color": "#040404",
                     "fontFamily": "Inter-SemiBold",
                     "fontSize": 17,
                     "lineHeight": 23,
                   },
                   Object {
-                    "color": "#090909",
+                    "color": "#040404",
                   },
                 ]
               }
@@ -131,7 +131,7 @@ exports[`Usage rendering should render correctly 1`] = `
                 "width": "0%",
               },
               Object {
-                "backgroundColor": "#090909",
+                "backgroundColor": "#040404",
               },
             ]
           }
@@ -205,13 +205,13 @@ exports[`Usage rendering should render correctly 1`] = `
         style={
           Array [
             Object {
-              "color": "#090909",
+              "color": "#040404",
               "fontFamily": "Inter-Regular",
               "fontSize": 13,
               "lineHeight": 16,
             },
             Object {
-              "color": "#121212",
+              "color": "#111111",
               "marginTop": 8,
               "textAlign": "center",
             },

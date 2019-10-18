@@ -9,7 +9,6 @@ import { UserThemeContext } from '../../contexts/UserThemeProvider';
 import { AudioPlayerSmallProgressBar } from '../AudioPlayerSmallProgressBar';
 import { PlayPauseControl } from '../PlayPauseControl';
 import Text from '../Text';
-import { UserTheme } from '../../reducers/user';
 
 interface Props {
   isPlaying: boolean;

@@ -2,13 +2,12 @@
 
 exports[`FavoritesScreen rendering should render correctly 1`] = `
 <Memo>
-  <InteractionManaged
-    isAnimated={true}
+  <Memo
     showActivityIndicator={true}
   >
     <Memo(Connect(Component))
       isFavoriteScreen={true}
     />
-  </InteractionManaged>
+  </Memo>
 </Memo>
 `;

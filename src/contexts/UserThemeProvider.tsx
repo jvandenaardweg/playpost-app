@@ -1,11 +1,11 @@
 import React from 'react';
-import { StatusBar, Platform } from 'react-native';
+import { Platform, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 
+import colors from '../constants/colors';
 import { RootState } from '../reducers';
 import { UserTheme } from '../reducers/user';
 import { selectUserSelectedTheme } from '../selectors/user';
-import colors from '../constants/colors';
 
 export const UserThemeContext = React.createContext<{ theme: UserTheme; }>({
   theme: UserTheme.light // default

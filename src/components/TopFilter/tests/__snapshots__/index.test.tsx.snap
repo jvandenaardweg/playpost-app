@@ -19,7 +19,7 @@ exports[`TopFilter rendering should render correctly 1`] = `
       style={
         Array [
           Object {
-            "color": "#090909",
+            "color": "#040404",
             "fontFamily": "Inter-SemiBold",
             "fontSize": 13,
             "lineHeight": 16,
@@ -101,7 +101,7 @@ exports[`TopFilter rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#090909",
+                      "color": "#040404",
                       "fontFamily": "Inter-SemiBold",
                       "fontSize": 13,
                       "lineHeight": 16,
@@ -201,13 +201,13 @@ exports[`TopFilter rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#090909",
+                      "color": "#040404",
                       "fontFamily": "Inter-SemiBold",
                       "fontSize": 13,
                       "lineHeight": 16,
                     },
                     Object {
-                      "color": "#090909",
+                      "color": "#040404",
                     },
                   ]
                 }
@@ -270,13 +270,13 @@ exports[`TopFilter rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#090909",
+                      "color": "#040404",
                       "fontFamily": "Inter-SemiBold",
                       "fontSize": 13,
                       "lineHeight": 16,
                     },
                     Object {
-                      "color": "#090909",
+                      "color": "#040404",
                     },
                   ]
                 }
@@ -339,13 +339,13 @@ exports[`TopFilter rendering should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#090909",
+                      "color": "#040404",
                       "fontFamily": "Inter-SemiBold",
                       "fontSize": 13,
                       "lineHeight": 16,
                     },
                     Object {
-                      "color": "#090909",
+                      "color": "#040404",
                     },
                   ]
                 }

@@ -43,7 +43,7 @@ exports[`SignupForm rendering should render correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#090909",
+                "color": "#040404",
                 "fontFamily": "Inter-SemiBold",
                 "fontSize": 15,
                 "lineHeight": 23,
@@ -168,7 +168,7 @@ exports[`SignupForm rendering should render correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#090909",
+                "color": "#040404",
                 "fontFamily": "Inter-SemiBold",
                 "fontSize": 15,
                 "lineHeight": 23,
@@ -294,13 +294,13 @@ exports[`SignupForm rendering should render correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#090909",
+                  "color": "#040404",
                   "fontFamily": "Inter-Regular",
                   "fontSize": 15,
                   "lineHeight": 23,
                 },
                 Object {
-                  "color": "#121212",
+                  "color": "#141414",
                   "textAlign": "center",
                 },
               ]
@@ -313,18 +313,18 @@ exports[`SignupForm rendering should render correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#090909",
+                  "color": "#040404",
                   "fontFamily": "Inter-Regular",
                   "fontSize": 15,
                   "lineHeight": 23,
                 },
                 Array [
                   Object {
-                    "color": "#121212",
+                    "color": "#141414",
                     "textAlign": "center",
                   },
                   Object {
-                    "color": "#090909",
+                    "color": "#040404",
                     "textDecorationLine": "underline",
                   },
                 ],
@@ -338,13 +338,13 @@ exports[`SignupForm rendering should render correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#090909",
+                  "color": "#040404",
                   "fontFamily": "Inter-Regular",
                   "fontSize": 15,
                   "lineHeight": 23,
                 },
                 Object {
-                  "color": "#121212",
+                  "color": "#141414",
                   "textAlign": "center",
                 },
               ]
@@ -357,18 +357,18 @@ exports[`SignupForm rendering should render correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#090909",
+                  "color": "#040404",
                   "fontFamily": "Inter-Regular",
                   "fontSize": 15,
                   "lineHeight": 23,
                 },
                 Array [
                   Object {
-                    "color": "#121212",
+                    "color": "#141414",
                     "textAlign": "center",
                   },
                   Object {
-                    "color": "#090909",
+                    "color": "#040404",
                     "textDecorationLine": "underline",
                   },
                 ],

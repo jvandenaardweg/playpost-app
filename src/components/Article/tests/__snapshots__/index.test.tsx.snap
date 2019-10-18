@@ -61,14 +61,14 @@ exports[`Article active rendering should render active correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#090909",
+                  "color": "#040404",
                   "fontFamily": "Inter-SemiBold",
                   "fontSize": 17,
                   "lineHeight": 23,
                 },
                 Array [
                   Object {
-                    "color": "#090909",
+                    "color": "#040404",
                   },
                   Object {
                     "flexDirection": undefined,
@@ -86,7 +86,7 @@ exports[`Article active rendering should render active correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#090909",
+                "color": "#040404",
                 "fontFamily": "Inter-Regular",
                 "fontSize": 13,
                 "lineHeight": 16,
@@ -182,7 +182,7 @@ exports[`Article active rendering should render active correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#090909",
+                    "color": "#040404",
                     "fontFamily": "Inter-Regular",
                     "fontSize": 13,
                     "lineHeight": 16,
@@ -259,7 +259,7 @@ exports[`Article active rendering should render active correctly 1`] = `
                     "elevation": 1,
                     "height": 32,
                     "justifyContent": "center",
-                    "shadowColor": "#090909",
+                    "shadowColor": "#040404",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 0,
@@ -327,7 +327,7 @@ exports[`Article active rendering should render active correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#090909",
+                  "color": "#040404",
                   "fontFamily": "Inter-SemiBold",
                   "fontSize": 12,
                   "lineHeight": 15,
@@ -414,14 +414,14 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#090909",
+                  "color": "#040404",
                   "fontFamily": "Inter-SemiBold",
                   "fontSize": 17,
                   "lineHeight": 23,
                 },
                 Array [
                   Object {
-                    "color": "#090909",
+                    "color": "#040404",
                   },
                   Object {
                     "flexDirection": undefined,
@@ -439,7 +439,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#090909",
+                "color": "#040404",
                 "fontFamily": "Inter-Regular",
                 "fontSize": 13,
                 "lineHeight": 16,
@@ -535,7 +535,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#090909",
+                    "color": "#040404",
                     "fontFamily": "Inter-Regular",
                     "fontSize": 13,
                     "lineHeight": 16,
@@ -612,7 +612,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
                     "elevation": 1,
                     "height": 32,
                     "justifyContent": "center",
-                    "shadowColor": "#090909",
+                    "shadowColor": "#040404",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 0,
@@ -631,7 +631,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#090909",
+                      "color": "#040404",
                       "fontSize": 11,
                     },
                     Object {
@@ -676,7 +676,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#090909",
+                  "color": "#040404",
                   "fontFamily": "Inter-SemiBold",
                   "fontSize": 12,
                   "lineHeight": 15,
@@ -761,14 +761,14 @@ exports[`Article full rendering should render full correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#090909",
+                  "color": "#040404",
                   "fontFamily": "Inter-SemiBold",
                   "fontSize": 17,
                   "lineHeight": 23,
                 },
                 Array [
                   Object {
-                    "color": "#090909",
+                    "color": "#040404",
                   },
                   Object {
                     "flexDirection": undefined,
@@ -788,7 +788,7 @@ exports[`Article full rendering should render full correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#090909",
+                "color": "#040404",
                 "fontFamily": "Inter-Regular",
                 "fontSize": 13,
                 "lineHeight": 16,
@@ -884,7 +884,7 @@ exports[`Article full rendering should render full correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#090909",
+                    "color": "#040404",
                     "fontFamily": "Inter-Regular",
                     "fontSize": 13,
                     "lineHeight": 16,
@@ -961,7 +961,7 @@ exports[`Article full rendering should render full correctly 1`] = `
                     "elevation": 1,
                     "height": 32,
                     "justifyContent": "center",
-                    "shadowColor": "#090909",
+                    "shadowColor": "#040404",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 0,
@@ -980,7 +980,7 @@ exports[`Article full rendering should render full correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#090909",
+                      "color": "#040404",
                       "fontSize": 11,
                     },
                     Object {
@@ -1025,7 +1025,7 @@ exports[`Article full rendering should render full correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#090909",
+                  "color": "#040404",
                   "fontFamily": "Inter-SemiBold",
                   "fontSize": 12,
                   "lineHeight": 15,
@@ -1110,14 +1110,14 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#090909",
+                  "color": "#040404",
                   "fontFamily": "Inter-SemiBold",
                   "fontSize": 17,
                   "lineHeight": 23,
                 },
                 Array [
                   Object {
-                    "color": "#090909",
+                    "color": "#040404",
                   },
                   Object {
                     "flexDirection": undefined,
@@ -1135,7 +1135,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#090909",
+                "color": "#040404",
                 "fontFamily": "Inter-Regular",
                 "fontSize": 13,
                 "lineHeight": 16,
@@ -1231,7 +1231,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#090909",
+                    "color": "#040404",
                     "fontFamily": "Inter-Regular",
                     "fontSize": 13,
                     "lineHeight": 16,
@@ -1308,7 +1308,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
                     "elevation": 1,
                     "height": 32,
                     "justifyContent": "center",
-                    "shadowColor": "#090909",
+                    "shadowColor": "#040404",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 0,
@@ -1327,7 +1327,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#090909",
+                      "color": "#040404",
                       "fontSize": 11,
                     },
                     Object {
@@ -1372,7 +1372,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#090909",
+                  "color": "#040404",
                   "fontFamily": "Inter-SemiBold",
                   "fontSize": 12,
                   "lineHeight": 15,
@@ -1424,7 +1424,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#090909",
+                "color": "#040404",
                 "fontFamily": "Inter-Regular",
               },
               Object {
@@ -1437,7 +1437,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#090909",
+                  "color": "#040404",
                   "fontFamily": "Inter-Regular",
                 },
                 undefined,
@@ -1450,7 +1450,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#090909",
+                  "color": "#040404",
                   "fontFamily": "Inter-Bold",
                 },
                 Object {},
@@ -1465,7 +1465,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#090909",
+                  "color": "#040404",
                   "fontFamily": "Inter-Regular",
                 },
                 undefined,
@@ -1479,7 +1479,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#090909",
+                  "color": "#040404",
                   "fontFamily": "Inter-Regular",
                 },
                 Object {
@@ -1560,14 +1560,14 @@ exports[`Article loading rendering should render loading correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#090909",
+                  "color": "#040404",
                   "fontFamily": "Inter-SemiBold",
                   "fontSize": 17,
                   "lineHeight": 23,
                 },
                 Array [
                   Object {
-                    "color": "#090909",
+                    "color": "#040404",
                   },
                   Object {
                     "flexDirection": undefined,
@@ -1585,7 +1585,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#090909",
+                "color": "#040404",
                 "fontFamily": "Inter-Regular",
                 "fontSize": 13,
                 "lineHeight": 16,
@@ -1681,7 +1681,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#090909",
+                    "color": "#040404",
                     "fontFamily": "Inter-Regular",
                     "fontSize": 13,
                     "lineHeight": 16,
@@ -1758,7 +1758,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
                     "elevation": 1,
                     "height": 32,
                     "justifyContent": "center",
-                    "shadowColor": "#090909",
+                    "shadowColor": "#040404",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 0,
@@ -1774,7 +1774,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
             >
               <ActivityIndicator
                 animating={true}
-                color="#090909"
+                color="#040404"
                 hidesWhenStopped={true}
                 size="small"
                 testID="Article-PlayIcon-ActivityIndicator"
@@ -1804,7 +1804,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#090909",
+                  "color": "#040404",
                   "fontFamily": "Inter-SemiBold",
                   "fontSize": 12,
                   "lineHeight": 15,
@@ -1889,14 +1889,14 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#090909",
+                  "color": "#040404",
                   "fontFamily": "Inter-SemiBold",
                   "fontSize": 17,
                   "lineHeight": 23,
                 },
                 Array [
                   Object {
-                    "color": "#090909",
+                    "color": "#040404",
                   },
                   Object {
                     "flexDirection": undefined,
@@ -1914,7 +1914,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#090909",
+                "color": "#040404",
                 "fontFamily": "Inter-Regular",
                 "fontSize": 13,
                 "lineHeight": 16,
@@ -2010,7 +2010,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#090909",
+                    "color": "#040404",
                     "fontFamily": "Inter-Regular",
                     "fontSize": 13,
                     "lineHeight": 16,
@@ -2087,7 +2087,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
                     "elevation": 1,
                     "height": 32,
                     "justifyContent": "center",
-                    "shadowColor": "#090909",
+                    "shadowColor": "#040404",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 0,
@@ -2106,7 +2106,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#090909",
+                      "color": "#040404",
                       "fontSize": 11,
                     },
                     Object {
@@ -2151,7 +2151,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#090909",
+                  "color": "#040404",
                   "fontFamily": "Inter-SemiBold",
                   "fontSize": 12,
                   "lineHeight": 15,
@@ -2236,14 +2236,14 @@ exports[`Article playing rendering should render playing correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#090909",
+                  "color": "#040404",
                   "fontFamily": "Inter-SemiBold",
                   "fontSize": 17,
                   "lineHeight": 23,
                 },
                 Array [
                   Object {
-                    "color": "#090909",
+                    "color": "#040404",
                   },
                   Object {
                     "flexDirection": undefined,
@@ -2261,7 +2261,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#090909",
+                "color": "#040404",
                 "fontFamily": "Inter-Regular",
                 "fontSize": 13,
                 "lineHeight": 16,
@@ -2357,7 +2357,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#090909",
+                    "color": "#040404",
                     "fontFamily": "Inter-Regular",
                     "fontSize": 13,
                     "lineHeight": 16,
@@ -2434,7 +2434,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
                     "elevation": 1,
                     "height": 32,
                     "justifyContent": "center",
-                    "shadowColor": "#090909",
+                    "shadowColor": "#040404",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 0,
@@ -2500,7 +2500,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#090909",
+                  "color": "#040404",
                   "fontFamily": "Inter-SemiBold",
                   "fontSize": 12,
                   "lineHeight": 15,

@@ -38,7 +38,7 @@ exports[`LoginResetPasswordForm rendering should render correctly 1`] = `
         style={
           Array [
             Object {
-              "color": "#090909",
+              "color": "#040404",
               "fontFamily": "Inter-Regular",
               "fontSize": 15,
               "lineHeight": 23,
@@ -63,7 +63,7 @@ exports[`LoginResetPasswordForm rendering should render correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#090909",
+                "color": "#040404",
                 "fontFamily": "Inter-SemiBold",
                 "fontSize": 15,
                 "lineHeight": 23,
@@ -188,7 +188,7 @@ exports[`LoginResetPasswordForm rendering should render correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#090909",
+                "color": "#040404",
                 "fontFamily": "Inter-SemiBold",
                 "fontSize": 15,
                 "lineHeight": 23,
