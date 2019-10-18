@@ -1,8 +1,8 @@
 const tintColor = '#0066FF'; // newer blue since 23-09-2019
 const tintColorLight = '#D9E9FD';
 const tintColorDark = '#004A87';
-const black = '#090909';
-const grayDarkest = '#121212';
+const black = '#040404';
+const grayDarkest = '#141414';
 const grayDarker = '#666666';
 const grayDark = '#AAAAAA';
 const gray = '#C5C5C5';
@@ -17,6 +17,20 @@ const redDark = '#b52424';
 const orange = '#ffc107';
 const orangeDark = '#ffc107';
 const green = '#03A87C';
+
+const gray950 = '#040404';
+const gray900 = '#111111';
+const gray800 = '#222222';
+const gray750 = '#2B2B2B';
+const gray700 = '#333333';
+const gray600 = '#444444';
+const gray500 = '#555555';
+const gray400 = '#666666';
+const gray300 = '#777777';
+const gray200 = '#888888';
+const gray100 = '#999999';
+
+// const gray50 = 'rgba(0, 0, 0, 0.05)';
 
 /*
 dark theme:
@@ -43,6 +57,19 @@ nav background: #212121
 */
 
 export default {
+  gray950,
+  gray900,
+  gray800,
+  gray750,
+  gray700,
+  gray600,
+  gray500,
+  gray400,
+  gray300,
+  gray200,
+  gray100,
+  // gray50,
+
   tintColor,
   tintColorLight,
   tintColorDark,

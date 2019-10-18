@@ -52,6 +52,7 @@ export const CustomSectionList: React.FC<Props> = React.memo(({ sectionListData,
       ListEmptyComponent={<EmptyState title={emptyTitle ? emptyTitle : "No items to show"} description={emptyDescription ? emptyDescription : ['It seems like this list is empty...']} />}
       contentContainerStyle={styles(theme).containerStyle}
       initialNumToRender={15}
+      indicatorStyle={theme === UserTheme.dark ? 'white' : 'black'}
       keyExtractor={(item, index) => item.key}
       ListHeaderComponent={ListHeaderComponent && (
         <View style={{ marginLeft: spacing.default * -1, marginRight: spacing.default * -1, marginBottom: spacing.small }}>
@@ -65,12 +66,12 @@ export const CustomSectionList: React.FC<Props> = React.memo(({ sectionListData,
       renderItem={({ item, index, section }: { item: IListItem, index: number, section: any }) => {
         // colors
         const leftIconColor = item.iconColor ? item.iconColor : colors.black;
-        const checkmarkColor = item.isSelected ? colors.white : colors.grayLight;
+        const checkmarkColor = item.isSelected ? colors.white : (theme === UserTheme.dark) ? colors.gray600 : colors.gray;
 
         // styles
-        const containerStyle = (item.isSelected) ? { backgroundColor: colors.tintColor } : theme === UserTheme.dark ? { backgroundColor: colors.grayDarkest } : { backgroundColor: colors.white };
+        const containerStyle = (item.isSelected) ? { backgroundColor: colors.tintColor } : theme === UserTheme.dark ? { backgroundColor: colors.gray900 } : { backgroundColor: colors.white };
         const titleStyle = (item.isSelected) ? { color: colors.white } : theme === UserTheme.dark ? { color: colors.white, opacity: 0.9 } : { color: colors.black };
-        const subtitleStyle = (item.isSelected) ? { color: 'rgba(255, 255, 255, 0.7)' } : { color: colors.grayDark };
+        const subtitleStyle = (item.isSelected) ? { color: 'rgba(255, 255, 255, 0.7)' } : theme === UserTheme.dark ? { color: colors.gray400 } : { color: colors.grayDark };
         const rightIconTextStyles = [styles(theme).rightIconText, item.isSelected ? { color: colors.white } : undefined, item.rightIconColor && !item.isSelected ? { color: item.rightIconColor } : undefined];
 
         // props
@@ -94,7 +95,7 @@ export const CustomSectionList: React.FC<Props> = React.memo(({ sectionListData,
             title={item.title}
             onPress={item.onPress}
             containerStyle={containerStyle}
-            titleStyle={[titleStyle, textPresets['body']]}
+            titleStyle={[titleStyle, textPresets['callout']]}
             subtitleStyle={[subtitleStyle, textPresets['footnote']]}
             subtitle={subtitle}
             leftIcon={leftIcon}

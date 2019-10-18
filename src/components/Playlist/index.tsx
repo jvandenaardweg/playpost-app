@@ -56,18 +56,21 @@ export const Playlist: React.FC<Props> = React.memo((props) => {
 
   // Handle a change in playlist items
   useEffect(() => {
-    // When a new item is added or deleted, animate it
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-
     if (props.isArchiveScreen && !isEqual(props.isArchiveScreen, playlistItems)) {
+      // When a new item is added or deleted, animate it
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
       return setPlaylistItems(props.archivedPlaylistItems)
     }
 
     if (props.isFavoriteScreen && !isEqual(props.isFavoriteScreen, playlistItems)) {
+      // When a new item is added or deleted, animate it
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
       return setPlaylistItems(props.favoritedPlaylistItems)
     }
 
     if (!props.isFavoriteScreen && !props.isArchiveScreen && !isEqual(props.newPlaylistItems, playlistItems)) {
+      // When a new item is added or deleted, animate it
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
       return setPlaylistItems(props.newPlaylistItems)
     }
 
@@ -145,19 +148,6 @@ export const Playlist: React.FC<Props> = React.memo((props) => {
     return <ListSeperator />;
   }
 
-  const renderItem = ({ item }: { item: Api.PlaylistItem; index: number }) => {
-    return (
-      <ArticleContainer
-        key={item.id}
-        isMoving={false}
-        isFavorited={!!item.favoritedAt}
-        isArchived={!!item.archivedAt}
-        playlistItem={item}
-        article={item.article}
-      />
-    );
-  }
-
   const handleOnRefresh = async () => {
     setIsLoading(true)
     setIsRefreshing(true)
@@ -225,13 +215,23 @@ export const Playlist: React.FC<Props> = React.memo((props) => {
       ItemSeparatorComponent={renderSeperatorComponent}
       ListEmptyComponent={renderEmptyComponent}
       initialNumToRender={7}
-      renderItem={renderItem}
+      renderItem={({ item }: { item: Api.PlaylistItem; index: number }) => (
+        <ArticleContainer
+          key={item.id}
+          isMoving={false}
+          isFavorited={!!item.favoritedAt}
+          isArchived={!!item.archivedAt}
+          playlistItem={item}
+          article={item.article}
+        />
+      )}
+      indicatorStyle={theme === UserTheme.dark ? 'white' : 'black'}
       removeClippedSubviews={true}
       refreshControl={
         <RefreshControl
           refreshing={isRefreshing}
           onRefresh={handleOnRefresh}
-          tintColor={theme === UserTheme.dark ? colors.white : colors.black}
+          tintColor={theme === UserTheme.dark ? colors.gray100 : colors.gray100}
         />
       }
     />

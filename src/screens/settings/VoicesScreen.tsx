@@ -15,11 +15,11 @@ export class SettingsVoicesScreen extends React.PureComponent {
 
   render() {
     return (
-      <InteractionManaged>
-        <AppBackground>
+      <AppBackground>
+        <InteractionManaged>
           <VoiceSelectContainer />
-        </AppBackground>
-      </InteractionManaged>
+        </InteractionManaged>
+      </AppBackground>
     );
   }
 }

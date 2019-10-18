@@ -10,6 +10,8 @@ import { ALERT_TITLE_ERROR_NO_INTERNET } from '../../constants/messages';
 import { NetworkContext } from '../../contexts/NetworkProvider';
 import { UserThemeContext } from '../../contexts/UserThemeProvider';
 
+import Text from '../Text';
+
 import { UserTheme } from '../../reducers/user';
 import styles from './styles';
 
@@ -34,31 +36,32 @@ export const SwipeableRow: React.FC<Props> = React.memo((props) => {
       return Alert.alert(ALERT_TITLE_ERROR_NO_INTERNET, 'You need an active internet connection to do ');
     }
 
-    close();
-
     if (actionName === 'delete') {
+      close();
       props.removeArticle();
     }
 
     if (actionName === 'favorite') {
-      if (!props.isFavorited) {
-        props.favoriteArticle();
-      } else {
-        props.unFavoriteArticle();
-      }
+      props.favoriteArticle();
+    }
+
+    if (actionName === 'unfavorite') {
+      props.unFavoriteArticle();
     }
 
     if (actionName === 'archive') {
-      if (!props.isArchived) {
-        props.archiveArticle()
-      } else {
-        props.unArchiveArticle();
-      }
+      props.archiveArticle()
     }
+
+    if (actionName === 'unarchive') {
+      props.unArchiveArticle();
+    }
+
+    setTimeout(() => close())
   }
 
   const renderRightAction = (action: string, icon: string, iconColor: string | null) => {
-    const defaultColor = (theme === UserTheme.dark) ? colors.grayDarker : colors.gray
+    const defaultColor = (theme === UserTheme.dark) ? colors.gray100 : colors.grayDark
     return (
       <View style={styles(theme).rightActionContainer}>
         <RectButton
@@ -70,19 +73,19 @@ export const SwipeableRow: React.FC<Props> = React.memo((props) => {
             size={22}
             color={(iconColor) ? iconColor : defaultColor}
           />
+          <Text preset="caption2" style={{ marginTop: 6, color: (iconColor) ? iconColor : defaultColor}}>{action}</Text>
         </RectButton>
       </View>
     );
   }
 
   const renderRightActions = (progressAnimatedValue: Animated.Value | Animated.AnimatedInterpolation, dragAnimatedValue: Animated.Value | Animated.AnimatedInterpolation) => {
-    const iconColorActive = (theme === UserTheme.dark) ? colors.white : colors.black;
+    const iconColorActive = (theme === UserTheme.dark) ? colors.gray100 : colors.grayDark;
 
     return (
       <View style={styles(theme).rightActionsContainer}>
-        {/* {this.renderRightAction('download', 'download-cloud', (isArchived) ? colors.black : null)} */}
-        {renderRightAction('archive', 'archive', (props.isArchived) ? iconColorActive : null)}
-        {renderRightAction('favorite', 'heart', (props.isFavorited) ? iconColorActive : null)}
+        {renderRightAction((props.isArchived) ? 'unarchive' : 'archive', 'archive', (props.isArchived) ? iconColorActive : null)}
+        {renderRightAction((props.isFavorited) ? 'unfavorite' : 'favorite', 'heart', (props.isFavorited) ? iconColorActive : null)}
         {renderRightAction('delete', 'trash-2', null)}
       </View>
     );

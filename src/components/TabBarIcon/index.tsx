@@ -12,9 +12,10 @@ interface Props {
 
 export const TabBarIcon: React.FC<Props> = React.memo(({ focused, name }) => {
   const { theme } = useContext(UserThemeContext);
+
   const colorFocusedLight = focused ? colors.tabIconSelected : colors.tabIconDefault;
-  const colorFocusedDark = focused ? colors.white : colors.grayDarker;
-  const color = theme === UserTheme.dark ? colorFocusedDark : colorFocusedLight
+  const colorFocusedDark = focused ? colors.white : colors.gray400;
+  const color = theme === UserTheme.dark ? colorFocusedDark : colorFocusedLight;
 
   return (
     <Icon.Feather

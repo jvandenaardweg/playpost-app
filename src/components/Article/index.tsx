@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { ActivityIndicator, StyleProp, TextStyle, TouchableHighlight, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { Image } from 'react-native-elements';
 import urlParse from 'url-parse';
+import isEqual from 'react-fast-compare';
+
 import Text from '../Text';
 
 import colors from '../../constants/colors';
@@ -98,12 +100,12 @@ export const Article: React.FC<Props> = React.memo(
                     name={hasAudiofile ? 'download-cloud' : 'cloud-off'}
                     size={14}
                     style={styles(theme).bodySourceIcon}
-                    color={isDownloaded ? colors.green : (theme === UserTheme.dark) ? colors.grayDarker : colors.grayDark}
+                    color={isDownloaded ? colors.green : (theme === UserTheme.dark) ? colors.gray400 : colors.grayDark}
                     testID="Article-icon-downloaded"
                   />
                 </View>
                 <View style={[styles(theme).bodyMetaSource, textDirectionStyle]}>
-                  <Text style={[styles(theme).downloadText, { color: isDownloaded ? colors.green : (theme === UserTheme.dark) ? colors.grayDarker : colors.grayDark }]} preset="footnote" testID="Article-Text-voiceLabel">{voiceLabel}</Text>
+                  <Text style={[styles(theme).downloadText, { color: isDownloaded ? colors.green : (theme === UserTheme.dark) ? colors.gray400 : colors.grayDark }]} preset="footnote" testID="Article-Text-voiceLabel">{voiceLabel}</Text>
                 </View>
               </View>
             </View>
@@ -143,7 +145,7 @@ export const Article: React.FC<Props> = React.memo(
         </View>
       </TouchableHighlight>
     )
-});
+}, isEqual);
 
 interface SourceTextProps { authorName: Props['authorName']; sourceName: Props['sourceName']; url: Props['url']; textDirection: Props['textDirection'] }
 

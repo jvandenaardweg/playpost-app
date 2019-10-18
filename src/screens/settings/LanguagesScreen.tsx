@@ -15,11 +15,11 @@ export class SettingsLanguagesScreen extends React.PureComponent {
 
   render() {
     return (
-      <InteractionManaged>
-        <AppBackground>
+      <AppBackground>
+        <InteractionManaged>
           <LanguagesSelectContainer />
-        </AppBackground>
-      </InteractionManaged>
+        </InteractionManaged>
+      </AppBackground>
     );
   }
 }

@@ -21,7 +21,7 @@ export default (theme?: UserTheme) => StyleSheet.create({
   },
   itemSeperator: { },
   rightIconText: {
-    color: colors.grayDark
+    color: theme === UserTheme.dark ? colors.gray300 : colors.grayDark
   },
   listItemLeftIconContainer: {
     borderRadius: layout.borderRadius.tiny,

@@ -13,7 +13,7 @@ import { patchUser } from '../../reducers/user';
 
 import { selectUserError } from '../../selectors/user';
 
-import { InteractionManaged } from '../../components/InteractionManaged';
+import { AppBackground } from '../../components/AppBackground';
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
 interface State {
@@ -92,7 +92,7 @@ export class UpdatePasswordScreenContainer extends React.PureComponent<Props, St
     const { password, isLoading, isSuccess } = this.state;
 
     return (
-      <InteractionManaged>
+      <AppBackground>
         <SafeAreaView style={{ flex: 1 }}>
           <UpdatePasswordForm
             password={password}
@@ -102,7 +102,7 @@ export class UpdatePasswordScreenContainer extends React.PureComponent<Props, St
             onPressUpdatePassword={this.handleOnPressUpdatePassword}
           />
         </SafeAreaView>
-      </InteractionManaged>
+      </AppBackground>
     );
   }
 }

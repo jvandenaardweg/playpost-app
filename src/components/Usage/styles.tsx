@@ -11,7 +11,7 @@ export default (theme?: UserTheme) => StyleSheet.create({
     paddingRight: spacing.default
   },
   wrapper: {
-    backgroundColor: theme === UserTheme.dark ? colors.grayDarkest : colors.white,
+    backgroundColor: theme === UserTheme.dark ? colors.gray900 : colors.white,
     padding: spacing.large,
     marginBottom: 0
   },
@@ -34,7 +34,7 @@ export default (theme?: UserTheme) => StyleSheet.create({
     marginBottom: 4
   },
   statsMeta: {
-    color: theme === UserTheme.dark ? colors.grayLight : colors.grayDarkest,
+    color: theme === UserTheme.dark ? colors.gray200 : colors.gray900,
     marginLeft: 4,
     marginBottom: 2,
   },
@@ -45,7 +45,7 @@ export default (theme?: UserTheme) => StyleSheet.create({
     marginTop: spacing.default
   },
   progressContainer: {
-    backgroundColor: theme === UserTheme.dark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+    backgroundColor: theme === UserTheme.dark ? colors.gray700 : 'rgba(0, 0, 0, 0.1)',
     height: 6,
     borderRadius: layout.borderRadius.small,
     overflow: 'hidden',
@@ -57,7 +57,7 @@ export default (theme?: UserTheme) => StyleSheet.create({
   },
   messageText: {
     marginTop: 8,
-    color: theme === UserTheme.dark ? colors.grayLightest : colors.grayDarkest,
+    color: theme === UserTheme.dark ? colors.gray200 : colors.gray900,
     textAlign: 'center'
   }
 });

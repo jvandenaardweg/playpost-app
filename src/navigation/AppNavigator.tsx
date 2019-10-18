@@ -133,6 +133,7 @@ const ModalLanguagesStack = createStackNavigator(
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
     headerLayoutPreset: 'center',
+    transparentCard: true,
     defaultNavigationOptions: ({ navigation }) => ({
       ...stackNavigatorDefaultNavigationOptions,
       title: 'Languages',

@@ -24,8 +24,8 @@ import { SettingsThemesScreen } from '../screens/settings/ThemesScreen';
 
 export const stackNavigatorDefaultNavigationOptions: NavigationStackOptions = {
   headerStyle: {
-    borderBottomColor: '#333333',
-    backgroundColor: '#1E1E1E'
+    borderBottomColor: colors.gray800,
+    backgroundColor: colors.gray800
   },
   headerTitleStyle: {
     ...textPresets['bodyEmphasized'],
@@ -127,6 +127,7 @@ const SettingsStack = createStackNavigator(
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
     headerLayoutPreset: 'center',
+    transparentCard: true,
     defaultNavigationOptions: ({ navigation }) => ({
       ...stackNavigatorDefaultNavigationOptions,
       title: 'Settings'

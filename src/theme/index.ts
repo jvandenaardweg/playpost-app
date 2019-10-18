@@ -30,7 +30,7 @@ export const reactNativeElementsTheme: Theme = {
       backgroundColor: colors.listItemBackground
     },
     titleStyle: {
-      ...textPresets['body'],
+      ...textPresets['callout'],
       color: colors.black
     },
     subtitleStyle: {

@@ -13,7 +13,7 @@ export default (theme?: UserTheme) => StyleSheet.create({
   filterContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: theme === UserTheme.dark ? colors.grayDarkest : colors.white,
+    backgroundColor: theme === UserTheme.dark ? colors.gray900 : colors.white,
     paddingBottom: spacing.default,
     paddingTop: spacing.default,
     borderBottomWidth: StyleSheet.hairlineWidth,

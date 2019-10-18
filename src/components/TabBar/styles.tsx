@@ -5,11 +5,11 @@ import { UserTheme } from '../../reducers/user';
 
 export default (theme?: UserTheme) => StyleSheet.create({
   container: {
-    borderTopColor: theme === UserTheme.dark ? '#1E1E1E' : colors.borderDefault,
-    backgroundColor: theme === UserTheme.dark ? '#1E1E1E' : colors.tabBar
+    backgroundColor: theme === UserTheme.dark ? colors.gray800 : colors.tabBarBackgroundColor,
+    borderTopColor: theme === UserTheme.dark ? colors.gray500 : colors.tabBarBorderColor
   },
   bottomTabBar: {
-    backgroundColor: theme === UserTheme.dark ? '#1E1E1E' : colors.tabBarBackgroundColor,
-    borderTopColor: theme === UserTheme.dark ? '#1E1E1E' : colors.tabBarBorderColor
+    backgroundColor: theme === UserTheme.dark ? colors.gray800 : colors.tabBarBackgroundColor,
+    borderTopColor: theme === UserTheme.dark ? colors.gray500 : colors.tabBarBorderColor
   }
 });

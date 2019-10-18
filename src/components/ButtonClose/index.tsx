@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { TouchableOpacity } from 'react-native';
 import * as Icon from '../Icon';
 
 import colors from '../../constants/colors';
 
 import { mediumHitslop } from '../../constants/buttons';
+import { UserThemeContext } from '../../contexts/UserThemeProvider';
+import { UserTheme } from '../../reducers/user';
 import styles from './styles';
 
 interface Props {
@@ -13,12 +15,14 @@ interface Props {
   onPress(): void;
 }
 
-export const ButtonClose: React.FC<Props> = React.memo(({ theme = 'light', onPress, iconColor }) => {
-  const buttonStyle = (theme === 'light') ? { backgroundColor: colors.grayLightest } : { backgroundColor: colors.grayDarkest }
+export const ButtonClose: React.FC<Props> = React.memo((props) => {
+  const { theme } = useContext(UserThemeContext);
+
+  const buttonStyle = (theme === UserTheme.dark) ? { backgroundColor: colors.gray500 } : { backgroundColor: colors.gray900 }
 
   return (
     <TouchableOpacity
-      onPress={onPress}
+      onPress={props.onPress}
       style={{ ...styles.container, ...buttonStyle }}
       testID="button-close"
       hitSlop={mediumHitslop}

@@ -57,7 +57,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
     let highlightedBackgroundColor = colors.grayLightest;
 
     if (themeProp === 'dark') {
-      backgroundColor = colors.grayDarkest;
+      backgroundColor = colors.gray900;
       fontColor = colors.gray;
       paragraphColor = colors.gray;
       highlightColor = colors.gray;

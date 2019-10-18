@@ -9,7 +9,7 @@ export default (theme?: UserTheme) => StyleSheet.create({
   container: {
   },
   contentContainer: {
-    backgroundColor: theme === UserTheme.dark ? colors.grayDarkest : colors.articleBackground,
+    backgroundColor: theme === UserTheme.dark ? colors.gray900 : colors.articleBackground,
     padding: spacing.default,
   },
   wrapper: {
@@ -35,7 +35,7 @@ export default (theme?: UserTheme) => StyleSheet.create({
     alignItems: 'center'
   },
   author: {
-    color: theme === UserTheme.dark ? colors.grayDarkest : colors.grayDark
+    color: theme === UserTheme.dark ? colors.gray900 : colors.grayDark
   },
   bodyMeta: {
     flexDirection: 'row',
@@ -71,15 +71,11 @@ export default (theme?: UserTheme) => StyleSheet.create({
   bodyTitleText: {
     color: theme === UserTheme.dark ? colors.white : colors.titleDefault
   },
-  bodyFooterText: {
-    color: theme === UserTheme.dark ? colors.grayDarker : colors.grayDark,
-    paddingRight: 6 // so our "rtl" text has enough spacing
-  },
   bodySourceIcon: {
     marginRight: 6
   },
   bodySourceText: {
-    color: theme === UserTheme.dark ? colors.grayDarker : colors.grayDark,
+    color: theme === UserTheme.dark ? colors.gray400 : colors.grayDark,
     paddingRight: 0,
     marginBottom: spacing.tiny
   },
@@ -112,7 +108,7 @@ export default (theme?: UserTheme) => StyleSheet.create({
   durationContainer: {
     textAlign: 'center',
     marginTop: spacing.micro,
-    backgroundColor: theme === UserTheme.dark ? 'rgba(255, 255, 255, 0.2)' : colors.grayLightest,
+    backgroundColor: theme === UserTheme.dark ? colors.gray700 : colors.grayLightest,
     borderRadius: 21,
     paddingTop: 3,
     paddingBottom: 0,
@@ -121,10 +117,10 @@ export default (theme?: UserTheme) => StyleSheet.create({
     height: 21,
   },
   durationText: {
-    color: theme === UserTheme.dark ? colors.gray : colors.grayDark,
+    color: theme === UserTheme.dark ? colors.gray100 : colors.grayDark,
   },
   downloadText: {
-    color: theme === UserTheme.dark ? colors.grayDarker : colors.grayDark,
+    color: theme === UserTheme.dark ? colors.gray300 : colors.grayDark,
   },
   durationContainerActive: {
     backgroundColor: colors.tintColor

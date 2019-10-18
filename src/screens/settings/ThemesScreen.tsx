@@ -15,11 +15,11 @@ export class SettingsThemesScreen extends React.PureComponent {
 
   render() {
     return (
-      <InteractionManaged>
-        <AppBackground>
+      <AppBackground>
+        <InteractionManaged>
           <ThemeSelectContainer />
-        </AppBackground>
-      </InteractionManaged>
+        </InteractionManaged>
+      </AppBackground>
     );
   }
 }

@@ -18,12 +18,12 @@ export default (theme?: UserTheme) => StyleSheet.create({
   rightActionContainer: {
     alignItems: 'center',
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   rightAction: {
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
-    width: 54 // 250 - 16 - 16 / 4
+    width: '100%' // 250 - 16 - 16 / 4
   },
 });

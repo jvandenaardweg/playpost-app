@@ -13,7 +13,7 @@ import { getUser, patchUser } from '../../reducers/user';
 
 import { selectUserDetails, selectUserError } from '../../selectors/user';
 
-import { InteractionManaged } from '../../components/InteractionManaged';
+import { AppBackground } from '../../components/AppBackground';
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
 interface State {
@@ -115,7 +115,7 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
     const { email, isLoading, isSuccess } = this.state;
 
     return (
-      <InteractionManaged>
+      <AppBackground>
         <SafeAreaView style={{ flex: 1 }}>
           <UpdateEmailForm
             email={email}
@@ -125,7 +125,7 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
             onPressUpdateEmail={this.handleOnPressUpdateEmail}
           />
         </SafeAreaView>
-      </InteractionManaged>
+      </AppBackground>
     );
   }
 }

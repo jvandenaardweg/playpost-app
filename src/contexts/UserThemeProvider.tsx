@@ -1,10 +1,11 @@
 import React from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, Platform } from 'react-native';
 import { connect } from 'react-redux';
 
 import { RootState } from '../reducers';
 import { UserTheme } from '../reducers/user';
 import { selectUserSelectedTheme } from '../selectors/user';
+import colors from '../constants/colors';
 
 export const UserThemeContext = React.createContext<{ theme: UserTheme; }>({
   theme: UserTheme.light // default
@@ -47,8 +48,16 @@ export class UserThemeProviderContainer extends React.PureComponent<Props, State
   setStatusBarStyle = (userSelectedTheme: UserTheme) => {
     if (userSelectedTheme === UserTheme.dark) {
       StatusBar.setBarStyle('light-content')
+
+      if (Platform.OS === 'android') {
+        StatusBar.setBackgroundColor(colors.black)
+      }
     } else {
       StatusBar.setBarStyle('dark-content')
+
+      if (Platform.OS === 'android') {
+        StatusBar.setBackgroundColor(colors.white)
+      }
     }
   }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Animated, InteractionManager } from 'react-native';
 import { CenterLoadingIndicator } from '../CenterLoadingIndicator';
 
@@ -12,56 +12,36 @@ interface State {
   isMounted: boolean;
 }
 
-export class InteractionManaged extends React.PureComponent<Props, State> {
-  static defaultProps = {
-    isAnimated: true,
-    showActivityIndicator: false
-  }
+export const InteractionManaged: React.FC<Props> = React.memo((props) => {
+  const [isMounted, setIsMounted] = useState<State['isMounted']>(false)
 
-  state = {
-    isMounted: false,
-  };
+  const opacityAnim = new Animated.Value(0)
 
-  opacityAnim = new Animated.Value(0);
-
-  timeout: NodeJS.Timeout | null = null;
-
-  componentDidMount() {
-    const { isAnimated } = this.props;
-
+  useEffect(() => {
     InteractionManager.runAfterInteractions(() => {
       requestAnimationFrame(() => {
-        this.setState({ isMounted: true }, () => {
-          if (!isAnimated) {
-            return
-          }
+        setIsMounted(true)
 
-          Animated.timing(this.opacityAnim, {
-            toValue: 1,
-            duration: 200,
-            useNativeDriver: true
-          }).start();
-        });
+        Animated.timing(opacityAnim, {
+          toValue: 1,
+          duration: 200,
+          useNativeDriver: true
+        }).start();
       });
     });
+  }, [isMounted])
+
+  if (!isMounted && !props.showActivityIndicator) {
+    return null;
   }
 
-  render() {
-    const { isMounted } = this.state;
-    const { showActivityIndicator } = this.props;
-
-    if (!isMounted && !showActivityIndicator) {
-      return null;
-    }
-
-    if (!isMounted && showActivityIndicator) {
-      return <CenterLoadingIndicator />;
-    }
-
-    return (
-      <Animated.View style={{ flex: 1, opacity: this.opacityAnim }}>
-        {this.props.children}
-      </Animated.View>
-    )
+  if (!isMounted && props.showActivityIndicator) {
+    return <CenterLoadingIndicator />;
   }
-}
+
+  return (
+    <Animated.View style={{ flex: 1, opacity: opacityAnim }}>
+      {props.children}
+    </Animated.View>
+  )
+})

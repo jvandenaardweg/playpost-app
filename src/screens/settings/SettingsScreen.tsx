@@ -1,25 +1,22 @@
 import React from 'react';
 
-import { NavigationRoute, NavigationScreenProp } from 'react-navigation';
+import { NavigationRoute, NavigationScreenProp, NavigationScreenComponent, NavigationParams } from 'react-navigation';
 import { NavigationStackOptions } from 'react-navigation-stack';
 
 import { AppBackground } from '../../components/AppBackground';
 import { ButtonUpgradeContainer } from '../../containers/ButtonUpgradeContainer';
 import { SettingsContainer } from '../../containers/SettingsContainer';
 
-export class SettingsScreen extends React.PureComponent {
-  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackOptions => {
-    return {
-      // title: 'Settings',
-      headerRight: <ButtonUpgradeContainer />
-    };
-  }
+export const SettingsScreen: NavigationScreenComponent<{}, NavigationScreenProp<NavigationRoute>> = React.memo(() => {
+  return (
+    <AppBackground>
+      <SettingsContainer />
+    </AppBackground>
+  );
+})
 
-  render() {
-    return (
-      <AppBackground>
-        <SettingsContainer />
-      </AppBackground>
-    );
-  }
+SettingsScreen.navigationOptions = (): NavigationStackOptions => {
+  return {
+    headerRight: <ButtonUpgradeContainer />
+  };
 }

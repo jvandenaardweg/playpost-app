@@ -97,7 +97,7 @@ export default (theme?: UserTheme) => StyleSheet.create({
     padding: spacing.default,
     alignItems: 'center',
     borderRadius: layout.borderRadius.small,
-    backgroundColor: theme === UserTheme.dark ? colors.grayDarkest : colors.white,
+    backgroundColor: theme === UserTheme.dark ? colors.gray900 : colors.white,
     shadowColor: colors.black,
     shadowOffset: {
       width: 0,

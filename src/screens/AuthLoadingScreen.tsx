@@ -80,7 +80,7 @@ export class AuthLoadingScreen extends React.PureComponent<Props> {
 
     this.props.navigation.navigate('App');
 
-    return requestAnimationFrame(() => SplashScreen.hide())
+    return SplashScreen.hide()
   }
 
   // Render any loading content that you like here
