@@ -43,45 +43,18 @@ export interface Props {
   onPressArticleIncompatible(): void;
 }
 
-export const Article: React.FC<Props> = React.memo(
-  ({
-    isMoving,
-    isLoading,
-    isPlaying,
-    isActive,
-    isDownloaded,
-    isFavorited,
-    isArchived,
-    hasAudiofile,
-    title,
-    url,
-    playlistItemCreatedAt,
-    imageUrl,
-    description,
-    sourceName,
-    authorName,
-    listenTimeInSeconds,
-    readingTime,
-    onPlayPress,
-    onOpenUrl,
-    onLongPress,
-    onPressOut,
-    onPressArticleIncompatible,
-    isCompatible,
-    textDirection,
-    voiceLabel
-  }) => {
+export const Article: React.FC<Props> = React.memo((props) => {
     const { theme } = useContext(UserThemeContext)
 
-    const textDirectionStyle: StyleProp<TextStyle> = { writingDirection: textDirection, flexDirection: (textDirection === 'rtl') ? 'row-reverse' : undefined };
-    const rtlFlexDirectionStyle: StyleProp<ViewStyle> = { flexDirection: (textDirection === 'rtl') ? 'row-reverse' : 'row' };
+    const textDirectionStyle: StyleProp<TextStyle> = { writingDirection: props.textDirection, flexDirection: (props.textDirection === 'rtl') ? 'row-reverse' : undefined };
+    const rtlFlexDirectionStyle: StyleProp<ViewStyle> = { flexDirection: (props.textDirection === 'rtl') ? 'row-reverse' : 'row' };
 
     return (
       <TouchableHighlight
-        style={[styles(theme).container, isMoving ? styles(theme).isMoving : null]}
-        onPress={onOpenUrl}
-        onLongPress={onLongPress}
-        onPressOut={onPressOut}
+        style={[styles(theme).container, props.isMoving ? styles(theme).isMoving : null]}
+        onPress={props.onOpenUrl}
+        onLongPress={props.onLongPress}
+        onPressOut={props.onPressOut}
         activeOpacity={0.9}
         underlayColor={colors.black}
       >
@@ -90,22 +63,22 @@ export const Article: React.FC<Props> = React.memo(
             <View testID="Article-Button-section" style={styles(theme).sectionBody}>
               <View style={styles(theme).bodyTitle}>
                 <Text style={[styles(theme).bodyTitleText, textDirectionStyle]} testID="Article-title" ellipsizeMode="tail" numberOfLines={4} preset="bodyEmphasized">
-                  {title}
+                  {props.title}
                 </Text>
               </View>
-              <SourceText authorName={authorName} sourceName={sourceName} textDirection={textDirection} url={url} />
+              <SourceText authorName={props.authorName} sourceName={props.sourceName} textDirection={props.textDirection} url={props.url} />
               <View style={[styles(theme).bodyFooter, textDirectionStyle, rtlFlexDirectionStyle]}>
                 <View style={[rtlFlexDirectionStyle]}>
                   <Icon.Feather
-                    name={hasAudiofile ? 'download-cloud' : 'cloud-off'}
+                    name={props.hasAudiofile ? 'download-cloud' : 'cloud-off'}
                     size={14}
                     style={styles(theme).bodySourceIcon}
-                    color={isDownloaded ? colors.green : (theme === UserTheme.dark) ? colors.gray400 : colors.gray100}
+                    color={props.isDownloaded ? colors.green : (theme === UserTheme.dark) ? colors.gray300 : colors.gray100}
                     testID="Article-icon-downloaded"
                   />
                 </View>
                 <View style={[styles(theme).bodyMetaSource, textDirectionStyle]}>
-                  <Text style={[styles(theme).downloadText, { color: isDownloaded ? colors.green : (theme === UserTheme.dark) ? colors.gray400 : colors.gray100 }]} preset="footnote" testID="Article-Text-voiceLabel">{voiceLabel}</Text>
+                  <Text style={[styles(theme).downloadText, { color: props.isDownloaded ? colors.green : (theme === UserTheme.dark) ? colors.gray300 : colors.gray100 }]} preset="footnote" testID="Article-Text-voiceLabel">{props.voiceLabel}</Text>
                 </View>
               </View>
             </View>
@@ -113,22 +86,22 @@ export const Article: React.FC<Props> = React.memo(
               <TouchableOpacity
                 testID="Article-Button-play"
                 style={styles(theme).imageContainer}
-                onPress={onPlayPress}
-                disabled={isLoading}
+                onPress={props.onPlayPress}
+                disabled={props.isLoading}
               >
-                {imageUrl && <Image resizeMode="cover" containerStyle={styles(theme).image} source={{ uri: imageUrl }} placeholderStyle={styles(theme).imagePlaceholder} />}
+                {props.imageUrl && <Image resizeMode="cover" containerStyle={styles(theme).image} source={{ uri: props.imageUrl }} placeholderStyle={styles(theme).imagePlaceholder} />}
                 <View style={styles(theme).playButtonContainer}>
-                  <PlayIcon isLoading={isLoading} isPlaying={isPlaying} isActive={isActive} />
+                  <PlayIcon isLoading={props.isLoading} isPlaying={props.isPlaying} isActive={props.isActive} />
                 </View>
               </TouchableOpacity>
-              <Duration listenTimeInSeconds={listenTimeInSeconds} readingTime={readingTime} isActive={isActive} />
+              <Duration listenTimeInSeconds={props.listenTimeInSeconds} readingTime={props.readingTime} isActive={props.isActive} />
             </View>
           </View>
-          {!isCompatible && (
+          {!props.isCompatible && (
             <TouchableHighlight
               testID="Article-Button-incompatibility-warning"
               style={styles(theme).warningContainer}
-              onPress={onPressArticleIncompatible}
+              onPress={props.onPressArticleIncompatible}
               activeOpacity={0.8}
               underlayColor={colors.black}
             >

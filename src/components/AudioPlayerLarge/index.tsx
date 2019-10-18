@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import isEqual from 'react-fast-compare';
 import { Animated, TouchableOpacity, View } from 'react-native';
 
 import { ArticleReader } from '../ArticleReader';
@@ -136,4 +137,4 @@ export const AudioPlayerLarge: React.FC<Props> = React.memo((props: Props) => {
       </View>
     </View>
   )
-});
+}, isEqual);

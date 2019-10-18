@@ -193,7 +193,7 @@ const App: React.FC = React.memo(() => {
                   <APIErrorAlertContainer>
                     <SubscriptionHandlerContainer>
                       <AppContainer
-                        theme="light"
+                        theme="dark"
                         ref={navigatorRef => {
                           NavigationService.setTopLevelNavigator(navigatorRef);
                         }}

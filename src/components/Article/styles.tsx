@@ -18,7 +18,7 @@ export default (theme?: UserTheme) => StyleSheet.create({
     width: '100%',
   },
   isMoving: {
-    backgroundColor: theme === UserTheme.dark ? colors.gray400 : colors.grayLightest
+    backgroundColor: theme === UserTheme.dark ? colors.gray300 : colors.grayLightest
   },
   isActive: {
     backgroundColor: colors.tintColor
@@ -75,7 +75,7 @@ export default (theme?: UserTheme) => StyleSheet.create({
     marginRight: 6
   },
   bodySourceText: {
-    color: theme === UserTheme.dark ? colors.gray400 : colors.gray100,
+    color: theme === UserTheme.dark ? colors.gray300 : colors.gray100,
     paddingRight: 0,
     marginBottom: spacing.tiny
   },
@@ -131,7 +131,7 @@ export default (theme?: UserTheme) => StyleSheet.create({
   imageContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.gray,
+    backgroundColor: theme === UserTheme.dark ? colors.gray800 : colors.gray,
     borderRadius: layout.borderRadius.small,
     width: 75,
     height: 75,
@@ -148,7 +148,7 @@ export default (theme?: UserTheme) => StyleSheet.create({
     opacity: 0.9,
   },
   imagePlaceholder: {
-    backgroundColor: colors.grayLight,
+    backgroundColor: theme === UserTheme.dark ? colors.gray800 : colors.grayLight,
     borderRadius: layout.borderRadius.small,
   },
   warningContainer: {

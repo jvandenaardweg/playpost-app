@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
+import isEqual from 'react-fast-compare';
 import { ActivityIndicator, SectionList, SectionListData, TouchableHighlight, View } from 'react-native';
 import { ListItem } from 'react-native-elements';
+
 import styles from './styles';
 
 import colors from '../../constants/colors';
@@ -87,7 +89,7 @@ export const CustomSectionList: React.FC<Props> = React.memo(({ sectionListData,
             undefined;
 
         const rightIcon = (item.value) ? <Text style={rightIconTextStyles} preset="subhead">{item.value}</Text> : undefined;
-        const rightElement = getRightElement(item, checkmarkColor);
+        const rightElement = getRightElement(item, checkmarkColor, theme);
 
         return (
           <ListItem
@@ -107,17 +109,17 @@ export const CustomSectionList: React.FC<Props> = React.memo(({ sectionListData,
       sections={sectionListData}
     />
   )
-})
+}, isEqual)
 
 
 
-const getRightElement = (item: IListItem, checkmarkColor: string) => {
+const getRightElement = (item: IListItem, checkmarkColor: string, theme: UserTheme) => {
   if (item.isLoading) {
-    return <ActivityIndicator color={colors.black} />;
+    return <ActivityIndicator color={theme === UserTheme.dark ? colors.white : colors.black} />;
   }
 
   if (item.chevron) {
-    return <Icon.Feather name="chevron-right" size={20} color={colors.gray} style={{ height: 20 }} />;
+    return <Icon.Feather name="chevron-right" size={20} color={theme === UserTheme.dark ? colors.gray500 : colors.gray} style={{ height: 20 }} />;
   }
 
   if (item.checkmark) {

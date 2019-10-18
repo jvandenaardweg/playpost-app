@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
+import isEqual from 'react-fast-compare';
 import { View } from 'react-native';
 import { Button } from 'react-native-elements';
 
 import colors from '../../constants/colors';
 import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_UNLIMITED } from '../../constants/in-app-purchase';
 import { UserThemeContext } from '../../contexts/UserThemeProvider';
+import { UserTheme } from '../../reducers/user';
 import Text from '../Text';
 import styles from './styles';
 
@@ -16,31 +18,31 @@ export interface Props {
   onPressUpgrade(upgradeScreenCenteredSubscriptionProductId?: string): void;
 }
 
-export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProductId, onPressUpgrade, userIsEligibleForTrial }) => {
+export const Usage: React.FC<Props> = React.memo((props) => {
   const { theme } = useContext(UserThemeContext)
 
-  const limitSecondsPerMonth = (user) ? user.limits.audiofiles.limitSecondsPerMonth : null;
-  const usageUsedCurrentMonthInSeconds = (user) ? user.used.audiofiles && user.used.audiofiles.currentMonthInSeconds : null;
+  const limitSecondsPerMonth = (props.user) ? props.user.limits.audiofiles.limitSecondsPerMonth : null;
+  const usageUsedCurrentMonthInSeconds = (props.user) ? props.user.used.audiofiles && props.user.used.audiofiles.currentMonthInSeconds : null;
   const percentageUsedCurrentMonth = (usageUsedCurrentMonthInSeconds !== null && limitSecondsPerMonth !== null) ? (usageUsedCurrentMonthInSeconds / limitSecondsPerMonth) * 100 : 0;
   const percentageUsed = percentageUsedCurrentMonth >= 100 ? 100 : percentageUsedCurrentMonth;
 
   const currentUsageLocalized = (usageUsedCurrentMonthInSeconds !== null) ? Math.ceil(usageUsedCurrentMonthInSeconds / 60).toLocaleString('nl-NL') : '?'; // So we have 5.000 (with a dot)
-  const currentLimitLocalized = (limitSecondsPerMonth) ? Math.ceil(limitSecondsPerMonth / 60).toLocaleString('nl-NL') : (user) ? 'unlimited' : '?'; // So we have 5.000 (with a dot)
+  const currentLimitLocalized = (limitSecondsPerMonth) ? Math.ceil(limitSecondsPerMonth / 60).toLocaleString('nl-NL') : (props.user) ? 'unlimited' : '?'; // So we have 5.000 (with a dot)
 
-  const showUpgradeButton = activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE || activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_PREMIUM;
+  const showUpgradeButton = props.activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE || props.activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_PREMIUM;
 
-  const upgradeButtonTitle = getUpgradeButtonTitle(activeSubscriptionProductId, userIsEligibleForTrial);
-  const upgradeMessage = getUpgradeMessage(activeSubscriptionProductId);
+  const upgradeButtonTitle = getUpgradeButtonTitle(props.activeSubscriptionProductId, props.userIsEligibleForTrial);
+  const upgradeMessage = getUpgradeMessage(props.activeSubscriptionProductId);
   const usedText = `of ${currentLimitLocalized} minutes used this month`;
   const usedPercentageText = limitSecondsPerMonth ? `${Math.ceil(percentageUsed)}%` : '';
   const progressWidth = limitSecondsPerMonth ? `${percentageUsed}%` : '0%';
-  const progressBackgroundColor = percentageUsed < 85 ? colors.black : colors.red;
-  const percentageUsedColor = percentageUsed < 85 ? colors.black : colors.red;
+  const progressBackgroundColor = percentageUsed < 85 ? (theme === UserTheme.dark) ? colors.white : colors.black : colors.red;
+  const percentageUsedColor = percentageUsed < 85 ? (theme === UserTheme.dark) ? colors.white : colors.black : colors.red;
 
   const upgradeScreenCenteredSubscriptionProductId =
-    activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_PREMIUM
+    props.activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_PREMIUM
       ? SUBSCRIPTION_PRODUCT_ID_UNLIMITED
-      : activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE
+      : props.activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE
       ? SUBSCRIPTION_PRODUCT_ID_PREMIUM
       : SUBSCRIPTION_PRODUCT_ID_PREMIUM;
 
@@ -71,7 +73,7 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
             <Button
               testID="Usage-Button-upgrade"
               title={upgradeButtonTitle}
-              onPress={() => onPressUpgrade(upgradeScreenCenteredSubscriptionProductId)}
+              onPress={() => props.onPressUpgrade(upgradeScreenCenteredSubscriptionProductId)}
             />
             <Text testID="Usage-Text-upgrade-message" style={styles(theme).messageText} preset="footnote">
               {upgradeMessage}
@@ -81,7 +83,7 @@ export const Usage: React.FC<Props> = React.memo(({ user, activeSubscriptionProd
       </View>
     </View>
   );
-});
+}, isEqual);
 
 export function getUpgradeMessage(activeSubscriptionProductId: string): string {
   if (activeSubscriptionProductId === SUBSCRIPTION_PRODUCT_ID_FREE) {

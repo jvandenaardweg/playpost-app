@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import isEqual from 'react-fast-compare';
 import WebView from 'react-native-webview';
 import urlParse from 'url-parse';
 
@@ -276,4 +277,4 @@ export const ArticleReader: React.FC<Props> = React.memo(({
   function getTextDirection(articleProp: Api.Article | undefined): TextDirection {
     return (articleProp && articleProp.language && articleProp.language.rightToLeft) ? 'rtl' : 'ltr';
   }
-});
+}, isEqual);

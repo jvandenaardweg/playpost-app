@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import isEqual from 'react-fast-compare';
 import { TouchableHighlight, View } from 'react-native';
 import * as TrackPlayer from 'react-native-track-player';
 
@@ -54,4 +55,4 @@ export const AudioPlayerSmall: React.FC<Props> = React.memo(({
       </View>
     </View>
   )
-})
+}, isEqual)
