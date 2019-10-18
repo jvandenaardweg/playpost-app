@@ -14,7 +14,6 @@ useScreens();
 import { persistor, store } from './store';
 import { reactNativeElementsTheme } from './theme';
 
-import { NavigationState } from 'react-navigation';
 import { isPerfHttpMetricsEnabled } from './api';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { ALERT_TITLE_ERROR } from './constants/messages';
@@ -24,7 +23,7 @@ import { AppStateProvider } from './contexts/AppStateProvider';
 import { NetworkProvider } from './contexts/NetworkProvider';
 import { UserThemeProvider } from './contexts/UserThemeProvider';
 import { AppContainer } from './navigation/AppNavigator';
-import NavigationService from './navigation/NavigationService';
+
 import { addArticleToPlaylistById } from './reducers/playlist';
 import { selectIsLoggedIn } from './selectors/auth';
 
@@ -37,6 +36,7 @@ if (Platform.OS === 'android') {
 }
 
 const App: React.FC = React.memo(() => {
+
   useEffect(() => {
     const onMount = async () => {
       if (__DEV__) {
@@ -82,40 +82,8 @@ const App: React.FC = React.memo(() => {
     };
   }, []);
 
-  /**
-   * Method to get the active route name from react-navigation.
-   */
-  const getActiveRouteName = (navigationState: NavigationState): string | null => {
-    if (!navigationState) {
-      return null;
-    }
 
-    const route = navigationState.routes[navigationState.index];
 
-    // dive into nested navigators
-    if (route.routes) {
-      return getActiveRouteName(route);
-    }
-
-    return route.routeName;
-  };
-
-  /**
-   * Sets the correct screen name in our Analytics.
-   *
-   * From: https://reactnavigation.org/docs/en/screen-tracking.html
-   */
-  const handleOnNavigationStateChange = (prevState: NavigationState, currentState: NavigationState): void => {
-    requestAnimationFrame(async () => {
-      const currentScreenName = getActiveRouteName(currentState);
-      const prevScreenName = getActiveRouteName(prevState);
-
-      // Only set track on screen change
-      if (prevScreenName !== currentScreenName && currentScreenName) {
-        await analytics().setCurrentScreen(currentScreenName);
-      }
-    });
-  };
 
   const handleUrl = async ({ url }: { url: string }): Promise<any> => {
     const isSupported = await Linking.canOpenURL(url);
@@ -190,17 +158,11 @@ const App: React.FC = React.memo(() => {
             <ReactNativeElementsThemeProvider theme={reactNativeElementsTheme}>
               <NetworkProvider>
                 <AppStateProvider>
-                  <APIErrorAlertContainer>
-                    <SubscriptionHandlerContainer>
-                      <AppContainer
-                        theme="dark"
-                        ref={navigatorRef => {
-                          NavigationService.setTopLevelNavigator(navigatorRef);
-                        }}
-                        onNavigationStateChange={handleOnNavigationStateChange}
-                      />
-                    </SubscriptionHandlerContainer>
-                  </APIErrorAlertContainer>
+                  <>
+                    <APIErrorAlertContainer />
+                    <SubscriptionHandlerContainer />
+                    <AppContainer />
+                  </>
                 </AppStateProvider>
               </NetworkProvider>
             </ReactNativeElementsThemeProvider>

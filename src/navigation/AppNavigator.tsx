@@ -1,15 +1,18 @@
 
-import React from 'react';
+import analytics from '@react-native-firebase/analytics';
+import React, { useContext } from 'react';
 import { Platform } from 'react-native';
 
-import { createAppContainer, createSwitchNavigator, NavigationContainer } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator, NavigationContainer, NavigationState } from 'react-navigation';
 import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
 import { createStackNavigator } from 'react-navigation-stack';
 
+import NavigationService from '../navigation/NavigationService';
 import { MainTabNavigator, stackNavigatorDefaultNavigationOptions } from './MainTabNavigator';
 
 import { ButtonClose } from '../components/ButtonClose';
 import colors from '../constants/colors';
+import { UserThemeContext } from '../contexts/UserThemeProvider';
 import { AuthLoadingScreen } from '../screens/AuthLoadingScreen';
 import { LoginForgotPasswordScreen } from '../screens/login/LoginForgotPasswordScreen';
 import { LoginResetPasswordScreen } from '../screens/login/LoginResetPasswordScreen';
@@ -23,6 +26,8 @@ import { SignupScreen } from '../screens/onboarding/SignupScreen';
 import { SettingsLanguagesScreen } from '../screens/settings/LanguagesScreen';
 import { SettingsVoicesScreen } from '../screens/settings/VoicesScreen';
 import { SignupSuccessScreen } from '../screens/SignupSuccessScreen';
+
+import { UserTheme } from '../reducers/user';
 
 const customCreateSwitchNavigator = Platform.select({
   // Because "createAnimatedSwitchNavigator" crashes on Android
@@ -177,7 +182,7 @@ const RootStack = createStackNavigator(
   }
 )
 
-export const AppContainer: NavigationContainer = createAppContainer(
+const AppNavigationContainer: NavigationContainer = createAppContainer(
   customCreateSwitchNavigator(
     {
       Root: RootStack,
@@ -191,3 +196,52 @@ export const AppContainer: NavigationContainer = createAppContainer(
     }
   )
 );
+
+
+export const AppContainer: React.FC = React.memo(() => {
+  const { theme } = useContext(UserThemeContext);
+
+  /**
+   * Sets the correct screen name in our Analytics.
+   *
+   * From: https://reactnavigation.org/docs/en/screen-tracking.html
+   */
+  const handleOnNavigationStateChange = (prevState: NavigationState, currentState: NavigationState): void => {
+    requestAnimationFrame(async () => {
+      const currentScreenName = getActiveRouteName(currentState);
+      const prevScreenName = getActiveRouteName(prevState);
+
+      // Only set track on screen change
+      if (prevScreenName !== currentScreenName && currentScreenName) {
+        await analytics().setCurrentScreen(currentScreenName);
+      }
+    });
+  };
+
+  /**
+   * Method to get the active route name from react-navigation.
+   */
+  const getActiveRouteName = (navigationState: NavigationState): string | null => {
+    if (!navigationState) {
+      return null;
+    }
+
+    const route = navigationState.routes[navigationState.index];
+
+    // dive into nested navigators
+    if (route.routes) {
+      return getActiveRouteName(route);
+    }
+
+    return route.routeName;
+  };
+
+  return (
+    <AppNavigationContainer
+      ref={navigatorRef => NavigationService.setTopLevelNavigator(navigatorRef)}
+      theme={theme === UserTheme.dark ? 'dark' : 'light'}
+      onNavigationStateChange={handleOnNavigationStateChange}
+    />
+  )
+})
+

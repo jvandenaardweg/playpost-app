@@ -212,7 +212,7 @@ export class APIErrorAlertContainerComponent extends React.Component<Props, Stat
   }
 
   render() {
-    return this.props.children;
+    return null;
   }
 }
 
