@@ -6,7 +6,7 @@ import spacing from '../../constants/spacing';
 export default StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: colors.black
+    backgroundColor: colors.pureBlack
   },
   container: {
     flex: 1,
@@ -75,7 +75,7 @@ export default StyleSheet.create({
     width: '100%'
   },
   buttonControl: {
-    backgroundColor: colors.gray400,
+    backgroundColor: colors.gray800,
     height: 32,
     paddingLeft: spacing.medium,
     paddingRight: spacing.medium,

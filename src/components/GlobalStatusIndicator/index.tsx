@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Animated, View } from 'react-native';
 
+import { Props } from '../../containers/GlobalStatusIndicatorContainer';
+
 import Text from '../Text';
 import styles from './styles';
 
-interface Props {
-  label?: string;
-  isActive: boolean;
-}
-
-export const GlobalStatusIndicator: React.FC<Props> = React.memo(({ label = 'Loading...', isActive }) => {
+export const GlobalStatusIndicator: React.FC<Props> = React.memo((props) => {
   const startAnimatedValue = 60;
   const [animatedBottomValue] = useState(new Animated.Value(startAnimatedValue));
   const [localLabel, setLocalLabel] = useState('Loading...')
+
+  const labelPlaylistIsLoadingCreateItem = (props.playlistIsLoadingCreateItem) ? 'Adding article...' : '';
+  const labelAudiofileStatus = (props.audiofileStatus) ? props.audiofileStatus : '';
+
+  const label = labelPlaylistIsLoadingCreateItem || labelAudiofileStatus;
+
+  const isActive = !!labelAudiofileStatus || !!labelPlaylistIsLoadingCreateItem;
 
   useEffect(() => {
     if (isActive) {

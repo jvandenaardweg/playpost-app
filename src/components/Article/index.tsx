@@ -106,11 +106,11 @@ export const Article: React.FC<Props> = React.memo((props) => {
               underlayColor={colors.black}
             >
               <View style={styles(theme).warningWrapper}>
-                <Text style={styles(theme).warningText}>
-                  <Text>This article</Text>
-                  <Text style={styles(theme).warningHighlight} fontWeight="bold">{' '}might{' '}</Text>
-                  <Text>not be compatible for listening.{' '}</Text>
-                  <Text style={styles(theme).warningLink}>Learn more</Text>
+                <Text style={styles(theme).warningTextContainer}>
+                  <Text style={styles(theme).warningText}>This article</Text>
+                  <Text style={[styles(theme).warningHighlight, styles(theme).warningText]} fontWeight="bold">{' '}might{' '}</Text>
+                  <Text style={styles(theme).warningText}>not be compatible for listening.{' '}</Text>
+                  <Text style={[styles(theme).warningLink, styles(theme).warningText]}>Learn more</Text>
                 </Text>
               </View>
             </TouchableHighlight>

@@ -161,8 +161,11 @@ export default (theme?: UserTheme) => StyleSheet.create({
     backgroundColor: colors.orangeDark,
   },
   warningHighlight: { },
+  warningTextContainer: {
+    flexDirection: 'row',
+  },
   warningText: {
-    flexDirection: 'row'
+    color: theme === UserTheme.dark ? colors.gray800 : colors.black
   },
   warningLink: {
     textDecorationStyle: 'solid',

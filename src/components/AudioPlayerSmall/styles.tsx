@@ -6,20 +6,24 @@ import { UserTheme } from '../../reducers/user';
 
 export default (theme?: UserTheme) => StyleSheet.create({
   wrapper: {
-    height: 55
+    height: 55,
+    backgroundColor: theme === UserTheme.dark ? colors.gray800 : colors.black,
+    borderBottomWidth: StyleSheet.hairlineWidth
   },
   container: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: theme === UserTheme.dark ? colors.gray800 : colors.black,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    // borderBottomColor: theme === UserTheme.dark ? colors.gray800 : colors.black,
     paddingLeft: spacing.default,
     paddingRight: spacing.default,
     paddingTop: 8,
     paddingBottom: 8,
     height: 55,
+    position: 'absolute',
+    zIndex: 10,
+    left: 0,
+    top: 0,
+    right: 0
   },
   leftIcon: {
     width: 20,
@@ -74,6 +78,6 @@ export default (theme?: UserTheme) => StyleSheet.create({
   progressBarContainer: {
     height: '100%',
     width: '100%',
-    position: 'absolute'
+    // position: 'absolute'
   }
 });

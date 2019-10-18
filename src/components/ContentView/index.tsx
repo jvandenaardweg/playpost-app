@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { SafeAreaView, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import WebView from 'react-native-webview';
@@ -7,6 +7,8 @@ import colors from '../../constants/colors';
 import spacing from '../../constants/spacing';
 
 import { URL_BROWSER_EXTENSION_CHROME, URL_BROWSER_EXTENSION_FIREFOX, URL_BROWSER_EXTENSION_OPERA } from '../../constants/urls';
+import { UserThemeContext } from '../../contexts/UserThemeProvider';
+import { UserTheme } from '../../reducers/user';
 import { textPresets } from '../Text';
 import styles from './styles';
 
@@ -14,8 +16,14 @@ interface Props {
   onPressSupport(): void;
 }
 
-export class ContentView extends React.PureComponent<Props> {
-  getHtmlHeader(): string {
+export const ContentView: React.FC<Props> = React.memo((props) => {
+  const { theme } = useContext(UserThemeContext);
+
+  const backgroundColor = (theme === UserTheme.dark) ? colors.gray900 : colors.white;
+  const titleColor = (theme === UserTheme.dark) ? colors.white : colors.black;
+  const fontColor = (theme === UserTheme.dark) ? colors.gray100 : colors.gray900;
+
+  const getHtmlHeader = (): string => {
     return `
       <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -36,17 +44,17 @@ export class ContentView extends React.PureComponent<Props> {
             font-size: ${textPresets['body'].fontSize}px;
             font-family: 'Inter', 'Roboto', 'Helvetica', serif;
             line-height: 1.5;
-            color: ${colors.black};
+            color: ${fontColor};
             font-weight: normal;
             word-break: break-word;
-            background-color: ${colors.white};
+            background-color: ${backgroundColor};
           }
 
           h1, h2, h3, h4, h5, h6, h7, h8 {
             line-height: 1.2;
             margin-top: 0;
             margin-bottom: ${spacing.tiny}px;
-            color: ${colors.black};
+            color: ${titleColor};
           }
 
           h1 {
@@ -54,6 +62,7 @@ export class ContentView extends React.PureComponent<Props> {
             letter-spacing: -0.019px;
             margin-bottom: 0;
             text-align: center;
+            margin-top: ${spacing.large}px;
           }
 
           h2 {
@@ -75,13 +84,13 @@ export class ContentView extends React.PureComponent<Props> {
           p {
             font-size: ${textPresets['body'].fontSize}px;
             margin-top: 1.5;
-            color: ${colors.gray900};
+            color: ${fontColor};
             line-height: 1.58;
             margin-bottom: 1.5;
           }
 
           a, strong {
-            color: ${colors.black};
+            color: ${fontColor};
           }
 
           blockquote {
@@ -142,10 +151,10 @@ export class ContentView extends React.PureComponent<Props> {
       </head>`;
   }
 
-  getHtmlDocument(): string {
+  const getHtmlDocument = (): string => {
     return `
       <!DOCTYPE html>
-      ${this.getHtmlHeader()}
+      ${getHtmlHeader()}
         <body>
           <div class="meta-header">
             <h1>Article might not be compatible for listening</h1>
@@ -191,20 +200,18 @@ export class ContentView extends React.PureComponent<Props> {
     `;
   }
 
-  render() {
-    return (
-      <SafeAreaView style={styles.container}>
-        <WebView
-          source={{ html: this.getHtmlDocument() }}
-          originWhitelist={['*']}
-          javaScriptEnabled={false}
-          bounces
-          decelerationRate="normal"
-        />
-        <View style={styles.footer}>
-          <Button title="Contact support" onPress={this.props.onPressSupport} />
-        </View>
-      </SafeAreaView>
-    );
-  }
-}
+  return (
+    <SafeAreaView style={styles(theme).container}>
+      <WebView
+        source={{ html: getHtmlDocument() }}
+        originWhitelist={['*']}
+        javaScriptEnabled={false}
+        bounces
+        decelerationRate="normal"
+      />
+      <View style={styles(theme).footer}>
+        <Button title="Contact support" onPress={props.onPressSupport} />
+      </View>
+    </SafeAreaView>
+  )
+})
