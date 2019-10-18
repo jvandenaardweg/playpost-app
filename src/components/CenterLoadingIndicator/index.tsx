@@ -14,9 +14,12 @@ interface Props {
 export const CenterLoadingIndicator: React.FC<Props>  = React.memo((props) => {
   const { theme } = useContext(UserThemeContext);
 
+  const activityIndicatorColor = theme === UserTheme.dark ? colors.white : colors.black;
+  const backgroundColor = (props.backgroundColor) ? props.backgroundColor : undefined;
+
   return (
-    <View style={[styles(theme).container, { backgroundColor: (props.backgroundColor) ? props.backgroundColor : undefined }]}>
-      <ActivityIndicator size="small" color={theme === UserTheme.dark ? colors.white : colors.black} />
+    <View style={[styles(theme).container, { backgroundColor }]}>
+      <ActivityIndicator size="small" color={activityIndicatorColor} />
     </View>
   )
 })

@@ -30,7 +30,7 @@ export default StyleSheet.create({
     marginTop: spacing.tiny
   },
   cancelTitle: {
-    color: colors.grayDark,
+    color: colors.gray100,
     ...textPresets['subheadEmphasized']
   }
 });

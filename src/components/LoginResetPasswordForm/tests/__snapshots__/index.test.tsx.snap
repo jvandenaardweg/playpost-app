@@ -44,7 +44,7 @@ exports[`LoginResetPasswordForm rendering should render correctly 1`] = `
               "lineHeight": 23,
             },
             Object {
-              "color": "#666666",
+              "color": "#141414",
               "marginBottom": 20,
             },
           ]

@@ -75,7 +75,7 @@ export class ContentView extends React.PureComponent<Props> {
           p {
             font-size: ${textPresets['body'].fontSize}px;
             margin-top: 1.5;
-            color: ${colors.paragraphDefault};
+            color: ${colors.gray900};
             line-height: 1.58;
             margin-bottom: 1.5;
           }
@@ -86,7 +86,7 @@ export class ContentView extends React.PureComponent<Props> {
 
           blockquote {
             font-style: italic;
-            color: ${colors.grayDark};
+            color: ${colors.gray100};
             margin-left: ${spacing.large}px;
             margin-right: ${spacing.large}px;
           }

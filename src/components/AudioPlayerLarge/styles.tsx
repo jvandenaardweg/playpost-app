@@ -75,7 +75,7 @@ export default StyleSheet.create({
     width: '100%'
   },
   buttonControl: {
-    backgroundColor: colors.grayDarker,
+    backgroundColor: colors.gray400,
     height: 32,
     paddingLeft: spacing.medium,
     paddingRight: spacing.medium,

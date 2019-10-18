@@ -8,7 +8,7 @@ import { UserTheme } from '../../reducers/user';
 export default (theme?: UserTheme) => StyleSheet.create({
   container: {
     paddingTop: spacing.default,
-    backgroundColor: theme === UserTheme.dark ? colors.black : colors.appBackground
+    backgroundColor: theme === UserTheme.dark ? colors.black : colors.grayLightest
   },
   header: {
     marginBottom: spacing.default
@@ -24,7 +24,7 @@ export default (theme?: UserTheme) => StyleSheet.create({
     color: theme === UserTheme.dark ? colors.white : colors.black
   },
   paragraph: {
-    color: theme === UserTheme.dark ? colors.grayDark : colors.paragraphGrayed
+    color: theme === UserTheme.dark ? colors.gray100 : colors.gray900
   },
   featuresContainer: {
     padding: spacing.large,
@@ -79,7 +79,7 @@ export default (theme?: UserTheme) => StyleSheet.create({
     backgroundColor: colors.tintColor
   },
   cardsScrollView: {
-    backgroundColor: theme === UserTheme.dark ? colors.black : colors.appBackground,
+    backgroundColor: theme === UserTheme.dark ? colors.black : colors.grayLightest,
     marginBottom: spacing.default,
     paddingLeft: 0,
     paddingRight: 0
@@ -127,7 +127,7 @@ export default (theme?: UserTheme) => StyleSheet.create({
     marginBottom: 8,
     marginTop: 6,
     marginLeft: 4,
-    color: theme === UserTheme.dark ? colors.grayDarker : colors.paragraphGrayed
+    color: theme === UserTheme.dark ? colors.gray400 : colors.gray900
   },
   cardButtonContainer: {
     alignSelf: 'stretch',
@@ -138,7 +138,7 @@ export default (theme?: UserTheme) => StyleSheet.create({
     marginTop: 12
   },
   cardFooterText: {
-    color: theme === UserTheme.dark ? colors.grayDarker : colors.gray,
+    color: theme === UserTheme.dark ? colors.gray400 : colors.gray,
     textAlign: 'center'
   },
   cardFeaturesList: {

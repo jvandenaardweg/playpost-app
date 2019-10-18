@@ -57,7 +57,7 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
             color: #C5C5C5;
             font-weight: normal;
             word-break: break-word;
-            background-color: #111111;
+            background-color: #141414;
           }
 
           h1, h2, h3, h4, h5, h6, h7, h8 {
@@ -119,7 +119,7 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
           .meta-header strong {
             display: block;
             font-weight: normal;
-            color: #AAAAAA;
+            color: #999999;
           }
 
           .meta-header a {
@@ -201,7 +201,7 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
           "backgroundColor": "#ffffff",
         },
         Object {
-          "backgroundColor": "#111111",
+          "backgroundColor": "#141414",
           "margin": 0,
           "padding": 0,
         },
@@ -226,7 +226,7 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
           "width": "100%",
         },
         Object {
-          "backgroundColor": "#111111",
+          "backgroundColor": "#141414",
         },
       ]
     }
@@ -360,7 +360,7 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
           .meta-header strong {
             display: block;
             font-weight: normal;
-            color: #AAAAAA;
+            color: #999999;
           }
 
           .meta-header a {
@@ -601,7 +601,7 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
           .meta-header strong {
             display: block;
             font-weight: normal;
-            color: #AAAAAA;
+            color: #999999;
           }
 
           .meta-header a {
@@ -836,7 +836,7 @@ exports[`ArticleReader rendering no author name should render no authorName when
           .meta-header strong {
             display: block;
             font-weight: normal;
-            color: #AAAAAA;
+            color: #999999;
           }
 
           .meta-header a {
@@ -1071,7 +1071,7 @@ exports[`ArticleReader rendering no html should render a different HTML output w
           .meta-header strong {
             display: block;
             font-weight: normal;
-            color: #AAAAAA;
+            color: #999999;
           }
 
           .meta-header a {
@@ -1306,7 +1306,7 @@ exports[`ArticleReader rendering right to left content should render correctly 1
           .meta-header strong {
             display: block;
             font-weight: normal;
-            color: #AAAAAA;
+            color: #999999;
           }
 
           .meta-header a {

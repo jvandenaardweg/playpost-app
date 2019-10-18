@@ -7,7 +7,7 @@ export default StyleSheet.create({
   articleEmptyContainer: {
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: colors.appBackground,
+    backgroundColor: colors.grayLightest,
     padding: spacing.default,
     width: '100%'
   },

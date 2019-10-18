@@ -61,7 +61,7 @@ export const SwipeableRow: React.FC<Props> = React.memo((props) => {
   }
 
   const renderRightAction = (action: string, icon: string, iconColor: string | null) => {
-    const defaultColor = (theme === UserTheme.dark) ? colors.gray100 : colors.grayDark
+    const defaultColor = (theme === UserTheme.dark) ? colors.gray100 : colors.gray100
     return (
       <View style={styles(theme).rightActionContainer}>
         <RectButton
@@ -80,7 +80,7 @@ export const SwipeableRow: React.FC<Props> = React.memo((props) => {
   }
 
   const renderRightActions = (progressAnimatedValue: Animated.Value | Animated.AnimatedInterpolation, dragAnimatedValue: Animated.Value | Animated.AnimatedInterpolation) => {
-    const iconColorActive = (theme === UserTheme.dark) ? colors.gray100 : colors.grayDark;
+    const iconColorActive = (theme === UserTheme.dark) ? colors.gray100 : colors.gray100;
 
     return (
       <View style={styles(theme).rightActionsContainer}>

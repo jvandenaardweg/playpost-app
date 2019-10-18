@@ -1,11 +1,10 @@
 import analytics from '@react-native-firebase/analytics';
 import isUUID from 'is-uuid';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Alert, Linking, Platform, UIManager } from 'react-native';
 import DeepLinking from 'react-native-deep-linking';
 import { ThemeProvider as ReactNativeElementsThemeProvider } from 'react-native-elements';
 import { useScreens } from 'react-native-screens';
-import SplashScreen from 'react-native-splash-screen';
 import { Provider } from 'react-redux';
 // tslint:disable-next-line:no-submodule-imports
 import { PersistGate } from 'redux-persist/integration/react';
@@ -15,14 +14,15 @@ useScreens();
 import { persistor, store } from './store';
 import { reactNativeElementsTheme } from './theme';
 
-import { NavigationAction, NavigationState } from 'react-navigation';
+import { NavigationState } from 'react-navigation';
 import { isPerfHttpMetricsEnabled } from './api';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { ALERT_TITLE_ERROR } from './constants/messages';
 import { APIErrorAlertContainer } from './containers/APIErrorAlertContainer';
 import { SubscriptionHandlerContainer } from './containers/SubscriptionHandlerContainer';
 import { AppStateProvider } from './contexts/AppStateProvider';
 import { NetworkProvider } from './contexts/NetworkProvider';
-import { UserThemeContext, UserThemeProvider } from './contexts/UserThemeProvider';
+import { UserThemeProvider } from './contexts/UserThemeProvider';
 import { AppContainer } from './navigation/AppNavigator';
 import NavigationService from './navigation/NavigationService';
 import { addArticleToPlaylistById } from './reducers/playlist';
@@ -36,128 +36,56 @@ if (Platform.OS === 'android') {
   }
 }
 
-interface State {
-  errorShown: boolean;
-}
+const App: React.FC = React.memo(() => {
+  useEffect(() => {
+    const onMount = async () => {
+      if (__DEV__) {
+        // tslint:disable: no-console
 
-// Important: Keep this App a Class component
-// Using a Functional Component as the root component breaks Hot Reloading (on a local device)
-export default class App extends React.PureComponent<State> {
-  static contextType = UserThemeContext;
+        if (!isPerfHttpMetricsEnabled()) {
+          console.log('Notice: Disabled Firebase Performance for local development.');
+        }
 
-  state = {
-    errorShown: false
-  }
-
-  async componentDidMount() {
-    // Disable Firebase services in dev mode
-    if (__DEV__) {
-      // tslint:disable: no-console
-
-      if (!isPerfHttpMetricsEnabled()) {
-        console.log('Notice: Disabled Firebase Performance for local development.')
+        await analytics().setAnalyticsCollectionEnabled(false);
+        console.log('Notice: Disabled Firebase Analytics for local development.');
+      } else {
+        await analytics().setAnalyticsCollectionEnabled(true);
       }
 
-      await analytics().setAnalyticsCollectionEnabled(false)
-      console.log('Notice: Disabled Firebase Analytics for local development.')
-    } else {
-      await analytics().setAnalyticsCollectionEnabled(true)
-    }
-
-    // Handle deeplinking only on app start
-    try {
-      const url = await Linking.getInitialURL();
-      if (url) {
-        await this.handleUrl({ url });
-        // await Linking.openURL(url); // Do not use openURL, but handle using the DeepLinking package
+      // Handle deeplinking only on app start
+      try {
+        const url = await Linking.getInitialURL();
+        if (url) {
+          await handleUrl({ url });
+          // await Linking.openURL(url); // Do not use openURL, but handle using the DeepLinking package
+        }
+      } catch (err) {
+        const errorMessage = err && err.message ? err.message : 'An uknown error happened while opening a URL.';
+        Alert.alert(ALERT_TITLE_ERROR, errorMessage);
       }
-    } catch (err) {
-      const errorMessage = (err && err.message) ? err.message : 'An uknown error happened while opening a URL.';
-      Alert.alert(ALERT_TITLE_ERROR, errorMessage);
-    }
 
-    // Handles deeplink when app is in memory
-    Linking.addEventListener('url', this.handleUrl);
+      // Handles deeplink when app is in memory
+      Linking.addEventListener('url', handleUrl);
 
-    DeepLinking.addScheme('playpost://');
-    DeepLinking.addScheme('https://');
+      DeepLinking.addScheme('playpost://');
+      DeepLinking.addScheme('https://');
 
-    DeepLinking.addRoute('/playlist/add/:articleId/:otherParams', ({ path, articleId, otherParams }: { path: string; articleId: string, otherParams: string }) => {
-      this.handleArticleAddDeeplink(articleId, otherParams);
-    });
-  }
+      DeepLinking.addRoute('/playlist/add/:articleId/:otherParams', ({ articleId, otherParams }: { path: string; articleId: string; otherParams: string }) => {
+        handleArticleAddDeeplink(articleId, otherParams);
+      });
+    };
 
-  componentWillUnmount(): void {
-    Linking.removeEventListener('url', this.handleUrl);
-  }
+    onMount();
 
-  componentDidCatch(error: any, info: any) {
-    // Do not show an alert when in develop mode
-    // Here we want to have React Native's red screen
-    if (__DEV__) {
-      return;
-    }
-
-    // to prevent multiple alerts shown to your users
-    if (this.state.errorShown) {
-      return;
-    }
-
-    this.setState({ errorShown: true });
-
-    // Always hide the splash screen
-    // An error could appear on startup
-    // When we do not hide the splashscreen, our Alert won't show
-    SplashScreen.hide();
-
-    // Show the alert to the user
-    Alert.alert(
-      ALERT_TITLE_ERROR,
-      `An unexpected error has occurred. Please close and restart the app.\n\n${error}`,
-      [
-        {
-          style: 'cancel',
-          text: 'OK',
-          onPress: () => this.setState({ errorShown: false }),
-        },
-      ],
-      { cancelable: false }
-    );
-  }
-
-  render() {
-    return (
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <UserThemeProvider>
-            <ReactNativeElementsThemeProvider theme={reactNativeElementsTheme}>
-              <NetworkProvider>
-                <AppStateProvider>
-                  <APIErrorAlertContainer>
-                    <SubscriptionHandlerContainer>
-                      <AppContainer
-                        ref={navigatorRef => {
-                          NavigationService.setTopLevelNavigator(navigatorRef);
-                        }}
-                        onNavigationStateChange={this.handleOnNavigationStateChange}
-                      />
-                    </SubscriptionHandlerContainer>
-                  </APIErrorAlertContainer>
-                </AppStateProvider>
-              </NetworkProvider>
-            </ReactNativeElementsThemeProvider>
-          </UserThemeProvider>
-        </PersistGate>
-      </Provider>
-    );
-  }
+    return () => {
+      Linking.removeEventListener('url', handleUrl);
+    };
+  }, []);
 
   /**
    * Method to get the active route name from react-navigation.
    */
-  private getActiveRouteName = (
-    navigationState: NavigationState
-  ): string | null => {
+  const getActiveRouteName = (navigationState: NavigationState): string | null => {
     if (!navigationState) {
       return null;
     }
@@ -166,42 +94,38 @@ export default class App extends React.PureComponent<State> {
 
     // dive into nested navigators
     if (route.routes) {
-      return this.getActiveRouteName(route);
+      return getActiveRouteName(route);
     }
 
     return route.routeName;
-  }
+  };
 
   /**
    * Sets the correct screen name in our Analytics.
    *
    * From: https://reactnavigation.org/docs/en/screen-tracking.html
    */
-  private handleOnNavigationStateChange = (
-    prevState: NavigationState,
-    currentState: NavigationState,
-    action: NavigationAction
-  ): void => {
+  const handleOnNavigationStateChange = (prevState: NavigationState, currentState: NavigationState): void => {
     requestAnimationFrame(async () => {
-      const currentScreenName = this.getActiveRouteName(currentState);
-      const prevScreenName = this.getActiveRouteName(prevState);
+      const currentScreenName = getActiveRouteName(currentState);
+      const prevScreenName = getActiveRouteName(prevState);
 
       // Only set track on screen change
       if (prevScreenName !== currentScreenName && currentScreenName) {
-        await analytics().setCurrentScreen(currentScreenName)
+        await analytics().setCurrentScreen(currentScreenName);
       }
-    })
-  }
+    });
+  };
 
-  private handleUrl = async ({ url }: { url: string }): Promise<any> => {
-    const isSupported = await Linking.canOpenURL(url)
+  const handleUrl = async ({ url }: { url: string }): Promise<any> => {
+    const isSupported = await Linking.canOpenURL(url);
     if (isSupported) {
       return DeepLinking.evaluateUrl(url);
     }
-  }
+  };
 
-  private handleArticleAddDeeplink = (articleId: string, otherParams: string) => {
-    const isLoggedIn = selectIsLoggedIn(store.getState())
+  const handleArticleAddDeeplink = (articleId: string, otherParams: string) => {
+    const isLoggedIn = selectIsLoggedIn(store.getState());
 
     if (!isLoggedIn) {
       return Alert.alert(
@@ -251,10 +175,40 @@ export default class App extends React.PureComponent<State> {
         },
         {
           text: 'Cancel',
-          style: 'cancel',
+          style: 'cancel'
         }
       ],
       { cancelable: false }
     );
-  }
-}
+  };
+
+  return (
+    <ErrorBoundary>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <UserThemeProvider>
+            <ReactNativeElementsThemeProvider theme={reactNativeElementsTheme}>
+              <NetworkProvider>
+                <AppStateProvider>
+                  <APIErrorAlertContainer>
+                    <SubscriptionHandlerContainer>
+                      <AppContainer
+                        theme="light"
+                        ref={navigatorRef => {
+                          NavigationService.setTopLevelNavigator(navigatorRef);
+                        }}
+                        onNavigationStateChange={handleOnNavigationStateChange}
+                      />
+                    </SubscriptionHandlerContainer>
+                  </APIErrorAlertContainer>
+                </AppStateProvider>
+              </NetworkProvider>
+            </ReactNativeElementsThemeProvider>
+          </UserThemeProvider>
+        </PersistGate>
+      </Provider>
+    </ErrorBoundary>
+  );
+});
+
+export default App;

@@ -40,7 +40,7 @@ export default StyleSheet.create({
     maxWidth: 300
   },
   footerText: {
-    color: colors.paragraphGrayed,
+    color: colors.gray900,
     textAlign: 'center'
   },
   footerTextHighlight: {

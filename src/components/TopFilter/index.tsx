@@ -7,6 +7,7 @@ import styles from './styles';
 
 import colors from '../../constants/colors';
 import { UserThemeContext } from '../../contexts/UserThemeProvider';
+import { UserTheme } from '../../reducers/user';
 import { ButtonTiny } from '../ButtonTiny';
 import * as Icon from '../Icon';
 
@@ -39,8 +40,8 @@ export const TopFilter: React.FC<Props> = React.memo(({ filters }) => {
 
             {filter.options.map(optionLabel => {
               const isSelected = filter.selectedOption === optionLabel;
-              const backgroundColor = (isSelected) ? colors.tintColorLight : colors.grayLightest;
-              const labelColor = (isSelected) ? colors.tintColor : colors.black;
+              const backgroundColor = (isSelected) ? colors.tintColorLight : (theme === UserTheme.dark) ? colors.gray600 : colors.grayLightest;
+              const labelColor = (isSelected) ? colors.tintColor : (theme === UserTheme.dark) ? colors.white : colors.black;
               const iconElement = (isSelected) ? <Icon.FontAwesome5 name="check" solid size={10} color={colors.tintColor} /> : undefined;
 
               return (

@@ -71,7 +71,7 @@ export const CustomSectionList: React.FC<Props> = React.memo(({ sectionListData,
         // styles
         const containerStyle = (item.isSelected) ? { backgroundColor: colors.tintColor } : theme === UserTheme.dark ? { backgroundColor: colors.gray900 } : { backgroundColor: colors.white };
         const titleStyle = (item.isSelected) ? { color: colors.white } : theme === UserTheme.dark ? { color: colors.white, opacity: 0.9 } : { color: colors.black };
-        const subtitleStyle = (item.isSelected) ? { color: 'rgba(255, 255, 255, 0.7)' } : theme === UserTheme.dark ? { color: colors.gray400 } : { color: colors.grayDark };
+        const subtitleStyle = (item.isSelected) ? { color: 'rgba(255, 255, 255, 0.7)' } : theme === UserTheme.dark ? { color: colors.gray400 } : { color: colors.gray100 };
         const rightIconTextStyles = [styles(theme).rightIconText, item.isSelected ? { color: colors.white } : undefined, item.rightIconColor && !item.isSelected ? { color: item.rightIconColor } : undefined];
 
         // props

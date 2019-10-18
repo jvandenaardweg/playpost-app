@@ -11,7 +11,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: spacing.large,
-    // backgroundColor: colors.appBackground
+    // backgroundColor: colors.grayLightest
   },
   form: {
     width: '100%'
@@ -49,7 +49,7 @@ export default StyleSheet.create({
     marginBottom: spacing.large
   },
   subtitle: {
-    color: colors.textLead,
+    color: colors.gray900,
     marginBottom: spacing.large
   }
 });

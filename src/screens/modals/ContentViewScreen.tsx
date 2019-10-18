@@ -1,32 +1,27 @@
 // import analytics from '@react-native-firebase/analytics';
-import React from 'react';
-import { NavigationRoute, NavigationScreenProp } from 'react-navigation';
+import React, { useContext } from 'react';
+import { NavigationRoute, NavigationScreenComponent, NavigationScreenProp } from 'react-navigation';
 import { NavigationStackOptions } from 'react-navigation-stack';
 
 import { ContentView } from '../../components/ContentView';
 import { URL_FEEDBACK } from '../../constants/urls';
+import { UserThemeContext } from '../../contexts/UserThemeProvider';
 import * as inAppBrowser from '../../utils/in-app-browser';
 
-interface Props {
-  navigation: NavigationScreenProp<NavigationRoute>;
-}
+export const ContentViewScreen: NavigationScreenComponent<{}, NavigationScreenProp<NavigationRoute>> = React.memo(() => {
+  const { theme } = useContext(UserThemeContext);
 
-export class ContentViewScreen extends React.PureComponent<Props> {
-  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackOptions => {
-    return {
-      headerLeft: null
-    };
+  const handleOnPressSupport = () => {
+    inAppBrowser.openUrl(URL_FEEDBACK, theme, { modalEnabled: false });
   }
 
-  handleOnPressSupport = async () => {
-    // await analytics().logEvent('contentview_press_support');
+  return (
+    <ContentView onPressSupport={handleOnPressSupport} />
+  );
+})
 
-    inAppBrowser.openUrl(URL_FEEDBACK, { modalEnabled: false });
-  }
-
-  render() {
-    return (
-      <ContentView onPressSupport={this.handleOnPressSupport} />
-    );
-  }
+ContentViewScreen.navigationOptions = (): NavigationStackOptions => {
+  return {
+    headerLeft: null
+  };
 }

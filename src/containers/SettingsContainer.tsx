@@ -268,7 +268,7 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
         <Text
           style={{
             alignSelf: 'center',
-            color: colors.grayDark,
+            color: colors.gray100,
             marginBottom: 40,
             marginTop: spacing.large
           }}
@@ -383,73 +383,73 @@ export class SettingsContainerComponent extends React.Component<Props, State> {
             key: 'about-for-publishers',
             title: 'For publishers',
             icon: 'file-text',
-            iconColor: colors.grayDark,
+            iconColor: colors.gray100,
             chevron: true,
-            onPress: () => inAppBrowser.openUrl(URL_PLAYPOST_FOR_PUBLISHERS)
+            onPress: () => inAppBrowser.openUrl(URL_PLAYPOST_FOR_PUBLISHERS, userSelectedTheme)
           },
           {
             key: 'about-chrome-browser-extension',
             title: 'Chrome browser extension',
             icon: 'package',
-            iconColor: colors.grayDark,
+            iconColor: colors.gray100,
             chevron: true,
-            onPress: () => inAppBrowser.openUrl(URL_BROWSER_EXTENSION_CHROME)
+            onPress: () => inAppBrowser.openUrl(URL_BROWSER_EXTENSION_CHROME, userSelectedTheme)
           },
           {
             key: 'about-firefox-browser-extension',
             title: 'Firefox browser extension',
             icon: 'package',
-            iconColor: colors.grayDark,
+            iconColor: colors.gray100,
             chevron: true,
-            onPress: () => inAppBrowser.openUrl(URL_BROWSER_EXTENSION_FIREFOX)
+            onPress: () => inAppBrowser.openUrl(URL_BROWSER_EXTENSION_FIREFOX, userSelectedTheme)
           },
           {
             key: 'about-opera-browser-extension',
             title: 'Opera browser extension',
             icon: 'package',
-            iconColor: colors.grayDark,
+            iconColor: colors.gray100,
             chevron: true,
-            onPress: () => inAppBrowser.openUrl(URL_BROWSER_EXTENSION_OPERA)
+            onPress: () => inAppBrowser.openUrl(URL_BROWSER_EXTENSION_OPERA, userSelectedTheme)
           },
           {
             key: 'about-about',
             title: 'About',
             icon: 'link',
-            iconColor: colors.grayDark,
+            iconColor: colors.gray100,
             chevron: true,
-            onPress: () => inAppBrowser.openUrl(URL_ABOUT)
+            onPress: () => inAppBrowser.openUrl(URL_ABOUT, userSelectedTheme)
           },
           {
             key: 'about-privacy-policy',
             title: 'Privacy Policy',
             icon: 'link',
-            iconColor: colors.grayDark,
+            iconColor: colors.gray100,
             chevron: true,
-            onPress: () => inAppBrowser.openUrl(URL_PRIVACY_POLICY)
+            onPress: () => inAppBrowser.openUrl(URL_PRIVACY_POLICY, userSelectedTheme)
           },
           {
             key: 'about-terms-of-use',
             title: 'Terms of Use',
             icon: 'link',
-            iconColor: colors.grayDark,
+            iconColor: colors.gray100,
             chevron: true,
-            onPress: () => inAppBrowser.openUrl(URL_TERMS_OF_USE)
+            onPress: () => inAppBrowser.openUrl(URL_TERMS_OF_USE, userSelectedTheme)
           },
           {
             key: 'about-feedback',
             title: 'Feedback',
             icon: 'message-square',
-            iconColor: colors.grayDark,
+            iconColor: colors.gray100,
             chevron: true,
-            onPress: () => inAppBrowser.openUrl(URL_FEEDBACK + `?email=${userEmail}&id=${userId}`, { modalEnabled: false })
+            onPress: () => inAppBrowser.openUrl(URL_FEEDBACK + `?email=${userEmail}&id=${userId}`, userSelectedTheme, { modalEnabled: false })
           },
           {
             key: 'about-support',
             title: 'Support',
             icon: 'message-square',
-            iconColor: colors.grayDark,
+            iconColor: colors.gray100,
             chevron: true,
-            onPress: () => inAppBrowser.openUrl(URL_FEEDBACK + `?email=${userEmail}&id=${userId}`, { modalEnabled: false })
+            onPress: () => inAppBrowser.openUrl(URL_FEEDBACK + `?email=${userEmail}&id=${userId}`, userSelectedTheme, { modalEnabled: false })
           }
         ]
       }

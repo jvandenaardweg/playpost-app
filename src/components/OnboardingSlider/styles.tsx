@@ -121,7 +121,7 @@ export default StyleSheet.create({
     marginTop: spacing.large * 1.5
   },
   text: {
-    color: colors.textLead,
+    color: colors.gray900,
     opacity: 0.9,
     backgroundColor: 'transparent',
     textAlign: 'center'

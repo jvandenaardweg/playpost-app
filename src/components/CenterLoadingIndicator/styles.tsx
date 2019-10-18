@@ -15,6 +15,6 @@ export default (theme?: UserTheme) => StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: theme === UserTheme.dark ? colors.black : colors.appBackground
+    backgroundColor: theme === UserTheme.dark ? colors.black : colors.grayLightest
   }
 });

@@ -24,16 +24,16 @@ import { SettingsThemesScreen } from '../screens/settings/ThemesScreen';
 
 export const stackNavigatorDefaultNavigationOptions: NavigationStackOptions = {
   headerStyle: {
-    borderBottomColor: colors.gray800,
-    backgroundColor: colors.gray800
+    // borderBottomColor: colors.gray800,
+    // backgroundColor: colors.gray800
   },
   headerTitleStyle: {
     ...textPresets['bodyEmphasized'],
-    color: colors.white
+    // color: colors.white
   },
   headerBackTitleStyle: {
     ...textPresets['body'],
-    color: colors.tintColor
+    // color: colors.tintColor
   }
 }
 
@@ -71,9 +71,6 @@ const ArchiveStack = createStackNavigator(
     headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation }) => ({
       ...stackNavigatorDefaultNavigationOptions,
-      title: 'Archive',
-      headerRight: <ButtonUpgradeContainer />,
-      headerLeft: <ButtonVoices onPress={() => requestAnimationFrame(() => navigation.navigate('ModalLanguages'))} />
     }),
     navigationOptions: {
       tabBarLabel: 'Archive',
@@ -96,11 +93,7 @@ const FavoritesStack = createStackNavigator(
     headerTransitionPreset: 'uikit',
     defaultNavigationOptions: ({ navigation }) => ({
       ...stackNavigatorDefaultNavigationOptions,
-      title: 'Favorites',
-      headerRight: <ButtonUpgradeContainer />,
-      headerLeft: <ButtonVoices onPress={() => requestAnimationFrame(() => navigation.navigate('ModalLanguages'))} />
     }),
-    transparentCard: true,
     headerLayoutPreset: 'center',
     navigationOptions: {
       tabBarLabel: 'Favorites',
@@ -127,7 +120,6 @@ const SettingsStack = createStackNavigator(
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
     headerLayoutPreset: 'center',
-    transparentCard: true,
     defaultNavigationOptions: ({ navigation }) => ({
       ...stackNavigatorDefaultNavigationOptions,
       title: 'Settings'

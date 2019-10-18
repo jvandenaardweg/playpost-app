@@ -16,7 +16,7 @@ import { URL_FEEDBACK } from '../constants/urls';
 import NavigationService from '../navigation/NavigationService';
 import { RootState } from '../reducers';
 import { setIsActiveUpgradeModal, setIsLoadingRestore, setIsLoadingUpgrade, setLocalPurchaseHistory, validateSubscriptionReceipt } from '../reducers/subscriptions';
-import { getUser } from '../reducers/user';
+import { getUser, UserTheme } from '../reducers/user';
 import { selectIsLoggedIn } from '../selectors/auth';
 import { selectIsActiveUpgradeModal, selectSubscriptionsError, selectSubscriptionsIsLoadingRestore, selectSubscriptionsIsLoadingUpgrade, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
 import { selectActiveUserInAppSubscription, selectUserDetails, selectUserIsEligibleForTrial, selectUserIsSubscribed } from '../selectors/user';
@@ -262,7 +262,7 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
       },
       {
         text: 'Contact support',
-        onPress: () => inAppBrowser.openUrl(feedbackUrl, { modalEnabled: false })
+        onPress: () => inAppBrowser.openUrl(feedbackUrl, UserTheme.light, { modalEnabled: false })
       }
     ]);
   }

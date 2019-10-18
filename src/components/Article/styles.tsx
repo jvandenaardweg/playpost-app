@@ -18,7 +18,7 @@ export default (theme?: UserTheme) => StyleSheet.create({
     width: '100%',
   },
   isMoving: {
-    backgroundColor: theme === UserTheme.dark ? colors.grayDarker : colors.appBackground
+    backgroundColor: theme === UserTheme.dark ? colors.gray400 : colors.grayLightest
   },
   isActive: {
     backgroundColor: colors.tintColor
@@ -35,7 +35,7 @@ export default (theme?: UserTheme) => StyleSheet.create({
     alignItems: 'center'
   },
   author: {
-    color: theme === UserTheme.dark ? colors.gray900 : colors.grayDark
+    color: theme === UserTheme.dark ? colors.gray900 : colors.gray100
   },
   bodyMeta: {
     flexDirection: 'row',
@@ -75,15 +75,15 @@ export default (theme?: UserTheme) => StyleSheet.create({
     marginRight: 6
   },
   bodySourceText: {
-    color: theme === UserTheme.dark ? colors.gray400 : colors.grayDark,
+    color: theme === UserTheme.dark ? colors.gray400 : colors.gray100,
     paddingRight: 0,
     marginBottom: spacing.tiny
   },
   authorName: {
-    color: colors.grayDark
+    color: colors.gray100
   },
   publicationName: {
-    color: colors.grayDark
+    color: colors.gray100
   },
   controlButton: {
     backgroundColor: colors.controlButtonDefault,
@@ -117,10 +117,10 @@ export default (theme?: UserTheme) => StyleSheet.create({
     height: 21,
   },
   durationText: {
-    color: theme === UserTheme.dark ? colors.gray100 : colors.grayDark,
+    color: theme === UserTheme.dark ? colors.gray100 : colors.gray100,
   },
   downloadText: {
-    color: theme === UserTheme.dark ? colors.gray300 : colors.grayDark,
+    color: theme === UserTheme.dark ? colors.gray300 : colors.gray100,
   },
   durationContainerActive: {
     backgroundColor: colors.tintColor

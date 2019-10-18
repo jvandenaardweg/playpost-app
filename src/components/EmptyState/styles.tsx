@@ -11,7 +11,7 @@ export default (theme?: UserTheme) => StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: theme === UserTheme.dark ? colors.black : colors.appBackground,
+    backgroundColor: theme === UserTheme.dark ? colors.black : colors.grayLightest,
     paddingRight: spacing.small,
     paddingLeft: spacing.small,
   },
@@ -28,7 +28,7 @@ export default (theme?: UserTheme) => StyleSheet.create({
     paddingRight: spacing.large,
     paddingLeft: spacing.large,
     marginBottom: spacing.medium,
-    color: theme === UserTheme.dark ? colors.grayDark : colors.black,
+    color: theme === UserTheme.dark ? colors.gray100 : colors.black,
   },
   button: {
     marginTop: spacing.large,

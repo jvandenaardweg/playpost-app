@@ -13,11 +13,11 @@ export default (theme?: UserTheme) => StyleSheet.create({
   filterContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: theme === UserTheme.dark ? colors.gray900 : colors.white,
+    backgroundColor: theme === UserTheme.dark ? colors.gray800 : colors.white,
     paddingBottom: spacing.default,
     paddingTop: spacing.default,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: theme === UserTheme.dark ? colors.grayDarker : colors.borderDefault
+    borderBottomColor: theme === UserTheme.dark ? colors.gray600 : colors.borderDefault
   },
   filterLabel: {
     marginRight: spacing.default,

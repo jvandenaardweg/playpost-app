@@ -1,8 +1,9 @@
 import { Linking } from 'react-native';
 import InAppBrowser, { InAppBrowserOptions } from 'react-native-inappbrowser-reborn'
 import colors from '../constants/colors';
+import { UserTheme } from '../reducers/user';
 
-export const openUrl = async (url: string, options?: InAppBrowserOptions | undefined) => {
+export const openUrl = async (url: string, theme: UserTheme, options?: InAppBrowserOptions | undefined) => {
   const isInAppBrowserAvailable = await InAppBrowser.isAvailable();
 
   if (!isInAppBrowserAvailable) {
@@ -11,17 +12,15 @@ export const openUrl = async (url: string, options?: InAppBrowserOptions | undef
 
   const defaultOptions = {
     dismissButtonStyle: 'close',
-    preferredBarTintColor: colors.white,
-    // preferredControlTintColor: 'white',
+    preferredBarTintColor: (theme === UserTheme.dark) ? colors.black : colors.white,
     readerMode: false,
     animated: true,
     modalPresentationStyle: 'overFullScreen',
-    // modalTransitionStyle: 'partialCurl',
     modalEnabled: true,
     // Android Properties
     showTitle: true,
     // toolbarColor: '#6200EE',
-    secondaryToolbarColor: colors.black,
+    secondaryToolbarColor: (theme === UserTheme.dark) ? colors.white : colors.black,
     enableUrlBarHiding: true,
     enableDefaultShare: true,
     forceCloseOnRedirection: false,

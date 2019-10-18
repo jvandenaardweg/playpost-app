@@ -108,7 +108,7 @@ exports[`ContentView basic rendering should render correctly 1`] = `
 
           blockquote {
             font-style: italic;
-            color: #AAAAAA;
+            color: #999999;
             margin-left: 20px;
             margin-right: 20px;
           }

@@ -23,7 +23,7 @@ exports[`ButtonClose rendering should render correctly 1`] = `
   style={
     Object {
       "alignItems": "center",
-      "backgroundColor": "#111111",
+      "backgroundColor": "#141414",
       "borderRadius": 36,
       "height": 36,
       "justifyContent": "center",

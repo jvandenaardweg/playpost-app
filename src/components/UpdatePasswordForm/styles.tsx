@@ -10,7 +10,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: spacing.large,
-    // backgroundColor: colors.appBackground
+    // backgroundColor: colors.grayLightest
   },
   form: {
     width: '100%'
@@ -41,7 +41,7 @@ export default StyleSheet.create({
     maxWidth: 300,
   },
   footerText: {
-    color: colors.paragraphGrayed,
+    color: colors.gray900,
     textAlign: 'center'
   },
   footerTextHighlight: {

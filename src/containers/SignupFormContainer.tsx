@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { SignupForm } from '../components/SignupForm';
 
 import { postAuth } from '../reducers/auth';
-import { createUser } from '../reducers/user';
+import { createUser, UserTheme } from '../reducers/user';
 
 import { ALERT_TITLE_ERROR } from '../constants/messages';
 import { RootState } from '../reducers';
@@ -105,7 +105,7 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
   }
 
   handleOnPressOpenUrl = async (url: string) => {
-    inAppBrowser.openUrl(url)
+    inAppBrowser.openUrl(url, UserTheme.light)
 
     await analytics().logEvent('signup_open_url', { url });
   }

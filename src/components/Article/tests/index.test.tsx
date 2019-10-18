@@ -48,7 +48,7 @@ describe('Article', () => {
     });
 
     it('should render default color download icon', () => {
-      expect(wrapper.getByTestId('Article-icon-downloaded').props.color).toBe(colors.grayDark);
+      expect(wrapper.getByTestId('Article-icon-downloaded').props.color).toBe(colors.gray100);
     });
 
     it('should not render the voiceLabel if none is given', () => {

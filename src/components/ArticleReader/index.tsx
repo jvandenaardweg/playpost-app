@@ -52,7 +52,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
     let fontColor = colors.black;
     let paragraphColor = colors.black;
     let highlightColor = colors.black;
-    let metaColor = colors.paragraphGrayed;
+    let metaColor = colors.gray900;
     let titleColor = colors.black;
     let highlightedBackgroundColor = colors.grayLightest;
 
@@ -63,7 +63,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
       highlightColor = colors.gray;
       metaColor = colors.gray;
       titleColor = colors.white;
-      highlightedBackgroundColor = colors.grayDarker;
+      highlightedBackgroundColor = colors.gray400;
     }
 
     return {
@@ -165,7 +165,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
           .meta-header strong {
             display: block;
             font-weight: normal;
-            color: ${colors.grayDark};
+            color: ${colors.gray100};
           }
 
           .meta-header a {

@@ -11,13 +11,13 @@ export default (theme?: UserTheme) => StyleSheet.create({
     width: 32,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: theme === UserTheme.dark ? colors.grayDarker : colors.gray
+    backgroundColor: theme === UserTheme.dark ? colors.gray400 : colors.gray
   },
   containerActive: {
     backgroundColor: colors.tintColor
   },
   isAvailable: {
-    backgroundColor: theme === UserTheme.dark ? colors.grayDarker : colors.black
+    backgroundColor: theme === UserTheme.dark ? colors.gray400 : colors.black
   },
   icon: {
     color: colors.white,

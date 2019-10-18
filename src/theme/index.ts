@@ -35,7 +35,7 @@ export const reactNativeElementsTheme: Theme = {
     },
     subtitleStyle: {
       ...textPresets['footNote'],
-      color: colors.grayDark,
+      color: colors.gray100,
       marginTop: 2
     }
   },
@@ -44,6 +44,6 @@ export const reactNativeElementsTheme: Theme = {
     error: colors.redLight,
     divider: colors.borderDefault,
     success: colors.green,
-    disabled: colors.appBackground
+    disabled: colors.grayLightest
   }
 };

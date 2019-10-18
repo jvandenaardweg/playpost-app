@@ -31,7 +31,7 @@ export default StyleSheet.create({
     opacity: 1
   },
   buttonStyleDisabled: {
-    backgroundColor: colors.grayDark
+    backgroundColor: colors.gray100
   },
   footerContainer: {
     justifyContent: 'center',
@@ -46,7 +46,7 @@ export default StyleSheet.create({
     marginTop: spacing.large,
   },
   footerText: {
-    color: colors.paragraphGrayed,
+    color: colors.gray900,
     textAlign: 'center'
   },
   footerTextHighlight: {

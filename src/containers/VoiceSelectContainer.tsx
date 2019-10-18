@@ -323,7 +323,7 @@ export class VoiceSelectContainerComponent extends React.Component<Props, State>
         const subtitle = `${gender} (${voice.countryCode})`;
 
         const label = voice.label ? voice.label : 'Unknown';
-        const rightIconColor = voice.isPremium ? colors.grayDark : undefined;
+        const rightIconColor = voice.isPremium ? colors.gray100 : undefined;
 
         return {
           key: voice.id,

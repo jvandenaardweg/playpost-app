@@ -235,7 +235,7 @@ When not upgrading, you will be set to use our lowest quality voices for the nex
               <Text
                 style={
                   Object {
-                    "color": "#AAAAAA",
+                    "color": "#999999",
                     "fontFamily": "Inter-SemiBold",
                     "fontSize": 15,
                     "lineHeight": 23,

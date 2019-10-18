@@ -29,7 +29,7 @@ import {
   URL_MANAGE_GOOGLE_SUBSCRIPTIONS} from '../constants/urls';
 import { RootState } from '../reducers';
 import { getInAppSubscriptions, setIsLoadingRestore, setIsLoadingUpgrade, setLocalPurchaseHistory } from '../reducers/subscriptions';
-import { getUser } from '../reducers/user';
+import { getUser, UserTheme } from '../reducers/user';
 import { selectAvailableInAppSubscriptions, selectSubscriptionsError, selectSubscriptionsIsLoadingRestore, selectSubscriptionsIsLoadingUpgrade, selectSubscriptionsValidationResult } from '../selectors/subscriptions';
 import { selectActiveUserInAppSubscription, selectUserActiveSubscriptionProductId, selectUserDetails, selectUserIsEligibleForTrial, selectUserIsSubscribed } from '../selectors/user';
 import { selectTotalAvailableUnsubscribedVoices, selectTotalAvailableVoices } from '../selectors/voices';
@@ -184,7 +184,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     NavigationService.goBack({ key: null });
   }
 
-  handleOnPressOpenUrl = (url: string) => inAppBrowser.openUrl(`${url}?ref=playpost://upgrade`);
+  handleOnPressOpenUrl = (url: string) => inAppBrowser.openUrl(`${url}?ref=playpost://upgrade`, UserTheme.light);
 
   handleOnPressCancel = () => {
     if (Platform.OS === 'android') {
@@ -454,7 +454,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
       },
       {
         text: 'Contact support',
-        onPress: () => inAppBrowser.openUrl(feedbackUrl, { modalEnabled: false })
+        onPress: () => inAppBrowser.openUrl(feedbackUrl, UserTheme.light, { modalEnabled: false })
       }
     ]);
   }

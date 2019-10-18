@@ -76,7 +76,7 @@ exports[`Usage rendering should render correctly 1`] = `
                     "lineHeight": 16,
                   },
                   Object {
-                    "color": "#111111",
+                    "color": "#141414",
                     "marginBottom": 2,
                     "marginLeft": 4,
                   },
@@ -211,7 +211,7 @@ exports[`Usage rendering should render correctly 1`] = `
               "lineHeight": 16,
             },
             Object {
-              "color": "#111111",
+              "color": "#141414",
               "marginTop": 8,
               "textAlign": "center",
             },
