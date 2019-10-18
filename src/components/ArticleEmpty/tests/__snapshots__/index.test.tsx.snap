@@ -26,21 +26,19 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering default should render correct
         Array [
           Object {
             "color": "#040404",
-            "fontSize": 34,
+            "fontSize": 32,
           },
           undefined,
           Object {
-            "fontFamily": "FontAwesome5Free-Solid",
+            "fontFamily": "Feather",
             "fontStyle": "normal",
             "fontWeight": "normal",
           },
-          Object {
-            "fontWeight": "900",
-          },
+          Object {},
         ]
       }
     >
-      
+      
     </Text>
   </View>
   <View
@@ -144,21 +142,19 @@ exports[`ArticleEmpty ArticleEmptyFailed rendering loading should render correct
         Array [
           Object {
             "color": "#040404",
-            "fontSize": 34,
+            "fontSize": 32,
           },
           undefined,
           Object {
-            "fontFamily": "FontAwesome5Free-Solid",
+            "fontFamily": "Feather",
             "fontStyle": "normal",
             "fontWeight": "normal",
           },
-          Object {
-            "fontWeight": "900",
-          },
+          Object {},
         ]
       }
     >
-      
+      
     </Text>
   </View>
   <View
@@ -262,21 +258,19 @@ exports[`ArticleEmpty ArticleEmptyNew rendering default should render correctly 
         Array [
           Object {
             "color": "#040404",
-            "fontSize": 34,
+            "fontSize": 32,
           },
           undefined,
           Object {
-            "fontFamily": "FontAwesome5Free-Solid",
+            "fontFamily": "Feather",
             "fontStyle": "normal",
             "fontWeight": "normal",
           },
-          Object {
-            "fontWeight": "900",
-          },
+          Object {},
         ]
       }
     >
-      
+      
     </Text>
   </View>
   <View
@@ -388,21 +382,19 @@ exports[`ArticleEmpty ArticleEmptyNew rendering loading should render correctly 
         Array [
           Object {
             "color": "#040404",
-            "fontSize": 34,
+            "fontSize": 32,
           },
           undefined,
           Object {
-            "fontFamily": "FontAwesome5Free-Solid",
+            "fontFamily": "Feather",
             "fontStyle": "normal",
             "fontWeight": "normal",
           },
-          Object {
-            "fontWeight": "900",
-          },
+          Object {},
         ]
       }
     >
-      
+      
     </Text>
   </View>
   <View
@@ -496,21 +488,19 @@ exports[`ArticleEmpty ArticleEmptyProcessing rendering default should render cor
         Array [
           Object {
             "color": "#040404",
-            "fontSize": 34,
+            "fontSize": 32,
           },
           undefined,
           Object {
-            "fontFamily": "FontAwesome5Free-Solid",
+            "fontFamily": "Feather",
             "fontStyle": "normal",
             "fontWeight": "normal",
           },
-          Object {
-            "fontWeight": "900",
-          },
+          Object {},
         ]
       }
     >
-      
+      
     </Text>
   </View>
   <View
@@ -624,21 +614,19 @@ exports[`ArticleEmpty ArticleEmptyProcessing rendering loading should render cor
         Array [
           Object {
             "color": "#040404",
-            "fontSize": 34,
+            "fontSize": 32,
           },
           undefined,
           Object {
-            "fontFamily": "FontAwesome5Free-Solid",
+            "fontFamily": "Feather",
             "fontStyle": "normal",
             "fontWeight": "normal",
           },
-          Object {
-            "fontWeight": "900",
-          },
+          Object {},
         ]
       }
     >
-      
+      
     </Text>
   </View>
   <View

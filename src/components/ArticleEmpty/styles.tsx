@@ -2,12 +2,13 @@ import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
 import spacing from '../../constants/spacing';
+import { UserTheme } from '../../reducers/user';
 
-export default StyleSheet.create({
+export default (theme?: UserTheme) => StyleSheet.create({
   articleEmptyContainer: {
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: colors.grayLightest,
+    backgroundColor: (theme === UserTheme.dark) ? colors.gray800 : colors.grayLightest,
     padding: spacing.default,
     width: '100%'
   },
@@ -34,11 +35,11 @@ export default StyleSheet.create({
     alignItems: 'flex-start'
   },
   articleEmptyTitle: {
-    color: colors.black,
+    color: (theme === UserTheme.dark) ? colors.white : colors.black,
     marginBottom: spacing.tiny
   },
   articleEmptyText: {
-    color: colors.black,
+    color: (theme === UserTheme.dark) ? colors.gray100 : colors.black,
     opacity: 0.9,
     marginBottom: spacing.tiny,
   },
