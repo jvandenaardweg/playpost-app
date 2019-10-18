@@ -16,7 +16,7 @@ export const GlobalStatusIndicator: React.FC<Props> = React.memo((props) => {
   const labelPlaylistIsLoadingCreateItem = (props.playlistIsLoadingCreateItem) ? 'Adding article...' : '';
   const labelAudiofileStatus = (props.audiofileStatus) ? props.audiofileStatus : '';
 
-  const label = labelPlaylistIsLoadingCreateItem || labelAudiofileStatus || 'Loading...';
+  const label = labelPlaylistIsLoadingCreateItem || labelAudiofileStatus;
 
   const isActive = !!labelAudiofileStatus || !!labelPlaylistIsLoadingCreateItem;
 

@@ -31,26 +31,28 @@ describe('GlobalStatusIndicator', () => {
       expect(wrapper.getByTestId('GlobalStatusIndicator-label').props.children).toBe('Creating article audio...');
     });
 
+    it('should use a fallback label when label is not set', () => {
+      const props = {
+        ...defaultProps,
+        audiofileStatus: '',
+        playlistIsLoadingCreateItem: false
+      }
+
+      wrapper = render(<GlobalStatusIndicator {...props} />);
+
+      expect(wrapper.getByTestId('GlobalStatusIndicator-label').props.children).toBe('');
+    });
+
     it('should render "Adding article..."', () => {
       const props = {
         ...defaultProps,
         playlistIsLoadingCreateItem: true
       }
 
-      wrapper.update(<GlobalStatusIndicator {...props} />);
+      wrapper = render(<GlobalStatusIndicator {...props} />);
 
       expect(wrapper.getByTestId('GlobalStatusIndicator-label').props.children).toBe('Adding article...');
     });
 
-    it('should use a fallback label when label is not set', () => {
-      const props = {
-        ...defaultProps,
-        playlistIsLoadingCreateItem: false
-      }
-
-      wrapper.rerender(<GlobalStatusIndicator {...props} />);
-
-      expect(wrapper.getByTestId('GlobalStatusIndicator-label').props.children).toBe('Loading...');
-    });
   });
 });
