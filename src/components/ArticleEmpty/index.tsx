@@ -7,9 +7,9 @@ import Text from '../Text'
 
 import styles from './styles';
 
-import * as Icon from '../Icon';
 import { UserThemeContext } from '../../contexts/UserThemeProvider';
 import { UserTheme } from '../../reducers/user';
+import * as Icon from '../Icon';
 
 interface Props {
   onPressUpdate?:() => void;

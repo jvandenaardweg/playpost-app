@@ -4,6 +4,8 @@ exports[`AudioPlayerSmallEmpty rendering should render correctly 1`] = `
 <View
   style={
     Object {
+      "backgroundColor": "#040404",
+      "borderBottomWidth": 0.5,
       "height": 55,
     }
   }
@@ -13,15 +15,18 @@ exports[`AudioPlayerSmallEmpty rendering should render correctly 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "backgroundColor": "#040404",
-        "borderBottomWidth": 0.5,
         "flexDirection": "row",
         "height": 55,
         "justifyContent": "space-around",
+        "left": 0,
         "paddingBottom": 8,
         "paddingLeft": 12,
         "paddingRight": 12,
         "paddingTop": 8,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 10,
       }
     }
   >

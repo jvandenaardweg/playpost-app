@@ -1,17 +1,18 @@
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import isEqual from 'react-fast-compare';
 import WebView from 'react-native-webview';
 import urlParse from 'url-parse';
 
 import colors from '../../constants/colors';
 import spacing from '../../constants/spacing';
+import { UserThemeContext } from '../../contexts/UserThemeProvider';
+import { UserTheme } from '../../reducers/user';
 import { TextDirection } from '../../typings';
-import { CenterLoadingIndicator } from '../CenterLoadingIndicator';
 import { textPresets } from '../Text';
 
 interface Props {
   article: Api.Article | undefined;
-  theme?: string;
+  forceTheme?: UserTheme;
 }
 
 interface ThemeStyles {
@@ -24,29 +25,28 @@ interface ThemeStyles {
   highlightedBackgroundColor: string;
 }
 
-export const ArticleReader: React.FC<Props> = React.memo(({
-  theme,
-  article
-}) => {
+export const ArticleReader: React.FC<Props> = React.memo((props) => {
+  const { theme } = useContext(UserThemeContext);
   const webViewRef = useRef<WebView>(null);
-  const themeStyles = getThemeStyles(theme);
+
+  const themeToUse = props.forceTheme ? props.forceTheme : theme;
+
+  const themeStyles = getThemeStyles(themeToUse);
 
   return (
     <WebView
       ref={webViewRef}
-      startInLoadingState={true}
-      renderLoading={() => <CenterLoadingIndicator backgroundColor={themeStyles.backgroundColor} />}
       allowFileAccess
       originWhitelist={['file://']}
       javaScriptEnabled={false}
-      source={{ html: getHtmlDocument(article, themeStyles), baseUrl: '' }}
+      source={{ html: getHtmlDocument(props.article, themeStyles), baseUrl: '' }}
       bounces
       decelerationRate="normal"
-      style={{ backgroundColor: themeStyles.backgroundColor, padding: 0, margin: 0 }}
+      style={{ backgroundColor: 'transparent', padding: 0, margin: 0 }}
     />
   );
 
-  function getThemeStyles(themeProp?: string): ThemeStyles {
+  function getThemeStyles(themeProp: UserTheme): ThemeStyles {
 
     // Light
     let backgroundColor = colors.white;
@@ -57,7 +57,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
     let titleColor = colors.black;
     let highlightedBackgroundColor = colors.grayLightest;
 
-    if (themeProp === 'dark') {
+    if (themeProp === UserTheme.dark) {
       backgroundColor = colors.gray900;
       fontColor = colors.gray;
       paragraphColor = colors.gray;
@@ -108,7 +108,7 @@ export const ArticleReader: React.FC<Props> = React.memo(({
           }
 
           h1, h2, h3, h4, h5, h6, h7, h8 {
-            line-height: 1.2;
+            line-height: 1.3;
             margin-top: 0;
             margin-bottom: ${spacing.tiny}px;
             color: ${themeStyle.titleColor};
@@ -116,8 +116,9 @@ export const ArticleReader: React.FC<Props> = React.memo(({
           }
 
           h1 {
-            font-size: ${textPresets['title1'].fontSize}px;
+            font-size: ${textPresets['title2'].fontSize}px;
             margin-bottom: ${spacing.default}px;
+            font-weight: 600;
             text-align: center;
           }
 

@@ -1,5 +1,8 @@
 import analytics from '@react-native-firebase/analytics';
-import { addDays, format } from 'date-fns';
+// tslint:disable-next-line: no-submodule-imports
+import addDays from 'date-fns/addDays';
+// tslint:disable-next-line: no-submodule-imports
+import format from 'date-fns/format';
 import React from 'react';
 import isEqual from 'react-fast-compare';
 import { Alert, Platform } from 'react-native';

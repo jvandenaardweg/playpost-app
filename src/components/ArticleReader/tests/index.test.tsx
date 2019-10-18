@@ -4,6 +4,7 @@ import { ArticleReader } from '../index';
 
 import articleMock from '../../../../tests/__mocks__/article';
 import articleMockRTL from '../../../../tests/__mocks__/article-right-to-left';
+import { UserTheme } from '../../../reducers/user';
 
 const defaultProps = {
   article: articleMock
@@ -64,7 +65,7 @@ describe('ArticleReader', () => {
   describe('rendering dark theme', () => {
 
     beforeAll(() => {
-      wrapper = render(<ArticleReader article={articleMock} theme="dark"></ArticleReader>);
+      wrapper = render(<ArticleReader article={articleMock} forceTheme={UserTheme.dark}></ArticleReader>);
     });
 
     it('should render correctly', () => {

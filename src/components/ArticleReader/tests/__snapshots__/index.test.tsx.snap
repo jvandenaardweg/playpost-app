@@ -61,7 +61,7 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
           }
 
           h1, h2, h3, h4, h5, h6, h7, h8 {
-            line-height: 1.2;
+            line-height: 1.3;
             margin-top: 0;
             margin-bottom: 10px;
             color: #ffffff;
@@ -69,8 +69,9 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
           }
 
           h1 {
-            font-size: 28px;
+            font-size: 24px;
             margin-bottom: 12px;
+            font-weight: 600;
             text-align: center;
           }
 
@@ -190,7 +191,6 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
     ",
       }
     }
-    startInLoadingState={true}
     style={
       Array [
         Object {
@@ -201,7 +201,7 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
           "backgroundColor": "#ffffff",
         },
         Object {
-          "backgroundColor": "#141414",
+          "backgroundColor": "transparent",
           "margin": 0,
           "padding": 0,
         },
@@ -209,35 +209,6 @@ exports[`ArticleReader rendering dark theme should render correctly 1`] = `
     }
     useSharedProcessPool={true}
   />
-  <View
-    style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#EEEEEE",
-          "bottom": 0,
-          "flex": 1,
-          "height": "100%",
-          "justifyContent": "center",
-          "left": 0,
-          "position": "absolute",
-          "right": 0,
-          "top": 0,
-          "width": "100%",
-        },
-        Object {
-          "backgroundColor": "#141414",
-        },
-      ]
-    }
-  >
-    <ActivityIndicator
-      animating={true}
-      color="#040404"
-      hidesWhenStopped={true}
-      size="small"
-    />
-  </View>
 </View>
 `;
 
@@ -302,7 +273,7 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
           }
 
           h1, h2, h3, h4, h5, h6, h7, h8 {
-            line-height: 1.2;
+            line-height: 1.3;
             margin-top: 0;
             margin-bottom: 10px;
             color: #040404;
@@ -310,8 +281,9 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
           }
 
           h1 {
-            font-size: 28px;
+            font-size: 24px;
             margin-bottom: 12px;
+            font-weight: 600;
             text-align: center;
           }
 
@@ -431,7 +403,6 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
     ",
       }
     }
-    startInLoadingState={true}
     style={
       Array [
         Object {
@@ -442,7 +413,7 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
           "backgroundColor": "#ffffff",
         },
         Object {
-          "backgroundColor": "#ffffff",
+          "backgroundColor": "transparent",
           "margin": 0,
           "padding": 0,
         },
@@ -450,35 +421,6 @@ exports[`ArticleReader rendering default should render correctly 1`] = `
     }
     useSharedProcessPool={true}
   />
-  <View
-    style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#EEEEEE",
-          "bottom": 0,
-          "flex": 1,
-          "height": "100%",
-          "justifyContent": "center",
-          "left": 0,
-          "position": "absolute",
-          "right": 0,
-          "top": 0,
-          "width": "100%",
-        },
-        Object {
-          "backgroundColor": "#ffffff",
-        },
-      ]
-    }
-  >
-    <ActivityIndicator
-      animating={true}
-      color="#040404"
-      hidesWhenStopped={true}
-      size="small"
-    />
-  </View>
 </View>
 `;
 
@@ -543,7 +485,7 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
           }
 
           h1, h2, h3, h4, h5, h6, h7, h8 {
-            line-height: 1.2;
+            line-height: 1.3;
             margin-top: 0;
             margin-bottom: 10px;
             color: #040404;
@@ -551,8 +493,9 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
           }
 
           h1 {
-            font-size: 28px;
+            font-size: 24px;
             margin-bottom: 12px;
+            font-weight: 600;
             text-align: center;
           }
 
@@ -666,7 +609,6 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
     ",
       }
     }
-    startInLoadingState={true}
     style={
       Array [
         Object {
@@ -677,7 +619,7 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
           "backgroundColor": "#ffffff",
         },
         Object {
-          "backgroundColor": "#ffffff",
+          "backgroundColor": "transparent",
           "margin": 0,
           "padding": 0,
         },
@@ -685,35 +627,6 @@ exports[`ArticleReader rendering no article URL should render no article URL lin
     }
     useSharedProcessPool={true}
   />
-  <View
-    style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#EEEEEE",
-          "bottom": 0,
-          "flex": 1,
-          "height": "100%",
-          "justifyContent": "center",
-          "left": 0,
-          "position": "absolute",
-          "right": 0,
-          "top": 0,
-          "width": "100%",
-        },
-        Object {
-          "backgroundColor": "#ffffff",
-        },
-      ]
-    }
-  >
-    <ActivityIndicator
-      animating={true}
-      color="#040404"
-      hidesWhenStopped={true}
-      size="small"
-    />
-  </View>
 </View>
 `;
 
@@ -778,7 +691,7 @@ exports[`ArticleReader rendering no author name should render no authorName when
           }
 
           h1, h2, h3, h4, h5, h6, h7, h8 {
-            line-height: 1.2;
+            line-height: 1.3;
             margin-top: 0;
             margin-bottom: 10px;
             color: #040404;
@@ -786,8 +699,9 @@ exports[`ArticleReader rendering no author name should render no authorName when
           }
 
           h1 {
-            font-size: 28px;
+            font-size: 24px;
             margin-bottom: 12px;
+            font-weight: 600;
             text-align: center;
           }
 
@@ -901,7 +815,6 @@ exports[`ArticleReader rendering no author name should render no authorName when
     ",
       }
     }
-    startInLoadingState={true}
     style={
       Array [
         Object {
@@ -912,7 +825,7 @@ exports[`ArticleReader rendering no author name should render no authorName when
           "backgroundColor": "#ffffff",
         },
         Object {
-          "backgroundColor": "#ffffff",
+          "backgroundColor": "transparent",
           "margin": 0,
           "padding": 0,
         },
@@ -920,35 +833,6 @@ exports[`ArticleReader rendering no author name should render no authorName when
     }
     useSharedProcessPool={true}
   />
-  <View
-    style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#EEEEEE",
-          "bottom": 0,
-          "flex": 1,
-          "height": "100%",
-          "justifyContent": "center",
-          "left": 0,
-          "position": "absolute",
-          "right": 0,
-          "top": 0,
-          "width": "100%",
-        },
-        Object {
-          "backgroundColor": "#ffffff",
-        },
-      ]
-    }
-  >
-    <ActivityIndicator
-      animating={true}
-      color="#040404"
-      hidesWhenStopped={true}
-      size="small"
-    />
-  </View>
 </View>
 `;
 
@@ -1013,7 +897,7 @@ exports[`ArticleReader rendering no html should render a different HTML output w
           }
 
           h1, h2, h3, h4, h5, h6, h7, h8 {
-            line-height: 1.2;
+            line-height: 1.3;
             margin-top: 0;
             margin-bottom: 10px;
             color: #040404;
@@ -1021,8 +905,9 @@ exports[`ArticleReader rendering no html should render a different HTML output w
           }
 
           h1 {
-            font-size: 28px;
+            font-size: 24px;
             margin-bottom: 12px;
+            font-weight: 600;
             text-align: center;
           }
 
@@ -1136,7 +1021,6 @@ exports[`ArticleReader rendering no html should render a different HTML output w
     ",
       }
     }
-    startInLoadingState={true}
     style={
       Array [
         Object {
@@ -1147,7 +1031,7 @@ exports[`ArticleReader rendering no html should render a different HTML output w
           "backgroundColor": "#ffffff",
         },
         Object {
-          "backgroundColor": "#ffffff",
+          "backgroundColor": "transparent",
           "margin": 0,
           "padding": 0,
         },
@@ -1155,35 +1039,6 @@ exports[`ArticleReader rendering no html should render a different HTML output w
     }
     useSharedProcessPool={true}
   />
-  <View
-    style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#EEEEEE",
-          "bottom": 0,
-          "flex": 1,
-          "height": "100%",
-          "justifyContent": "center",
-          "left": 0,
-          "position": "absolute",
-          "right": 0,
-          "top": 0,
-          "width": "100%",
-        },
-        Object {
-          "backgroundColor": "#ffffff",
-        },
-      ]
-    }
-  >
-    <ActivityIndicator
-      animating={true}
-      color="#040404"
-      hidesWhenStopped={true}
-      size="small"
-    />
-  </View>
 </View>
 `;
 
@@ -1248,7 +1103,7 @@ exports[`ArticleReader rendering right to left content should render correctly 1
           }
 
           h1, h2, h3, h4, h5, h6, h7, h8 {
-            line-height: 1.2;
+            line-height: 1.3;
             margin-top: 0;
             margin-bottom: 10px;
             color: #040404;
@@ -1256,8 +1111,9 @@ exports[`ArticleReader rendering right to left content should render correctly 1
           }
 
           h1 {
-            font-size: 28px;
+            font-size: 24px;
             margin-bottom: 12px;
+            font-weight: 600;
             text-align: center;
           }
 
@@ -1377,7 +1233,6 @@ exports[`ArticleReader rendering right to left content should render correctly 1
     ",
       }
     }
-    startInLoadingState={true}
     style={
       Array [
         Object {
@@ -1388,7 +1243,7 @@ exports[`ArticleReader rendering right to left content should render correctly 1
           "backgroundColor": "#ffffff",
         },
         Object {
-          "backgroundColor": "#ffffff",
+          "backgroundColor": "transparent",
           "margin": 0,
           "padding": 0,
         },
@@ -1396,34 +1251,5 @@ exports[`ArticleReader rendering right to left content should render correctly 1
     }
     useSharedProcessPool={true}
   />
-  <View
-    style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#EEEEEE",
-          "bottom": 0,
-          "flex": 1,
-          "height": "100%",
-          "justifyContent": "center",
-          "left": 0,
-          "position": "absolute",
-          "right": 0,
-          "top": 0,
-          "width": "100%",
-        },
-        Object {
-          "backgroundColor": "#ffffff",
-        },
-      ]
-    }
-  >
-    <ActivityIndicator
-      animating={true}
-      color="#040404"
-      hidesWhenStopped={true}
-      size="small"
-    />
-  </View>
 </View>
 `;

@@ -58,8 +58,35 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
   }
 
   componentDidUpdate(prevProps: Props, nextState: State) {
+    const { isLoggedIn } = this.props;
+
     // Make sure our Analytics always has up to date information about our user
     this.syncUserAnalyticsData();
+
+    // Pre populate the app when the user logs in
+    if (isLoggedIn && !prevProps.isLoggedIn) {
+      this.prePopulateAppWithRequiredData()
+    }
+  }
+
+  /**
+   * Method to pre-populate the app with the required API data.
+   * Use for when the user logs into the app for the first time.
+   * This excludes the Playlist data, as we get that on the component itself.
+   */
+  prePopulateAppWithRequiredData = () => {
+    const { isLoggedIn } = this.props;
+
+    if (!isLoggedIn) {
+      return;
+    }
+
+    return Promise.all([
+      // this.props.getPlaylist(), // We get the playlist on the user's playlist screen when the app starts
+      this.props.getUser(),
+      this.props.getInAppSubscriptions(),
+      this.props.getLanguages()
+    ])
   }
 
   /**
@@ -112,8 +139,6 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
 
         // Make sure the playlist and user data is up-to-date when user comes back
         this.syncAppWithRequiredData();
-
-
       }
     });
   }

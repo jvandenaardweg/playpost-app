@@ -10,9 +10,6 @@ import SplashScreen from 'react-native-splash-screen';
 import * as cache from '../cache';
 import colors from '../constants/colors';
 import { setAuthToken } from '../reducers/auth';
-import { getInAppSubscriptions } from '../reducers/subscriptions';
-import { getUser } from '../reducers/user';
-import { getLanguages } from '../reducers/voices';
 import * as keychain from '../utils/keychain';
 
 
@@ -72,11 +69,6 @@ export class AuthLoadingScreen extends React.PureComponent<Props> {
     // User is logged in if we end up here
 
     // Prepare the app for the logged in user
-
-    // Pre-populate the app with the user data
-    store.dispatch(getUser())
-    store.dispatch(getInAppSubscriptions())
-    store.dispatch(getLanguages())
 
     this.props.navigation.navigate('App');
 

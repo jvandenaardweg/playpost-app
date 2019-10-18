@@ -1,30 +1,23 @@
 import React from 'react';
-import { NavigationRoute, NavigationScreenProp } from 'react-navigation';
+import { NavigationRoute, NavigationScreenComponent, NavigationScreenProp } from 'react-navigation';
 import { NavigationStackOptions } from 'react-navigation-stack';
 
+import { AppBackground } from '../components/AppBackground';
 import { ArticleReader } from '../components/ArticleReader';
 import { InteractionManaged } from '../components/InteractionManaged';
 
-interface Props {
-  navigation: NavigationScreenProp<NavigationRoute>;
-}
-
-export class FullArticleScreen extends React.PureComponent<Props> {
-  static navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackOptions => {
-    return {
-      title: ''
-    };
-  }
-
-  get article () {
-    return this.props.navigation.getParam('article', null);
-  }
-
-  render() {
-    return (
+export const FullArticleScreen: NavigationScreenComponent<{}, NavigationScreenProp<NavigationRoute>> = React.memo((props) => {
+  return (
+    <AppBackground>
       <InteractionManaged>
-        <ArticleReader article={this.article} />
+        <ArticleReader article={props.navigation.getParam('article', null)} />
       </InteractionManaged>
-    );
-  }
+    </AppBackground>
+  );
+})
+
+FullArticleScreen.navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackOptions => {
+  return {
+    title: ''
+  };
 }

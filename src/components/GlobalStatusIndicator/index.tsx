@@ -6,15 +6,17 @@ import { Props } from '../../containers/GlobalStatusIndicatorContainer';
 import Text from '../Text';
 import styles from './styles';
 
+export type Props = Props;
+
 export const GlobalStatusIndicator: React.FC<Props> = React.memo((props) => {
   const startAnimatedValue = 60;
   const [animatedBottomValue] = useState(new Animated.Value(startAnimatedValue));
-  const [localLabel, setLocalLabel] = useState('Loading...')
+  const [localLabel, setLocalLabel] = useState('')
 
   const labelPlaylistIsLoadingCreateItem = (props.playlistIsLoadingCreateItem) ? 'Adding article...' : '';
   const labelAudiofileStatus = (props.audiofileStatus) ? props.audiofileStatus : '';
 
-  const label = labelPlaylistIsLoadingCreateItem || labelAudiofileStatus;
+  const label = labelPlaylistIsLoadingCreateItem || labelAudiofileStatus || 'Loading...';
 
   const isActive = !!labelAudiofileStatus || !!labelPlaylistIsLoadingCreateItem;
 

@@ -40,6 +40,7 @@ apiClient.interceptors.response.use(async (response) => {
 apiClient.interceptors.request.use(async (config) => {
   await startHttpMetric(config)
 
+  // const token = selectAuthenticationToken(store.getState())
   const token = await keychain.getToken();
 
   if (token) {

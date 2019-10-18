@@ -11,6 +11,7 @@ import Text from '../Text';
 import { defaultHitslop, smallHitslop } from '../../constants/buttons';
 import colors from '../../constants/colors';
 
+import { UserTheme } from '../../reducers/user';
 import { PlaybackSpeedSlider } from '../PlaybackSpeedSlider';
 import styles from './styles';
 
@@ -62,7 +63,7 @@ export const AudioPlayerLarge: React.FC<Props> = React.memo((props: Props) => {
     <View style={styles.wrapper}>
       <View style={styles.container}>
         <View style={styles.scrollableContainer}>
-          {props.article && <ArticleReader article={props.article} theme="dark" />}
+          {props.article && <ArticleReader article={props.article} forceTheme={UserTheme.dark} />}
         </View>
         <View style={styles.bottomContainer}>
           <AudioPlayerProgressBar onProgressChange={props.onProgressChange} />
