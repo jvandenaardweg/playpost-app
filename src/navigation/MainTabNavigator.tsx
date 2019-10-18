@@ -11,16 +11,12 @@ import { FullArticleScreen } from '../screens/FullArticleScreen';
 import { PlaylistScreen } from '../screens/PlaylistScreen';
 import { SettingsLanguagesScreen } from '../screens/settings/LanguagesScreen';
 import { SettingsScreen } from '../screens/settings/SettingsScreen';
+import { SettingsThemesScreen } from '../screens/settings/ThemesScreen';
 import { UpdateEmailScreen } from '../screens/settings/UpdateEmailScreen';
 import { UpdatePasswordScreen } from '../screens/settings/UpdatePasswordScreen';
 import { SettingsVoicesScreen } from '../screens/settings/VoicesScreen';
 
-import { ButtonVoices } from '../components/ButtonVoices';
 import { textPresets } from '../components/Text';
-import colors from '../constants/colors';
-import { ButtonUpgradeContainer } from '../containers/ButtonUpgradeContainer';
-import { SettingsThemesScreen } from '../screens/settings/ThemesScreen';
-
 
 export const stackNavigatorDefaultNavigationOptions: NavigationStackOptions = {
   headerStyle: {
