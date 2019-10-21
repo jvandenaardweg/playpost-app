@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import { LoginForm } from '../components/LoginForm';
 
-import { getAuthToken } from '../reducers/auth';
+import { getAuthToken, setAuthToken } from '../reducers/auth';
 
 import { ALERT_LOGIN_SAVE_TOKEN_FAIL, ALERT_TITLE_ERROR } from '../constants/messages';
 import NavigationService from '../navigation/NavigationService';
@@ -75,6 +75,8 @@ class LoginFormContainerComponent extends React.PureComponent<Props, State> {
   saveToken = async (token: string) => {
     try {
       await keychain.setToken(token);
+      this.props.setAuthToken(token);
+
       NavigationService.navigate('App');
     } catch (err) {
       Alert.alert(ALERT_TITLE_ERROR, ALERT_LOGIN_SAVE_TOKEN_FAIL, [
@@ -136,6 +138,7 @@ interface StateProps {
 
 interface DispatchProps {
   getAuthToken: typeof getAuthToken;
+  setAuthToken: typeof setAuthToken;
 }
 
 const mapStateToProps = (state: RootState) => ({
@@ -144,7 +147,8 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = {
-  getAuthToken
+  getAuthToken,
+  setAuthToken
 };
 
 export const LoginFormContainer = withNavigation(
