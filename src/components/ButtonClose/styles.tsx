@@ -1,7 +1,8 @@
 import { StyleSheet } from 'react-native';
 import spacing from '../../constants/spacing';
+import { UserTheme } from '../../reducers/user';
 
-export default StyleSheet.create({
+export default (theme: UserTheme) => StyleSheet.create({
   container: {
     marginRight: spacing.default,
     width: 36,

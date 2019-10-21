@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { TextInput, TextInputProps } from 'react-native'
 
-import textInput from '../../constants/text-input';
+import textInput, { placeholderTextcolor } from '../../constants/text-input';
+import { UserThemeContext } from '../../contexts/UserThemeProvider';
 import { InputGroup } from './index';
 
 export interface Props extends TextInputProps {
@@ -10,6 +11,8 @@ export interface Props extends TextInputProps {
 }
 
 export const InputGroupEmail: React.FC<Props> = React.memo(({ label, textInputRef, ...rest }) => {
+  const { theme } = useContext(UserThemeContext);
+
   return (
     <InputGroup label={label ? label : 'E-mail address'}>
       <TextInput
@@ -18,9 +21,10 @@ export const InputGroupEmail: React.FC<Props> = React.memo(({ label, textInputRe
         textContentType="username"
         keyboardType="email-address"
         placeholder="john.appleseed@playpost.app"
-        style={textInput}
+        style={textInput(theme)}
         clearButtonMode="always"
         blurOnSubmit={false}
+        placeholderTextColor={placeholderTextcolor(theme)}
         {...rest}
       />
     </InputGroup>

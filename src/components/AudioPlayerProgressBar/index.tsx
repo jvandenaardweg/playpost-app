@@ -14,7 +14,7 @@ interface Props {
   onProgressChange?(percentage: number): void;
 }
 
-export const AudioPlayerProgressBar: React.FC<Props> = React.memo(({ onProgressChange }) => {
+export const AudioPlayerProgressBar: React.FC<Props> = React.memo((props) => {
 
   const progress = useProgress();
 
@@ -54,7 +54,7 @@ export const AudioPlayerProgressBar: React.FC<Props> = React.memo(({ onProgressC
           thumbTintColor={colors.white}
           thumbStyle={styles.thumbStyle}
           trackStyle={styles.trackStyle}
-          onSlidingComplete={onProgressChange}
+          onSlidingComplete={props.onProgressChange}
         />
       </View>
       <View style={styles.progressTimeContainer}>

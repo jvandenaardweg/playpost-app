@@ -7,7 +7,7 @@ import { UserTheme } from '../../reducers/user';
 
 const sectionFooterHeight = spacing.default;
 
-export default (theme?: UserTheme) => StyleSheet.create({
+export default (theme: UserTheme) => StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme === UserTheme.dark ? colors.black : colors.grayLightest

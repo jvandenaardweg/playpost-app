@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { UserTheme } from '../../reducers/user';
 
-export default (theme?: UserTheme) => StyleSheet.create({
+export default (theme: UserTheme) => StyleSheet.create({
   container: {
     height: '100%',
     width: '100%',

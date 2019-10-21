@@ -46,22 +46,22 @@ interface Props {
   emptyDescription?: string[];
 }
 
-export const CustomSectionList: React.FC<Props> = React.memo(({ sectionListData, ListHeaderComponent, ListFooterComponent, paddingTop, emptyTitle, emptyDescription }) => {
+export const CustomSectionList: React.FC<Props> = React.memo((props) => {
   const { theme } = useContext(UserThemeContext)
 
   return (
     <SectionList
-      ListEmptyComponent={<EmptyState title={emptyTitle ? emptyTitle : "No items to show"} description={emptyDescription ? emptyDescription : ['It seems like this list is empty...']} />}
+      ListEmptyComponent={<EmptyState title={props.emptyTitle ? props.emptyTitle : "No items to show"} description={props.emptyDescription ? props.emptyDescription : ['It seems like this list is empty...']} />}
       contentContainerStyle={styles(theme).containerStyle}
       initialNumToRender={15}
       indicatorStyle={theme === UserTheme.dark ? 'white' : 'black'}
       keyExtractor={(item, index) => item.key}
-      ListHeaderComponent={ListHeaderComponent && (
+      ListHeaderComponent={props.ListHeaderComponent && (
         <View style={{ marginLeft: spacing.default * -1, marginRight: spacing.default * -1, marginBottom: spacing.small }}>
-          {ListHeaderComponent}
+          {props.ListHeaderComponent}
         </View>
       )}
-      ListFooterComponent={ListFooterComponent}
+      ListFooterComponent={props.ListFooterComponent}
       stickySectionHeadersEnabled={false}
       ItemSeparatorComponent={() => <View style={styles(theme).itemSeperator}><ListSeperator /></View>}
       renderSectionFooter={() => <View style={styles(theme).sectionFooter} />}
@@ -106,7 +106,7 @@ export const CustomSectionList: React.FC<Props> = React.memo(({ sectionListData,
           />
         );
       }}
-      sections={sectionListData}
+      sections={props.sectionListData}
     />
   )
 }, isEqual)

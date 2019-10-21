@@ -1,5 +1,5 @@
 import React from 'react';
-import { SectionListData, LayoutAnimation } from 'react-native';
+import { LayoutAnimation, SectionListData } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 

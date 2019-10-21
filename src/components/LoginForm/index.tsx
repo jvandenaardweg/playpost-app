@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import { KeyboardAvoidingView, Platform, ScrollView, TextInput, View } from 'react-native';
 import { Button } from 'react-native-elements';
 
 import spacing from '../../constants/spacing';
+import { UserThemeContext } from '../../contexts/UserThemeProvider';
 import { InputGroupEmail } from '../InputGroup/email';
 import { InputGroupPassword } from '../InputGroup/password';
 import styles from './styles';
@@ -16,8 +17,9 @@ export interface Props {
   onPressForgotPassword(): void;
 }
 
-export const LoginForm: React.FC<Props> = React.memo(({ email, password, isLoading, onChangeText, onPressLogin, onPressForgotPassword  }) => {
+export const LoginForm: React.FC<Props> = React.memo((props) => {
   const passwordInputRef = useRef<TextInput>(null);
+  const { theme } = useContext(UserThemeContext);
 
   // Android and iOS both interact with this prop differently.
   // Android may behave better when given no behavior prop at all, whereas iOS is the opposite.
@@ -25,16 +27,16 @@ export const LoginForm: React.FC<Props> = React.memo(({ email, password, isLoadi
   const behaviorOption = Platform.OS === 'ios' ? 'padding' : undefined;
 
   return (
-    <KeyboardAvoidingView testID="LoginForm" style={styles.container} keyboardVerticalOffset={60} behavior={behaviorOption} enabled>
-      <ScrollView style={styles.form} contentContainerStyle={styles.formContent} keyboardShouldPersistTaps={'handled'}>
+    <KeyboardAvoidingView testID="LoginForm" style={styles(theme).container} keyboardVerticalOffset={60} behavior={behaviorOption} enabled>
+      <ScrollView style={styles(theme).form} contentContainerStyle={styles(theme).formContent} keyboardShouldPersistTaps={'handled'}>
 
         <InputGroupEmail
           testID="LoginForm-TextInput-email"
-          value={email}
-          onChangeText={text => onChangeText('email', text)}
+          value={props.email}
+          onChangeText={text => props.onChangeText('email', text)}
           onSubmitEditing={() => passwordInputRef.current && passwordInputRef.current.focus()}
-          editable={!isLoading}
-          style={styles.textField}
+          editable={!props.isLoading}
+          style={styles(theme).textField}
           returnKeyType="next"
           clearButtonMode="always"
           autoFocus
@@ -43,10 +45,10 @@ export const LoginForm: React.FC<Props> = React.memo(({ email, password, isLoadi
         <InputGroupPassword
           textInputRef={passwordInputRef}
           testID="LoginForm-TextInput-password"
-          value={password}
-          onChangeText={(text: string) => onChangeText('password', text)}
-          onSubmitEditing={() => onPressLogin()}
-          editable={!isLoading}
+          value={props.password}
+          onChangeText={(text: string) => props.onChangeText('password', text)}
+          onSubmitEditing={() => props.onPressLogin()}
+          editable={!props.isLoading}
           returnKeyType="done"
         />
 
@@ -54,12 +56,12 @@ export const LoginForm: React.FC<Props> = React.memo(({ email, password, isLoadi
           <Button
             testID="LoginForm-Button-login"
             title="Login"
-            loading={isLoading}
-            onPress={onPressLogin}
-            disabled={isLoading}
+            loading={props.isLoading}
+            onPress={props.onPressLogin}
+            disabled={props.isLoading}
             activeOpacity={1}
           />
-          <Button testID="LoginForm-Button-forgot-password" title="Forgot password?" type="clear" onPress={onPressForgotPassword} />
+          <Button testID="LoginForm-Button-forgot-password" title="Forgot password?" type="clear" onPress={props.onPressForgotPassword} />
         </View>
       </ScrollView>
     </KeyboardAvoidingView>

@@ -17,6 +17,7 @@ export const SettingsScreen: NavigationScreenComponent<{}, NavigationScreenProp<
 
 SettingsScreen.navigationOptions = (): NavigationStackOptions => {
   return {
+    title: 'Settings',
     headerRight: <ButtonUpgradeContainer />
   };
 }

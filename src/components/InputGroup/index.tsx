@@ -1,9 +1,10 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useContext } from 'react'
 import { View } from 'react-native'
 import spacing from '../../constants/spacing'
 
 import Text from '../Text';
 
+import { UserThemeContext } from '../../contexts/UserThemeProvider';
 import styles from './styles'
 
 export interface Props {
@@ -12,16 +13,18 @@ export interface Props {
   RightElement?: ReactNode;
 }
 
-export const InputGroup: React.FC<Props> = React.memo(({ label, children, RightElement }) => {
+export const InputGroup: React.FC<Props> = React.memo((props) => {
+  const { theme } = useContext(UserThemeContext);
+
   return (
-    <View style={styles.container}>
-      {RightElement && (
-        <View style={styles.rightElementContainer} testID="InputGroup-View-right-element-container">
-          {RightElement}
+    <View style={styles(theme).container}>
+      {props.RightElement && (
+        <View style={styles(theme).rightElementContainer} testID="InputGroup-View-right-element-container">
+          {props.RightElement}
         </View>
       )}
-      {label ? <Text preset="leadEmphasized" style={{ marginBottom: spacing.nano }} testID="InputGroup-Text-label">{label}</Text> : undefined}
-      {children}
+      {props.label ? <Text preset="leadEmphasized" style={{ marginBottom: spacing.nano }} testID="InputGroup-Text-label">{props.label}</Text> : undefined}
+      {props.children}
     </View>
   )
 })

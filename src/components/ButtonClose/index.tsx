@@ -18,12 +18,12 @@ interface Props {
 export const ButtonClose: React.FC<Props> = React.memo((props) => {
   const { theme } = useContext(UserThemeContext);
 
-  const buttonStyle = (theme === UserTheme.dark) ? { backgroundColor: colors.gray500 } : { backgroundColor: colors.gray900 }
+  const buttonStyle = (theme === UserTheme.dark) ? { backgroundColor: colors.gray700 } : { backgroundColor: colors.grayLight }
 
   return (
     <TouchableOpacity
       onPress={props.onPress}
-      style={{ ...styles.container, ...buttonStyle }}
+      style={{ ...styles(theme).container, ...buttonStyle }}
       testID="button-close"
       hitSlop={mediumHitslop}
     >

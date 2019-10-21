@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { KeyboardAvoidingView, Platform, View } from 'react-native';
 import { Button } from 'react-native-elements';
+import { UserThemeContext } from '../../contexts/UserThemeProvider';
 import { InputGroupEmail } from '../InputGroup/email';
 import styles from './styles';
 
@@ -12,7 +13,8 @@ interface Props {
   onPressUpdateEmail(): void;
 }
 
-export const UpdateEmailForm: React.FC<Props> = React.memo(({ onChangeText, onPressUpdateEmail, email, isLoading, isSuccess }) => {
+export const UpdateEmailForm: React.FC<Props> = React.memo((props) => {
+  const { theme } = useContext(UserThemeContext);
 
   // Android and iOS both interact with this prop differently.
   // Android may behave better when given no behavior prop at all, whereas iOS is the opposite.
@@ -20,15 +22,15 @@ export const UpdateEmailForm: React.FC<Props> = React.memo(({ onChangeText, onPr
   const behaviorOption = Platform.OS === 'ios' ? 'padding' : undefined;
 
   return (
-    <KeyboardAvoidingView testID="UpdateEmailForm" style={styles.container} behavior={behaviorOption} keyboardVerticalOffset={100} enabled>
-      <View style={styles.form}>
+    <KeyboardAvoidingView testID="UpdateEmailForm" style={styles(theme).container} behavior={behaviorOption} keyboardVerticalOffset={100} enabled>
+      <View style={styles(theme).form}>
         <InputGroupEmail
           testID="UpdateEmailForm-TextInput-email"
-          value={email}
-          onChangeText={text => onChangeText('email', text)}
-          onSubmitEditing={() => onPressUpdateEmail()}
-          editable={!isLoading}
-          style={styles.textField}
+          value={props.email}
+          onChangeText={text => props.onChangeText('email', text)}
+          onSubmitEditing={() => props.onPressUpdateEmail()}
+          editable={!props.isLoading}
+          style={styles(theme).textField}
           returnKeyType="done"
           clearButtonMode="always"
           autoFocus
@@ -37,10 +39,10 @@ export const UpdateEmailForm: React.FC<Props> = React.memo(({ onChangeText, onPr
         <View>
           <Button
             testID="UpdateEmailForm-Button-update"
-            title={isSuccess ? 'Update success!' : 'Save new e-mail address'}
-            loading={isLoading}
-            onPress={onPressUpdateEmail}
-            disabled={isLoading || isSuccess}
+            title={props.isSuccess ? 'Update success!' : 'Save new e-mail address'}
+            loading={props.isLoading}
+            onPress={props.onPressUpdateEmail}
+            disabled={props.isLoading || props.isSuccess}
             activeOpacity={1}
           />
         </View>

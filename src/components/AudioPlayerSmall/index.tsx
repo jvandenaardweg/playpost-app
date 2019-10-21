@@ -19,34 +19,28 @@ interface Props {
   onPressPlay(): void;
 }
 
-export const AudioPlayerSmall: React.FC<Props> = React.memo(({
-  onPressShowFullPlayer,
-  onPressPlay,
-  isPlaying,
-  isLoading,
-  track: { title, artist, album }
-}) => {
+export const AudioPlayerSmall: React.FC<Props> = React.memo((props) => {
   const { theme } = useContext(UserThemeContext)
 
   return (
     <View testID="AudioPlayerSmall" style={styles(theme).wrapper}>
-      <TouchableHighlight style={styles(theme).container} onPress={onPressShowFullPlayer}>
+      <TouchableHighlight style={styles(theme).container} onPress={props.onPressShowFullPlayer}>
         <>
           <View style={styles(theme).trackInfoButton}>
             <View style={styles(theme).trackInfo}>
               <View>
-                <Text testID="AudioPlayerSmall-Text-title" style={styles(theme).trackInfoTitle} ellipsizeMode="tail" numberOfLines={1} preset="footnoteEmphasized">{(title) ? title : 'Select an article'}</Text>
+                <Text testID="AudioPlayerSmall-Text-title" style={styles(theme).trackInfoTitle} ellipsizeMode="tail" numberOfLines={1} preset="footnoteEmphasized">{(props.track.title) ? props.track.title : 'Select an article'}</Text>
               </View>
               <View>
                 <Text testID="AudioPlayerSmall-Text-meta" style={styles(theme).trackInfoArtist} ellipsizeMode="tail" numberOfLines={1} preset="caption2">
-                  {(artist) ? artist : '-'}
-                  {(album) ? `, ${album}` : null}
+                  {(props.track.artist) ? props.track.artist : '-'}
+                  {(props.track.album) ? `, ${props.track.album}` : null}
                 </Text>
               </View>
             </View>
           </View>
           <View style={styles(theme).rightIcon}>
-            <PlayPauseControl size={16} isLoading={isLoading} isPlaying={isPlaying} onPressPlay={onPressPlay} iconColor={colors.white} />
+            <PlayPauseControl size={16} isLoading={props.isLoading} isPlaying={props.isPlaying} onPressPlay={props.onPressPlay} iconColor={colors.white} />
           </View>
         </>
       </TouchableHighlight>

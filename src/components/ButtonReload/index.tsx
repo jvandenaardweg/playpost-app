@@ -10,9 +10,9 @@ interface Props {
   onPress(): void;
 }
 
-export const ButtonReload: React.FC<Props> = React.memo(({ onPress }) => {
+export const ButtonReload: React.FC<Props> = React.memo((props) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
+    <TouchableOpacity onPress={props.onPress} style={styles.container}>
       <Icon.Feather name="refresh-ccw" size={20} color={colors.tintColor} />
     </TouchableOpacity>
   );

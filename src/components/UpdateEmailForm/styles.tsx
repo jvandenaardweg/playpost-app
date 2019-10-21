@@ -3,8 +3,9 @@ import { StyleSheet } from 'react-native';
 import colors from '../../constants/colors';
 import spacing from '../../constants/spacing';
 import textInputStyle from '../../constants/text-input';
+import { UserTheme } from '../../reducers/user';
 
-export default StyleSheet.create({
+export default (theme: UserTheme) => StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -14,7 +15,7 @@ export default StyleSheet.create({
   form: {
     width: '100%'
   },
-  textField: textInputStyle,
+  textField: textInputStyle(theme),
   buttonStyle: {
     backgroundColor: colors.black,
     marginBottom: spacing.default,

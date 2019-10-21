@@ -15,12 +15,12 @@ interface Props {
   onSetPlaybackSpeed(speed: number): void;
 }
 
-export const PlaybackSpeedSlider: React.FC<Props> = React.memo(({ onSetPlaybackSpeed, playbackSpeed }) => {
-  const [localPlaybackSpeed, setLocalPlaybackSpeed] = useState(playbackSpeed);
+export const PlaybackSpeedSlider: React.FC<Props> = React.memo((props) => {
+  const [localPlaybackSpeed, setLocalPlaybackSpeed] = useState(props.playbackSpeed);
 
   useEffect(() => {
-    setLocalPlaybackSpeed(playbackSpeed);
-  }, [playbackSpeed])
+    setLocalPlaybackSpeed(props.playbackSpeed);
+  }, [props.playbackSpeed])
 
   return (
     <View style={styles.container}>
@@ -29,7 +29,7 @@ export const PlaybackSpeedSlider: React.FC<Props> = React.memo(({ onSetPlaybackS
           onPress={() => {
             const newSpeed = 1;
             setLocalPlaybackSpeed(newSpeed) // instant, just visual
-            onSetPlaybackSpeed(newSpeed)
+            props.onSetPlaybackSpeed(newSpeed)
           }}
           testID="PlaybackSpeedSlider-TouchableOpacity-label"
         >
@@ -48,7 +48,7 @@ export const PlaybackSpeedSlider: React.FC<Props> = React.memo(({ onSetPlaybackS
           onPress={() => {
             const newSpeed = localPlaybackSpeed - 0.01;
             setLocalPlaybackSpeed(newSpeed) // instant, just visual
-            onSetPlaybackSpeed(newSpeed) // debounced
+            props.onSetPlaybackSpeed(newSpeed) // debounced
           }}
           style={styles.controlButton}
         >
@@ -61,7 +61,7 @@ export const PlaybackSpeedSlider: React.FC<Props> = React.memo(({ onSetPlaybackS
             step={0.01}
             value={localPlaybackSpeed}
             onValueChange={value => setLocalPlaybackSpeed(value)} // instant, just visual
-            onSlidingComplete={value => onSetPlaybackSpeed(value)} // debounced
+            onSlidingComplete={value => props.onSetPlaybackSpeed(value)} // debounced
             minimumTrackTintColor={colors.tintColorDark}
             maximumTrackTintColor={colors.tintColorDark}
             thumbStyle={styles.sliderThumbStyle}
@@ -74,7 +74,7 @@ export const PlaybackSpeedSlider: React.FC<Props> = React.memo(({ onSetPlaybackS
           onPress={() => {
             const newSpeed = localPlaybackSpeed + 0.01;
             setLocalPlaybackSpeed(newSpeed) // instant, just visual
-            onSetPlaybackSpeed(newSpeed) // debounced
+            props.onSetPlaybackSpeed(newSpeed) // debounced
           }}
           style={styles.controlButton}
         >

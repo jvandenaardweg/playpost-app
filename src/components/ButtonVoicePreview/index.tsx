@@ -14,26 +14,20 @@ interface Props {
   onPress(): void;
 }
 
-export const ButtonVoicePreview: React.FC<Props> = React.memo(({
-  isLoading,
-  isPlaying,
-  isActive,
-  isAvailable,
-  onPress
-}) => {
+export const ButtonVoicePreview: React.FC<Props> = React.memo((props) => {
   const { theme } = useContext(UserThemeContext)
 
   return (
     <TouchableOpacity
       testID="ButtonViewPreview-TouchableOpacity"
-      style={[styles(theme).container, (isPlaying || isActive) ? styles(theme).containerActive : null, (isAvailable && !isActive) ? styles(theme).isAvailable : null]}
-      disabled={isLoading}
+      style={[styles(theme).container, (props.isPlaying || props.isActive) ? styles(theme).containerActive : null, (props.isAvailable && !props.isActive) ? styles(theme).isAvailable : null]}
+      disabled={props.isLoading}
       activeOpacity={1}
-      onPress={onPress}
+      onPress={props.onPress}
       hitSlop={{ top: 20, left: 20, right: 20, bottom: 20 }}>
-      {!isPlaying && !isLoading && <Icon.FontAwesome5 name="play" size={9} style={styles(theme).icon} testID="ButtonViewPreview-Icon-play" />}
-      {isPlaying && !isLoading && <Icon.FontAwesome5 name="pause" size={9} style={styles(theme).icon} testID="ButtonViewPreview-Icon-pause" />}
-      {isLoading && !isPlaying && <ActivityIndicator color="white" testID="ButtonViewPreview-ActivityIndicator" />}
+      {!props.isPlaying && !props.isLoading && <Icon.FontAwesome5 name="play" size={9} style={styles(theme).icon} testID="ButtonViewPreview-Icon-play" />}
+      {props.isPlaying && !props.isLoading && <Icon.FontAwesome5 name="pause" size={9} style={styles(theme).icon} testID="ButtonViewPreview-Icon-pause" />}
+      {props.isLoading && !props.isPlaying && <ActivityIndicator color="white" testID="ButtonViewPreview-ActivityIndicator" />}
     </TouchableOpacity>
   )
 })

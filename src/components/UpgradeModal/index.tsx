@@ -16,17 +16,9 @@ export interface Props {
   onPressUpgrade(): void;
 }
 
-export const UpgradeModal: React.FC<Props> = React.memo(({
-  isActive,
-  onPressUpgrade,
-  onPressCancel,
-  isEligibleForTrial,
-  isSubscribed,
-  trialUrgencyDate,
-  totalAvailableVoices
-}) => (
+export const UpgradeModal: React.FC<Props> = React.memo((props) => (
   <Modal
-    isVisible={isActive}
+    isVisible={props.isActive}
     useNativeDriver
     coverScreen
     animationInTiming={200}
@@ -44,13 +36,13 @@ export const UpgradeModal: React.FC<Props> = React.memo(({
         - When a subscribed user has used all his free minutes for the current month
       */}
 
-      {!isSubscribed && (
+      {!props.isSubscribed && (
         <Text testID="UpgradeModal-Text-not-isSubscribed" style={styles.paragraph} preset="subhead">
-          {`You have used your free minutes for this month. Upgrade now to continue listening using this voice or one of the ${totalAvailableVoices} other high-quality voices. Pick and choose the voice you like!\n\nWhen not upgrading, you will be set to use our lowest quality voices for the next month.`}
+          {`You have used your free minutes for this month. Upgrade now to continue listening using this voice or one of the ${props.totalAvailableVoices} other high-quality voices. Pick and choose the voice you like!\n\nWhen not upgrading, you will be set to use our lowest quality voices for the next month.`}
         </Text>
       )}
 
-      {isSubscribed && (
+      {props.isSubscribed && (
         <Text testID="UpgradeModal-Text-isSubscribed" style={styles.paragraph} preset="subhead">
           {'You have used your last remaining audio minutes for your subscription this month.\n\nYou can continue listening by upgrading to a higher subscription plan.'}
         </Text>
@@ -63,24 +55,24 @@ export const UpgradeModal: React.FC<Props> = React.memo(({
       )} */}
 
       <View style={styles.footer}>
-        {isSubscribed && (
+        {props.isSubscribed && (
           <Button
             testID="UpgradeModal-Button-upgrade"
             title={'Continue listening'}
-            onPress={onPressUpgrade} />
+            onPress={props.onPressUpgrade} />
         )}
-        {!isSubscribed && (
+        {!props.isSubscribed && (
           <Button
             testID="UpgradeModal-Button-upgrade"
-            title={isEligibleForTrial ? 'Start free trial' : 'Continue listening'}
-            onPress={onPressUpgrade}
+            title={props.isEligibleForTrial ? 'Start free trial' : 'Continue listening'}
+            onPress={props.onPressUpgrade}
           />
         )}
         <Button
           testID="UpgradeModal-Button-cancel"
-          title={isSubscribed ? 'Close' : 'Cancel (use lowest quality voices)'}
+          title={props.isSubscribed ? 'Close' : 'Cancel (use lowest quality voices)'}
           type="clear"
-          onPress={onPressCancel}
+          onPress={props.onPressCancel}
           titleStyle={styles.cancelTitle}
         />
       </View>

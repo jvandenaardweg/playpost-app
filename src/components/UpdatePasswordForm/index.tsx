@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { KeyboardAvoidingView, Platform, View } from 'react-native';
 import { Button } from 'react-native-elements';
+import { UserThemeContext } from '../../contexts/UserThemeProvider';
 import { InputGroupPassword } from '../InputGroup/password';
 import styles from './styles';
 
@@ -12,7 +13,8 @@ export interface Props {
   onPressUpdatePassword(): void;
 }
 
-export const UpdatePasswordForm: React.FC<Props> = React.memo(({ onChangeText, onPressUpdatePassword, password, isLoading, isSuccess }) => {
+export const UpdatePasswordForm: React.FC<Props> = React.memo((props) => {
+  const { theme } = useContext(UserThemeContext);
 
   // Android and iOS both interact with this prop differently.
   // Android may behave better when given no behavior prop at all, whereas iOS is the opposite.
@@ -20,17 +22,17 @@ export const UpdatePasswordForm: React.FC<Props> = React.memo(({ onChangeText, o
   const behaviorOption = Platform.OS === 'ios' ? 'padding' : undefined;
 
   return (
-    <KeyboardAvoidingView testID="UpdatePasswordForm" style={styles.container} behavior={behaviorOption} keyboardVerticalOffset={60} enabled>
-      <View style={styles.form}>
+    <KeyboardAvoidingView testID="UpdatePasswordForm" style={styles(theme).container} behavior={behaviorOption} keyboardVerticalOffset={60} enabled>
+      <View style={styles(theme).form}>
 
         <InputGroupPassword
           label="Your new password"
           testID="UpdatePasswordForm-TextInput-password"
           placeholder="Your new super secret password"
-          value={password}
-          onChangeText={(text: string) => onChangeText('password', text)}
-          onSubmitEditing={() => onPressUpdatePassword()}
-          editable={!isLoading}
+          value={props.password}
+          onChangeText={(text: string) => props.onChangeText('password', text)}
+          onSubmitEditing={() => props.onPressUpdatePassword()}
+          editable={!props.isLoading}
           returnKeyType="done"
           autoFocus
         />
@@ -38,10 +40,10 @@ export const UpdatePasswordForm: React.FC<Props> = React.memo(({ onChangeText, o
         <View>
           <Button
             testID="UpdatePasswordForm-Button-update"
-            title={isSuccess ? 'New password saved!' : 'Save new password'}
-            loading={isLoading}
-            onPress={onPressUpdatePassword}
-            disabled={isLoading || isSuccess}
+            title={props.isSuccess ? 'New password saved!' : 'Save new password'}
+            loading={props.isLoading}
+            onPress={props.onPressUpdatePassword}
+            disabled={props.isLoading || props.isSuccess}
             activeOpacity={1}
           />
         </View>

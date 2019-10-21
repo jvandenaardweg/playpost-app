@@ -9,12 +9,9 @@ interface Props {
   localVideo?: any;
 }
 
-export const VideoPlayer: React.FC<Props> = React.memo(({
-  url,
-  localVideo
-}) => {
+export const VideoPlayer: React.FC<Props> = React.memo((props) => {
   const videoPlayerRef = useRef<Video>(null);
-  const source = (localVideo) ? localVideo : { uri: url };
+  const source = (props.localVideo) ? props.localVideo : { uri: props.url };
 
   return (
     <Video

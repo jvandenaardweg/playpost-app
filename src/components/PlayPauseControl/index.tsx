@@ -22,34 +22,34 @@ interface PlayPauseIconProps {
 
 type Props = PlayPauseIconProps & IProps;
 
-export const PlayPauseControl: React.FC<Props> = React.memo(({ isPlaying, isLoading, size, onPressPlay, iconColor }) => {
+export const PlayPauseControl: React.FC<Props> = React.memo((props) => {
   return (
-    <TouchableOpacity testID="PlayPauseControl-button" disabled={isLoading} style={styles.playButton} onPress={() => onPressPlay()} hitSlop={defaultHitslop}>
+    <TouchableOpacity testID="PlayPauseControl-button" disabled={props.isLoading} style={styles.playButton} onPress={() => props.onPressPlay()} hitSlop={defaultHitslop}>
       <View style={styles.controlPlay}>
-        <PlayPauseIcon isLoading={isLoading} isDisabled={isLoading} isPlaying={isPlaying} size={size} color={iconColor} />
+        <PlayPauseIcon isLoading={props.isLoading} isDisabled={props.isLoading} isPlaying={props.isPlaying} size={props.size} color={props.iconColor} />
       </View>
     </TouchableOpacity>
   );
 });
 
-export const PlayPauseControlCircle: React.FC<Props> = React.memo(({ isPlaying, isLoading, isDisabled, size, iconColor, onPressPlay }) => {
+export const PlayPauseControlCircle: React.FC<Props> = React.memo((props) => {
   return (
     <TouchableOpacity
       testID="PlayPauseControlCircle-button"
       style={[styles.playButton, styles.playButtonCircle]}
-      onPress={() => onPressPlay()}
+      onPress={() => props.onPressPlay()}
       hitSlop={defaultHitslop}
-      disabled={isDisabled}
+      disabled={props.isDisabled}
     >
       <View style={styles.controlPlay}>
-        <PlayPauseIcon isLoading={isLoading} isPlaying={isPlaying} size={size} color={iconColor} />
+        <PlayPauseIcon isLoading={props.isLoading} isPlaying={props.isPlaying} size={props.size} color={props.iconColor} />
       </View>
     </TouchableOpacity>
   );
 });
 
-export const PlayPauseIcon: React.FC<PlayPauseIconProps> = React.memo(({ isPlaying, isLoading, size, color }) => {
-  if (isLoading) { return <ActivityIndicator color={(color === colors.white) ? colors.white : colors.black} />; }
-  if (isPlaying) { return <Icon.FontAwesome5 name="pause" color={color ? color : colors.white} size={size ? size : 16} />; }
-  return <Icon.FontAwesome5 name="play" color={color ? color : colors.white} size={size ? size : 16} style={{ marginLeft: 3 }} />;
+export const PlayPauseIcon: React.FC<PlayPauseIconProps> = React.memo((props) => {
+  if (props.isLoading) { return <ActivityIndicator color={(props.color === colors.white) ? colors.white : colors.black} />; }
+  if (props.isPlaying) { return <Icon.FontAwesome5 name="pause" color={props.color ? props.color : colors.white} size={props.size ? props.size : 16} />; }
+  return <Icon.FontAwesome5 name="play" color={props.color ? props.color : colors.white} size={props.size ? props.size : 16} style={{ marginLeft: 3 }} />;
 });

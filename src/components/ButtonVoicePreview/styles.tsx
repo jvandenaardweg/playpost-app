@@ -4,7 +4,7 @@ import {
 import colors from '../../constants/colors';
 import { UserTheme } from '../../reducers/user';
 
-export default (theme?: UserTheme) => StyleSheet.create({
+export default (theme: UserTheme) => StyleSheet.create({
   container: {
     borderRadius: 32,
     height: 32,

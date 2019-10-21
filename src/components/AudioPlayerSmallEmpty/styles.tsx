@@ -6,7 +6,7 @@ import spacing from '../../constants/spacing';
 import { UserTheme } from '../../reducers/user';
 import styles from '../AudioPlayerSmall/styles';
 
-export default (theme?: UserTheme) => StyleSheet.create({
+export default (theme: UserTheme) => StyleSheet.create({
   wrapper: {
     ...styles(theme).wrapper
   },

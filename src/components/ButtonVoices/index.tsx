@@ -12,7 +12,7 @@ interface Props {
   onPress(): void;
 }
 
-export const ButtonVoices: React.FC<Props> = React.memo(({ onPress }) => {
+export const ButtonVoices: React.FC<Props> = React.memo((props) => {
   const { theme } = useContext(UserThemeContext);
 
   const backgroundColor = (theme === UserTheme.dark) ? colors.gray600 : colors.grayLight;
@@ -20,7 +20,7 @@ export const ButtonVoices: React.FC<Props> = React.memo(({ onPress }) => {
 
   return (
     <View style={styles(theme).container}>
-      <ButtonTiny label="Voices" labelColor={labelColor} backgroundColor={backgroundColor} onPress={onPress} />
+      <ButtonTiny label="Voices" labelColor={labelColor} backgroundColor={backgroundColor} onPress={props.onPress} />
     </View>
   );
 });

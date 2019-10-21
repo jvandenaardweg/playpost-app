@@ -22,12 +22,12 @@ interface Props {
   filters: Filter[]
 }
 
-export const TopFilter: React.FC<Props> = React.memo(({ filters }) => {
+export const TopFilter: React.FC<Props> = React.memo((props) => {
   const { theme } = useContext(UserThemeContext)
 
   return (
     <View>
-      {filters.map((filter, filterIndex) => (
+      {props.filters.map((filter, filterIndex) => (
         <View style={styles(theme).filterContainer} key={filterIndex}>
           <Text style={styles(theme).filterLabel} preset="footnoteEmphasized" testID="TopFilter-Text-label">{filter.label}</Text>
           <ScrollView

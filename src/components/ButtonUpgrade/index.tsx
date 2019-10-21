@@ -13,13 +13,13 @@ interface Props {
   onPress(): void;
 }
 
-export const ButtonUpgrade: React.FC<Props> = React.memo(({ onPress }) => {
+export const ButtonUpgrade: React.FC<Props> = React.memo((props) => {
   return (
     <View style={styles.container}>
       <ButtonTiny
         label="Upgrade"
         labelColor={colors.white}
-        onPress={onPress}
+        onPress={props.onPress}
         backgroundColor={colors.tintColor}
         IconElement={<Icon.FontAwesome5 name="star" solid size={12} color={colors.white} />}
       />

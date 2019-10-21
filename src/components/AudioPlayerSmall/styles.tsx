@@ -4,7 +4,7 @@ import colors from '../../constants/colors';
 import spacing from '../../constants/spacing';
 import { UserTheme } from '../../reducers/user';
 
-export default (theme?: UserTheme) => StyleSheet.create({
+export default (theme: UserTheme) => StyleSheet.create({
   wrapper: {
     height: 55,
     backgroundColor: theme === UserTheme.dark ? colors.gray800 : colors.black,

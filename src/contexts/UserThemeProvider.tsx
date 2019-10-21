@@ -17,40 +17,30 @@ interface IProps {
   children: React.ReactElement;
 }
 
-interface State {
-  theme: UserTheme
-}
 
 type Props = IProps & StateProps;
 
-export class UserThemeProviderContainer extends React.PureComponent<Props, State> {
-  state = {
-    theme: UserTheme.light // default
-  };
-
+export class UserThemeProviderContainer extends React.PureComponent<Props> {
   async componentDidMount() {
-    const { userSelectedTheme } = this.props;
-    this.setState({ theme: userSelectedTheme })
-
-    this.setStatusBarStyle(userSelectedTheme);
+    const { theme } = this.props;
+    this.setStatusBarStyle(theme);
   }
 
-  componentDidUpdate(prevProps: Props, nextState: State) {
-    const { userSelectedTheme } = this.props;
+  componentDidUpdate(prevProps: Props) {
+    const { theme } = this.props;
 
     // sync store with provider
-    if (prevProps.userSelectedTheme !== userSelectedTheme) {
-      this.setState({ theme: userSelectedTheme })
-      this.setStatusBarStyle(userSelectedTheme);
+    if (prevProps.theme !== theme) {
+      this.setStatusBarStyle(theme);
     }
   }
 
-  setStatusBarStyle = (userSelectedTheme: UserTheme) => {
-    if (userSelectedTheme === UserTheme.dark) {
+  setStatusBarStyle = (theme: UserTheme) => {
+    if (theme === UserTheme.dark) {
       StatusBar.setBarStyle('light-content')
 
       if (Platform.OS === 'android') {
-        StatusBar.setBackgroundColor(colors.black)
+        StatusBar.setBackgroundColor(colors.pureBlack)
       }
     } else {
       StatusBar.setBarStyle('dark-content')
@@ -62,16 +52,17 @@ export class UserThemeProviderContainer extends React.PureComponent<Props, State
   }
 
   render() {
-    return <UserThemeContext.Provider value={this.state}>{this.props.children}</UserThemeContext.Provider>;
+    console.log('render theme', this.props)
+    return <UserThemeContext.Provider value={this.props}>{this.props.children}</UserThemeContext.Provider>;
   }
 }
 
 interface StateProps {
-  userSelectedTheme: ReturnType<typeof selectUserSelectedTheme>;
+  theme: ReturnType<typeof selectUserSelectedTheme>;
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
-  userSelectedTheme: selectUserSelectedTheme(state)
+  theme: selectUserSelectedTheme(state)
 });
 
 const mapDispatchToProps = { };

@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import colors from '../../constants/colors';
 import { UserTheme } from '../../reducers/user';
 
-export default (theme?: UserTheme) => StyleSheet.create({
+export default (theme: UserTheme) => StyleSheet.create({
   actionText: {
     color: colors.white,
     backgroundColor: 'transparent',

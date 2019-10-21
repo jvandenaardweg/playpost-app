@@ -34,22 +34,7 @@ export interface Props {
   isDowngradePaidSubscription(productId: string): boolean;
 }
 
-export const Upgrade: React.FC<Props> = React.memo(
-  ({
-    isLoadingSubscriptionItems,
-    isLoadingBuySubscription,
-    isLoadingRestorePurchases,
-    isEligibleForTrial,
-    subscriptions,
-    subscriptionFeatures,
-    activeSubscriptionProductId,
-    centeredSubscriptionProductId,
-    onPressUpgrade,
-    onPressRestore,
-    onPressOpenUrl,
-    onPressCancel,
-    isDowngradePaidSubscription
-  }) => {
+export const Upgrade: React.FC<Props> = React.memo((props) => {
     const { theme } = useContext(UserThemeContext);
     const horizontalScrollViewRef = useRef<ScrollView>(null);
 
@@ -72,10 +57,10 @@ export const Upgrade: React.FC<Props> = React.memo(
     // Center the subscription based on centeredSubscriptionProductId
     // Else on activeSubscriptionProductId
     // Else, show free
-    const contentOffsetX = centeredSubscriptionProductId ? startOffset[centeredSubscriptionProductId] : activeSubscriptionProductId ? startOffset[activeSubscriptionProductId] : snapToInterval;
+    const contentOffsetX = props.centeredSubscriptionProductId ? startOffset[props.centeredSubscriptionProductId] : props.activeSubscriptionProductId ? startOffset[props.activeSubscriptionProductId] : snapToInterval;
 
     const contentOffset = { x: contentOffsetX, y: 0, animated: false };
-    const scrollEnabled = !isLoadingBuySubscription;
+    const scrollEnabled = !props.isLoadingBuySubscription;
 
     useEffect(() => {
       if (!horizontalScrollViewRef || !horizontalScrollViewRef.current) {
@@ -101,15 +86,15 @@ export const Upgrade: React.FC<Props> = React.memo(
             scrollEnabled={scrollEnabled}
             decelerationRate={0}
           >
-            {subscriptionFeatures &&
-              Object.keys(subscriptionFeatures).map((subscriptionFeatureProductId, index) => {
+            {props.subscriptionFeatures &&
+              Object.keys(props.subscriptionFeatures).map((subscriptionFeatureProductId, index) => {
                 const isFirst = index === 0;
-                const isLast = Object.keys(subscriptionFeatures).length === index + 1;
+                const isLast = Object.keys(props.subscriptionFeatures).length === index + 1;
 
-                const subscriptionFeature = subscriptionFeatures[subscriptionFeatureProductId];
+                const subscriptionFeature = props.subscriptionFeatures[subscriptionFeatureProductId];
 
                 // Get the subscription data using the productId
-                const featureSubscription = subscriptions && subscriptions.find(subscription => subscription.productId === subscriptionFeatureProductId);
+                const featureSubscription = props.subscriptions && props.subscriptions.find(subscription => subscription.productId === subscriptionFeatureProductId);
                 const productId = featureSubscription ? featureSubscription.productId : subscriptionFeatureProductId;
                 const isAvailableOnService = !!featureSubscription;
 
@@ -128,14 +113,14 @@ export const Upgrade: React.FC<Props> = React.memo(
                 }
 
                 // Get the localized currency, so we can show a localized currency symbol next to our "Free" option
-                const localizedCurrency = subscriptions && subscriptions.length && subscriptions[0].currency;
+                const localizedCurrency = props.subscriptions && props.subscriptions.length && props.subscriptions[0].currency;
                 const currencySymbol = localizedCurrency ? getSymbolFromCurrency(localizedCurrency) : '';
                 const localizedPrice = featureSubscription ? featureSubscription.localizedPrice : `${currencySymbol}${subscriptionFeature.price}`;
                 const title = subscriptionFeature.title; // Do not use the subscription.title, this appears to be missing on some localizations
 
 
-                const hasTrialIOS = featureSubscription && featureSubscription.introductoryPricePaymentModeIOS === 'FREETRIAL' && isEligibleForTrial;
-                const hasTrialAndroid = featureSubscription && featureSubscription.freeTrialPeriodAndroid && isEligibleForTrial;
+                const hasTrialIOS = featureSubscription && featureSubscription.introductoryPricePaymentModeIOS === 'FREETRIAL' && props.isEligibleForTrial;
+                const hasTrialAndroid = featureSubscription && featureSubscription.freeTrialPeriodAndroid && props.isEligibleForTrial;
 
                 const hasTrial = hasTrialIOS || hasTrialAndroid;
 
@@ -152,11 +137,11 @@ export const Upgrade: React.FC<Props> = React.memo(
                 const defaultButtonTitle = `Upgrade to ${title}`;
                 const freeButtonTitle = `Downgrade to ${title}`;
 
-                const buttonTitleAction = isDowngradePaidSubscription(productId) || productId === SUBSCRIPTION_PRODUCT_ID_FREE ? freeButtonTitle : trialButtonTitle ? trialButtonTitle : defaultButtonTitle;
-                const buttonTitle = activeSubscriptionProductId === productId ? 'Current subscription' : buttonTitleAction;
+                const buttonTitleAction = props.isDowngradePaidSubscription(productId) || productId === SUBSCRIPTION_PRODUCT_ID_FREE ? freeButtonTitle : trialButtonTitle ? trialButtonTitle : defaultButtonTitle;
+                const buttonTitle = props.activeSubscriptionProductId === productId ? 'Current subscription' : buttonTitleAction;
 
-                const isDisabled = isLoadingSubscriptionItems || isLoadingBuySubscription || isLoadingRestorePurchases || activeSubscriptionProductId === productId || !isAvailableOnService;
-                const isLoading = isLoadingSubscriptionItems || isLoadingBuySubscription;
+                const isDisabled = props.isLoadingSubscriptionItems || props.isLoadingBuySubscription || props.isLoadingRestorePurchases || props.activeSubscriptionProductId === productId || !isAvailableOnService;
+                const isLoading = props.isLoadingSubscriptionItems || props.isLoadingBuySubscription;
 
                 return (
                   <View
@@ -170,7 +155,7 @@ export const Upgrade: React.FC<Props> = React.memo(
                       <Text style={styles(theme).cardTitle} preset="title3">{title}</Text>
                     </View>
                     <View style={styles(theme).cardPriceContainer}>
-                      {isLoadingSubscriptionItems ? <ActivityIndicator size="large" color={theme === UserTheme.dark ? colors.white : colors.black} /> : <Text style={styles(theme).cardPrice} testID="Upgrade-Text-price" fontWeight="extraBold">{localizedPrice}</Text>}
+                      {props.isLoadingSubscriptionItems ? <ActivityIndicator size="large" color={theme === UserTheme.dark ? colors.white : colors.black} /> : <Text style={styles(theme).cardPrice} testID="Upgrade-Text-price" fontWeight="extraBold">{localizedPrice}</Text>}
                     </View>
                     <View>
                       <Text style={styles(theme).cardMeta} preset="footnote">per month</Text>
@@ -178,7 +163,7 @@ export const Upgrade: React.FC<Props> = React.memo(
                     <View style={styles(theme).cardButtonContainer}>
                       <Button
                         title={buttonTitle}
-                        onPress={() => onPressUpgrade(productId)}
+                        onPress={() => props.onPressUpgrade(productId)}
                         disabled={isDisabled}
                         loading={isLoading}
                         loadingProps={{ color: 'black' }}
@@ -203,9 +188,9 @@ export const Upgrade: React.FC<Props> = React.memo(
                         <Button
                           type="clear"
                           title="Restore purchase"
-                          loading={isLoadingRestorePurchases}
-                          disabled={isLoadingRestorePurchases}
-                          onPress={onPressRestore}
+                          loading={props.isLoadingRestorePurchases}
+                          disabled={props.isLoadingRestorePurchases}
+                          onPress={props.onPressRestore}
                           loadingProps={{ color: 'black' }}
                         />
                       </View>
@@ -274,33 +259,33 @@ export const Upgrade: React.FC<Props> = React.memo(
               </Text>
 
               <View style={styles(theme).footerLinks}>
-                <Text preset="caption2" style={[styles(theme).footerText, styles(theme).textHighlight]} onPress={() => onPressOpenUrl(URL_PRIVACY_POLICY)}>
+                <Text preset="caption2" style={[styles(theme).footerText, styles(theme).textHighlight]} onPress={() => props.onPressOpenUrl(URL_PRIVACY_POLICY)}>
                   Privacy Policy
                 </Text>
                 <Text preset="caption2" style={styles(theme).footerText}> - </Text>
-                <Text preset="caption2" style={[styles(theme).footerText, styles(theme).textHighlight]} onPress={() => onPressOpenUrl(URL_TERMS_OF_USE)}>
+                <Text preset="caption2" style={[styles(theme).footerText, styles(theme).textHighlight]} onPress={() => props.onPressOpenUrl(URL_TERMS_OF_USE)}>
                   Terms of Use
                 </Text>
                 <Text preset="caption2" style={styles(theme).footerText}> - </Text>
-                <Text preset="caption2" style={[styles(theme).footerText, styles(theme).textHighlight]} onPress={() => onPressOpenUrl(URL_ACCEPTABLE_USE_POLICY)}>
+                <Text preset="caption2" style={[styles(theme).footerText, styles(theme).textHighlight]} onPress={() => props.onPressOpenUrl(URL_ACCEPTABLE_USE_POLICY)}>
                   Acceptable Use Policy
                 </Text>
               </View>
               <View style={{ marginTop: 18 }}>
                 <Button
                   title="Already upgraded? Restore purchase"
-                  loading={isLoadingRestorePurchases}
-                  disabled={isLoadingRestorePurchases}
-                  onPress={onPressRestore}
+                  loading={props.isLoadingRestorePurchases}
+                  disabled={props.isLoadingRestorePurchases}
+                  onPress={props.onPressRestore}
                   loadingProps={{ color: 'black' }}
                 />
 
-                {activeSubscriptionProductId !== SUBSCRIPTION_PRODUCT_ID_FREE && (
+                {props.activeSubscriptionProductId !== SUBSCRIPTION_PRODUCT_ID_FREE && (
                   <View style={{ marginTop: 18 }}>
                     <Button
                       type="clear"
                       buttonStyle={{ borderColor: colors.red }}
-                      onPress={() => onPressCancel()}
+                      onPress={() => props.onPressCancel()}
                       title="Cancel active subscription?"
                     />
                   </View>

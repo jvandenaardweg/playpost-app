@@ -8,12 +8,12 @@ interface Props {
   children: ReactNode;
 }
 
-export const AppBackground: React.FC<Props> = React.memo(({ children }) => {
+export const AppBackground: React.FC<Props> = React.memo((props) => {
   const { theme } = useContext(UserThemeContext)
 
   return (
     <View style={styles(theme).container}>
-      {children}
+      {props.children}
     </View>
   )
 });
