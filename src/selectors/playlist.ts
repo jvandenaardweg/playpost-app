@@ -10,7 +10,7 @@ export const selectPlaylistError = createSelector(
   playlist => playlist.error
 );
 
-export const selectPlaylistItems = createSelector(
+export const selectPlaylistItems = createDeepEqualSelector(
   [playlistSelector],
   playlist => playlist.items
 );
