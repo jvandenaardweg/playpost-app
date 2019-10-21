@@ -1,3 +1,4 @@
+import memoize from 'fast-memoize';
 import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
@@ -5,7 +6,7 @@ import layout from '../../constants/layout';
 import spacing from '../../constants/spacing';
 import { UserTheme } from '../../reducers/user';
 
-export default (theme: UserTheme) => StyleSheet.create({
+export default memoize((theme: UserTheme) => StyleSheet.create({
   container: {
   },
   contentContainer: {
@@ -172,4 +173,4 @@ export default (theme: UserTheme) => StyleSheet.create({
     textDecorationLine: 'underline',
     marginTop: 4
   }
-});
+}))

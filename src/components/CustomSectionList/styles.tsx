@@ -1,3 +1,4 @@
+import memoize from 'fast-memoize';
 import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
@@ -7,7 +8,7 @@ import { UserTheme } from '../../reducers/user';
 
 const sectionFooterHeight = spacing.default;
 
-export default (theme: UserTheme) => StyleSheet.create({
+export default memoize((theme: UserTheme) => StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme === UserTheme.dark ? colors.black : colors.grayLightest
@@ -47,4 +48,4 @@ export default (theme: UserTheme) => StyleSheet.create({
   listItemContainerBorderBottomRadius: {
     // borderBottomLeftRadius: 8, borderBottomRightRadius: 8
   }
-});
+}))

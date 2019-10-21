@@ -1,9 +1,10 @@
+import memoize from 'fast-memoize';
 import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
 import { UserTheme } from '../../reducers/user';
 
-export default (theme: UserTheme) => StyleSheet.create({
+export default memoize((theme: UserTheme) => StyleSheet.create({
   container: {
     position: 'absolute',
     top: 0,
@@ -17,4 +18,4 @@ export default (theme: UserTheme) => StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: theme === UserTheme.dark ? colors.black : colors.grayLightest
   }
-});
+}));

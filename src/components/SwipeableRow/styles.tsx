@@ -1,9 +1,10 @@
+import memoize from 'fast-memoize';
 import { StyleSheet } from 'react-native';
 
 import colors from '../../constants/colors';
 import { UserTheme } from '../../reducers/user';
 
-export default (theme: UserTheme) => StyleSheet.create({
+export default memoize((theme: UserTheme) => StyleSheet.create({
   actionText: {
     color: colors.white,
     backgroundColor: 'transparent',
@@ -26,4 +27,4 @@ export default (theme: UserTheme) => StyleSheet.create({
     justifyContent: 'center',
     width: '100%' // 250 - 16 - 16 / 4
   },
-});
+}));
