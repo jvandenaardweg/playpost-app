@@ -22,7 +22,7 @@ export const NetworkProvider: React.FC = React.memo((props) => {
         unsubscribeListener();
       }
     }
-  },)
+  }, [])
 
   return (
     <NetworkContext.Provider value={{ isConnected: isConnected ? true : false }}>

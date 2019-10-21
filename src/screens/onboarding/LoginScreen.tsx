@@ -1,23 +1,20 @@
 import React from 'react';
-import { SafeAreaView, StatusBar } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import { NavigationStackOptions } from 'react-navigation-stack';
 
-import colors from '../../constants/colors';
+import { NavigationRoute, NavigationScreenComponent, NavigationScreenProp } from 'react-navigation';
 import { LoginFormContainer } from '../../containers/LoginFormContainer';
 
-export class LoginScreen extends React.PureComponent {
-  static navigationOptions = (): NavigationStackOptions => {
-    return {
-      title: 'Login',
-    };
-  }
+export const LoginScreen: NavigationScreenComponent<{}, NavigationScreenProp<NavigationRoute>> = React.memo(() => {
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <LoginFormContainer />
+    </SafeAreaView>
+  );
+})
 
-  render() {
-    return (
-      <SafeAreaView style={{ flex: 1 }}>
-        <StatusBar barStyle="dark-content" backgroundColor={colors.white} animated />
-        <LoginFormContainer />
-      </SafeAreaView>
-    );
-  }
+LoginScreen.navigationOptions = (): NavigationStackOptions => {
+  return {
+    title: 'Login',
+  };
 }
