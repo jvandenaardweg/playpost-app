@@ -129,7 +129,7 @@ exports[`UpgradeModal rendering should render correctly 1`] = `
       >
         You have used your free minutes for this month. Upgrade now to continue listening using this voice or one of the 240 other high-quality voices. Pick and choose the voice you like!
 
-When not upgrading, you will be set to use our lowest quality voices for the next month.
+When not upgrading, you will be set to use our lowest quality voices from now on.
       </Text>
       <View
         style={

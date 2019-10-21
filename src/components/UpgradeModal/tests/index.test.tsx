@@ -69,7 +69,7 @@ describe('UpgradeModal', () => {
       expect(wrapper.getByTestId('UpgradeModal-Button-upgrade')).toBeTruthy();
       expect(wrapper.getByTestId('UpgradeModal-Button-upgrade').props.title).toBe('Continue listening');
       expect(wrapper.getByTestId('UpgradeModal-Text-not-isSubscribed')).toBeTruthy();
-      expect(wrapper.getByTestId('UpgradeModal-Text-not-isSubscribed').props.children).toBe(`You have used your free minutes for this month. Upgrade now to continue listening using this voice or one of the 240 other high-quality voices. Pick and choose the voice you like!\n\nWhen not upgrading, you will be set to use our lowest quality voices for the next month.`);
+      expect(wrapper.getByTestId('UpgradeModal-Text-not-isSubscribed').props.children).toBe(`You have used your free minutes for this month. Upgrade now to continue listening using this voice or one of the 240 other high-quality voices. Pick and choose the voice you like!\n\nWhen not upgrading, you will be set to use our lowest quality voices from now on.`);
     });
 
     it('should render the correct content when user is already subscribed but should upgrade to a higher plan', () => {
