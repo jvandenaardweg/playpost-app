@@ -1,6 +1,6 @@
 import React, { useContext, useRef } from 'react';
 import { KeyboardAvoidingView, Platform, ScrollView, TextInput, View } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button } from '../Button';
 
 import spacing from '../../constants/spacing';
 import { UserThemeContext } from '../../contexts/UserThemeProvider';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ActivityIndicator, View } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button } from '../Button';
 
 import Text from '../Text';
 import styles from './styles';

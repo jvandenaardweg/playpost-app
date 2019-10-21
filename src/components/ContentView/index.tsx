@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { SafeAreaView, View } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button } from '../Button';
 import WebView from 'react-native-webview';
 
 import colors from '../../constants/colors';

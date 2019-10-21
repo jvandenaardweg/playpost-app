@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { KeyboardAvoidingView, Platform, View } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button } from '../Button';
 import { UserThemeContext } from '../../contexts/UserThemeProvider';
 import { InputGroupPassword } from '../InputGroup/password';
 import styles from './styles';

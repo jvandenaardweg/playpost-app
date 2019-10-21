@@ -1,6 +1,6 @@
 import analytics from '@react-native-firebase/analytics';
 import isUUID from 'is-uuid';
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Alert, Linking, Platform, UIManager } from 'react-native';
 import DeepLinking from 'react-native-deep-linking';
 import { ThemeProvider as ReactNativeElementsThemeProvider } from 'react-native-elements';
@@ -21,11 +21,12 @@ import { APIErrorAlertContainer } from './containers/APIErrorAlertContainer';
 import { SubscriptionHandlerContainer } from './containers/SubscriptionHandlerContainer';
 import { AppStateProvider } from './contexts/AppStateProvider';
 import { NetworkProvider } from './contexts/NetworkProvider';
-import { UserThemeProvider } from './contexts/UserThemeProvider';
+import { UserThemeProvider, UserThemeContext } from './contexts/UserThemeProvider';
 import { AppContainer } from './navigation/AppNavigator';
 
 import { addArticleToPlaylistById } from './reducers/playlist';
 import { selectIsLoggedIn } from './selectors/auth';
+import { ReactNativeThemeProvider } from './components/ReactNativeThemeProvider';
 
 // https://facebook.github.io/react-native/docs/layoutanimation
 // Note that in order to get this to work on Android you need to set the following flags via UIManager:
@@ -36,6 +37,7 @@ if (Platform.OS === 'android') {
 }
 
 const App: React.FC = React.memo(() => {
+  const { theme } = useContext(UserThemeContext);
 
   useEffect(() => {
     const onMount = async () => {
@@ -150,12 +152,14 @@ const App: React.FC = React.memo(() => {
     );
   };
 
+  console.log('app', theme)
+
   return (
     <ErrorBoundary>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <UserThemeProvider>
-            <ReactNativeElementsThemeProvider theme={reactNativeElementsTheme}>
+            <ReactNativeThemeProvider>
               <NetworkProvider>
                 <AppStateProvider>
                   <>
@@ -165,7 +169,7 @@ const App: React.FC = React.memo(() => {
                   </>
                 </AppStateProvider>
               </NetworkProvider>
-            </ReactNativeElementsThemeProvider>
+            </ReactNativeThemeProvider>
           </UserThemeProvider>
         </PersistGate>
       </Provider>

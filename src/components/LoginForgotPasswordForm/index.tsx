@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button } from '../Button';
 
 import { UserThemeContext } from '../../contexts/UserThemeProvider';
 import { InputGroupEmail } from '../InputGroup/email';

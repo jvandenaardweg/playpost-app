@@ -1,6 +1,6 @@
 import React, { useContext, useRef } from 'react';
 import { KeyboardAvoidingView, Platform, ScrollView, TextInput, View } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button } from '../Button';
 
 import { placeholderTextcolor } from '../../constants/text-input';
 import { UserThemeContext } from '../../contexts/UserThemeProvider';

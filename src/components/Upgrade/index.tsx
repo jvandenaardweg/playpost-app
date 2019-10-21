@@ -1,7 +1,7 @@
 import getSymbolFromCurrency from 'currency-symbol-map';
 import React, { useContext, useEffect, useRef } from 'react';
 import { ActivityIndicator, Dimensions, Platform, ScrollView, View } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button } from '../Button';
 import * as RNIap from 'react-native-iap';
 
 import * as Icon from '../Icon';
@@ -166,7 +166,6 @@ export const Upgrade: React.FC<Props> = React.memo((props) => {
                         onPress={() => props.onPressUpgrade(productId)}
                         disabled={isDisabled}
                         loading={isLoading}
-                        loadingProps={{ color: 'black' }}
                         testID="Upgrade-Button"
                       />
                     </View>

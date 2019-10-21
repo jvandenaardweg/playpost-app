@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import isEqual from 'react-fast-compare';
 import { View } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button } from '../Button';
 
 import colors from '../../constants/colors';
 import { SUBSCRIPTION_PRODUCT_ID_FREE, SUBSCRIPTION_PRODUCT_ID_PREMIUM, SUBSCRIPTION_PRODUCT_ID_UNLIMITED } from '../../constants/in-app-purchase';

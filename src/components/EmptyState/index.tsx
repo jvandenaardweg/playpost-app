@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { View } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button } from '../Button';
 
 import { UserThemeContext } from '../../contexts/UserThemeProvider';
 import Text from '../Text';
