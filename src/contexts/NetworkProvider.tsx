@@ -1,6 +1,5 @@
-import NetInfo, { NetInfoSubscription } from '@react-native-community/netinfo';
-import React from 'react';
-import { InteractionManager } from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
+import React, { useEffect, useState } from 'react';
 
 export const NetworkContext = React.createContext<{ isConnected: boolean }>({ isConnected: false });
 
@@ -10,33 +9,24 @@ interface State {
   isConnected?: boolean;
 }
 
-export class NetworkProvider extends React.PureComponent<State> {
-  state = {
-    isConnected: false
-  };
+export const NetworkProvider: React.FC = React.memo((props) => {
+  const [isConnected, setIsConnected] = useState<State['isConnected']>(false);
 
-  unsubscribeListener: NetInfoSubscription | null = null;
-
-  componentDidMount() {
-    InteractionManager.runAfterInteractions(() => {
-      this.unsubscribeListener = NetInfo.addEventListener((state) => {
-        this.setState({ isConnected: state.isConnected });
-      });
+  useEffect(() => {
+    const unsubscribeListener = NetInfo.addEventListener((state) => {
+      setIsConnected(state.isConnected)
     });
-  }
 
-  componentWillUnmount() {
-    if (this.unsubscribeListener) {
-      this.unsubscribeListener();
-      this.unsubscribeListener = null;
+    return () => {
+      if (unsubscribeListener) {
+        unsubscribeListener();
+      }
     }
-  }
+  },)
 
-  render() {
-    return (
-      <NetworkContext.Provider value={this.state}>
-        {this.props.children}
-      </NetworkContext.Provider>
-    );
-  }
-}
+  return (
+    <NetworkContext.Provider value={{ isConnected: isConnected ? true : false }}>
+      {props.children}
+    </NetworkContext.Provider>
+  );
+})

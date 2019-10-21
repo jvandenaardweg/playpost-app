@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Platform, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 
@@ -17,25 +17,11 @@ interface IProps {
   children: React.ReactElement;
 }
 
-
 type Props = IProps & StateProps;
 
-export class UserThemeProviderContainer extends React.PureComponent<Props> {
-  async componentDidMount() {
-    const { theme } = this.props;
-    this.setStatusBarStyle(theme);
-  }
+export const UserThemeProviderContainer: React.FC<Props> = React.memo((props) => {
 
-  componentDidUpdate(prevProps: Props) {
-    const { theme } = this.props;
-
-    // sync store with provider
-    if (prevProps.theme !== theme) {
-      this.setStatusBarStyle(theme);
-    }
-  }
-
-  setStatusBarStyle = (theme: UserTheme) => {
+  const setStatusBarStyle = (theme: UserTheme) => {
     if (theme === UserTheme.dark) {
       StatusBar.setBarStyle('light-content')
 
@@ -51,11 +37,12 @@ export class UserThemeProviderContainer extends React.PureComponent<Props> {
     }
   }
 
-  render() {
-    // console.log('render theme', this.props)
-    return <UserThemeContext.Provider value={this.props}>{this.props.children}</UserThemeContext.Provider>;
-  }
-}
+  useEffect(() => {
+    setStatusBarStyle(props.theme);
+  }, [props.theme])
+
+  return <UserThemeContext.Provider value={props}>{props.children}</UserThemeContext.Provider>;
+})
 
 interface StateProps {
   theme: ReturnType<typeof selectUserSelectedTheme>;

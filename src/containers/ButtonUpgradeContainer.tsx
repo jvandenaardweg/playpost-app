@@ -10,23 +10,19 @@ import { selectUserIsSubscribed } from '../selectors/user';
 
 type Props = StateProps & NavigationInjectedProps;
 
-export class ButtonUpgradeContainerComponent extends React.PureComponent<Props> {
-  handleOnPressUpgrade = () => {
+export const ButtonUpgradeContainerComponent: React.FC<Props> = React.memo((props) => {
+  const handleOnPressUpgrade = () => {
     requestAnimationFrame(async () => {
       NavigationService.navigate('Upgrade')
     })
   }
 
-  render() {
-    const { isSubscribed } = this.props;
+  if (props.isSubscribed) { return null; }
 
-    if (isSubscribed) { return null; }
-
-    return (
-      <ButtonUpgrade onPress={this.handleOnPressUpgrade} />
-    );
-  }
-}
+  return (
+    <ButtonUpgrade onPress={handleOnPressUpgrade} />
+  );
+})
 
 interface StateProps {
   isSubscribed: ReturnType<typeof selectUserIsSubscribed>;
