@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-community/async-storage';
 import analytics from '@react-native-firebase/analytics';
 import React from 'react';
 import RNFS from 'react-native-fs';
@@ -50,6 +51,10 @@ class LogoutScreenContainer extends React.PureComponent<Props> {
 
     // Remove the persisted state
     await persistor.purge();
+
+    // Remove items in Async Storage we set troughout the app
+    AsyncStorage.removeItem('@hasRunBefore');
+    AsyncStorage.removeItem('@showHelpVideo');
 
     // Reset all the stores to it's original state
     this.props.resetAuthState();
