@@ -6,8 +6,8 @@ import DeviceInfo from 'react-native-device-info';
 
 import { userLanguageCode } from '../locale';
 import { setIsActiveUpgradeModal } from '../reducers/subscriptions';
+import { selectAuthenticationToken } from '../selectors/auth';
 import { store } from '../store';
-import * as keychain from '../utils/keychain';
 
 // Android emulator uses 10.0.2.2 as localhost map
 export const baseURL = Platform.select({
@@ -40,8 +40,7 @@ apiClient.interceptors.response.use(async (response) => {
 apiClient.interceptors.request.use(async (config) => {
   await startHttpMetric(config)
 
-  // const token = selectAuthenticationToken(store.getState())
-  const token = await keychain.getToken();
+  const token = selectAuthenticationToken(store.getState())
 
   if (token) {
     config.headers['Authorization'] =  `Bearer ${token}`;

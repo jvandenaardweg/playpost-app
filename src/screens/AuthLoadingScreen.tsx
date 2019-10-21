@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import NetInfo from '@react-native-community/netinfo';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Platform, StatusBar } from 'react-native';
 import { NavigationRoute, NavigationScreenProp } from 'react-navigation';
 
@@ -17,19 +17,8 @@ interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;
 }
 
-export class AuthLoadingScreen extends React.PureComponent<Props> {
-  componentDidMount() {
-    this.bootstrapAsync();
-
-    StatusBar.setBarStyle('dark-content');
-
-    if (Platform.OS === 'android') {
-      StatusBar.setBackgroundColor(colors.white)
-    }
-  }
-
-  // Upon load of the app, do the following...
-  bootstrapAsync = async () => {
+export const AuthLoadingScreen: React.FC<Props> = React.memo((props) => {
+  const bootstrapAsync = async () => {
     // Determine if this is the first run after install
     // If so, delete any API token we had from a previous install
     // This will make sure the user starts clean and will see the onboarding screen, instead of the app screen
@@ -63,20 +52,27 @@ export class AuthLoadingScreen extends React.PureComponent<Props> {
     await cache.createAllCacheDirectories();
 
     if (!token) {
-      return this.props.navigation.navigate('Onboarding');
+      return props.navigation.navigate('Onboarding');
     }
 
     // User is logged in if we end up here
 
     // Prepare the app for the logged in user
 
-    this.props.navigation.navigate('App');
+    props.navigation.navigate('App');
 
     return SplashScreen.hide()
   }
 
-  // Render any loading content that you like here
-  render() {
-    return null;
-  }
-}
+  useEffect(() => {
+    bootstrapAsync();
+
+    StatusBar.setBarStyle('dark-content');
+
+    if (Platform.OS === 'android') {
+      StatusBar.setBackgroundColor(colors.white)
+    }
+  }, [])
+
+  return null;
+})
