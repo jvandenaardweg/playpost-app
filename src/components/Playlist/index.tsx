@@ -45,13 +45,7 @@ export const Playlist: React.FC<Props> = React.memo((props) => {
   // componentDidMount
   useEffect(() => {
     showOrHideHelpVideo()
-
-    if (isConnected) {
-      if (!playlistItems.length) {
-        setIsLoading(true);
-        fetchPlaylist();
-      }
-    }
+    // Note: fetching of playlist data on mount done in AppStateProvider
   }, [])
 
   // Handle a change in playlist items
