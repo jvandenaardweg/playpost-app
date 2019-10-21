@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { SectionListData } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
@@ -14,6 +14,11 @@ import colors from '../constants/colors';
 type Props = NavigationInjectedProps & StateProps & DispatchProps;
 
 export const ThemeSelectContainerComponent: React.FC<Props> = React.memo((props) => {
+  const [isLoadingTheme, setIsLoadingTheme] = useState('');
+
+  useEffect(() => {
+    setIsLoadingTheme('')
+  }, [props.userSelectedTheme])
 
   const sectionListData: ReadonlyArray<SectionListData<IListItem>> = [
     {
@@ -31,9 +36,15 @@ export const ThemeSelectContainerComponent: React.FC<Props> = React.memo((props)
           chevron: false,
           checkmark: true,
           isSelected,
+          isLoading: (isLoadingTheme === theme),
           icon: (theme === UserTheme.light) ? 'sun' : (theme === UserTheme.dark) ? 'moon' : 'clock',
           iconColor: colors.green,
-          onPress: () => requestAnimationFrame(() => props.setUserSelectedTheme(theme))
+          onPress: () => {
+            setIsLoadingTheme(theme)
+            requestAnimationFrame(() => {
+              props.setUserSelectedTheme(theme)
+            })
+          }
         }
       })
     }
