@@ -1,5 +1,5 @@
 import React from 'react';
-import { SectionListData } from 'react-native';
+import { SectionListData, LayoutAnimation } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 
@@ -8,6 +8,7 @@ import { setUserSelectedTheme, UserTheme } from '../reducers/user';
 import { selectUserAvailableThemes, selectUserSelectedTheme } from '../selectors/user';
 
 import { CustomSectionList, IListItem } from '../components/CustomSectionList';
+import colors from '../constants/colors';
 
 
 type Props = NavigationInjectedProps & StateProps & DispatchProps;
@@ -30,6 +31,8 @@ export class ThemeSelectContainerComponent extends React.Component<Props> {
             chevron: false,
             checkmark: true,
             isSelected,
+            icon: (theme === UserTheme.light) ? 'sun' : (theme === UserTheme.dark) ? 'moon' : 'clock',
+            iconColor: colors.green,
             onPress: () => this.props.setUserSelectedTheme(theme)
           }
         })
