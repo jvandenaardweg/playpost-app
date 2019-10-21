@@ -3,7 +3,6 @@ import isUUID from 'is-uuid';
 import React, { useContext, useEffect } from 'react';
 import { Alert, Linking, Platform, UIManager } from 'react-native';
 import DeepLinking from 'react-native-deep-linking';
-import { ThemeProvider as ReactNativeElementsThemeProvider } from 'react-native-elements';
 import { useScreens } from 'react-native-screens';
 import { Provider } from 'react-redux';
 // tslint:disable-next-line:no-submodule-imports
@@ -12,7 +11,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 useScreens();
 
 import { persistor, store } from './store';
-import { reactNativeElementsTheme } from './theme';
 
 import { isPerfHttpMetricsEnabled } from './api';
 import { ErrorBoundary } from './components/ErrorBoundary';

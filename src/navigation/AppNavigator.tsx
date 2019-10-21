@@ -190,7 +190,7 @@ const RootStack = createStackNavigator(
 )
 
 const AppNavigationContainer: NavigationContainer = createAppContainer(
-  createSwitchNavigator(
+  customCreateSwitchNavigator(
     {
       Root: RootStack,
       AuthLoading: AuthLoadingScreen,
@@ -200,7 +200,7 @@ const AppNavigationContainer: NavigationContainer = createAppContainer(
     },
     {
       initialRouteName: 'AuthLoading',
-      defaultNavigationOptions: ({ theme }) => ({
+      defaultNavigationOptions: ({ theme }: { theme: any }) => ({
       ...stackNavigatorDefaultNavigationOptions(theme, 'AppNavigationContainer')
     })
     }
