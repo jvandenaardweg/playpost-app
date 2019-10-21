@@ -231,7 +231,7 @@ export const Playlist: React.FC<Props> = React.memo((props) => {
         <RefreshControl
           refreshing={isRefreshing}
           onRefresh={handleOnRefresh}
-          tintColor={theme === UserTheme.dark ? colors.gray100 : colors.gray100}
+          tintColor={theme === UserTheme.dark ? colors.white : colors.gray100}
         />
       }
     />
