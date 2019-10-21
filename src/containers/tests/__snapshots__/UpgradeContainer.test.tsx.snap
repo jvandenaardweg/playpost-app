@@ -572,7 +572,7 @@ Premium or Unlimited
             <View
               style={
                 Object {
-                  "borderRadius": 3,
+                  "borderRadius": 6,
                 }
               }
             >
@@ -599,9 +599,10 @@ Premium or Unlimited
                       "alignItems": "center",
                       "backgroundColor": "#2089dc",
                       "borderColor": "#2089dc",
-                      "borderRadius": 3,
+                      "borderRadius": 6,
                       "borderWidth": 0,
                       "flexDirection": "row",
+                      "height": 50,
                       "justifyContent": "center",
                       "padding": 8,
                     }
@@ -611,7 +612,9 @@ Premium or Unlimited
                     style={
                       Object {
                         "color": "white",
-                        "fontSize": 18,
+                        "fontFamily": "Inter-SemiBold",
+                        "fontSize": 17,
+                        "lineHeight": 23,
                         "paddingBottom": 1,
                         "paddingTop": 2,
                         "textAlign": "center",
@@ -633,7 +636,7 @@ Premium or Unlimited
               <View
                 style={
                   Object {
-                    "borderRadius": 3,
+                    "borderRadius": 6,
                   }
                 }
               >
@@ -672,7 +675,9 @@ Premium or Unlimited
                       style={
                         Object {
                           "color": "#2089dc",
-                          "fontSize": 18,
+                          "fontFamily": "Inter-SemiBold",
+                          "fontSize": 17,
+                          "lineHeight": 23,
                           "paddingBottom": 1,
                           "paddingTop": 2,
                           "textAlign": "center",

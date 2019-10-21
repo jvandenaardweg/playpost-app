@@ -79,6 +79,7 @@ exports[`LoginForm rendering should render correctly 1`] = `
               "alignItems": "center",
               "backgroundColor": "#EEEEEE",
               "borderRadius": 6,
+              "color": "#000000",
               "fontFamily": "Inter-Regular",
               "fontSize": 15,
               "height": 50,
@@ -147,7 +148,7 @@ exports[`LoginForm rendering should render correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "black",
+                    "color": "#000000",
                     "fontSize": 20,
                   },
                   Object {
@@ -203,6 +204,7 @@ exports[`LoginForm rendering should render correctly 1`] = `
               "alignItems": "center",
               "backgroundColor": "#EEEEEE",
               "borderRadius": 6,
+              "color": "#000000",
               "fontFamily": "Inter-Regular",
               "fontSize": 15,
               "height": 50,
@@ -227,7 +229,7 @@ exports[`LoginForm rendering should render correctly 1`] = `
         <View
           style={
             Object {
-              "borderRadius": 3,
+              "borderRadius": 6,
             }
           }
         >
@@ -255,9 +257,10 @@ exports[`LoginForm rendering should render correctly 1`] = `
                   "alignItems": "center",
                   "backgroundColor": "#2089dc",
                   "borderColor": "#2089dc",
-                  "borderRadius": 3,
+                  "borderRadius": 6,
                   "borderWidth": 0,
                   "flexDirection": "row",
+                  "height": 50,
                   "justifyContent": "center",
                   "padding": 8,
                 }
@@ -267,7 +270,9 @@ exports[`LoginForm rendering should render correctly 1`] = `
                 style={
                   Object {
                     "color": "white",
-                    "fontSize": 18,
+                    "fontFamily": "Inter-SemiBold",
+                    "fontSize": 17,
+                    "lineHeight": 23,
                     "paddingBottom": 1,
                     "paddingTop": 2,
                     "textAlign": "center",
@@ -282,7 +287,7 @@ exports[`LoginForm rendering should render correctly 1`] = `
         <View
           style={
             Object {
-              "borderRadius": 3,
+              "borderRadius": 6,
             }
           }
         >
@@ -310,9 +315,10 @@ exports[`LoginForm rendering should render correctly 1`] = `
                   "alignItems": "center",
                   "backgroundColor": "transparent",
                   "borderColor": "#2089dc",
-                  "borderRadius": 3,
+                  "borderRadius": 6,
                   "borderWidth": 0,
                   "flexDirection": "row",
+                  "height": 50,
                   "justifyContent": "center",
                   "padding": 8,
                 }
@@ -322,7 +328,9 @@ exports[`LoginForm rendering should render correctly 1`] = `
                 style={
                   Object {
                     "color": "#2089dc",
-                    "fontSize": 18,
+                    "fontFamily": "Inter-SemiBold",
+                    "fontSize": 17,
+                    "lineHeight": 23,
                     "paddingBottom": 1,
                     "paddingTop": 2,
                     "textAlign": "center",

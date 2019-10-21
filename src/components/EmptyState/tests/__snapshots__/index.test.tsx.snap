@@ -133,7 +133,7 @@ exports[`EmptyState full rendering should render correctly 1`] = `
     <View
       style={
         Object {
-          "borderRadius": 3,
+          "borderRadius": 6,
         }
       }
     >
@@ -176,7 +176,9 @@ exports[`EmptyState full rendering should render correctly 1`] = `
             style={
               Object {
                 "color": "white",
-                "fontSize": 18,
+                "fontFamily": "Inter-SemiBold",
+                "fontSize": 17,
+                "lineHeight": 23,
                 "paddingBottom": 1,
                 "paddingTop": 2,
                 "textAlign": "center",

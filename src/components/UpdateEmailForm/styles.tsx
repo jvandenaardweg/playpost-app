@@ -10,7 +10,8 @@ export default (theme: UserTheme) => StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: spacing.large
+    padding: spacing.large,
+    backgroundColor: (theme === UserTheme.dark) ? colors.gray900 : colors.white
   },
   form: {
     width: '100%'

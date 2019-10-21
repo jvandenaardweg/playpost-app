@@ -1,6 +1,6 @@
 import React from 'react';
 import { Alert, InteractionManager } from 'react-native';
-import { NavigationInjectedProps, NavigationRoute, NavigationScreenProp, SafeAreaView } from 'react-navigation';
+import { NavigationInjectedProps, NavigationRoute, NavigationScreenProp } from 'react-navigation';
 import { NavigationStackOptions } from 'react-navigation-stack';
 import { connect } from 'react-redux';
 
@@ -13,7 +13,6 @@ import { getUser, patchUser } from '../../reducers/user';
 
 import { selectUserDetails, selectUserError } from '../../selectors/user';
 
-import { AppBackground } from '../../components/AppBackground';
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
 interface State {
@@ -115,17 +114,13 @@ export class UpdateEmailScreenContainer extends React.PureComponent<Props, State
     const { email, isLoading, isSuccess } = this.state;
 
     return (
-      <AppBackground>
-        <SafeAreaView style={{ flex: 1 }}>
-          <UpdateEmailForm
-            email={email}
-            isLoading={isLoading}
-            isSuccess={isSuccess}
-            onChangeText={this.handleOnChangeText}
-            onPressUpdateEmail={this.handleOnPressUpdateEmail}
-          />
-        </SafeAreaView>
-      </AppBackground>
+      <UpdateEmailForm
+        email={email}
+        isLoading={isLoading}
+        isSuccess={isSuccess}
+        onChangeText={this.handleOnChangeText}
+        onPressUpdateEmail={this.handleOnPressUpdateEmail}
+      />
     );
   }
 }

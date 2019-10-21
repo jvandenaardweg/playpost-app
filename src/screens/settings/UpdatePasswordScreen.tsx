@@ -1,6 +1,6 @@
 import React from 'react';
 import { Alert } from 'react-native';
-import { NavigationInjectedProps, NavigationRoute, NavigationScreenProp, SafeAreaView } from 'react-navigation';
+import { NavigationInjectedProps, NavigationRoute, NavigationScreenProp } from 'react-navigation';
 import { NavigationStackOptions } from 'react-navigation-stack';
 import { connect } from 'react-redux';
 
@@ -13,7 +13,6 @@ import { patchUser } from '../../reducers/user';
 
 import { selectUserError } from '../../selectors/user';
 
-import { AppBackground } from '../../components/AppBackground';
 import { NetworkContext } from '../../contexts/NetworkProvider';
 
 interface State {
@@ -92,17 +91,13 @@ export class UpdatePasswordScreenContainer extends React.PureComponent<Props, St
     const { password, isLoading, isSuccess } = this.state;
 
     return (
-      <AppBackground>
-        <SafeAreaView style={{ flex: 1 }}>
-          <UpdatePasswordForm
-            password={password}
-            isLoading={isLoading}
-            isSuccess={isSuccess}
-            onChangeText={this.handleOnChangeText}
-            onPressUpdatePassword={this.handleOnPressUpdatePassword}
-          />
-        </SafeAreaView>
-      </AppBackground>
+      <UpdatePasswordForm
+        password={password}
+        isLoading={isLoading}
+        isSuccess={isSuccess}
+        onChangeText={this.handleOnChangeText}
+        onPressUpdatePassword={this.handleOnPressUpdatePassword}
+      />
     );
   }
 }

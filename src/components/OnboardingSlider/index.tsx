@@ -3,9 +3,9 @@ import React, { useEffect, useRef } from 'react';
 import { SafeAreaView, View } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { Image } from 'react-native-elements';
-import { Button } from '../Button';
 import SplashScreen from 'react-native-splash-screen';
 import { NavigationRoute, NavigationScreenProp, withNavigation } from 'react-navigation';
+import { Button } from '../Button';
 import Text from '../Text';
 
 import NavigationService from '../../navigation/NavigationService';

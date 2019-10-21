@@ -18,18 +18,25 @@ import { SettingsVoicesScreen } from '../screens/settings/VoicesScreen';
 
 import { textPresets } from '../components/Text';
 
-export const stackNavigatorDefaultNavigationOptions: NavigationStackOptions = {
-  headerStyle: {
-    // borderBottomColor: colors.gray800,
-    // backgroundColor: colors.gray800
-  },
-  headerTitleStyle: {
-    ...textPresets['bodyEmphasized'],
-    // color: colors.white
-  },
-  headerBackTitleStyle: {
-    ...textPresets['body'],
-    // color: colors.tintColor
+import { SupportedThemes } from 'react-navigation';
+import colors from '../constants/colors';
+
+export const stackNavigatorDefaultNavigationOptions = (theme: SupportedThemes, screenName?: string): NavigationStackOptions => {
+  // console.log('options theme', theme, screenName)
+  return {
+    headerStyle: {
+      borderBottomColor: theme === 'dark' ? colors.gray600 : colors.grayLight,
+      backgroundColor: theme === 'dark' ? colors.gray800 : colors.white,
+    },
+    headerTitleStyle: {
+      ...textPresets['bodyEmphasized'],
+      color: theme === 'dark' ? colors.white : colors.black,
+    },
+    headerTintColor: theme === 'dark' ? colors.white : colors.tintColor,
+    headerBackTitleStyle: {
+      ...textPresets['body'],
+      color: theme === 'dark' ? colors.white : colors.tintColor,
+    }
   }
 }
 
@@ -42,8 +49,8 @@ const PlaylistStack = createStackNavigator(
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
     headerLayoutPreset: 'center',
-    defaultNavigationOptions: ({ navigation }) => ({
-      ...stackNavigatorDefaultNavigationOptions
+    defaultNavigationOptions: ({ theme }) => ({
+      ...stackNavigatorDefaultNavigationOptions(theme, 'playlist')
     }),
     navigationOptions: {
       tabBarLabel: 'Playlist',
@@ -65,8 +72,8 @@ const ArchiveStack = createStackNavigator(
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
     headerLayoutPreset: 'center',
-    defaultNavigationOptions: ({ navigation }) => ({
-      ...stackNavigatorDefaultNavigationOptions,
+    defaultNavigationOptions: ({ theme }) => ({
+      ...stackNavigatorDefaultNavigationOptions(theme, 'archive'),
     }),
     navigationOptions: {
       tabBarLabel: 'Archive',
@@ -87,8 +94,8 @@ const FavoritesStack = createStackNavigator(
   {
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
-    defaultNavigationOptions: ({ navigation }) => ({
-      ...stackNavigatorDefaultNavigationOptions,
+    defaultNavigationOptions: ({ theme }) => ({
+      ...stackNavigatorDefaultNavigationOptions(theme, 'favorites'),
     }),
     headerLayoutPreset: 'center',
     navigationOptions: {
@@ -116,11 +123,10 @@ const SettingsStack = createStackNavigator(
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
     headerLayoutPreset: 'center',
-    defaultNavigationOptions: ({ navigation }) => ({
-      ...stackNavigatorDefaultNavigationOptions,
-      title: 'Settings'
+    defaultNavigationOptions: ({ theme }) => ({
+      ...stackNavigatorDefaultNavigationOptions(theme, 'settings')
     }),
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: () => ({
       tabBarLabel: 'Settings',
       tabBarIcon: ({ focused }: { focused: boolean }) => (
         <TabBarIcon
@@ -144,6 +150,9 @@ export const MainTabNavigator = createBottomTabNavigator(
     tabBarComponent: (props: NavigationTabProp) => <TabBar {...props} />,
     tabBarOptions: {
       showLabel: false
-    }
+    },
+    // defaultNavigationOptions: ({ theme }) => ({
+    //   ...stackNavigatorDefaultNavigationOptions(theme, 'maintabnav')
+    // })
   }
 );

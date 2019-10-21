@@ -52,7 +52,7 @@ export class UserThemeProviderContainer extends React.PureComponent<Props> {
   }
 
   render() {
-    console.log('render theme', this.props)
+    // console.log('render theme', this.props)
     return <UserThemeContext.Provider value={this.props}>{this.props.children}</UserThemeContext.Provider>;
   }
 }
