@@ -1,3 +1,4 @@
+import memoize from 'fast-memoize';
 import React from 'react';
 import { createStackNavigator, NavigationStackOptions } from 'react-navigation-stack';
 import { createBottomTabNavigator, NavigationTabProp } from 'react-navigation-tabs';
@@ -21,8 +22,9 @@ import { textPresets } from '../components/Text';
 import { SupportedThemes } from 'react-navigation';
 import colors from '../constants/colors';
 
-export const stackNavigatorDefaultNavigationOptions = (theme: SupportedThemes, screenName?: string): NavigationStackOptions => {
-  // console.log('options theme', theme, screenName)
+
+export const stackNavigatorDefaultNavigationOptions = memoize((theme: SupportedThemes, screenName?: string): NavigationStackOptions => {
+  // console.log('stackNavigatorDefaultNavigationOptions', theme, screenName)
   return {
     headerStyle: {
       borderBottomColor: theme === 'dark' ? colors.gray600 : colors.grayLight,
@@ -38,7 +40,7 @@ export const stackNavigatorDefaultNavigationOptions = (theme: SupportedThemes, s
       color: theme === 'dark' ? colors.white : colors.tintColor,
     }
   }
-}
+})
 
 const PlaylistStack = createStackNavigator(
   {
