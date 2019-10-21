@@ -82,7 +82,7 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
     }
 
     return Promise.all([
-      // this.props.getPlaylist(), // We get the playlist on the user's playlist screen when the app starts
+      this.props.getPlaylist(), // We get the playlist on the user's playlist screen when the app starts
       this.props.getUser(),
       this.props.getInAppSubscriptions(),
       this.props.getLanguages()
@@ -135,7 +135,7 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
       // Do things when app becomes active again
       if (fromBackgroundToActive) {
         // Make sure the token from keychain is in our store
-        this.syncAuthToken()
+        this.syncAuthToken();
 
         // Make sure the playlist and user data is up-to-date when user comes back
         this.syncAppWithRequiredData();
@@ -165,31 +165,6 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
       // Save it in Redux
       store.dispatch(setAuthToken(token));
     }
-  }
-
-  /**
-   * Fetch additional data when the app becomes active, so our user is always in sync with our API.
-   * Without any additional action from the user.
-   */
-  fetchUserPlaylist = () => {
-    const { isLoggedIn } = this.props;
-
-    if (!isLoggedIn) { return; }
-    this.props.getPlaylist();
-  }
-
-  fetchUser = () => {
-    const { isLoggedIn } = this.props;
-
-    if (!isLoggedIn) { return; }
-    this.props.getUser();
-  }
-
-  fetchInAppSubscriptions = () => {
-    const { isLoggedIn } = this.props;
-
-    if (!isLoggedIn) { return; }
-    this.props.getInAppSubscriptions();
   }
 
   render() {
