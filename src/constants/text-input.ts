@@ -17,6 +17,6 @@ const textInput = (theme: UserTheme): TextStyle => ({
   lineHeight: undefined
 });
 
-export const placeholderTextcolor = (theme: UserTheme) => (theme === UserTheme.dark) ? colors.gray400 : undefined
+export const placeholderTextcolor = (theme: UserTheme) => (theme === UserTheme.dark) ? colors.gray400 : colors.gray100
 
 export default textInput;
