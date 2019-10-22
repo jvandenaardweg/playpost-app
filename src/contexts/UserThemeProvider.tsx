@@ -1,4 +1,4 @@
-import React, { useEffect, useState, ReactNode } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { Platform, StatusBar } from 'react-native';
 import { eventEmitter, useDarkMode } from 'react-native-dark-mode'
 // tslint:disable-next-line: no-submodule-imports
