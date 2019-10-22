@@ -9,9 +9,10 @@ import { RootState } from '../reducers';
 import { getUser } from '../reducers/user';
 import { getLanguages } from '../reducers/voices';
 
-import { NavigationInjectedProps, withNavigation } from 'react-navigation';
+import { NavigationInjectedProps } from 'react-navigation';
 import { CustomSectionList, IListItem } from '../components/CustomSectionList';
 import colors from '../constants/colors';
+import NavigationService from '../navigation/NavigationService';
 import { makeSelectedVoiceForLanguageName, selectLanguagesWithActiveVoices } from '../selectors/voices';
 import { store } from '../store';
 
@@ -35,7 +36,7 @@ export class LanguagesSelectComponent extends React.Component<Props> {
   keyExtractor = (language: Api.Language, index: number) => index.toString();
 
   handleOnListItemPress = async (language: Api.Language) => {
-    this.props.navigation.navigate('SettingsVoices', { languageName: language.name })
+    NavigationService.navigate('SettingsVoices', { languageName: language.name })
 
     await analytics().logEvent('languages_select', {
       languageName: language.name
@@ -116,9 +117,7 @@ const mapDispatchToProps = {
   getUser
 };
 
-export const LanguagesSelectContainer = withNavigation(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(LanguagesSelectComponent)
-);
+export const LanguagesSelectContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LanguagesSelectComponent);

@@ -3,7 +3,7 @@ import React from 'react';
 import isEqual from 'react-fast-compare';
 import { Alert } from 'react-native';
 import * as TrackPlayer from 'react-native-track-player';
-import { NavigationInjectedProps, withNavigation } from 'react-navigation';
+import { NavigationInjectedProps } from 'react-navigation';
 import { connect } from 'react-redux';
 
 import { LOCAL_CACHE_AUDIOFILES_PATH } from '../constants/files';
@@ -46,6 +46,7 @@ import {
 
 
 
+import NavigationService from '../navigation/NavigationService';
 import { getUser } from '../reducers/user';
 import { selectDownloadedAudiofiles } from '../selectors/audiofiles';
 import { selectPlayerCurrentArticleId, selectPlayerPlaybackState, selectPlayerPreviousArticleId, selectPlayerTrack } from '../selectors/player';
@@ -319,7 +320,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
             text: (userIsEligibleForTrial) ? 'Start free trial' : 'Upgrade',
             style: 'cancel',
             onPress: async () => {
-              this.props.navigation.navigate('Upgrade')
+              NavigationService.navigate('Upgrade')
               await analytics().logEvent('article_alert_press_upgrade', {
                 userIsEligibleForTrial
               })
@@ -543,7 +544,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         url: article.url
       });
 
-      this.props.navigation.navigate('FullArticle', { article })
+      NavigationService.navigate('FullArticle', { article })
     });
   }
 
@@ -577,7 +578,7 @@ export class ArticleContainerComponent extends React.Component<Props, State> {
         url: article.url
       });
 
-      return this.props.navigation.navigate('ContentView');
+      return NavigationService.navigate('ContentView');
     });
   }
 
@@ -711,4 +712,4 @@ const mapDispatchToProps: DispatchProps = {
 export const ArticleContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(withNavigation(ArticleContainerComponent));
+)(ArticleContainerComponent);

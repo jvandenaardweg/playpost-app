@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { SectionListData } from 'react-native';
-import { NavigationInjectedProps, withNavigation } from 'react-navigation';
+import { NavigationInjectedProps } from 'react-navigation';
 import { connect } from 'react-redux';
 
 import { RootState } from '../reducers';
@@ -71,9 +71,7 @@ const mapDispatchToProps = {
   setUserSelectedTheme
 };
 
-export const ThemeSelectContainer = withNavigation(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(ThemeSelectContainerComponent)
-);
+export const ThemeSelectContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ThemeSelectContainerComponent)
