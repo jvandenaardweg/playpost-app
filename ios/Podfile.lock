@@ -358,7 +358,7 @@ PODS:
     - Firebase/Performance (~> 6.8.1)
     - React
     - RNFBApp
-  - RNFS (2.14.1):
+  - RNFS (2.16.1):
     - React
   - RNGestureHandler (1.4.1):
     - React
@@ -613,7 +613,7 @@ SPEC CHECKSUMS:
   RNFBApp: 32c782583cda2a9d53eac0ca154daf9f4e94f0fd
   RNFBCrashlytics: bd170b20f5220420a1e0c6fb2d89789d1cd7279b
   RNFBPerf: 9547b8c1ea07b1ffd90d6777288f44071c1a5444
-  RNFS: a8fbe7060fa49157d819466404794ad9c58e58cf
+  RNFS: 795866388a01de4e470f3b1041a99cf20a343844
   RNGestureHandler: 4cb47a93019c1a201df2644413a0a1569a51c8aa
   RNIap: c54d03f31fe74b1f753580c8111a6394948a7b9e
   RNInAppBrowser: c0c1f509fe1ced46d751b61463be847c9b139ae9
