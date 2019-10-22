@@ -129,6 +129,7 @@ exports[`UpdatePasswordForm rendering should render correctly 1`] = `
         onChangeText={[Function]}
         onSubmitEditing={[Function]}
         placeholder="Your new super secret password"
+        placeholderTextColor="#999999"
         rejectResponderTermination={true}
         returnKeyType="done"
         secureTextEntry={true}

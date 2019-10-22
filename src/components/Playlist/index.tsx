@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { FlatList, LayoutAnimation, Platform, RefreshControl, Text } from 'react-native';
+import { FlatList, LayoutAnimation, Platform, RefreshControl } from 'react-native';
 
 import AsyncStorage from '@react-native-community/async-storage';
 import isEqual from 'react-fast-compare';

@@ -70,6 +70,7 @@ exports[`LoginForgotPasswordForm rendering should render correctly 1`] = `
           onChangeText={[Function]}
           onSubmitEditing={[Function]}
           placeholder="john.appleseed@playpost.app"
+          placeholderTextColor="#999999"
           rejectResponderTermination={true}
           returnKeyType="next"
           style={

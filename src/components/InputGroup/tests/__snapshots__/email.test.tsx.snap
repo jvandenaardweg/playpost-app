@@ -33,6 +33,7 @@ exports[`InputGroupEmail rendering should render correctly 1`] = `
     clearButtonMode="always"
     keyboardType="email-address"
     placeholder="john.appleseed@playpost.app"
+    placeholderTextColor="#999999"
     rejectResponderTermination={true}
     style={
       Object {
