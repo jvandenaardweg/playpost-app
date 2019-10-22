@@ -23,8 +23,7 @@ import { SupportedThemes } from 'react-navigation';
 import colors from '../constants/colors';
 
 
-export const stackNavigatorDefaultNavigationOptions = memoize((theme: SupportedThemes, screenName?: string): NavigationStackOptions => {
-  // console.log('stackNavigatorDefaultNavigationOptions', theme, screenName)
+export const stackNavigatorDefaultNavigationOptions = memoize((theme: SupportedThemes): NavigationStackOptions => {
   return {
     headerStyle: {
       borderBottomColor: theme === 'dark' ? colors.gray600 : colors.grayLight,
@@ -52,7 +51,7 @@ const PlaylistStack = createStackNavigator(
     headerTransitionPreset: 'uikit',
     headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ theme }) => ({
-      ...stackNavigatorDefaultNavigationOptions(theme, 'playlist')
+      ...stackNavigatorDefaultNavigationOptions(theme)
     }),
     navigationOptions: {
       tabBarLabel: 'Playlist',
@@ -75,7 +74,7 @@ const ArchiveStack = createStackNavigator(
     headerTransitionPreset: 'uikit',
     headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ theme }) => ({
-      ...stackNavigatorDefaultNavigationOptions(theme, 'archive'),
+      ...stackNavigatorDefaultNavigationOptions(theme),
     }),
     navigationOptions: {
       tabBarLabel: 'Archive',
@@ -97,7 +96,7 @@ const FavoritesStack = createStackNavigator(
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
     defaultNavigationOptions: ({ theme }) => ({
-      ...stackNavigatorDefaultNavigationOptions(theme, 'favorites'),
+      ...stackNavigatorDefaultNavigationOptions(theme),
     }),
     headerLayoutPreset: 'center',
     navigationOptions: {
@@ -126,7 +125,7 @@ const SettingsStack = createStackNavigator(
     headerTransitionPreset: 'uikit',
     headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ theme }) => ({
-      ...stackNavigatorDefaultNavigationOptions(theme, 'settings')
+      ...stackNavigatorDefaultNavigationOptions(theme),
     }),
     navigationOptions: () => ({
       tabBarLabel: 'Settings',
@@ -153,8 +152,8 @@ export const MainTabNavigator = createBottomTabNavigator(
     tabBarOptions: {
       showLabel: false
     },
-    // defaultNavigationOptions: ({ theme }) => ({
-    //   ...stackNavigatorDefaultNavigationOptions(theme, 'maintabnav')
-    // })
+    defaultNavigationOptions: ({ theme }) => ({
+      ...stackNavigatorDefaultNavigationOptions(theme)
+    })
   }
 );

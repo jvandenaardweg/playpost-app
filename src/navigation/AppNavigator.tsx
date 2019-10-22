@@ -47,7 +47,7 @@ const LoginStack = createStackNavigator(
     headerMode: 'screen',
     headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation, theme }) => ({
-      ...stackNavigatorDefaultNavigationOptions(theme, 'login'),
+      ...stackNavigatorDefaultNavigationOptions(theme),
       headerRight: <ButtonClose theme="light" onPress={() => navigation.navigate('Onboarding')} />
     })
   }
@@ -62,7 +62,7 @@ const SignupStack = createStackNavigator(
     headerMode: 'screen',
     headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation, theme }) => ({
-      ...stackNavigatorDefaultNavigationOptions(theme, 'signup'),
+      ...stackNavigatorDefaultNavigationOptions(theme),
       headerRight: <ButtonClose theme="light" onPress={() => navigation.navigate('Onboarding')} />
     })
   }
@@ -77,7 +77,7 @@ const SettingsLanguagesModalStack = createStackNavigator(
     headerMode: 'none',
     headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ theme }) => ({
-      ...stackNavigatorDefaultNavigationOptions(theme, 'settingslanguages')
+      ...stackNavigatorDefaultNavigationOptions(theme)
     })
   }
 );
@@ -92,7 +92,7 @@ const UpgradeStack = createStackNavigator(
     headerTransitionPreset: 'uikit',
     headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation, theme }) => ({
-      ...stackNavigatorDefaultNavigationOptions(theme, 'upgrade'),
+      ...stackNavigatorDefaultNavigationOptions(theme),
       headerRight: <ButtonClose theme="light" onPress={() => navigation.dismiss()} />
     })
   }
@@ -107,7 +107,7 @@ const ContentViewStack = createStackNavigator(
     headerTransitionPreset: 'uikit',
     headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation, theme }) => ({
-      ...stackNavigatorDefaultNavigationOptions(theme, 'contentview'),
+      ...stackNavigatorDefaultNavigationOptions(theme),
       headerRight: <ButtonClose theme="light" onPress={() => navigation.dismiss()} />
     })
   }
@@ -121,7 +121,7 @@ const FullAudioPlayerStack = createStackNavigator(
     headerTransitionPreset: 'uikit',
     headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation, theme }) => ({
-      ...stackNavigatorDefaultNavigationOptions(theme, 'full audio'),
+      ...stackNavigatorDefaultNavigationOptions(theme),
       headerRight: <ButtonClose theme="dark" onPress={() => navigation.dismiss()} />,
       headerLeft: null,
       headerStyle: {
@@ -142,7 +142,7 @@ const ModalLanguagesStack = createStackNavigator(
     headerTransitionPreset: 'uikit',
     headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation, theme }) => ({
-      ...stackNavigatorDefaultNavigationOptions(theme, 'modal languages'),
+      ...stackNavigatorDefaultNavigationOptions(theme),
       title: 'Languages',
       headerRight: <ButtonClose theme="light" onPress={() => {
         navigation.popToTop()
@@ -165,7 +165,7 @@ const OnboardingStack = createStackNavigator(
     headerTransitionPreset: 'uikit',
     headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ theme }) => ({
-      ...stackNavigatorDefaultNavigationOptions(theme, 'onboarding'),
+      ...stackNavigatorDefaultNavigationOptions(theme),
       header: null
     })
   }
@@ -184,7 +184,7 @@ const RootStack = createStackNavigator(
     initialRouteName: 'App',
     headerMode: 'none',
     defaultNavigationOptions: ({ theme }) => ({
-      ...stackNavigatorDefaultNavigationOptions(theme, 'root')
+      ...stackNavigatorDefaultNavigationOptions(theme)
     })
   }
 )
@@ -201,7 +201,7 @@ const AppNavigationContainer: NavigationContainer = createAppContainer(
     {
       initialRouteName: 'AuthLoading',
       defaultNavigationOptions: ({ theme }: { theme: SupportedThemes }) => ({
-        ...stackNavigatorDefaultNavigationOptions(theme, 'AppNavigationContainer')
+        ...stackNavigatorDefaultNavigationOptions(theme)
       })
     }
   )
@@ -251,7 +251,6 @@ export const AppContainer: React.FC = React.memo(() => {
   return (
     <AppNavigationContainer
       ref={navigatorRef => NavigationService.setTopLevelNavigator(navigatorRef)}
-      screenProps={theme === UserTheme.dark ? 'dark' : 'light'}
       theme={theme === UserTheme.dark ? 'dark' : 'light'}
       onNavigationStateChange={handleOnNavigationStateChange}
     />
