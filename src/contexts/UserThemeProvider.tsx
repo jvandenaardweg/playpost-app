@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, ReactNode } from 'react';
 import { Platform, StatusBar } from 'react-native';
 import { eventEmitter, useDarkMode } from 'react-native-dark-mode'
 // tslint:disable-next-line: no-submodule-imports
@@ -17,12 +17,12 @@ export const UserThemeContext = React.createContext<{ theme: UserTheme; }>({
 export const UserThemeConsumer = UserThemeContext.Consumer;
 
 interface IProps {
-  children: React.ReactElement;
+  children?: ReactNode;
 }
 
-type Props = IProps & StateProps & DispatchProps;
+export type Props = IProps & StateProps & DispatchProps;
 
-export const UserThemeProviderContainer: React.FC<Props> = React.memo((props) => {
+export const UserThemeProviderComponent: React.FC<Props> = React.memo((props) => {
   const [localTheme, setLocalTheme] = useState(userDefaultTheme) // Default theme of the app is light
   const isDarkMode = useDarkMode();
 
@@ -98,4 +98,4 @@ const mapDispatchToProps = {
 export const UserThemeProvider = connect(
   mapStateToProps,
   mapDispatchToProps
-)(UserThemeProviderContainer);
+)(UserThemeProviderComponent);

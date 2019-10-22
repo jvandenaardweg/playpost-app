@@ -15,7 +15,10 @@ jest.mock('react-native-localize', () => ({
 }));
 
 jest.mock('react-native-dark-mode', () => ({
-  eventEmitter: jest.fn(),
+  eventEmitter: {
+    on: jest.fn(),
+    off: jest.fn()
+  },
   initialMode: 'light',
   useDarkMode: jest.fn()
 }));
