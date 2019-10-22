@@ -3,7 +3,7 @@
 exports[`SettingsLanguagesScreen rendering should render correctly 1`] = `
 <Memo>
   <Memo>
-    <Memo(Connect(LanguagesSelectComponent)) />
+    <Memo(Connect(Component)) />
   </Memo>
 </Memo>
 `;
