@@ -54,7 +54,7 @@ export default (theme: UserTheme) => StyleSheet.create({
     marginBottom: 2
   },
   trackInfoArtist: {
-    color: theme === UserTheme.dark ? colors.gray400 : colors.gray100,
+    color: theme === UserTheme.dark ? colors.gray300 : colors.gray100,
   },
   controls: {
     marginTop: 20,
