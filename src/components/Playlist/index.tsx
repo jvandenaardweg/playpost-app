@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { FlatList, LayoutAnimation, Platform, RefreshControl } from 'react-native';
+import { FlatList, LayoutAnimation, Platform, RefreshControl, Text } from 'react-native';
 
 import AsyncStorage from '@react-native-community/async-storage';
 import isEqual from 'react-fast-compare';
@@ -37,7 +37,7 @@ export const Playlist: React.FC<Props> = React.memo((props) => {
   const { isConnected } = useContext(NetworkContext)
   const { theme } = useContext(UserThemeContext)
 
-  const [isLoading, setIsLoading] = useState<State['isLoading']>(false)
+  const [isLoading, setIsLoading] = useState<State['isLoading']>(true)
   const [isRefreshing, setIsRefreshing] = useState<State['isRefreshing']>(false)
   const [showHelpVideo, setShowHelpVideo] = useState<State['showHelpVideo']>(false)
   const [playlistItems, setPlaylistItems] = useState<State['playlistItems']>([])
@@ -45,11 +45,15 @@ export const Playlist: React.FC<Props> = React.memo((props) => {
   // componentDidMount
   useEffect(() => {
     showOrHideHelpVideo()
-    // Note: fetching of playlist data on mount done in AppStateProvider
   }, [])
 
   // Handle a change in playlist items
   useEffect(() => {
+    if (!playlistItems.length) {
+      setIsLoading(true)
+      fetchPlaylist()
+    }
+
     if (props.isArchiveScreen && !isEqual(props.isArchiveScreen, playlistItems)) {
       // When a new item is added or deleted, animate it
       LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -204,7 +208,7 @@ export const Playlist: React.FC<Props> = React.memo((props) => {
     <FlatList
       scrollEnabled={!!playlistItems.length}
       contentContainerStyle={{ flexGrow: 1 }}
-      data={playlistItems}
+      data={playlistItems.length ? playlistItems : null}
       keyExtractor={(item: Api.PlaylistItem) => item.id.toString()}
       ItemSeparatorComponent={renderSeperatorComponent}
       ListEmptyComponent={renderEmptyComponent}

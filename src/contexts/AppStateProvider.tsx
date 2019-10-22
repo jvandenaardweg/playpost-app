@@ -82,7 +82,7 @@ export class AppStateProviderContainer extends React.PureComponent<Props, State>
     }
 
     return Promise.all([
-      this.props.getPlaylist(), // We get the playlist on the user's playlist screen when the app starts
+      // this.props.getPlaylist(), // We get the playlist on the user's playlist screen when the app starts
       this.props.getUser(),
       this.props.getInAppSubscriptions(),
       this.props.getLanguages()
