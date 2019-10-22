@@ -3,12 +3,9 @@ import isUUID from 'is-uuid';
 import React, { useEffect } from 'react';
 import { Alert, Linking, Platform, UIManager } from 'react-native';
 import DeepLinking from 'react-native-deep-linking';
-import { useScreens } from 'react-native-screens';
 import { Provider } from 'react-redux';
 // tslint:disable-next-line:no-submodule-imports
 import { PersistGate } from 'redux-persist/integration/react';
-
-useScreens();
 
 import { persistor, store } from './store';
 
