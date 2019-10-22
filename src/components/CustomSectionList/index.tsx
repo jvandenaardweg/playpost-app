@@ -93,6 +93,7 @@ export const CustomSectionList: React.FC<Props> = React.memo((props) => {
 
         return (
           <ListItem
+            key={item.key}
             Component={TouchableHighlight}
             title={item.title}
             onPress={item.onPress}
