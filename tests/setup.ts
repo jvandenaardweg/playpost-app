@@ -14,6 +14,12 @@ jest.mock('react-native-localize', () => ({
   getLocales: jest.fn()
 }));
 
+jest.mock('react-native-dark-mode', () => ({
+  eventEmitter: jest.fn(),
+  initialMode: 'light',
+  useDarkMode: jest.fn()
+}));
+
 // Mock the track player depedency: https://github.com/react-native-kit/react-native-track-player/issues/501#issuecomment-474693116
 jest.mock('react-native-track-player', () => ({
   addEventListener: jest.fn(),

@@ -1,6 +1,6 @@
 import analytics from '@react-native-firebase/analytics';
 import isUUID from 'is-uuid';
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Alert, Linking, Platform, UIManager } from 'react-native';
 import DeepLinking from 'react-native-deep-linking';
 import { useScreens } from 'react-native-screens';
@@ -19,7 +19,7 @@ import { APIErrorAlertContainer } from './containers/APIErrorAlertContainer';
 import { SubscriptionHandlerContainer } from './containers/SubscriptionHandlerContainer';
 import { AppStateProvider } from './contexts/AppStateProvider';
 import { NetworkProvider } from './contexts/NetworkProvider';
-import { UserThemeContext, UserThemeProvider } from './contexts/UserThemeProvider';
+import { UserThemeProvider } from './contexts/UserThemeProvider';
 import { AppContainer } from './navigation/AppNavigator';
 
 import { ReactNativeThemeProvider } from './components/ReactNativeThemeProvider';
@@ -35,8 +35,6 @@ if (Platform.OS === 'android') {
 }
 
 const App: React.FC = React.memo(() => {
-  const { theme } = useContext(UserThemeContext);
-
   useEffect(() => {
     const onMount = async () => {
       if (__DEV__) {
@@ -149,8 +147,6 @@ const App: React.FC = React.memo(() => {
       { cancelable: false }
     );
   };
-
-  console.log('app', theme)
 
   return (
     <ErrorBoundary>

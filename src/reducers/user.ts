@@ -51,6 +51,8 @@ export const availableThemes: UserTheme[] = [
   UserTheme.dark
 ]
 
+export const userDefaultTheme = UserTheme.light;
+
 export type UserState = Readonly<{
   isLoading: boolean;
   isLoadingDelete: boolean;
@@ -76,7 +78,7 @@ export const initialState: UserState = {
   deviceLocale: userLanguageCode, // en, fr, nl etc...
   playbackSpeed: 1,
   availableThemes,
-  selectedTheme: UserTheme.light // default
+  selectedTheme: userDefaultTheme // default
 };
 
 /* tslint:disable no-any */

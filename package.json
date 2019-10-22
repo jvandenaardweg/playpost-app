@@ -90,6 +90,7 @@
     "react-native": "0.61.2",
     "react-native-app-intro-slider": "^3.0.0",
     "react-native-config": "git+https://github.com/luggit/react-native-config#89a602bf8be3808838403a97afaf915caeec76c2",
+    "react-native-dark-mode": "^0.2.0",
     "react-native-deep-linking": "^2.2.0",
     "react-native-device-info": "^4.0.1",
     "react-native-draggable-flatlist": "^1.1.9",
