@@ -3,7 +3,7 @@ import analytics from '@react-native-firebase/analytics';
 import React, { useContext } from 'react';
 import { Platform } from 'react-native';
 
-import { createAppContainer, createSwitchNavigator, NavigationContainer, NavigationState, SupportedThemes } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator, NavigationContainer, NavigationState } from 'react-navigation';
 import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
 import { createStackNavigator, NavigationStackProp } from 'react-navigation-stack';
 
