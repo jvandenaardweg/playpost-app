@@ -19,11 +19,10 @@ import { SettingsVoicesScreen } from '../screens/settings/VoicesScreen';
 
 import { textPresets } from '../components/Text';
 
-import { SupportedThemes } from 'react-navigation';
 import colors from '../constants/colors';
+import { UserTheme } from '../reducers/user';
 
-
-export const stackNavigatorDefaultNavigationOptions = memoize((theme: SupportedThemes): NavigationStackOptions => {
+export const stackNavigatorDefaultNavigationOptions = memoize((theme: UserTheme): NavigationStackOptions => {
   return {
     headerStyle: {
       borderBottomColor: theme === 'dark' ? colors.gray600 : colors.grayLight,
@@ -50,18 +49,18 @@ const PlaylistStack = createStackNavigator(
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
     headerLayoutPreset: 'center',
-    defaultNavigationOptions: ({ theme }) => ({
-      ...stackNavigatorDefaultNavigationOptions(theme)
+    defaultNavigationOptions: ({ screenProps }: { screenProps: any }) => ({
+      ...stackNavigatorDefaultNavigationOptions(screenProps.theme)
     }),
-    navigationOptions: {
+    navigationOptions: () => ({
       tabBarLabel: 'Playlist',
       tabBarIcon: ({ focused }: { focused: boolean }) => (
         <TabBarIcon
           focused={focused}
           name="headphones"
         />
-      ),
-    }
+      )
+    })
   }
 );
 
@@ -73,8 +72,8 @@ const ArchiveStack = createStackNavigator(
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
     headerLayoutPreset: 'center',
-    defaultNavigationOptions: ({ theme }) => ({
-      ...stackNavigatorDefaultNavigationOptions(theme),
+    defaultNavigationOptions: ({ screenProps }: { screenProps: any }) => ({
+      ...stackNavigatorDefaultNavigationOptions(screenProps.theme)
     }),
     navigationOptions: {
       tabBarLabel: 'Archive',
@@ -95,8 +94,8 @@ const FavoritesStack = createStackNavigator(
   {
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
-    defaultNavigationOptions: ({ theme }) => ({
-      ...stackNavigatorDefaultNavigationOptions(theme),
+    defaultNavigationOptions: ({ screenProps }: { screenProps: any }) => ({
+      ...stackNavigatorDefaultNavigationOptions(screenProps.theme)
     }),
     headerLayoutPreset: 'center',
     navigationOptions: {
@@ -124,8 +123,8 @@ const SettingsStack = createStackNavigator(
     headerMode: 'float',
     headerTransitionPreset: 'uikit',
     headerLayoutPreset: 'center',
-    defaultNavigationOptions: ({ theme }) => ({
-      ...stackNavigatorDefaultNavigationOptions(theme),
+    defaultNavigationOptions: ({ screenProps }: { screenProps: any }) => ({
+      ...stackNavigatorDefaultNavigationOptions(screenProps.theme)
     }),
     navigationOptions: () => ({
       tabBarLabel: 'Settings',
@@ -151,9 +150,6 @@ export const MainTabNavigator = createBottomTabNavigator(
     tabBarComponent: (props: NavigationTabProp) => <TabBar {...props} />,
     tabBarOptions: {
       showLabel: false
-    },
-    defaultNavigationOptions: ({ theme }) => ({
-      ...stackNavigatorDefaultNavigationOptions(theme)
-    })
+    }
   }
 );
