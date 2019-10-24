@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import { SignupForm } from '../components/SignupForm';
 
-import { postAuth } from '../reducers/auth';
+import { postAuth, setAuthToken } from '../reducers/auth';
 import { createUser, UserTheme } from '../reducers/user';
 
 import { ALERT_TITLE_ERROR } from '../constants/messages';
@@ -45,6 +45,7 @@ class SignupFormContainerComponent extends React.PureComponent<Props, State> {
   saveToken = async (token: string) => {
     try {
       await keychain.setToken(token);
+      this.props.setAuthToken(token);
       this.props.navigation.navigate('SignupSuccess');
     } catch (err) {
       Alert.alert(ALERT_TITLE_ERROR, 'We have successfully created your account, but could not log you in. Please try logging in manually.');
@@ -139,6 +140,7 @@ interface StateProps {
 interface DispatchProps {
   createUser: typeof createUser;
   postAuth: typeof postAuth;
+  setAuthToken: typeof setAuthToken;
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
@@ -148,7 +150,8 @@ const mapStateToProps = (state: RootState): StateProps => ({
 
 const mapDispatchToProps = {
   createUser,
-  postAuth
+  postAuth,
+  setAuthToken
 };
 
 export const SignupFormContainer = withNavigation(
