@@ -49,22 +49,22 @@ apiClient.interceptors.request.use(async (config) => {
   // Add some additional, non user identifying, headers for debugging purposes
 
   // App related
-  config.headers['App-Version'] = await DeviceInfo.getVersion();
-  config.headers['App-Build-Number'] = await DeviceInfo.getBuildNumber();
+  config.headers['App-Version'] = DeviceInfo.getVersion();
+  config.headers['App-Build-Number'] = DeviceInfo.getBuildNumber();
   config.headers['App-Environment'] = Config.NODE_ENV;
-  config.headers['App-Bundle-Id'] = await DeviceInfo.getBundleId();
+  config.headers['App-Bundle-Id'] = DeviceInfo.getBundleId();
 
   // Device related
-  config.headers['Device-Brand'] = await DeviceInfo.getBrand();
+  config.headers['Device-Brand'] = DeviceInfo.getBrand();
   config.headers['Device-Manufacturer'] = await DeviceInfo.getManufacturer();
   config.headers['Device'] = await DeviceInfo.getDevice();
-  config.headers['Device-Id'] = await DeviceInfo.getDeviceId();
-  config.headers['Device-System-Name'] = await DeviceInfo.getSystemName();
-  config.headers['Device-System-Version'] = await DeviceInfo.getSystemVersion();
+  config.headers['Device-Id'] = DeviceInfo.getDeviceId();
+  config.headers['Device-System-Name'] = DeviceInfo.getSystemName();
+  config.headers['Device-System-Version'] = DeviceInfo.getSystemVersion();
   config.headers['Device-Locale'] = userLanguageCode;
   config.headers['Device-Is-Emulator'] = await DeviceInfo.isEmulator();
-  config.headers['Device-Is-Tablet'] = await DeviceInfo.isTablet();
-  config.headers['Device-Type'] = await DeviceInfo.getDeviceType();
+  config.headers['Device-Is-Tablet'] = DeviceInfo.isTablet();
+  config.headers['Device-Type'] = DeviceInfo.getDeviceType();
 
   return config;
 });
