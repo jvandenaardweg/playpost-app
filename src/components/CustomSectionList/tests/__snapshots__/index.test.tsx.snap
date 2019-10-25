@@ -162,6 +162,31 @@ exports[`CustomSectionList basic rendering should render correctly 1`] = `
               Item title
             </Text>
           </View>
+          <View
+            width={16}
+          />
+          <Text
+            allowFontScaling={false}
+            style={
+              Array [
+                Object {
+                  "color": "#C5C5C5",
+                  "fontSize": 20,
+                },
+                Object {
+                  "height": 20,
+                },
+                Object {
+                  "fontFamily": "Feather",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {},
+              ]
+            }
+          >
+            
+          </Text>
         </View>
       </View>
     </View>

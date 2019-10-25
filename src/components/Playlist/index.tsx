@@ -37,8 +37,11 @@ export const Playlist: React.FC<Props> = React.memo((props) => {
   const { isConnected } = useContext(NetworkContext)
   const { theme } = useContext(UserThemeContext)
 
-  const [isLoading, setIsLoading] = useState<State['isLoading']>(true)
-  const [isRefreshing, setIsRefreshing] = useState<State['isRefreshing']>(false)
+  const [loadingState, setLoadingState] = useState({
+    isLoading: true, // Start in loading state
+    isRefreshing: false
+  })
+
   const [showHelpVideo, setShowHelpVideo] = useState<State['showHelpVideo']>(false)
   const [playlistItems, setPlaylistItems] = useState<State['playlistItems']>([])
 
@@ -50,7 +53,12 @@ export const Playlist: React.FC<Props> = React.memo((props) => {
   // Handle a change in playlist items
   useEffect(() => {
     if (!playlistItems.length) {
-      setIsLoading(true)
+      if (!loadingState.isLoading) {
+        setLoadingState({
+          isLoading: true,
+          isRefreshing: false
+        })
+      }
       fetchPlaylist()
     }
 
@@ -78,7 +86,7 @@ export const Playlist: React.FC<Props> = React.memo((props) => {
   const renderEmptyComponent = () => {
     const osVersion = DeviceInfo.getSystemVersion();
 
-    if (isLoading) {
+    if (loadingState.isLoading) {
       return <CenterLoadingIndicator />;
     }
 
@@ -118,7 +126,7 @@ export const Playlist: React.FC<Props> = React.memo((props) => {
       );
     }
 
-    if (!isLoading && !isRefreshing && !props.newPlaylistItems.length) {
+    if (!loadingState.isLoading && !loadingState.isRefreshing && !props.newPlaylistItems.length) {
       if (showHelpVideo) {
         return (
           <EmptyState
@@ -147,8 +155,10 @@ export const Playlist: React.FC<Props> = React.memo((props) => {
   }
 
   const handleOnRefresh = async () => {
-    setIsLoading(true)
-    setIsRefreshing(true)
+    setLoadingState({
+      isRefreshing: true,
+      isLoading: false
+    })
     fetchPlaylist()
   }
 
@@ -166,8 +176,10 @@ export const Playlist: React.FC<Props> = React.memo((props) => {
 
       return customErrorMessage;
     } finally {
-      setIsLoading(false)
-      setIsRefreshing(false)
+      setLoadingState({
+        isRefreshing: false,
+        isLoading: false
+      })
     }
   }
 
@@ -204,6 +216,10 @@ export const Playlist: React.FC<Props> = React.memo((props) => {
     }
   }
 
+  const handleOnGetUser = React.useCallback(() => props.getUser(), [props.getUser])
+
+  const handleOnGetPlaylist = React.useCallback(() => props.getPlaylist(), [props.getPlaylist])
+
   return (
     <FlatList
       scrollEnabled={!!playlistItems.length}
@@ -220,14 +236,15 @@ export const Playlist: React.FC<Props> = React.memo((props) => {
           isFavorited={!!item.favoritedAt}
           isArchived={!!item.archivedAt}
           playlistItem={item}
-          article={item.article}
+          onGetUser={handleOnGetUser}
+          onGetPlaylist={handleOnGetPlaylist}
         />
       )}
       indicatorStyle={theme === UserTheme.dark ? 'white' : 'black'}
       removeClippedSubviews={true}
       refreshControl={
         <RefreshControl
-          refreshing={isRefreshing}
+          refreshing={loadingState.isRefreshing}
           onRefresh={handleOnRefresh}
           tintColor={theme === UserTheme.dark ? colors.white : colors.gray100}
         />

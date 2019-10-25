@@ -41,7 +41,6 @@ const navigationGetParamHandler = jest.fn();
 const navigationGoBackHandler = jest.fn();
 
 const defaultProps: Props = {
-  article: articleMock,
   playlistItem: playlistItemMock,
   isFavorited: false,
   isArchived: false,
@@ -57,7 +56,7 @@ const defaultProps: Props = {
   playbackState: TrackPlayer.State.None,
   selectedVoiceForLanguageName: undefined,
   setTrack: setTrackHandler,
-  getPlaylist: getPlaylistHandler,
+  onGetPlaylist: getPlaylistHandler,
   createAudiofile: createAudiofileHandler,
   deleteArticleFromPlaylist: deleteArticleFromPlaylistHandler,
   archivePlaylistItem: archivePlaylistItemHandler,
@@ -70,7 +69,7 @@ const defaultProps: Props = {
   resetIsCreatingAudiofile: resetIsCreatingAudiofileHandler,
   setIsDownloadingAudiofile: setIsDownloadingAudiofileHandler,
   resetIsDownloadingAudiofile: resetIsDownloadingAudiofileHandler,
-  getUser: getUserHandler,
+  onGetUser: getUserHandler,
 
   navigation: {
     navigate: navigateHandler,
@@ -123,9 +122,9 @@ describe('ArticleContainer', () => {
       const spyCreateAudiofile = jest.spyOn(testInstance.props, 'createAudiofile')
 
       // @ts-ignore
-      const spyGetPlaylist = jest.spyOn(testInstance.props, 'getPlaylist').mockResolvedValueOnce()
+      const spyGetPlaylist = jest.spyOn(testInstance.props, 'onGetPlaylist').mockResolvedValueOnce()
       // @ts-ignore
-      const spyGetUser = jest.spyOn(testInstance.props, 'getUser').mockResolvedValueOnce()
+      const spyGetUser = jest.spyOn(testInstance.props, 'onGetUser').mockResolvedValueOnce()
 
       const spyHandleSetTrack = jest.spyOn(testInstance, 'handleSetTrack')
 
@@ -151,9 +150,9 @@ describe('ArticleContainer', () => {
       const spyCreateAudiofile = jest.spyOn(testInstance.props, 'createAudiofile').mockRejectedValueOnce(new Error('Some error!'));
 
       // @ts-ignore
-      const spyGetPlaylist = jest.spyOn(testInstance.props, 'getPlaylist').mockResolvedValueOnce()
+      const spyGetPlaylist = jest.spyOn(testInstance.props, 'onGetPlaylist').mockResolvedValueOnce()
       // @ts-ignore
-      const spyGetUser = jest.spyOn(testInstance.props, 'getUser').mockResolvedValueOnce()
+      const spyGetUser = jest.spyOn(testInstance.props, 'onGetUser').mockResolvedValueOnce()
 
       const spyHandleSetTrack = jest.spyOn(testInstance, 'handleSetTrack')
 
@@ -172,12 +171,13 @@ describe('ArticleContainer', () => {
     it('handleSetTrack() should correctly set a track in the player when the audio is not downloaded yet', async () => {
       const testInstance: ArticleContainerComponent = wrapper.root.instance;
 
-      const expectedLocalAudiofilePath = articleMock.audiofiles[0].url;
+      const expectedLocalAudiofilePath = playlistItemMock.article.audiofiles[0].url;
       // const expectedLocalAudiofilePath = `some/local/path/${articleMock.audiofiles[0].filename}`;
 
       const spyDownloadAudiofile = jest.spyOn(testInstance, 'downloadAudiofile').mockResolvedValueOnce(expectedLocalAudiofilePath)
       const spyResetPlaybackStatus = jest.spyOn(testInstance.props, 'resetPlaybackStatus')
       const spySetDownloadedAudiofile = jest.spyOn(testInstance.props, 'setDownloadedAudiofile');
+      const spyGetIsDownloaded = jest.spyOn(testInstance, 'getIsDownloaded');
       const spySetTrack = jest.spyOn(testInstance.props, 'setTrack')
 
       await testInstance.handleSetTrack();
@@ -186,23 +186,26 @@ describe('ArticleContainer', () => {
       expect(spySetTrack).toHaveBeenCalledTimes(1);
       expect(spySetTrack).toHaveBeenCalledWith(
         {
-          album: articleMock.sourceName,
-          artist: articleMock.authorName,
-          artwork: articleMock.imageUrl,
+          album: playlistItemMock.article.sourceName,
+          artist: playlistItemMock.article.authorName,
+          artwork: playlistItemMock.article.imageUrl,
           contentType: 'audio/mpeg',
-          duration: articleMock.audiofiles[0].length,
-          id: articleMock.audiofiles[0].id,
-          key: articleMock.audiofiles[0].id,
+          duration: playlistItemMock.article.audiofiles[0].length,
+          id: playlistItemMock.article.audiofiles[0].id,
+          key: playlistItemMock.article.audiofiles[0].id,
           pitchAlgorithm: TrackPlayer.PitchAlgorithm.Voice,
-          title: articleMock.title,
+          title: playlistItemMock.article.title,
           url: expectedLocalAudiofilePath
         },
         '7ca86b8a-02aa-4733-92e4-1cfe7ef46954'
       );
 
       expect(spyDownloadAudiofile).toHaveBeenCalledTimes(1);
+
+      expect(spyGetIsDownloaded).toHaveReturnedWith(false);
+
       expect(spySetDownloadedAudiofile).toHaveBeenCalledTimes(1);
-      expect(spySetDownloadedAudiofile).toHaveBeenCalledWith(articleMock.audiofiles[0]);
+      expect(spySetDownloadedAudiofile).toHaveBeenCalledWith(playlistItemMock.article.audiofiles[0]);
 
       expect(testInstance.state.isActive).toBe(true);
       expect(testInstance.state.isLoading).toBe(true);
@@ -253,7 +256,10 @@ describe('ArticleContainer', () => {
 
       const props: Props = {
         ...defaultProps,
-        article: articleMockWithAudioDefaultVoice,
+        playlistItem: {
+          ...playlistItemMock,
+          article: articleMockWithAudioDefaultVoice
+        },
         downloadedAudiofiles: []
       }
 
@@ -275,12 +281,24 @@ describe('ArticleContainer', () => {
     });
 
     it('handleSetTrack() should show an error when downloadAudiofile does not return something', async () => {
+      const props: Props = {
+        ...defaultProps,
+        playlistItem: {
+          ...playlistItemMock,
+          article: articleMockWithAudioDefaultVoice
+        },
+        downloadedAudiofiles: []
+      }
+
+      wrapper.update(<ArticleContainerComponent {...props} />);
+
       const testInstance: ArticleContainerComponent = wrapper.root.instance;
 
       const spyDownloadAudiofile = jest.spyOn(testInstance, 'downloadAudiofile').mockResolvedValueOnce('')
       const spyResetPlaybackStatus = jest.spyOn(testInstance.props, 'resetPlaybackStatus')
       const spySetDownloadedAudiofile = jest.spyOn(testInstance.props, 'setDownloadedAudiofile');
       const spySetTrack = jest.spyOn(testInstance.props, 'setTrack')
+      const spyGetIsDownloaded = jest.spyOn(testInstance, 'getIsDownloaded').mockReturnValue(false)
 
       Alert.alert = jest.fn();
 
@@ -288,8 +306,13 @@ describe('ArticleContainer', () => {
 
       expect(spyResetPlaybackStatus).toHaveBeenCalledTimes(1);
       expect(spySetTrack).toHaveBeenCalledTimes(1);
+
+      expect(spyGetIsDownloaded).toHaveBeenCalledTimes(4);
+      expect(spyGetIsDownloaded).toHaveReturnedWith(false);
+
       expect(spyDownloadAudiofile).toHaveBeenCalledTimes(1);
       expect(spySetDownloadedAudiofile).toHaveBeenCalledTimes(0);
+
 
       expect(Alert.alert).toHaveBeenCalledTimes(1);
       expect(Alert.alert).toHaveBeenCalledWith(ALERT_TITLE_ERROR, ALERT_ARTICLE_DOWNLOAD_FAIL);
@@ -303,7 +326,10 @@ describe('ArticleContainer', () => {
     it('handleSetTrack() should use the audiofile\'s url if getLocalFilePath does not return something', async () => {
       const props: Props = {
         ...defaultProps,
-        article: articleMockWithAudioDefaultVoice,
+        playlistItem: {
+          ...playlistItemMock,
+          article: articleMockWithAudioDefaultVoice
+        },
         downloadedAudiofiles: [articleMockWithAudioDefaultVoice.audiofiles[0]]
       }
 
@@ -390,7 +416,10 @@ describe('ArticleContainer', () => {
 
       const props: Props = {
         ...defaultProps,
-        article: articleWithoutAudiofiles
+        playlistItem: {
+          ...playlistItemMock,
+          article: articleWithoutAudiofiles
+        },
       }
 
       wrapper.update(<ArticleContainerComponent {...props} />);
@@ -412,7 +441,10 @@ describe('ArticleContainer', () => {
     it('handleOnPlayPress() should call alertIfDifferentSelectedVoice() when the user is not subscribed', async () => {
       const props: Props = {
         ...defaultProps,
-        article: articleMock,
+        playlistItem: {
+          ...playlistItemMock,
+          article: articleMock
+        },
         isSubscribed: false,
         playerCurrentArticleId: articleMock.id
       }
@@ -434,7 +466,10 @@ describe('ArticleContainer', () => {
     it('handleOnPlayPress() should just play the track when it is loaded in the player', async () => {
       const props: Props = {
         ...defaultProps,
-        article: articleMock,
+        playlistItem: {
+          ...playlistItemMock,
+          article: articleMock
+        },
         playerCurrentArticleId: articleMock.id
       }
 
@@ -455,7 +490,10 @@ describe('ArticleContainer', () => {
 
       const props: Props = {
         ...defaultProps,
-        article: articleWithoutAudiofiles
+        playlistItem: {
+          ...playlistItemMock,
+          article: articleWithoutAudiofiles
+        },
       }
 
       wrapper.update(<ArticleContainerComponent {...props} />);
@@ -543,7 +581,10 @@ describe('ArticleContainer', () => {
     it('getAudiofileByUserSelectedVoice() should return no audiofile for the user when there is no audiofile on the article with the user his selected voice', async () => {
       const props: Props = {
         ...defaultProps,
-        article: articleMockWithAudioDefaultVoice,
+        playlistItem: {
+          ...playlistItemMock,
+          article: articleMockWithAudioDefaultVoice
+        },
         selectedVoiceForLanguageName: voicePremium
       }
 
@@ -561,7 +602,10 @@ describe('ArticleContainer', () => {
     it('getAudiofileByUserSelectedVoice() should return the audiofile for the user when there is an audiofile on the article with the user his selected voice', async () => {
       const props: Props = {
         ...defaultProps,
-        article: articleMockWithAudioDefaultVoice,
+        playlistItem: {
+          ...playlistItemMock,
+          article: articleMockWithAudioDefaultVoice
+        },
         selectedVoiceForLanguageName: voiceLanguageDefaultEN
       }
 
@@ -579,7 +623,10 @@ describe('ArticleContainer', () => {
     it('getAudiofileByUserSelectedVoice() should return the audiofile for the user when there is an audiofile on the article if the user has no selected voice', async () => {
       const props: Props = {
         ...defaultProps,
-        article: articleMockWithAudioDefaultVoice,
+        playlistItem: {
+          ...playlistItemMock,
+          article: articleMockWithAudioDefaultVoice
+        },
         selectedVoiceForLanguageName: voiceLanguageDefaultEN
       }
 
@@ -597,7 +644,10 @@ describe('ArticleContainer', () => {
     it('getIsDownloaded should return true when the article audiofile is found in downloadedAudiofiles', async () => {
       const props: Props = {
         ...defaultProps,
-        article: articleMockWithAudioDefaultVoice,
+        playlistItem: {
+          ...playlistItemMock,
+          article: articleMockWithAudioDefaultVoice
+        },
         downloadedAudiofiles: [articleMockWithAudioDefaultVoice.audiofiles[0]],
         selectedVoiceForLanguageName: voiceLanguageDefaultEN
       }
@@ -612,7 +662,10 @@ describe('ArticleContainer', () => {
     it('getIsDownloaded should return false when the article audiofile is not found in downloadedAudiofiles', async () => {
       const props: Props = {
         ...defaultProps,
-        article: articleMockWithAudioDefaultVoice,
+        playlistItem: {
+          ...playlistItemMock,
+          article: articleMockWithAudioDefaultVoice
+        },
         downloadedAudiofiles: [],
         selectedVoiceForLanguageName: voiceLanguageDefaultEN
       }

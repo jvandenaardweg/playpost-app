@@ -46,6 +46,26 @@ interface Props {
   emptyDescription?: string[];
 }
 
+interface RightElementProps {
+  isLoading?: boolean;
+  chevron?: boolean;
+  checkmark?: boolean;
+  checkmarkColor: string;
+  theme: UserTheme;
+}
+
+const ListItemRightElement: React.FC<RightElementProps> = React.memo((props) => {
+  if (props.isLoading) {
+    return <ActivityIndicator color={props.theme === UserTheme.dark ? colors.white : colors.black} />;
+  }
+
+  if (props.checkmark) {
+    return <Icon.Feather name="check" size={20} color={props.checkmarkColor} style={{ height: 20 }} />
+  }
+
+  return <Icon.Feather name="chevron-right" size={20} color={props.theme === UserTheme.dark ? colors.gray500 : colors.gray} style={{ height: 20 }} />;
+})
+
 export const CustomSectionList: React.FC<Props> = React.memo((props) => {
   const { theme } = useContext(UserThemeContext)
 
@@ -89,7 +109,6 @@ export const CustomSectionList: React.FC<Props> = React.memo((props) => {
             undefined;
 
         const rightIcon = (item.value) ? <Text style={rightIconTextStyles} preset="subhead">{item.value}</Text> : undefined;
-        const rightElement = getRightElement(item, checkmarkColor, theme);
 
         return (
           <ListItem
@@ -103,7 +122,7 @@ export const CustomSectionList: React.FC<Props> = React.memo((props) => {
             subtitle={subtitle}
             leftIcon={leftIcon}
             rightIcon={rightIcon}
-            rightElement={rightElement}
+            rightElement={<ListItemRightElement isLoading={item.isLoading} chevron={item.chevron} checkmark={item.checkmark} checkmarkColor={checkmarkColor} theme={theme} />}
           />
         );
       }}
@@ -114,18 +133,4 @@ export const CustomSectionList: React.FC<Props> = React.memo((props) => {
 
 
 
-const getRightElement = (item: IListItem, checkmarkColor: string, theme: UserTheme) => {
-  if (item.isLoading) {
-    return <ActivityIndicator color={theme === UserTheme.dark ? colors.white : colors.black} />;
-  }
 
-  if (item.chevron) {
-    return <Icon.Feather name="chevron-right" size={20} color={theme === UserTheme.dark ? colors.gray500 : colors.gray} style={{ height: 20 }} />;
-  }
-
-  if (item.checkmark) {
-    return <Icon.Feather name="check" size={20} color={checkmarkColor} style={{ height: 20 }} />
-  }
-
-  return undefined;
-}
