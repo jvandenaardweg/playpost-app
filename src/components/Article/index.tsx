@@ -89,7 +89,7 @@ export const Article: React.FC<Props> = React.memo((props) => {
               onPress={props.onPlayPress}
               disabled={props.isLoading}
             >
-              {props.imageUrl && <Image resizeMode="cover" containerStyle={styles(theme).image} source={{ uri: props.imageUrl }} placeholderStyle={styles(theme).imagePlaceholder} />}
+              {props.imageUrl && <Image resizeMode="cover" containerStyle={styles(theme).image} source={{ uri: props.imageUrl }} placeholderStyle={styles(theme).imagePlaceholder} PlaceholderContent={<ActivityIndicator />} />}
               <View style={styles(theme).playButtonContainer}>
                 <PlayIcon isLoading={props.isLoading} isPlaying={props.isPlaying} isActive={props.isActive} />
               </View>

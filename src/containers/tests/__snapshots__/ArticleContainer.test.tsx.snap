@@ -653,11 +653,19 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
                         "alignItems": "center",
                         "backgroundColor": "#e5e5e5",
                         "borderRadius": 6,
+                        "flex": 1,
                         "justifyContent": "center",
                       }
                     }
                     testID="RNE__Image__placeholder"
-                  />
+                  >
+                    <ActivityIndicator
+                      animating={true}
+                      color="#999999"
+                      hidesWhenStopped={true}
+                      size="small"
+                    />
+                  </View>
                 </View>
                 <View
                   style={Object {}}

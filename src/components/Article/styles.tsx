@@ -151,6 +151,9 @@ export default memoize((theme: UserTheme) => StyleSheet.create({
   imagePlaceholder: {
     backgroundColor: theme === UserTheme.dark ? colors.gray800 : colors.grayLight,
     borderRadius: layout.borderRadius.small,
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   warningContainer: {
     borderRadius: layout.borderRadius.small,
