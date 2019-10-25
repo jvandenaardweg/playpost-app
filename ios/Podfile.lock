@@ -338,7 +338,7 @@ PODS:
     - React-Core
   - RNCAsyncStorage (1.6.2):
     - React
-  - RNDeviceInfo (4.0.1):
+  - RNDeviceInfo (5.0.1):
     - React
   - RNFBAnalytics (6.0.2):
     - Firebase/Core (~> 6.8.1)
@@ -362,7 +362,7 @@ PODS:
     - React
   - RNGestureHandler (1.4.1):
     - React
-  - RNIap (4.0.7):
+  - RNIap (4.0.8):
     - React
   - RNInAppBrowser (3.1.0):
     - React
@@ -608,14 +608,14 @@ SPEC CHECKSUMS:
   ReactNativeShareExtension: 7abfce32b7f831e659da3ac2bd441159672ba3b0
   rn-fetch-blob: 651b8d076b43d0d7aa294a3d9ec16c00aab8bef9
   RNCAsyncStorage: 5ae4d57458804e99f73d427214442a6b10a53856
-  RNDeviceInfo: 12faae605ba42a1a5041c3c41a77834bc23f049d
+  RNDeviceInfo: abb9b4a1815e120d80429a07f68179b3dd42dc58
   RNFBAnalytics: e71cdfdd193cd0589a6ee89335ce6ed41df4fa04
   RNFBApp: 32c782583cda2a9d53eac0ca154daf9f4e94f0fd
   RNFBCrashlytics: bd170b20f5220420a1e0c6fb2d89789d1cd7279b
   RNFBPerf: 9547b8c1ea07b1ffd90d6777288f44071c1a5444
   RNFS: 795866388a01de4e470f3b1041a99cf20a343844
   RNGestureHandler: 4cb47a93019c1a201df2644413a0a1569a51c8aa
-  RNIap: c54d03f31fe74b1f753580c8111a6394948a7b9e
+  RNIap: d6abb0fcb73bf848cf2a85cb675b54691bd66889
   RNInAppBrowser: c0c1f509fe1ced46d751b61463be847c9b139ae9
   RNKeychain: 45dbd50d1ac4bd42c3740f76ffb135abf05746d0
   RNLocalize: c117094a6c5a955c94e65520ad4c726e3a0f4ed6
