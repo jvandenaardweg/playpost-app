@@ -22,6 +22,10 @@ export function* sagaAddArticleToPlaylistByArticleId({ articleId }: AnyAction) {
 
     // After a success, get the user's playlist containing the new article
     yield put(getPlaylist())
+
+    // Hide the loader when done
+    yield put(setPlaylistIsLoadingCreateItem(false));
+
   } catch (err) {
     let errorMessage = 'Unknown error';
 
