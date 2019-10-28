@@ -21,7 +21,7 @@ export function* sagaAddArticleToPlaylistByArticleId({ articleId }: AnyAction) {
     yield call(API.postArticleToPlaylistById, articleId);
 
     // After a success, get the user's playlist containing the new article
-    yield put(getPlaylist())
+    yield put(getPlaylist());
 
     // Hide the loader when done
     yield put(setPlaylistIsLoadingCreateItem(false));
@@ -65,6 +65,8 @@ export function* sagaArchivePlaylistItem({ articleId }: AnyAction) {
 
     // After a success, get the user's playlist containing the new article
     yield put(getPlaylist())
+
+    yield put(setPlaylistIsLoadingArchiveItem(false, articleId));
   } catch (err) {
     let errorMessage = 'Unknown error';
 
@@ -104,7 +106,9 @@ export function* sagaUnarchivePlaylistItem({ articleId }: AnyAction) {
     yield call(API.patchUnarchivePlaylistItem, articleId);
 
     // After a success, get the user's playlist containing the new article
-    yield put(getPlaylist())
+    yield put(getPlaylist());
+
+    yield put(setPlaylistIsLoadingUnarchiveItem(false, articleId));
   } catch (err) {
     let errorMessage = 'Unknown error';
 
@@ -136,7 +140,9 @@ export function* sagaFavoritePlaylistItem({ articleId }: AnyAction) {
     yield call(API.patchFavoritePlaylistItem, articleId);
 
     // After a success, get the user's playlist containing the new article
-    yield put(getPlaylist())
+    yield put(getPlaylist());
+
+    yield put(setPlaylistIsLoadingFavoriteItem(false));
   } catch (err) {
     let errorMessage = 'Unknown error';
 
@@ -168,7 +174,9 @@ export function* sagaUnFavoritePlaylistItem({ articleId }: AnyAction) {
     yield call(API.patchUnFavoritePlaylistItem, articleId);
 
     // After a success, get the user's playlist containing the new article
-    yield put(getPlaylist())
+    yield put(getPlaylist());
+
+    yield put(setPlaylistIsLoadingUnFavoriteItem(false));
   } catch (err) {
     let errorMessage = 'Unknown error';
 
@@ -200,7 +208,9 @@ export function* sagaDeleteArticleFromPlaylist({ articleId }: AnyAction) {
     yield call(API.deleteArticleFromPlaylist, articleId);
 
     // After a success, get the user's playlist containing the new article
-    yield put(getPlaylist())
+    yield put(getPlaylist());
+
+    yield put(setPlaylistIsLoadingDeleteItem(false, articleId));
   } catch (err) {
     let errorMessage = 'Unknown error';
 
