@@ -40,10 +40,14 @@ export const ThemeSelectContainerComponent: React.FC<Props> = React.memo((props)
           icon: (theme === UserTheme.light) ? 'sun' : (theme === UserTheme.dark) ? 'moon' : 'clock',
           iconColor: colors.green,
           onPress: () => {
-            setIsLoadingTheme(theme)
-            requestAnimationFrame(() => {
-              props.setUserSelectedTheme(theme)
-            })
+            // Only change when it's a different theme
+            // So we do not show the loading indicator when the user presses the same theme twice
+            if (!isSelected) {
+              setIsLoadingTheme(theme)
+              requestAnimationFrame(() => {
+                props.setUserSelectedTheme(theme)
+              })
+            }
           }
         }
       })
