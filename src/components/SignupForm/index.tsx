@@ -33,6 +33,7 @@ export const SignupForm: React.FC<Props> = React.memo((props) => {
 
         <InputGroupEmail
           testID="SignupForm-TextInput-email"
+          nativeID="SignupForm_TextInput_email"
           value={props.email}
           onChangeText={text => props.onChangeText('email', text)}
           onSubmitEditing={() => passwordInputRef.current && passwordInputRef.current.focus()}
@@ -45,6 +46,7 @@ export const SignupForm: React.FC<Props> = React.memo((props) => {
         <InputGroupPassword
           textInputRef={passwordInputRef}
           testID="SignupForm-TextInput-password"
+          nativeID="SignupForm_TextInput_password"
           value={props.password}
           onChangeText={(text: string) => props.onChangeText('password', text)}
           onSubmitEditing={() => props.onPressSignup()}
@@ -52,7 +54,7 @@ export const SignupForm: React.FC<Props> = React.memo((props) => {
           returnKeyType="done"
         />
 
-        <View>
+        <View nativeID="SignupForm_View_Button">
           <Button
             testID="SignupForm-Button-signup"
             title="Create new account"

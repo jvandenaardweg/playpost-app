@@ -62,7 +62,14 @@ export const Article: React.FC<Props> = React.memo((props) => {
         <View style={styles(theme).wrapper}>
           <View testID="Article-Button-section" style={styles(theme).sectionBody}>
             <View style={styles(theme).bodyTitle}>
-              <Text style={[styles(theme).bodyTitleText, textDirectionStyle]} testID="Article-title" ellipsizeMode="tail" numberOfLines={4} preset="bodyEmphasized">
+              <Text
+                style={[styles(theme).bodyTitleText, textDirectionStyle]}
+                testID="Article-title"
+                nativeID="Article_title"
+                ellipsizeMode="tail"
+                numberOfLines={4}
+                preset="bodyEmphasized"
+              >
                 {props.title}
               </Text>
             </View>
@@ -82,7 +89,7 @@ export const Article: React.FC<Props> = React.memo((props) => {
               </View>
             </View>
           </View>
-          <View style={styles(theme).sectionControl}>
+          <View style={styles(theme).sectionControl} nativeID="Article_sectionControl">
             <TouchableOpacity
               testID="Article-Button-play"
               style={styles(theme).imageContainer}

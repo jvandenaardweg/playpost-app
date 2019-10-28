@@ -65,6 +65,7 @@ exports[`SignupForm rendering should render correctly 1`] = `
           clearButtonMode="always"
           editable={true}
           keyboardType="email-address"
+          nativeID="SignupForm_TextInput_email"
           onChangeText={[Function]}
           onSubmitEditing={[Function]}
           placeholder="john.appleseed@playpost.app"
@@ -190,6 +191,7 @@ exports[`SignupForm rendering should render correctly 1`] = `
           blurOnSubmit={false}
           clearButtonMode="always"
           editable={true}
+          nativeID="SignupForm_TextInput_password"
           onChangeText={[Function]}
           onSubmitEditing={[Function]}
           placeholder="Your super secret password"
@@ -217,7 +219,9 @@ exports[`SignupForm rendering should render correctly 1`] = `
           value=""
         />
       </View>
-      <View>
+      <View
+        nativeID="SignupForm_View_Button"
+      >
         <View
           style={
             Object {

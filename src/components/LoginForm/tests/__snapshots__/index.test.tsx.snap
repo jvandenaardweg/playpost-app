@@ -69,6 +69,7 @@ exports[`LoginForm rendering should render correctly 1`] = `
           clearButtonMode="always"
           editable={true}
           keyboardType="email-address"
+          nativeID="LoginForm_TextInput_email"
           onChangeText={[Function]}
           onSubmitEditing={[Function]}
           placeholder="john.appleseed@playpost.app"
@@ -194,6 +195,7 @@ exports[`LoginForm rendering should render correctly 1`] = `
           blurOnSubmit={false}
           clearButtonMode="always"
           editable={true}
+          nativeID="LoginForm_TextInput_password"
           onChangeText={[Function]}
           onSubmitEditing={[Function]}
           placeholder="Your super secret password"
@@ -222,6 +224,7 @@ exports[`LoginForm rendering should render correctly 1`] = `
         />
       </View>
       <View
+        nativeID="LoginForm_View_Button"
         style={
           Object {
             "marginTop": 12,

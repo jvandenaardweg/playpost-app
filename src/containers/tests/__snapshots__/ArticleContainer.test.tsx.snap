@@ -373,6 +373,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
             >
               <Text
                 ellipsizeMode="tail"
+                nativeID="Article_title"
                 numberOfLines={4}
                 style={
                   Array [
@@ -523,6 +524,7 @@ exports[`ArticleContainer rendering should render correctly 1`] = `
             </View>
           </View>
           <View
+            nativeID="Article_sectionControl"
             style={
               Object {
                 "alignItems": "center",

@@ -57,6 +57,7 @@ exports[`Article active rendering should render active correctly 1`] = `
         >
           <Text
             ellipsizeMode="tail"
+            nativeID="Article_title"
             numberOfLines={4}
             style={
               Array [
@@ -205,6 +206,7 @@ exports[`Article active rendering should render active correctly 1`] = `
         </View>
       </View>
       <View
+        nativeID="Article_sectionControl"
         style={
           Object {
             "alignItems": "center",
@@ -410,6 +412,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
         >
           <Text
             ellipsizeMode="tail"
+            nativeID="Article_title"
             numberOfLines={4}
             style={
               Array [
@@ -558,6 +561,7 @@ exports[`Article downloaded rendering should render downloaded correctly 1`] = `
         </View>
       </View>
       <View
+        nativeID="Article_sectionControl"
         style={
           Object {
             "alignItems": "center",
@@ -757,6 +761,7 @@ exports[`Article full rendering should render full correctly 1`] = `
         >
           <Text
             ellipsizeMode="tail"
+            nativeID="Article_title"
             numberOfLines={4}
             style={
               Array [
@@ -907,6 +912,7 @@ exports[`Article full rendering should render full correctly 1`] = `
         </View>
       </View>
       <View
+        nativeID="Article_sectionControl"
         style={
           Object {
             "alignItems": "center",
@@ -1106,6 +1112,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
         >
           <Text
             ellipsizeMode="tail"
+            nativeID="Article_title"
             numberOfLines={4}
             style={
               Array [
@@ -1254,6 +1261,7 @@ exports[`Article incompatibility warning render should render correctly 1`] = `
         </View>
       </View>
       <View
+        nativeID="Article_sectionControl"
         style={
           Object {
             "alignItems": "center",
@@ -1570,6 +1578,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
         >
           <Text
             ellipsizeMode="tail"
+            nativeID="Article_title"
             numberOfLines={4}
             style={
               Array [
@@ -1718,6 +1727,7 @@ exports[`Article loading rendering should render loading correctly 1`] = `
         </View>
       </View>
       <View
+        nativeID="Article_sectionControl"
         style={
           Object {
             "alignItems": "center",
@@ -1899,6 +1909,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
         >
           <Text
             ellipsizeMode="tail"
+            nativeID="Article_title"
             numberOfLines={4}
             style={
               Array [
@@ -2047,6 +2058,7 @@ exports[`Article minimal rendering should render minimal correctly 1`] = `
         </View>
       </View>
       <View
+        nativeID="Article_sectionControl"
         style={
           Object {
             "alignItems": "center",
@@ -2246,6 +2258,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
         >
           <Text
             ellipsizeMode="tail"
+            nativeID="Article_title"
             numberOfLines={4}
             style={
               Array [
@@ -2394,6 +2407,7 @@ exports[`Article playing rendering should render playing correctly 1`] = `
         </View>
       </View>
       <View
+        nativeID="Article_sectionControl"
         style={
           Object {
             "alignItems": "center",
