@@ -38,7 +38,9 @@
           android:configChanges="orientation"
           android:label="@string/title_activity_share"
           android:screenOrientation="portrait"
-          android:theme="@style/Theme.Share.Transparent">
+          android:theme="@style/Theme.Share.Transparent"
+          android:windowSoftInputMode="stateHidden|adjustResize"
+          >
         <intent-filter>
           <action android:name="android.intent.action.SEND" />
           <category android:name="android.intent.category.DEFAULT" />
