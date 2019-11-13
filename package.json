@@ -129,9 +129,9 @@
     "rn-fetch-blob": "^0.10.16",
     "ts-jest": "^24.1.0",
     "tslib": "^1.10.0",
-    "tslint": "^5.20.0",
-    "typescript": "^3.6.4",
-    "typescript-tslint-plugin": "^0.5.4",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.2",
+    "typescript-tslint-plugin": "^0.5.5",
     "url-parse": "^1.4.7",
     "valid-url": "^1.0.9"
   },

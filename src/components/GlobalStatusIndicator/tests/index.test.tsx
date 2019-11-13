@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, RenderAPI } from 'react-native-testing-library';
 
-import { GlobalStatusIndicator, Props } from '../index';
+import { GlobalStatusIndicator, IProps } from '../index';
 
-const defaultProps: Props = {
+const defaultProps: IProps = {
   audiofileStatus: '',
   playlistIsLoadingCreateItem: false
 }

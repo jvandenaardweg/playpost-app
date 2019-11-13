@@ -6,9 +6,9 @@ import { Props } from '../../containers/GlobalStatusIndicatorContainer';
 import Text from '../Text';
 import styles from './styles';
 
-export type Props = Props;
+export type IProps = Props;
 
-export const GlobalStatusIndicator: React.FC<Props> = React.memo((props) => {
+export const GlobalStatusIndicator: React.FC<IProps> = React.memo((props) => {
   const startAnimatedValue = 60;
   const [animatedBottomValue] = useState(new Animated.Value(startAnimatedValue));
   const [localLabel, setLocalLabel] = useState('')
