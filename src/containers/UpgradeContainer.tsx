@@ -359,7 +359,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     return inAppPurchaseHelper.finishSubscriptionTransaction(purchase)
   }
 
-  requestSubscription = (productId: string, activeInAppSubscriptionProductId: Api.InAppSubscription['productId'], activeInAppSubscriptionService: Api.InAppSubscription['service']): Promise<void> => {
+  requestSubscription = (productId: string, activeInAppSubscriptionProductId: Api.InAppSubscription['productId'], activeInAppSubscriptionService: Api.InAppSubscription['service']): Promise<RNIap.SubscriptionPurchase> => {
     return inAppPurchaseHelper.requestSubscription(productId, activeInAppSubscriptionProductId, activeInAppSubscriptionService);
   }
 

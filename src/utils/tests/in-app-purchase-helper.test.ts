@@ -48,12 +48,12 @@ describe('in-app-purchase-helper', () => {
       // Mock like we are on iOS
       utils.mockPlatform('ios');
 
-      const spyFinishTransactionIOS = jest.spyOn(RNIap, 'finishTransactionIOS')
+      const spyFinishTransactionIOS = jest.spyOn(RNIap, 'finishTransaction')
 
       await inAppPurchaseHelper.finishSubscriptionTransaction(mockPurchase as SubscriptionPurchase);
 
       expect(spyFinishTransactionIOS).toHaveBeenCalledTimes(1)
-      expect(spyFinishTransactionIOS).toHaveBeenCalledWith(transactionId)
+      expect(spyFinishTransactionIOS).toHaveBeenCalledWith(mockPurchase, false)
 
     });
 
@@ -70,12 +70,12 @@ describe('in-app-purchase-helper', () => {
       // Mock like we are on iOS
       utils.mockPlatform('android');
 
-      const spyAcknowledgePurchaseAndroid = jest.spyOn(RNIap, 'acknowledgePurchaseAndroid')
+      const spyAcknowledgePurchaseAndroid = jest.spyOn(RNIap, 'finishTransaction')
 
       await inAppPurchaseHelper.finishSubscriptionTransaction(mockPurchase as SubscriptionPurchase);
 
       expect(spyAcknowledgePurchaseAndroid).toHaveBeenCalledTimes(1)
-      expect(spyAcknowledgePurchaseAndroid).toHaveBeenCalledWith(purchaseToken)
+      expect(spyAcknowledgePurchaseAndroid).toHaveBeenCalledWith(mockPurchase, false)
 
     });
   });
