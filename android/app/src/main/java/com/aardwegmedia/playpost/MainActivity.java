@@ -25,7 +25,10 @@ public class MainActivity extends ReactActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
       SplashScreen.show(this);  // here
-      super.onCreate(savedInstanceState);
+
+      // Use null instead of savedInstanceState as suggested here: https://github.com/keybase/client/commit/ea82cfcc8a2969a8def2a2443467c3e42f79cf5d
+      // Should fix this crash: https://github.com/kmagiera/react-native-screens/issues/17
+      super.onCreate(null);
     }
 
     // Fix for build not working:
