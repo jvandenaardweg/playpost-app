@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { Platform } from 'react-native';
 import Video from 'react-native-video';
 
 import styles from './styles';
@@ -17,7 +18,9 @@ export const VideoPlayer: React.FC<Props> = React.memo((props) => {
     <Video
       source={source}
       resizeMode="cover"
-      controls
+      // Not showing controls on Android possibly fixes crashes on Android
+      // https://github.com/react-native-community/react-native-video/issues/648
+      controls={Platform.OS === 'android' ? false : true}
       repeat
       playInBackground={false}
       muted
