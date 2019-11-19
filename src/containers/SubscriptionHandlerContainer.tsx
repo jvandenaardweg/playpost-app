@@ -250,7 +250,7 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
     let feedbackUrl = URL_FEEDBACK;
 
     if (userDetails) {
-      feedbackUrl = feedbackUrl + `email=${userDetails.email}&id=${userDetails.id}`;
+      feedbackUrl = feedbackUrl + `?email=${userDetails.email}&id=${userDetails.id}`;
     }
 
     await analytics().logEvent('subscription_error_alert', {

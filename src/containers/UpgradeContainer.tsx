@@ -444,7 +444,7 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     let feedbackUrl = URL_FEEDBACK;
 
     if (userDetails) {
-      feedbackUrl = feedbackUrl + `email=${userDetails.email}&id=${userDetails.id}`;
+      feedbackUrl = feedbackUrl + `?email=${userDetails.email}&id=${userDetails.id}`;
     }
 
     return Alert.alert(title, message, [
