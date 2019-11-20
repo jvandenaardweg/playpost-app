@@ -37,10 +37,10 @@
           android:name=".shareextension.ShareActivity"
           android:configChanges="orientation"
           android:label="@string/title_activity_share"
-          android:screenOrientation="portrait"
           android:theme="@style/Theme.Share.Transparent"
           android:windowSoftInputMode="stateHidden|adjustResize"
           >
+          <!-- Removed "android:screenOrientation="portrait"" from above to fix a crash: https://stackoverflow.com/a/47093665 -->
         <intent-filter>
           <action android:name="android.intent.action.SEND" />
           <category android:name="android.intent.category.DEFAULT" />

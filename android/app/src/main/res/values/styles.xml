@@ -16,7 +16,7 @@
 
     <!-- <style name="Theme.Share.Transparent" parent="android:Theme"> -->
     <style name="Theme.Share.Transparent" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowIsTranslucent">false</item> <!-- Set this to false should fix a crash on Android versions below 28 https://stackoverflow.com/a/52964692/3194288 -->
+        <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowNoTitle">true</item>
