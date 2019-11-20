@@ -20,7 +20,7 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="android:windowIsFloating">false</item> <!-- Set this to false should fix a crash on Android versions below 28 https://stackoverflow.com/a/52964692/3194288 -->
+        <item name="android:windowIsFloating">true</item>
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:windowAnimationStyle">@style/Share.Window</item>
     </style>
