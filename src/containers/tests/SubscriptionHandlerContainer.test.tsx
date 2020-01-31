@@ -471,7 +471,7 @@ describe('SubscriptionHandlerContainer', () => {
       wrapper.update(<SubscriptionHandlerContainerComponent {...props}><Text>Container test</Text></SubscriptionHandlerContainerComponent>);
 
       // UpgradeModal uses Modal, so we just check for that
-      expect(wrapper.root.findAllByType(Modal)[0].props.isVisible).toBe(false);
+      expect(wrapper.root.findAllByType(Modal as any)[0].props.isVisible).toBe(false);
 
     });
 
@@ -484,7 +484,7 @@ describe('SubscriptionHandlerContainer', () => {
       wrapper.update(<SubscriptionHandlerContainerComponent {...props}><Text>Container test</Text></SubscriptionHandlerContainerComponent>);
 
       // UpgradeModal uses Modal, so we just check for that
-      expect(wrapper.root.findAllByType(Modal)[0].props.isVisible).toBe(true);
+      expect(wrapper.root.findAllByType(Modal as any)[0].props.isVisible).toBe(true);
 
     });
 
