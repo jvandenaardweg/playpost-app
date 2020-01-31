@@ -60,7 +60,6 @@
     "@types/node": "^13.5.3",
     "@types/react": "^16.9.0",
     "@types/react-native": "^0.61.8",
-    "@types/react-native-restart": "0.0.0",
     "@types/react-native-vector-icons": "^6.4.5",
     "@types/react-native-video": "^5.0.0",
     "@types/react-navigation": "^3.4.0",
@@ -71,7 +70,6 @@
     "axios": "^0.19.2",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^25.1.0",
-    "babel-plugin-const-enum": "0.0.5",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "core-js": "^3.6.4",
     "currency-symbol-map": "^4.0.4",
@@ -81,7 +79,6 @@
     "fast-memoize": "^2.5.1",
     "is-uuid": "^1.0.2",
     "jest": "^25.1.0",
-    "jest-fetch-mock": "^3.0.1",
     "jest-runner": "^25.1.0",
     "jest-runtime": "^25.1.0",
     "lodash.debounce": "^4.0.8",
@@ -191,7 +188,6 @@
   "devDependencies": {
     "auto-changelog": "^1.16.2",
     "concurrently": "^5.1.0",
-    "deep-object-diff": "^1.1.0",
     "husky": "^4.2.1",
     "jetifier": "^1.6.5"
   }
