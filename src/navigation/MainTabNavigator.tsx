@@ -21,10 +21,11 @@ import { textPresets } from '../components/Text';
 
 import colors from '../constants/colors';
 import { UserTheme } from '../reducers/user';
+import { Platform } from 'react-native';
 
 export const stackNavigatorDefaultNavigationOptions = memoize((theme: UserTheme): NavigationStackOptions => {
   return {
-    headerStyleInterpolator: HeaderStyleInterpolators.forUIKit,
+    headerStyleInterpolator: Platform.OS === 'ios' ? HeaderStyleInterpolators.forUIKit : undefined,
     headerTitleAlign: 'center',
     headerStyle: {
       borderBottomColor: theme === 'dark' ? colors.gray600 : colors.grayLight,
