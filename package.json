@@ -94,7 +94,7 @@
     "react-native-config": "git+https://github.com/luggit/react-native-config#89a602bf8be3808838403a97afaf915caeec76c2",
     "react-native-dark-mode": "^0.2.2",
     "react-native-deep-linking": "^2.2.0",
-    "react-native-device-info": "^5.4.3",
+    "react-native-device-info": "^5.4.4",
     "react-native-elements": "^1.2.7",
     "react-native-fs": "^2.16.2",
     "react-native-gesture-handler": "^1.5.3",
