@@ -11,7 +11,7 @@ import { PlaylistContainer } from '../containers/PlaylistContainer';
 export const FavoritesScreen: NavigationScreenComponent<{}, NavigationScreenProp<NavigationRoute>> = React.memo(() => {
   return (
     <AppBackground>
-      <InteractionManaged showActivityIndicator>
+      <InteractionManaged>
         <PlaylistContainer isFavoriteScreen />
       </InteractionManaged>
     </AppBackground>

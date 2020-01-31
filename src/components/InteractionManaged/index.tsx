@@ -25,7 +25,7 @@ export const InteractionManaged: React.FC<Props> = React.memo((props) => {
       duration: 200,
       useNativeDriver: true
     }).start();
-  }, [isMounted, opacityAnim])
+  }, [opacityAnim])
 
   if (!isMounted && !props.showActivityIndicator) {
     return null;
