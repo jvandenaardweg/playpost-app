@@ -21,7 +21,7 @@ export const ArchiveScreen: NavigationScreenComponent<{}, NavigationScreenProp<N
 ArchiveScreen.navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackOptions => {
   return {
     title: 'Archive',
-    headerLeft: <ButtonVoices onPress={() => navigation.navigate('ModalLanguages')} />,
-    headerRight: <ButtonUpgradeContainer />
+    headerLeft:  () => <ButtonVoices onPress={() => navigation.navigate('ModalLanguages')} />,
+    headerRight: () => <ButtonUpgradeContainer />
   };
 }

@@ -16,7 +16,7 @@ export const SettingsVoicesScreen: NavigationScreenComponent<{}, NavigationScree
   );
 });
 
-SettingsVoicesScreen.navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackOptions => {
+SettingsVoicesScreen.navigationOptions = (): NavigationStackOptions => {
   return {
     title: 'Voices'
   };

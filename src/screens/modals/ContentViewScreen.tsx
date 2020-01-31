@@ -22,6 +22,6 @@ export const ContentViewScreen: NavigationScreenComponent<{}, NavigationScreenPr
 
 ContentViewScreen.navigationOptions = (): NavigationStackOptions => {
   return {
-    headerLeft: null
+    headerLeft: () => null
   };
 }

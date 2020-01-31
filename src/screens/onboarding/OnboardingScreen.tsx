@@ -13,6 +13,6 @@ export const OnboardingScreen: NavigationScreenComponent<{}, NavigationScreenPro
 OnboardingScreen.navigationOptions = (): NavigationStackOptions => {
   return {
     title: 'Introduction',
-    header: null
+    headerShown: false
   };
 }

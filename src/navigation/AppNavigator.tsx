@@ -1,10 +1,8 @@
 
 import analytics from '@react-native-firebase/analytics';
 import React, { useContext } from 'react';
-import { Platform } from 'react-native';
 
 import { createAppContainer, createSwitchNavigator, NavigationContainer, NavigationState } from 'react-navigation';
-import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
 import { createStackNavigator, NavigationStackProp } from 'react-navigation-stack';
 
 import NavigationService from '../navigation/NavigationService';
@@ -33,13 +31,6 @@ export interface AppNavigatorScreenProps {
   theme: UserTheme
 }
 
-const customCreateSwitchNavigator = Platform.select({
-  // Because "createAnimatedSwitchNavigator" crashes on Android
-  // https://github.com/react-navigation/animated-switch/issues/6
-  ios: createAnimatedSwitchNavigator,
-  android: createSwitchNavigator
-});
-
 const LoginStack = createStackNavigator(
   {
     'login': LoginScreen,
@@ -49,10 +40,9 @@ const LoginStack = createStackNavigator(
   {
     initialRouteName: 'login',
     headerMode: 'screen',
-    headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation, screenProps }: { navigation: NavigationStackProp, screenProps: any }) => ({
       ...stackNavigatorDefaultNavigationOptions(screenProps.theme),
-      headerRight: <ButtonClose theme="light" onPress={() => navigation.navigate('Onboarding')} />
+      headerRight: () => <ButtonClose theme="light" onPress={() => navigation.navigate('Onboarding')} />
     })
   }
 );
@@ -64,10 +54,9 @@ const SignupStack = createStackNavigator(
   {
     initialRouteName: 'Signup',
     headerMode: 'screen',
-    headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation, screenProps }: { navigation: NavigationStackProp, screenProps: any }) => ({
       ...stackNavigatorDefaultNavigationOptions(screenProps.theme),
-      headerRight: <ButtonClose theme="light" onPress={() => navigation.navigate('Onboarding')} />
+      headerRight: () => <ButtonClose theme="light" onPress={() => navigation.navigate('Onboarding')} />
     })
   }
 );
@@ -79,7 +68,6 @@ const SettingsLanguagesModalStack = createStackNavigator(
   {
     initialRouteName: 'SettingsLanguages',
     headerMode: 'none',
-    headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ screenProps }: { screenProps: any }) => ({
       ...stackNavigatorDefaultNavigationOptions(screenProps.theme)
     }),
@@ -93,11 +81,9 @@ const UpgradeStack = createStackNavigator(
   },
   {
     headerMode: 'float',
-    headerTransitionPreset: 'uikit',
-    headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation, screenProps }: { navigation: NavigationStackProp, screenProps: any }) => ({
       ...stackNavigatorDefaultNavigationOptions(screenProps.theme),
-      headerRight: <ButtonClose theme="light" onPress={() => navigation.dismiss()} />
+      headerRight: () => <ButtonClose theme="light" onPress={() => navigation.dismiss()} />
     })
   }
 );
@@ -108,11 +94,9 @@ const ContentViewStack = createStackNavigator(
   },
   {
     headerMode: 'float',
-    headerTransitionPreset: 'uikit',
-    headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation, screenProps }: { navigation: NavigationStackProp, screenProps: any }) => ({
       ...stackNavigatorDefaultNavigationOptions(screenProps.theme),
-      headerRight: <ButtonClose theme="light" onPress={() => navigation.dismiss()} />
+      headerRight: () => <ButtonClose theme="light" onPress={() => navigation.dismiss()} />
     })
   }
 );
@@ -122,12 +106,10 @@ const FullAudioPlayerStack = createStackNavigator(
   },
   {
     headerMode: 'float',
-    headerTransitionPreset: 'uikit',
-    headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation, screenProps }: { navigation: NavigationStackProp, screenProps: any }) => ({
       ...stackNavigatorDefaultNavigationOptions(screenProps.theme),
-      headerRight: <ButtonClose theme="dark" onPress={() => navigation.dismiss()} />,
-      headerLeft: null,
+      headerRight: () => <ButtonClose theme="dark" onPress={() => navigation.dismiss()} />,
+      headerLeft: () => null,
       headerStyle: {
         backgroundColor: colors.black,
         borderBottomWidth: 0
@@ -143,12 +125,10 @@ const ModalLanguagesStack = createStackNavigator(
   },
   {
     headerMode: 'float',
-    headerTransitionPreset: 'uikit',
-    headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ navigation, screenProps }: { navigation: NavigationStackProp, screenProps: any }) => ({
       ...stackNavigatorDefaultNavigationOptions(screenProps.theme),
       title: 'Languages',
-      headerRight: <ButtonClose theme="light" onPress={() => {
+      headerRight: () => <ButtonClose theme="light" onPress={() => {
         navigation.popToTop()
         navigation.dismiss()
       }} />
@@ -166,11 +146,9 @@ const OnboardingStack = createStackNavigator(
     initialRouteName: 'Onboarding',
     mode: 'modal',
     headerMode: 'screen',
-    headerTransitionPreset: 'uikit',
-    headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ screenProps }: { screenProps: any }) => ({
       ...stackNavigatorDefaultNavigationOptions(screenProps.theme),
-      header: null
+      headerShown: false
     })
   }
 )
@@ -194,7 +172,7 @@ const RootStack = createStackNavigator(
 )
 
 const AppNavigationContainer: NavigationContainer = createAppContainer(
-  customCreateSwitchNavigator(
+  createSwitchNavigator(
     {
       Root: RootStack,
       AuthLoading: AuthLoadingScreen,

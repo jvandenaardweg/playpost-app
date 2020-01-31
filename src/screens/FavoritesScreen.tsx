@@ -21,7 +21,7 @@ export const FavoritesScreen: NavigationScreenComponent<{}, NavigationScreenProp
 FavoritesScreen.navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackOptions => {
   return {
     title: 'Favorites',
-    headerLeft: <ButtonVoices onPress={() => navigation.navigate('ModalLanguages')} />,
-    headerRight: <ButtonUpgradeContainer />
+    headerLeft: () => <ButtonVoices onPress={() => navigation.navigate('ModalLanguages')} />,
+    headerRight: () => <ButtonUpgradeContainer />
   };
 }

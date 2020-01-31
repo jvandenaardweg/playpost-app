@@ -12,7 +12,7 @@ export class SignupSuccessScreen extends React.PureComponent<Props> {
   static navigationOptions = (): NavigationStackOptions => {
     return {
       title: 'Signup success',
-      header: null
+      headerShown: false
     };
   }
 

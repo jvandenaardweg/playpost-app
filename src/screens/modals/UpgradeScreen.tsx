@@ -21,6 +21,6 @@ export const UpgradeScreen: NavigationScreenComponent<{}, NavigationScreenProp<N
 UpgradeScreen.navigationOptions = (): NavigationStackOptions => {
   return {
     title: 'Upgrade subscription',
-    headerLeft: null
+    headerLeft: () => null
   };
 }

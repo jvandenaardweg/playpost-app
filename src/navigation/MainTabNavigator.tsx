@@ -1,7 +1,7 @@
 import memoize from 'fast-memoize';
 import React from 'react';
-import { createStackNavigator, NavigationStackOptions } from 'react-navigation-stack';
-import { createBottomTabNavigator, NavigationTabProp } from 'react-navigation-tabs';
+import { createStackNavigator, NavigationStackOptions, HeaderStyleInterpolators } from 'react-navigation-stack';
+import { createBottomTabNavigator, BottomTabBarProps } from 'react-navigation-tabs';
 
 import { TabBar } from '../components/TabBar';
 import { TabBarIcon } from '../components/TabBarIcon';
@@ -24,19 +24,21 @@ import { UserTheme } from '../reducers/user';
 
 export const stackNavigatorDefaultNavigationOptions = memoize((theme: UserTheme): NavigationStackOptions => {
   return {
+    headerStyleInterpolator: HeaderStyleInterpolators.forUIKit,
+    headerTitleAlign: 'center',
     headerStyle: {
       borderBottomColor: theme === 'dark' ? colors.gray600 : colors.grayLight,
       backgroundColor: theme === 'dark' ? colors.gray800 : colors.white,
     },
     headerTitleStyle: {
-      ...textPresets['bodyEmphasized'],
+      ...textPresets.bodyEmphasized,
       color: theme === 'dark' ? colors.white : colors.black,
     },
     headerTintColor: theme === 'dark' ? colors.white : colors.tintColor,
     headerBackTitleStyle: {
-      ...textPresets['body'],
+      ...textPresets.body,
       color: theme === 'dark' ? colors.white : colors.tintColor,
-    }
+    },
   }
 })
 
@@ -47,8 +49,6 @@ const PlaylistStack = createStackNavigator(
   },
   {
     headerMode: 'float',
-    headerTransitionPreset: 'uikit',
-    headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ screenProps }: { screenProps: any }) => ({
       ...stackNavigatorDefaultNavigationOptions(screenProps.theme)
     }),
@@ -70,8 +70,6 @@ const ArchiveStack = createStackNavigator(
   },
   {
     headerMode: 'float',
-    headerTransitionPreset: 'uikit',
-    headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ screenProps }: { screenProps: any }) => ({
       ...stackNavigatorDefaultNavigationOptions(screenProps.theme)
     }),
@@ -93,11 +91,9 @@ const FavoritesStack = createStackNavigator(
   },
   {
     headerMode: 'float',
-    headerTransitionPreset: 'uikit',
     defaultNavigationOptions: ({ screenProps }: { screenProps: any }) => ({
       ...stackNavigatorDefaultNavigationOptions(screenProps.theme)
     }),
-    headerLayoutPreset: 'center',
     navigationOptions: {
       tabBarLabel: 'Favorites',
       tabBarIcon: ({ focused }: { focused: boolean }) => (
@@ -121,8 +117,6 @@ const SettingsStack = createStackNavigator(
   },
   {
     headerMode: 'float',
-    headerTransitionPreset: 'uikit',
-    headerLayoutPreset: 'center',
     defaultNavigationOptions: ({ screenProps }: { screenProps: any }) => ({
       ...stackNavigatorDefaultNavigationOptions(screenProps.theme)
     }),
@@ -147,7 +141,7 @@ export const MainTabNavigator = createBottomTabNavigator(
   },
   {
     // lazy: false, // pre-render all screens
-    tabBarComponent: (props: NavigationTabProp) => <TabBar {...props} />,
+    tabBarComponent: (props: BottomTabBarProps) => <TabBar {...props} />,
     tabBarOptions: {
       showLabel: false
     }

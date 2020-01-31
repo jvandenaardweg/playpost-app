@@ -21,7 +21,7 @@ export const PlaylistScreen: NavigationScreenComponent<{}, NavigationScreenProp<
 PlaylistScreen.navigationOptions = ({ navigation }: { navigation: NavigationScreenProp<NavigationRoute> }): NavigationStackOptions => {
   return {
     title: 'Playlist',
-    headerLeft: <ButtonVoices onPress={() => navigation.navigate('ModalLanguages')} />,
-    headerRight: <ButtonUpgradeContainer />
+    headerLeft: () => <ButtonVoices onPress={() => navigation.navigate('ModalLanguages')} />,
+    headerRight: () => <ButtonUpgradeContainer />
   };
 }

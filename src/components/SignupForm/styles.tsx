@@ -8,7 +8,7 @@ import { UserTheme } from '../../reducers/user';
 export default (theme: UserTheme) => StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: spacing.large
+    paddingHorizontal: spacing.large,
   },
   form: {
     width: '100%'
