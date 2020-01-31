@@ -15,7 +15,7 @@ export const openUrl = async (url: string, theme: UserTheme, options?: InAppBrow
     preferredBarTintColor: (theme === UserTheme.dark) ? colors.black : colors.white,
     readerMode: false,
     animated: true,
-    modalPresentationStyle: 'overFullScreen',
+    modalPresentationStyle: 'automatic',
     modalEnabled: true,
     // Android Properties
     showTitle: true,
