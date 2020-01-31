@@ -3,7 +3,7 @@
 exports[`UpgradeModal rendering should render correctly 1`] = `
 <Modal
   animationType="none"
-  hardwareAccelerated={false}
+  hardwareAccelerated={true}
   hideModalContentWhileAnimating={false}
   onModalHide={[Function]}
   onModalWillHide={[Function]}
@@ -48,6 +48,7 @@ exports[`UpgradeModal rendering should render correctly 1`] = `
     }
   />
   <View
+    hardwareAccelerated={true}
     hideModalContentWhileAnimating={false}
     onModalHide={[Function]}
     onModalWillHide={[Function]}

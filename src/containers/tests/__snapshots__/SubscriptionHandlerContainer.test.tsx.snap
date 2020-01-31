@@ -4,7 +4,7 @@ exports[`SubscriptionHandlerContainer rendering should render correctly 1`] = `
 Array [
   <Modal
     animationType="none"
-    hardwareAccelerated={false}
+    hardwareAccelerated={true}
     hideModalContentWhileAnimating={false}
     onModalHide={[Function]}
     onModalWillHide={[Function]}
@@ -49,6 +49,7 @@ Array [
       }
     />
     <View
+      hardwareAccelerated={true}
       hideModalContentWhileAnimating={false}
       onModalHide={[Function]}
       onModalWillHide={[Function]}
