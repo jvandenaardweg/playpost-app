@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Animated } from 'react-native';
+import { Animated, InteractionManager } from 'react-native';
 import { CenterLoadingIndicator } from '../CenterLoadingIndicator';
 
 interface Props {
@@ -18,13 +18,17 @@ export const InteractionManaged: React.FC<Props> = React.memo((props) => {
   const opacityAnim = new Animated.Value(0)
 
   useEffect(() => {
-    setIsMounted(true)
+    InteractionManager.runAfterInteractions(() => {
+      requestAnimationFrame(() => {
+        setIsMounted(true)
 
-    Animated.timing(opacityAnim, {
-      toValue: 1,
-      duration: 200,
-      useNativeDriver: true
-    }).start();
+        Animated.timing(opacityAnim, {
+          toValue: 1,
+          duration: 200,
+          useNativeDriver: true
+        }).start();
+      });
+    });
   }, [isMounted, opacityAnim])
 
   if (!isMounted && !props.showActivityIndicator) {
