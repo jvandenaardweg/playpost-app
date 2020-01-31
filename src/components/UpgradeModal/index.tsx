@@ -24,7 +24,9 @@ export const UpgradeModal: React.FC<Props> = React.memo((props) => {
     <Modal
       isVisible={props.isActive}
       useNativeDriver
-      coverScreen
+      coverScreen={false}
+      hardwareAccelerated
+      hasBackdrop
       animationInTiming={200}
       animationOutTiming={200}
       animationIn="zoomIn"

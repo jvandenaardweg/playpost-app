@@ -3,7 +3,7 @@ import analytics from '@react-native-firebase/analytics';
 import React, { useContext } from 'react';
 
 import { createAppContainer, createSwitchNavigator, NavigationContainer, NavigationState } from 'react-navigation';
-import { createStackNavigator, NavigationStackProp } from 'react-navigation-stack';
+import { createStackNavigator, NavigationStackProp, TransitionPresets } from 'react-navigation-stack';
 
 import NavigationService from '../navigation/NavigationService';
 import { MainTabNavigator, stackNavigatorDefaultNavigationOptions } from './MainTabNavigator';
@@ -26,6 +26,7 @@ import { SettingsVoicesScreen } from '../screens/settings/VoicesScreen';
 import { SignupSuccessScreen } from '../screens/SignupSuccessScreen';
 
 import { UserTheme } from '../reducers/user';
+import { Platform } from 'react-native';
 
 export interface AppNavigatorScreenProps {
   theme: UserTheme
@@ -42,7 +43,8 @@ const LoginStack = createStackNavigator(
     headerMode: 'screen',
     defaultNavigationOptions: ({ navigation, screenProps }: { navigation: NavigationStackProp, screenProps: any }) => ({
       ...stackNavigatorDefaultNavigationOptions(screenProps.theme),
-      headerRight: () => <ButtonClose theme="light" onPress={() => navigation.navigate('Onboarding')} />
+      headerRight: () => <ButtonClose theme="light" onPress={() => navigation.navigate('Onboarding')} />,
+      headerStatusBarHeight: 0, // https://github.com/react-navigation/stack/issues/301#issuecomment-570835833
     })
   }
 );
@@ -56,7 +58,8 @@ const SignupStack = createStackNavigator(
     headerMode: 'screen',
     defaultNavigationOptions: ({ navigation, screenProps }: { navigation: NavigationStackProp, screenProps: any }) => ({
       ...stackNavigatorDefaultNavigationOptions(screenProps.theme),
-      headerRight: () => <ButtonClose theme="light" onPress={() => navigation.navigate('Onboarding')} />
+      headerRight: () => <ButtonClose theme="light" onPress={() => navigation.navigate('Onboarding')} />,
+      headerStatusBarHeight: 0, // https://github.com/react-navigation/stack/issues/301#issuecomment-570835833
     })
   }
 );
@@ -69,7 +72,8 @@ const SettingsLanguagesModalStack = createStackNavigator(
     initialRouteName: 'SettingsLanguages',
     headerMode: 'none',
     defaultNavigationOptions: ({ screenProps }: { screenProps: any }) => ({
-      ...stackNavigatorDefaultNavigationOptions(screenProps.theme)
+      ...stackNavigatorDefaultNavigationOptions(screenProps.theme),
+      headerStatusBarHeight: 0, // https://github.com/react-navigation/stack/issues/301#issuecomment-570835833
     }),
   }
 );
@@ -83,7 +87,8 @@ const UpgradeStack = createStackNavigator(
     headerMode: 'float',
     defaultNavigationOptions: ({ navigation, screenProps }: { navigation: NavigationStackProp, screenProps: any }) => ({
       ...stackNavigatorDefaultNavigationOptions(screenProps.theme),
-      headerRight: () => <ButtonClose theme="light" onPress={() => navigation.dismiss()} />
+      headerRight: () => <ButtonClose theme="light" onPress={() => navigation.dismiss()} />,
+      headerStatusBarHeight: 0, // https://github.com/react-navigation/stack/issues/301#issuecomment-570835833
     })
   }
 );
@@ -96,7 +101,8 @@ const ContentViewStack = createStackNavigator(
     headerMode: 'float',
     defaultNavigationOptions: ({ navigation, screenProps }: { navigation: NavigationStackProp, screenProps: any }) => ({
       ...stackNavigatorDefaultNavigationOptions(screenProps.theme),
-      headerRight: () => <ButtonClose theme="light" onPress={() => navigation.dismiss()} />
+      headerRight: () => <ButtonClose theme="light" onPress={() => navigation.dismiss()} />,
+      headerStatusBarHeight: 0, // https://github.com/react-navigation/stack/issues/301#issuecomment-570835833
     })
   }
 );
@@ -113,7 +119,8 @@ const FullAudioPlayerStack = createStackNavigator(
       headerStyle: {
         backgroundColor: colors.black,
         borderBottomWidth: 0
-      }
+      },
+      headerStatusBarHeight: 0, // https://github.com/react-navigation/stack/issues/301#issuecomment-570835833
     })
   }
 );
@@ -131,7 +138,8 @@ const ModalLanguagesStack = createStackNavigator(
       headerRight: () => <ButtonClose theme="light" onPress={() => {
         navigation.popToTop()
         navigation.dismiss()
-      }} />
+      }} />,
+      headerStatusBarHeight: 0, // https://github.com/react-navigation/stack/issues/301#issuecomment-570835833
     })
   }
 )
@@ -148,7 +156,8 @@ const OnboardingStack = createStackNavigator(
     headerMode: 'screen',
     defaultNavigationOptions: ({ screenProps }: { screenProps: any }) => ({
       ...stackNavigatorDefaultNavigationOptions(screenProps.theme),
-      headerShown: false
+      headerShown: false,
+      ...(Platform.OS === 'ios') ? TransitionPresets.ModalPresentationIOS : TransitionPresets.ModalTransition,
     })
   }
 )
@@ -166,8 +175,9 @@ const RootStack = createStackNavigator(
     initialRouteName: 'App',
     headerMode: 'none',
     defaultNavigationOptions: ({ screenProps }: { screenProps: any }) => ({
-      ...stackNavigatorDefaultNavigationOptions(screenProps.theme)
-    }),
+      ...stackNavigatorDefaultNavigationOptions(screenProps.theme),
+      ...(Platform.OS === 'ios') ? TransitionPresets.ModalPresentationIOS : TransitionPresets.ModalTransition,
+    })
   }
 )
 

@@ -18,20 +18,20 @@ interface Props {
 export const ButtonClose: React.FC<Props> = React.memo((props) => {
   const { theme } = useContext(UserThemeContext);
 
-  const buttonStyle = (theme === UserTheme.dark) ? { backgroundColor: colors.gray700 } : { backgroundColor: colors.grayLight }
+  const buttonStyle = (theme === UserTheme.dark) ? { backgroundColor: 'transparent' } : { backgroundColor: colors.white }
 
   return (
     <TouchableOpacity
       onPress={props.onPress}
-      style={{ ...styles(theme).container, ...buttonStyle }}
+      style={{ ...styles().container, ...buttonStyle }}
       testID="button-close"
       hitSlop={mediumHitslop}
     >
       <Icon.Feather
         name="x"
-        size={18}
+        size={24}
         color={(theme === 'light') ? colors.black : colors.white}
-        style={{ width: 18, height: 18 }}
+        style={{ width: 24, height: 24 }}
       />
     </TouchableOpacity>
   );

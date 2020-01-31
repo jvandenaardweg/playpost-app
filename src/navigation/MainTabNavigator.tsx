@@ -29,6 +29,8 @@ export const stackNavigatorDefaultNavigationOptions = memoize((theme: UserTheme)
     headerStyle: {
       borderBottomColor: theme === 'dark' ? colors.gray600 : colors.grayLight,
       backgroundColor: theme === 'dark' ? colors.gray800 : colors.white,
+      borderBottomWidth: 1,
+      shadowColor: 'transparent'
     },
     headerTitleStyle: {
       ...textPresets.bodyEmphasized,
