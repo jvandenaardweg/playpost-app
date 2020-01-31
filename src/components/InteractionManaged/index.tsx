@@ -14,8 +14,7 @@ interface State {
 
 export const InteractionManaged: React.FC<Props> = React.memo((props) => {
   const [isMounted, setIsMounted] = useState<State['isMounted']>(false)
-
-  const opacityAnim = new Animated.Value(0)
+  const [opacityAnim] = useState(new Animated.Value(0))
 
   useEffect(() => {
     setIsMounted(true)
@@ -25,7 +24,8 @@ export const InteractionManaged: React.FC<Props> = React.memo((props) => {
       duration: 200,
       useNativeDriver: true
     }).start();
-  }, [opacityAnim])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   if (!isMounted && !props.showActivityIndicator) {
     return null;
