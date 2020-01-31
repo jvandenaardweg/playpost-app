@@ -105,7 +105,7 @@
     "react-native-modal": "^11.5.3",
     "react-native-reanimated": "^1.7.0",
     "react-native-safe-area-context": "^0.6.4",
-    "react-native-screens": "^1.0.0-alpha.23",
+    "react-native-screens": "^2.0.0-alpha.32",
     "react-native-share-extension": "git+https://github.com/jvandenaardweg/react-native-share-extension#3a7be58a624fc1f975494bb8f80992146916b464",
     "react-native-splash-screen": "^3.2.0",
     "react-native-swift": "^1.2.2",

@@ -6,6 +6,7 @@ import DeepLinking from 'react-native-deep-linking';
 import { Provider } from 'react-redux';
 // tslint:disable-next-line:no-submodule-imports
 import { PersistGate } from 'redux-persist/integration/react';
+import { enableScreens } from 'react-native-screens';
 
 import { persistor, store } from './store';
 
@@ -32,6 +33,8 @@ if (Platform.OS === 'android') {
 }
 
 const App: React.FC = React.memo(() => {
+  enableScreens();
+
   useEffect(() => {
     const onMount = async () => {
       if (__DEV__) {
