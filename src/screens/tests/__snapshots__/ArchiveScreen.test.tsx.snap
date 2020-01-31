@@ -2,7 +2,9 @@
 
 exports[`ArchiveScreen rendering should render correctly 1`] = `
 <Memo>
-  <Memo>
+  <Memo
+    showActivityIndicator={true}
+  >
     <Memo(Connect(Component))
       isArchiveScreen={true}
     />
