@@ -1,7 +1,6 @@
 {
   "extends": [
-    "tslint:latest",
-    "tslint-config-prettier"
+    "tslint:latest"
   ],
   "rules": {
     "trailing-comma": false,
@@ -12,6 +11,9 @@
     "no-namespace": false,
     "no-string-literal": false,
     "interface-name": false,
-    "member-access": false
+    "member-access": false,
+    "quotemark": [true, "single"],
+    "arrow-parens": false,
+    "semicolon": false
   }
 }
