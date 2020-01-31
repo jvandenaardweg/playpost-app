@@ -367,7 +367,7 @@ PODS:
     - React
   - RNGestureHandler (1.5.3):
     - React
-  - RNIap (4.3.0):
+  - RNIap (4.4.0):
     - React
   - RNInAppBrowser (3.3.4):
     - React
@@ -377,7 +377,7 @@ PODS:
     - React
   - RNReanimated (1.7.0):
     - React
-  - RNScreens (1.0.0-alpha.23):
+  - RNScreens (2.0.0-alpha.32):
     - React
   - RNVectorIcons (6.6.0):
     - React
@@ -628,12 +628,12 @@ SPEC CHECKSUMS:
   RNFBPerf: d2d2facff8a3afb13670e2ee7ad0c078ecb51eb8
   RNFS: 0d4191b1052bef9ce70deff00a5b4169c62bbd9b
   RNGestureHandler: 02905abe54e1f6e59c081a10b4bd689721e17aa6
-  RNIap: 968cacbb317c52218e6dcde98a71be0c64051cbc
+  RNIap: 9b6e92869de716305ecc6cac8c413321210e33c7
   RNInAppBrowser: b51ad29a3cfe36a9a55866d42fc169aa7db8522e
   RNKeychain: 840f8e6f13be0576202aefcdffd26a4f54bfe7b5
   RNLocalize: 7ea191e47e1755d2ad48614a2e9d07d290abc58e
   RNReanimated: 031fe8d9ea93c2bd689a40f05320ef9d96f74d7f
-  RNScreens: f28b48b8345f2f5f39ed6195518291515032a788
+  RNScreens: a55364dc1833101f836cee70975ce1fea615a12f
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
