@@ -19,7 +19,6 @@ import Modal from 'react-native-modal';
 import { SUBSCRIPTION_PRODUCT_ID_PREMIUM } from '../../constants/in-app-purchase';
 import NavigationService from '../../navigation/NavigationService';
 
-
 const validateSubscriptionReceiptHandler = jest.fn();
 const getUserHandler = jest.fn();
 const setIsLoadingUpgradeHandler = jest.fn();
@@ -341,7 +340,6 @@ describe('SubscriptionHandlerContainer', () => {
       expect(spyShowErrorAlert).toHaveBeenCalledTimes(0);
     });
 
-
     it('should correctly handle an expire message in componentDidUpdate when a user is not subscribed anymore', async () => {
       const propsSubscribed = {
         ...defaultProps,
@@ -461,7 +459,6 @@ describe('SubscriptionHandlerContainer', () => {
 
       expect(spyNavigationServiceNavigate).toHaveBeenCalledTimes(1);
       expect(spyNavigationServiceNavigate).toHaveBeenCalledWith('Upgrade', { centeredSubscriptionProductId: SUBSCRIPTION_PRODUCT_ID_PREMIUM });
-
 
     });
 

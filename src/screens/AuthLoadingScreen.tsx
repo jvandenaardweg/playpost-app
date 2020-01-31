@@ -12,7 +12,6 @@ import colors from '../constants/colors';
 import { setAuthToken } from '../reducers/auth';
 import * as keychain from '../utils/keychain';
 
-
 interface Props {
   navigation: NavigationScreenProp<NavigationRoute>;
 }

@@ -84,7 +84,7 @@ export class SubscriptionHandlerContainerComponent extends React.PureComponent<P
       }
 
       if (isLoadingRestore) {
-        if(validationResult && !isEqual(prevProps.validationResult, validationResult)) {
+        if (validationResult && !isEqual(prevProps.validationResult, validationResult)) {
           // TODO: correctly handle this
           return this.handleRestoreSubscriptionStatus(validationResult, isSubscribed);
         }

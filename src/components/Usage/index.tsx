@@ -10,7 +10,6 @@ import { UserTheme } from '../../reducers/user';
 import Text from '../Text';
 import styles from './styles';
 
-
 export interface Props {
   user: Api.User | null;
   activeSubscriptionProductId: string;

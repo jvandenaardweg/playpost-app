@@ -71,7 +71,7 @@ export const CustomSectionList: React.FC<Props> = React.memo((props) => {
 
   return (
     <SectionList
-      ListEmptyComponent={<EmptyState title={props.emptyTitle ? props.emptyTitle : "No items to show"} description={props.emptyDescription ? props.emptyDescription : ['It seems like this list is empty...']} />}
+      ListEmptyComponent={<EmptyState title={props.emptyTitle ? props.emptyTitle : 'No items to show'} description={props.emptyDescription ? props.emptyDescription : ['It seems like this list is empty...']} />}
       contentContainerStyle={styles(theme).containerStyle}
       initialNumToRender={15}
       indicatorStyle={theme === UserTheme.dark ? 'white' : 'black'}
@@ -103,7 +103,7 @@ export const CustomSectionList: React.FC<Props> = React.memo((props) => {
         const leftIcon = (item.leftIcon) ? (item.leftIcon) : (item.icon)
           ? (
             <View style={{...styles(theme).listItemLeftIconContainer, backgroundColor: leftIconColor }}>
-              <Icon.Feather name={item.icon} size={14} color='white' style={styles(theme).listItemLeftIcon} />
+              <Icon.Feather name={item.icon} size={14} color="white" style={styles(theme).listItemLeftIcon} />
             </View>
           ) :
             undefined;
@@ -130,7 +130,3 @@ export const CustomSectionList: React.FC<Props> = React.memo((props) => {
     />
   )
 }, isEqual)
-
-
-
-

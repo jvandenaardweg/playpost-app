@@ -32,7 +32,6 @@ describe('cache', () => {
       const spyMkdir = jest.spyOn(RNFS, 'mkdir')
       const spyFetch = jest.spyOn(RNFetchBlob, 'config')
 
-
       const filepath = await cache.downloadVoicePreview(exampleUrl)
 
       expect(filepath).toBe(`file://${expectedLocalFilePath}`)

@@ -12,7 +12,7 @@ import { UserTheme } from '../../reducers/user';
 import * as Icon from '../Icon';
 
 interface Props {
-  onPressUpdate?:() => void;
+  onPressUpdate?: () => void;
   isLoading: boolean;
   url: string;
 }

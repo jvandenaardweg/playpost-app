@@ -4,7 +4,6 @@ import * as ShallowRenderer from 'react-test-renderer/shallow';
 
 import { SettingsScreen } from '../SettingsScreen';
 
-
 describe('SettingsScreen', () => {
 
   describe('rendering', () => {

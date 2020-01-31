@@ -19,7 +19,6 @@ describe('ButtonVoicePreview', () => {
   describe('rendering', () => {
     let wrapper: RenderAPI;
 
-
     beforeAll(() => {
       const props = {
         ...defaultProps

@@ -302,7 +302,6 @@ describe('playlist reducer', () => {
     ).toMatchObject(expectedState);
   });
 
-
   it('should handle SET_PLAYLIST_IS_LOADING_UNARCHIVE_ITEM with isLoading = true without an articleId', () => {
     const isLoading = true;
 
@@ -416,6 +415,5 @@ describe('playlist reducer', () => {
       })
     ).toMatchObject(expectedState);
   });
-
 
 });

@@ -278,7 +278,6 @@ describe('UpgradeContainerComponent', () => {
       const spyGetUser = jest.spyOn(testInstance.props, 'getUser');
       // const spyValidateSubscriptionReceipt = jest.spyOn(testInstance.props, 'validateSubscriptionReceipt');
 
-
       // Simulate a click on "Restore previous purchase"
       await testInstance.handleOnPressRestore();
 

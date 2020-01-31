@@ -43,8 +43,6 @@ import {
   unFavoritePlaylistItem
 } from '../reducers/playlist';
 
-
-
 import NavigationService from '../navigation/NavigationService';
 
 import { selectDownloadedAudiofiles } from '../selectors/audiofiles';

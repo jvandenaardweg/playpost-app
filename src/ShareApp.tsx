@@ -19,7 +19,7 @@ console.disableYellowBox = true;
 
 const ShareApp: React.FC = React.memo(() => {
   useEffect(() => {
-    const mount = async() => {
+    const mount = async () => {
       // Disable Firebase services in dev mode
       if (__DEV__) {
         // tslint:disable: no-console

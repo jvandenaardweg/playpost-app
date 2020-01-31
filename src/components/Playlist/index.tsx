@@ -82,7 +82,6 @@ export const Playlist: React.FC<Props> = React.memo((props) => {
 
   }, [props.newPlaylistItems, props.isArchiveScreen, props.isFavoriteScreen, playlistItems])
 
-
   const renderEmptyComponent = () => {
     const osVersion = DeviceInfo.getSystemVersion();
 
@@ -95,7 +94,7 @@ export const Playlist: React.FC<Props> = React.memo((props) => {
         <EmptyState
           title="Your archived articles"
           description={[
-            "Articles you've already listened will be shown here in your archive, for easy future reference.",
+            'Articles you\'ve already listened will be shown here in your archive, for easy future reference.',
             'You can archive an article by swiping from right to left on an article.'
           ]}
         />
@@ -119,7 +118,7 @@ export const Playlist: React.FC<Props> = React.memo((props) => {
       return (
         <EmptyState
           title="No internet"
-          description={["There's no active internet connection, so we cannot display your playlist."]}
+          description={['There\'s no active internet connection, so we cannot display your playlist.']}
           actionButtonLabel="Try again"
           actionButtonOnPress={() => handleOnRefresh()}
         />

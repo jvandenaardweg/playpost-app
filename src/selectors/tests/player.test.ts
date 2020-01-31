@@ -183,5 +183,4 @@ describe('player selector', () => {
     expect(selectPlayerArticleFromAudiofileId(exampleState)).toMatchObject(articleMock);
   });
 
-
 });

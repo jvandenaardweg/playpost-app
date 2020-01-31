@@ -12,7 +12,7 @@
     "no-string-literal": false,
     "interface-name": false,
     "member-access": false,
-    "quotemark": [true, "single"],
+    "quotemark": [true, "single", "jsx-double"],
     "arrow-parens": false,
     "semicolon": false
   }

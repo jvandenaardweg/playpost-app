@@ -16,7 +16,7 @@ const defaultProps: Props = {
   onLongPress: onLongPressHandler,
   onPressOut: onPressOutHandler,
   onPressArticleIncompatible: onPressArticleIncompatibleHandler,
-  url: "https://www.google.nl",
+  url: 'https://www.google.nl',
   playlistItemCreatedAt: new Date().toISOString(),
   isCompatible: true,
   textDirection: 'ltr' as TextDirection,

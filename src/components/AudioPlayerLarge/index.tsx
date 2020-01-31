@@ -36,7 +36,7 @@ export const AudioPlayerLarge: React.FC<Props> = React.memo((props: Props) => {
 
   useEffect(() => {
     if (props.isPlaybackSpeedVisible) {
-      Animated.spring(                  // Animate over time
+      Animated.spring(// Animate over time
         animatedBottomValue,            // The animated value to drive
         {
           toValue: 0,

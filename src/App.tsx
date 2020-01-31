@@ -77,9 +77,6 @@ const App: React.FC = React.memo(() => {
     };
   }, []);
 
-
-
-
   const handleUrl = async ({ url }: { url: string }): Promise<any> => {
     const isSupported = await Linking.canOpenURL(url);
     if (isSupported) {
@@ -93,7 +90,7 @@ const App: React.FC = React.memo(() => {
     if (!isLoggedIn) {
       return Alert.alert(
         'Oops!',
-        `You need to be logged in to add this article to your playlist. Try again after logging in.`,
+        'You need to be logged in to add this article to your playlist. Try again after logging in.',
         [
           {
             text: 'Ok',
@@ -110,7 +107,7 @@ const App: React.FC = React.memo(() => {
     if (!articleId || !isUUID.anyNonNil(articleId)) {
       return Alert.alert(
         'Add new article',
-        `The article you want to add to your playlist does not seem to be valid.`,
+        'The article you want to add to your playlist does not seem to be valid.',
         [
           {
             text: 'Ok',

@@ -42,7 +42,7 @@ const customCreateSwitchNavigator = Platform.select({
 
 const LoginStack = createStackNavigator(
   {
-    login: LoginScreen,
+    'login': LoginScreen,
     'login/reset-password': LoginResetPasswordScreen,
     'login/forgot-password': LoginForgotPasswordScreen
   },
@@ -211,7 +211,6 @@ const AppNavigationContainer: NavigationContainer = createAppContainer(
   )
 );
 
-
 export const AppContainer: React.FC = React.memo(() => {
   const { theme } = useContext(UserThemeContext);
 
@@ -261,4 +260,3 @@ export const AppContainer: React.FC = React.memo(() => {
     />
   )
 })
-

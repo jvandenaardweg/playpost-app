@@ -317,8 +317,6 @@ describe('user reducer', () => {
     ).toEqual(expectedState);
   });
 
-
-
   it('should handle SET_PLAYBACK_SPEED', () => {
     const expectedState = {
       ...initialState,

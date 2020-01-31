@@ -73,7 +73,7 @@ export const createAllCacheDirectories = async () => {
  */
 export const emptyAllCaches = async () => {
   for (const cacheDirectory of CACHE_DIRECTORIES) {
-    if (await RNFS.exists(cacheDirectory)){
+    if (await RNFS.exists(cacheDirectory)) {
       await RNFS.unlink(cacheDirectory);
     }
   }

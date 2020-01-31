@@ -128,16 +128,16 @@ export class SmallAudioPlayerContainerComponent extends React.PureComponent<Prop
   }
 
   componentWillUnmount(): void {
-    if(this.onTrackChange) {
+    if (this.onTrackChange) {
       this.onTrackChange.remove();
     }
-    if(this.onStateChanged) {
+    if (this.onStateChanged) {
       this.onStateChanged.remove();
     }
-    if(this.onStateError) {
+    if (this.onStateError) {
       this.onStateError.remove();
     }
-    if(this.onPlaybackQueueEnded) {
+    if (this.onPlaybackQueueEnded) {
       this.onPlaybackQueueEnded.remove();
     }
   }

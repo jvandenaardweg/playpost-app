@@ -137,7 +137,7 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       // So the user does not has to wait for the API call to succeed
       // Resulting in a faster perceived archive
       const tempArchivedItems = (action.articleId && action.isLoading) ? state.items.map(item => {
-        if(item.article.id === action.articleId) {
+        if (item.article.id === action.articleId) {
           return {
             ...item,
             archivedAt: new Date().toISOString()
@@ -158,7 +158,7 @@ export function playlistReducer(state = initialState, action: any): PlaylistStat
       // So the user does not has to wait for the API call to succeed
       // Resulting in a faster perceived archive
       const tempUnarchivedItems = (action.articleId && action.isLoading) ? state.items.map(item => {
-        if(item.article.id === action.articleId) {
+        if (item.article.id === action.articleId) {
           return {
             ...item,
             archivedAt: null
@@ -322,7 +322,7 @@ export const setPlaylistIsLoadingArchiveItem = (isLoading: boolean, articleId: s
   articleId
 })
 
-export const setPlaylistIsLoadingUnarchiveItem= (isLoading: boolean, articleId: string) => ({
+export const setPlaylistIsLoadingUnarchiveItem = (isLoading: boolean, articleId: string) => ({
   type: SET_PLAYLIST_IS_LOADING_UNARCHIVE_ITEM,
   isLoading,
   articleId
@@ -353,10 +353,7 @@ export const unArchivePlaylistItem = (articleId: string) => ({
   articleId
 });
 
-
-
 // Below are methods not in saga's, yet
-
 
 export const getPlaylist = () => ({
   type: GET_PLAYLIST,

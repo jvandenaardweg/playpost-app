@@ -25,7 +25,7 @@ export const AudioPlayerProgressBar: React.FC<Props> = React.memo((props) => {
     percentage = position / duration;
   }
 
-  function displayTime (inputSeconds: number): string {
+  function displayTime(inputSeconds: number): string {
     // const hours = seconds / 3600;
     const minutes = (inputSeconds % 3600) / 60;
     const seconds = inputSeconds % 60;
@@ -33,7 +33,7 @@ export const AudioPlayerProgressBar: React.FC<Props> = React.memo((props) => {
     return [minutes, seconds].map(formatTime).join(':');
   }
 
-  function formatTime (val: number): string {
+  function formatTime(val: number): string {
     return (`0${Math.floor(val)}`).slice(-2);
   }
 

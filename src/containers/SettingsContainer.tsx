@@ -41,7 +41,6 @@ import NavigationService from '../navigation/NavigationService';
 
 import { UserThemeContext } from '../contexts/UserThemeProvider';
 
-
 type Props = NavigationInjectedProps & DispatchProps & StateProps;
 
 interface State {

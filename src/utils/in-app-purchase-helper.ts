@@ -21,11 +21,11 @@ export const requestSubscription = async (
 
     // https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.ProrationMode.html
     const prorationModes = {
-      'UNKNOWN_SUBSCRIPTION_UPGRADE_DOWNGRADE_POLICY': 0, // Unknown
-      'IMMEDIATE_WITH_TIME_PRORATION': 1, // The default behavior. Replacement takes effect immediately, and the remaining time will be prorated and credited to the user.
-      'IMMEDIATE_AND_CHARGE_PRORATED_PRICE': 2, // Replacement takes effect immediately, and the billing cycle remains the same.
-      'IMMEDIATE_WITHOUT_PRORATION': 3, // Replacement takes effect immediately, and the new price will be charged on next recurrence time.
-      'DEFERRED': 4 // Replacement takes effect when the old plan expires, and the new price will be charged at the same time.
+      UNKNOWN_SUBSCRIPTION_UPGRADE_DOWNGRADE_POLICY: 0, // Unknown
+      IMMEDIATE_WITH_TIME_PRORATION: 1, // The default behavior. Replacement takes effect immediately, and the remaining time will be prorated and credited to the user.
+      IMMEDIATE_AND_CHARGE_PRORATED_PRICE: 2, // Replacement takes effect immediately, and the billing cycle remains the same.
+      IMMEDIATE_WITHOUT_PRORATION: 3, // Replacement takes effect immediately, and the new price will be charged on next recurrence time.
+      DEFERRED: 4 // Replacement takes effect when the old plan expires, and the new price will be charged at the same time.
     }
 
     // IMMEDIATE_WITH_TIME_PRORATION

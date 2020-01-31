@@ -468,8 +468,8 @@ export class UpgradeContainerComponent extends React.PureComponent<Props, State>
     }
 
     const platformToServiceMapping = {
-      'ios': 'apple',
-      'android': 'google'
+      ios: 'apple',
+      android: 'google'
     }
 
     const currentService = platformToServiceMapping[Platform.OS]

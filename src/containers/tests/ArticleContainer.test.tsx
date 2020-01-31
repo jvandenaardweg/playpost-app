@@ -313,13 +313,11 @@ describe('ArticleContainer', () => {
       expect(spyDownloadAudiofile).toHaveBeenCalledTimes(1);
       expect(spySetDownloadedAudiofile).toHaveBeenCalledTimes(0);
 
-
       expect(Alert.alert).toHaveBeenCalledTimes(1);
       expect(Alert.alert).toHaveBeenCalledWith(ALERT_TITLE_ERROR, ALERT_ARTICLE_DOWNLOAD_FAIL);
 
       expect(testInstance.state.isActive).toBe(false);
       expect(testInstance.state.isLoading).toBe(false);
-
 
     });
 
@@ -501,7 +499,6 @@ describe('ArticleContainer', () => {
       const testInstance: ArticleContainerComponent = wrapper.root.instance;
 
       const spyHandleCreateAudiofile = jest.spyOn(testInstance, 'handleCreateAudiofile')
-
 
       await testInstance.handleOnPlayPress();
 

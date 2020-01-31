@@ -56,8 +56,6 @@ describe('InputGroupPassword', () => {
       wrapper = render(<InputGroupPassword {...props} />);
     });
 
-
-
     it('should use the correct TextInput props when password should be visible', () => {
       const viewPasswordToggleElement = wrapper.getByTestId('InputGroupPassword-TouchableOpacity-toggle-password-visible');
 

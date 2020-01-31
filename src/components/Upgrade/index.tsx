@@ -99,17 +99,17 @@ export const Upgrade: React.FC<Props> = React.memo((props) => {
                 const isAvailableOnService = !!featureSubscription;
 
                 const androidTrialPeriodMapping = {
-                  'D': 'day',
-                  'W': 'week',
-                  'M': 'month',
-                  'Y': 'year'
+                  D: 'day',
+                  W: 'week',
+                  M: 'month',
+                  Y: 'year'
                 }
 
                 const iosTrialPeriodMapping = {
-                  'DAY': 'day',
-                  'WEEK': 'week',
-                  'MONTH': 'month',
-                  'YEAR': 'year'
+                  DAY: 'day',
+                  WEEK: 'week',
+                  MONTH: 'month',
+                  YEAR: 'year'
                 }
 
                 // Get the localized currency, so we can show a localized currency symbol next to our "Free" option
@@ -117,7 +117,6 @@ export const Upgrade: React.FC<Props> = React.memo((props) => {
                 const currencySymbol = localizedCurrency ? getSymbolFromCurrency(localizedCurrency) : '';
                 const localizedPrice = featureSubscription ? featureSubscription.localizedPrice : `${currencySymbol}${subscriptionFeature.price}`;
                 const title = subscriptionFeature.title; // Do not use the subscription.title, this appears to be missing on some localizations
-
 
                 const hasTrialIOS = featureSubscription && featureSubscription.introductoryPricePaymentModeIOS === 'FREETRIAL' && props.isEligibleForTrial;
                 const hasTrialAndroid = featureSubscription && featureSubscription.freeTrialPeriodAndroid && props.isEligibleForTrial;

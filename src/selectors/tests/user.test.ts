@@ -232,7 +232,6 @@ describe('user selector', () => {
     expect(selectUserIsSubscribed(exampleState)).toEqual(false);
   });
 
-
   it('selectUserActiveSubscriptionProductId should return the default productId "free" when there are no active subscriptions', () => {
     const exampleState = {
       ...rootState,
@@ -517,7 +516,5 @@ describe('user selector', () => {
 
     expect(selectUserIsEligibleForTrial(exampleState)).toEqual(true);
   });
-
-
 
 });

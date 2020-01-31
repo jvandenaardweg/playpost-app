@@ -18,7 +18,6 @@ export const RESET_PLAYER_STATE = 'player/RESET_PLAYER_STATE';
 
 const CREATE_AUDIOFILE_FAIL_MESSAGE = 'An unknown error happened while creating creating an audiofile. Please contact us when this happens all the time.';
 
-
 export type PlayerState = Readonly<{
   track: TrackPlayer.Track;
   audiofile: Api.Audiofile | null;

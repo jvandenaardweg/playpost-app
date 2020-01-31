@@ -10,7 +10,6 @@ import { selectUserAvailableThemes, selectUserSelectedTheme } from '../selectors
 import { CustomSectionList, IListItem } from '../components/CustomSectionList';
 import colors from '../constants/colors';
 
-
 type Props = NavigationInjectedProps & StateProps & DispatchProps;
 
 export const ThemeSelectContainerComponent: React.FC<Props> = React.memo((props) => {
