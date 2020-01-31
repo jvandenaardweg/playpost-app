@@ -88,7 +88,7 @@
     "npm-check": "^5.9.0",
     "react": "16.9.0",
     "react-fast-compare": "^2.0.4",
-    "react-native": "0.61.4",
+    "react-native": "0.61.5",
     "react-native-app-intro-slider": "^3.0.0",
     "react-native-config": "git+https://github.com/luggit/react-native-config#89a602bf8be3808838403a97afaf915caeec76c2",
     "react-native-dark-mode": "^0.2.1",
