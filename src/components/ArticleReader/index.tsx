@@ -274,6 +274,10 @@ export const ArticleReader: React.FC<Props> = React.memo((props) => {
       bounces
       decelerationRate="normal"
       style={{ backgroundColor: 'transparent', padding: 0, margin: 0 }}
+
+      // Settings this property fixes a crash on Android when we navigate back to the previous screen
+      // Taken from https://github.com/react-native-community/react-native-webview/issues/575#issuecomment-508845949
+      androidHardwareAccelerationDisabled
     />
   );
 

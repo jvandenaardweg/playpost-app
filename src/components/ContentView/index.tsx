@@ -208,6 +208,9 @@ export const ContentView: React.FC<Props> = React.memo((props) => {
         javaScriptEnabled={false}
         bounces
         decelerationRate="normal"
+        // Settings this property fixes a crash on Android when we navigate back to the previous screen
+        // Taken from https://github.com/react-native-community/react-native-webview/issues/575#issuecomment-508845949
+        androidHardwareAccelerationDisabled
       />
       <View style={styles(theme).footer}>
         <Button title="Contact support" onPress={props.onPressSupport} />
