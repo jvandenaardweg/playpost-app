@@ -22,6 +22,7 @@ exports[`ContentView basic rendering should render correctly 1`] = `
     }
   >
     <RNCWebView
+      androidHardwareAccelerationDisabled={true}
       bounces={true}
       cacheEnabled={true}
       decelerationRate={0.998}

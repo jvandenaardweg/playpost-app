@@ -2,9 +2,7 @@
 
 exports[`PlaylistScreen rendering should render correctly 1`] = `
 <Memo>
-  <Memo
-    showActivityIndicator={true}
-  >
+  <Memo>
     <Memo(Connect(Component)) />
   </Memo>
 </Memo>
