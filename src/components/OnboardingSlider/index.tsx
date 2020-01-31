@@ -32,7 +32,7 @@ interface OnboardingSlideProps {
 const OnboardingSliderComponent: React.FC<Props> = React.memo(() => {
   const appIntroSliderRef = useRef<typeof AppIntroSlider>(null);
 
-  const slides: Array<OnboardingSlideProps['item']> = [
+  const slides: OnboardingSlideProps['item'][] = [
     {
       key: 'slide0',
       image: require('../../assets/images/onboarding/voice-message.png'),
