@@ -9,7 +9,6 @@ import { UserThemeContext } from '../../contexts/UserThemeProvider';
 import { UserTheme } from '../../reducers/user';
 import { TextDirection } from '../../typings';
 import { textPresets } from '../Text';
-import { View } from 'react-native';
 
 interface Props {
   article: Api.Article | undefined;
