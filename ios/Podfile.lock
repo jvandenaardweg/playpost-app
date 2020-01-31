@@ -331,7 +331,7 @@ PODS:
     - React-cxxreact (= 0.61.5)
     - React-jsi (= 0.61.5)
     - ReactCommon/jscallinvoker (= 0.61.5)
-  - ReactNativeDarkMode (0.2.1):
+  - ReactNativeDarkMode (0.2.2):
     - React
   - ReactNativeShareExtension (1.2.1):
     - React
@@ -605,7 +605,7 @@ SPEC CHECKSUMS:
   React-RCTText: 9ccc88273e9a3aacff5094d2175a605efa854dbe
   React-RCTVibration: a49a1f42bf8f5acf1c3e297097517c6b3af377ad
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
-  ReactNativeDarkMode: 0e6e7bdbd387eb949fa7ff238a48f6d6431a428d
+  ReactNativeDarkMode: 0178ffca3b10f6a7c9f49d6f9810232b328fa949
   ReactNativeShareExtension: 7abfce32b7f831e659da3ac2bd441159672ba3b0
   rn-fetch-blob: 651b8d076b43d0d7aa294a3d9ec16c00aab8bef9
   RNCAsyncStorage: 8539fc80a0075fcc9c8e2dff84cd22dc5bf1dacf
