@@ -45,7 +45,7 @@ export const AuthLoadingScreen: React.FC<Props> = React.memo((props) => {
 
     // Get the network connection status
     // So we know if we can do API requests, or not
-    await NetInfo.isConnected.fetch();
+    await NetInfo.fetch();
 
     // Make sure we have the correct cache direct\ories needed in the app
     await cache.createAllCacheDirectories();
