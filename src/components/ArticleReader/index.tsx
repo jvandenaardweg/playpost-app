@@ -224,10 +224,10 @@ export const ArticleReader: React.FC<Props> = React.memo((props) => {
     `;
   }
 
-  const getHtmlDocument = (articleProp: Api.Article | undefined, themeStyles: ThemeStyles): string => {
+  const getHtmlDocument = (articleProp: Api.Article | undefined, themeStylesParam: ThemeStyles): string => {
     // When we have no article or no html, show the user we don't have enough data
     if (!articleProp || !articleProp.html) {
-      return getNoHtmlDocument(articleProp, themeStyles);
+      return getNoHtmlDocument(articleProp, themeStylesParam);
     }
 
     const textDirection = getTextDirection(articleProp);
@@ -238,7 +238,7 @@ export const ArticleReader: React.FC<Props> = React.memo((props) => {
 
     let htmlDocument = `
       <!DOCTYPE html>
-      ${getHtmlHeader(themeStyles, textDirection)}
+      ${getHtmlHeader(themeStylesParam, textDirection)}
         <body>
           ${imageElement}
           <div class="meta-header">
