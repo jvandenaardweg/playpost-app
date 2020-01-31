@@ -3,7 +3,7 @@
   "version": "1.8.0",
   "private": true,
   "scripts": {
-    "start": "react-native start",
+    "start": "react-native start --reset-cache",
     "test": "concurrently \"npm run tsc\" \"npm run lint\" \"npm run jest\"",
     "test:typescript": "npm run tsc",
     "test:lint": "npm run lint",
